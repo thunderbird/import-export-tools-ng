@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Արտածել ենթաթղթապանակներով (պարզ)">
+<!ENTITY importMbox "Ներմուծել mbox ֆայլը">
+<!ENTITY labelmenuMI "Ներմուծել/Արտածել">
+<!ENTITY MBlabel1 "Վերագրել mbox միևնույն անունով ֆայլերը նշանակման թղթապանակում">
+<!ENTITY importDir "Ընտրեք թղթապանակը, որտեղ պետք է փնտրվեն ներմուծվող mbox ֆայլերը">
+<!ENTITY labelmenuMItools "ՆերմուծելուԱրտածելուԳործիքները">
+<!ENTITY importFile "Ներմուծել ուղղակի մեկ կամ մի քանի mbox ֆայլեր">
+<!ENTITY importDialogLabel "Ընտրեք ներմուծելու եղանակը՝">
+<!ENTITY importDialogTitle "mbox ֆայլերի ներմուծում">
+<!ENTITY importStruct "Ներմուծել մեկ կամ մի քանի mbox ֆայլեր՝ ներառյալ ենթաթղթապանակները">
+<!ENTITY exportStruct "Արտածել թղթապանակը ենթաթղթապանակներով (կառուցվածքով)">
+<!ENTITY exportAllStruct "Արտածել բոլոր թղթապանակները (կառուցվածքով)">
+<!ENTITY MBlabel2 "Արտածելիս օգտագործել միայն այբենական նշաններ">
+<!ENTITY allMsgsFolder "Արտածել այս թղթապանակի բոլոր նամակները">
+<!ENTITY asEML "EML տեսակի">
+<!ENTITY asHTML "HTML տեսակի">
+<!ENTITY asTXT "Plain text տեսակի">
+<!ENTITY saveSelected "Պահպանել նշված նամակները">
+<!ENTITY justIndex "միայն մուտքայինը">
+<!ENTITY toClip "Պատճենել նամակը մեկուսաշրջույթ">
+<!ENTITY MBlabel3 "Պահանջել հաստատում՝ mbox ֆայլերը թղթապանակից ներմուծելուց առաջ">
+<!ENTITY MBlabel4 "HTML տեսակի՝ ինչպես-որ ցուցադրված է նամակների վահանակում">
+<!ENTITY MBlabel5 "Պատճենել մեկուսաշրջույթ միայն տեքստային տեսակով (կարող է հանգեցնել համատեղելիության խնդիրների)">
+<!ENTITY MBlabel6 "Երբ այն's առկա է, ամսաթիվը դնել արտածվող ֆայլի սկզբում">
+<!ENTITY MBlabel7a "Վերնագրի առավ. երկարությունը">
+<!ENTITY MBlabel7b "նշաններ">
+<!ENTITY MBlabel7c "Ուղարկողի անվան առավ. երկարությունը">
+<!ENTITY MBlabel7d "Ստացողների անվան առավ. երկարությունը">
+<!ENTITY oneFile "որպես եզակի տեքստային ֆայլ">
+<!ENTITY importAttachedEML "Ներմուծել նամակները այս թղթապանակ">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Պատճենել մեկուսաշրջույթ">
+<!ENTITY copyClipMessage "Նամակը">
+<!ENTITY copyClipHeaders "Գլխագրերը">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Ընտրեք թղթապանակը, որում պետք է փնտրել ներմուծվող ֆայլերը (նաև ենթաթղթապանակներում)">
+<!ENTITY importDirProf "Բացել filepicker-ը պրոֆիլների' թղթապանակում">
+<!ENTITY MBlabel8 "'Պահպանել նշված նամակները'-ում ավելացնել ամսաթիվ ֆայլի անվանը">
+<!ENTITY options "Ընտրանքները">
+<!ENTITY importALLEML1 "թղթապանակից">
+<!ENTITY importALLEML2 "նաև ենթաթղթապանակներից">
+<!ENTITY misc "Խառը">
+<!ENTITY filenameFormat "Ֆայլերի անունները">
+<!ENTITY savedirs "Արտածել թղթապանակները">
+<!ENTITY addTimestamp "Հավելել ամսաթիվ ֆայլի հատկություններում">
+<!ENTITY customizeFilename "Օգտ. հետևյալ տեսակը՝">
+<!ENTITY captionCustomize "Հարմարեցված տեսակ՝ ֆայլի անունների համար">
+<!ENTITY browse "Ընտրել">
+<!ENTITY subject "Վերնագիրը">
+<!ENTITY date "Ամսաթիվը">
+<!ENTITY key "Ինդեքս">
+<!ENTITY addtime.label "Հավելել ժամանակը ամսաթվում">
+<!ENTITY mboxExport "Արտածել թղթապանակները որպես MBOX ֆայլ.">
+<!ENTITY emlExport "Արտածել թղթապանակները որպես եզակի ֆայլեր.">
+<!ENTITY selExport "Արտածել ընտրված նամակները.">
+<!ENTITY MBcaptionlabel1 "Գլխավոր կարգավորումները">
+<!ENTITY saveProfileMail "Պահպանել բոլոր նամակների ֆայլերը">
+<!ENTITY sdExportButton "Արտածել">
+<!ENTITY sdMessages "Նամակները">
+<!ENTITY sdAll "Բոլորը">
+<!ENTITY sdSelected "Նշվածերը">
+<!ENTITY sdFormat "Տեսակը">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Plain text">
+<!ENTITY searchAndExport "Փնտրել և արտածել">
+<!ENTITY buildMSF.label "Կառուցել ինդեքսը՝ ներմուծված mbox ֆայլերի համար">
+<!ENTITY addPrefix "Հավելել նախածանց">
+<!ENTITY fileLenCaption "Ֆայլերի անունների երկարությունը">
+<!ENTITY cutSub "Կտրել վերնագիրը 50 նիշի">
+<!ENTITY cutFN "Կտրել ֆայլի ամբողջական ճ-ի երկարությունը 256 նիշի">
+<!ENTITY sdMBOX "Mbox (նոր)">
+<!ENTITY sdMBOX2 "Mbox (ավելացնել)">
+<!ENTITY asMBOX "որպես Mbox ֆայլ (նոր)">
+<!ENTITY asMBOX2 "որպես Mbox ֆայլ (ավելացնել)">
+<!ENTITY filenameCharset "Ֆայլերի անունների գրանշանը">
+<!ENTITY name "Անունը">
+<!ENTITY importStructDescr1 "Ընտրեք միայն mbox ֆայլը, թղթապանակը նույն անունով է">
+<!ENTITY importStructDescr2 "և ընդլայնումը \'sbd\' ինքնաշխատ կներմուծվի, եթե գոյություն ունի:">
+<!ENTITY abortExport "Կանգնեցնել ներմուծումը">
+<!ENTITY allMsg "Արտածել բոլոր նամակները">
+<!ENTITY indexSettingLabel "Բոլոր նամակները նամակի թղթապանակում արտածելիս.">
+<!ENTITY indexOn "ստեղծել նոր թղթապանակ և նամակների ինդեքսը">
+<!ENTITY indexOff "օգտագործել նշված թղթապանակը՝ առանց ինդեքսի">
+<!ENTITY copyFolderPath "Պատճենել թղթապանակի ճ-ը պնակում">
+<!ENTITY importSMS "Ներմուծել SMS">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "'SMS Backup and Restore' Android-ի համար">
+<!ENTITY sender "Ուղարկողը">
+<!ENTITY recipient "Ստացողը">
+<!ENTITY exportRemoteFolder "Արտածել հեռադիր թղթապանակը">
+<!ENTITY skipMsgLabel "չպահպանել նամակները, երբ թղթակից ֆայլը առկա է">
+<!ENTITY asCSV "Spreadsheet (CSV)">
+<!ENTITY exportZIP "Արտածել թղթապանակը (սեղմված)">
+<!ENTITY openFolderPath "Բացել թղթապանակը, որտեղ թղթապանակի ֆայլն է">
+<!ENTITY addNumber.label "mbox ֆայլերը ներմուծելիս մշտապես անվանը ավելացնել պատահական համար">
+<!ENTITY textCharset "Արտածելու գրանշանը տեքստային և CSV տեսակի համար՝">
+<!ENTITY importEML "Ներմուծել նամակները">
+<!ENTITY importALLEML "Ներմուծել թղթապանակի բոլոր նամակները">
+<!ENTITY importMAILDIR "Ներմուծել Maildir թղթապանակը">
+<!ENTITY withattach "(կցորդներով)">
+<!ENTITY asPDF "PDF ձևաչափ">
+<!ENTITY importProfile "Ներմուծել պրոֆիլ">
+<!ENTITY csvSep "Բաժանիչ՝ արտածվող CSV ֆայլի համար.">
+<!ENTITY saveProfile "Պահպանել բոլոր պրոֆիլների ֆայլերը">
+<!ENTITY withIndexLabel "with HTML index">

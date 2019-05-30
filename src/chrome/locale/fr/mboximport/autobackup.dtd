@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Sauvegarde">
+<!ENTITY description1 "Dernière Sauvegarde : $t">
+<!ENTITY description2 "D'après les paramètres, il est maintenant nécessaire de réaliser une sauvegarde.">
+<!ENTITY description3 "Durant cette operation, le programme sera bloqué quelques minutes.">
+<!ENTITY description4 "Voulez-vous continuer ?">
+<!ENTITY description5 "Sauvegarde en cours ... Veuillez patienter, svp.">
+<!ENTITY description6 "Sauvegarde réalisée.">
+<!ENTITY backupTab "Planification Sauvegarde">
+<!ENTITY backupSettings "Paramètres Sauvegarde">
+<!ENTITY backupOn "Autoriser">
+<!ENTITY backupFreq "Fréquence">
+<!ENTITY day1 "1 jour">
+<!ENTITY day3 "3 jours">
+<!ENTITY day7 "7 jours">
+<!ENTITY day15 "15 jours">
+<!ENTITY day30 "30 jours">
+<!ENTITY backupDestination "Destination ">
+<!ENTITY backupFolderName "Nom du dossier de sauvegarde ">
+<!ENTITY autoName "Automatique (nom dossier + date)">
+<!ENTITY customName "Personnalisé ">
+<!ENTITY backupType "Contenu Sauvegarde ">
+<!ENTITY allFiles "Tous fichiers Profil">
+<!ENTITY justMailFiles "Juste fichiers Mail">
+<!ENTITY lastBackup "Dernière sauvegarde ">
+<!ENTITY allFilesMode "Toujours tous les fichiers">
+<!ENTITY newFilesMode "Juste les fichiers modifiés depuis la dernière sauvegarde">
+<!ENTITY save "Sauvegarde">
+<!ENTITY modal "Utiliser une fenêtre 'modal'">
+<!ENTITY MACwarning "N.B: close every other window, before continue.">

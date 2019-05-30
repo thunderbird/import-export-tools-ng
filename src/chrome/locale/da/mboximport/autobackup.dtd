@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Sikkerhedskopier">
+<!ENTITY description1 "Dato for seneste sikkerhedskopi: $t">
+<!ENTITY description2 "På baggrund af dine indstillinger, er det nu nødvendigt at tage en sikkerhedskopi.">
+<!ENTITY description3 "Under denne operation, vil programmet ikke reagerer i nogle minutter.">
+<!ENTITY description4 "Ønsker du at fortsætte?">
+<!ENTITY description5 "Sikkerhedskopiering i gang... vent venligst.">
+<!ENTITY description6 "Sikkerhedskopi færdig.">
+<!ENTITY backupTab "Planlægning af sikkerhedskopiering">
+<!ENTITY backupSettings "Indstillinger for sikkerhedskopiering">
+<!ENTITY backupOn "Aktiver">
+<!ENTITY backupFreq "Hyppighed">
+<!ENTITY day1 "1 dag">
+<!ENTITY day3 "3 dage">
+<!ENTITY day7 "7 dage">
+<!ENTITY day15 "15 dage">
+<!ENTITY day30 "30 dage">
+<!ENTITY backupDestination "Destination">
+<!ENTITY backupFolderName "Mappenavn til sikkerhedskopi">
+<!ENTITY autoName "Automatisk (mappe + dato)">
+<!ENTITY customName "Tilpasset">
+<!ENTITY backupType "Indhold af sikkerhedskopi">
+<!ENTITY allFiles "Alle profilfiler">
+<!ENTITY justMailFiles "Kun mailfiler">
+<!ENTITY lastBackup "Seneste sikkerhedskopi">
+<!ENTITY allFilesMode "Altid alle filer">
+<!ENTITY newFilesMode "Kun filer der er ændret siden seneste sikkerhedskopi">
+<!ENTITY save "Gem">
+<!ENTITY modal "Brug et 'modalt' vindue">
+<!ENTITY MACwarning "N.B.: Luk alle andre vinduer før du fortsætter.">

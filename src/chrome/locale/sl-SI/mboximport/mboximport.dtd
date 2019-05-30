@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Izvozi mapo s podmapami (enostavno)">
+<!ENTITY importMbox "Datoteka mbox za uvoz">
+<!ENTITY labelmenuMI "ImportExportTools">
+<!ENTITY MBlabel1 "Prepiši datoteke mbox z istim imenom v ciljni mapi">
+<!ENTITY importDir "Izberi mapo, kjer naj se iščejo datoteke mbox za uvoz">
+<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY importFile "Uvozi neposredno eno ali več datotek mbox">
+<!ENTITY importDialogLabel "Izberi način uvoza:">
+<!ENTITY importDialogTitle "Uvoz datotek mbox">
+<!ENTITY importStruct "Uvozi eno ali več datotek mbox, z njihovimi podmapami">
+<!ENTITY exportStruct "Izvozi mapo s podmampi (z zgradbo)">
+<!ENTITY exportAllStruct "Izvozi vse mape (z zgradbo)">
+<!ENTITY MBlabel2 "V izvozu uporabi samo črke in številke">
+<!ENTITY allMsgsFolder "Izvozi vsa sporočila v mapi">
+<!ENTITY asEML "Oblika EML">
+<!ENTITY asHTML "Oblika HTML">
+<!ENTITY asTXT "Oblika golega besedila">
+<!ENTITY saveSelected "Shrani izbrana sporočila">
+<!ENTITY justIndex "Samo sestavi kazalo">
+<!ENTITY toClip "Kopiraj sporočilo na odložišče">
+<!ENTITY MBlabel3 "Pred uvozom datotek mbox iz mape vprašaj za potrditev">
+<!ENTITY MBlabel4 "Oblika HTML, kot je prikazana v podoknu sporočil">
+<!ENTITY MBlabel5 "Kopiraj na odložišče samo v golem besedilu (lahko povzroči težave z združljivostjo)">
+<!ENTITY MBlabel6 "Kadar je prisoten datum, ga vstavi na začetek izvoženih datotek">
+<!ENTITY MBlabel7a "Največja dolžina zadeve:">
+<!ENTITY MBlabel7b "znakov">
+<!ENTITY MBlabel7c "Največja dolžina pošiljateljevega imena:">
+<!ENTITY MBlabel7d "Največja dolžina prejemnikovega imena:">
+<!ENTITY oneFile "Kot enojna besedilna datoteka">
+<!ENTITY importAttachedEML "Uvozi sporočilo v to mapo">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Kopiraj na odložišče">
+<!ENTITY copyClipMessage "Sporočilo">
+<!ENTITY copyClipHeaders "Glave">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Izberite mapo za iskanje datotek mbox za uvoz (tudi v podmapah)">
+<!ENTITY importDirProf "Odpri izbirnika datotek v mapi profilov">
+<!ENTITY MBlabel8 "V 'Shrani izbrana sporočila' imenu datoteke dodaj datum">
+<!ENTITY options "Možnosti">
+<!ENTITY importALLEML1 "Samo iz mape">
+<!ENTITY importALLEML2 "Tudi iz njenih podmap">
+<!ENTITY misc "Razno">
+<!ENTITY filenameFormat "Imena datotek">
+<!ENTITY savedirs "Izvoz map">
+<!ENTITY addTimestamp "Dodaj datum lastnostim datoteke">
+<!ENTITY customizeFilename "Uporabi naslednjo obliko:">
+<!ENTITY captionCustomize "Oblika po meri za imena datotek">
+<!ENTITY browse "Brskaj">
+<!ENTITY subject "Zadeva">
+<!ENTITY date "Datum">
+<!ENTITY key "Kazalo">
+<!ENTITY addtime.label "Dodaj datumu čas">
+<!ENTITY mboxExport "Izvozi mape kot datoteko MBOX:">
+<!ENTITY emlExport "Izvozi mape kot posamezne datoteke:">
+<!ENTITY selExport "Izvozi izbrana sporočila:">
+<!ENTITY MBcaptionlabel1 "Splošne nastavitve">
+<!ENTITY saveProfileMail "Shrani vse datoteke pošte">
+<!ENTITY sdExportButton "Izvozi">
+<!ENTITY sdMessages "Sporočila">
+<!ENTITY sdAll "Vse">
+<!ENTITY sdSelected "Izbrana">
+<!ENTITY sdFormat "Oblika">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Golo besedilo">
+<!ENTITY searchAndExport "Išči in izvozi">
+<!ENTITY buildMSF.label "Sestavi kazalo za uvožene datoteke mbox">
+<!ENTITY addPrefix "Dodaj predpono">
+<!ENTITY fileLenCaption "Dolžina imen datotek">
+<!ENTITY cutSub "Prireži zadevo na 50 znakov">
+<!ENTITY cutFN "Prireži celotno dolžino poti datoteke na 256 znakov">
+<!ENTITY sdMBOX "Mbox (novo)">
+<!ENTITY sdMBOX2 "Mbox (pripni)">
+<!ENTITY asMBOX "kot datoteko Mbox (novo)">
+<!ENTITY asMBOX2 "kot datoteko Mbox (pripni)">
+<!ENTITY filenameCharset "Nabor znakov za imena datotek:">
+<!ENTITY name "Ime">
+<!ENTITY importStructDescr1 "Samo izberite datoteko mbox in bo mapa z istim imenom">
+<!ENTITY importStructDescr2 "in končnico \'sbd\' samodejno uvožena, če obstaja.">
+<!ENTITY abortExport "Ustavi trenutni izvoz">
+<!ENTITY allMsg "Izvoz vseh sporočil">
+<!ENTITY indexSettingLabel "Ob izvozu vseh sporočil mape s pošto:">
+<!ENTITY indexOn "ustvari novo mapo in kazalo sporočil">
+<!ENTITY indexOff "uporabi izbrano mapo brez kazala">
+<!ENTITY copyFolderPath "Kopiraj pot mape na disk">
+<!ENTITY importSMS "Uvozi SMS">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "'SMS Backup and Restore' za Android">
+<!ENTITY sender "Pošiljatelj">
+<!ENTITY recipient "Prejemnik">
+<!ENTITY exportRemoteFolder "Izvozi oddaljeno mapo">
+<!ENTITY skipMsgLabel "Ne shrani sporočil, kadar obstaja pripadajoča datoteka">
+<!ENTITY asCSV "Preglednica (CSV)">
+<!ENTITY exportZIP "Mapa za izvoz (stisnjena)">
+<!ENTITY openFolderPath "Odpri mapo z datoteko mape">
+<!ENTITY addNumber.label "Ob uvozu datoteke mbox imenu vedno dodaj naključno število">
+<!ENTITY textCharset "Nabor znakov za izvoz v besedilni obliki in obliki CSV:">
+<!ENTITY importEML "Uvozi sporočila">
+<!ENTITY importALLEML "Uvozi vsa sporočila iz mape">
+<!ENTITY importMAILDIR "Mapa za uvoz Maildir">
+<!ENTITY withattach "(s priponkami)">
+<!ENTITY asPDF "Oblika PDF">
+<!ENTITY importProfile "Profil za uvoz">
+<!ENTITY csvSep "Ločilo za izvoz v obliki CSV:">
+<!ENTITY saveProfile "Izvozi profil">
+<!ENTITY withIndexLabel "s kazalom HTML">

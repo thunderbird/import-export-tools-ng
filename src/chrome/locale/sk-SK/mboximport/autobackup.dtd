@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Záloha">
+<!ENTITY description1 "Dátum poslednej zálohy: $t">
+<!ENTITY description2 "Na základe nastavení, je čas na vytvorenie novej zálohy.">
+<!ENTITY description3 "Počas tejto operácie môže program neodpovedať aj niekoľko minút.">
+<!ENTITY description4 "Chcete pokračovať?">
+<!ENTITY description5 "Prebieha zálohovanie... prosím čakajte.">
+<!ENTITY description6 "Záloha úspešne dokončená.">
+<!ENTITY backupTab "Interval zálohovania">
+<!ENTITY backupSettings "Nastavenie zálohovania">
+<!ENTITY backupOn "Povolené">
+<!ENTITY backupFreq "Interval">
+<!ENTITY day1 "1 deň">
+<!ENTITY day3 "3 dni">
+<!ENTITY day7 "7 dní">
+<!ENTITY day15 "15 dní">
+<!ENTITY day30 "30 dní">
+<!ENTITY backupDestination "Miesto">
+<!ENTITY backupFolderName "Názov priečinka zálohy">
+<!ENTITY autoName "Automatický (názov priečinka + dátum)">
+<!ENTITY customName "Prispôsobený">
+<!ENTITY backupType "Obsah zálohy">
+<!ENTITY allFiles "Všetky súbory profilu">
+<!ENTITY justMailFiles "Len súbory s poštou">
+<!ENTITY lastBackup "Posledná záloha">
+<!ENTITY allFilesMode "Vždy všetky súbory">
+<!ENTITY newFilesMode "Len súbory zmenené od poslednéhozálohovania">
+<!ENTITY save "Uložiť">
+<!ENTITY modal "Používať 'modálne' okno">
+<!ENTITY MACwarning "N.B: pred pokračovaním zavrieť všetky ostatné okná.">

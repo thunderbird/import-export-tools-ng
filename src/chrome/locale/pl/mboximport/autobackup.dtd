@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "Tworzenie kopii zapasowej">
+<!ENTITY description1 "Data utworzenia ostatniej kopii zapasowej: $t">
+<!ENTITY description2 "Z ustawień wynika, że teraz powinna zostać wykonana kopia zapasowa.">
+<!ENTITY description3 "Podczas tej operacji program może nie odpowiadać przez kilka minut.">
+<!ENTITY description4 "Czy chcesz kontynuować?">
+<!ENTITY description5 "Trwa tworzenie kopii zapasowej… Proszę czekać.">
+<!ENTITY description6 "Kopia zapasowa została wykonana.">
+<!ENTITY backupTab "Harmonogram">
+<!ENTITY backupSettings "Ustawienia tworzenia kopii zapasowej">
+<!ENTITY backupOn "Twórz kopię zapasową">
+<!ENTITY backupFreq "Częstotliwość tworzenia">
+<!ENTITY day1 "codziennie">
+<!ENTITY day3 "co 3 dni">
+<!ENTITY day7 "co 7 dni">
+<!ENTITY day15 "co 15 dni">
+<!ENTITY day30 "co 30 dni">
+<!ENTITY backupDestination "Miejsce docelowe">
+<!ENTITY backupFolderName "Nazwa folderu zawierającego kopię zapasową">
+<!ENTITY autoName "automatyczna (nazwa folderu + data)">
+<!ENTITY customName "własna">
+<!ENTITY backupType "Zawartość kopii zapasowej">
+<!ENTITY allFiles "wszystkie pliki profilu">
+<!ENTITY justMailFiles "tylko pliki poczty">
+<!ENTITY lastBackup "Ostatnia kopia zapasowa wykonana">
+<!ENTITY allFilesMode "zawsze wszystkie pliki">
+<!ENTITY newFilesMode "tylko pliki zmienione od czasu ostatniej kopii">
+<!ENTITY save "Zapisuj">
+<!ENTITY modal "Użyj okna modalnego">
+<!ENTITY MACwarning "Przed kontynuacją zamknij inne okna.">

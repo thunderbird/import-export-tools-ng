@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Còpia de seguretat">
+<!ENTITY description1 "Data de la última còpia realitzada: $t">
+<!ENTITY description2 "Segons la configuració, ara cal realitzar una còpia de seguretat.">
+<!ENTITY description3 "Durant el procés, el programa no serà operatiu durant uns minuts.">
+<!ENTITY description4 "Voleu continuar?">
+<!ENTITY description5 "S\'està realitzant la còpia de seguretat... espereu.">
+<!ENTITY description6 "Còpia de seguretat finalitzada.">
+<!ENTITY backupTab "Còpia de seguretat programada">
+<!ENTITY backupSettings "Paràmetres de la còpia de seguretat">
+<!ENTITY backupOn "Habilita">
+<!ENTITY backupFreq "Freqüència">
+<!ENTITY day1 "1 dia">
+<!ENTITY day3 "3 dies">
+<!ENTITY day7 "7 dies">
+<!ENTITY day15 "15 dies">
+<!ENTITY day30 "30 dies">
+<!ENTITY backupDestination "Destí">
+<!ENTITY backupFolderName "Nom de la carpeta per a la còpia de seguretat">
+<!ENTITY autoName "Automàtic (nom de carpeta + data)">
+<!ENTITY customName "Personalitzat">
+<!ENTITY backupType "Fes còpia de seguretat de contingut">
+<!ENTITY allFiles "Tots els fitxers del perfil">
+<!ENTITY justMailFiles "Només fitxers de correu">
+<!ENTITY lastBackup "Última còpia de seguretat">
+<!ENTITY allFilesMode "Tots els fitxer, sempre">
+<!ENTITY newFilesMode "Només els fitxers modificats des de la darrera còpia de seguretat">
+<!ENTITY save "Desa">
+<!ENTITY modal "Usa una finestra modal">
+<!ENTITY MACwarning "N.B: close every other window, before continue.">

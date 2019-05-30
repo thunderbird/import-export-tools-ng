@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<overlay id="printOverlay1234"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="text/javascript"  src="chrome://mboximport/content/printEngineWindowOverlay.js" />
+<script type="text/javascript"  src="chrome://mboximport/content/utils.js" />
+<script type="application/javascript" src="chrome://global/content/printUtils.js"/>
+</overlay>

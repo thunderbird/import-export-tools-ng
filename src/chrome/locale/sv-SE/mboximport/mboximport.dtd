@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Exportera mapp med undermappar (enkel)">
+<!ENTITY importMbox "Importera MBOX-fil">
+<!ENTITY labelmenuMI "Importera/Exportera">
+<!ENTITY MBlabel1 "Ersätt MBOX-filen i målmappen med filen som importeras om de har samma namn">
+<!ENTITY importDir "Välj mapp för sökning efter MBOX-filer att importera">
+<!ENTITY labelmenuMItools "Import/export-verktyg">
+<!ENTITY importFile "Direktimportera en eller flera MBOX-filer">
+<!ENTITY importDialogLabel "Välj importtyp:">
+<!ENTITY importDialogTitle "Import av MBOX-filer">
+<!ENTITY importStruct "Importera en eller flera MBOX-filer, med undermapp(ar)">
+<!ENTITY exportStruct "Exportera mapp med undermappar (bibehållen struktur)">
+<!ENTITY exportAllStruct "Exportera alla mappar (bibehållen struktur)">
+<!ENTITY MBlabel2 "Använd endast alfanumeriska tecken vid export">
+<!ENTITY allMsgsFolder "Exportera alla meddelanden i mappen">
+<!ENTITY asEML "EML-format">
+<!ENTITY asHTML "HTML-format">
+<!ENTITY asTXT "Oformaterad text">
+<!ENTITY saveSelected "Spara markerade meddelanden">
+<!ENTITY justIndex "endast index">
+<!ENTITY toClip "Kopiera meddelandet till Urklipp">
+<!ENTITY MBlabel3 "Bekräfta innan MBOX-filer importeras från en mapp">
+<!ENTITY MBlabel4 "HTML-format som det ser ut i meddelandepanelen">
+<!ENTITY MBlabel5 "Kopiera till Urklipp endast som oformaterad text (kan orsaka kompatibilitetsproblem)">
+<!ENTITY MBlabel6 "När så är möjligt, infoga datum i början av exporterade filer">
+<!ENTITY MBlabel7a "Ämnesradens maxlängd: ">
+<!ENTITY MBlabel7b "tecken">
+<!ENTITY MBlabel7c "Avsändarnamnets maxlängd: ">
+<!ENTITY MBlabel7d "Mottagarnamnets maxlängd: ">
+<!ENTITY oneFile "(en fil)">
+<!ENTITY importAttachedEML "Importera meddelandet till denna mapp">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Kopiera till Urklipp">
+<!ENTITY copyClipMessage "Meddelande">
+<!ENTITY copyClipHeaders "Meddelandehuvuden">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Välj mapp för sökning efter MBOX-filer att importera (inkl. undermappar)">
+<!ENTITY importDirProf "Öppna filväljaren i profilmappen">
+<!ENTITY MBlabel8 "Infoga datum i filnamn när &quot;Spara markerade meddelanden&quot; väljs">
+<!ENTITY options "Inställningar">
+<!ENTITY importALLEML1 "endast från huvudmappen">
+<!ENTITY importALLEML2 "även från dess undermappar">
+<!ENTITY misc "Övrigt">
+<!ENTITY filenameFormat "Filnamn">
+<!ENTITY savedirs "Exportera mappar">
+<!ENTITY addTimestamp "Lägg till datum i filegenskaperna">
+<!ENTITY customizeFilename "Använd följande format:">
+<!ENTITY captionCustomize "Anpassat format för filnamn">
+<!ENTITY browse "Bläddra">
+<!ENTITY subject "Ämne">
+<!ENTITY date "Datum">
+<!ENTITY key "Index">
+<!ENTITY addtime.label "Lägg till både tid och datum">
+<!ENTITY mboxExport "Exportera mappar som MBOX-fil:">
+<!ENTITY emlExport "Exportera mappar som enskilda filer:">
+<!ENTITY selExport "Exportera markerade meddelanden:">
+<!ENTITY MBcaptionlabel1 "Allmänt">
+<!ENTITY saveProfileMail "Spara alla e-postfiler">
+<!ENTITY sdExportButton "Exportera">
+<!ENTITY sdMessages "Meddelanden">
+<!ENTITY sdAll "Alla">
+<!ENTITY sdSelected "Markerade">
+<!ENTITY sdFormat "Format">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Oformaterad text">
+<!ENTITY searchAndExport "Sök och exportera">
+<!ENTITY buildMSF.label "Skapa ett index över importerade MBOX-filer">
+<!ENTITY addPrefix "Lägg till prefix">
+<!ENTITY fileLenCaption "Filnamnslängd">
+<!ENTITY cutSub "Kapa ämnesraden efter 50 tecken">
+<!ENTITY cutFN "Kapa den fullständiga filsökvägen efter 256 tecken">
+<!ENTITY sdMBOX "MBOX (ny)">
+<!ENTITY sdMBOX2 "MBOX (bifoga)">
+<!ENTITY asMBOX "som MBOX-fil (ny)">
+<!ENTITY asMBOX2 "som MBOX-fil (bifoga)">
+<!ENTITY filenameCharset "Teckenuppsättning för filnamn:">
+<!ENTITY name "Namn">
+<!ENTITY importStructDescr1 "Välj endast MBOX-filen och mappen med samma namn, så kommer filen med">
+<!ENTITY importStructDescr2 "filtillägget &quot;SBD&quot; att importeras automatiskt, om den finns.">
+<!ENTITY abortExport "Avbryt den aktuella exporten">
+<!ENTITY allMsg "Exportera alla meddelanden">
+<!ENTITY indexSettingLabel "När alla meddelanden i en meddelandemapp exporteras:">
+<!ENTITY indexOn "skapa en ny mapp och ett nytt meddelandeindex">
+<!ENTITY indexOff "använd den markerade mappen utan index">
+<!ENTITY copyFolderPath "Kopiera mappsökväg på disk">
+<!ENTITY importSMS "Importera SMS">
+<!-- 'SMS Backup and Restore' is the name of an Android application and so maybe it's better not to translate it -->
+<!ENTITY android "&quot;SMS Backup and Restore&quot; för Android">
+<!ENTITY sender "Användare">
+<!ENTITY recipient "Mottagare">
+<!ENTITY exportRemoteFolder "Exportera fjärrmapp">
+<!ENTITY skipMsgLabel "spara inte meddelanden om motsvarande fil redan finns">
+<!ENTITY asCSV "Kalkylblad (CSV)">
+<!ENTITY exportZIP "Exportmapp (komprimerad)">
+<!ENTITY openFolderPath "Öppna filens mapp">
+<!ENTITY addNumber.label "Lägg alltid till ett slumpnummer i namnet när MBOX-filer importeras">
+<!ENTITY textCharset "Teckenuppsättning för export i text- och CSV-format:">
+<!ENTITY importEML "Importera EML-fil">
+<!ENTITY importALLEML "Importera alla EML-filer från en mapp">
+<!ENTITY importMAILDIR "Import Maildir folder">
+<!ENTITY withattach "(with attachments)">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "Spara alla profilfiler">
+<!ENTITY withIndexLabel "with HTML index">

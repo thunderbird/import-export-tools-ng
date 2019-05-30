@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Map met submappen exporteren (eenvoudig)">
+<!ENTITY importMbox "mbox-bestand importeren">
+<!ENTITY labelmenuMI "ImportExportTools">
+<!ENTITY MBlabel1 "De mbox-bestanden met dezelfde naam in de doelmap overschrijven">
+<!ENTITY importDir "Een map selecteren waarin te importeren mbox-bestanden worden gezocht">
+<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY importFile "Een of meer mbox-bestanden rechtstreeks importeren">
+<!ENTITY importDialogLabel "Kies de wijze van importeren:">
+<!ENTITY importDialogTitle "Bestanden voor mbox-import">
+<!ENTITY importStruct "Een of meer mbox-bestanden met submappen importeren">
+<!ENTITY exportStruct "Map met submappen exporteren (met structuur)">
+<!ENTITY exportAllStruct "Alle mappen exporteren (met structuur)">
+<!ENTITY MBlabel2 "Alleen alfanumerieke tekens gebruiken bij exporteren">
+<!ENTITY allMsgsFolder "Alle berichten in de map exporteren">
+<!ENTITY asEML "EML-indeling">
+<!ENTITY asHTML "HTML-indeling">
+<!ENTITY asTXT "Platte tekst">
+<!ENTITY saveSelected "Geselecteerde berichten opslaan">
+<!ENTITY justIndex "alleen index">
+<!ENTITY toClip "Bericht naar klembord kopiëren">
+<!ENTITY MBlabel3 "Bevestiging vragen voor het importeren van mbox-bestanden uit een map">
+<!ENTITY MBlabel4 "HTML-indeling zoals weergegeven in het berichtvenster">
+<!ENTITY MBlabel5 "Alleen naar klembord kopiëren in tekstindeling (kan compatibiliteitsproblemen veroorzaken)">
+<!ENTITY MBlabel6 "Wanneer aanwezig, de datum aan het begin van de geëxporteerde bestanden plaatsen">
+<!ENTITY MBlabel7a "Maximale lengte van onderwerp:">
+<!ENTITY MBlabel7b "tekens">
+<!ENTITY MBlabel7c "Maximale lengte van naam van afzender:">
+<!ENTITY MBlabel7d "Maximale lengte van naam van ontvanger:">
+<!ENTITY oneFile "als één tekstbestand">
+<!ENTITY importAttachedEML "Bericht in deze map importeren">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Kopiëren naar klembord">
+<!ENTITY copyClipMessage "Bericht">
+<!ENTITY copyClipHeaders "Kopteksten">
+<!ENTITY taskMenuAccesskey "I">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Een map selecteren waarin te importeren mbox-bestanden worden gezocht (ook in submappen)">
+<!ENTITY importDirProf "Bestandenkiezer openen in map van profiel">
+<!ENTITY MBlabel8 "Datum aan bestandsnaam toevoegen in ‘Geselecteerde berichten opslaan’">
+<!ENTITY options "Opties">
+<!ENTITY importALLEML1 "alleen uit de map">
+<!ENTITY importALLEML2 "ook uit submappen ervan">
+<!ENTITY misc "Diversen">
+<!ENTITY filenameFormat "Bestandsnamen">
+<!ENTITY savedirs "Mappen exporteren">
+<!ENTITY addTimestamp "Datum aan bestandseigenschappen toevoegen">
+<!ENTITY customizeFilename "De volgende indeling gebruiken:">
+<!ENTITY captionCustomize "Aangepaste indeling voor bestandsnamen">
+<!ENTITY browse "Bladeren…">
+<!ENTITY subject "Onderwerp">
+<!ENTITY date "Datum">
+<!ENTITY key "Index">
+<!ENTITY addtime.label "Tijd aan datum toevoegen">
+<!ENTITY mboxExport "Mappen exporteren als mbox-bestand:">
+<!ENTITY emlExport "Mappen exporteren als losse bestanden:">
+<!ENTITY selExport "Geselecteerde berichten exporteren:">
+<!ENTITY MBcaptionlabel1 "Algemene instellingen">
+<!ENTITY saveProfileMail "Alle mailbestanden opslaan">
+<!ENTITY sdExportButton "Exporteren">
+<!ENTITY sdMessages "Berichten">
+<!ENTITY sdAll "Alle">
+<!ENTITY sdSelected "Geselecteerde">
+<!ENTITY sdFormat "Indeling">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Platte tekst">
+<!ENTITY searchAndExport "Zoeken en exporteren">
+<!ENTITY buildMSF.label "Index opbouwen voor geïmporteerde mbox-bestanden">
+<!ENTITY addPrefix "Voorvoegsel toevoegen">
+<!ENTITY fileLenCaption "Bestandsnaamlengte">
+<!ENTITY cutSub "Onderwerp afbreken bij 50 tekens">
+<!ENTITY cutFN "Lengte van volledig bestandspad afbreken bij 256 tekens">
+<!ENTITY sdMBOX "mbox (nieuw)">
+<!ENTITY sdMBOX2 "mbox (toevoegen)">
+<!ENTITY asMBOX "als mbox-bestand (nieuw)">
+<!ENTITY asMBOX2 "als mbox-bestand (toevoegen)">
+<!ENTITY filenameCharset "Tekenset voor bestandsnamen:">
+<!ENTITY name "Naam">
+<!ENTITY importStructDescr1 "Selecteer alleen het mbox-bestand. De map met dezelfde naam">
+<!ENTITY importStructDescr2 "en de extensie ‘sbd’ worden automatisch geïmporteerd als deze bestaan.">
+<!ENTITY abortExport "Het huidige exporteren stoppen">
+<!ENTITY allMsg "Alle berichten exporteren">
+<!ENTITY indexSettingLabel "Bij het exporteren van alle berichten van een mailmap:">
+<!ENTITY indexOn "een nieuwe map en de index van berichten maken">
+<!ENTITY indexOff "geselecteerde map zonder index gebruiken">
+<!ENTITY copyFolderPath "Mappad op schijf kopiëren">
+<!ENTITY importSMS "Sms importeren">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "‘SMS Backup &amp; Restore’ voor Android">
+<!ENTITY sender "Afzender">
+<!ENTITY recipient "Ontvanger">
+<!ENTITY exportRemoteFolder "Externe map exporteren">
+<!ENTITY skipMsgLabel "geen berichten opslaan als overeenkomend bestand bestaat">
+<!ENTITY asCSV "Spreadsheet (CSV)">
+<!ENTITY exportZIP "Map exporteren (gezipt)">
+<!ENTITY openFolderPath "Map waarin bestand zich bevindt openen">
+<!ENTITY addNumber.label "Altijd een willekeurig getal aan de naam toevoegen bij importeren van mbox-bestanden">
+<!ENTITY textCharset "Tekenset voor exporteren in tekst- en CSV-indeling:">
+<!ENTITY importEML "Berichten importeren">
+<!ENTITY importALLEML "Alle berichten uit een map importeren">
+<!ENTITY importMAILDIR "Maildir-map importeren">
+<!ENTITY withattach "(met bijlagen)">
+<!ENTITY asPDF "PDF-indeling">
+<!ENTITY importProfile "Profiel importeren">
+<!ENTITY csvSep "Scheidingsteken voor exporteren in CSV-indeling:">
+<!ENTITY saveProfile "Profiel exporteren">
+<!ENTITY withIndexLabel "met HTML-index">

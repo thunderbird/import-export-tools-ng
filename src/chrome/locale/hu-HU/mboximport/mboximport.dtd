@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Mappa exportálása az almappákkal együtt (egyszerű)">
+<!ENTITY importMbox "Fájl importálása (MBOX)">
+<!ENTITY labelmenuMI "Importálás/Exportálás">
+<!ENTITY MBlabel1 "Azonos nevű MBOX fájlok felülírása a célmappában">
+<!ENTITY importDir "Az importálható MBOX fájlokat tartalmazó mappa kiválasztása">
+<!ENTITY labelmenuMItools "Importálás/Exportálás">
+<!ENTITY importFile "Egy vagy több MBOX fájl közvetlen importálása">
+<!ENTITY importDialogLabel "Válassza ki az importálás típusát:">
+<!ENTITY importDialogTitle "Fájl importálása (MBOX)">
+<!ENTITY importStruct "Egy vagy több MBOX fájl importálása almappákkal együtt">
+<!ENTITY exportStruct "Mappa exportálása az almappákkal együtt (szerkezettel)">
+<!ENTITY exportAllStruct "Mindegyik mappa exportálása (szerkezettel)">
+<!ENTITY MBlabel2 "Csak alfanumerikus karakterek használata az exportált fájlban">
+<!ENTITY allMsgsFolder "Mappa mindegyik üzenetének exportálása">
+<!ENTITY asEML "EML formátum">
+<!ENTITY asHTML "HTML formátum">
+<!ENTITY asTXT "Nem formázott szöveg">
+<!ENTITY saveSelected "Kiválasztott üzenetek mentése">
+<!ENTITY justIndex "Csak azonosító">
+<!ENTITY toClip "Üzenet másolása a vágólapra">
+<!ENTITY MBlabel3 "Megerősítés kérése MBOX fájl mappából történő importálása előtt">
+<!ENTITY MBlabel4 "HTML formátum használata mint az üzeneteket tartalmazó panelben">
+<!ENTITY MBlabel5 "Másolás a vágólapra szövegként (probléma lehet a kompatibilitással)">
+<!ENTITY MBlabel6 "Dátum beszúrása az exportált fájl elejére (ha ismert)">
+<!ENTITY MBlabel7a "Üzenet tárgyának maximális hossza:">
+<!ENTITY MBlabel7b "karakter">
+<!ENTITY MBlabel7c "Feladó nevének maximális hossza:">
+<!ENTITY MBlabel7d "Címzett nevének maximális hossza:">
+<!ENTITY oneFile "(egy fájl)">
+<!ENTITY importAttachedEML "Üzenet importálása ebbe a mappába">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Másolás a vágólapra">
+<!ENTITY copyClipMessage "Üzenet">
+<!ENTITY copyClipHeaders "Fejlécek">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "M">
+<!ENTITY importDirRec "Válassza ki azt a mappát, amelyben az importálni kívánt MBOX fájl található (almappákban is keres)">
+<!ENTITY importDirProf "Megnyitás alapértelmezettként a profilok mappával">
+<!ENTITY MBlabel8 "Dátum hozzáadása a fájlnévhez a \'Kiválasztott üzenetek mentése\' során">
+<!ENTITY options "Beállítások">
+<!ENTITY importALLEML1 "csak a mappából">
+<!ENTITY importALLEML2 "annak almappáiból is">
+<!ENTITY misc "Vegyes">
+<!ENTITY filenameFormat "Fájlnév">
+<!ENTITY savedirs "Mappák exportálása">
+<!ENTITY addTimestamp "Dátum hozzáadása a fájl tulajdonságaihoz">
+<!ENTITY customizeFilename "Formátum testreszabása:">
+<!ENTITY captionCustomize "Fájlnév formátumának testreszabása">
+<!ENTITY browse "Tallózás">
+<!ENTITY subject "Tárgy">
+<!ENTITY date "Dátum">
+<!ENTITY key "Azonosító">
+<!ENTITY addtime.label "Idő hozzáadása a dátumhoz">
+<!ENTITY mboxExport "Mappák exportálása MBOX fájlként:">
+<!ENTITY emlExport "Mappák exportálása külön fájlokként:">
+<!ENTITY selExport "Kijelölt üzenetek exportálása:">
+<!ENTITY MBcaptionlabel1 "Általános beállítások">
+<!ENTITY saveProfileMail "Mindegyik E-mail fájl mentése">
+<!ENTITY sdExportButton "Exportálás">
+<!ENTITY sdMessages "Üzenetek">
+<!ENTITY sdAll "Mindegyik">
+<!ENTITY sdSelected "Kijelölt">
+<!ENTITY sdFormat "Formátum">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Nem formázott szöveg">
+<!ENTITY searchAndExport "Keresés és exportálás">
+<!ENTITY buildMSF.label "Jegyzék készítése az MBOX fájlokhoz">
+<!ENTITY addPrefix "Előtag hozzáadása">
+<!ENTITY fileLenCaption "Fájlnév hossza">
+<!ENTITY cutSub "Tárgy hosszának levágása 50 karakterre">
+<!ENTITY cutFN "Teljes fájlnév hosszának levágása 256 karakterre">
+<!ENTITY sdMBOX "MBOX (új)">
+<!ENTITY sdMBOX2 "MBOX (hozzáfűzés)">
+<!ENTITY asMBOX "mint az MBOX fájlt (új)">
+<!ENTITY asMBOX2 "mint az MBOX fájlt (hozzáfűzés)">
+<!ENTITY filenameCharset "Fájlnév karaktertábla:">
+<!ENTITY name "Név">
+<!ENTITY importStructDescr1 "Csak az mbox fájlt válassza ki. Az azonos nevű mappa">
+<!ENTITY importStructDescr2 "és az SBD kiterjesztés automatikusan importálódik (ha létezik).">
+<!ENTITY abortExport "Jelenlegi exportálás leállítása">
+<!ENTITY allMsg "Minden üzenet exportálása">
+<!ENTITY indexSettingLabel "Üzenet-mappa exportálásakor:">
+<!ENTITY indexOn "új mappa és üzenet-indexek kialakítása">
+<!ENTITY indexOff "kijelölt mappa használata indexek nélkül">
+<!ENTITY copyFolderPath "Mappa útvonalának másolása">
+<!ENTITY importSMS "SMS importálása">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "\'SMS mentése és visszaállítása\' Android platformon">
+<!ENTITY sender "Feladó">
+<!ENTITY recipient "Címzett">
+<!ENTITY exportRemoteFolder "Távoli mappa exportálása">
+<!ENTITY skipMsgLabel "ne mentse az üzenetet, ha a fájl létezik">
+<!ENTITY asCSV "Táblázatkezelő (CSV)">
+<!ENTITY exportZIP "Mappa exportálása (csomagolt)">
+<!ENTITY openFolderPath "Könyvtár megnyitása, amelyben a mappa fájl található">
+<!ENTITY addNumber.label "Az MBOX fájlok importálásakor egy véletlen szám hozzáadása a névhez">
+<!ENTITY textCharset "Szöveg és CSV formátum karakterkódolása exportáláskor:">
+<!ENTITY importEML "Fájl importálása (EML)">
+<!ENTITY importALLEML "EML fájlok importálása ide egy mappából">
+<!ENTITY importMAILDIR "Maildir mappa importálása">
+<!ENTITY withattach "(mellékletekkel)">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "Mindegyik profil fájl mentése">
+<!ENTITY withIndexLabel "with HTML index">

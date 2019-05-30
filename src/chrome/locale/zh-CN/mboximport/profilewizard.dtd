@@ -1,0 +1,13 @@
+<!ENTITY intro1 "导入配置文件的功能正在试验当中，没有丢失数据的风险，但也不保证所有功能都完善，特别是从另外一套电脑导入配置文件的时候。无论如何他都比手动复制文件要可靠。">
+<!ENTITY profilePath "要导入的配置文件路径">
+<!ENTITY browse "浏览器">
+<!ENTITY profileName "要导入的配置文件名称">
+<!ENTITY changeProfileNameLabel "您可以在配置文件管理器中任意修改配置文件名称">
+<!ENTITY intro2 "这个文件夹包含一个可以导入的有效配置文件，在处理期间，您可能有数分钟或者更长时间无法使用这个程序。">
+<!ENTITY start "开始导入">
+<!ENTITY importRunning "正在导入…">
+<!ENTITY importEnd "导入成功！">
+<!ENTITY intro3 "要访问导入的配置文件，点击下面的按钮运行配置文件管理器，当前配置文件会自动关闭">
+<!ENTITY runProfileManager "运行配置文件管理器">
+<!ENTITY title "ImportExportTools - 配置文件导入">
+<!ENTITY error "导入配置文件时发生错误，错误信息为：">

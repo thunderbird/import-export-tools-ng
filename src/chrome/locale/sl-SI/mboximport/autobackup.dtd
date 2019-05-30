@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Varnostna kopija">
+<!ENTITY description1 "Datum zadnje varnostne kopije: $t">
+<!ENTITY description2 "Na osnovi teh nastavitev je zdaj potrebno narediti varnostno kopijo.">
+<!ENTITY description3 "Med tem opravilom bo program neodziven za nekaj minut.">
+<!ENTITY description4 "Ali želite nadaljevati?">
+<!ENTITY description5 "Varnostno kopiranje je v teku ... počakajte.">
+<!ENTITY description6 "Varnostno kopiranje končano.">
+<!ENTITY backupTab "Varnostno kopiranje">
+<!ENTITY backupSettings "Nastavitve varnostnega kopiranja">
+<!ENTITY backupOn "Omogoči">
+<!ENTITY backupFreq "Pogostost">
+<!ENTITY day1 "1 dan">
+<!ENTITY day3 "3 dni">
+<!ENTITY day7 "7 dni">
+<!ENTITY day15 "15 dni">
+<!ENTITY day30 "30 dni">
+<!ENTITY backupDestination "Cilj">
+<!ENTITY backupFolderName "Ime mape za varnostno kopiranje">
+<!ENTITY autoName "Samodejno (ime mape + datum)">
+<!ENTITY customName "Po meri">
+<!ENTITY backupType "Vsebina varnostne kopije">
+<!ENTITY allFiles "Vse datoteke profila">
+<!ENTITY justMailFiles "Samo datoteke pošte">
+<!ENTITY lastBackup "Zadnje varnostno kopiranje">
+<!ENTITY allFilesMode "vedno vse datoteke">
+<!ENTITY newFilesMode "samo datoteke, ki so bile spremenjene po zadnjem kopiranju">
+<!ENTITY save "Shrani">
+<!ENTITY modal "Uporabi 'načinovno' okno">
+<!ENTITY MACwarning "N.B: zapri vsako drugo okno pred nadaljevanjem">

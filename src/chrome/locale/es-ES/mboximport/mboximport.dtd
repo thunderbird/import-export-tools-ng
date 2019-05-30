@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Exportar carpetas y subcarpetas (simple)">
+<!ENTITY importMbox "Importar archivo mbox">
+<!ENTITY labelmenuMI "Importar/Exportar">
+<!ENTITY MBlabel1 "Sobreescribir los archivos que tengan el mismo nombre en la carpeta destino">
+<!ENTITY importDir "Seleccione la carpeta donde se buscarán los archivos mbox a importar">
+<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY importFile "Importar directamente uno o más archivos mbox">
+<!ENTITY importDialogLabel "Elija el modo de importación:">
+<!ENTITY importDialogTitle "Archivos mbox a importar">
+<!ENTITY importStruct "Importar uno o más archivos mbox, con sus subcarpetas">
+<!ENTITY exportStruct "Exportar carpeta y subcarpetas (manteniendo la estructura)">
+<!ENTITY exportAllStruct "Exportar todas las carpetas (manteniendo la estructura)">
+<!ENTITY MBlabel2 "Usar sólo caracteres alfanuméricos al exportar">
+<!ENTITY allMsgsFolder "Exportar todos los mensajes de la carpeta">
+<!ENTITY asEML "Formato EML">
+<!ENTITY asHTML "Formato HTML">
+<!ENTITY asTXT "Formato de texto plano">
+<!ENTITY saveSelected "Guardar los mensajes seleccionados">
+<!ENTITY justIndex "sólo el indice">
+<!ENTITY toClip "Copiar mensaje al portapapeles">
+<!ENTITY MBlabel3 "Pedir confirmación antes de importar los archivos mbox de una carpeta">
+<!ENTITY MBlabel4 "Formato HTML como el mostrado en el panel de mensajes">
+<!ENTITY MBlabel5 "Copiar al portapapeles en formato de sólo texto (puede dar problemas de compatibilidad)">
+<!ENTITY MBlabel6 "Cuando se usa, pone la fecha al inicio de los archivos exportados">
+<!ENTITY MBlabel7a "Longitud máxima del asunto:">
+<!ENTITY MBlabel7b "caracteres">
+<!ENTITY MBlabel7c "Longitud máxima del remitente:">
+<!ENTITY MBlabel7d "Longitud máxima de los destinatarios:">
+<!ENTITY oneFile "(un archivo)">
+<!ENTITY importAttachedEML "Importar mensaje en esta carpeta">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Copiar al portapapeles">
+<!ENTITY copyClipMessage "Mensaje">
+<!ENTITY copyClipHeaders "Cabeceras">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Seleccione la carpeta en la que buscar los archivos mbox a importar (incluyendo las subcarpetas)">
+<!ENTITY importDirProf "Abrir el selector de archivos en la carpeta del perfil">
+<!ENTITY MBlabel8 "Añadir la fecha al nombre del archivo en la opción &apos;Guardar los mensajes seleccionados&apos;">
+<!ENTITY options "Opciones">
+<!ENTITY importALLEML1 "sólo desde la carpeta">
+<!ENTITY importALLEML2 "también desde sus subcarpetas">
+<!ENTITY misc "Varios">
+<!ENTITY filenameFormat "Nombres de archivos">
+<!ENTITY savedirs "Exportar carpetas">
+<!ENTITY addTimestamp "Añadir la fecha a las propiedades del archivo">
+<!ENTITY customizeFilename "Usar el siguiente formato:">
+<!ENTITY captionCustomize "Formato personalizado para los nombres de archivos">
+<!ENTITY browse "Seleccionar">
+<!ENTITY subject "Asunto">
+<!ENTITY date "Fecha">
+<!ENTITY key "Índice">
+<!ENTITY addtime.label "Añadir la hora a la fecha">
+<!ENTITY mboxExport "Exportar carpetas como archivo MBOX:">
+<!ENTITY emlExport "Exportar carpetas como archivos individuales:">
+<!ENTITY selExport "Exportar los mensajes seleccionados:">
+<!ENTITY MBcaptionlabel1 "Opciones generales">
+<!ENTITY saveProfileMail "Guardar todos los archivos de correo">
+<!ENTITY sdExportButton "Exportar">
+<!ENTITY sdMessages "Mensajes">
+<!ENTITY sdAll "Todos">
+<!ENTITY sdSelected "Seleccionados">
+<!ENTITY sdFormat "Formato">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Texto plano">
+<!ENTITY searchAndExport "Buscar y exportar">
+<!ENTITY buildMSF.label "Construir índice para los archivos mbox importados">
+<!ENTITY addPrefix "Añadir prefijo">
+<!ENTITY fileLenCaption "Longitud de los nombres de archivo">
+<!ENTITY cutSub "Cortar el asunto a los 50 caracteres">
+<!ENTITY cutFN "Cortar la ruta completa a los 256 caracteres">
+<!ENTITY sdMBOX "Mbox">
+<!ENTITY sdMBOX2 "Mbox (añadir)">
+<!ENTITY asMBOX "como archivo Mbox (nuevo)">
+<!ENTITY asMBOX2 "Como archivo Mbox (añadir)">
+<!ENTITY filenameCharset "Juego de caracteres para los nombres de archivos:">
+<!ENTITY name "Name">
+<!ENTITY importStructDescr1 "Select just the mbox file, the directory with the same name">
+<!ENTITY importStructDescr2 "and the extension \'sbd\' will be automatically imported, if it exists.">
+<!ENTITY abortExport "Stop the current export">
+<!ENTITY allMsg "Export of all messages">
+<!ENTITY indexSettingLabel "When exporting all messages of a mail folder:">
+<!ENTITY indexOn "create a new directory and the index of messages">
+<!ENTITY indexOff "use selected directory without index">
+<!ENTITY copyFolderPath "Copy folder path on disk">
+<!ENTITY importSMS "Importar SMS">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "\'Copia y restauración de SMS\' para Android">
+<!ENTITY sender "Remitente">
+<!ENTITY recipient "Destinatario">
+<!ENTITY exportRemoteFolder "Exportar carpeta remota">
+<!ENTITY skipMsgLabel "no guardar mensajes cuando el archivo correspondiente exista">
+<!ENTITY asCSV "Hoja de cálculo (CSV)">
+<!ENTITY exportZIP "Exportar carpeta (comprimida)">
+<!ENTITY openFolderPath "Abrir carpeta donde está el archivo">
+<!ENTITY addNumber.label "Añadir siempre al nombre un número aleatorio al importar archivos mbox">
+<!ENTITY textCharset "Codificación para exportar en formatos de texto y CSV:">
+<!ENTITY importEML "Importar archivo eml">
+<!ENTITY importALLEML "Importar todos los archivos eml de una carpeta">
+<!ENTITY importMAILDIR "Import Maildir folder">
+<!ENTITY withattach "(with attachments)">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "Guardar todos los archivos del perfil">
+<!ENTITY withIndexLabel "with HTML index">

@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - biztonsági mentés">
+<!ENTITY description1 "Az utolsó mentés: $t">
+<!ENTITY description2 "A beállítások alapján szükséges a biztonsági mentés elvégzése.">
+<!ENTITY description3 "E művelet során a program nem válaszol néhány percig.">
+<!ENTITY description4 "Szeretné folytatni?">
+<!ENTITY description5 "Biztonsági mentés folyamatban ... kérem várjon.">
+<!ENTITY description6 "Biztonsági mentés kész.">
+<!ENTITY backupTab "Biztonségi mentés ütemezése">
+<!ENTITY backupSettings "Biztonsági mentés beállításai">
+<!ENTITY backupOn "Engedélyezés">
+<!ENTITY backupFreq "Gyakoriság">
+<!ENTITY day1 "1 nap">
+<!ENTITY day3 "3 nap">
+<!ENTITY day7 "7 nap">
+<!ENTITY day15 "15 nap">
+<!ENTITY day30 "30 nap">
+<!ENTITY backupDestination "Célmappa">
+<!ENTITY backupFolderName "Biztonsági mentés mappájának neve">
+<!ENTITY autoName "Automatikus (mappa neve + dátum)">
+<!ENTITY customName "Testreszabott">
+<!ENTITY backupType "Biztonsági mentés tartalma">
+<!ENTITY allFiles "Minden profil fájl">
+<!ENTITY justMailFiles "Csak mail fájlok">
+<!ENTITY lastBackup "Utolsó mentés">
+<!ENTITY allFilesMode "Mindig az összes fájl">
+<!ENTITY newFilesMode "Csak a módosított fájlok az utolsó módosítás után">
+<!ENTITY save "Mentés">
+<!ENTITY modal "Modális ablak használata">
+<!ENTITY MACwarning "Megj.: folytatás előtt a többi ablak bezárása">

@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "导出信件夹及子目录（简单的）">
+<!ENTITY importMbox "导入mbox文件">
+<!ENTITY labelmenuMI "导入/导出">
+<!ENTITY MBlabel1 "覆盖目标目录中同名的mbox文件">
+<!ENTITY importDir "选定要导入的mbox文件所在的目录">
+<!ENTITY labelmenuMItools "以mbox/eml格式导入/导出">
+<!ENTITY importFile "直接导入一个或者多个mbox文件">
+<!ENTITY importDialogLabel "选择导入方式：">
+<!ENTITY importDialogTitle "导入mbox文件">
+<!ENTITY importStruct "导入一个或者多个mbox文件，以及它们包含的子目录">
+<!ENTITY exportStruct "导出信件夹及子目录（包括目录结构）">
+<!ENTITY exportAllStruct "导出所有的信件夹（包括目录结构）">
+<!ENTITY MBlabel2 "导出单个文件时仅使用阿拉伯数字">
+<!ENTITY allMsgsFolder "导出信件夹内的所有邮件">
+<!ENTITY asEML "EML 格式">
+<!ENTITY asHTML "HTML 格式">
+<!ENTITY asTXT "纯文本格式">
+<!ENTITY saveSelected "保存选定的邮件">
+<!ENTITY justIndex "仅索引">
+<!ENTITY toClip "复制信息到剪贴板">
+<!ENTITY MBlabel3 "从目录中导入mbox文件之前确认">
+<!ENTITY MBlabel4 "在信息面板中使用HTML格式显示">
+<!ENTITY MBlabel5 "以纯文本格式复制到剪贴板（可以提供更好的兼容性）">
+<!ENTITY MBlabel6 "输出时，在导出文件名的开始位置加上日期">
+<!ENTITY MBlabel7a "主题最大长度：">
+<!ENTITY MBlabel7b "字符">
+<!ENTITY MBlabel7c "发件人姓名最大长度：">
+<!ENTITY MBlabel7d "收件人姓名最大长度：">
+<!ENTITY oneFile "(一个文件)">
+<!ENTITY importAttachedEML "导入邮件到该信件夹">
+<!ENTITY iHTML "(HTML格式)">
+<!ENTITY iCSV "(逗号分隔文件CSV)">
+<!ENTITY toClipMenu "复制到剪贴板">
+<!ENTITY copyClipMessage "邮件复制剪贴板">
+<!ENTITY copyClipHeaders "信头复制剪贴板">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "选择一个目录以便搜寻mbox文件导入（包括子目录）">
+<!ENTITY importDirProf "在配置文件 &apos; 目录中打开文件拾取器">
+<!ENTITY MBlabel8 "在 &apos;保存选定的消息时 &apos; 在文件名中加入日期">
+<!ENTITY options "选项">
+<!ENTITY importALLEML1 "仅从该目录">
+<!ENTITY importALLEML2 "还包括子目录">
+<!ENTITY misc "杂项">
+<!ENTITY filenameFormat "文件名">
+<!ENTITY savedirs "导出目录">
+<!ENTITY addTimestamp "将日期加入到文件属性">
+<!ENTITY customizeFilename "使用以下格式：">
+<!ENTITY captionCustomize "自定义文件名格式">
+<!ENTITY browse "浏览">
+<!ENTITY subject "主题">
+<!ENTITY date "日期">
+<!ENTITY key "索引">
+<!ENTITY addtime.label "在日期里加入时间">
+<!ENTITY mboxExport "将信件夹作为 MBOX 文件导出：">
+<!ENTITY emlExport "将信件夹作为一个单独文件导出：">
+<!ENTITY selExport "导出选中的消息：">
+<!ENTITY MBcaptionlabel1 "导出设置">
+<!ENTITY saveProfileMail "保存所有邮件文件">
+<!ENTITY sdExportButton "导出">
+<!ENTITY sdMessages "消息">
+<!ENTITY sdAll "全部">
+<!ENTITY sdSelected "选中">
+<!ENTITY sdFormat "格式">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "纯文本">
+<!ENTITY searchAndExport "搜索和导出">
+<!ENTITY buildMSF.label "为导入的 mbox 文件建立索引">
+<!ENTITY addPrefix "添加前缀">
+<!ENTITY fileLenCaption "文件名长度">
+<!ENTITY cutSub "标题超过50个字符时截断">
+<!ENTITY cutFN "完整文件路径超过256个字符时截断">
+<!ENTITY sdMBOX "Mbox">
+<!ENTITY sdMBOX2 "Mbox （附加）">
+<!ENTITY asMBOX "作为 Mbox 文件（新建）">
+<!ENTITY asMBOX2 "作为 Mbox 文件（附加）">
+<!ENTITY filenameCharset "文件名的字符集：">
+<!ENTITY name "名字">
+<!ENTITY importStructDescr1 "选择 mbox 文件，同名文件夹">
+<!ENTITY importStructDescr2 "azcasdasd">
+<!ENTITY abortExport "停止当前的导出">
+<!ENTITY allMsg "导出全部信息">
+<!ENTITY indexSettingLabel "当从一个信件夹中导出全部信息时：">
+<!ENTITY indexOn "创建一个新的目录并索引信息">
+<!ENTITY indexOff "使用选定的目录并且不进行索引">
+<!ENTITY copyFolderPath "复制磁盘上的文件夹路径">
+<!ENTITY importSMS "导入 SMS">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "Android 的 \\\'SMS 备份和恢复\\\'">
+<!ENTITY sender "发信人">
+<!ENTITY recipient "收信人">
+<!ENTITY exportRemoteFolder "导出远程文件夹">
+<!ENTITY skipMsgLabel "代理文件存在时不要保存信息">
+<!ENTITY asCSV "电子表格(CSV)">
+<!ENTITY exportZIP "导出信件夹（ZIP压缩）">
+<!ENTITY openFolderPath "打开信件夹文件所在目录">
+<!ENTITY addNumber.label "导出 mbox 文件时总是在名字上添加随机数字">
+<!ENTITY textCharset "纯文本和逗号分隔文件（CSV）格式使用的字符集：">
+<!ENTITY importEML "导入eml文件">
+<!ENTITY importALLEML "从一个目录中导入所有的eml文件">
+<!ENTITY importMAILDIR "导入 Maildir 文件夹">
+<!ENTITY withattach "带有附件">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "保存所有配置文件">
+<!ENTITY withIndexLabel "带有 HTML 索引">

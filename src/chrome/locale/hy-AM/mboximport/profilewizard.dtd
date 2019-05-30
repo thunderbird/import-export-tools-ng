@@ -1,0 +1,13 @@
+<!ENTITY intro1 "Սա փորձնական գործողություն է։ Որևէ տվյալ չեք կորցնի, բայց նաև չի երաշխավորվում ճիշտ աշխատանքը։">
+<!ENTITY profilePath "Պրոֆիլը ներմուծելու ճ-ը">
+<!ENTITY browse "Դիտարկիչ">
+<!ENTITY profileName "Ներմուծվող պրոֆիլի անունը">
+<!ENTITY changeProfileNameLabel "Հետագայում կարող եք փոխել պրոֆիլի անունը">
+<!ENTITY intro2 "Թղթապանակում կա պրոֆիլ, որը կարող է ներմուծվել։ Կարող է տևել մի քանի րոպե։">
+<!ENTITY start "Ներմուծել">
+<!ENTITY importRunning "Ներմուծում է…">
+<!ENTITY importEnd "Ներմուծեց։">
+<!ENTITY intro3 "Մուտք ստանալու համար ներմուծված պրոֆիլին՝ բացեք Պրոֆլիների կառավարիչը։ Գործող պրոֆիլը միանգամից կփակվի">
+<!ENTITY runProfileManager "Բացել Պրոֆիլների կառավարիչը">
+<!ENTITY title "ImportExportTools՝ պրոֆիլի ներմուծում">
+<!ENTITY error "An error occurred during profile import. Error details are:">

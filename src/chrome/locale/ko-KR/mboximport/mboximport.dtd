@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "하위 폴더와 함께 폴더 내보내기(간단)">
+<!ENTITY importMbox "mbox 파일 불러오기">
+<!ENTITY labelmenuMI "불러오기/내보내기">
+<!ENTITY MBlabel1 "목적 디렉토리에 있는 같은 이름의 mbox 파일을 덮어 씁니다">
+<!ENTITY importDir "불러올 mbox 파일을 검색할 디렉토리 선택">
+<!ENTITY labelmenuMItools "mbox/eml 형식으로 불러오기/내보내기">
+<!ENTITY importFile "하나 이상의 mbox 파일을 직접 불러오기">
+<!ENTITY importDialogLabel "불러오기 방식을 선택:">
+<!ENTITY importDialogTitle "읽어들일 mbox 파일">
+<!ENTITY importStruct "하위 디렉토리와 함께 하나 이상의 mbox 파일 불러오기">
+<!ENTITY exportStruct "하위 폴더와 함께 내보내기(구조 포함)">
+<!ENTITY exportAllStruct "모든 폴더 내보내기(구조 포함)">
+<!ENTITY MBlabel2 "단일 파일 내보내기시 영숫자만 사용">
+<!ENTITY allMsgsFolder "폴더 내 모든 메세지 내보내기">
+<!ENTITY asEML "EML 형식">
+<!ENTITY asHTML "HTML 형식">
+<!ENTITY asTXT "Plain text 형식">
+<!ENTITY saveSelected "선택한 메세지 저장">
+<!ENTITY justIndex "목차만">
+<!ENTITY toClip "클립보드로 메세지 복사">
+<!ENTITY MBlabel3 "디렉토리로부터 mbox 파일을 읽어들이기 전에 확인을 요구">
+<!ENTITY MBlabel4 "메세지 패널에 표시되었던 대로의 HTML 형식">
+<!ENTITY MBlabel5 "텍스트 형식으로 클립보드에 카피 (호환성에 문제가 있을 수 있습니다)">
+<!ENTITY MBlabel6 "제출시, 내보내는 파일의 시작에 날짜를 덧붙인다">
+<!ENTITY MBlabel7a "제목 최대 길이:">
+<!ENTITY MBlabel7b "문자">
+<!ENTITY MBlabel7c "보내는 이 이름의 최대 길이:">
+<!ENTITY MBlabel7d "받는이 이름의 최대 길이:">
+<!ENTITY oneFile "(파일 1개)">
+<!ENTITY importAttachedEML "폴더 내 메세지 불러오기">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "클립보드로 복사">
+<!ENTITY copyClipMessage "메세지">
+<!ENTITY copyClipHeaders "헤더">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "들여올 mbox 파일을 검색할 디렉토리 선택 (하위 디렉토리 포함)">
+<!ENTITY importDirProf "파일 선택을 프로파일 디렉토리에서 열기">
+<!ENTITY MBlabel8 "\'선택한 메세지 저장\'시 파일명에 날짜를 추가">
+<!ENTITY options "선택사항">
+<!ENTITY importALLEML1 "디렉토리 만으로부터">
+<!ENTITY importALLEML2 "하위 디렉토리로부터도">
+<!ENTITY misc "기타">
+<!ENTITY filenameFormat "파일명">
+<!ENTITY savedirs "내보낼 디렉토리">
+<!ENTITY addTimestamp "파일 속성에 날짜 추가">
+<!ENTITY customizeFilename "다음 형식 사용:">
+<!ENTITY captionCustomize "파일명 형식 사용자 지정">
+<!ENTITY browse "찾아보기">
+<!ENTITY subject "제목">
+<!ENTITY date "날짜">
+<!ENTITY key "색인">
+<!ENTITY addtime.label "날짜에 시간 추가">
+<!ENTITY mboxExport "MBOX 파일로 폴더 내보내기:">
+<!ENTITY emlExport "단일 파일로 폴더 내보내기:">
+<!ENTITY selExport "선택된 메세지 내보내기:">
+<!ENTITY MBcaptionlabel1 "일반 설정">
+<!ENTITY saveProfileMail "모든 메일 파일 저장">
+<!ENTITY sdExportButton "내보내기">
+<!ENTITY sdMessages "메세지">
+<!ENTITY sdAll "모두">
+<!ENTITY sdSelected "선택한 것">
+<!ENTITY sdFormat "형식">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "단순 글">
+<!ENTITY searchAndExport "검색후 내보내기">
+<!ENTITY buildMSF.label "mbox을 들여오기 위해 색인 구축">
+<!ENTITY addPrefix "접두사 추가">
+<!ENTITY fileLenCaption "파일명 길이">
+<!ENTITY cutSub "50자로 제목 자르기">
+<!ENTITY cutFN "256자로 완료 파일 경로 길이 자르기">
+<!ENTITY sdMBOX "Mbox(새 파일)">
+<!ENTITY sdMBOX2 "Mbox(추가)">
+<!ENTITY asMBOX "Mbox 파일로(새 파일)">
+<!ENTITY asMBOX2 "Mbox 파일로(추가)">
+<!ENTITY filenameCharset "파일명의 캐릭터셋:">
+<!ENTITY name "이름">
+<!ENTITY importStructDescr1 "mbox파일을 선택하거나, 동일한 이름의 디렉토리와">
+<!ENTITY importStructDescr2 "\'sbd\'확장자가 존재한다면 자동으로 들여옵니다.">
+<!ENTITY abortExport "현재 내보내기 중지">
+<!ENTITY allMsg "모든 메세지 내보내기">
+<!ENTITY indexSettingLabel "메일 폴더 내 모든 메세지 내보낼 때:">
+<!ENTITY indexOn "새 디렉토리 및 메세지 색인 생성">
+<!ENTITY indexOff "색인없이 선택된 디렉토리 사용">
+<!ENTITY copyFolderPath "디스크 내 폴더 경로 복사">
+<!ENTITY importSMS "SMS 불러오기">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "Android용 \'SMS 백업 및 복원\'">
+<!ENTITY sender "보낸이">
+<!ENTITY recipient "받는이">
+<!ENTITY exportRemoteFolder "원격 폴더로 내보내기">
+<!ENTITY skipMsgLabel "통신 파일이 존재하면 메세지를 저장하지 않음">
+<!ENTITY asCSV "스프레드 시트(CSV)">
+<!ENTITY exportZIP "내보내기 폴더 (압축됨)">
+<!ENTITY openFolderPath "Open directory where is the folder file">
+<!ENTITY addNumber.label "mbox파일을 가져올때 언제나 임의의 숫자를 추가">
+<!ENTITY textCharset "Text 및 CSV형식으로 내보내기 위한 문자셋:">
+<!ENTITY importEML "eml 파일 불러오기">
+<!ENTITY importALLEML "디렉토리로 부터 모든 eml 파일 불러오기">
+<!ENTITY importMAILDIR "불러올 메일 디렉토리 폴더">
+<!ENTITY withattach "(with attachments)">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "모든 프로파일 파일 저장">
+<!ENTITY withIndexLabel "with HTML index">

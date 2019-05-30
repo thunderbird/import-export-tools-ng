@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+
+<dialog id="mboxdialog" title="&importDialogTitle;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept,cancel"
+        ondialogaccept="importwrapper()"
+	style="padding:20px">
+
+<script type="application/x-javascript">
+ <![CDATA[
+	function importwrapper() {
+		window.arguments[0].openProfDir = document.getElementById("openProfDir").checked;
+		var params = {scandir:false, keepstructure:false, openProfDir:false, recursiveMode:false};
+		if (document.getElementById("mboxgroup").selectedIndex == 1)
+			window.arguments[0].keepstructure = true;	
+		else if (document.getElementById("mboxgroup").selectedIndex == 2)
+			window.arguments[0].scandir = true;
+		else if (document.getElementById("mboxgroup").selectedIndex == 3) {
+			window.arguments[0].scandir = true;
+			window.arguments[0].recursiveMode = true;
+		}
+	}
+  ]]>
+</script>
+
+<label value="&importDialogLabel;"/>
+<separator />
+    <radiogroup id="mboxgroup">
+	<radio label="&importFile;" selected="true" />
+	<radio label="&importStruct;" />
+	<description class="indent" style="font-style: italic;">&importStructDescr1;</description>
+	<description class="indent" style="font-style: italic;">&importStructDescr2;</description>
+	<radio label="&importDir;" />
+	<radio label="&importDirRec;" />
+    </radiogroup>
+	<separator />
+	<checkbox id="openProfDir" label="&importDirProf;" />
+    <separator />
+
+</dialog>

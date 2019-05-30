@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "サブフォルダと共にフォルダをエクスポート (簡易)">
+<!ENTITY importMbox "mbox ファイルをインポート">
+<!ENTITY labelmenuMI "インポート・エクスポート">
+<!ENTITY MBlabel1 "出力先フォルダにある同じ名前の mbox ファイルを上書き">
+<!ENTITY importDir "インポートする mbox ファイルを検索してフォルダを選択">
+<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY importFile "単一または複数の mbox ファイルを直接インポート">
+<!ENTITY importDialogLabel "インポート方法の選択:">
+<!ENTITY importDialogTitle "インポート mbox ファイル">
+<!ENTITY importStruct "サブフォルダを含む単一または複数の mbox ファイルをインポート">
+<!ENTITY exportStruct "サブフォルダを含むフォルダをエクスポート (フォルダ構成を含む)">
+<!ENTITY exportAllStruct "すべてのフォルダをエクスポート (フォルダ構成を含む)">
+<!ENTITY MBlabel2 "単一ファイルのエクスポートに英数字のみを使用">
+<!ENTITY allMsgsFolder "フォルダ内のすべてのメッセージをエクスポート">
+<!ENTITY asEML "eml 形式">
+<!ENTITY asHTML "HTML 形式">
+<!ENTITY asTXT "プレーンテキスト形式">
+<!ENTITY saveSelected "選択済みメッセージを保存">
+<!ENTITY justIndex "インデックスのみ">
+<!ENTITY toClip "メッセージをクリップボードにコピー">
+<!ENTITY MBlabel3 "フォルダから mbox ファイルをインポートする前に確認">
+<!ENTITY MBlabel4 "メッセージペインに表示されたとおりの HTML 形式">
+<!ENTITY MBlabel5 "テキスト形式でクリップボードにコピー (互換性の問題があります)">
+<!ENTITY MBlabel6 "存在する場合は、エクスポートするファイルの先頭に日付を追加">
+<!ENTITY MBlabel7a "件名の最大長:">
+<!ENTITY MBlabel7b "文字">
+<!ENTITY MBlabel7c "送信者名の最大長:">
+<!ENTITY MBlabel7d "宛先名の最大長:">
+<!ENTITY oneFile "単一ファイル">
+<!ENTITY importAttachedEML "このフォルダにあるメッセージをインポート">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "クリップボードにコピー">
+<!ENTITY copyClipMessage "メッセージ">
+<!ENTITY copyClipHeaders "ヘッダ">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "インポートする mbox ファイルを検索するフォルダを選択 (サブフォルダを含む)">
+<!ENTITY importDirProf "プロファイルフォルダ内でファイル選択">
+<!ENTITY MBlabel8 "「選択済みメッセージを保存」でファイル名に日付を追加">
+<!ENTITY options "設定">
+<!ENTITY importALLEML1 "フォルダのみ">
+<!ENTITY importALLEML2 "サブフォルダも含む">
+<!ENTITY misc "全般">
+<!ENTITY filenameFormat "ファイル名">
+<!ENTITY savedirs "エクスポートフォルダ">
+<!ENTITY addTimestamp "ファイルのプロパティに追加">
+<!ENTITY customizeFilename "以下の形式を使用：">
+<!ENTITY captionCustomize "ファイル名のカスタマイズ">
+<!ENTITY browse "参照">
+<!ENTITY subject "タイトル">
+<!ENTITY date "日付">
+<!ENTITY key "インデックス">
+<!ENTITY addtime.label "データ日付に時間を追加">
+<!ENTITY mboxExport "フォルダを mbox ファイルでエクスポート：">
+<!ENTITY emlExport "フォルダを 単一ファイルでエクスポート：">
+<!ENTITY selExport "選択メッセージをエクスポート：">
+<!ENTITY MBcaptionlabel1 "設定">
+<!ENTITY saveProfileMail "すべてのメールファイルを保存">
+<!ENTITY sdExportButton "エクスポート">
+<!ENTITY sdMessages "メッセージ">
+<!ENTITY sdAll "すべて">
+<!ENTITY sdSelected "選択されたもの">
+<!ENTITY sdFormat "形式">
+<!ENTITY sdEML "eml">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "プレーンテキスト">
+<!ENTITY searchAndExport "検索してエクスポート">
+<!ENTITY buildMSF.label "インポートした mbox ファイルのインデックスを作成">
+<!ENTITY addPrefix "接頭文字として追加：">
+<!ENTITY fileLenCaption "ファイル名の長さ">
+<!ENTITY cutSub "件名を 50 文字でカット">
+<!ENTITY cutFN "ファイルパスを 256 文字でカット">
+<!ENTITY sdMBOX "mbox (新規)">
+<!ENTITY sdMBOX2 "mbox (追加)">
+<!ENTITY asMBOX "mbox ファイルとして (新規)">
+<!ENTITY asMBOX2 "mbox ファイルとして (追加)">
+<!ENTITY filenameCharset "ファイル名用の文字コード: ">
+<!ENTITY name "名前">
+<!ENTITY importStructDescr1 "まさしく同じ名前の mbox フォルダを選択してください.。">
+<!ENTITY importStructDescr2 "また、サブフォルダの拡張子「sbd」があれば自動的にインポートされます。">
+<!ENTITY abortExport "現在のエクスポートを中止">
+<!ENTITY allMsg "すべてのメッセージをエクスポート">
+<!ENTITY indexSettingLabel "メールフォルダのすべてのメッセージをエクスポートするとき:">
+<!ENTITY indexOn "メッセージの新しいフォルダおよびインデックスを作成 ">
+<!ENTITY indexOff "選択したインデックスなしのフォルダを使用">
+<!ENTITY copyFolderPath "ディスク上のフォルダパスをコピー">
+<!ENTITY importSMS "SMS をインポート">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "Android 用の 'SMS バックアップとリストア'">
+<!ENTITY sender "差出人">
+<!ENTITY recipient "受取人">
+<!ENTITY exportRemoteFolder "リモートフォルダのエクスポート">
+<!ENTITY skipMsgLabel "送受信中（作成中）のファイルがあるときは保存しない">
+<!ENTITY asCSV "スプレッドシート (CSV)">
+<!ENTITY exportZIP "フォルダをエクスポート（zip 圧縮形式）">
+<!ENTITY openFolderPath "ファイルのあるフォルダを開く">
+<!ENTITY addNumber.label "mbox ファイルをインポートするときは、常にランダムな番号を名前に追加">
+<!ENTITY textCharset "テキストおよび CSV 形式でエクスポートするときの文字コード：">
+<!ENTITY importEML "eml ファイルをインポート">
+<!ENTITY importALLEML "フォルダからすべての eml ファイルをインポート">
+<!ENTITY importMAILDIR "Maildir フォルダからインポート">
+<!ENTITY withattach "(添付ファイル含む)">
+<!ENTITY asPDF "PDF 形式">
+<!ENTITY importProfile "プロファイルのインポート">
+<!ENTITY csvSep "CSV 形式でエクスポート時のセパレータ:">
+<!ENTITY saveProfile "プロファイルのエクスポート (保存)">
+<!ENTITY withIndexLabel "HTML インデックス付き">

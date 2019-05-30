@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<overlay id="messengerOverlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+<script>
+<![CDATA[
+	function IETmessOverlayInit() {
+		var last = IETprefs.getIntPref("extensions.importexporttools.autobackup.last");
+		var frequency = IETprefs.getIntPref("extensions.importexporttools.autobackup.frequency");
+		if (frequency == 0)
+			return;
+		var now = new Date;
+		var time = now.getTime();
+		time = time / 1000;
+		var days = 24*60*60*frequency;
+		if ((time - last) < days)
+			return;
+		var WM = Components.classes['@mozilla.org/appshell/window-mediator;1']
+			.getService(Components.interfaces.nsIWindowMediator);
+		var os = navigator.platform.toLowerCase();
+		if (os.indexOf("mac") < 0)
+			var wins = WM.getEnumerator(null);
+		else
+			var wins = WM.getEnumerator("mail:3pane");
+		if (! wins.hasMoreElements()) {
+			if (IETprefs.getBoolPref("extensions.importexporttools.autobackup.use_modal_dialog"))
+				window.openDialog("chrome://mboximport/content/autobackup.xul","", "chrome,centerscreen,modal",last,time,now);
+			else
+				window.openDialog("chrome://mboximport/content/autobackup.xul","", "chrome,centerscreen",last,time,now);
+		}
+	}
+
+	window.addEventListener("unload", IETmessOverlayInit, false);
+]]>
+</script>
+</overlay>
+

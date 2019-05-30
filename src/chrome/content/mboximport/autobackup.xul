@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/autobackup.dtd">
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<dialog id="autobackup-window"
+    title="&dialog.title;"
+    windowtype="autobackup-dialog"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    ondialogaccept="return autoBackup.onOK()"
+    onload="autoBackup.load()"
+>
+<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+<script type="application/x-javascript" src="chrome://mboximport/content/mboximport.js" />
+<script type="application/x-javascript" src="chrome://mboximport/content/autobackup.js" />
+
+<stringbundleset id="stringbundleset">
+	<stringbundle id="strings" src="chrome://mboximport/locale/autobackup.properties"/>
+</stringbundleset>
+
+<description id="last">&description1;</description>
+<description>&description2;</description>
+<description>&description3;</description>
+<description id="macWarn" collapsed="true">&MACwarning;</description>
+<description id="go">&description4;</description>
+<description id="start" collapsed="true">&description5;</description>
+<description id="done" collapsed="true">&description6;</description>
+<progressmeter id="pm" mode="determined"  value="0"/>
+</dialog>
+

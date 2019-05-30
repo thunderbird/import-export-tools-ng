@@ -1,0 +1,47 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/profilewizard.dtd">
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<wizard id="profileImportWizard" 
+	title="&title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://mboximport/content/profileImportWizard.js" />
+<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+
+  <wizardpage onpageshow="IETimportWizard.start()">
+    <description>&intro1;</description>
+	<spacer height="20" />
+	<label value="&profilePath;: "/>
+	<hbox>
+		<textbox id="pathBox" flex="1" readonly="true" />
+		<button label="&browse;" oncommand="IETimportWizard.pickFile(this)" />
+        </hbox>
+	<spacer height="20" />
+	<hbox align="center">
+		<label value="&profileName;: "/>
+		<textbox id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" />
+        </hbox>
+	<label value="&changeProfileNameLabel;" />
+  </wizardpage>
+
+  <wizardpage onpageshow="IETimportWizard.secondPage()">
+	<description>&intro2;</description>
+	<spacer height="30" />
+	<button label="&start;" oncommand="IETimportWizard.importProfile(this)" />
+	<spacer height="20" />
+	<description id="importRunning" hidden="true">&importRunning;</description>
+	<description id="importEnd" hidden="true">&importEnd;</description>
+	<description id="error" hidden="true">&error;</description>
+	<description id="errorDetails" hidden="true"></description>
+  </wizardpage>
+  
+  <wizardpage onpageshow="IETimportWizard.thirdPage()">
+	<description id="newProfDetails" />
+	<spacer height="20" />
+	<description>&intro3;</description>
+	<spacer height="30" />
+	<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
+  </wizardpage>
+
+</wizard>

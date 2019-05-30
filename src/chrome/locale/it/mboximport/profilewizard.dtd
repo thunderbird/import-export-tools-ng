@@ -1,0 +1,13 @@
+<!ENTITY intro1 "Questa è una procedura di importazione del profilo sperimentale. Pur non essendovi rischi di perdita dei dati salvati, non è garantito che tutto funzioni regolarmente, specialmente se il trasferimento del profilo avviene da un computer ad un altro diverso. Dà comunque più garanzie che la copia a mano dei file.">
+<!ENTITY profilePath "Indica il percorso del profilo da importare">
+<!ENTITY browse "Sfoglia">
+<!ENTITY profileName "Indica il nome da usare per il profilo importato">
+<!ENTITY changeProfileNameLabel "Il nome del profilo potrà comunque essere modificato dal manager dei profili">
+<!ENTITY intro2 "Il percoso indicato contiene un valido profilo da importare. Durante il procedimento - che può durare diversi minuti o anche di più - il programma sarà bloccato e non potranno essere eseguite altre operazioni.">
+<!ENTITY start "Inizia l'importazione">
+<!ENTITY importRunning "Importazione in corso...">
+<!ENTITY importEnd "L'importazione è andata a buon fine!">
+<!ENTITY intro3 "Per accedere al profilo importato, lancia il manager dei profili cliccando il bottone sottostante. Il profilo corrente verrà automaticamente chiuso.">
+<!ENTITY runProfileManager "Lancia il manager dei profili">
+<!ENTITY title "ImportExportTools - Importazione di un profilo">
+<!ENTITY error "Si è verificato un errore nell'importazione del profilo. I dettagli dell'errore sono:">

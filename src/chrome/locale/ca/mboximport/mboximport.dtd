@@ -1,0 +1,108 @@
+<!ENTITY exportWithSub "Exporta la carpeta i les subcarpetes (simple)">
+<!ENTITY importMbox "Importa un fitxer mbox">
+<!ENTITY labelmenuMI "Importació/exportació">
+<!ENTITY MBlabel1 "Sobreescriu els fitxers mbox amb el mateix nom al directori de destinació">
+<!ENTITY importDir "Indiqueu un directori on cercar els fitxer mbox que voleu importar">
+<!ENTITY labelmenuMItools "Eines d\'importació i exportació">
+<!ENTITY importFile "Importa directament un o més fitxer mbox">
+<!ENTITY importDialogLabel "Trieu un sistema d\'importació:">
+<!ENTITY importDialogTitle "Importació de fitxer mbox">
+<!ENTITY importStruct "Importa un o més fitxers mbox, amb els seus subdirectoris">
+<!ENTITY exportStruct "Exporta la carpeta amb subcarpetes (amb estructura)">
+<!ENTITY exportAllStruct "Exporta totes les carpetes (amb estructura)">
+<!ENTITY MBlabel2 "Usa només caràcters alfanumèrics a l\'exportació">
+<!ENTITY allMsgsFolder "Exporta tots els missatges a la carpeta">
+<!ENTITY asEML "Format EML">
+<!ENTITY asHTML "Format HTML">
+<!ENTITY asTXT "Format de text pla">
+<!ENTITY saveSelected "Desa les imatges seleccionades">
+<!ENTITY justIndex "només l\'índex">
+<!ENTITY toClip "Copia els missatges al porta-retalls">
+<!ENTITY MBlabel3 "Demana confirmació abans d\'importar els fitxers mbox d\'un directori">
+<!ENTITY MBlabel4 "Format HTML com es mostra al quadre de missatges">
+<!ENTITY MBlabel5 "Copia al porta-retalls només en format de text pla (pot donar problemes de compatibilitat)">
+<!ENTITY MBlabel6 "Quan hi sigui present, posa la data al començament dels fitxers exportats">
+<!ENTITY MBlabel7a "Màx. longitud de l\'assumpte:">
+<!ENTITY MBlabel7b "caràcters">
+<!ENTITY MBlabel7c "Màx. longitud del nom del remitent:">
+<!ENTITY MBlabel7d "Màx. longitud dels noms dels destinataris:">
+<!ENTITY oneFile "(un fitxer)">
+<!ENTITY importAttachedEML "Importa el missatge d\'aquesta carpeta">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Copia al porta-retalls">
+<!ENTITY copyClipMessage "Missatge">
+<!ENTITY copyClipHeaders "Capçaleres">
+<!ENTITY taskMenuAccesskey "x">
+<!ENTITY clipMenuAccesskey "o">
+<!ENTITY importDirRec "Seleccioneu un directori on cercar els fitxer mbox per importar (també als subdirectoris)">
+<!ENTITY importDirProf "Obre el selector de fitxers al directori de perfils">
+<!ENTITY MBlabel8 "Afegeix la data al fitxers amb &quot;Desa els missatges seleccionats&quot;">
+<!ENTITY options "Opcions">
+<!ENTITY importALLEML1 "només del directori">
+<!ENTITY importALLEML2 "també dels subdirectoris">
+<!ENTITY misc "Miscel·lània">
+<!ENTITY filenameFormat "Noms de fitxer">
+<!ENTITY savedirs "Directoris d\'exportació">
+<!ENTITY addTimestamp "Afegeix la data a les propietats del fitxer">
+<!ENTITY customizeFilename "Usa el format següent:">
+<!ENTITY captionCustomize "Format personalitzat per als noms de fixers">
+<!ENTITY browse "Explora">
+<!ENTITY subject "Assumpte">
+<!ENTITY date "Data">
+<!ENTITY key "Índex">
+<!ENTITY addtime.label "Afegeix l\'hora a la data">
+<!ENTITY mboxExport "Exporta les carpetes a un fitxer MBOX:">
+<!ENTITY emlExport "Exporta les carpetes a fitxers individuals:">
+<!ENTITY selExport "Exporta els missatges seleccionats:">
+<!ENTITY MBcaptionlabel1 "Paràmetres generals">
+<!ENTITY saveProfileMail "Desa tots els fitxers de correu">
+<!ENTITY sdExportButton "Exporta">
+<!ENTITY sdMessages "Missatges">
+<!ENTITY sdAll "Tot">
+<!ENTITY sdSelected "Seleccionats">
+<!ENTITY sdFormat "Format">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Text pla">
+<!ENTITY searchAndExport "Cerca i exporta">
+<!ENTITY buildMSF.label "Construeix l\'índex pels fitxers mbox importats">
+<!ENTITY addPrefix "Afegeix el prefix">
+<!ENTITY fileLenCaption "Longitud de noms de fitxer">
+<!ENTITY cutSub "Retalla l\'assumpte a 50 caràcters">
+<!ENTITY cutFN "Retalla la longitud del camí complet al fitxer a 256 caràcters">
+<!ENTITY sdMBOX "Mbox (nou)">
+<!ENTITY sdMBOX2 "Mbox (afegeix)">
+<!ENTITY asMBOX "com a fitxer Mbox (nou)">
+<!ENTITY asMBOX2 "com a fitxers Mbox (afegeix)">
+<!ENTITY filenameCharset "Joc de caràcters per als noms de fitxer:">
+<!ENTITY name "Nom">
+<!ENTITY importStructDescr1 "Seleccioneu només el fitxer mbox, el directori amb directori amb el mateix nom">
+<!ENTITY importStructDescr2 "i l\'extensió \'sbd\' s\'importarà automàticament, si existeix.">
+<!ENTITY abortExport "Atura l\'exportació">
+<!ENTITY allMsg "Exporta tots els missatges">
+<!ENTITY indexSettingLabel "En exportar tots els missatges d\'una carpeta de correu:">
+<!ENTITY indexOn "crea un directori nou i l\'índex de missatges">
+<!ENTITY indexOff "usa el directori seleccionat sense l\'índex">
+<!ENTITY copyFolderPath "Copia la ruta a la carpeta al disc">
+<!ENTITY importSMS "Importa SMS">
+<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!ENTITY android "\'Còpia de seguretat i restauració de SMS\' per a Android">
+<!ENTITY sender "Remitent">
+<!ENTITY recipient "Remitent">
+<!ENTITY exportRemoteFolder "Exporta una carpeta remota">
+<!ENTITY skipMsgLabel "no desis els missatges quan existeix el fitxer corresponent">
+<!ENTITY asCSV "Full de càlcul (CSV)">
+<!ENTITY exportZIP "Export folder (zipped)">
+<!ENTITY openFolderPath "Open directory where is the folder file">
+<!ENTITY addNumber.label "Add always to the name a random number when importing mbox files">
+<!ENTITY textCharset "Charset for export in text and CSV format: ">
+<!ENTITY importEML "Importa un fitxer eml">
+<!ENTITY importALLEML "Importa tots els fitxers eml d\'un directori">
+<!ENTITY importMAILDIR "Importa la carpeta Maildir">
+<!ENTITY withattach "(amb adjunts)">
+<!ENTITY asPDF "PDF format">
+<!ENTITY importProfile "Import profile">
+<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY saveProfile "Desa tots els fitxers de perfil">
+<!ENTITY withIndexLabel "amb índex HTML">

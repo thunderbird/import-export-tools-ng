@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Backup">
+<!ENTITY description1 "Date of last backup: $t">
+<!ENTITY description2 "On the basis of the settings, it's necessary now to make the backup.">
+<!ENTITY description3 "During this operation, the program will be unresponsive for some minutes.">
+<!ENTITY description4 "Do you want to continue?">
+<!ENTITY description5 "Backup in progress...please wait.">
+<!ENTITY description6 "Backup done.">
+<!ENTITY backupTab "Backup scheduling">
+<!ENTITY backupSettings "Backup settings">
+<!ENTITY backupOn "Enable">
+<!ENTITY backupFreq "Frequency">
+<!ENTITY day1 "1 day">
+<!ENTITY day3 "3 days">
+<!ENTITY day7 "7 days">
+<!ENTITY day15 "15 days">
+<!ENTITY day30 "30 days">
+<!ENTITY backupDestination "Destination">
+<!ENTITY backupFolderName "Folder name for backup">
+<!ENTITY autoName "Automatic (folder name + date)">
+<!ENTITY customName "Customized">
+<!ENTITY backupType "Backup content">
+<!ENTITY allFiles "All profile files">
+<!ENTITY justMailFiles "Just mail files">
+<!ENTITY lastBackup "Last backup">
+<!ENTITY allFilesMode "Always all files">
+<!ENTITY newFilesMode "Just files modified after last backup">
+<!ENTITY save "Save">
+<!ENTITY modal "Use a 'modal' window">
+<!ENTITY MACwarning "N.B: close every other window, before continue.">

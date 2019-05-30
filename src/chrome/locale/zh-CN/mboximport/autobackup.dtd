@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - 备份">
+<!ENTITY description1 "最近一次备份日期：$t">
+<!ENTITY description2 "根据基本设置，现在需要备份。">
+<!ENTITY description3 "操作进行期间，程序可能有数分钟没有响应。">
+<!ENTITY description4 "要继续么？">
+<!ENTITY description5 "正在进行备份…请等待。">
+<!ENTITY description6 "备份完成。">
+<!ENTITY backupTab "备份已纳入日程">
+<!ENTITY backupSettings "备份设置">
+<!ENTITY backupOn "启用">
+<!ENTITY backupFreq "频度">
+<!ENTITY day1 "每天">
+<!ENTITY day3 "3天">
+<!ENTITY day7 "7天">
+<!ENTITY day15 "15天">
+<!ENTITY day30 "30天">
+<!ENTITY backupDestination "目标">
+<!ENTITY backupFolderName "要备份的文件夹名称">
+<!ENTITY autoName "自动（文件夹名 + 日期）">
+<!ENTITY customName "自定义">
+<!ENTITY backupType "备份内容">
+<!ENTITY allFiles "全部配置文件">
+<!ENTITY justMailFiles "仅邮件文件">
+<!ENTITY lastBackup "上次备份">
+<!ENTITY allFilesMode "总是全部文件">
+<!ENTITY newFilesMode "仅上次备份后有改动的文件">
+<!ENTITY save "保存">
+<!ENTITY modal "使用一个 \\\'modal\\\' 窗口">
+<!ENTITY MACwarning "警示：继续前，关闭所有其他窗口。">

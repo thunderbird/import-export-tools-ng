@@ -1,0 +1,30 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build TB Extension -BAT",
+			"type": "shell",
+			"command": ".\\scripts\\build-xpi.bat",
+			"group": "build"
+		},
+		{
+			"label": "Build TB Extension - XUL (package)",
+			"type": "npm",
+			"script": "build-xpi",
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Build TB Extension - XUL (package) - viaBAT",
+			"type": "npm",
+			"script": "build-xpi-bat",
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

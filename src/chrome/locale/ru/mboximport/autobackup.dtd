@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools — Резервное копирование">
+<!ENTITY description1 "Дата последнего резервного копирования: $t">
+<!ENTITY description2 "На основании этих настроек немедленно сделать резервную копию.">
+<!ENTITY description3 "На протяжении этой операции программа не будет отвечать на запросы в течение нескольких минут.">
+<!ENTITY description4 "Вы хотите продолжить?">
+<!ENTITY description5 "Выполняется резервное копирование… подождите.">
+<!ENTITY description6 "Резервное копирование завершено.">
+<!ENTITY backupTab "Планирование резервного копирования">
+<!ENTITY backupSettings "Настройки резервного копирования">
+<!ENTITY backupOn "Включить">
+<!ENTITY backupFreq "Периодичность">
+<!ENTITY day1 "один день">
+<!ENTITY day3 "три дня">
+<!ENTITY day7 "7 дней">
+<!ENTITY day15 "15 дней">
+<!ENTITY day30 "30 дней">
+<!ENTITY backupDestination "Целевой каталог">
+<!ENTITY backupFolderName "Имя папки резервной копии">
+<!ENTITY autoName "Автоматически (имя + дата)">
+<!ENTITY customName "Индивидуально">
+<!ENTITY backupType "Состав резервной копии">
+<!ENTITY allFiles "Все файлы профиля">
+<!ENTITY justMailFiles "Только файлы почты">
+<!ENTITY lastBackup "Последняя резервная копия">
+<!ENTITY allFilesMode "Always all files">
+<!ENTITY newFilesMode "Just files modified after last backup">
+<!ENTITY save "Save">
+<!ENTITY modal "Use a \'modal\' window">
+<!ENTITY MACwarning "N.B: close every other window, before continue.">

@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools - Copia de seguridad">
+<!ENTITY description1 "Fecha de la última copia: $t">
+<!ENTITY description2 "Según las opciones, es necesario hacer la copia ahora.">
+<!ENTITY description3 "Durante este proceso, el programa puede no responder durante algunos minutos.">
+<!ENTITY description4 "¿Quiere continuar?">
+<!ENTITY description5 "Copia de seguridad en progreso ... espere por favor.">
+<!ENTITY description6 "Copia terminada.">
+<!ENTITY backupTab "Programación de la copia">
+<!ENTITY backupSettings "Opciones de copia">
+<!ENTITY backupOn "Habilitar">
+<!ENTITY backupFreq "Frecuencia">
+<!ENTITY day1 "1 día">
+<!ENTITY day3 "3 días">
+<!ENTITY day7 "7 días">
+<!ENTITY day15 "15 días">
+<!ENTITY day30 "30 días">
+<!ENTITY backupDestination "Destino">
+<!ENTITY backupFolderName "Carpeta para la copia">
+<!ENTITY autoName "Automático (nombre de carpeta + fecha)">
+<!ENTITY customName "Personalizado">
+<!ENTITY backupType "Contenido de la copia">
+<!ENTITY allFiles "Todos los archivos del perfil">
+<!ENTITY justMailFiles "Sólo los archivos del correo">
+<!ENTITY lastBackup "Última copia de seguridad">
+<!ENTITY allFilesMode "Always all files">
+<!ENTITY newFilesMode "Just files modified after last backup">
+<!ENTITY save "Save">
+<!ENTITY modal "Use a \'modal\' window">
+<!ENTITY MACwarning "N.B: cerrar el resto de ventanas antes de continuar.">

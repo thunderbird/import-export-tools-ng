@@ -1,0 +1,31 @@
+content	mboximport	chrome/content/mboximport/
+
+overlay	chrome://messenger/content/mailWindowOverlay.xul	chrome://mboximport/content/mboximport.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/messengerOverlay.xul
+overlay	chrome://messenger/content/SearchDialog.xul	chrome://mboximport/content/sdOverlay.xul
+overlay	chrome://messenger/content/msgPrintEngine.xul	chrome://mboximport/content/printEngineWindowOverlay.xul
+
+
+locale	mboximport	en-US	chrome/locale/en-US/mboximport/
+locale	mboximport	ca	chrome/locale/ca/mboximport/
+locale	mboximport	da	chrome/locale/da/mboximport/
+locale	mboximport	de	chrome/locale/de/mboximport/
+locale	mboximport	es-ES	chrome/locale/es-ES/mboximport/
+locale	mboximport	fr	chrome/locale/fr/mboximport/
+locale	mboximport	gl-ES	chrome/locale/gl-ES/mboximport/
+locale	mboximport	hu-HU	chrome/locale/hu-HU/mboximport/
+locale	mboximport	hy-AM	chrome/locale/hu-HU/mboximport/
+locale	mboximport	it	chrome/locale/it/mboximport/
+locale	mboximport	ja	chrome/locale/ja/mboximport/
+locale	mboximport	ko-KR	chrome/locale/ko-KR/mboximport/
+locale	mboximport	nl	chrome/locale/nl/mboximport/
+locale	mboximport	pl	chrome/locale/pl/mboximport/
+locale	mboximport	pt-PT	chrome/locale/pt-PT/mboximport/
+locale	mboximport	ru   	chrome/locale/ru/mboximport/
+locale	mboximport	sk-SK	chrome/locale/sk-SK/mboximport/
+locale	mboximport	sl-SI	chrome/locale/sl-SI/mboximport/
+locale	mboximport	sv-SE	chrome/locale/sv-SE/mboximport/
+locale	mboximport	zh-CN	chrome/locale/zh-CN/mboximport/
+
+
+

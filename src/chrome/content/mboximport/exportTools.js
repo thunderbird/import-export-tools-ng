@@ -1,4 +1,5 @@
 // cleidigh - reformat
+
 /* global mboximportbundle, GetFirstSelectedMsgFolder, FolderPaneSelectionChange */
 /* global IETformatWarning,
 getPredefinedFolder,

@@ -14,7 +14,7 @@
 	onload="initMboxImportPanel();"
         buttons="accept, cancel"
         ondialogaccept="saveMboxImportPrefs();"
-        title="ImportExportTools">
+        title="ImportExportTools - i-e linting all js">
 <script type="application/x-javascript" src="chrome://mboximport/content/mboximportOptions.js" />
 <script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
 

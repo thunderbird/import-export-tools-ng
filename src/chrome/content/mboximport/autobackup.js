@@ -1,6 +1,8 @@
 // cleidigh - reformat
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
@@ -73,7 +75,11 @@ var autoBackup = {
 		var dir = autoBackup.getDir();
 		if (!dir)
 			return;
-		var strbundle = document.getElementById("backupStr");
+
+		// cleidigh
+		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
+		// var strbundle = document.getElementById("backupStr");
+
 		if (!dir.exists() || !dir.isWritable) {
 			alert(strbundle.getString("noBackup"));
 			window.close();
@@ -262,7 +268,3 @@ var autoBackup = {
 		}
 	},
 };
-
-
-
-

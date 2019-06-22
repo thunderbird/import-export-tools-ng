@@ -1,1 +1,23 @@
-{}
+{
+	"manifest_version": 2,
+	"name": "ImportExportTools CDL-3",
+	"version": "4.0.0-a1",
+	"description": "Import and export tools for messages and folders",
+	"author": "Paolo Kaosmos",
+	"xpi-name": "import-export-tools",
+	"applications": {
+		"gecko": {
+			"id": "{3ed8cc52-86fc-4613-9026-c1ef969da4c3}",
+			"strict_min_version": "60.0"
+		}
+	},
+	"legacy": {
+		"options": {
+			"page": "chrome://mboximport/content/mboximportOptions.xul",
+			"open_in_tab": false
+		}
+	},
+	"icons": {
+		"32": "chrome/skin/classic/import-export-tools-icon-32px.png"
+	}
+}

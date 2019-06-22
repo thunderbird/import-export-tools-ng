@@ -8,10 +8,6 @@
 <script type="application/x-javascript" src="chrome://mboximport/content/menufunctions.js" />
 <script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
 
-<stringbundleset id="stringbundleset">
-	<stringbundle id="backupStr" src="chrome://mboximport/locale/autobackup.properties"/>
-</stringbundleset>
-
 <popup id="folderPaneContext">
 	<menuseparator id="IETsep" />
 	<menu label="&labelmenuMItools;" id="IETmenu">

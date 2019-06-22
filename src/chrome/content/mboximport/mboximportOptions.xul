@@ -1,22 +1,26 @@
 <?xml version="1.0"?> 
-<!DOCTYPE window [
+
+<!DOCTYPE dialog [
 <!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd" >
 %mainDTD;
 <!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 %backupDTD;
 ]>
-<!-- <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?> -->
-<?xml-stylesheet href="chrome://messenger/skin/preferences/preferences.css" type="text/css"?>
 
-<!-- <!DOCTYPE dialog SYSTEM "chrome://messagearchiveoptions/locale/prefwindow.dtd"> -->
+<!-- cleidigh - Start changing dialog CSS and event handling for TB68 -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+<!-- onload="initMboxImportPanel();" -->
+<!-- ondialogaccept="saveMboxImportPrefs();" -->
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	onload="initMboxImportPanel();"
+	id="optionsdialog"
+	xmlns:html="http://www.w3.org/1999/xhtml"
         buttons="accept, cancel"
-        ondialogaccept="saveMboxImportPrefs();"
-        title="ImportExportTools - i-e linting all js">
-<script type="application/x-javascript" src="chrome://mboximport/content/mboximportOptions.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+        title="ImportExportTools - TB68 Exp Basic1">
+
 
 <tabbox>
 	<tabs>
@@ -94,10 +98,10 @@
         <checkbox id="customizeFilenames" label="&customizeFilename;" checked="false"  oncommand="setTimeout(customNamesCheck,200,this);"/> 
     </hbox>
     <spacer height="10px" />
-    <hbox align="center">
+    <hbox align="center" id="hboxID">
 		<menulist id="part1">
-			<menupopup>
-				<menuitem label="&subject;" value="%s"/>
+			<menupopup id="part1-popup-list">
+				<menuitem id="m0" label="&subject;" value="%s"/>
 				<menuitem label="&date;" value="%d"/>
 				<menuitem label="&key;" value="%k"/>
 				<menuitem label="&name; (&sender;/&recipient;)" value="%n"/>
@@ -107,7 +111,7 @@
 		</menulist>
 		<label value="-"/>
 		<menulist id="part2">
-			<menupopup>
+			<menupopup  id="part2-popup-list">
 				<menuitem label="&subject;" value="%s"/>
 				<menuitem label="&date;" value="%d" selected="true" />
 				<menuitem label="&key;" value="%k"/>
@@ -119,7 +123,7 @@
 		</menulist>
 		<label value="-"/>
 		<menulist id="part3">
-			<menupopup>
+			<menupopup  id="part3-popup-list">
 			<menuitem label="&subject;" value="%s"/>
 				<menuitem label="&date;" value="%d"/>
 				<menuitem label="&key;" value="%k" selected="true" />
@@ -259,5 +263,11 @@
 
 </tabpanels>
 </tabbox>
-</dialog>
 
+
+<!-- <script type="application/javascript" src="chrome://mboximport/content/test.js" /> -->
+<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
+
+<script type="application/javascript" src="chrome://mboximport/content/mboximportOptions.js" />
+
+</dialog>

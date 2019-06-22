@@ -2,6 +2,8 @@
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, IETpickFile */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 function IETsetCharsetPopup(charsetPref) {
 	var charsetPopup = document.getElementById("charset-list-popup");
 	var charsetList = IETprefs.getCharPref("extensions.importexporttools.export.charset_list");
@@ -306,3 +308,24 @@ function toggleSkipMsg(el) {
 function pickFile(el) {
 	IETpickFile(el);
 }
+
+
+function onLoad(e) {
+	initMboxImportPanel();
+}
+
+console.debug('had a ventless');
+// window.addEventListener("load", function (e) { onLoad(e); }, false);
+
+
+window.addEventListener("dialogaccept", function(event) {
+	Services.console.logStringMessage("test dialogue except 5");
+	saveMboxImportPrefs();
+	// event.preventDefault(); // Prevent the dialog closing.
+  });
+
+window.addEventListener("load", function(event) {
+	Services.console.logStringMessage("test dialogue load");
+	initMboxImportPanel();
+	// event.preventDefault(); // Prevent the dialog closing.
+  });

@@ -1,6 +1,11 @@
 content	mboximport	chrome/content/mboximport/
+skin	mboximport	default		chrome/skin/
+skin	mboximport	classic/1.0	skin/
 
-overlay	chrome://messenger/content/mailWindowOverlay.xul	chrome://mboximport/content/mboximport.xul
+# Use messenger.xul for TB68+
+
+overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/mboximport.xul
+
 overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/messengerOverlay.xul
 overlay	chrome://messenger/content/SearchDialog.xul	chrome://mboximport/content/sdOverlay.xul
 overlay	chrome://messenger/content/msgPrintEngine.xul	chrome://mboximport/content/printEngineWindowOverlay.xul

@@ -1,7 +1,7 @@
 {
 	"title": "ImportExportTools",
 	"name": "import-export-tools",
-	"version": "4.0.0",
+	"version": "3.3.3",
 	"description": "Import and export tools for messages and folders",
 	"author": "Paolo Kaosmos",
 	"engines": {
@@ -13,7 +13,7 @@
 		"target_dir": "./xpi",
 		"target_suffix": "-tb",
 		"target_extension": ".xpi",
-		"target_include_manifest": "true"
+		"target_include_manifest": "false"
 	},
 	"scripts": {
 		"build-xpi-bat": ".\\scripts\\build-xpi.bat",

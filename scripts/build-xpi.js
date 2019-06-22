@@ -106,9 +106,10 @@ async function buildArchive() {
 
 		console.log(`Add Extra Files:`);
 		for (const file of extraFiles) {
+			console.log(`  ${file}`);
+
 			_7zCommand = ['a', `${targetDir}/${targetName}`, `${file}`];
 			await _7CmdSync(_7zCommand);
-			console.log(`  ${file}`);
 		}
 
 		console.log('\nArchive Complete: ' + targetName + ` [ manifest: ${includeManifest} ]`);

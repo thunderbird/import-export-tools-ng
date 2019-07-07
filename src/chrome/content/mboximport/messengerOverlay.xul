@@ -6,6 +6,7 @@
 <script>
 <![CDATA[
 	function IETmessOverlayInit() {
+		console.debug('overly');
 		var last = IETprefs.getIntPref("extensions.importexporttools.autobackup.last");
 		var frequency = IETprefs.getIntPref("extensions.importexporttools.autobackup.frequency");
 		if (frequency == 0)
@@ -30,7 +31,7 @@
 				window.openDialog("chrome://mboximport/content/autobackup.xul","", "chrome,centerscreen",last,time,now);
 		}
 	}
-
+	console.debug('overly hatless');
 	window.addEventListener("unload", IETmessOverlayInit, false);
 ]]>
 </script>

@@ -12,13 +12,9 @@
 	<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
 	<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 
-	<!-- onload="initMboxImportPanel();" -->
-	<!-- ondialogaccept="saveMboxImportPrefs();" -->
-
 	<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 		xmlns:html="http://www.w3.org/1999/xhtml" buttons="accept, cancel"
 		title="ImportExportTools NG - TB68 Update a2">
-
 
 		<tabbox>
 			<tabs>

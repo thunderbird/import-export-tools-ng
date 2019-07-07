@@ -33,6 +33,8 @@ IETescapeBeginningFrom,
 
 */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 var MBstrBundleService = Cc["@mozilla.org/intl/stringbundle;1"]
 	.getService(Ci.nsIStringBundleService);
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");

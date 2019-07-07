@@ -9,10 +9,11 @@ IETopenFPsync
 
 */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 var IETimportWizard = {
 
-	bundle: Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService).createBundle("chrome://mboximport/locale/profilewizard.properties"),
+	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
 
 	start: function () {
 		if (document.getElementById("pathBox").value.length === 0)
@@ -67,7 +68,7 @@ var IETimportWizard = {
 		var ex = Cc["@mozilla.org/file/directory_service;1"]
 			.getService(Ci.nsIProperties)
 			.get("XREExeF", Ci.nsIFile);
-		var args = new Array;
+		var args = [];
 		args.push("-no-remote");
 		args.push("-P");
 		var process = Cc["@mozilla.org/process/util;1"]

@@ -81,8 +81,9 @@ function initMboxImportPanel() {
 		var patternParts = pattern.split("-");
 
 		for (var i = 0; i < 3; i++) {
-			var list = document.getElementById("part" + (i + 1).toString());
-			var popup = list.firstChild;
+			var list = document.getElementById(`part${i}`);
+			var popup = document.getElementById(`part${i + 1}-popup-list`);
+
 			switch (patternParts[i]) {
 				case "%d": list.selectedItem = popup.childNodes[1];
 					break;
@@ -314,18 +315,12 @@ function onLoad(e) {
 	initMboxImportPanel();
 }
 
-console.debug('had a ventless');
-// window.addEventListener("load", function (e) { onLoad(e); }, false);
-
-
 window.addEventListener("dialogaccept", function(event) {
-	Services.console.logStringMessage("test dialogue except 5");
+	// Services.console.logStringMessage("test dialogue accept");
 	saveMboxImportPrefs();
-	// event.preventDefault(); // Prevent the dialog closing.
   });
 
 window.addEventListener("load", function(event) {
-	Services.console.logStringMessage("test dialogue load");
+	// Services.console.logStringMessage("test dialogue load");
 	initMboxImportPanel();
-	// event.preventDefault(); // Prevent the dialog closing.
   });

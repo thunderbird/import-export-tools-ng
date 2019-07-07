@@ -8,7 +8,7 @@ pref("extensions.importexporttools.delay.clean_statusbar", 5000);
 pref("extensions.importexporttools.subject.max_length", 50);
 pref("extensions.importexporttools.author.max_length", 50);
 pref("extensions.importexporttools.recipients.max_length", 50);
-pref("extensions.{3ed8cc52-86fc-4613-9026-c1ef969da4c3}.description", "chrome://mboximport/locale/extensions.importexporttools.properties");
+pref("extensions.ImportExportToolsNG@cleidigh.description", "chrome://mboximport/locale/extensions.importexporttools.properties");
 pref("extensions.importexporttools.export.set_filetime", false);
 pref("extensions.importexporttools.exportEML.use_dir", false);
 pref("extensions.importexporttools.exportMBOX.use_dir", false);

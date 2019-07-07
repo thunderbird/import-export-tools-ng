@@ -1,13 +1,13 @@
 {
 	"manifest_version": 2,
-	"name": "ImportExportTools CDL-3",
-	"version": "4.0.0-a1",
-	"description": "Import and export tools for messages and folders",
-	"author": "Paolo Kaosmos",
-	"xpi-name": "import-export-tools",
+	"name": "ImportExportTools NG",
+	"version": "4.0.0-a2",
+	"description": "Import and export tools next-gen for messages and folders",
+	"author": "Paolo Kaosmos, Christopher Leidigh",
+	"xpi-name": "import-export-tools-ng",
 	"applications": {
 		"gecko": {
-			"id": "{3ed8cc52-86fc-4613-9026-c1ef969da4c3}",
+			"id": "ImportExportToolsNG@cleidigh",
 			"strict_min_version": "60.0"
 		}
 	},
@@ -18,6 +18,6 @@
 		}
 	},
 	"icons": {
-		"32": "chrome/skin/classic/import-export-tools-icon-32px.png"
+		"32": "chrome/content/mboximport/import-export-tools-ng-icon-32px.png"
 	}
 }

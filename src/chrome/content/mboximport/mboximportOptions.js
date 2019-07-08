@@ -20,6 +20,7 @@ function IETsetCharsetPopup(charsetPref) {
 
 function initMboxImportPanel() {
 
+	Services.console.logStringMessage("save options ");
 	IETsetCharsetPopup("");
 
 	document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttools.export.overwrite");
@@ -80,8 +81,9 @@ function initMboxImportPanel() {
 		var pattern = IETprefs.getCharPref("extensions.importexporttools.export.filename_pattern");
 		var patternParts = pattern.split("-");
 
+		Services.console.logStringMessage("save file name patterns ");
 		for (var i = 0; i < 3; i++) {
-			var list = document.getElementById(`part${i}`);
+			var list = document.getElementById(`part${i + 1}`);
 			var popup = document.getElementById(`part${i + 1}-popup-list`);
 
 			switch (patternParts[i]) {
@@ -115,6 +117,7 @@ function initMboxImportPanel() {
 	var textCharset = "";
 	var csvSep = "";
 
+	Services.console.logStringMessage("save file name options ");
 	try {
 		charset = IETprefs.getCharPref("extensions.importexporttools.export.filename_charset");
 		textCharset = IETprefs.getCharPref("extensions.importexporttools.export.text_plain_charset");
@@ -139,6 +142,9 @@ function initMboxImportPanel() {
 
 	// Backup section
 	var freq = IETprefs.getIntPref("extensions.importexporttools.autobackup.frequency");
+
+	Services.console.logStringMessage("save Backup " + freq);
+
 	switch (freq) {
 		case 1: document.getElementById("frequencyList").selectedIndex = 0;
 			document.getElementById("backupEnable").checked = true;
@@ -251,6 +257,7 @@ function saveMboxImportPrefs() {
 		IETprefs.setBoolPref("extensions.importexporttools.export.use_container_folder", false);
 
 	// Backup section
+	Services.console.logStringMessage("save Backup ");
 	if (!document.getElementById("backupEnable").checked)
 		IETprefs.setIntPref("extensions.importexporttools.autobackup.frequency", 0);
 	else
@@ -315,12 +322,13 @@ function onLoad(e) {
 	initMboxImportPanel();
 }
 
-window.addEventListener("dialogaccept", function(event) {
-	// Services.console.logStringMessage("test dialogue accept");
+document.addEventListener("dialogaccept", function(event) {
+	Services.console.logStringMessage("test dialogue accept");
 	saveMboxImportPrefs();
   });
 
 window.addEventListener("load", function(event) {
+	Services.console.logStringMessage("load import panel ");
 	// Services.console.logStringMessage("test dialogue load");
 	initMboxImportPanel();
   });

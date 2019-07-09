@@ -9,6 +9,7 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 var autoBackup = {
 
 	onOK: function () {
+		Services.console.logStringMessage("BackupOkay ");
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -20,10 +21,12 @@ var autoBackup = {
 		// 2 = save just if new with custom name, save all with unique name
 		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.save_mode");
 		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.type");
-		return false;
+		Services.console.logStringMessage("BackupOkay Return");
+		// return false;
 	},
 
 	load: function () {
+		Services.console.logStringMessage("auto backup load ");
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");
@@ -35,7 +38,7 @@ var autoBackup = {
 			var localTime = time.toLocaleString();
 			document.getElementById("last").textContent = label.replace("$t", localTime);
 		} else {
-			document.getElementById("last").textContent = label.replace("$t", "");
+			document.getElementById("last").textContent = label.replace("$t", "(none)");
 		}
 	},
 
@@ -71,6 +74,7 @@ var autoBackup = {
 	},
 
 	start: function () {
+		Services.console.logStringMessage("BackupOkay Start");
 		// "dir" is the target directory for the backup
 		var dir = autoBackup.getDir();
 		if (!dir)
@@ -97,7 +101,7 @@ var autoBackup = {
 		}
 		// cleidigh
 		// else
-			// var dirName = null;
+		// var dirName = null;
 
 		autoBackup.IETmaxRunTime = gBackupPrefBranch.getIntPref("dom.max_chrome_script_run_time");
 		IETrunTimeDisable();
@@ -151,21 +155,25 @@ var autoBackup = {
 		} else {
 			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
+
+		Services.console.logStringMessage("BackupOkay Start-Done");
 		autoBackup.write(0);
 	},
 
 	end: function (sec) {
-		if (sec === 0)
+		if (sec === 0) {
+			Services.console.logStringMessage("BackupOkay end - 0");
 			window.close();
-		else
+		} else {
+			Services.console.logStringMessage("BackupOkay end - sec");
 			window.setTimeout(autoBackup.end, 1000, sec - 1);
+		}
 	},
 
 	save: function (entry, destDir, root) {
+		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
-			var force = true;
-		else
-			var force = false;
+			force = true;
 
 		var lmt = entry.lastModifiedTime / 1000;
 		// Check if exists a older file to replace in the backup directory
@@ -246,18 +254,21 @@ var autoBackup = {
 			file.create(1, 0775);
 		var servers = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager).allServers;
+
+		var cntServers;
+		var serverFile;
 		if (servers.Count)
-			var cntServers = servers.Count();
+			cntServers = servers.Count();
 		else
 			// Thunderbird >17 return nsIArray
-			var cntServers = servers.length;
+			cntServers = servers.length;
 		// Scan servers storage path on disk
 		for (var i = 0; i < cntServers; ++i) {
 			var parentDir = null;
 			if (servers.Count)
-				var serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
+				serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 			else
-				var serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;
 			var clone = file.clone();
@@ -268,3 +279,20 @@ var autoBackup = {
 		}
 	},
 };
+
+document.addEventListener("dialogaccept", function (event) {
+	Services.console.logStringMessage("Backup dialogue accept");
+	autoBackup.onOK();
+	event.preventDefault();
+	event.stopPropagation();
+});
+
+document.addEventListener("dialogcancel", function (event) {
+	Services.console.logStringMessage("Backup dialogue cancel");
+});
+
+
+window.addEventListener("load", function (event) {
+	Services.console.logStringMessage("load backup dialogue ");
+	autoBackup.load();
+});

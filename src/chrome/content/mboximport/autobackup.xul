@@ -2,7 +2,8 @@
 <!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <dialog id="autobackup-window" title="&dialog.title;" windowtype="autobackup-dialog"
-    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ondialogaccept="return autoBackup.onOK()"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    ondialogaccept="return autoBackup.onOK()"
     onload="autoBackup.load()">
     <script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
     <script type="application/x-javascript" src="chrome://mboximport/content/mboximport.js" />

@@ -81,7 +81,6 @@ function initMboxImportPanel() {
 		var pattern = IETprefs.getCharPref("extensions.importexporttools.export.filename_pattern");
 		var patternParts = pattern.split("-");
 
-		Services.console.logStringMessage("save file name patterns ");
 		for (var i = 0; i < 3; i++) {
 			var list = document.getElementById(`part${i + 1}`);
 			var popup = document.getElementById(`part${i + 1}-popup-list`);

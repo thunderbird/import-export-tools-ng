@@ -322,11 +322,11 @@ function onLoad(e) {
 }
 
 document.addEventListener("dialogaccept", function(event) {
-	// Services.console.logStringMessage("test dialogue accept");
+	Services.console.logStringMessage("test dialogue accept");
 	saveMboxImportPrefs();
   });
 
-document.addEventListener("load", function(event) {
-	// Services.console.logStringMessage("load import panel ");
+window.addEventListener("load", function(event) {
+	Services.console.logStringMessage("load import panel ");
 	initMboxImportPanel();
   });

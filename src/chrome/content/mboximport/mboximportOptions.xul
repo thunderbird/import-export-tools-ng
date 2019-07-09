@@ -16,7 +16,7 @@
 	<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 		xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
-		title="ImportExportTools NG - TB68 Update a2">
+		title="ImportExportTools NG - TB68 Update a3">
 
 		<tabbox>
 			<tabs>
@@ -28,6 +28,7 @@
 			<tabpanels>
 				<tabpanel>
 
+					<hbox>
 					<groupbox>
 						<hbox class="groupbox-title">
 							<label class="header" style="background-color: #ffffff;">&MBcaptionlabel1;</label>
@@ -85,6 +86,12 @@
 							</rows>
 						</grid>
 					</groupbox>
+					
+				</hbox>
+				<hbox flex="1" pack="end" >
+					<image src="chrome://mboximport/content/import-export-tools-ng-icon-32px.png" width="48px" height="48px"
+					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
+				</hbox>
 				</tabpanel>
 				<tabpanel>
 					<vbox>
@@ -279,10 +286,7 @@
 
 			</tabpanels>
 		</tabbox>
-		<hbox flex="0">
-            <image src="chrome://mboximport/content/import-export-tools-ng-icon-32px.png" width="48px" height="48px"
-              maxwidth="48px" maxheight="48px" />
-		  </hbox>
+		
 		  
 		<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 		<script type="application/javascript" src="chrome://mboximport/content/mboximportOptions.js" />

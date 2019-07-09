@@ -1,4 +1,4 @@
-// cleidigh - reformat
+// cleidigh - reformat, services, globals, dialog changes
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, IETpickFile */
 
@@ -322,12 +322,11 @@ function onLoad(e) {
 }
 
 document.addEventListener("dialogaccept", function(event) {
-	Services.console.logStringMessage("test dialogue accept");
+	// Services.console.logStringMessage("test dialogue accept");
 	saveMboxImportPrefs();
   });
 
-window.addEventListener("load", function(event) {
-	Services.console.logStringMessage("load import panel ");
-	// Services.console.logStringMessage("test dialogue load");
+document.addEventListener("load", function(event) {
+	// Services.console.logStringMessage("load import panel ");
 	initMboxImportPanel();
   });

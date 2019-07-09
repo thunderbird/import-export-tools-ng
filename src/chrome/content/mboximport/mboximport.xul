@@ -2,11 +2,11 @@
 <!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 <overlay id="mboximportOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-<script type="application/x-javascript" src="chrome://mboximport/content/mboximport.js" />
-<script type="application/x-javascript" src="chrome://messenger/content/dateFormat.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/exportTools.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/menufunctions.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+<script type="application/javaScript" src="chrome://mboximport/content/mboximport.js" />
+<script type="application/javaScript" src="chrome://messenger/content/dateFormat.js" />
+<script type="application/javaScript" src="chrome://mboximport/content/exportTools.js" />
+<script type="application/javaScript" src="chrome://mboximport/content/menufunctions.js" />
+<script type="application/javaScript" src="chrome://mboximport/content/utils.js" />
 
 <popup id="folderPaneContext">
 	<menuseparator id="IETsep" />

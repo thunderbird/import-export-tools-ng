@@ -4,8 +4,8 @@
 
 <wizard id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-	<script type="application/x-javascript" src="chrome://mboximport/content/profileImportWizard.js" />
-	<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
+	<script type="application/javaScript" src="chrome://mboximport/content/profileImportWizard.js" />
+	<script type="application/javaScript" src="chrome://mboximport/content/utils.js" />
 
 <wizardpage onpageshow="IETimportWizard.start()">
 	<description>&intro1;</description>

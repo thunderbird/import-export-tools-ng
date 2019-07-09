@@ -2,10 +2,10 @@
 <!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 <overlay id="sdOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-<script type="application/javaScript" src="chrome://mboximport/content/mboximport.js" />
-<script type="application/javaScript" src="chrome://mboximport/content/exportTools.js" />
-<script type="application/javaScript" src="chrome://mboximport/content/utils.js" />
-<script type="application/javaScript" src="chrome://mboximport/content/sdOverlay.js" />
+<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
+<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
+<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
+<script type="application/javascript" src="chrome://mboximport/content/sdOverlay.js" />
 
 <vbox insertbefore="status-bar" collapsed="true">
 	<hbox>

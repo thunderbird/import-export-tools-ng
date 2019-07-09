@@ -4,9 +4,9 @@
 <dialog id="autobackup-window" title="&dialog.title;" windowtype="autobackup-dialog"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" />
 
-	<script type="application/javaScript" src="chrome://mboximport/content/utils.js" />
-	<script type="application/javaScript" src="chrome://mboximport/content/mboximport.js" />
-	<script type="application/javaScript" src="chrome://mboximport/content/autobackup.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/autobackup.js" />
 
 <stringbundleset id="stringbundleset">
 	<stringbundle id="strings" src="chrome://mboximport/locale/autobackup.properties"/>

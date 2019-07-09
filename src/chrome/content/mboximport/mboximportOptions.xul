@@ -279,7 +279,11 @@
 
 			</tabpanels>
 		</tabbox>
-
+		<hbox flex="0">
+            <image src="chrome://mboximport/content/import-export-tools-ng-icon-32px.png" width="48px" height="48px"
+              maxwidth="48px" maxheight="48px" />
+		  </hbox>
+		  
 		<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 		<script type="application/javascript" src="chrome://mboximport/content/mboximportOptions.js" />
 

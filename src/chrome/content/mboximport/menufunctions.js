@@ -1,11 +1,9 @@
-// cleidigh - reformat
+// cleidigh - reformat, globals
 
 /* global mboximportbundle, GetFirstSelectedMsgFolder, FolderPaneSelectionChange,
 IETprefs,
 GetSelectedMsgFolders,
 IETstoreFormat,
-
-
 */
 
 function IETinit() {

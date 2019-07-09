@@ -820,7 +820,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				return;
 			}
 			var tags = hdr.getStringProperty("keywords");
-			if (tags && this.emailtext.substring(0, 5000).indexOf("X-Mozilla-Keys") < 0)
+			if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
 				this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
 			if (append) {
 				if (this.emailtext !== "") {

@@ -1,6 +1,6 @@
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
-/* eslint-disable no-new-object */
+/* eslint-disable no-new-object_ */
 /* eslint-disable no-lonely-if */
 /* eslint-disable consistent-return */
 
@@ -35,8 +35,10 @@ IETescapeBeginningFrom,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-var MBstrBundleService = Cc["@mozilla.org/intl/stringbundle;1"]
-	.getService(Ci.nsIStringBundleService);
+// var MBstrBundleService = Cc["@mozilla.org/intl/stringbundle;1"]
+	// .getService(Ci.nsIStringBundleService);
+
+var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
 var gEMLimported;
@@ -423,7 +425,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
 		gNeedCompact = true;
-	var obj = new Object;
+
+	var obj = {};
 	obj.msgFolder = newFolder;
 	obj.forceCompact = forceCompact;
 
@@ -441,14 +444,14 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 function storeImportedSubFolders(msgFolder) {
 	var subfolders;
 	var next;
-	var obj;
+	var obj = {};
 
 	if (msgFolder.GetSubFolders) {
 		subfolders = msgFolder.GetSubFolders();
 		while (true) {
 			next = subfolders.currentItem();
 			var subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = new Object;
+			obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
@@ -469,7 +472,7 @@ function storeImportedSubFolders(msgFolder) {
 		while (subfolders.hasMoreElements()) {
 			next = subfolders.getNext();
 			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = new Object;
+			obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
@@ -622,7 +625,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 					if (ask) {
 						var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 							.getService(Ci.nsIPromptService);
-						var checkObj = new Object;
+						var checkObj = {};
 						checkObj.value = false;
 						var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
 							prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
@@ -798,7 +801,9 @@ var MBOXIMPORTscandir = {
 	},
 
 	scanRecursive: function (dirEntry) {
-		var list = new Array();
+		var list = [];
+		var files = [];
+
 		while (dirEntry.hasMoreElements()) {
 			list.push(dirEntry.getNext().QueryInterface(Ci.nsIFile));
 		}
@@ -1010,7 +1015,7 @@ function buildEMLarray(file, fol, recursive) {
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
 			buildEMLarray(afile, newFolder, true);
 		} else {
-			var emlObj = new Object;
+			var emlObj = {};
 			var afilename = afile.leafName;
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);

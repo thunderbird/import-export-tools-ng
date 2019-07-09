@@ -1,8 +1,8 @@
-// cleidigh - reformat
+// cleidigh - Convert in-line script, reformat
+
 /* global IETprefs */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-
 
 function IETmessOverlayInit() {
 	var last = IETprefs.getIntPref("extensions.importexporttools.autobackup.last");

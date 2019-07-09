@@ -1,13 +1,11 @@
-// cleidigh - reformat
+// cleidigh - reformat, globals, services
 
 /* global
 PrintEngineCreateGlobals,
 InitPrintEngineWindow,
 printEngine,
 OnLoadPrintEngine,
-
 */
-
 
 var IETprintPDFengine = {
 	prefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),

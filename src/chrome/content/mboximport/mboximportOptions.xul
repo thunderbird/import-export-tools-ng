@@ -12,6 +12,7 @@
 	<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 	<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
 	<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+	<?xml-stylesheet href="chrome://mboximport/content/mboximport.css" type="text/css"?>
 
 	<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 		xmlns:html="http://www.w3.org/1999/xhtml"
@@ -30,8 +31,9 @@
 
 					<hbox>
 					<groupbox>
-						<hbox class="groupbox-title">
-							<label class="header" style="background-color: #ffffff;">&MBcaptionlabel1;</label>
+						<caption label="&MBcaptionlabel1;" />
+						<hbox class="groupbox-title" >
+							<label class="header groupbox-label">&MBcaptionlabel1;</label>
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="&MBlabel1;" />
@@ -100,8 +102,9 @@
 						</hbox>
 						<spacer height="20px" />
 						<groupbox>
-							<hbox class="groupbox-title">
-								<label class="header" style="background-color: #ffffff;">&captionCustomize;</label>
+							<caption label="&captionCustomize;" />
+							<hbox class="groupbox-title" >
+								<label class="header groupbox-label">&captionCustomize;</label>
 							</hbox>
 							<hbox align="center">
 								<checkbox id="customizeFilenames" label="&customizeFilename;" checked="false"
@@ -155,8 +158,9 @@
 							<spacer height="10px" />
 						</groupbox>
 						<groupbox>
+							<caption label="&misc;" />
 							<hbox class="groupbox-title">
-								<label class="header" style="background-color: #ffffff;">&misc;</label>
+								<label class="header groupbox-label">&misc;</label>
 							</hbox>
 							<hbox align="center">
 								<checkbox id="cutSub" label="&cutSub;" />
@@ -173,8 +177,9 @@
 				</tabpanel>
 				<tabpanel orient="vertical">
 					<groupbox>
+						<caption label="&savedirs;" />
 						<hbox class="groupbox-title">
-							<label class="header" style="background-color: #ffffff;">&savedirs;</label>
+							<label class="header groupbox-label">&savedirs;</label>
 						</hbox>
 
 						<grid>
@@ -206,8 +211,9 @@
 						</grid>
 					</groupbox>
 					<groupbox>
+						<caption label="&allMsg;" />
 						<hbox class="groupbox-title">
-							<label class="header" style="background-color: #ffffff;">&allMsg;</label>
+							<label class="header groupbox-label">&allMsg;</label>
 						</hbox>
 
 						<label value="&indexSettingLabel;" />
@@ -227,8 +233,9 @@
 
 				<tabpanel>
 					<groupbox>
+						<caption label="&backupSettings;" />
 						<hbox class="groupbox-title">
-							<label class="header" style="background-color: #ffffff;">&backupSettings;</label>
+							<label class="header groupbox-label">&backupSettings;</label>
 						</hbox>
 						<hbox align="center">
 							<checkbox id="backupEnable" label="&backupOn;" oncommand="toggleBackup(this)" />

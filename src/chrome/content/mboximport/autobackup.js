@@ -220,6 +220,7 @@ var autoBackup = {
 	},
 
 	write: function (index) {
+		// Services.console.logStringMessage("load backup write " + index);
 		try {
 			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -234,10 +235,15 @@ var autoBackup = {
 		}
 		index++;
 		if (autoBackup.array1.length > index) {
-			var c = index / autoBackup.array1.length * 100;
+			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
+			// Services.console.logStringMessage("backup write i" + index);
+			// Services.console.logStringMessage("backup write i/a " + (index / autoBackup.array1.length));
+
+			// Services.console.logStringMessage("backup write2 " + c + " " + autoBackup.array1.length + "  " + parseInt(c));
 			window.setTimeout(autoBackup.write, 50, index);
 		} else {
+			Services.console.logStringMessage("load backup write done " + index);
 			document.getElementById("pm").value = 100;
 			gBackupPrefBranch.setIntPref("extensions.importexporttools.autobackup.last", autoBackup.time);
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);

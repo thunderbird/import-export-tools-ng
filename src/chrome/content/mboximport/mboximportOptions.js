@@ -20,7 +20,24 @@ function IETsetCharsetPopup(charsetPref) {
 
 function initMboxImportPanel() {
 
-	Services.console.logStringMessage("save options ");
+	Services.console.logStringMessage("init options ");
+
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	// cleidigh - TB68 groupbox needs hbox/label
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		var captions = document.querySelectorAll("caption");
+		for (let i = 0; i < captions.length; i++) {
+			captions[i].style.display = "none";
+		}
+	} else {
+		var groupboxtitles = document.querySelectorAll(".groupbox-title");
+		for (let i = 0; i < groupboxtitles.length; i++) {
+			groupboxtitles[i].style.display = "none";
+		}
+	}
+
 	IETsetCharsetPopup("");
 
 	document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttools.export.overwrite");

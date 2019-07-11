@@ -8,7 +8,7 @@ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 		<em:id>ImportExportToolsNG@cleidigh</em:id>
 		<em:name>ImportExportTools NG</em:name>
 		<em:type>2</em:type>
-		<em:version>4.0.0-a3</em:version>
+		<em:version>4.0.0-a4</em:version>
 		<em:description>Adds tools to export/import messages and folders</em:description>
 		<em:creator>Paolo Kaosmos, Christopher Leidigh</em:creator>
 		<em:optionsURL>chrome://mboximport/content/mboximportOptions.xul</em:optionsURL>

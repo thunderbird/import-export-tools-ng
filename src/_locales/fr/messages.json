@@ -1,0 +1,9 @@
+
+{
+	"extensionName": {
+		"message": "ImportExportTools NG"
+	},
+	"extensionDescription": {
+		"message": "Permet d'importer et d'exporter les fichiers au format MBox (NextGen)"
+	}
+}

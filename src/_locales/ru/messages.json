@@ -1,0 +1,8 @@
+{
+	"extensionName": {
+		"message": "ImportExportTools NG"
+	},
+	"extensionDescription": {
+		"message": "Добавляет инструменты для импорта и экспорта сообщений и папок (NextGen)"
+	}
+}

@@ -792,7 +792,7 @@ var MBOXIMPORTscandir = {
 	list2: [],
 
 	find: function (dir) {
-		var list = new Array();
+		var list = [];
 		if (dir.isDirectory()) {
 			var files = dir.directoryEntries;
 			list = this.scanRecursive(files);
@@ -1051,7 +1051,7 @@ function importEMLs() {
 		res = IETopenFPsync(fp);
 	if (res === nsIFilePicker.returnOK) {
 		var thefiles = fp.files;
-		var fileArray = new Array;
+		var fileArray = [];
 		// Files are stored in an array, so that they can be imported one by one
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();
@@ -1102,7 +1102,7 @@ var importEMLlistener = {
 				var dateDecoded = "Date: " + mime2DecodedService.getParameter(dateOrig.substring(6), null, "", false, { value: null }) + "\r\n";
 				header = header.replace(dateOrig, dateDecoded);
 			}
-			// cleidigh what is this ?
+			// cleidigh - TODO - what is this ?
 			var data = header + text.substring(index);
 			var data = text;
 		} catch (e) {
@@ -1210,7 +1210,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Prologue needed to add the message to the folder
 	var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
 	// If the message has no X-Mozilla-Status, we add them to it
-	if (data.indexOf("X-Mozilla-Status") < 0)
+	if (data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
 	else if (IETprefs.getBoolPref("extensions.importexporttools.reset_mozilla_status")) {
 		// Reset the X-Mozilla status
@@ -1218,7 +1218,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 		data = data.replace(/X-Mozilla-Status2: \d{8}/, "X-Mozilla-Status2: 00000000");
 	}
 	// If the message has no X-Account-Key, we add it to it, taking it from the account selected
-	if (data.indexOf("X-Account-Key") < 0) {
+	if (data.includes("X-Account-Key")) {
 		var myAccountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager);
 		var myAccount = myAccountManager.FindAccountForServer(msgFolder.server);

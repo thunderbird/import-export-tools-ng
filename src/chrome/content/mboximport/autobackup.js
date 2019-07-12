@@ -19,8 +19,8 @@ var autoBackup = {
 		// saveMode values:
 		// 0 = save all; 1 = save just if new;
 		// 2 = save just if new with custom name, save all with unique name
-		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.save_mode");
-		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.type");
+		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.type");
 		Services.console.logStringMessage("BackupOkay Return");
 		// return false;
 	},
@@ -46,7 +46,7 @@ var autoBackup = {
 		var file = null;
 
 		try {
-			var dir = gBackupPrefBranch.getCharPref("extensions.importexporttools.autobackup.dir");
+			var dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
 			file = Cc["@mozilla.org/file/local;1"]
 				.createInstance(Ci.nsIFile);
 			file.initWithPath(dir);
@@ -89,12 +89,12 @@ var autoBackup = {
 			window.close();
 			return;
 		}
-		var nameType = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.dir_name_type");
+		var nameType = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
 
 		var dirName = null;
 		if (nameType === 1) {
 			try {
-				dirName = gBackupPrefBranch.getCharPref("extensions.importexporttools.autobackup.dir_custom_name");
+				dirName = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
 			} catch (e) {
 				dirName = null;
 			}
@@ -245,7 +245,7 @@ var autoBackup = {
 		} else {
 			Services.console.logStringMessage("load backup write done " + index);
 			document.getElementById("pm").value = 100;
-			gBackupPrefBranch.setIntPref("extensions.importexporttools.autobackup.last", autoBackup.time);
+			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.time);
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");

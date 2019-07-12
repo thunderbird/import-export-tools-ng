@@ -7,8 +7,8 @@ IETstoreFormat,
 */
 
 function IETinit() {
-	IETprefs.setBoolPref("extensions.importexporttools.printPDF", false);
-	if (IETprefs.getBoolPref("extensions.importexporttools.migrate_prefs"))
+	IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF", false);
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.migrate_prefs"))
 		IETmigratePrefs();
 	var node1 = document.getElementById("multipleSaveContext");
 	var node3 = document.getElementById("copyToClipContext");
@@ -52,7 +52,7 @@ function IETinit() {
 }
 
 function IETmigratePrefs() {
-	var branch = IETprefs.getBranch("extensions.importexporttools.");
+	var branch = IETprefs.getBranch("extensions.importexporttoolsng.");
 	var oldPrefs = IETprefs.getChildList("mboximport.", {});
 	for (var i in oldPrefs) {
 		var type = IETprefs.getPrefType(oldPrefs[i]);

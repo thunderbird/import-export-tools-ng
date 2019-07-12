@@ -368,10 +368,10 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	IETskipped = 0;
 
 	var hdrArray = [];
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder");
+	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
 	if (useContainer) {
 		// Check if the name is good or exists alredy another directory with the same name
@@ -464,11 +464,11 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 	}
 	var hdrArray = [];
 
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder");
-	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttools.export.skip_existing_msg");
+	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
 	if (useContainer) {
@@ -597,7 +597,7 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 }
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-	if (!IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder") && !justIndex && subdir)
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
 	var myDate = new Date();
@@ -706,7 +706,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
-	var sep = IETprefs.getCharPref("extensions.importexporttools.csv_separator");
+	var sep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
 	// Build the index csv page
@@ -1044,7 +1044,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 			if (this.append && convertToText) {
 				data = IEThtmlToText(data);
-				data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttools.export.mail_separator") + "\r\n\r\n";
+				data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 				var nfile = clone.leafName + ".txt";
 				IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
 				IETexported = IETexported + 1;
@@ -1181,7 +1181,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 	};
 
 	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttools.export.HTML_as_displayed");
+	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
 	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 	if (!HTMLasView && !convertToText && !copyToClip)
 		uri = uri + "?header=saveas";
@@ -1209,7 +1209,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 	insert a preference to use it anyway.
 	*/
 
-	var useConverter = IETprefs.getBoolPref("extensions.importexporttools.export.use_converter");
+	var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
 	if (hdr.folder.server.type === "nntp" || useConverter) {
 		var nsURI = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService).newURI(uri, null, null);
@@ -1246,7 +1246,7 @@ function IETconvertToUTF8(string) {
 function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	var justText = IETprefs.getBoolPref("extensions.importexporttools.clipboard.always_just_text");
+	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data);
 
 	// hack to clean the headers layout!!!
@@ -1400,7 +1400,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 function IETwritestatus(text) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
-		var delay = IETprefs.getIntPref("extensions.importexporttools.delay.clean_statusbar");
+		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}
@@ -1428,13 +1428,13 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttools.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
 function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 	var os;
-	var charset = IETprefs.getCharPref("extensions.importexporttools.export.text_plain_charset");
+	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
 	if (charset.indexOf("(BOM)") > -1) {
 		charset = "UTF-8";
 		data = "\ufeff" + data;
@@ -1462,7 +1462,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttools.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
@@ -1540,9 +1540,9 @@ function IETescapeBeginningFrom(data) {
 }
 
 function IETstoreHeaders(msg, msguri, subfile, addBody) {
-	var subMaxLen = IETprefs.getIntPref("extensions.importexporttools.subject.max_length") - 1;
-	var authMaxLen = IETprefs.getIntPref("extensions.importexporttools.author.max_length") - 1;
-	var recMaxLen = IETprefs.getIntPref("extensions.importexporttools.recipients.max_length") - 1;
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length") - 1;
+	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length") - 1;
+	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length") - 1;
 	var realsubject;
 	var author;
 	var recipients;

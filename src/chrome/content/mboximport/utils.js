@@ -54,16 +54,16 @@ function getPredefinedFolder(type) {
 
 	switch (type) {
 		case 0:
-			use_dir = "extensions.importexporttools.exportMBOX.use_dir";
-			dir_path = "extensions.importexporttools.exportMBOX.dir";
+			use_dir = "extensions.importexporttoolsng.exportMBOX.use_dir";
+			dir_path = "extensions.importexporttoolsng.exportMBOX.dir";
 			break;
 		case 1:
-			use_dir = "extensions.importexporttools.exportEML.use_dir";
-			dir_path = "extensions.importexporttools.exportEML.dir";
+			use_dir = "extensions.importexporttoolsng.exportEML.use_dir";
+			dir_path = "extensions.importexporttoolsng.exportEML.dir";
 			break;
 		default:
-			use_dir = "extensions.importexporttools.exportMSG.use_dir";
-			dir_path = "extensions.importexporttools.exportMSG.dir";
+			use_dir = "extensions.importexporttoolsng.exportMSG.use_dir";
+			dir_path = "extensions.importexporttoolsng.exportMSG.dir";
 	}
 	if (!IETprefs.getBoolPref(use_dir))
 		return null;
@@ -85,10 +85,10 @@ function getPredefinedFolder(type) {
 }
 
 function getSubjectForHdr(hdr, dirPath) {
-	var emlNameType = IETprefs.getIntPref("extensions.importexporttools.exportEML.filename_format");
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii");
-	var cutSubject = IETprefs.getBoolPref("extensions.importexporttools.export.cut_subject");
-	var cutFileName = IETprefs.getBoolPref("extensions.importexporttools.export.cut_filename");
+	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
+	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
 	var subMaxLen = cutSubject ? 50 : -1;
 
 	// Subject
@@ -113,7 +113,7 @@ function getSubjectForHdr(hdr, dirPath) {
 	var fname;
 
 	if (emlNameType === 2) {
-		var pattern = IETprefs.getCharPref("extensions.importexporttools.export.filename_pattern");
+		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
 		var authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
 		var recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
@@ -134,8 +134,8 @@ function getSubjectForHdr(hdr, dirPath) {
 		pattern = pattern.replace("%a", authName);
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
-		if (IETprefs.getBoolPref("extensions.importexporttools.export.filename_add_prefix")) {
-			var prefix = IETgetComplexPref("extensions.importexporttools.export.filename_prefix");
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
+			var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
 			pattern = prefix + pattern;
 		}
 		fname = pattern;
@@ -167,7 +167,7 @@ function formatNameForSubject(str, recipients) {
 }
 
 function dateInSecondsTo8601(secs) {
-	var addTime = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_addtime");
+	var addTime = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
 	var msgDate = new Date(secs * 1000);
 	var msgDate8601 = msgDate.getFullYear();
 	var month;
@@ -184,7 +184,7 @@ function dateInSecondsTo8601(secs) {
 	else
 		day = msgDate.getDate();
 	var msgDate8601string = msgDate8601.toString() + month.toString() + day.toString();
-	if (addTime && IETprefs.getIntPref("extensions.importexporttools.exportEML.filename_format") === 2) {
+	if (addTime && IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2) {
 		if (msgDate.getHours() < 10)
 			hours = "0" + msgDate.getHours();
 		else
@@ -200,15 +200,15 @@ function dateInSecondsTo8601(secs) {
 }
 
 function IETexport_all(just_mail) {
-	if ((IETprefs.getBoolPref("extensions.importexporttools.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttools.export_all.warning2") && just_mail)) {
+	if ((IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning2") && just_mail)) {
 		var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 			.getService(Ci.nsIPromptService);
 		var check = { value: false };
 		var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
 		if (just_mail)
-			IETprefs.setBoolPref("extensions.importexporttools.export_all.warning2", !check.value);
+			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else
-			IETprefs.setBoolPref("extensions.importexporttools.export_all.warning1", !check.value);
+			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning1", !check.value);
 		if (!result)
 			return;
 	}
@@ -312,9 +312,9 @@ function saveExternalMailFolders(file) {
 }
 
 function IETformatWarning(warning_type) {
-	if (warning_type === 0 && !IETprefs.getBoolPref("extensions.importexporttools.export.format_warning"))
+	if (warning_type === 0 && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.format_warning"))
 		return true;
-	if (warning_type === 1 && !IETprefs.getBoolPref("extensions.importexporttools.export.import_warning"))
+	if (warning_type === 1 && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.import_warning"))
 		return true;
 	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Ci.nsIPromptService);
@@ -325,10 +325,10 @@ function IETformatWarning(warning_type) {
 
 	if (warning_type === 0) {
 		text = mboximportbundle.GetStringFromName("formatWarning");
-		pref = "extensions.importexporttools.export.format_warning";
+		pref = "extensions.importexporttoolsng.export.format_warning";
 	} else {
 		text = mboximportbundle.GetStringFromName("formatWarningImport");
-		pref = "extensions.importexporttools.export.import_warning";
+		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
 	var result = prompts.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWaring"), check);
 	IETprefs.setBoolPref(pref, !check.value);
@@ -336,13 +336,13 @@ function IETformatWarning(warning_type) {
 }
 
 function IETremoteWarning() {
-	if (!IETprefs.getBoolPref("extensions.importexporttools.export.remote_warning"))
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.remote_warning"))
 		return true;
 	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Ci.nsIPromptService);
 	var check = { value: false };
 	var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
-	IETprefs.setBoolPref("extensions.importexporttools.export.remote_warning", !check.value);
+	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }
 
@@ -374,7 +374,7 @@ function isMbox(file) {
 function IETstr_converter(str) {
 	var convStr;
 	try {
-		var charset = IETprefs.getCharPref("extensions.importexporttools.export.filename_charset");
+		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
 		if (charset === "")
 			return str;
 		var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
@@ -388,7 +388,7 @@ function IETstr_converter(str) {
 }
 
 function nametoascii(str) {
-	if (!IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii")) {
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
 		str = str.replace(/[\x00-\x19]/g, "_");
 		return str.replace(/[\/\\:,<>*\?\"\|]/g, "_");
 	}
@@ -565,7 +565,7 @@ function IETgetSelectedMessages() {
 
 var IETlogger = {
 	write: function (string) {
-		if (!IETprefs.getBoolPref("extensions.importexporttools.log.enable"))
+		if (!IETprefs.getBoolPref("extensions.importexporttoolsng.log.enable"))
 			return;
 		if (!IETlogger.file) {
 			IETlogger.file = Cc["@mozilla.org/file/directory_service;1"]

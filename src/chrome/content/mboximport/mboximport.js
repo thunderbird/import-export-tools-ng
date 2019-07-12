@@ -133,7 +133,7 @@ var IETprintPDFmain = {
 		try {
 			if (IETprefs.getPrefType("print.always_print_silent") === 0 || !IETprefs.getBoolPref("print.always_print_silent")) {
 				IETprefs.setBoolPref("print.always_print_silent", true);
-				IETprefs.setBoolPref("extensions.importexporttools.printPDF.restore_print_silent", true);
+				IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.restore_print_silent", true);
 			}
 		} catch (e) { }
 		// cleidigh check?
@@ -148,13 +148,13 @@ var IETprintPDFmain = {
 		var aMsgHdr = messageService.messageURIToMsgHdr(uri);
 		var pdfName = getSubjectForHdr(aMsgHdr, IETprintPDFmain.file.path);
 		var fileClone = IETprintPDFmain.file.clone();
-		if (IETprefs.getIntPref("extensions.importexporttools.printPDF.fileFormat") === 2)
+		if (IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat") === 2)
 			fileClone.append(pdfName + ".pdf");
 		else
 			fileClone.append(pdfName + ".ps");
 		fileClone.createUnique(0, 0644);
 		IETprintPDFmain.filePath = fileClone.path;
-		IETprefs.setBoolPref("extensions.importexporttools.printPDF.start", true);
+		IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", true);
 		var messageList = [uri];
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
@@ -222,7 +222,7 @@ function trytocopyMAILDIR() {
 
 	// initialize variables
 	var msgFolder = GetSelectedMsgFolders()[0];
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttools.import.build_mbox_index");
+	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
 	// var openProfDir = XXXX
 
 	// we don't import the file in imap or nntp accounts
@@ -254,7 +254,7 @@ function trytocopyMAILDIR() {
 	}
 	clonex.append(newfilename);
 	// add to the original filename a random number in range 0-999
-	if (IETprefs.getBoolPref("extensions.importexporttools.import.name_add_number"))
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
 	var k = 0;
 	// if exists a subfolder with this name, we change the random number, with max. 500 tests
@@ -350,7 +350,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	clonex.append(newfilename);
 
 	// add to the original filename a random number in range 0-999
-	if (IETprefs.getBoolPref("extensions.importexporttools.import.name_add_number"))
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
 	var k = 0;
 	// if exists a subfolder with this name, we change the random number, with max. 500 tests
@@ -544,7 +544,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 	// initialize variables
 	gMsgFolderImported = [];
 	gNeedCompact = false;
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttools.import.build_mbox_index");
+	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -621,7 +621,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 				mboxname = afile.leafName;
 				var mboxpath = afile.path;
 				if (isMbox(afile) === 1) {
-					var ask = IETprefs.getBoolPref("extensions.importexporttools.confirm.before_mbox_import");
+					var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
 					if (ask) {
 						var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 							.getService(Ci.nsIPromptService);
@@ -633,7 +633,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 							prompts.BUTTON_POS_0_DEFAULT;
 						var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
 						var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
-						IETprefs.setBoolPref("extensions.importexporttools.confirm.before_mbox_import", !checkObj.value);
+						IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
 
 						if (button === 0)
 							importThis = true;
@@ -921,7 +921,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 
 
 function findGoodFolderName(foldername, destdirNSIFILE, structure) {
-	var overwrite = IETprefs.getBoolPref("extensions.importexporttools.export.overwrite");
+	var overwrite = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
 	var index = 0;
 	var nameIndex = "";
 	var NSclone = destdirNSIFILE.clone();
@@ -1212,7 +1212,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// If the message has no X-Mozilla-Status, we add them to it
 	if (data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
-	else if (IETprefs.getBoolPref("extensions.importexporttools.reset_mozilla_status")) {
+	else if (IETprefs.getBoolPref("extensions.importexporttoolsng.reset_mozilla_status")) {
 		// Reset the X-Mozilla status
 		data = data.replace(/X-Mozilla-Status: \d{4}/, "X-Mozilla-Status: 0000");
 		data = data.replace(/X-Mozilla-Status2: \d{8}/, "X-Mozilla-Status2: 00000000");
@@ -1383,7 +1383,7 @@ function IETimportSMS() {
 					myname = identity.fullName;
 				else
 					myname = myAccountManager.defaultAccount.defaultIdentity.fullName;
-				var subOn = IETprefs.getBoolPref("extensions.importexporttools.sms.add_subject");
+				var subOn = IETprefs.getBoolPref("extensions.importexporttoolsng.sms.add_subject");
 
 				for (var i = 0; i < smss.length; i++) {
 					var card = null;

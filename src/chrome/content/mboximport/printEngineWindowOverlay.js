@@ -18,8 +18,8 @@ var IETprintPDFengine = {
 	},
 
 	restore: function () {
-		IETprintPDFengine.prefs.setBoolPref("extensions.importexporttools.printPDF.start", false);
-		if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttools.printPDF.restore_print_silent"))
+		IETprintPDFengine.prefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", false);
+		if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.printPDF.restore_print_silent"))
 			IETprintPDFengine.prefs.setBoolPref("print.always_print_silent", false);
 		opener.document.getElementById("IETabortIcon").collapsed = true;
 	},
@@ -34,7 +34,7 @@ var IETprintPDFengine = {
 			myPrintSettings.printSilent = true;
 			myPrintSettings.toFileName = opener.IETprintPDFmain.filePath;
 			myPrintSettings.printToFile = true;
-			var fileFormat = IETprintPDFengine.prefs.getIntPref("extensions.importexporttools.printPDF.fileFormat");
+			var fileFormat = IETprintPDFengine.prefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
 			if (fileFormat < 3)
 				myPrintSettings.outputFormat = fileFormat;
 			printEngine.startPrintOperation(myPrintSettings);
@@ -46,10 +46,10 @@ var IETprintPDFengine = {
 };
 
 
-if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttools.printPDF.start")) {
+if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.printPDF.start")) {
 	// eslint-disable-next-line no-global-assign
 	OnLoadPrintEngine = IETprintPDFengine.onLoad;
-	IETprintPDFengine.prefs.setBoolPref("extensions.importexporttools.printPDF.start", false);
+	IETprintPDFengine.prefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", false);
 }
 
 window.addEventListener("unload", IETprintPDFengine.exit, false);

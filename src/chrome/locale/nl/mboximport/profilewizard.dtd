@@ -9,5 +9,5 @@
 <!ENTITY importEnd "Importeren voltooid!">
 <!ENTITY intro3 "Start om het geïmporteerde profiel te benaderen de profielbeheerder door op onderstaande knop te klikken. Het huidige profiel wordt automatisch gesloten.">
 <!ENTITY runProfileManager "Profielbeheerder starten">
-<!ENTITY title "ImportExportTools - Profiel importeren">
+<!ENTITY title "ImportExportTools NG - Profiel importeren">
 <!ENTITY error "Er is een fout opgetreden bij het importeren van het profiel. Foutdetails:">

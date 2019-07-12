@@ -3,7 +3,7 @@
 <!ENTITY labelmenuMI "Importieren/Exportieren">
 <!ENTITY MBlabel1 "Dateien gleichen Namens im Zielverzeichnis überschreiben">
 <!ENTITY importDir "Ein Verzeichnis auswählen, aus dem alle Mbox-Dateien importiert werden">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Bestimmte Mbox-Dateien zum Importieren auswählen">
 <!ENTITY importDialogLabel "Wählen Sie, wie importiert werden soll:">
 <!ENTITY importDialogTitle "Mbox-Dateien importieren">

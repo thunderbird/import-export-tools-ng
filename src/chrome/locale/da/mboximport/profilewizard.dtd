@@ -9,5 +9,5 @@
 <!ENTITY importEnd "Importen lykkedes!">
 <!ENTITY intro3 "For at tilgå den importerede profil, kør profilmanageren ved at klikke på knappen nedenunder. Den nuværende profil vil automatisk blive lukket">
 <!ENTITY runProfileManager "Kør profilmanageren">
-<!ENTITY title "ImportExportTools - Profilimport">
+<!ENTITY title "ImportExportTools NG - Profilimport">
 <!ENTITY error "Der opstod en fejl under import af profilen. Fejldetaljer:">

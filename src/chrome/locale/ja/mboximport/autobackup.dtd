@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - バックアップ">
+<!ENTITY dialog.title "ImportExportTools NG - バックアップ">
 <!ENTITY description1 "最終バックアップ日時： $t">
 <!ENTITY description2 "バックアップを作成するためには、予め設定が必要です。">
 <!ENTITY description3 "この操作中はプログラムは数分間応答しなくなります。">

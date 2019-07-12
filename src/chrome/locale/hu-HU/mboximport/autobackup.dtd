@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - biztonsági mentés">
+<!ENTITY dialog.title "ImportExportTools NG - biztonsági mentés">
 <!ENTITY description1 "Az utolsó mentés: $t">
 <!ENTITY description2 "A beállítások alapján szükséges a biztonsági mentés elvégzése.">
 <!ENTITY description3 "E művelet során a program nem válaszol néhány percig.">

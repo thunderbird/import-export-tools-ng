@@ -1,9 +1,9 @@
 <!ENTITY exportWithSub "Izvozi mapo s podmapami (enostavno)">
 <!ENTITY importMbox "Datoteka mbox za uvoz">
-<!ENTITY labelmenuMI "ImportExportTools">
+<!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Prepiši datoteke mbox z istim imenom v ciljni mapi">
 <!ENTITY importDir "Izberi mapo, kjer naj se iščejo datoteke mbox za uvoz">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Uvozi neposredno eno ali več datotek mbox">
 <!ENTITY importDialogLabel "Izberi način uvoza:">
 <!ENTITY importDialogTitle "Uvoz datotek mbox">

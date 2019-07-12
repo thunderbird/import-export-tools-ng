@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools — Резервное копирование">
+<!ENTITY dialog.title "ImportExportTools NG — Резервное копирование">
 <!ENTITY description1 "Дата последнего резервного копирования: $t">
 <!ENTITY description2 "На основании этих настроек немедленно сделать резервную копию.">
 <!ENTITY description3 "На протяжении этой операции программа не будет отвечать на запросы в течение нескольких минут.">

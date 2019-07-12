@@ -329,7 +329,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 			var flags = prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_0 +
 				prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 + prompts.BUTTON_POS_0_DEFAULT;
 			var string = ("\"" + filename + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
-			var button = prompts.confirmEx(window, "ImportExportTools", string, flags, "Button 0", continuelabel, "", null, {});
+			var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "Button 0", continuelabel, "", null, {});
 			if (button === 0)
 				return false;
 		} else {
@@ -632,7 +632,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 							prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
 							prompts.BUTTON_POS_0_DEFAULT;
 						var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
-						var button = prompts.confirmEx(window, "ImportExportTools", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
+						var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
 						IETprefs.setBoolPref("extensions.importexporttools.confirm.before_mbox_import", !checkObj.value);
 
 						if (button === 0)

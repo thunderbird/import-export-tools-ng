@@ -174,7 +174,7 @@ function IETexport_all(just_mail) {
 		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Components.interfaces.nsIPromptService);
 		var check = {value: false};
-		var result = prompts.confirmCheck(null, "ImportExportTools", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring") , check); 
+		var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring") , check); 
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttools.export_all.warning2", ! check.value);
 		else
@@ -292,7 +292,7 @@ function IETformatWarning(warning_type) {
 		var text = mboximportbundle.GetStringFromName("formatWarningImport");
 		var pref = "extensions.importexporttools.export.import_warning";
 	}
-	var result = prompts.confirmCheck(null, "ImportExportTools", text , mboximportbundle.GetStringFromName("noWaring") , check); 
+	var result = prompts.confirmCheck(null, "ImportExportTools NG", text , mboximportbundle.GetStringFromName("noWaring") , check); 
 	IETprefs.setBoolPref(pref, ! check.value);
 	return result;
 }
@@ -303,7 +303,7 @@ function IETremoteWarning() {
 	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Components.interfaces.nsIPromptService);
 	var check = {value: false};
-	var result = prompts.confirmCheck(null, "ImportExportTools", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring") , check); 
+	var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring") , check); 
 	IETprefs.setBoolPref("extensions.importexporttools.export.remote_warning", ! check.value);
 	return result;
 }
@@ -529,7 +529,7 @@ var IETlogger = {
 			IETlogger.file = Components.classes["@mozilla.org/file/directory_service;1"]
 	                     .getService(Components.interfaces.nsIProperties)
 	                     .get("ProfD", Components.interfaces.nsIFile);
-			IETlogger.file.append("ImportExportTools.log");
+			IETlogger.file.append("ImportExportToolsNG.log");
 		}
 		var now = new Date();
 		var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]

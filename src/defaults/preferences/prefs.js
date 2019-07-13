@@ -1,3 +1,5 @@
+/* global pref */
+
 pref("extensions.importexporttoolsng.export.filenames_toascii", false);
 pref("extensions.importexporttoolsng.export.overwrite", false);
 pref("extensions.importexporttoolsng.confirm.before_mbox_import", true);
@@ -16,7 +18,7 @@ pref("extensions.importexporttoolsng.exportMSG.use_dir", false);
 pref("extensions.importexporttoolsng.export.filenames_addtime", false);
 pref("extensions.importexporttoolsng.export_all.warning1", true);
 pref("extensions.importexporttoolsng.export_all.warning2", true);
-pref("extensions.importexporttoolsng.import.build_mbox_index" , true);
+pref("extensions.importexporttoolsng.import.build_mbox_index", true);
 pref("extensions.importexporttoolsng.export.format_warning", true);
 pref("extensions.importexporttoolsng.export.cut_subject", false);
 pref("extensions.importexporttoolsng.export.cut_filename", true);
@@ -35,7 +37,7 @@ pref("extensions.importexporttoolsng.autobackup.use_modal_dialog", true);
 pref("extensions.importexporttoolsng.import.name_add_number", false);
 pref("extensions.importexporttoolsng.export.use_converter", false);
 pref("extensions.importexporttoolsng.export.text_plain_charset", "UTF-8");
-pref("extensions.importexporttoolsng.log.enable", false);
+pref("extensions.importexporttoolsng.Joseph", false);
 pref("extensions.importexporttoolsng.csv_separator", ",");
 pref("extensions.importexporttoolsng.migrate_prefs", true);
 pref("extensions.importexporttoolsng.export.import_warning", true);
@@ -43,5 +45,3 @@ pref("extensions.importexporttoolsng.export.mail_separator", "------------------
 pref("extensions.importexporttoolsng.printPDF.fileFormat", 2);
 pref("extensions.importexporttoolsng.reset_mozilla_status", false);
 pref("extensions.importexporttoolsng.export.charset_list", "ARMSCII-8,GEOSTD8,ISO-8859-1,ISO-8859-2,ISO-8859-3,ISO-8859-4,ISO-8859-5,ISO-8859-6,ISO-8859-7,ISO-8859-8,ISO-8859-9,ISO-8859-10,ISO-8859-11,ISO-8859-12,ISO-8859-13,ISO-8859-14,ISO-8859-15,ISO-8859-16,KOI8-R,KOI8-U,UTF-8,UTF-8 (BOM),WINDOWS-1250,WINDOWS-1251,WINDOWS-1252,WINDOWS-1253,WINDOWS-1254,WINDOWS-1255,WINDOWS-1256,WINDOWS-1257,WINDOWS-1258");
-
-

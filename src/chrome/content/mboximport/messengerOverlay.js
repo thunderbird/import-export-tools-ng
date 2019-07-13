@@ -14,9 +14,8 @@ function IETmessOverlayInit() {
 	time = time / 1000;
 	var days = 24 * 60 * 60 * frequency;
 
-	// cleidigh forced dialogue for testing
-	// if ((time - last) < days)
-		// return;
+	if ((time - last) < days)
+		return;
 
 		var WM = Cc['@mozilla.org/appshell/window-mediator;1']
 		.getService(Ci.nsIWindowMediator);

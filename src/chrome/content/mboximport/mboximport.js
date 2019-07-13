@@ -1078,11 +1078,12 @@ var importEMLlistener = {
 
 	SetMessageKey: function (aKey) { },
 
-	onStartRequest: function (aRequest, aContext) {
+	onStartRequest: function (aRequest) {
 		this.mData = "";
 	},
 
-	onDataAvailable: function (aRequest, aContext, aStream, aSourceOffset, aLength) {
+	// cleidigh - confirm signature change
+	onDataAvailable: function (aRequest, aStream, aSourceOffset, aLength) {
 		// Here it's used the nsIBinaryInputStream, because it can read also null bytes
 		var bis = Cc['@mozilla.org/binaryinputstream;1']
 			.createInstance(Ci.nsIBinaryInputStream);
@@ -1090,7 +1091,7 @@ var importEMLlistener = {
 		this.mData += bis.readBytes(aLength);
 	},
 
-	onStopRequest: function (aRequest, aContext, aStatus) {
+	onStopRequest: function (aRequest, aStatus) {
 		var text = this.mData;
 		try {
 			var index = text.search(/\r\n\r\n/);
@@ -1170,7 +1171,21 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		var ios = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService);
 		var fileURI = ios.newFileURI(file);
-		var channel = ios.newChannelFromURI(fileURI);
+		// var channel = ios.newChannelFromURI(fileURI, null, null);
+		// var channel = ios.newChannelFromURI(fileURI, null, Ci.nsILoadInfo.SEC_NORMAL, Ci.nsIContentPolicy.TYPE_OTHER);
+		// var channel = ios.newChannelFromURIWithLoadInfo(fileURI, null);
+
+		Services.console.logStringMessage("new channel ");
+		let channel = Services.io.newChannelFromURI(
+			fileURI,
+			null,
+			Services.scriptSecurityManager.getSystemPrincipal(),
+			null,
+			Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+			Ci.nsIContentPolicy.TYPE_OTHER
+		);
+
+		Services.console.logStringMessage("after new channel ");
 		channel.asyncOpen(listener, null);
 	}
 }

@@ -46,6 +46,8 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 if (String.trim)
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
 
@@ -808,9 +810,15 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		onStartRequest: function (aRequest, aContext) { },
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onStartRequest60: function (aRequest, aContext) { },
+		onStartRequest68: function (aRequest) { },
 
-		onStopRequest: function (aRequest, aContext, aStatusCode) {
+		onStopRequest60: function (aRequest, aContext, aStatusCode) {
+			this.onStopRequest68(aRequest, aStatusCode);
+		},
+
+		onStopRequest68: function (aRequest, aStatusCode) {
 			var sub;
 			var data;
 
@@ -918,13 +926,31 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			}
 		},
 
-		onDataAvailable: function (aRequest, aContext, aInputStream, aOffset, aCount) {
-			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-				createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+			this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
+		},
+
+		onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
+			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(aInputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 	};
+
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable68;
+		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest68;
+		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest68;
+	} else {
+		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable60;
+		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest60;
+		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest60;
+	}
 
 	var mms = messenger.messageServiceFromURI(msguri)
 		.QueryInterface(Ci.nsIMsgMessageService);
@@ -954,16 +980,25 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		onStartRequest: function (request, context) { },
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onStartRequest60: function (request, context) { },
+		onStartRequest68: function (request) { },
 
-		onDataAvailable: function (request, context, inputStream, offset, count) {
-			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-				createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+		onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
+			this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
+		},
+
+		onDataAvailable68: function (aRequest, inputStream, aOffset, aCount) {
+			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(inputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 
-		onStopRequest: function (request, context, statusCode) {
+		onStopRequest60: function (request, context, statusCode) {
+			this.onStopRequest68(request, statusCode);
+		},
+
+		onStopRequest68: function (request, statusCode) {
 			var data = this.emailtext;
 			if (copyToClip) {
 				IETcopyToClip(data);
@@ -1179,6 +1214,21 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			}
 		},
 	};
+
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable68;
+		myTxtListener.onStartRequest = myTxtListener.onStartRequest68;
+		myTxtListener.onStopRequest = myTxtListener.onStopRequest68;
+	} else {
+		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable60;
+		myTxtListener.onStartRequest = myTxtListener.onStartRequest60;
+		myTxtListener.onStopRequest = myTxtListener.onStopRequest60;
+	}
+
 
 	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
 	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
@@ -1475,8 +1525,8 @@ function copyMSGtoClip() {
 }
 
 var copyHeaders = {
-	getListner: function () {
-		var myListner = {
+	getListener: function () {
+		var myListener = {
 
 			data: "",
 
@@ -1489,9 +1539,15 @@ var copyHeaders = {
 				throw Cr.NS_NOINTERFACE;
 			},
 
-			onStartRequest: function (aRequest, aContext) { },
+			// cleidigh - Handle old/new streamlisteners signatures after TB67
+			onStartRequest60: function (request, context) { },
+			onStartRequest68: function (request) { },
 
-			onStopRequest: function (aRequest, aContext, aStatusCode) {
+			onStopRequest60: function (aRequest, aContext, aStatusCode) {
+				this.onStopRequest68(aRequest, aStatusCode);
+			},
+
+			onStopRequest68: function (aRequest, aStatusCode) {
 				if (!this.remote)
 					IETcopyStrToClip(this.data);
 				else {
@@ -1502,10 +1558,13 @@ var copyHeaders = {
 				return true;
 			},
 
-			onDataAvailable: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+			onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
+				this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
+			},
+
+			onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
 				if (this.remote) {
-					var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-						createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+					var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 					scriptStream.init(aInputStream);
 					this.data += scriptStream.read(20000);
 				} else {
@@ -1515,18 +1574,35 @@ var copyHeaders = {
 				}
 			},
 		};
-		return myListner;
+
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		if (versionChecker.compare(currentVersion, "61") >= 0) {
+			myListener.onDataAvailable = myListener.onDataAvailable68;
+			myListener.onStartRequest = myListener.onStartRequest68;
+			myListener.onStopRequest = myListener.onStopRequest68;
+		} else {
+			myListener.onDataAvailable = myListener.onDataAvailable60;
+			myListener.onStartRequest = myListener.onStartRequest60;
+			myListener.onStopRequest = myListener.onStopRequest60;
+		}
+
+		return myListener;
 	},
 
 	start: function () {
 		var mess = IETgetSelectedMessages();
 		var msguri = mess[0];
 		var mms = messenger.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-		var streamListner = copyHeaders.getListner();
+		var streamListner = copyHeaders.getListener();
 		if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
 			streamListner.remote = true;
 		mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
 	},
+
+
 };
 
 function IETescapeBeginningFrom(data) {

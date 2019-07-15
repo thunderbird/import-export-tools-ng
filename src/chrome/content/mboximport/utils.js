@@ -37,6 +37,8 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
@@ -567,10 +569,11 @@ function IETstoreFormat() {
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");
-		if (store && store.indexOf("maildirstore") > -1)
+		if (store && store.includes("maildirstore"))
 			storeFormat = 1;
-		else if (store && store.includes("berkeleystore"))
+		else if (store && !store.includes("berkeleystore")) {
 			storeFormat = 2;
+		}
 	} catch (e) { }
 
 	return storeFormat;

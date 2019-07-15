@@ -52,6 +52,7 @@ MsgHdrToMimeMessage,
 findGoodFolderName,
 
 */
+
 /* eslint complexity: [0,30] */
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */

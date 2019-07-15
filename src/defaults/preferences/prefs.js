@@ -37,7 +37,7 @@ pref("extensions.importexporttoolsng.autobackup.use_modal_dialog", true);
 pref("extensions.importexporttoolsng.import.name_add_number", false);
 pref("extensions.importexporttoolsng.export.use_converter", false);
 pref("extensions.importexporttoolsng.export.text_plain_charset", "UTF-8");
-pref("extensions.importexporttoolsng.Joseph", false);
+pref("extensions.importexporttoolsng.log.enable", false);
 pref("extensions.importexporttoolsng.csv_separator", ",");
 pref("extensions.importexporttoolsng.migrate_prefs", true);
 pref("extensions.importexporttoolsng.export.import_warning", true);

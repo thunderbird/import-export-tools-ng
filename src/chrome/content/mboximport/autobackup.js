@@ -34,7 +34,6 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 var autoBackup = {
 
 	onOK: function () {
-		Services.console.logStringMessage("BackupOkay ");
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -46,12 +45,10 @@ var autoBackup = {
 		// 2 = save just if new with custom name, save all with unique name
 		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
 		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.type");
-		Services.console.logStringMessage("BackupOkay Return");
 		// return false;
 	},
 
 	load: function () {
-		Services.console.logStringMessage("auto backup load ");
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");
@@ -99,7 +96,6 @@ var autoBackup = {
 	},
 
 	start: function () {
-		Services.console.logStringMessage("BackupOkay Start");
 		// "dir" is the target directory for the backup
 		var dir = autoBackup.getDir();
 		if (!dir)
@@ -107,7 +103,6 @@ var autoBackup = {
 
 		// cleidigh
 		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
-		// var strbundle = document.getElementById("backupStr");
 
 		if (!dir.exists() || !dir.isWritable) {
 			alert(strbundle.getString("noBackup"));
@@ -181,16 +176,13 @@ var autoBackup = {
 			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
-		Services.console.logStringMessage("BackupOkay Start-Done");
 		autoBackup.write(0);
 	},
 
 	end: function (sec) {
 		if (sec === 0) {
-			Services.console.logStringMessage("BackupOkay end - 0");
 			window.close();
 		} else {
-			Services.console.logStringMessage("BackupOkay end - sec");
 			window.setTimeout(autoBackup.end, 1000, sec - 1);
 		}
 	},
@@ -245,7 +237,6 @@ var autoBackup = {
 	},
 
 	write: function (index) {
-		// Services.console.logStringMessage("load backup write " + index);
 		try {
 			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -262,13 +253,8 @@ var autoBackup = {
 		if (autoBackup.array1.length > index) {
 			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
-			// Services.console.logStringMessage("backup write i" + index);
-			// Services.console.logStringMessage("backup write i/a " + (index / autoBackup.array1.length));
-
-			// Services.console.logStringMessage("backup write2 " + c + " " + autoBackup.array1.length + "  " + parseInt(c));
 			window.setTimeout(autoBackup.write, 50, index);
 		} else {
-			Services.console.logStringMessage("load backup write done " + index);
 			document.getElementById("pm").value = 100;
 			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.time);
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);

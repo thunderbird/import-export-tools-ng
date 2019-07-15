@@ -1094,12 +1094,20 @@ var importEMLlistener = {
 
 	SetMessageKey: function (aKey) { },
 
-	onStartRequest: function (aRequest) {
+	onStartRequest60: function (aRequest, aContext) {
+		this.onStartRequest68(aRequest);
+	},
+
+	onStartRequest68: function (aRequest) {
 		this.mData = "";
 	},
 
-	// cleidigh - confirm signature change
-	onDataAvailable: function (aRequest, aStream, aSourceOffset, aLength) {
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+		this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
+	},
+
+	onDataAvailable68: function (aRequest, aStream, aSourceOffset, aLength) {
 		// Here it's used the nsIBinaryInputStream, because it can read also null bytes
 		var bis = Cc['@mozilla.org/binaryinputstream;1']
 			.createInstance(Ci.nsIBinaryInputStream);
@@ -1107,7 +1115,11 @@ var importEMLlistener = {
 		this.mData += bis.readBytes(aLength);
 	},
 
-	onStopRequest: function (aRequest, aStatus) {
+	onStopRequest60: function (aRequest, aContext, aStatus) {
+		this.onStopRequest68(aRequest, aStatus);
+	},
+	
+	onStopRequest68: function (aRequest, aStatus) {
 		var text = this.mData;
 		try {
 			var index = text.search(/\r\n\r\n/);
@@ -1167,7 +1179,22 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		file = IETemlx2eml(file);
 	}
 
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable68;
+		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest68;
+		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest68;
+	} else {
+		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable60;
+		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest60;
+		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest60;
+	}
+
 	var listener = importEMLlistener;
+
 	importEMLlistener.msgFolder = msgFolder;
 	importEMLlistener.removeFile = removeFile;
 	importEMLlistener.file = file;
@@ -1187,12 +1214,8 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		var ios = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService);
 		var fileURI = ios.newFileURI(file);
-		// var channel = ios.newChannelFromURI(fileURI, null, null);
-		// var channel = ios.newChannelFromURI(fileURI, null, Ci.nsILoadInfo.SEC_NORMAL, Ci.nsIContentPolicy.TYPE_OTHER);
-		// var channel = ios.newChannelFromURIWithLoadInfo(fileURI, null);
 
-		Services.console.logStringMessage("new channel ");
-		let channel = Services.io.newChannelFromURI(
+		let channel = Services.io.newChannelFromURI2(
 			fileURI,
 			null,
 			Services.scriptSecurityManager.getSystemPrincipal(),
@@ -1201,7 +1224,6 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			Ci.nsIContentPolicy.TYPE_OTHER
 		);
 
-		Services.console.logStringMessage("after new channel ");
 		channel.asyncOpen(listener, null);
 	}
 }

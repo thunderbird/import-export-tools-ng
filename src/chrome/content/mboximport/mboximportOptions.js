@@ -44,8 +44,6 @@ function IETsetCharsetPopup(charsetPref) {
 
 function initMboxImportPanel() {
 
-	Services.console.logStringMessage("init options ");
-
 	const versionChecker = Services.vc;
 	const currentVersion = Services.appinfo.platformVersion;
 
@@ -157,7 +155,6 @@ function initMboxImportPanel() {
 	var textCharset = "";
 	var csvSep = "";
 
-	Services.console.logStringMessage("save file name options ");
 	try {
 		charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
 		textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
@@ -182,8 +179,6 @@ function initMboxImportPanel() {
 
 	// Backup section
 	var freq = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
-
-	Services.console.logStringMessage("save Backup " + freq);
 
 	switch (freq) {
 		case 1: document.getElementById("frequencyList").selectedIndex = 0;
@@ -297,7 +292,6 @@ function saveMboxImportPrefs() {
 		IETprefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
 
 	// Backup section
-	Services.console.logStringMessage("save Backup ");
 	if (!document.getElementById("backupEnable").checked)
 		IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
 	else
@@ -357,17 +351,10 @@ function pickFile(el) {
 	IETpickFile(el);
 }
 
-
-function onLoad(e) {
-	initMboxImportPanel();
-}
-
 document.addEventListener("dialogaccept", function(event) {
-	Services.console.logStringMessage("test dialogue accept");
 	saveMboxImportPrefs();
   });
 
 window.addEventListener("load", function(event) {
-	Services.console.logStringMessage("load import panel ");
 	initMboxImportPanel();
   });

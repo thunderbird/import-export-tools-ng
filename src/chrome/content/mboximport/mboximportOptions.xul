@@ -7,7 +7,6 @@
 	]>
 
 	<!-- cleidigh - Start changing dialog CSS and event handling for TB68 -->
-	<!-- buttons="accept, cancel" -->
 
 	<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 	<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
@@ -17,7 +16,7 @@
 	<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 		xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
-		title="ImportExportTools NG - TB68 Update b1">
+		title="ImportExportTools NG">
 
 		<tabbox>
 			<tabs>

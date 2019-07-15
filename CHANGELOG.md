@@ -5,6 +5,7 @@
 4.0.0	- Thunderbird Team Update - ?
 		- Updated for TB68
 		- New name and icon
+		- Updated formatting
 
 ## Original Extension:
 

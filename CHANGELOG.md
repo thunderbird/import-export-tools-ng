@@ -6,6 +6,7 @@
 		- Updated for TB68
 		- New name and icon
 		- Updated formatting
+		- Options dialog tweaks, icon
 
 ## Original Extension:
 

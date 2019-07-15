@@ -22,7 +22,7 @@ Please report any issues found !
    
 
 Normal install (requires Internet access) from [Thunderbird Add-on site](https://addons.thunderbird.net/):
-- Download and install [ATN version](https://addons.thunderbird.net/addon/import-export-tools2/) via the ``Add-ons Manager``.
+- Download and install [ATN version](https://addons.thunderbird.net/addon/ImportExportToolsNG/) via the ``Add-ons Manager``.
 - From the [Thunderbird Menu Bar](https://support.mozilla.org/en-US/kb/display-thunderbird-menus-and-toolbar), select ``Tools`` then ``Add-ons`` to open the ``Add-ons Manager``. Choose the ``Extensions`` tab, search for “TBD”, select ``+ Add to Thunderbird`` and follow the prompts to install and then restart.
 
 Install (with or without Internet access) XPI directly:
@@ -36,13 +36,13 @@ Visual Studio Code:
  Build Default Task
 
 Basic Command Line Build: (requires 7zip CLI version)
-7z a ./xpi/import-export-tools-4.0.0-tb.xpi ./src/*
+7z a ./xpi/import-export-tools-ng-4.0.0-tb.xpi ./src/*
 
 ## Issues & Questions
 Post any issues or questions for Import Export Tools under [Issues](https://github.com/thundernest/import-export-tools-ng/issues)
 
 ## Changelog
- Import Export Tools' changes are logged [here](CHANGELOG.md).
+ ImportExportTools NG changes are logged [here](CHANGELOG.md).
 
 ## Credits
 Original Author: [Paolo "Kaosmos"](https://addons.thunderbird.net/en-US/thunderbird/user/Paolo_Kaosmos/)  

@@ -1,5 +1,32 @@
-// cleidigh - reformat
+/*
+	ImportExportTools NG is a derivative extension for Thunderbird 60+
+	providing import and export tools for messages and folders.
+	The derivative extension authors:
+		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+
+	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
+	is covered by the GPLv3 open-source license (see LICENSE file).
+		Copyright (C) 2007 : Paolo "Kaosmos"
+
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// cleidigh - reformat, services, globals, progress meter changes
+
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
+
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -16,9 +43,9 @@ var autoBackup = {
 		// saveMode values:
 		// 0 = save all; 1 = save just if new;
 		// 2 = save just if new with custom name, save all with unique name
-		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.save_mode");
-		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.type");
-		return false;
+		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.type");
+		// return false;
 	},
 
 	load: function () {
@@ -33,7 +60,7 @@ var autoBackup = {
 			var localTime = time.toLocaleString();
 			document.getElementById("last").textContent = label.replace("$t", localTime);
 		} else {
-			document.getElementById("last").textContent = label.replace("$t", "");
+			document.getElementById("last").textContent = label.replace("$t", "(none)");
 		}
 	},
 
@@ -41,7 +68,7 @@ var autoBackup = {
 		var file = null;
 
 		try {
-			var dir = gBackupPrefBranch.getCharPref("extensions.importexporttools.autobackup.dir");
+			var dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
 			file = Cc["@mozilla.org/file/local;1"]
 				.createInstance(Ci.nsIFile);
 			file.initWithPath(dir);
@@ -73,25 +100,28 @@ var autoBackup = {
 		var dir = autoBackup.getDir();
 		if (!dir)
 			return;
-		var strbundle = document.getElementById("backupStr");
+
+		// cleidigh
+		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
+
 		if (!dir.exists() || !dir.isWritable) {
 			alert(strbundle.getString("noBackup"));
 			window.close();
 			return;
 		}
-		var nameType = gBackupPrefBranch.getIntPref("extensions.importexporttools.autobackup.dir_name_type");
+		var nameType = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
 
 		var dirName = null;
 		if (nameType === 1) {
 			try {
-				dirName = gBackupPrefBranch.getCharPref("extensions.importexporttools.autobackup.dir_custom_name");
+				dirName = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
 			} catch (e) {
 				dirName = null;
 			}
 		}
 		// cleidigh
 		// else
-			// var dirName = null;
+		// var dirName = null;
 
 		autoBackup.IETmaxRunTime = gBackupPrefBranch.getIntPref("dom.max_chrome_script_run_time");
 		IETrunTimeDisable();
@@ -145,21 +175,22 @@ var autoBackup = {
 		} else {
 			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
+
 		autoBackup.write(0);
 	},
 
 	end: function (sec) {
-		if (sec === 0)
+		if (sec === 0) {
 			window.close();
-		else
+		} else {
 			window.setTimeout(autoBackup.end, 1000, sec - 1);
+		}
 	},
 
 	save: function (entry, destDir, root) {
+		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
-			var force = true;
-		else
-			var force = false;
+			force = true;
 
 		var lmt = entry.lastModifiedTime / 1000;
 		// Check if exists a older file to replace in the backup directory
@@ -220,12 +251,12 @@ var autoBackup = {
 		}
 		index++;
 		if (autoBackup.array1.length > index) {
-			var c = index / autoBackup.array1.length * 100;
+			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
 			window.setTimeout(autoBackup.write, 50, index);
 		} else {
 			document.getElementById("pm").value = 100;
-			gBackupPrefBranch.setIntPref("extensions.importexporttools.autobackup.last", autoBackup.time);
+			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.time);
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
@@ -240,18 +271,21 @@ var autoBackup = {
 			file.create(1, 0775);
 		var servers = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager).allServers;
+
+		var cntServers;
+		var serverFile;
 		if (servers.Count)
-			var cntServers = servers.Count();
+			cntServers = servers.Count();
 		else
 			// Thunderbird >17 return nsIArray
-			var cntServers = servers.length;
+			cntServers = servers.length;
 		// Scan servers storage path on disk
 		for (var i = 0; i < cntServers; ++i) {
 			var parentDir = null;
 			if (servers.Count)
-				var serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
+				serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 			else
-				var serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;
 			var clone = file.clone();
@@ -263,6 +297,15 @@ var autoBackup = {
 	},
 };
 
+document.addEventListener("dialogaccept", function (event) {
+	autoBackup.onOK();
+	event.preventDefault();
+	event.stopPropagation();
+});
 
+// document.addEventListener("dialogcancel", function (event) {
+// });
 
-
+window.addEventListener("load", function (event) {
+	autoBackup.load();
+});

@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - Varnostna kopija">
+<!ENTITY dialog.title "ImportExportTools NG - Varnostna kopija">
 <!ENTITY description1 "Datum zadnje varnostne kopije: $t">
 <!ENTITY description2 "Na osnovi teh nastavitev je zdaj potrebno narediti varnostno kopijo.">
 <!ENTITY description3 "Med tem opravilom bo program neodziven za nekaj minut.">

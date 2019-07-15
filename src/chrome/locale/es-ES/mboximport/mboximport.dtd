@@ -1,9 +1,9 @@
 <!ENTITY exportWithSub "Exportar carpetas y subcarpetas (simple)">
 <!ENTITY importMbox "Importar archivo mbox">
-<!ENTITY labelmenuMI "Importar/Exportar">
+<!ENTITY labelmenuMI "Importar/Exportar NG">
 <!ENTITY MBlabel1 "Sobreescribir los archivos que tengan el mismo nombre en la carpeta destino">
 <!ENTITY importDir "Seleccione la carpeta donde se buscarán los archivos mbox a importar">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Importar directamente uno o más archivos mbox">
 <!ENTITY importDialogLabel "Elija el modo de importación:">
 <!ENTITY importDialogTitle "Archivos mbox a importar">

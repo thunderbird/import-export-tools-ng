@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - Backup">
+<!ENTITY dialog.title "ImportExportTools NG - Backup">
 <!ENTITY description1 "Datum des letzten Backups: $t">
 <!ENTITY description2 "Ihren Einstellungen zufolge ist es nötig, jetzt ein Backup zu machen.">
 <!ENTITY description3 "Während dieser Operation wird das Programm einige Minuten nicht ansprechbar sein.">

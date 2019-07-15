@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - Sauvegarde">
+<!ENTITY dialog.title "ImportExportTools NG - Sauvegarde">
 <!ENTITY description1 "Dernière Sauvegarde : $t">
 <!ENTITY description2 "D'après les paramètres, il est maintenant nécessaire de réaliser une sauvegarde.">
 <!ENTITY description3 "Durant cette operation, le programme sera bloqué quelques minutes.">

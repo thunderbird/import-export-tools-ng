@@ -9,5 +9,5 @@
 <!ENTITY importEnd "インポート完了！">
 <!ENTITY intro3 "インポートするプロファイルにアクセスするためには、ボタンをクリックして、プロファイルマネージャを起動してください。現在のプロファイルは、自動的に閉じます。">
 <!ENTITY runProfileManager "プロファイルマネージャの起動">
-<!ENTITY title "ImportExportTools - プロファイルのインポート">
+<!ENTITY title "ImportExportTools NG - プロファイルのインポート">
 <!ENTITY error "プロファイルのインポート中にエラーが発生しました。エラーの詳細は次のとおりです:">

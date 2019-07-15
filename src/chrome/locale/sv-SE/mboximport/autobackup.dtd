@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools: Säkerhetskopiering">
+<!ENTITY dialog.title "ImportExportTools NG: Säkerhetskopiering">
 <!ENTITY description1 "Datum för senaste säkerhetskopiering: $t">
 <!ENTITY description2 "Enligt inställningarna är det hög tid att utföra en säkerhetskopiering.">
 <!ENTITY description3 "Under denna operation kommer inte programmet att svara under några minuter.">

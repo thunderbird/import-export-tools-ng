@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - 备份">
+<!ENTITY dialog.title "ImportExportTools NG - 备份">
 <!ENTITY description1 "最近一次备份日期：$t">
 <!ENTITY description2 "根据基本设置，现在需要备份。">
 <!ENTITY description3 "操作进行期间，程序可能有数分钟没有响应。">

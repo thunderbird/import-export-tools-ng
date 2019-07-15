@@ -1,9 +1,9 @@
 <!ENTITY exportWithSub "Map met submappen exporteren (eenvoudig)">
 <!ENTITY importMbox "mbox-bestand importeren">
-<!ENTITY labelmenuMI "ImportExportTools">
+<!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "De mbox-bestanden met dezelfde naam in de doelmap overschrijven">
 <!ENTITY importDir "Een map selecteren waarin te importeren mbox-bestanden worden gezocht">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Een of meer mbox-bestanden rechtstreeks importeren">
 <!ENTITY importDialogLabel "Kies de wijze van importeren:">
 <!ENTITY importDialogTitle "Bestanden voor mbox-import">

@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - Sikkerhedskopier">
+<!ENTITY dialog.title "ImportExportTools NG - Sikkerhedskopier">
 <!ENTITY description1 "Dato for seneste sikkerhedskopi: $t">
 <!ENTITY description2 "På baggrund af dine indstillinger, er det nu nødvendigt at tage en sikkerhedskopi.">
 <!ENTITY description3 "Under denne operation, vil programmet ikke reagerer i nogle minutter.">

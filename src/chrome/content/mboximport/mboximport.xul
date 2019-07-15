@@ -2,15 +2,11 @@
 <!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 <overlay id="mboximportOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-<script type="application/x-javascript" src="chrome://mboximport/content/mboximport.js" />
-<script type="application/x-javascript" src="chrome://messenger/content/dateFormat.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/exportTools.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/menufunctions.js" />
-<script type="application/x-javascript" src="chrome://mboximport/content/utils.js" />
-
-<stringbundleset id="stringbundleset">
-	<stringbundle id="backupStr" src="chrome://mboximport/locale/autobackup.properties"/>
-</stringbundleset>
+<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
+<script type="application/javascript" src="chrome://messenger/content/dateFormat.js" />
+<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
+<script type="application/javascript" src="chrome://mboximport/content/menufunctions.js" />
+<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 
 <popup id="folderPaneContext">
 	<menuseparator id="IETsep" />
@@ -314,11 +310,10 @@
 	<menuitem id="importEMLatt" label="&importAttachedEML;" oncommand="importEmlToFolder()" collapsed="true" />
 </popup>
 
-<statusbar id="status-bar">
-	<hbox id="statusTextBox">
-		<statusbarpanel id="IETabortIcon" class="statusbarpanel-iconic" src="chrome://mboximport/content/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText" />
-	</hbox>
-</statusbar>
+// cleidigh - works for both 60/68 - does not match recommended changes
+<hbox id="statusTextBox" insertbefore="statusText"  >
+	<toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText" />
+</hbox>
 
 </overlay>
 

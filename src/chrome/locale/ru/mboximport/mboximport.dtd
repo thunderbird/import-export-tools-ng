@@ -1,9 +1,9 @@
 <!ENTITY exportWithSub "Экспортировать папку с вложенными папками (упрощённый метод)">
 <!ENTITY importMbox "Импорт файла mbox">
-<!ENTITY labelmenuMI "Импорт/Экспорт">
+<!ENTITY labelmenuMI "Импорт/Экспорт NG">
 <!ENTITY MBlabel1 "Заменять файлы с совпадающими именами в целевом каталоге">
 <!ENTITY importDir "Выбрать каталог где будут искаться mbox файлы для импортирования">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Немедленно импортировать один или несколько mbox файлов">
 <!ENTITY importDialogLabel "Выберите способ импорта:">
 <!ENTITY importDialogTitle "Импорт mbox файлов">

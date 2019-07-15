@@ -1,9 +1,9 @@
 <!ENTITY exportWithSub "サブフォルダと共にフォルダをエクスポート (簡易)">
 <!ENTITY importMbox "mbox ファイルをインポート">
-<!ENTITY labelmenuMI "インポート・エクスポート">
+<!ENTITY labelmenuMI "インポート・エクスポート NG">
 <!ENTITY MBlabel1 "出力先フォルダにある同じ名前の mbox ファイルを上書き">
 <!ENTITY importDir "インポートする mbox ファイルを検索してフォルダを選択">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "単一または複数の mbox ファイルを直接インポート">
 <!ENTITY importDialogLabel "インポート方法の選択:">
 <!ENTITY importDialogTitle "インポート mbox ファイル">

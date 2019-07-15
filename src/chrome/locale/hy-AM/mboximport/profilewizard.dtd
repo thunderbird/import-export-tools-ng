@@ -9,5 +9,5 @@
 <!ENTITY importEnd "Ներմուծեց։">
 <!ENTITY intro3 "Մուտք ստանալու համար ներմուծված պրոֆիլին՝ բացեք Պրոֆլիների կառավարիչը։ Գործող պրոֆիլը միանգամից կփակվի">
 <!ENTITY runProfileManager "Բացել Պրոֆիլների կառավարիչը">
-<!ENTITY title "ImportExportTools՝ պրոֆիլի ներմուծում">
+<!ENTITY title "ImportExportTools NG՝ պրոֆիլի ներմուծում">
 <!ENTITY error "An error occurred during profile import. Error details are:">

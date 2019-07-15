@@ -1,4 +1,4 @@
-<!ENTITY dialog.title "ImportExportTools - Cópia de segurança">
+<!ENTITY dialog.title "ImportExportTools NG - Cópia de segurança">
 <!ENTITY description1 "Data da última cópia de segurança: $ t">
 <!ENTITY description2 "Com base nas definições, é\\necessário fazer uma nova cópia de segurança.">
 <!ENTITY description3 "Durante esta operação, o programa pode não responder durante alguns minutos.">

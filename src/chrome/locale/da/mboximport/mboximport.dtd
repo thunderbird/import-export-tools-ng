@@ -3,7 +3,7 @@
 <!ENTITY labelmenuMI "ImportEksportTools">
 <!ENTITY MBlabel1 "Overskriv mbox-filer med det samme navn i destinationsmappen">
 <!ENTITY importDir "Vælg en mappe og find mbox-filerne til import">
-<!ENTITY labelmenuMItools "ImportExportTools">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Importer en eller flere mbox-filer direkte">
 <!ENTITY importDialogLabel "Vælg importmåden:">
 <!ENTITY importDialogTitle "Mbox-filimport">

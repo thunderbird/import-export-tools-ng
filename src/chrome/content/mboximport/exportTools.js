@@ -1,7 +1,36 @@
-// cleidigh - reformat
+/*
+	ImportExportTools NG is a derivative extension for Thunderbird 60+
+	providing import and export tools for messages and folders.
+	The derivative extension authors:
+		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
 
-/* global mboximportbundle, GetFirstSelectedMsgFolder, FolderPaneSelectionChange */
-/* global IETformatWarning,
+	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
+	is covered by the GPLv3 open-source license (see LICENSE file).
+		Copyright (C) 2007 : Paolo "Kaosmos"
+
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// cleidigh - Update for TB68
+// cleidigh - reformat, services, globals, Streamlisteners
+
+
+/* global
+mboximportbundle,
+GetFirstSelectedMsgFolder,
+FolderPaneSelectionChange,
+IETformatWarning,
 getPredefinedFolder,
 IETopenFPsync,
 GetSelectedMsgFolders,
@@ -23,6 +52,7 @@ MsgHdrToMimeMessage,
 findGoodFolderName,
 
 */
+
 /* eslint complexity: [0,30] */
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
@@ -45,6 +75,8 @@ var IETglobalMsgFolders;
 var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
+
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 if (String.trim)
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
@@ -368,10 +400,10 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	IETskipped = 0;
 
 	var hdrArray = [];
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder");
+	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
 	if (useContainer) {
 		// Check if the name is good or exists alredy another directory with the same name
@@ -464,11 +496,11 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 	}
 	var hdrArray = [];
 
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttools.export.filenames_toascii");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder");
-	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttools.export.skip_existing_msg");
+	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
 	if (useContainer) {
@@ -597,7 +629,7 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 }
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-	if (!IETprefs.getBoolPref("extensions.importexporttools.export.use_container_folder") && !justIndex && subdir)
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
 	var myDate = new Date();
@@ -706,7 +738,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
-	var sep = IETprefs.getCharPref("extensions.importexporttools.csv_separator");
+	var sep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
 	// Build the index csv page
@@ -808,9 +840,15 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		onStartRequest: function (aRequest, aContext) { },
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onStartRequest60: function (aRequest, aContext) { },
+		onStartRequest68: function (aRequest) { },
 
-		onStopRequest: function (aRequest, aContext, aStatusCode) {
+		onStopRequest60: function (aRequest, aContext, aStatusCode) {
+			this.onStopRequest68(aRequest, aStatusCode);
+		},
+
+		onStopRequest68: function (aRequest, aStatusCode) {
 			var sub;
 			var data;
 
@@ -820,7 +858,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				return;
 			}
 			var tags = hdr.getStringProperty("keywords");
-			if (tags && this.emailtext.substring(0, 5000).indexOf("X-Mozilla-Keys") < 0)
+			if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
 				this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
 			if (append) {
 				if (this.emailtext !== "") {
@@ -918,13 +956,31 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			}
 		},
 
-		onDataAvailable: function (aRequest, aContext, aInputStream, aOffset, aCount) {
-			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-				createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+			this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
+		},
+
+		onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
+			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(aInputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 	};
+
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable68;
+		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest68;
+		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest68;
+	} else {
+		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable60;
+		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest60;
+		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest60;
+	}
 
 	var mms = messenger.messageServiceFromURI(msguri)
 		.QueryInterface(Ci.nsIMsgMessageService);
@@ -954,16 +1010,25 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		onStartRequest: function (request, context) { },
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		onStartRequest60: function (request, context) { },
+		onStartRequest68: function (request) { },
 
-		onDataAvailable: function (request, context, inputStream, offset, count) {
-			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-				createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+		onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
+			this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
+		},
+
+		onDataAvailable68: function (aRequest, inputStream, aOffset, aCount) {
+			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(inputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 
-		onStopRequest: function (request, context, statusCode) {
+		onStopRequest60: function (request, context, statusCode) {
+			this.onStopRequest68(request, statusCode);
+		},
+
+		onStopRequest68: function (request, statusCode) {
 			var data = this.emailtext;
 			if (copyToClip) {
 				IETcopyToClip(data);
@@ -1044,7 +1109,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 			if (this.append && convertToText) {
 				data = IEThtmlToText(data);
-				data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttools.export.mail_separator") + "\r\n\r\n";
+				data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 				var nfile = clone.leafName + ".txt";
 				IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
 				IETexported = IETexported + 1;
@@ -1180,8 +1245,23 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		},
 	};
 
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable68;
+		myTxtListener.onStartRequest = myTxtListener.onStartRequest68;
+		myTxtListener.onStopRequest = myTxtListener.onStopRequest68;
+	} else {
+		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable60;
+		myTxtListener.onStartRequest = myTxtListener.onStartRequest60;
+		myTxtListener.onStopRequest = myTxtListener.onStopRequest60;
+	}
+
+
 	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttools.export.HTML_as_displayed");
+	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
 	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 	if (!HTMLasView && !convertToText && !copyToClip)
 		uri = uri + "?header=saveas";
@@ -1209,7 +1289,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 	insert a preference to use it anyway.
 	*/
 
-	var useConverter = IETprefs.getBoolPref("extensions.importexporttools.export.use_converter");
+	var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
 	if (hdr.folder.server.type === "nntp" || useConverter) {
 		var nsURI = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService).newURI(uri, null, null);
@@ -1246,7 +1326,7 @@ function IETconvertToUTF8(string) {
 function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	var justText = IETprefs.getBoolPref("extensions.importexporttools.clipboard.always_just_text");
+	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data);
 
 	// hack to clean the headers layout!!!
@@ -1400,7 +1480,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 function IETwritestatus(text) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
-		var delay = IETprefs.getIntPref("extensions.importexporttools.delay.clean_statusbar");
+		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}
@@ -1428,13 +1508,13 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttools.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
 function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 	var os;
-	var charset = IETprefs.getCharPref("extensions.importexporttools.export.text_plain_charset");
+	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
 	if (charset.indexOf("(BOM)") > -1) {
 		charset = "UTF-8";
 		data = "\ufeff" + data;
@@ -1462,7 +1542,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttools.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
@@ -1475,8 +1555,8 @@ function copyMSGtoClip() {
 }
 
 var copyHeaders = {
-	getListner: function () {
-		var myListner = {
+	getListener: function () {
+		var myListener = {
 
 			data: "",
 
@@ -1489,9 +1569,15 @@ var copyHeaders = {
 				throw Cr.NS_NOINTERFACE;
 			},
 
-			onStartRequest: function (aRequest, aContext) { },
+			// cleidigh - Handle old/new streamlisteners signatures after TB67
+			onStartRequest60: function (request, context) { },
+			onStartRequest68: function (request) { },
 
-			onStopRequest: function (aRequest, aContext, aStatusCode) {
+			onStopRequest60: function (aRequest, aContext, aStatusCode) {
+				this.onStopRequest68(aRequest, aStatusCode);
+			},
+
+			onStopRequest68: function (aRequest, aStatusCode) {
 				if (!this.remote)
 					IETcopyStrToClip(this.data);
 				else {
@@ -1502,10 +1588,13 @@ var copyHeaders = {
 				return true;
 			},
 
-			onDataAvailable: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+			onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
+				this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
+			},
+
+			onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
 				if (this.remote) {
-					var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].
-						createInstance().QueryInterface(Ci.nsIScriptableInputStream);
+					var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 					scriptStream.init(aInputStream);
 					this.data += scriptStream.read(20000);
 				} else {
@@ -1515,18 +1604,35 @@ var copyHeaders = {
 				}
 			},
 		};
-		return myListner;
+
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		if (versionChecker.compare(currentVersion, "61") >= 0) {
+			myListener.onDataAvailable = myListener.onDataAvailable68;
+			myListener.onStartRequest = myListener.onStartRequest68;
+			myListener.onStopRequest = myListener.onStopRequest68;
+		} else {
+			myListener.onDataAvailable = myListener.onDataAvailable60;
+			myListener.onStartRequest = myListener.onStartRequest60;
+			myListener.onStopRequest = myListener.onStopRequest60;
+		}
+
+		return myListener;
 	},
 
 	start: function () {
 		var mess = IETgetSelectedMessages();
 		var msguri = mess[0];
 		var mms = messenger.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-		var streamListner = copyHeaders.getListner();
+		var streamListner = copyHeaders.getListener();
 		if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
 			streamListner.remote = true;
 		mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
 	},
+
+
 };
 
 function IETescapeBeginningFrom(data) {
@@ -1540,9 +1646,9 @@ function IETescapeBeginningFrom(data) {
 }
 
 function IETstoreHeaders(msg, msguri, subfile, addBody) {
-	var subMaxLen = IETprefs.getIntPref("extensions.importexporttools.subject.max_length") - 1;
-	var authMaxLen = IETprefs.getIntPref("extensions.importexporttools.author.max_length") - 1;
-	var recMaxLen = IETprefs.getIntPref("extensions.importexporttools.recipients.max_length") - 1;
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length") - 1;
+	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length") - 1;
+	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length") - 1;
 	var realsubject;
 	var author;
 	var recipients;

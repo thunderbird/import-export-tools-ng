@@ -9,5 +9,5 @@
 <!ENTITY importEnd "L'importazione è andata a buon fine!">
 <!ENTITY intro3 "Per accedere al profilo importato, lancia il manager dei profili cliccando il bottone sottostante. Il profilo corrente verrà automaticamente chiuso.">
 <!ENTITY runProfileManager "Lancia il manager dei profili">
-<!ENTITY title "ImportExportTools - Importazione di un profilo">
+<!ENTITY title "ImportExportTools NG - Importazione di un profilo">
 <!ENTITY error "Si è verificato un errore nell'importazione del profilo. I dettagli dell'errore sono:">

@@ -9,5 +9,5 @@
 <!ENTITY importEnd "导入成功！">
 <!ENTITY intro3 "要访问导入的配置文件，点击下面的按钮运行配置文件管理器，当前配置文件会自动关闭">
 <!ENTITY runProfileManager "运行配置文件管理器">
-<!ENTITY title "ImportExportTools - 配置文件导入">
+<!ENTITY title "ImportExportTools NG - 配置文件导入">
 <!ENTITY error "导入配置文件时发生错误，错误信息为：">

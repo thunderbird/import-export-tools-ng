@@ -39,7 +39,10 @@ Post any issues or questions for Import Export Tools under [Issues](https://gith
 
 ## Credits
 Original Author: [Paolo "Kaosmos"](https://addons.thunderbird.net/en-US/thunderbird/user/Paolo_Kaosmos/)  
-Developing Author: [Jonathan Kamens](https://addons.thunderbird.net/en-US/thunderbird/user/jikamens/)  
 Developing Author: [Christopher Leidigh](https://github.com/cleidigh/)  
 
-[IET icon]: rep-resources/images/import-export-tools-icon-32px.png 
+<html>
+<div>Extension Icon: <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/"                 title="Flaticon">www.flaticon.com & cleidigh</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"                 title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</html>
+
+[IET icon]: rep-resources/images/import-export-tools-ng-icon-64px.png 

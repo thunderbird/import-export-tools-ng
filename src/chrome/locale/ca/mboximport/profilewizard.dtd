@@ -9,5 +9,5 @@
 <!ENTITY importEnd "The import was successful!">
 <!ENTITY intro3 "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed">
 <!ENTITY runProfileManager "Run the profile manager">
-<!ENTITY title "ImportExportTools - Profile import">
+<!ENTITY title "ImportExportTools NG - Profile import">
 <!ENTITY error "S'ha produït un error en importar el perfil. Els detalls del error són:">

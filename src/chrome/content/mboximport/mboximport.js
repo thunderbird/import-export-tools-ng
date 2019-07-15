@@ -1,17 +1,37 @@
+/*
+	ImportExportTools NG is a derivative extension for Thunderbird 60+
+	providing import and export tools for messages and folders.
+	The derivative extension authors:
+		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+
+	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
+	is covered by the GPLv3 open-source license (see LICENSE file).
+		Copyright (C) 2007 : Paolo "Kaosmos"
+
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// cleidigh - reformat, services, globals, Streamlisteners
+
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
-/* eslint-disable no-new-object */
 /* eslint-disable no-lonely-if */
 /* eslint-disable consistent-return */
-
-
-//  Code rewritten from 0.5.3 version, to avoid the call to initwithpath (TB 1.5 only)
-// cleidigh
 
 /* global IETformatWarning,
 getPredefinedFolder,
 IETopenFPsync,
-
 IETwritestatus,
 IETstoreFormat,
 GetSelectedMsgFolders,
@@ -30,11 +50,11 @@ exportIMAPfolder,
 IETcleanName,
 IETemlx2eml,
 IETescapeBeginningFrom,
-
 */
 
-var MBstrBundleService = Cc["@mozilla.org/intl/stringbundle;1"]
-	.getService(Ci.nsIStringBundleService);
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
+var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
 var gEMLimported;
@@ -129,7 +149,7 @@ var IETprintPDFmain = {
 		try {
 			if (IETprefs.getPrefType("print.always_print_silent") === 0 || !IETprefs.getBoolPref("print.always_print_silent")) {
 				IETprefs.setBoolPref("print.always_print_silent", true);
-				IETprefs.setBoolPref("extensions.importexporttools.printPDF.restore_print_silent", true);
+				IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.restore_print_silent", true);
 			}
 		} catch (e) { }
 		// cleidigh check?
@@ -144,13 +164,13 @@ var IETprintPDFmain = {
 		var aMsgHdr = messageService.messageURIToMsgHdr(uri);
 		var pdfName = getSubjectForHdr(aMsgHdr, IETprintPDFmain.file.path);
 		var fileClone = IETprintPDFmain.file.clone();
-		if (IETprefs.getIntPref("extensions.importexporttools.printPDF.fileFormat") === 2)
+		if (IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat") === 2)
 			fileClone.append(pdfName + ".pdf");
 		else
 			fileClone.append(pdfName + ".ps");
 		fileClone.createUnique(0, 0644);
 		IETprintPDFmain.filePath = fileClone.path;
-		IETprefs.setBoolPref("extensions.importexporttools.printPDF.start", true);
+		IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", true);
 		var messageList = [uri];
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
@@ -218,7 +238,7 @@ function trytocopyMAILDIR() {
 
 	// initialize variables
 	var msgFolder = GetSelectedMsgFolders()[0];
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttools.import.build_mbox_index");
+	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
 	// var openProfDir = XXXX
 
 	// we don't import the file in imap or nntp accounts
@@ -250,7 +270,7 @@ function trytocopyMAILDIR() {
 	}
 	clonex.append(newfilename);
 	// add to the original filename a random number in range 0-999
-	if (IETprefs.getBoolPref("extensions.importexporttools.import.name_add_number"))
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
 	var k = 0;
 	// if exists a subfolder with this name, we change the random number, with max. 500 tests
@@ -325,7 +345,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 			var flags = prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_0 +
 				prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 + prompts.BUTTON_POS_0_DEFAULT;
 			var string = ("\"" + filename + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
-			var button = prompts.confirmEx(window, "ImportExportTools", string, flags, "Button 0", continuelabel, "", null, {});
+			var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "Button 0", continuelabel, "", null, {});
 			if (button === 0)
 				return false;
 		} else {
@@ -346,7 +366,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	clonex.append(newfilename);
 
 	// add to the original filename a random number in range 0-999
-	if (IETprefs.getBoolPref("extensions.importexporttools.import.name_add_number"))
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
 	var k = 0;
 	// if exists a subfolder with this name, we change the random number, with max. 500 tests
@@ -421,7 +441,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
 		gNeedCompact = true;
-	var obj = new Object;
+
+	var obj = {};
 	obj.msgFolder = newFolder;
 	obj.forceCompact = forceCompact;
 
@@ -439,14 +460,14 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 function storeImportedSubFolders(msgFolder) {
 	var subfolders;
 	var next;
-	var obj;
+	var obj = {};
 
 	if (msgFolder.GetSubFolders) {
 		subfolders = msgFolder.GetSubFolders();
 		while (true) {
 			next = subfolders.currentItem();
 			var subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = new Object;
+			obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
@@ -467,7 +488,7 @@ function storeImportedSubFolders(msgFolder) {
 		while (subfolders.hasMoreElements()) {
 			next = subfolders.getNext();
 			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = new Object;
+			obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
@@ -539,7 +560,7 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 	// initialize variables
 	gMsgFolderImported = [];
 	gNeedCompact = false;
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttools.import.build_mbox_index");
+	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -616,19 +637,19 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 				mboxname = afile.leafName;
 				var mboxpath = afile.path;
 				if (isMbox(afile) === 1) {
-					var ask = IETprefs.getBoolPref("extensions.importexporttools.confirm.before_mbox_import");
+					var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
 					if (ask) {
 						var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 							.getService(Ci.nsIPromptService);
-						var checkObj = new Object;
+						var checkObj = {};
 						checkObj.value = false;
 						var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
 							prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
 							prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
 							prompts.BUTTON_POS_0_DEFAULT;
 						var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
-						var button = prompts.confirmEx(window, "ImportExportTools", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
-						IETprefs.setBoolPref("extensions.importexporttools.confirm.before_mbox_import", !checkObj.value);
+						var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
+						IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
 
 						if (button === 0)
 							importThis = true;
@@ -787,7 +808,7 @@ var MBOXIMPORTscandir = {
 	list2: [],
 
 	find: function (dir) {
-		var list = new Array();
+		var list = [];
 		if (dir.isDirectory()) {
 			var files = dir.directoryEntries;
 			list = this.scanRecursive(files);
@@ -796,7 +817,9 @@ var MBOXIMPORTscandir = {
 	},
 
 	scanRecursive: function (dirEntry) {
-		var list = new Array();
+		var list = [];
+		var files = [];
+
 		while (dirEntry.hasMoreElements()) {
 			list.push(dirEntry.getNext().QueryInterface(Ci.nsIFile));
 		}
@@ -914,7 +937,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 
 
 function findGoodFolderName(foldername, destdirNSIFILE, structure) {
-	var overwrite = IETprefs.getBoolPref("extensions.importexporttools.export.overwrite");
+	var overwrite = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
 	var index = 0;
 	var nameIndex = "";
 	var NSclone = destdirNSIFILE.clone();
@@ -1008,7 +1031,7 @@ function buildEMLarray(file, fol, recursive) {
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
 			buildEMLarray(afile, newFolder, true);
 		} else {
-			var emlObj = new Object;
+			var emlObj = {};
 			var afilename = afile.leafName;
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);
@@ -1044,7 +1067,7 @@ function importEMLs() {
 		res = IETopenFPsync(fp);
 	if (res === nsIFilePicker.returnOK) {
 		var thefiles = fp.files;
-		var fileArray = new Array;
+		var fileArray = [];
 		// Files are stored in an array, so that they can be imported one by one
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();
@@ -1071,11 +1094,20 @@ var importEMLlistener = {
 
 	SetMessageKey: function (aKey) { },
 
-	onStartRequest: function (aRequest, aContext) {
+	onStartRequest60: function (aRequest, aContext) {
+		this.onStartRequest68(aRequest);
+	},
+
+	onStartRequest68: function (aRequest) {
 		this.mData = "";
 	},
 
-	onDataAvailable: function (aRequest, aContext, aStream, aSourceOffset, aLength) {
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
+		this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
+	},
+
+	onDataAvailable68: function (aRequest, aStream, aSourceOffset, aLength) {
 		// Here it's used the nsIBinaryInputStream, because it can read also null bytes
 		var bis = Cc['@mozilla.org/binaryinputstream;1']
 			.createInstance(Ci.nsIBinaryInputStream);
@@ -1083,7 +1115,11 @@ var importEMLlistener = {
 		this.mData += bis.readBytes(aLength);
 	},
 
-	onStopRequest: function (aRequest, aContext, aStatus) {
+	onStopRequest60: function (aRequest, aContext, aStatus) {
+		this.onStopRequest68(aRequest, aStatus);
+	},
+	
+	onStopRequest68: function (aRequest, aStatus) {
 		var text = this.mData;
 		try {
 			var index = text.search(/\r\n\r\n/);
@@ -1095,7 +1131,7 @@ var importEMLlistener = {
 				var dateDecoded = "Date: " + mime2DecodedService.getParameter(dateOrig.substring(6), null, "", false, { value: null }) + "\r\n";
 				header = header.replace(dateOrig, dateDecoded);
 			}
-			// cleidigh what is this ?
+			// cleidigh - TODO - what is this ?
 			var data = header + text.substring(index);
 			var data = text;
 		} catch (e) {
@@ -1143,7 +1179,22 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		file = IETemlx2eml(file);
 	}
 
+	// cleidigh - Handle old/new streamlisteners signatures after TB67
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "61") >= 0) {
+		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable68;
+		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest68;
+		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest68;
+	} else {
+		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable60;
+		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest60;
+		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest60;
+	}
+
 	var listener = importEMLlistener;
+
 	importEMLlistener.msgFolder = msgFolder;
 	importEMLlistener.removeFile = removeFile;
 	importEMLlistener.file = file;
@@ -1163,7 +1214,16 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		var ios = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService);
 		var fileURI = ios.newFileURI(file);
-		var channel = ios.newChannelFromURI(fileURI);
+
+		let channel = Services.io.newChannelFromURI2(
+			fileURI,
+			null,
+			Services.scriptSecurityManager.getSystemPrincipal(),
+			null,
+			Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+			Ci.nsIContentPolicy.TYPE_OTHER
+		);
+
 		channel.asyncOpen(listener, null);
 	}
 }
@@ -1203,15 +1263,15 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Prologue needed to add the message to the folder
 	var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
 	// If the message has no X-Mozilla-Status, we add them to it
-	if (data.indexOf("X-Mozilla-Status") < 0)
+	if (data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
-	else if (IETprefs.getBoolPref("extensions.importexporttools.reset_mozilla_status")) {
+	else if (IETprefs.getBoolPref("extensions.importexporttoolsng.reset_mozilla_status")) {
 		// Reset the X-Mozilla status
 		data = data.replace(/X-Mozilla-Status: \d{4}/, "X-Mozilla-Status: 0000");
 		data = data.replace(/X-Mozilla-Status2: \d{8}/, "X-Mozilla-Status2: 00000000");
 	}
 	// If the message has no X-Account-Key, we add it to it, taking it from the account selected
-	if (data.indexOf("X-Account-Key") < 0) {
+	if (data.includes("X-Account-Key")) {
 		var myAccountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager);
 		var myAccount = myAccountManager.FindAccountForServer(msgFolder.server);
@@ -1376,7 +1436,7 @@ function IETimportSMS() {
 					myname = identity.fullName;
 				else
 					myname = myAccountManager.defaultAccount.defaultIdentity.fullName;
-				var subOn = IETprefs.getBoolPref("extensions.importexporttools.sms.add_subject");
+				var subOn = IETprefs.getBoolPref("extensions.importexporttoolsng.sms.add_subject");
 
 				for (var i = 0; i < smss.length; i++) {
 					var card = null;

@@ -2,7 +2,7 @@
 
 ## Versions
 
-4.0.0	- Thunderbird Team Update - ?
+4.0.0	- Initial NG Release - July 19, 2019
 		- Updated for TB68
 		- New name and icon
 		- Updated formatting

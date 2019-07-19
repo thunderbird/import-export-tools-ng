@@ -1,22 +1,59 @@
 # ![IETng icon] Import Export Tools NG
 
-Import Export Tools NG is a Thunderbird Add-On that adds import and export functions for both mbox messages and folders.
 
-The add-on is the original work of Paolo "Kaosmos".  The add-on is being updated for Thunderbird 68 by the Thunderbird team so that users can continue to enjoy the functionality of this great add-on.
+ImportExportTools NG adds import and export functions for messages, folders and profiles.
+
+This derivative add-on is the update of the original work of Paolo "Kaosmos", ImportExportTools.
+The add-on is being updated for Thunderbird 68 (and 60) so that users can continue to enjoy the
+functionality of this great add-on.
+
 The first NG release, 4.0.0 , is a fork of v3.3.2 of the original add-on with the same functionality.
 The name and icon have been changed to differentiate from the original version.
 
-Note: The original extension homepage of the author:
-https://freeshell.de/~kaosmos/mboximport-en.html
+Original Add-on homepage:
+https://addons.thunderbird.net/en-US/thunderbird/addon/importexporttools/?src=search
 
-Please report any issues found !
+Original extension homepage of the author:
+https://freeshell.de/~kaosmos/mboximport-en.html
 
 ![IETng_version](https://img.shields.io/badge/version-v4.0.0-darkorange.png?label=ImportExportTools%20NG)
 [![IETng_tb_version](https://img.shields.io/badge/version-v4.0.0-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
 ![Thunderbird_version](https://img.shields.io/badge/version-v60.0--68.*-blue.png?label=Thunderbird)
-[![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-2.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v4.0.0%20In%20Progress-brightgreen.png)
+[![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
+![Release Status](https://img.shields.io/badge/Release%20Status-v4.0.0%20Released-brightgreen.png)
 #
+
+## Import Export Tools NG Add-On Features
+
+Menus:
+ - Tools (most import and export functions including profiles)
+ - Folders (most import and export functions)
+ - Search dialog (export search results)
+ - Selected messages (export or copy to clipboard)
+
+Export:
+ - Individual folder(s), optionally including subfolders (mbox format)
+ - All folder messages in the following formats:
+   - EML, HTML, PDF, CSV or plaintext
+   - Export as individual files or a single file
+   - Optionally include attachments
+   - Export indexes as plain text or CSV
+   - Extensive file naming convention options
+   - Export messages from search dialog
+
+Import:
+ - Mbox files (including structure)
+ - EML & EMLX files
+ - Individual or all directory files
+
+Profiles:
+ - Export complete profile or just the mail files
+ - Import profile
+ - Auto profile backup with schedule on shutdown
+
+SMS:
+ - Import SMS from the "SMS Backup and Restore" program for Android and Nokia2AndroidSMS
+ - Note: SMS not verified for NG (unable to test), please comment on issues
 
 ## Import Export Tools NG Add-On Installation
    

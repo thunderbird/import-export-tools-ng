@@ -1,24 +1,24 @@
 {
-	"manifest_version": 2,
-	"name": "__MSG_extensionName__",
-	"version": "4.0.0",
-	"description": "__MSG_extensionDescription__",
-	"author": "Christopher Leidigh",
-	"xpi-name": "import-export-tools-ng",
-	"applications": {
-		"gecko": {
-			"id": "ImportExportToolsNG@cleidigh.kokkini.net",
-			"strict_min_version": "60.0"
-		}
-	},
-	"legacy": {
-		"options": {
-			"page": "chrome://mboximport/content/mboximportOptions.xul",
-			"open_in_tab": false
-		}
-	},
-	"icons": {
-		"64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
-	},
-	"default_locale": "en_US"
+    "manifest_version": 2,
+    "name": "__MSG_extensionName__",
+    "version": "4.0.1-b1",
+    "description": "__MSG_extensionDescription__",
+    "author": "Christopher Leidigh",
+    "xpi-name": "import-export-tools-ng",
+    "applications": {
+        "gecko": {
+            "id": "ImportExportToolsNG@cleidigh.kokkini.net",
+            "strict_min_version": "60.0"
+        }
+    },
+    "legacy": {
+        "options": {
+            "page": "chrome://mboximport/content/mboximportOptions.xul",
+            "open_in_tab": false
+        }
+    },
+    "icons": {
+        "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
+    },
+    "default_locale": "en_US"
 }

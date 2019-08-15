@@ -6,7 +6,7 @@
  - Fixed warning for deprecated menu overlay task popup
    Fixes #9 
  - Use createXULElement for TB68+
-   Fixes #8 
+   Fixes #8 , TB69 Beta compatibility
 
 4.0.0  Initial NG Release - July 19, 2019 
  - Updated for TB68

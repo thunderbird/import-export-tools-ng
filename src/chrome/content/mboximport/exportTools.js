@@ -78,8 +78,14 @@ var IETabort;
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-if (String.trim)
+Services.console.logStringMessage("export tool start " + String.trim);
+Services.console.logStringMessage("export tool trim  " + String.trim("   Test   "));
+Services.console.logStringMessage("export tool trim  " + "        Test   ".trim());
+
+if (String.prototype.trim) {
+	Services.console.logStringMessage("export tool import my message ");
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
+}
 
 function searchANDsave() {
 	var preselectedFolder = null;
@@ -614,6 +620,7 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
 			break;
 		case 8: // HTML format, with index and attachments
+		Services.console.logStringMessage("case8 HTML export with attachments");
 			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 9: // plain text format, with index and attachments
@@ -998,6 +1005,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
+	Services.console.logStringMessage("export as HTML");
 	var myTxtListener = {
 		scriptStream: null,
 		emailtext: "",
@@ -1015,20 +1023,25 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		onStartRequest68: function (request) { },
 
 		onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
+			Services.console.logStringMessage("export as HTML: data available 60");
 			this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
 		},
 
 		onDataAvailable68: function (aRequest, inputStream, aOffset, aCount) {
+			Services.console.logStringMessage("export as HTML: data available 68 **");
 			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(inputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 
 		onStopRequest60: function (request, context, statusCode) {
+			Services.console.logStringMessage("export as HTML: stop request 60");
 			this.onStopRequest68(request, statusCode);
 		},
 
 		onStopRequest68: function (request, statusCode) {
+			Services.console.logStringMessage("export as HTML: stop request 68 **");
+
 			var data = this.emailtext;
 			if (copyToClip) {
 				IETcopyToClip(data);
@@ -1037,9 +1050,14 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 			this.scriptStream = null;
 			var clone = file.clone();
-			if (String.trim && saveAttachments && (hdr.flags & 0x10000000)) {
+
+			Services.console.logStringMessage("export as HTML: header: " + hdr.flags.toString(16));
+			Services.console.logStringMessage("export tool trim " + String.prototype.trim);
+
+			if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
 				var aMsgHdr = hdr;
 				MsgHdrToMimeMessage(aMsgHdr, null, function (aMsgHdr, aMsg) {
+					Services.console.logStringMessage("export as HTML: message to mime");
 					var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
 					// attachments = attachments.filter(function (x) x.isRealAttachment);
 					var footer = null;
@@ -1057,6 +1075,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							attDirContainer.createUnique(1, 0775);
 							footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 							noDir = false;
+							Services.console.logStringMessage("export as HTML: created attachments directory");
 						}
 						var success = true;
 						if (att.url.indexOf("file") === 0) { // Detached attachments

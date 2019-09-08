@@ -695,7 +695,7 @@ function exportfolder(subfolder, keepstructure, locale, zip) {
 	}
 
 	if (zip) {
-		if (!String.trim)
+		if (!String.prototype.trim)
 			alert(mboximportbundle.GetStringFromName("needTB3"));
 		else
 			IETexportZip(destdirNSIFILE, folders);
@@ -1049,7 +1049,7 @@ function buildEMLarray(file, fol, recursive) {
 function importEMLs() {
 	var msgFolder = GetSelectedMsgFolders()[0];
 	// No import for imap and news account, sorry...
-	if ((!String.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
+	if ((!String.prototype.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
 		return;
 	}
@@ -1200,7 +1200,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 	importEMLlistener.file = file;
 	importEMLlistener.fileArray = fileArray;
 	importEMLlistener.allEML = allEML;
-	if (String.trim && msgFolder.server.type === "imap") {
+	if (String.prototype.trim && msgFolder.server.type === "imap") {
 		importEMLlistener.imap = true;
 		var cs = Cc["@mozilla.org/messenger/messagecopyservice;1"]
 			.getService(Ci.nsIMsgCopyService);
@@ -1295,7 +1295,7 @@ function importEmlToFolder() {
 	var msgFolder = GetSelectedMsgFolders()[0];
 	// 0x0020 is MSG_FOLDER_FLAG_VIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
-	if (!String.trim && ((msgFolder.server.type !== "pop3" && msgFolder.server.type !== "none") || isVirtFol)) {
+	if (!String.prototype.trim && ((msgFolder.server.type !== "pop3" && msgFolder.server.type !== "none") || isVirtFol)) {
 		alert(mboximportbundle.GetStringFromName("badfolder2"));
 		return;
 	}

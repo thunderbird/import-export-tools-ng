@@ -79,8 +79,8 @@ var IETabort;
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 Services.console.logStringMessage("export tool start " + String.trim);
-Services.console.logStringMessage("export tool trim  " + String.trim("   Test   "));
-Services.console.logStringMessage("export tool trim  " + "        Test   ".trim());
+Services.console.logStringMessage("export tool trim 1:" + String.trim("   Test   "));
+Services.console.logStringMessage("export tool trim 2:" + "        Test   ".trim());
 
 if (String.prototype.trim) {
 	Services.console.logStringMessage("export tool import my message ");
@@ -1109,7 +1109,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
-						footer = footer + "</ul></div></body>";
+						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 					}
@@ -1222,7 +1222,12 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 				tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
 				data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
 				data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-				data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+				// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+
+				const r1 = "div.headerdisplayname {font-weight:bold;}\n";
+				const r2 = ".moz-text-html .tb { display: block;}\n";
+				data = data.replace("<\/head>", `<style>${r1}${r2}<\/style><\/head>`);
+
 				if (!HTMLasView && this.chrset)
 					data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
 				else

@@ -78,12 +78,7 @@ var IETabort;
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-Services.console.logStringMessage("export tool start " + String.trim);
-Services.console.logStringMessage("export tool trim 1:" + String.trim("   Test   "));
-Services.console.logStringMessage("export tool trim 2:" + "        Test   ".trim());
-
 if (String.prototype.trim) {
-	Services.console.logStringMessage("export tool import my message ");
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
 }
 
@@ -346,7 +341,7 @@ function exportAllMsgs(type) {
 			if (!go)
 				return;
 			// cleidigh
-				// else
+			// else
 			break;
 		}
 	}
@@ -620,7 +615,6 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
 			break;
 		case 8: // HTML format, with index and attachments
-		Services.console.logStringMessage("case8 HTML export with attachments");
 			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 9: // plain text format, with index and attachments
@@ -1005,7 +999,6 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	Services.console.logStringMessage("export as HTML");
 	var myTxtListener = {
 		scriptStream: null,
 		emailtext: "",
@@ -1023,24 +1016,20 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		onStartRequest68: function (request) { },
 
 		onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
-			Services.console.logStringMessage("export as HTML: data available 60");
 			this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
 		},
 
 		onDataAvailable68: function (aRequest, inputStream, aOffset, aCount) {
-			Services.console.logStringMessage("export as HTML: data available 68 **");
 			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(inputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 
 		onStopRequest60: function (request, context, statusCode) {
-			Services.console.logStringMessage("export as HTML: stop request 60");
 			this.onStopRequest68(request, statusCode);
 		},
 
 		onStopRequest68: function (request, statusCode) {
-			Services.console.logStringMessage("export as HTML: stop request 68 **");
 
 			var data = this.emailtext;
 			if (copyToClip) {
@@ -1051,13 +1040,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			this.scriptStream = null;
 			var clone = file.clone();
 
-			Services.console.logStringMessage("export as HTML: header: " + hdr.flags.toString(16));
-			Services.console.logStringMessage("export tool trim " + String.prototype.trim);
-
 			if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
 				var aMsgHdr = hdr;
 				MsgHdrToMimeMessage(aMsgHdr, null, function (aMsgHdr, aMsg) {
-					Services.console.logStringMessage("export as HTML: message to mime");
 					var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
 					// attachments = attachments.filter(function (x) x.isRealAttachment);
 					var footer = null;
@@ -1075,7 +1060,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							attDirContainer.createUnique(1, 0775);
 							footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 							noDir = false;
-							Services.console.logStringMessage("export as HTML: created attachments directory");
 						}
 						var success = true;
 						if (att.url.indexOf("file") === 0) { // Detached attachments
@@ -1112,7 +1096,20 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
+
+						// cleidigh - fixup group boxes and images
+						let rs;
+						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
+						rs = data.match(regex);
+
+						data = data.replace(/<\/fieldset>/ig, "");
+						for (let index = 0; index < rs.length; index++) {
+							const element = rs[index];
+							data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
+						}
 					}
+
+
 					myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 				}, true, { examineEncryptedParts: true });
 			} else
@@ -1192,146 +1189,167 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					try {
 						var embImgContainer = null;
 						var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
-						var imgs = data.match(/<img[^>]+src=\"mailbox[^>]+>/g);
-						for (var i = 0; i < imgs.length; i++) {
-							if (!embImgContainer) {
-								embImgContainer = file.clone();
-								embImgContainer.append("EmbeddedImages");
-								embImgContainer.createUnique(1, 0775);
-							}
-							var aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
-							var embImg = embImgContainer.clone();
-							embImg.append(i + ".jpg");
-							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
-							// var sep = isWin ? "\\" : "/";
-							data = data.replace(aUrl, embImgContainer.leafName + "/" + i + ".jpg");
+
+						// console.debug('data 2: \n' + data);
+
+						const versionChecker = Services.vc;
+						const currentVersion = Services.appinfo.platformVersion;
+
+						// cleidigh - TB68 groupbox needs hbox/label
+						var imgs;
+						if (versionChecker.compare(currentVersion, "61") >= 0) {
+							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+						} else {
+							imgs = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
 						}
-					} catch (e) {
-						IETlogger.write("save embedded images - error = " + e);
+
+							for (var i = 0; i < imgs.length; i++) {
+								if (!embImgContainer) {
+									embImgContainer = file.clone();
+									embImgContainer.append("EmbeddedImages");
+									embImgContainer.createUnique(1, 0775);
+								}
+
+								var aUrl;
+								if (versionChecker.compare(currentVersion, "61") >= 0) {
+									aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+								} else {
+									aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+								}
+
+								var embImg = embImgContainer.clone();
+								embImg.append(i + ".jpg");
+								messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
+								// var sep = isWin ? "\\" : "/";
+								data = data.replace(aUrl, embImgContainer.leafName + "/" + i + ".jpg");
+							}
+						} catch (e) {
+							IETlogger.write("save embedded images - error = " + e);
+						}
 					}
-				}
 				/* Clean HTML code generated by streamMessage and "header=filter":
 				- replace author/recipients/subject with mimeDecoded values
 				- strip off the reference to messageBody.css
 				- add a style rule to make headers name in bold
 				*/
 				var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-				data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
-				tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-				data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
-				tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
-				data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
-				data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-				// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+					data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
+					data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
+					tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
+					data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
+					// data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
+					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
-				const r1 = "div.headerdisplayname {font-weight:bold;}\n";
-				const r2 = ".moz-text-html .tb { display: block;}\n";
-				data = data.replace("<\/head>", `<style>${r1}${r2}<\/style><\/head>`);
+					const r1 = "div.headerdisplayname {font-weight:bold;}\n";
+					const rh = ".tb { display: none;}\n";
+					const r2 = ".moz-text-html .tb { display: block;}\n";
+					data = data.replace("<\/head>", `<style>${r1}${rh}${r2}<\/style><\/head>`);
 
-				if (!HTMLasView && this.chrset)
-					data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
-				else
-					data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
-				IETwriteDataOnDisk(clone, data, false, null, time);
-			}
-			IETexported = IETexported + 1;
-			IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
-
-			if (IETabort) {
-				IETabort = false;
-				return;
-			}
-
-			var nextUri;
-			if (IETexported < IETtotal) {
-				if (!hdrArray)
-					nextUri = uriArray[IETexported];
-				else {
-					parts = hdrArray[IETexported].split("§][§^^§");
-					nextUri = parts[5];
+					if (!HTMLasView && this.chrset)
+						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
+					else
+						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
+					IETwriteDataOnDisk(clone, data, false, null, time);
 				}
-				exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
-			} else {
-				var type = convertToText ? 2 : 1;
-				if (myTxtListener.file2)
-					createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
-				if (saveAttachments)
-					type += 7;
-				IETexported = 0;
-				IETtotal = 0;
-				IETskipped = 0;
-				IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-				if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-					exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-				else if (document.getElementById("IETabortIcon"))
-					document.getElementById("IETabortIcon").collapsed = true;
-			}
-		},
-	};
+				IETexported = IETexported + 1;
+				IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
-	// cleidigh - Handle old/new streamlisteners signatures after TB67
-	const versionChecker = Services.vc;
-	const currentVersion = Services.appinfo.platformVersion;
+				if (IETabort) {
+					IETabort = false;
+					return;
+				}
 
-	if (versionChecker.compare(currentVersion, "61") >= 0) {
-		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable68;
-		myTxtListener.onStartRequest = myTxtListener.onStartRequest68;
-		myTxtListener.onStopRequest = myTxtListener.onStopRequest68;
-	} else {
-		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable60;
-		myTxtListener.onStartRequest = myTxtListener.onStartRequest60;
-		myTxtListener.onStopRequest = myTxtListener.onStopRequest60;
-	}
+				var nextUri;
+				if (IETexported < IETtotal) {
+					if (!hdrArray)
+						nextUri = uriArray[IETexported];
+					else {
+						parts = hdrArray[IETexported].split("§][§^^§");
+						nextUri = parts[5];
+					}
+					exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				} else {
+					var type = convertToText ? 2 : 1;
+					if (myTxtListener.file2)
+						createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
+					if (saveAttachments)
+						type += 7;
+					IETexported = 0;
+					IETtotal = 0;
+					IETskipped = 0;
+					IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
+					if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
+						exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+					else if (document.getElementById("IETabortIcon"))
+						document.getElementById("IETabortIcon").collapsed = true;
+				}
+			},
+		};
+
+		// cleidigh - Handle old/new streamlisteners signatures after TB67
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		if(versionChecker.compare(currentVersion, "61") >= 0) {
+			myTxtListener.onDataAvailable = myTxtListener.onDataAvailable68;
+	myTxtListener.onStartRequest = myTxtListener.onStartRequest68;
+	myTxtListener.onStopRequest = myTxtListener.onStopRequest68;
+} else {
+	myTxtListener.onDataAvailable = myTxtListener.onDataAvailable60;
+	myTxtListener.onStartRequest = myTxtListener.onStartRequest60;
+	myTxtListener.onStopRequest = myTxtListener.onStopRequest60;
+}
 
 
-	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
-	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
-	if (!HTMLasView && !convertToText && !copyToClip)
-		uri = uri + "?header=saveas";
-	var messageService = messenger.messageServiceFromURI(uri);
-	var hdr = messageService.messageURIToMsgHdr(uri);
-	try {
-		IETlogger.write("call to  exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
-	} catch (e) {
-		IETlogger.write("call to exportAsHtml - error = " + e);
-	}
-	myTxtListener.append = append;
-	myTxtListener.hdr = hdr;
-	myTxtListener.file2 = file2;
-	myTxtListener.msgFolder = msgFolder;
+// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
+var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
+if (!HTMLasView && !convertToText && !copyToClip)
+	uri = uri + "?header=saveas";
+var messageService = messenger.messageServiceFromURI(uri);
+var hdr = messageService.messageURIToMsgHdr(uri);
+try {
+	IETlogger.write("call to  exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
+} catch (e) {
+	IETlogger.write("call to exportAsHtml - error = " + e);
+}
+myTxtListener.append = append;
+myTxtListener.hdr = hdr;
+myTxtListener.file2 = file2;
+myTxtListener.msgFolder = msgFolder;
 
-	/* With Thunderbird 5 or higher, nschannel+asyncConverter casues randomly a crash.
-	This is probably due to some Javascript engine bug, for techincal details see
-	https://bugzilla.mozilla.org/show_bug.cgi?id=692735
-	To use streamMessage with "header=filter" additional header is a quite good compromise,
-	as workaround against this bug. The HTML code generated is less clean than the one generated
-	by asyncConverter; it's made cleaner ex-post in OnStopRequest function.
-	Notice that streamMessage alone seems not to work with NEWS messages, so for them I'm forced
-	to use the asyncConverter.
-	I hope that in future the bug of asyncConverter will be fixed (it should be on 10 version) and so I've
-	insert a preference to use it anyway.
-	*/
+/* With Thunderbird 5 or higher, nschannel+asyncConverter casues randomly a crash.
+This is probably due to some Javascript engine bug, for techincal details see
+https://bugzilla.mozilla.org/show_bug.cgi?id=692735
+To use streamMessage with "header=filter" additional header is a quite good compromise,
+as workaround against this bug. The HTML code generated is less clean than the one generated
+by asyncConverter; it's made cleaner ex-post in OnStopRequest function.
+Notice that streamMessage alone seems not to work with NEWS messages, so for them I'm forced
+to use the asyncConverter.
+I hope that in future the bug of asyncConverter will be fixed (it should be on 10 version) and so I've
+insert a preference to use it anyway.
+*/
 
-	var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
-	if (hdr.folder.server.type === "nntp" || useConverter) {
-		var nsURI = Cc["@mozilla.org/network/io-service;1"]
-			.getService(Ci.nsIIOService).newURI(uri, null, null);
-		var nschannel = Cc["@mozilla.org/network/input-stream-channel;1"]
-			.createInstance(Ci.nsIInputStreamChannel);
-		nschannel.setURI(nsURI);
-		var streamConverterService = Cc["@mozilla.org/streamConverters;1"]
-			.getService(Ci.nsIStreamConverterService);
-		var streamListner = streamConverterService.asyncConvertData("message/rfc822", "text/html", myTxtListener, nschannel);
-		myTxtListener.chrset = hdr.Charset;
-		messageService.streamMessage(uri, streamListner, msgWindow, null, false, null);
-	} else if (hdr.folder.server.type === "imap") {
-		myTxtListener.chrset = "UTF-8";
-		messageService.streamMessage(uri, myTxtListener, null, null, true, null);
-	} else {
-		myTxtListener.chrset = hdr.Charset;
-		messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
-	}
+var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
+if (hdr.folder.server.type === "nntp" || useConverter) {
+	var nsURI = Cc["@mozilla.org/network/io-service;1"]
+		.getService(Ci.nsIIOService).newURI(uri, null, null);
+	var nschannel = Cc["@mozilla.org/network/input-stream-channel;1"]
+		.createInstance(Ci.nsIInputStreamChannel);
+	nschannel.setURI(nsURI);
+	var streamConverterService = Cc["@mozilla.org/streamConverters;1"]
+		.getService(Ci.nsIStreamConverterService);
+	var streamListner = streamConverterService.asyncConvertData("message/rfc822", "text/html", myTxtListener, nschannel);
+	myTxtListener.chrset = hdr.Charset;
+	messageService.streamMessage(uri, streamListner, msgWindow, null, false, null);
+} else if (hdr.folder.server.type === "imap") {
+	myTxtListener.chrset = "UTF-8";
+	messageService.streamMessage(uri, myTxtListener, null, null, true, null);
+} else {
+	myTxtListener.chrset = hdr.Charset;
+	messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
+}
 }
 
 

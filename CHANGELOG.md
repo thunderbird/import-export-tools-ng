@@ -2,6 +2,15 @@
 
 ## Versions
 
+4.0.2 Maintenance  Release - September 10, 2019 
+- Fixed plaintext/HTML attachment export
+  String.trim test failing - String generics deprecated
+  Fixes #13
+- Remove remaining Components.*
+- Fix HTML export format for embedded images
+  Change file pointer fixup 
+  Move image into fieldset
+
 4.0.1 Maintenance  Release - August 15, 2019 
  - Fixed warning for deprecated menu overlay task popup
    Fixes #9 

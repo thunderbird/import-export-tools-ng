@@ -78,8 +78,9 @@ var IETabort;
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-if (String.trim)
+if (String.prototype.trim) {
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
+}
 
 function searchANDsave() {
 	var preselectedFolder = null;
@@ -340,7 +341,7 @@ function exportAllMsgs(type) {
 			if (!go)
 				return;
 			// cleidigh
-				// else
+			// else
 			break;
 		}
 	}
@@ -1029,6 +1030,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		},
 
 		onStopRequest68: function (request, statusCode) {
+
 			var data = this.emailtext;
 			if (copyToClip) {
 				IETcopyToClip(data);
@@ -1037,7 +1039,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 			this.scriptStream = null;
 			var clone = file.clone();
-			if (String.trim && saveAttachments && (hdr.flags & 0x10000000)) {
+
+			if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
 				var aMsgHdr = hdr;
 				MsgHdrToMimeMessage(aMsgHdr, null, function (aMsgHdr, aMsg) {
 					var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
@@ -1090,10 +1093,23 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
-						footer = footer + "</ul></div></body>";
+						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
+
+						// cleidigh - fixup group boxes and images
+						let rs;
+						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
+						rs = data.match(regex);
+
+						data = data.replace(/<\/fieldset>/ig, "");
+						for (let index = 0; index < rs.length; index++) {
+							const element = rs[index];
+							data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
+						}
 					}
+
+
 					myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 				}, true, { examineEncryptedParts: true });
 			} else
@@ -1173,14 +1189,34 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					try {
 						var embImgContainer = null;
 						var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
-						var imgs = data.match(/<img[^>]+src=\"mailbox[^>]+>/g);
+
+						// console.debug('data 2: \n' + data);
+
+						const versionChecker = Services.vc;
+						const currentVersion = Services.appinfo.platformVersion;
+
+						// cleidigh - TB68 groupbox needs hbox/label
+						var imgs;
+						if (versionChecker.compare(currentVersion, "61") >= 0) {
+							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+						} else {
+							imgs = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+						}
+
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
 								embImgContainer = file.clone();
 								embImgContainer.append("EmbeddedImages");
 								embImgContainer.createUnique(1, 0775);
 							}
-							var aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+
+							var aUrl;
+							if (versionChecker.compare(currentVersion, "61") >= 0) {
+								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+							} else {
+								aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+							}
+
 							var embImg = embImgContainer.clone();
 							embImg.append(i + ".jpg");
 							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
@@ -1203,7 +1239,13 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 				tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
 				data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
 				data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-				data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+				// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+
+				const r1 = "div.headerdisplayname {font-weight:bold;}\n";
+				// const rh = ".tb { display: none;}\n";
+				// const r2 = ".moz-text-html .tb { display: block;}\n";
+				data = data.replace("<\/head>", `<style>${r1}<\/style><\/head>`);
+
 				if (!HTMLasView && this.chrset)
 					data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
 				else

@@ -894,7 +894,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 			}
 		}
 	} else {
-	// Gecko 1.9
+		// Gecko 1.9
 		subfolders = msgFolder.subFolders;
 		while (subfolders.hasMoreElements()) {
 			next = subfolders.getNext();
@@ -1026,9 +1026,15 @@ function buildEMLarray(file, fol, recursive) {
 		}
 
 		if (recursive && is_Dir) {
+			Services.console.logStringMessage("Parent folder name: " + msgFolder.name);
+			Services.console.logStringMessage("subfolder name: " + afile.leafName);
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
+
 			var newFolder = msgFolder.getChildNamed(afile.leafName);
+
+			Services.console.logStringMessage("next subfolder parent name after queries: " + newFolder.parent.name);
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
+
 			buildEMLarray(afile, newFolder, true);
 		} else {
 			var emlObj = {};
@@ -1118,7 +1124,7 @@ var importEMLlistener = {
 	onStopRequest60: function (aRequest, aContext, aStatus) {
 		this.onStopRequest68(aRequest, aStatus);
 	},
-	
+
 	onStopRequest68: function (aRequest, aStatus) {
 		var text = this.mData;
 		try {
@@ -1214,15 +1220,27 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		var ios = Cc["@mozilla.org/network/io-service;1"]
 			.getService(Ci.nsIIOService);
 		var fileURI = ios.newFileURI(file);
+		var channel;
 
-		let channel = Services.io.newChannelFromURI2(
-			fileURI,
-			null,
-			Services.scriptSecurityManager.getSystemPrincipal(),
-			null,
-			Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
-			Ci.nsIContentPolicy.TYPE_OTHER
-		);
+		if (Services.io.newChannelFromURI2) {
+			channel = Services.io.newChannelFromURI2(
+				fileURI,
+				null,
+				Services.scriptSecurityManager.getSystemPrincipal(),
+				null,
+				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				Ci.nsIContentPolicy.TYPE_OTHER
+			);
+		} else {
+			channel = Services.io.newChannelFromURI(
+				fileURI,
+				null,
+				Services.scriptSecurityManager.getSystemPrincipal(),
+				null,
+				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				Ci.nsIContentPolicy.TYPE_OTHER
+			);
+		}
 
 		channel.asyncOpen(listener, null);
 	}

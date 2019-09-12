@@ -1093,22 +1093,38 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
+
 						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
+						// console.debug('data footer: \n' + data);
 						// cleidigh - fixup group boxes and images
 						let rs;
 						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
 						rs = data.match(regex);
 
 						data = data.replace(/<\/fieldset>/ig, "");
-						for (let index = 0; index < rs.length; index++) {
-							const element = rs[index];
-							data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
-						}
-					}
 
+						if (!!rs && rs.length > 0) {
+							for (let index = 0; index < rs.length; index++) {
+								const element = rs[index];
+								data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
+							}
+						}
+
+						let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
+						rs = null;
+						rs = data.match(regex2);
+
+						if (!!rs && rs.length > 0) {
+							for (let index = 0; index < rs.length; index++) {
+								const element = rs[index];
+								data = data.replace(element, element + "\n</fieldset>\n");
+							}
+						}
+
+					}
 
 					myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 				}, true, { examineEncryptedParts: true });
@@ -1190,14 +1206,12 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						var embImgContainer = null;
 						var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
 
-						// console.debug('data 2: \n' + data);
-
 						const versionChecker = Services.vc;
 						const currentVersion = Services.appinfo.platformVersion;
 
 						// cleidigh - TB68 groupbox needs hbox/label
 						var imgs;
-						if (versionChecker.compare(currentVersion, "61") >= 0) {
+						if (versionChecker.compare(currentVersion, "60.8") >= 0) {
 							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
 						} else {
 							imgs = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
@@ -1211,7 +1225,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							}
 
 							var aUrl;
-							if (versionChecker.compare(currentVersion, "61") >= 0) {
+							if (versionChecker.compare(currentVersion, "60.8") >= 0) {
 								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
 							} else {
 								aUrl = imgs[i].match(/imap:\/\/[^\"]+/);

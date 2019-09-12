@@ -1026,15 +1026,9 @@ function buildEMLarray(file, fol, recursive) {
 		}
 
 		if (recursive && is_Dir) {
-			Services.console.logStringMessage("Parent folder name: " + msgFolder.name);
-			Services.console.logStringMessage("subfolder name: " + afile.leafName);
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
-
 			var newFolder = msgFolder.getChildNamed(afile.leafName);
-
-			Services.console.logStringMessage("next subfolder parent name after queries: " + newFolder.parent.name);
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
-
 			buildEMLarray(afile, newFolder, true);
 		} else {
 			var emlObj = {};

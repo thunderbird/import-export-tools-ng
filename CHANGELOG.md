@@ -2,6 +2,10 @@
 
 ## Versions
 
+4.0.3 Maintenance  Release - September 12, 2019 
+- Fixed EML import issue
+- Fixed HTML layout for text attachments
+
 4.0.2 Maintenance  Release - September 10, 2019 
 - Fixed plaintext/HTML attachment export
   String.trim test failing - String generics deprecated

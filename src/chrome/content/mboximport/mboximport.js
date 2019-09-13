@@ -365,6 +365,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 	clonex.append(newfilename);
 
+	console.debug('newfilename: ' + newfilename + "  " + newfilename.length);
 	// add to the original filename a random number in range 0-999
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
@@ -391,7 +392,16 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	// This is a dirty hack, I hope to find in the future something better...
 	//
 	// 1. add a subfolder with the name of the folder to import
+
+	// let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance(Ci.nsIMsgWindow);
+
+	console.debug('add some folder ' + newfilename);
 	var tempfolder = msgFolder.addSubfolder(newfilename);
+	// msgFolder.createSubfolder(newfilename, msgWindow);
+
+	// var tempfolder = msgFolder.getChildNamed(newfilename);
+	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgFolder);
+
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
 		tempfolder.name = newfilename.replace(reg, "#");
@@ -403,13 +413,17 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 	// 3. delete the new subfolder, to delete all the files inside "msgfoldername.sbd" directory
 	tempfolder.Delete();
+
 	if (!filex) {
 		alert(mboximportbundle.GetStringFromName("internalerror"));
 		return false;
 	}
 	try {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
-		file.copyTo(filex, newfilename);
+		// file.copyTo(filex, newfilename);
+		// cleidigh - have to use leafname for truncated internal names
+		file.copyTo(filex, tempfolder.filePath.leafName);
+
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
 			var sbd = file.parent;
@@ -422,12 +436,15 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 	// inizialize as nsIFile the folder imported in TB and check if it's writable and readable.
 	// if not (for ex. a file imported from a cdrom), change the permissions
-	filex.append(newfilename);
+	// filex.append(newfilename);
+	filex.append(tempfolder.filePath.leafName);
+
 	if (!filex.isReadable() || !filex.isWritable())
 		filex.permissions = 420;
 	// the following code of this subfunction has been written with the help of Frank Ausdilecce
 	// really thanks for his help
 	var newFolder = tempfolder;
+
 	// this notifies listeners that a folder has been added;
 	// the code is different for TB-1.0 and TB > 1.0 because the syntax of
 	// NotifyItemAdded seems to have been modified
@@ -501,8 +518,9 @@ function storeImportedSubFolders(msgFolder) {
 
 function addEmptyMessageToForceCompact(msgFolder) {
 	var file = msgFolder2LocalFile(msgFolder);
-	var istream = Cc["@mozilla.org/network/file-input-stream;1"]
-		.createInstance(Ci.nsIFileInputStream);
+
+	var istream = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(Ci.nsIFileInputStream);
+
 	istream.init(file, 0x01, 0444, 0);
 	istream.QueryInterface(Ci.nsILineInputStream);
 	var line = {};

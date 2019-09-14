@@ -1415,7 +1415,8 @@ function IEThtmlToText(data) {
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		// formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
 	} catch (e) {
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;

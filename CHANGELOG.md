@@ -2,6 +2,10 @@
 
 ## Versions
 
+4.0.4 Maintenance  Release - September 16, 2019 
+- Fixed text formatter signature change
+- Fixed handling of import filenames > 55 characters
+
 4.0.3 Maintenance  Release - September 12, 2019 
 - Fixed EML import issue
 - Fixed HTML layout for text attachments

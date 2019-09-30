@@ -1,20 +1,21 @@
 # ![IETng icon] Import Export Tools NG
 
 
-ImportExportTools NG adds import and export functions for messages, folders and profiles.
+[ImportExportTools NG](https://addons.thunderbird.net/addon/importexporttools-ng/) adds import and 
+export functions for messages, folders and profiles.
 
-This derivative add-on is the update of the original work of Paolo "Kaosmos", ImportExportTools.
-The add-on is being updated for Thunderbird 68 (and 60) so that users can continue to enjoy the
-functionality of this great add-on.
+This derivative add-on is the update of [ImportExportTools](https://addons.thunderbird.net/addon/importexporttools/), 
+the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/Paolo_Kaosmos/).
+The add-on is being updated for [Thunderbird](https://www.thunderbird.net/) 68 (and 60) so that 
+users can continue to enjoy the functionality of this great add-on.
 
-The first NG release, 4.0.0 , is a fork of v3.3.2 of the original add-on with the same functionality.
-The name and icon have been changed to differentiate from the original version.
+The first NG release, 4.0.0, was a fork of v3.3.2 of the original add-on with the same functionality.
+The name and icon have been changed to differentiate this add-on from the original add-on.
 
-News:
-Release 4.0.1 - Maintenance and Options for folder creation, storage type, TB69 support.
+[Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
-Original Add-on homepage:
-https://addons.thunderbird.net/en-US/thunderbird/addon/importexporttools/?src=search
+Original add-on’s homepage:
+https://addons.thunderbird.net/addon/importexporttools/
 
 Original extension homepage of the author:
 https://freeshell.de/~kaosmos/mboximport-en.html
@@ -55,7 +56,7 @@ Profiles:
  - Auto profile backup with schedule on shutdown
 
 SMS:
- - Import SMS from the "SMS Backup and Restore" program for Android and Nokia2AndroidSMS
+ - Import SMS from the “SMS Backup and Restore” program for Android and Nokia2AndroidSMS
  - Note: SMS not verified for NG (unable to test), please comment on issues
 
 ## Import Export Tools NG Add-On Installation
@@ -85,7 +86,7 @@ Post any issues or questions for Import Export Tools under [Issues](https://gith
  ImportExportTools NG changes are logged [here](CHANGELOG.md).
 
 ## Credits
-Original Author: [Paolo "Kaosmos"](https://addons.thunderbird.net/en-US/thunderbird/user/Paolo_Kaosmos/)  
+Original Author: [Paolo “Kaosmos”](https://addons.thunderbird.net/user/Paolo_Kaosmos/)  
 Developing Author: [Christopher Leidigh](https://github.com/cleidigh/)  
 
 <html>

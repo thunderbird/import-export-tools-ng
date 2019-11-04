@@ -60,7 +60,6 @@ SMS:
  - Note: SMS not verified for NG (unable to test), please comment on issues
 
 ## Import Export Tools NG Add-On Installation
-   
 
 Normal install (requires Internet access) from [Thunderbird Add-on site](https://addons.thunderbird.net/):
 - Download and install [ATN version](https://addons.thunderbird.net/addon/ImportExportToolsNG/) via the ``Add-ons Manager``.
@@ -70,6 +69,16 @@ Install (with or without Internet access) XPI directly:
 - Download and install [GitHub XPI version](xpi) via the ``Add-ons Manager``.
 - From the [Thunderbird Menu Bar](https://support.mozilla.org/en-US/kb/display-thunderbird-menus-and-toolbar), select ``Tools`` then ``Add-ons`` to open the ``Add-ons Manager``. Choose the ``Extensions`` tab, click the gear icon and choose ``Install Add-on From File…``
 - Choose [XPI file](xpi), install and restart.
+
+## Brief Usage Instructions
+
+The extension adds a new menu item in the Tools menu.
+(You may have to enable the Menu Bar from Preferences to make it display.)
+The new submenu displays a number of additional actions which you can peform
+to import or export various types of information into and out of Thunderbird.
+
+The original add-on (link above) has a number of notes about individual commands,
+though no structured user guide or handbook yet. (Sorry.)
 
 ## XPI Add-on Package Build instructions
 

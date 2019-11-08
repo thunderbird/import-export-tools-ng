@@ -9,7 +9,7 @@
 
   <!-- locale information -->
   <RDF:Description about="urn:mozilla:locale:hu-HU"
-        chrome:displayName="hu-HU (magyar - Hungarian)"
+        chrome:displayName="hu-HU (Hungarian - magyar)"
         chrome:name="hu-HU">
     <chrome:packages>
       <RDF:Seq about="urn:mozilla:locale:hu-HU:packages">

@@ -16,7 +16,7 @@
 <!ENTITY day30 "30 nap">
 <!ENTITY backupDestination "Célmappa">
 <!ENTITY backupFolderName "Biztonsági mentés mappájának neve">
-<!ENTITY autoName "Automatikus (mappa neve + dátum)">
+<!ENTITY autoName "Önműködő (mappa neve + dátum)">
 <!ENTITY customName "Testreszabott">
 <!ENTITY backupType "Biztonsági mentés tartalma">
 <!ENTITY allFiles "Minden profil fájl">

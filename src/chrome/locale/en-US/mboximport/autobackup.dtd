@@ -26,4 +26,4 @@
 <!ENTITY newFilesMode "Just files modified after last backup">
 <!ENTITY save "Save">
 <!ENTITY modal "Use a “modal” window">
-<!ENTITY MACwarning "N.B: Please close every other window, before continuing.">
+<!ENTITY MACwarning "N.B: Please close every other window before continuing.">

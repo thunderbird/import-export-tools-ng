@@ -91,7 +91,7 @@
 <!ENTITY sender "Sender">
 <!ENTITY recipient "Recipient">
 <!ENTITY exportRemoteFolder "Export remote folder">
-<!ENTITY skipMsgLabel "don’t save messages when the correspondent file exists">
+<!ENTITY skipMsgLabel "don’t save messages when the file already exists">
 <!ENTITY asCSV "Spreadsheet (CSV)">
 <!ENTITY exportZIP "Export folder (zipped)">
 <!ENTITY openFolderPath "Open directory where is the folder file">

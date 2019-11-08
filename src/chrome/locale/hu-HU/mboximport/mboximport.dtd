@@ -86,7 +86,7 @@
 <!ENTITY indexOff "kijelölt mappa használata indexek nélkül">
 <!ENTITY copyFolderPath "Mappa útvonalának másolása">
 <!ENTITY importSMS "SMS importálása">
-<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
+<!-- “SMS Backup and Restore” is the name of an Android application and so maybe it’s better not to translate it -->
 <!ENTITY android "„SMS mentése és visszaállítása” Android platformon">
 <!ENTITY sender "Feladó">
 <!ENTITY recipient "Címzett">

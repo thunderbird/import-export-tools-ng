@@ -696,8 +696,11 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 				auth = hdrs[3];
 		}
 
+		// Attachment flag may have changed from integer to string
+		// https://github.com/thundernest/import-export-tools-ng/issues/68
+		
 		var hasAtt;
-		if (hdrs[6] === 1)
+		if (hdrs[6] === 1 || hdrs[6] === '1')
 			hasAtt = "*";
 		else
 			hasAtt = "&nbsp;";

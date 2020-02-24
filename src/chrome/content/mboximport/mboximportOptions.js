@@ -79,6 +79,7 @@ function initMboxImportPanel() {
     document.getElementById("MBconfrimimport").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
     document.getElementById("MBhtmlasdisplayed").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
     document.getElementById("MBcliptextplain").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
+    document.getElementById("addCustomDateToAttachments").checked = IETprefs.getBoolPref("attachment_dir_add_date_custom_format");
     document.getElementById("MBsubmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
     document.getElementById("MBauthmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
     document.getElementById("MBrecmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
@@ -91,6 +92,12 @@ function initMboxImportPanel() {
         document.getElementById("customizeFilenames").checked = true;
     else
         document.getElementById("customizeFilenames").checked = false;
+
+
+    if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 3)
+        document.getElementById("useExtendedFormat").checked = true;
+    else
+        document.getElementById("useExtendedFormat").checked = false;
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMBOX.dir") > 0)
         document.getElementById("export_mbox_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
@@ -117,6 +124,7 @@ function initMboxImportPanel() {
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMSG.dir") > 0)
+
         document.getElementById("export_msgs_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMSG.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
@@ -140,20 +148,24 @@ function initMboxImportPanel() {
                 case "%d":
                     list.selectedItem = popup.childNodes[1];
                     break;
-                case "%k":
+                case "%D":
                     list.selectedItem = popup.childNodes[2];
                     break;
-                case "%n":
+                case "%k":
                     list.selectedItem = popup.childNodes[3];
                     break;
-                case "%a":
+                case "%n":
                     list.selectedItem = popup.childNodes[4];
                     break;
-                case "%r":
+                case "%a":
                     list.selectedItem = popup.childNodes[5];
                     break;
-                case "%e":
+                case "%r":
+
                     list.selectedItem = popup.childNodes[6];
+                    break;
+                case "%e":
+                    list.selectedItem = popup.childNodes[7];
                     break;
                 default:
                     list.selectedItem = popup.childNodes[0];
@@ -164,7 +176,11 @@ function initMboxImportPanel() {
     document.getElementById("addPrefix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix");
     try {
         document.getElementById("prefixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-    } catch (e) {}
+    } catch (e) { }
+
+    document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+    document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
+
 
     document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
@@ -228,7 +244,7 @@ function initMboxImportPanel() {
     try {
         document.getElementById("backupDir").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir");
         document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
-    } catch (e) {}
+    } catch (e) { }
 
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     var dir = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
@@ -376,10 +392,10 @@ function pickFile(el) {
     IETpickFile(el);
 }
 
-document.addEventListener("dialogaccept", function(event) {
+document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();
 });
 
-window.addEventListener("load", function(event) {
+window.addEventListener("load", function (event) {
     initMboxImportPanel();
 });

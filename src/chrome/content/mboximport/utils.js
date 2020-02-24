@@ -1,3 +1,4 @@
+// utilities import tests
 /*
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
@@ -38,6 +39,7 @@ IETstoreHeaders,
 */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -138,6 +140,7 @@ function getSubjectForHdr(hdr, dirPath) {
 
 	var fname;
 
+	// custom filename pattern
 	if (emlNameType === 2) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
@@ -153,18 +156,65 @@ function getSubjectForHdr(hdr, dirPath) {
 		else
 			smartName = authName;
 
+		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
 		pattern = pattern.replace("%s", subj);
 		pattern = pattern.replace("%k", key);
 		pattern = pattern.replace("%d", msgDate8601string);
+		pattern = pattern.replace("%D", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		pattern = pattern.replace("%n", smartName);
 		pattern = pattern.replace("%a", authName);
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
+		
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
 			var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
 			pattern = prefix + pattern;
 		}
+
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix")) {
+			var suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+			pattern = pattern + suffix;
+		}
+
+
 		fname = pattern;
+
+	} else if (emlNameType === 3) {
+		// extended filename format
+		var extendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
+
+		let subject = subj;
+		let index = key;
+
+		// Name
+		let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		// Sent of Drafts folder
+		let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
+		let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
+		let smartName;
+
+		let prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
+		let suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+
+		if (isSentFolder || isSentSubFolder > -1)
+			smartName = recName;
+		else
+			smartName = authName;
+
+		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
+		extendedFilenameFormat = extendedFilenameFormat.replace("${subject}", subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${sender}", authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient}", recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${smartname}", smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${suffix}", suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${dateCustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+		fname = extendedFilenameFormat;
 	} else {
 		fname = msgDate8601string + "-" + subj + "-" + hdr.messageKey;
 	}
@@ -172,7 +222,8 @@ function getSubjectForHdr(hdr, dirPath) {
 	if (mustcorrectname)
 		fname = nametoascii(fname);
 	else
-		fname = fname.replace(/[\/\\:,<>*\?\"\|\']/g, "_");
+		// fname = fname.replace(/[\/\\:,<>*\?\"\|\']/g, "_");
+		fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
@@ -193,7 +244,8 @@ function formatNameForSubject(str, recipients) {
 }
 
 function dateInSecondsTo8601(secs) {
-	var addTime = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
+	// var addTime = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
+	var addTime = false;
 	var msgDate = new Date(secs * 1000);
 	var msgDate8601 = msgDate.getFullYear();
 	var month;

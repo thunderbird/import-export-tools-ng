@@ -1213,12 +1213,22 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						const currentVersion = Services.appinfo.platformVersion;
 
 						// cleidigh - TB68 groupbox needs hbox/label
+
+						// Embedded in-line images can be either 'mailbox' for POP accounts
+						// or 'imap' for IMAP
+						// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
+
 						var imgs;
-						if (versionChecker.compare(currentVersion, "60.8") >= 0) {
-							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
-						} else {
-							imgs = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+						imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+						if (imgs === null) {
+							imgs = [];
 						}
+
+						var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+						if (imgsImap !== null) {
+							imgs = imgs.concat(imgsImap);
+						}
+						
 
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
@@ -1228,10 +1238,14 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							}
 
 							var aUrl;
-							if (versionChecker.compare(currentVersion, "60.8") >= 0) {
-								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
-							} else {
+
+							aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+							if (aUrl === null) {
 								aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+							}
+
+							if (aUrl === null) {
+								continue;
 							}
 
 							var embImg = embImgContainer.clone();

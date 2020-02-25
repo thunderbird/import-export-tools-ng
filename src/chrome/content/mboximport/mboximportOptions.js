@@ -1,3 +1,4 @@
+// cleidigh
 /*
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
@@ -178,6 +179,11 @@ function initMboxImportPanel() {
         document.getElementById("prefixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
     } catch (e) { }
 
+    document.getElementById("addSuffix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix");
+    try {
+        document.getElementById("suffixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+    } catch (e) { }
+
     document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
     document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
@@ -185,6 +191,7 @@ function initMboxImportPanel() {
     document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
+    extendedFormatCheck(document.getElementById("useExtendedFormat"));
 
     var charset = "";
     var textCharset = "";
@@ -289,6 +296,8 @@ function saveMboxImportPrefs() {
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
+        else if (document.getElementById("useExtendedFormat").checked)
+        IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
     else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
 
@@ -319,8 +328,12 @@ function saveMboxImportPrefs() {
     }
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_prefix", document.getElementById("addPrefix").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_suffix", document.getElementById("addSuffix").checked);
     // if (document.getElementById("prefixText").value != "")
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_prefix", document.getElementById("prefixText").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_suffix", document.getElementById("suffixText").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
@@ -360,6 +373,11 @@ function customNamesCheck(el) {
         document.getElementById("part3").setAttribute("disabled", "true");
         document.getElementById("addPrefix").setAttribute("disabled", "true");
         document.getElementById("prefixText").setAttribute("disabled", "true");
+        document.getElementById("addSuffix").setAttribute("disabled", "true");
+        document.getElementById("suffixText").setAttribute("disabled", "true");
+        document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
@@ -367,8 +385,51 @@ function customNamesCheck(el) {
         document.getElementById("part3").removeAttribute("disabled");
         document.getElementById("addPrefix").removeAttribute("disabled");
         document.getElementById("prefixText").removeAttribute("disabled");
+        document.getElementById("addSuffix").removeAttribute("disabled");
+        document.getElementById("suffixText").removeAttribute("disabled");
+        document.getElementById("customDateFormat").removeAttribute("disabled");
+        document.getElementById("customDateLabel").removeAttribute("disabled");
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("useExtendedFormat").setAttribute("checked", "false");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
     }
 }
+
+
+function extendedFormatCheck(el) {
+    if (el.checked) {
+        document.getElementById("customizeFilenames").setAttribute("checked", "false");
+        document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
+        document.getElementById("part1").setAttribute("disabled", "true");
+        document.getElementById("part2").setAttribute("disabled", "true");
+        document.getElementById("part3").setAttribute("disabled", "true");
+        document.getElementById("addPrefix").setAttribute("disabled", "true");
+        document.getElementById("prefixText").setAttribute("disabled", "true");
+        document.getElementById("addSuffix").setAttribute("disabled", "true");
+        document.getElementById("suffixText").setAttribute("disabled", "true");
+        document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+        document.getElementById("extendedFormat").removeAttribute("disabled");
+        document.getElementById("extendedFormatLabel").removeAttribute("disabled");
+
+    } else {
+        // document.getElementById("addtimeCheckbox").removeAttribute("disabled");
+        // document.getElementById("part1").removeAttribute("disabled");
+        // document.getElementById("part2").removeAttribute("disabled");
+        // document.getElementById("part3").removeAttribute("disabled");
+        // document.getElementById("addPrefix").removeAttribute("disabled");
+        // document.getElementById("prefixText").removeAttribute("disabled");
+        // document.getElementById("addSuffix").removeAttribute("disabled");
+        // document.getElementById("suffixText").removeAttribute("disabled");
+        // document.getElementById("customDateFormat").removeAttribute("disabled");
+        // document.getElementById("customDateLabel").removeAttribute("disabled");
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
+    }
+}
+
 
 function toggleDirCheck(el) {
     if (!el.checked) {

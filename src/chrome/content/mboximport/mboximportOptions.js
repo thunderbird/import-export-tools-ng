@@ -80,7 +80,6 @@ function initMboxImportPanel() {
     document.getElementById("MBconfrimimport").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
     document.getElementById("MBhtmlasdisplayed").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
     document.getElementById("MBcliptextplain").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
-    document.getElementById("addCustomDateToAttachments").checked = IETprefs.getBoolPref("attachment_dir_add_date_custom_format");
     document.getElementById("MBsubmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
     document.getElementById("MBauthmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
     document.getElementById("MBrecmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");

@@ -29,7 +29,6 @@ pref("extensions.importexporttoolsng.export.filename_date_custom_format", "%Y%m%
 pref("extensions.importexporttoolsng.export.filename_use_extended_format", "false");
 pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date}-${index}");
 pref("extensions.importexporttoolsng.export.use_container_folder", true);
-pref("extensions.importexporttoolsng.export.attachment_dir_add_date_custom_format", false);
 pref("extensions.importexporttoolsng.sms.add_subject", true);
 pref("extensions.importexporttoolsng.autobackup.last", 0);
 pref("extensions.importexporttoolsng.autobackup.type", 0);

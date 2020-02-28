@@ -43,9 +43,11 @@
 						<hbox align="center">
 							<checkbox id="MBhtmlasdisplayed" label="&MBlabel4;" />
 						</hbox>
+						<!-- 
 						<hbox align="center">
 							<checkbox id="addCustomDateToAttachments" label="Add custom date to attachment directories" />
 						</hbox>
+						 -->
 						<hbox align="center">
 							<checkbox id="MBcliptextplain" label="&MBlabel5;" />
 						</hbox>
@@ -170,7 +172,7 @@
 						<spacer height="10px" />
 						<hbox>
 							<label id="customDateLabel" style="padding-left: 3px;" >Custom Date: </label>
-							<textbox id="customDateFormat" value="%Y-%m-%a %T" />
+							<textbox id="customDateFormat" />
 						</hbox>
 						<!-- <spacer height="8px" style="border-bottom: 1px solid #303030; padding: 10px;" /> -->
 						<!-- <html:hr color="grey" width="85%"/> -->
@@ -186,7 +188,7 @@
 						<spacer height="6px" />
 						<hbox>
 							<label id="extendedFormatLabel">Format: </label>
-							<textbox id="extendedFormat" value="{prefix}$xyz-{subject}-{dateCustom}-[foobar]-{index}-{suffix}" size="65"/>
+							<textbox id="extendedFormat" size="70"/>
 						</hbox>
 						</groupbox>
 						<groupbox>

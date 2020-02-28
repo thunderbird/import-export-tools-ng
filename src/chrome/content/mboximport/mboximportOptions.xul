@@ -43,6 +43,11 @@
 						<hbox align="center">
 							<checkbox id="MBhtmlasdisplayed" label="&MBlabel4;" />
 						</hbox>
+						<!-- 
+						<hbox align="center">
+							<checkbox id="addCustomDateToAttachments" label="Add custom date to attachment directories" />
+						</hbox>
+						 -->
 						<hbox align="center">
 							<checkbox id="MBcliptextplain" label="&MBlabel5;" />
 						</hbox>
@@ -74,20 +79,22 @@
 							<rows>
 								<row align="center">
 									<label value="&MBlabel7a;" />
-									<textbox id="MBsubmaxlen" maxlength="3" size="3" /><label value=" &MBlabel7b;" />
+									<textbox id="MBsubmaxlen" maxlength="3" size="3" />
+									<label value=" &MBlabel7b;" />
 								</row>
 								<row align="center">
 									<label value="&MBlabel7c;" />
-									<textbox id="MBauthmaxlen" maxlength="3" size="3" /><label value=" &MBlabel7b;" />
+									<textbox id="MBauthmaxlen" maxlength="3" size="3" />
+									<label value=" &MBlabel7b;" />
 								</row>
 								<row align="center">
 									<label value="&MBlabel7d;" />
-									<textbox id="MBrecmaxlen" maxlength="3" size="3" /><label value=" &MBlabel7b;" />
+									<textbox id="MBrecmaxlen" maxlength="3" size="3" />
+									<label value=" &MBlabel7b;" />
 								</row>
 							</rows>
 						</grid>
 					</groupbox>
-					
 				</hbox>
 				<hbox flex="1" pack="end" >
 					<image src="chrome://mboximport/content/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
@@ -115,6 +122,7 @@
 									<menupopup id="part1-popup-list">
 										<menuitem id="m0" label="&subject;" value="%s" />
 										<menuitem label="&date;" value="%d" />
+										<menuitem label="Date (Custom)" value="%D" />
 										<menuitem label="&key;" value="%k" />
 										<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 										<menuitem label="&name; (&sender;)" value="%a" />
@@ -126,6 +134,7 @@
 									<menupopup id="part2-popup-list">
 										<menuitem label="&subject;" value="%s" />
 										<menuitem label="&date;" value="%d" selected="true" />
+										<menuitem label="Date (Custom)" value="%D" />
 										<menuitem label="&key;" value="%k" />
 										<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 										<menuitem label="&name; (&sender;)" value="%a" />
@@ -138,6 +147,7 @@
 									<menupopup id="part3-popup-list">
 										<menuitem label="&subject;" value="%s" />
 										<menuitem label="&date;" value="%d" />
+										<menuitem label="Date (Custom)" value="%D" />
 										<menuitem label="&key;" value="%k" selected="true" />
 										<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 										<menuitem label="&name; (&sender;)" value="%a" />
@@ -146,15 +156,40 @@
 									</menupopup>
 								</menulist>
 							</hbox>
-							<spacer height="10px" />
-							<hbox align="center">
-								<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
-							</hbox>
-							<hbox align="center">
+
+							<spacer height="6px" />
+
+						<hbox align="center" style="display: none;"><checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" /></hbox>
+
+						<hbox align="center">
+							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
 								<textbox id="prefixText" />
+								<checkbox id="addSuffix" label="Add Suffix" checked="false" />
+								<textbox id="suffixText" />
 							</hbox>
-							<spacer height="10px" />
+						</hbox>
+						<spacer height="10px" />
+						<hbox>
+							<label id="customDateLabel" style="padding-left: 3px;" >Custom Date: </label>
+							<textbox id="customDateFormat" />
+						</hbox>
+						<!-- <spacer height="8px" style="border-bottom: 1px solid #303030; padding: 10px;" /> -->
+						<!-- <html:hr color="grey" width="85%"/> -->
+						<spacer height="6px" />
+						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" >
+						</html:div>
+
+						<spacer height="6px" />
+						<hbox align="center">
+							<checkbox id="useExtendedFormat" label="Use Extended Format" checked="false"
+									oncommand="setTimeout(extendedFormatCheck,200,this);" />
+						</hbox>
+						<spacer height="6px" />
+						<hbox>
+							<label id="extendedFormatLabel">Format: </label>
+							<textbox id="extendedFormat" size="70"/>
+						</hbox>
 						</groupbox>
 						<groupbox>
 							<caption label="&misc;" />
@@ -180,7 +215,6 @@
 						<hbox class="groupbox-title">
 							<label class="header groupbox-label">&savedirs;</label>
 						</hbox>
-
 						<grid>
 							<columns>
 								<column />

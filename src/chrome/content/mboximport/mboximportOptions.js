@@ -1,3 +1,4 @@
+// cleidigh
 /*
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
@@ -92,6 +93,12 @@ function initMboxImportPanel() {
     else
         document.getElementById("customizeFilenames").checked = false;
 
+
+    if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 3)
+        document.getElementById("useExtendedFormat").checked = true;
+    else
+        document.getElementById("useExtendedFormat").checked = false;
+
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMBOX.dir") > 0)
         document.getElementById("export_mbox_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
@@ -117,6 +124,7 @@ function initMboxImportPanel() {
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMSG.dir") > 0)
+
         document.getElementById("export_msgs_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMSG.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
@@ -140,20 +148,24 @@ function initMboxImportPanel() {
                 case "%d":
                     list.selectedItem = popup.childNodes[1];
                     break;
-                case "%k":
+                case "%D":
                     list.selectedItem = popup.childNodes[2];
                     break;
-                case "%n":
+                case "%k":
                     list.selectedItem = popup.childNodes[3];
                     break;
-                case "%a":
+                case "%n":
                     list.selectedItem = popup.childNodes[4];
                     break;
-                case "%r":
+                case "%a":
                     list.selectedItem = popup.childNodes[5];
                     break;
-                case "%e":
+                case "%r":
+
                     list.selectedItem = popup.childNodes[6];
+                    break;
+                case "%e":
+                    list.selectedItem = popup.childNodes[7];
                     break;
                 default:
                     list.selectedItem = popup.childNodes[0];
@@ -164,11 +176,21 @@ function initMboxImportPanel() {
     document.getElementById("addPrefix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix");
     try {
         document.getElementById("prefixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-    } catch (e) {}
+    } catch (e) { }
+
+    document.getElementById("addSuffix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix");
+    try {
+        document.getElementById("suffixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+    } catch (e) { }
+
+    document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+    document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
+
 
     document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
+    extendedFormatCheck(document.getElementById("useExtendedFormat"));
 
     var charset = "";
     var textCharset = "";
@@ -228,7 +250,7 @@ function initMboxImportPanel() {
     try {
         document.getElementById("backupDir").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir");
         document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
-    } catch (e) {}
+    } catch (e) { }
 
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     var dir = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
@@ -273,6 +295,8 @@ function saveMboxImportPrefs() {
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
+        else if (document.getElementById("useExtendedFormat").checked)
+        IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
     else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
 
@@ -303,8 +327,12 @@ function saveMboxImportPrefs() {
     }
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_prefix", document.getElementById("addPrefix").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_suffix", document.getElementById("addSuffix").checked);
     // if (document.getElementById("prefixText").value != "")
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_prefix", document.getElementById("prefixText").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_suffix", document.getElementById("suffixText").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
@@ -344,6 +372,11 @@ function customNamesCheck(el) {
         document.getElementById("part3").setAttribute("disabled", "true");
         document.getElementById("addPrefix").setAttribute("disabled", "true");
         document.getElementById("prefixText").setAttribute("disabled", "true");
+        document.getElementById("addSuffix").setAttribute("disabled", "true");
+        document.getElementById("suffixText").setAttribute("disabled", "true");
+        document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
@@ -351,8 +384,51 @@ function customNamesCheck(el) {
         document.getElementById("part3").removeAttribute("disabled");
         document.getElementById("addPrefix").removeAttribute("disabled");
         document.getElementById("prefixText").removeAttribute("disabled");
+        document.getElementById("addSuffix").removeAttribute("disabled");
+        document.getElementById("suffixText").removeAttribute("disabled");
+        document.getElementById("customDateFormat").removeAttribute("disabled");
+        document.getElementById("customDateLabel").removeAttribute("disabled");
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("useExtendedFormat").setAttribute("checked", "false");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
     }
 }
+
+
+function extendedFormatCheck(el) {
+    if (el.checked) {
+        document.getElementById("customizeFilenames").setAttribute("checked", "false");
+        document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
+        document.getElementById("part1").setAttribute("disabled", "true");
+        document.getElementById("part2").setAttribute("disabled", "true");
+        document.getElementById("part3").setAttribute("disabled", "true");
+        document.getElementById("addPrefix").setAttribute("disabled", "true");
+        document.getElementById("prefixText").setAttribute("disabled", "true");
+        document.getElementById("addSuffix").setAttribute("disabled", "true");
+        document.getElementById("suffixText").setAttribute("disabled", "true");
+        document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+        document.getElementById("extendedFormat").removeAttribute("disabled");
+        document.getElementById("extendedFormatLabel").removeAttribute("disabled");
+
+    } else {
+        // document.getElementById("addtimeCheckbox").removeAttribute("disabled");
+        // document.getElementById("part1").removeAttribute("disabled");
+        // document.getElementById("part2").removeAttribute("disabled");
+        // document.getElementById("part3").removeAttribute("disabled");
+        // document.getElementById("addPrefix").removeAttribute("disabled");
+        // document.getElementById("prefixText").removeAttribute("disabled");
+        // document.getElementById("addSuffix").removeAttribute("disabled");
+        // document.getElementById("suffixText").removeAttribute("disabled");
+        // document.getElementById("customDateFormat").removeAttribute("disabled");
+        // document.getElementById("customDateLabel").removeAttribute("disabled");
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
+    }
+}
+
 
 function toggleDirCheck(el) {
     if (!el.checked) {
@@ -376,10 +452,10 @@ function pickFile(el) {
     IETpickFile(el);
 }
 
-document.addEventListener("dialogaccept", function(event) {
+document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();
 });
 
-window.addEventListener("load", function(event) {
+window.addEventListener("load", function (event) {
     initMboxImportPanel();
 });

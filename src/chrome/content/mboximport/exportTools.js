@@ -50,7 +50,8 @@ IETlogger,
 IETcopyStrToClip,
 MsgHdrToMimeMessage,
 findGoodFolderName,
-
+IETgetComplexPref,
+constructAttachmentsFilename,
 */
 
 /* eslint complexity: [0,30] */
@@ -698,7 +699,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 		// Attachment flag may have changed from integer to string
 		// https://github.com/thundernest/import-export-tools-ng/issues/68
-		
+
 		var hasAtt;
 		if (hdrs[6] === 1 || hdrs[6] === '1')
 			hasAtt = "*";
@@ -1053,13 +1054,24 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					var attName;
 					var attNameAscii;
 
+					console.debug(aMsgHdr);
+
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
 						// if (att.contentType.indexOf("text/plain") === 0 )
 						//	continue;
 						if (noDir) {
 							var attDirContainer = file.clone();
-							attDirContainer.append("Attachments");
+							var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+
+							// attachmentsExtendedFilenameFormat = "1";
+							if (attachmentsExtendedFilenameFormat === "") {
+								attDirContainer.append("Attachments");
+							} else {
+								let afname = constructAttachmentsFilename(1, hdr);
+								attDirContainer.append(afname);
+
+							}
 							attDirContainer.createUnique(1, 0775);
 							footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 							noDir = false;
@@ -1228,12 +1240,19 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						if (imgsImap !== null) {
 							imgs = imgs.concat(imgsImap);
 						}
-						
 
+						// update for extended naming
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
 								embImgContainer = file.clone();
-								embImgContainer.append("EmbeddedImages");
+								var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+
+								if (attachmentsExtendedFilenameFormat === "") {
+									embImgContainer.append("EmbeddedImages");
+								} else {
+									let afname = constructAttachmentsFilename(2, hdr);
+									embImgContainer.append(afname);
+								}
 								embImgContainer.createUnique(1, 0775);
 							}
 

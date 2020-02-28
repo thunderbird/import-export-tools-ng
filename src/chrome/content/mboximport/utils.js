@@ -1,4 +1,3 @@
-// utilities import tests
 /*
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.

@@ -166,7 +166,7 @@ function getSubjectForHdr(hdr, dirPath) {
 		pattern = pattern.replace("%a", authName);
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
-		
+
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
 			var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
 			pattern = prefix + pattern;
@@ -681,3 +681,75 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 }
 
 
+function constructAttachmentsFilename(type, hdr) {
+
+	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
+	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
+	var subMaxLen = cutSubject ? 50 : -1;
+
+	// Subject
+	var subj;
+	if (hdr.mime2DecodedSubject) {
+		subj = hdr.mime2DecodedSubject;
+		if (hdr.flags & 0x0010)
+			subj = "Re_" + subj;
+	} else {
+		subj = IETnosub;
+	}
+
+	if (subMaxLen > 0)
+		subj = subj.substring(0, subMaxLen);
+	subj = nametoascii(subj);
+
+	// Date - Key
+	var dateInSec = hdr.dateInSeconds;
+	var key = hdr.messageKey;
+
+	var fname;
+	var attachmentsExtendedFilenameFormat;
+
+	// extended filename format
+	if (type === 1) {
+		attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+	} else {
+		attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+	}
+
+	// attachmentsExtendedFilenameFormat = "${dateCustom}-Attachments";
+
+	let subject = subj;
+	let index = key;
+
+	// Name
+	let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+	let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+	// Sent of Drafts folder
+	let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
+	let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
+	let smartName;
+
+	let prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
+	let suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+
+	if (isSentFolder || isSentSubFolder > -1)
+		smartName = recName;
+	else
+		smartName = authName;
+
+	let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${subject}", subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${sender}", authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient}", recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${smartname}", smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${suffix}", suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${dateCustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+	fname = attachmentsExtendedFilenameFormat;
+
+	return fname;
+}

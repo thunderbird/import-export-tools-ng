@@ -1,4 +1,30 @@
-
+/* 
 .groupbox-label {
 	background-color: #ffffff !important;
+}
+ */
+groupbox  /* from chrome://messenger/skin/messenger.css */
+{
+  -moz-appearance: groupbox;
+  border: 2px groove ThreeDFace;
+  border-radius: 3px;
+  margin: 3px;
+  margin-top: 1em;
+  padding: 3px 0 6px;
+}
+
+groupbox > .groupbox-title > .header  /* from chrome://messenger/skin/messenger.css */
+{
+  font-weight: normal;
+  margin-top: -1em;
+  margin-inline-start: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
+  background-color: -moz-dialog;
+}
+
+groupbox > .groupbox-title > .header
+{
+    margin-top: -13px;
+	background-color: inherit;
 }

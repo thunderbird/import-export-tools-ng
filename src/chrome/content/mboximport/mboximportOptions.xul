@@ -157,7 +157,7 @@
 								</menulist>
 							</hbox>
 
-							<spacer height="6px" />
+							<spacer height="8px" />
 
 						<hbox align="center" style="display: none;"><checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" /></hbox>
 
@@ -165,18 +165,18 @@
 							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
 								<textbox id="prefixText" />
-								<checkbox id="addSuffix" label="Add Suffix" checked="false" />
-								<textbox id="suffixText" />
+								<checkbox id="addSuffix" label="Add Suffix" checked="false"  style="padding-left: 46px;" />
+								<textbox id="suffixText" size="21"/>
 							</hbox>
 						</hbox>
 						<spacer height="10px" />
 						<hbox>
-							<label id="customDateLabel" style="padding-left: 3px;" >Custom Date: </label>
+							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >Custom Date: </label>
 							<textbox id="customDateFormat" />
 						</hbox>
 						<!-- <spacer height="8px" style="border-bottom: 1px solid #303030; padding: 10px;" /> -->
 						<!-- <html:hr color="grey" width="85%"/> -->
-						<spacer height="6px" />
+						<!-- <spacer height="2px" /> -->
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" >
 						</html:div>
 
@@ -186,9 +186,9 @@
 									oncommand="setTimeout(extendedFormatCheck,200,this);" />
 						</hbox>
 						<spacer height="6px" />
-						<hbox>
-							<label id="extendedFormatLabel">Format: </label>
-							<textbox id="extendedFormat" size="70"/>
+						<hbox valign="center">
+							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">Format: </label>
+							<textbox id="extendedFormat" size="71"/>
 						</hbox>
 						</groupbox>
 						<groupbox>

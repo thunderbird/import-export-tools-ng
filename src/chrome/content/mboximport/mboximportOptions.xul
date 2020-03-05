@@ -167,7 +167,7 @@
 							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >Custom Date: </label>
 							<textbox id="customDateFormat" />
 							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 3px;"
-            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html')" tooltiptext="Date Format Reference" />
+            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#customdate_format_help')" tooltiptext="Date Format Reference" />
 						</hbox>
 
 						<spacer height="4px" />
@@ -176,6 +176,8 @@
 						<hbox align="center">
 							<checkbox id="useExtendedFormat" label="Use Extended Format" checked="false"
 									oncommand="setTimeout(extendedFormatCheck,200,this);" />
+							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 3px;"
+            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#ext_filename_format_help')" tooltiptext="Extended Filename Format Reference" />
 						</hbox>
 						<spacer height="6px" />
 						<hbox valign="center">

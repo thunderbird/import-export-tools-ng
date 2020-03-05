@@ -457,6 +457,27 @@ function pickFile(el) {
     IETpickFile(el);
 }
 
+function loadTabPage(url) {
+	let tabmail = getMail3Pane();
+	// const ref = "https://thdoan.github.io/strftime/";
+	tabmail.openTab("chromeTab", { chromePage: url });
+}
+
+
+function strftimeReferenceLoad() {
+	let tabmail = getMail3Pane();
+	const ref = "https://thdoan.github.io/strftime/";
+	tabmail.openTab("chromeTab", { chromePage: ref });
+}
+
+function getMail3Pane() {
+	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
+	return w;
+}
+
+
 document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();
 });

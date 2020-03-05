@@ -73,6 +73,11 @@ function initMboxImportPanel() {
         }
     }
 
+    var os = navigator.platform.toLowerCase();
+    if (!os.includes("win")) {
+        document.documentElement.style.setProperty("--groupbox-header-bg", "#f0f0f0");
+    }
+
     IETsetCharsetPopup("");
 
     document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");

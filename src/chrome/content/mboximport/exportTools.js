@@ -647,14 +647,31 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	// Build the index html page
 	clone2.append("index.html");
 	clone2.createUnique(0, 0644);
-	var data = '<html>\r\n<head>\r\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + myDate.toLocaleString() + ")</h2>";
-	data = data + '<table width="99%" border="1">';
-	data = data + "<tr><td><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></td>"; // Subject
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></td>"; // From
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></td>"; // To
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1007) + "</b></td>"; // Date
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></td>"; // Attachment
-	data = data + "</tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+
+	// improve index table formatting
+	let styles = '<style>\r\n';
+	styles += 'table { border-collapse: collapse; }\r\n';
+	styles += 'th { background-color: #e6ffff; }\r\n';
+	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
+	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
+	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
+	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += '</style>\r\n';
+
+	var data = '<html>\r\n<head>\r\n';
+
+	data = data + styles;
+	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + myDate.toLocaleString() + ")</h2>";
+
+	data = data + '<table width="99%" border="1" >';
+	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + "</b></th>"; // Date
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "</tr>";
+
+
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
@@ -701,9 +718,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		// https://github.com/thundernest/import-export-tools-ng/issues/68
 
 		var hasAtt;
-		if (hdrs[6] === 1 || hdrs[6] === '1')
-			hasAtt = "*";
-		else
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
+			hasAtt = "* ";
+		} else
 			hasAtt = "&nbsp;";
 
 		// Find hour and minutes of the message

@@ -1,0 +1,188 @@
+<! DOCTYPE html>
+<html lang = "en">
+
+<head>
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "ancho = ancho del dispositivo, escala inicial = 1.0">
+<title> Ayuda de ImportExportTools NG </title>
+</head>
+
+<cuerpo>
+
+
+<h1 id = "customdate_format_help"> Formato de fecha personalizado: basado en la implementación de TDohan strftime () </h1>
+<p> Un puerto JavaScript de <a href="http://man7.org/linux/man-pages/man3/strftime.3.html"> <code> strftime () </code> </a>,
+una función para formatear la fecha y la hora. </p>
+<h3> Especificaciones de conversión: </h3>
+<table>
+<thead>
+<tr>
+<th> Secuencia </th>
+<th> Descripción </th>
+</tr>
+</thead>
+<cuerpo>
+<tr>
+<td><code>%a</code> </td>
+<td> Nombre abreviado del día de la semana. </td>
+</tr>
+<tr>
+<td><code>%A</code> </td>
+<td> Nombre completo del día de la semana. </td>
+</tr>
+<tr>
+<td><code>%b</code> </td>
+<td> Nombre abreviado del mes. </td>
+</tr>
+<tr>
+<td><code>%B</code> </td>
+<td> Nombre completo del mes. </td>
+</tr>
+<tr>
+<td><code>%c</code> </td>
+<td> Representación preferida de fecha y hora (UTC) para el entorno local actual. </td>
+</tr>
+<tr>
+<td><code>%C</code> </td>
+<td> Número de siglo (año / 100) como un entero de 2 dígitos. </td>
+</tr>
+<tr>
+<td><code>%d</code> </td>
+<td> Día del mes como número decimal (rango 01 a 31). </td>
+</tr>
+<tr>
+<td><code>%e</code> </td>
+<td> Día del mes como número decimal (rango 1 a 31). </td>
+</tr>
+<tr>
+<td><code>%F</code> </td>
+<td> Formato de fecha ISO 8601 (equivalente a <code>% Y-% m-% d </code>). </td>
+</tr>
+<tr>
+<td><code>%G</code> </td>
+<td> ISO 8601 año basado en la semana con siglo como número decimal. El año de 4 dígitos corresponde al ISO
+número de semana (consulte <code>% V </code>). Tiene el mismo formato y valor que <code>% Y </code>, excepto
+que si el número de semana ISO pertenece al año anterior o siguiente, ese año se usa en su lugar. </td>
+</tr>
+<tr>
+<td><code>%g</code> </td>
+<td> Como <code>% G </code>, pero sin siglo, es decir, con un año de 2 dígitos (00-99). </td>
+</tr>
+<tr>
+<td><code>%H</code> </td>
+<td> Hora como número decimal usando un reloj de 24 horas (rango 00 a 23). Consulte también <code>% k </code>. </td>
+</tr>
+<tr>
+<td><code>%I</code> </td>
+<td> Hora como número decimal usando un reloj de 12 horas (rango 01 a 12). Consulte también <code>% l </code>. </td>
+</tr>
+<tr>
+<td><code>%j</code> </td>
+<td> Día del año como un número decimal (rango 001 a 366). </td>
+</tr>
+<tr>
+<td><code>%k</code> </td>
+<td> Hora como un número decimal usando un reloj de 24 horas (rango de 0 a 23). Consulte también <code>% H </code>. </td>
+</tr>
+<tr>
+<td><code>%l</code> </td>
+<td> Hora como un número decimal usando un reloj de 12 horas (rango 1 a 12). Consulte también <code>% I </code>. </td>
+</tr>
+<tr>
+<td><code>%m</code> </td>
+<td> Mes como un número decimal (rango 01 a 12). </td>
+</tr>
+<tr>
+<td><code>%n</code> </td>
+<td> Mes como un número decimal (rango 1 a 12). </td>
+</tr>
+<tr>
+<td><code>%M</code> </td>
+<td> Minuto como un número decimal (rango 00 a 59). </td>
+</tr>
+<tr>
+<td><code>%p</code> </td>
+<td> "AM" o "PM" según el valor de tiempo dado. El mediodía se trata como "PM" y la medianoche como "AM".
+</td>
+</tr>
+<tr>
+<td><code>%P</code> </td>
+<td> Como <code>% p </code> pero en minúsculas ("am" o "pm"). </td>
+</tr>
+<tr>
+<td><code>%s</code> </td>
+<td> Número de segundos desde la Época, 1970-01-01 00:00:00 +0000 (UTC). </td>
+</tr>
+<tr>
+<td><code>%S</code> </td>
+<td> Segundo como un número decimal (rango 00 a 59). </td>
+</tr>
+<tr>
+<td><code>%u</code> </td>
+<td> Día de la semana como decimal (rango 1 a 7), siendo el lunes 1. Ver también <code>% w </code>. </td>
+</tr>
+<tr>
+<td><code>%V</code> </td>
+<td> Número de semana ISO 8601 del año actual como un número decimal (rango 01 a 53), donde la semana 1 es el
+primera semana que tiene al menos 4 días en el año nuevo (es decir, el primer jueves). </td>
+</tr>
+<tr>
+<td><code>%w</code> </td>
+<td> Día de la semana como decimal (rango de 0 a 6), siendo el domingo 0. Véase también <code>% u </code>. </td>
+</tr>
+<tr>
+<td><code>%x</code> </td>
+<td> Representación de fecha preferida para la configuración regional actual sin la hora. </td>
+</tr>
+<tr>
+<td><code>%X</code> </td>
+<td> Representación de hora preferida para la configuración regional actual sin la fecha. </td>
+</tr>
+<tr>
+<td><code>%y</code> </td>
+<td> Año como un número decimal sin un siglo (rango 00 a 99). </td>
+</tr>
+<tr>
+<td><code>%Y</code> </td>
+<td> Año como un número decimal que incluye el siglo. </td>
+</tr>
+<tr>
+<td><code>%z</code> </td>
+<td> La zona horaria numérica <code> + hhmm </code> o <code> -hhmm </code> (es decir, el desplazamiento de hora y minuto
+de UTC). </td>
+</tr>
+<tr>
+<td><code>%Z</code> </td>
+<td> Nombre o abreviatura de zona horaria. </td>
+</tr>
+</tbody>
+</table>
+<h3> Notas de compatibilidad: </h3>
+<ul>
+<li> <code>% c </code>: la cadena formateada es ligeramente diferente </li>
+<li> <code>% D </code>: no implementado (use <code>% m /% d /% y </code> o <code>% d /% m /% y </code>) < / li>
+<li> <code>% e </code>: no se agrega espacio </li>
+<li> <code>% E </code> - no implementado </li>
+<li> <code>% h </code> - no implementado (use <code>% b </code>) </li>
+<li> <code>% k </code>: no se agrega espacio </li>
+<li> <code>% n </code> - como <code>% m </code>, pero sin cero a la izquierda (use <code> \ n </code> para nueva línea) </li>
+<li> <code>% O </code> - no implementado </li>
+<li> <code>% r </code> - no implementado (use <code>% I:% M:% S% p </code>) </li>
+<li> <code>% R </code> - no implementado (use <code>% H:% M </code>) </li>
+<li> <code>% t </code> - no implementado (use <code> \ t </code>) </li>
+<li> <code>% T </code> - no implementado (use <code>% H:% M:% S </code>) </li>
+<li> <code>% U </code> - no implementado </li>
+<li> <code>% W </code> - no implementado </li>
+<li> <code>% + </code> - no implementado </li>
+<li> <code> %% </code> - no implementado (use <code>% </code>) </li>
+</ul>
+
+<br> <br>
+
+<h1 id = "ext_filename_format_help"> Formato de nombre de archivo extendido: </h1>
+<br>
+El formato de nombre de archivo extendido utiliza tokens
+
+</body>
+
+</html>

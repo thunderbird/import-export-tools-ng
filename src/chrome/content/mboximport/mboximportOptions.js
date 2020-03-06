@@ -300,7 +300,7 @@ function saveMboxImportPrefs() {
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
-        else if (document.getElementById("useExtendedFormat").checked)
+    else if (document.getElementById("useExtendedFormat").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
     else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
@@ -457,24 +457,32 @@ function pickFile(el) {
     IETpickFile(el);
 }
 
-function loadTabPage(url) {
-	let tabmail = getMail3Pane();
-	// const ref = "https://thdoan.github.io/strftime/";
-	tabmail.openTab("chromeTab", { chromePage: url });
+function loadTabPage(url, load_localized_page) {
+    if (load_localized_page) {
+        let tb_locale = Services.locale.appLocaleAsBCP47;
+        if (!tb_locale) {
+            tb_locale = "en-US";
+        }
+        let urlparts = url.split('.');
+        url = `${urlparts[0]}-${tb_locale}.${urlparts[1]}`;
+    }
+    let tabmail = getMail3Pane();
+    // const ref = "https://thdoan.github.io/strftime/";
+    tabmail.openTab("chromeTab", { chromePage: url });
 }
 
 
 function strftimeReferenceLoad() {
-	let tabmail = getMail3Pane();
-	const ref = "https://thdoan.github.io/strftime/";
-	tabmail.openTab("chromeTab", { chromePage: ref });
+    let tabmail = getMail3Pane();
+    const ref = "https://thdoan.github.io/strftime/";
+    tabmail.openTab("chromeTab", { chromePage: ref });
 }
 
 function getMail3Pane() {
-	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
-		.getService(Ci.nsIWindowMediator)
-		.getMostRecentWindow("mail:3pane");
-	return w;
+    var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Ci.nsIWindowMediator)
+        .getMostRecentWindow("mail:3pane");
+    return w;
 }
 
 

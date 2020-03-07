@@ -1,5 +1,6 @@
 :root {
-  --groupbox-header-bg: white
+  --groupbox-header-bg: white;
+  --question-height: 24px;
 }
 
 .groupbox-multi-os {
@@ -26,4 +27,8 @@
   margin-inline-start: 3px;
   padding-right: 3px;
   padding-left: 3px;
+}
+
+.adjusted-image-height {
+  height: var(--question-height);
 }

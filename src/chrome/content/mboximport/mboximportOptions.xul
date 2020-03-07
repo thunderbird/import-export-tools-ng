@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE dialog [ 
 
+
 <!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 %mainDTD;
+
 
 
 <!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
@@ -12,6 +14,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
 <?xml-stylesheet href="chrome://mboximport/content/mboximport.css" type="text/css"?>
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
@@ -56,7 +59,7 @@
 						</hbox>
 						<hbox align="center">
 							<label value="&csvSep;" />
-							<textbox id="csvSep" size="1" maxlength="1" />
+							<html:input id="csvSep" size="1" maxlength="1" />
 						</hbox>
 						<hbox align="center">
 							<label value="&textCharset;" />
@@ -71,19 +74,19 @@
 								<column />
 							</columns>
 							<rows>
-								<row align="center">
+								<row align="center" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
-									<textbox id="MBsubmaxlen" maxlength="3" size="3" />
+									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</row>
-								<row align="center">
+								<row align="center"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
-									<textbox id="MBauthmaxlen" maxlength="3" size="3" />
+									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</row>
-								<row align="center">
+								<row align="center" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
-									<textbox id="MBrecmaxlen" maxlength="3" size="3" />
+									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</row>
 							</rows>
@@ -154,35 +157,49 @@
 						<hbox align="center" style="display: none;">
 							<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" width="100%" style="background-color: ;" >
 							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
-								<textbox id="prefixText" />
-								<checkbox id="addSuffix" label="Add Suffix" checked="false"  style="padding-left: 46px;" />
-								<textbox id="suffixText" size="21"/>
+								<html:input id="prefixText" />
 							</hbox>
+
+								<hbox flex="1" style="background-color: ;  padding-right: 2px;" pack="end" >
+								<checkbox id="addSuffix" label="Add Suffix" checked="false"  style="padding-left: 12px;" />
+								<html:input id="suffixText" size="22"/>
+								</hbox>
 						</hbox>
+						
 						<spacer height="10px" />
-						<hbox>
+
+
+						<hbox style="height: ;" >
 							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >Custom Date: </label>
-							<textbox id="customDateFormat" />
-							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 3px;"
-            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#customdate_format_help', true)" tooltiptext="Date Format Reference" />
+							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
+								<html:input id="customDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							</hbox>
+							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
+ 
+								<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+            					  maxwidth="16px"  onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#customdate_format_help', true)" tooltiptext="Date Format Reference" />
+
+							</hbox>
 						</hbox>
 
 						<spacer height="4px" />
+
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
-						<hbox align="center">
-							<checkbox id="useExtendedFormat" label="Use Extended Format" checked="false"
-									oncommand="setTimeout(extendedFormatCheck,200,this);" />
-							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 3px;"
-            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#ext_filename_format_help')" tooltiptext="Extended Filename Format Reference" />
+						<hbox align="center" class="input-container" style="padding-left: 4px;">
+							<html:input type="checkbox" id="useExtendedFormat" checked="false"
+									oncommand="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
+							<label style="padding-left: -4px;">Use Extended Format</label>
+							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#ext_filename_format_help', true)" tooltiptext="Extended Filename Format Reference" />
 						</hbox>
 						<spacer height="6px" />
-						<hbox valign="center">
+						<hbox valign="center" >
 							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">Format: </label>
-							<textbox id="extendedFormat" size="71"/>
+							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>
 					<spacer height="6px" />
@@ -199,7 +216,7 @@
 						</hbox>
 						<hbox align="center">
 							<label value="&filenameCharset;" />
-							<textbox id="filenameCharset" />
+							<html:input id="filenameCharset" />
 						</hbox>
 					</groupbox>
 				</vbox>
@@ -217,22 +234,22 @@
 							<column />
 						</columns>
 						<rows>
-							<row>
+							<row style="margin-bottom: 4px;">
 								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<textbox id="export_mbox_dir" value="" size="35" />
+								<html:input id="export_mbox_dir" value="" size="35" />
 								<button label="&browse;" oncommand="pickFile(this)" />
 							</row>
-							<row>
+							<row style="margin-bottom: 4px;">
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<textbox id="export_eml_dir" value="" size="35" />
+								<html:input id="export_eml_dir" value="" size="35" />
 								<button label="&browse;" oncommand="pickFile(this)" />
 							</row>
-							<row>
+							<row style="margin-bottom: 4px;">
 								<checkbox id="use_export_msgs_dir" label="&selExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<textbox id="export_msgs_dir" value="" size="35" />
+								<html:input id="export_msgs_dir" value="" size="35" />
 								<button label="&browse;" oncommand="pickFile(this)" />
 							</row>
 						</rows>
@@ -276,19 +293,19 @@
 						</menulist>
 					</hbox>
 					<spacer height="10" />
-					<hbox align="center">
+					<hbox align="center" style="margin-bottom: 4px;">
 						<label value="&backupDestination;: " />
-						<textbox id="backupDir" value="" size="35" />
+						<html:input id="backupDir" value="" size="35" />
 						<button label="&browse;" oncommand="pickFile(this)" />
 					</hbox>
 					<spacer height="10" />
 					<label value="&backupFolderName;: " />
-					<hbox align="center">
+					<hbox align="center" style="margin-bottom: 4px;">
 						<radiogroup orient="horizontal" id="backupDirName">
 							<radio label="&autoName;" />
 							<radio label="&customName;:" />
 						</radiogroup>
-						<textbox id="backupCustomName" value="" size="35" />
+						<html:input id="backupCustomName" value="" size="35" />
 					</hbox>
 					<spacer height="10" />
 					<hbox align="center">
@@ -311,7 +328,7 @@
 					</hbox>
 					<hbox align="center">
 						<label value="&lastBackup;: " />
-						<textbox id="backupLast" readonly="true" value="" size="35" />
+						<html:input id="backupLast" readonly="true" value="" size="35" />
 					</hbox>
 				</groupbox>
 			</tabpanel>

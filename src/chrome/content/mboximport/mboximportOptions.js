@@ -76,6 +76,7 @@ function initMboxImportPanel() {
     var os = navigator.platform.toLowerCase();
     if (!os.includes("win")) {
         document.documentElement.style.setProperty("--groupbox-header-bg", "#f0f0f0");
+        document.documentElement.style.setProperty("--question-height", "28px");
     }
 
     IETsetCharsetPopup("");

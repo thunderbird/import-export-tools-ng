@@ -78,6 +78,7 @@ var IETglobalFile;
 var IETabort;
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
 
 if (String.prototype.trim) {
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
@@ -741,7 +742,20 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		data = data + "\r\n<td>" + auth + "</td>";
 		data = data + "\r\n<td>" + recc + "</td>";
 		// The nowrap attribute is used not to break the time row
-		data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+
+		// Custom date format
+		// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+		if (customDateFormat === "") {
+			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+
+		} else {
+			console.debug('time ' +time);
+			console.debug(new Date(time/1000));
+			console.debug(strftime.strftime(customDateFormat, new Date(Number(time/1000))));
+			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time/1000)) + "</td>";
+
+		}
 		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
 	}
 	data = data + "</table></body></html>";

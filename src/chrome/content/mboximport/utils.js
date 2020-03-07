@@ -211,7 +211,7 @@ function getSubjectForHdr(hdr, dirPath) {
 		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${suffix}", suffix);
-		extendedFilenameFormat = extendedFilenameFormat.replace("${dateCustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace("${datecustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 		fname = extendedFilenameFormat;
 	} else {
@@ -746,7 +746,7 @@ function constructAttachmentsFilename(type, hdr) {
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${suffix}", suffix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${dateCustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${datecustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 	fname = attachmentsExtendedFilenameFormat;
 

@@ -3,7 +3,7 @@
 <!ENTITY description2 "A beállítások alapján szükséges a biztonsági mentés elvégzése.">
 <!ENTITY description3 "E művelet során a program nem válaszol néhány percig.">
 <!ENTITY description4 "Szeretné folytatni?">
-<!ENTITY description5 "Biztonsági mentés folyamatban ... kérem várjon.">
+<!ENTITY description5 "Biztonsági mentés folyamatban … kérem várjon.">
 <!ENTITY description6 "Biztonsági mentés kész.">
 <!ENTITY backupTab "Biztonségi mentés ütemezése">
 <!ENTITY backupSettings "Biztonsági mentés beállításai">

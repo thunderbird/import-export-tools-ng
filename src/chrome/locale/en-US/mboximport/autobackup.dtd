@@ -3,7 +3,7 @@
 <!ENTITY description2 "On the basis of the settings, it's necessary now to make the backup.">
 <!ENTITY description3 "During this operation, the program will be unresponsive for some minutes.">
 <!ENTITY description4 "Do you want to continue?">
-<!ENTITY description5 "Backup in progress...please wait.">
+<!ENTITY description5 "Backup in progress, please wait…">
 <!ENTITY description6 "Backup done.">
 <!ENTITY backupTab "Backup scheduling">
 <!ENTITY backupSettings "Backup settings">
@@ -25,5 +25,5 @@
 <!ENTITY allFilesMode "Always all files">
 <!ENTITY newFilesMode "Just files modified after last backup">
 <!ENTITY save "Save">
-<!ENTITY modal "Use a 'modal' window">
-<!ENTITY MACwarning "N.B: close every other window, before continue.">
+<!ENTITY modal "Use a “modal” window">
+<!ENTITY MACwarning "N.B: Please close every other window before continuing.">

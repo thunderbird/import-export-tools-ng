@@ -1,13 +1,13 @@
-<!ENTITY intro1 "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually.">
-<!ENTITY profilePath "Path of the profile to import">
-<!ENTITY browse "Browser">
-<!ENTITY profileName "Name of the profile to import">
-<!ENTITY changeProfileNameLabel "You can anyway change the profile name in the profile manager">
-<!ENTITY intro2 "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program.">
-<!ENTITY start "Start import">
-<!ENTITY importRunning "Import running...">
-<!ENTITY importEnd "The import was successful!">
-<!ENTITY intro3 "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed">
-<!ENTITY runProfileManager "Run the profile manager">
-<!ENTITY title "ImportExportTools NG - Profile import">
-<!ENTITY error "An error occurred during profile import. Error details are:">
+<!ENTITY intro1 "Ez egy profil importálására szolgáló kísérleti eljárás. Nincs adatkezelési kockázat, de nem garantált, hogy minden a várt módon működni fog, különösen, ha egy profilt egy másik számítógépről importál. Egyébként biztonságosabb, mint a fájlok manuális másolása.">
+<!ENTITY profilePath "Az importálandó profil útvonala">
+<!ENTITY browse "Tallózás…">
+<!ENTITY profileName "Az importálandó profil neve">
+<!ENTITY changeProfileNameLabel "Egyébként megváltoztathatja a profil nevét a profilkezelőben">
+<!ENTITY intro2 "A mappa tartalmaz egy érvényes profilt, amely importálható. Az eljárás során, amely akár néhány percet is igénybe vehet, vagy még ennél is többet, nem tudja használni a programot.">
+<!ENTITY start "Importálás indítása">
+<!ENTITY importRunning "Importálás folyamatban…">
+<!ENTITY importEnd "Az importálás sikeres!">
+<!ENTITY intro3 "Az importált profil eléréséhez futtassa a profilkezelőt az alábbi gombra kattintva. A jelenlegi profil önműködően bezáródik.">
+<!ENTITY runProfileManager "Profilkezelő futtatása">
+<!ENTITY title "ImportExportTools NG - Profil importálása">
+<!ENTITY error "Hiba történt a profil importálása során. A hiba részletei:">

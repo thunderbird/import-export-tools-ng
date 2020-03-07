@@ -9,7 +9,7 @@
 
   <!-- locale information -->
   <RDF:Description about="urn:mozilla:locale:en-US"
-        chrome:displayName="English(EN)"
+        chrome:displayName="English (US) (en-US)"
         chrome:name="en-US">
     <chrome:packages>
       <RDF:Seq about="urn:mozilla:locale:en-US:packages">

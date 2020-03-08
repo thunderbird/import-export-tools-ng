@@ -25,7 +25,7 @@
 
 // cleidigh - reformat, services, globals, dialog changes
 
-/* global IETprefs, IETgetComplexPref, IETsetComplexPref, IETpickFile */
+/* global IETprefs, IETgetComplexPref, IETsetComplexPref, IETpickFile, browser */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -72,6 +72,10 @@ function initMboxImportPanel() {
             groupboxtitles[i].style.display = "none";
         }
     }
+
+    // var IETngVersion = browser.runtime.getManifest().version;
+    var IETngVersion = "4.1.0-b9";
+    document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
     var os = navigator.platform.toLowerCase();
     if (!os.includes("win")) {

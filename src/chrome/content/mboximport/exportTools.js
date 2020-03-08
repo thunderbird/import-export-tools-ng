@@ -635,7 +635,17 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
-	var myDate = new Date();
+		// Custom date format
+		// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+		var myDate = new Date();
+		var titleDate;
+
+		if (customDateFormat === "") {
+			titleDate = myDate.toLocaleString();
+		} else {
+			titleDate = strftime.strftime(customDateFormat, myDate);
+		}
 
 	var clone2 = file2.clone();
 	var ext = IETgetExt(type);
@@ -652,7 +662,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	// improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
-	styles += 'th { background-color: #e6ffff; }\r\n';
+  	styles += 'th { background-color: #e6ffff; }\r\n';
 	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
 	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
 	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
@@ -662,7 +672,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	var data = '<html>\r\n<head>\r\n';
 
 	data = data + styles;
-	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + myDate.toLocaleString() + ")</h2>";
+	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
 	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
@@ -744,17 +754,11 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		// The nowrap attribute is used not to break the time row
 
 		// Custom date format
-		// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
-		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+
 		if (customDateFormat === "") {
 			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
-
 		} else {
-			console.debug('time ' +time);
-			console.debug(new Date(time/1000));
-			console.debug(strftime.strftime(customDateFormat, new Date(Number(time/1000))));
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time/1000)) + "</td>";
-
 		}
 		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
 	}

@@ -55,6 +55,8 @@
 						<menuitem label="&android;" oncommand="IETimportSMS();" />
 					</menupopup>
 				</menu>
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 			</menupopup>
 		</menu>
 	</popup>
@@ -73,6 +75,8 @@
 				<menuitem id="selAsPdf" label="&asPDF;" oncommand="IETprintPDFmain.print(false)" />
 				<menuseparator />
 				<menu id="selWithIndex" label="&withIndexLabel;">
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 					<menupopup>
 						<menuitem label="&asEML;" oncommand="exportSelectedMsgs(100)" />
 						<menuitem label="&asHTML;" oncommand="exportSelectedMsgs(101)" />
@@ -85,6 +89,9 @@
 				<menuitem id="selAsIndex1" label="&justIndex; &iHTML;" oncommand="exportSelectedMsgs(5)" />
 				<menuitem id="selAsIndex2" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
 			</menupopup>
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+
 		</menu>
 		<menuseparator insertafter="menu_close" />
 	</menupopup>
@@ -197,6 +204,9 @@
 				<menuseparator />
 				<menuitem id="selAsIndex1Context" label="&justIndex; &iHTML;" oncommand="exportSelectedMsgs(5)" />
 				<menuitem id="selAsIndex2Context" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+
 			</menupopup>
 		</menu>
 	</popup>

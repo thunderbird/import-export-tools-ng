@@ -105,9 +105,9 @@ function initMboxImportPanel() {
 
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 3)
-        document.getElementById("useExtendedFormat").checked = true;
+        document.getElementById("useExtendedFormat").setAttribute("checked", "true");
     else
-        document.getElementById("useExtendedFormat").checked = false;
+        document.getElementById("useExtendedFormat").removeAttribute("checked");
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMBOX.dir") > 0)
         document.getElementById("export_mbox_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
@@ -305,9 +305,10 @@ function saveMboxImportPrefs() {
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
-    else if (document.getElementById("useExtendedFormat").checked)
+    else if (document.getElementById("useExtendedFormat").checked) {
+        console.debug('please use extended format ');
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
-    else
+    } else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
@@ -376,6 +377,7 @@ function saveMboxImportPrefs() {
 
 function customNamesCheck(el) {
     if (!el.checked) {
+        console.debug('custom names for false');
         document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
@@ -388,6 +390,7 @@ function customNamesCheck(el) {
         document.getElementById("customDateLabel").setAttribute("disabled", "true");
 
     } else {
+        console.debug('disable file names');
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
@@ -399,7 +402,8 @@ function customNamesCheck(el) {
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
-        document.getElementById("useExtendedFormat").setAttribute("checked", "false");
+        console.debug('disabled extended checkbox');
+        document.getElementById("useExtendedFormat").removeAttribute("checked");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 
     }
@@ -408,6 +412,7 @@ function customNamesCheck(el) {
 
 function extendedFormatCheck(el) {
     if (el.checked) {
+        console.debug('EnableExtended');
         document.getElementById("customizeFilenames").setAttribute("checked", "false");
         document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
         document.getElementById("part1").setAttribute("disabled", "true");
@@ -433,6 +438,7 @@ function extendedFormatCheck(el) {
         // document.getElementById("suffixText").removeAttribute("disabled");
         // document.getElementById("customDateFormat").removeAttribute("disabled");
         // document.getElementById("customDateLabel").removeAttribute("disabled");
+        console.debug('DisableExtended');
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 

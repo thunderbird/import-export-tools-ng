@@ -30,7 +30,7 @@ pref("extensions.importexporttoolsng.export.filename_charset", "");
 pref("extensions.importexporttoolsng.export.filename_date_custom_format", "%Y%m%d%H%M");
 pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
 pref("extensions.importexporttoolsng.export.filename_use_extended_format", "false");
-pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date}-${index}");
+pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date_custom}-${index}");
 pref("extensions.importexporttoolsng.export.attachments.filename_extended_format", "");
 pref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", "");
 pref("extensions.importexporttoolsng.export.use_container_folder", true);

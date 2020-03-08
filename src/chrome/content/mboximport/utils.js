@@ -203,16 +203,29 @@ function getSubjectForHdr(hdr, dirPath) {
 			smartName = authName;
 
 		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
-
+/* 
 		extendedFilenameFormat = extendedFilenameFormat.replace("${subject}", subj);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${sender}", authName);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient}", recName);
-		extendedFilenameFormat = extendedFilenameFormat.replace("${smartname}", smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${smart_name}", smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${suffix}", suffix);
-		extendedFilenameFormat = extendedFilenameFormat.replace("${datecustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+ */
+
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
+
 		fname = extendedFilenameFormat;
 	} else {
 		fname = msgDate8601string + "-" + subj + "-" + hdr.messageKey;
@@ -739,15 +752,16 @@ function constructAttachmentsFilename(type, hdr) {
 
 	let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
 
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${subject}", subj);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${sender}", authName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient}", recName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${smartname}", smartName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${suffix}", suffix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${datecustom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
 	fname = attachmentsExtendedFilenameFormat;
 
 	return fname;

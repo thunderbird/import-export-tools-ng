@@ -191,7 +191,7 @@
 						<spacer height="6px" />
 						<hbox align="center" class="input-container" style="padding-left: 4px;">
 							<html:input type="checkbox" id="useExtendedFormat" checked="false"
-									oncommand="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
+									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
 							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>
 							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#ext_filename_format_help', true)" tooltiptext="Extended Filename Format Reference" />

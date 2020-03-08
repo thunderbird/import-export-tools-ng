@@ -119,7 +119,7 @@
 								<menupopup id="part1-popup-list">
 									<menuitem id="m0" label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" />
-									<menuitem label="Date (Custom)" value="%D" />
+									<menuitem label="&dateCustomOpt;" value="%D" />
 									<menuitem label="&key;" value="%k" />
 									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 									<menuitem label="&name; (&sender;)" value="%a" />
@@ -131,7 +131,7 @@
 								<menupopup id="part2-popup-list">
 									<menuitem label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" selected="true" />
-									<menuitem label="Date (Custom)" value="%D" />
+									<menuitem label="&dateCustomOpt;" value="%D" />
 									<menuitem label="&key;" value="%k" />
 									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 									<menuitem label="&name; (&sender;)" value="%a" />
@@ -144,7 +144,7 @@
 								<menupopup id="part3-popup-list">
 									<menuitem label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" />
-									<menuitem label="Date (Custom)" value="%D" />
+									<menuitem label="&dateCustomOpt;" value="%D" />
 									<menuitem label="&key;" value="%k" selected="true" />
 									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
 									<menuitem label="&name; (&sender;)" value="%a" />
@@ -164,7 +164,7 @@
 							</hbox>
 
 								<hbox flex="1" style="background-color: ;  padding-right: 2px;" pack="end" >
-								<checkbox id="addSuffix" label="Add Suffix" checked="false"  style="padding-left: 12px;" />
+								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
 								<html:input id="suffixText" size="22"/>
 								</hbox>
 						</hbox>
@@ -173,7 +173,7 @@
 
 
 						<hbox style="height: ;" >
-							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >Custom Date: </label>
+							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >&customDate;</label>
 							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
 								<html:input id="customDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
 							</hbox>
@@ -192,13 +192,13 @@
 						<hbox align="center" class="input-container" style="padding-left: 4px;">
 							<html:input type="checkbox" id="useExtendedFormat" checked="false"
 									oncommand="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
-							<label style="padding-left: -4px;">Use Extended Format</label>
+							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>
 							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="16px" maxheight="16px" onclick="loadTabPage('chrome://mboximport/content/importexport-help.html#ext_filename_format_help', true)" tooltiptext="Extended Filename Format Reference" />
 						</hbox>
 						<spacer height="6px" />
 						<hbox valign="center" >
-							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">Format: </label>
+							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">&extFormat;</label>
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>

@@ -106,3 +106,9 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Spara alla profilfiler">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Anpassad datum:">
+<!ENTITY extFormat "Formatera:">
+<!ENTITY dateCustomOpt "Datum (anpassad)">
+<!ENTITY useExtFilenameFormat "Använd Utökat format">
+<!ENTITY addSuffix "Lägg till suffix">

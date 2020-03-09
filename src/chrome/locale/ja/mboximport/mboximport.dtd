@@ -106,3 +106,9 @@
 <!ENTITY csvSep "CSV 形式でエクスポート時のセパレータ:">
 <!ENTITY saveProfile "プロファイルのエクスポート (保存)">
 <!ENTITY withIndexLabel "HTML インデックス付き">
+
+<!ENTITY customDate "カスタム日付：">
+<!ENTITY extFormat "フォーマット：">
+<!ENTITY dateCustomOpt "日付（カスタム）">
+<!ENTITY useExtFilenameFormat "拡張フォーマットを使用する">
+<!ENTITY addSuffix "接尾辞を追加">

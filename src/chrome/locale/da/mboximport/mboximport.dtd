@@ -106,3 +106,9 @@
 <!ENTITY csvSep "Separator til eksport i CSV-format:">
 <!ENTITY saveProfile "Eksporter profil">
 <!ENTITY withIndexLabel "Med HTML-index">
+
+<!ENTITY customDate "Brugerdefineret dato:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Dato (brugerdefineret)">
+<!ENTITY useExtFilenameFormat "Brug udvidet format">
+<!ENTITY addSuffix "Tilføj suffiks">

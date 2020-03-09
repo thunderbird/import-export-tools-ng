@@ -106,3 +106,9 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Guardar todos os ficheiros de perfis">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Data personalizada:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Data (personalizada)">
+<!ENTITY useExtFilenameFormat "Usar formato estendido">
+<!ENTITY addSuffix "Adicionar sufixo">

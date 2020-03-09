@@ -3,6 +3,27 @@
 [de]      [fr]      [hy-AM]   [ko-KR]   [pl]      [sk-SK]   [zh-CN]
 [ca]      [en-US]   [gl-ES]   [it]      locales   [pt-PT]   [sl-SI]   
 
+subjectFmtToken=${}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+subjectFmtToken=${}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+
 
 Spanish
 
@@ -31,16 +52,17 @@ ${fecha}
 <!ENTITY useExtFilenameFormat "Usar formato extendido">
 <!ENTITY addSuffix "Agregar sufijo">
 
-senderFmtToken _ | remitente | _
-employeeFmtToken _ | destinatario | _
-smartNameFmtToken _ | nombre inteligente | _
-indexFmtToken _ | índice | _
-prefixFmtToken _ | prefijo | _
-suffixFmtToken _ | sufijo | _
-dateCustomFmtToken "$ {date custom | _
-dateCustomFmtToken _ | fecha | _
+senderFmtToken=${remitente}
+employeeFmtToken=${destinatario}
+smartNameFmtToken=${nombre inteligente}
+indexFmtToken=${índice}
+prefixFmtToken=${prefijo}
+suffixFmtToken=${sufijo}
+dateCustomFmtToken "$ {date custom}
+dateCustomFmtToken=${fecha}
 
 Hungarian hu
+done
 
 Honosítás
 
@@ -50,8 +72,10 @@ Dátum (egyedi)
 Használja a kiterjesztett formátumot
 Adjon hozzá utótagot
 
+${előtag}-${címzett}-${dátum_egyedi}
+
 $ {Feladó}
-$ {Címzett}
+${címzett}
 $ {smart name}
 $ {Index}
 $ {Prefix}
@@ -59,20 +83,22 @@ $ {Utótag}
 $ {date custom}
 $ {Date}
 
-<!ENTITY customDate "Custom Date:">
-<!ENTITY extFormat "Format:">
-<!ENTITY dateCustomOpt "Date (Custom)">
+<!ENTITY customDate "Egyéni dátum:">
+<!ENTITY extFormat "Formátum:">
+<!ENTITY dateCustomOpt "Dátum (egyedi)">
 <!ENTITY useExtFilenameFormat "A kiterjesztett formátum használata">
-<!ENTITY addSuffix "Add suffix">
+<!ENTITY addSuffix "Adjon hozzá utótagot">
 
-<!ENTITY senderFmtToken _ | feladó | _
-<!ENTITY recipiensFmtToken _ | címzett | _
-<!ENTITY smartNameFmtToken _ | okos név | _
-<!ENTITY indexFmtToken _ | index | _
-<!ENTITY prefixFmtToken _ | előtag | _
-<!ENTITY suffixFmtToken _ | utótag | _
-<!ENTITY dateCustomFmtToken "$ {dátum egyedi | _
-<!ENTITY dateCustomFmtToken _ | dátum | _
+
+subjectFmtToken=${tárgy}
+senderFmtToken=${feladó}
+recipiensFmtToken=${címzett}
+smartNameFmtToken=${okos_név}
+indexFmtToken=${index}
+prefixFmtToken=${előtag}
+suffixFmtToken=${utótag}
+dateCustomFmtToken=${dátum_egyedi}
+dateFmtToken=${dátum}
 
 Italian
 Localizzazione
@@ -98,14 +124,14 @@ $ {Date}
 <!ENTITY useExtFilenameFormat "Usa formato esteso">
 <!ENTITY addSuffix "Aggiungi suffisso">
 
-<!ENTITY mittenteFmtToken _ | mittente | _
-<!ENTITY recipientFmtToken _ | destinatario | _
-<!ENTITY smartNameFmtToken _ | nome intelligente | _
-<!ENTITY indexFmtToken _ | indice | _
-<!ENTITY prefixFmtToken _ | prefisso | _
-<!ENTITY suffissoFmtToken _ | suffisso | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | data | _
+<!ENTITY mittenteFmtToken=${mittente}
+<!ENTITY recipientFmtToken=${destinatario}
+<!ENTITY smartNameFmtToken=${nome intelligente}
+<!ENTITY indexFmtToken=${indice}
+<!ENTITY prefixFmtToken=${prefisso}
+<!ENTITY suffissoFmtToken=${suffisso}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${data}
 
 Japanese
 ローカリゼーション
@@ -131,14 +157,14 @@ $ {date}
 <！ENTITY useExtFilenameFormat "拡張フォーマットを使用">
 <！ENTITY addSuffix "サフィックスを追加">
 
-<！ENTITY senderFmtToken _ | 送信者| _
-<！ENTITY recipientFmtToken _ | 受信者| _
-<！ENTITY smartNameFmtToken _ | スマート名| _
-<！ENTITY indexFmtToken _ | インデックス| _
-<！ENTITY prefixFmtToken _ | プレフィックス| _
-<！ENTITY suffixFmtToken _ | サフィックス| _
-<！ENTITY dateCustomFmtToken "$ {date custom | _
-<！ENTITY dateCustomFmtToken _ | 日付| _
+<！ENTITY senderFmtToken=${送信者| _
+<！ENTITY recipientFmtToken=${受信者| _
+<！ENTITY smartNameFmtToken=${スマート名| _
+<！ENTITY indexFmtToken=${インデックス| _
+<！ENTITY prefixFmtToken=${プレフィックス| _
+<！ENTITY suffixFmtToken=${サフィックス| _
+<！ENTITY dateCustomFmtToken "$ {date custom}
+<！ENTITY dateCustomFmtToken=${日付| _
 
 nl
 
@@ -165,14 +191,14 @@ $ {date}
 <!ENTITY useExtFilenameFormat "Use Extended Format">
 <!ENTITY addSuffix "achtervoegsel toevoegen">
 
-<!ENTITY senderFmtToken _ | afzender | _
-<!ENTITY ontvangerFmtToken _ | ontvanger | _
-<!ENTITY smartNameFmtToken _ | slimme naam | _
-<!ENTITY indexFmtToken _ | index | _
-<!ENTITY prefixFmtToken _ | voorvoegsel | _
-<!ENTITY-achtervoegselFmtToken _ | achtervoegsel | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | datum | _
+<!ENTITY senderFmtToken=${afzender}
+<!ENTITY ontvangerFmtToken=${ontvanger}
+<!ENTITY smartNameFmtToken=${slimme naam}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${voorvoegsel}
+<!ENTITY-achtervoegselFmtToken=${achtervoegsel}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${datum}
 
 ru Russian
 
@@ -199,14 +225,14 @@ $ {Дата}
 <!ENTITY useExtFilenameFormat "Использовать расширенный формат">
 <!ENTITY addSuffix "Добавить суффикс">
 
-<!ENTITY senderFmtToken _ | отправитель | _
-<!ENTITY receientFmtToken _ | получатель | _
-<!ENTITY smartNameFmtToken _ | умное имя | _
-<!ENTITY indexFmtToken _ | индекс | _
-<!ENTITY prefixFmtToken _ | префикс | _
-<!ENTITY СуффиксFmtToken _ | суффикс | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | дата | _
+<!ENTITY senderFmtToken=${отправитель}
+<!ENTITY receientFmtToken=${получатель}
+<!ENTITY smartNameFmtToken=${умное имя}
+<!ENTITY indexFmtToken=${индекс}
+<!ENTITY prefixFmtToken=${префикс}
+<!ENTITY СуффиксFmtToken=${суффикс}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${дата}
 
 
 sv-SE
@@ -233,14 +259,14 @@ $ {Date}
 <!ENTITY useExtFilenameFormat "Use Extended Format">
 <!ENTITY addSuffix "Lägg till suffix">
 
-<!ENTITY avsändareFmtToken _ | avsändare | _
-<!ENTITY mottagareFmtToken _ | mottagare | _
-<!ENTITY smartNameFmtToken _ | smart namn | _
-<!ENTITY indexFmtToken _ | index | _
-<!ENTITY prefixFmtToken _ | prefix | _
-<!ENTITY suffixFmtToken _ | suffix | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | datum | _
+<!ENTITY avsändareFmtToken=${avsändare}
+<!ENTITY mottagareFmtToken=${mottagare}
+<!ENTITY smartNameFmtToken=${smart namn}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${prefix}
+<!ENTITY suffixFmtToken=${suffix}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${datum}
 
 German de
 
@@ -267,14 +293,14 @@ $ {Datum}
 <!ENTITY useExtFilenameFormat "Erweitertes Format verwenden">
 <!ENTITY addSuffix "Suffix hinzufügen">
 
-<!ENTITY senderFmtToken _ | Absender | _
-<!ENTITY EmpfängerFmtToken _ | Empfänger | _
-<!ENTITY smartNameFmtToken _ | kluger Name | _
-<!ENTITY indexFmtToken _ | Index | _
-<!ENTITY prefixFmtToken _ | Präfix | _
-<!ENTITY-SuffixFmtToken _ | Suffix | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | Datum | _
+<!ENTITY senderFmtToken=${Absender}
+<!ENTITY EmpfängerFmtToken=${Empfänger}
+<!ENTITY smartNameFmtToken=${kluger Name}
+<!ENTITY indexFmtToken=${Index}
+<!ENTITY prefixFmtToken=${Präfix}
+<!ENTITY-SuffixFmtToken=${Suffix}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${Datum}
 
 French fr
 Localisation
@@ -300,14 +326,14 @@ $ {date}
 <!ENTITY useExtFilenameFormat "Utiliser le format étendu">
 <!ENTITY addSuffix "Ajouter un suffixe">
 
-<!ENTITY senderFmtToken _ | expéditeur | _
-<!ENTITY recipientFmtToken _ | destinataire | _
-<!ENTITY smartNameFmtToken _ | nom intelligent | _
-<!ENTITY indexFmtToken _ | index | _
-<!ENTITY prefixFmtToken _ | préfixe | _
-<!ENTITY suffixFmtToken _ | suffixe | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | date | _
+<!ENTITY senderFmtToken=${expéditeur}
+<!ENTITY recipientFmtToken=${destinataire}
+<!ENTITY smartNameFmtToken=${nom intelligent}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${préfixe}
+<!ENTITY suffixFmtToken=${suffixe}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${date}
 
 hy-AM
 Տեղայնացում
@@ -333,14 +359,14 @@ $ {ամսաթիվ
 <!ENTITY useExtFilenameFormat "Օգտագործեք երկարացված ձևաչափը">
 <!ENTITY addSuffix «Ավելացնել վերջածանց»>>
 
-<!ENTITY senderFmtToken _ | ուղարկող | _
-<!ENTITY ստացողFmtToken _ | ստացող | _
-<!ENTITY smartNameFmtToken _ | խելացի անուն | _
-<!ENTITY indexFmtToken _ | ինդեքս | _
-<!ENTITY prefixFmtToken _ | նախածանց | _
-<!ENTITY suffixFmtToken _ | վերջածանց | _
-<!ENTITY dateCustomFmtToken "$ {ամսաթիվի մաքսային | _
-<!ENTITY dateCustomFmtToken _ | ամսաթիվը | _
+<!ENTITY senderFmtToken=${ուղարկող}
+<!ENTITY ստացողFmtToken=${ստացող}
+<!ENTITY smartNameFmtToken=${խելացի անուն}
+<!ENTITY indexFmtToken=${ինդեքս}
+<!ENTITY prefixFmtToken=${նախածանց}
+<!ENTITY suffixFmtToken=${վերջածանց}
+<!ENTITY dateCustomFmtToken "$ {ամսաթիվի մաքսային}
+<!ENTITY dateCustomFmtToken=${ամսաթիվը}
 
 Korean ko
 현지화
@@ -366,14 +392,14 @@ $ {날짜}
 <!ENTITY useExtFilenameFormat "확장 형식 사용">
 <!ENTITY addSuffix "접미사 추가">
 
-<!ENTITY senderFmtToken _ | 발신자 | _
-<!ENTITY recipientFmtToken _ | 수신자 | _
-<!ENTITY smartNameFmtToken _ | 스마트 이름 | _
-<!ENTITY indexFmtToken _ | 색인 | _
-<!ENTITY prefixFmtToken _ | 접두사 | _
-<!ENTITY suffixFmtToken _ | 접미사 | _
-<!ENTITY dateCustomFmtToken "$ {날짜 사용자 정의 | _
-<!ENTITY dateCustomFmtToken _ | 날짜 | _
+<!ENTITY senderFmtToken=${발신자}
+<!ENTITY recipientFmtToken=${수신자}
+<!ENTITY smartNameFmtToken=${스마트 이름}
+<!ENTITY indexFmtToken=${색인}
+<!ENTITY prefixFmtToken=${접두사}
+<!ENTITY suffixFmtToken=${접미사}
+<!ENTITY dateCustomFmtToken "$ {날짜 사용자 정의}
+<!ENTITY dateCustomFmtToken=${날짜}
 
 pl Polish
 Lokalizacja
@@ -399,14 +425,14 @@ $ {data}
 <!ENTITY useExtFilenameFormat „Użyj rozszerzonego formatu”>
 <!ENTITY addSuffix „Dodaj sufiks”>
 
-<!ENTITY senderFmtToken _ | nadawca | _
-<!ENTITY recipientFmtToken _ | odbiorca | _
-<!ENTITY smartNameFmtToken _ | inteligentna nazwa | _
-<!ENTITY indexFmtToken _ | indeks | _
-<!ENTITY prefixFmtToken _ | przedrostek | _
-<!ENTITY sufiksFmtToken _ | sufiks | _
-<!ENTITY dateCustomFmtToken "$ {data niestandardowy | _
-<!ENTITY dateCustomFmtToken _ | data | _
+<!ENTITY senderFmtToken=${nadawca}
+<!ENTITY recipientFmtToken=${odbiorca}
+<!ENTITY smartNameFmtToken=${inteligentna nazwa}
+<!ENTITY indexFmtToken=${indeks}
+<!ENTITY prefixFmtToken=${przedrostek}
+<!ENTITY sufiksFmtToken=${sufiks}
+<!ENTITY dateCustomFmtToken "$ {data niestandardowy}
+<!ENTITY dateCustomFmtToken=${data}
 
 sk-SK Slovak
 lokalizácia
@@ -432,14 +458,14 @@ $ {Date}
 <!ENTITY useExtFilenameFormat "Use Extended Format">
 <!ENTITY addSuffix "Pridať príponu">
 
-<!ENTITY senderFmtToken _ | odosielateľ | _
-<!ENTITY recipientFmtToken _ | príjemca | _
-<!ENTITY smartNameFmtToken _ | inteligentné meno | _
-<!ENTITY indexFmtToken _ | index | _
-<!ENTITY prefixFmtToken _ | predpona | _
-<!ENTITY suffixFmtToken _ | prípona | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | dátum | _
+<!ENTITY senderFmtToken=${odosielateľ}
+<!ENTITY recipientFmtToken=${príjemca}
+<!ENTITY smartNameFmtToken=${inteligentné meno}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${predpona}
+<!ENTITY suffixFmtToken=${prípona}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${dátum}
 
 Chinese zh
 本土化
@@ -465,14 +491,14 @@ $ {date}
 <！ENTITY useExtFilenameFormat“使用扩展格式”>
 <！ENTITY addSuffix“添加后缀”>
 
-<！ENTITY senderFmtToken _ | 发件人| _
-<！ENTITY receiverFmtToken _ | 收件人| _
-<！ENTITY smartNameFmtToken _ | 聪明的名字| _
-<！ENTITY indexFmtToken _ | 索引| _
-<！ENTITY prefixFmtToken _ | 前缀| _
-<！ENTITY后缀FmtToken _ | 后缀| _
+<！ENTITY senderFmtToken=${发件人| _
+<！ENTITY receiverFmtToken=${收件人| _
+<！ENTITY smartNameFmtToken=${聪明的名字| _
+<！ENTITY indexFmtToken=${索引| _
+<！ENTITY prefixFmtToken=${前缀| _
+<！ENTITY后缀FmtToken=${后缀| _
 <！ENTITY dateCustomFmtToken“ $ {日期自定义| _
-<！ENTITY dateCustomFmtToken _ | 日期| _
+<！ENTITY dateCustomFmtToken=${日期| _
 
 ca catalan
 Localització
@@ -498,14 +524,14 @@ $ {data}
 <!ENTITY useExtFilenameFormat "Utilitza un format estès">
 <!ENTITY addSuffix "Afegir sufix">
 
-<!ENTITY senderFmtToken _ | remitent | _
-<!ENTITY destinatariFmtToken _ | destinatari | _
-<!ENTITY smartNameFmtToken _ | nom intel·ligent | _
-<!ENTITY indexFmtToken _ | índex | _
-<!ENTITY prefixFmtToken _ | prefix | _
-<! Sufix ENTITYFmtToken _ | sufix | _
-<!ENTITY dateCustomFmtToken "$ {data personalitzada | _
-<!ENTITY dateCustomFmtToken _ | data | _
+<!ENTITY senderFmtToken=${remitent}
+<!ENTITY destinatariFmtToken=${destinatari}
+<!ENTITY smartNameFmtToken=${nom intel·ligent}
+<!ENTITY indexFmtToken=${índex}
+<!ENTITY prefixFmtToken=${prefix}
+<! Sufix ENTITYFmtToken=${sufix}
+<!ENTITY dateCustomFmtToken "$ {data personalitzada}
+<!ENTITY dateCustomFmtToken=${data}
 
 gl-ES
 Localización
@@ -531,14 +557,14 @@ $ {data}
 <!ENTITY useExtFilenameFormat "Usa Formato Estendido">
 <!ENTITY addSuffix "Engadir sufixo">
 
-<!ENTITY remitenteFmtToken _ | remitente | _
-<!ENTITY recipientFmtToken _ | destinatario | _
-<!ENTITY smartNameFmtToken _ | nome intelixente | _
-<!ENTITY indexFmtToken _ | índice | _
-Prefijo <!ENTITYFmtToken _ | prefixo | _
-<! Sufixo ENTITYFmtToken _ | sufixo | _
-<!ENTITY dateCustomFmtToken "$ {data personalizada | _
-<!ENTITY dataCustomFmtToken _ | data | _
+<!ENTITY remitenteFmtToken=${remitente}
+<!ENTITY recipientFmtToken=${destinatario}
+<!ENTITY smartNameFmtToken=${nome intelixente}
+<!ENTITY indexFmtToken=${índice}
+Prefijo <!ENTITYFmtToken=${prefixo}
+<! Sufixo ENTITYFmtToken=${sufixo}
+<!ENTITY dateCustomFmtToken "$ {data personalizada}
+<!ENTITY dataCustomFmtToken=${data}
 
 pt-PT
 Localização
@@ -564,14 +590,14 @@ $ {date}
 <!ENTITY useExtFilenameFormat "Usar formato estendido">
 <!ENTITY addSuffix "Adicionar sufixo">
 
-<!ENTITY senderFmtToken _ | remetente | _
-<!ENTITY destinatárioFmtToken _ | destinatário | _
-<!ENTITY smartNameFmtToken _ | nome inteligente | _
-<!ENTITY indexFmtToken _ | índice | _
-<!ENTITY prefixFmtToken _ | prefixo | _
-<!ENTITY suffixFmtToken _ | sufixo | _
-<!ENTITY dateCustomFmtToken "$ {date custom | _
-<!ENTITY dateCustomFmtToken _ | data | _
+<!ENTITY senderFmtToken=${remetente}
+<!ENTITY destinatárioFmtToken=${destinatário}
+<!ENTITY smartNameFmtToken=${nome inteligente}
+<!ENTITY indexFmtToken=${índice}
+<!ENTITY prefixFmtToken=${prefixo}
+<!ENTITY suffixFmtToken=${sufixo}
+<!ENTITY dateCustomFmtToken "$ {date custom}
+<!ENTITY dateCustomFmtToken=${data}
 
 sl-SI Slovenian
 Lokalizacija
@@ -597,14 +623,14 @@ $ {datum}
 <!ENTITY useExtFilenameFormat "Uporabi razširjeno obliko">
 <!ENTITY addSuffix "Dodaj pripono">
 
-<!ENTITY pošiljateljFmtToken _ | pošiljatelj | _
-<!ENTITY prejemnikFmtToken _ | prejemnik | _
-<!ENTITY smartNameFmtToken _ | pametno ime | _
-<!ENTITY indexFmtToken _ | kazalo | _
-<!ENTITY predponaFmtToken _ | predpono | _
-<!ENTITY priponaFmtToken _ | pripona | _
-<!ENTITY datumCustomFmtToken "$ {datum po meri | _
-<!ENTITY datumCustomFmtToken _ | datum | _
+<!ENTITY pošiljateljFmtToken=${pošiljatelj}
+<!ENTITY prejemnikFmtToken=${prejemnik}
+<!ENTITY smartNameFmtToken=${pametno ime}
+<!ENTITY indexFmtToken=${kazalo}
+<!ENTITY predponaFmtToken=${predpono}
+<!ENTITY priponaFmtToken=${pripona}
+<!ENTITY datumCustomFmtToken "$ {datum po meri}
+<!ENTITY datumCustomFmtToken=${datum}
 
 
 

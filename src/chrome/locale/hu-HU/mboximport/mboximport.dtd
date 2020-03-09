@@ -106,3 +106,10 @@
 <!ENTITY csvSep "Elválasztó CSV formátumban történő exportáláshoz:">
 <!ENTITY saveProfile "Mindegyik profil fájl mentése">
 <!ENTITY withIndexLabel "HTML tárgymutató segítségével">
+
+
+<!ENTITY customDate "Egyéni dátum:">
+<!ENTITY extFormat "Formátum:">
+<!ENTITY dateCustomOpt "Dátum (egyedi)">
+<!ENTITY useExtFilenameFormat "A kiterjesztett formátum használata">
+<!ENTITY addSuffix "Adjon hozzá utótagot">

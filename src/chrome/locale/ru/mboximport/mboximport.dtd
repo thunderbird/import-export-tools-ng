@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Дата (Пользовательская)Her">
 <!ENTITY useExtFilenameFormat "Использовать расширенный формат">
 <!ENTITY addSuffix "Добавить суффикс">
+<!ENTITY dateFormatRefTooltipText "Формат даты">
+<!ENTITY extFilenameFormatRefTooltipText "Расширенная ссылка на формат имени файла">

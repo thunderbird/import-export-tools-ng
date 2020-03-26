@@ -113,3 +113,5 @@
 <!ENTITY dateCustomOpt "Dátum (egyedi)">
 <!ENTITY useExtFilenameFormat "A kiterjesztett formátum használata">
 <!ENTITY addSuffix "Adjon hozzá utótagot">
+<!ENTITY dateFormatRefTooltipText "Dátum formátum referencia">
+<!ENTITY extFilenameFormatRefTooltipText "Bővített fájlnév-formátum-referencia">

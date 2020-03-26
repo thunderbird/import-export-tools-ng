@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Dato (brugerdefineret)">
 <!ENTITY useExtFilenameFormat "Brug udvidet format">
 <!ENTITY addSuffix "Tilføj suffiks">
+<!ENTITY dateFormatRefTooltipText "Datoformat Henvisning">
+<!ENTITY extFilenameFormatRefTooltipText "Udvidet reference til filnavnsformat">

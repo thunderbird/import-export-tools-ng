@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "日付（カスタム）">
 <!ENTITY useExtFilenameFormat "拡張フォーマットを使用する">
 <!ENTITY addSuffix "接尾辞を追加">
+<!ENTITY dateFormatRefTooltipText "日付形式リファレンス">
+<!ENTITY extFilenameFormatRefTooltipText "拡張ファイル名形式リファレンス">

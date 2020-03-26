@@ -15,8 +15,8 @@ var translationArray = [
 	// { key: "Test1TooltipText", text: "Test1 Reference" },
 ]
 
-// const localeDir = "../src/chrome/locale";
-const localeDir = "./locale";
+const localeDir = "../src/chrome/locale";
+// const localeDir = "./locale";
 const localeFile = "mboximport/mboximport.dtd";
 const referenceLocaleId = "en";
 
@@ -199,17 +199,17 @@ async function translateAllLocales(sourceArray, locales, format) {
 		var text = ["hello everybody"];
 
 		var sourceStrings = sourceArray.map(s => s.text);
-			sourceStrings.unshift(sourceIdentifier);
-			// text.push("test this");
-			// console.debug(sourceStrings);
-			promises.push(translate.translate(sourceStrings, shortLocale)
+		sourceStrings.unshift(sourceIdentifier);
+		// text.push("test this");
+		// console.debug(sourceStrings);
+		promises.push(translate.translate(sourceStrings, shortLocale)
 			// promises.push(translate.translate(sourceIdentifier, shortLocale)
 			// promises.push(translate.translate(['hello there', 'goodbye'], shortLocale)
-				.then(([translations]) => {
-					// console.debug(translations);
-					tarray.push(translations);
-				}));
-			// console.debug('after locale');
+			.then(([translations]) => {
+				// console.debug(translations);
+				tarray.push(translations);
+			}));
+		// console.debug('after locale');
 
 	};
 
@@ -247,7 +247,7 @@ async function translateAllLocales(sourceArray, locales, format) {
 // translate('Date Format Reference', {from: 'en', to: 'de'}).then(res => {
 
 
- async function translateAll() {
+async function translateAll() {
 	let s = new Date();
 	console.debug('Start ' + s);
 

@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Datum (benutzerdefiniert)">
 <!ENTITY useExtFilenameFormat "Erweitertes Format verwenden">
 <!ENTITY addSuffix "Suffix hinzufügen">
+<!ENTITY dateFormatRefTooltipText "Datumsformatreferenz">
+<!ENTITY extFilenameFormatRefTooltipText "Erweiterte Dateinamenformatreferenz">

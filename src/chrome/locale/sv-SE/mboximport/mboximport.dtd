@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Datum (anpassad)">
 <!ENTITY useExtFilenameFormat "Använd Utökat format">
 <!ENTITY addSuffix "Lägg till suffix">
+<!ENTITY dateFormatRefTooltipText "Datumformatreferens">
+<!ENTITY extFilenameFormatRefTooltipText "Utökad referens för filnamnsformat">

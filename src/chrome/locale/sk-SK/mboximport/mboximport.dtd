@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Dátum (vlastné)">
 <!ENTITY useExtFilenameFormat "Použite rozšírený formát">
 <!ENTITY addSuffix "Pridať prípona">
+<!ENTITY dateFormatRefTooltipText "Referencia formátu dátumu">
+<!ENTITY extFilenameFormatRefTooltipText "Odkaz na formát rozšíreného názvu súboru">

@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Ամսաթիվ (Պատվերով)">
 <!ENTITY useExtFilenameFormat "Օգտագործեք երկարացված ձևաչափը">
 <!ENTITY addSuffix "Ավելացնել վերջածանց">
+<!ENTITY dateFormatRefTooltipText "Ամսաթվի ձևաչափի տեղեկանք">
+<!ENTITY extFilenameFormatRefTooltipText "Ֆայլի անվան ձևաչափի ընդլայնված հղում">

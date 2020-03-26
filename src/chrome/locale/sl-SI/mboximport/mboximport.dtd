@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Datum (po meri)">
 <!ENTITY useExtFilenameFormat "Uporabi razširjeno obliko">
 <!ENTITY addSuffix "Dodaj pripono">
+<!ENTITY dateFormatRefTooltipText "Referenca zapisa datuma">
+<!ENTITY extFilenameFormatRefTooltipText "Razširjena referenca za obliko datoteke">

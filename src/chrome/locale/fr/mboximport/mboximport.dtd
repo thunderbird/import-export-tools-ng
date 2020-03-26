@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Date (personnalisée)">
 <!ENTITY useExtFilenameFormat "Utiliser le format étendu">
 <!ENTITY addSuffix "Ajouter un suffixe">
+<!ENTITY dateFormatRefTooltipText "Référence du format de date">
+<!ENTITY extFilenameFormatRefTooltipText "Référence de format de nom de fichier étendu">

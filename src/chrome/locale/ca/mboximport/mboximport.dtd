@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Data (personalitzada)">
 <!ENTITY useExtFilenameFormat "Utilitza un format estès">
 <!ENTITY addSuffix "Afegir el sufix">
+<!ENTITY dateFormatRefTooltipText "Data de referència de format">
+<!ENTITY extFilenameFormatRefTooltipText "Referència ampliada del format de fitxer">

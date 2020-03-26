@@ -112,3 +112,5 @@
 <!ENTITY dateCustomOpt "Datum (aangepast)">
 <!ENTITY useExtFilenameFormat "Gebruik uitgebreid formaat">
 <!ENTITY addSuffix "Achtervoegsel toevoegen">
+<!ENTITY dateFormatRefTooltipText "Referentie voor datumnotatie">
+<!ENTITY extFilenameFormatRefTooltipText "Uitgebreide verwijzing naar bestandsnaamindeling">

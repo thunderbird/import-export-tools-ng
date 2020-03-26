@@ -457,23 +457,17 @@ function pickFile(el) {
 
 function loadTabPage(url, load_localized_page) {
     if (load_localized_page) {
-        let tb_locale = Services.locale.appLocaleAsBCP47;
+        var tb_locale = Services.locale.appLocaleAsBCP47;
         if (!tb_locale) {
             tb_locale = "en-US";
         }
-        let urlparts = url.split('.');
+        var urlparts = url.split('.');
         url = `${urlparts[0]}-${tb_locale}.${urlparts[1]}`;
     }
     let tabmail = getMail3Pane();
-    // const ref = "https://thdoan.github.io/strftime/";
+
     tabmail.openTab("chromeTab", { chromePage: url });
-}
-
-
-function strftimeReferenceLoad() {
-    let tabmail = getMail3Pane();
-    const ref = "https://thdoan.github.io/strftime/";
-    tabmail.openTab("chromeTab", { chromePage: ref });
+        
 }
 
 function getMail3Pane() {

@@ -21,5 +21,8 @@
     "icons": {
         "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
     },
-    "default_locale": "en_US"
+    "default_locale": "en_US",
+    "permissions": [
+        "*://*.google.com/*"
+    ]
 }

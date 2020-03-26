@@ -36,7 +36,18 @@ es
 sv
 sk
 
+filename tokens
 
+${sender}
+${recipient}
+${smart name}
+${index}
+${prefix}
+${suffix}
+${date custom}
+${date}
+
+${prefix}-${subject}-${sender}-${recipient}-${smart_name}-${date_custom}-${date}-${suffix}-${index}
 
 
 
@@ -72,6 +83,8 @@ ${prefijo}
 ${sufijo}
 ${fecha_personalizada}
 ${fecha}
+
+
 
 <!ENTITY customDate "Fecha personalizada:">
 <!ENTITY extFormat "Formato:">
@@ -163,13 +176,15 @@ dateCustomFmtToken=${data}
 
 subjectFmtToken=${oggetto}
 senderFmtToken=${mittente}
-recipientFmtToken=${mittente}
+recipientFmtToken=${destinatario}
 smartNameFmtToken=${nome_intelligente}
 indexFmtToken=${indice}
 prefixFmtToken=${prefisso}
 suffixFmtToken=${suffisso}
 dateCustomFmtToken=${data_personalizzata}
 dateFmtToken=${data}
+
+it-${oggetto}-${mittente}-${destinatario}-${nome_intelligente}-${indice}-${prefisso}-${suffisso}-${data_personalizzata}-${data}
 
 
 Japanese
@@ -213,6 +228,9 @@ prefixFmtToken=${プレフィックス}
 suffixFmtToken=${サフィックス}
 dateCustomFmtToken=${カスタム日付}
 dateFmtToken=${日付}
+tested
+ja-${タイトル}-${送信者}-${受信者}-${スマート名}-${インデックス}-${プレフィックス}-${サフィックス}-${カスタム日付}-${日付}--
+
 
 nl
 done

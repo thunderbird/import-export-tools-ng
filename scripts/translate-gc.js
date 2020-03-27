@@ -1,7 +1,9 @@
 const fs = require('fs-extra');
 
 const projectId = 'ThunderbirdTranslations';
-const key = "AIzaSyBU_DOuYLVTgwyR0fgj3PBtfP4ZBlDWw7I";
+// const key = "AIzaSyBU_DOuYLVTgwyR0fgj3PBtfP4ZBlDWw7I";
+const key = "AIzaSyD-DZV1sAMp0OIESSwiDkg3-ELw95l5AtM";
+
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate').v2;
 

@@ -10,14 +10,15 @@ const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
 var translationArray = [
-	{ key: "dateFormatRefTooltipText", text: "Date Format Reference" },
-	{ key: "extFilenameFormatRefTooltipText", text: "Extended Filename Format Reference" },
-	// { key: "Test1TooltipText", text: "Test1 Reference" },
+	// { key: "dateFormatRefTooltipText", text: "Date Format Reference" },
+	// { key: "extFilenameFormatRefTooltipText", text: "Extended Filename Format Reference" },
+	{ key: "Received", text: "Received" },
 ]
 
 const localeDir = "../src/chrome/locale";
 // const localeDir = "./locale";
-const localeFile = "mboximport/mboximport.dtd";
+// const localeFile = "mboximport/mboximport.dtd";
+const localeFile = "mboximport/mboximport.properties";
 const referenceLocaleId = "en";
 
 
@@ -230,7 +231,8 @@ async function translateAllLocales(sourceArray, locales, format) {
 		// continue;
 
 		let lt = stringArray.map((s, i) => {
-			return `<!ENTITY ${translationArray[i].key} "${s}">`;
+			// return `<!ENTITY ${translationArray[i].key} "${s}">`;
+			return `${translationArray[i].key}=${s}`;
 		});
 		lt = lt.join('\n');
 

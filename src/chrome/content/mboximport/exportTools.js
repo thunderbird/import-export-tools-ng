@@ -635,17 +635,17 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
-		// Custom date format
-		// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
-		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
-		var myDate = new Date();
-		var titleDate;
+	// Custom date format
+	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+	var myDate = new Date();
+	var titleDate;
 
-		if (customDateFormat === "") {
-			titleDate = myDate.toLocaleString();
-		} else {
-			titleDate = strftime.strftime(customDateFormat, myDate);
-		}
+	if (customDateFormat === "") {
+		titleDate = myDate.toLocaleString();
+	} else {
+		titleDate = strftime.strftime(customDateFormat, myDate);
+	}
 
 	var clone2 = file2.clone();
 	var ext = IETgetExt(type);
@@ -659,10 +659,15 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	clone2.append("index.html");
 	clone2.createUnique(0, 0644);
 
+	var date_received_hdr = "";
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+	}
+
 	// improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
-  	styles += 'th { background-color: #e6ffff; }\r\n';
+	styles += 'th { background-color: #e6ffff; }\r\n';
 	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
 	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
 	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
@@ -678,7 +683,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + "</b></th>"; // Date
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
 	data = data + "</tr>";
 
@@ -758,7 +763,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		if (customDateFormat === "") {
 			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
 		} else {
-			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time/1000)) + "</td>";
+			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
 		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
 	}
@@ -1825,6 +1830,26 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var subject = getSubjectForHdr(msg, subfile.path);
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
+
+	console.debug(`S: ${subject} original  : ${time} `);
+	console.debug(new Date(time));
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		var time2 = msg.getUint32Property('dateReceived');
+		console.debug(`dateReceived : ${time2} `);
+		console.debug(new Date(time2*1000));
+		// console.debug(new Date(time2*1000*1000));
+		time = time2 * 1000 * 1000;
+	}
+	console.debug(`Safter: ${subject}  : ${time} `);
+	console.debug(new Date(time));
+
+	let p = msg.propertyEnumerator;
+	while (p.hasMore()) {
+		let property = p.getNext();
+		console.debug(property + '  ' + msg.getUint32Property(property));
+	}
+
+	// console.debug(`time  : ${time}`);
 
 	if (addBody)
 		body = IETstoreBody(msguri);

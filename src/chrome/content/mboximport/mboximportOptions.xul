@@ -5,7 +5,8 @@
 <!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 %mainDTD;
 
-
+<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locales/messenger.dtd">
+%messengerDTD;
 
 <!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 	%backupDTD;
@@ -20,7 +21,7 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
-		title="ImportExportTools NG">
+		title="ImportExportTools NG ">
 	<tabbox>
 		<tabs>
 			<tab label="&misc;" selected="true" />

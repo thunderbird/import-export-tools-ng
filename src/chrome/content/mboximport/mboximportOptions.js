@@ -74,8 +74,13 @@ function initMboxImportPanel() {
     }
 
     // var IETngVersion = browser.runtime.getManifest().version;
-    var IETngVersion = "4.1.0-b12";
+    var IETngVersion = "4.1.0-b13";
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
+
+    console.debug(document.getElementById("index-key").getAttribute("oncommand"));
+    console.debug(document.getElementById("index-key").getAttribute("modifiers"));
+    document.getElementById("index-key").setAttribute("modifiers", "control shift");
+    console.debug(document.getElementById("index-key").getAttribute("modifiers"));
 
     var os = navigator.platform.toLowerCase();
     if (!os.includes("win")) {

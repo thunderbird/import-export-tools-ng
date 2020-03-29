@@ -7,6 +7,13 @@
 	<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/menufunctions.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
+
+<keyset>
+  <key id="index-key" modifiers="control shift" key="D"
+          oncommand="exportAllMsgs(3)"/>
+</keyset>
+
+
 	<popup id="folderPaneContext">
 		<menuseparator id="IETsep" />
 		<menu label="&labelmenuMItools;" id="IETmenu">

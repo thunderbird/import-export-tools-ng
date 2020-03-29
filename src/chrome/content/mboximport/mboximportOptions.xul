@@ -5,12 +5,10 @@
 <!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 %mainDTD;
 
-<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locales/messenger.dtd">
-%messengerDTD;
-
 <!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 	%backupDTD;
-	]>
+]>
+
 <!-- cleidigh - Start changing dialog CSS and event handling for TB68 -->
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>

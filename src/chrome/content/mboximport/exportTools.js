@@ -1094,8 +1094,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					var attName;
 					var attNameAscii;
 
-					console.debug(aMsgHdr);
-
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
 						// if (att.contentType.indexOf("text/plain") === 0 )
@@ -1153,7 +1151,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
-						// console.debug('data footer: \n' + data);
 						// cleidigh - fixup group boxes and images
 						let rs;
 						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
@@ -1831,25 +1828,10 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
 
-	console.debug(`S: ${subject} original  : ${time} `);
-	console.debug(new Date(time));
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
 		var time2 = msg.getUint32Property('dateReceived');
-		console.debug(`dateReceived : ${time2} `);
-		console.debug(new Date(time2*1000));
-		// console.debug(new Date(time2*1000*1000));
 		time = time2 * 1000 * 1000;
 	}
-	console.debug(`Safter: ${subject}  : ${time} `);
-	console.debug(new Date(time));
-
-	let p = msg.propertyEnumerator;
-	while (p.hasMore()) {
-		let property = p.getNext();
-		console.debug(property + '  ' + msg.getUint32Property(property));
-	}
-
-	// console.debug(`time  : ${time}`);
 
 	if (addBody)
 		body = IETstoreBody(msguri);

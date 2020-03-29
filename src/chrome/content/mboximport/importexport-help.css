@@ -1,0 +1,9 @@
+body {
+	background-color: whitesmoke;
+}
+
+table, tr, td .token-table {
+	border: 1px solid black;
+	border-collapse: collapse;
+
+}

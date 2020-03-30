@@ -55,6 +55,8 @@ function IETmessOverlayInit() {
 		else
 			window.openDialog("chrome://mboximport/content/autobackup.xul", "", "chrome,centerscreen", last, time, now);
 	}
+
+
 }
 
 window.addEventListener("unload", IETmessOverlayInit, false);

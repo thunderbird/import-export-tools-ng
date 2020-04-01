@@ -8,9 +8,8 @@
 	<script type="application/javascript" src="chrome://mboximport/content/menufunctions.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 
-<keyset>
-  <key id="index-key" modifiers="control shift" key="D"
-          oncommand="exportAllMsgs(3)"/>
+<keyset >
+  <key id="index-key" modifiers="control shift" key="D" oncommand="exportSelectedMsgs(5)"/>
 </keyset>
 
 

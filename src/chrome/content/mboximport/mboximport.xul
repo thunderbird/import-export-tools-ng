@@ -8,8 +8,21 @@
 	<script type="application/javascript" src="chrome://mboximport/content/menufunctions.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 
+
+<!-- Allow 1-10 user configurable hotkeys -->
 <keyset >
-  <key id="index-key" modifiers="control shift" key="D" oncommand="exportSelectedMsgs(5)"/>
+  <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
+  <!-- currently have to restart if modified -->
+  <key id="hot-key1" modifiers="" key="" oncommand=""/>
+  <key id="hot-key2" modifiers="" key="" oncommand=""/>
+  <key id="hot-key3" modifiers="" key="" oncommand=""/>
+  <key id="hot-key4" modifiers="" key="" oncommand=""/>
+  <key id="hot-key5" modifiers="" key="" oncommand=""/>
+  <key id="hot-key6" modifiers="" key="" oncommand=""/>
+  <key id="hot-key7" modifiers="" key="" oncommand=""/>
+  <key id="hot-key8" modifiers="" key="" oncommand=""/>
+  <key id="hot-key9" modifiers="" key="" oncommand=""/>
+  <key id="hot-key10" modifiers="" key="" oncommand=""/>
 </keyset>
 
 

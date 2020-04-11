@@ -74,7 +74,7 @@ function initMboxImportPanel() {
     }
 
     // var IETngVersion = browser.runtime.getManifest().version;
-    var IETngVersion = "4.1.0-b15";
+    var IETngVersion = "4.1.0-b16";
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
     var os = navigator.platform.toLowerCase();
@@ -453,6 +453,10 @@ function toggleSkipMsg(el) {
 
 function pickFile(el) {
     IETpickFile(el);
+}
+
+function openIEThelp(localize) {
+    loadTabPage('chrome://mboximport/content/importexport-help.html#customdate_format_help', true);
 }
 
 function loadTabPage(url, load_localized_page) {

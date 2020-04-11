@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
+<!DOCTYPE overlay [
+ <!ENTITY % ietDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
+%ietDTD;
+
+<!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://messenger/locale/baseMenuOverlay.dtd">
+%baseMenuOverlayDTD;
+]>
+
 <overlay id="mboximportOverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
@@ -76,6 +83,9 @@
 				</menu>
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
+
+				
 			</menupopup>
 		</menu>
 	</popup>
@@ -110,6 +120,7 @@
 			</menupopup>
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
 
 		</menu>
 		<menuseparator insertafter="menu_close" />
@@ -185,6 +196,7 @@
 				<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
 			</menupopup>
 		</menu>
 	</menupopup>
@@ -225,6 +237,7 @@
 				<menuitem id="selAsIndex2Context" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
 
 			</menupopup>
 		</menu>

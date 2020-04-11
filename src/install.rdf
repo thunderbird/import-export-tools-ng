@@ -8,7 +8,7 @@ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 		<em:id>ImportExportToolsNG@cleidigh.kokkini.net</em:id>
 		<em:name>ImportExportTools NG</em:name>
 		<em:type>2</em:type>
-		<em:version>4.1.0-b15</em:version>
+		<em:version>4.1.0-b16</em:version>
 		<em:description>Adds tools to import/export messages and folders (NextGen)</em:description>
 		<em:creator>Christopher Leidigh</em:creator>
 		<em:optionsURL>chrome://mboximport/content/mboximportOptions.xul</em:optionsURL>
@@ -22,15 +22,6 @@ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
        				<em:maxVersion>71.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
-		    <em:targetApplication>
-      <!-- SeaMonkey as is support-->
-      <Description>
-        <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
-        <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>2.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-
 	</Description>
 
 </RDF>

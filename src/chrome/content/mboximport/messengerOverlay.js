@@ -113,25 +113,6 @@ function setupHotKeys() {
 	}
 }
 
-// console.debug(document.getElementById("index-key").getAttribute("oncommand"));
-// console.debug(document.getElementById("index-key").getAttribute("modifiers"));
-// document.getElementById("index-key").setAttribute("modifiers", "control shift");
-// document.getElementById("index-key").setAttribute("key", "N");
-// console.debug(document.getElementById("index-key").getAttribute("modifiers"));
-// console.debug(document.getElementById("index-key").getAttribute("key"));
-
-// let node2 = document.getElementById("mailContext-printpreview");
-// console.debug(node2.outerHTML);
-
-// var keyElm = document.createXULElement("key");
-// let keyElm = document.getElementById("index-key3");
-// keyElm.setAttribute("key", "D");
-// keyElm.setAttribute("modifiers", "control shift");
-// keyElm.setAttribute("id", "key_foo");
-// keyElm.setAttribute("oncommand", "alert('hello')");
-// document.getElementById("index-key3").appendChild(keyElm);
-// console.debug(keyElm.outerHTML);
-
 setupHotKeys();
 
 window.addEventListener("unload", IETmessOverlayInit, false);

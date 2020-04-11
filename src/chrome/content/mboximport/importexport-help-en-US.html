@@ -15,7 +15,7 @@
 	<p>A JavaScript port of <a href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>,
 		a function to format the date and time.</p>
 	<h3>Conversion specifications:</h3>
-	<table>
+	<table class="dateformat-table">
 		<thead>
 			<tr>
 				<th>Sequence</th>
@@ -24,190 +24,219 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><code>%a</code></td>
+				<td><code class="code1">%a</code></td>
 				<td>Abbreviated name of the day of the week.</td>
 			</tr>
 			<tr>
-				<td><code>%A</code></td>
+				<td><code class="code1">%A</code></td>
 				<td>Full name of the day of the week.</td>
 			</tr>
 			<tr>
-				<td><code>%b</code></td>
+				<td><code class="code1">%b</code></td>
 				<td>Abbreviated month name.</td>
 			</tr>
 			<tr>
-				<td><code>%B</code></td>
+				<td><code class="code1">%B</code></td>
 				<td>Full month name.</td>
 			</tr>
 			<tr>
-				<td><code>%c</code></td>
+				<td><code class="code1">%c</code></td>
 				<td>Preferred date and time (UTC) representation for the current locale.</td>
 			</tr>
 			<tr>
-				<td><code>%C</code></td>
+				<td><code class="code1">%C</code></td>
 				<td>Century number (year/100) as a 2-digit integer.</td>
 			</tr>
 			<tr>
-				<td><code>%d</code></td>
+				<td><code class="code1">%d</code></td>
 				<td>Day of the month as a decimal number (range 01 to 31).</td>
-			</tr> 
+			</tr>
 			<tr>
-				<td><code>%e</code></td>
+				<td><code class="code1">%e</code></td>
 				<td>Day of the month as a decimal number (range 1 to 31).</td>
 			</tr>
 			<tr>
-				<td><code>%F</code></td>
-				<td>ISO 8601 date format (equivalent to <code>%Y-%m-%d</code>).</td>
+				<td><code class="code1">%F</code></td>
+				<td>ISO 8601 date format (equivalent to <code class="code1">%Y-%m-%d</code>).</td>
 			</tr>
 			<tr>
-				<td><code>%G</code></td>
+				<td><code class="code1">%G</code></td>
 				<td>ISO 8601 week-based year with century as a decimal number. The 4-digit year corresponds to the ISO
-					week number (see <code>%V</code>). This has the same format and value as <code>%Y</code>, except
+					week number (see <code class="code1">%V</code>). This has the same format and value as <code class="code1">%Y</code>, except
 					that if the ISO week number belongs to the previous or next year, that year is used instead.</td>
 			</tr>
 			<tr>
-				<td><code>%g</code></td>
-				<td>Like <code>%G</code>, but without century, that is, with a 2-digit year (00-99).</td>
+				<td><code class="code1">%g</code></td>
+				<td>Like <code class="code1">%G</code>, but without century, that is, with a 2-digit year (00-99).</td>
 			</tr>
 			<tr>
-				<td><code>%H</code></td>
-				<td>Hour as a decimal number using a 24-hour clock (range 00 to 23). See also <code>%k</code>.</td>
+				<td><code class="code1">%H</code></td>
+				<td>Hour as a decimal number using a 24-hour clock (range 00 to 23). See also <code class="code1">%k</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%I</code></td>
-				<td>Hour as a decimal number using a 12-hour clock (range 01 to 12). See also <code>%l</code>.</td>
+				<td><code class="code1">%I</code></td>
+				<td>Hour as a decimal number using a 12-hour clock (range 01 to 12). See also <code class="code1">%l</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%j</code></td>
+				<td><code class="code1">%j</code></td>
 				<td>Day of the year as a decimal number (range 001 to 366).</td>
 			</tr>
 			<tr>
-				<td><code>%k</code></td>
-				<td>Hour as a decimal number using a 24-hour clock (range 0 to 23). See also <code>%H</code>.</td>
+				<td><code class="code1">%k</code></td>
+				<td>Hour as a decimal number using a 24-hour clock (range 0 to 23). See also <code class="code1">%H</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%l</code></td>
-				<td>Hour as a decimal number using a 12-hour clock (range 1 to 12). See also <code>%I</code>.</td>
+				<td><code class="code1">%l</code></td>
+				<td>Hour as a decimal number using a 12-hour clock (range 1 to 12). See also <code class="code1">%I</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%m</code></td>
+				<td><code class="code1">%m</code></td>
 				<td>Month as a decimal number (range 01 to 12).</td>
 			</tr>
 			<tr>
-				<td><code>%n</code></td>
+				<td><code class="code1">%n</code></td>
 				<td>Month as a decimal number (range 1 to 12).</td>
 			</tr>
 			<tr>
-				<td><code>%M</code></td>
+				<td><code class="code1">%M</code></td>
 				<td>Minute as a decimal number (range 00 to 59).</td>
 			</tr>
 			<tr>
-				<td><code>%p</code></td>
+				<td><code class="code1">%p</code></td>
 				<td>Either "AM" or "PM" according to the given time value. Noon is treated as "PM" and midnight as "AM".
 				</td>
 			</tr>
 			<tr>
-				<td><code>%P</code></td>
-				<td>Like <code>%p</code> but in lowercase ("am" or "pm").</td>
+				<td><code class="code1">%P</code></td>
+				<td>Like <code class="code1">%p</code> but in lowercase ("am" or "pm").</td>
 			</tr>
 			<tr>
-				<td><code>%s</code></td>
+				<td><code class="code1">%s</code></td>
 				<td>Number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).</td>
 			</tr>
 			<tr>
-				<td><code>%S</code></td>
+				<td><code class="code1">%S</code></td>
 				<td>Second as a decimal number (range 00 to 59).</td>
 			</tr>
 			<tr>
-				<td><code>%u</code></td>
-				<td>Day of the week as a decimal (range 1 to 7), Monday being 1. See also <code>%w</code>.</td>
+				<td><code class="code1">%u</code></td>
+				<td>Day of the week as a decimal (range 1 to 7), Monday being 1. See also <code class="code1">%w</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%V</code></td>
+				<td><code class="code1">%V</code></td>
 				<td>ISO 8601 week number of the current year as a decimal number (range 01 to 53), where week 1 is the
 					first week that has at least 4 days in the new year (that is, the first Thursday).</td>
 			</tr>
 			<tr>
-				<td><code>%w</code></td>
-				<td>Day of the week as a decimal (range 0 to 6), Sunday being 0. See also <code>%u</code>.</td>
+				<td><code class="code1">%w</code></td>
+				<td>Day of the week as a decimal (range 0 to 6), Sunday being 0. See also <code class="code1">%u</code>.</td>
 			</tr>
 			<tr>
-				<td><code>%x</code></td>
+				<td><code class="code1">%x</code></td>
 				<td>Preferred date representation for the current locale without the time.</td>
 			</tr>
 			<tr>
-				<td><code>%X</code></td>
+				<td><code class="code1">%X</code></td>
 				<td>Preferred time representation for the current locale without the date.</td>
 			</tr>
 			<tr>
-				<td><code>%y</code></td>
+				<td><code class="code1">%y</code></td>
 				<td>Year as a decimal number without a century (range 00 to 99).</td>
 			</tr>
 			<tr>
-				<td><code>%Y</code></td>
+				<td><code class="code1">%Y</code></td>
 				<td>Year as a decimal number including the century.</td>
 			</tr>
 			<tr>
-				<td><code>%z</code></td>
-				<td>The <code>+hhmm</code> or <code>-hhmm</code> numeric timezone (that is, the hour and minute offset
+				<td><code class="code1">%z</code></td>
+				<td>The <code class="code1">+hhmm</code> or <code class="code1">-hhmm</code> numeric timezone (that is, the hour and minute offset
 					from UTC).</td>
 			</tr>
 			<tr>
-				<td><code>%Z</code></td>
+				<td><code class="code1">%Z</code></td>
 				<td>Timezone name or abbreviation.</td>
 			</tr>
 		</tbody>
 	</table>
 	<h3>Compatibility notes:</h3>
 	<ul>
-		<li><code>%c</code> - formatted string is slightly different</li>
-		<li><code>%D</code> - not implemented (use <code>%m/%d/%y</code> or <code>%d/%m/%y</code>)</li>
-		<li><code>%e</code> - space is not added</li>
-		<li><code>%E</code> - not implemented</li>
-		<li><code>%h</code> - not implemented (use <code>%b</code>)</li>
-		<li><code>%k</code> - space is not added</li>
-		<li><code>%n</code> - like <code>%m</code>, but no leading zero (use <code>\n</code> for newline)</li>
-		<li><code>%O</code> - not implemented</li>
-		<li><code>%r</code> - not implemented (use <code>%I:%M:%S %p</code>)</li>
-		<li><code>%R</code> - not implemented (use <code>%H:%M</code>)</li>
-		<li><code>%t</code> - not implemented (use <code>\t</code>)</li>
-		<li><code>%T</code> - not implemented (use <code>%H:%M:%S</code>)</li>
-		<li><code>%U</code> - not implemented</li>
-		<li><code>%W</code> - not implemented</li>
-		<li><code>%+</code> - not implemented</li>
-		<li><code>%%</code> - not implemented (use <code>%</code>)</li>
+		<li><code class="code1">%c</code> - formatted string is slightly different</li>
+		<li><code class="code1">%D</code> - not implemented (use <code class="code1">%m/%d/%y</code> or <code class="code1">%d/%m/%y</code>)</li>
+		<li><code class="code1">%e</code> - space is not added</li>
+		<li><code class="code1">%E</code> - not implemented</li>
+		<li><code class="code1">%h</code> - not implemented (use <code class="code1">%b</code>)</li>
+		<li><code class="code1">%k</code> - space is not added</li>
+		<li><code class="code1">%n</code> - like <code class="code1">%m</code>, but no leading zero (use <code class="code1">\n</code> for newline)</li>
+		<li><code class="code1">%O</code> - not implemented</li>
+		<li><code class="code1">%r</code> - not implemented (use <code class="code1">%I:%M:%S %p</code>)</li>
+		<tr>
+			<td><code class="code1">${subject}</code></td>
+			<td>The subject of the message</td>
+		</tr>
+		<li><code class="code1">%R</code> - not implemented (use <code class="code1">%H:%M</code>)</li>
+		<li><code class="code1">%t</code> - not implemented (use <code class="code1">\t</code>)</li>
+		<li><code class="code1">%T</code> - not implemented (use <code class="code1">%H:%M:%S</code>)</li>
+		<li><code class="code1">%U</code> - not implemented</li>
+		<li><code class="code1">%W</code> - not implemented</li>
+		<li><code class="code1">%+</code> - not implemented</li>
+		<li><code class="code1">%%</code> - not implemented (use <code class="code1">%</code>)</li>
 	</ul>
 
-<br><br>
+	<br><br>
 
-<h1 id="ext_filename_format_help">Extended Filename Format:</h1>
-<br>
-The extended file name formatting utilizes tokens
+	<h1 id="ext_filename_format_help">Extended Filename Format:</h1>
+	<br>
+	The extended file name formatting utilizes tokens
 
-${sender}
-${recipient}
-${smart name}
-${index}
-${prefix}
-${suffix}
-${date custom}
-${date}
+	<br>
+	<br>
 
-<table class="token-table">
-<tr>
-	<td>Token</td><td>Description</td>
-</tr>
-<tr>
-<td>${date}</td><td>The standard date format</td>
-</tr>
-<tr>
-	<td></td><td></td>
-</tr>
-	
+	<table class="token-table">
+		<tr>
+			<td>Token</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td><code>${subject}</code></td>
+			<td>The subject of the message. The length may be limited by the subject length option.</td>
+		</tr>
+		<tr>
+			<td><code>${sender}</code></td>
+			<td>The name of the message sender.</td>
+		</tr>
+		<tr>
+			<td><code>${recipient}</code></td>
+			<td>The name of the message recipient.</td>
+		   </tr>
+		<tr>
+			<td><code>${smart_name}</code></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><code>${index}</code></td>
+			<td>The message index number.</td>
+		</tr>
+		<tr>
+			<td><code>${prefix}</code></td>	
+			<td>The prefix text option value.</td>
+		</tr>
+		<tr>
+			<td><code>${suffix}</code></td>
+			<td>The suffix text option value.</td>
+		</tr>
 
-</table>
+		<tr>
+			<td><code>${date}</code></td>
+			<td>The standard date format. The default format is: YYYYMMDDHHmm </td>
+		</tr>
+		<tr>
+			<td><code>${date_custom}</code></td>
+			<td>The custom date format.  See the custom date formatting section.</td>
+		</tr>
 
+	</table>
 
+	<!-- 
 <p>Translate this page:</p>
 
 <div id="google_translate_element"></div>
@@ -215,12 +244,13 @@ ${date}
 <script type="text/javascript">
 console.debug('translate script');
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
+  new google.translate.TranslateElement({pageLanguage: 'en'}</code>, 'google_translate_element');
+}</code>
 </script>
 
 <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!-- <script type="application/javascript" src="chrome://mboximport/content/translate.js"></script> -->
+ -->
+	<!-- <script type="application/javascript" src="chrome://mboximport/content/translate.js"></script> -->
 
 </body>
 

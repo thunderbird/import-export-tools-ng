@@ -1,9 +1,63 @@
 body {
 	background-color: whitesmoke;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-table, tr, td .token-table {
+
+.code1 {
+	font-size: 16px;
+}
+
+table.dateformat-table {
 	border: 1px solid black;
 	border-collapse: collapse;
-
+	width: 90%;
+	margin-left: 30px;
+	margin-right: 30px;
 }
+
+table.dateformat-table tr,  table.dateformat-table td,  table.dateformat-table th {
+	border: 1px solid #d2d2d2;
+	border-collapse: collapse;
+	padding: 6px;
+	padding-right: 25px;
+}
+
+table.dateformat-table tr td:first-child {
+	padding-left: 30px;
+}
+
+
+table.dateformat-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+table.dateformat-table thead {
+	font-weight: bold;
+	background-color: cornflowerblue;
+}
+
+
+table.token-table {
+	border: 1px solid #d2d2d2;
+	border-collapse: collapse;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+table.token-table tr,  table.token-table td,  table.token-table th {
+	border: 1px solid #d2d2d2;
+	border-collapse: collapse;
+	padding: 6px;
+	padding-right: 25px;
+}
+
+table.token-table tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+table.token-table tr:nth-child(1) {
+	font-weight: bold;
+	background-color: cornflowerblue;
+}
+

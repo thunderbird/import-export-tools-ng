@@ -2,6 +2,12 @@
 <overlay id="messengerOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
+<keyset >
+  <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
+  <!-- currently have to restart if modified -->
+  <key id="hot-key11" modifiers="control shift" key="Y" oncommand="alert('hot T11')"/>
+</keyset>
+
 <script type="application/javascript" src="chrome://mboximport/content/messengerOverlay.js" />
 <script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 </overlay>

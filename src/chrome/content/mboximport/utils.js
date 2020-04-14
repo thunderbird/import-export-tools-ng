@@ -778,3 +778,4 @@ function constructAttachmentsFilename(type, hdr) {
 
 	return fname;
 }
+

@@ -24,7 +24,7 @@
 
 // cleidigh - Convert in-line script, reformat, globals
 
-/* global IETprefs, IETgetComplexPref */
+/* global IETprefs, IETgetComplexPref, setupHotKeys */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -59,60 +59,7 @@ function IETmessOverlayInit() {
 
 }
 
-// Up to 10 hotkeys can be defined in:
-// extensions.importexporttoolsng.experimental.hot_keys
-
-// example hot key entry (array of JSON objects)
-// id		- the key index (1-10)
-// key			- the key ( single character)
-// modifiers	- the key modifiers, space separated list ('control', 'shift', 'alt', 'accel')
-// oncommand	- a direct command string 
-
-// [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]
-
-function setupHotKeys() {
-	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
-
-	console.debug(hotKeysStr);
-
-	if (hotKeysStr !== "") {
-		try {
-			var hotKeysArray = JSON.parse(hotKeysStr);
-
-			for (let index = 0; (index < hotKeysArray.length && index < 10); index++) {
-				var hotKey = hotKeysArray[index];
-				if (hotKey) {
-					let id = hotKey.id || "";
-					if (id === "" || id < 1 || id > 10) {
-						console.debug('bad ID');
-						continue;
-					}
-
-					let hkeyElement = document.getElementById(`hot-key${id}`);
-					
-					let key = hotKey.key || "";
-					if (key === "" || key.length !== 1) {
-						console.debug('Bad hotkey');
-					}
-					let modifiers = hotKey.modifiers || "";
-					let oncommand = hotKey.oncommand || "";
-
-					 
-				hkeyElement.setAttribute("key", key);
-				hkeyElement.setAttribute("modifiers", modifiers);
-				hkeyElement.setAttribute("oncommand", oncommand);
-				// console.debug(hkeyElement.outerHTML);
-				}
-
-			}
-			// console.debug(document.getElementById(`hot-key1`).parentElement.outerHTML);
-
-		} catch (error) {
-			console.debug('Bad hot key format:\n'+error);
-		}
-	}
-}
-
-setupHotKeys();
+// setup hotkeys for the main window
+setupHotKeys("messenger");
 
 window.addEventListener("unload", IETmessOverlayInit, false);

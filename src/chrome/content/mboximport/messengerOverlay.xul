@@ -2,12 +2,24 @@
 <overlay id="messengerOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<keyset >
+<keyset id="tasksKeys">
   <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
   <!-- currently have to restart if modified -->
-  <key id="hot-key11" modifiers="control shift" key="Y" oncommand="alert('hot T11')"/>
+  <key id="hot-key1" modifiers="" key="" oncommand=""/>
+  <key id="hot-key2" modifiers="" key="" oncommand=""/>
+  <key id="hot-key3" modifiers="" key="" oncommand=""/>
+  <key id="hot-key4" modifiers="" key="" oncommand=""/>
+  <key id="hot-key5" modifiers="" key="" oncommand=""/>
+  <key id="hot-key6" modifiers="" key="" oncommand=""/>
+  <key id="hot-key7" modifiers="" key="" oncommand=""/>
+  <key id="hot-key8" modifiers="" key="" oncommand=""/>
+  <key id="hot-key9" modifiers="" key="" oncommand=""/>
+  <key id="hot-key10" modifiers="" key="" oncommand=""/>
+  <!-- <key id="hot-key11" modifiers="control shift" key="L" oncommand="alert('ke')"/> -->
+  <!-- <key id="hot-key12" modifiers="control shift" key="2" oncommand="updateHotKeys()"/> -->
 </keyset>
 
+<script type="application/javascript" src="chrome://mboximport/content/hotKeyUtils.js" />
 <script type="application/javascript" src="chrome://mboximport/content/messengerOverlay.js" />
 <script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 </overlay>

@@ -183,3 +183,16 @@ function updateHotKeys() {
 			}
 			
 }
+
+var hkObserver = {
+	observe: function(aSubject, aTopic, aData) {
+	   //do stuff here
+	   console.debug('hot key change');
+		updateHotKeys();
+	}
+ }
+
+function setupHotKeysObserver() {
+	console.debug('observers configuration');
+	IETprefs.addObserver("extensions.importexporttoolsng.experimental.hot_keys", hkObserver, false);
+}

@@ -61,5 +61,6 @@ function IETmessOverlayInit() {
 
 // setup hotkeys for the main window
 setupHotKeys("messenger");
+setupHotKeysObserver();
 
 window.addEventListener("unload", IETmessOverlayInit, false);

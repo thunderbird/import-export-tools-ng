@@ -1,35 +1,38 @@
-// basic hot key support
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+// Copyright Christopher Leidigh (2020)
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-console.debug('hotkey utilities');
-
-
-
+// basic hot key support - no UI configuration
 
 // Up to 10 hotkeys can be defined in:
 // extensions.importexporttoolsng.experimental.hot_keys
 
 // example hot key entry (array of JSON objects)
 // id		- the key index (1-10)
-// key			- the key ( single character)
+// either key or keycode may be included , but not both
+//   key			- the key ( single character)
+//   keycode		- the 'VK_*' defind keycode
 // modifiers	- the key modifiers, space separated list ('control', 'shift', 'alt', 'accel')
-// oncommand	- a direct command string 
+// oncommand	- a direct command string
+// contexts 		- the window context where the key is active
+//    'all' - all windows under messenger
+//    'messenger' - the main messenger window and its descendents (currently equivalent to al
+//    'compose' - the message compose window
 
 
 // [{"id": "1", "key": "K", "modifiers": "control shift", "oncommand": "updateHotKeys()", "contexts": "all"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "alert('testD')", "contexts": "all"}]
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]
-// [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" ]
+// [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]
 
 function normalizeModifiers(modifiers) {
 	// make everything lowercase
 	modifiers = modifiers.toLowerCase();
-	var accelKey = "control"
+	var accelKey = "control";// key			- the key ( single character)
 	if (navigator.platform.toLowerCase().indexOf("mac") > -1) {
 		accelKey = "command";
 	}
-	// console.debug('mBefore ' + modifiers);
 	modifiers = modifiers.replace("accel", accelKey);
-	// console.debug('mAfter ' + modifiers);
 	// strip extraneous whitespace, split on spaces or comma
 	return modifiers.split(/[ ,]+/).filter(Boolean);
 }
@@ -38,9 +41,7 @@ function compareModifiers(modifiers1, modifiers2) {
 	// normalize into a array
 	let m1Array = normalizeModifiers(modifiers1);
 	let m2Array = normalizeModifiers(modifiers2);
-	console.debug('m: ');
-	console.debug(m1Array);
-	console.debug(m2Array);
+
 
 	// We do not care about order
 	// modifiers are equal if equal length and
@@ -61,8 +62,7 @@ function getCurrentKeys() {
 	console.debug('ksets '+keySets.length);
 	for (let i = 0; i < keySets.length; i++) {
 		const element = keySets[i];
-	console.debug(keySets[i].id);
-		
+		console.debug(keySets[i].id);
 	}
 	let existingKeys = document.getElementsByTagName("key");
 	var filteredKeys = [];
@@ -77,17 +77,22 @@ function getCurrentKeys() {
 		}
 	}
 	return filteredKeys;
-
 }
 
 function compareKeyDefinition(hotKey, keyElement) {
-	// console.debug('compared key definition');
 	let keyElementKey = keyElement.getAttribute("key").toLowerCase();
-	if (hotKey.key.toLowerCase() !== keyElementKey) {
+	console.debug('compared key definition '+hotKey.key + ' =? '+ keyElement.getAttribute("key"));
+
+	if (!!keyElementKey && hotKey.key.toLowerCase() !== keyElementKey) {
 		return false;
 	}
+	// let keyElementKeycode = keyElement.getAttribute("keycode").toLowerCase();
+	// if (!!keyElementKeycode && hotKey.keycode.toLowerCase() !== keyElementKeycode) {
+	// 	return false;
+	// }
+	
 	let keyElementModifiers = keyElement.getAttribute("modifiers");
-	// console.debug('compare modifiers');
+	console.debug('compare modifiers');
 	return compareModifiers(hotKey.modifiers, keyElementModifiers);
 }
 
@@ -142,7 +147,7 @@ function setupHotKeys(contexts) {
 							let kc = compareKeyDefinition(hotKey, existingKeys[i]);
 							if (kc) {
 								existingKeys[i].setAttribute("disabled", "true");
-								console.debug('disable existing');
+								console.debug('disable existing ' + existingKeys[i].getAttribute("oncommand") );
 							}
 						}
 					}

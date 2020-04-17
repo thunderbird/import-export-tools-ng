@@ -59,8 +59,20 @@ function IETmessOverlayInit() {
 
 }
 
+function keyEvent(e) {
+	console.debug(`Key event: ${e.code}  `);
+	// console.debug(`${e.target.outerHTML}`);
+
+	// var d = document.body.outerHTML();
+	// console.debug(d.substring(0,100));
+
+	d = e.target.outerHTML;
+	console.debug(d.substring(0,100));
+}
+
 // setup hotkeys for the main window
 setupHotKeys("messenger");
 setupHotKeysObserver();
 
 window.addEventListener("unload", IETmessOverlayInit, false);
+window.addEventListener("keydown", keyEvent, false);

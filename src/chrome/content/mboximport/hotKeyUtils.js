@@ -41,7 +41,7 @@ function compareModifiers(modifiers1, modifiers2) {
 	// normalize into a array
 	let m1Array = normalizeModifiers(modifiers1);
 	let m2Array = normalizeModifiers(modifiers2);
-
+	console.debug(`Modifiers: ${m1Array} : ${m2Array}`);
 
 	// We do not care about order
 	// modifiers are equal if equal length and
@@ -59,11 +59,17 @@ function compareModifiers(modifiers1, modifiers2) {
 
 function getCurrentKeys() {
 	let keySets = document.getElementsByTagName("keyset");
-	console.debug('ksets '+keySets.length);
+	console.debug('ksets ' + keySets.length);
 	for (let i = 0; i < keySets.length; i++) {
-		const element = keySets[i];
-		console.debug(keySets[i].id);
+		const keyset = keySets[i];
+		console.debug('keySet: ' + keyset.id);
+		var keyElements = keyset.childNodes;
+		for (let [index, keyElement] of keyElements.entries()) {
+			console.debug(`  key[${index}]: ` + keyElement.outerHTML.replace(/xmlns="[^"]+"/, ''));
+		}
+		console.debug('\n');
 	}
+
 	let existingKeys = document.getElementsByTagName("key");
 	var filteredKeys = [];
 	for (let i = 0; i < existingKeys.length; i++) {
@@ -80,19 +86,26 @@ function getCurrentKeys() {
 }
 
 function compareKeyDefinition(hotKey, keyElement) {
-	let keyElementKey = keyElement.getAttribute("key").toLowerCase();
-	console.debug('compared key definition '+hotKey.key + ' =? '+ keyElement.getAttribute("key"));
+	let keyElementKey = keyElement.getAttribute("key").toLowerCase() || null;
+	let keyElementKeycode = keyElement.getAttribute("keycode").toLowerCase() || null;
 
-	if (!!keyElementKey && hotKey.key.toLowerCase() !== keyElementKey) {
+	if (keyElementKey) {
+		if (!!hotKey.key && hotKey.key.toLowerCase() !== keyElementKey) {
+			return false;
+		}
+	} else if (hotKey.keycode === undefined || hotKey.keycode.toLowerCase() !== keyElementKeycode) {
 		return false;
 	}
-	// let keyElementKeycode = keyElement.getAttribute("keycode").toLowerCase();
-	// if (!!keyElementKeycode && hotKey.keycode.toLowerCase() !== keyElementKeycode) {
-	// 	return false;
-	// }
-	
-	let keyElementModifiers = keyElement.getAttribute("modifiers");
-	console.debug('compare modifiers');
+
+
+
+	let keyElementModifiers = keyElement.getAttribute("modifiers") || "";
+	if (keyElementKey) {
+		console.debug('compare key/Modifiers: ' + hotKey.key + ' =? ' + keyElement.getAttribute("key"));
+		
+	} else {
+		console.debug('compare keycode/Modifiers: ' + hotKey.keycode + ' =? ' + keyElement.getAttribute("keycode"));
+	}
 	return compareModifiers(hotKey.modifiers, keyElementModifiers);
 }
 
@@ -103,13 +116,8 @@ function setupHotKeys(contexts) {
 	var existingKeys = getCurrentKeys();
 
 	console.debug(hotKeysStr);
-/* 
-	if (contexts === "compose") {
-		console.debug('override');
-		let k = document.getElementById("key_checkspelling");
-		k.setAttribute("disabled", "true");
-	}
- */
+
+
 	if (hotKeysStr !== "") {
 		try {
 			var hotKeysArray = JSON.parse(hotKeysStr);
@@ -117,6 +125,11 @@ function setupHotKeys(contexts) {
 			for (let index = 0; (index < hotKeysArray.length && index < 10); index++) {
 				var hotKey = hotKeysArray[index];
 				if (hotKey) {
+					// check that we have either 'key' or 'keycode' not both
+					if (!!hotKey.key && !!hotKey.keycode) {
+						console.debug('HotKey with both key and keycode');
+					}
+
 					// check context (window)
 					if (hotKey.contexts === 'all' || hotKey.contexts.includes(contexts)) {
 
@@ -128,14 +141,25 @@ function setupHotKeys(contexts) {
 
 						let hkeyElement = document.getElementById(`hot-key${id}`);
 
-						let key = hotKey.key || "";
-						if (key === "" || key.length !== 1) {
-							console.debug('Bad hotkey');
+						let key = hotKey.key || null;
+						let keycode = hotKey.keycode || null;
+
+						if (key !== null && key.length !== 1) {
+							console.debug('Bad hotkey: invalid key');
 						}
+
+						if (keycode !== null && keycode.indexOf("VK_") !== 0) {
+							console.debug('Bad hotkey: invalid keycode');
+						}
+
 						let modifiers = hotKey.modifiers || "";
 						let oncommand = hotKey.oncommand || "";
 
-						hkeyElement.setAttribute("key", key);
+						if (!!key) {
+							hkeyElement.setAttribute("key", key);
+						} else {
+							hkeyElement.setAttribute("keycode", keycode);
+						}
 						hkeyElement.setAttribute("modifiers", modifiers);
 						hkeyElement.setAttribute("oncommand", oncommand);
 						// console.debug(hkeyElement.outerHTML);
@@ -147,7 +171,7 @@ function setupHotKeys(contexts) {
 							let kc = compareKeyDefinition(hotKey, existingKeys[i]);
 							if (kc) {
 								existingKeys[i].setAttribute("disabled", "true");
-								console.debug('disable existing ' + existingKeys[i].getAttribute("oncommand") );
+								console.debug('Disable existing key: ' + existingKeys[i].outerHTML);
 							}
 						}
 					}
@@ -167,8 +191,8 @@ function setupHotKeys(contexts) {
 				keyset.parentNode.appendChild(keyset);
 				console.debug('updated editor ');
 			}
-			
-} catch (error) {
+
+		} catch (error) {
 			console.debug('Bad hot key format:\n' + error);
 		}
 	}
@@ -179,23 +203,23 @@ function updateHotKeys() {
 	setupHotKeys();
 	let keyset = document.getElementById("tasksKeys");
 	console.debug('UpdateKeys');
-			keyset.parentNode.appendChild(keyset);
-			console.debug('messenger keys');
-			keyset = document.getElementById("editorKeys");
-			if (keyset) {
-				keyset.parentNode.appendChild(keyset);
-				console.debug('updated editor ');
-			}
-			
+	keyset.parentNode.appendChild(keyset);
+	console.debug('messenger keys');
+	keyset = document.getElementById("editorKeys");
+	if (keyset) {
+		keyset.parentNode.appendChild(keyset);
+		console.debug('updated editor ');
+	}
+
 }
 
 var hkObserver = {
-	observe: function(aSubject, aTopic, aData) {
-	   //do stuff here
-	   console.debug('hot key change');
+	observe: function (aSubject, aTopic, aData) {
+		//do stuff here
+		console.debug('hot key change');
 		updateHotKeys();
 	}
- }
+}
 
 function setupHotKeysObserver() {
 	console.debug('observers configuration');

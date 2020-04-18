@@ -75,4 +75,4 @@ setupHotKeys("messenger");
 setupHotKeysObserver();
 
 window.addEventListener("unload", IETmessOverlayInit, false);
-window.addEventListener("keydown", keyEvent, false);
+// window.addEventListener("keydown", keyEvent, false);

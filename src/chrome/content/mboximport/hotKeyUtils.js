@@ -210,6 +210,11 @@ function updateHotKeys() {
 		keyset.parentNode.appendChild(keyset);
 		console.debug('updated editor ');
 	}
+	keyset = document.getElementById("mailKeys");
+	if (keyset) {
+		keyset.parentNode.appendChild(keyset);
+		console.debug('updated mail keys ');
+	}
 
 }
 

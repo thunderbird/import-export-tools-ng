@@ -177,5 +177,5 @@ function SDinit() {
 	}
 }
 
-
+setupHotKeys('search');
 window.addEventListener("load", SDinit, false);

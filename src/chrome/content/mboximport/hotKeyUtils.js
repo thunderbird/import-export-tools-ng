@@ -89,11 +89,9 @@ function compareKeyDefinition(hotKey, keyElement) {
 	let keyElementKey = keyElement.getAttribute("key").toLowerCase() || null;
 	let keyElementKeycode = keyElement.getAttribute("keycode").toLowerCase() || null;
 
-	if (keyElementKey) {
-		if (!!hotKey.key && hotKey.key.toLowerCase() !== keyElementKey) {
+	if (!!hotKey.key && hotKey.key.toLowerCase() !== keyElementKey) {
 			return false;
-		}
-	} else if (hotKey.keycode === undefined || hotKey.keycode.toLowerCase() !== keyElementKeycode) {
+	} else if (!!hotKey.keycode && hotKey.keycode.toLowerCase() !== keyElementKeycode) {
 		return false;
 	}
 
@@ -155,10 +153,12 @@ function setupHotKeys(contexts) {
 						let modifiers = hotKey.modifiers || "";
 						let oncommand = hotKey.oncommand || "";
 
-						if (!!key) {
+						if (key) {
 							hkeyElement.setAttribute("key", key);
+							hkeyElement.removeAttribute("keycode");
 						} else {
 							hkeyElement.setAttribute("keycode", keycode);
+							hkeyElement.removeAttribute("key");
 						}
 						hkeyElement.setAttribute("modifiers", modifiers);
 						hkeyElement.setAttribute("oncommand", oncommand);

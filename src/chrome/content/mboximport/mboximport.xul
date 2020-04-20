@@ -65,7 +65,7 @@
 				</menu>
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
-				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 
 				
 			</menupopup>
@@ -102,7 +102,7 @@
 			</menupopup>
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
-				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
+				<menuitem id="openIEThelp2" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 
 		</menu>
 		<menuseparator insertafter="menu_close" />
@@ -178,7 +178,7 @@
 				<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
-				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
+				<menuitem id="openIEThelp3" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 			</menupopup>
 		</menu>
 	</menupopup>
@@ -219,7 +219,7 @@
 				<menuitem id="selAsIndex2Context" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
-				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp()" />
+				<menuitem id="openIEThelp4" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 
 			</menupopup>
 		</menu>

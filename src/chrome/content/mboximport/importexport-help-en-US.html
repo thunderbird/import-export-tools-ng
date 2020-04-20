@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css">
+	<script type="application/javascript" src="chrome://mboximport/content/utils.js"></script>
+	<script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+
 	<title>ImportExportTools NG Help</title>
 </head>
 
@@ -14,9 +17,142 @@
 	<br>
 	<p>This is a minimalist first start of a user guide.  I will continually update.</p>
 	<br>
+	<p>Accessing IETng functionality is done through several different menus installed by the
+		extension.  The functions are context-sensitive.  Menus are added for:
+		- The Folder Pane Context
+		- The Message List Context (selected messages)
+		- The Tools menu 
+		Additionally the extension adds an entry under the "Tools/Add-on Options" for the
+		 extension options.
 
+	</p>
 	<h1 id="main_functions_help">Main Functions</h1>
+	<br>
+	<h2 id="main_menu_help">Folder Context Menu Functions</h2>
 	
+	<table class="menu-table">
+		<thead>
+		<tr>
+			<th>Context</th>
+			<th>Menu Item</th>
+			<th>Function</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>Folder Pane</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<!-- <td dtd-text-id-ref="mboxexport"></td> -->
+			<td>Export Folder</td>
+			<td>Export a single folder to an mbox format file</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="mboxexportZIP"></td>
+			<td>Export a single folder to a zipped mbox format file</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="mboxexportallstruct"></td>
+			<td>Export a folder including all of its subfolders to an mbox format message tree</td>
+		</tr>
+		
+		
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="mboxexportstruct"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="mboxexportsub"></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="mboxexportRemote"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="exportALLMSG"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+			<td>Export the folder messages as EML format files</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+			<td>Export the folder messages as HTML format files</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+			<td>Export the folder messages as HTML format files, including attachments</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+			<td>Export the folder messages as plaintext format files, including attachments</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allCSV" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="justIndex" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Message List</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>Tools Menu</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+	</table>
 
 	<h1 id="customdate_format_help">Custom Date Format: Based on TDohan strftime() implementation</h1>
 	<p>A JavaScript port of <a href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>,
@@ -259,6 +395,7 @@ function googleTranslateElementInit() {
  -->
 	<!-- <script type="application/javascript" src="chrome://mboximport/content/translate.js"></script> -->
 
+	
 </body>
 
 </html>

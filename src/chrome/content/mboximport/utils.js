@@ -779,3 +779,19 @@ function constructAttachmentsFilename(type, hdr) {
 	return fname;
 }
 
+function fixIDReferenceLabels() {
+	console.debug('fixIDReferenceLabels:');
+	var ids = document.querySelectorAll("[dtd-text-id-ref]");
+	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+	.getService(Ci.nsIWindowMediator)
+	.getMostRecentWindow("mail:3pane");
+	var sourceDocument = w.document;
+	
+	for (let element of ids) {
+		
+		let sourceElement = sourceDocument.getElementById(element.getAttribute("dtd-text-id-ref"));
+		let label = sourceElement.getAttribute("label");
+		// console.debug('Label ' + label );
+		element.textContent = label;
+	}
+}

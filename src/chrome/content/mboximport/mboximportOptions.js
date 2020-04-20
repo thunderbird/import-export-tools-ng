@@ -74,7 +74,7 @@ function initMboxImportPanel() {
     }
 
     // var IETngVersion = browser.runtime.getManifest().version;
-    var IETngVersion = "4.1.0-b20";
+    var IETngVersion = "4.1.0-b21";
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
     var os = navigator.platform.toLowerCase();
@@ -454,33 +454,6 @@ function toggleSkipMsg(el) {
 function pickFile(el) {
     IETpickFile(el);
 }
-
-function openIEThelp(localize) {
-    loadTabPage('chrome://mboximport/content/importexport-help.html#customdate_format_help', true);
-}
-
-function loadTabPage(url, load_localized_page) {
-    if (load_localized_page) {
-        var tb_locale = Services.locale.appLocaleAsBCP47;
-        if (!tb_locale) {
-            tb_locale = "en-US";
-        }
-        var urlparts = url.split('.');
-        url = `${urlparts[0]}-${tb_locale}.${urlparts[1]}`;
-    }
-    let tabmail = getMail3Pane();
-
-    tabmail.openTab("chromeTab", { chromePage: url });
-        
-}
-
-function getMail3Pane() {
-    var w = Cc["@mozilla.org/appshell/window-mediator;1"]
-        .getService(Ci.nsIWindowMediator)
-        .getMostRecentWindow("mail:3pane");
-    return w;
-}
-
 
 document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();

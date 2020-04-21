@@ -632,6 +632,12 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 }
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
+		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
+		return;
+	}
+
+	
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
@@ -770,6 +776,152 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
 }
+
+function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+console.debug('short index');
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
+		return;
+
+	// Custom date format
+	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+	var myDate = new Date();
+	var titleDate;
+
+	if (customDateFormat === "") {
+		titleDate = myDate.toLocaleString();
+	} else {
+		titleDate = strftime.strftime(customDateFormat, myDate);
+	}
+
+	var clone2 = file2.clone();
+	var ext = IETgetExt(type);
+	var subdirname;
+
+	if (subdir)
+		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
+	else
+		subdirname = "";
+	// Build the index html page
+	clone2.append("index.html");
+//dt	clone2.createUnique(0, 0644);
+
+	var date_received_hdr = "";
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+	}
+
+	// improve index table formatting
+	let styles = '<style>\r\n';
+	styles += 'table { border-collapse: collapse; }\r\n';
+	styles += 'th { background-color: #e6ffff; }\r\n';
+	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
+	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
+	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
+	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += '</style>\r\n';
+
+	var data = '<html>\r\n<head>\r\n';
+
+	data = data + styles;
+	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
+
+	data = data + '<table width="99%" border="1" >';
+//dt	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+//dt	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+//dt	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "</tr>";
+
+
+	// Fill the table with the data of the arrays
+	for (let i = 0; i < hdrArray.length; i++) {
+		var currentMsgHdr = hdrArray[i];
+		// If the last char is "1", so the first letter must be modified in lower case
+		if (currentMsgHdr.substring(currentMsgHdr.length - 1) === "1")
+			currentMsgHdr = currentMsgHdr.substring(0, 1).toLowerCase() + currentMsgHdr.substring(1, currentMsgHdr.length - 1);
+		// Splits the array element to find the needed headers
+		var hdrs = currentMsgHdr.split("§][§^^§");
+		var time;
+		var subj;
+		var recc;
+		var auth;
+
+		switch (IETsortType) {
+			case 1:
+				time = hdrs[3];
+				subj = hdrs[0];
+				recc = hdrs[1];
+				auth = hdrs[2];
+				break;
+
+			case 2:
+				time = hdrs[3];
+				subj = hdrs[1];
+				recc = hdrs[2];
+				auth = hdrs[0];
+				break;
+
+			case 3:
+				time = hdrs[3];
+				subj = hdrs[1];
+				recc = hdrs[0];
+				auth = hdrs[2];
+				break;
+
+			default:
+				time = hdrs[0];
+				subj = hdrs[1];
+				recc = hdrs[2];
+				auth = hdrs[3];
+		}
+
+		// Attachment flag may have changed from integer to string
+		// https://github.com/thundernest/import-export-tools-ng/issues/68
+
+		var hasAtt;
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
+			hasAtt = "* ";
+		} else
+			hasAtt = "&nbsp;";
+
+		// Find hour and minutes of the message
+		var time2 = time / 1000;
+		var obj = new Date(time2);
+		var objHour = obj.getHours();
+		var objMin = obj.getMinutes();
+		if (objMin < 10)
+			objMin = "0" + objMin;
+		if (!justIndex) {
+			var urlname = IETstr_converter(hdrs[4]);
+			var url = subdirname + encodeURIComponent(urlname) + ext;
+			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
+		} else {
+//dt			data = data + "\r\n<tr><td>" + subj + "</td>";
+			data = data + "\r\n<tr><td>" + auth + "</td>";
+		}
+
+//dt		data = data + "\r\n<td>" + auth + "</td>";
+		data = data + "\r\n<td>" + subj + "</td>";
+//dt		data = data + "\r\n<td>" + recc + "</td>";
+		// The nowrap attribute is used not to break the time row
+
+		// Custom date format
+
+		if (customDateFormat === "") {
+			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+		} else {
+			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
+		}
+		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
+	}
+	data = data + "</table></body></html>";
+	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+}
+
 
 function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;

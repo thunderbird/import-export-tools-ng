@@ -129,7 +129,7 @@ function setupHotKeys(contexts) {
 					}
 
 					// check context (window)
-					if (hotKey.contexts === 'all' || hotKey.contexts.includes(contexts)) {
+					if (hotKey.contexts.includes('all') || hotKey.contexts.includes(contexts)) {
 
 						let id = hotKey.id || "";
 						if (id === "" || id < 1 || id > 10) {

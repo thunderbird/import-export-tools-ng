@@ -43,15 +43,15 @@
 					</menupopup>
 				</menu>
 				<menuseparator />
-				<menuitem label="&searchAndExport;" oncommand="searchANDsave();" />
+				<menuitem id="searchAndexport" label="&searchAndExport;" oncommand="searchANDsave();" />
 				<menuseparator />
 				<menuitem id="mboximport" label="&importMbox;" oncommand="openMboxDialog()" />
 				<menuitem id="mboximportMD" label="&importMAILDIR;" oncommand="trytocopyMAILDIR()" />
 				<menuitem id="mboximportEML" label="&importEML;" oncommand="importEMLs();" />
 				<menu id="mboximportALLEML" label="&importALLEML;">
 					<menupopup>
-						<menuitem label="&importALLEML1;" oncommand="importALLasEML(false)" />
-						<menuitem label="&importALLEML2;" oncommand="importALLasEML(true)" />
+						<menuitem id="mboximportALLEML1" label="&importALLEML1;" oncommand="importALLasEML(false)" />
+						<menuitem id="mboximportALLEML2" label="&importALLEML2;" oncommand="importALLasEML(true)" />
 					</menupopup>
 				</menu>
 				<menuseparator />
@@ -173,8 +173,8 @@
 					</menupopup>
 				</menu>
 				<menuseparator />
-				<menuitem id="openIEToptions" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
-				<menuitem id="openIEToptions" label="&saveProfile;" oncommand="IETexport_all(false)" />
+				<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
+				<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 				<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />

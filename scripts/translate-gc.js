@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 
 const projectId = 'ThunderbirdTranslations';
 // const key = "AIzaSyBU_DOuYLVTgwyR0fgj3PBtfP4ZBlDWw7I";
-const key = "AIzaSyD-DZV1sAMp0OIESSwiDkg3-ELw95l5AtM";
+const key = "AIzaSyA44_YhJM6jlhbR8Too5Trhk-v7fGQ3Gas";
 
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate').v2;
@@ -249,7 +249,20 @@ async function translateAllLocales(sourceArray, locales, format) {
 // console.debug(translate);
 
 // translate('Date Format Reference', {from: 'en', to: 'de'}).then(res => {
-
+function translatePage() {
+	// promises.push(translate.translate(sourceStrings, shortLocale)
+	var helpPage = "./src/chrome/content/mboximport/importexport-help-en-US.html";
+	var source = fs.readFileSync(helpPage);
+	var source2 = ["to system text"];
+	var sourceLocale = "en";
+	var shortLocale = "de";
+	var translatedString = translate.translate(source, { from: sourceLocale, to: shortLocale,format: 'html' })
+	.then(([translations]) => {
+		console.debug(translations);
+		// tarray.push(translations);
+	});
+	// console.debug(translatedString);
+}
 
 async function translateAll() {
 	let s = new Date();
@@ -262,8 +275,8 @@ async function translateAll() {
 	console.debug('Stop ' + (st - s) / 1000);
 }
 
-const localeFolders = _getAllFilesOrFolders(localeDir, true);
+// const localeFolders = _getAllFilesOrFolders(localeDir, true);
 // console.debug(localeFolders);
 
-
-translateAll();
+translatePage();
+// translateAll();

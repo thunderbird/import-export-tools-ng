@@ -1,0 +1,402 @@
+
+<! DOCTYPE html>
+<html lang = "en">
+
+<head>
+<meta charset = "UTF-8">
+<meta name = "viewport" content = "width = Gerätebreite, initial-scale = 1.0">
+<link rel = "stylesheet" href = "chrome: //mboximport/content/importexport-help.css" type = "text/css">
+<script type = "application/javascript" src = "chrome://mboximport/content/utils.js"> </script>
+<script type = "application/javascript" src = "chrome://mboximport/content/help.js"> </script>
+
+<title> ImportExportTools NG-Hilfe </title>
+</head>
+
+<body style = "Hintergrundfarbe: weiß;">
+
+<h1 id = "main_help"> ImportExportTools NG Hilfe-Benutzerhandbuch </h1>
+<br>
+<p> Dies ist ein minimalistischer erster Start eines Benutzerhandbuchs. Ich werde ständig aktualisieren. </P>
+<br>
+<p> Der Zugriff auf die IETng-Funktionalität erfolgt über verschiedene Menüs, die von der installiert werden
+Erweiterung. Die Funktionen sind kontextsensitiv. Menüs werden hinzugefügt für:
+- Der Kontext des Ordnerbereichs
+- Der Nachrichtenlistenkontext (ausgewählte Nachrichten)
+- Das Menü Extras
+Zusätzlich fügt die Erweiterung einen Eintrag unter "Extras /Add-On-Optionen" für die
+Erweiterungsoptionen.
+
+</p>
+<h1 id = "main_functions_help"> Hauptfunktionen </h1>
+<br>
+<h2 id = "main_menu_help"> Funktionen des Ordnerkontextmenüs </h2>
+
+<table class = "menu-table">
+<Kopf>
+<tr>
+<th> Kontext </th>
+<th> Menüpunkt </th>
+<th> Funktion </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> Ordnerbereich </td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<! - <td dtd-text-id-ref = "mboxexport"> </td> ->
+<td> Ordner exportieren </td>
+<td> Exportiert einen einzelnen Ordner in eine Datei im Mbox-Format </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "mboxexportZIP"> </td>
+<td> Exportiert einen einzelnen Ordner in eine komprimierte Datei im Mbox-Format </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "mboxexportallstruct"> </td>
+<td> Exportiert einen Ordner mit allen Unterordnern in einen Nachrichtenbaum im Mbox-Format </td>
+</tr>
+
+
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "mboxexportstruct"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "mboxexportsub"> </td>
+<td> </td>
+</tr>
+
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "mboxexportRemote"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "exportALLMSG"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsEML" class = "submenu1"> </td>
+<td> Exportieren Sie die Ordnernachrichten als Dateien im EML-Format </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsHTML" class = "submenu1"> </td>
+<td> Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsHTMLatt" class = "submenu1"> </td>
+<td> Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format, einschließlich Anhängen </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsTXTatt" class = "submenu1"> </td>
+<td> Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsOneTXT" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsOneTXTatt" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allCSV" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "allAsPdf" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "justIndex" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> </td>
+<td dtd-text-id-ref = "justIndexCSV" class = "submenu1"> </td>
+<td> </td>
+</tr>
+<tr>
+<td> Nachrichtenliste </td>
+<td> </td>
+<td> </td>
+</tr>
+
+<tr>
+<td> Menü Extras </td>
+<td> </td>
+<td> </td>
+</tr>
+
+<tr>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</body>
+</table>
+
+<h1 id = "customdate_format_help"> Benutzerdefiniertes Datumsformat: Basierend auf der Implementierung von TDohan strftime () </h1>
+<p> Ein JavaScript-Port von <a href="http://man7.org/linux/man-pages/man3/strftime.3.html"> <code> strftime () </code> </a>,
+eine Funktion zum Formatieren von Datum und Uhrzeit. </p>
+<h3> Konvertierungsspezifikationen: </h3>
+<table class = "dateformat-table">
+<Kopf>
+<tr>
+<th> Sequenz </th>
+<th> Beschreibung </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code class = "code1">% a </code> </td>
+<td> Kurzname des Wochentags. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% A </code> </td>
+<td> Vollständiger Name des Wochentags. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% b </code> </td>
+<td> Kurzname des Monats. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% B </code> </td>
+<td> Vollständiger Monatsname. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% c </code> </td>
+<td> Bevorzugte Darstellung von Datum und Uhrzeit (UTC) für das aktuelle Gebietsschema. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% C </code> </td>
+<td> Jahrhundertzahl (Jahr /100) als zweistellige Ganzzahl. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% d </code> </td>
+<td> Tag des Monats als Dezimalzahl (Bereich 01 bis 31). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% e </code> </td>
+<td> Tag des Monats als Dezimalzahl (Bereich 1 bis 31). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% F </code> </td>
+<td> ISO 8601-Datumsformat (entspricht <code class = "code1">% Y-% m-% d </code>). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% G </code> </td>
+<td> Wochenbasiertes Jahr nach ISO 8601 mit dem Jahrhundert als Dezimalzahl. Das 4-stellige Jahr entspricht der ISO
+Wochennummer (siehe <code class = "code1">% V </code>). Dies hat das gleiche Format und den gleichen Wert wie <code class = "code1">% Y </code>, außer
+Wenn die ISO-Wochennummer zum vorherigen oder nächsten Jahr gehört, wird stattdessen dieses Jahr verwendet. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% g </code> </td>
+<td> Wie <code class = "code1">% G </code>, jedoch ohne Jahrhundert, dh mit einem zweistelligen Jahr (00-99). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% H </code> </td>
+<td> Stunde als Dezimalzahl im 24-Stunden-Format (Bereich 00 bis 23). Siehe auch <code class = "code1">% k </code>. </Td>
+</tr>
+<tr>
+<td> <code class = "code1">% I </code> </td>
+<td> Stunde als Dezimalzahl im 12-Stunden-Format (Bereich 01 bis 12). Siehe auch <code class = "code1">% l </code>. </Td>
+</tr>
+<tr>
+<td> <code class = "code1">% j </code> </td>
+<td> Tag des Jahres als Dezimalzahl (Bereich 001 bis 366). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% k </code> </td>
+<td> Stunde als Dezimalzahl im 24-Stunden-Format (Bereich 0 bis 23). Siehe auch <code class = "code1">% H </code>. </Td>
+</tr>
+<tr>
+<td> <code class = "code1">% l </code> </td>
+<td> Stunde als Dezimalzahl im 12-Stunden-Format (Bereich 1 bis 12). Siehe auch <code class = "code1">% I </code>. </Td>
+</tr>
+<tr>
+<td> <code class = "code1">% m </code> </td>
+<td> Monat als Dezimalzahl (Bereich 01 bis 12). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% n </code> </td>
+<td> Monat als Dezimalzahl (Bereich 1 bis 12). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% M </code> </td>
+<td> Minute als Dezimalzahl (Bereich 00 bis 59). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% p </code> </td>
+<td> Je nach angegebenem Zeitwert entweder "AM" oder "PM". Mittag wird als "PM" und Mitternacht als "AM" behandelt.
+</td>
+</tr>
+<tr>
+<td> <code class = "code1">% P </code> </td>
+<td> Wie <code class = "code1">% p </code>, jedoch in Kleinbuchstaben ("am" oder "pm"). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% s </code> </td>
+<td> Anzahl der Sekunden seit der Epoche, 1970-01-01 00:00:00 +0000 (UTC). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% S </code> </td>
+<td> Sekunde als Dezimalzahl (Bereich 00 bis 59). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% u </code> </td>
+<td> Wochentag als Dezimalzahl (Bereich 1 bis 7), Montag ist 1. Siehe auch <code class = "code1">% w </code>. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% V </code> </td>
+<td> ISO 8601-Wochennummer des aktuellen Jahres als Dezimalzahl (Bereich 01 bis 53), wobei Woche 1 die ist
+erste Woche mit mindestens 4 Tagen im neuen Jahr (dh am ersten Donnerstag). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% w </code> </td>
+<td> Wochentag als Dezimalzahl (Bereich 0 bis 6), Sonntag ist 0. Siehe auch <code class = "code1">% u </code>. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% x </code> </td>
+<td> Bevorzugte Datumsdarstellung für das aktuelle Gebietsschema ohne Uhrzeit. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% X </code> </td>
+<td> Bevorzugte Zeitdarstellung für das aktuelle Gebietsschema ohne Datum. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% y </code> </td>
+<td> Jahr als Dezimalzahl ohne Jahrhundert (Bereich 00 bis 99). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% Y </code> </td>
+<td> Jahr als Dezimalzahl einschließlich des Jahrhunderts. </td>
+</tr>
+<tr>
+<td> <code class = "code1">% z </code> </td>
+<td> Die numerische Zeitzone <code class = "code1"> + hhmm </code> oder <code class = "code1"> - hhmm </code> (dh der Stunden- und Minutenversatz)
+von UTC). </td>
+</tr>
+<tr>
+<td> <code class = "code1">% Z </code> </td>
+<td> Name oder Abkürzung der Zeitzone. </td>
+</tr>
+</body>
+</table>
+<h3> Kompatibilitätshinweise: </h3>
+<ul>
+<li> <code class = "code1">% c </code> - formatierte Zeichenfolge unterscheidet sich geringfügig </li>
+<li> <code class = "code1">% D </code> - nicht implementiert (verwenden Sie <code class = "code1">% m /% d /% y </code> oder <code class = "code1" >% d /% m /% y </code>) </li>
+<li> <code class = "code1">% e </code> - Leerzeichen wird nicht hinzugefügt </li>
+<li> <code class = "code1">% E </code> - nicht implementiert </li>
+<li> <code class = "code1">% h </code> - nicht implementiert (verwenden Sie <code class = "code1">% b </code>) </li>
+<li> <code class = "code1">% k </code> - Leerzeichen wird nicht hinzugefügt </li>
+<li> <code class = "code1">% n </code> - wie <code class = "code1">% m </code>, aber keine führende Null (verwenden Sie <code class = "code1"> \ n </code> für Zeilenumbruch) </li>
+<li> <code class = "code1">% O </code> - nicht implementiert </li>
+<li> <code class = "code1">% r </code> - nicht implementiert (verwenden Sie <code class = "code1">% I:% M:% S% p </code>) </li>
+<tr>
+<td> <code class = "code1"> $ {subject} </code> </td>
+<td> Der Betreff der Nachricht </td>
+</tr>
+<li> <code class = "code1">% R </code> - nicht implementiert (verwenden Sie <code class = "code1">% H:% M </code>) </li>
+<li> <code class = "code1">% t </code> - nicht implementiert (verwenden Sie <code class = "code1"> \ t </code>) </li>
+<li> <code class = "code1">% T </code> - nicht implementiert (verwenden Sie <code class = "code1">% H:% M:% S </code>) </li>
+<li> <code class = "code1">% U </code> - nicht implementiert </li>
+<li> <code class = "code1">% W </code> - nicht implementiert </li>
+<li> <code class = "code1">% + </code> - nicht implementiert </li>
+<li> <code class = "code1"> %% </code> - nicht implementiert (verwenden Sie <code class = "code1">% </code>) </li>
+</ul>
+
+<br> <br>
+
+<h1 id = "ext_filename_format_help"> Erweitertes Dateinamenformat: </h1>
+<br>
+Bei der Formatierung des erweiterten Dateinamens werden Token verwendet
+
+<br>
+<br>
+
+<table class = "Token-Tabelle">
+<tr>
+<td> Token </td>
+<td> Beschreibung </td>
+</tr>
+<tr>
+<td> <code>$ {Subjekt> </code> </td>
+<td> Der Betreff der Nachricht. Die Länge kann durch die Betrefflängenoption begrenzt werden. </Td>
+</tr>
+<tr>
+<td> <code>${sender} </code> </td>
+<td> Der Name des Absenders der Nachricht. </td>
+</tr>
+<tr>
+<td> <code>${recipient gesteckt </code> </td>
+<td> Der Name des Nachrichtenempfängers. </td>
+</tr>
+<tr>
+<td> <code>${smart_name}</code> </td>
+<td> </td>
+</tr>
+<tr>
+<td> <code>${index}</code> </td>
+<td> Die Nachrichtenindexnummer. </td>
+</tr>
+<tr>
+<td> <code>${prefix}</code> </td>
+<td> Der Wert der Präfixtextoption. </td>
+</tr>
+<tr>
+<td> <code>${suffix}</code> </td>
+<td> Der Wert der Suffix-Textoption. </td>
+</tr>
+
+<tr>
+<td> <code>${date}</code> </td>
+<td> Das Standard-Datumsformat. Das Standardformat ist: JJJJMMTTHHmm </td>
+</tr>
+<tr>
+<td> <code>${date_custom} </code> </td>
+<td> Das benutzerdefinierte Datumsformat. Weitere Informationen finden Sie im Abschnitt zur benutzerdefinierten Datumsformatierung. </Td>
+</tr>
+
+</table>
+
+<! -
+<p> Übersetzen Sie diese Seite: </p>
+
+<div id = "google_translate_element"> </div>
+
+<script type = "text /javascript">
+console.debug ('Skript übersetzen');
+Funktion googleTranslateElementInit () {
+  neues google.translate.TranslateElement ({pageLanguage: 'en'} </code>, 'google_translate_element');
+} </code>
+</script>
+
+<script type = "text /javascript" src = "http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
+ ->
+<! - <script type = "application /javascript" src = "chrome: //mboximport/content/translate.js"> </script> ->
+
+
+</body>
+
+</html>

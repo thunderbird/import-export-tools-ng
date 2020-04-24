@@ -782,16 +782,47 @@ function constructAttachmentsFilename(type, hdr) {
 function fixIDReferenceLabels() {
 	console.debug('fixIDReferenceLabels:');
 	var ids = document.querySelectorAll("[dtd-text-id-ref]");
-	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
-	.getService(Ci.nsIWindowMediator)
-	.getMostRecentWindow("mail:3pane");
+
+	var w = getMail3Pane();
 	var sourceDocument = w.document;
-	
+
 	for (let element of ids) {
-		
 		let sourceElement = sourceDocument.getElementById(element.getAttribute("dtd-text-id-ref"));
 		let label = sourceElement.getAttribute("label");
-		// console.debug('Label ' + label );
 		element.textContent = label;
 	}
+}
+
+function fixPropertyReferenceLabels() {
+	var MBstrBundleService = Services.strings;
+	var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
+	var ids = document.querySelectorAll("[property-text-ref]");
+
+	for (let element of ids) {
+		let sourceProperty = element.getAttribute("property-text-ref");
+		let text = mboximportbundle.GetStringFromName(sourceProperty);
+		element.textContent = text;
+	}
+}
+
+function loadTabPage(url, load_localized_page) {
+    if (load_localized_page) {
+        var tb_locale = Services.locale.appLocaleAsBCP47;
+        if (!tb_locale) {
+            tb_locale = "en-US";
+        }
+        var urlparts = url.split('.');
+        url = `${urlparts[0]}-${tb_locale}.${urlparts[1]}`;
+    }
+    let tabmail = getMail3Pane();
+
+    tabmail.openTab("chromeTab", { chromePage: url });
+        
+}
+
+function getMail3Pane() {
+    var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Ci.nsIWindowMediator)
+        .getMostRecentWindow("mail:3pane");
+    return w;
 }

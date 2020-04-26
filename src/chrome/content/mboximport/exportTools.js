@@ -637,7 +637,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		return;
 	}
 
-	
+
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
@@ -778,7 +778,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-console.debug('short index');
+	console.debug('short index');
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
@@ -804,7 +804,6 @@ console.debug('short index');
 		subdirname = "";
 	// Build the index html page
 	clone2.append("index.html");
-//dt	clone2.createUnique(0, 0644);
 
 	var date_received_hdr = "";
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
@@ -815,10 +814,10 @@ console.debug('short index');
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
 	styles += 'th { background-color: #e6ffff; }\r\n';
-	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
+	styles += 'th, td { padding: 2px; text-align: left; vertical-align: center; }\r\n';
 	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
 	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
-	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += 'tr>:nth-child(3) { text-align: center; }\r\n';
 	styles += '</style>\r\n';
 
 	var data = '<html>\r\n<head>\r\n';
@@ -827,13 +826,13 @@ console.debug('short index');
 	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
-//dt	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
-//dt	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
-	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
-//dt	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<tr>"
+	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 1
+	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 2
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
 	data = data + "</tr>";
 
 
@@ -900,13 +899,14 @@ console.debug('short index');
 			var url = subdirname + encodeURIComponent(urlname) + ext;
 			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
 		} else {
-//dt			data = data + "\r\n<tr><td>" + subj + "</td>";
-			data = data + "\r\n<tr><td>" + auth + "</td>";
+			data = data + "\r\n<tr><td>" + "   " + "</td>";
 		}
 
-//dt		data = data + "\r\n<td>" + auth + "</td>";
+		data = data + "\r\n<td>" + "   " + "</td>";
+
+		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
 		data = data + "\r\n<td>" + subj + "</td>";
-//dt		data = data + "\r\n<td>" + recc + "</td>";
+		data = data + "\r\n<td>" + auth + "</td>";
 		// The nowrap attribute is used not to break the time row
 
 		// Custom date format
@@ -916,11 +916,12 @@ console.debug('short index');
 		} else {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
-		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
+		data = data + "</tr>";
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
 }
+
 
 
 function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {

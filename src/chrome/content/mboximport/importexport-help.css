@@ -110,3 +110,6 @@ table.token-table tr:nth-child(1) {
 	background-color: cornflowerblue;
 }
 
+table.token-table.hide-ltoken-table {
+	display: none;
+}

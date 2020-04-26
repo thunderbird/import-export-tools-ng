@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css">
-	<script type="application/javascript" src="chrome://mboximport/content/utils.js"></script>
+	<link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
+	<!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
 	<script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
 
 	<title>ImportExportTools NG Help</title>
@@ -13,7 +14,7 @@
 
 <body>
 
-	<h2 id="main_help">ImportExportTools NG Help-User Guide</h1>
+	<h2 id="main_help">ImportExportTools NG Help-User Guide</h2>
 
 	<p>This is a minimalist first start of a user guide. There is obviously much to add.
 		This current page focuses on the menus and new options.
@@ -224,7 +225,7 @@
 		</table>
 		<br>
 
-		<h2 id="message_functions_help">Message Context Menu</h1>
+		<h2 id="message_functions_help">Message Context Menu</h2>
 
 			<table class="menu-table">
 				<thead>
@@ -334,7 +335,7 @@
 			</table>
 
 			<br>
-			<h2 id="tools_functions_help">Tools Menu</h1>
+			<h2 id="tools_functions_help">Tools Menu</h2>
 
 				<table class="menu-table">
 					<thead>
@@ -698,59 +699,60 @@
 
 				<br><br>
 
-				<h2 id="ext_filename_format_help">Extended Filename Format:</h1>
+				<h2 id="ext_filename_format_help">Extended Filename Format:</h2>
 					<br>
+					<p>
 					The extended file name formatting utilizes tokens. The exact filename can be constructed
 					utilizing the tokens as well as any text or valid filename characters.
 					The English (en-US) tokens are available in any locale. Locale specific tokens
 					are also available and listed below the English table.
 					<br><br>
 					Examples:<br><br>
-					${subject}-${date}-${index} - The default format<br>
-					${prefix}_${date_custom}_${sender} - Use the custom date format instead of default<br>
-					${subject}-GmailMsg-${date}-${index} - With some custom text<br>
+					<span class="notranslate"><code>${subject}-${date}-${index}</code></span> - The default format<br>
+					<span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Use the custom date format instead of default<br>
+					<span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - With some custom text<br>
 						<br><br>
-
+					</p>
 					<table class="token-table">
 						<tr>
 							<td>Token</td>
 							<td>Description</td>
 						</tr>
 						<tr>
-							<td><code>${subject}</code></td>
+							<td class="notranslate"><code>${subject}</code></td>
 							<td>The subject of the message. The length may be limited by the subject length option.</td>
 						</tr>
 						<tr>
-							<td><code>${sender}</code></td>
+							<td class="notranslate"><code>${sender}</code></td>
 							<td>The name of the message sender.</td>
 						</tr>
 						<tr>
-							<td><code>${recipient}</code></td>
+							<td class="notranslate"><code>${recipient}</code></td>
 							<td>The name of the message recipient.</td>
 						</tr>
 						<tr>
-							<td><code>${smart_name}</code></td>
+							<td class="notranslate"><code>${smart_name}</code></td>
 							<td>The recipients if the message is in a Sent folder, otherwise the sender name </td>
 						</tr>
 						<tr>
-							<td><code>${index}</code></td>
+							<td class="notranslate"><code>${index}</code></td>
 							<td>The message index number.</td>
 						</tr>
 						<tr>
-							<td><code>${prefix}</code></td>
+							<td class="notranslate"><code>${prefix}</code></td>
 							<td>The prefix text option value.</td>
 						</tr>
 						<tr>
-							<td><code>${suffix}</code></td>
+							<td class="notranslate"><code>${suffix}</code></td>
 							<td>The suffix text option value.</td>
 						</tr>
 
 						<tr>
-							<td><code>${date}</code></td>
+							<td class="notranslate"><code>${date}</code></td>
 							<td>The standard date format. The default format is: YYYYMMDDHHmm </td>
 						</tr>
 						<tr>
-							<td><code>${date_custom}</code></td>
+							<td class="notranslate"><code>${date_custom}</code></td>
 							<td>The custom date format. See the custom date formatting section.</td>
 						</tr>
 
@@ -759,69 +761,52 @@
 
 					<br>
 					
-					<table class="token-table">
+					<table id="localized-token-table" class="token-table">
 						<tr>
 							<td>Token (en-US)</td>
-							<td>Localized () Token</td>
+							<td>Localized (<span id="locale1"></span>) Token</td>
 						</tr>
 						<tr>
-							<td><code>${subject}</code></td>
+							<td class="notranslate"><code>${subject}</code></td>
 							<td><code property-text-ref="subjectFmtToken"></code></td>
 						</tr>
 						
 						<tr>
-							<td><code>${sender}</code></td>
+							<td class="notranslate"><code>${sender}</code></td>
 							<td><code property-text-ref="senderFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${recipient}</code></td>
+							<td class="notranslate"><code>${recipient}</code></td>
 							<td><code property-text-ref="recipientFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${smart_name}</code></td>
+							<td class="notranslate"><code>${smart_name}</code></td>
 							<td><code property-text-ref="smartNameFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${index}</code></td>
+							<td class="notranslate"><code>${index}</code></td>
 							<td><code property-text-ref="indexFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${prefix}</code></td>
+							<td class="notranslate"><code>${prefix}</code></td>
 							<td><code property-text-ref="prefixFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${suffix}</code></td>
+							<td class="notranslate"><code>${suffix}</code></td>
 							<td><code property-text-ref="suffixFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${date}</code></td>
+							<td class="notranslate"><code>${date}</code></td>
 							<td><code property-text-ref="dateFmtToken"></code></td>
 						</tr>
 						<tr>
-							<td><code>${date_custom}</code></td>
+							<td class="notranslate"><code>${date_custom}</code></td>
 							<td><code property-text-ref="dateCustomFmtToken"></code></td>
 						</tr>
 
 					</table>
 
 <br>
-
-<p>Translate this page:</p>
-
-<div id="google_translate_element"></div>
-
-<script type="text/javascript">
-console.debug('translate script');
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
-
-<script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
- -->
-	<!-- <script type="application/javascript" src="chrome://mboximport/content/translate.js"></script> -->
-
-	
 
 </body>
 

@@ -1520,7 +1520,8 @@ function IETimportSMS() {
 }
 
 function openIEThelp(localize) {
-    loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
+	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
+	loadTabPage('importexport-help.html#main_help', true);
 }
 
 

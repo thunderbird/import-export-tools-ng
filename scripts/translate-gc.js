@@ -1,8 +1,10 @@
 const fs = require('fs-extra');
+const path = require('path');
+const prettier = require("prettier");
 
 const projectId = 'ThunderbirdTranslations';
-// const key = "AIzaSyBU_DOuYLVTgwyR0fgj3PBtfP4ZBlDWw7I";
-const key = "AIzaSyA44_YhJM6jlhbR8Too5Trhk-v7fGQ3Gas";
+
+const key = fs.readJSONSync("/Dev/SecurityMaterial/gapi-key.json").gapiKey;
 
 // Imports the Google Cloud client library
 const { Translate } = require('@google-cloud/translate').v2;
@@ -17,7 +19,8 @@ var translationArray = [
 	{ key: "Received", text: "Received" },
 ]
 
-const localeDir = "../src/chrome/locale";
+// const localeDir = "../src/chrome/locale";
+const localeDir = "./src/chrome/locale";
 // const localeDir = "./locale";
 // const localeFile = "mboximport/mboximport.dtd";
 const localeFile = "mboximport/mboximport.properties";
@@ -243,24 +246,87 @@ async function translateAllLocales(sourceArray, locales, format) {
 	}
 }
 
-
+function sleep(milliseconds) {
+	const date = Date.now();
+	let currentDate = null;
+	do {
+	  currentDate = Date.now();
+	} while (currentDate - date < milliseconds);
+  }
 
 
 // console.debug(translate);
 
-// translate('Date Format Reference', {from: 'en', to: 'de'}).then(res => {
-function translatePage() {
+function translateHelpPage() {
+	var localeFolders = _getAllFilesOrFolders(localeDir, true);
+	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM',
+		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
+	//  const supportedLocales2 = ['pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE' ];
+	supportedLocales = ['el' ];
+
+	localeFolders = supportedLocales;
+	// console.debug(localeFolders);
+	var helpLocaleDir ="./src/chrome/content/mboximport/help/locale";
+	var helpPage = "./src/chrome/content/mboximport/help/locale/en-US/importexport-help.html";
+	var helpBase = "importexport-help";
+	var source = fs.readFileSync(helpPage, { encoding: 'utf8' });
+
+	for (let i = 0; i < localeFolders.length; i++) {
+		if (localeFolders[i] === 'en-US') {
+			continue;
+		}
+
+		// var locale = locales[i].toLowerCase();
+		var shortLocale = localeFolders[i].split('-')[0];
+		if (shortLocale === 'zh') {
+			shortLocale = 'zh-CN';
+		}
+		console.debug('Translate ' + shortLocale);
+		var outputFileName = `${helpLocaleDir}/${localeFolders[i]}/${helpBase}.html`;
+		if (fs.existsSync(outputFileName)) {
+			console.debug('Exists: ' + outputFileName);
+			continue;
+		}
+		try {
+			translatePage([`<data class="notranslate">${outputFileName}`, source], 'en', shortLocale, translation => {
+				console.debug('call back ' + translation[0].split('>')[1]);
+				let outputFileName = translation[0].split('>')[1];
+				console.debug(outputFileName);
+				fs.outputFileSync(outputFileName, translation[1]);
+				console.debug('Translated ' + shortLocale);
+			});
+		} catch (e) {
+			console.debug(e);
+		}
+		// break;
+		sleep(2);
+	}
+}
+
+
+function translatePage(pageSource, sourceLocale, targetLocale, saveOutputCB) {
 	// promises.push(translate.translate(sourceStrings, shortLocale)
-	var helpPage = "./src/chrome/content/mboximport/importexport-help-en-US.html";
-	var source = fs.readFileSync(helpPage);
-	var source2 = ["to system text"];
-	var sourceLocale = "en";
-	var shortLocale = "de";
-	var translatedString = translate.translate(source, { from: sourceLocale, to: shortLocale,format: 'html' })
-	.then(([translations]) => {
-		console.debug(translations);
-		// tarray.push(translations);
-	});
+	// var helpPage = "./src/chrome/content/mboximport/importexport-help-en-US.html";
+	// var helpBase = "./src/chrome/content/mboximport/importexport-help";
+	// var helpPage = "./src/chrome/content/mboximport/test1.html";
+	// var source = fs.readFileSync(helpPage, {encoding: 'utf8'});
+	// console.debug(source);
+	// var sourceLocale = "en";
+	// var shortLocale = "pt-PT";
+	var translatedString = translate.translate(pageSource, { prettyPrint: true, from: sourceLocale, to: targetLocale, format: 'html' })
+		.then(([translations]) => {
+			try {
+				console.debug('T0 ' + translations[0]);
+				translations[1] = prettier.format(translations[1], { parser: 'html', printWidth: 110 });
+			} catch (error) {
+				console.debug(error);
+			}
+			// fs.outputFileSync(helpBase+"-"+shortLocale+".html",translations);
+			// console.debug(translations);
+			// tarray.push(translations);
+			saveOutputCB(translations);
+		});
 	// console.debug(translatedString);
 }
 
@@ -278,5 +344,32 @@ async function translateAll() {
 // const localeFolders = _getAllFilesOrFolders(localeDir, true);
 // console.debug(localeFolders);
 
-translatePage();
+function t() {
+	let tb_locale = 'hu';
+	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
+	var supportedLocaleRegions = supportedLocales.filter(l => {
+		if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
+			return true;
+		}
+		return false;
+	});
+
+	console.debug(supportedLocaleRegions);
+	if (!tb_locale || supportedLocaleRegions.length === 0) {
+		tb_locale = "en-US";
+	} else if ( !supportedLocaleRegions.includes(tb_locale)) {
+		tb_locale = supportedLocaleRegions[0];
+	}
+
+	console.debug(' locale subset');
+	console.debug(supportedLocaleRegions);
+	console.debug(tb_locale);
+
+}
+
+// t();
+translateHelpPage();
+// translatePage();
 // translateAll();

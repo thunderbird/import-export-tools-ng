@@ -19,6 +19,7 @@ https://addons.thunderbird.net/addon/importexporttools/
 ![Thunderbird_version](https://img.shields.io/badge/version-v60.0--69.*-blue.png?label=Thunderbird)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 ![Release Status](https://img.shields.io/badge/Release%20Status-v4.1.0%20Pending-brightgreen.png)
+
 #
 
 ## Import Export Tools NG Add-On Features
@@ -62,9 +63,7 @@ Profiles:
  - Import profile
  - Auto profile backup with schedule on shutdown
 
-SMS:
- - Import SMS from the “SMS Backup and Restore” program for Android and Nokia2AndroidSMS
- - Note: SMS not verified for NG (unable to test), please comment on issues
+SMS: Will be deprecated!
 
 ## Import Export Tools NG Add-On Installation
 

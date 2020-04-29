@@ -1,0 +1,851 @@
+<!ENTITY customDate "Benutzerdefiniertes Datum:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Datum (benutzerdefiniert)">
+<!ENTITY useExtFilenameFormat "Erweitertes Format verwenden">
+<!ENTITY addSuffix "Suffix hinzufügen">
+
+[da],[es-ES],[hu-HU],[ja],[nl],[ru],[sv-SE]
+[de],[fr],[hy-AM],[ko-KR],[pl],[sk-SK],[zh-CN]
+[ca],[en-US],[gl-ES],[it],[pt-PT],[sl-SI]
+
+
+[da]      [es-ES]   [hu-HU]   [ja]      [nl]      [ru]      [sv-SE]
+[de]      [fr]      [hy-AM]   [ko-KR]   [pl]      [sk-SK]   [zh-CN]
+[ca]      [en-US]   [gl-ES]   [it]      locales   [pt-PT]   [sl-SI]   
+
+
+Testing
+- entities
+ca 
+zh 
+da
+nl
+fr
+gl
+de
+hy
+hu
+it
+ja
+ko
+pl
+pt
+ru
+sl
+es
+sv
+sk
+
+filename tokens
+
+${sender}
+${recipient}
+${smart name}
+${index}
+${prefix}
+${suffix}
+${date custom}
+${date}
+
+${prefix}-${subject}-${sender}-${recipient}-${smart_name}-${date_custom}-${date}-${suffix}-${index}
+
+
+
+subjectFmtToken=${}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+
+
+Spanish
+
+Localización
+
+Fecha personalizada:
+Formato:
+Fecha (Personalizada)
+Usar formato extendido
+Añadir sufijo
+
+${prefijo}-${destinatario}-${remitente}-${nombre_inteligente}-${fecha}-${índice}
+
+${remitente}
+${destinatario}
+${nombre_inteligente}
+${index}
+${prefijo}
+${sufijo}
+${fecha_personalizada}
+${fecha}
+
+
+
+<!ENTITY customDate "Fecha personalizada:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Fecha (Personalizado)">
+<!ENTITY useExtFilenameFormat "Usar formato extendido">
+<!ENTITY addSuffix "Agregar sufijo">
+
+senderFmtToken=${remitente}
+employeeFmtToken=${destinatario}
+smartNameFmtToken=${nombre inteligente}
+indexFmtToken=${índice}
+prefixFmtToken=${prefijo}
+suffixFmtToken=${sufijo}
+dateCustomFmtToken=${date custom}
+dateCustomFmtToken=${fecha}
+
+Hungarian hu
+done
+
+Honosítás
+
+Egyéni dátum:
+Formátum:
+Dátum (egyedi)
+Használja a kiterjesztett formátumot
+Adjon hozzá utótagot
+
+${előtag}-${címzett}-${dátum_egyedi}
+
+$ {Feladó}
+${címzett}
+$ {smart name}
+$ {Index}
+$ {Prefix}
+$ {Utótag}
+$ {date custom}
+$ {Date}
+
+<!ENTITY customDate "Egyéni dátum:">
+<!ENTITY extFormat "Formátum:">
+<!ENTITY dateCustomOpt "Dátum (egyedi)">
+<!ENTITY useExtFilenameFormat "A kiterjesztett formátum használata">
+<!ENTITY addSuffix "Adjon hozzá utótagot">
+
+
+subjectFmtToken=${tárgy}
+senderFmtToken=${feladó}
+recipiensFmtToken=${címzett}
+smartNameFmtToken=${okos_név}
+indexFmtToken=${index}
+prefixFmtToken=${előtag}
+suffixFmtToken=${utótag}
+dateCustomFmtToken=${dátum_egyedi}
+dateFmtToken=${dátum}
+
+Italian
+Localizzazione
+
+Data personalizzata:
+Formato:
+Data (personalizzata)
+Usa formato esteso
+Aggiungi suffisso
+
+$ {Sender}
+$ {Recipient}
+$ {nome intelligente}
+$ {Index}
+$ {Prefix}
+$ {} Suffisso
+$ {data personalizzata}
+$ {Date}
+
+<!ENTITY customDate "Data personalizzata:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Data (personalizzata)">
+<!ENTITY useExtFilenameFormat "Usa formato esteso">
+<!ENTITY addSuffix "Aggiungi suffisso">
+
+
+mittenteFmtToken=${mittente}
+recipientFmtToken=${destinatario}
+smartNameFmtToken=${nome_intelligente}
+indexFmtToken=${indice}
+prefixFmtToken=${prefisso}
+suffissoFmtToken=${suffisso}
+dateCustomFmtToken=${data_personalizzata}
+dateCustomFmtToken=${data}
+
+subjectFmtToken=${oggetto}
+senderFmtToken=${mittente}
+recipientFmtToken=${destinatario}
+smartNameFmtToken=${nome_intelligente}
+indexFmtToken=${indice}
+prefixFmtToken=${prefisso}
+suffixFmtToken=${suffisso}
+dateCustomFmtToken=${data_personalizzata}
+dateFmtToken=${data}
+
+it-${oggetto}-${mittente}-${destinatario}-${nome_intelligente}-${indice}-${prefisso}-${suffisso}-${data_personalizzata}-${data}
+
+
+Japanese
+done
+
+ローカリゼーション
+
+カスタム日付：
+フォーマット：
+日付（カスタム）
+拡張フォーマットを使用する
+接尾辞を追加
+
+$ {sender}
+$ {recipient}
+$ {スマート名}
+$ {index}
+$ {prefix}
+$ {suffix}
+$ {date custom}
+$ {date}
+
+カスタム日付：
+フォーマット：
+日付（カスタム）
+拡張フォーマットを使用する
+接尾辞を追加
+
+<!ENTITY customDate "カスタム日付：">
+<!ENTITY extFormat "フォーマット：">
+<!ENTITY dateCustomOpt "日付（カスタム）">
+<!ENTITY useExtFilenameFormat "拡張フォーマットを使用する">
+<!ENTITY addSuffix "接尾辞を追加">
+
+subjectFmtToken=${タイトル}
+senderFmtToken=${送信者}
+recipientFmtToken=${受信者}
+smartNameFmtToken=${スマート名}
+indexFmtToken=${インデックス}
+prefixFmtToken=${プレフィックス}
+suffixFmtToken=${サフィックス}
+dateCustomFmtToken=${カスタム日付}
+dateFmtToken=${日付}
+tested
+ja-${タイトル}-${送信者}-${受信者}-${スマート名}-${インデックス}-${プレフィックス}-${サフィックス}-${カスタム日付}-${日付}--
+
+
+nl
+done
+
+Lokalisatie
+
+Aangepaste datum:
+Formaat:
+Datum (aangepast)
+Gebruik uitgebreid formaat
+Achtervoegsel toevoegen
+
+$ {afzender}
+$ {ontvanger}
+$ {smart name}
+$ {index}
+$ {prefix}
+$ {suffix}
+$ {date custom}
+$ {date}
+
+<!ENTITY customDate "Aangepaste datum:">
+<!ENTITY extFormat "Formaat:">
+<!ENTITY dateCustomOpt "Datum (aangepast)">
+<!ENTITY useExtFilenameFormat "Gebruik uitgebreid formaat">
+<!ENTITY addSuffix "Achtervoegsel toevoegen">
+
+
+subjectFmtToken=${onderwerp}
+senderFmtToken=${afzender}
+ontvangerFmtToken=${ontvanger}
+smartNameFmtToken=${slimme naam}
+indexFmtToken=${index}
+prefixFmtToken=${voorvoegsel}
+suffixFmtToken=${achtervoegsel}
+dateCustomFmtToken=${data_aangepast}
+dateFmtToken=${datum}
+
+ru Russian
+
+локализация
+
+Пользовательская дата:
+Формат:
+Дата (Пользовательская)
+Использовать расширенный формат
+Добавить суффикс
+
+$ {} Отправитель
+$ {Получатель}
+$ {умное имя}
+$ {Индекс}
+$ {Префикс}
+$ {Суффиксом}
+$ {дата обычай}
+$ {Дата}
+
+<!ENTITY customDate "Пользовательская дата:">
+<!ENTITY extFormat "Формат:">
+<!ENTITY dateCustomOpt "Дата (Пользовательская)Her">
+<!ENTITY useExtFilenameFormat "Использовать расширенный формат">
+<!ENTITY addSuffix "Добавить суффикс">
+
+subjectFmtToken=${тема}
+senderFmtToken=${отправитель}
+recipientFmtToken=${получатель}
+smartNameFmtToken=${умное_имя}
+indexFmtToken=${индекс}
+prefixFmtToken=${префикс}
+suffixFmtToken=${суффикс}
+dateCustomFmtToken=${дата_Пользовательская}
+dateFmtToken=${дата}
+
+
+sv-SE
+done
+Lokalisering
+
+Anpassat datum:
+Formatera:
+Datum (anpassad)
+Använd Utökat format
+Lägg till suffix
+
+$ {Avsändare}
+$ {Mottagare}
+$ {smart name}
+$ {Index}
+$ {Prefix}
+$ {Suffix}
+$ {date anpassad}
+$ {Date}
+
+<!ENTITY customDate "Anpassad datum:">
+<!ENTITY extFormat "Formatera:">
+<!ENTITY dateCustomOpt "Datum (anpassad)">
+<!ENTITY useExtFilenameFormat "Använd Utökat format">
+<!ENTITY addSuffix "Lägg till suffix">
+
+<!ENTITY avsändareFmtToken=${avsändare}
+<!ENTITY mottagareFmtToken=${mottagare}
+<!ENTITY smartNameFmtToken=${smart namn}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${prefix}
+<!ENTITY suffixFmtToken=${suffix}
+<!ENTITY dateCustomFmtToken=${date custom}
+<!ENTITY dateFmtToken=${datum}
+
+subjectFmtToken=${ämne}
+senderFmtToken=${avsändare}
+recipientFmtToken=${mottagare}
+smartNameFmtToken=${smart_namn}
+indexFmtToken=${index}
+prefixFmtToken=${prefix}
+suffixFmtToken=${suffix}
+dateCustomFmtToken=${datum_anpassad}
+dateFmtToken=${datum}
+
+German de
+done
+
+Lokalisierung
+
+Benutzerdefiniertes Datum:
+Format:
+Datum (benutzerdefiniert)
+Verwenden Sie das erweiterte Format
+Suffix hinzufügen
+
+$ {Absender}
+$ {Empfänger}
+$ {kluger Name}
+$ {index}
+$ {Präfix}
+$ {Suffix}
+$ {Datum benutzerdefiniert}
+$ {Datum}
+
+<!ENTITY customDate "Benutzerdefiniertes Datum:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Datum (benutzerdefiniert)">
+<!ENTITY useExtFilenameFormat "Erweitertes Format verwenden">
+<!ENTITY addSuffix "Suffix hinzufügen">
+
+Betreff
+<!ENTITY senderFmtToken=${Absender}
+<!ENTITY EmpfängerFmtToken=${Empfänger}
+<!ENTITY smartNameFmtToken=${kluger Name}
+<!ENTITY indexFmtToken=${Index}
+<!ENTITY prefixFmtToken=${Präfix}
+<!ENTITY-SuffixFmtToken=${Suffix}
+<!ENTITY dateCustomFmtToken=${date custom}
+<!ENTITY dateFmtToken=${Datum}
+
+subjectFmtToken=${betreff}
+senderFmtToken=${absender}
+recipientFmtToken=${empfänger}
+smartNameFmtToken=${kluger_name}
+indexFmtToken=${eingangsreihenfolge}
+prefixFmtToken=${präfix}
+suffixFmtToken=${suffix}
+dateCustomFmtToken=${datum_benutzerdefiniert}
+dateFmtToken=${datum}
+
+
+French fr
+done
+Localisation
+
+Date personnalisée:
+Format:
+Date (personnalisé)
+Utiliser le format étendu
+Ajouter un suffixe
+
+$ {expéditeur}
+$ {destinataire}
+$ {nom intelligent}
+$ {index}
+$ {prefix}
+$ {suffix}
+$ {date custom}
+$ {date}
+
+<!ENTITY customDate "Date personnalisée:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Date (personnalisée)">
+<!ENTITY useExtFilenameFormat "Utiliser le format étendu">
+<!ENTITY addSuffix "Ajouter un suffixe">
+
+<!ENTITY senderFmtToken=${expéditeur}
+<!ENTITY recipientFmtToken=${destinataire}
+<!ENTITY smartNameFmtToken=${nom_intelligent}
+<!ENTITY indexFmtToken=${index}
+<!ENTITY prefixFmtToken=${préfixe}
+<!ENTITY suffixFmtToken=${suffixe}
+<!ENTITY dateCustomFmtToken=${date custom}
+<!ENTITY dateFmtToken=${date}
+
+subjectFmtToken=${sujet}
+senderFmtToken=${expéditeur}
+recipientFmtToken=${destinataire}
+smartNameFmtToken=${nom_intelligent}
+indexFmtToken=${index}
+prefixFmtToken=${préfixe}
+suffixFmtToken=${suffixe}
+dateCustomFmtToken=${date_personnalisée}
+dateFmtToken=${date}
+
+
+hy-AM
+Տեղայնացում
+
+Պատվերով ամսաթիվ.
+Ձևաչափ:
+Ամսաթիվ (հարմարեցված)
+Օգտագործեք ընդլայնված ձևաչափ
+Ավելացնել վերջածանց
+
+$ {ուղարկող}
+$ {սsubjectFmtTokenտացող}
+$ {խելացի անուն}
+$ {ինդեքս}
+$ {նախածանց
+$ {վերջածանց
+$ {ամսաթիվը հարմարեցված}
+$ {ամսաթիվ
+
+<!ENTITY customDate "Պատվերով ամսաթիվ.">
+<!ENTITY extFormat "Ձևաչափ:">
+<!ENTITY dateCustomOpt "Ամսաթիվ (Պատվերով)">
+<!ENTITY useExtFilenameFormat "Օգտագործեք երկարացված ձևաչափը">
+<!ENTITY addSuffix «Ավելացնել վերջածանց»>>
+
+subjectFmtToken=${Վերնագիրը}
+senderFmtToken=${ուղարկող}
+recipientFmtToken=${ստացող}
+smartNameFmtToken=${խելացի անուն}
+indexFmtToken=${ինդեքս}
+prefixFmtToken=${նախածանց}
+suffixFmtToken=${վերջածանց}
+dateCustomFmtToken=${ամսաթիվի մաքսային}
+dateFmtToken=${ամսաթիվը}
+
+
+
+Korean ko
+done
+
+현지화
+
+맞춤 날짜 :
+체재:
+날짜 (맞춤)
+확장 형식 사용
+접미사 추가
+
+$ {보낸 사람}
+$ {받는 사람}
+$ {스마트 이름}
+$ {index}
+$ {접두사}
+$ {접미사}
+$ {날짜 맞춤}
+$ {날짜}
+
+<!ENTITY customDate "맞춤 날짜 :">
+<!ENTITY extFormat "형식 :">
+<!ENTITY dateCustomOpt "날짜 (맞춤 설정)">
+<!ENTITY useExtFilenameFormat "확장 형식 사용">
+<!ENTITY addSuffix "접미사 추가">
+
+subjectFmtToken=${제목}
+senderFmtToken=${발신자}
+recipientFmtToken=${수신자}
+smartNameFmtToken=${스마트 이름}
+indexFmtToken=${색인}
+prefixFmtToken=${접두사}
+suffixFmtToken=${접미사}
+dateCustomFmtToken=${날짜 사용자 정의}
+dateFmtToken=${날짜}
+
+subjectFmtToken=${제목}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+
+pl Polish
+done
+
+Lokalizacja
+
+
+Data niestandardowa:
+Format:
+Data (niestandardowa)
+Użyj formatu rozszerzonego
+Dodaj przyrostek
+
+$ {nadawca}
+$ {adresat}
+{inteligentna nazwa}
+$ {index}
+$ {przedrostek}
+{sufiks}
+$ {data niestandardowa}
+$ {data}
+
+<!ENTITY customDate "Data niestandardowa:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Data (niestandardowa)">
+<!ENTITY useExtFilenameFormat "Użyj rozszerzonego formatu">
+<!ENTITY addSuffix "Dodaj sufiks">
+
+subjectFmtToken=${temat}
+senderFmtToken=${nadawca}
+recipientFmtToken=${odbiorca}
+smartNameFmtToken=${inteligentna_nazwa}
+indexFmtToken=${indeks}
+prefixFmtToken=${przedrostek}
+sufiksFmtToken=${sufiks}
+dateCustomFmtToken=${data_niestandardowy}
+dateFmtToken=${data}
+
+
+
+sk-SK Slovak
+done
+lokalizácia
+
+Vlastný dátum:
+formát:
+Dátum (vlastné)
+Použite rozšírený formát
+Pridajte príponu
+
+$ {Odosielateľ}
+$ {Príjemca}
+$ {smart name}
+$ {Index}
+$ {Prefix}
+$ {} Prípona
+$ {date custom}
+$ {Date}
+
+<!ENTITY customDate "Vlastný dátum:">
+<!ENTITY extFormat "Formát:">
+<!ENTITY dateCustomOpt "Dátum (vlastné)">
+<!ENTITY useExtFilenameFormat "Použite rozšírený formát">
+<!ENTITY addSuffix "Pridať prípona">
+
+subjectFmtToken=${predmet}
+senderFmtToken=${odosielateľ}
+recipientFmtToken=${príjemca}
+smartNameFmtToken=${inteligentné_meno}
+indexFmtToken=${značka}
+prefixFmtToken=${predpona}
+suffixFmtToken=${prípona}
+dateCustomFmtToken=${dátum_vlastné}
+dateFmtToken=${dátum}
+
+
+
+Chinese zh
+done
+
+本土化
+
+自订日期：
+格式：
+日期（自定义）
+使用扩展格式
+添加后缀
+
+$ {sender}
+$ {收件人}
+$ {智能名称}
+$ {index}
+$ {prefix}
+$ {后缀}
+$ {date custom}
+$ {date}
+
+<！ENTITY customDate "自订日期：">
+<！ENTITY extFormat "格式：">
+<！ENTITY dateCustomOpt "日期（自定义）">
+<！ENTITY useExtFilenameFormat "使用扩展格式">
+<！ENTITY addSuffix "添加后缀">
+
+subjectFmtToken=${主题}
+senderFmtToken=${发件人}
+recipientFmtToken=${收件人}
+smartNameFmtToken=${聪明的名字}
+indexFmtToken=${索引}
+prefixFmtToken=${前缀}
+suffixFmtToken=${后缀}
+dateCustomFmtToken=${日期自定义}
+dateFmtToken=${日期}
+
+
+
+ca catalan
+done
+Localització
+
+Data personalitzada:
+Format:
+Data (personalitzada)
+Utilitzeu Format estès
+Afegiu el sufix
+
+$ {remitent}
+$ {destinatari}
+$ {nom intel·ligent}
+$ {índex}
+$ {prefix}
+$ {suffix}
+$ {data personalitzada}
+$ {data}
+
+<!ENTITY customDate "Data personalitzada:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Data (personalitzada)">
+<!ENTITY useExtFilenameFormat "Utilitza un format estès">
+<!ENTITY addSuffix "Afegir sufix">
+
+subjectFmtToken=${assumpte}
+senderFmtToken=${remitent}
+destinatariFmtToken=${destinatari}
+smartNameFmtToken=${nom_intel·ligent}
+indexFmtToken=${índex}
+prefixFmtToken=${prefix}
+sufixFmtToken=${sufix}
+dateCustomFmtToken=${data_personalitzada}
+dateFmtToken=${data}
+
+subjectFmtToken=${assumpte}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+
+gl-ES
+done
+Localización
+
+Data personalizada:
+Formato:
+Data (personalizado)
+Usar Formato estendido
+Engade sufixo
+
+$ {remitente}
+$ {destinatario}
+$ {nome intelixente}
+$ {índice}
+$ {prefixo}
+$ {sufixo}
+$ {data personalizada}
+$ {data}
+
+<!ENTITY customDate "Data personalizada:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Data (personalizada)">
+<!ENTITY useExtFilenameFormat "Usa Formato Estendido">
+<!ENTITY addSuffix "Engadir sufixo">
+
+subjectFmtToken=${asunto}
+senderFmtToken=${remitente}
+recipientFmtToken=${destinatario}
+smartNameFmtToken=${nome_intelixente}
+indexFmtToken=${índice}
+prefixFmtToken=${prefixo}
+suffixFmtToken=${sufixo}
+dateCustomFmtToken=${data_personalizada}
+dataCustomFmtToken=${data}
+
+subjectFmtToken=${asunto}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+
+pt-PT
+done
+Localização
+
+Data personalizada:
+Formato:
+Data (personalizada)
+Usar formato estendido
+Adicionar sufixo
+
+$ {remetente}
+$ {destinatário}
+$ {nome inteligente}
+$ {index}
+$ {prefix}
+$ {sufixo}
+$ {data personalizada}
+$ {date}
+
+<!ENTITY customDate "Data personalizada:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Data (personalizada)">
+<!ENTITY useExtFilenameFormat "Usar formato estendido">
+<!ENTITY addSuffix "Adicionar sufixo">
+
+subjectFmtToken=${assunto}
+senderFmtToken=${remetente}
+destinatárioFmtToken=${destinatário}
+smartNameFmtToken=${nome_inteligente}
+indexFmtToken=${índice}
+prefixFmtToken=${prefixo}
+suffixFmtToken=${sufixo}
+dateCustomFmtToken=${date_personalizada}
+dateFmtToken=${data}
+
+subjectFmtToken=${assunto}
+senderFmtToken=${}
+recipientFmtToken=${}
+smartNameFmtToken=${}
+indexFmtToken=${}
+prefixFmtToken=${}
+suffixFmtToken=${}
+dateCustomFmtToken=${}
+dateFmtToken=${}
+
+sl-SI Slovenian
+
+Lokalizacija
+
+Datum po meri:
+Oblika:
+Datum (po meri)
+Uporabite razširjeno obliko
+Dodajte pripono
+
+$ {pošiljatelj}
+$ {prejemnik}
+$ {pametno ime}
+$ {index}
+$ {prefix}
+$ {pripona}
+$ {datum po meri}
+$ {datum}
+
+<!ENTITY customDate "Datum po meri:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Datum (po meri)">
+<!ENTITY useExtFilenameFormat "Uporabi razširjeno obliko">
+<!ENTITY addSuffix "Dodaj pripono">
+
+Zadeva
+
+subjectFmtToken=${zadeva}
+senderFmtToken=${pošiljatelj}
+recipientFmtToken=${prejemnik}
+smartNameFmtToken=${pametno_ime}
+indexFmtToken=${kazalo}
+predponaFmtToken=${predpono}
+priponaFmtToken=${pripona}
+datumCustomFmtToken=${datum_po_meri}
+datumCustomFmtToken=${datum}
+
+
+da 
+
+Brugerdefineret dato:
+Format:
+Dato (brugerdefineret)
+Brug udvidet format
+Tilføj suffiks
+Tilføj præfiks
+brugerdefineret header
+indeks
+smart
+smart_navn
+emne
+Format
+Dato
+
+<!ENTITY customDate "Brugerdefineret dato:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Dato (brugerdefineret)">
+<!ENTITY useExtFilenameFormat "Brug udvidet format">
+<!ENTITY addSuffix "Tilføj suffiks">
+
+subjectFmtToken=${emne}
+senderFmtToken=${afsender}
+recipientFmtToken=${modtager}
+smartNameFmtToken=${smart_navn}
+indexFmtToken=${indeks}
+prefixFmtToken=${præfiks}
+suffixFmtToken=${suffiks}
+dateCustomFmtToken=${dato_brugerdefineret}
+dateFmtToken=${dato}
+
+
+Tilføj suffiks
+Tilføj præfiks
+dato_brugerdefineret

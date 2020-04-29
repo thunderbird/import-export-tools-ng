@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "保存所有配置文件">
 <!ENTITY withIndexLabel "带有 HTML 索引">
+
+<!ENTITY customDate "自订日期：">
+<!ENTITY extFormat "格式：">
+<!ENTITY dateCustomOpt "日期（自定义）">
+<!ENTITY useExtFilenameFormat "使用扩展格式">
+<!ENTITY addSuffix "添加后缀">
+<!ENTITY dateFormatRefTooltipText "日期格式参考">
+<!ENTITY extFilenameFormatRefTooltipText "扩展文件名格式参考">

@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "모든 프로파일 파일 저장">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "맞춤 날짜 :">
+<!ENTITY extFormat "형식 :">
+<!ENTITY dateCustomOpt "날짜 (맞춤 설정)">
+<!ENTITY useExtFilenameFormat "확장 형식 사용">
+<!ENTITY addSuffix "접미사 추가">
+<!ENTITY dateFormatRefTooltipText "날짜 형식 참조">
+<!ENTITY extFilenameFormatRefTooltipText "확장 파일 이름 형식 참조">

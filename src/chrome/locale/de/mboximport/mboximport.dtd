@@ -1,7 +1,7 @@
 <!ENTITY exportWithSub "Ordner und Unterordner exportieren (in eine Ebene)">
 <!ENTITY importMbox "Mbox-Dateien importieren...">
 <!ENTITY labelmenuMI "Importieren/Exportieren">
-<!ENTITY MBlabel1 "Dateien gleichen Namens im Zielverzeichnis überschreiben">
+<!ENTITY MBlabel1 "Mbox-Dateien gleichen Namens im Zielverzeichnis überschreiben">
 <!ENTITY importDir "Ein Verzeichnis auswählen, aus dem alle Mbox-Dateien importiert werden">
 <!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "Bestimmte Mbox-Dateien zum Importieren auswählen">
@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Alle Profil-Dateien speichern">
 <!ENTITY withIndexLabel "mit HTML-Index">
+
+<!ENTITY customDate "Benutzerdefiniertes Datum:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Datum (benutzerdefiniert)">
+<!ENTITY useExtFilenameFormat "Erweitertes Format verwenden">
+<!ENTITY addSuffix "Suffix hinzufügen">
+<!ENTITY dateFormatRefTooltipText "Datumsformatreferenz">
+<!ENTITY extFilenameFormatRefTooltipText "Erweiterte Dateinamenformatreferenz">

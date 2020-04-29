@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
+<!DOCTYPE overlay [
+ <!ENTITY % ietDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
+%ietDTD;
+
+<!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://messenger/locale/baseMenuOverlay.dtd">
+%baseMenuOverlayDTD;
+]>
+
 <overlay id="mboximportOverlay"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
@@ -7,6 +14,7 @@
 	<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/menufunctions.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
+
 	<popup id="folderPaneContext">
 		<menuseparator id="IETsep" />
 		<menu label="&labelmenuMItools;" id="IETmenu">
@@ -35,15 +43,15 @@
 					</menupopup>
 				</menu>
 				<menuseparator />
-				<menuitem label="&searchAndExport;" oncommand="searchANDsave();" />
+				<menuitem id="searchAndexport" label="&searchAndExport;" oncommand="searchANDsave();" />
 				<menuseparator />
 				<menuitem id="mboximport" label="&importMbox;" oncommand="openMboxDialog()" />
 				<menuitem id="mboximportMD" label="&importMAILDIR;" oncommand="trytocopyMAILDIR()" />
 				<menuitem id="mboximportEML" label="&importEML;" oncommand="importEMLs();" />
 				<menu id="mboximportALLEML" label="&importALLEML;">
 					<menupopup>
-						<menuitem label="&importALLEML1;" oncommand="importALLasEML(false)" />
-						<menuitem label="&importALLEML2;" oncommand="importALLasEML(true)" />
+						<menuitem id="mboximportALLEML1" label="&importALLEML1;" oncommand="importALLasEML(false)" />
+						<menuitem id="mboximportALLEML2" label="&importALLEML2;" oncommand="importALLasEML(true)" />
 					</menupopup>
 				</menu>
 				<menuseparator />
@@ -55,6 +63,11 @@
 						<menuitem label="&android;" oncommand="IETimportSMS();" />
 					</menupopup>
 				</menu>
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
+
+				
 			</menupopup>
 		</menu>
 	</popup>
@@ -73,6 +86,8 @@
 				<menuitem id="selAsPdf" label="&asPDF;" oncommand="IETprintPDFmain.print(false)" />
 				<menuseparator />
 				<menu id="selWithIndex" label="&withIndexLabel;">
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 					<menupopup>
 						<menuitem label="&asEML;" oncommand="exportSelectedMsgs(100)" />
 						<menuitem label="&asHTML;" oncommand="exportSelectedMsgs(101)" />
@@ -85,6 +100,10 @@
 				<menuitem id="selAsIndex1" label="&justIndex; &iHTML;" oncommand="exportSelectedMsgs(5)" />
 				<menuitem id="selAsIndex2" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
 			</menupopup>
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp2" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
+
 		</menu>
 		<menuseparator insertafter="menu_close" />
 	</menupopup>
@@ -154,11 +173,12 @@
 					</menupopup>
 				</menu>
 				<menuseparator />
-				<menuitem id="openIEToptions" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
-				<menuitem id="openIEToptions" label="&saveProfile;" oncommand="IETexport_all(false)" />
+				<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
+				<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 				<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
 				<menuseparator />
 				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp3" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 			</menupopup>
 		</menu>
 	</menupopup>
@@ -197,6 +217,10 @@
 				<menuseparator />
 				<menuitem id="selAsIndex1Context" label="&justIndex; &iHTML;" oncommand="exportSelectedMsgs(5)" />
 				<menuitem id="selAsIndex2Context" label="&justIndex; &iCSV;" oncommand="exportSelectedMsgs(6)" />
+				<menuseparator />
+				<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
+				<menuitem id="openIEThelp4" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
+
 			</menupopup>
 		</menu>
 	</popup>

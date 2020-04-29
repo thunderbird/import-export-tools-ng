@@ -50,7 +50,8 @@ IETlogger,
 IETcopyStrToClip,
 MsgHdrToMimeMessage,
 findGoodFolderName,
-
+IETgetComplexPref,
+constructAttachmentsFilename,
 */
 
 /* eslint complexity: [0,30] */
@@ -77,6 +78,7 @@ var IETglobalFile;
 var IETabort;
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
 
 if (String.prototype.trim) {
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
@@ -630,10 +632,26 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 }
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
+		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
+		return;
+	}
+
+
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
+	// Custom date format
+	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
 	var myDate = new Date();
+	var titleDate;
+
+	if (customDateFormat === "") {
+		titleDate = myDate.toLocaleString();
+	} else {
+		titleDate = strftime.strftime(customDateFormat, myDate);
+	}
 
 	var clone2 = file2.clone();
 	var ext = IETgetExt(type);
@@ -646,14 +664,36 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	// Build the index html page
 	clone2.append("index.html");
 	clone2.createUnique(0, 0644);
-	var data = '<html>\r\n<head>\r\n<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + myDate.toLocaleString() + ")</h2>";
-	data = data + '<table width="99%" border="1">';
-	data = data + "<tr><td><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></td>"; // Subject
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></td>"; // From
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></td>"; // To
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1007) + "</b></td>"; // Date
-	data = data + "<td><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></td>"; // Attachment
-	data = data + "</tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>";
+
+	var date_received_hdr = "";
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+	}
+
+	// improve index table formatting
+	let styles = '<style>\r\n';
+	styles += 'table { border-collapse: collapse; }\r\n';
+	styles += 'th { background-color: #e6ffff; }\r\n';
+	styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
+	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
+	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
+	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += '</style>\r\n';
+
+	var data = '<html>\r\n<head>\r\n';
+
+	data = data + styles;
+	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
+
+	data = data + '<table width="99%" border="1" >';
+	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "</tr>";
+
+
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
@@ -696,10 +736,13 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 				auth = hdrs[3];
 		}
 
+		// Attachment flag may have changed from integer to string
+		// https://github.com/thundernest/import-export-tools-ng/issues/68
+
 		var hasAtt;
-		if (hdrs[6] === 1)
-			hasAtt = "*";
-		else
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
+			hasAtt = "* ";
+		} else
 			hasAtt = "&nbsp;";
 
 		// Find hour and minutes of the message
@@ -720,12 +763,166 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		data = data + "\r\n<td>" + auth + "</td>";
 		data = data + "\r\n<td>" + recc + "</td>";
 		// The nowrap attribute is used not to break the time row
-		data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+
+		// Custom date format
+
+		if (customDateFormat === "") {
+			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+		} else {
+			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
+		}
 		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
 }
+
+function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+	console.debug('short index');
+	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
+		return;
+
+	// Custom date format
+	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
+	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+	var myDate = new Date();
+	var titleDate;
+
+	if (customDateFormat === "") {
+		titleDate = myDate.toLocaleString();
+	} else {
+		titleDate = strftime.strftime(customDateFormat, myDate);
+	}
+
+	var clone2 = file2.clone();
+	var ext = IETgetExt(type);
+	var subdirname;
+
+	if (subdir)
+		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
+	else
+		subdirname = "";
+	// Build the index html page
+	clone2.append("index.html");
+
+	var date_received_hdr = "";
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+	}
+
+	// improve index table formatting
+	let styles = '<style>\r\n';
+	styles += 'table { border-collapse: collapse; }\r\n';
+	styles += 'th { background-color: #e6ffff; }\r\n';
+	styles += 'th, td { padding: 2px; text-align: left; vertical-align: center; }\r\n';
+	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
+	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
+	styles += 'tr>:nth-child(3) { text-align: center; }\r\n';
+	styles += '</style>\r\n';
+
+	var data = '<html>\r\n<head>\r\n';
+
+	data = data + styles;
+	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
+
+	data = data + '<table width="99%" border="1" >';
+	data = data + "<tr>"
+	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 1
+	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 2
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "</tr>";
+
+
+	// Fill the table with the data of the arrays
+	for (let i = 0; i < hdrArray.length; i++) {
+		var currentMsgHdr = hdrArray[i];
+		// If the last char is "1", so the first letter must be modified in lower case
+		if (currentMsgHdr.substring(currentMsgHdr.length - 1) === "1")
+			currentMsgHdr = currentMsgHdr.substring(0, 1).toLowerCase() + currentMsgHdr.substring(1, currentMsgHdr.length - 1);
+		// Splits the array element to find the needed headers
+		var hdrs = currentMsgHdr.split("§][§^^§");
+		var time;
+		var subj;
+		var recc;
+		var auth;
+
+		switch (IETsortType) {
+			case 1:
+				time = hdrs[3];
+				subj = hdrs[0];
+				recc = hdrs[1];
+				auth = hdrs[2];
+				break;
+
+			case 2:
+				time = hdrs[3];
+				subj = hdrs[1];
+				recc = hdrs[2];
+				auth = hdrs[0];
+				break;
+
+			case 3:
+				time = hdrs[3];
+				subj = hdrs[1];
+				recc = hdrs[0];
+				auth = hdrs[2];
+				break;
+
+			default:
+				time = hdrs[0];
+				subj = hdrs[1];
+				recc = hdrs[2];
+				auth = hdrs[3];
+		}
+
+		// Attachment flag may have changed from integer to string
+		// https://github.com/thundernest/import-export-tools-ng/issues/68
+
+		var hasAtt;
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
+			hasAtt = "* ";
+		} else
+			hasAtt = "&nbsp;";
+
+		// Find hour and minutes of the message
+		var time2 = time / 1000;
+		var obj = new Date(time2);
+		var objHour = obj.getHours();
+		var objMin = obj.getMinutes();
+		if (objMin < 10)
+			objMin = "0" + objMin;
+		if (!justIndex) {
+			var urlname = IETstr_converter(hdrs[4]);
+			var url = subdirname + encodeURIComponent(urlname) + ext;
+			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
+		} else {
+			data = data + "\r\n<tr><td>" + "   " + "</td>";
+		}
+
+		data = data + "\r\n<td>" + "   " + "</td>";
+
+		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
+		data = data + "\r\n<td>" + subj + "</td>";
+		data = data + "\r\n<td>" + auth + "</td>";
+		// The nowrap attribute is used not to break the time row
+
+		// Custom date format
+
+		if (customDateFormat === "") {
+			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+		} else {
+			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
+		}
+		data = data + "</tr>";
+	}
+	data = data + "</table></body></html>";
+	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+}
+
+
 
 function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;
@@ -1056,7 +1253,16 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						//	continue;
 						if (noDir) {
 							var attDirContainer = file.clone();
-							attDirContainer.append("Attachments");
+							var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+
+							// attachmentsExtendedFilenameFormat = "1";
+							if (attachmentsExtendedFilenameFormat === "") {
+								attDirContainer.append("Attachments");
+							} else {
+								let afname = constructAttachmentsFilename(1, hdr);
+								attDirContainer.append(afname);
+
+							}
 							attDirContainer.createUnique(1, 0775);
 							footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 							noDir = false;
@@ -1098,7 +1304,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
-						// console.debug('data footer: \n' + data);
 						// cleidigh - fixup group boxes and images
 						let rs;
 						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
@@ -1210,25 +1415,46 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						const currentVersion = Services.appinfo.platformVersion;
 
 						// cleidigh - TB68 groupbox needs hbox/label
+
+						// Embedded in-line images can be either 'mailbox' for POP accounts
+						// or 'imap' for IMAP
+						// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
+
 						var imgs;
-						if (versionChecker.compare(currentVersion, "60.8") >= 0) {
-							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
-						} else {
-							imgs = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+						imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+						if (imgs === null) {
+							imgs = [];
 						}
 
+						var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+						if (imgsImap !== null) {
+							imgs = imgs.concat(imgsImap);
+						}
+
+						// update for extended naming
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
 								embImgContainer = file.clone();
-								embImgContainer.append("EmbeddedImages");
+								var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+
+								if (attachmentsExtendedFilenameFormat === "") {
+									embImgContainer.append("EmbeddedImages");
+								} else {
+									let afname = constructAttachmentsFilename(2, hdr);
+									embImgContainer.append(afname);
+								}
 								embImgContainer.createUnique(1, 0775);
 							}
 
 							var aUrl;
-							if (versionChecker.compare(currentVersion, "60.8") >= 0) {
-								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
-							} else {
+
+							aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+							if (aUrl === null) {
 								aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+							}
+
+							if (aUrl === null) {
+								continue;
 							}
 
 							var embImg = embImgContainer.clone();
@@ -1537,8 +1763,10 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 			uriArray.push(msguri);
 	}
 	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
-	if (IETtotal > 0)
+	if (IETtotal > 0) {
+		console.debug('Seva EML');
 		saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, true, false, null, null);
+	}
 }
 
 function IETwritestatus(text) {
@@ -1754,6 +1982,11 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var subject = getSubjectForHdr(msg, subfile.path);
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
+
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+		var time2 = msg.getUint32Property('dateReceived');
+		time = time2 * 1000 * 1000;
+	}
 
 	if (addBody)
 		body = IETstoreBody(msguri);

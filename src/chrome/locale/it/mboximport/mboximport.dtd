@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separatore per l'esportazione in CSV:">
 <!ENTITY saveProfile "Esporta profilo">
 <!ENTITY withIndexLabel "con indice HTML">
+
+<!ENTITY customDate "Data personalizzata:">
+<!ENTITY extFormat "Formato:">
+<!ENTITY dateCustomOpt "Data (personalizzata)">
+<!ENTITY useExtFilenameFormat "Usa formato esteso">
+<!ENTITY addSuffix "Aggiungi suffisso">
+<!ENTITY dateFormatRefTooltipText "Riferimento formato data">
+<!ENTITY extFilenameFormatRefTooltipText "Riferimento formato file esteso">

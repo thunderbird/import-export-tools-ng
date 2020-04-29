@@ -1,4 +1,34 @@
+:root {
+  --groupbox-header-bg: white;
+  --question-height: 24px;
+}
 
-.groupbox-label {
-	background-color: #ffffff !important;
+.groupbox-multi-os {
+  position: relative;
+  border-radius: 3px;
+  border-bottom: 2px groove ThreeDFace;
+  border-top: 2px groove ThreeDFace;
+  padding: 0 0 10px;
+  border-left: 2px groove ThreeDFace;
+  border-right: 2px groove ThreeDFace;
+  padding-right: 8px;
+  padding-top: 10px;
+}
+
+.groupbox-os-title {
+  position: absolute;
+  top: -8px;
+  left: 0px;
+}
+
+.groupbox-os-label {
+  background-color: var(--groupbox-header-bg);
+  font-weight: normal;
+  margin-inline-start: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
+}
+
+.adjusted-image-height {
+  height: var(--question-height);
 }

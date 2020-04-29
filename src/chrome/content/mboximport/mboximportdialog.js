@@ -45,3 +45,12 @@ function importwrapper() {
 document.addEventListener("dialogaccept", function(event) {
 	importwrapper();
 });
+
+
+// handle cancel with standard listener
+// Fixes #56 https://github.com/thundernest/import-export-tools-ng/issues/56
+
+document.addEventListener("dialogcancel", function(event) {
+	window.arguments[0].cancel = true;
+	return true;
+});

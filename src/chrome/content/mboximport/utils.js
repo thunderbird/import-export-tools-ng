@@ -36,11 +36,14 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+// var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
+
+var supportedLocales = [ 'ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+ 'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el' ];
 
 function IETrunTimeDisable() {
 	IETprefs.setIntPref("dom.max_chrome_script_run_time", 0);
@@ -138,6 +141,7 @@ function getSubjectForHdr(hdr, dirPath) {
 
 	var fname;
 
+	// custom filename pattern
 	if (emlNameType === 2) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
@@ -153,18 +157,79 @@ function getSubjectForHdr(hdr, dirPath) {
 		else
 			smartName = authName;
 
+		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
 		pattern = pattern.replace("%s", subj);
 		pattern = pattern.replace("%k", key);
 		pattern = pattern.replace("%d", msgDate8601string);
+		pattern = pattern.replace("%D", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		pattern = pattern.replace("%n", smartName);
 		pattern = pattern.replace("%a", authName);
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
+
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
 			var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
 			pattern = prefix + pattern;
 		}
+
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix")) {
+			var suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+			pattern = pattern + suffix;
+		}
+
+
 		fname = pattern;
+
+	} else if (emlNameType === 3) {
+		// extended filename format
+		var extendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
+
+		let subject = subj;
+		let index = key;
+
+		// Name
+		let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		// Sent of Drafts folder
+		let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
+		let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
+		let smartName;
+
+		let prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
+		let suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+
+		if (isSentFolder || isSentSubFolder > -1)
+			smartName = recName;
+		else
+			smartName = authName;
+
+		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
+		// Allow en-US tokens always
+		extendedFilenameFormat = extendedFilenameFormat.replace("${subject}", subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${sender}", authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient}", recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${smart_name}", smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${suffix}", suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
+
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
+
+		fname = extendedFilenameFormat;
 	} else {
 		fname = msgDate8601string + "-" + subj + "-" + hdr.messageKey;
 	}
@@ -172,7 +237,8 @@ function getSubjectForHdr(hdr, dirPath) {
 	if (mustcorrectname)
 		fname = nametoascii(fname);
 	else
-		fname = fname.replace(/[\/\\:,<>*\?\"\|\']/g, "_");
+		// fname = fname.replace(/[\/\\:,<>*\?\"\|\']/g, "_");
+		fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
@@ -193,7 +259,8 @@ function formatNameForSubject(str, recipients) {
 }
 
 function dateInSecondsTo8601(secs) {
-	var addTime = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
+	// var addTime = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
+	var addTime = false;
 	var msgDate = new Date(secs * 1000);
 	var msgDate8601 = msgDate.getFullYear();
 	var month;
@@ -629,3 +696,173 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 }
 
 
+function constructAttachmentsFilename(type, hdr) {
+
+	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
+	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
+	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
+	var subMaxLen = cutSubject ? 50 : -1;
+
+	// Subject
+	var subj;
+	if (hdr.mime2DecodedSubject) {
+		subj = hdr.mime2DecodedSubject;
+		if (hdr.flags & 0x0010)
+			subj = "Re_" + subj;
+	} else {
+		subj = IETnosub;
+	}
+
+	if (subMaxLen > 0)
+		subj = subj.substring(0, subMaxLen);
+	subj = nametoascii(subj);
+
+	// Date - Key
+	var dateInSec = hdr.dateInSeconds;
+	var key = hdr.messageKey;
+
+	var fname;
+	var attachmentsExtendedFilenameFormat;
+
+	// extended filename format
+	if (type === 1) {
+		attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+	} else {
+		attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+	}
+
+	// attachmentsExtendedFilenameFormat = "${dateCustom}-Attachments";
+
+	let subject = subj;
+	let index = key;
+
+	// Name
+	let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+	let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+	// Sent of Drafts folder
+	let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
+	let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
+	let smartName;
+
+	let prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
+	let suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
+
+	if (isSentFolder || isSentSubFolder > -1)
+		smartName = recName;
+	else
+		smartName = authName;
+
+	let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+
+	// Allow en-US tokens always
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${subject}", subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${sender}", authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient}", recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${smart_name}", smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${suffix}", suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+
+	fname = attachmentsExtendedFilenameFormat;
+
+	return fname;
+}
+/* 
+function fixIDReferenceLabels() {
+	console.debug('fixIDReferenceLabels:');
+	var ids = document.querySelectorAll("[dtd-text-id-ref]");
+
+	var w = getMail3Pane();
+	var sourceDocument = w.document;
+
+	for (let element of ids) {
+		let sourceElement = sourceDocument.getElementById(element.getAttribute("dtd-text-id-ref"));
+		let label = sourceElement.getAttribute("label");
+		element.textContent = label;
+	}
+}
+
+function fixPropertyReferenceLabels() {
+	var MBstrBundleService = Services.strings;
+	var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
+	var ids = document.querySelectorAll("[property-text-ref]");
+
+	for (let element of ids) {
+		let sourceProperty = element.getAttribute("property-text-ref");
+		let text = mboximportbundle.GetStringFromName(sourceProperty);
+		element.textContent = text;
+	}
+}
+ */
+function loadTabPage(url, load_localized_page) {
+    if (load_localized_page) {
+		var tb_locale = Services.locale.appLocaleAsBCP47;
+		console.debug("locale   " + tb_locale);
+		console.debug(supportedLocales);
+		if (!supportedLocales.includes(tb_locale)) {
+            console.debug('does not include');
+        }
+
+		
+	var supportedLocaleRegions = supportedLocales.filter(l => {
+		if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
+			return true;
+		}
+		return false;
+	});
+
+	console.debug(supportedLocaleRegions);
+	if (!tb_locale || supportedLocaleRegions.length === 0) {
+		tb_locale = "en-US";
+	} else if ( !supportedLocaleRegions.includes(tb_locale)) {
+		tb_locale = supportedLocaleRegions[0];
+	}
+
+	
+	var supportedLocaleRegions = supportedLocales.filter(l => {
+		if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
+			return true;
+		}
+		return false;
+	});
+
+	console.debug(supportedLocaleRegions);
+	if (!tb_locale || supportedLocaleRegions.length === 0) {
+		tb_locale = "en-US";
+	} else if ( !supportedLocaleRegions.includes(tb_locale)) {
+		tb_locale = supportedLocaleRegions[0];
+	}
+
+		console.debug(' locale subset');
+		console.debug(supportedLocaleRegions);
+
+        var urlparts = url.split('.');
+		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
+		url = `chrome://mboximport/content/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
+		console.debug(url +"   " + tb_locale);
+    }
+    let tabmail = getMail3Pane();
+
+    tabmail.openTab("chromeTab", { chromePage: url });
+        
+}
+
+function getMail3Pane() {
+    var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+        .getService(Ci.nsIWindowMediator)
+        .getMostRecentWindow("mail:3pane");
+    return w;
+}

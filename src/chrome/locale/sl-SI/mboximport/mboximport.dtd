@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Ločilo za izvoz v obliki CSV:">
 <!ENTITY saveProfile "Izvozi profil">
 <!ENTITY withIndexLabel "s kazalom HTML">
+
+<!ENTITY customDate "Datum po meri:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Datum (po meri)">
+<!ENTITY useExtFilenameFormat "Uporabi razširjeno obliko">
+<!ENTITY addSuffix "Dodaj pripono">
+<!ENTITY dateFormatRefTooltipText "Referenca zapisa datuma">
+<!ENTITY extFilenameFormatRefTooltipText "Razširjena referenca za obliko datoteke">

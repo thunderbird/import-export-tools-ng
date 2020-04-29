@@ -37,7 +37,7 @@
 <!ENTITY clipMenuAccesskey "M">
 <!ENTITY importDirRec "Válassza ki azt a mappát, amelyben az importálni kívánt MBOX fájl található (almappákban is keres)">
 <!ENTITY importDirProf "Megnyitás alapértelmezettként a profilok mappával">
-<!ENTITY MBlabel8 "Dátum hozzáadása a fájlnévhez a \'Kiválasztott üzenetek mentése\' során">
+<!ENTITY MBlabel8 "Dátum hozzáadása a fájlnévhez a „Kiválasztott üzenetek mentése” során">
 <!ENTITY options "Beállítások">
 <!ENTITY importALLEML1 "csak a mappából">
 <!ENTITY importALLEML2 "annak almappáiból is">
@@ -86,8 +86,8 @@
 <!ENTITY indexOff "kijelölt mappa használata indexek nélkül">
 <!ENTITY copyFolderPath "Mappa útvonalának másolása">
 <!ENTITY importSMS "SMS importálása">
-<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "\'SMS mentése és visszaállítása\' Android platformon">
+<!-- “SMS Backup and Restore” is the name of an Android application and so maybe it’s better not to translate it -->
+<!ENTITY android "„SMS mentése és visszaállítása” Android platformon">
 <!ENTITY sender "Feladó">
 <!ENTITY recipient "Címzett">
 <!ENTITY exportRemoteFolder "Távoli mappa exportálása">
@@ -101,8 +101,17 @@
 <!ENTITY importALLEML "EML fájlok importálása ide egy mappából">
 <!ENTITY importMAILDIR "Maildir mappa importálása">
 <!ENTITY withattach "(mellékletekkel)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
-<!ENTITY csvSep "Separator for export in CSV format:">
+<!ENTITY asPDF "PDF formátum">
+<!ENTITY importProfile "Profil importálása">
+<!ENTITY csvSep "Elválasztó CSV formátumban történő exportáláshoz:">
 <!ENTITY saveProfile "Mindegyik profil fájl mentése">
-<!ENTITY withIndexLabel "with HTML index">
+<!ENTITY withIndexLabel "HTML tárgymutató segítségével">
+
+
+<!ENTITY customDate "Egyéni dátum:">
+<!ENTITY extFormat "Formátum:">
+<!ENTITY dateCustomOpt "Dátum (egyedi)">
+<!ENTITY useExtFilenameFormat "A kiterjesztett formátum használata">
+<!ENTITY addSuffix "Adjon hozzá utótagot">
+<!ENTITY dateFormatRefTooltipText "Dátum formátum referencia">
+<!ENTITY extFilenameFormatRefTooltipText "Bővített fájlnév-formátum-referencia">

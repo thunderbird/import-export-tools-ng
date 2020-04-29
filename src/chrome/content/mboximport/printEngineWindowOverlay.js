@@ -55,8 +55,18 @@ var IETprintPDFengine = {
 			InitPrintEngineWindow();
 			var PSSVC = Cc["@mozilla.org/gfx/printsettings-service;1"]
 				.getService(Ci.nsIPrintSettingsService);
-			var myPrintSettings = PSSVC.newPrintSettings;
+			
+			// Use global printing preferences
+			// https://github.com/thundernest/import-export-tools-ng/issues/77
+
+			var myPrintSettings = PSSVC.globalPrintSettings;
+			myPrintSettings.printerName = PSSVC.defaultPrinterName;
+
+			PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
+			PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
+
 			myPrintSettings.printSilent = true;
+
 			myPrintSettings.toFileName = opener.IETprintPDFmain.filePath;
 			myPrintSettings.printToFile = true;
 			var fileFormat = IETprintPDFengine.prefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");

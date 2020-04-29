@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Desa tots els fitxers de perfil">
 <!ENTITY withIndexLabel "amb índex HTML">
+
+<!ENTITY customDate "Data personalitzada:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Data (personalitzada)">
+<!ENTITY useExtFilenameFormat "Utilitza un format estès">
+<!ENTITY addSuffix "Afegir el sufix">
+<!ENTITY dateFormatRefTooltipText "Data de referència de format">
+<!ENTITY extFilenameFormatRefTooltipText "Referència ampliada del format de fitxer">

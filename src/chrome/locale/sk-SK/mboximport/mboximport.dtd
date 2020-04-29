@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Uložiť všetky súbory profilu">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Vlastný dátum:">
+<!ENTITY extFormat "Formát:">
+<!ENTITY dateCustomOpt "Dátum (vlastné)">
+<!ENTITY useExtFilenameFormat "Použite rozšírený formát">
+<!ENTITY addSuffix "Pridať prípona">
+<!ENTITY dateFormatRefTooltipText "Referencia formátu dátumu">
+<!ENTITY extFilenameFormatRefTooltipText "Odkaz na formát rozšíreného názvu súboru">

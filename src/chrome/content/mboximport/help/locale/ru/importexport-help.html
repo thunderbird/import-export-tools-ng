@@ -16,7 +16,38 @@
       страница фокусируется на меню и новых опциях. Он будет постоянно обновляться в последующих версиях.
       <br />
     </p>
-    <p style="font-weight: bold;">Поддержка:</p>
+    <h3>Версия 4.1.0: новые функции</h3>
+    <p>
+      - Справка / руководство пользователя: полностью локализовано - опция суффикса для имен файлов <br />
+      - Пользовательский параметр даты для имен файлов, позволяющий strftime (), например, полное
+      форматирование даты и времени <br />
+      - Использование пользовательских имен файлов для вложений и вложенных вложений <br />
+      - Пользовательская опция даты для имен файлов индекса <br />
+      - Возможность использовать «Дата получения» для имени файла и индекса <br />
+      - Настраиваемые пользователем горячие клавиши (сочетания клавиш) <br />
+      - PDF вывод теперь использует глобальные параметры печати <br />
+      - Улучшено расположение файла индекса HTML <br /><br /><br />
+      Исправлены ошибки: <br />
+      - # 68 исправлено для флага прикрепления индекса <br />
+      - # 74 исправлено для встроенных изображений вложения не экспортируются <br />
+      - Исправлена ошибка отмены # 56 в диалоге импорта. <br />
+      - # 77 использовать настройки для вывода PDF <br />
+      - Изменения в очистке пользовательского интерфейса (# 80, # 81, # 82) Варианты ОС - @ovari <br />
+      - Немецкий перевод исправить # 93 - @dipgithub <br />
+      - исправления для венгерского перевода - @ovari <br />
+      - Добавить отсутствующий файл лицензии № 96 <br /><br />
+      Спасибо следующим пользователям за предложения по улучшению и помощь в тестировании: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Служба поддержки:</h3>
     <p>
       Пожалуйста,
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">публикуйте</a>
@@ -34,6 +65,7 @@
       - Отладочный вывод (копирование из консоли отладки - доступ через Control-Shift-J) <br />
       - Описание шагов, ведущих к проблеме <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG Обзор и меню</h2>
     <p>
       ImportExportTools NG - это дополнительное расширение, основанное на оригинальной работе Паоло
       &quot;Kaosmos&quot;. Расширение предлагает несколько функций импорта и экспорта, поддерживающих
@@ -831,6 +863,104 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Новые и экспериментальные настройки (варианты)</h2>
+    <p>
+      Есть несколько новых функций и опций, которые еще не настраиваются в диалоге опций. Как только эти
+      функции стабилизируются, они будут добавлены в пользовательский интерфейс. <br />
+      Для их использования они должны быть установлены в редакторе конфигурации. Чтобы получить доступ к
+      редактору, используйте меню «Инструменты / Опции», затем выберите раздел «Дополнительно», а внизу будет
+      кнопка «Редактор конфигурации». Если вы введете «importexporttoolsng» в строке поиска, вы получите все
+      настройки расширения. Затем вы можете отредактировать различные настройки ниже по мере необходимости.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Это предпочтение следует тому же полному форматированию, которое будет использоваться для индексных
+      файлов. По умолчанию это пустая строка, если с форматированной строкой даты / времени, это изменит
+      формат даты индекса.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Оба эти предпочтения используют тот же тип расширенных форматов именования файлов, который используется
+      в экспортируемом сообщении с именем файла. Первый предназначен для внешних вложений, второй - для
+      встроенных (встроенных) вложений.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Обычно «Дата» для сообщения в Thunderbird - это дата, установленная почтовым клиентом отправителя.
+      Установка этой опции в «истину» использует полученную дату в почтовом клиенте получателя. Эта дата будет
+      использоваться как для имен файлов, так и для даты в индексных файлах.
+    </p>
+    <h2>Базовая, глобальная горячая клавиша (ярлыки)</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Это новое предпочтение позволяет пользователю установить до 10 сочетаний клавиш. Ярлыки могут выполнять
+      большинство функций ImportExportTools NG, а также другие функции Thunderbird. Строка предпочтения
+      отформатирована как объект в формате JSON. Формат и ключи следующие:
+    </p>
+    <p>
+      Пример записей горячих клавиш (массив объектов JSON) <br /><br />
+      <code class="notranslate">id</code> - индекс ключа (1-10) <br />
+      <code class="notranslate">key</code> - ключ (одиночный символ) <br />
+      <code class="notranslate">keycode</code> - определяющий <code class="notranslate">keycode</code> VK_ *
+      <br />
+      Может быть включен ключ или код ключа, но не оба <br />
+      <code class="notranslate">modifiers</code> - ключевые модификаторы, разделенный пробелами список
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - прямая командная строка <br />
+      <code class="notranslate">contexts</code> - <code class="notranslate">contexts</code> окна, в котором
+      активен ключ <br />
+      <code class="notranslate">&#39;all&#39;</code> - все окна в Messenger, создание, поиск <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - главное окно посланника и его потомки <br />
+      <code class="notranslate">&#39;compose&#39;</code> - окно создания сообщения <br />
+      <code class="notranslate">&#39;search&#39;</code> - диалог поиска <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Поскольку ярлыки являются новыми и экспериментальными, я также добавлю больше документации в хранилище.
+      Проверьте расширение
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

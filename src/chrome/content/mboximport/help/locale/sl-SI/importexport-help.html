@@ -16,7 +16,38 @@
       stran je osredotočena na menije in nove možnosti. Nenehno se bo posodabljal v naslednjih različicah.
       <br />
     </p>
-    <p style="font-weight: bold;">Podpora:</p>
+    <h3>Različica 4.1.0: Nove funkcije</h3>
+    <p>
+      - Vodnik za pomoč / uporabnik: Popolnoma lokaliziran - možnost Suffix za imena datotek <br />
+      - Možnost datuma za datoteke z datotekami, ki omogoča strroll (), kot sta oblikovanje celotnega datuma
+      in časa <br />
+      - Uporabite poimenovanje datotek po meri za priloge in vdelane priloge <br />
+      - Možnost datuma poimenovanja datotek indeksa <br />
+      - Možnost uporabe &#39;Datum prejema&#39; za ime datoteke in indeks <br />
+      - Uporabniške nastavljive tipke (bližnjice na tipkovnici) <br />
+      - PDF izhod zdaj uporablja možnosti globalnega tiskanja <br />
+      - Izboljšana postavitev datoteke indeksnih datotek HTML <br /><br /><br />
+      Odpravljene so napake: <br />
+      - # 68 popravi zastavico priloge indeksa <br />
+      - # 74 popravilo priloženih slikovnih prilog, ki se ne izvozijo <br />
+      - V pogovornem oknu za uvoz popravite preklic ročaja 56 <br />
+      - # 77 nastavitve uporabe za izhod PDF <br />
+      - Spremembe čiščenja uporabniškega vmesnika (# 80, # 81, # 82) Različice OS - @ovari <br />
+      - nemški prevod prevod # 93 - @dipgithub <br />
+      - prevod iz madžarskih prevodov - @ovari <br />
+      - Dodajte manjkajočo licenčno datoteko # 96 <br /><br />
+      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Podpora:</h3>
     <p>
       Objavite težave ali zahteve za funkcije v razširitvah skladišča GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -30,6 +61,7 @@
       - Odpravljanje napak (kopiranje s konzole za odpravljanje napak - dostop z Control-Shift-J) <br />
       - Opis korakov, ki vodijo do vprašanja <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je nadaljevanje, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;. Razširitev
       ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih datotek, vključno z: Opomba: Nekateri
@@ -76,12 +108,12 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Izvozite mapo, vključno z vsemi podmapami, v drevo sporočil v formatu mbox</td>
+          <td>Izvozi mapo, vključno z vsemi njenimi podmapami, v drevo sporočil mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Izvozite mapo, vključno z vsemi podmapami, v drevo sporočil v formatu mbox <br />
+            Izvozi mapo, vključno z vsemi njenimi podmapami, v drevo sporočil mbox <br />
             (.sbd poddirektoriji)
           </td>
         </tr>
@@ -351,12 +383,12 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Izvozite mapo, vključno z vsemi podmapami, v drevo sporočil v formatu mbox</td>
+          <td>Izvozi mapo, vključno z vsemi njenimi podmapami, v drevo sporočil mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Izvozite mapo, vključno z vsemi podmapami, v drevo sporočil v formatu mbox <br />
+            Izvozi mapo, vključno z vsemi njenimi podmapami, v drevo sporočil mbox <br />
             (.sbd poddirektoriji)
           </td>
         </tr>
@@ -816,6 +848,101 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Nove in eksperimentalne nastavitve (možnosti)</h2>
+    <p>
+      Obstaja več novih funkcij in možnosti, ki jih še ni mogoče konfigurirati v pogovornem oknu z možnostmi.
+      Ko se te lastnosti stabilizirajo, bodo dodane v uporabniški vmesnik. <br />
+      Za njihovo uporabo jih morate nastaviti v urejevalniku Config. Za dostop do urejevalnika uporabite meni
+      Orodja / Možnosti in nato izberite razdelek Napredno in spodaj bo gumb »Konfiguriraj urejevalnik«. Če v
+      iskalno vrstico vnesete &#39;importtexporttoolsng&#39;, boste dobili vse nastavitve za razširitve. Nato
+      lahko po potrebi uredite različne nastavitve.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Ta nastavitev sledi enakemu polnemu oblikovanju za datoteke indeksov. Privzeto je prazen niz, če je s
+      formatiranim datumom / časovnim nizom, potem bo to spremenilo obliko datuma v indeksu.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, ki jih uporablja ime
+      izvoženih sporočil. Prvo je za zunanje nastavke, drugo za vgradne (vgrajene) nastavke.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Običajno je „Datum“ za sporočilo v Thunderbird-u datum, ki ga določi pošiljateljev poštni odjemalec. Če
+      nastavite to možnost na &quot;resnično&quot;, se uporabi prejeti datum na prejemnikovem poštnem
+      odjemalcu. Ta datum bo uporabljen tako za imena datotek kot za datum v datotekah indeksov.
+    </p>
+    <h2>Osnovna, globalna hitra tipka (bližnjice) Funkcija</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Ta nova nastavitev uporabniku omogoča nastavitev do 10 bližnjic na tipkovnici. Bližnjice lahko izvajajo
+      večino funkcij ImportExportTools NG kot tudi druge funkcije Thunderbird. Nastavitveni niz je oblikovan
+      kot objekt, formatiran v JSON. Oblika in tipke so naslednje:
+    </p>
+    <p>
+      Primer vnosov vročih tipk (matrika predmetov JSON) <br /><br />
+      <code class="notranslate">id</code> - ključni indeks (1-10) <br />
+      <code class="notranslate">key</code> - tipka (en sam znak) <br />
+      <code class="notranslate">keycode</code> - ključ „ključ VK_ *“ <br />
+      Vključena sta lahko tudi ključ ali koda, vendar ne oboje <br />
+      <code class="notranslate">modifiers</code> - ključni modifikatorji, ločeni s presledkom
+      (&quot;nadzor&quot;, &quot;premik&quot;, &quot;alt&quot;, &quot;accel&quot;) <br />
+      <code class="notranslate">oncommand</code> - neposredni ukazni niz <br />
+      <code class="notranslate">contexts</code> - <code class="notranslate">contexts</code> okna, v katerem je
+      ključ aktiven <br />
+      <code class="notranslate">&#39;all&#39;</code> - vsa okna pod Messengerjem, sestavljanje, iskanje <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - glavno okno glasnika in njegovi potomci <br />
+      <code class="notranslate">&#39;compose&#39;</code> - okno za sestavljanje sporočil <br />
+      <code class="notranslate">&#39;search&#39;</code> - pogovorno okno za iskanje <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Ker so bližnjice nove in eksperimentalne, bom v repozitorij dodal še več dokumentacije. Preverite
+      razširitev
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

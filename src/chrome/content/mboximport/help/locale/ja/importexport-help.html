@@ -15,7 +15,36 @@
       これは、ユーザーガイドの最小限の最初のスタートです。追加することは明らかにたくさんあります。この現在のページは、メニューと新しいオプションに焦点を当てています。今後のバージョンでは継続的に更新されます。
       <br />
     </p>
-    <p style="font-weight: bold;">サポート：</p>
+    <h3>バージョン4.1.0：新機能</h3>
+    <p>
+      -ヘルプ/ユーザーガイド：完全にローカライズ-ファイル名のサフィックスオプション<br />
+      -ファイル名のカスタム日付オプションにより、完全な日付と時刻のフォーマットのようなstrftime（）が可能<br />
+      -添付ファイルと埋め込み添付ファイルの両方にカスタムファイルの名前を使用する<br />
+      -インデックスファイル名のカスタム日付オプション<br />
+      -ファイル名とインデックスに「受信日」を使用するオプション<br />
+      -ユーザー設定可能なホットキー（キーボードショートカット） <br />
+      -PDF出力でグローバル印刷オプションが使用されるようになりました<br />
+      -改善されたHTMLインデックスファイルのレイアウト<br /><br /><br />修正されたバグの問題： <br />
+      -＃68インデックス添付フラグの修正<br />
+      -＃74インライン画像の添付ファイルがエクスポートされない問題を修正<br />
+      -インポートダイアログでの＃56ハンドルキャンセルの修正<br />
+      -＃77 PDF出力の設定を使用<br />
+      -UIクリーンアップの微調整（＃80、＃81、＃82）OSバリエーション-@ovari <br />
+      -ドイツ語翻訳修正＃93-@dipgithub <br />
+      -ハンガリー語翻訳の修正-@ovari <br />
+      -不足しているライセンスファイルを追加する＃96
+      <br /><br />拡張の提案とテストのヘルプを提供してくれた次のユーザーに感謝します。 <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>サポート：</h3>
     <p>
       拡張機能のGitHubリポジトリに問題や機能のリクエストを投稿してください：
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -28,9 +57,10 @@
       -デバッグ出力（デバッグコンソールからコピー-Control-Shift-Jでアクセス） <br />
       -問題につながるステップの説明<br />
     </p>
+    <h2 id="main_help">ImportExportTools NGの概要とメニュー</h2>
     <p>
       ImportExportTools NGは、Paolo
-      &quot;Kaosmos&quot;のオリジナル作品に基づいた後続の拡張機能です。この拡張機能は、次のようないくつかの異なるファイル形式をサポートする複数のインポートおよびエクスポート機能を提供します。
+      &quot;Kaosmos&quot;のオリジナル作品に基づく後続の拡張機能です。この拡張機能は、次のようないくつかの異なるファイル形式をサポートする複数のインポートおよびエクスポート機能を提供します。
       <br />
       -mbox <br />
       -EML <br />
@@ -801,6 +831,92 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>新規および実験的な設定（オプション）</h2>
+    <p>
+      オプションダイアログ内でまだ設定できないいくつかの新機能とオプションがあります。これらの機能が安定すると、UIに追加されます。
+      <br />それらを使用するには、Config
+      Editor内で設定する必要があります。エディターにアクセスするには、[ツール/オプション]メニューを使用し、[詳細]セクションを選択すると、下部に[設定エディター]ボタンがあります。検索バーに「importexporttoolsng」と入力すると、すべての拡張設定が表示されます。その後、必要に応じて以下のさまざまな設定を編集できます。
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      この設定は、インデックスファイルに使用されるものと同じ完全なフォーマットに従います。デフォルトでは空の文字列です。フォーマットされた日付/時刻文字列を使用している場合、これによりインデックスの日付形式が変更されます。
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      これらの設定は両方とも、エクスポートされたメッセージのファイル名が使用するのと同じタイプの拡張ファイル命名形式を使用します。
+      1つ目は外部添付ファイル用、2つ目は埋め込み（インライン）添付ファイル用です。
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      通常、Thunderbirdのメッセージの「日付」は、送信者のメールクライアントによって設定された日付です。このオプションを「true」に設定すると、受信者のメールクライアントで受信した日付が使用されます。この日付は、ファイル名とインデックスファイルの日付の両方に使用されます。
+    </p>
+    <h2>基本的なグローバルホットキー（ショートカット）機能</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      この新しい設定により、ユーザーは最大10個のキーボードショートカットを設定できます。ショートカットは、ほとんどのImportExportTools
+      NG機能と他のThunderbird機能を実行できます。設定文字列は、JSON形式のオブジェクトとしてフォーマットされます。形式とキーは次のとおりです。
+    </p>
+    <p>
+      ホットキーエントリの例（JSONオブジェクトの配列） <br /><br />
+      <code class="notranslate">id</code>キーインデックス（1-10） <br />
+      <code class="notranslate">key</code>キー（1文字） <br />
+      <code class="notranslate">keycode</code> -&#39;VK_ *&#39;定義キーコード<br />キーまたはキーコードのいずれかを含めることができますが、両方を含めることはできません<br />
+      <code class="notranslate">modifiers</code
+      >キー修飾子、スペース区切りリスト（「control」、「shift」、「alt」、「accel」） <br />
+      <code class="notranslate">oncommand</code>直接コマンド文字列<br />
+      <code class="notranslate">contexts</code>キーがアクティブなウィンドウコンテキスト<br />
+      <code class="notranslate">&#39;all&#39;</code>
+      all&#39;-メッセンジャー、作成、検索の下のすべてのウィンドウ<br />
+      <code class="notranslate">&#39;messenger&#39;</code> -メインのメッセンジャーウィンドウとその子孫<br />
+      <code class="notranslate">&#39;compose&#39;</code> -メッセージ作成ウィンドウ<br />
+      <code class="notranslate">&#39;search&#39;</code>検索ダイアログ<br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      ショートカットは新しく実験的なものなので、リポジトリにドキュメントを追加します。拡張機能<a
+        class="link1"
+        href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG READMEを</a
+      >確認してください<br />
+    </p>
     <br />
   </body>
 </html>

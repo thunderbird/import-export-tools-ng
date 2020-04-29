@@ -16,7 +16,38 @@
       te voegen. Deze huidige pagina richt zich op de menu&#39;s en nieuwe opties. Het zal continu worden
       bijgewerkt in volgende versies. <br />
     </p>
-    <p style="font-weight: bold;">Ondersteuning:</p>
+    <h3>Versie 4.1.0: nieuwe functies</h3>
+    <p>
+      - Help / gebruikershandleiding: volledig gelokaliseerd - achtervoegseloptie voor bestandsnamen <br />
+      - Aangepaste datumoptie voor bestandsnamen die strftime () mogelijk maken, zoals volledige datum- en
+      tijdopmaak <br />
+      - Gebruik aangepaste bestandsnaamgeving voor zowel bijlagen als ingesloten bijlagen <br />
+      - Aangepaste datumoptie voor indexbestandsnamen <br />
+      - Optie om &#39;Received Date&#39; te gebruiken voor bestandsnaam en index <br />
+      - Door de gebruiker configureerbare sneltoetsen (sneltoetsen) <br />
+      - PDF-uitvoer maakt nu gebruik van de algemene afdrukopties <br />
+      - Verbeterde layout van HTML-indexbestanden <br /><br /><br />
+      Bugproblemen opgelost: <br />
+      - # 68 oplossing voor vlag van indexbijlage <br />
+      - Oplossing # 74 voor inline afbeeldingsbijlagen die niet zijn geëxporteerd <br />
+      - Fix # 56 verwerken annuleren bij importdialoog <br />
+      - # 77 gebruik voorkeuren voor PDF-uitvoer <br />
+      - UI cleanup tweaks (# 80, # 81, # 82) OS-variaties - @ovari <br />
+      - Duitse vertaling fix # 93 - @dipgithub <br />
+      - Hongaarse vertaalcorrecties - @ovari <br />
+      - Voeg ontbrekend licentiebestand # 96 toe <br /><br />
+      Met dank aan de volgende gebruikers voor suggesties voor verbeteringen en testhulp: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Ondersteuning:</h3>
     <p>
       Plaats problemen of functieverzoeken in de extensies GitHub-opslagplaats:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -30,6 +61,7 @@
       - Debug output (kopie van de Debug Console - toegang met Control-Shift-J) <br />
       - Een beschrijving van de stappen die tot het probleem hebben geleid <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG Overzicht en menu&#39;s</h2>
     <p>
       ImportExportTools NG is een vervolgextensie gebaseerd op het originele werk van Paolo
       &quot;Kaosmos&quot;. De extensie biedt meerdere import- en exportfuncties die verschillende
@@ -837,6 +869,107 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Nieuwe en experimentele voorkeuren (opties)</h2>
+    <p>
+      Er zijn verschillende nieuwe functies en opties die nog niet kunnen worden geconfigureerd in het
+      dialoogvenster met opties. Zodra deze functies zijn gestabiliseerd, worden ze toegevoegd aan de
+      gebruikersinterface. <br />
+      Om ze te kunnen gebruiken, moeten ze worden ingesteld in de Config Editor. Om toegang te krijgen tot de
+      editor, gebruikt u het menu Extra / Opties en selecteert u vervolgens het gedeelte Geavanceerd. Er
+      verschijnt onderaan een knop &#39;Configuratie-editor&#39;. Als u &#39;importexporttoolsng&#39; in de
+      zoekbalk typt, krijgt u alle extensievoorkeuren. Vervolgens kunt u indien nodig de verschillende
+      onderstaande voorkeuren bewerken.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Deze voorkeur volgt dezelfde volledige opmaak die wordt gebruikt voor de indexbestanden. Het is
+      standaard een lege tekenreeks, als met een opgemaakte datum / tijd-tekenreeks de indelingsdatum-indeling
+      verandert.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamgevingsindelingen die de bestandsnaam
+      voor geëxporteerde berichten gebruikt. De eerste is voor externe bijlagen, de tweede is voor ingesloten
+      (inline) bijlagen.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normaal gesproken is de &#39;Datum&#39; voor een bericht in Thunderbird de datum die is ingesteld door
+      de e-mailclient van de afzender. Als u deze optie instelt op &#39;true&#39;, wordt de ontvangen datum op
+      de e-mailclient van de ontvanger gebruikt. Deze datum wordt gebruikt voor zowel bestandsnamen als de
+      datum in de indexbestanden.
+    </p>
+    <h2>Basis, algemene sneltoetsfunctie (snelkoppelingen)</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Met deze nieuwe voorkeur kan de gebruiker maximaal 10 sneltoetsen instellen. De snelkoppelingen kunnen
+      de meeste van de ImportExportTools NG-functies en andere Thunderbird-functies uitvoeren. De
+      voorkeurstring is opgemaakt als een JSON-opgemaakt object. Het formaat en de sleutels zijn als volgt:
+    </p>
+    <p>
+      Voorbeeld sneltoetsvermeldingen (array van JSON-objecten) <br /><br />
+      <code class="notranslate">id</code> - de sleutelindex (1-10) <br />
+      <code class="notranslate">key</code> - de sleutel (één teken) <br />
+      <code class="notranslate">keycode</code> - de &#39;VK_ *&#39; defind keycode <br />
+      Mogelijk is een sleutel of sleutelcode opgenomen, maar niet beide <br />
+      <code class="notranslate">modifiers</code> - de belangrijkste modifiers, door spaties gescheiden lijst
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - een directe opdrachtreeks <br />
+      <code class="notranslate">contexts</code> - de venstercontext waar de sleutel actief is <br />
+      <code class="notranslate">&#39;all&#39;</code> - alle vensters onder messenger, componeren, zoeken
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - het belangrijkste messenger-venster en zijn
+      nakomelingen <br />
+      <code class="notranslate">&#39;compose&#39;</code> : het berichtvenster <br />
+      <code class="notranslate">&#39;search&#39;</code> - het zoekvenster <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Omdat de snelkoppelingen nieuw en experimenteel zijn, zal ik ook meer documentatie toevoegen in de
+      repository. Controleer de extensie
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

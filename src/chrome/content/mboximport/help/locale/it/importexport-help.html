@@ -16,7 +16,41 @@
       aggiungere. Questa pagina attuale si concentra sui menu e sulle nuove opzioni. Sarà continuamente
       aggiornato nelle versioni successive. <br />
     </p>
-    <p style="font-weight: bold;">Supporto:</p>
+    <h3>Versione 4.1.0: nuove funzionalità</h3>
+    <p>
+      - Guida / Guida per l&#39;utente: completamente localizzata - Opzione di suffisso per i nomi dei file
+      <br />
+      - Opzione data personalizzata per i nomi dei file che consentono strftime () come la formattazione
+      completa di data e ora <br />
+      - Utilizzare la denominazione di file personalizzata sia per gli allegati che per gli allegati
+      incorporati <br />
+      - Opzione data personalizzata per i nomi dei file indice <br />
+      - Opzione per utilizzare &quot;Data di ricezione&quot; per nome file e indice <br />
+      - Tasti di scelta rapida configurabili dall&#39;utente (scorciatoie da tastiera) <br />
+      - L&#39;output PDF ora utilizza le opzioni di stampa globali <br />
+      - Miglioramento del layout del file indice HTML <br /><br /><br />
+      Problemi risolti: <br />
+      - Correzione # 68 per flag allegato indice <br />
+      - Correzione # 74 per gli allegati di immagini in linea non esportati <br />
+      - Correzione dell&#39;annullamento della maniglia n <br />
+      - # 77 usa le preferenze per l&#39;output PDF <br />
+      - Modifiche alla pulizia dell&#39;interfaccia utente (# 80, # 81, # 82) Variazioni del sistema operativo
+      - @ovari <br />
+      - Correzione della traduzione in tedesco # 93 - @dipgithub <br />
+      - Correzioni di traduzione ungherese - @ovari <br />
+      - Aggiungi il file di licenza mancante # 96 <br /><br />
+      Grazie ai seguenti utenti per suggerimenti di miglioramento e aiuto per i test: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Supporto:</h3>
     <p>
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">Pubblica</a>
       problemi o richieste di funzionalità nel repository GitHub delle estensioni:
@@ -31,6 +65,7 @@
       - Output di debug (copia dalla console di debug - accesso con Control-Shift-J) <br />
       - Una descrizione dei passaggi che portano al problema <br />
     </p>
+    <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
       ImportExportTools NG è un&#39;estensione successiva basata sul lavoro originale di Paolo
       &quot;Kaosmos&quot;. L&#39;estensione offre molteplici funzioni di importazione ed esportazione che
@@ -852,6 +887,109 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Preferenze nuove e sperimentali (opzioni)</h2>
+    <p>
+      Esistono diverse nuove funzionalità e opzioni che non sono ancora configurabili nella finestra di
+      dialogo delle opzioni. Una volta stabilizzate, queste funzionalità verranno aggiunte all&#39;interfaccia
+      utente. <br />
+      Per poterli utilizzare, devono essere impostati nell&#39;Editor di configurazione. Per accedere
+      all&#39;editor usa il menu Strumenti / Opzioni quindi seleziona la sezione Avanzate e ci sarà un
+      pulsante &#39;Config Editor&#39; in fondo. Se digiti &quot;importexporttoolsng&quot; nella barra di
+      ricerca otterrai tutte le preferenze di estensione. È quindi possibile modificare le varie preferenze di
+      seguito, se necessario.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Questa preferenza segue la stessa formattazione completa da utilizzare per i file di indice. È una
+      stringa vuota per impostazione predefinita, se con una stringa di data / ora formattata, questo cambierà
+      il formato della data dell&#39;indice.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Entrambe queste preferenze utilizzano lo stesso tipo di formati di denominazione dei file estesi
+      utilizzato dal nome file dei messaggi esportati. Il primo è per gli allegati esterni, il secondo è per
+      gli allegati incorporati (inline).
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normalmente la &quot;Data&quot; per un messaggio in Thunderbird è la data impostata dal client di posta
+      del mittente. L&#39;impostazione di questa opzione su &quot;true&quot; utilizza la data di ricezione sul
+      client di posta del destinatario. Questa data verrà utilizzata sia per i nomi dei file che per la data
+      nei file indice.
+    </p>
+    <h2>Tasto di scelta rapida di base (scorciatoie) globale</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Questa nuova preferenza consente all&#39;utente di impostare fino a 10 scorciatoie da tastiera. I
+      collegamenti possono eseguire la maggior parte delle funzioni NG di ImportExportTools e altre funzioni
+      di Thunderbird. La stringa di preferenza è formattata come oggetto formattato JSON. Il formato e le
+      chiavi sono i seguenti:
+    </p>
+    <p>
+      Voci di tasti di scelta rapida di esempio (array di oggetti JSON) <br /><br />
+      <code class="notranslate">id</code> - l&#39;indice chiave (1-10) <br />
+      <code class="notranslate">key</code> - la chiave (carattere singolo) <br />
+      <code class="notranslate">keycode</code> - il <code class="notranslate">keycode</code> chiave di defind
+      &#39;VK_ *&#39; <br />
+      È possibile includere la chiave o il codice chiave, ma non entrambi <br />
+      <code class="notranslate">modifiers</code> - i modificatori di chiave, elenco separato da spazi
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - una stringa di comando diretta <br />
+      <code class="notranslate">contexts</code> : il contesto della finestra in cui la chiave è attiva <br />
+      <code class="notranslate">&#39;all&#39;</code> - tutte le finestre sotto messenger, componi, cerca
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> : la finestra principale di Messenger e i suoi
+      discendenti <br />
+      <code class="notranslate">&#39;compose&#39;</code> - la finestra di composizione del messaggio <br />
+      <code class="notranslate">&#39;search&#39;</code> - la finestra di ricerca <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Poiché le scorciatoie sono nuove e sperimentali, aggiungerò anche più documentazione nel repository.
+      Controllare l&#39;estensione
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

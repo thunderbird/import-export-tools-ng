@@ -3,6 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 // Copyright Christopher Leidigh (2020)
 
+/* global
+IETprefs,
+IETlogger,
+IETgetComplexPref,
+
+*/
+
 // basic hot key support - no UI configuration
 
 // Up to 10 hotkeys can be defined in:
@@ -41,7 +48,7 @@ function compareModifiers(modifiers1, modifiers2) {
 	// normalize into a array
 	let m1Array = normalizeModifiers(modifiers1);
 	let m2Array = normalizeModifiers(modifiers2);
-	console.debug(`Modifiers: ${m1Array} : ${m2Array}`);
+	// console.debug(`Modifiers: ${m1Array} : ${m2Array}`);
 
 	// We do not care about order
 	// modifiers are equal if equal length and
@@ -59,24 +66,24 @@ function compareModifiers(modifiers1, modifiers2) {
 
 function getCurrentKeys() {
 	let keySets = document.getElementsByTagName("keyset");
-	console.debug('ksets ' + keySets.length);
+	IETlogger.write('ksets ' + keySets.length);
 	for (let i = 0; i < keySets.length; i++) {
 		const keyset = keySets[i];
-		console.debug('keySet: ' + keyset.id);
+		IETlogger.write('keySet: ' + keyset.id);
 		var keyElements = keyset.childNodes;
 		for (let [index, keyElement] of keyElements.entries()) {
-			console.debug(`  key[${index}]: ` + keyElement.outerHTML.replace(/xmlns="[^"]+"/, ''));
+			IETlogger.write(`  key[${index}]: ` + keyElement.outerHTML.replace(/xmlns="[^"]+"/, ''));
 		}
-		console.debug('\n');
+		IETlogger.write('\n');
 	}
 
 	let existingKeys = document.getElementsByTagName("key");
 	var filteredKeys = [];
 	for (let i = 0; i < existingKeys.length; i++) {
 		const element = existingKeys[i];
-		// console.debug('check key ' + element.id + ' : ' + element.id.split("hot-key")[0]);
+		// IETlogger.write('check key ' + element.id + ' : ' + element.id.split("hot-key")[0]);
 		if (element.id.indexOf("hot-key") === 0) {
-			// console.debug('skip');
+			// IETlogger.write('skip');
 			continue;
 		} else {
 			filteredKeys.push(element);
@@ -90,7 +97,7 @@ function compareKeyDefinition(hotKey, keyElement) {
 	let keyElementKeycode = keyElement.getAttribute("keycode").toLowerCase() || null;
 
 	if (!!hotKey.key && hotKey.key.toLowerCase() !== keyElementKey) {
-			return false;
+		return false;
 	} else if (!!hotKey.keycode && hotKey.keycode.toLowerCase() !== keyElementKeycode) {
 		return false;
 	}
@@ -99,10 +106,10 @@ function compareKeyDefinition(hotKey, keyElement) {
 
 	let keyElementModifiers = keyElement.getAttribute("modifiers") || "";
 	if (keyElementKey) {
-		console.debug('compare key/Modifiers: ' + hotKey.key + ' =? ' + keyElement.getAttribute("key"));
-		
+		IETlogger.write('compare key/Modifiers: ' + hotKey.key + ' =? ' + keyElement.getAttribute("key"));
+
 	} else {
-		console.debug('compare keycode/Modifiers: ' + hotKey.keycode + ' =? ' + keyElement.getAttribute("keycode"));
+		IETlogger.write('compare keycode/Modifiers: ' + hotKey.keycode + ' =? ' + keyElement.getAttribute("keycode"));
 	}
 	return compareModifiers(hotKey.modifiers, keyElementModifiers);
 }
@@ -110,10 +117,10 @@ function compareKeyDefinition(hotKey, keyElement) {
 function setupHotKeys(contexts) {
 	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
-	console.debug('Setup hot-keys: ' + contexts);
+	IETlogger.write('Setup hot-keys: ' + contexts);
 	var existingKeys = getCurrentKeys();
 
-	console.debug(hotKeysStr);
+	IETlogger.write(hotKeysStr);
 
 
 	if (hotKeysStr !== "") {
@@ -163,15 +170,15 @@ function setupHotKeys(contexts) {
 						hkeyElement.setAttribute("modifiers", modifiers);
 						hkeyElement.setAttribute("oncommand", oncommand);
 						// console.debug(hkeyElement.outerHTML);
-						console.debug('Add key: ');
-						console.debug(hotKey);
+						IETlogger.write('Add key: ');
+						IETlogger.write(hotKey);
 						for (let i = 0; i < existingKeys.length; i++) {
-							// console.debug('compare ' + hotKey.key);
-							// console.debug(existingKeys[i].outerHTML);
+							// IETlogger.write('compare ' + hotKey.key);
+							// IETlogger.write(existingKeys[i].outerHTML);
 							let kc = compareKeyDefinition(hotKey, existingKeys[i]);
 							if (kc) {
 								existingKeys[i].setAttribute("disabled", "true");
-								console.debug('Disable existing key: ' + existingKeys[i].outerHTML);
+								IETlogger.write('Disable existing key: ' + existingKeys[i].outerHTML);
 							}
 						}
 					}
@@ -180,16 +187,15 @@ function setupHotKeys(contexts) {
 				}
 
 			}
-			// console.debug(document.getElementById(`hot-key1`).parentElement.outerHTML);
 			let keyset = document.getElementById("tasksKeys");
 			keyset.parentNode.appendChild(keyset);
-			console.debug(keyset.outerHTML);
-			console.debug('updated messenger  ');
+			// console.debug(keyset.outerHTML);
+			// console.debug('updated messenger  ');
 
 			keyset = document.getElementById("editorKeys");
 			if (keyset) {
 				keyset.parentNode.appendChild(keyset);
-				console.debug('updated editor ');
+				// console.debug('updated editor ');
 			}
 
 		} catch (error) {
@@ -202,31 +208,30 @@ function setupHotKeys(contexts) {
 function updateHotKeys() {
 	setupHotKeys();
 	let keyset = document.getElementById("tasksKeys");
-	console.debug('UpdateKeys');
+	// console.debug('UpdateKeys');
 	keyset.parentNode.appendChild(keyset);
-	console.debug('messenger keys');
+	// console.debug('messenger keys');
 	keyset = document.getElementById("editorKeys");
 	if (keyset) {
 		keyset.parentNode.appendChild(keyset);
-		console.debug('updated editor ');
+		// console.debug('updated editor ');
 	}
 	keyset = document.getElementById("mailKeys");
 	if (keyset) {
 		keyset.parentNode.appendChild(keyset);
-		console.debug('updated mail keys ');
+		// console.debug('updated mail keys ');
 	}
 
 }
 
 var hkObserver = {
 	observe: function (aSubject, aTopic, aData) {
-		//do stuff here
-		console.debug('hot key change');
+		console.debug('IET: Hot key change');
 		updateHotKeys();
-	}
-}
+	},
+};
 
 function setupHotKeysObserver() {
-	console.debug('observers configuration');
+	// console.debug('observers configuration');
 	IETprefs.addObserver("extensions.importexporttoolsng.experimental.hot_keys", hkObserver, false);
 }

@@ -16,7 +16,38 @@
       Denne aktuelle side fokuserer på menuerne og nye indstillinger. Det opdateres løbende i efterfølgende
       versioner. <br />
     </p>
-    <p style="font-weight: bold;">Support:</p>
+    <h3>Version 4.1.0: Nye funktioner</h3>
+    <p>
+      - Hjælp / brugervejledning: Fuldt lokaliseret - Suffix mulighed for filnavne <br />
+      - Indstilling af brugerdefineret dato til filnavne, der tillader stretime () som formatering af fuld
+      dato og tid <br />
+      - Brug brugerdefineret filnavn til både vedhæftede filer og indlejrede vedhæftede filer <br />
+      - Indstilling af tilpasset dato for indeksfilnavne <br />
+      - Mulighed for at bruge &#39;Modtaget dato&#39; til filnavn og indeks <br />
+      - Brugerkonfigurerbare genvejstaster (tastaturgenveje) <br />
+      - PDF-output bruger nu de globale udskrivningsmuligheder <br />
+      - Forbedret HTML-indeksfillayout <br /><br /><br />
+      Fejlproblemer rettet: <br />
+      - # 68 rettelse til indeks vedhæftet flag <br />
+      - # 74 rettelse til billedbilag, der ikke er eksporteret <br />
+      - Fix nr. 56 håndtag annullere i import dialog <br />
+      - # 77 brug præferencer til PDF-output <br />
+      - UI-oprydning justeringer (# 80, # 81, # 82) OS-variationer - @ovari <br />
+      - Tysk oversættelses fix # 93 - @dipgithub <br />
+      - Ungarsk oversættelse rettelser - @ovari <br />
+      - Tilføj manglende licensfil # 96 <br /><br />
+      Tak til følgende brugere for forbedringsforslag og testhjælp: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Support:</h3>
     <p>
       Send spørgsmål eller funktionsanmodninger i udvidelserne GitHub-lageret:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -30,6 +61,7 @@
       - Debug output (kopi fra Debug Console - adgang med Control-Shift-J) <br />
       - En beskrivelse af trinnene, der fører til problemet <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
     <p>
       ImportExportTools NG er en efterfølgende udvidelse baseret på det originale arbejde fra Paolo
       &quot;Kaosmos&quot;. Udvidelsen tilbyder flere import- og eksportfunktioner, der understøtter flere
@@ -827,6 +859,102 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Nye og eksperimentelle præferencer (indstillinger)</h2>
+    <p>
+      Der er flere nye funktioner og indstillinger, der endnu ikke kan konfigureres i indstillingsdialogen.
+      Når disse funktioner er stabiliseret, tilføjes de til UI. <br />
+      For at kunne bruge dem skal de indstilles i Config Editor. For at få adgang til redaktøren skal du bruge
+      menuen Funktioner / indstillinger og derefter vælge sektionen Avanceret, og der vil være en &#39;Config
+      Editor&#39; -knap i bunden. Hvis du skriver &#39;importexporttoolsng&#39; i søgefeltet, får du alle
+      udvidelsespræferencer. Du kan derefter redigere de forskellige præferencer herunder efter behov.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Denne præference følger den samme fulde formatering, der skal bruges til indeksfilerne. Det er som
+      standard en tom streng, hvis det er med en formateret dato / tidstreng, ændrer dette indeksdatoformatet.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Begge disse præferencer bruger den samme type udvidede filnavnsformater, som det eksporterede besked
+      filnavn bruger. Den første er til eksterne vedhæftede filer, den anden er til indlejrede (inline)
+      vedhæftede filer.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normalt er &#39;Dato&#39; for en meddelelse i Thunderbird den dato, der er indstillet af afsenders
+      mail-klient. Hvis du indstiller denne indstilling til &#39;sand&#39;, bruges den modtagne dato hos
+      modtagerens mail-klient. Denne dato bruges til både filnavne såvel som for datoen i indeksfilerne.
+    </p>
+    <h2>Grundlæggende, global genvejstast (genveje) Funktion</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Denne nye præference giver brugeren mulighed for at indstille op til 10 tastaturgenveje. Genveje kan
+      udføre de fleste af ImportExportTools NG-funktioner såvel som andre Thunderbird-funktioner.
+      Præferencestrengen er formateret som et JSON-formateret objekt. Formatet og tasterne er som følger:
+    </p>
+    <p>
+      Eksempel på hurtigtastindgange (matrix af JSON-objekter) <br /><br />
+      <code class="notranslate">id</code> - nøgleindekset (1-10) <br />
+      <code class="notranslate">key</code> - nøglen (enkelt tegn) <br />
+      <code class="notranslate">keycode</code> - &#39;VK_ *&#39; definerer keycode <br />
+      Enten nøglen eller nøglekoden kan være inkluderet, men ikke begge dele <br />
+      <code class="notranslate">modifiers</code> - nøglemodifikatorer, mellemrumsskilt liste
+      (&#39;kontrol&#39;, &#39;skift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - en direkte kommandostreng <br />
+      <code class="notranslate">contexts</code> - vinduskonteksten, hvor nøglen er aktiv <br />
+      <code class="notranslate">&#39;all&#39;</code> - alle vinduer under messenger, komponere, søg <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - hoved messenger-vinduet og dets efterkommere
+      <br />
+      <code class="notranslate">&#39;compose&#39;</code> - vinduet til meddelelseskomponering <br />
+      <code class="notranslate">&#39;search&#39;</code> - søgedialogen <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Da genveje er nye og eksperimentelle vil jeg også tilføje mere dokumentation i depotet. Kontroller
+      udvidelsen
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

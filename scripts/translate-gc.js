@@ -246,24 +246,20 @@ async function translateAllLocales(sourceArray, locales, format) {
 	}
 }
 
-function sleep(milliseconds) {
-	const date = Date.now();
-	let currentDate = null;
-	do {
-	  currentDate = Date.now();
-	} while (currentDate - date < milliseconds);
-  }
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 // console.debug(translate);
 
-function translateHelpPage() {
+async function translateHelpPage() {
 	var localeFolders = _getAllFilesOrFolders(localeDir, true);
 	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM',
-		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 	//  const supportedLocales2 = ['pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE' ];
-	supportedLocales = ['el' ];
+	// supportedLocales = ['el' ];
 
 	localeFolders = supportedLocales;
 	// console.debug(localeFolders);
@@ -276,18 +272,21 @@ function translateHelpPage() {
 		if (localeFolders[i] === 'en-US') {
 			continue;
 		}
-
+		await sleep(100);
 		// var locale = locales[i].toLowerCase();
 		var shortLocale = localeFolders[i].split('-')[0];
 		if (shortLocale === 'zh') {
 			shortLocale = 'zh-CN';
 		}
-		console.debug('Translate ' + shortLocale);
 		var outputFileName = `${helpLocaleDir}/${localeFolders[i]}/${helpBase}.html`;
-		if (fs.existsSync(outputFileName)) {
-			console.debug('Exists: ' + outputFileName);
-			continue;
-		}
+
+		// if (fs.existsSync(outputFileName)) {
+		// 	console.debug('Exists: ' + outputFileName);
+		// 	continue;
+		// }
+
+		console.debug('Translate ' + shortLocale);
+
 		try {
 			translatePage([`<data class="notranslate">${outputFileName}`, source], 'en', shortLocale, translation => {
 				console.debug('call back ' + translation[0].split('>')[1]);

@@ -15,7 +15,39 @@
       Ez a felhasználói útmutató minimalista első indítása. Nyilvánvalóan még sok mindent hozzáadhatunk. Ez az
       oldal a menükre és az új lehetőségekre összpontosít. A következő verziókban folyamatosan frissül. <br />
     </p>
-    <p style="font-weight: bold;">Támogatás:</p>
+    <h3>4.1.0 verzió: Új szolgáltatások</h3>
+    <p>
+      - Súgó / felhasználói útmutató: Teljesen lokalizált - Utótag opció a fájlnevekhez <br />
+      - Egyéni dátum opció a fájlnevekhez, amelyek lehetővé teszik az strftime () használatát, például a
+      teljes dátum és idő formázása <br />
+      - Használjon egyedi fájlnevezéseket mind a mellékletek, mind a beágyazott mellékletek esetén <br />
+      - Egyéni dátum opció az indexfájlnevekhez <br />
+      - Lehetőség a „Fogadott dátum” fájlnév és index használatához <br />
+      - Felhasználó által konfigurálható gyorsbillentyűk (billentyűparancsok) <br />
+      - A PDF-kimenet most a globális nyomtatási lehetőségeket használja <br />
+      - Javított HTML indexfájl-elrendezés <br /><br /><br />
+      Javítva a hibákat: <br />
+      - # 68 javítás az index csatolási jelzőnél <br />
+      - 74. számú javítás a nem exportált soros képi mellékletekhez <br />
+      - Javítsa meg az 56. számú kezelõgombot az importálás párbeszédpanelen <br />
+      - # 77 a PDF-kimenet preferenciáinak használata <br />
+      - Az UI takarításának javítása (# 80, 81., 82. számú) operációs rendszer variációk - @ovari <br />
+      - Német fordítási javítás # 93 - @dipgithub <br />
+      - magyar fordítási javítások - @ovari <br />
+      - Adjon hozzá hiányzó 96-os licencfájlt <br /><br />
+      Köszönjük a következő felhasználóknak a fejlesztési javaslatokat és a tesztelési segítséget:
+      <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Támogatás:</h3>
     <p>
       Kérjük,
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">tegye</a> közzé
@@ -31,6 +63,7 @@
       - Hibakeresés (másolás a hibakereső konzolból - hozzáférés a Control-Shift-J segítségével) <br />
       - A kiadáshoz vezető lépések leírása <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG áttekintés és menük</h2>
     <p>
       Az ImportExportTools NG Paolo &quot;Kaosmos&quot; eredeti munkáján alapuló kiegészítő kiterjesztés. A
       kiterjesztés többféle importálási és exportálási funkciót kínál, különféle fájlformátumokat támogatva,
@@ -753,9 +786,9 @@
       Példák: <br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - az alapértelmezett formátum
       <br />
-      <span class="notranslate"><code>&gt;${prefix}_${date_custom}_${sender}</code></span> - az alapértelmezés
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - az alapértelmezés
       helyett az egyedi dátumformátumot használja <br />
-      <span class="notranslate"><code>&gt;${subject}-GmailMsg-${date}-${index}</code></span> - Néhány egyedi
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Néhány egyedi
       szöveggel <br /><br /><br />
     </p>
     <table class="token-table">
@@ -801,7 +834,7 @@
       </tr>
     </table>
     <br />
-    <table class="token-table">
+    <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
         <td>Lokalizált ( <span id="locale1"></span> ) Token</td>
@@ -843,6 +876,103 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Új és kísérleti beállítások (opciók)</h2>
+    <p>
+      Számos új szolgáltatás és opció létezik, amelyek még nem konfigurálhatók az opciók párbeszédpanelen.
+      Amint ezek a szolgáltatások stabilizálódnak, hozzáadódnak a felhasználói felülethez. <br />
+      Használatukhoz ezeket a Config Editorban kell beállítani. A szerkesztő eléréséhez használja az Eszközök
+      / Opciók menüt, majd válassza az Speciális részt, és az alján megjelenik a „Config Editor” gomb. Ha
+      beírja az &#39;importexporttoolsng&#39; kifejezést a keresősávba, akkor az összes kiterjesztési
+      preferenciát megkapja. Ezután szükség szerint módosíthatja az alábbi különféle preferenciákat.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Ez a beállítás ugyanazt a teljes formázást követi, mint amelyet az index fájlokhoz használnak.
+      Alapértelmezés szerint üres karakterlánc, ha formázott dátum / idő karakterlánccal rendelkezik, akkor ez
+      megváltoztatja az index dátum formátumát.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Mindkét beállítás ugyanazt a kiterjesztett fájlnevezési formátumot használja, mint amelyet az exportált
+      üzenetek fájlneve használ. Az első a külső mellékletekhez tartozik, a második a beágyazott (beépített)
+      mellékletekhez.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Általában az üzenet „dátuma” a Thunderbirdben a feladó e-mail kliense által beállított dátum. Ha ezt az
+      opciót igazra állítja, akkor a fogadott dátumot használja fel a címzett e-mail kliensén. Ezt a dátumot
+      mind a fájlnevek, mind az indexfájlokban szereplő dátum fogja használni.
+    </p>
+    <h2>Alapvető, globális gyorsbillentyű (hivatkozások) funkció</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy akár 10 billentyűparancsot állítson be. A
+      parancsikonok az ImportExportTools NG és a Thunderbird egyéb funkcióinak legtöbbjét végrehajthatják. A
+      preferencia karakterláncot JSON formátumú objektumként formázza. A formátum és a kulcsok a következők:
+    </p>
+    <p>
+      Példa gyorsbillentyűk bevitelére (JSON-objektumok tömbje) <br /><br />
+      <code class="notranslate">id</code> - kulcsindex (1-10) <br />
+      <code class="notranslate">key</code> - kulcs (egy karakter) <br />
+      <code class="notranslate">keycode</code> - a &#39;VK_ *&#39; definiálja a kulcskódot <br />
+      Lehet, hogy tartalmaz kulcsot vagy kulcskódot is, de nem mindkettőt <br />
+      <code class="notranslate">modifiers</code> - a kulcsmódosítók, szóközökkel elválasztott lista
+      (&#39;vezérlés&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - közvetlen parancssor <br />
+      <code class="notranslate">contexts</code> - az ablak kontextusa, ahol a kulcs aktív <br />
+      <code class="notranslate">&#39;all&#39;</code> - az összes ablak a messenger alatt, komponálás, keresés
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - a messenger főablaka és leszármazottai <br />
+      <code class="notranslate">&#39;compose&#39;</code> - az üzenet írási ablaka <br />
+      <code class="notranslate">&#39;search&#39;</code> - a keresési párbeszédpanel <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Mivel a parancsikonok új és kísérleti jellegűek, további dokumentumokat fogok hozzáadni a lerakatba.
+      Ellenőrizze az
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      kiterjesztését <br />
+    </p>
     <br />
   </body>
 </html>

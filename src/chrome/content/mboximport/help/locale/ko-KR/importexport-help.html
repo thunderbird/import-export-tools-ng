@@ -15,7 +15,37 @@
       이것은 사용자 안내서의 최소한의 첫 시작입니다. 추가해야 할 것이 많습니다. 이 현재 페이지는 메뉴와 새로운
       옵션에 중점을 둡니다. 이후 버전에서는 지속적으로 업데이트됩니다. <br />
     </p>
-    <p style="font-weight: bold;">지원하다:</p>
+    <h3>버전 4.1.0 : 새로운 기능</h3>
+    <p>
+      -도움말 / 사용자 안내서 : 완전 현지화-파일 이름에 대한 접미사 옵션 <br />
+      -전체 날짜 및 시간 형식과 같은 strftime ()을 허용하는 파일 이름의 사용자 정의 날짜 옵션 <br />
+      -첨부 파일 및 포함 된 첨부 파일 모두에 사용자 지정 파일 이름 지정 <br />
+      -색인 파일 이름에 대한 사용자 정의 날짜 옵션 <br />
+      -파일 이름 및 색인에 &#39;수신 날짜&#39;를 사용하는 옵션 <br />
+      -사용자 구성 가능한 단축키 (키보드 단축키) <br />
+      -PDF 출력은 이제 전체 인쇄 옵션을 사용합니다 <br />
+      -HTML 색인 파일 레이아웃 개선 <br /><br /><br />
+      해결 된 버그 문제 : <br />
+      -색인 첨부 플래그에 대한 # 68 수정 <br />
+      -인라인 이미지 첨부 파일에 대한 # 74 수정이 내보내지지 않음 <br />
+      -가져 오기 대화 상자에서 수정 # 56 핸들 취소 <br />
+      -PDF 출력을위한 # 77 기본 설정 사용 <br />
+      -UI 정리 조정 (# 80, # 81, # 82) OS 변형-@ovari <br />
+      -독일어 번역 수정 # 93-@dipgithub <br />
+      -헝가리어 번역 수정-@ovari <br />
+      -누락 된 라이센스 파일 # 96 추가 <br /><br />
+      개선 제안 및 테스트 도움말에 대해 다음 사용자에게 감사합니다. <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>지원하다:</h3>
     <p>
       확장 프로그램 GitHub 리포지토리에 이슈 또는 기능 요청을 게시하십시오.
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -29,6 +59,7 @@
       -디버그 출력 (디버그 콘솔에서 복사-Control-Shift-J로 액세스) <br />
       -문제를 일으키는 단계에 대한 설명 <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG 개요 및 메뉴</h2>
     <p>
       ImportExportTools NG는 Paolo &quot;Kaosmos&quot;의 원래 작업을 기반으로 한 후속 확장입니다. 이 확장은
       다음과 같은 여러 가지 파일 형식을 지원하는 여러 가져 오기 및 내보내기 기능을 제공합니다. 참고 : 일부
@@ -808,6 +839,99 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>새로운 실험 환경 설정 (옵션)</h2>
+    <p>
+      옵션 대화 상자에서 아직 구성 할 수없는 몇 가지 새로운 기능과 옵션이 있습니다. 이러한 기능이 안정화되면
+      UI에 추가됩니다. <br />
+      이를 사용하려면 구성 편집기에서 설정해야합니다. 편집기에 액세스하려면 도구 / 옵션 메뉴를 사용하여 고급
+      섹션을 선택하면 하단에 &#39;구성 편집기&#39;버튼이 나타납니다. 검색 창에 &#39;importexporttoolsng&#39;를
+      입력하면 모든 확장 환경 설정이 표시됩니다. 그런 다음 필요에 따라 아래의 다양한 환경 설정을 편집 할 수
+      있습니다.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      이 환경 설정은 색인 파일에 사용되는 것과 동일한 전체 형식을 따릅니다. 형식이 지정된 날짜 / 시간
+      문자열이있는 경우 기본적으로 빈 문자열이며 인덱스 날짜 형식이 변경됩니다.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      이러한 기본 설정은 모두 내 보낸 메시지 파일 이름과 동일한 유형의 확장 파일 이름 형식을 사용합니다. 첫
+      번째는 외부 첨부 파일을위한 것이고 두 번째는 포함 된 (인라인) 첨부 파일을위한 것입니다.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      일반적으로 Thunderbird의 메시지에 대한 &#39;날짜&#39;는 발신자의 메일 클라이언트가 설정 한 날짜입니다.
+      이 옵션을 &#39;true&#39;로 설정하면 수신자의 메일 클라이언트에서받은 날짜를 사용합니다. 이 날짜는 파일
+      이름과 색인 파일의 날짜 모두에 사용됩니다.
+    </p>
+    <h2>기본 글로벌 핫키 (바로 가기) 기능</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      이 새로운 환경 설정을 통해 사용자는 최대 10 개의 키보드 단축키를 설정할 수 있습니다. 바로 가기는
+      대부분의 ImportExportTools NG 기능과 기타 Thunderbird 기능을 수행 할 수 있습니다. 환경 설정 문자열은
+      JSON 형식의 오브젝트로 형식화됩니다. 형식과 키는 다음과 같습니다.
+    </p>
+    <p>
+      단축키 항목 예 (JSON 객체 배열) <br /><br />
+      <code class="notranslate">id</code> 키 인덱스 (1-10) <br />
+      <code class="notranslate">key</code> 키 (단일 문자) <br />
+      <code class="notranslate">keycode</code> - &#39;VK_ *&#39;defind 키 코드 <br />
+      키 또는 키 코드가 포함될 수 있지만 둘다는 아닙니다. <br />
+      <code class="notranslate">modifiers</code> -키 수정 자, 공백으로 구분 된 목록 ( &#39;control&#39;,
+      &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> 직접 명령 문자열 <br />
+      <code class="notranslate">contexts</code> 키가 활성화 된 창 컨텍스트 <br />
+      <code class="notranslate">&#39;all&#39;</code> all&#39;-메신저, 작성, 검색중인 모든 창 <br />
+      <code class="notranslate">&#39;messenger&#39;</code> -메인 메신저 창과 그 후손 <br />
+      <code class="notranslate">&#39;compose&#39;</code> 메시지 작성 창 <br />
+      <code class="notranslate">&#39;search&#39;</code> 검색 대화 상자 <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      바로 가기가 새롭고 실험적이므로 저장소에 더 많은 문서를 추가 할 것입니다. 확장
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README를</a
+      >
+      확인하십시오. <br />
+    </p>
     <br />
   </body>
 </html>

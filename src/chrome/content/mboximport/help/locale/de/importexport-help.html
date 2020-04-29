@@ -16,7 +16,38 @@
       hinzuzufügen. Diese aktuelle Seite konzentriert sich auf die Menüs und neuen Optionen. Es wird in
       nachfolgenden Versionen ständig aktualisiert. <br />
     </p>
-    <p style="font-weight: bold;">Unterstützung:</p>
+    <h3>Version 4.1.0: Neue Funktionen</h3>
+    <p>
+      - Hilfe / Benutzerhandbuch: Vollständig lokalisiert - Suffix-Option für Dateinamen <br />
+      - Benutzerdefinierte Datumsoption für Dateinamen, die strftime () wie die vollständige Formatierung von
+      Datum und Uhrzeit ermöglichen <br />
+      - Verwenden Sie benutzerdefinierte Dateinamen für Anhänge und eingebettete Anhänge <br />
+      - Benutzerdefinierte Datumsoption für Indexdateinamen <br />
+      - Option zur Verwendung von &#39;Empfangsdatum&#39; für Dateiname und Index <br />
+      - Vom Benutzer konfigurierbare Hotkeys (Tastaturkürzel) <br />
+      - Die PDF-Ausgabe verwendet jetzt die globalen Druckoptionen <br />
+      - Verbessertes Layout der HTML-Indexdatei <br /><br /><br />
+      Fehler behoben: <br />
+      - # 68 Fix für Index-Anhang-Flag <br />
+      - # 74 Fix für nicht exportierte Inline-Bildanhänge <br />
+      - Fix # 56 Handle Cancel im Importdialog behoben <br />
+      - # 77 verwendet Einstellungen für die PDF-Ausgabe <br />
+      - Optimierungen der Benutzeroberfläche (# 80, # 81, # 82) Betriebssystemvariationen - @ovari <br />
+      - Deutscher Übersetzungsfix # 93 - @dipgithub <br />
+      - Ungarische Übersetzungskorrekturen - @ovari <br />
+      - Fügen Sie die fehlende Lizenzdatei Nr. 96 hinzu <br /><br />
+      Vielen Dank an die folgenden Benutzer für Verbesserungsvorschläge und Testhilfe: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Unterstützung:</h3>
     <p>
       Bitte posten Sie Probleme oder Funktionsanforderungen im GitHub-Repository für Erweiterungen:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -30,6 +61,7 @@
       - Debug-Ausgabe (Kopie von der Debug-Konsole - Zugriff mit Control-Shift-J) <br />
       - Eine Beschreibung der Schritte, die zum Problem führen <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG Übersicht und Menüs</h2>
     <p>
       ImportExportTools NG ist eine Folgeerweiterung, die auf der Originalarbeit von Paolo &quot;Kaosmos&quot;
       basiert. Die Erweiterung bietet mehrere Import- und Exportfunktionen, die verschiedene Dateiformate
@@ -862,6 +894,107 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Neue und experimentelle Einstellungen (Optionen)</h2>
+    <p>
+      Es gibt mehrere neue Funktionen und Optionen, die im Optionsdialog noch nicht konfiguriert werden
+      können. Sobald diese Funktionen stabilisiert sind, werden sie der Benutzeroberfläche hinzugefügt. <br />
+      Um sie verwenden zu können, müssen sie im Konfigurationseditor festgelegt werden. Um auf den Editor
+      zuzugreifen, verwenden Sie das Menü Extras / Optionen und wählen Sie den Abschnitt Erweitert aus. Unten
+      befindet sich die Schaltfläche &quot;Konfigurationseditor&quot;. Wenn Sie &#39;importexporttoolsng&#39;
+      in die Suchleiste eingeben, werden alle Erweiterungseinstellungen angezeigt. Sie können dann die
+      folgenden Einstellungen nach Bedarf bearbeiten.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Diese Einstellung folgt der gleichen vollständigen Formatierung, die für die Indexdateien verwendet
+      wird. Es ist standardmäßig eine leere Zeichenfolge. Wenn Sie eine formatierte Datums- / Zeitzeichenfolge
+      verwenden, ändert sich dadurch das Index-Datumsformat.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Beide Einstellungen verwenden denselben Typ erweiterter Dateinamenformate wie der Dateiname der
+      exportierten Nachrichten. Der erste ist für externe Anhänge, der zweite für eingebettete (Inline-)
+      Anhänge.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normalerweise ist das &#39;Datum&#39; für eine Nachricht in Thunderbird das vom E-Mail-Client des
+      Absenders festgelegte Datum. Wenn Sie diese Option auf &quot;true&quot; setzen, wird das Empfangsdatum
+      auf dem E-Mail-Client des Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen als auch für das
+      Datum in den Indexdateien verwendet.
+    </p>
+    <h2>Grundlegende globale Hotkey-Funktion (Verknüpfungen)</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Mit dieser neuen Einstellung kann der Benutzer bis zu 10 Tastaturkürzel einrichten. Die Verknüpfungen
+      können die meisten ImportExportTools NG-Funktionen sowie andere Thunderbird-Funktionen ausführen. Die
+      Voreinstellungszeichenfolge ist als JSON-formatiertes Objekt formatiert. Das Format und die Tasten
+      lauten wie folgt:
+    </p>
+    <p>
+      Beispiel für Hotkey-Einträge (Array von JSON-Objekten) <br /><br />
+      <code class="notranslate">id</code> - der Schlüsselindex (1-10) <br />
+      <code class="notranslate">key</code> - der Schlüssel (einzelnes Zeichen) <br />
+      <code class="notranslate">keycode</code> - Der &#39;VK_ *&#39; Defind-Schlüsselcode <br />
+      Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, aber nicht beide <br />
+      <code class="notranslate">modifiers</code> - die Schlüsselmodifikatoren, durch Leerzeichen getrennte
+      Liste (&#39;Steuerung&#39;, &#39;Verschiebung&#39;, &#39;Alt&#39;, &#39;Beschleunigung&#39;) <br />
+      <code class="notranslate">oncommand</code> - eine direkte Befehlszeichenfolge <br />
+      <code class="notranslate">contexts</code> - Der Fensterkontext, in dem der Schlüssel aktiv ist <br />
+      <code class="notranslate">&#39;all&#39;</code> - alle Fenster unter Messenger, komponieren, suchen
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - das Haupt-Messenger-Fenster und seine Nachkommen
+      <br />
+      <code class="notranslate">&#39;compose&#39;</code> - das Fenster zum Erstellen von Nachrichten <br />
+      <code class="notranslate">&#39;search&#39;</code> - der Suchdialog <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Da die Verknüpfungen neu und experimentell sind, werde ich auch weitere Dokumentation in das Repository
+      aufnehmen. Überprüfen Sie die Erweiterung
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

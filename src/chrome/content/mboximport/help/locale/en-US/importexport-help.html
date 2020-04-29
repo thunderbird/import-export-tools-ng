@@ -20,8 +20,42 @@
 		This current page focuses on the menus and new options.
 		It will be continually updated in subsequent versions.<br>
 	</p>
-	<p style="font-weight: bold;">
-		Support:</p>
+	<h3>Version 4.1.0 : New Features</h3>
+	<p>
+		- Help/User guide : Fully localized
+		- Suffix option for filenames<br>
+		- Custom date option for filenames allowing strftime() like full date and time formatting<br>
+		- Use custom file naming for both attachments and embedded attachments<br>
+		- Custom date option for index filenames<br>
+		- Option to use 'Received Date' for filename and index<br>
+		- User configurable Hotkeys (Keyboard shortcuts)<br>
+		- PDF output now uses the global print options<br>
+		- Improved HTML index file layout<br>
+		<br><br>
+	Bug Issues Fixed:<br>
+	- #68 fix for index attachment flag<br>
+	- #74 fix for in-line image attachments not exported<br>
+	- Fix #56 handle cancel on import dialog<br>
+	- #77 use preferences for PDF output<br>
+	- UI cleanup tweaks (#80, #81, #82 ) OS variations - @ovari<br>
+	- German translation fix #93 - @dipgithub<br>
+	- Hungarian translation fixes - @ovari<br>
+	- Add missing license file #96 <br>
+	<br>
+	Thanks to the following users for enhancement suggestions and test help:<br><br>
+- <code class="notranslate">@ovari</code><br>
+- <code class="notranslate">@dipgithub</code><br>
+- <code class="notranslate">@artofit</code><br>
+- <code class="notranslate">@JF1313</code><br>
+- <code class="notranslate">@jessejmorrow</code><br>
+- <code class="notranslate">@spd2000 </code><br>
+- <code class="notranslate">@kanlukasz </code><br>
+- <code class="notranslate">@razzmatazzz </code><br>
+- <code class="notranslate">@triplee</code><br>
+
+</p>
+
+	<h3>Support:</h3>
 		<p>
 		Please post issues or feature requests in the extensions GitHub repository: <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">ImportExportTools NG Issues</a><br>
 		<br>
@@ -33,6 +67,7 @@
 		- A description of the steps leading to the issue<br>
 
 	</p>
+	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
 	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".
 		The extension offers multiple import and export functions supporting several different
 		file formats including: Note: Some formats are not supported in all functions.
@@ -807,6 +842,65 @@
 					</table>
 
 <br>
+<h2>New and Experimental Preferences (options)</h2>
+<p>There are several new features and options that are not yet configurable within the
+options dialog.  Once these features are stabilized they will be added to the UI.<br>
+In order to use them they must be set within the Config Editor.  To access the editor
+use the Tools/Options menu then select the Advanced section and there will be a 'Config Editor'
+button the bottom.  If you type 'importexporttoolsng' in the search bar you will get all
+the extension preferences.  You can then edit the various preferences below as needed.
+</p>
+
+<p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+<p>This preference follows the same full formatting to be used for the index files.    
+	It is an empty string by default, if with a formatted date/time string, then
+	this will change the index date format.
+</p>
+<p><code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br>
+<p><code class="notranslate">importexporttoolsng.export.embedded_attachments.filename_extended_format</code></p>
+<p>Both of these preferences use the same type of extended file naming formats 
+that the exported messages filename uses.  The first is for external attachments,
+second is for embedded (inline) attachments.
+</p>
+<p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+<p>Normally the 'Date' for a message in Thunderbird is the date set by
+	the sender's mail client.  Setting this option to 'true' utilizes
+	the received date at the recipient's mail client.  This date will
+	be used for both filenames as well as the date in the index files.
+</p>
+
+<h2>Basic, global Hotkey (shortcuts) Feature</h2>
+<p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+<p>This new preference allows the user to set up to 10 keyboard shortcuts.
+	The shortcuts can perform most of the ImportExportTools NG functions as 
+	well as other Thunderbird functions.  The preference string is formatted 
+	as a JSON formatted object.  The format and keys are as follows:
+</p>
+<p>
+Example hot key entrys (array of JSON objects)<br><br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">id</code>		- the key index (1-10)<br>
+
+&nbsp;&nbsp;&nbsp; <code class="notranslate">key</code>			- the key ( single character)<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">keycode</code>		- the 'VK_*' defind keycode<br>
+&nbsp;&nbsp;&nbsp;Either key or keycode may be included , but not both<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">modifiers</code>	- the key modifiers, space separated list ('control', 'shift', 'alt', 'accel')<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">oncommand</code>	- a direct command string<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">contexts</code> 		- the window context where the key is active<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'all'</code> - all windows under messenger, compose, search<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'messenger'</code> - the main messenger window and its descendents<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'compose'</code> - the message compose window<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'search'</code> - the search dialog<br>
+<br>
+<code class="notranslate">[{"id": "1", "key": "K", "modifiers": "control shift", "oncommand": "alert('Compose alert')", "contexts": "compose"}, {"id": "2", "keycode: "VK_F1", "modifiers": "control shift", "oncommand": "alert('testD')", "contexts": "all"}]</code><br><br>
+	<code class="notranslate">[{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]</code><br><br>
+	<code class="notranslate">[{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"},<br>
+		 {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]</code><br>
+</p>
+<p>As the shortcuts are new and experimental I will also add more documentation in
+	the repository.  Check the extension <a class="link1" href="https://github.com/thundernest/import-export-tools-ng">ImportExportTools NG README</a><br>
+</p>
+<br>
+
 
 </body>
 

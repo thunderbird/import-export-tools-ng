@@ -16,7 +16,40 @@
       pàgina actual es centra en els menús i les noves opcions. S&#39;actualitzarà contínuament en versions
       posteriors. <br />
     </p>
-    <p style="font-weight: bold;">Suport:</p>
+    <h3>Versió 4.1.0: Noves funcions</h3>
+    <p>
+      - Ajuda / Guia de l&#39;usuari: Totalment localitzada: opció de sufix per als noms de fitxer <br />
+      - Opció de data personalitzada per a noms de fitxers que permeten el temps de pas (com ara la data
+      completa i el format de l&#39;hora) <br />
+      - Utilitzeu la denominació de fitxers personalitzats tant per a fitxers adjunts com per a fitxers
+      adjunts incrustats <br />
+      - Opció de data personalitzada per a noms de fitxers d&#39;índexs <br />
+      - Opció d&#39;utilitzar &quot;Data de recepció&quot; per a nom de fitxer i índex <br />
+      - Tecles de control configurables per l&#39;usuari (dreceres de teclat) <br />
+      - La sortida en PDF ara utilitza les opcions d&#39;impressió globals <br />
+      - Millora de la disposició del fitxer índex HTML <br /><br /><br />
+      S&#39;han solucionat els problemes d&#39;error: <br />
+      - Correcció # 68 per a l&#39;indicador d&#39;adjunt d&#39;índexs <br />
+      - La correcció # 74 de fitxers adjunts d&#39;imatge en línia no exportats <br />
+      - Fixeu el número de control de la cancel·lació 56 en el quadre de diàleg d’importació <br />
+      - Les preferències d&#39;ús 77 per a la sortida de PDF <br />
+      - Ajustaments de neteja de la interfície d&#39;usuari (# 80, # 81, # 82) Variacions del sistema operatiu
+      - @ovari <br />
+      - Correcció de traducció alemanya # 93 - @dipgithub <br />
+      - Correccions de traducció hongaresa - @ovari <br />
+      - Afegiu un fitxer de llicència # 96 que falta <br /><br />
+      Gràcies als usuaris següents per suggeriments de millora i ajuda de prova: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Suport:</h3>
     <p>
       Envieu problemes o sol·licituds de funcions al repositori GitHub de les extensions:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -31,6 +64,7 @@
       - Sortida de depuració (còpia des de la consola de depuració - accés amb Control-Shift-J) <br />
       - Una descripció dels passos que condueixen al problema <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG visió general i menús</h2>
     <p>
       ImportExportTools NG és una extensió seguida basada en el treball original de Paolo &quot;Kaosmos&quot;.
       L’extensió ofereix múltiples funcions d’importació i exportació que admeten diversos formats de fitxer
@@ -850,6 +884,107 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Preferències noves i experimentals (opcions)</h2>
+    <p>
+      Hi ha diverses funcions i opcions noves que encara no es poden configurar al diàleg d&#39;opcions. Un
+      cop estabilitzades aquestes funcions, s’afegiran a la IU. <br />
+      Per poder utilitzar-los, s&#39;han d&#39;establir dins de l&#39;Editor de configuració. Per accedir a
+      l&#39;editor, utilitzeu el menú Eines / Opcions, seleccioneu la secció Avançada i hi haurà un botó
+      &quot;Config Editor&quot; a la part inferior. Si escriviu &quot;importexporttoolsng&quot; a la barra de
+      cerca obtindreu totes les preferències d&#39;extensió. A continuació, podeu editar les diverses
+      preferències que calgui.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Aquesta preferència segueix el mateix format complet que s&#39;utilitzarà per als fitxers índex. Per
+      defecte, és una cadena buida, si hi ha una cadena de data / hora formatada, llavors canviarà el format
+      de data d&#39;índex.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Ambdues preferències utilitzen el mateix tipus de formats de denominació de fitxers estès que utilitza
+      el nom de fitxer de missatges exportats. El primer és per a fitxers adjunts externs, el segon per a
+      fitxers adjunts incrustats.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normalment la &quot;Data&quot; per a un missatge a Thunderbird és la data establerta pel client de
+      correu del remitent. Si seleccioneu aquesta opció com a veritable, s&#39;utilitza la data de recepció al
+      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxers com per a
+      la data dels fitxers d&#39;índexs.
+    </p>
+    <h2>Funció bàsica, de tecla directa (dreceres) global</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Aquesta nova preferència permet a l’usuari configurar fins a 10 dreceres de teclat. Les dreceres poden
+      realitzar la majoria de les funcions ImportExportTools NG i altres funcions del Thunderbird. La cadena
+      de preferències està formatada com un objecte formatat per JSON. El format i les tecles són els
+      següents:
+    </p>
+    <p>
+      Exemple d’entrades de claus en calent (matriu d’objectes JSON) <br /><br />
+      <code class="notranslate">id</code> : l&#39;índex de la clau (1-10) <br />
+      <code class="notranslate">key</code> : la clau (caràcter únic) <br />
+      <code class="notranslate">keycode</code> clau: el codi de defunció &#39;VK_ *&#39; <br />
+      Es poden incloure les claus o les claus, però no les dues <br />
+      <code class="notranslate">modifiers</code> : els modificadors de claus, llista separada per l&#39;espai
+      (&quot;control&quot;, &quot;shift&quot;, &quot;alt&quot;, &quot;accel&quot;) <br />
+      <code class="notranslate">oncommand</code> : una cadena d’ordres directes <br />
+      <code class="notranslate">contexts</code> : el context de la finestra on està activa la clau <br />
+      <code class="notranslate">&#39;all&#39;</code> : totes les finestres de missatgeria, redacció, cerca
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> : la finestra principal del missatger i els seus
+      descendents <br />
+      <code class="notranslate">&#39;compose&#39;</code> - la finestra de redacció del missatge <br />
+      <code class="notranslate">&#39;search&#39;</code> : el diàleg de cerca <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Com que les dreceres siguin noves i experimentals, també afegiré més documentació al dipòsit. Comproveu
+      l’extensió
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

@@ -16,7 +16,38 @@
       stránka sa zameriava na ponuky a nové možnosti. V nasledujúcich verziách sa bude priebežne aktualizovať.
       <br />
     </p>
-    <p style="font-weight: bold;">Podpora:</p>
+    <h3>Verzia 4.1.0: Nové funkcie</h3>
+    <p>
+      - Pomocník / Príručka používateľa: Úplne lokalizované - Možnosť voľby názvu súboru <br />
+      - Možnosť vlastného dátumu pre názvy súborov, ktoré umožňujú strftime (), ako je formátovanie celého
+      dátumu a času <br />
+      - Používajte vlastné pomenovanie súborov pre prílohy aj pre vložené prílohy <br />
+      - Možnosť vlastného dátumu pre názvy súborov indexu <br />
+      - Možnosť použiť „Dátum prijatia“ pre názov súboru a index <br />
+      - Klávesové skratky konfigurovateľné používateľom (klávesové skratky) <br />
+      - Výstup PDF teraz používa možnosti globálnej tlače <br />
+      - Vylepšené rozloženie indexového súboru HTML <br /><br /><br />
+      Opravené problémy s chybou: <br />
+      - # 68 oprava príznaku indexovej prílohy <br />
+      - # 74 oprava pre obrázkové prílohy, ktoré sa neexportujú <br />
+      - Oprava rukoväte č. 56 pri dialógovom okne Import <br />
+      - # 77 používa predvoľby pre výstup PDF <br />
+      - Vylepšenia vyčistenia používateľského rozhrania (# 80, # 81, # 82) OS variácie - @ovari <br />
+      - Nemecký preklad fix # 93 - @dipgithub <br />
+      - Opravy maďarského prekladu - @ovari <br />
+      - Pridajte chýbajúci licenčný súbor # 96 <br /><br />
+      Ďakujeme nasledujúcim používateľom za návrhy na vylepšenia a pomoc pri testovaní: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Podpora:</h3>
     <p>
       Zverejnite problémy alebo požiadavky na funkcie v úložisku GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -30,6 +61,7 @@
       - Výstup ladenia (kópia z konzoly ladenia - prístup pomocou Control-Shift-J) <br />
       - Opis krokov vedúcich k vydaniu <br />
     </p>
+    <h2 id="main_help">ImportExportTools NG - prehľad a ponuky</h2>
     <p>
       ImportExportTools NG je rozšírenie nadväzujúce na pôvodnú prácu Paola „Kaosmos“. Rozšírenie ponúka
       niekoľko funkcií na import a export podporujúcich niekoľko rôznych formátov súborov vrátane: Poznámka:
@@ -829,6 +861,100 @@
         <td><code property-text-ref="dateCustomFmtToken"></code></td>
       </tr>
     </table>
+    <br />
+    <h2>Nové a experimentálne preferencie (možnosti)</h2>
+    <p>
+      Existuje niekoľko nových funkcií a možností, ktoré ešte nie je možné konfigurovať v dialógovom okne
+      možností. Po stabilizácii týchto funkcií sa pridajú do používateľského rozhrania. <br />
+      Aby ste ich mohli používať, musia byť nastavené v aplikácii Config Editor. Na prístup do editora použite
+      ponuku Nástroje / Možnosti, potom vyberte časť Spresnenie a dole bude tlačidlo „Editor konfigurácie“. Ak
+      do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby rozšírenia. Potom
+      môžete podľa potreby upraviť rôzne preferencie nižšie.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Táto preferencia nasleduje rovnaké úplné formátovanie, aké sa použije pre indexové súbory. Predvolene je
+      to prázdny reťazec, ak s formátovaným reťazcom dátum / čas, zmení sa to formát dátumu indexu.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Obe tieto preferencie používajú rovnaký typ formátov pomenovávania rozšírených súborov, aký používa
+      exportovaný súbor správ. Prvý je pre externé prílohy, druhý pre vložené (vložené) prílohy.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      „Dátum“ pre správu v aplikácii Thunderbird je zvyčajne dátum stanovený poštovým klientom odosielateľa.
+      Ak nastavíte túto možnosť na „true“, použije sa dátum prijatia na poštovom klientovi príjemcu. Tento
+      dátum sa použije pre názvy súborov, ako aj pre dátum v indexových súboroch.
+    </p>
+    <h2>Základná globálna klávesová skratka (skratky)</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Táto nová preferencia umožňuje užívateľovi nastaviť až 10 klávesových skratiek. Skratky môžu vykonávať
+      väčšinu funkcií ImportExportTools NG, ako aj iných funkcií Thunderbird. Reťazec preferencie je
+      naformátovaný ako objekt vo formáte JSON. Formát a klávesy sú nasledujúce:
+    </p>
+    <p>
+      Príklady vstupov klávesových skratiek (pole objektov JSON) <br /><br />
+      <code class="notranslate">id</code> - index kľúčov (1-10) <br />
+      <code class="notranslate">key</code> - kľúč (jeden znak) <br />
+      <code class="notranslate">keycode</code> - &#39;VK_ *&#39; defind keycode <br />
+      Môže byť zahrnutý buď kľúč alebo kód kľúča, ale nie obidva <br />
+      <code class="notranslate">modifiers</code> - <code class="notranslate">modifiers</code> kľúčov, zoznam
+      oddelený medzerami (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - priamy príkazový reťazec <br />
+      <code class="notranslate">contexts</code> - kontext okna, v ktorom je kláves aktívny <br />
+      <code class="notranslate">&#39;all&#39;</code> - všetky okná pod správcom, písanie, vyhľadávanie <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - hlavné okno Messenger a jeho potomkovia <br />
+      <code class="notranslate">&#39;compose&#39;</code> - okno na písanie správy <br />
+      <code class="notranslate">&#39;search&#39;</code> - dialógové okno vyhľadávania <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Keďže skratky sú nové a experimentálne, pridám do úložiska aj ďalšiu dokumentáciu. Skontrolujte
+      rozšírenie
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
     <br />
   </body>
 </html>

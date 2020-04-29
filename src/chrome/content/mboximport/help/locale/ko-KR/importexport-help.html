@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css" />
+    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
+    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
+    <script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+    <title>ImportExportTools NG 도움말</title>
+  </head>
+  <body>
+    <h2 id="main_help">ImportExportTools NG 도움말 사용자 안내서</h2>
+    <p>
+      이것은 사용자 안내서의 최소한의 첫 시작입니다. 추가해야 할 것이 많습니다. 이 현재 페이지는 메뉴와 새로운
+      옵션에 중점을 둡니다. 이후 버전에서는 지속적으로 업데이트됩니다. <br />
+    </p>
+    <h3>버전 4.1.0 : 새로운 기능</h3>
+    <p>
+      -도움말 / 사용자 안내서 : 완전 현지화-파일 이름에 대한 접미사 옵션 <br />
+      -전체 날짜 및 시간 형식과 같은 strftime ()을 허용하는 파일 이름의 사용자 정의 날짜 옵션 <br />
+      -첨부 파일 및 포함 된 첨부 파일 모두에 사용자 지정 파일 이름 지정 <br />
+      -색인 파일 이름에 대한 사용자 정의 날짜 옵션 <br />
+      -파일 이름 및 색인에 &#39;수신 날짜&#39;를 사용하는 옵션 <br />
+      -사용자 구성 가능한 단축키 (키보드 단축키) <br />
+      -PDF 출력은 이제 전체 인쇄 옵션을 사용합니다 <br />
+      -HTML 색인 파일 레이아웃 개선 <br /><br /><br />
+      해결 된 버그 문제 : <br />
+      -색인 첨부 플래그에 대한 # 68 수정 <br />
+      -인라인 이미지 첨부 파일에 대한 # 74 수정이 내보내지지 않음 <br />
+      -가져 오기 대화 상자에서 수정 # 56 핸들 취소 <br />
+      -PDF 출력을위한 # 77 기본 설정 사용 <br />
+      -UI 정리 조정 (# 80, # 81, # 82) OS 변형-@ovari <br />
+      -독일어 번역 수정 # 93-@dipgithub <br />
+      -헝가리어 번역 수정-@ovari <br />
+      -누락 된 라이센스 파일 # 96 추가 <br /><br />
+      개선 제안 및 테스트 도움말에 대해 다음 사용자에게 감사합니다. <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>지원하다:</h3>
+    <p>
+      확장 프로그램 GitHub 리포지토리에 이슈 또는 기능 요청을 게시하십시오.
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG 이슈</a
+      >
+      <br /><br />
+      버그 문제에서 문제를 해결하는 데 도움이되는 다음 정보를 포함하십시오. <br />
+      -ImportExportTools NG 버전 <br />
+      -썬더 버드 버전 <br />
+      -운영 체제 및 버전 <br />
+      -디버그 출력 (디버그 콘솔에서 복사-Control-Shift-J로 액세스) <br />
+      -문제를 일으키는 단계에 대한 설명 <br />
+    </p>
+    <h2 id="main_help">ImportExportTools NG 개요 및 메뉴</h2>
+    <p>
+      ImportExportTools NG는 Paolo &quot;Kaosmos&quot;의 원래 작업을 기반으로 한 후속 확장입니다. 이 확장은
+      다음과 같은 여러 가지 파일 형식을 지원하는 여러 가져 오기 및 내보내기 기능을 제공합니다. 참고 : 일부
+      형식은 일부 기능에서 지원되지 않습니다. <br />
+      -mbox <br />
+      -EML <br />
+      -maildir <br />
+      -HTML <br />
+      - 일반 텍스트 <br />
+      -CSV (쉼표로 구분 된 값) <br />
+      -PDF <br /><br />
+      메시지를 중심으로하는 대부분의 기능은 Thunderbird 프로필 가져 오기 및 내보내기를 지원합니다. 또한
+      내보내기에는 HTML 또는 CSV 색인 파일이 포함될 수도 있습니다. Thunderbird 프로필 백업은 또 다른
+      기능입니다. <br />
+      <p>
+        IETng 기능에 액세스하려면 확장 프로그램에서 설치 한 여러 가지 메뉴를 통해 수행하십시오. 기능은 상황에
+        따라 다릅니다. 메뉴가 추가되었습니다 : <br />
+        -폴더 창 컨텍스트 (폴더 작업) <br />
+        -메시지 목록 컨텍스트 (선택된 메시지) <br />
+        -도구 메뉴 (폴더 및 프로필 작업) <br /><br />
+        확장 옵션에 대한 &quot;도구 / 애드온 옵션&quot;아래의 추가 항목에서 액세스 할 수있는 옵션이 많이
+        있습니다. 각 메뉴에는 옵션 대화 상자에 액세스 할 수있는 옵션 메뉴 항목도 있습니다. <br />
+        새로운 옵션은 여기에 문서화되어 있으며, 전체 세트는 이후에 문서화됩니다.
+      </p>
+      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h2 id="main_menu_help">폴더 상황에 맞는 메뉴 기능</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>메뉴 아이템</th>
+          <th>기능 설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>폴더 내보내기</td>
+          <td>단일 폴더를 mbox 형식 파일로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td>단일 폴더를 압축 mbox 형식 파일로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td>모든 하위 폴더를 포함하는 폴더를 mbox 형식 메시지 트리로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td>
+            모든 하위 폴더를 포함하는 폴더를 mbox 형식 메시지 트리로 내보내기 <br />
+            (.sbd 하위 디렉토리)
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td>
+            모든 하위 폴더를 포함하는 폴더를 단일 폴더로 내 보낸 각 하위 폴더마다 하나씩 mbox 형식 파일 세트로
+            내 보냅니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td>원격 (imap) 폴더를 단일 mbox 파일로 내 보냅니다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td>
+            폴더 메시지를 EML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td>
+            폴더 메시지를 HTML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            첨부 파일은 포함되어 있지 않습니다. 또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td>
+            폴더 메시지를 HTML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            첨부 파일은 별도의 파일로 저장됩니다. 또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td>
+            폴더 메시지를 일반 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지 않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td>
+            폴더 메시지를 첨부 파일을 포함한 일반 텍스트 형식 파일로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td>
+            폴더 메시지를 단일 일반 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지 않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td>
+            첨부 파일을 포함하여 폴더 메시지를 단일 일반 텍스트 형식 파일로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td>
+            폴더 메시지를 단일 CSV (쉼표로 구분 된 값) 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지
+            않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+          <td>
+            폴더 메시지를 첨부 파일을 포함한 PDF 형식 파일 세트로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다. <br />
+            참고 : 드라이버 문제로 인해 OSX에서 PDF 출력이 지원되지 않습니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td>폴더 메시지의 HTML 색인 파일을 작성합니다 (메시지 내보내기 없음).</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td>폴더 메시지의 CSV 색인 파일을 작성합니다 (메시지 내보내기 없음)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="searchAndexport"></td>
+          <td>검색 대화 상자를 열고 원하는 결과를 내 보냅니다</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximport"></td>
+          <td>mbox 파일을 가져옵니다. 구조 / 하위 폴더 유무에 관계없이 선택</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportMD"></td>
+          <td>maildir 메시지 파일 선택 및 가져 오기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportEML"></td>
+          <td>EML 메시지 파일 선택 및 가져 오기 (구조 / 하위 폴더 없음)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td>단일 폴더에서 모든 EML 메시지 가져 오기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td>구조 / 하위 폴더를 포함하여 단일 폴더에서 모든 EML 메시지 가져 오기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td>선택한 폴더의 OS 경로를 복사</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openFolderPath"></td>
+          <td>선택한 폴더의 OS 경로를 엽니 다</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="importSMS"></td>
+          <td>주의 사항 : SMS / Android 기능은 다음 버전에서 더 이상 사용되지 않습니다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>ImportExportTools NG 옵션 대화 상자를 엽니 다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td>기본 도움말 페이지를 엽니 다</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="message_functions_help">메시지 컨텍스트 메뉴</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>메뉴 아이템</th>
+          <th>기능 설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
+          <td>선택한 메시지를 EML 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
+          <td>선택한 메시지를 HTML 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
+          <td>선택한 메시지를 첨부 파일을 포함한 HTML 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
+          <td>선택한 메시지를 일반 텍스트 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+          <td>선택한 메시지를 첨부 파일을 포함한 일반 텍스트 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
+          <td>선택한 메시지를 단일 CSV 텍스트 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
+          <td>선택한 메시지를 단일 mbox 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td>선택한 메시지를 기존 mbox 파일에 추가</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
+          <td>선택한 메시지를 PDF 형식 파일로 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
+          <td>
+            메시지를 EML 형식 파일로 저장하십시오. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
+          <td>
+            메시지를 HTML 형식 파일로 저장하십시오. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
+          <td>
+            첨부 파일을 포함한 메시지를 HTML 형식 파일로 저장 <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
+          <td>
+            메시지를 일반 텍스트 형식 파일로 저장 <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
+          <td>
+            첨부 파일을 포함하여 메시지를 일반 텍스트 형식 파일로 저장 <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
+          <td>선택한 파일에 대한 HTML 색인 파일 작성</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
+          <td>선택한 파일에 대한 CSV 색인 파일 작성</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td>ImportExportTools NG 옵션 대화 상자를 엽니 다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td>기본 도움말 페이지를 엽니 다</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="tools_functions_help">도구 메뉴</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>메뉴 아이템</th>
+          <th>기능 설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>폴더 내보내기</td>
+          <td>단일 폴더를 mbox 형식 파일로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td>단일 폴더를 압축 mbox 형식 파일로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td>모든 하위 폴더를 포함하는 폴더를 mbox 형식 메시지 트리로 내보내기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td>
+            모든 하위 폴더를 포함하는 폴더를 mbox 형식 메시지 트리로 내보내기 <br />
+            (.sbd 하위 디렉토리)
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td>
+            모든 하위 폴더를 포함하는 폴더를 단일 폴더로 내 보낸 각 하위 폴더마다 하나씩 mbox 형식 파일 세트로
+            내 보냅니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td>원격 (imap) 폴더를 단일 mbox 파일로 내 보냅니다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td>
+            폴더 메시지를 EML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td>
+            폴더 메시지를 HTML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            첨부 파일은 포함되어 있지 않습니다. 또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td>
+            폴더 메시지를 HTML 형식 파일 (구조 / 하위 폴더 없음)로 내 보냅니다. <br />
+            첨부 파일은 별도의 파일로 저장됩니다. 또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td>
+            폴더 메시지를 일반 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지 않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td>
+            폴더 메시지를 첨부 파일을 포함한 일반 텍스트 형식 파일로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td>
+            폴더 메시지를 단일 일반 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지 않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td>
+            첨부 파일을 포함하여 폴더 메시지를 단일 일반 텍스트 형식 파일로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td>
+            폴더 메시지를 단일 CSV (쉼표로 구분 된 값) 텍스트 형식 파일로 내 보내면 첨부 파일이 포함되지
+            않습니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+          <td>
+            폴더 메시지를 첨부 파일을 포함한 PDF 형식 파일 세트로 내 보냅니다. <br />
+            또한 각 메시지를 나열하는 HTML 색인 파일이 작성됩니다. <br />
+            참고 : 드라이버 문제로 인해 OSX에서 PDF 출력이 지원되지 않습니다.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td>폴더 메시지의 HTML 색인 파일을 작성합니다 (메시지 내보내기 없음).</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td>폴더 메시지의 CSV 색인 파일을 작성합니다 (메시지 내보내기 없음)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="searchAndexport"></td>
+          <td>검색 대화 상자를 열고 원하는 결과를 내 보냅니다</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximport"></td>
+          <td>mbox 파일을 가져옵니다. 구조 / 하위 폴더 유무에 관계없이 선택</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportMD"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportEML"></td>
+          <td>EML 메시지 파일 선택 및 가져 오기 (구조 / 하위 폴더 없음)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td>단일 폴더에서 모든 EML 메시지 가져 오기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td>구조 / 하위 폴더를 포함하여 단일 폴더에서 모든 EML 메시지 가져 오기</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="importSMS"></td>
+          <td>주의 사항 : SMS / Android 기능은 다음 버전에서 더 이상 사용되지 않습니다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="saveProfileMail"></td>
+          <td>현재 프로필에 모든 메일 저장</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="saveProfile"></td>
+          <td>전체 프로필 (메일, 확장명, 옵션)을 저장하십시오</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td>완전한 프로필 가져 오기 (메일, 확장 프로그램, 옵션)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>ImportExportTools NG 옵션 대화 상자를 엽니 다.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td>기본 도움말 페이지를 엽니 다</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="customdate_format_help">맞춤 날짜 형식</h2>
+    <p>
+      사용자 정의 날짜 옵션을 사용하면 인덱스의 두 파일 모두에 사용되는 날짜 형식을 완전히 제어 할 수
+      있습니다. 파일 이름 드롭 다운에서 기본 형식 인 &quot;날짜&quot;와 새로운 사용자 지정 형식 인 &quot;날짜
+      (사용자 지정)&quot;를 모두 사용할 수 있습니다. 맞춤 날짜는 확장 맞춤 파일 이름에 사용 된 $ {date_custom}
+      토큰과 함께 사용할 수도 있습니다. 원래 (기본) 날짜 형식은 다음과 같습니다. <br />
+      YYYYMMDDHHmm : 202011060808 <br /><br />
+      사용자 정의 날짜 형식은 <code>strftime()</code> Unix와 유사한 기능과 일치하는 % 시퀀스를 사용합니다.
+      날짜 및 시간을 형식화하는 함수 인 JavaScript 포트
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+      기반으로합니다. <br />
+      TH Doan의 strftime () 포트 (https://thdoan.github.io/strftime/) <br />
+    </p>
+    <h3>변환 순서 설명</h3>
+    <table class="dateformat-table">
+      <thead>
+        <tr>
+          <th>순서</th>
+          <th>기술</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="code1">%a</code></td>
+          <td>요일의 약칭.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%A</code></td>
+          <td>요일의 이름입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%b</code></td>
+          <td>약식 월 이름.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%B</code></td>
+          <td>월 이름.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%c</code></td>
+          <td>현재 로캘의 기본 날짜 및 시간 (UTC) 표현</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%C</code></td>
+          <td>2 자리 정수로 된 세기 숫자 (년 / 100).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%d</code></td>
+          <td>월의 일을 10 진수로 표시합니다 (01-31 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%e</code></td>
+          <td>월의 일을 10 진수로 표시합니다 (1-31 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%F</code></td>
+          <td>ISO 8601 날짜 형식 ( <code class="code1">%Y-%m-%d</code> 와 동일).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%G</code></td>
+          <td>
+            세기를 10 진수로 한 ISO 8601 주별 연도. 4 자리 연도는 ISO 주 번호에 해당합니다 (
+            <code class="code1">%V</code> 참조). ISO 주 번호가 이전 또는 내년에 속하는 경우 해당 연도가 대신
+            사용된다는 점을 제외하고는 <code class="code1">%Y</code> 와 형식 및 값이 같습니다.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%g</code></td>
+          <td><code class="code1">%G</code> 와 비슷하지만 세기가 없으면 2 자리 연도 (00-99)입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%H</code></td>
+          <td>
+            24 시간제 (00-23 범위)를 사용하는 10 진수로 된 시간입니다. <code class="code1">%k</code> 도
+            참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%I</code></td>
+          <td>
+            12 시간제 (01-12 범위)를 사용하는 시간을 10 진수로 나타냅니다. <code class="code1">%l</code> 도
+            참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%j</code></td>
+          <td>연도를 10 진수로 표시합니다 (001-366 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%k</code></td>
+          <td>
+            24 시간제 (0-23 범위)를 사용하는 10 진수로 된 시간입니다. <code class="code1">%H</code> 도
+            참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%l</code></td>
+          <td>
+            12 시간제 (1-12 범위)를 사용하는 10 진수로 된 시간입니다. <code class="code1">%I</code> 도
+            참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%m</code></td>
+          <td>십진수로 된 월 (01-12 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%n</code></td>
+          <td>월을 10 진수로 표시합니다 (1 ~ 12 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%M</code></td>
+          <td>십진수로 된 분 (00-59 범위).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%p</code></td>
+          <td>
+            주어진 시간 값에 따라 &quot;AM&quot;또는 &quot;PM&quot;입니다. 정오는 &quot;PM&quot;으로 자정은
+            &quot;AM&quot;으로 처리됩니다.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%P</code></td>
+          <td><code class="code1">%p</code> 비슷하지만 소문자 ( &quot;am&quot;또는 &quot;pm&quot;)입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%s</code></td>
+          <td>Epoch, 1970-01-01 00:00:00 +0000 (UTC) 이후의 시간 (초)입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%S</code></td>
+          <td>두 번째는 10 진수 (00 ~ 59 범위)입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%u</code></td>
+          <td>
+            요일은 10 진수 (1-7 범위)이며 월요일은 1입니다. <code class="code1">%w</code> 도 참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%V</code></td>
+          <td>
+            현재 연도의 ISO 8601 주 번호는 10 진수 (01 ~ 53 범위)로 표시됩니다. 여기서 주 1은 새해에 4 일
+            이상인 첫 번째 주 (첫 번째 목요일)입니다.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%w</code></td>
+          <td>
+            요일을 10 진수 (0-6 범위)로, 일요일은 0입니다. <code class="code1">%u</code> 도 참조하십시오.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%x</code></td>
+          <td>시간이없는 현재 로캘의 기본 날짜 표시</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%X</code></td>
+          <td>날짜가없는 현재 로캘의 기본 시간 표시</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%y</code></td>
+          <td>연도는 세기가없는 10 진수 (00-99 범위)입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Y</code></td>
+          <td>세기를 포함하여 10 진수로 표현 된 연도입니다.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%z</code></td>
+          <td>
+            <code class="code1">+hhmm</code> 또는 <code class="code1">-hhmm</code> 숫자 시간대 (즉, UTC에서시
+            및 분 오프셋)입니다.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Z</code></td>
+          <td>시간대 이름 또는 약어.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>호환성 메모 :</h3>
+    <ul>
+      <li><code class="code1">%c</code> 형식화 된 문자열이 약간 다릅니다</li>
+      <li>
+        <code class="code1">%D</code> 구현되지 않음 ( <code class="code1">%m/%d/%y</code> 또는
+        <code class="code1">%d/%m/%y</code> )
+      </li>
+      <li><code class="code1">%e</code> 공백이 추가되지 않습니다</li>
+      <li><code class="code1">%E</code> 구현되지 않음</li>
+      <li><code class="code1">%h</code> 구현되지 않음 ( <code class="code1">%b</code> 사용)</li>
+      <li><code class="code1">%k</code> 공백이 추가되지 않습니다</li>
+      <li>
+        <code class="code1">%n</code> <code class="code1">%m</code> 과 비슷하지만 앞에 0이 없습니다 (개행에는
+        <code class="code1">\n</code> 사용).
+      </li>
+      <li><code class="code1">%O</code> 구현되지 않음</li>
+      <li><code class="code1">%r</code> 구현되지 않음 ( <code class="code1">%I:%M:%S %p</code> )</li>
+      <tr>
+        <td><code class="code1">${subject}</code></td>
+        <td>메시지의 주제</td>
+      </tr>
+      <li><code class="code1">%R</code> 구현되지 않음 ( <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> 구현되지 않음 ( <code class="code1">\t</code> 사용)</li>
+      <li><code class="code1">%T</code> 구현되지 않음 ( <code class="code1">%H:%M:%S</code> )</li>
+      <li><code class="code1">%U</code> 구현되지 않음</li>
+      <li><code class="code1">%W</code> 구현되지 않음</li>
+      <li><code class="code1">%+</code> -구현되지 않음</li>
+      <li><code class="code1">%%</code> -구현되지 않음 ( <code class="code1">%</code> 사용)</li>
+    </ul>
+    <br /><br />
+    <h2 id="ext_filename_format_help">확장 파일 이름 형식 :</h2>
+    <br />
+    <p>
+      확장 파일 이름 형식은 토큰을 사용합니다. 정확한 파일 이름은 토큰이나 텍스트 또는 유효한 파일 이름 문자를
+      사용하여 구성 할 수 있습니다. 영어 (en-US) 토큰은 모든 로케일에서 사용할 수 있습니다. 로케일 특정 토큰도
+      사용 가능하며 영어 테이블 아래에 나열되어 있습니다. <br /><br />
+      예 : <br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> -기본 형식 <br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> -기본값 대신 사용자
+      정의 날짜 형식을 사용하십시오. <br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> -일부 맞춤 텍스트
+      포함 <br /><br /><br />
+    </p>
+    <table class="token-table">
+      <tr>
+        <td>토큰</td>
+        <td>기술</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td>메시지의 제목 길이는 피사체 길이 옵션에 의해 제한 될 수 있습니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td>메시지 발신자의 이름입니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td>메시지 수신자의 이름입니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td>메일이 보낸 편지함에 있으면 수신자, 그렇지 않으면 발신자 이름</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td>메시지 색인 번호</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td>접두사 텍스트 옵션 값입니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td>접미사 텍스트 옵션 값입니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td>표준 날짜 형식입니다. 기본 형식은 YYYYMMDDHHmm입니다.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td>맞춤 날짜 형식 사용자 정의 날짜 형식 섹션을 참조하십시오.</td>
+      </tr>
+    </table>
+    <br />
+    <table id="localized-token-table" class="token-table">
+      <tr>
+        <td>토큰 (en-US)</td>
+        <td>현지화 ( <span id="locale1"></span> ) 토큰</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td><code property-text-ref="subjectFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td><code property-text-ref="senderFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td><code property-text-ref="recipientFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td><code property-text-ref="smartNameFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td><code property-text-ref="indexFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td><code property-text-ref="prefixFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td><code property-text-ref="suffixFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td><code property-text-ref="dateFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+      </tr>
+    </table>
+    <br />
+    <h2>새로운 실험 환경 설정 (옵션)</h2>
+    <p>
+      옵션 대화 상자에서 아직 구성 할 수없는 몇 가지 새로운 기능과 옵션이 있습니다. 이러한 기능이 안정화되면
+      UI에 추가됩니다. <br />
+      이를 사용하려면 구성 편집기에서 설정해야합니다. 편집기에 액세스하려면 도구 / 옵션 메뉴를 사용하여 고급
+      섹션을 선택하면 하단에 &#39;구성 편집기&#39;버튼이 나타납니다. 검색 창에 &#39;importexporttoolsng&#39;를
+      입력하면 모든 확장 환경 설정이 표시됩니다. 그런 다음 필요에 따라 아래의 다양한 환경 설정을 편집 할 수
+      있습니다.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      이 환경 설정은 색인 파일에 사용되는 것과 동일한 전체 형식을 따릅니다. 형식이 지정된 날짜 / 시간
+      문자열이있는 경우 기본적으로 빈 문자열이며 인덱스 날짜 형식이 변경됩니다.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      이러한 기본 설정은 모두 내 보낸 메시지 파일 이름과 동일한 유형의 확장 파일 이름 형식을 사용합니다. 첫
+      번째는 외부 첨부 파일을위한 것이고 두 번째는 포함 된 (인라인) 첨부 파일을위한 것입니다.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      일반적으로 Thunderbird의 메시지에 대한 &#39;날짜&#39;는 발신자의 메일 클라이언트가 설정 한 날짜입니다.
+      이 옵션을 &#39;true&#39;로 설정하면 수신자의 메일 클라이언트에서받은 날짜를 사용합니다. 이 날짜는 파일
+      이름과 색인 파일의 날짜 모두에 사용됩니다.
+    </p>
+    <h2>기본 글로벌 핫키 (바로 가기) 기능</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      이 새로운 환경 설정을 통해 사용자는 최대 10 개의 키보드 단축키를 설정할 수 있습니다. 바로 가기는
+      대부분의 ImportExportTools NG 기능과 기타 Thunderbird 기능을 수행 할 수 있습니다. 환경 설정 문자열은
+      JSON 형식의 오브젝트로 형식화됩니다. 형식과 키는 다음과 같습니다.
+    </p>
+    <p>
+      단축키 항목 예 (JSON 객체 배열) <br /><br />
+      <code class="notranslate">id</code> 키 인덱스 (1-10) <br />
+      <code class="notranslate">key</code> 키 (단일 문자) <br />
+      <code class="notranslate">keycode</code> - &#39;VK_ *&#39;defind 키 코드 <br />
+      키 또는 키 코드가 포함될 수 있지만 둘다는 아닙니다. <br />
+      <code class="notranslate">modifiers</code> -키 수정 자, 공백으로 구분 된 목록 ( &#39;control&#39;,
+      &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> 직접 명령 문자열 <br />
+      <code class="notranslate">contexts</code> 키가 활성화 된 창 컨텍스트 <br />
+      <code class="notranslate">&#39;all&#39;</code> all&#39;-메신저, 작성, 검색중인 모든 창 <br />
+      <code class="notranslate">&#39;messenger&#39;</code> -메인 메신저 창과 그 후손 <br />
+      <code class="notranslate">&#39;compose&#39;</code> 메시지 작성 창 <br />
+      <code class="notranslate">&#39;search&#39;</code> 검색 대화 상자 <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      바로 가기가 새롭고 실험적이므로 저장소에 더 많은 문서를 추가 할 것입니다. 확장
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README를</a
+      >
+      확인하십시오. <br />
+    </p>
+    <br />
+  </body>
+</html>

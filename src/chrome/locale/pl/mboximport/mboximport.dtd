@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Zapisz wszystkie pliki profilu">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Data niestandardowa:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Data (niestandardowa)">
+<!ENTITY useExtFilenameFormat "Użyj rozszerzonego formatu">
+<!ENTITY addSuffix "Dodaj sufiks">
+<!ENTITY dateFormatRefTooltipText "Odniesienie do formatu daty">
+<!ENTITY extFilenameFormatRefTooltipText "Rozszerzone odniesienie do formatu nazwy pliku">

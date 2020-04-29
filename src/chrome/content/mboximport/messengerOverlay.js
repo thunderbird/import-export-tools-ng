@@ -24,7 +24,7 @@
 
 // cleidigh - Convert in-line script, reformat, globals
 
-/* global IETprefs */
+/* global IETprefs, IETgetComplexPref, setupHotKeys */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -41,7 +41,7 @@ function IETmessOverlayInit() {
 	if ((time - last) < days)
 		return;
 
-		var WM = Cc['@mozilla.org/appshell/window-mediator;1']
+	var WM = Cc['@mozilla.org/appshell/window-mediator;1']
 		.getService(Ci.nsIWindowMediator);
 	var os = navigator.platform.toLowerCase();
 	var wins;
@@ -55,6 +55,24 @@ function IETmessOverlayInit() {
 		else
 			window.openDialog("chrome://mboximport/content/autobackup.xul", "", "chrome,centerscreen", last, time, now);
 	}
+
+
 }
 
+function keyEvent(e) {
+	console.debug(`Key event: ${e.code}  `);
+	// console.debug(`${e.target.outerHTML}`);
+
+	// var d = document.body.outerHTML();
+	// console.debug(d.substring(0,100));
+
+	d = e.target.outerHTML;
+	console.debug(d.substring(0,100));
+}
+
+// setup hotkeys for the main window
+setupHotKeys("messenger");
+setupHotKeysObserver();
+
 window.addEventListener("unload", IETmessOverlayInit, false);
+// window.addEventListener("keydown", keyEvent, false);

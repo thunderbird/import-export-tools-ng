@@ -21,7 +21,7 @@
 <!ENTITY MBlabel3 "Ask confirm before importing mbox files from a directory">
 <!ENTITY MBlabel4 "HTML format as displayed in messages panel">
 <!ENTITY MBlabel5 "Copy to clipboard just in text format (can cause compatibility problems)">
-<!ENTITY MBlabel6 "When it&apos;s present, put the date at the beginning of the exported files">
+<!ENTITY MBlabel6 "When it’s present, put the date at the beginning of the exported files">
 <!ENTITY MBlabel7a "Subject max length: ">
 <!ENTITY MBlabel7b "characters">
 <!ENTITY MBlabel7c "Sender name max length: ">
@@ -36,8 +36,8 @@
 <!ENTITY taskMenuAccesskey "x">
 <!ENTITY clipMenuAccesskey "o">
 <!ENTITY importDirRec "Select a directory where searching the mbox files to import (also in subdirectories)">
-<!ENTITY importDirProf "Open filepicker in profiles&apos; directory">
-<!ENTITY MBlabel8 "In &apos;Save selected messages&apos; add date to filename">
+<!ENTITY importDirProf "Open filepicker in profiles’ directory">
+<!ENTITY MBlabel8 "In “Save selected messages” add date to filename">
 <!ENTITY options "Options">
 <!ENTITY importALLEML1 "just from the directory">
 <!ENTITY importALLEML2 "also from its subdirectories">
@@ -47,7 +47,7 @@
 <!ENTITY addTimestamp "Add date to the file properties">
 <!ENTITY customizeFilename "Use following format:">
 <!ENTITY captionCustomize "Customized format for filenames">
-<!ENTITY browse "Browse">
+<!ENTITY browse "Browse…">
 <!ENTITY subject "Subject">
 <!ENTITY date "Date">
 <!ENTITY key "Index">
@@ -78,7 +78,7 @@
 <!ENTITY filenameCharset "Charset for filenames: ">
 <!ENTITY name "Name">
 <!ENTITY importStructDescr1 "Select just the mbox file, the directory with the same name">
-<!ENTITY importStructDescr2 "and the extension \'sbd\' will be automatically imported, if it exists.">
+<!ENTITY importStructDescr2 "and the extension “sbd” will be automatically imported, if it exists.">
 <!ENTITY abortExport "Stop the current export">
 <!ENTITY allMsg "Export of all messages">
 <!ENTITY indexSettingLabel "When exporting all messages of a mail folder:">
@@ -86,12 +86,12 @@
 <!ENTITY indexOff "use selected directory without index">
 <!ENTITY copyFolderPath "Copy folder path on disk">
 <!ENTITY importSMS "Import SMS">
-<!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' for Android">
+<!-- “SMS Backup and Restore” is the name of an Android application and so maybe it’s better not to translate it -->
+<!ENTITY android "“SMS Backup and Restore” for Android">
 <!ENTITY sender "Sender">
 <!ENTITY recipient "Recipient">
 <!ENTITY exportRemoteFolder "Export remote folder">
-<!ENTITY skipMsgLabel "don't save messages when the correspondent file exists">
+<!ENTITY skipMsgLabel "don’t save messages when the file already exists">
 <!ENTITY asCSV "Spreadsheet (CSV)">
 <!ENTITY exportZIP "Export folder (zipped)">
 <!ENTITY openFolderPath "Open directory where is the folder file">
@@ -106,3 +106,12 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Export profile">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Custom Date:">
+<!ENTITY extFormat "Format:">
+<!ENTITY dateCustomOpt "Date (Custom)">
+<!ENTITY useExtFilenameFormat "Use Extended Format">
+<!ENTITY addSuffix "Add suffix">
+
+<!ENTITY dateFormatRefTooltipText "Date Format Reference">
+<!ENTITY extFilenameFormatRefTooltipText "Extended Filename Format Reference">

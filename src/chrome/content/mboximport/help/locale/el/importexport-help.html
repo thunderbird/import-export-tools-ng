@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css" />
+    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
+    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
+    <script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+    <title>Βοήθεια ImportExportTools NG</title>
+  </head>
+  <body>
+    <h2 id="main_help">Οδηγός χρήσης του HelpExportTools NG</h2>
+    <p>
+      Αυτή είναι μια μινιμαλιστική πρώτη αρχή ενός οδηγού χρήστη. Υπάρχουν προφανώς πολλά να προσθέσουμε. Αυτή
+      η τρέχουσα σελίδα εστιάζει στα μενού και στις νέες επιλογές. Θα ενημερώνεται συνεχώς σε επόμενες
+      εκδόσεις. <br />
+    </p>
+    <h3>Έκδοση 4.1.0: Νέες δυνατότητες</h3>
+    <p>
+      - Βοήθεια / Οδηγός χρήστη: Πλήρως μεταφρασμένο - Επιλογή επιθήματος για ονόματα αρχείων <br />
+      - Επιλογή προσαρμοσμένης ημερομηνίας για ονόματα αρχείων που επιτρέπει strftime (), όπως μορφοποίηση
+      πλήρους ημερομηνίας και ώρας <br />
+      - Χρησιμοποιήστε προσαρμοσμένη ονομασία αρχείων τόσο για συνημμένα όσο και για ενσωματωμένα συνημμένα
+      <br />
+      - Επιλογή προσαρμοσμένης ημερομηνίας για ονόματα αρχείων ευρετηρίου <br />
+      - Επιλογή για χρήση &quot;Ημερομηνία λήψης&quot; για όνομα αρχείου και ευρετήριο <br />
+      - Hotkeys με δυνατότητα ρύθμισης χρήστη (συντομεύσεις πληκτρολογίου) <br />
+      - Η έξοδος PDF χρησιμοποιεί τώρα τις καθολικές επιλογές εκτύπωσης <br />
+      - Βελτιωμένη διάταξη αρχείου ευρετηρίου HTML <br /><br /><br />
+      Διορθώθηκαν προβλήματα σφαλμάτων: <br />
+      - # 68 διόρθωση για σημαία συνημμένου ευρετηρίου <br />
+      - # 74 διόρθωση για εξαγωγή συνημμένων εικόνας που δεν εξάγονται <br />
+      - Επιδιόρθωση # 56 λαβή ακύρωσης στο διάλογο εισαγωγής <br />
+      - # 77 προτιμήσεις χρήσης για έξοδο PDF <br />
+      - Τροποποιήσεις διεπαφής χρήστη (# 80, # 81, # 82) Παραλλαγές λειτουργικού συστήματος - @ovari <br />
+      - Επιδιόρθωση γερμανικής μετάφρασης # 93 - @dipgithub <br />
+      - Διορθώσεις μετάφρασης στα Ουγγρικά - @ovari <br />
+      - Προσθέστε το αρχείο άδειας # 96 που λείπει <br /><br />
+      Χάρη στους παρακάτω χρήστες για προτάσεις βελτίωσης και δοκιμαστική βοήθεια: <br /><br />
+      - <code class="notranslate">@ovari</code> <br />
+      - <code class="notranslate">@dipgithub</code> <br />
+      - <code class="notranslate">@artofit</code> <br />
+      - <code class="notranslate">@JF1313</code> <br />
+      - <code class="notranslate">@jessejmorrow</code> <br />
+      - <code class="notranslate">@spd2000</code> <br />
+      - <code class="notranslate">@kanlukasz</code> <br />
+      - <code class="notranslate">@razzmatazzz</code> <br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <h3>Υποστήριξη:</h3>
+    <p>
+      Παρακαλούμε δημοσιεύστε ζητήματα ή αιτήματα λειτουργιών στο αποθετήριο GitHub επεκτάσεων:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      >
+      <br /><br />
+      Σε ζητήματα σφάλματος, συμπεριλάβετε τις ακόλουθες πληροφορίες για να βοηθήσετε στην επίλυση των
+      προβλημάτων: <br />
+      - Έκδοση ImportExportTools NG <br />
+      - Έκδοση Thunderbird <br />
+      - Λειτουργικό σύστημα και έκδοση <br />
+      - Έξοδος εντοπισμού σφαλμάτων (αντίγραφο από την Κονσόλα εντοπισμού σφαλμάτων - πρόσβαση με
+      Control-Shift-J) <br />
+      - Περιγραφή των βημάτων που οδηγούν στο ζήτημα <br />
+    </p>
+    <h2 id="main_help">Επισκόπηση και μενού ImportExportTools NG</h2>
+    <p>
+      Το ImportExportTools NG είναι μια συνέχεια επέκτασης που βασίζεται στο πρωτότυπο έργο του Paolo
+      &quot;Kaosmos&quot;. Η επέκταση προσφέρει πολλές λειτουργίες εισαγωγής και εξαγωγής που υποστηρίζουν
+      πολλές διαφορετικές μορφές αρχείων, όπως: Σημείωση: Ορισμένες μορφές δεν υποστηρίζονται σε όλες τις
+      λειτουργίες. <br />
+      - mbox <br />
+      - EML <br />
+      - maildir <br />
+      - HTML <br />
+      - απλό κείμενο <br />
+      - CSV (Τιμές διαχωρισμένες με κόμμα) <br />
+      - PDF <br /><br />
+      Ενώ το μεγαλύτερο μέρος της λειτουργικότητας περιστρέφεται γύρω από μηνύματα, υπάρχει επίσης υποστήριξη
+      για την εισαγωγή και εξαγωγή προφίλ Thunderbird. Επιπλέον, οι εξαγωγές μπορούν επίσης να περιλαμβάνουν
+      ένα αρχείο ευρετηρίου HTML ή CSV. Το αντίγραφο ασφαλείας του προφίλ Thunderbird είναι ένα άλλο
+      χαρακτηριστικό. <br />
+      <p>
+        Η πρόσβαση στη λειτουργικότητα IETng γίνεται μέσω πολλών διαφορετικών μενού που έχουν εγκατασταθεί από
+        την επέκταση. Οι συναρτήσεις είναι ευαίσθητες στο περιβάλλον. Τα μενού προστίθενται για: <br />
+        - Το πλαίσιο πλαισίου φακέλου (λειτουργία φακέλου) <br />
+        - Το πλαίσιο λίστας μηνυμάτων (επιλεγμένα μηνύματα) <br />
+        - Το μενού Εργαλεία (λειτουργίες φακέλου και προφίλ) <br /><br />
+        Υπάρχουν πολλές επιλογές που είναι προσβάσιμες με την προσθήκη στην ενότητα &quot;Εργαλεία / Επιλογές
+        πρόσθετου&quot; για τις επιλογές επέκτασης. Κάθε μενού διαθέτει επίσης ένα στοιχείο μενού επιλογών για
+        πρόσβαση στο διάλογο επιλογών. <br />
+        Οι νέες επιλογές τεκμηριώνονται εδώ, ολόκληρο το σετ θα τεκμηριωθεί στη συνέχεια.
+      </p>
+      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h2 id="main_menu_help">Λειτουργίες μενού περιβάλλοντος φακέλου</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Στοιχείο μενού</th>
+          <th>Περιγραφή λειτουργίας</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Εξαγωγή φακέλου</td>
+          <td>Εξαγωγή ενός φακέλου σε ένα αρχείο μορφής mbox</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td>Εξαγωγή ενός μεμονωμένου φακέλου σε ένα αρχείο μορφοποίησης mbox με zip</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td>
+            Εξαγάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
+            mbox
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td>
+            Εξαγάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
+            mbox <br />
+            (υποκατάλογοι .sbd)
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td>
+            Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα σύνολο αρχείων μορφής
+            mbox, έναν για κάθε υποφάκελο, που εξάγεται σε έναν μόνο φάκελο.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td>Εξαγωγή ενός απομακρυσμένου φακέλου (imap) σε ένα αρχείο mbox.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής EML (χωρίς δομή / υποφακέλους). <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής HTML (χωρίς δομή / υποφακέλους). <br />
+            Δεν περιλαμβάνονται συνημμένα. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε
+            μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής HTML (χωρίς δομή / υποφακέλους). <br />
+            Τα συνημμένα αποθηκεύονται ως ξεχωριστά αρχεία. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML
+            που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής απλού κειμένου, δεν περιλαμβάνονται συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχείο μορφής απλού κειμένου, δεν περιλαμβάνονται συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td>
+            Εξαγάγετε τα μηνύματα φακέλου ως ένα αρχείο μορφής απλού κειμένου, συμπεριλαμβανομένων των
+            συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td>
+            Εξαγάγετε τα μηνύματα φακέλου ως ένα αρχείο μορφής κειμένου CSV (Comma Separated Values), δεν
+            περιλαμβάνονται συνημμένα συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως σύνολο αρχείων μορφής PDF, συμπεριλαμβανομένων συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα. <br />
+            Σημείωση: Η έξοδος PDF δεν υποστηρίζεται στο OSX λόγω προβλήματος προγράμματος οδήγησης.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td>Δημιουργεί ένα αρχείο ευρετηρίου HTML των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td>Δημιουργεί ένα αρχείο ευρετηρίου CSV των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="searchAndexport"></td>
+          <td>Ανοίξτε το παράθυρο διαλόγου αναζήτησης και εξαγάγετε τα επιθυμητά αποτελέσματα</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximport"></td>
+          <td>Εισαγωγή αρχείου ή αρχείων mbox. Επιλέξτε με ή χωρίς δομή / υποφακέλους</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportMD"></td>
+          <td>Επιλέξτε και εισαγάγετε αρχεία μηνυμάτων maildir</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportEML"></td>
+          <td>Επιλογή και εισαγωγή αρχείων μηνυμάτων EML (χωρίς δομή / υποφακέλους)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο, συμπεριλαμβανομένων δομών / υποφακέλων</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td>Αντιγράψτε τη διαδρομή OS του επιλεγμένου φακέλου</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openFolderPath"></td>
+          <td>Ανοίξτε τη διαδρομή OS του επιλεγμένου φακέλου</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="importSMS"></td>
+          <td>ΕΙΔΟΠΟΙΗΣΗ: ΤΙΣ ΛΕΙΤΟΥΡΓΙΕΣ SMS / ANDROID ΘΑ ΑΠΟΚΛΕΙΣΜΟΥΝ ΕΠΟΜΕΝΗ ΕΚΔΟΣΗ</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>Ανοίξτε το παράθυρο διαλόγου Επιλογές ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="message_functions_help">Μενού περιβάλλοντος μηνύματος</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Στοιχείο μενού</th>
+          <th>Περιγραφή λειτουργίας</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής EML</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής HTML</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής απλού κειμένου</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+          <td>
+            Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων συνημμένων
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε ένα μόνο αρχείο κειμένου CSV</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε ένα αρχείο mbox</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td>Προσθέστε τα επιλεγμένα μηνύματα σε ένα υπάρχον αρχείο mbox</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
+          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής PDF</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
+          <td>
+            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής EML. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
+          <td>
+            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής HTML. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
+          <td>
+            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
+          <td>
+            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής απλού κειμένου <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
+          <td>
+            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων συνημμένων <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
+          <td>Δημιουργήστε ένα αρχείο ευρετηρίου HTML για τα επιλεγμένα αρχεία</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
+          <td>Δημιουργήστε ένα αρχείο ευρετηρίου CSV για τα επιλεγμένα αρχεία</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td>Ανοίξτε το παράθυρο διαλόγου Επιλογές ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="tools_functions_help">Μενού εργαλείων</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Στοιχείο μενού</th>
+          <th>Περιγραφή λειτουργίας</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Εξαγωγή φακέλου</td>
+          <td>Εξαγωγή ενός φακέλου σε ένα αρχείο μορφής mbox</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td>Εξαγωγή ενός μεμονωμένου φακέλου σε ένα αρχείο μορφοποίησης mbox με zip</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td>
+            Εξαγάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
+            mbox
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td>
+            Εξαγάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
+            mbox <br />
+            (υποκατάλογοι .sbd)
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td>
+            Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα σύνολο αρχείων μορφής
+            mbox, έναν για κάθε υποφάκελο, που εξάγεται σε έναν μόνο φάκελο.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td>Εξαγωγή ενός απομακρυσμένου φακέλου (imap) σε ένα αρχείο mbox.</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής EML (χωρίς δομή / υποφακέλους). <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής HTML (χωρίς δομή / υποφακέλους). <br />
+            Δεν περιλαμβάνονται συνημμένα. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε
+            μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής HTML (χωρίς δομή / υποφακέλους). <br />
+            Τα συνημμένα αποθηκεύονται ως ξεχωριστά αρχεία. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML
+            που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής απλού κειμένου, δεν περιλαμβάνονται συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως αρχείο μορφής απλού κειμένου, δεν περιλαμβάνονται συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td>
+            Εξαγάγετε τα μηνύματα φακέλου ως ένα αρχείο μορφής απλού κειμένου, συμπεριλαμβανομένων των
+            συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td>
+            Εξαγάγετε τα μηνύματα φακέλου ως ένα αρχείο μορφής κειμένου CSV (Comma Separated Values), δεν
+            περιλαμβάνονται συνημμένα συνημμένα. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+          <td>
+            Εξαγωγή μηνυμάτων φακέλου ως σύνολο αρχείων μορφής PDF, συμπεριλαμβανομένων συνημμένων. <br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιέχει κάθε μήνυμα. <br />
+            Σημείωση: Η έξοδος PDF δεν υποστηρίζεται στο OSX λόγω προβλήματος προγράμματος οδήγησης.
+          </td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td>Δημιουργεί ένα αρχείο ευρετηρίου HTML των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td>Δημιουργεί ένα αρχείο ευρετηρίου CSV των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="searchAndexport"></td>
+          <td>Ανοίξτε το παράθυρο διαλόγου αναζήτησης και εξαγάγετε τα επιθυμητά αποτελέσματα</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximport"></td>
+          <td>Εισαγωγή αρχείου ή αρχείων mbox. Επιλέξτε με ή χωρίς δομή / υποφακέλους</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportMD"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportEML"></td>
+          <td>Επιλογή και εισαγωγή αρχείων μηνυμάτων EML (χωρίς δομή / υποφακέλους)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο, συμπεριλαμβανομένων δομών / υποφακέλων</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="importSMS"></td>
+          <td>ΕΙΔΟΠΟΙΗΣΗ: ΤΙΣ ΛΕΙΤΟΥΡΓΙΕΣ SMS / ANDROID ΘΑ ΑΠΟΚΛΕΙΣΜΟΥΝ ΕΠΟΜΕΝΗ ΕΚΔΟΣΗ</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="saveProfileMail"></td>
+          <td>Αποθηκεύστε όλα τα μηνύματα στο τρέχον προφίλ</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="saveProfile"></td>
+          <td>Αποθηκεύστε το πλήρες προφίλ (αλληλογραφία, επεκτάσεις, επιλογές)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td>Εισαγωγή πλήρους προφίλ (αλληλογραφία, επεκτάσεις, επιλογές)</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>Ανοίξτε το παράθυρο διαλόγου Επιλογές ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="customdate_format_help">Μορφή προσαρμοσμένης ημερομηνίας</h2>
+    <p>
+      Η επιλογή προσαρμοσμένης ημερομηνίας επιτρέπει τον πλήρη έλεγχο της μορφοποίησης ημερομηνίας που
+      χρησιμοποιείται και για τα δύο αρχεία στο ευρετήριο. Τόσο η προεπιλεγμένη μορφή &quot;Ημερομηνία&quot;
+      όσο και η νέα προσαρμοσμένη μορφή &quot;Ημερομηνία (προσαρμοσμένη)&quot; είναι διαθέσιμα στα
+      αναπτυσσόμενα ονόματα αρχείων. Η προσαρμοσμένη ημερομηνία μπορεί επίσης να χρησιμοποιηθεί με το
+      διακριτικό $ {date_custom} που χρησιμοποιείται στα εκτεταμένα προσαρμοσμένα ονόματα αρχείων. Η αρχική
+      (προεπιλεγμένη) μορφή ημερομηνίας είναι: <br />
+      YYYYMMDDHHmm: 202011060808 <br /><br />
+      Η προσαρμοσμένη μορφή ημερομηνίας χρησιμοποιεί% ακολουθίες που ταιριάζουν με το
+      <code>strftime()</code> Unix όπως λειτουργικότητα. Βασίζεται σε μια θύρα JavaScript του
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+      , μια συνάρτηση για τη μορφοποίηση της ημερομηνίας και της ώρας. <br />
+      Port of strftime () από TH Doan (https://thdoan.github.io/strftime/) <br />
+    </p>
+    <h3>Περιγραφές ακολουθίας μετατροπής</h3>
+    <table class="dateformat-table">
+      <thead>
+        <tr>
+          <th>Αλληλουχία</th>
+          <th>Περιγραφή</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="code1">%a</code></td>
+          <td>Συντομευμένο όνομα της ημέρας της εβδομάδας.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%A</code></td>
+          <td>Πλήρες όνομα της ημέρας της εβδομάδας.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%b</code></td>
+          <td>Συντομευμένο όνομα μήνα.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%B</code></td>
+          <td>Όνομα πλήρους μήνα.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%c</code></td>
+          <td>Προτιμώμενη αναπαράσταση ημερομηνίας και ώρας (UTC) για τις τρέχουσες τοπικές ρυθμίσεις.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%C</code></td>
+          <td>Αριθμός αιώνα (έτος / 100) ως διψήφιος ακέραιος αριθμός.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%d</code></td>
+          <td>Ημέρα του μήνα ως δεκαδικός αριθμός (εύρος 01 έως 31).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%e</code></td>
+          <td>Ημέρα του μήνα ως δεκαδικός αριθμός (εύρος 1 έως 31).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%F</code></td>
+          <td>Μορφή ημερομηνίας ISO 8601 (ισοδύναμο με <code class="code1">%Y-%m-%d</code> ).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%G</code></td>
+          <td>
+            Έτος με βάση την εβδομάδα ISO 8601 με δεκαδικό αριθμό αιώνα. Το 4ψήφιο έτος αντιστοιχεί στον
+            αριθμό εβδομάδας ISO (βλέπε <code class="code1">%V</code> ). Αυτό έχει την ίδια μορφή και τιμή με
+            το <code class="code1">%Y</code> , εκτός από το ότι εάν ο αριθμός εβδομάδας ISO ανήκει στο
+            προηγούμενο ή το επόμενο έτος, χρησιμοποιείται εκείνο το έτος.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%g</code></td>
+          <td>
+            Όπως το <code class="code1">%G</code> , αλλά χωρίς αιώνα, δηλαδή με ένα διψήφιο έτος (00-99).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%H</code></td>
+          <td>
+            Ώρα ως δεκαδικός αριθμός χρησιμοποιώντας ρολόι 24 ωρών (εύρος 00 έως 23). Δείτε επίσης
+            <code class="code1">%k</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%I</code></td>
+          <td>
+            Ώρα ως δεκαδικός αριθμός χρησιμοποιώντας ένα ρολόι 12 ωρών (εύρος 01 έως 12). Δείτε επίσης
+            <code class="code1">%l</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%j</code></td>
+          <td>Ημέρα του έτους ως δεκαδικός αριθμός (εύρος 001 έως 366).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%k</code></td>
+          <td>
+            Ώρα ως δεκαδικός αριθμός χρησιμοποιώντας ρολόι 24 ωρών (εύρος 0 έως 23). Δείτε επίσης
+            <code class="code1">%H</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%l</code></td>
+          <td>
+            Ώρα ως δεκαδικός αριθμός χρησιμοποιώντας ένα ρολόι 12 ωρών (εύρος 1 έως 12). Δείτε επίσης
+            <code class="code1">%I</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%m</code></td>
+          <td>Μήνας ως δεκαδικός αριθμός (εύρος 01 έως 12).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%n</code></td>
+          <td>Μήνας ως δεκαδικός αριθμός (εύρος 1 έως 12).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%M</code></td>
+          <td>Λεπτό ως δεκαδικός αριθμός (εύρος 00 έως 59).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%p</code></td>
+          <td>
+            Είτε &quot;ΠΜ&quot; είτε &quot;ΜΜ&quot; σύμφωνα με τη δεδομένη τιμή χρόνου. Το μεσημέρι
+            αντιμετωπίζεται ως &quot;ΜΜ&quot; και τα μεσάνυχτα ως &quot;ΠΜ&quot;.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%P</code></td>
+          <td>Όπως το <code class="code1">%p</code> αλλά με πεζά (&quot;am&quot; ή &quot;pm&quot;).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%s</code></td>
+          <td>Αριθμός δευτερολέπτων από το Epoch, 1970-01-01 00:00:00 +0000 (UTC).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%S</code></td>
+          <td>Δεύτερος ως δεκαδικός αριθμός (εύρος 00 έως 59).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%u</code></td>
+          <td>
+            Ημέρα της εβδομάδας ως δεκαδικό (εύρος 1 έως 7), με τη Δευτέρα να είναι 1. Δείτε επίσης
+            <code class="code1">%w</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%V</code></td>
+          <td>
+            Αριθμός ISO 8601 εβδομάδας του τρέχοντος έτους ως δεκαδικός αριθμός (εύρος 01 έως 53), όπου η
+            εβδομάδα 1 είναι η πρώτη εβδομάδα που έχει τουλάχιστον 4 ημέρες το νέο έτος (δηλαδή, την πρώτη
+            Πέμπτη).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%w</code></td>
+          <td>
+            Ημέρα της εβδομάδας ως δεκαδικό (εύρος 0 έως 6), με την Κυριακή να είναι 0. Δείτε επίσης
+            <code class="code1">%u</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%x</code></td>
+          <td>Προτιμώμενη αναπαράσταση ημερομηνίας για την τρέχουσα τοποθεσία χωρίς την ώρα.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%X</code></td>
+          <td>Προτιμώμενη αναπαράσταση ώρας για τις τρέχουσες τοπικές ρυθμίσεις χωρίς την ημερομηνία.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%y</code></td>
+          <td>Έτος ως δεκαδικός αριθμός χωρίς έναν αιώνα (εύρος 00 έως 99).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Y</code></td>
+          <td>Έτος ως δεκαδικός αριθμός συμπεριλαμβανομένου του αιώνα.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%z</code></td>
+          <td>
+            Η αριθμητική ζώνη ώρας <code class="code1">+hhmm</code> <code class="code1">-hhmm</code> ή
+            <code class="code1">-hhmm</code> (δηλαδή, η ώρα και τα λεπτά που αντισταθμίζονται από το UTC).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Z</code></td>
+          <td>Όνομα ζώνης ώρας ή συντομογραφία.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Σημειώσεις συμβατότητας:</h3>
+    <ul>
+      <li><code class="code1">%c</code> - η συμβολοσειρά με μορφή είναι ελαφρώς διαφορετική</li>
+      <li>
+        <code class="code1">%D</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%m/%d/%y</code> ή
+        <code class="code1">%d/%m/%y</code> )
+      </li>
+      <li><code class="code1">%e</code> - space δεν προστίθεται</li>
+      <li><code class="code1">%E</code> - δεν έχει εφαρμοστεί</li>
+      <li><code class="code1">%h</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - ο χώρος δεν προστίθεται</li>
+      <li>
+        <code class="code1">%n</code> - όπως <code class="code1">%m</code> , αλλά χωρίς μηδενικό (χρήση
+        <code class="code1">\n</code> για νέα γραμμή)
+      </li>
+      <li><code class="code1">%O</code> - δεν έχει εφαρμοστεί</li>
+      <li>
+        <code class="code1">%r</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%I:%M:%S %p</code> )
+      </li>
+      <tr>
+        <td><code class="code1">${subject}</code></td>
+        <td>Το θέμα του μηνύματος</td>
+      </tr>
+      <li><code class="code1">%R</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">\t</code> )</li>
+      <li>
+        <code class="code1">%T</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%H:%M:%S</code> )
+      </li>
+      <li><code class="code1">%U</code> - δεν έχει εφαρμοστεί</li>
+      <li><code class="code1">%W</code> - δεν έχει εφαρμοστεί</li>
+      <li><code class="code1">%+</code> - δεν έχει εφαρμοστεί</li>
+      <li><code class="code1">%%</code> - δεν έχει εφαρμοστεί (χρήση <code class="code1">%</code> )</li>
+    </ul>
+    <br /><br />
+    <h2 id="ext_filename_format_help">Εκτεταμένη μορφή ονόματος αρχείου:</h2>
+    <br />
+    <p>
+      Η εκτεταμένη μορφοποίηση ονόματος αρχείου χρησιμοποιεί διακριτικά. Το ακριβές όνομα αρχείου μπορεί να
+      κατασκευαστεί χρησιμοποιώντας τα διακριτικά καθώς και οποιοδήποτε κείμενο ή έγκυρους χαρακτήρες ονόματος
+      αρχείου. Τα αγγλικά (en-US) διακριτικά είναι διαθέσιμα σε οποιαδήποτε τοποθεσία. Τα τοπικά διακριτικά
+      είναι επίσης διαθέσιμα και παρατίθενται κάτω από τον αγγλικό πίνακα. <br /><br />
+      Παραδείγματα: <br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Η προεπιλεγμένη μορφή <br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Χρησιμοποιήστε την
+      προσαρμοσμένη μορφή ημερομηνίας αντί για προεπιλογή <br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Με κάποιο
+      προσαρμοσμένο κείμενο <br /><br /><br />
+    </p>
+    <table class="token-table">
+      <tr>
+        <td>Ενδειξη</td>
+        <td>Περιγραφή</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td>Το θέμα του μηνύματος. Το μήκος μπορεί να περιορίζεται από την επιλογή μήκους θέματος.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td>Το όνομα του αποστολέα μηνυμάτων.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td>Το όνομα του παραλήπτη του μηνύματος.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td>
+          Οι παραλήπτες εάν το μήνυμα βρίσκεται σε φάκελο Απεσταλμένα, διαφορετικά το όνομα του αποστολέα
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td>Ο αριθμός ευρετηρίου μηνυμάτων.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td>Η τιμή επιλογής κειμένου προθέματος.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td>Η τιμή επιλογής κειμένου επιθήματος.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td>Η τυπική μορφή ημερομηνίας. Η προεπιλεγμένη μορφή είναι: YYYYMMDDHHmm</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td>Η προσαρμοσμένη μορφή ημερομηνίας. Δείτε την ενότητα προσαρμοσμένης μορφοποίησης ημερομηνίας.</td>
+      </tr>
+    </table>
+    <br />
+    <table id="localized-token-table" class="token-table">
+      <tr>
+        <td>Κουπόνι (en-US)</td>
+        <td>Τοπικοποιημένο ( <span id="locale1"></span> ) Κουπόνι</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td><code property-text-ref="subjectFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td><code property-text-ref="senderFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td><code property-text-ref="recipientFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td><code property-text-ref="smartNameFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td><code property-text-ref="indexFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td><code property-text-ref="prefixFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td><code property-text-ref="suffixFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td><code property-text-ref="dateFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+      </tr>
+    </table>
+    <br />
+    <h2>Νέες και πειραματικές προτιμήσεις (επιλογές)</h2>
+    <p>
+      Υπάρχουν πολλές νέες δυνατότητες και επιλογές που δεν είναι ακόμη διαμορφώσιμες στο πλαίσιο διαλόγου
+      επιλογών. Μόλις σταθεροποιηθούν αυτές οι λειτουργίες, θα προστεθούν στο περιβάλλον χρήστη. <br />
+      Για να τα χρησιμοποιήσετε πρέπει να ρυθμιστούν στο Config Editor. Για να αποκτήσετε πρόσβαση στο
+      πρόγραμμα επεξεργασίας, χρησιμοποιήστε το μενού Εργαλεία / Επιλογές και, στη συνέχεια, επιλέξτε την
+      ενότητα Για προχωρημένους και θα υπάρχει ένα κουμπί «Διαμόρφωση επεξεργαστή» στο κάτω μέρος. Εάν
+      πληκτρολογήσετε &quot;importexporttoolsng&quot; στη γραμμή αναζήτησης θα λάβετε όλες τις προτιμήσεις
+      επέκτασης. Στη συνέχεια, μπορείτε να επεξεργαστείτε τις διάφορες προτιμήσεις παρακάτω, όπως απαιτείται.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Αυτή η προτίμηση ακολουθεί την ίδια πλήρη μορφοποίηση που θα χρησιμοποιηθεί για τα αρχεία ευρετηρίου.
+      Είναι μια κενή συμβολοσειρά από προεπιλογή, εάν με μια διαμορφωμένη συμβολοσειρά ημερομηνίας / ώρας,
+      τότε αυτό θα αλλάξει τη μορφή ημερομηνίας ευρετηρίου.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+    </p>
+    <p>
+      <code class="notranslate"
+        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+      >
+    </p>
+    <p>
+      Και οι δύο αυτές προτιμήσεις χρησιμοποιούν τον ίδιο τύπο εκτεταμένων μορφών ονομάτων αρχείων που
+      χρησιμοποιεί το όνομα αρχείου εξαγόμενων μηνυμάτων. Το πρώτο είναι για εξωτερικά συνημμένα, το δεύτερο
+      είναι για ενσωματωμένα (ενσωματωμένα) συνημμένα.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Κανονικά η «Ημερομηνία» για ένα μήνυμα στο Thunderbird είναι η ημερομηνία που ορίζεται από τον πελάτη
+      αλληλογραφίας του αποστολέα. Η ρύθμιση αυτής της επιλογής σε &quot;true&quot; χρησιμοποιεί την
+      ημερομηνία λήψης στον πελάτη αλληλογραφίας του παραλήπτη. Αυτή η ημερομηνία θα χρησιμοποιηθεί τόσο για
+      τα ονόματα αρχείων όσο και για την ημερομηνία στα αρχεία ευρετηρίου.
+    </p>
+    <h2>Βασικό, παγκόσμιο χαρακτηριστικό Hotkey (συντομεύσεις)</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Αυτή η νέα προτίμηση επιτρέπει στο χρήστη να ρυθμίσει έως και 10 συντομεύσεις πληκτρολογίου. Οι
+      συντομεύσεις μπορούν να εκτελέσουν τις περισσότερες από τις λειτουργίες ImportExportTools NG καθώς και
+      άλλες λειτουργίες Thunderbird. Η συμβολοσειρά προτιμήσεων διαμορφώνεται ως αντικείμενο με μορφοποίηση
+      JSON. Η μορφή και τα πλήκτρα έχουν ως εξής:
+    </p>
+    <p>
+      Παράδειγμα εισόδων πλήκτρων (πίνακας αντικειμένων JSON) <br /><br />
+      <code class="notranslate">id</code> - ο βασικός δείκτης (1-10) <br />
+      <code class="notranslate">key</code> - το κλειδί (μεμονωμένος χαρακτήρας) <br />
+      <code class="notranslate">keycode</code> - ο «VK_ *» εντοπίζει τον κωδικό <br />
+      Μπορεί να περιλαμβάνεται είτε κλειδί είτε κωδικός, αλλά όχι και τα δύο <br />
+      <code class="notranslate">modifiers</code> - οι βασικοί τροποποιητές, λίστα διαχωρισμένων με χώρο
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
+      <code class="notranslate">oncommand</code> - μια συμβολοσειρά άμεσης εντολής <br />
+      <code class="notranslate">contexts</code> - το περιβάλλον παραθύρου όπου το κλειδί είναι ενεργό <br />
+      <code class="notranslate">&#39;all&#39;</code> - όλα τα παράθυρα στο messenger, σύνταξη, αναζήτηση
+      <br />
+      <code class="notranslate">&#39;messenger&#39;</code> - το κύριο παράθυρο του messenger και οι απόγονοί
+      του <br />
+      <code class="notranslate">&#39;compose&#39;</code> - το παράθυρο σύνταξης μηνυμάτων <br />
+      <code class="notranslate">&#39;search&#39;</code> - ο διάλογος αναζήτησης <br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      >
+      <br />
+      <br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      >
+      <br />
+    </p>
+    <p>
+      Καθώς οι συντομεύσεις είναι νέες και πειραματικές, θα προσθέσω επίσης περισσότερα έγγραφα στο
+      αποθετήριο. Ελέγξτε την επέκταση
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      <br />
+    </p>
+    <br />
+  </body>
+</html>

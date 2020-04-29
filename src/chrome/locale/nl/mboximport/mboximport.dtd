@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Scheidingsteken voor exporteren in CSV-indeling:">
 <!ENTITY saveProfile "Profiel exporteren">
 <!ENTITY withIndexLabel "met HTML-index">
+
+<!ENTITY customDate "Aangepaste datum:">
+<!ENTITY extFormat "Formaat:">
+<!ENTITY dateCustomOpt "Datum (aangepast)">
+<!ENTITY useExtFilenameFormat "Gebruik uitgebreid formaat">
+<!ENTITY addSuffix "Achtervoegsel toevoegen">
+<!ENTITY dateFormatRefTooltipText "Referentie voor datumnotatie">
+<!ENTITY extFilenameFormatRefTooltipText "Uitgebreide verwijzing naar bestandsnaamindeling">

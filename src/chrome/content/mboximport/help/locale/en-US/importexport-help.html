@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css">
+	<link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
+	<!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
+	<script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+
+	<title>ImportExportTools NG Help</title>
+</head>
+
+<body>
+
+	<h2 id="main_help">ImportExportTools NG Help-User Guide</h2>
+
+	<p>This is a minimalist first start of a user guide. There is obviously much to add.
+		This current page focuses on the menus and new options.
+		It will be continually updated in subsequent versions.<br>
+	</p>
+	<h3>Version 4.1.0 : New Features</h3>
+	<p>
+		- Help/User guide : Fully localized
+		- Suffix option for filenames<br>
+		- Custom date option for filenames allowing strftime() like full date and time formatting<br>
+		- Use custom file naming for both attachments and embedded attachments<br>
+		- Custom date option for index filenames<br>
+		- Option to use 'Received Date' for filename and index<br>
+		- User configurable Hotkeys (Keyboard shortcuts)<br>
+		- PDF output now uses the global print options<br>
+		- Improved HTML index file layout<br>
+		<br><br>
+	Bug Issues Fixed:<br>
+	- #68 fix for index attachment flag<br>
+	- #74 fix for in-line image attachments not exported<br>
+	- Fix #56 handle cancel on import dialog<br>
+	- #77 use preferences for PDF output<br>
+	- UI cleanup tweaks (#80, #81, #82 ) OS variations - @ovari<br>
+	- German translation fix #93 - @dipgithub<br>
+	- Hungarian translation fixes - @ovari<br>
+	- Add missing license file #96 <br>
+	<br>
+	Thanks to the following users for enhancement suggestions and test help:<br><br>
+- <code class="notranslate">@ovari</code><br>
+- <code class="notranslate">@dipgithub</code><br>
+- <code class="notranslate">@artofit</code><br>
+- <code class="notranslate">@JF1313</code><br>
+- <code class="notranslate">@jessejmorrow</code><br>
+- <code class="notranslate">@spd2000 </code><br>
+- <code class="notranslate">@kanlukasz </code><br>
+- <code class="notranslate">@razzmatazzz </code><br>
+- <code class="notranslate">@triplee</code><br>
+
+</p>
+
+	<h3>Support:</h3>
+		<p>
+		Please post issues or feature requests in the extensions GitHub repository: <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">ImportExportTools NG Issues</a><br>
+		<br>
+		In bug issues, include the following information to help solve the issues:<br>
+		- ImportExportTools NG version<br>
+		- Thunderbird version<br>
+		- Operating system and version<br>
+		- Debug output (copy from the Debug Console - access with Control-Shift-J)<br>
+		- A description of the steps leading to the issue<br>
+
+	</p>
+	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
+	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".
+		The extension offers multiple import and export functions supporting several different
+		file formats including: Note: Some formats are not supported in all functions.
+		<br>
+		- mbox<br>
+		- EML<br>
+		- maildir<br>
+		- HTML<br>
+		- plaintext<br>
+		- CSV (Comma Separated Values)<br>
+		- PDF<br>
+		<br>
+		While most of the functionality for revolves around messages, there is also support
+		for the import and export of Thunderbird profiles.  Additionally exports can also
+		include an HTML or CSV index file.  Backup of the Thunderbird profile is another
+		feature.
+		<br>
+		
+	<p>Accessing IETng functionality is done through several different menus installed by the
+		extension. The functions are context-sensitive. Menus are added for:<br>
+		- The Folder Pane Context (folder operation)<br>
+		- The Message List Context (selected messages)<br>
+		- The Tools menu (folder and profile operations) <br><br>
+		
+		There are many options that are accessible under the added entry under the "Tools/Add-on Options" for the
+		extension options. Each of the menus also have an Options menu item to access the options dialog. <br>
+		The new options are documented here, the entire set will be documented subsequently.
+
+	</p>
+	<br>
+	<!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+
+	<h2 id="main_menu_help">Folder Context Menu Functions</h2>
+		<table class="menu-table">
+			<thead>
+				<tr>
+					<th>Menu Item</th>
+					<th>Function Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Export Folder</td>
+					<td>Export a single folder to an mbox format file</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboxexportZIP"></td>
+					<td>Export a single folder to a zipped mbox format file</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboxexportallstruct"></td>
+					<td>Export a folder including all of its subfolders to an mbox format message tree</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboxexportstruct"></td>
+					<td>Export a folder including all of its subfolders to an mbox format message tree<br> (.sbd
+						subdirectories)</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboxexportsub"></td>
+					<td>Export a folder including all of its subfolders to a set of mbox format files, one for each
+						subfolder, exported to a single folder.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboxexportRemote"></td>
+					<td>Export a remote (imap) folder to single mbox file.</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="exportALLMSG"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+					<td>Export the folder messages as EML format files (no structure/subfolders).<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+					<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
+						Attachments are not included. This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+					<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
+						Attachments are saved as separate files. This also creates an HTML index file listing each
+						message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+					<td>Export the folder messages as plaintext format files, attachments are not included.<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+					<td>Export the folder messages as plaintext format files, including attachments.<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+					<td>Export the folder messages as a single plaintext format file, attachments are not included.<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+					<td>Export the folder messages as a single plaintext format file, including attachments.<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allCSV" class="submenu1"></td>
+					<td>Export the folder messages as a single CSV (Comma Separated Values) text format file,
+						attachments
+						attachments are not included.<br>
+						This also creates an HTML index file listing each message.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+					<td>Export the folder messages as a set of PDF format files, including attachments.<br>
+						This also creates an HTML index file listing each message.<br>
+						Note: PDF output is not supported on OSX due to a driver issue.
+					</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="justIndex" class="submenu1"></td>
+					<td>Creates an HTML index file of the folder messages (no message export)</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+					<td>Creates a CSV index file of the folder messages (no message export)</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="searchAndexport"></td>
+					<td>Open search dialog and export desired results </td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximport"></td>
+					<td>Import an mbox file or files. Choose with or without structure/subfolders</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximportMD"></td>
+					<td>Select and import maildir message files</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximportEML"></td>
+					<td>Select and import EML message files (no structure/subfolders)</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximportALLEML"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+					<td>Import all EML messages from a single folder</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+					<td>Import all EML messages from a single folder including structure/subfolders</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="copyFolderPath"></td>
+					<td>Copy the OS path of the selected folder</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="openFolderPath"></td>
+					<td>Open the OS path of the selected folder</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="importSMS"></td>
+					<td>NOTICE: THE SMS/ANDROID FUNCTIONS WILL BE DEPRECATED NEXT VERSION</td>
+				</tr>
+
+				<tr>
+					<td dtd-text-id-ref="openIEToptions"></td>
+					<td>Open the ImportExportTools NG options dialog</td>
+				</tr>
+				<tr>
+					<td dtd-text-id-ref="openIEThelp1"></td>
+					<td>Open the main help page</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<br>
+
+		<h2 id="message_functions_help">Message Context Menu</h2>
+
+			<table class="menu-table">
+				<thead>
+					<tr>
+						<th>Menu Item</th>
+						<th>Function Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td dtd-text-id-ref="multipleSaveContext"></td>
+						<td></td>
+					</tr>
+
+
+					<tr>
+						<td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
+						<td>Save the selected messages to EML format files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
+						<td>Save the selected messages to HTML format files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
+						<td>Save the selected messages to HTML format files including attachments</td>
+					</tr>
+
+					<tr>
+						<td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
+						<td>Save the selected messages to plaintext format files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+						<td>Save the selected messages to plaintext format files including attachments</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
+						<td>Save the selected messages to a single CSV text file</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
+						<td>Save the selected messages to a single mbox file</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+						<td>Append the selected messages to an existing mbox file</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
+						<td>Save the selected messages to PDF format files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
+						
+						<td>Save the messages as EML format files.<br>
+							This also creates an HTML index file listing each message.
+						</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
+						<td>Save the messages as HTML format files.<br>
+							This also creates an HTML index file listing each message.
+						</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
+						<td>Save the messages as HTML format files including attachments<br>
+							This also creates an HTML index file listing each message.
+						</td>
+					</tr>
+
+					<tr>
+						<td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
+						<td>Save the messages as plaintext format files<br>
+							This also creates an HTML index file listing each message.
+						</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
+						<td>Save the messages as plaintext format files including attachments<br>
+							This also creates an HTML index file listing each message.
+						</td>
+					</tr>
+
+					<tr>
+						<td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
+						<td>Create an HTML index file for the selected files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
+						<td>Create an CSV index file for the selected files</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+						<td>Open the ImportExportTools NG options dialog</td>
+					</tr>
+					<tr>
+						<td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+						<td>Open the main help page</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<br>
+			<h2 id="tools_functions_help">Tools Menu</h2>
+
+				<table class="menu-table">
+					<thead>
+						<tr>
+							<th>Menu Item</th>
+							<th>Function Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Export Folder</td>
+							<td>Export a single folder to an mbox format file</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboxexportZIP"></td>
+							<td>Export a single folder to a zipped mbox format file</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboxexportallstruct"></td>
+							<td>Export a folder including all of its subfolders to an mbox format message tree</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboxexportstruct"></td>
+							<td>Export a folder including all of its subfolders to an mbox format message tree<br> (.sbd
+								subdirectories)</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboxexportsub"></td>
+							<td>Export a folder including all of its subfolders to a set of mbox format files, one for each
+								subfolder, exported to a single folder.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboxexportRemote"></td>
+							<td>Export a remote (imap) folder to single mbox file.</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="exportALLMSG"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+							<td>Export the folder messages as EML format files (no structure/subfolders).<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+							<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
+								Attachments are not included. This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+							<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
+								Attachments are saved as separate files. This also creates an HTML index file listing each
+								message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+							<td>Export the folder messages as plaintext format files, attachments are not included.<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+							<td>Export the folder messages as plaintext format files, including attachments.<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+							<td>Export the folder messages as a single plaintext format file, attachments are not included.<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+							<td>Export the folder messages as a single plaintext format file, including attachments.<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allCSV" class="submenu1"></td>
+							<td>Export the folder messages as a single CSV (Comma Separated Values) text format file,
+								attachments
+								attachments are not included.<br>
+								This also creates an HTML index file listing each message.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
+							<td>Export the folder messages as a set of PDF format files, including attachments.<br>
+								This also creates an HTML index file listing each message.<br>
+								Note: PDF output is not supported on OSX due to a driver issue.
+							</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="justIndex" class="submenu1"></td>
+							<td>Creates an HTML index file of the folder messages (no message export)</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+							<td>Creates a CSV index file of the folder messages (no message export)</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="searchAndexport"></td>
+							<td>Open search dialog and export desired results </td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximport"></td>
+							<td>Import an mbox file or files. Choose with or without structure/subfolders</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximportMD"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximportEML"></td>
+							<td>Select and import EML message files (no structure/subfolders)</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximportALLEML"></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+							<td>Import all EML messages from a single folder</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+							<td>Import all EML messages from a single folder including structure/subfolders</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="importSMS"></td>
+							<td>NOTICE: THE SMS/ANDROID FUNCTIONS WILL BE DEPRECATED NEXT VERSION</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="saveProfileMail"></td>
+							<td>Save all mail in the current profile</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="saveProfile"></td>
+							<td>Save the complete profile (mail, extensions, options)</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="IETimportProfile"></td>
+							<td>Import a complete profile (mail, extensions, options)</td>
+						</tr>
+		
+						<tr>
+							<td dtd-text-id-ref="openIEToptions"></td>
+							<td>Open the ImportExportTools NG options dialog</td>
+						</tr>
+						<tr>
+							<td dtd-text-id-ref="openIEThelp1"></td>
+							<td>Open the main help page</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<h2 id="customdate_format_help">Custom Date Format</h2>
+				<p>The custom date option allows for the complete control over the date formatting 
+					used for both files in the index.  Both the default format "Date" as well as
+					the new custom format "Date (custom)" are available in the filename
+					drop downs.  The custom date can also be used with the ${date_custom} token used 
+					in the extended custom filenames.  The original (default) date format is:<br>
+					YYYYMMDDHHmm : 202011060808<br>
+					<br>
+					The custom date format utilizes % sequences matching the <code>strftime()</code>
+					 Unix like functionality.  It is based on a JavaScript port of <a class="link1" 
+						href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>,
+					a function to format the date and time.<br>
+					Port of strftime() by T. H. Doan (https://thdoan.github.io/strftime/)<br>
+					</p>
+				<h3>Conversion sequence descriptions</h3>
+				<table class="dateformat-table">
+					<thead>
+						<tr>
+							<th>Sequence</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><code class="code1">%a</code></td>
+							<td>Abbreviated name of the day of the week.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%A</code></td>
+							<td>Full name of the day of the week.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%b</code></td>
+							<td>Abbreviated month name.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%B</code></td>
+							<td>Full month name.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%c</code></td>
+							<td>Preferred date and time (UTC) representation for the current locale.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%C</code></td>
+							<td>Century number (year/100) as a 2-digit integer.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%d</code></td>
+							<td>Day of the month as a decimal number (range 01 to 31).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%e</code></td>
+							<td>Day of the month as a decimal number (range 1 to 31).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%F</code></td>
+							<td>ISO 8601 date format (equivalent to <code class="code1">%Y-%m-%d</code>).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%G</code></td>
+							<td>ISO 8601 week-based year with century as a decimal number. The 4-digit year corresponds
+								to the ISO
+								week number (see <code class="code1">%V</code>). This has the same format and value as
+								<code class="code1">%Y</code>, except
+								that if the ISO week number belongs to the previous or next year, that year is used
+								instead.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%g</code></td>
+							<td>Like <code class="code1">%G</code>, but without century, that is, with a 2-digit year
+								(00-99).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%H</code></td>
+							<td>Hour as a decimal number using a 24-hour clock (range 00 to 23). See also <code
+									class="code1">%k</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%I</code></td>
+							<td>Hour as a decimal number using a 12-hour clock (range 01 to 12). See also <code
+									class="code1">%l</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%j</code></td>
+							<td>Day of the year as a decimal number (range 001 to 366).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%k</code></td>
+							<td>Hour as a decimal number using a 24-hour clock (range 0 to 23). See also <code
+									class="code1">%H</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%l</code></td>
+							<td>Hour as a decimal number using a 12-hour clock (range 1 to 12). See also <code
+									class="code1">%I</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%m</code></td>
+							<td>Month as a decimal number (range 01 to 12).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%n</code></td>
+							<td>Month as a decimal number (range 1 to 12).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%M</code></td>
+							<td>Minute as a decimal number (range 00 to 59).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%p</code></td>
+							<td>Either "AM" or "PM" according to the given time value. Noon is treated as "PM" and
+								midnight as "AM".
+							</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%P</code></td>
+							<td>Like <code class="code1">%p</code> but in lowercase ("am" or "pm").</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%s</code></td>
+							<td>Number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%S</code></td>
+							<td>Second as a decimal number (range 00 to 59).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%u</code></td>
+							<td>Day of the week as a decimal (range 1 to 7), Monday being 1. See also <code
+									class="code1">%w</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%V</code></td>
+							<td>ISO 8601 week number of the current year as a decimal number (range 01 to 53), where
+								week 1 is the
+								first week that has at least 4 days in the new year (that is, the first Thursday).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%w</code></td>
+							<td>Day of the week as a decimal (range 0 to 6), Sunday being 0. See also <code
+									class="code1">%u</code>.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%x</code></td>
+							<td>Preferred date representation for the current locale without the time.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%X</code></td>
+							<td>Preferred time representation for the current locale without the date.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%y</code></td>
+							<td>Year as a decimal number without a century (range 00 to 99).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%Y</code></td>
+							<td>Year as a decimal number including the century.</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%z</code></td>
+							<td>The <code class="code1">+hhmm</code> or <code class="code1">-hhmm</code> numeric
+								timezone (that is, the hour and minute offset
+								from UTC).</td>
+						</tr>
+						<tr>
+							<td><code class="code1">%Z</code></td>
+							<td>Timezone name or abbreviation.</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>Compatibility notes:</h3>
+				<ul>
+					<li><code class="code1">%c</code> - formatted string is slightly different</li>
+					<li><code class="code1">%D</code> - not implemented (use <code class="code1">%m/%d/%y</code> or
+						<code class="code1">%d/%m/%y</code>)</li>
+					<li><code class="code1">%e</code> - space is not added</li>
+					<li><code class="code1">%E</code> - not implemented</li>
+					<li><code class="code1">%h</code> - not implemented (use <code class="code1">%b</code>)</li>
+					<li><code class="code1">%k</code> - space is not added</li>
+					<li><code class="code1">%n</code> - like <code class="code1">%m</code>, but no leading zero (use
+						<code class="code1">\n</code> for newline)</li>
+					<li><code class="code1">%O</code> - not implemented</li>
+					<li><code class="code1">%r</code> - not implemented (use <code class="code1">%I:%M:%S %p</code>)
+					</li>
+					<tr>
+						<td><code class="code1">${subject}</code></td>
+						<td>The subject of the message</td>
+					</tr>
+					<li><code class="code1">%R</code> - not implemented (use <code class="code1">%H:%M</code>)</li>
+					<li><code class="code1">%t</code> - not implemented (use <code class="code1">\t</code>)</li>
+					<li><code class="code1">%T</code> - not implemented (use <code class="code1">%H:%M:%S</code>)</li>
+					<li><code class="code1">%U</code> - not implemented</li>
+					<li><code class="code1">%W</code> - not implemented</li>
+					<li><code class="code1">%+</code> - not implemented</li>
+					<li><code class="code1">%%</code> - not implemented (use <code class="code1">%</code>)</li>
+				</ul>
+
+				<br><br>
+
+				<h2 id="ext_filename_format_help">Extended Filename Format:</h2>
+					<br>
+					<p>
+					The extended file name formatting utilizes tokens. The exact filename can be constructed
+					utilizing the tokens as well as any text or valid filename characters.
+					The English (en-US) tokens are available in any locale. Locale specific tokens
+					are also available and listed below the English table.
+					<br><br>
+					Examples:<br><br>
+					<span class="notranslate"><code>${subject}-${date}-${index}</code></span> - The default format<br>
+					<span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Use the custom date format instead of default<br>
+					<span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - With some custom text<br>
+						<br><br>
+					</p>
+					<table class="token-table">
+						<tr>
+							<td>Token</td>
+							<td>Description</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${subject}</code></td>
+							<td>The subject of the message. The length may be limited by the subject length option.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${sender}</code></td>
+							<td>The name of the message sender.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${recipient}</code></td>
+							<td>The name of the message recipient.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${smart_name}</code></td>
+							<td>The recipients if the message is in a Sent folder, otherwise the sender name </td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${index}</code></td>
+							<td>The message index number.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${prefix}</code></td>
+							<td>The prefix text option value.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${suffix}</code></td>
+							<td>The suffix text option value.</td>
+						</tr>
+
+						<tr>
+							<td class="notranslate"><code>${date}</code></td>
+							<td>The standard date format. The default format is: YYYYMMDDHHmm </td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${date_custom}</code></td>
+							<td>The custom date format. See the custom date formatting section.</td>
+						</tr>
+
+					</table>
+
+
+					<br>
+					
+					<table id="localized-token-table" class="token-table">
+						<tr>
+							<td>Token (en-US)</td>
+							<td>Localized (<span id="locale1"></span>) Token</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${subject}</code></td>
+							<td><code property-text-ref="subjectFmtToken"></code></td>
+						</tr>
+						
+						<tr>
+							<td class="notranslate"><code>${sender}</code></td>
+							<td><code property-text-ref="senderFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${recipient}</code></td>
+							<td><code property-text-ref="recipientFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${smart_name}</code></td>
+							<td><code property-text-ref="smartNameFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${index}</code></td>
+							<td><code property-text-ref="indexFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${prefix}</code></td>
+							<td><code property-text-ref="prefixFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${suffix}</code></td>
+							<td><code property-text-ref="suffixFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${date}</code></td>
+							<td><code property-text-ref="dateFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${date_custom}</code></td>
+							<td><code property-text-ref="dateCustomFmtToken"></code></td>
+						</tr>
+
+					</table>
+
+<br>
+<h2>New and Experimental Preferences (options)</h2>
+<p>There are several new features and options that are not yet configurable within the
+options dialog.  Once these features are stabilized they will be added to the UI.<br>
+In order to use them they must be set within the Config Editor.  To access the editor
+use the Tools/Options menu then select the Advanced section and there will be a 'Config Editor'
+button the bottom.  If you type 'importexporttoolsng' in the search bar you will get all
+the extension preferences.  You can then edit the various preferences below as needed.
+</p>
+
+<p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+<p>This preference follows the same full formatting to be used for the index files.    
+	It is an empty string by default, if with a formatted date/time string, then
+	this will change the index date format.
+</p>
+<p><code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br>
+<p><code class="notranslate">importexporttoolsng.export.embedded_attachments.filename_extended_format</code></p>
+<p>Both of these preferences use the same type of extended file naming formats 
+that the exported messages filename uses.  The first is for external attachments,
+second is for embedded (inline) attachments.
+</p>
+<p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+<p>Normally the 'Date' for a message in Thunderbird is the date set by
+	the sender's mail client.  Setting this option to 'true' utilizes
+	the received date at the recipient's mail client.  This date will
+	be used for both filenames as well as the date in the index files.
+</p>
+
+<h2>Basic, global Hotkey (shortcuts) Feature</h2>
+<p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+<p>This new preference allows the user to set up to 10 keyboard shortcuts.
+	The shortcuts can perform most of the ImportExportTools NG functions as 
+	well as other Thunderbird functions.  The preference string is formatted 
+	as a JSON formatted object.  The format and keys are as follows:
+</p>
+<p>
+Example hot key entrys (array of JSON objects)<br><br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">id</code>		- the key index (1-10)<br>
+
+&nbsp;&nbsp;&nbsp; <code class="notranslate">key</code>			- the key ( single character)<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">keycode</code>		- the 'VK_*' defind keycode<br>
+&nbsp;&nbsp;&nbsp;Either key or keycode may be included , but not both<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">modifiers</code>	- the key modifiers, space separated list ('control', 'shift', 'alt', 'accel')<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">oncommand</code>	- a direct command string<br>
+&nbsp;&nbsp;&nbsp; <code class="notranslate">contexts</code> 		- the window context where the key is active<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'all'</code> - all windows under messenger, compose, search<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'messenger'</code> - the main messenger window and its descendents<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'compose'</code> - the message compose window<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'search'</code> - the search dialog<br>
+<br>
+<code class="notranslate">[{"id": "1", "key": "K", "modifiers": "control shift", "oncommand": "alert('Compose alert')", "contexts": "compose"}, {"id": "2", "keycode: "VK_F1", "modifiers": "control shift", "oncommand": "alert('testD')", "contexts": "all"}]</code><br><br>
+	<code class="notranslate">[{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]</code><br><br>
+	<code class="notranslate">[{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"},<br>
+		 {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]</code><br>
+</p>
+<p>As the shortcuts are new and experimental I will also add more documentation in
+	the repository.  Check the extension <a class="link1" href="https://github.com/thundernest/import-export-tools-ng">ImportExportTools NG README</a><br>
+</p>
+<br>
+
+
+</body>
+
+</html>

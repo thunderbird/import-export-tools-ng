@@ -365,7 +365,6 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 	clonex.append(newfilename);
 
-	console.debug('newfilename: ' + newfilename + "  " + newfilename.length);
 	// add to the original filename a random number in range 0-999
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
 		newfilename = newfilename + Math.floor(Math.random() * 999);
@@ -395,12 +394,7 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 
 	// let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance(Ci.nsIMsgWindow);
 
-	console.debug('add some folder ' + newfilename);
 	var tempfolder = msgFolder.addSubfolder(newfilename);
-	// msgFolder.createSubfolder(newfilename, msgWindow);
-
-	// var tempfolder = msgFolder.getChildNamed(newfilename);
-	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgFolder);
 
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
@@ -1524,3 +1518,10 @@ function IETimportSMS() {
 		xmlhttp.send(null);
 	}
 }
+
+function openIEThelp(localize) {
+	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
+	loadTabPage('importexport-help.html#main_help', true);
+}
+
+

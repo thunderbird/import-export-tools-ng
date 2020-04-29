@@ -5,8 +5,10 @@ skin	mboximport	classic/1.0	skin/
 # Use messenger.xul for TB68+
 
 overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/mboximport.xul
-
+overlay chrome://messenger/content/messengercompose/messengercompose.xul  chrome://mboximport/content/composeOverlay.xul
+#overlay chrome://messenger/content/messengercompose.xul  chrome://mboximport/content/composeOverlay.xul
 overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/messengerOverlay.xul
+overlay	chrome://messenger/content/messageWindow.xul	chrome://mboximport/content/messageWindowOverlay.xul
 overlay	chrome://messenger/content/SearchDialog.xul	chrome://mboximport/content/sdOverlay.xul
 overlay	chrome://messenger/content/msgPrintEngine.xul	chrome://mboximport/content/printEngineWindowOverlay.xul
 

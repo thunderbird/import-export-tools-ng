@@ -106,3 +106,11 @@
 <!ENTITY csvSep "Բաժանիչ՝ արտածվող CSV ֆայլի համար.">
 <!ENTITY saveProfile "Պահպանել բոլոր պրոֆիլների ֆայլերը">
 <!ENTITY withIndexLabel "with HTML index">
+
+<!ENTITY customDate "Պատվերով ամսաթիվ.">
+<!ENTITY extFormat "Ձևաչափ:">
+<!ENTITY dateCustomOpt "Ամսաթիվ (Պատվերով)">
+<!ENTITY useExtFilenameFormat "Օգտագործեք երկարացված ձևաչափը">
+<!ENTITY addSuffix "Ավելացնել վերջածանց">
+<!ENTITY dateFormatRefTooltipText "Ամսաթվի ձևաչափի տեղեկանք">
+<!ENTITY extFilenameFormatRefTooltipText "Ֆայլի անվան ձևաչափի ընդլայնված հղում">

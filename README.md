@@ -9,25 +9,32 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 The add-on is being updated for [Thunderbird](https://www.thunderbird.net/) 68 (and 60) so that 
 users can continue to enjoy the functionality of this great add-on.
 
-The first NG release, 4.0.0, was a fork of v3.3.2 of the original add-on with the same functionality.
-The name and icon have been changed to differentiate this add-on from the original add-on.
-
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 Original add-on’s homepage:
 https://addons.thunderbird.net/addon/importexporttools/
 
-Original extension homepage of the author:
-https://freeshell.de/~kaosmos/mboximport-en.html
-
 ![IETng_version](https://img.shields.io/badge/version-v4.0.1-darkorange.png?label=ImportExportTools%20NG)
 [![IETng_tb_version](https://img.shields.io/badge/version-v4.0.1-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
 ![Thunderbird_version](https://img.shields.io/badge/version-v60.0--69.*-blue.png?label=Thunderbird)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v4.0.1%20Released-brightgreen.png)
+![Release Status](https://img.shields.io/badge/Release%20Status-v4.1.0%20Pending-brightgreen.png)
 #
 
 ## Import Export Tools NG Add-On Features
+
+v4.1.0 Enhancements/Additions:
+
+- Help/User guide : Fully localized
+- Suffix option for filenames
+- Custom date option for filenames allowing strftime() like full date and time formatting
+- Use custom file naming for both attachments and embedded attachments
+- Custom date option for index filenames
+- Option to use 'Received Date' for filename and index
+- User configurable Hotkeys (Keyboard shortcuts)
+- PDF output now uses the global print options
+- Improved HTML index file layout
+
 
 Menus:
  - Tools (most import and export functions including profiles)

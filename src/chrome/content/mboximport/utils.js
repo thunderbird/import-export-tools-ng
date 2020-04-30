@@ -36,14 +36,14 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-// var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
-var supportedLocales = [ 'ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
- 'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el' ];
+var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+	'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 function IETrunTimeDisable() {
 	IETprefs.setIntPref("dom.max_chrome_script_run_time", 0);
@@ -808,61 +808,59 @@ function fixPropertyReferenceLabels() {
 }
  */
 function loadTabPage(url, load_localized_page) {
-    if (load_localized_page) {
-		var tb_locale = Services.locale.appLocaleAsBCP47;
-		console.debug("locale   " + tb_locale);
-		console.debug(supportedLocales);
-		if (!supportedLocales.includes(tb_locale)) {
-            console.debug('does not include');
-        }
+	if (load_localized_page) {
 
-		
-	var supportedLocaleRegions = supportedLocales.filter(l => {
-		if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
-			return true;
+		var tb_locale = null;
+
+		try {
+			const versionChecker = Services.vc;
+			const currentVersion = Services.appinfo.platformVersion;
+
+			// cleidigh - TB68 groupbox needs hbox/label
+			if (versionChecker.compare(currentVersion, "61") >= 0) {
+				tb_locale = Services.locale.appLocaleAsBCP47;
+			} else {
+				tb_locale = Cc["@mozilla.org/intl/localeservice;1"]
+					.getService(Ci.mozILocaleService)
+					.getAppLocaleAsBCP47();
+			}
+		} catch (e) {
+			tb_locale = 'en-US';
 		}
-		return false;
-	});
 
-	console.debug(supportedLocaleRegions);
-	if (!tb_locale || supportedLocaleRegions.length === 0) {
-		tb_locale = "en-US";
-	} else if ( !supportedLocaleRegions.includes(tb_locale)) {
-		tb_locale = supportedLocaleRegions[0];
-	}
+		// console.debug("locale   " + tb_locale);
+		// console.debug(supportedLocales);
 
-	
-	var supportedLocaleRegions = supportedLocales.filter(l => {
-		if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
-			return true;
+		var supportedLocaleRegions = supportedLocales.filter(l => {
+			if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
+				return true;
+			}
+			return false;
+		});
+
+		// console.debug(supportedLocaleRegions);
+		if (!tb_locale || supportedLocaleRegions.length === 0) {
+			tb_locale = "en-US";
+		} else if (!supportedLocaleRegions.includes(tb_locale)) {
+			tb_locale = supportedLocaleRegions[0];
 		}
-		return false;
-	});
 
-	console.debug(supportedLocaleRegions);
-	if (!tb_locale || supportedLocaleRegions.length === 0) {
-		tb_locale = "en-US";
-	} else if ( !supportedLocaleRegions.includes(tb_locale)) {
-		tb_locale = supportedLocaleRegions[0];
-	}
+		// console.debug(' locale subset');
+		// console.debug(supportedLocaleRegions);
 
-		console.debug(' locale subset');
-		console.debug(supportedLocaleRegions);
-
-        var urlparts = url.split('.');
+		var urlparts = url.split('.');
 		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
 		url = `chrome://mboximport/content/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
-		console.debug(url +"   " + tb_locale);
-    }
-    let tabmail = getMail3Pane();
+	}
+	let tabmail = getMail3Pane();
 
-    tabmail.openTab("chromeTab", { chromePage: url });
-        
+	tabmail.openTab("chromeTab", { chromePage: url });
+
 }
 
 function getMail3Pane() {
-    var w = Cc["@mozilla.org/appshell/window-mediator;1"]
-        .getService(Ci.nsIWindowMediator)
-        .getMostRecentWindow("mail:3pane");
-    return w;
+	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
+	return w;
 }

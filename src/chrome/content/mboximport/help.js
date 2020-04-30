@@ -1,10 +1,26 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 window.addEventListener("load", function (event) {
-	// console.debug('LoadHelp');
 	fixIDReferenceLabels();
 	fixPropertyReferenceLabels();
-	var tb_locale = Services.locale.appLocaleAsBCP47;
+	var tb_locale = null;
+
+	try {
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		// cleidigh - TB68 groupbox needs hbox/label
+		if (versionChecker.compare(currentVersion, "61") >= 0) {
+			tb_locale = Services.locale.appLocaleAsBCP47;
+		} else {
+			tb_locale = Cc["@mozilla.org/intl/localeservice;1"]
+				.getService(Ci.mozILocaleService)
+				.getAppLocaleAsBCP47();
+		}
+	} catch (e) {
+		tb_locale = 'en-US';
+	}
+
 	document.getElementById("locale1").textContent = tb_locale;
 	if (tb_locale === 'en-US' || tb_locale.split('-')[0] === 'en') {
 		document.getElementById("localized-token-table").classList.add('hide-ltoken-table');
@@ -12,7 +28,6 @@ window.addEventListener("load", function (event) {
 });
 
 function fixIDReferenceLabels() {
-	// console.debug('fixIDReferenceLabels:');
 	var ids = document.querySelectorAll("[dtd-text-id-ref]");
 
 	var w = getMail3Pane();
@@ -37,7 +52,6 @@ function fixPropertyReferenceLabels() {
 	}
 }
 function getMail3Pane() {
-	console.debug('Window');
 	var w = Cc["@mozilla.org/appshell/window-mediator;1"]
 		.getService(Ci.nsIWindowMediator)
 		.getMostRecentWindow("mail:3pane");

@@ -1764,7 +1764,6 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	}
 	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 	if (IETtotal > 0) {
-		console.debug('Seva EML');
 		saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, true, false, null, null);
 	}
 }

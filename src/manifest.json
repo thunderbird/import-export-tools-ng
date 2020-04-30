@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "4.1.0-b27",
+    "version": "4.1.0-b28",
     "description": "__MSG_extensionDescription__",
     "author": "Christopher Leidigh",
     "xpi-name": "import-export-tools-ng",
@@ -9,7 +9,7 @@
         "gecko": {
             "id": "ImportExportToolsNG@cleidigh.kokkini.net",
             "strict_min_version": "60.0",
-            "strict_max_version": "73.*"
+            "strict_max_version": "72.*"
         }
     },
     "legacy": {

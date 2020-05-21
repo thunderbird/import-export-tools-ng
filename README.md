@@ -86,6 +86,24 @@ to import or export various types of information into and out of Thunderbird.
 The original add-on (link above) has a number of notes about individual commands,
 though no structured user guide or handbook yet. (Sorry.)
 
+## Importing from Apple Mail mbox format
+Apple Mail's export is in a different format than expected by this plugin. An experimental script to restructure an Apple Mail export, [applembox2sbd.py](scripts/applembox2sbd.py), is available in the scripts folder of this repository.
+
+First, use the ``Export`` function within Apple Mail to export selected folders to a directory.
+
+To use this script, [install Python 3](https://wiki.python.org/moin/BeginnersGuide/Download) on your system, make a backup of your mail export (as the script transforms the export in place), and use it as follows from the Terminal within the scripts directory:
+
+```
+chmod +x applembox2sbd.py
+./applembox2sbd.py -v /path/to/applemailexport/
+```
+
+In Thunderbird, right-click/Control-click on the destination you want to import to, and within the ``ImportExportTools NG`` context menu select ``Import mbox file``. Here you will use ``Import one or more mbox files, with its/their subdirectory``, the second radio button in the popup.
+
+In the file dialog, select the files to import from the freshly transformed directory at the path used in the script above.
+
+Note there is a ``--dry-run`` flag which can be used to test the script without modifying the files exported from Apple Mail.
+
 ## XPI Add-on Package Build instructions
 
 Visual Studio Code:

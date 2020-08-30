@@ -16,6 +16,7 @@ const targetVersion = process.env.npm_package_version;
 const targetSuffix = process.env.npm_package_config_target_suffix || '';
 const targetExtension = process.env.npm_package_config_target_extension || '';
 const includeManifest = (process.env.npm_package_config_target_include_manifest === 'true') ? true : false;
+const includeInstallRDF = (process.env.npm_package_config_target_include_installrdf === 'true') ? true : false;
 
 const sourceDir = process.env.npm_package_config_source_dir;
 const targetDir = process.env.npm_package_config_target_dir;
@@ -43,7 +44,7 @@ try {
 }
 
 console.log('Building Target::\n');
-console.log('TargetName:\t\t' + targetName + ` [ manifest: ${includeManifest} ]`);
+console.log('TargetName:\t\t' + targetName + ` [ manifest: ${includeManifest} installRDF: ${includeInstallRDF} ]`);
 
 // 7z adds to existing archive - must delete old first
 if (fs.existsSync(`${targetDir}/${targetName}`)) {
@@ -51,17 +52,22 @@ if (fs.existsSync(`${targetDir}/${targetName}`)) {
 	fs.unlinkSync(`${targetDir}/${targetName}`);
 }
 
-const installRDFVersion = xml_util.rdfGetValue(`${sourceDir}/install.rdf`, 'Description[\"em:version\"]');
+var installRDFVersion;
+if (includeInstallRDF) {
+	installRDFVersion = xml_util.rdfGetValue(`${sourceDir}/install.rdf`, 'Description[\"em:version\"]');
+}
+
 const manifestVersion = loadJsonFile.sync(`${sourceDir}/manifest.json`).version;
 const manifestName = loadJsonFile.sync(`${sourceDir}/manifest.json`)["xpi-name"];
 const ignoreFile = (includeManifest ? null : `-x!${sourceDir}/manifest.json`);
 
 // const extraFiles = ['LICENSE', 'CHANGELOG.md'];
-const extraFiles = ['LICENSE'];
+// const extraFiles = ['LICENSE'];
+const extraFiles = [];
 
 console.log('\nVersioning:\n  Target:\t\t' + targetVersion + '\n  install.rdf:\t\t' + installRDFVersion + '\n  manifest.json:\t' + manifestVersion);
 
-if (installRDFVersion !== targetVersion) {
+if (includeInstallRDF && installRDFVersion !== targetVersion) {
 	console.log(`\nVersion Mismatch: [Error]\n  install.rdf: ${installRDFVersion} != package.json: ${targetVersion}`);
 	return 1;
 }
@@ -86,7 +92,7 @@ if (ignoreFile) {
 function _7CmdSync(_7zCommand) {
 	return new Promise((resolve, reject) => {
 
-		// console.error(_7zCommand);
+		console.error(_7zCommand);
 		_7z.cmd(_7zCommand, err => {
 			if (err) reject(err);
 			else resolve();

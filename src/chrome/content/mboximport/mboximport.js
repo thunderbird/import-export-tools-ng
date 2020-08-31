@@ -54,9 +54,15 @@ IETescapeBeginningFrom,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
+Services.console.logStringMessage("mboximport start")
 var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
+var nosub = mboximportbundle.GetStringFromName("nosubjectmsg");
+Services.console.logStringMessage(nosub);
+// window.mboximportbundle = mboximportbundle;
+Services.console.logStringMessage(mboximportbundle);
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
+// window.mboximportbundle2 = mboximportbundle2;
 var gEMLimported;
 var gEMLtotal;
 var gFileEMLarray;
@@ -1524,4 +1530,16 @@ function openIEThelp(localize) {
 	loadTabPage('importexport-help.html#main_help', true);
 }
 
+function onLoad() {
+	console.debug('Loads steadily subscripts');
+	// window.mboximportbundle = mboximportbundle;
+	// Services.console.logStringMessage(window.mboximportbundle);
+	// Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 
+}
+
+// window.addEventListener("load", this.init, false);
+// window.addEventListener("unload", this.shutdown, false);

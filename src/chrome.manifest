@@ -1,6 +1,9 @@
 content	mboximport	chrome/content/mboximport/
-skin	mboximport	default		chrome/skin/
-skin	mboximport	classic/1.0	skin/
+
+resource	mboximport	chrome
+
+#skin	mboximport	default		chrome/skin/
+#skin	mboximport	classic/1.0	skin/
 
 # Use messenger.xul for TB68+
 

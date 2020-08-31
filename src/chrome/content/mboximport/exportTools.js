@@ -57,7 +57,12 @@ constructAttachmentsFilename,
 /* eslint complexity: [0,30] */
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
+console.debug('stealthy expert start three ');
+Services.console.logStringMessage(mboximportbundle);
+Services.console.logStringMessage(this.mboximportbundle);
+Services.console.logStringMessage(window.mboximportbundle);
 
 var IETexported;
 var IETskipped;
@@ -77,8 +82,8 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
+// var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 if (String.prototype.trim) {
 	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");

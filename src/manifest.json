@@ -12,12 +12,20 @@
             "strict_max_version": "72.*"
         }
     },
-    "legacy": {
-        "options": {
-            "page": "chrome://mboximport/content/mboximportOptions.xul",
-            "open_in_tab": false
+    "experiment_apis": {
+        "WindowListener": {
+          "schema": "api/WindowListener/schema.json",
+          "parent": {
+            "scopes": ["addon_parent"],
+            "paths": [["WindowListener"]],
+            "script": "api/WindowListener/implementation.js"
+          }
         }
+      },
+    "background": {
+        "scripts": ["background.js"]
     },
+    
     "icons": {
         "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
     },

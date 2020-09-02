@@ -37,7 +37,7 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -810,6 +810,7 @@ function fixPropertyReferenceLabels() {
 function loadTabPage(url, load_localized_page) {
 	if (load_localized_page) {
 
+
 		var tb_locale = null;
 
 		try {
@@ -828,8 +829,8 @@ function loadTabPage(url, load_localized_page) {
 			tb_locale = 'en-US';
 		}
 
-		// console.debug("locale   " + tb_locale);
-		// console.debug(supportedLocales);
+		console.debug("locale   " + tb_locale);
+		console.debug(supportedLocales);
 
 		var supportedLocaleRegions = supportedLocales.filter(l => {
 			if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
@@ -850,7 +851,7 @@ function loadTabPage(url, load_localized_page) {
 
 		var urlparts = url.split('.');
 		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
-		url = `chrome://mboximport/content/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
+		url = `chrome://mboximport/content/mboximport/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
 	}
 	let tabmail = getMail3Pane();
 

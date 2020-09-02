@@ -57,6 +57,9 @@ function IETsetCharsetPopup(charsetPref) {
 
 function initMboxImportPanel() {
 
+    console.debug('OptionsStill the initialization');
+    Services.console.logStringMessage("options initialization");
+    
     const versionChecker = Services.vc;
     const currentVersion = Services.appinfo.platformVersion;
 
@@ -74,7 +77,7 @@ function initMboxImportPanel() {
     }
 
     // var IETngVersion = browser.runtime.getManifest().version;
-    var IETngVersion = "4.1.0-b27";
+    var IETngVersion = "10.0.0-b1";
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
     var os = navigator.platform.toLowerCase();

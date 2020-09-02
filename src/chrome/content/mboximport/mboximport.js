@@ -1377,7 +1377,7 @@ function checkToImportEMLattach(file, msgFolder) {
 }
 
 function openIEToptions() {
-	window.openDialog("chrome://mboximport/content/mboximportOptions.xul", "", "chrome,modal,centerscreen");
+	window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,modal,centerscreen");
 }
 
 function IETcopyFolderPath() {
@@ -1528,17 +1528,6 @@ function IETimportSMS() {
 function openIEThelp(localize) {
 	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
 	loadTabPage('importexport-help.html#main_help', true);
-}
-
-function onLoad() {
-	console.debug('Loads steadily subscripts');
-	// window.mboximportbundle = mboximportbundle;
-	// Services.console.logStringMessage(window.mboximportbundle);
-	// Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
-
 }
 
 // window.addEventListener("load", this.init, false);

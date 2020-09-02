@@ -1,0 +1,41 @@
+X-Account-Key: account1
+X-UIDL: UID2986-397685918
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+Return-Path: <test1@kokkini.net>
+Delivered-To: test1@kokkini.net
+Received: from ehub33.webhostinghub.com
+	by ehub33.webhostinghub.com with LMTP
+	id SF7mMeY5SV9ADSsAGV6vFQ
+	(envelope-from <test1@kokkini.net>)
+	for <test1@kokkini.net>; Fri, 28 Aug 2020 13:07:50 -0400
+Return-path: <test1@kokkini.net>
+Envelope-to: test1@kokkini.net
+Delivery-date: Fri, 28 Aug 2020 13:07:50 -0400
+Received: from [100.40.50.193] (port=19011 helo=[192.168.1.211])
+	by ehub33.webhostinghub.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.93)
+	(envelope-from <test1@kokkini.net>)
+	id 1kBhqw-00Bzyt-N4
+	for test1@kokkini.net; Fri, 28 Aug 2020 13:07:50 -0400
+From: Christopher Leidigh <test1@kokkini.net>
+Subject: Test
+To: test1@kokkini.net
+Message-ID: <895b425d-9497-cb90-9cbd-c5824bfd7991@kokkini.net>
+Date: Fri, 28 Aug 2020 13:07:50 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+
+
+
+
+
+
+
+
+

@@ -9,7 +9,6 @@ resource	mboximport	chrome
 
 overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/mboximport.xul
 overlay chrome://messenger/content/messengercompose/messengercompose.xul  chrome://mboximport/content/composeOverlay.xul
-#overlay chrome://messenger/content/messengercompose.xul  chrome://mboximport/content/composeOverlay.xul
 overlay	chrome://messenger/content/messenger.xul	chrome://mboximport/content/messengerOverlay.xul
 overlay	chrome://messenger/content/messageWindow.xul	chrome://mboximport/content/messageWindowOverlay.xul
 overlay	chrome://messenger/content/SearchDialog.xul	chrome://mboximport/content/sdOverlay.xul

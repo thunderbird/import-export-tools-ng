@@ -32,6 +32,7 @@ printEngine,
 OnLoadPrintEngine,
 */
 
+console.debug('print engine start');
 var IETprintPDFengine = {
 	prefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
 
@@ -87,5 +88,6 @@ if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.printPDF
 	IETprintPDFengine.prefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", false);
 }
 
-window.addEventListener("unload", IETprintPDFengine.exit, false);
+// cleidigh window not available
+// window.addEventListener("unload", IETprintPDFengine.exit, false);
 

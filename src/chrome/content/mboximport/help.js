@@ -1,6 +1,11 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 window.addEventListener("load", function (event) {
+	console.debug('LoadsHelp');
+	// console.debug(WL);
+	// console.debug(window.WL);
+	
+
 	fixIDReferenceLabels();
 	fixPropertyReferenceLabels();
 	var tb_locale = null;

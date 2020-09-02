@@ -1,0 +1,114 @@
+<!ENTITY exportWithSub "Εξαγωγή φακέλου με υποφακέλους (απλό)">
+<!ENTITY importMbox "Εισαγωγή αρχείου mbox">
+<!ENTITY labelmenuMI "ImportExportTools NG">
+<!ENTITY MBlabel1 "Αντικαταστήστε τα αρχεία mbox με το ίδιο όνομα στον κατάλογο προορισμών">
+<!ENTITY importDir "Επιλέξτε έναν κατάλογο όπου αναζητάτε τα αρχεία mbox για εισαγωγή">
+<!ENTITY labelmenuMItools "ImportExportTools NG">
+<!ENTITY importFile "Εισαγάγετε απευθείας ένα ή περισσότερα αρχεία mbox">
+<!ENTITY importDialogLabel "Επιλέξτε τον τρόπο εισαγωγής:">
+<!ENTITY importDialogTitle "Εισαγωγή αρχείων mbox">
+<!ENTITY importStruct "Εισαγάγετε ένα ή περισσότερα αρχεία mbox, με τον υποκατάλογο τους">
+<!ENTITY exportStruct "Εξαγωγή φακέλου με υποφακέλους (με δομή)">
+<!ENTITY exportAllStruct "Εξαγωγή όλων των φακέλων (με δομή)">
+<!ENTITY MBlabel2 "Χρησιμοποιήστε μόνο αλφαριθμητικούς χαρακτήρες κατά την εξαγωγή">
+<!ENTITY allMsgsFolder "Εξαγωγή όλων των μηνυμάτων στο φάκελο">
+<!ENTITY asEML "Μορφή EML">
+<!ENTITY asHTML "Μορφή HTML">
+<!ENTITY asTXT "Μορφή απλού κειμένου">
+<!ENTITY saveSelected "Αποθήκευση επιλεγμένων μηνυμάτων">
+<!ENTITY justIndex "απλά ευρετήριο">
+<!ENTITY toClip "Αντιγράψτε το μήνυμα στο πρόχειρο">
+<!ENTITY MBlabel3 "Ζητήστε επιβεβαίωση πριν από την εισαγωγή αρχείων mbox από έναν κατάλογο">
+<!ENTITY MBlabel4 "Μορφή HTML όπως εμφανίζεται στον πίνακα μηνυμάτων">
+<!ENTITY MBlabel5 "Αντιγραφή στο πρόχειρο μόνο σε μορφή κειμένου (μπορεί να προκαλέσει προβλήματα συμβατότητας)">
+<!ENTITY MBlabel6 "Όταν είναι παρόν, τοποθετήστε την ημερομηνία στην αρχή των εξαγόμενων αρχείων">
+<!ENTITY MBlabel7a "Μέγιστο μήκος θέματος:">
+<!ENTITY MBlabel7b "χαρακτήρες">
+<!ENTITY MBlabel7c "Μέγιστο μήκος ονόματος αποστολέα:">
+<!ENTITY MBlabel7d "Μέγιστο μήκος ονόματος παραλήπτη:">
+<!ENTITY oneFile "ως αρχείο μεμονωμένου κειμένου">
+<!ENTITY importAttachedEML "Εισαγωγή μηνύματος σε αυτόν το φάκελο">
+<!ENTITY iHTML "(HTML)">
+<!ENTITY iCSV "(CSV)">
+<!ENTITY toClipMenu "Αντιγραφή στο πρόχειρο">
+<!ENTITY copyClipMessage "Μήνυμα">
+<!ENTITY copyClipHeaders "Κεφαλίδες">
+<!ENTITY taskMenuAccesskey "Χ">
+<!ENTITY clipMenuAccesskey "ο">
+<!ENTITY importDirRec "Επιλέξτε έναν κατάλογο όπου αναζητάτε τα αρχεία mbox για εισαγωγή (επίσης σε υποκαταλόγους)">
+<!ENTITY importDirProf "Ανοίξτε το filepicker στον κατάλογο των προφίλ">
+<!ENTITY MBlabel8 "Στο &quot;Αποθήκευση επιλεγμένων μηνυμάτων&quot; προσθέστε ημερομηνία στο όνομα αρχείου">
+<!ENTITY options "Επιλογές">
+<!ENTITY importALLEML1 "μόνο από τον κατάλογο">
+<!ENTITY importALLEML2 "επίσης από τους υποκαταλόγους του">
+<!ENTITY misc "Διάφορα">
+<!ENTITY filenameFormat "Ονόματα αρχείων">
+<!ENTITY savedirs "Εξαγωγή καταλόγων">
+<!ENTITY addTimestamp "Προσθέστε ημερομηνία στις ιδιότητες αρχείου">
+<!ENTITY customizeFilename "Χρησιμοποιήστε την ακόλουθη μορφή:">
+<!ENTITY captionCustomize "Προσαρμοσμένη μορφή για ονόματα αρχείων">
+<!ENTITY browse "Ξεφυλλίζω…">
+<!ENTITY subject "Θέμα">
+<!ENTITY date "Ημερομηνία">
+<!ENTITY key "Δείκτης">
+<!ENTITY addtime.label "Προσθέστε ώρα μέχρι σήμερα">
+<!ENTITY mboxExport "Εξαγωγή φακέλων ως αρχείο MBOX:">
+<!ENTITY emlExport "Εξαγωγή φακέλων ως μεμονωμένα αρχεία:">
+<!ENTITY selExport "Εξαγωγή επιλεγμένων μηνυμάτων:">
+<!ENTITY MBcaptionlabel1 "Γενικές Ρυθμίσεις">
+<!ENTITY saveProfileMail "Αποθηκεύστε όλα τα αρχεία αλληλογραφίας">
+<!ENTITY sdExportButton "Εξαγωγή">
+<!ENTITY sdMessages "Μηνύματα">
+<!ENTITY sdAll "Ολα">
+<!ENTITY sdSelected "Επιλεγμένο">
+<!ENTITY sdFormat "Μορφή">
+<!ENTITY sdEML "EML">
+<!ENTITY sdHTML "HTML">
+<!ENTITY sdText "Απλό κείμενο">
+<!ENTITY searchAndExport "Αναζήτηση και εξαγωγή">
+<!ENTITY buildMSF.label "Δημιουργία ευρετηρίου για εισαγόμενα αρχεία mbox">
+<!ENTITY addPrefix "Προσθήκη προθέματος">
+<!ENTITY fileLenCaption "Μήκος ονομάτων αρχείων">
+<!ENTITY cutSub "Κόψτε το θέμα με 50 χαρακτήρες">
+<!ENTITY cutFN "Κόψτε ολόκληρο το μήκος διαδρομής αρχείου σε 256 χαρακτήρες">
+<!ENTITY sdMBOX "Mbox (νέο)">
+<!ENTITY sdMBOX2 "Mbox (προσθήκη)">
+<!ENTITY asMBOX "ως αρχείο Mbox (νέο)">
+<!ENTITY asMBOX2 "ως αρχείο Mbox (προσάρτημα)">
+<!ENTITY filenameCharset "Charset για ονόματα αρχείων:">
+<!ENTITY name "Ονομα">
+<!ENTITY importStructDescr1 "Επιλέξτε μόνο το αρχείο mbox, τον κατάλογο με το ίδιο όνομα">
+<!ENTITY importStructDescr2 "και η επέκταση &quot;sbd&quot; θα εισαχθεί αυτόματα, εάν υπάρχει.">
+<!ENTITY abortExport "Διακοπή της τρέχουσας εξαγωγής">
+<!ENTITY allMsg "Εξαγωγή όλων των μηνυμάτων">
+<!ENTITY indexSettingLabel "Κατά την εξαγωγή όλων των μηνυμάτων ενός φακέλου αλληλογραφίας:">
+<!ENTITY indexOn "δημιουργήστε έναν νέο κατάλογο και το ευρετήριο των μηνυμάτων">
+<!ENTITY indexOff "χρησιμοποιήστε τον επιλεγμένο κατάλογο χωρίς ευρετήριο">
+<!ENTITY copyFolderPath "Αντιγραφή διαδρομής φακέλου στο δίσκο">
+<!ENTITY importSMS "Εισαγωγή SMS">
+<!ENTITY android "&quot;Δημιουργία αντιγράφων ασφαλείας και επαναφορά SMS&quot; για Android">
+<!ENTITY sender "Αποστολέας">
+<!ENTITY recipient "Παραλήπτης">
+<!ENTITY exportRemoteFolder "Εξαγωγή απομακρυσμένου φακέλου">
+<!ENTITY skipMsgLabel "μην αποθηκεύετε μηνύματα όταν το αρχείο υπάρχει ήδη">
+<!ENTITY asCSV "Υπολογιστικό φύλλο (CSV)">
+<!ENTITY exportZIP "Εξαγωγή φακέλου (με φερμουάρ)">
+<!ENTITY openFolderPath "Ανοίξτε τον κατάλογο που είναι το αρχείο φακέλου">
+<!ENTITY addNumber.label "Προσθέστε πάντα στο όνομα έναν τυχαίο αριθμό κατά την εισαγωγή αρχείων mbox">
+<!ENTITY textCharset "Charset για εξαγωγή σε μορφή κειμένου και CSV:">
+<!ENTITY importEML "Εισαγωγή μηνυμάτων">
+<!ENTITY importALLEML "Εισαγάγετε όλα τα μηνύματα από έναν κατάλογο">
+<!ENTITY importMAILDIR "Εισαγωγή φακέλου Maildir">
+<!ENTITY withattach "(με συνημμένα)">
+<!ENTITY asPDF "Μορφή PDF">
+<!ENTITY importProfile "Εισαγωγή προφίλ">
+<!ENTITY csvSep "Διαχωριστικό για εξαγωγή σε μορφή CSV:">
+<!ENTITY saveProfile "Εξαγωγή προφίλ">
+<!ENTITY withIndexLabel "με ευρετήριο HTML">
+<!ENTITY customDate "Προσαρμοσμένη ημερομηνία:">
+<!ENTITY extFormat "Μορφή:">
+<!ENTITY dateCustomOpt "Ημερομηνία (Προσαρμοσμένο)">
+<!ENTITY useExtFilenameFormat "Χρησιμοποιήστε εκτεταμένη μορφή">
+<!ENTITY addSuffix "Προσθέστε επίθημα">
+<!ENTITY dateFormatRefTooltipText "Αναφορά μορφής ημερομηνίας">
+<!ENTITY extFilenameFormatRefTooltipText "Αναφορά εκτεταμένης μορφής ονόματος αρχείου">

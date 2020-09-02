@@ -254,7 +254,7 @@ WL.injectElements(`
 
 	WL.injectElements(`
 <hbox id="status-bar" >
-<toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText"/>
+<toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/mboximport/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText"/>
 </hbox>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 

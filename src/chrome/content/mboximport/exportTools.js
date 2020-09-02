@@ -83,6 +83,7 @@ var IETabort;
 // var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
+// cleidigh check shift change in signatures
 if (String.prototype.trim) {
 	try {
 		ChromeUtils.import("resource:///modules/gloda/mimemsg.js");

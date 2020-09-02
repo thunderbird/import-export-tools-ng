@@ -391,7 +391,7 @@ function loadTranslationArray(inputFiles, options) {
 // };
 
 var options = {
-	inputLocaleDir: `./src/chrome/locale/en-US`,
+	inputLocaleDir: `./src/chrome/locale/src`,
 	outputLocaleDir: "./src/chrome/locale",
 	append: true,
 	outputFormat: 0,
@@ -406,15 +406,16 @@ var options = {
 // let inputFiles = ["overlay.properties", "settings.properties", "mzcw-settings-customcolseditor.properties"];
 
 // let inputFiles = ["settings.dtd", "overlay.dtd", "mzcw-mailheader-editor.dtd", "mzcw-settings-customcolseditor.dtd"];
-let inputFiles = ["settings.dtd", "overlay.dtd", "mzcw-mailheader-editor.dtd", "mzcw-settings-customcolseditor.dtd", "overlay.properties", "settings.properties", "mzcw-settings-customcolseditor.properties"];
+// let inputFiles = ["settings.dtd", "overlay.dtd", "mzcw-mailheader-editor.dtd", "mzcw-settings-customcolseditor.dtd", "overlay.properties", "settings.properties", "mzcw-settings-customcolseditor.properties"];
 
 // let inputFiles = ["messages.json"];
 // let inputFiles = ["mzcw-settings-customcolseditor.properties"];
-
+let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
-localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
+localeFolders = ['el'];
+// localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 localeFile = "settings.json";
 // t();
 // translateHelpPage();

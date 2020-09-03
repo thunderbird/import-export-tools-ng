@@ -58,3 +58,4 @@ pref("extensions.importexporttoolsng.export.charset_list", "ARMSCII-8,GEOSTD8,IS
 pref("extensions.importexporttoolsng.experimental.use_delivery_date", false);
 pref("extensions.importexporttoolsng.experimental.hot_keys", "");
 pref("extensions.importexporttoolsng.experimental.index_short1", false);
+pref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences", true);

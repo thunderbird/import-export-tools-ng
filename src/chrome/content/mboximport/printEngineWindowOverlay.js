@@ -32,7 +32,9 @@ printEngine,
 OnLoadPrintEngine,
 */
 
-console.debug('print engine start');
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+Services.console.logStringMessage("print engine loading");
+
 var IETprintPDFengine = {
 	prefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
 
@@ -60,12 +62,22 @@ var IETprintPDFengine = {
 			// Use global printing preferences
 			// https://github.com/thundernest/import-export-tools-ng/issues/77
 
-			var myPrintSettings = PSSVC.globalPrintSettings;
-			myPrintSettings.printerName = PSSVC.defaultPrinterName;
+			var myPrintSettings;
 
-			PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
-			PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
+			if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences")) {
+				// Use global printing preferences
+				// https://github.com/thundernest/import-export-tools-ng/issues/77
+				Services.console.logStringMessage('PDF Output: Use global preferences');
+				myPrintSettings = PSSVC.globalPrintSettings;
+				myPrintSettings.printerName = PSSVC.defaultPrinterName;
 
+				PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
+				PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
+			} else {
+				Services.console.logStringMessage('PDF Output: Use default preferences');
+				myPrintSettings = PSSVC.newPrintSettings;
+			}
+			
 			myPrintSettings.printSilent = true;
 
 			myPrintSettings.toFileName = opener.IETprintPDFmain.filePath;

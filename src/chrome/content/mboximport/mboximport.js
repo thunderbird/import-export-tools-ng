@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, services, globals, Streamlisteners
@@ -58,11 +58,8 @@ Services.console.logStringMessage("mboximport start")
 var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
 var nosub = mboximportbundle.GetStringFromName("nosubjectmsg");
-Services.console.logStringMessage(nosub);
-// window.mboximportbundle = mboximportbundle;
-Services.console.logStringMessage(mboximportbundle);
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
-// window.mboximportbundle2 = mboximportbundle2;
+
 var gEMLimported;
 var gEMLtotal;
 var gFileEMLarray;
@@ -1011,9 +1008,14 @@ function importALLasEML(recursive) {
 	}
 }
 
+// cleidigh create folder fix
+var folderCount;
+var rootFolder;
+
 function RUNimportALLasEML(file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
+	folderCount = 1;
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
 	if (gEMLtotal < 1) {
@@ -1028,10 +1030,12 @@ function buildEMLarray(file, fol, recursive) {
 	var allfiles = file.directoryEntries;
 	var msgFolder;
 
-	if (!fol)
+	if (!fol) {
 		msgFolder = GetSelectedMsgFolders()[0];
-	else
+		rootFolder = msgFolder;
+	} else
 		msgFolder = fol;
+
 
 	while (allfiles.hasMoreElements()) {
 		var afile = allfiles.getNext();
@@ -1045,6 +1049,12 @@ function buildEMLarray(file, fol, recursive) {
 
 		if (recursive && is_Dir) {
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
+			// open files bug
+			// https://github.com/thundernest/import-export-tools-ng/issues/57
+			if (folderCount++ % 400 === 0) {
+				rootFolder.ForceDBClosed();
+			}
+
 			var newFolder = msgFolder.getChildNamed(afile.leafName);
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
 			buildEMLarray(afile, newFolder, true);
@@ -1313,6 +1323,13 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Add the email to the folder
 	msgLocalFolder.addMessage(data);
 	gEMLimported = gEMLimported + 1;
+
+	// cleidigh force files closed
+	if (gEMLimported++ % 400 === 0) {
+		rootFolder.ForceDBClosed();
+		console.debug('message DB ' + gEMLimported);
+	}
+
 	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + "/" + gEMLtotal);
 	if (removeFile)
 		file.remove(false);

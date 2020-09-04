@@ -194,10 +194,10 @@ var IETprintPDFmain = {
 
 function openProfileImportWizard() {
 	var quit = {};
-	window.openDialog("chrome://mboximport/content/profileImportWizard.xul", "", "chrome,modal,centerscreen", quit);
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "chrome,modal,centerscreen", quit);
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
-	if (quit.value)
+		if (quit.value)
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
@@ -215,7 +215,10 @@ function openMboxDialog() {
 		return;
 	}
 	var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
-	window.openDialog("chrome://mboximport/content/mboxdialog.xul", "", "chrome,modal,centerscreen", params);
+	window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
+	if (params.cancel) {
+		return;
+	}
 	setTimeout(importmbox, 800, params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
 }
 

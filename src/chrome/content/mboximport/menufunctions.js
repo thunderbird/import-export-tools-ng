@@ -64,13 +64,9 @@ function IETinit() {
     // document.getElementById("messageMenu").addEventListener("popupshowing", toggleCopyMenu, false);
 
     // This is not strictly necessary on TB 2 or lower, but it's needed to have the same position on TB 3
-    // menuListElement.getElementsByTagName("menupopup")
 
     var popup = document.getElementById("folderPaneContext");
-    // var popup = document.getElementById("folderPaneContext-openNewTab");
     var mymenu = document.getElementById("IETmenu");
-    // var mymenu1 = document.getElementById("mbxpopup");
-    console.debug(popup.outerHTML);
 
     var mysep = document.getElementById("IETsep");
     popup.insertBefore(mysep, popup.firstChild);

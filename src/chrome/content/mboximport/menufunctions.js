@@ -32,6 +32,7 @@ IETstoreFormat,
 */
 
 function IETinit() {
+    console.debug('menu functions start');
     IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF", false);
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.migrate_prefs"))
         IETmigratePrefs();
@@ -43,9 +44,9 @@ function IETinit() {
     var node7 = document.getElementById("context-saveAttachment");
     // var node2 = document.getElementById("threadPaneContext-printpreview");
     var node2 = document.getElementById("threadPaneContext-openNewTab");
-    if (node2)
+    if (node2) {
         node4 = document.getElementById("threadPaneContext-saveAs");
-    else {
+    } else {
         node2 = document.getElementById("mailContext-printpreview");
         node4 = document.getElementById("mailContext-saveAs");
     }
@@ -63,18 +64,17 @@ function IETinit() {
     // document.getElementById("messageMenu").addEventListener("popupshowing", toggleCopyMenu, false);
 
     // This is not strictly necessary on TB 2 or lower, but it's needed to have the same position on TB 3
+    // menuListElement.getElementsByTagName("menupopup")
+
     var popup = document.getElementById("folderPaneContext");
+    // var popup = document.getElementById("folderPaneContext-openNewTab");
     var mymenu = document.getElementById("IETmenu");
+    // var mymenu1 = document.getElementById("mbxpopup");
+    console.debug(popup.outerHTML);
+
     var mysep = document.getElementById("IETsep");
     popup.insertBefore(mysep, popup.firstChild);
     popup.insertBefore(mymenu, popup.firstChild);
-
-    if (navigator.userAgent.toLowerCase().indexOf("seamonkey") > -1) {
-        if (document.getElementById("IETimportProfile"))
-            document.getElementById("IETimportProfile").setAttribute("hidden", "true");
-        if (document.getElementById("IETimportProfile3"))
-            document.getElementById("IETimportProfile3").setAttribute("hidden", "true");
-    }
 }
 
 function IETmigratePrefs() {
@@ -119,7 +119,6 @@ function IETsetMBmenu() {
         document.getElementById("exportALLMSG").setAttribute("disabled", "true");
         document.getElementById("mboximportALLEML").setAttribute("disabled", "true");
         document.getElementById("mboximportEML").setAttribute("disabled", "true");
-        document.getElementById("importSMS").setAttribute("disabled", "true");
         document.getElementById("mboxexportRemote").collapsed = true;
     } else {
         document.getElementById("mboxexport").label = mboximportbundle.GetStringFromName("exportFolder");
@@ -129,7 +128,6 @@ function IETsetMBmenu() {
         document.getElementById("mboxexportstruct").collapsed = false;
         document.getElementById("mboxexportZIP").collapsed = false;
         if (!isVirtFol) {
-            document.getElementById("importSMS").removeAttribute("disabled");
             document.getElementById("mboximportEML").removeAttribute("disabled");
             document.getElementById("mboximportALLEML").removeAttribute("disabled");
         }
@@ -153,7 +151,6 @@ function IETsetMBmenu() {
         document.getElementById("mboximportMD").setAttribute("disabled", "true");
         document.getElementById("mboximportEML").setAttribute("disabled", "true");
         document.getElementById("mboximportALLEML").setAttribute("disabled", "true");
-        document.getElementById("importSMS").setAttribute("disabled", "true");
     } else {
         document.getElementById("mboximport").removeAttribute("disabled");
         document.getElementById("mboximportMD").removeAttribute("disabled");
@@ -177,7 +174,6 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboximport" + i).setAttribute("disabled", "true");
         document.getElementById("mboximportMD" + i).setAttribute("disabled", "true");
         document.getElementById("mboximportEML" + i).setAttribute("disabled", "true");
-        document.getElementById("importSMS" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportsub" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportallstruct" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportstruct" + i).setAttribute("disabled", "true");
@@ -197,7 +193,6 @@ function IETsetMBmenu2(popup) {
     // the folder is the account pseudo-folder? we must set the right label
     if (msgFolder.isServer) {
         document.getElementById("mboximportEML" + i).setAttribute("disabled", "true");
-        document.getElementById("importSMS" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportsub" + i).collapsed = true;
         document.getElementById("mboxexportstruct" + i).collapsed = true;
         document.getElementById("mboxexport" + i).label = mboximportbundle.GetStringFromName("exportAccount");
@@ -214,7 +209,6 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboxexportstruct" + i).collapsed = false;
         document.getElementById("mboxexportZIP" + i).collapsed = false;
         if (!isVirtFol) {
-            document.getElementById("importSMS" + i).removeAttribute("disabled", "true");
             document.getElementById("mboximportEML" + i).removeAttribute("disabled");
             document.getElementById("mboximportALLEML" + i).removeAttribute("disabled");
         }
@@ -237,7 +231,6 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboximport" + i).setAttribute("disabled", "true");
         document.getElementById("mboximportEML" + i).setAttribute("disabled", "true");
         document.getElementById("mboximportALLEML" + i).setAttribute("disabled", "true");
-        document.getElementById("importSMS" + i).setAttribute("disabled", "true");
     } else {
         document.getElementById("mboximport" + i).removeAttribute("disabled");
         document.getElementById("mboximportMD" + i).removeAttribute("disabled");
@@ -253,4 +246,4 @@ function IETsetMBmenu2(popup) {
     }
 }
 
-window.addEventListener("load", IETinit, false);
+// window.addEventListener("load", IETinit, false);

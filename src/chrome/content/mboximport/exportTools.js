@@ -2061,8 +2061,17 @@ function IETstoreBody(msguri) {
 	var text;
 
 	fromStr.data = dataUTF8;
+
 	try {
-		formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		// signature for format converter changed after 60, dropped in and out lengths
+		if (versionChecker.compare(currentVersion, "61") >= 0) {
+			formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
+		} else {
+			formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		}
 	} catch (e) {
 		text = dataUTF8;
 	}

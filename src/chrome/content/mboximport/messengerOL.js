@@ -65,12 +65,6 @@ function onLoad() {
 			<menuitem id="copyFolderPath" label="&copyFolderPath;" oncommand="IETcopyFolderPath();" />
 			<menuitem id="openFolderPath" label="&openFolderPath;" oncommand="IETopenFolderPath();" />
 			<menuseparator />
-			<menu id="importSMS" label="&importSMS;">
-				<menupopup>
-					<menuitem label="&android;" oncommand="IETimportSMS();" />
-				</menupopup>
-			</menu>
-			<menuseparator />
 			<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 			<menuitem id="openIEThelp1" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
 		</menupopup>
@@ -186,12 +180,6 @@ function onLoad() {
 			</menupopup>
 		</menu>
 		<menuseparator />
-		<menu id="importSMS2" label="&importSMS;">
-			<menupopup>
-				<menuitem label="&android;" oncommand="IETimportSMS();" />
-			</menupopup>
-		</menu>
-		<menuseparator />
 		<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
 		<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 		<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
@@ -286,5 +274,5 @@ WL.injectElements(`
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
 
-
+window.IETinit();
 }

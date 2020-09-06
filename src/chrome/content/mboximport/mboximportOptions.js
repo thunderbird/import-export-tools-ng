@@ -76,8 +76,8 @@ function initMboxImportPanel() {
         }
     }
 
-    // var IETngVersion = browser.runtime.getManifest().version;
-    var IETngVersion = "10.0.0-b4";
+    var IETngVersion = window.opener.ver;
+    console.debug(window.opener.extension);
     // console.debug(window.parent.IETngVersion);
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 

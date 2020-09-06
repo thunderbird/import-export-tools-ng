@@ -1,24 +1,43 @@
 ﻿<?xml version="1.0"?>
 <!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/profilewizard.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/skin/searchDialog.css" type="text/css"?>
+<!-- for the groupbox -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+<!-- for the textbox -->
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+
+<window
+width="500"
+  height="540"
+  onload="IETimportWizard.start();"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/accountWizard.css"?>
+<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
+
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/profileImportWizard.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
+
 
 <wizard id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-	<script type="application/javascript" src="chrome://mboximport/content/profileImportWizard.js" />
-	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
 
 <wizardpage onpageshow="IETimportWizard.start()">
 	<description>&intro1;</description>
 	<spacer height="20" />
 	<label value="&profilePath;: "/>
 	<hbox>
-		<textbox id="pathBox" flex="1" readonly="true" />
+		<html:input id="pathBox" flex="1" readonly="true" size="25"/>
 		<button label="&browse;" oncommand="IETimportWizard.pickFile(this)" />
 		</hbox>
 	<spacer height="20" />
 	<hbox align="center">
 		<label value="&profileName;: "/>
-		<textbox id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" />
+		<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
 		</hbox>
 	<label value="&changeProfileNameLabel;" />
 </wizardpage>
@@ -43,3 +62,4 @@
 </wizardpage>
 
 </wizard>
+</window>

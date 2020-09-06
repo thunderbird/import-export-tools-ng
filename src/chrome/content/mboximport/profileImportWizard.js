@@ -34,12 +34,15 @@ IETopenFPsync
 */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+Services.console.logStringMessage("profile start");
+console.debug('profile import');
 
 var IETimportWizard = {
 
 	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
 
 	start: function () {
+		Services.console.logStringMessage("profile start 2");
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},

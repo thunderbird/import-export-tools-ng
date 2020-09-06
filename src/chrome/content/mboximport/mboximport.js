@@ -101,9 +101,10 @@ var IETprintPDFmain = {
 		question = IETformatWarning(0);
 		if (!question)
 			return;
-		if (!allMessages)
+		if (!allMessages) {
 			IETprintPDFmain.uris = IETgetSelectedMessages();
-		else {
+			console.debug(IETprintPDFmain.uris);
+		} else {
 			IETprintPDFmain.uris = [];
 			msgFolder = msgFolders[0];
 			var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
@@ -177,12 +178,24 @@ var IETprintPDFmain = {
 		var messageList = [uri];
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
-		if (!IETabort)
-			window.openDialog("chrome://messenger/content/msgPrintEngine.xul", "",
-				"chrome,dialog=no,all,centerscreen",
-				messageList.length, messageList, null,
-				false);
-		else
+		console.debug('Print2 ' + messageList);
+		if (!IETabort) {
+			// cleidigh - searchdialog changes to xhtml for 78
+			const versionChecker = Services.vc;
+			const currentVersion = Services.appinfo.platformVersion;
+
+			if (versionChecker.compare(currentVersion, "78") >= 0) {
+				window.openDialog("chrome://messenger/content/msgPrintEngine.xhtml", "",
+					"chrome,dialog=no,all,centerscreen",
+					messageList.length, messageList, null,
+					false);
+			} else {
+				window.openDialog("chrome://messenger/content/msgPrintEngine.xul", "",
+					"chrome,dialog=no,all,centerscreen",
+					messageList.length, messageList, null,
+					false);
+			}
+		} else
 			document.getElementById("IETabortIcon").collapsed = true;
 	},
 
@@ -194,10 +207,12 @@ var IETprintPDFmain = {
 
 function openProfileImportWizard() {
 	var quit = {};
-	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "chrome,modal,centerscreen", quit);
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
+	// let win = Services.wm.getMostRecentWindow("mail:3pane");
+	// win.openDialog("chrome://mboximport/content/mboximport/ptest.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
-		if (quit.value)
+	if (quit.value)
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
@@ -1437,7 +1452,7 @@ function IETopenFolderPath() {
 		}
 	}
 }
-
+/* 
 function IETimportSMS() {
 	var msgFolder = GetSelectedMsgFolders()[0];
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
@@ -1544,6 +1559,7 @@ function IETimportSMS() {
 		xmlhttp.send(null);
 	}
 }
+ */
 
 function openIEThelp(localize) {
 	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);

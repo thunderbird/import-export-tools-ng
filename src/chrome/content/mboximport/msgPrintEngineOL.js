@@ -10,3 +10,9 @@ function onLoad() {
 	// window.mboximportbundle = mboximportbundle;
 	// Services.console.logStringMessage(window.mboximportbundle);
 }
+
+function onUnload() {
+	console.debug('printEngineOverlay OL Unload');
+	window.IETprintPDFengine.exit();
+
+}

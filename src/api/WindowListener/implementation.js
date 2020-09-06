@@ -490,6 +490,10 @@ var WindowListener = class extends ExtensionCommon.ExtensionAPI {
 
           // Add extension object to WLDATA object
           window[this.uniqueRandomID].WL.extension = this.extension;
+
+          // cleidigh
+          // window[this.uniqueRandomID].WL.extension.getManifest = this.browser.runtime.getManifest;
+          window[this.uniqueRandomID].WL.extension.v = 2;
           // Add messenger object to WLDATA object
           window[this.uniqueRandomID].WL.messenger = Array.from(this.extension.views).find(
             view => view.viewType === "background").xulBrowser.contentWindow

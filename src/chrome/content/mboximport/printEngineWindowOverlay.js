@@ -33,6 +33,7 @@ OnLoadPrintEngine,
 */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 Services.console.logStringMessage("print engine loading");
 
 var IETprintPDFengine = {
@@ -54,6 +55,8 @@ var IETprintPDFengine = {
 
 	onLoad: function () {
 		try {
+			// cleidigh - seems to be necessary under WL API
+			opener.content = null;
 			PrintEngineCreateGlobals();
 			InitPrintEngineWindow();
 			var PSSVC = Cc["@mozilla.org/gfx/printsettings-service;1"]
@@ -80,11 +83,26 @@ var IETprintPDFengine = {
 			
 			myPrintSettings.printSilent = true;
 
+			var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+			
+			if (customDateFormat !== "") {
+					let customDate = strftime.strftime(customDateFormat, new Date());
+					myPrintSettings.headerStrRight = myPrintSettings.headerStrRight.replace("%d", customDate);
+					myPrintSettings.headerStrLeft = myPrintSettings.headerStrLeft.replace("%d", customDate);
+					myPrintSettings.headerStrCenter = myPrintSettings.headerStrCenter.replace("%d", customDate);
+					myPrintSettings.footerStrRight = myPrintSettings.footerStrRight.replace("%d", customDate);
+					myPrintSettings.footerStrLeft = myPrintSettings.footerStrLeft.replace("%d", customDate);
+					myPrintSettings.footerStrCenter = myPrintSettings.footerStrCenter.replace("%d", customDate);
+				}
+			
+			IETprintPDFengine.prefs.setBoolPref("print.show_print_progress", false);
+
 			myPrintSettings.toFileName = opener.IETprintPDFmain.filePath;
 			myPrintSettings.printToFile = true;
 			var fileFormat = IETprintPDFengine.prefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
 			if (fileFormat < 3)
 				myPrintSettings.outputFormat = fileFormat;
+				console.debug('File ' + myPrintSettings.toFileName);
 			printEngine.startPrintOperation(myPrintSettings);
 		} catch (e) {
 			IETprintPDFengine.error = true;

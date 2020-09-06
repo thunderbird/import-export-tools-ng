@@ -2,11 +2,11 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
+	// Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
 	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
 	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+	// Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOverlay.js", window, "UTF-8");
 
 
@@ -18,13 +18,8 @@ function onLoad() {
 		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		 xmlns:html="http://www.w3.org/1999/xhtml">
 		 
-<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
-<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
-<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
-<script type="application/javascript" src="chrome://mboximport/content/hotKeyUtils.js" />
-<script type="application/javascript" src="chrome://mboximport/content/sdOverlay.js" />
 
-<vbox insertbefore="status-bar" collapsed="true">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
@@ -77,5 +72,8 @@ function onLoad() {
 </overlay>
 
 `, ["chrome://mboximport/locale/mboximport.dtd"]);
-	
+
+// window.setupHotKeys('search');
+window.SDinit();
+
 }

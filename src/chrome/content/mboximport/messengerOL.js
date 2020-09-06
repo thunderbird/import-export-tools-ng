@@ -7,7 +7,7 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
+// Services.scriptloader.loadSubScript("chrome://messenger/content/dateFormat.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
@@ -273,6 +273,7 @@ WL.injectElements(`
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
-
+window.ver = WL.extension.addonData.version;
+window.extension = WL.extension;
 window.IETinit();
 }

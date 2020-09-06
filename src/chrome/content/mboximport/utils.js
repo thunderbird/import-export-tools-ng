@@ -654,6 +654,8 @@ function IETgetSelectedMessages() {
 		msgs = gFolderDisplay.selectedMessageUris;
 	else
 		msgs = GetSelectedMessages();
+	console.debug(' constantly selected messages');
+	console.debug(msgs);
 	return msgs;
 }
 

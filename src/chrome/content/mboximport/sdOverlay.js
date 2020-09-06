@@ -169,13 +169,16 @@ function SDexportMsg() {
 
 
 function SDinit() {
+	console.debug('SD for the initialize ');
 	if (window.arguments && window.arguments[1]) {
-		var sb = document.getElementById("status-bar");
-		sb.previousSibling.removeAttribute("collapsed");
-		sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
+		// var sb = document.getElementById("status-bar");
+		var sf = document.getElementById("IETSearchFrame");
+		
+		sf.removeAttribute("collapsed");
+		// sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
 		window.sizeToContent();
 	}
 }
 
-setupHotKeys('search');
-window.addEventListener("load", SDinit, false);
+// setupHotKeys('search');
+// window.addEventListener("load", SDinit, false);

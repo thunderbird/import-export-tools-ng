@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="chrome://mboximport/content/mboximport/importexport-help.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="chrome://mboximport/content/mboximport/importexport-help.css"
+      type="text/css"
+    />
     <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
     <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
     <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
@@ -68,7 +72,7 @@
       - 纯文本<br />
       -CSV（逗号分隔值） <br />
       -PDF
-      <br /><br />尽管大多数用于消息的功能都围绕消息，但是也支持导入和导出Thunderbird配置文件。此外，导出还可以包括HTML或CSV索引文件。备份Thunderbird配置文件是另一个功能。
+      <br /><br />尽管大多数用于消息的功能都围绕消息，但是也支持导入和导出Thunderbird配置文件。此外，导出还可以包含HTML或CSV索引文件。备份Thunderbird配置文件是另一个功能。
       <br />
       <p>
         通过扩展安装的几个不同菜单来访问IETng功能。这些功能是上下文相关的。添加了以下菜单： <br />
@@ -76,7 +80,7 @@
         -消息列表上下文（选定的消息） <br />
         -工具菜单（文件夹和配置文件操作）
         <br /><br />在扩展选项的“工具/附加选项”下的添加条目下可以访问许多选项。每个菜单还具有“选项”菜单项，以访问选项对话框。
-        <br />新选项记录在这里，整个集合将在以后记录。
+        <br />新的选项记录在这里，整个集合将在以后记录。
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
@@ -194,7 +198,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>导入一个或多个mbox文件。选择是否包含结构/子文件夹</td>
+          <td>导入一个或多个mbox文件。选择有无结构/子文件夹</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -214,7 +218,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>从单个文件夹导入所有EML消息，包括结构/子文件夹</td>
+          <td>从单个文件夹（包括结构/子文件夹）导入所有EML消息</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
@@ -262,11 +266,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>将选定的消息保存到纯文本格式文件</td>
+          <td>将选定的消息保存为纯文本格式的文件</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>将所选邮件保存到包括附件的纯文本格式文件</td>
+          <td>将选定的邮件保存到包括附件的纯文本格式文件中</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
@@ -274,11 +278,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>将选定的消息保存到单个mbox文件中</td>
+          <td>将所选消息保存到单个mbox文件中</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>将所选邮件附加到现有的mbox文件</td>
+          <td>将所选消息追加到现有的mbox文件</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
@@ -441,7 +445,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>导入一个或多个mbox文件。选择是否包含结构/子文件夹</td>
+          <td>导入一个或多个mbox文件。选择有无结构/子文件夹</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -461,7 +465,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>从单个文件夹导入所有EML消息，包括结构/子文件夹</td>
+          <td>从单个文件夹（包括结构/子文件夹）导入所有EML消息</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
@@ -469,7 +473,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfile"></td>
-          <td>保存完整的个人资料（邮件，扩展名，选项）</td>
+          <td>保存完整的配置文件（邮件，扩展名，选项）</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
@@ -494,7 +498,7 @@
         class="link1"
         href="http://man7.org/linux/man-pages/man3/strftime.3.html"
         ><code>strftime()</code></a
-      >的JavaScript端口，该端口是格式化日期和时间的函数。 <br />
+      >的JavaScript端口，该端口用于格式化日期和时间。 <br />
       TH Doan的strftime（）端口（https://thdoan.github.io/strftime/） <br />
     </p>
     <h3>转换顺序说明</h3>
@@ -536,7 +540,7 @@
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>以十进制数表示的一天中的一天（范围为1到31）。</td>
+          <td>以十进制数字表示的月份中的一天（范围为1到31）。</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
@@ -549,7 +553,7 @@
               >%V</code
             >
             ）。它的格式和值与<code class="code1">%Y</code>
-            ，不同的是，如果ISO周编号属于上一年或下一年，则使用该年份。
+            ，不同的是，如果ISO周编号属于上一年或下一年，则改用该年份。
           </td>
         </tr>
         <tr>
@@ -564,9 +568,7 @@
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
-          <td>
-            使用12小时制（范围为01到12），以十进制数字表示小时。另请参见<code class="code1">%l</code> 。
-          </td>
+          <td>使用12小时制（范围为01至12），以十进制数表示小时。另请参见<code class="code1">%l</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
@@ -574,11 +576,11 @@
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
-          <td>使用24小时制（范围为0到23），以十进制数字表示小时。另请参见<code class="code1">%H</code> 。</td>
+          <td>使用24小时制（范围为0到23），以小数点表示小时。另请参见<code class="code1">%H</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
-          <td>使用12小时制（范围1到12），以十进制数表示小时。另请参见<code class="code1">%I</code> 。</td>
+          <td>使用12小时制（范围为1到12），以十进制数表示小时。另请参见<code class="code1">%I</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
@@ -602,7 +604,7 @@
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>1970年1月1日00:00:00 +0000（UTC）以来的秒数。</td>
+          <td>自从1970年1月1日00:00:00 +0000（UTC）开始的秒数。</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
@@ -610,13 +612,13 @@
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
-          <td>以十进制表示的星期几（范围为1到7），星期一为1。另请参见<code class="code1">%w</code> 。</td>
+          <td>以小数点表示的星期几（范围为1到7），星期一为1。另请参见<code class="code1">%w</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
             ISO
-            8601当年的星期号，以十进制数表示（范围从01到53），其中第1周是新年中至少有4天（即第一个星期四）的第一周。
+            8601当年的星期号，以十进制数表示（范围从01到53），其中第1周是新年中至少有4天的第一个星期（即第一个星期四）。
           </td>
         </tr>
         <tr>
@@ -637,7 +639,7 @@
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>以十进制数表示的年份，包括世纪。</td>
+          <td>以十进制数字表示的年份，包括世纪。</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
@@ -682,7 +684,7 @@
       <li><code class="code1">%t</code>未实现（使用<code class="code1">\t</code> ）</li>
       <li><code class="code1">%T</code>未实现（使用<code class="code1">%H:%M:%S</code> ）</li>
       <li><code class="code1">%U</code>未实施</li>
-      <li><code class="code1">%W</code>未实施</li>
+      <li><code class="code1">%W</code>未实现</li>
       <li><code class="code1">%+</code> -未实施</li>
       <li><code class="code1">%%</code> -未实施（使用<code class="code1">%</code> ）</li>
     </ul>
@@ -690,11 +692,11 @@
     <h2 id="ext_filename_format_help">扩展文件名格式：</h2>
     <br />
     <p>
-      扩展文件名格式使用令牌。可以使用标记以及任何文本或有效的文件名字符来构造确切的文件名。在任何语言环境中都可以使用英语（美国）令牌。特定于语言环境的令牌也可用，并在英语表下方列出。
+      扩展文件名格式使用令牌。可以使用标记以及任何文本或有效的文件名字符来构造确切的文件名。在任何语言环境中都可以使用英语（美国）令牌。特定于语言环境的令牌也可用，并且在英语表下方列出。
       <br /><br />例子： <br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> -默认格式<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span>
-      -使用自定义日期格式代替默认格式<br />
+      -使用自定义日期格式而不是默认格式<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span>
       -带一些自定义文本<br /><br /><br />
     </p>
@@ -714,6 +716,14 @@
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td>邮件收件人的名称。</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>邮件发件人的电子邮件地址。</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>邮件收件人的电子邮件地址。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -759,6 +769,14 @@
         <td><code property-text-ref="recipientFmtToken"></code></td>
       </tr>
       <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+      </tr>
+      <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
         <td><code property-text-ref="smartNameFmtToken"></code></td>
       </tr>
@@ -786,7 +804,7 @@
     <br />
     <h2>新的和实验性首选项（选项）</h2>
     <p>
-      在选项对话框中，尚有一些尚未配置的新功能和选项。这些功能稳定后，将被添加到UI中。
+      在选项对话框中，尚有一些尚无法配置的新功能和选项。这些功能稳定后，将被添加到UI中。
       <br />为了使用它们，必须在配置编辑器中进行设置。要访问编辑器，请使用“工具/选项”菜单，然后选择“高级”部分，底部将出现“配置编辑器”按钮。如果在搜索栏中键入“
       importexporttoolsng”，则将获得所有扩展名首选项。然后，您可以根据需要在下面编辑各种首选项。
     </p>
@@ -807,13 +825,13 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      通常，雷鸟中邮件的“日期”是发件人的邮件客户端设置的日期。将此选项设置为“
-      true”会利用收件人邮件客户端的接收日期。该日期将用于文件名以及索引文件中的日期。
+      通常，雷鸟中消息的“日期”是发件人的邮件客户端设置的日期。将此选项设置为“
+      true”会利用收件人的邮件客户端上的接收日期。该日期将用于文件名以及索引文件中的日期。
     </p>
     <h2>基本的全局热键（快捷方式）功能</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      这个新的首选项允许用户最多设置10个键盘快捷键。快捷方式可以执行大多数ImportExportTools
+      这个新的首选项允许用户设置10个键盘快捷键。快捷方式可以执行大多数ImportExportTools
       NG函数以及其他Thunderbird函数。首选项字符串的格式为JSON格式的对象。格式和键如下：
     </p>
     <p>

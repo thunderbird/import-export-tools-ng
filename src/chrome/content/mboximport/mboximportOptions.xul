@@ -189,7 +189,7 @@
 
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
-						<hbox align="center" class="input-container" style="padding-left: 4px;">
+						<hbox pack="start" class="input-container" style="padding-left: 4px;">
 							<html:input type="checkbox" id="useExtendedFormat" checked="false"
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
 							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>

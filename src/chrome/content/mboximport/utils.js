@@ -112,6 +112,29 @@ function getPredefinedFolder(type) {
 		return null;
 	}
 }
+function stripDisplayName(addresses)
+{
+	var msgHeaderParser = Components.classes["@mozilla.org/messenger/headerparser;1"]
+							.getService(Components.interfaces.nsIMsgHeaderParser);
+
+	var strippedAddresses = {};
+	try {
+		// 72.01 or higher
+		// strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {}).map(fullValue => msgHeaderParser.makeFromDisplayAddress(fullValue.email, fullValue.name)).join(", ");
+		strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {});
+	}
+	catch (ex) {
+		// 68.2 ok
+		var fullNames = {};
+		var names = {};
+		var numAddresses =  0;
+		msgHeaderParser.parseHeadersWithArray(addresses, strippedAddresses, names, fullNames, numAddresses);
+		strippedAddresses = strippedAddresses.value.join(",");
+		console.debug('s68 ' + strippedAddresses);
+	}
+	//return strippedAddresses.value.join(",");
+	return strippedAddresses;
+}
 
 function getSubjectForHdr(hdr, dirPath) {
 	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
@@ -140,6 +163,8 @@ function getSubjectForHdr(hdr, dirPath) {
 	var key = hdr.messageKey;
 
 	var fname;
+	var authEmail = stripDisplayName(hdr.mime2DecodedAuthor)[0].email;
+	var recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
 
 	// custom filename pattern
 	if (emlNameType === 2) {
@@ -209,7 +234,9 @@ function getSubjectForHdr(hdr, dirPath) {
 		// Allow en-US tokens always
 		extendedFilenameFormat = extendedFilenameFormat.replace("${subject}", subj);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${sender}", authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${sender_email}", authEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient}", recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient_email}", recEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${smart_name}", smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);

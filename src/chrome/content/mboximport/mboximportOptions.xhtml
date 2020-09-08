@@ -15,7 +15,7 @@
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
-<?xml-stylesheet href="chrome://mboximport/content/mboximport.css" type="text/css"?>
+<?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
@@ -189,7 +189,8 @@
 
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
-						<hbox align="center" class="input-container" style="padding-left: 4px;">
+						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
+						<hbox pack="start"  style="padding-left: 4px;" >
 							<html:input type="checkbox" id="useExtendedFormat" checked="false"
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
 							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>

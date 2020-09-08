@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="chrome://mboximport/content/mboximport/importexport-help.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="chrome://mboximport/content/mboximport/importexport-help.css"
+      type="text/css"
+    />
     <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
     <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximport/help.js"></script>
+    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
     <title>ImportExportTools NG-Hilfe</title>
   </head>
   <body>
@@ -21,7 +25,8 @@
       - Hilfe / Benutzerhandbuch: Vollständig lokalisiert - Suffix-Option für Dateinamen <br />
       - Benutzerdefinierte Datumsoption für Dateinamen, die strftime () wie die vollständige Formatierung von
       Datum und Uhrzeit ermöglichen <br />
-      - Verwenden Sie benutzerdefinierte Dateinamen für Anhänge und eingebettete Anhänge <br />
+      - Verwenden Sie benutzerdefinierte Dateinamen sowohl für Anhänge als auch für eingebettete Anhänge
+      <br />
       - Benutzerdefinierte Datumsoption für Indexdateinamen <br />
       - Option zur Verwendung von &#39;Empfangsdatum&#39; für Dateiname und Index <br />
       - Vom Benutzer konfigurierbare Hotkeys (Tastaturkürzel) <br />
@@ -32,7 +37,7 @@
       - # 74 Fix für nicht exportierte Inline-Bildanhänge <br />
       - Fix # 56 Handle Cancel im Importdialog behoben <br />
       - # 77 verwendet Einstellungen für die PDF-Ausgabe <br />
-      - Optimierungen der Benutzeroberfläche (# 80, # 81, # 82) Betriebssystemvariationen - @ovari <br />
+      - Optimierungen der Benutzeroberfläche (# 80, # 81, # 82) - @ovari <br />
       - Deutscher Übersetzungsfix # 93 - @dipgithub <br />
       - Ungarische Übersetzungskorrekturen - @ovari <br />
       - Fügen Sie die fehlende Lizenzdatei Nr. 96 hinzu <br /><br />
@@ -227,7 +232,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Wählen Sie Maildir-Nachrichtendateien aus und importieren Sie sie</td>
+          <td>Wählen Sie die Maildir-Nachrichtendateien aus und importieren Sie sie</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
@@ -568,8 +573,8 @@
       werden, das in den erweiterten benutzerdefinierten Dateinamen verwendet wird. Das ursprüngliche
       (Standard-) Datumsformat lautet: <br />
       JJJJMMTTHHmm: 202011060808 <br /><br />
-      Das benutzerdefinierte Datumsformat verwendet% Sequenzen, die der Unix-ähnlichen Funktionalität von
-      <code>strftime()</code> . Es basiert auf einem JavaScript-Port von
+      Das benutzerdefinierte Datumsformat verwendet% -Sequenzen, die mit der Unix-ähnlichen Funktion
+      <code>strftime()</code> übereinstimmen. Es basiert auf einem JavaScript-Port von
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , einer Funktion zum Formatieren von Datum und Uhrzeit. <br />
       Port of strftime () von TH Doan (https://thdoan.github.io/strftime/) <br />
@@ -698,7 +703,7 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Sekunde als Dezimalzahl (Bereich 00 bis 59).</td>
+          <td>Zweitens als Dezimalzahl (Bereich 00 bis 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
@@ -750,7 +755,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>Hinweise zur Kompatibilität:</h3>
+    <h3>Kompatibilitätshinweise:</h3>
     <ul>
       <li><code class="code1">%c</code> - formatierte Zeichenfolge unterscheidet sich geringfügig</li>
       <li>
@@ -787,8 +792,8 @@
     <p>
       Bei der Formatierung des erweiterten Dateinamens werden Token verwendet. Der genaue Dateiname kann unter
       Verwendung der Token sowie aller Text- oder gültigen Dateinamenzeichen erstellt werden. Die englischen
-      (en-US) Token sind in jedem Gebietsschema verfügbar. Länderspezifische Token sind ebenfalls verfügbar
-      und unter der englischen Tabelle aufgeführt. <br /><br />
+      (en-US) Token sind in jedem Gebietsschema verfügbar. Gebietsschemaspezifische Token sind ebenfalls
+      verfügbar und unter der englischen Tabelle aufgeführt. <br /><br />
       Beispiele: <br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Das Standardformat <br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Verwenden Sie das
@@ -812,6 +817,14 @@
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td>Der Name des Nachrichtenempfängers.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>Die E-Mail-Adresse des Absenders der Nachricht.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>Die E-Mail-Adresse des Nachrichtenempfängers.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -862,6 +875,14 @@
         <td><code property-text-ref="recipientFmtToken"></code></td>
       </tr>
       <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+      </tr>
+      <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
         <td><code property-text-ref="smartNameFmtToken"></code></td>
       </tr>
@@ -892,16 +913,16 @@
       Es gibt mehrere neue Funktionen und Optionen, die im Optionsdialog noch nicht konfiguriert werden
       können. Sobald diese Funktionen stabilisiert sind, werden sie der Benutzeroberfläche hinzugefügt. <br />
       Um sie verwenden zu können, müssen sie im Konfigurationseditor festgelegt werden. Um auf den Editor
-      zuzugreifen, verwenden Sie das Menü Extras / Optionen und wählen Sie den Abschnitt Erweitert aus. Unten
-      befindet sich die Schaltfläche &quot;Konfigurationseditor&quot;. Wenn Sie &#39;importexporttoolsng&#39;
-      in die Suchleiste eingeben, werden alle Erweiterungseinstellungen angezeigt. Sie können dann die
-      folgenden Einstellungen nach Bedarf bearbeiten.
+      zuzugreifen, verwenden Sie das Menü Extras / Optionen. Wählen Sie dann den Abschnitt Erweitert aus.
+      Unten befindet sich die Schaltfläche &quot;Konfigurationseditor&quot;. Wenn Sie
+      &#39;importexporttoolsng&#39; in die Suchleiste eingeben, werden alle Erweiterungseinstellungen
+      angezeigt. Sie können dann die folgenden Einstellungen nach Bedarf bearbeiten.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
       Diese Einstellung folgt der gleichen vollständigen Formatierung, die für die Indexdateien verwendet
       wird. Es ist standardmäßig eine leere Zeichenfolge. Wenn Sie eine formatierte Datums- / Zeitzeichenfolge
-      verwenden, ändert sich dadurch das Index-Datumsformat.
+      verwenden, ändert dies das Index-Datumsformat.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
@@ -918,10 +939,10 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Normalerweise ist das &#39;Datum&#39; für eine Nachricht in Thunderbird das vom E-Mail-Client des
-      Absenders festgelegte Datum. Wenn Sie diese Option auf &quot;true&quot; setzen, wird das Empfangsdatum
-      auf dem E-Mail-Client des Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen als auch für das
-      Datum in den Indexdateien verwendet.
+      Normalerweise ist das &#39;Datum&#39; für eine Nachricht in Thunderbird das Datum, das vom Mail-Client
+      des Absenders festgelegt wurde. Wenn Sie diese Option auf &quot;true&quot; setzen, wird das
+      Empfangsdatum auf dem E-Mail-Client des Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen
+      als auch für das Datum in den Indexdateien verwendet.
     </p>
     <h2>Grundlegende globale Hotkey-Funktion (Verknüpfungen)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

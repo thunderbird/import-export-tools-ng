@@ -8,8 +8,8 @@
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
 
 <window
-width="500"
-  height="540"
+width="550"
+  height="400"
   onload="IETimportWizard.start();"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -21,6 +21,10 @@ width="500"
 
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/profileImportWizard.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
+
+  <linkset>
+    <html:link rel="localization" href="toolkit/global/wizard.ftl"/>
+  </linkset>
 
 
 <wizard id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">

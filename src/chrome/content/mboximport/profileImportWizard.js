@@ -43,6 +43,7 @@ var IETimportWizard = {
 
 	start: function () {
 		Services.console.logStringMessage("profile start 2");
+		// Services.console.logStringMessage(document.documentElement.outerHTML);
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},

@@ -279,6 +279,8 @@ function initMboxImportPanel() {
         document.getElementById("backupLast").value = localTime;
     }
     document.getElementById("modalWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog");
+
+    // window.opener.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen");
 }
 
 /* function setSaveMode(type) {

@@ -332,6 +332,7 @@ function IETexport_all_delayed(just_mail, file) {
 		.get("ProfD", Ci.nsIFile);
 	var date = buildContainerDirName();
 	file.append(profDir.leafName + "-" + date);
+	
 	file.createUnique(1, 0755);
 	if (just_mail) {
 		profDir.append("Mail");
@@ -346,8 +347,11 @@ function IETexport_all_delayed(just_mail, file) {
 		while (entries.hasMoreElements()) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
-			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock")
+			// console.debug(entry.leafName);
+			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock") {
 				entry.copyTo(file, "");
+			}
+
 		}
 	}
 	var clone = file.clone();
@@ -364,6 +368,7 @@ function saveExternalMailFolders(file) {
 	file.create(1, 0775);
 	var servers = Cc["@mozilla.org/messenger/account-manager;1"]
 		.getService(Ci.nsIMsgAccountManager).allServers;
+		console.debug(servers);
 
 	var nsIArray;
 	var cntServers;
@@ -378,9 +383,10 @@ function saveExternalMailFolders(file) {
 	}
 	// Scan servers storage path on disk
 	for (var i = 0; i < cntServers; ++i) {
-		if (nsIArray)
-			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
-		else
+		if (nsIArray) {
+			let server = servers[i];
+			serverFile = server.localPath;
+		} else
 			serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 		var parentDir = null;
 		if (serverFile.parent && serverFile.parent.parent)

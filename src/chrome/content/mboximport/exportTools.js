@@ -1788,6 +1788,7 @@ function searchANDsave() {
 	function IETwritestatus(text) {
 		if (document.getElementById("statusText")) {
 			document.getElementById("statusText").setAttribute("label", text);
+			document.getElementById("statusText").setAttribute("value", text);
 			var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
 			if (delay > 0)
 				window.setTimeout(function () { IETdeletestatus(text); }, delay);

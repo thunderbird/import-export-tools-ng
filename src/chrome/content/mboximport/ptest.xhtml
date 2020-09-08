@@ -21,14 +21,10 @@ width="500"
 	persist="screenX screenY width height sizemode">
 
 <wizard id="theWizard" title="Secret Code Wizard"
+xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script>
-  function checkCode(){
-    document.getElementById('theWizard').canAdvance = (document.getElementById('secretCode').value == "cabbage");
-  }
-  </script>
-
+  
   <wizardpage >
     <label value="Enter the secret code:"/>
 <html:input id="pathBox" flex="1" readonly="true" size="25"/>

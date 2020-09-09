@@ -34,6 +34,7 @@ function IETmessOverlayInit() {
 	var frequency = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 	if (frequency === 0)
 		return;
+	
 	if (frequency === 99)
 		frequency = 0.002;
 

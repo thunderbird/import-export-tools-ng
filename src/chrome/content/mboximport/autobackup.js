@@ -285,8 +285,11 @@ var autoBackup = {
 			var parentDir = null;
 			if (servers.Count)
 				serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-			else
-				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+			else {
+				let server = servers[i];
+				serverFile = server.localPath;
+				// serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;
 			var clone = file.clone();

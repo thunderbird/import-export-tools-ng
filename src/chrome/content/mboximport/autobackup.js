@@ -49,6 +49,7 @@ var autoBackup = {
 	},
 
 	load: function () {
+		console.debug('start the backup load ');
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");

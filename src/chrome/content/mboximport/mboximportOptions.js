@@ -236,6 +236,11 @@ function initMboxImportPanel() {
     var freq = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 
     switch (freq) {
+        case 99:
+            document.getElementById("frequencyList").selectedIndex = 5;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        
         case 1:
             document.getElementById("frequencyList").selectedIndex = 0;
             document.getElementById("backupEnable").checked = true;

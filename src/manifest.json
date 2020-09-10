@@ -1,10 +1,9 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "10.0.0-b8",
+    "version": "10.0.0-b9",
     "description": "__MSG_extensionDescription__",
     "author": "Christopher Leidigh",
-    "xpi-name": "import-export-tools-ng",
     "applications": {
         "gecko": {
             "id": "ImportExportToolsNG@cleidigh.kokkini.net",

@@ -1,10 +1,6 @@
-
+console.debug('BackGroundStart');
 
 messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
-
-// ["content", "mboximport", "chrome/content/mboximport/"],
-// ["content", "modules", "chrome/content/mboximport/modules/"],
-
 
 messenger.WindowListener.registerChromeUrl([
 	["content", "mboximport", "chrome/content/mboximport"],
@@ -86,7 +82,3 @@ messenger.WindowListener.registerWindow(
 
 
 messenger.WindowListener.startListening();
-
-
-
-

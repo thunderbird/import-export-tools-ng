@@ -1796,8 +1796,11 @@ function searchANDsave() {
 	}
 
 	function IETdeletestatus(text) {
-		if (document.getElementById("statusText").getAttribute("label") === text)
+		if (document.getElementById("statusText").getAttribute("label") === text) {
 			document.getElementById("statusText").setAttribute("label", "");
+			document.getElementById("statusText").setAttribute("value", "");
+			document.getElementById("IETabortIcon").collapsed = true;
+		}
 	}
 
 	function IETwriteDataOnDisk(file, data, append, fname, time) {

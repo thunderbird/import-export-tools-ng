@@ -77,10 +77,10 @@ if (includeManifest && manifestVersion !== targetVersion) {
 	return 1;
 }
 
-if (includeManifest && (manifestName.toLowerCase() + '-' + targetVersion + targetSuffix + targetExtension) !== targetName) {
-	console.log(`\nName Mismatch:\n  manifest.json: ${manifestName} != package.json: ${targetName}`);
-	return 1;
-}
+// if (includeManifest && (manifestName.toLowerCase() + '-' + targetVersion + targetSuffix + targetExtension) !== targetName) {
+// 	console.log(`\nName Mismatch:\n  manifest.json: ${manifestName} != package.json: ${targetName}`);
+// 	return 1;
+// }
 
 
 let _7zCommand = ['a', `${targetDir}/${targetName}`, `${sourceDir}/*`, `-x@./src/.tb-hybrid-ignore`];

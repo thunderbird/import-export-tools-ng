@@ -1322,7 +1322,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Prologue needed to add the message to the folder
 	var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
 	// If the message has no X-Mozilla-Status, we add them to it
-	if (data.includes("X-Mozilla-Status"))
+	if (!data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
 	else if (IETprefs.getBoolPref("extensions.importexporttoolsng.reset_mozilla_status")) {
 		// Reset the X-Mozilla status

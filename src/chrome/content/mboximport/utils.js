@@ -487,7 +487,11 @@ function isMbox(file) {
 		var line = {};
 		istream.readLine(line);
 		istream.close();
+		let re = /From \S+@\S+\.\S+/;
+
 		if (line.value.indexOf("From ???@???") === 0)
+		// cleidigh - check for e-mail type format (Forte Agent)
+		// if (re.test(line.value))
 			return 2;
 		var first4chars = line.value.substring(0, 4);
 		if (first4chars !== "From")
@@ -496,6 +500,10 @@ function isMbox(file) {
 		return 1;
 	} catch (e) { return 0; }
 }
+
+function emailIsValid (email) {
+	return /\S+@\S+\.\S+/.test(email)
+  }
 
 function IETstr_converter(str) {
 	var convStr;

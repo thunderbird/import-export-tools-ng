@@ -283,12 +283,16 @@ var autoBackup = {
 		// Scan servers storage path on disk
 		for (var i = 0; i < cntServers; ++i) {
 			var parentDir = null;
-			if (servers.Count)
-				serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-			else {
-				let server = servers[i];
+			let server;
+			if (servers.Count) {
+				server = servers[i];
 				serverFile = server.localPath;
-				// serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+				// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
+			} else {
+				console.debug(servers);
+				// server = servers[i];
+				// serverFile = server.localPath;
+				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;

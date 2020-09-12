@@ -417,6 +417,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	// let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance(Ci.nsIMsgWindow);
 
 	var tempfolder = msgFolder.addSubfolder(newfilename);
+	// console.debug(tempfolder);
+	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
@@ -428,7 +430,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 		filex = tempfolderNS.parent;
 	}
 	// 3. delete the new subfolder, to delete all the files inside "msgfoldername.sbd" directory
-	tempfolder.Delete();
+	// tempfolder.Delete();
+	tempfolder.msgStore.deleteFolder(tempfolder);
 
 	if (!filex) {
 		alert(mboximportbundle.GetStringFromName("internalerror"));

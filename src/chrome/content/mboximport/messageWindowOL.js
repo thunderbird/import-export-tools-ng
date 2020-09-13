@@ -8,8 +8,6 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mess
 
 function onLoad() {
 	console.debug('messageWindow OL');
-	// window.mboximportbundle = mboximportbundle;
-	// Services.console.logStringMessage(window.mboximportbundle);
 
 WL.injectElements(`
 	<overlay id="messageWindowOverlay"
@@ -31,10 +29,6 @@ WL.injectElements(`
 
 </keyset>
 
-
-
 </overlay>
-
 `);
-
 }

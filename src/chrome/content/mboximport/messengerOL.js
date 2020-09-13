@@ -15,7 +15,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mess
 
 
 function onLoad() {
-	console.debug('messenger OL');
+	// console.debug('messenger OL');
 
 	// FolderPane Menu
 	WL.injectElements(`
@@ -269,25 +269,8 @@ WL.injectElements(`
 
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
-/* 
-WL.injectElements(`
-<wizard id="theWizard" title="Secret Code Wizard"
-xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  
-  <wizardpage >
-    <label value="Enter the secret code:"/>
-<html:input id="pathBox" flex="1" readonly="true" size="25"/>
-  </wizardpage>
 
-  <wizardpage>
-    <label value="That is the correct secret code."/>
-  </wizardpage>
-
-</wizard>
-`);
- */
 window.ver = WL.extension.addonData.version;
 window.extension = WL.extension;
 window.IETinit();

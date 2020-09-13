@@ -285,7 +285,6 @@ function initMboxImportPanel() {
     }
     document.getElementById("modalWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog");
 
-    scanExternal();
 }
 
 /* function setSaveMode(type) {

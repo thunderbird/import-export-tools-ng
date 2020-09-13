@@ -34,7 +34,6 @@ OnLoadPrintEngine,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-Services.console.logStringMessage("print engine loading");
 
 var IETprintPDFengine = {
 	prefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
@@ -70,14 +69,14 @@ var IETprintPDFengine = {
 			if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences")) {
 				// Use global printing preferences
 				// https://github.com/thundernest/import-export-tools-ng/issues/77
-				Services.console.logStringMessage('PDF Output: Use global preferences');
+				// Services.console.logStringMessage('PDF Output: Use global preferences');
 				myPrintSettings = PSSVC.globalPrintSettings;
 				myPrintSettings.printerName = PSSVC.defaultPrinterName;
 
 				PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
 				PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
 			} else {
-				Services.console.logStringMessage('PDF Output: Use default preferences');
+				// Services.console.logStringMessage('PDF Output: Use default preferences');
 				myPrintSettings = PSSVC.newPrintSettings;
 			}
 			
@@ -102,7 +101,6 @@ var IETprintPDFengine = {
 			var fileFormat = IETprintPDFengine.prefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
 			if (fileFormat < 3)
 				myPrintSettings.outputFormat = fileFormat;
-				console.debug('File ' + myPrintSettings.toFileName);
 			printEngine.startPrintOperation(myPrintSettings);
 		} catch (e) {
 			IETprintPDFengine.error = true;

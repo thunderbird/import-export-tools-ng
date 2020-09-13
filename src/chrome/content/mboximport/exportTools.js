@@ -59,8 +59,7 @@ constructAttachmentsFilename,
 /* eslint-disable no-useless-concat */
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-console.debug('exportTools start');
-Services.console.logStringMessage(mboximportbundle);
+// console.debug('exportTools start');
 
 var IETexported;
 var IETskipped;
@@ -309,7 +308,7 @@ function exportSelectedMsgs(type) {
 
 function exportAllMsgs(type) {
 	var question;
-	if (type === 1 || type === 2 || type === 7) {
+	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
 		if (!question)
 			return;
@@ -318,7 +317,7 @@ function exportAllMsgs(type) {
 			return;
 	}
 
-	if (type === 8 || type === 9) {
+	if (type === 8 || type === 9 || type === 7) {
 		question = IETformatWarning(1);
 		if (!question)
 			return;
@@ -943,7 +942,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 
 function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;
-	if (type !== 7) {
+	if (type !== 7 && type !== 6) {
 		clone2 = file2.clone();
 		clone2.append("index.csv");
 	} else {
@@ -1036,7 +1035,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
-			'"' + sep + (strftime.strftime("%n/%d/%Y", new Date(time) + " " + objHour + ":" + objMin)) + sep + hasAtt + sep + body + "\r\n";
+			'"' + sep + (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin) + sep + hasAtt + sep + body + "\r\n";
 		data = data + record;
 	}
 	if (document.getElementById("IETabortIcon") && addBody)

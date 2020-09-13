@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, services, globals
@@ -112,10 +112,9 @@ function getPredefinedFolder(type) {
 		return null;
 	}
 }
-function stripDisplayName(addresses)
-{
+function stripDisplayName(addresses) {
 	var msgHeaderParser = Components.classes["@mozilla.org/messenger/headerparser;1"]
-							.getService(Components.interfaces.nsIMsgHeaderParser);
+		.getService(Components.interfaces.nsIMsgHeaderParser);
 
 	var strippedAddresses = {};
 	try {
@@ -127,7 +126,7 @@ function stripDisplayName(addresses)
 		// 68.2 ok
 		var fullNames = {};
 		var names = {};
-		var numAddresses =  0;
+		var numAddresses = 0;
 		msgHeaderParser.parseHeadersWithArray(addresses, strippedAddresses, names, fullNames, numAddresses);
 		strippedAddresses = strippedAddresses.value.join(",");
 		console.debug('s68 ' + strippedAddresses);
@@ -359,7 +358,7 @@ function IETexport_all_delayed(just_mail, file) {
 		.get("ProfD", Ci.nsIFile);
 	var date = buildContainerDirName();
 	file.append(profDir.leafName + "-" + date);
-	
+
 	file.createUnique(1, 0755);
 	if (just_mail) {
 		profDir.append("Mail");
@@ -395,7 +394,7 @@ function saveExternalMailFolders(file) {
 	file.create(1, 0775);
 	var servers = Cc["@mozilla.org/messenger/account-manager;1"]
 		.getService(Ci.nsIMsgAccountManager).allServers;
-		console.debug(servers);
+	// console.debug(servers);
 
 	var nsIArray;
 	var cntServers;
@@ -408,32 +407,37 @@ function saveExternalMailFolders(file) {
 		nsIArray = true;
 		cntServers = servers.length;
 	}
-	// Scan servers storage path on disk
+	// ScanShoot servers storage path on disk
 	for (var i = 0; i < cntServers; ++i) {
 		if (nsIArray) {
+			console.debug('utilities nsi array');
 			let server = servers[i];
 			serverFile = server.localPath;
-		} else
-			serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-		var parentDir = null;
-		if (serverFile.parent && serverFile.parent.parent)
-			parentDir = serverFile.parent.parent;
-		if (!parentDir || !profDir.equals(parentDir)) {
-			var index = 1;
-			var fname = serverFile.leafName;
-			while (true) {
-				var clone = file.clone();
-				clone.append(fname);
-				if (clone.exists()) {
-					fname = fname + "-" + index.toString();
-					index++;
-				} else {
-					break;
-				}
-			}
-			// The server storage path on disk is outside the profile, so copy it
-			serverFile.copyTo(file, "");
+		} else {
+			// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
+			console.debug('utilities regular array');
+			let server = servers[i];
+			serverFile = server.localPath;
 		}
+	}
+	var parentDir = null;
+	if (serverFile.parent && serverFile.parent.parent)
+		parentDir = serverFile.parent.parent;
+	if (!parentDir || !profDir.equals(parentDir)) {
+		var index = 1;
+		var fname = serverFile.leafName;
+		while (true) {
+			var clone = file.clone();
+			clone.append(fname);
+			if (clone.exists()) {
+				fname = fname + "-" + index.toString();
+				index++;
+			} else {
+				break;
+			}
+		}
+		// The server storage path on disk is outside the profile, so copy it
+		serverFile.copyTo(file, "");
 	}
 }
 
@@ -490,8 +494,8 @@ function isMbox(file) {
 		let re = /From \S+@\S+\.\S+/;
 
 		if (line.value.indexOf("From ???@???") === 0)
-		// cleidigh - check for e-mail type format (Forte Agent)
-		// if (re.test(line.value))
+			// cleidigh - check for e-mail type format (Forte Agent)
+			// if (re.test(line.value))
 			return 2;
 		var first4chars = line.value.substring(0, 4);
 		if (first4chars !== "From")
@@ -501,9 +505,9 @@ function isMbox(file) {
 	} catch (e) { return 0; }
 }
 
-function emailIsValid (email) {
+function emailIsValid(email) {
 	return /\S+@\S+\.\S+/.test(email)
-  }
+}
 
 function IETstr_converter(str) {
 	var convStr;
@@ -695,8 +699,8 @@ function IETgetSelectedMessages() {
 		msgs = gFolderDisplay.selectedMessageUris;
 	else
 		msgs = GetSelectedMessages();
-	console.debug(' constantly selected messages');
-	console.debug(msgs);
+	// console.debug(' constantly selected messages');
+	// console.debug(msgs);
 	return msgs;
 }
 

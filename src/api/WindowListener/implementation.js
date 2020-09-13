@@ -256,6 +256,7 @@ var WindowListener = class extends ExtensionCommon.ExtensionAPI {
 
                       // cleidigh - TB78 needs options menu, need to substitute for
                       // 68 until we figure out how to tweak the dynamic submenu
+                      // otherwise we get two entries
 
                       var optionsLabel = "";
                       if (versionChecker.compare(currentVersion, "78") >= 0) {

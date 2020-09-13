@@ -290,9 +290,10 @@ var autoBackup = {
 				// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 			} else {
 				console.debug(servers);
-				// server = servers[i];
-				// serverFile = server.localPath;
-				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+				server = servers[i];
+				
+				serverFile = server.localPath;
+				// serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;

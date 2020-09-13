@@ -1,4 +1,4 @@
-console.debug('BackGroundStart');
+// console.debug('background Start');
 
 messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 

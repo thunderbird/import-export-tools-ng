@@ -54,7 +54,8 @@ IETescapeBeginningFrom,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-Services.console.logStringMessage("mboximport start")
+// Services.console.logStringMessage("mboximport start");
+
 var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
 var nosub = mboximportbundle.GetStringFromName("nosubjectmsg");
@@ -103,7 +104,6 @@ var IETprintPDFmain = {
 			return;
 		if (!allMessages) {
 			IETprintPDFmain.uris = IETgetSelectedMessages();
-			console.debug(IETprintPDFmain.uris);
 		} else {
 			IETprintPDFmain.uris = [];
 			msgFolder = msgFolders[0];
@@ -178,7 +178,6 @@ var IETprintPDFmain = {
 		var messageList = [uri];
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
-		console.debug('Print2 ' + messageList);
 		if (!IETabort) {
 			// cleidigh - searchdialog changes to xhtml for 78
 			const versionChecker = Services.vc;
@@ -1349,7 +1348,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// cleidigh force files closed
 	if (gEMLimported++ % 400 === 0) {
 		rootFolder.ForceDBClosed();
-		console.debug('message DB ' + gEMLimported);
+		// console.debug('message DB ' + gEMLimported);
 	}
 
 	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + "/" + gEMLtotal);

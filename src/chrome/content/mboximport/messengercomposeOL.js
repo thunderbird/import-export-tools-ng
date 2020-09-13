@@ -1,16 +1,14 @@
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
-	Services.scriptloader.loadSubScript("chrome://mboximport/content/composeOverlay.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/composeOverlay.js", window, "UTF-8");
 
 function onLoad() {
-	console.debug('Loads steadily subscripts');
-	// window.mboximportbundle = mboximportbundle;
-	// Services.console.logStringMessage(window.mboximportbundle);
+	// console.debug('Load messengercompose OL');
 
-WL.injectElements(`
+	WL.injectElements(`
 <overlay id="composeOverlay"
 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -29,9 +27,6 @@ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 <key id="hot-key10" modifiers="" oncommand=""/>
 
 </keyset>
-
-
 </overlay>
 `);
-
 }

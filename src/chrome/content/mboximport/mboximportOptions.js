@@ -1,15 +1,15 @@
 // cleidigh
 /*
-	ImportExportTools NG is a derivative extension for Thunderbird 60+
-	providing import and export tools for messages and folders.
-	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+    ImportExportTools NG is a derivative extension for Thunderbird 60+
+    providing import and export tools for messages and folders.
+    The derivative extension authors:
+        Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
 
-	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
-	is covered by the GPLv3 open-source license (see LICENSE file).
-		Copyright (C) 2007 : Paolo "Kaosmos"
+    The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
+    is covered by the GPLv3 open-source license (see LICENSE file).
+        Copyright (C) 2007 : Paolo "Kaosmos"
 
-	ImportExportTools NG is free software: you can redistribute it and/or modify
+    ImportExportTools NG is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
@@ -59,7 +59,7 @@ function initMboxImportPanel() {
 
     console.debug('OptionsStill the initialization');
     Services.console.logStringMessage("options initialization");
-    
+
     const versionChecker = Services.vc;
     const currentVersion = Services.appinfo.platformVersion;
 
@@ -240,7 +240,7 @@ function initMboxImportPanel() {
             document.getElementById("frequencyList").selectedIndex = 5;
             document.getElementById("backupEnable").checked = true;
             break;
-        
+
         case 1:
             document.getElementById("frequencyList").selectedIndex = 0;
             document.getElementById("backupEnable").checked = true;
@@ -288,15 +288,15 @@ function initMboxImportPanel() {
 }
 
 /* function setSaveMode(type) {
-	var saveMode = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
-	if (saveMode == 0 || (saveMode == 2 && type ==0))
-		document.getElementById("saveMode").selectedIndex = 0;
-	else
-		document.getElementById("saveMode").selectedIndex = 1;
+    var saveMode = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+    if (saveMode == 0 || (saveMode == 2 && type ==0))
+        document.getElementById("saveMode").selectedIndex = 0;
+    else
+        document.getElementById("saveMode").selectedIndex = 1;
 }
 
 function toggleType(el) {
-	setSaveMode(el.selectedIndex);
+    setSaveMode(el.selectedIndex);
 }*/
 
 function saveMboxImportPrefs() {
@@ -379,7 +379,7 @@ function saveMboxImportPrefs() {
         IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
     else
         IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir_custom_name");
-    
+
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog", document.getElementById("modalWin").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);

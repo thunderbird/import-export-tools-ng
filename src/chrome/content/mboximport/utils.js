@@ -119,7 +119,10 @@ function stripDisplayName(addresses) {
 	var strippedAddresses = {};
 	try {
 		// 72.01 or higher
+		console.debug('78 strip ');
 		// strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {}).map(fullValue => msgHeaderParser.makeFromDisplayAddress(fullValue.email, fullValue.name)).join(", ");
+		console.debug('address is');
+		console.debug(strippedAddresses);
 		strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {});
 	}
 	catch (ex) {
@@ -127,7 +130,11 @@ function stripDisplayName(addresses) {
 		var fullNames = {};
 		var names = {};
 		var numAddresses = 0;
+		console.debug('68 strip ');
 		msgHeaderParser.parseHeadersWithArray(addresses, strippedAddresses, names, fullNames, numAddresses);
+		console.debug(strippedAddresses);
+		console.debug(names);
+		console.debug(fullNames);
 		strippedAddresses = strippedAddresses.value.join(",");
 		console.debug('s68 ' + strippedAddresses);
 	}
@@ -162,8 +169,16 @@ function getSubjectForHdr(hdr, dirPath) {
 	var key = hdr.messageKey;
 
 	var fname;
-	var authEmail = stripDisplayName(hdr.mime2DecodedAuthor)[0].email;
-	var recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
+
+	var authEmail = "";
+	var recEmail = "";
+
+	if (hdr.mime2DecodedAuthor) {
+		authEmail = stripDisplayName(hdr.mime2DecodedAuthor)[0].email;
+	}
+	if (hdr.mime2DecodedRecipients) {
+		recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
+	}
 
 	// custom filename pattern
 	if (emlNameType === 2) {
@@ -407,12 +422,13 @@ function saveExternalMailFolders(file) {
 		nsIArray = true;
 		cntServers = servers.length;
 	}
-	// ScanShoot servers storage path on disk
+	// Scan servers storage path on disk
 	for (var i = 0; i < cntServers; ++i) {
 		if (nsIArray) {
 			console.debug('utilities nsi array');
-			let server = servers[i];
-			serverFile = server.localPath;
+			// let server = servers[i];		
+			// serverFile = server.localPath;
+			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 		} else {
 			// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 			console.debug('utilities regular array');

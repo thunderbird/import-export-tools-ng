@@ -119,10 +119,6 @@ function stripDisplayName(addresses) {
 	var strippedAddresses = {};
 	try {
 		// 72.01 or higher
-		console.debug('78 strip ');
-		// strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {}).map(fullValue => msgHeaderParser.makeFromDisplayAddress(fullValue.email, fullValue.name)).join(", ");
-		console.debug('address is');
-		console.debug(strippedAddresses);
 		strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {});
 	}
 	catch (ex) {
@@ -130,15 +126,9 @@ function stripDisplayName(addresses) {
 		var fullNames = {};
 		var names = {};
 		var numAddresses = 0;
-		console.debug('68 strip ');
 		msgHeaderParser.parseHeadersWithArray(addresses, strippedAddresses, names, fullNames, numAddresses);
-		console.debug(strippedAddresses);
-		console.debug(names);
-		console.debug(fullNames);
 		strippedAddresses = strippedAddresses.value.join(",");
-		console.debug('s68 ' + strippedAddresses);
 	}
-	//return strippedAddresses.value.join(",");
 	return strippedAddresses;
 }
 
@@ -180,6 +170,10 @@ function getSubjectForHdr(hdr, dirPath) {
 		recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
 	}
 
+	// deal with e-mail without 'To:' headerSwitch to insiders
+	if (recEmail === "" || !recEmail) {
+		recEmail = "(none)";
+	}
 	// custom filename pattern
 	if (emlNameType === 2) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
@@ -425,13 +419,8 @@ function saveExternalMailFolders(file) {
 	// Scan servers storage path on disk
 	for (var i = 0; i < cntServers; ++i) {
 		if (nsIArray) {
-			console.debug('utilities nsi array');
-			// let server = servers[i];		
-			// serverFile = server.localPath;
 			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 		} else {
-			// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-			console.debug('utilities regular array');
 			let server = servers[i];
 			serverFile = server.localPath;
 		}

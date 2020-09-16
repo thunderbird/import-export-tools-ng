@@ -206,6 +206,8 @@ function initMboxImportPanel() {
     customNamesCheck(document.getElementById("customizeFilenames"));
     extendedFormatCheck(document.getElementById("useExtendedFormat"));
 
+    document.getElementById("indexDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+
     var charset = "";
     var textCharset = "";
     var csvSep = "";
@@ -330,7 +332,6 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
     if (document.getElementById("export_eml_dir").value !== "")
         IETsetComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
-    else
         IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
@@ -353,6 +354,8 @@ function saveMboxImportPrefs() {
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_prefix", document.getElementById("prefixText").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_suffix", document.getElementById("suffixText").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
+
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);

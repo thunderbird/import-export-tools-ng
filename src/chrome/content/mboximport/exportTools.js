@@ -776,6 +776,12 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			data = data + "\r\n<tr><td>" + subj + "</td>";
 		}
 
+		
+	// deal with e-mail without 'To:' headerSwitch to insiders
+	if (recc === "" || !recc) {
+		recc = "(none)";
+	}
+	
 		data = data + "\r\n<td>" + auth + "</td>";
 		data = data + "\r\n<td>" + recc + "</td>";
 		// The nowrap attribute is used not to break the time row

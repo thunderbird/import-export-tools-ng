@@ -250,9 +250,7 @@ WL.injectElements(`
 <overlay id="messengerOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<keyset id="tasksKeys">
-  <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
-  <!-- currently have to restart if modified -->
+<keyset id="IETNGKeys">
   <key id="hot-key1" modifiers="" oncommand=""/>
   <key id="hot-key2" modifiers="" oncommand=""/>
   <key id="hot-key3" modifiers="" oncommand=""/>
@@ -263,17 +261,20 @@ WL.injectElements(`
   <key id="hot-key8" modifiers="" oncommand=""/>
   <key id="hot-key9" modifiers="" oncommand=""/>
   <key id="hot-key10" modifiers="" oncommand=""/>
-  <!-- <key id="hot-key11" modifiers="control shift" key="L" oncommand="alert('ke')"/> -->
-  <!-- <key id="hot-key12" modifiers="control shift" key="2" oncommand="updateHotKeys()"/> -->
 </keyset>
 
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
+// <key id="hot-key1" key="P" modifiers="shift control" oncommand="goDoCommand('cmd_printpreview')" contexts="all"/>
+//   <key id="hot-key2" key="T" modifiers="shift control" oncommand="alert('k2')" contexts="all"/>
+//   <key id="hot-key3" key="D" modifiers="shift control" oncommand="exportSelectedMsgs(5)" contexts="all"/>
+  
 
 window.ver = WL.extension.addonData.version;
 window.extension = WL.extension;
 window.IETinit();
+window.setupHotKeys('messenger');
 }
 
 function onUnload() {

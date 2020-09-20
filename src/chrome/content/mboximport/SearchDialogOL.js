@@ -52,10 +52,8 @@ function onLoad() {
 	</hbox>
 </vbox>
 
-<keyset id="mailKeys">
-  <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
-  <!-- currently have to restart if modified -->
-  <key id="hot-key1" modifiers="" oncommand=""/>
+<keyset id="IETNGKeys">
+<key id="hot-key1" modifiers="" oncommand=""/>
   <key id="hot-key2" modifiers="" oncommand=""/>
   <key id="hot-key3" modifiers="" oncommand=""/>
   <key id="hot-key4" modifiers="" oncommand=""/>
@@ -72,7 +70,7 @@ function onLoad() {
 
 `, ["chrome://mboximport/locale/mboximport.dtd"]);
 
-// window.setupHotKeys('search');
+window.setupHotKeys('search');
 window.SDinit();
 
 }

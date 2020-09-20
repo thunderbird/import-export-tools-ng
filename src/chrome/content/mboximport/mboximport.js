@@ -1011,6 +1011,8 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
+	console.debug('start eml import');
+
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -1039,11 +1041,14 @@ function RUNimportALLasEML(file, recursive) {
 	folderCount = 1;
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
+	console.debug('buildEMLarray done ' + gEMLtotal);
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
 		return;
 	}
+	console.debug('starting import');
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
+	console.debug('After trytoimportEML');
 }
 
 function buildEMLarray(file, fol, recursive) {
@@ -1057,6 +1062,8 @@ function buildEMLarray(file, fol, recursive) {
 	} else
 		msgFolder = fol;
 
+	console.debug('Build EML array');
+	console.debug(' folder ' + msgFolder.name);
 
 	while (allfiles.hasMoreElements()) {
 		var afile = allfiles.getNext();
@@ -1070,10 +1077,12 @@ function buildEMLarray(file, fol, recursive) {
 
 		if (recursive && is_Dir) {
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
+			console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
 			// open files bug
 			// https://github.com/thundernest/import-export-tools-ng/issues/57
 			if (folderCount++ % 400 === 0) {
 				rootFolder.ForceDBClosed();
+				console.debug('ForceDBClosed');
 			}
 
 			var newFolder = msgFolder.getChildNamed(afile.leafName);
@@ -1090,6 +1099,7 @@ function buildEMLarray(file, fol, recursive) {
 			emlObj.msgFolder = msgFolder;
 			gFileEMLarray[gFileEMLarrayIndex] = emlObj;
 			gFileEMLarrayIndex++;
+			// console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
 	return true;
@@ -1290,6 +1300,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 }
 
 function writeDataToFolder(data, msgFolder, file, removeFile) {
+	// console.debug('Start write data');
 	var msgLocalFolder = msgFolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 	// strip off the null characters, that break totally import and display
 	data = data.replace(/\x00/g, "");
@@ -1342,13 +1353,15 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Add the prologue to the EML text
 	data = prologue + data + "\n";
 	// Add the email to the folder
+	// console.debug('Before addMessage');
 	msgLocalFolder.addMessage(data);
+	// console.debug('# ' + gEMLimported);
 	gEMLimported = gEMLimported + 1;
 
 	// cleidigh force files closed
-	if (gEMLimported++ % 400 === 0) {
+	if (gEMLimported % 400 === 0) {
 		rootFolder.ForceDBClosed();
-		// console.debug('message DB ' + gEMLimported);
+		console.debug('message DB ' + gEMLimported);
 	}
 
 	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + "/" + gEMLtotal);

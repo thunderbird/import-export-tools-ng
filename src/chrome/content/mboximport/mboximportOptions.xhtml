@@ -91,6 +91,18 @@
 								</row>
 							</rows>
 						</grid>
+						<spacer height="6px" />
+						<hbox style="height: ;" >
+							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&key; &date;</label>
+							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
+								<html:input id="indexDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							</hbox>
+							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+            					  maxwidth="16px"  onclick="loadTabPage('importexport-help.html#customdate_format_help', true)" tooltiptext="&dateFormatRefTooltipText;" />
+							</hbox>
+						</hbox>
+
 					</groupbox>
 				</hbox>
 				<hbox flex="1" pack="end" >
@@ -220,19 +232,6 @@
 							<html:input id="filenameCharset" />
 						</hbox>
 
-						<spacer height="6px" />
-						<hbox style="height: ;" >
-							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&key; &date;</label>
-							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
-								<html:input id="indexDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
-							</hbox>
-							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
- 
-								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
-            					  maxwidth="16px"  onclick="loadTabPage('importexport-help.html#customdate_format_help', true)" tooltiptext="&dateFormatRefTooltipText;" />
-
-							</hbox>
-						</hbox>
 
 					</groupbox>
 				</vbox>

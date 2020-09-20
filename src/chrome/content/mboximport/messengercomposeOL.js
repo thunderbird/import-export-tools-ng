@@ -12,9 +12,7 @@ function onLoad() {
 <overlay id="composeOverlay"
 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<keyset id="editorKeys">
-<!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
-<!-- currently have to restart if modified -->
+<keyset id="IETNGKeys">
 <key id="hot-key1" modifiers="" oncommand=""/>
 <key id="hot-key2" modifiers="" oncommand=""/>
 <key id="hot-key3" modifiers="" oncommand=""/>
@@ -29,4 +27,7 @@ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 </keyset>
 </overlay>
 `);
+
+window.setupHotKeys('compose');
 }
+

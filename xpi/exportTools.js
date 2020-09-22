@@ -1318,7 +1318,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 								// vb15x2
 								let decoder = new TextDecoder('utf-8');
-								attName = decoder.decode(new TextEncoder().encode(att.name));
+								attName = decoder.decode(new Uint8Array(att.name));
 								console.debug('decoder ' + attName);
 
 
@@ -1326,10 +1326,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								console.debug('start saving attachment');
-								// console.debug('skip save');
-								let exitCode = messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
-								console.debug('save attachment done ' + attNameAscii + ' ' + exitCode);
+								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
+								console.debug('save attachment done ' + attNameAscii);
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);
@@ -1340,27 +1338,24 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
-						console.debug('Footer');
+
 						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
 						// cleidigh - fixup group boxes and images
 						let rs;
-						// let re = /<fieldset(.*?)*</fieldset>/ig;
-						data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
+						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
+						rs = data.match(regex);
 
-						// let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
-						// rs = data.match(regex);
+						data = data.replace(/<\/fieldset>/ig, "");
 
-						// data = data.replace(/<\/fieldset>/ig, "");
-
-						// if (!!rs && rs.length > 0) {
-						// 	for (let index = 0; index < rs.length; index++) {
-						// 		const element = rs[index];
-						// 		data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
-						// 	}
-						// }
+						if (!!rs && rs.length > 0) {
+							for (let index = 0; index < rs.length; index++) {
+								const element = rs[index];
+								data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
+							}
+						}
 
 						let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
 						rs = null;
@@ -1638,13 +1633,10 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 
 function IETconvertToUTF8(string) {
-	console.debug('IETconvertToUTF8');
-	// var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
-	// converter.charset = "UTF-8";
+	var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
+	converter.charset = "UTF-8";
 	try {
-		// var stringUTF8 = converter.ConvertToUnicode(string);
-		var stringUTF8 = new TextEncoder().encode(string);
-		console.debug(stringUTF8);
+		var stringUTF8 = converter.ConvertToUnicode(string);
 		return stringUTF8;
 	} catch (e) {
 		return string;

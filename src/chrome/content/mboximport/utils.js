@@ -518,13 +518,24 @@ function IETstr_converter(str) {
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
+		console.debug('care set ' + charset + ' : ' + str);
 		if (charset === "")
 			return str;
-		var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-			.createInstance(Ci.nsIScriptableUnicodeConverter);
-		uConv.charset = charset;
-		convStr = uConv.ConvertFromUnicode(str);
+
+		// 	var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
+		// 	.createInstance(Ci.nsIScriptableUnicodeConverter);
+		// uConv.charset = charset;
+		// convStr = uConv.ConvertFromUnicode(str);
+
+
+		console.debug('string converter ');
+		let decoder = new TextDecoder(charset);
+		convStr = decoder.decode(new TextEncoder().encode(str));
+		console.debug('decoder ' + convStr);
+		console.debug(convStr);
+
 	} catch (e) {
+		console.debug(e);
 		return str;
 	}
 	return convStr;

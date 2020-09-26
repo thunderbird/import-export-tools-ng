@@ -57,8 +57,7 @@ function IETsetCharsetPopup(charsetPref) {
 
 function initMboxImportPanel() {
 
-    console.debug('OptionsStill the initialization');
-    Services.console.logStringMessage("options initialization");
+    // Services.console.logStringMessage("options initialization");
 
     const versionChecker = Services.vc;
     const currentVersion = Services.appinfo.platformVersion;

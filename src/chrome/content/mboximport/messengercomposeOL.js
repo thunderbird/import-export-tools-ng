@@ -1,3 +1,7 @@
+// Load all scripts from original overlay file - creates common scope
+// onLoad() installs each overlay xul fragment
+// Menus - Folder, messages, Tools
+
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 

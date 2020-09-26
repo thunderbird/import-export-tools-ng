@@ -72,6 +72,7 @@ var gMsgFolderImported;
 var IETabort;
 // cleidigh where do we   get this
 var msgFolder;
+var gImporting;
 
 var IETprintPDFmain = {
 
@@ -1011,7 +1012,7 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
-	console.debug('start eml import');
+	// console.debug('start eml import');
 
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
@@ -1025,7 +1026,12 @@ function importALLasEML(recursive) {
 	else
 		res = IETopenFPsync(fp);
 	gEMLimported = 0;
+	gImporting = true;
 	IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
+	if (document.getElementById("IETabortIcon")) {
+		document.getElementById("IETabortIcon").collapsed = false;
+	}
+
 	if (res === nsIFilePicker.returnOK) {
 		setTimeout(function () { RUNimportALLasEML(fp.file, recursive); }, 1000);
 	}
@@ -1039,16 +1045,19 @@ function RUNimportALLasEML(file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
+	
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
-	console.debug('buildEMLarray done ' + gEMLtotal);
+	// console.debug('buildEMLarray done ' + gEMLtotal);
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
+		document.getElementById("IETabortIcon").collapsed = true;
 		return;
 	}
-	console.debug('starting import');
+
+	// cleidigh - start by closing all files
+	rootFolder.ForceDBClosed();
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
-	console.debug('After trytoimportEML');
 }
 
 function buildEMLarray(file, fol, recursive) {
@@ -1062,10 +1071,11 @@ function buildEMLarray(file, fol, recursive) {
 	} else
 		msgFolder = fol;
 
-	console.debug('Build EML array');
-	console.debug(' folder ' + msgFolder.name);
+	// console.debug('Build EML array');
+	// console.debug(' folder ' + msgFolder.name);
 
 	while (allfiles.hasMoreElements()) {
+		document.getElementById("IETabortIcon").collapsed = false;
 		var afile = allfiles.getNext();
 		afile = afile.QueryInterface(Ci.nsIFile);
 		try {
@@ -1077,7 +1087,8 @@ function buildEMLarray(file, fol, recursive) {
 
 		if (recursive && is_Dir) {
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
-			console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
+			// document.getElementById("IETabortIcon").collapsed = false;
+			// console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
 			// open files bug
 			// https://github.com/thundernest/import-export-tools-ng/issues/57
 			if (folderCount++ % 400 === 0) {
@@ -1197,8 +1208,10 @@ var importEMLlistener = {
 			var data = text;
 		}
 
-		if (!this.imap)
-			writeDataToFolder(data, this.msgFolder, this.file, this.removeFile);
+		if (!this.imap) {
+			if (writeDataToFolder(data, this.msgFolder, this.file, this.removeFile) === -1)
+				return;
+		}
 		importEMLlistener.next();
 	},
 
@@ -1215,6 +1228,8 @@ var importEMLlistener = {
 			// At the end we update the fodler view and summary
 			this.msgFolder.updateFolder(msgWindow);
 			this.msgFolder.updateSummaryTotals(true);
+			document.getElementById("IETabortIcon").collapsed = true;
+			gImporting = false;
 		}
 	},
 
@@ -1301,6 +1316,12 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 
 function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// console.debug('Start write data');
+
+	if (!gImporting) {
+		rootFolder.ForceDBClosed();
+		alert('Abort importing message # ' + gEMLimported + '\r\n\n' + e);
+		return -1;
+	}
 	var msgLocalFolder = msgFolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 	// strip off the null characters, that break totally import and display
 	data = data.replace(/\x00/g, "");
@@ -1354,19 +1375,31 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	data = prologue + data + "\n";
 	// Add the email to the folder
 	// console.debug('Before addMessage');
-	msgLocalFolder.addMessage(data);
-	// console.debug('# ' + gEMLimported);
-	gEMLimported = gEMLimported + 1;
+	try {
+		var res = msgLocalFolder.addMessage(data);
+		// console.debug('# ' + gEMLimported + ' ' + res);
+		gEMLimported = gEMLimported + 1;
 
-	// cleidigh force files closed
-	if (gEMLimported % 400 === 0) {
+	} catch (e) {
+		gImporting = false;
+		console.debug('Exception # ' + e + ' ' + gEMLimported );
+		console.debug(msgLocalFolder.filePath.path);
 		rootFolder.ForceDBClosed();
-		console.debug('message DB ' + gEMLimported);
+		alert('Exception importing message # ' + gEMLimported + '\r\n\n' + e);
+		return -1;
+	}
+	
+	// cleidigh force files closed
+	if (gEMLimported % 450 === 0) {
+		rootFolder.ForceDBClosed();
+		// console.debug('message DB ' + gEMLimported);
 	}
 
 	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + "/" + gEMLtotal);
+	
 	if (removeFile)
 		file.remove(false);
+	return 0;
 }
 
 function importEmlToFolder() {

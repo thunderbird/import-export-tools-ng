@@ -1,3 +1,6 @@
+// Load all scripts from original overlay file - creates common scope
+// onLoad() installs each overlay xul fragment
+// Menus - Folder, messages, Tools
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -5,9 +8,9 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/util
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/messageWindowOverlay.js", window, "UTF-8");
 
-
+// May need for hotkeys
 function onLoad() {
-	console.debug('messageWindow OL');
+	// console.debug('messageWindow OL');
 /* 
 WL.injectElements(`
 	<overlay id="messageWindowOverlay"

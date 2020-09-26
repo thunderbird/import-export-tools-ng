@@ -518,21 +518,11 @@ function IETstr_converter(str) {
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
-		console.debug('care set ' + charset + ' : ' + str);
 		if (charset === "")
 			return str;
 
-		// 	var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-		// 	.createInstance(Ci.nsIScriptableUnicodeConverter);
-		// uConv.charset = charset;
-		// convStr = uConv.ConvertFromUnicode(str);
-
-
-		console.debug('string converter ');
 		let decoder = new TextDecoder(charset);
 		convStr = decoder.decode(new TextEncoder().encode(str));
-		console.debug('decoder ' + convStr);
-		console.debug(convStr);
 
 	} catch (e) {
 		console.debug(e);
@@ -892,8 +882,8 @@ function loadTabPage(url, load_localized_page) {
 			tb_locale = 'en-US';
 		}
 
-		console.debug("locale   " + tb_locale);
-		console.debug(supportedLocales);
+		// console.debug("locale   " + tb_locale);
+		// console.debug(supportedLocales);
 
 		var supportedLocaleRegions = supportedLocales.filter(l => {
 			if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {

@@ -118,7 +118,7 @@ function compareKeyDefinition(hotKey, keyElement) {
 }
 
 function setupHotKeys(contexts) {
-	console.debug('setupHotKs ' + contexts);
+	// console.debug('setupHotKs ' + contexts);
 	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
 	IETlogger.write('Setup hot-keys: ' + contexts);
@@ -126,7 +126,7 @@ function setupHotKeys(contexts) {
 
 	IETlogger.write(hotKeysStr);
 
-	console.debug('HotK ' + hotKeysStr);
+	// console.debug('HotK ' + hotKeysStr);
 
 	if (hotKeysStr !== "") {
 		try {

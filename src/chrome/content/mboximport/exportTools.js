@@ -147,8 +147,14 @@ function selectVirtualFolder() {
 
 function IETabortExport() {
 	IETabort = true;
-	IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
-	document.getElementById("IETabortIcon").collapsed = true;
+	if (gImporting) {
+		gImporting = false;
+		document.getElementById("IETabortIcon").collapsed = true;
+	} else {
+		IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
+		document.getElementById("IETabortIcon").collapsed = true;
+	}
+	
 }
 
 function exportSelectedMsgs(type) {
@@ -800,7 +806,6 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-	console.debug('short index');
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
@@ -1307,29 +1312,13 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							}
 						} else {
 							try {
-								// vb15x1
-								// console.debug('nsIScriptableUnicodeConverter');
-								// var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-								// 	.createInstance(Ci.nsIScriptableUnicodeConverter);
-								// converter.charset = "UTF-8";
-								// console.debug('BeforeConverter');
-								// attName = converter.ConvertFromUnicode(att.name);
-								// console.debug('after converter');
-
-								// vb15x2
 								let decoder = new TextDecoder('utf-8');
 								attName = decoder.decode(new TextEncoder().encode(att.name));
-								console.debug('decoder ' + attName);
-
 
 								var attDirContainerClone = attDirContainer.clone();
-								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								console.debug('start saving attachment');
-								// console.debug('skip save');
 								let exitCode = messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
-								console.debug('save attachment done ' + attNameAscii + ' ' + exitCode);
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);
@@ -1340,15 +1329,21 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
-						console.debug('Footer');
 						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
 						// cleidigh - fixup group boxes and images
 						let rs;
-						// let re = /<fieldset(.*?)*</fieldset>/ig;
+
+						// cleidigh - original outline for inline images 
+						// regex could somehow go to recursion
+						// https://github.com/thundernest/import-export-tools-ng/issues/98
+
+						// just remove outlines for now
 						data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
+
+						// let re = /<fieldset(.*?)*</fieldset>/ig;
 
 						// let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
 						// rs = data.match(regex);
@@ -1638,13 +1633,10 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 
 function IETconvertToUTF8(string) {
-	console.debug('IETconvertToUTF8');
-	// var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
-	// converter.charset = "UTF-8";
 	try {
-		// var stringUTF8 = converter.ConvertToUnicode(string);
+		// cleidigh - check if this is appropriate replacement for scriptableconverter
 		var stringUTF8 = new TextEncoder().encode(string);
-		console.debug(stringUTF8);
+		stringUTF8 = String.fromCharCode(...stringUTF8);
 		return stringUTF8;
 	} catch (e) {
 		return string;
@@ -1829,7 +1821,9 @@ function IETdeletestatus(text) {
 	if (document.getElementById("statusText").getAttribute("label") === text) {
 		document.getElementById("statusText").setAttribute("label", "");
 		document.getElementById("statusText").setAttribute("value", "");
-		document.getElementById("IETabortIcon").collapsed = true;
+		if (!gImporting) {
+			document.getElementById("IETabortIcon").collapsed = true;
+		}
 	}
 }
 

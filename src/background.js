@@ -1,6 +1,11 @@
+// background.js - this kicks off the WindowListener framework
+
+
 // console.debug('background Start');
 
 messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
+
+// Register all necessary content, Resources, and locales
 
 messenger.WindowListener.registerChromeUrl([
 	["content", "mboximport", "chrome/content/mboximport"],
@@ -32,6 +37,8 @@ messenger.WindowListener.registerChromeUrl([
 ]);
 
 messenger.WindowListener.registerOptionsPage("chrome://mboximport/content/mboximport/mboximportOptions.xhtml");
+
+// Register each overlay script Which controls subsequent fragment loading
 
 messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/messenger.xul",

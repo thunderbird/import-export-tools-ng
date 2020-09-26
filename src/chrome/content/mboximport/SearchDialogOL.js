@@ -1,3 +1,6 @@
+// Load all scripts from original overlay file - creates common scope
+// onLoad() installs each overlay xul fragment
+// Menus - Folder, messages, Tools
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -10,7 +13,7 @@ var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 
 function onLoad() {
-	Services.console.logStringMessage("SearchDialogue OL");
+	// Services.console.logStringMessage("SearchDialogue OL");
 
 	WL.injectElements(`
 	<overlay id="sdOverlay"

@@ -4,11 +4,10 @@
 
 Version 10.0.0 : New Features - September 26, 2020
 
-- New locales: el, 
+- New locales: el
 - Index custom date format
 - new tokens for filenames : sender/recipient e-mail
 - Use `%d` in print settings header/footer for custom date
-- 
 
 Bug Issues Fixed:
 - #118, #63 Fixed conversion for plaintext

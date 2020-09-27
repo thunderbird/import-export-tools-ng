@@ -414,11 +414,11 @@ let inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
-// var localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
-// 'el', 'pl', 'da', 'pt-PT'];
+var localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
+'el', 'pl', 'da', 'pt-PT'];
 
-var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
-	'sk-SK', 'sl-SI', 'sv-SE'];
+// var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
+// 	'sk-SK', 'sl-SI', 'sv-SE'];
 
 // localeFolders = ['el'];
 

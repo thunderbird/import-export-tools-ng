@@ -175,11 +175,11 @@ function sleep(ms) {
 async function translateHelpPage() {
 	var localeFolders = _getAllFilesOrFolders(localeDir, true);
 	
-	// var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM',
-		// 'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
+	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM',
+		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 	//  const supportedLocales2 = ['pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE' ];
-	supportedLocales = ['da',  'de'];
+	// supportedLocales = ['da',  'de'];
 	// var supportedLocales = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 	// 'sk-SK', 'sl-SI', 'sv-SE', 'el'];
 

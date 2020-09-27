@@ -16,79 +16,94 @@
   <body>
     <h2 id="main_help">ImportExportTools NG súgó-használati útmutató</h2>
     <p>
-      Ez a felhasználói kézikönyv első minimalista indítása. Nyilván sok a hozzáfűznivaló. Ez a jelenlegi
-      oldal a menükre és az új opciókra összpontosít. Folyamatosan frissítjük a következő verziókban. <br />
+      Ez a felhasználói kézikönyv első minimalista indítása. Nyilvánvalóan sok a hozzáfűznivaló. Ez a
+      jelenlegi oldal a menükre és az új opciókra összpontosít. Folyamatosan frissítjük a következő
+      verziókban.<br />
     </p>
+    <h3>10.0.0 verzió: Új funkciók - 2020. szeptember 26</h3>
+    <p>
+      - Frissítés a 78/68 kompatibilitás érdekében<br />
+      - Új helyek: el<br />
+      - Index egyéni dátumformátum<br />
+      - új tokenek a fájlnevekhez: küldő / címzett e-mail<br />
+      - Az egyedi dátumhoz használja a „% d” elemet a nyomtatási beállítások fejlécében / láblécében<br /><br /><br />
+      Javított hibakeresések:<br />
+      - # 118, # 63 Javítva az egyszerű szöveg átalakítása<br />
+      - # 57 A ForceDBClose használatával zárja be a megnyitott fájlokat (javítja a mappákat és üzeneteket)<br />
+      - # 77 A globális beállítások használata a PDF fájlhoz<br />
+      - # 130 ütemezett biztonsági mentés<br />
+      - # 134 Helyesen kezelje az olvasott, továbbított, válaszolt jelzőket<br /><br /><br />
+      Köszönet sokaknak! : Lásd a kérdéseket<br />
+    </p>
+    <br /><br />
     <h3>4.1.0 verzió: Új funkciók</h3>
     <p>
-      - Súgó / Felhasználói útmutató: Teljesen lokalizált - Utótag opció a fájlnevekhez <br />
+      - Súgó / Felhasználói útmutató: Teljesen lokalizált - Utótag opció a fájlnevekhez<br />
       - Egyéni dátum opció a fájlnevekhez, amelyek lehetővé teszik az strftime (), például a teljes dátum és
-      idő formázását <br />
-      - Használjon egyedi fájlnevezést mind a mellékletekhez, mind a beágyazott mellékletekhez <br />
-      - Egyéni dátum opció az index fájlnevekhez <br />
-      - Lehetőség a &quot;Received Date&quot; használatára a fájlnévhez és az indexhez <br />
-      - Felhasználó által konfigurálható gyorsbillentyűk (billentyűparancsok) <br />
-      - A PDF kimenet most a globális nyomtatási lehetőségeket használja <br />
-      - Továbbfejlesztett HTML index fájl elrendezés <br /><br /><br />
-      Javított hibakeresések: <br />
-      - # 68 javítás az indexmelléklet-jelzőhöz <br />
-      - # 74 javítás a nem exportált soros képmellékletekhez <br />
-      - Javítsa az 56. számú fogantyú törlését az importálás párbeszédpanelen <br />
-      - # 77 a PDF-kimenet beállításainak használata <br />
-      - A kezelőfelület tisztításának módosítása (# 80, # 81, # 82) OS változatok - @ovari <br />
-      - 93. számú német fordítás - @dipgithub <br />
-      - magyar fordítás javítások - @ovari <br />
-      - Adja hozzá a hiányzó 96. számú licencfájlt <br /><br />
-      Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:
-      <br /><br />
-      - <code class="notranslate">@ovari</code> <br />
-      - <code class="notranslate">@dipgithub</code> <br />
-      - <code class="notranslate">@artofit</code> <br />
-      - <code class="notranslate">@JF1313</code> <br />
-      - <code class="notranslate">@jessejmorrow</code> <br />
-      - <code class="notranslate">@spd2000</code> <br />
-      - <code class="notranslate">@kanlukasz</code> <br />
-      - <code class="notranslate">@razzmatazzz</code> <br />
-      - <code class="notranslate">@triplee</code> <br />
+      idő formázását<br />
+      - Használjon egyedi fájlnevezést mind a mellékletekhez, mind a beágyazott mellékletekhez<br />
+      - Egyéni dátum opció az index fájlnevekhez<br />
+      - Lehetőség a &quot;Received Date&quot; használatára a fájlnévhez és az indexhez<br />
+      - Felhasználó által konfigurálható gyorsbillentyűk (billentyűparancsok)<br />
+      - A PDF kimenet most a globális nyomtatási lehetőségeket használja<br />
+      - Továbbfejlesztett HTML index fájl elrendezés<br /><br /><br />
+      Javított hibakeresések:<br />
+      - # 68 javítás az indexmelléklet-jelzőhöz<br />
+      - # 74 javítás a nem exportált soros képmellékletekhez<br />
+      - Javítsa az 56. számú fogantyú törlését az importálás párbeszédpanelen<br />
+      - # 77 a PDF-kimenet beállításainak használata<br />
+      - A kezelőfelület tisztításának módosítása (# 80, # 81, # 82) OS változatok - @ovari<br />
+      - 93. számú német fordítás - @dipgithub<br />
+      - magyar fordítás javítások - @ovari<br />
+      - Adja hozzá a hiányzó 96. számú licencfájlt<br /><br />
+      Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code><br />
     </p>
     <h3>Támogatás:</h3>
     <p>
       Kérjük, tegyen közzé kérdéseket vagy szolgáltatáskéréseket a GitHub bővítmény tárházában:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
-      >
-      <br /><br />
-      A hibakeresésekben a problémák megoldásának elősegítéséhez adja meg a következő információkat: <br />
-      - ImportExportTools NG verzió <br />
-      - Thunderbird verzió <br />
-      - Operációs rendszer és verzió <br />
-      - Debug kimenet (másolat a Debug Console-ból - hozzáférés a Control-Shift-J használatával) <br />
-      - A kérdéshez vezető lépések leírása <br />
+      ><br /><br />
+      A hibakeresésekben a problémák megoldásának elősegítéséhez adja meg a következő információkat:<br />
+      - ImportExportTools NG verzió<br />
+      - Thunderbird verzió<br />
+      - Operációs rendszer és verzió<br />
+      - Debug kimenet (másolat a Debug Console-ból - hozzáférés a Control-Shift-J használatával)<br />
+      - A kérdéshez vezető lépések leírása<br />
     </p>
     <h2 id="main_help">ImportExportTools NG áttekintés és menük</h2>
     <p>
       Az ImportExportTools NG egy további bővítmény, amely Paolo &quot;Kaosmos&quot; eredeti művén alapul. A
-      kiterjesztés számos importálási és exportálási funkciót kínál, amelyek több különböző fájlformátumot
-      támogatnak, beleértve: Megjegyzés: Bizonyos formátumokat nem minden funkció támogat. <br />
-      - mbox <br />
-      - EML <br />
-      - maildir <br />
-      - HTML <br />
-      - egyszerű szöveg <br />
-      - CSV (vesszővel elválasztott értékek) <br />
-      - PDF <br /><br />
+      kiterjesztés többféle importálási és exportálási funkciót kínál, amelyek több különböző fájlformátumot
+      támogatnak, beleértve: Megjegyzés: Egyes formátumokat nem minden funkció támogat.<br />
+      - mbox<br />
+      - EML<br />
+      - maildir<br />
+      - HTML<br />
+      - egyszerű szöveg<br />
+      - CSV (vesszővel elválasztott értékek)<br />
+      - PDF<br /><br />
       Míg a funkcionalitás legnagyobb része az üzenetek körül forog, támogatott a Thunderbird profilok
       importálása és exportálása is. Az exportálás tartalmazhat HTML vagy CSV indexfájlt is. A Thunderbird
-      profil biztonsági mentése egy másik szolgáltatás. <br />
+      profil biztonsági mentése egy másik szolgáltatás.<br />
       <p>
         Az IETng funkció elérése a bővítmény által telepített különböző menükön keresztül történik. A funkciók
-        kontextus-érzékenyek. Menük hozzáadva: <br />
-        - A Mappa ablaktábla kontextus (mappaművelet) <br />
-        - Az üzenetlista kontextusa (kiválasztott üzenetek) <br />
-        - Az Eszközök menü (mappa- és profilműveletek) <br /><br />
+        kontextus-érzékenyek. Menük hozzáadva:<br />
+        - A Mappa ablaktábla kontextus (mappaművelet)<br />
+        - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
+        - Az Eszközök menü (mappa- és profilműveletek)<br /><br />
         Számos lehetőség érhető el a hozzáadott bejegyzés alatt, az &quot;Eszközök / Kiegészítő
         beállítások&quot; alatt a bővítmény beállításaihoz. Mindegyik menü rendelkezik egy Opciók menüponttal
-        az opciók párbeszédpanel eléréséhez. <br />
+        az opciók párbeszédpanel eléréséhez.<br />
         Az új opciókat itt dokumentálják, a teljes készletet később dokumentálják.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
@@ -117,7 +132,7 @@
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportáljon egy mappát az összes almappájával együtt egy mbox formátumú üzenetfába <br />
+            Exportáljon egy mappát az összes almappájával együtt egy mbox formátumú üzenetfába<br />
             (.sbd alkönyvtárak)
           </td>
         </tr>
@@ -139,14 +154,14 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket EML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket EML formátumú fájlokként (nincs struktúra / almappák).<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák).<br />
             A mellékleteket nem tartalmazza. Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes
             üzeneteket.
           </td>
@@ -154,7 +169,7 @@
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák).<br />
             A mellékleteket külön fájlként menti. Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes
             üzeneteket.
           </td>
@@ -162,14 +177,14 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, a mellékleteket nem tartalmazza. <br />
+            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, a mellékleteket nem tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, beleértve a mellékleteket is. <br />
+            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, beleértve a mellékleteket is.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -177,15 +192,14 @@
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
             Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként, a mellékleteket nem
-            tartalmazza. <br />
+            tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként a mellékletekkel együtt.
-            <br />
+            Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként a mellékletekkel együtt.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -193,15 +207,15 @@
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
             Exportálja a mappaüzeneteket egyetlen CSV (vesszővel elválasztott értékek) szöveges formátumú
-            fájlként, a mellékleteket nem tartalmazza. <br />
+            fájlként, a mellékleteket nem tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket PDF formátumú fájlokként, beleértve a mellékleteket is. <br />
-            Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket. <br />
+            Exportálja a mappaüzeneteket PDF formátumú fájlokként, beleértve a mellékleteket is.<br />
+            Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.<br />
             Megjegyzés: A PDF kimenetet az illesztőprogram problémája miatt nem támogatja az OSX.
           </td>
         </tr>
@@ -316,35 +330,35 @@
         <tr>
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
-            Mentse az üzeneteket EML formátumú fájlként. <br />
+            Mentse az üzeneteket EML formátumú fájlként.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Mentse az üzeneteket HTML formátumú fájlokként. <br />
+            Mentse az üzeneteket HTML formátumú fájlokként.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
-            Mentse az üzeneteket HTML formátumú fájlokként, beleértve a mellékleteket is <br />
+            Mentse az üzeneteket HTML formátumú fájlokként, beleértve a mellékleteket is<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
-            Mentse az üzeneteket egyszerű szöveges fájlként <br />
+            Mentse az üzeneteket egyszerű szöveges fájlként<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
-            Mentse az üzeneteket szöveges formátumú fájlokként, beleértve a mellékleteket is <br />
+            Mentse az üzeneteket szöveges formátumú fájlokként, beleértve a mellékleteket is<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -391,7 +405,7 @@
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportáljon egy mappát az összes almappájával együtt egy mbox formátumú üzenetfába <br />
+            Exportáljon egy mappát az összes almappájával együtt egy mbox formátumú üzenetfába<br />
             (.sbd alkönyvtárak)
           </td>
         </tr>
@@ -413,14 +427,14 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket EML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket EML formátumú fájlokként (nincs struktúra / almappák).<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák).<br />
             A mellékleteket nem tartalmazza. Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes
             üzeneteket.
           </td>
@@ -428,7 +442,7 @@
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák). <br />
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (nincs struktúra / almappák).<br />
             A mellékleteket külön fájlként menti. Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes
             üzeneteket.
           </td>
@@ -436,14 +450,14 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, a mellékleteket nem tartalmazza. <br />
+            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, a mellékleteket nem tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, beleértve a mellékleteket is. <br />
+            Exportálja a mappaüzeneteket egyszerű szöveges fájlként, beleértve a mellékleteket is.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -451,15 +465,14 @@
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
             Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként, a mellékleteket nem
-            tartalmazza. <br />
+            tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként a mellékletekkel együtt.
-            <br />
+            Exportálja a mappaüzeneteket egy egyszerű szöveges formátumú fájlként a mellékletekkel együtt.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -467,15 +480,15 @@
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
             Exportálja a mappaüzeneteket egyetlen CSV (vesszővel elválasztott értékek) szöveges formátumú
-            fájlként, a mellékleteket nem tartalmazza. <br />
+            fájlként, a mellékleteket nem tartalmazza.<br />
             Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportálja a mappaüzeneteket PDF formátumú fájlokként, beleértve a mellékleteket is. <br />
-            Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket. <br />
+            Exportálja a mappaüzeneteket PDF formátumú fájlokként, beleértve a mellékleteket is.<br />
+            Ez létrehoz egy HTML index fájlt, amely felsorolja az egyes üzeneteket.<br />
             Megjegyzés: A PDF kimenetet az illesztőprogram problémája miatt nem támogatja az OSX.
           </td>
         </tr>
@@ -542,13 +555,13 @@
       Az egyéni dátum opció lehetővé teszi az indexben lévő mindkét fájlhoz használt dátumformázás teljes
       ellenőrzését. Mind az alapértelmezett &quot;Dátum&quot;, mind az új &quot;Dátum (egyéni)&quot; formátum
       elérhető a fájlnév legördülő listáiban. Az egyéni dátum a kibővített egyéni fájlnevekben használt $
-      {date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum: <br />
-      ÉÉÉÉHHNNHHmm: 202011060808 <br /><br />
+      {date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum:<br />
+      ÉÉÉÉHHNNHHmm: 202011060808<br /><br />
       Az egyéni dátumformátum% szekvenciát használ, amelyek megfelelnek az <code>strftime()</code> Unix-szerű
       funkcionalitásnak. Ez egy
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      JavaScript porton alapul, amely a dátum és az idő formázására szolgáló funkció. <br />
-      Port of strftime () TH Doan (https://thdoan.github.io/strftime/) <br />
+      JavaScript porton alapul, amely a dátum és az idő formázására szolgáló funkció.<br />
+      Port of strftime () TH Doan (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Konverziós szekvencia leírások</h3>
     <table class="dateformat-table">
@@ -759,15 +772,14 @@
     <p>
       A kiterjesztett fájlnév-formátum tokeneket használ. A pontos fájlnév elkészíthető a tokenek, valamint
       bármilyen szöveg vagy érvényes fájlnév karakter felhasználásával. Az angol (en-USA) tokenek bármilyen
-      nyelven elérhetők. A helyi nyelvű tokenek is elérhetők, és az angol táblázat alatt vannak felsorolva.
-      <br /><br />
-      Példák: <br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Az alapértelmezett formátum
-      <br />
+      nyelven elérhetők. A helyi nyelvű tokenek is elérhetők, és az angol táblázat alatt vannak felsorolva.<br /><br />
+      Példák:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Az alapértelmezett
+      formátum<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Alapértelmezett
-      helyett használja az egyéni dátumformátumot <br />
+      helyett használja az egyéni dátumformátumot<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Néhány egyéni
-      szöveggel <br /><br /><br />
+      szöveggel<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
@@ -823,7 +835,7 @@
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (hu-USA)</td>
-        <td>Lokalizált ( <span id="locale1"></span> ) Token</td>
+        <td>Lokalizált (<span id="locale1"></span> ) Token</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -874,7 +886,7 @@
     <h2>Új és kísérleti beállítások (opciók)</h2>
     <p>
       Számos új szolgáltatás és opció létezik, amelyek még nem konfigurálhatók az opciók párbeszédpanelen.
-      Amint ezek a funkciók stabilizálódtak, hozzáadódnak a felhasználói felülethez. <br />
+      Amint ezek a funkciók stabilizálódtak, hozzáadódnak a felhasználói felülethez.<br />
       Használatukhoz a Config Editorban kell beállítani őket. A szerkesztő eléréséhez használja az Eszközök /
       Opciók menüt, majd válassza a Speciális részt, és alul lesz egy „Config Editor” gomb. Ha beírja az
       &#39;importexporttoolsng&#39; szót a keresősávba, megkapja az összes kiterjesztési beállítást. Ezután
@@ -887,12 +899,12 @@
       megváltoztatja az index dátum formátumát.
     </p>
     <p>
-      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
-    </p>
-    <p>
-      <code class="notranslate"
-        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
-      >
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
     </p>
     <p>
       Mindkét beállítás ugyanazt a kiterjesztett fájlnév-formátumot használja, amelyet az exportált üzenetek
@@ -913,41 +925,36 @@
       kulcsok a következők:
     </p>
     <p>
-      Példa gyorsbillentyűkre (JSON objektumok tömbje) <br /><br />
-      <code class="notranslate">id</code> - a kulcsindex (1-10) <br />
-      <code class="notranslate">key</code> - a kulcs (egy karakter) <br />
-      <code class="notranslate">keycode</code> - a „VK_ *” kulcskód <br />
-      Akár kulcsot, akár kulcskódot tartalmazhat, de nem mindkettőt <br />
-      <code class="notranslate">modifiers</code> - a kulcsmódosítók, szóközökkel elválasztott lista
-      (&#39;vezérlés&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;) <br />
-      <code class="notranslate">oncommand</code> - közvetlen parancssor <br />
-      <code class="notranslate">contexts</code> - az ablak kontextus, ahol a kulcs aktív <br />
-      <code class="notranslate">&#39;all&#39;</code> - az összes ablak a messenger alatt, írás, keresés <br />
-      <code class="notranslate">&#39;messenger&#39;</code> - a fő messenger ablak és annak leszármazottai
-      <br />
-      <code class="notranslate">&#39;compose&#39;</code> - az üzenetírás ablak <br />
-      <code class="notranslate">&#39;search&#39;</code> - a keresési párbeszédpanel <br /><br />
+      Példa gyorsbillentyűkre (JSON objektumok tömbje)<br /><br />
+      <code class="notranslate">id</code> - a kulcsindex (1-10)<br />
+      <code class="notranslate">key</code> - a kulcs (egy karakter)<br />
+      <code class="notranslate">keycode</code> - a „VK_ *” kulcskód<br />
+      Akár kulcsot, akár kulcskódot tartalmazhat, de nem mindkettőt<br />
+      <code class="notranslate">modifiers</code> - a kulcsmódosítók, szóközzel elválasztott lista
+      (&#39;vezérlés&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> - közvetlen parancssor<br />
+      <code class="notranslate">contexts</code> - az ablak kontextus, ahol a kulcs aktív<br />
+      <code class="notranslate">&#39;all&#39;</code> - az összes ablak a messenger alatt, írás, keresés<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - a fő messenger ablak és annak leszármazottai<br />
+      <code class="notranslate">&#39;compose&#39;</code> - az üzenetírás ablak<br />
+      <code class="notranslate">&#39;search&#39;</code> - a keresési párbeszédpanel<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
         &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
-        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
         &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
@@ -956,16 +963,15 @@
         &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
         &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot; }]</code
-      >
-      <br />
+      ><br />
     </p>
     <p>
-      Mivel a parancsikonok újak és kísérleti jellegűek, további dokumentációt is hozzáadok a tárba.
+      Mivel a parancsikonok újak és kísérleti jellegűek, további dokumentációt is hozzáadok az adattárba.
       Ellenőrizze az
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       >
-      kiterjesztést <br />
+      kiterjesztést<br />
     </p>
     <br />
   </body>

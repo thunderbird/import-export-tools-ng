@@ -4,10 +4,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css">
+	<link rel="stylesheet" href="chrome://mboximport/content/mboximport/importexport-help.css" type="text/css">
 	<link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
 	<!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-	<script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
 
 	<title>ImportExportTools NG Help</title>
 </head>
@@ -20,6 +20,25 @@
 		This current page focuses on the menus and new options.
 		It will be continually updated in subsequent versions.<br>
 	</p>
+	<h3>Version 10.0.0 : New Features - September 26, 2020</h3>
+	<p>
+	- Upgrade for 78/68 compatibility<br>
+	- New locales: el<br>
+	- Index custom date format<br>
+	- new tokens for filenames : sender/recipient e-mail<br>
+	- Use `%d` in print settings header/footer for custom date<br>
+	<br><br>
+	Bug Issues Fixed:<br>
+	- #118, #63 Fixed conversion for plaintext<br>
+	- #57 Use ForceDBClose to Close open files (fixes folders and messages)<br>
+	- #77 Use global settings for PDF<br>
+	- #130 scheduled backups<br>
+	- #134 Correctly handle read, forwarded, replied flags<br>
+	<br><br>
+	Thanks to many! : See issues<br>
+	</p>
+	<br><br>
+
 	<h3>Version 4.1.0 : New Features</h3>
 	<p>
 		- Help/User guide : Fully localized
@@ -242,11 +261,7 @@
 					<td dtd-text-id-ref="openFolderPath"></td>
 					<td>Open the OS path of the selected folder</td>
 				</tr>
-				<tr>
-					<td dtd-text-id-ref="importSMS"></td>
-					<td>NOTICE: THE SMS/ANDROID FUNCTIONS WILL BE DEPRECATED NEXT VERSION</td>
-				</tr>
-
+				
 				<tr>
 					<td dtd-text-id-ref="openIEToptions"></td>
 					<td>Open the ImportExportTools NG options dialog</td>
@@ -506,10 +521,6 @@
 							<td>Import all EML messages from a single folder including structure/subfolders</td>
 						</tr>
 						<tr>
-							<td dtd-text-id-ref="importSMS"></td>
-							<td>NOTICE: THE SMS/ANDROID FUNCTIONS WILL BE DEPRECATED NEXT VERSION</td>
-						</tr>
-						<tr>
 							<td dtd-text-id-ref="saveProfileMail"></td>
 							<td>Save all mail in the current profile</td>
 						</tr>
@@ -766,6 +777,14 @@
 							<td>The name of the message recipient.</td>
 						</tr>
 						<tr>
+							<td class="notranslate"><code>${sender_email}</code></td>
+							<td>The e-mail address of the message sender.</td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${recipient_email}</code></td>
+							<td>The e-mail address of the message recipient.</td>
+						</tr>
+						<tr>
 							<td class="notranslate"><code>${smart_name}</code></td>
 							<td>The recipients if the message is in a Sent folder, otherwise the sender name </td>
 						</tr>
@@ -813,6 +832,14 @@
 						<tr>
 							<td class="notranslate"><code>${recipient}</code></td>
 							<td><code property-text-ref="recipientFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${sender_email}</code></td>
+							<td><code property-text-ref="senderEmailFmtToken"></code></td>
+						</tr>
+						<tr>
+							<td class="notranslate"><code>${recipient_email}</code></td>
+							<td><code property-text-ref="recipientEmailFmtToken"></code></td>
 						</tr>
 						<tr>
 							<td class="notranslate"><code>${smart_name}</code></td>

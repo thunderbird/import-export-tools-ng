@@ -32,6 +32,9 @@ printEngine,
 OnLoadPrintEngine,
 */
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+
 var IETprintPDFengine = {
 	prefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
 
@@ -51,6 +54,8 @@ var IETprintPDFengine = {
 
 	onLoad: function () {
 		try {
+			// cleidigh - seems to be necessary under WL API
+			opener.content = null;
 			PrintEngineCreateGlobals();
 			InitPrintEngineWindow();
 			var PSSVC = Cc["@mozilla.org/gfx/printsettings-service;1"]
@@ -59,13 +64,37 @@ var IETprintPDFengine = {
 			// Use global printing preferences
 			// https://github.com/thundernest/import-export-tools-ng/issues/77
 
-			var myPrintSettings = PSSVC.globalPrintSettings;
-			myPrintSettings.printerName = PSSVC.defaultPrinterName;
+			var myPrintSettings;
 
-			PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
-			PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
+			if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences")) {
+				// Use global printing preferences
+				// https://github.com/thundernest/import-export-tools-ng/issues/77
+				// Services.console.logStringMessage('PDF Output: Use global preferences');
+				myPrintSettings = PSSVC.globalPrintSettings;
+				myPrintSettings.printerName = PSSVC.defaultPrinterName;
 
+				PSSVC.initPrintSettingsFromPrinter(myPrintSettings.printerName, myPrintSettings);
+				PSSVC.initPrintSettingsFromPrefs(myPrintSettings, true, myPrintSettings.kInitSaveAll);
+			} else {
+				// Services.console.logStringMessage('PDF Output: Use default preferences');
+				myPrintSettings = PSSVC.newPrintSettings;
+			}
+			
 			myPrintSettings.printSilent = true;
+
+			var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+			
+			if (customDateFormat !== "") {
+					let customDate = strftime.strftime(customDateFormat, new Date());
+					myPrintSettings.headerStrRight = myPrintSettings.headerStrRight.replace("%d", customDate);
+					myPrintSettings.headerStrLeft = myPrintSettings.headerStrLeft.replace("%d", customDate);
+					myPrintSettings.headerStrCenter = myPrintSettings.headerStrCenter.replace("%d", customDate);
+					myPrintSettings.footerStrRight = myPrintSettings.footerStrRight.replace("%d", customDate);
+					myPrintSettings.footerStrLeft = myPrintSettings.footerStrLeft.replace("%d", customDate);
+					myPrintSettings.footerStrCenter = myPrintSettings.footerStrCenter.replace("%d", customDate);
+				}
+			
+			IETprintPDFengine.prefs.setBoolPref("print.show_print_progress", false);
 
 			myPrintSettings.toFileName = opener.IETprintPDFmain.filePath;
 			myPrintSettings.printToFile = true;
@@ -87,5 +116,6 @@ if (IETprintPDFengine.prefs.getBoolPref("extensions.importexporttoolsng.printPDF
 	IETprintPDFengine.prefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", false);
 }
 
-window.addEventListener("unload", IETprintPDFengine.exit, false);
+// cleidigh window not available
+// window.addEventListener("unload", IETprintPDFengine.exit, false);
 

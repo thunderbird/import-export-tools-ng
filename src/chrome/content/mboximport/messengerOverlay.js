@@ -29,14 +29,23 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 function IETmessOverlayInit() {
+	Services.console.logStringMessage("Start overland");
 	var last = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 	var frequency = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 	if (frequency === 0)
 		return;
+	
+	if (frequency === 99)
+		frequency = 0.002;
+
 	var now = new Date;
 	var time = now.getTime();
 	time = time / 1000;
 	var days = 24 * 60 * 60 * frequency;
+	// var days = 0.005;
+	console.debug('OverlayBackup');
+	console.debug(time-last);
+	console.debug(days);
 
 	if ((time - last) < days)
 		return;
@@ -51,9 +60,9 @@ function IETmessOverlayInit() {
 		wins = WM.getEnumerator("mail:3pane");
 	if (!wins.hasMoreElements()) {
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog"))
-			window.openDialog("chrome://mboximport/content/autobackup.xul", "", "chrome,centerscreen,modal", last, time, now);
+			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
 		else
-			window.openDialog("chrome://mboximport/content/autobackup.xul", "", "chrome,centerscreen", last, time, now);
+			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, time, now);
 	}
 
 
@@ -74,5 +83,5 @@ function keyEvent(e) {
 setupHotKeys("messenger");
 setupHotKeysObserver();
 
-window.addEventListener("unload", IETmessOverlayInit, false);
+// window.addEventListener("unload", IETmessOverlayInit, false);
 // window.addEventListener("keydown", keyEvent, false);

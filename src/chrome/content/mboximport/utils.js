@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, services, globals
@@ -37,7 +37,7 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -112,6 +112,25 @@ function getPredefinedFolder(type) {
 		return null;
 	}
 }
+function stripDisplayName(addresses) {
+	var msgHeaderParser = Components.classes["@mozilla.org/messenger/headerparser;1"]
+		.getService(Components.interfaces.nsIMsgHeaderParser);
+
+	var strippedAddresses = {};
+	try {
+		// 72.01 or higher
+		strippedAddresses = msgHeaderParser.makeFromDisplayAddress(addresses, {});
+	}
+	catch (ex) {
+		// 68.2 ok
+		var fullNames = {};
+		var names = {};
+		var numAddresses = 0;
+		msgHeaderParser.parseHeadersWithArray(addresses, strippedAddresses, names, fullNames, numAddresses);
+		strippedAddresses = strippedAddresses.value.join(",");
+	}
+	return strippedAddresses;
+}
 
 function getSubjectForHdr(hdr, dirPath) {
 	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
@@ -141,6 +160,20 @@ function getSubjectForHdr(hdr, dirPath) {
 
 	var fname;
 
+	var authEmail = "";
+	var recEmail = "";
+
+	if (hdr.mime2DecodedAuthor) {
+		authEmail = stripDisplayName(hdr.mime2DecodedAuthor)[0].email;
+	}
+	if (hdr.mime2DecodedRecipients) {
+		recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
+	}
+
+	// deal with e-mail without 'To:' headerSwitch to insiders
+	if (recEmail === "" || !recEmail) {
+		recEmail = "(none)";
+	}
 	// custom filename pattern
 	if (emlNameType === 2) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
@@ -209,7 +242,9 @@ function getSubjectForHdr(hdr, dirPath) {
 		// Allow en-US tokens always
 		extendedFilenameFormat = extendedFilenameFormat.replace("${subject}", subj);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${sender}", authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${sender_email}", authEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient}", recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient_email}", recEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${smart_name}", smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
@@ -332,6 +367,7 @@ function IETexport_all_delayed(just_mail, file) {
 		.get("ProfD", Ci.nsIFile);
 	var date = buildContainerDirName();
 	file.append(profDir.leafName + "-" + date);
+
 	file.createUnique(1, 0755);
 	if (just_mail) {
 		profDir.append("Mail");
@@ -346,8 +382,11 @@ function IETexport_all_delayed(just_mail, file) {
 		while (entries.hasMoreElements()) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
-			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock")
+			// console.debug(entry.leafName);
+			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock") {
 				entry.copyTo(file, "");
+			}
+
 		}
 	}
 	var clone = file.clone();
@@ -364,6 +403,7 @@ function saveExternalMailFolders(file) {
 	file.create(1, 0775);
 	var servers = Cc["@mozilla.org/messenger/account-manager;1"]
 		.getService(Ci.nsIMsgAccountManager).allServers;
+	// console.debug(servers);
 
 	var nsIArray;
 	var cntServers;
@@ -378,29 +418,31 @@ function saveExternalMailFolders(file) {
 	}
 	// Scan servers storage path on disk
 	for (var i = 0; i < cntServers; ++i) {
-		if (nsIArray)
+		if (nsIArray) {
 			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
-		else
-			serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-		var parentDir = null;
-		if (serverFile.parent && serverFile.parent.parent)
-			parentDir = serverFile.parent.parent;
-		if (!parentDir || !profDir.equals(parentDir)) {
-			var index = 1;
-			var fname = serverFile.leafName;
-			while (true) {
-				var clone = file.clone();
-				clone.append(fname);
-				if (clone.exists()) {
-					fname = fname + "-" + index.toString();
-					index++;
-				} else {
-					break;
-				}
-			}
-			// The server storage path on disk is outside the profile, so copy it
-			serverFile.copyTo(file, "");
+		} else {
+			let server = servers[i];
+			serverFile = server.localPath;
 		}
+	}
+	var parentDir = null;
+	if (serverFile.parent && serverFile.parent.parent)
+		parentDir = serverFile.parent.parent;
+	if (!parentDir || !profDir.equals(parentDir)) {
+		var index = 1;
+		var fname = serverFile.leafName;
+		while (true) {
+			var clone = file.clone();
+			clone.append(fname);
+			if (clone.exists()) {
+				fname = fname + "-" + index.toString();
+				index++;
+			} else {
+				break;
+			}
+		}
+		// The server storage path on disk is outside the profile, so copy it
+		serverFile.copyTo(file, "");
 	}
 }
 
@@ -454,7 +496,11 @@ function isMbox(file) {
 		var line = {};
 		istream.readLine(line);
 		istream.close();
+		let re = /From \S+@\S+\.\S+/;
+
 		if (line.value.indexOf("From ???@???") === 0)
+			// cleidigh - check for e-mail type format (Forte Agent)
+			// if (re.test(line.value))
 			return 2;
 		var first4chars = line.value.substring(0, 4);
 		if (first4chars !== "From")
@@ -464,17 +510,22 @@ function isMbox(file) {
 	} catch (e) { return 0; }
 }
 
+function emailIsValid(email) {
+	return /\S+@\S+\.\S+/.test(email)
+}
+
 function IETstr_converter(str) {
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
 		if (charset === "")
 			return str;
-		var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-			.createInstance(Ci.nsIScriptableUnicodeConverter);
-		uConv.charset = charset;
-		convStr = uConv.ConvertFromUnicode(str);
+
+		let decoder = new TextDecoder(charset);
+		convStr = decoder.decode(new TextEncoder().encode(str));
+
 	} catch (e) {
+		console.debug(e);
 		return str;
 	}
 	return convStr;
@@ -654,6 +705,8 @@ function IETgetSelectedMessages() {
 		msgs = gFolderDisplay.selectedMessageUris;
 	else
 		msgs = GetSelectedMessages();
+	// console.debug(' constantly selected messages');
+	// console.debug(msgs);
 	return msgs;
 }
 
@@ -810,6 +863,7 @@ function fixPropertyReferenceLabels() {
 function loadTabPage(url, load_localized_page) {
 	if (load_localized_page) {
 
+
 		var tb_locale = null;
 
 		try {
@@ -850,7 +904,7 @@ function loadTabPage(url, load_localized_page) {
 
 		var urlparts = url.split('.');
 		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
-		url = `chrome://mboximport/content/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
+		url = `chrome://mboximport/content/mboximport/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
 	}
 	let tabmail = getMail3Pane();
 

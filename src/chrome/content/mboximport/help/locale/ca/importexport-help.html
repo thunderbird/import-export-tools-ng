@@ -3,112 +3,131 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="chrome://mboximport/content/mboximport/importexport-help.css"
+      type="text/css"
+    />
     <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
     <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
-    <title>Ajuda ImportExportTools NG</title>
+    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <title>Ajuda de ImportExportTools NG</title>
   </head>
   <body>
-    <h2 id="main_help">Guia d&#39;usuari de l&#39;ajuda ImportExportTools NG</h2>
+    <h2 id="main_help">ImportExportTools NG Help-User Guide</h2>
     <p>
-      Es tracta d’un primer inici minimalista d’una guia d’usuari. Evidentment, hi ha molt per afegir. Aquesta
-      pàgina actual es centra en els menús i les noves opcions. S&#39;actualitzarà contínuament en versions
-      posteriors. <br />
+      Es tracta d’un primer començament minimalista d’una guia de l’usuari. Evidentment, hi ha molt per
+      afegir. Aquesta pàgina actual se centra en els menús i les noves opcions. S’actualitzarà contínuament en
+      versions posteriors.<br />
     </p>
-    <h3>Versió 4.1.0: Noves funcions</h3>
+    <h3>Versió 10.0.0: funcions noves: 26 de setembre de 2020</h3>
     <p>
-      - Ajuda / Guia de l&#39;usuari: Totalment localitzada: opció de sufix per als noms de fitxer <br />
-      - Opció de data personalitzada per a noms de fitxers que permeten el temps de pas (com ara la data
-      completa i el format de l&#39;hora) <br />
-      - Utilitzeu la denominació de fitxers personalitzats tant per a fitxers adjunts com per a fitxers
-      adjunts incrustats <br />
-      - Opció de data personalitzada per a noms de fitxers d&#39;índexs <br />
-      - Opció d&#39;utilitzar &quot;Data de recepció&quot; per a nom de fitxer i índex <br />
-      - Tecles de control configurables per l&#39;usuari (dreceres de teclat) <br />
-      - La sortida en PDF ara utilitza les opcions d&#39;impressió globals <br />
-      - Millora de la disposició del fitxer índex HTML <br /><br /><br />
-      S&#39;han solucionat els problemes d&#39;error: <br />
-      - Correcció # 68 per a l&#39;indicador d&#39;adjunt d&#39;índexs <br />
-      - La correcció # 74 de fitxers adjunts d&#39;imatge en línia no exportats <br />
-      - Fixeu el número de control de la cancel·lació 56 en el quadre de diàleg d’importació <br />
-      - Les preferències d&#39;ús 77 per a la sortida de PDF <br />
-      - Ajustaments de neteja de la interfície d&#39;usuari (# 80, # 81, # 82) Variacions del sistema operatiu
-      - @ovari <br />
-      - Correcció de traducció alemanya # 93 - @dipgithub <br />
-      - Correccions de traducció hongaresa - @ovari <br />
-      - Afegiu un fitxer de llicència # 96 que falta <br /><br />
-      Gràcies als usuaris següents per suggeriments de millora i ajuda de prova: <br /><br />
-      - <code class="notranslate">@ovari</code> <br />
-      - <code class="notranslate">@dipgithub</code> <br />
-      - <code class="notranslate">@artofit</code> <br />
-      - <code class="notranslate">@JF1313</code> <br />
-      - <code class="notranslate">@jessejmorrow</code> <br />
-      - <code class="notranslate">@spd2000</code> <br />
-      - <code class="notranslate">@kanlukasz</code> <br />
-      - <code class="notranslate">@razzmatazzz</code> <br />
-      - <code class="notranslate">@triplee</code> <br />
+      - Actualització per compatibilitat 78/68<br />
+      - Noves configuracions regionals: el<br />
+      - Índex de format de data personalitzat<br />
+      - noves fitxes per als noms de fitxer: correu electrònic remitent / destinatari<br />
+      - Utilitzeu `% d &#39;a la capçalera / peu de pàgina de la configuració d&#39;impressió per a una data
+      personalitzada<br /><br /><br />
+      S&#39;han corregit els problemes d&#39;error:<br />
+      - # 118, # 63 S&#39;ha corregit la conversió per a text sense format<br />
+      - # 57 Utilitzeu ForceDBClose per tancar fitxers oberts (corregeix carpetes i missatges)<br />
+      - # 77 Utilitzeu la configuració global per al PDF<br />
+      - # 130 còpies de seguretat programades<br />
+      - # 134 Manejar correctament les banderes de lectura, reenviament i resposta<br /><br /><br />
+      Gràcies a molts! : Veure números<br />
+    </p>
+    <br /><br />
+    <h3>Versió 4.1.0: noves funcions</h3>
+    <p>
+      - Ajuda / Guia de l&#39;usuari: totalment localitzat - Opció de sufix per als noms de fitxer<br />
+      - Opció de data personalitzada per a noms de fitxer que permeten a strftime () com el format de data i
+      hora completes<br />
+      - Utilitzeu noms de fitxers personalitzats tant per als fitxers adjunts com per als fitxers adjunts
+      incrustats<br />
+      - Opció de data personalitzada per als noms de fitxers de l’índex<br />
+      - Opció d&#39;utilitzar &quot;Data de recepció&quot; per al nom de fitxer i l&#39;índex<br />
+      - Tecles d&#39;accés ràpid configurables per l&#39;usuari (dreceres de teclat)<br />
+      - La sortida PDF utilitza ara les opcions d’impressió globals<br />
+      - Disseny de fitxers índex HTML millorat<br /><br /><br />
+      S&#39;han corregit els problemes d&#39;error:<br />
+      - Correcció # 68 per al senyalador de fitxers adjunts d&#39;índex<br />
+      - Solució # 74 per als fitxers adjunts d&#39;imatges en línia que no s&#39;exporten<br />
+      - Corregiu la cancel·lació del gestor # 56 al diàleg d&#39;importació<br />
+      - Preferències d&#39;ús # 77 per a la sortida de PDF<br />
+      - Modificacions de la neteja de la interfície d’usuari (# 80, # 81, # 82) variacions del sistema
+      operatiu - @ovari<br />
+      - Solució de traducció alemanya # 93 - @dipgithub<br />
+      - Solucions de traducció a l&#39;hongarès - @ovari<br />
+      - Afegiu el fitxer de llicència núm. 96 que falta<br /><br />
+      Gràcies als usuaris següents per suggeriments de millora i ajuda per provar:<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code><br />
     </p>
     <h3>Suport:</h3>
     <p>
-      Envieu problemes o sol·licituds de funcions al repositori GitHub de les extensions:
+      Envieu problemes o sol·licituds de funcions al dipòsit GitHub d&#39;extensions:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
-      >
-      <br /><br />
-      En els problemes d&#39;errors, incloure la informació següent per ajudar a resoldre els problemes:
-      <br />
-      - Versió ImportExportTools NG <br />
-      - Versió Thunderbird <br />
-      - Sistema operatiu i versió <br />
-      - Sortida de depuració (còpia des de la consola de depuració - accés amb Control-Shift-J) <br />
-      - Una descripció dels passos que condueixen al problema <br />
+      ><br /><br />
+      Als problemes d&#39;errors, incloeu la informació següent per ajudar-vos a resoldre els problemes:<br />
+      - Versió ImportExportTools NG<br />
+      - Versió Thunderbird<br />
+      - Sistema operatiu i versió<br />
+      - Sortida de depuració (còpia des de la consola de depuració - accés amb Control-Shift-J)<br />
+      - Una descripció dels passos que condueixen al problema<br />
     </p>
-    <h2 id="main_help">ImportExportTools NG visió general i menús</h2>
+    <h2 id="main_help">ImportExportTools NG Visió general i menús</h2>
     <p>
-      ImportExportTools NG és una extensió seguida basada en el treball original de Paolo &quot;Kaosmos&quot;.
-      L’extensió ofereix múltiples funcions d’importació i exportació que admeten diversos formats de fitxer
-      diferents, incloses: Nota: alguns formats no són compatibles amb totes les funcions. <br />
-      - mbox <br />
-      - EML <br />
-      - maildir <br />
-      - HTML <br />
-      - text simple <br />
-      - CSV (valors separats per comes) <br />
-      - PDF <br /><br />
-      Encara que la major part de la funcionalitat de les quals gira entorn dels missatges, també hi ha suport
-      per a la importació i exportació de perfils Thunderbird. A més, les exportacions també poden incloure un
-      fitxer d&#39;índex HTML o CSV. La còpia de seguretat del perfil de Thunderbird és una altra
-      característica. <br />
+      ImportExportTools NG és una extensió de seguiment basada en el treball original de Paolo
+      &quot;Kaosmos&quot;. L&#39;extensió ofereix múltiples funcions d&#39;importació i exportació que admeten
+      diversos formats de fitxer diferents, inclosos: Nota: Alguns formats no són compatibles amb totes les
+      funcions.<br />
+      - mbox<br />
+      - EML<br />
+      - maildir<br />
+      - HTML<br />
+      - text simple<br />
+      - CSV (valors separats per comes)<br />
+      - PDF<br /><br />
+      Tot i que la major part de la funcionalitat gira al voltant dels missatges, també hi ha suport per a la
+      importació i exportació de perfils Thunderbird. A més, les exportacions també poden incloure un fitxer
+      d&#39;índex HTML o CSV. La còpia de seguretat del perfil Thunderbird és una altra característica.<br />
       <p>
-        L’accés a la funcionalitat d’IETng es fa mitjançant diversos menús diferents instal·lats per
-        l’extensió. Les funcions són sensibles al context. S&#39;hi afegeixen menús per a: <br />
-        - Context del pla de carpetes (funcionament de carpeta) <br />
-        - Context de la llista de missatges (missatges seleccionats) <br />
-        - El menú Eines (operacions de carpeta i perfil) <br /><br />
-        Hi ha moltes opcions accessibles a l’entrada afegida a la secció &quot;Eines / Opcions de
-        complement&quot; per a les opcions d’extensió. Cadascun dels menús també té un element de menú Opcions
-        per accedir al diàleg d&#39;opcions. <br />
-        Aquí es documenten les noves opcions, posteriorment es documentarà tot el conjunt.
+        L&#39;accés a la funcionalitat IETng es realitza a través de diversos menús diferents instal·lats per
+        l&#39;extensió. Les funcions són sensibles al context. S&#39;afegeixen menús per a:<br />
+        - El context del panell de carpetes (operació de carpeta)<br />
+        - El context de la llista de missatges (missatges seleccionats)<br />
+        - El menú Eines (operacions de carpeta i perfil)<br /><br />
+        Hi ha moltes opcions accessibles a l&#39;entrada afegida a &quot;Eines / Opcions del complement&quot;
+        per a les opcions d&#39;extensió. Cadascun dels menús també té un element de menú Opcions per accedir
+        al quadre de diàleg d’opcions.<br />
+        Les noves opcions es documenten aquí, tot el conjunt es documentarà posteriorment.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">Funcions del menú contextual de les carpetes</h2>
+    <h2 id="main_menu_help">Funcions del menú contextual de la carpeta</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Element de menú</th>
+          <th>Element del menú</th>
           <th>Descripció de la funció</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Carpeta d&#39;exportació</td>
-          <td>Exporta una sola carpeta a un fitxer de format mbox</td>
+          <td>Exporta la carpeta</td>
+          <td>Exporteu una carpeta única a un fitxer amb format mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporta una sola carpeta a un fitxer amb format de mbox cremallera</td>
+          <td>Exporteu una carpeta única a un fitxer de format mbox comprimit</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -121,20 +140,20 @@
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
             Exporteu una carpeta que inclogui totes les seves subcarpetes a un arbre de missatges en format
-            mbox <br />
+            mbox<br />
             (subdirectoris .sbd)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exporteu una carpeta que inclogui totes les seves subcarpetes a un conjunt de fitxers de format
-            mbox, un per a cada subcarpeta, exportat a una sola carpeta.
+            Exporteu una carpeta que inclogui totes les seves subcarpetes a un conjunt de fitxers en format
+            mbox, una per a cada subcarpeta, exportada a una única carpeta.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Exporteu una carpeta remota (imap) a un fitxer mbox únic.</td>
+          <td>Exporteu una carpeta remota (imap) a un únic fitxer mbox.</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="exportALLMSG"></td>
@@ -143,85 +162,84 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers amb format EML (sense estructura / subcarpetes).
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers en format EML (sense estructura / subcarpetes).<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers en format HTML (sense estructura / subcarpetes).
-            <br />
-            Els fitxers adjunts no s’inclouen. També es crea un fitxer d’índex HTML en què es llisten cada
+            Exporteu els missatges de carpeta com a fitxers de format HTML (sense estructura /
+            subcarpetes).<br />
+            Els fitxers adjunts no estan inclosos. Això també crea un fitxer d&#39;índex HTML que mostra cada
             missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers en format HTML (sense estructura / subcarpetes).
-            <br />
-            Els fitxers adjunts es guarden com a fitxers separats. També es crea un fitxer d’índex HTML en què
-            es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format HTML (sense estructura /
+            subcarpetes).<br />
+            Els fitxers adjunts es desen com a fitxers independents. Això també crea un fitxer d&#39;índex
+            HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com a fitxers en format de text, els fitxers adjunts no
-            s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format de text sense format, els fitxers
+            adjunts no s’inclouen.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exporteu els missatges de la carpeta com a fitxers en format de text, inclosos fitxers adjunts.
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format de text sense format, inclosos els
+            fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com a fitxer de format de text únic, els fitxers adjunts no
-            s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de la carpeta com a un únic fitxer de format de text complet, no
+            s&#39;inclouen els fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exporteu els missatges de carpeta com a fitxer de format de text únic, inclosos fitxers adjunts.
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de la carpeta com a fitxer de format de text únic, inclosos els fitxers
+            adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com un fitxer de format de text CSV (Valors separats per comes),
-            els fitxers adjunts no s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxer de format de text CSV (valors separats per comes);
+            no s&#39;inclouen els fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com un conjunt de fitxers en format PDF, inclosos els fitxers
-            adjunts. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge. <br />
-            Nota: la sortida de PDF no és compatible amb OSX a causa d&#39;un problema del controlador.
+            Exporteu els missatges de la carpeta com a conjunt de fitxers en format PDF, inclosos els fitxers
+            adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.<br />
+            Nota: la sortida PDF no és compatible amb OSX a causa d&#39;un problema amb el controlador.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Crea un fitxer d&#39;índex HTML dels missatges de carpeta (sense exportació de missatges)</td>
+          <td>Crea un fitxer d&#39;índex HTML dels missatges de la carpeta (sense exportar missatges)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Crea un fitxer d&#39;índex CSV dels missatges de carpeta (sense exportació de missatges)</td>
+          <td>Crea un fitxer d&#39;índex CSV dels missatges de carpeta (sense exportar missatges)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -233,7 +251,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Seleccioneu i importeu fitxers de missatges de maildir</td>
+          <td>Seleccioneu i importeu fitxers de missatges maildir</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
@@ -245,40 +263,38 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importeu tots els missatges EML des d’una sola carpeta</td>
+          <td>Importeu tots els missatges EML des d’una única carpeta</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importeu tots els missatges EML des d’una sola carpeta que inclou estructura / subcarpetes</td>
+          <td>
+            Importeu tots els missatges EML des d’una única carpeta, incloses les estructures / subcarpetes
+          </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
-          <td>Copieu la ruta del sistema operatiu de la carpeta seleccionada</td>
+          <td>Copieu la ruta del SO de la carpeta seleccionada</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openFolderPath"></td>
-          <td>Obre la ruta del sistema operatiu de la carpeta seleccionada</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="importSMS"></td>
-          <td>AVÍS: LES FUNCIONS SMS / ANDROID SERAN DEPRECIONADES A LA SEGONA VERSIÓ</td>
+          <td>Obriu el camí del sistema operatiu de la carpeta seleccionada</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
+          <td>Obriu el quadre de diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Obriu la pàgina d’ajuda principal</td>
+          <td>Obriu la pàgina principal d&#39;ajuda</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="message_functions_help">Menú de context de missatges</h2>
+    <h2 id="message_functions_help">Menú contextual del missatge</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Element de menú</th>
+          <th>Element del menú</th>
           <th>Descripció de la funció</th>
         </tr>
       </thead>
@@ -289,23 +305,26 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Desa els missatges seleccionats als fitxers de format EML</td>
+          <td>Deseu els missatges seleccionats als fitxers en format EML</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Desa els missatges seleccionats als fitxers en format HTML</td>
+          <td>Deseu els missatges seleccionats a fitxers en format HTML</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Desa els missatges seleccionats als fitxers en format HTML, inclosos els fitxers adjunts</td>
+          <td>Deseu els missatges seleccionats a fitxers de format HTML, inclosos els fitxers adjunts</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Desa els missatges seleccionats als fitxers en format de text complet</td>
+          <td>Deseu els missatges seleccionats a fitxers de format de text complet</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats a fitxers en format de text inclosos fitxers adjunts</td>
+          <td>
+            Deseu els missatges seleccionats a fitxers de format de text sense format, inclosos els fitxers
+            adjunts
+          </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
@@ -321,7 +340,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Desa els missatges seleccionats als fitxers en format PDF</td>
+          <td>Deseu els missatges seleccionats a fitxers en format PDF</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
@@ -330,36 +349,36 @@
         <tr>
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
-            Desa els missatges com a fitxers amb format EML. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Deseu els missatges com a fitxers en format EML.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Desa els missatges com a fitxers en format HTML. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Deseu els missatges com a fitxers en format HTML.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
-            Deseu els missatges en fitxers de format HTML, inclosos fitxers adjunts <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Deseu els missatges com a fitxers en format HTML, inclosos els fitxers adjunts<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
-            Desa els missatges com a fitxers en format de text <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Deseu els missatges com a fitxers en format de text pla<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
-            Desa els missatges com a fitxers en format de text inclosos fitxers adjunts <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Deseu els missatges com a fitxers de format de text sense format, inclosos els fitxers adjunts<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
@@ -372,31 +391,31 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
-          <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
+          <td>Obriu el quadre de diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
-          <td>Obriu la pàgina d’ajuda principal</td>
+          <td>Obriu la pàgina principal d&#39;ajuda</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="tools_functions_help">Menú d&#39;eines</h2>
+    <h2 id="tools_functions_help">Menú Eines</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Element de menú</th>
+          <th>Element del menú</th>
           <th>Descripció de la funció</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Carpeta d&#39;exportació</td>
-          <td>Exporta una sola carpeta a un fitxer de format mbox</td>
+          <td>Exporta la carpeta</td>
+          <td>Exporteu una carpeta única a un fitxer amb format mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporta una sola carpeta a un fitxer amb format de mbox cremallera</td>
+          <td>Exporteu una carpeta única a un fitxer de format mbox comprimit</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -409,20 +428,20 @@
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
             Exporteu una carpeta que inclogui totes les seves subcarpetes a un arbre de missatges en format
-            mbox <br />
+            mbox<br />
             (subdirectoris .sbd)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exporteu una carpeta que inclogui totes les seves subcarpetes a un conjunt de fitxers de format
-            mbox, un per a cada subcarpeta, exportat a una sola carpeta.
+            Exporteu una carpeta que inclogui totes les seves subcarpetes a un conjunt de fitxers en format
+            mbox, una per a cada subcarpeta, exportada a una única carpeta.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Exporteu una carpeta remota (imap) a un fitxer mbox únic.</td>
+          <td>Exporteu una carpeta remota (imap) a un únic fitxer mbox.</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="exportALLMSG"></td>
@@ -431,85 +450,84 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers amb format EML (sense estructura / subcarpetes).
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers en format EML (sense estructura / subcarpetes).<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers en format HTML (sense estructura / subcarpetes).
-            <br />
-            Els fitxers adjunts no s’inclouen. També es crea un fitxer d’índex HTML en què es llisten cada
+            Exporteu els missatges de carpeta com a fitxers de format HTML (sense estructura /
+            subcarpetes).<br />
+            Els fitxers adjunts no estan inclosos. Això també crea un fitxer d&#39;índex HTML que mostra cada
             missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers en format HTML (sense estructura / subcarpetes).
-            <br />
-            Els fitxers adjunts es guarden com a fitxers separats. També es crea un fitxer d’índex HTML en què
-            es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format HTML (sense estructura /
+            subcarpetes).<br />
+            Els fitxers adjunts es desen com a fitxers independents. Això també crea un fitxer d&#39;índex
+            HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com a fitxers en format de text, els fitxers adjunts no
-            s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format de text sense format, els fitxers
+            adjunts no s’inclouen.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exporteu els missatges de la carpeta com a fitxers en format de text, inclosos fitxers adjunts.
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxers de format de text sense format, inclosos els
+            fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com a fitxer de format de text únic, els fitxers adjunts no
-            s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de la carpeta com a un únic fitxer de format de text complet, no
+            s&#39;inclouen els fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exporteu els missatges de carpeta com a fitxer de format de text únic, inclosos fitxers adjunts.
-            <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de la carpeta com a fitxer de format de text únic, inclosos els fitxers
+            adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exporta els missatges de carpeta com un fitxer de format de text CSV (Valors separats per comes),
-            els fitxers adjunts no s’inclouen. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge.
+            Exporteu els missatges de carpeta com a fitxer de format de text CSV (valors separats per comes);
+            no s&#39;inclouen els fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exporta els missatges de la carpeta com un conjunt de fitxers en format PDF, inclosos els fitxers
-            adjunts. <br />
-            També es crea un fitxer d’índex HTML en què es llisten cada missatge. <br />
-            Nota: la sortida de PDF no és compatible amb OSX a causa d&#39;un problema del controlador.
+            Exporteu els missatges de la carpeta com a conjunt de fitxers en format PDF, inclosos els fitxers
+            adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que mostra cada missatge.<br />
+            Nota: la sortida PDF no és compatible amb OSX a causa d&#39;un problema amb el controlador.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Crea un fitxer d&#39;índex HTML dels missatges de carpeta (sense exportació de missatges)</td>
+          <td>Crea un fitxer d&#39;índex HTML dels missatges de la carpeta (sense exportar missatges)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Crea un fitxer d&#39;índex CSV dels missatges de carpeta (sense exportació de missatges)</td>
+          <td>Crea un fitxer d&#39;índex CSV dels missatges de carpeta (sense exportar missatges)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -533,53 +551,51 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importeu tots els missatges EML des d’una sola carpeta</td>
+          <td>Importeu tots els missatges EML des d’una única carpeta</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importeu tots els missatges EML des d’una sola carpeta que inclou estructura / subcarpetes</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="importSMS"></td>
-          <td>AVÍS: LES FUNCIONS SMS / ANDROID SERAN DEPRECIONADES A LA SEGONA VERSIÓ</td>
+          <td>
+            Importeu tots els missatges EML des d’una única carpeta, incloses les estructures / subcarpetes
+          </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Desa tot el correu al perfil actual</td>
+          <td>Deseu tot el correu al perfil actual</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfile"></td>
-          <td>Desa el perfil complet (correu, extensions i opcions)</td>
+          <td>Deseu el perfil complet (correu electrònic, extensions, opcions)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>Importa un perfil complet (correu electrònic, extensions, opcions)</td>
+          <td>Importeu un perfil complet (correu electrònic, extensions, opcions)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
+          <td>Obriu el quadre de diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Obriu la pàgina d’ajuda principal</td>
+          <td>Obriu la pàgina principal d&#39;ajuda</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">Format de data personalitzat</h2>
     <p>
-      L’opció de data personalitzada permet el control complet sobre la formatació de dates que s’utilitza per
-      als dos fitxers de l’índex. Tant el format predeterminat &quot;Data&quot; com el nou format
-      personalitzat &quot;Data (personalitzat)&quot; estan disponibles al menú desplegable del nom de fitxer.
-      La data personalitzada també es pot utilitzar amb el testimoni $ {date_custom} que es fa servir als noms
-      de fitxers personalitzats estesos. El format de data original (per defecte) és: <br />
-      YYYYMMDDHHmm: 202011060808 <br /><br />
-      El format de data personalitzat utilitza% seqüències que coincideixen amb la funcionalitat Unix like
-      <code>strftime()</code> . Es basa en un port JavaScript de
+      L&#39;opció de data personalitzada permet controlar completament el format de data utilitzat per a tots
+      dos fitxers de l&#39;índex. Tant el format predeterminat &quot;Data&quot; com el nou format
+      personalitzat &quot;Data (personalitzat)&quot; estan disponibles al menú desplegable de noms de fitxer.
+      La data personalitzada també es pot utilitzar amb el testimoni $ {date_custom} utilitzat als noms de
+      fitxer personalitzats ampliats. El format de data original (per defecte) és:<br />
+      AAAAMMDDHHmm: 202011060808<br /><br />
+      El format de data personalitzat utilitza% seqüències que coincideixen amb la funcionalitat de
+      <code>strftime()</code> Unix. Es basa en un port JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , una funció per formatar la data i l&#39;hora. <br />
-      Port of strftime () de TH Doan (https://thdoan.github.io/strftime/) <br />
+      , una funció per formatar la data i l’hora.<br />
+      Port of strftime () de TH Doan (https://thdoan.github.io/strftime/)<br />
     </p>
-    <h3>Descripcions de la seqüència de conversions</h3>
+    <h3>Descripcions de seqüències de conversió</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
@@ -606,19 +622,19 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Representació de data i hora (UTC) preferida per a la configuració regional actual.</td>
+          <td>Representació de data i hora preferides (UTC) per a la configuració regional actual.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Número de segle (any / 100) com a nombre enter de 2 dígits.</td>
+          <td>Número de segle (any / 100) com a enter de 2 dígits.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>Dia del mes en nombre decimal (rang 01 a 31).</td>
+          <td>El dia del mes com a número decimal (rang 01 a 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Dia del mes en nombre decimal (rang 1 a 31).</td>
+          <td>El dia del mes com a número decimal (interval de l&#39;1 al 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
@@ -627,10 +643,10 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Any basat en la norma ISO 8601 amb el segle com a número decimal. L’any de quatre dígits correspon
-            al número de la setmana ISO (vegeu <code class="code1">%V</code> ). Té el mateix format i valor
-            que <code class="code1">%Y</code> , excepte que si el número de la setmana ISO pertany a l&#39;any
-            anterior o el següent, s&#39;utilitza aquell any.
+            Any basat en la norma ISO 8601 amb segle com a nombre decimal. L&#39;any de quatre dígits
+            correspon al número de setmana ISO (vegeu <code class="code1">%V</code> ). Té el mateix format i
+            valor que <code class="code1">%Y</code> , tret que si el número de setmana ISO pertany a l&#39;any
+            anterior o l&#39;any següent, s&#39;utilitza aquest any.
           </td>
         </tr>
         <tr>
@@ -642,32 +658,32 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Hora com un número decimal mitjançant un rellotge de 24 hores (rang 00 a 23). Vegeu també
+            Hora com a número decimal mitjançant un rellotge de 24 hores (rang de 00 a 23). Vegeu també
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Hora com un número decimal mitjançant un rellotge de 12 hores (rang 01 a 12). Vegeu també
+            Hora com a número decimal mitjançant un rellotge de 12 hores (interval de 01 a 12). Vegeu també
             <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>Dia de l&#39;any en nombre decimal (rang 001 a 366).</td>
+          <td>El dia de l&#39;any com a nombre decimal (rang 001 a 366).</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Hora com un número decimal mitjançant un rellotge de 24 hores (entre 0 i 23). Vegeu també
+            Hora com a número decimal mitjançant un rellotge de 24 hores (rang de 0 a 23). Vegeu també
             <code class="code1">%H</code>
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hora com un número decimal mitjançant un rellotge de 12 hores (rang 1 a 12). Vegeu també
+            Hora com a número decimal mitjançant un rellotge de 12 hores (rang d&#39;1 a 12). Vegeu també
             <code class="code1">%I</code>
           </td>
         </tr>
@@ -681,171 +697,180 @@
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minut com a número decimal (rang 00 a 59).</td>
+          <td>Minut com a nombre decimal (rang de 00 a 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
             &quot;AM&quot; o &quot;PM&quot; segons el valor de temps donat. El migdia es tracta de
-            &quot;PM&quot; i la mitjanit com a &quot;AM&quot;.
+            &quot;PM&quot; i la mitjanit com &quot;AM&quot;.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>Com a <code class="code1">%p</code> però en minúscules (&quot;am&quot; o &quot;pm&quot;).</td>
+          <td>Com <code class="code1">%p</code> però en minúscula (&quot;am&quot; o &quot;pm&quot;).</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Nombre de segons des de l&#39;Epoch, 1970-01-01, 00:00:00 +0000 (UTC).</td>
+          <td>Nombre de segons des de l’època, 01-01-1900 00:00:00 +0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Segon com a número decimal (rang 00 a 59).</td>
+          <td>En segon lloc, com a nombre decimal (rang de 00 a 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dia de la setmana en decimal (rang 1 a 7), dilluns 1. Veure també <code class="code1">%w</code> .
+            El dia de la setmana com a decimal (rang 1 a 7), el dilluns és 1. Vegeu també
+            <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Número de setmana ISO 8601 de l&#39;any actual com a nombre decimal (rang 01 a 53), on la setmana
-            1 és la primera setmana que té almenys 4 dies l&#39;any nou (és a dir, el primer dijous).
+            Número de la setmana ISO 8601 de l&#39;any actual com a nombre decimal (rang 01 a 53), on la
+            setmana 1 és la primera setmana que té almenys 4 dies l&#39;any nou (és a dir, el primer dijous).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Dia de la setmana en decimal (rang de 0 a 6), i diumenge és de 0. Vegeu també
+            El dia de la setmana com a decimal (rang de 0 a 6), el diumenge és 0. Vegeu també
             <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Representació de dates preferida per a la configuració actual actual sense hora.</td>
+          <td>Representació de la data preferida per a la configuració regional actual sense l’hora.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Representació horaria preferida per a la configuració local actual sense la data.</td>
+          <td>Representació horària preferida per a la configuració regional actual sense data.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Any com a número decimal sense segle (rang 00 a 99).</td>
+          <td>Any com a nombre decimal sense un segle (rang de 00 a 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>Any com a número decimal inclòs el segle.</td>
+          <td>Any com a nombre decimal inclòs el segle.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            La zona horària numèrica <code class="code1">+hhmm</code> o <code class="code1">-hhmm</code> (és a
-            dir, la compensació d’hora i de minut de la UTC).
+            La zona horària numèrica de <code class="code1">+hhmm</code> o
+            <code class="code1">-hhmm</code> (és a dir, l’horari i el minut de desplaçament respecte a UTC).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%Z</code></td>
-          <td>Nom o abreviació del fus horari</td>
+          <td>Nom o abreviatura de la zona horària.</td>
         </tr>
       </tbody>
     </table>
     <h3>Notes de compatibilitat:</h3>
     <ul>
+      <li><code class="code1">%c</code> : la cadena formatada és lleugerament diferent</li>
       <li>
-        <code class="code1">%c</code> cadena de format <code class="code1">%c</code> és una mica diferent
-      </li>
-      <li>
-        <code class="code1">%D</code> : no implementat (ús <code class="code1">%m/%d/%y</code> o
+        <code class="code1">%D</code> : no implementat (utilitzeu <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - espai no s&#39;ha afegit</li>
-      <li><code class="code1">%E</code> : no implementat</li>
-      <li><code class="code1">%h</code> : no implementat (ús <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - l&#39;espai no s&#39;ha afegit</li>
+      <li>No s&#39;afegeix <code class="code1">%e</code> - space</li>
+      <li><code class="code1">%E</code> : no s&#39;ha implementat</li>
+      <li><code class="code1">%h</code> : no implementat (utilitzeu <code class="code1">%b</code> )</li>
+      <li>No s&#39;afegeix <code class="code1">%k</code> - espai</li>
       <li>
-        <code class="code1">%n</code> - com <code class="code1">%m</code> , però no hi ha cap zero inicial
+        <code class="code1">%n</code> : com <code class="code1">%m</code> , però no hi ha zero inicial
         (utilitzeu <code class="code1">\n</code> per a la línia nova)
       </li>
-      <li><code class="code1">%O</code> : no implementat</li>
-      <li><code class="code1">%r</code> : no implementat (ús <code class="code1">%I:%M:%S %p</code> )</li>
+      <li><code class="code1">%O</code> : no s&#39;ha implementat</li>
+      <li>
+        <code class="code1">%r</code> - no implementat (utilitzeu <code class="code1">%I:%M:%S %p</code> )
+      </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>L’assumpte del missatge</td>
       </tr>
-      <li><code class="code1">%R</code> : no implementat (ús <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> : no implementat (ús <code class="code1">\t</code> )</li>
-      <li><code class="code1">%T</code> : no implementat (ús <code class="code1">%H:%M:%S</code> )</li>
-      <li><code class="code1">%U</code> : no implementat</li>
+      <li><code class="code1">%R</code> - no implementat (utilitzeu <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - no implementat (utilitza <code class="code1">\t</code> )</li>
+      <li><code class="code1">%T</code> : no implementat (utilitzeu <code class="code1">%H:%M:%S</code> )</li>
+      <li><code class="code1">%U</code> : no s&#39;ha implementat</li>
       <li><code class="code1">%W</code> : no implementat</li>
-      <li><code class="code1">%+</code> : no implementat</li>
-      <li><code class="code1">%%</code> : no implementat (ús <code class="code1">%</code> )</li>
+      <li><code class="code1">%+</code> : no s&#39;ha implementat</li>
+      <li><code class="code1">%%</code> - no implementat (utilitza <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
-    <h2 id="ext_filename_format_help">Format de nom de fitxer estès:</h2>
+    <h2 id="ext_filename_format_help">Format de nom de fitxer ampliat:</h2>
     <br />
     <p>
-      El format de nom de fitxer ampliat utilitza fitxes. El nom de fitxer exacte es pot crear utilitzant els
-      testimonis i qualsevol text o nom de fitxer. Els tokens anglesos (als Estats Units) estan disponibles en
-      qualsevol local. Els tokens específics locals també estan disponibles i llistats a sota de la taula en
-      anglès. <br /><br />
-      Exemples: <br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - El format per defecte <br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Utilitzeu el format
-      de data personalitzat en lloc de predeterminat <br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Amb algun text
-      personalitzat <br /><br /><br />
+      El format ampliat del nom del fitxer utilitza fitxes. El nom de fitxer exacte es pot construir
+      utilitzant les fitxes, així com qualsevol text o caràcters de nom de fitxer vàlids. Les fitxes en anglès
+      (en-US) estan disponibles en qualsevol configuració regional. També hi ha disponibles fitxes
+      específiques locals que es mostren a la taula anglesa.<br /><br />
+      Exemples:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> : el format predeterminat<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : utilitzeu el format
+      de data personalitzat en lloc del predeterminat<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Amb text
+      personalitzat<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
-        <td>Fitxa</td>
+        <td>Testimoni</td>
         <td>Descripció</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>L’assumpte del missatge. La durada pot estar limitada per l’opció de longitud del tema.</td>
+        <td>L’assumpte del missatge. La longitud pot estar limitada per l&#39;opció de longitud del tema.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td>El nom del remitent de missatges.</td>
+        <td>El nom del remitent del missatge.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td>El nom del destinatari del missatge.</td>
       </tr>
       <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>L&#39;adreça de correu electrònic del remitent del missatge.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>L&#39;adreça de correu electrònic del destinatari del missatge.</td>
+      </tr>
+      <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
         <td>
-          Els destinataris si el missatge es troba en una carpeta Sent, en cas contrari, el nom de l’enviador
+          Els destinataris si el missatge es troba a una carpeta Enviats, en cas contrari, el nom del remitent
         </td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td>Número d&#39;índex de missatges.</td>
+        <td>El número d&#39;índex del missatge.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>El valor de l&#39;opció de text prefixat.</td>
+        <td>El valor de l&#39;opció de text del prefix.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>El valor de l&#39;opció text del sufix.</td>
+        <td>El valor de l&#39;opció de text de sufix.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>El format de data estàndard. El format per defecte és: YYYYMMDDHHmm</td>
+        <td>El format de data estàndard. El format per defecte és: AAAAMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>El format de data personalitzat Consulteu la secció de format de dates personalitzades.</td>
+        <td>El format de data personalitzat. Consulteu la secció de format de data personalitzada.</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Token (a EUA)</td>
-        <td>Localitzat ( <span id="locale1"></span> ) Fitxa</td>
+        <td>Token (en-US)</td>
+        <td>Localitzat (<span id="locale1"></span> ) Testimoni</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -858,6 +883,14 @@
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td><code property-text-ref="recipientFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -887,85 +920,81 @@
     <br />
     <h2>Preferències noves i experimentals (opcions)</h2>
     <p>
-      Hi ha diverses funcions i opcions noves que encara no es poden configurar al diàleg d&#39;opcions. Un
-      cop estabilitzades aquestes funcions, s’afegiran a la IU. <br />
-      Per poder utilitzar-los, s&#39;han d&#39;establir dins de l&#39;Editor de configuració. Per accedir a
-      l&#39;editor, utilitzeu el menú Eines / Opcions, seleccioneu la secció Avançada i hi haurà un botó
-      &quot;Config Editor&quot; a la part inferior. Si escriviu &quot;importexporttoolsng&quot; a la barra de
-      cerca obtindreu totes les preferències d&#39;extensió. A continuació, podeu editar les diverses
-      preferències que calgui.
+      Hi ha diverses funcions i opcions noves que encara no es poden configurar al quadre de diàleg
+      d&#39;opcions. Un cop estabilitzades aquestes funcions, s&#39;afegiran a la interfície d&#39;usuari.<br />
+      Per utilitzar-los, cal establir-los a l&#39;Editor de configuració. Per accedir a l&#39;editor,
+      utilitzeu el menú Eines / Opcions i seleccioneu la secció Avançada i hi haurà un botó &quot;Config
+      Editor&quot; a la part inferior. Si escriviu &quot;importexporttoolsng&quot; a la barra de cerca,
+      obtindreu totes les preferències d&#39;extensió. A continuació, podeu editar les diverses preferències
+      que apareixen a continuació, segons calgui.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Aquesta preferència segueix el mateix format complet que s&#39;utilitzarà per als fitxers índex. Per
-      defecte, és una cadena buida, si hi ha una cadena de data / hora formatada, llavors canviarà el format
-      de data d&#39;índex.
+      Aquesta preferència segueix el mateix format complet que s&#39;utilitzarà per als fitxers d&#39;índex.
+      Per defecte, és una cadena buida, si amb una cadena de data / hora formatada, canviarà el format de data
+      de l’índex.
     </p>
     <p>
-      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
     </p>
     <p>
-      <code class="notranslate"
-        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
-      >
-    </p>
-    <p>
-      Ambdues preferències utilitzen el mateix tipus de formats de denominació de fitxers estès que utilitza
-      el nom de fitxer de missatges exportats. El primer és per a fitxers adjunts externs, el segon per a
-      fitxers adjunts incrustats.
+      Ambdues preferències fan servir el mateix tipus de formats de noms de fitxers ampliats que utilitza el
+      nom de fitxer dels missatges exportats. El primer és per als fitxers adjunts externs, el segon és per
+      als fitxers adjunts incrustats (en línia).
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Normalment la &quot;Data&quot; per a un missatge a Thunderbird és la data establerta pel client de
-      correu del remitent. Si seleccioneu aquesta opció com a veritable, s&#39;utilitza la data de recepció al
-      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxers com per a
-      la data dels fitxers d&#39;índexs.
+      Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
+      correu del remitent. Si configureu aquesta opció com a &quot;cert&quot;, s&#39;utilitza la data de
+      recepció al client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxers
+      com per a la data dels fitxers d&#39;índex.
     </p>
-    <h2>Funció bàsica, de tecla directa (dreceres) global</h2>
+    <h2>Funció de tecla d&#39;accés directe global (dreceres) bàsica</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Aquesta nova preferència permet a l’usuari configurar fins a 10 dreceres de teclat. Les dreceres poden
-      realitzar la majoria de les funcions ImportExportTools NG i altres funcions del Thunderbird. La cadena
-      de preferències està formatada com un objecte formatat per JSON. El format i les tecles són els
-      següents:
+      Aquesta nova preferència permet a l&#39;usuari configurar fins a 10 dreceres de teclat. Les dreceres
+      poden realitzar la majoria de les funcions ImportExportTools NG, així com altres funcions del
+      Thunderbird. La cadena de preferències té el format d&#39;un objecte formatat JSON. El format i les
+      claus són els següents:
     </p>
     <p>
-      Exemple d’entrades de claus en calent (matriu d’objectes JSON) <br /><br />
-      <code class="notranslate">id</code> : l&#39;índex de la clau (1-10) <br />
-      <code class="notranslate">key</code> : la clau (caràcter únic) <br />
-      <code class="notranslate">keycode</code> clau: el codi de defunció &#39;VK_ *&#39; <br />
-      Es poden incloure les claus o les claus, però no les dues <br />
-      <code class="notranslate">modifiers</code> : els modificadors de claus, llista separada per l&#39;espai
-      (&quot;control&quot;, &quot;shift&quot;, &quot;alt&quot;, &quot;accel&quot;) <br />
-      <code class="notranslate">oncommand</code> : una cadena d’ordres directes <br />
-      <code class="notranslate">contexts</code> : el context de la finestra on està activa la clau <br />
-      <code class="notranslate">&#39;all&#39;</code> : totes les finestres de missatgeria, redacció, cerca
-      <br />
+      Exemple d&#39;entrades de tecles d&#39;accés directe (matriu d&#39;objectes JSON)<br /><br />
+      <code class="notranslate">id</code> : índex de claus (1-10)<br />
+      <code class="notranslate">key</code> : la tecla (caràcter únic)<br />
+      <code class="notranslate">keycode</code> : el <code class="notranslate">keycode</code> clau de cerca
+      &quot;VK_ *&quot;<br />
+      Es pot incloure una clau o un codi de clau, però no tots dos<br />
+      <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
+      (&#39;control&#39;, &#39;majúscula&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directa<br />
+      <code class="notranslate">contexts</code> : el context de la finestra on la tecla està activa<br />
+      <code class="notranslate">&#39;all&#39;</code> : totes les finestres de Messenger, redacció, cerca<br />
       <code class="notranslate">&#39;messenger&#39;</code> : la finestra principal del missatger i els seus
-      descendents <br />
-      <code class="notranslate">&#39;compose&#39;</code> - la finestra de redacció del missatge <br />
-      <code class="notranslate">&#39;search&#39;</code> : el diàleg de cerca <br /><br />
+      descendents<br />
+      <code class="notranslate">&#39;compose&#39;</code> : la finestra de redacció del missatge<br />
+      <code class="notranslate">&#39;search&#39;</code> : el diàleg de cerca<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
         &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
-        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
         &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
@@ -974,16 +1003,14 @@
         &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
         &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot; }]</code
-      >
-      <br />
+      ><br />
     </p>
     <p>
-      Com que les dreceres siguin noves i experimentals, també afegiré més documentació al dipòsit. Comproveu
-      l’extensió
+      Com que les dreceres són noves i experimentals, també afegiré més documentació al dipòsit. Comproveu
+      l&#39;extensió
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
-      >
-      <br />
+      ><br />
     </p>
     <br />
   </body>

@@ -1,2 +1,2 @@
 
-setupHotKeys('compose');
+// setupHotKeys('compose');

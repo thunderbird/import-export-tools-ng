@@ -2,6 +2,23 @@
 
 ## Versions
 
+Version 10.0.0 : New Features - September 26, 2020
+
+- New locales: el
+- Index custom date format
+- new tokens for filenames : sender/recipient e-mail
+- Use `%d` in print settings header/footer for custom date
+
+Bug Issues Fixed:
+- #118, #63 Fixed conversion for plaintext
+- #57 Use ForceDBClose to Close open files (fixes folders and messages)
+- #77 Use global settings for PDF
+- #130 scheduled backups
+- #134 Correctly handle read, forwarded, replied flags
+
+Thanks to many! : See issues
+
+
 Version 4.1.0 : New Features - April 1, 2020
 
 - Help/User guide : Fully localized

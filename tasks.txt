@@ -1,0 +1,28 @@
+
+
+Current Beta:  
+
+
+Status:
+- Starting process
+
+Current Work:
+
+
+Initial Tasks:
+
+- [x] - Branch, tracking issue
+- [ ] - Update build scripts
+- [ ] - Reread WindowListenerAPI, download
+- [ ] - Fix versions
+
+Main Conversion Tasks:
+
+- [ ] - Inspect/convert chrome.manifest -
+- [ ] - Inspect/convert manifest.json -
+- [ ] - 
+- [ ] - 
+
+
+Cleanup/Release Tasks:
+- [ ] - 

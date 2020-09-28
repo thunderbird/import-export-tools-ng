@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="chrome://mboximport/content/importexport-help.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="chrome://mboximport/content/mboximport/importexport-help.css"
+      type="text/css"
+    />
     <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
     <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/help.js"></script>
+    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
     <title>ImportExportTools NG-Hilfe</title>
   </head>
   <body>
@@ -14,77 +18,94 @@
     <p>
       Dies ist ein minimalistischer erster Start eines Benutzerhandbuchs. Es gibt offensichtlich viel
       hinzuzufügen. Diese aktuelle Seite konzentriert sich auf die Menüs und neuen Optionen. Es wird in
-      nachfolgenden Versionen ständig aktualisiert. <br />
+      nachfolgenden Versionen ständig aktualisiert.<br />
     </p>
+    <h3>Version 10.0.0: Neue Funktionen - 26. September 2020</h3>
+    <p>
+      - Upgrade für 78/68 Kompatibilität<br />
+      - Neue Gebietsschemas: el<br />
+      - Benutzerdefiniertes Datumsformat indizieren<br />
+      - Neue Token für Dateinamen: Absender / Empfänger-E-Mail<br />
+      - Verwenden Sie &quot;% d&quot; in der Kopf- / Fußzeile der Druckeinstellungen für ein
+      benutzerdefiniertes Datum<br /><br /><br />
+      Fehler behoben:<br />
+      - # 118, # 63 Feste Konvertierung für Klartext<br />
+      - # 57 Verwenden Sie ForceDBClose, um geöffnete Dateien zu schließen (korrigiert Ordner und
+      Nachrichten)<br />
+      - # 77 Verwenden Sie globale Einstellungen für PDF<br />
+      - # 130 geplante Backups<br />
+      - # 134 Lesen, weiterleiten, beantwortete Flags korrekt behandeln<br /><br /><br />
+      Vielen Dank an viele! : Siehe Probleme<br />
+    </p>
+    <br /><br />
     <h3>Version 4.1.0: Neue Funktionen</h3>
     <p>
-      - Hilfe / Benutzerhandbuch: Vollständig lokalisiert - Suffix-Option für Dateinamen <br />
+      - Hilfe / Benutzerhandbuch: Vollständig lokalisiert - Suffix-Option für Dateinamen<br />
       - Benutzerdefinierte Datumsoption für Dateinamen, die strftime () wie die vollständige Formatierung von
-      Datum und Uhrzeit ermöglichen <br />
-      - Verwenden Sie benutzerdefinierte Dateinamen für Anhänge und eingebettete Anhänge <br />
-      - Benutzerdefinierte Datumsoption für Indexdateinamen <br />
-      - Option zur Verwendung von &#39;Empfangsdatum&#39; für Dateiname und Index <br />
-      - Vom Benutzer konfigurierbare Hotkeys (Tastaturkürzel) <br />
-      - Die PDF-Ausgabe verwendet jetzt die globalen Druckoptionen <br />
-      - Verbessertes Layout der HTML-Indexdatei <br /><br /><br />
-      Fehler behoben: <br />
-      - # 68 Fix für Index-Anhang-Flag <br />
-      - # 74 Fix für nicht exportierte Inline-Bildanhänge <br />
-      - Fix # 56 Handle Cancel im Importdialog behoben <br />
-      - # 77 verwendet Einstellungen für die PDF-Ausgabe <br />
-      - Optimierungen der Benutzeroberfläche (# 80, # 81, # 82) Betriebssystemvariationen - @ovari <br />
-      - Deutscher Übersetzungsfix # 93 - @dipgithub <br />
-      - Ungarische Übersetzungskorrekturen - @ovari <br />
-      - Fügen Sie die fehlende Lizenzdatei Nr. 96 hinzu <br /><br />
-      Vielen Dank an die folgenden Benutzer für Verbesserungsvorschläge und Testhilfe: <br /><br />
-      - <code class="notranslate">@ovari</code> <br />
-      - <code class="notranslate">@dipgithub</code> <br />
-      - <code class="notranslate">@artofit</code> <br />
-      - <code class="notranslate">@JF1313</code> <br />
-      - <code class="notranslate">@jessejmorrow</code> <br />
-      - <code class="notranslate">@spd2000</code> <br />
-      - <code class="notranslate">@kanlukasz</code> <br />
-      - <code class="notranslate">@razzmatazzz</code> <br />
-      - <code class="notranslate">@triplee</code> <br />
+      Datum und Uhrzeit ermöglichen<br />
+      - Verwenden Sie benutzerdefinierte Dateinamen sowohl für Anhänge als auch für eingebettete Anhänge<br />
+      - Benutzerdefinierte Datumsoption für Indexdateinamen<br />
+      - Option zur Verwendung von &#39;Empfangsdatum&#39; für Dateiname und Index<br />
+      - Vom Benutzer konfigurierbare Hotkeys (Tastaturkürzel)<br />
+      - Die PDF-Ausgabe verwendet jetzt die globalen Druckoptionen<br />
+      - Verbessertes Layout der HTML-Indexdatei<br /><br /><br />
+      Fehler behoben:<br />
+      - # 68 Fix für Index-Anhang-Flag<br />
+      - # 74 Fix für nicht exportierte Inline-Bildanhänge<br />
+      - Fix # 56 Handle Cancel im Importdialog behoben<br />
+      - # 77 verwendet Einstellungen für die PDF-Ausgabe<br />
+      - Optimierungen der Benutzeroberfläche (# 80, # 81, # 82) - @ovari<br />
+      - Deutscher Übersetzungsfix # 93 - @dipgithub<br />
+      - Ungarische Übersetzungskorrekturen - @ovari<br />
+      - Fügen Sie die fehlende Lizenzdatei Nr. 96 hinzu<br /><br />
+      Vielen Dank an die folgenden Benutzer für Verbesserungsvorschläge und Testhilfe:<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code><br />
     </p>
     <h3>Unterstützung:</h3>
     <p>
       Bitte posten Sie Probleme oder Funktionsanforderungen im GitHub-Repository für Erweiterungen:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
-      >
-      <br /><br />
-      Geben Sie bei Fehlerproblemen die folgenden Informationen an, um die Probleme zu beheben: <br />
-      - ImportExportTools NG-Version <br />
-      - Thunderbird-Version <br />
-      - Betriebssystem und Version <br />
-      - Debug-Ausgabe (Kopie von der Debug-Konsole - Zugriff mit Control-Shift-J) <br />
-      - Eine Beschreibung der Schritte, die zum Problem führen <br />
+      ><br /><br />
+      Geben Sie bei Fehlerproblemen die folgenden Informationen an, um die Probleme zu beheben:<br />
+      - ImportExportTools NG-Version<br />
+      - Thunderbird-Version<br />
+      - Betriebssystem und Version<br />
+      - Debug-Ausgabe (Kopie von der Debug-Konsole - Zugriff mit Control-Shift-J)<br />
+      - Eine Beschreibung der Schritte, die zum Problem führen<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Übersicht und Menüs</h2>
     <p>
       ImportExportTools NG ist eine Folgeerweiterung, die auf der Originalarbeit von Paolo &quot;Kaosmos&quot;
       basiert. Die Erweiterung bietet mehrere Import- und Exportfunktionen, die verschiedene Dateiformate
-      unterstützen, darunter: Hinweis: Einige Formate werden nicht in allen Funktionen unterstützt. <br />
-      - mbox <br />
-      - EML <br />
-      - Maildir <br />
-      - HTML <br />
-      - Klartext <br />
-      - CSV (Comma Separated Values) <br />
-      - PDF <br /><br />
+      unterstützen, darunter: Hinweis: Einige Formate werden nicht in allen Funktionen unterstützt.<br />
+      - mbox<br />
+      - EML<br />
+      - Maildir<br />
+      - HTML<br />
+      - Klartext<br />
+      - CSV (Comma Separated Values)<br />
+      - PDF<br /><br />
       Während sich die meisten Funktionen für Nachrichten drehen, wird auch der Import und Export von
       Thunderbird-Profilen unterstützt. Zusätzlich können Exporte auch eine HTML- oder CSV-Indexdatei
-      enthalten. Die Sicherung des Thunderbird-Profils ist eine weitere Funktion. <br />
+      enthalten. Die Sicherung des Thunderbird-Profils ist eine weitere Funktion.<br />
       <p>
         Der Zugriff auf die IETng-Funktionalität erfolgt über verschiedene Menüs, die von der Erweiterung
-        installiert werden. Die Funktionen sind kontextsensitiv. Menüs werden hinzugefügt für: <br />
-        - Der Kontext des Ordnerbereichs (Ordneroperation) <br />
-        - Der Nachrichtenlistenkontext (ausgewählte Nachrichten) <br />
-        - Das Menü Extras (Ordner- und Profiloperationen) <br /><br />
+        installiert werden. Die Funktionen sind kontextsensitiv. Menüs werden hinzugefügt für:<br />
+        - Der Kontext des Ordnerbereichs (Ordneroperation)<br />
+        - Der Nachrichtenlistenkontext (ausgewählte Nachrichten)<br />
+        - Das Menü Extras (Ordner- und Profiloperationen)<br /><br />
         Es gibt viele Optionen, auf die unter dem hinzugefügten Eintrag unter &quot;Extras /
         Add-On-Optionen&quot; für die Erweiterungsoptionen zugegriffen werden kann. Jedes der Menüs verfügt
-        außerdem über einen Menüpunkt Optionen, um auf den Optionsdialog zuzugreifen. <br />
+        außerdem über einen Menüpunkt Optionen, um auf den Optionsdialog zuzugreifen.<br />
         Die neuen Optionen werden hier dokumentiert, der gesamte Satz wird anschließend dokumentiert.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
@@ -113,7 +134,7 @@
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportieren Sie einen Ordner mit allen Unterordnern in einen Nachrichtenbaum im Mbox-Format <br />
+            Exportieren Sie einen Ordner mit allen Unterordnern in einen Nachrichtenbaum im Mbox-Format<br />
             (.sbd-Unterverzeichnisse)
           </td>
         </tr>
@@ -135,16 +156,15 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im EML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im EML-Format (keine Struktur / Unterordner).<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur /
+            Unterordner).<br />
             Anhänge sind nicht enthalten. Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede
             Nachricht aufgelistet ist.
           </td>
@@ -152,8 +172,8 @@
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur /
+            Unterordner).<br />
             Anhänge werden als separate Dateien gespeichert. Dadurch wird auch eine HTML-Indexdatei erstellt,
             in der jede Nachricht aufgelistet ist.
           </td>
@@ -161,16 +181,15 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat. Anhänge sind nicht enthalten.
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat. Anhänge sind nicht
+            enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen.
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -178,7 +197,7 @@
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat. Anhänge sind nicht
-            enthalten. <br />
+            enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -186,7 +205,7 @@
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat, einschließlich
-            Anhängen. <br />
+            Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -194,7 +213,7 @@
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne CSV-Textformatdatei (Comma Separated Values).
-            Anhänge sind nicht enthalten. <br />
+            Anhänge sind nicht enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -202,8 +221,8 @@
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als eine Reihe von Dateien im PDF-Format, einschließlich
-            Anhängen. <br />
-            Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist. <br />
+            Anhängen.<br />
+            Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.<br />
             Hinweis: Die PDF-Ausgabe wird unter OSX aufgrund eines Treiberproblems nicht unterstützt.
           </td>
         </tr>
@@ -227,7 +246,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Wählen Sie Maildir-Nachrichtendateien aus und importieren Sie sie</td>
+          <td>Wählen Sie die Maildir-Nachrichtendateien aus und importieren Sie sie</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
@@ -255,10 +274,6 @@
         <tr>
           <td dtd-text-id-ref="openFolderPath"></td>
           <td>Öffnen Sie den Betriebssystempfad des ausgewählten Ordners</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="importSMS"></td>
-          <td>HINWEIS: DIE SMS / ANDROID-FUNKTIONEN WERDEN IN DER NÄCHSTEN VERSION VERRINGERT</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
@@ -331,35 +346,35 @@
         <tr>
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
-            Speichern Sie die Nachrichten als Dateien im EML-Format. <br />
+            Speichern Sie die Nachrichten als Dateien im EML-Format.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Speichern Sie die Nachrichten als Dateien im HTML-Format. <br />
+            Speichern Sie die Nachrichten als Dateien im HTML-Format.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
-            Speichern Sie die Nachrichten als Dateien im HTML-Format einschließlich Anhängen <br />
+            Speichern Sie die Nachrichten als Dateien im HTML-Format einschließlich Anhängen<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
-            Speichern Sie die Nachrichten als Dateien im Klartextformat <br />
+            Speichern Sie die Nachrichten als Dateien im Klartextformat<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
-            Speichern Sie die Nachrichten als Dateien im Klartextformat einschließlich Anhängen <br />
+            Speichern Sie die Nachrichten als Dateien im Klartextformat einschließlich Anhängen<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -406,7 +421,7 @@
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportieren Sie einen Ordner mit allen Unterordnern in einen Nachrichtenbaum im Mbox-Format <br />
+            Exportieren Sie einen Ordner mit allen Unterordnern in einen Nachrichtenbaum im Mbox-Format<br />
             (.sbd-Unterverzeichnisse)
           </td>
         </tr>
@@ -428,16 +443,15 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im EML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im EML-Format (keine Struktur / Unterordner).<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur /
+            Unterordner).<br />
             Anhänge sind nicht enthalten. Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede
             Nachricht aufgelistet ist.
           </td>
@@ -445,8 +459,8 @@
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur / Unterordner).
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im HTML-Format (keine Struktur /
+            Unterordner).<br />
             Anhänge werden als separate Dateien gespeichert. Dadurch wird auch eine HTML-Indexdatei erstellt,
             in der jede Nachricht aufgelistet ist.
           </td>
@@ -454,16 +468,15 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat. Anhänge sind nicht enthalten.
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat. Anhänge sind nicht
+            enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen.
-            <br />
+            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -471,7 +484,7 @@
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat. Anhänge sind nicht
-            enthalten. <br />
+            enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -479,7 +492,7 @@
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat, einschließlich
-            Anhängen. <br />
+            Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -487,7 +500,7 @@
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als einzelne CSV-Textformatdatei (Comma Separated Values).
-            Anhänge sind nicht enthalten. <br />
+            Anhänge sind nicht enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.
           </td>
         </tr>
@@ -495,8 +508,8 @@
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
             Exportieren Sie die Ordnernachrichten als eine Reihe von Dateien im PDF-Format, einschließlich
-            Anhängen. <br />
-            Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist. <br />
+            Anhängen.<br />
+            Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgelistet ist.<br />
             Hinweis: Die PDF-Ausgabe wird unter OSX aufgrund eines Treiberproblems nicht unterstützt.
           </td>
         </tr>
@@ -542,10 +555,6 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="importSMS"></td>
-          <td>HINWEIS: DIE SMS / ANDROID-FUNKTIONEN WERDEN IN DER NÄCHSTEN VERSION VERRINGERT</td>
-        </tr>
-        <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
           <td>Speichern Sie alle E-Mails im aktuellen Profil</td>
         </tr>
@@ -574,13 +583,13 @@
       neue benutzerdefinierte Format &quot;Datum (benutzerdefiniert)&quot; sind in den Dropdown-Listen für
       Dateinamen verfügbar. Das benutzerdefinierte Datum kann auch mit dem Token $ {date_custom} verwendet
       werden, das in den erweiterten benutzerdefinierten Dateinamen verwendet wird. Das ursprüngliche
-      (Standard-) Datumsformat lautet: <br />
-      JJJJMMTTHHmm: 202011060808 <br /><br />
-      Das benutzerdefinierte Datumsformat verwendet% Sequenzen, die der Unix-ähnlichen Funktionalität von
-      <code>strftime()</code> . Es basiert auf einem JavaScript-Port von
+      (Standard-) Datumsformat lautet:<br />
+      JJJJMMTTHHmm: 202011060808<br /><br />
+      Das benutzerdefinierte Datumsformat verwendet% -Sequenzen, die mit der Unix-ähnlichen Funktion
+      <code>strftime()</code> übereinstimmen. Es basiert auf einem JavaScript-Port von
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , einer Funktion zum Formatieren von Datum und Uhrzeit. <br />
-      Port of strftime () von TH Doan (https://thdoan.github.io/strftime/) <br />
+      , einer Funktion zum Formatieren von Datum und Uhrzeit.<br />
+      Port of strftime () von TH Doan (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Beschreibungen der Konvertierungssequenzen</h3>
     <table class="dateformat-table">
@@ -706,7 +715,7 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Sekunde als Dezimalzahl (Bereich 00 bis 59).</td>
+          <td>Zweitens als Dezimalzahl (Bereich 00 bis 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
@@ -758,7 +767,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>Hinweise zur Kompatibilität:</h3>
+    <h3>Kompatibilitätshinweise:</h3>
     <ul>
       <li><code class="code1">%c</code> - formatierte Zeichenfolge unterscheidet sich geringfügig</li>
       <li>
@@ -795,14 +804,14 @@
     <p>
       Bei der Formatierung des erweiterten Dateinamens werden Token verwendet. Der genaue Dateiname kann unter
       Verwendung der Token sowie aller Text- oder gültigen Dateinamenzeichen erstellt werden. Die englischen
-      (en-US) Token sind in jedem Gebietsschema verfügbar. Länderspezifische Token sind ebenfalls verfügbar
-      und unter der englischen Tabelle aufgeführt. <br /><br />
-      Beispiele: <br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Das Standardformat <br />
+      (en-US) Token sind in jedem Gebietsschema verfügbar. Gebietsschemaspezifische Token sind ebenfalls
+      verfügbar und unter der englischen Tabelle aufgeführt.<br /><br />
+      Beispiele:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Das Standardformat<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Verwenden Sie das
-      benutzerdefinierte Datumsformat anstelle des Standardformats <br />
+      benutzerdefinierte Datumsformat anstelle des Standardformats<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Mit
-      benutzerdefiniertem Text <br /><br /><br />
+      benutzerdefiniertem Text<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
@@ -820,6 +829,14 @@
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td>Der Name des Nachrichtenempfängers.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>Die E-Mail-Adresse des Absenders der Nachricht.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>Die E-Mail-Adresse des Nachrichtenempfängers.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -855,7 +872,7 @@
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
-        <td>Lokalisiert ( <span id="locale1"></span> ) Zeichen</td>
+        <td>Lokalisiert (<span id="locale1"></span> ) Zeichen</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -868,6 +885,14 @@
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
         <td><code property-text-ref="recipientFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -898,26 +923,26 @@
     <h2>Neue und experimentelle Einstellungen (Optionen)</h2>
     <p>
       Es gibt mehrere neue Funktionen und Optionen, die im Optionsdialog noch nicht konfiguriert werden
-      können. Sobald diese Funktionen stabilisiert sind, werden sie der Benutzeroberfläche hinzugefügt. <br />
+      können. Sobald diese Funktionen stabilisiert sind, werden sie der Benutzeroberfläche hinzugefügt.<br />
       Um sie verwenden zu können, müssen sie im Konfigurationseditor festgelegt werden. Um auf den Editor
-      zuzugreifen, verwenden Sie das Menü Extras / Optionen und wählen Sie den Abschnitt Erweitert aus. Unten
-      befindet sich die Schaltfläche &quot;Konfigurationseditor&quot;. Wenn Sie &#39;importexporttoolsng&#39;
-      in die Suchleiste eingeben, werden alle Erweiterungseinstellungen angezeigt. Sie können dann die
-      folgenden Einstellungen nach Bedarf bearbeiten.
+      zuzugreifen, verwenden Sie das Menü Extras / Optionen. Wählen Sie dann den Abschnitt Erweitert aus.
+      Unten befindet sich die Schaltfläche &quot;Konfigurationseditor&quot;. Wenn Sie
+      &#39;importexporttoolsng&#39; in die Suchleiste eingeben, werden alle Erweiterungseinstellungen
+      angezeigt. Sie können dann die folgenden Einstellungen nach Bedarf bearbeiten.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
       Diese Einstellung folgt der gleichen vollständigen Formatierung, die für die Indexdateien verwendet
       wird. Es ist standardmäßig eine leere Zeichenfolge. Wenn Sie eine formatierte Datums- / Zeitzeichenfolge
-      verwenden, ändert sich dadurch das Index-Datumsformat.
+      verwenden, ändert dies das Index-Datumsformat.
     </p>
     <p>
-      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code> <br />
-    </p>
-    <p>
-      <code class="notranslate"
-        >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
-      >
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
     </p>
     <p>
       Beide Einstellungen verwenden denselben Typ erweiterter Dateinamenformate wie der Dateiname der
@@ -926,10 +951,10 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Normalerweise ist das &#39;Datum&#39; für eine Nachricht in Thunderbird das vom E-Mail-Client des
-      Absenders festgelegte Datum. Wenn Sie diese Option auf &quot;true&quot; setzen, wird das Empfangsdatum
-      auf dem E-Mail-Client des Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen als auch für das
-      Datum in den Indexdateien verwendet.
+      Normalerweise ist das &#39;Datum&#39; für eine Nachricht in Thunderbird das Datum, das vom Mail-Client
+      des Absenders festgelegt wurde. Wenn Sie diese Option auf &quot;true&quot; setzen, wird das
+      Empfangsdatum auf dem E-Mail-Client des Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen
+      als auch für das Datum in den Indexdateien verwendet.
     </p>
     <h2>Grundlegende globale Hotkey-Funktion (Verknüpfungen)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -940,42 +965,37 @@
       lauten wie folgt:
     </p>
     <p>
-      Beispiel für Hotkey-Einträge (Array von JSON-Objekten) <br /><br />
-      <code class="notranslate">id</code> - der Schlüsselindex (1-10) <br />
-      <code class="notranslate">key</code> - der Schlüssel (einzelnes Zeichen) <br />
-      <code class="notranslate">keycode</code> - Der &#39;VK_ *&#39; Defind-Schlüsselcode <br />
-      Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, aber nicht beide <br />
+      Beispiel für Hotkey-Einträge (Array von JSON-Objekten)<br /><br />
+      <code class="notranslate">id</code> - der Schlüsselindex (1-10)<br />
+      <code class="notranslate">key</code> - der Schlüssel (einzelnes Zeichen)<br />
+      <code class="notranslate">keycode</code> - Der &#39;VK_ *&#39; Defind-Schlüsselcode<br />
+      Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, aber nicht beide<br />
       <code class="notranslate">modifiers</code> - die Schlüsselmodifikatoren, durch Leerzeichen getrennte
-      Liste (&#39;Steuerung&#39;, &#39;Verschiebung&#39;, &#39;Alt&#39;, &#39;Beschleunigung&#39;) <br />
-      <code class="notranslate">oncommand</code> - eine direkte Befehlszeichenfolge <br />
-      <code class="notranslate">contexts</code> - Der Fensterkontext, in dem der Schlüssel aktiv ist <br />
-      <code class="notranslate">&#39;all&#39;</code> - alle Fenster unter Messenger, komponieren, suchen
-      <br />
-      <code class="notranslate">&#39;messenger&#39;</code> - das Haupt-Messenger-Fenster und seine Nachkommen
-      <br />
-      <code class="notranslate">&#39;compose&#39;</code> - das Fenster zum Erstellen von Nachrichten <br />
-      <code class="notranslate">&#39;search&#39;</code> - der Suchdialog <br /><br />
+      Liste (&#39;Steuerung&#39;, &#39;Verschiebung&#39;, &#39;Alt&#39;, &#39;Beschleunigung&#39;)<br />
+      <code class="notranslate">oncommand</code> - eine direkte Befehlszeichenfolge<br />
+      <code class="notranslate">contexts</code> - Der Fensterkontext, in dem der Schlüssel aktiv ist<br />
+      <code class="notranslate">&#39;all&#39;</code> - alle Fenster unter Messenger, komponieren, suchen<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - das Haupt-Messenger-Fenster und seine
+      Nachkommen<br />
+      <code class="notranslate">&#39;compose&#39;</code> - das Fenster zum Erstellen von Nachrichten<br />
+      <code class="notranslate">&#39;search&#39;</code> - der Suchdialog<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
         &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
-      >
-      <br />
-      <br />
+      ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
-        &quot;contexts&quot;: &quot;messenger&quot;}, <br />
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
         &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
@@ -984,16 +1004,14 @@
         &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
         &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot; }]</code
-      >
-      <br />
+      ><br />
     </p>
     <p>
       Da die Verknüpfungen neu und experimentell sind, werde ich auch weitere Dokumentation in das Repository
       aufnehmen. Überprüfen Sie die Erweiterung
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
-      >
-      <br />
+      ><br />
     </p>
     <br />
   </body>

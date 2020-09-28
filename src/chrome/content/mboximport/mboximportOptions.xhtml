@@ -15,7 +15,7 @@
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
-<?xml-stylesheet href="chrome://mboximport/content/mboximport.css" type="text/css"?>
+<?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
@@ -91,10 +91,22 @@
 								</row>
 							</rows>
 						</grid>
+						<spacer height="6px" />
+						<hbox style="height: ;" >
+							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&key; &date;</label>
+							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
+								<html:input id="indexDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							</hbox>
+							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+            					  maxwidth="16px"  onclick="loadTabPage('importexport-help.html#customdate_format_help', true)" tooltiptext="&dateFormatRefTooltipText;" />
+							</hbox>
+						</hbox>
+
 					</groupbox>
 				</hbox>
 				<hbox flex="1" pack="end" >
-					<image src="chrome://mboximport/content/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
+					<image src="chrome://mboximport/content/mboximport/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
 				</hbox>
 			</tabpanel>
@@ -179,7 +191,7 @@
 							</hbox>
 							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
  
-								<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
             					  maxwidth="16px"  onclick="loadTabPage('importexport-help.html#customdate_format_help', true)" tooltiptext="&dateFormatRefTooltipText;" />
 
 							</hbox>
@@ -189,11 +201,12 @@
 
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
-						<hbox align="center" class="input-container" style="padding-left: 4px;">
+						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
+						<hbox pack="start"  style="padding-left: 4px;" >
 							<html:input type="checkbox" id="useExtendedFormat" checked="false"
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
 							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>
-							<image src="chrome://mboximport/content/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
+							<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="16px" maxheight="16px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
 						<spacer height="6px" />
@@ -218,6 +231,8 @@
 							<label value="&filenameCharset;" />
 							<html:input id="filenameCharset" />
 						</hbox>
+
+
 					</groupbox>
 				</vbox>
 			</tabpanel>
@@ -289,6 +304,8 @@
 								<menuitem label="&day7;" value="7" />
 								<menuitem label="&day15;" value="15" />
 								<menuitem label="&day30;" value="30" />
+								<menuitem label="Test-4m" value="99" />
+
 							</menupopup>
 						</menulist>
 					</hbox>
@@ -334,6 +351,6 @@
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
-	<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
-	<script type="application/javascript" src="chrome://mboximport/content/mboximportOptions.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />
 </dialog>

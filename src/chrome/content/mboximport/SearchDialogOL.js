@@ -1,16 +1,27 @@
-<?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/mboximport.dtd">
-<overlay id="sdOverlay"
+// Load all scripts from original overlay file - creates common scope
+// onLoad() installs each overlay xul fragment
+// Menus - Folder, messages, Tools
+
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+	Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOverlay.js", window, "UTF-8");
+
+
+function onLoad() {
+	// Services.console.logStringMessage("SearchDialogue OL");
+
+	WL.injectElements(`
+	<overlay id="sdOverlay"
 		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		 xmlns:html="http://www.w3.org/1999/xhtml">
 		 
-<script type="application/javascript" src="chrome://mboximport/content/mboximport.js" />
-<script type="application/javascript" src="chrome://mboximport/content/exportTools.js" />
-<script type="application/javascript" src="chrome://mboximport/content/utils.js" />
-<script type="application/javascript" src="chrome://mboximport/content/hotKeyUtils.js" />
-<script type="application/javascript" src="chrome://mboximport/content/sdOverlay.js" />
 
-<vbox insertbefore="status-bar" collapsed="true">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
@@ -44,10 +55,8 @@
 	</hbox>
 </vbox>
 
-<keyset id="mailKeys">
-  <!-- we need to pre- populate the key elements so they will still be read by the overlay script -->
-  <!-- currently have to restart if modified -->
-  <key id="hot-key1" modifiers="" oncommand=""/>
+<keyset id="IETNGKeys">
+<key id="hot-key1" modifiers="" oncommand=""/>
   <key id="hot-key2" modifiers="" oncommand=""/>
   <key id="hot-key3" modifiers="" oncommand=""/>
   <key id="hot-key4" modifiers="" oncommand=""/>
@@ -62,3 +71,9 @@
 
 </overlay>
 
+`, ["chrome://mboximport/locale/mboximport.dtd"]);
+
+window.setupHotKeys('search');
+window.SDinit();
+
+}

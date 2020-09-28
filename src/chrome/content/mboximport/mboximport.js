@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, services, globals, Streamlisteners
@@ -54,9 +54,13 @@ IETescapeBeginningFrom,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
+// Services.console.logStringMessage("mboximport start");
+
 var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
+var nosub = mboximportbundle.GetStringFromName("nosubjectmsg");
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
+
 var gEMLimported;
 var gEMLtotal;
 var gFileEMLarray;
@@ -68,6 +72,7 @@ var gMsgFolderImported;
 var IETabort;
 // cleidigh where do we   get this
 var msgFolder;
+var gImporting;
 
 var IETprintPDFmain = {
 
@@ -98,9 +103,9 @@ var IETprintPDFmain = {
 		question = IETformatWarning(0);
 		if (!question)
 			return;
-		if (!allMessages)
+		if (!allMessages) {
 			IETprintPDFmain.uris = IETgetSelectedMessages();
-		else {
+		} else {
 			IETprintPDFmain.uris = [];
 			msgFolder = msgFolders[0];
 			var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
@@ -174,12 +179,23 @@ var IETprintPDFmain = {
 		var messageList = [uri];
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
-		if (!IETabort)
-			window.openDialog("chrome://messenger/content/msgPrintEngine.xul", "",
-				"chrome,dialog=no,all,centerscreen",
-				messageList.length, messageList, null,
-				false);
-		else
+		if (!IETabort) {
+			// cleidigh - searchdialog changes to xhtml for 78
+			const versionChecker = Services.vc;
+			const currentVersion = Services.appinfo.platformVersion;
+
+			if (versionChecker.compare(currentVersion, "78") >= 0) {
+				window.openDialog("chrome://messenger/content/msgPrintEngine.xhtml", "",
+					"chrome,dialog=no,all,centerscreen",
+					messageList.length, messageList, null,
+					false);
+			} else {
+				window.openDialog("chrome://messenger/content/msgPrintEngine.xul", "",
+					"chrome,dialog=no,all,centerscreen",
+					messageList.length, messageList, null,
+					false);
+			}
+		} else
 			document.getElementById("IETabortIcon").collapsed = true;
 	},
 
@@ -191,14 +207,17 @@ var IETprintPDFmain = {
 
 function openProfileImportWizard() {
 	var quit = {};
-	window.openDialog("chrome://mboximport/content/profileImportWizard.xul", "", "chrome,modal,centerscreen", quit);
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
+	
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
 	if (quit.value)
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
-}
+
+
+	}
 
 function openMboxDialog() {
 	if (IETstoreFormat() !== 0) {
@@ -212,7 +231,10 @@ function openMboxDialog() {
 		return;
 	}
 	var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
-	window.openDialog("chrome://mboximport/content/mboxdialog.xul", "", "chrome,modal,centerscreen", params);
+	window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
+	if (params.cancel) {
+		return;
+	}
 	setTimeout(importmbox, 800, params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
 }
 
@@ -395,6 +417,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	// let msgWindow = Cc["@mozilla.org/messenger/msgwindow;1"].createInstance(Ci.nsIMsgWindow);
 
 	var tempfolder = msgFolder.addSubfolder(newfilename);
+	// console.debug(tempfolder);
+	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
@@ -406,7 +430,8 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 		filex = tempfolderNS.parent;
 	}
 	// 3. delete the new subfolder, to delete all the files inside "msgfoldername.sbd" directory
-	tempfolder.Delete();
+	// tempfolder.Delete();
+	tempfolder.msgStore.deleteFolder(tempfolder);
 
 	if (!filex) {
 		alert(mboximportbundle.GetStringFromName("internalerror"));
@@ -987,6 +1012,8 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
+	// console.debug('start eml import');
+
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -999,21 +1026,37 @@ function importALLasEML(recursive) {
 	else
 		res = IETopenFPsync(fp);
 	gEMLimported = 0;
+	gImporting = true;
 	IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
+	if (document.getElementById("IETabortIcon")) {
+		document.getElementById("IETabortIcon").collapsed = false;
+	}
+
 	if (res === nsIFilePicker.returnOK) {
 		setTimeout(function () { RUNimportALLasEML(fp.file, recursive); }, 1000);
 	}
 }
 
+// cleidigh create folder fix
+var folderCount;
+var rootFolder;
+
 function RUNimportALLasEML(file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
+	folderCount = 1;
+	
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
+	// console.debug('buildEMLarray done ' + gEMLtotal);
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
+		document.getElementById("IETabortIcon").collapsed = true;
 		return;
 	}
+
+	// cleidigh - start by closing all files
+	rootFolder.ForceDBClosed();
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
 }
 
@@ -1022,12 +1065,17 @@ function buildEMLarray(file, fol, recursive) {
 	var allfiles = file.directoryEntries;
 	var msgFolder;
 
-	if (!fol)
+	if (!fol) {
 		msgFolder = GetSelectedMsgFolders()[0];
-	else
+		rootFolder = msgFolder;
+	} else
 		msgFolder = fol;
 
+	// console.debug('Build EML array');
+	// console.debug(' folder ' + msgFolder.name);
+
 	while (allfiles.hasMoreElements()) {
+		document.getElementById("IETabortIcon").collapsed = false;
 		var afile = allfiles.getNext();
 		afile = afile.QueryInterface(Ci.nsIFile);
 		try {
@@ -1039,6 +1087,15 @@ function buildEMLarray(file, fol, recursive) {
 
 		if (recursive && is_Dir) {
 			msgFolder.createSubfolder(afile.leafName, msgWindow);
+			// document.getElementById("IETabortIcon").collapsed = false;
+			// console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
+			// open files bug
+			// https://github.com/thundernest/import-export-tools-ng/issues/57
+			if (folderCount++ % 400 === 0) {
+				rootFolder.ForceDBClosed();
+				console.debug('ForceDBClosed');
+			}
+
 			var newFolder = msgFolder.getChildNamed(afile.leafName);
 			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
 			buildEMLarray(afile, newFolder, true);
@@ -1053,6 +1110,7 @@ function buildEMLarray(file, fol, recursive) {
 			emlObj.msgFolder = msgFolder;
 			gFileEMLarray[gFileEMLarrayIndex] = emlObj;
 			gFileEMLarrayIndex++;
+			// console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
 	return true;
@@ -1150,8 +1208,10 @@ var importEMLlistener = {
 			var data = text;
 		}
 
-		if (!this.imap)
-			writeDataToFolder(data, this.msgFolder, this.file, this.removeFile);
+		if (!this.imap) {
+			if (writeDataToFolder(data, this.msgFolder, this.file, this.removeFile) === -1)
+				return;
+		}
 		importEMLlistener.next();
 	},
 
@@ -1168,6 +1228,8 @@ var importEMLlistener = {
 			// At the end we update the fodler view and summary
 			this.msgFolder.updateFolder(msgWindow);
 			this.msgFolder.updateSummaryTotals(true);
+			document.getElementById("IETabortIcon").collapsed = true;
+			gImporting = false;
 		}
 	},
 
@@ -1253,6 +1315,13 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 }
 
 function writeDataToFolder(data, msgFolder, file, removeFile) {
+	// console.debug('Start write data');
+
+	if (!gImporting) {
+		rootFolder.ForceDBClosed();
+		alert('Abort importing message # ' + gEMLimported + '\r\n\n' + e);
+		return -1;
+	}
 	var msgLocalFolder = msgFolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 	// strip off the null characters, that break totally import and display
 	data = data.replace(/\x00/g, "");
@@ -1287,7 +1356,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Prologue needed to add the message to the folder
 	var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
 	// If the message has no X-Mozilla-Status, we add them to it
-	if (data.includes("X-Mozilla-Status"))
+	if (!data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
 	else if (IETprefs.getBoolPref("extensions.importexporttoolsng.reset_mozilla_status")) {
 		// Reset the X-Mozilla status
@@ -1305,11 +1374,32 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// Add the prologue to the EML text
 	data = prologue + data + "\n";
 	// Add the email to the folder
-	msgLocalFolder.addMessage(data);
-	gEMLimported = gEMLimported + 1;
+	// console.debug('Before addMessage');
+	try {
+		var res = msgLocalFolder.addMessage(data);
+		// console.debug('# ' + gEMLimported + ' ' + res);
+		gEMLimported = gEMLimported + 1;
+
+	} catch (e) {
+		gImporting = false;
+		console.debug('Exception # ' + e + ' ' + gEMLimported );
+		console.debug(msgLocalFolder.filePath.path);
+		rootFolder.ForceDBClosed();
+		alert('Exception importing message # ' + gEMLimported + '\r\n\n' + e);
+		return -1;
+	}
+	
+	// cleidigh force files closed
+	if (gEMLimported % 450 === 0) {
+		rootFolder.ForceDBClosed();
+		// console.debug('message DB ' + gEMLimported);
+	}
+
 	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + "/" + gEMLtotal);
+	
 	if (removeFile)
 		file.remove(false);
+	return 0;
 }
 
 function importEmlToFolder() {
@@ -1371,7 +1461,7 @@ function checkToImportEMLattach(file, msgFolder) {
 }
 
 function openIEToptions() {
-	window.openDialog("chrome://mboximport/content/mboximportOptions.xul", "", "chrome,modal,centerscreen");
+	window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,modal,centerscreen");
 }
 
 function IETcopyFolderPath() {
@@ -1412,116 +1502,11 @@ function IETopenFolderPath() {
 	}
 }
 
-function IETimportSMS() {
-	var msgFolder = GetSelectedMsgFolders()[0];
-	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
-		alert(mboximportbundle.GetStringFromName("badfolder"));
-		return;
-	}
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	var res;
-	var identity;
-	var myname;
-	var address;
-	var subject;
-	var from;
-	var to;
-
-	fp.init(window, mboximportbundle.GetStringFromName("importSMSandroid"), nsIFilePicker.modeOpen);
-	fp.appendFilter("*.xml", "*.xml");
-	if (fp.show)
-		res = fp.show();
-	else
-		res = IETopenFPsync(fp);
-	if (res === nsIFilePicker.returnOK) {
-		var msgLocalFolder = msgFolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
-		var xml = fp.file;
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", "file:///" + xml.path, true);
-		xmlhttp.onreadystatechange = function () {
-			if (xmlhttp.readyState === 4) {
-				var dom = xmlhttp.responseXML;
-				var smss = dom.getElementsByTagName("sms");
-				var uConv = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-					.createInstance(Ci.nsIScriptableUnicodeConverter);
-				uConv.charset = "UTF-8";
-				var abManager = Cc["@mozilla.org/abmanager;1"]
-					.getService(Ci.nsIAbManager);
-				var myAccountManager = Cc["@mozilla.org/messenger/account-manager;1"]
-					.getService(Ci.nsIMsgAccountManager);
-				if (msgFolder) {
-					var incServer = msgFolder.server;
-					identity = myAccountManager.getFirstIdentityForServer(incServer);
-				} else {
-					identity = null;
-				}
-				if (identity)
-					myname = identity.fullName;
-				else
-					myname = myAccountManager.defaultAccount.defaultIdentity.fullName;
-				var subOn = IETprefs.getBoolPref("extensions.importexporttoolsng.sms.add_subject");
-
-				for (var i = 0; i < smss.length; i++) {
-					var card = null;
-					var cName = null;
-					var cellNum = smss[i].getAttribute("address");
-					var allAddressBooks = abManager.directories;
-					while (allAddressBooks.hasMoreElements()) {
-						try {
-							var AB = allAddressBooks.getNext();
-							if (AB instanceof Ci.nsIAbDirectory) {
-								card = AB.getCardFromProperty("CellularNumber", cellNum, false);
-								// if (! card)
-								//	card = AB.getCardFromProperty("CellularNumber", "+39"+cellNum , false);
-								if (card) {
-									cName = card.displayName;
-									break;
-								}
-							}
-						} catch (e) { }
-					}
-
-					if (cName)
-						address = cName + " <" + smss[i].getAttribute("address") + ">";
-					else
-						address = smss[i].getAttribute("address");
-					if (smss[i].getAttribute("type") === "1") {
-						from = address;
-						to = myname;
-					} else {
-						to = address;
-						from = myname;
-					}
-
-					var when = smss[i].getAttribute("date");
-					var d = new Date(parseInt(when));
-					var body = smss[i].getAttribute("body");
-					if (subOn)
-						subject = body.substring(0, 20);
-					else
-						subject = "";
-					var now = new Date;
-					try {
-						var nowString = now.toString().match(/.+:\d\d/);
-						nowString = nowString.toString().replace(/\d{4} /, "");
-						nowString = nowString + " " + now.getFullYear();
-					} catch (e) {
-						nowString = now.toString().replace(/GMT.+/, "");
-					}
-					var email = "From - " + nowString + "\n" + "X-Mozilla-Status: 0001\nX-Mozilla-Status2: 00000000\n" + "Date: " + d + "\n" + "From: " + from + "\n" + "To: " + to + "\n" + "Subject: " + subject + "\nX-SMS: true\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\n\n" + body + "\n\n";
-					email = uConv.ConvertFromUnicode(email);
-					msgLocalFolder.addMessage(email);
-				}
-			}
-		};
-		xmlhttp.send(null);
-	}
-}
 
 function openIEThelp(localize) {
 	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
 	loadTabPage('importexport-help.html#main_help', true);
 }
 
-
+// window.addEventListener("load", this.init, false);
+// window.addEventListener("unload", this.shutdown, false);

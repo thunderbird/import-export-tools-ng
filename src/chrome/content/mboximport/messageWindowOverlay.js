@@ -1,2 +1,2 @@
 
-setupHotKeys('message');
+// setupHotKeys('message');

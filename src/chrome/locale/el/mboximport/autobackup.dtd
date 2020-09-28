@@ -1,0 +1,29 @@
+<!ENTITY dialog.title "ImportExportTools NG- Δημιουργία αντιγράφων ασφαλείας">
+<!ENTITY description1 "Ημερομηνία τελευταίας δημιουργίας αντιγράφων ασφαλείας: $ t">
+<!ENTITY description2 "Με βάση τις ρυθμίσεις, είναι απαραίτητο τώρα να δημιουργήσετε το αντίγραφο ασφαλείας.">
+<!ENTITY description3 "Κατά τη διάρκεια αυτής της λειτουργίας, το πρόγραμμα δεν αποκρίνεται για μερικά λεπτά.">
+<!ENTITY description4 "Θέλετε να συνεχίσετε;">
+<!ENTITY description5 "Δημιουργία αντιγράφων ασφαλείας σε εξέλιξη, περιμένετε…">
+<!ENTITY description6 "Η δημιουργία αντιγράφων ασφαλείας ολοκληρώθηκε.">
+<!ENTITY backupTab "Προγραμματισμός αντιγράφων ασφαλείας">
+<!ENTITY backupSettings "Ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας">
+<!ENTITY backupOn "επιτρέπω">
+<!ENTITY backupFreq "Συχνότητα">
+<!ENTITY day1 "1 ημέρα">
+<!ENTITY day3 "3 ημέρες">
+<!ENTITY day7 "7 ημέρες">
+<!ENTITY day15 "15 μέρες">
+<!ENTITY day30 "30 μέρες">
+<!ENTITY backupDestination "Προορισμός">
+<!ENTITY backupFolderName "Όνομα φακέλου για δημιουργία αντιγράφων ασφαλείας">
+<!ENTITY autoName "Αυτόματο (όνομα φακέλου + ημερομηνία)">
+<!ENTITY customName "Προσαρμοσμένη">
+<!ENTITY backupType "Εφεδρικό περιεχόμενο">
+<!ENTITY allFiles "Όλα τα αρχεία προφίλ">
+<!ENTITY justMailFiles "Απλά αλληλογραφία αρχείων">
+<!ENTITY lastBackup "Τελευταίο αντίγραφο ασφαλείας">
+<!ENTITY allFilesMode "Πάντα όλα τα αρχεία">
+<!ENTITY newFilesMode "Απλά τροποποιήθηκαν αρχεία μετά την τελευταία δημιουργία αντιγράφων ασφαλείας">
+<!ENTITY save "Αποθηκεύσετε">
+<!ENTITY modal "Χρησιμοποιήστε ένα παράθυρο &quot;modal&quot;">
+<!ENTITY MACwarning "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε.">

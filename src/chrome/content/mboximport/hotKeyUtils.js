@@ -65,13 +65,16 @@ function compareModifiers(modifiers1, modifiers2) {
 }
 
 function getCurrentKeys() {
+	// console.debug('current K');
 	let keySets = document.getElementsByTagName("keyset");
+	// console.debug(keySets.outerHTML);
 	IETlogger.write('ksets ' + keySets.length);
 	for (let i = 0; i < keySets.length; i++) {
 		const keyset = keySets[i];
 		IETlogger.write('keySet: ' + keyset.id);
 		var keyElements = keyset.childNodes;
 		for (let [index, keyElement] of keyElements.entries()) {
+			// console.debug(keyElement);
 			IETlogger.write(`  key[${index}]: ` + keyElement.outerHTML.replace(/xmlns="[^"]+"/, ''));
 		}
 		IETlogger.write('\n');
@@ -115,6 +118,7 @@ function compareKeyDefinition(hotKey, keyElement) {
 }
 
 function setupHotKeys(contexts) {
+	// console.debug('setupHotKs ' + contexts);
 	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
 	IETlogger.write('Setup hot-keys: ' + contexts);
@@ -122,14 +126,16 @@ function setupHotKeys(contexts) {
 
 	IETlogger.write(hotKeysStr);
 
+	// console.debug('HotK ' + hotKeysStr);
 
 	if (hotKeysStr !== "") {
 		try {
 			var hotKeysArray = JSON.parse(hotKeysStr);
-
+			// console.debug(hotKeysArray);
 			for (let index = 0; (index < hotKeysArray.length && index < 10); index++) {
 				var hotKey = hotKeysArray[index];
 				if (hotKey) {
+					// console.debug(hotKey);
 					// check that we have either 'key' or 'keycode' not both
 					if (!!hotKey.key && !!hotKey.keycode) {
 						console.debug('HotKey with both key and keycode');
@@ -145,6 +151,7 @@ function setupHotKeys(contexts) {
 						}
 
 						let hkeyElement = document.getElementById(`hot-key${id}`);
+						// console.debug(`hot-key${id} ${hkeyElement.outerHTML}`);
 
 						let key = hotKey.key || null;
 						let keycode = hotKey.keycode || null;
@@ -179,6 +186,7 @@ function setupHotKeys(contexts) {
 							if (kc) {
 								existingKeys[i].setAttribute("disabled", "true");
 								IETlogger.write('Disable existing key: ' + existingKeys[i].outerHTML);
+								console.debug('disable existing G '  + existingKeys[i].outerHTML);
 							}
 						}
 					}
@@ -187,6 +195,7 @@ function setupHotKeys(contexts) {
 				}
 
 			}
+			
 			let keyset = document.getElementById("tasksKeys");
 			keyset.parentNode.appendChild(keyset);
 			// console.debug(keyset.outerHTML);
@@ -196,6 +205,18 @@ function setupHotKeys(contexts) {
 			if (keyset) {
 				keyset.parentNode.appendChild(keyset);
 				// console.debug('updated editor ');
+			}
+
+			keyset = document.getElementById("mailKeys");
+			if (keyset) {
+				keyset.parentNode.appendChild(keyset);
+				// console.debug('updated mail keys ');
+			}
+
+			keyset = document.getElementById("IETNGKeys");
+			if (keyset) {
+				keyset.parentNode.appendChild(keyset);
+				console.debug('updated iet keys ');
 			}
 
 		} catch (error) {

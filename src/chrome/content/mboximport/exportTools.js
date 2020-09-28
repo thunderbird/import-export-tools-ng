@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - Update for TB68
@@ -57,7 +57,9 @@ constructAttachmentsFilename,
 /* eslint complexity: [0,30] */
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
+// console.debug('exportTools start');
 
 var IETexported;
 var IETskipped;
@@ -77,11 +79,16 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/modules/strftime.js");
+// var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
+// cleidigh check shift change in signatures
 if (String.prototype.trim) {
-	ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
+	try {
+		ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
+	} catch (ex) {
+		ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
+	}
 }
 
 function searchANDsave() {
@@ -89,7 +96,16 @@ function searchANDsave() {
 	if ("GetFirstSelectedMsgFolder" in window)
 		preselectedFolder = GetFirstSelectedMsgFolder();
 	var args = { folder: preselectedFolder };
-	window.openDialog("chrome://messenger/content/SearchDialog.xul", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+
+	// cleidigh - searchdialog changes to xhtml for 78
+	const versionChecker = Services.vc;
+	const currentVersion = Services.appinfo.platformVersion;
+
+	if (versionChecker.compare(currentVersion, "78") >= 0) {
+		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+	} else {
+		window.openDialog("chrome://messenger/content/SearchDialog.xul", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+	}
 }
 
 function IETgetSortType() {
@@ -131,8 +147,14 @@ function selectVirtualFolder() {
 
 function IETabortExport() {
 	IETabort = true;
-	IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
-	document.getElementById("IETabortIcon").collapsed = true;
+	if (gImporting) {
+		gImporting = false;
+		document.getElementById("IETabortIcon").collapsed = true;
+	} else {
+		IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
+		document.getElementById("IETabortIcon").collapsed = true;
+	}
+	
 }
 
 function exportSelectedMsgs(type) {
@@ -292,7 +314,7 @@ function exportSelectedMsgs(type) {
 
 function exportAllMsgs(type) {
 	var question;
-	if (type === 1 || type === 2 || type === 7) {
+	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
 		if (!question)
 			return;
@@ -301,7 +323,7 @@ function exportAllMsgs(type) {
 			return;
 	}
 
-	if (type === 8 || type === 9) {
+	if (type === 8 || type === 9 || type === 7) {
 		question = IETformatWarning(1);
 		if (!question)
 			return;
@@ -760,6 +782,12 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			data = data + "\r\n<tr><td>" + subj + "</td>";
 		}
 
+		
+	// deal with e-mail without 'To:' headerSwitch to insiders
+	if (recc === "" || !recc) {
+		recc = "(none)";
+	}
+	
 		data = data + "\r\n<td>" + auth + "</td>";
 		data = data + "\r\n<td>" + recc + "</td>";
 		// The nowrap attribute is used not to break the time row
@@ -767,7 +795,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		// Custom date format
 
 		if (customDateFormat === "") {
-			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+			data = data + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", new Date(time / 1000)) + " " + objHour + "." + objMin + "</td>";
 		} else {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
@@ -778,7 +806,6 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-	console.debug('short index');
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
 
@@ -826,7 +853,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
-	data = data + "<tr>"
+	data = data + "<tr>";
 	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 1
 	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 2
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
@@ -912,7 +939,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 		// Custom date format
 
 		if (customDateFormat === "") {
-			data = data + "\r\n<td nowrap>" + convertPRTimeToString(time) + " " + objHour + "." + objMin + "</td>";
+			data = data + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", new Date(time / 1000)) + " " + objHour + "." + objMin + "</td>";
 		} else {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
@@ -926,7 +953,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 
 function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;
-	if (type !== 7) {
+	if (type !== 7 && type !== 6) {
 		clone2 = file2.clone();
 		clone2.append("index.csv");
 	} else {
@@ -1016,7 +1043,10 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var body = addBody ? hdrs[7] : "";
 
-		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"' + auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') + '"' + sep + (convertPRTimeToString(time) + " " + objHour + ":" + objMin) + sep + hasAtt + sep + body + "\r\n";
+
+		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
+			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
+			'"' + sep + (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin) + sep + hasAtt + sep + body + "\r\n";
 		data = data + record;
 	}
 	if (document.getElementById("IETabortIcon") && addBody)
@@ -1282,41 +1312,50 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							}
 						} else {
 							try {
-								var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-									.createInstance(Ci.nsIScriptableUnicodeConverter);
-								converter.charset = "UTF-8";
-								attName = converter.ConvertFromUnicode(att.name);
+								let decoder = new TextDecoder('utf-8');
+								attName = decoder.decode(new TextEncoder().encode(att.name));
+
 								var attDirContainerClone = attDirContainer.clone();
-								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
+								let exitCode = messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
 							} catch (e) {
 								success = false;
+								console.debug('save attachment exception ' + att.name);
+								console.debug(e);
 							}
 						}
 						if (success)
 							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
-
 						footer = footer + "</ul></div><div class='' ></div></body>";
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
 						// cleidigh - fixup group boxes and images
 						let rs;
-						let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
-						rs = data.match(regex);
 
-						data = data.replace(/<\/fieldset>/ig, "");
+						// cleidigh - original outline for inline images 
+						// regex could somehow go to recursion
+						// https://github.com/thundernest/import-export-tools-ng/issues/98
 
-						if (!!rs && rs.length > 0) {
-							for (let index = 0; index < rs.length; index++) {
-								const element = rs[index];
-								data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
-							}
-						}
+						// just remove outlines for now
+						data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
+
+						// let re = /<fieldset(.*?)*</fieldset>/ig;
+
+						// let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
+						// rs = data.match(regex);
+
+						// data = data.replace(/<\/fieldset>/ig, "");
+
+						// if (!!rs && rs.length > 0) {
+						// 	for (let index = 0; index < rs.length; index++) {
+						// 		const element = rs[index];
+						// 		data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
+						// 	}
+						// }
 
 						let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
 						rs = null;
@@ -1594,10 +1633,10 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 
 function IETconvertToUTF8(string) {
-	var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
-	converter.charset = "UTF-8";
 	try {
-		var stringUTF8 = converter.ConvertToUnicode(string);
+		// cleidigh - check if this is appropriate replacement for scriptableconverter
+		var stringUTF8 = new TextEncoder().encode(string);
+		stringUTF8 = String.fromCharCode(...stringUTF8);
 		return stringUTF8;
 	} catch (e) {
 		return string;
@@ -1771,6 +1810,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 function IETwritestatus(text) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
+		document.getElementById("statusText").setAttribute("value", text);
 		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
@@ -1778,8 +1818,13 @@ function IETwritestatus(text) {
 }
 
 function IETdeletestatus(text) {
-	if (document.getElementById("statusText").getAttribute("label") === text)
+	if (document.getElementById("statusText").getAttribute("label") === text) {
 		document.getElementById("statusText").setAttribute("label", "");
+		document.getElementById("statusText").setAttribute("value", "");
+		if (!gImporting) {
+			document.getElementById("IETabortIcon").collapsed = true;
+		}
+	}
 }
 
 function IETwriteDataOnDisk(file, data, append, fname, time) {
@@ -2053,8 +2098,17 @@ function IETstoreBody(msguri) {
 	var text;
 
 	fromStr.data = dataUTF8;
+
 	try {
-		formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		const versionChecker = Services.vc;
+		const currentVersion = Services.appinfo.platformVersion;
+
+		// signature for format converter changed after 60, dropped in and out lengths
+		if (versionChecker.compare(currentVersion, "61") >= 0) {
+			formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
+		} else {
+			formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
+		}
 	} catch (e) {
 		text = dataUTF8;
 	}
@@ -2078,8 +2132,3 @@ function IETstoreBody(msguri) {
 	IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 	return text;
 }
-
-
-
-
-

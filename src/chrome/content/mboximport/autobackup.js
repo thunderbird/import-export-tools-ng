@@ -49,6 +49,7 @@ var autoBackup = {
 	},
 
 	load: function () {
+		console.debug('start the backup load ');
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");
@@ -282,10 +283,21 @@ var autoBackup = {
 		// Scan servers storage path on disk
 		for (var i = 0; i < cntServers; ++i) {
 			var parentDir = null;
-			if (servers.Count)
-				serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-			else
-				serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+			let server;
+			if (servers.Count) {
+				server = servers[i];
+				serverFile = server.localPath;
+				// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
+			} else {
+				
+				try {
+					serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
+				} catch (e) {
+					server = servers[i];
+					serverFile = server.localPath;
+				}
+	
+			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;
 			var clone = file.clone();

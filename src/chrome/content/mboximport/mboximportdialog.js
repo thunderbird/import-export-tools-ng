@@ -42,7 +42,7 @@ function importwrapper() {
 }
 
 
-document.addEventListener("dialogaccept", function(event) {
+window.addEventListener("dialogaccept", function(event) {
 	importwrapper();
 });
 
@@ -50,7 +50,7 @@ document.addEventListener("dialogaccept", function(event) {
 // handle cancel with standard listener
 // Fixes #56 https://github.com/thundernest/import-export-tools-ng/issues/56
 
-document.addEventListener("dialogcancel", function(event) {
+window.addEventListener("dialogcancel", function(event) {
 	window.arguments[0].cancel = true;
 	return true;
 });

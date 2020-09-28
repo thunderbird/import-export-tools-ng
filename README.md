@@ -6,36 +6,38 @@ export functions for messages, folders and profiles.
 
 This derivative add-on is the update of [ImportExportTools](https://addons.thunderbird.net/addon/importexporttools/), 
 the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/Paolo_Kaosmos/).
-The add-on is being updated for [Thunderbird](https://www.thunderbird.net/) 68 (and 60) so that 
-users can continue to enjoy the functionality of this great add-on.
 
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
-Original add-on’s homepage:
-https://addons.thunderbird.net/addon/importexporttools/
 
-![IETng_version](https://img.shields.io/badge/version-v4.0.1-darkorange.png?label=ImportExportTools%20NG)
-[![IETng_tb_version](https://img.shields.io/badge/version-v4.0.1-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
-![Thunderbird_version](https://img.shields.io/badge/version-v60.0--69.*-blue.png?label=Thunderbird)
+![IETng_version](https://img.shields.io/badge/version-v10.0.0-darkorange.png?label=ImportExportTools%20NG)
+[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.0-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
+![Thunderbird_version](https://img.shields.io/badge/version-v68.0--78.*-blue.png?label=Thunderbird)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v4.1.0%20Pending-brightgreen.png)
+![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.0%20Released-brightgreen.png)
 
 #
 
 ## Import Export Tools NG Add-On Features
 
-v4.1.0 Enhancements/Additions:
+Version 10.0.0 : New Features - September 26, 2020
 
-- Help/User guide : Fully localized
-- Suffix option for filenames
-- Custom date option for filenames allowing strftime() like full date and time formatting
-- Use custom file naming for both attachments and embedded attachments
-- Custom date option for index filenames
-- Option to use 'Received Date' for filename and index
-- User configurable Hotkeys (Keyboard shortcuts)
-- PDF output now uses the global print options
-- Improved HTML index file layout
+- 78 Compatible
+- New locales: el
+- Index custom date format
+- new tokens for filenames : sender/recipient e-mail
+- Use `%d` in print settings header/footer for custom date
 
+Bug Issues Fixed:
+- #118, #63 Fixed conversion for plaintext
+- #57 Use ForceDBClose to Close open files (fixes folders and messages)
+- #77 Use global settings for PDF
+- #130 scheduled backups
+- #134 Correctly handle read, forwarded, replied flags
+
+Thanks to many! : See issues
+
+# Features
 
 Menus:
  - Tools (most import and export functions including profiles)

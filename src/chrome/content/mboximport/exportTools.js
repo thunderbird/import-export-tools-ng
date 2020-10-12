@@ -154,7 +154,7 @@ function IETabortExport() {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
 		document.getElementById("IETabortIcon").collapsed = true;
 	}
-	
+
 }
 
 function exportSelectedMsgs(type) {
@@ -782,12 +782,12 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			data = data + "\r\n<tr><td>" + subj + "</td>";
 		}
 
-		
-	// deal with e-mail without 'To:' headerSwitch to insiders
-	if (recc === "" || !recc) {
-		recc = "(none)";
-	}
-	
+
+		// deal with e-mail without 'To:' headerSwitch to insiders
+		if (recc === "" || !recc) {
+			recc = "(none)";
+		}
+
 		data = data + "\r\n<td>" + auth + "</td>";
 		data = data + "\r\n<td>" + recc + "</td>";
 		// The nowrap attribute is used not to break the time row
@@ -1062,7 +1062,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
 			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
-		
+
 		data = data + record;
 	}
 	if (document.getElementById("IETabortIcon") && addBody)
@@ -1328,13 +1328,16 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							}
 						} else {
 							try {
-								let decoder = new TextDecoder('utf-8');
-								attName = decoder.decode(new TextEncoder().encode(att.name));
 
+								var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
+									.createInstance(Ci.nsIScriptableUnicodeConverter);
+								converter.charset = "UTF-8";
+								attName = converter.ConvertFromUnicode(att.name);
 								var attDirContainerClone = attDirContainer.clone();
+								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								let exitCode = messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
+								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);

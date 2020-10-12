@@ -1840,6 +1840,11 @@ function IETdeletestatus(text) {
 	if (document.getElementById("statusText").getAttribute("label") === text) {
 		document.getElementById("statusText").setAttribute("label", "");
 		document.getElementById("statusText").setAttribute("value", "");
+	
+		if (text.includes("Err")) {
+			delay = 15000;
+		}
+
 		if (!gImporting) {
 			document.getElementById("IETabortIcon").collapsed = true;
 		}

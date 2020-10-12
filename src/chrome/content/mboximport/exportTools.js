@@ -1653,9 +1653,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 function IETconvertToUTF8(string) {
 	try {
-		// cleidigh - check if this is appropriate replacement for scriptableconverter
-		var stringUTF8 = new TextEncoder().encode(string);
-		stringUTF8 = String.fromCharCode(...stringUTF8);
+		var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
+		converter.charset = "UTF-8";
+		var stringUTF8 = converter.ConvertToUnicode(string);
 		return stringUTF8;
 	} catch (e) {
 		return string;

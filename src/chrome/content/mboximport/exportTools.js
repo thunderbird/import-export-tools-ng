@@ -1043,10 +1043,26 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var body = addBody ? hdrs[7] : "";
 
+		// utilize index format for CSV 
+		// https://github.com/thundernest/import-export-tools-ng/issues/161
 
+		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+		var msgDate = new Date(time / 1000);
+		var csvDate;
+
+		if (customDateFormat === "") {
+			csvDate = msgDate.toLocaleDateString() + " " + objHour + ":" + objMin;
+			console.debug('DefaultDate ' + csvDate);
+		} else {
+			csvDate = strftime.strftime(customDateFormat, msgDate);
+			console.debug(' customDate ' + csvDate);
+		}
+
+		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)
 		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
-			'"' + sep + (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin) + sep + hasAtt + sep + body + "\r\n";
+			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
+		
 		data = data + record;
 	}
 	if (document.getElementById("IETabortIcon") && addBody)

@@ -2,6 +2,20 @@
 
 ## Versions
 
+Version 10.0.1 : Maintenance Release - October 14, 2020
+
+Bug Issues Fixed:
+- #163, #158, #153 Fixed UTF-8 conversion for plaintext/csv
+- #161 Fix CSV date format
+
+Notables:
+- Add better header err detection, debug output
+- Allow index date format for CSV
+
+Known Issues:
+- Backup not working in 78
+
+
 Version 10.0.0 : New Features - September 26, 2020
 
 - New locales: el

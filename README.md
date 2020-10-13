@@ -10,15 +10,20 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 
-![IETng_version](https://img.shields.io/badge/version-v10.0.0-darkorange.png?label=ImportExportTools%20NG)
-[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.0-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
+![IETng_version](https://img.shields.io/badge/version-v10.0.1-darkorange.png?label=ImportExportTools%20NG)
+[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.1-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
 ![Thunderbird_version](https://img.shields.io/badge/version-v68.0--78.*-blue.png?label=Thunderbird)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.0%20Released-brightgreen.png)
+![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.1%20Released-brightgreen.png)
 
 #
 
 ## Import Export Tools NG Add-On Features
+
+Version 10.0.1 : Maintenance Release - October 14, 2020
+
+- See change log
+- Backups not working in 78
 
 Version 10.0.0 : New Features - September 26, 2020
 

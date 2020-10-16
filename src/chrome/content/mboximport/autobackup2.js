@@ -34,6 +34,7 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 var autoBackup = {
 
 	onOK: function () {
+		console.debug('study backup okay ');
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -98,7 +99,6 @@ var autoBackup = {
 
 	start: function () {
 		// "dir" is the target directory for the backup
-		console.debug('backup start ');
 		var dir = autoBackup.getDir();
 		if (!dir)
 			return;
@@ -308,6 +308,21 @@ var autoBackup = {
 				autoBackup.scanDir(serverFile, clone, serverFile);
 		}
 	},
+
+	btest: function () {
+		console.debug('btest start');
+		var dir = autoBackup.getDir();
+		if (!dir)
+			return;
+		console.debug(dir.leafName);
+		var entries = dir.directoryEntries;
+		while (entries.hasMoreElements()) {
+			var entry = entries.getNext();
+			entry.QueryInterface(Ci.nsIFile);
+			console.debug(entry.leafName);
+		}
+		console.debug('btest end');
+	},
 };
 
 document.addEventListener("dialogaccept", function (event) {
@@ -320,5 +335,6 @@ document.addEventListener("dialogaccept", function (event) {
 // });
 
 window.addEventListener("load", function (event) {
-	autoBackup.load();
+	console.debug('Load');
+	// autoBackup.load();
 });

@@ -1,0 +1,59 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch index.html",
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"file": "${workspaceFolder}/index.html"
+		},
+		{
+			"name": "Launch localhost",
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"url": "http://localhost/index.html",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"name": "Attach",
+			"type": "firefox",
+			"request": "attach"
+		},
+		{
+			"name": "Launch WebExtension",
+			"type": "firefox",
+			"request": "launch",
+ 			"reAttach": true,
+			"addonPath": "${workspaceFolder}"
+		},
+		{
+					"name": "Launch TB MailExtension",
+					"type": "firefox",
+					"request": "attach",
+					"addonPath": "${workspaceFolder}/src"
+		}
+
+
+	],
+	"log2		": {
+        "fileName": "${workspaceFolder}/log.txt",
+        "fileLevel": {
+            "default": "Debug"
+        }
+	},
+	"logging": {
+		"trace": true,
+		"engineLogging": true,
+	},
+	"log": {
+        "consoleLevel": {
+            "PathConversion": "Debug",
+            "default": "Error"
+        }
+    },
+}

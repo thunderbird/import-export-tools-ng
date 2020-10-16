@@ -36,7 +36,7 @@ function IETmessOverlayInit() {
 		return;
 	
 	if (frequency === 99)
-		frequency = 0.002;
+		frequency = 0.001;
 
 	var now = new Date;
 	var time = now.getTime();
@@ -47,8 +47,8 @@ function IETmessOverlayInit() {
 	console.debug(time-last);
 	console.debug(days);
 
-	// if ((time - last) < days)
-	// 	return;
+	if ((time - last) < (days - (60 * 5)))
+		return;
 
 	console.debug('Open dialogue');
 	var WM = Cc['@mozilla.org/appshell/window-mediator;1']
@@ -67,7 +67,7 @@ function IETmessOverlayInit() {
 			console.debug('openD');
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, time, now);
 		}
-		console.debug('stealthy after open ');
+		console.debug('after open ');
 	} else {
 		console.debug('open with more elements');
 		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);

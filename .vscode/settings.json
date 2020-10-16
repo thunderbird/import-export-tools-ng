@@ -1,0 +1,8 @@
+{
+	"log": {
+        "consoleLevel": {
+            "PathConversion": "Debug",
+            "default": "Error"
+        }
+    },
+}

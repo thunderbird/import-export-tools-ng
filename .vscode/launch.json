@@ -40,20 +40,10 @@
 
 
 	],
-	"log2		": {
+	"log": {
         "fileName": "${workspaceFolder}/log.txt",
         "fileLevel": {
             "default": "Debug"
         }
-	},
-	"logging": {
-		"trace": true,
-		"engineLogging": true,
-	},
-	"log": {
-        "consoleLevel": {
-            "PathConversion": "Debug",
-            "default": "Error"
-        }
-    },
+	
 }

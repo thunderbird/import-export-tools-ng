@@ -33,7 +33,7 @@ function onLoad() {
 			<menuseparator />
 			<menu label="&allMsgsFolder;" id="exportALLMSG">
 				<menupopup>
-					<menuitem id="allAsEML" label="&asEML;" oncommand="exportAllMsgs(0)" />
+					<menuitem id="allAsEML" label="&asEML;" oncommand="exportAllMsgs(0, this)" />
 					<menuitem id="allAsHTML" label="&asHTML;" oncommand="exportAllMsgs(1)" />
 					<menuitem id="allAsHTMLatt" label="&asHTML; &withattach;" oncommand="exportAllMsgs(8)" />
 					<menuitem id="allAsTXT" label="&asTXT;" oncommand="exportAllMsgs(2)" />
@@ -141,7 +141,7 @@ function onLoad() {
 		<menuseparator />
 		<menu label="&allMsgsFolder;" id="exportALLMSG2">
 			<menupopup>
-				<menuitem id="allAsEML2" label="&asEML;" oncommand="exportAllMsgs(0)" />
+				<menuitem id="allAsEML2" label="&asEML;" oncommand="exportAllMsgs(0, this)" />
 				<menuitem id="allAsHTML2" label="&asHTML;" oncommand="exportAllMsgs(1)" />
 				<menuitem id="allAsHTML2att" label="&asHTML; &withattach;" oncommand="exportAllMsgs(8)" />
 				<menuitem id="allAsTXT2" label="&asTXT;" oncommand="exportAllMsgs(2)" />

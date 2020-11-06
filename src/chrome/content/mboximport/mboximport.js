@@ -1013,8 +1013,19 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
-	// console.debug('start eml import');
+	console.debug('start eml import');
 
+	msgFolder = GetSelectedMsgFolders()[0];
+	console.debug(msgFolder);
+	console.debug(msgFolder.URI);
+	console.debug(msgFolder.incomingServerType);
+	console.debug(msgFolder.parent);
+	console.debug(msgFolder.name);
+	if (!msgFolder || !msgFolder.parent) {
+		alert("no folder selected");
+		return;
+	}
+	
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -1048,6 +1059,22 @@ function RUNimportALLasEML(file, recursive) {
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
 	
+	console.debug('RUNimportALLasEML');
+	msgFolder = GetSelectedMsgFolders()[0];
+	if (!msgFolder) {
+		alert("no folder selected");
+		return;
+	}
+	
+	console.debug('RUNimportALLasEML');
+	console.debug(msgFolder);
+
+	console.debug(msgFolder.URI);
+	console.debug(msgFolder.incomingServerType);
+	console.debug(msgFolder.parent);
+	console.debug(msgFolder.name);
+	
+
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
 	// console.debug('buildEMLarray done ' + gEMLtotal);

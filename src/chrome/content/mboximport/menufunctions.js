@@ -105,6 +105,8 @@ function IETsetMBmenu() {
     var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
     var storeFormat = IETstoreFormat();
 
+    console.debug(msgFolder.name);
+    
     // the folder is the account pseudo-folder? we must set the right label and
     if (msgFolder.isServer) {
         document.getElementById("mboxexportallstruct").collapsed = false;
@@ -184,6 +186,7 @@ function IETsetMBmenu2(popup) {
     }
 
     var msgFolder = GetSelectedMsgFolders()[0];
+    console.debug(msgFolder.name);
     var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 
     // the folder is the account pseudo-folder? we must set the right label

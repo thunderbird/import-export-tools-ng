@@ -1022,7 +1022,7 @@ function importALLasEML(recursive) {
 	console.debug(msgFolder.parent);
 	console.debug(msgFolder.name);
 	if (!msgFolder || !msgFolder.parent) {
-		alert("no folder selected");
+		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
 	
@@ -1046,23 +1046,25 @@ function importALLasEML(recursive) {
 	}
 
 	if (res === nsIFilePicker.returnOK) {
-		setTimeout(function () { RUNimportALLasEML(fp.file, recursive); }, 1000);
+		setTimeout(function () { RUNimportALLasEML(msgFolder, fp.file, recursive); }, 1000);
 	}
 }
 
-// cleidigh create folder fix
+// cleidigh create folder fixhttps://github.com/thundernest/import-export-tools-ng/blob/v10.0.2/xpi/import-export-tools-ng-10.0.2-b3-tb.xpi
 var folderCount;
 var rootFolder;
 
-function RUNimportALLasEML(file, recursive) {
+function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
 	
 	console.debug('RUNimportALLasEML');
-	msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder2 = GetSelectedMsgFolders()[0];
+
+
 	if (!msgFolder) {
-		alert("no folder selected");
+		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
 	
@@ -1074,7 +1076,12 @@ function RUNimportALLasEML(file, recursive) {
 	console.debug(msgFolder.parent);
 	console.debug(msgFolder.name);
 	
+	if (msgFolder !== msgFolder2) {
+		console.debug("folders do not match");
+	}
 
+	rootFolder = msgFolder;
+	
 	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
 	// console.debug('buildEMLarray done ' + gEMLtotal);
@@ -1095,8 +1102,8 @@ function buildEMLarray(file, fol, recursive) {
 	var msgFolder;
 
 	if (!fol) {
-		msgFolder = GetSelectedMsgFolders()[0];
-		rootFolder = msgFolder;
+		// msgFolder = GetSelectedMsgFolders()[0];
+		msgFolder = rootFolder;
 	} else
 		msgFolder = fol;
 

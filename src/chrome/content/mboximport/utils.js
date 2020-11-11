@@ -274,8 +274,8 @@ function getSubjectForHdr(hdr, dirPath) {
 	if (mustcorrectname)
 		fname = nametoascii(fname);
 	else {
-		// Allow ',' character which is valid
-		fname = fname.replace(/[\/\\:<>*\?\"\|\']/g, "_");
+		// Allow ',' and single quote character which is valid
+		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 	
@@ -538,7 +538,7 @@ function IETstr_converter(str) {
 function nametoascii(str) {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
 		str = str.replace(/[\x00-\x19]/g, "_");
-		// Allow ',' character which is valid
+		// Allow ',' and single quote character which is valid
 		return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
 	}
 	if (str)

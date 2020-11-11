@@ -132,6 +132,7 @@ function onLoad() {
 <menupopup id="taskPopup">
 <menu label="&labelmenuMItools;" insertbefore="javaScriptConsole" accesskey="&taskMenuAccesskey;">
 	<menupopup id="mboxpopup2" onpopupshowing="IETsetMBmenu2(this);" mboxIndex="2">
+		<menuitem id="mboxexportnofolder2" label="[ No Selected Folder (Import \\ Export Disabled) ]" hidden="true" oncommand="noFoldersSelectedAlert();"/>
 		<menuitem id="mboxexport2" label="" oncommand="exportfolder(false,false,true,false);" />
 		<menuitem id="mboxexportZIP2" label="&exportZIP;" oncommand="exportfolder(false,false,true,true);" />
 		<menuitem id="mboxexportallstruct2" label="&exportAllStruct;" oncommand="exportfolder(true,true,true,false);" collapsed="true" />
@@ -166,12 +167,12 @@ function onLoad() {
 			</menupopup>
 		</menu>
 		<menuseparator />
-		<menuitem label="&searchAndExport;" oncommand="searchANDsave();" />
+		<menuitem id="mboximportsearch2" label="&searchAndExport;" oncommand="searchANDsave();" />
 		<menuseparator />
 		<menuitem id="mboximport2" label="&importMbox;" oncommand="openMboxDialog();" />
 		<menuitem id="mboximportMD2" label="&importMAILDIR;" oncommand="trytocopyMAILDIR()" />
 		<menuitem id="mboximportEML2" label="&importEML;" oncommand="importEMLs();" />
-		<menu id="mboximportALLEML2" label="&importALLEML;">
+		<menu id="mboximportALLEMLt2" label="&importALLEML;">
 			<menupopup>
 				<menuitem label="&importALLEML1;" oncommand="importALLasEML(false)" />
 				<menuitem label="&importALLEML2;" oncommand="importALLasEML(true)" />

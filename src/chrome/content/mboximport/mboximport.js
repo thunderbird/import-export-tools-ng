@@ -1013,15 +1013,15 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
-	console.debug('start eml import');
+	console.debug('Start eml import');
 
 	msgFolder = GetSelectedMsgFolders()[0];
-	console.debug(msgFolder);
-	console.debug(msgFolder.URI);
-	console.debug(msgFolder.incomingServerType);
-	console.debug(msgFolder.parent);
-	console.debug(msgFolder.name);
-	if (!msgFolder || !msgFolder.parent) {
+	// console.debug(msgFolder);
+	// console.debug(msgFolder.URI);
+	// console.debug(msgFolder.incomingServerType);
+	// console.debug(msgFolder.parent);
+	// console.debug(msgFolder.name);
+	// if (!msgFolder || !msgFolder.parent) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
@@ -1059,7 +1059,7 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
 	
-	console.debug('RUNimportALLasEML');
+	// console.debug('RUNimportALLasEML');
 	let msgFolder2 = GetSelectedMsgFolders()[0];
 
 
@@ -1069,16 +1069,12 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 	}
 	
 	console.debug('RUNimportALLasEML');
-	console.debug(msgFolder);
-
-	console.debug(msgFolder.URI);
-	console.debug(msgFolder.incomingServerType);
-	console.debug(msgFolder.parent);
-	console.debug(msgFolder.name);
+	// console.debug(msgFolder);
+	// console.debug(msgFolder.URI);
+	// console.debug(msgFolder.incomingServerType);
+	// console.debug(msgFolder.parent);
+	// console.debug(msgFolder.name);
 	
-	if (msgFolder !== msgFolder2) {
-		console.debug("folders do not match");
-	}
 
 	rootFolder = msgFolder;
 	

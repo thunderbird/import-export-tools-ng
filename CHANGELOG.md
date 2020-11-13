@@ -2,6 +2,23 @@
 
 ## Versions
 
+Version 10.0.2 : Maintenance Release - November 14, 2020
+
+Bug Issues Fixed:
+
+- #140 Handle right click on unselected folder
+- #149 EML import fixes
+- #154 Backup does not run if File/Exit used
+- #157, #159 Backups failing
+- #173 Handle no selected folder
+- #174 Sender_email & recipient_email  tokens missing for  attachments
+- #175 Support comma and single quote in filenames
+
+Notables:
+
+- Added Backup on exit option
+- Use `Index, CSV Date Format` option for full custom format
+
 Version 10.0.1 : Maintenance Release - October 14, 2020
 
 Bug Issues Fixed:

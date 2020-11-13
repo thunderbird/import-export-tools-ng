@@ -1058,10 +1058,10 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		if (customDateFormat === "") {
 			csvDate = msgDate.toLocaleDateString() + " " + objHour + ":" + objMin;
-			console.debug('DefaultDate ' + csvDate);
+			// console.debug('DefaultDate ' + csvDate);
 		} else {
 			csvDate = strftime.strftime(customDateFormat, msgDate);
-			console.debug(' customDate ' + csvDate);
+			// console.debug(' customDate ' + csvDate);
 		}
 
 		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)

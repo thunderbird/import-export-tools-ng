@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Achtervoegsel toevoegen">
 <!ENTITY dateFormatRefTooltipText "Referentie voor datumnotatie">
 <!ENTITY extFilenameFormatRefTooltipText "Uitgebreide verwijzing naar bestandsnaamindeling">
+<!ENTITY backupOnExit "Back-up bij afsluiten">
+<!ENTITY noFolderSelectedMenuTop "[Geen geselecteerde map (importeren / exporteren uitgeschakeld)]">
+<!ENTITY indexCSVdateFormat "Index, CSV-datumnotatie:">

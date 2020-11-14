@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Lägg till suffix">
 <!ENTITY dateFormatRefTooltipText "Datumformatreferens">
 <!ENTITY extFilenameFormatRefTooltipText "Utökad referens för filnamnsformat">
+<!ENTITY backupOnExit "Säkerhetskopiering vid utgång">
+<!ENTITY noFolderSelectedMenuTop "[Ingen vald mapp (Import \ Export inaktiverad)]">
+<!ENTITY indexCSVdateFormat "Index, CSV-datumformat:">

@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Engadir sufixo">
 <!ENTITY dateFormatRefTooltipText "Referencia do formato de data">
 <!ENTITY extFilenameFormatRefTooltipText "Referencia estendida do formato do nome de ficheiro">
+<!ENTITY backupOnExit "Copia de seguridade á saída">
+<!ENTITY noFolderSelectedMenuTop "[Non hai cartafol seleccionado (Importación \ Exportación desactivada)]">
+<!ENTITY indexCSVdateFormat "Índice, formato de data CSV:">

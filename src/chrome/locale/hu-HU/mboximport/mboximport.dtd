@@ -115,3 +115,6 @@
 <!ENTITY addSuffix "Adjon hozzá utótagot">
 <!ENTITY dateFormatRefTooltipText "Dátum formátum referencia">
 <!ENTITY extFilenameFormatRefTooltipText "Bővített fájlnév-formátum-referencia">
+<!ENTITY backupOnExit "Biztonsági mentés a kilépéskor">
+<!ENTITY noFolderSelectedMenuTop "[Nincs kijelölt mappa (importálás / exportálás letiltva)]">
+<!ENTITY indexCSVdateFormat "Index, CSV dátumformátum:">

@@ -15,10 +15,10 @@ const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
 var translationArray = [
-	{ key: "noFolderSelected", text: "No message folder selected:\n\nPlease create or select a valid account or Local Folder subfolder." },
-	// { key: "backupOnExit", text: "Backup On Exit" },
-	// { key: "noFolderSelectedMenuTop", text: "[ No Selected Folder (Import \\ Export Disabled) ]" },
-	// { key: "indexCSVdateFormat", text: "Index, CSV Date Format:" },
+	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
+	{ key: "backupOnExit", text: "Backup On Exit" },
+	{ key: "noFolderSelectedMenuTop", text: "[ No Selected Folder (Import \\ Export Disabled) ]" },
+	{ key: "indexCSVdateFormat", text: "Index, CSV Date Format:" },
 	// { key: "", text: "" },
 ]
 
@@ -155,6 +155,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 			lt = `{\n${lt}\n}`;
 		}
 
+		lt = lt.replace(/<nl>/g, "\\n");
 		console.debug('TranslationMessages ' + lt.length);
 		console.debug(lt);
 		// let outputFileName = iFile.replace('.', '-') + ".json";
@@ -436,7 +437,7 @@ localeFile = "settings.json";
 // t();
 // translateHelpPage();
 // translatePage();
-translateAll("mboximport.properties", translationArray, options);
-// translateAll("mboximport.dtd", translationArray, options);
+// translateAll("mboximport.properties", translationArray, options);
+translateAll("mboximport.dtd", translationArray, options);
 // loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];

@@ -1021,7 +1021,7 @@ function importALLasEML(recursive) {
 	// console.debug(msgFolder.incomingServerType);
 	// console.debug(msgFolder.parent);
 	// console.debug(msgFolder.name);
-	// if (!msgFolder || !msgFolder.parent) {
+	if (!msgFolder || !msgFolder.parent) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}

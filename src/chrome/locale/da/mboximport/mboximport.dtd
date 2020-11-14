@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Tilføj suffiks">
 <!ENTITY dateFormatRefTooltipText "Datoformat Henvisning">
 <!ENTITY extFilenameFormatRefTooltipText "Udvidet reference til filnavnsformat">
+<!ENTITY backupOnExit "Backup ved afslutning">
+<!ENTITY noFolderSelectedMenuTop "[Ingen valgt mappe (Import \ Export deaktiveret)]">
+<!ENTITY indexCSVdateFormat "Indeks, CSV-datoformat:">

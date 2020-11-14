@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Suffix hinzufügen">
 <!ENTITY dateFormatRefTooltipText "Datumsformatreferenz">
 <!ENTITY extFilenameFormatRefTooltipText "Erweiterte Dateinamenformatreferenz">
+<!ENTITY backupOnExit "Backup beim Beenden">
+<!ENTITY noFolderSelectedMenuTop "[Kein ausgewählter Ordner (Import \ Export deaktiviert)]">
+<!ENTITY indexCSVdateFormat "Index, CSV-Datumsformat:">

@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Agregar sufijo">
 <!ENTITY dateFormatRefTooltipText "Referencia de formato de fecha">
 <!ENTITY extFilenameFormatRefTooltipText "Referencia de formato de nombre de archivo extendido">
+<!ENTITY backupOnExit "Copia de seguridad al salir">
+<!ENTITY noFolderSelectedMenuTop "[Ninguna carpeta seleccionada (importación / exportación inhabilitada)]">
+<!ENTITY indexCSVdateFormat "Índice, formato de fecha CSV:">

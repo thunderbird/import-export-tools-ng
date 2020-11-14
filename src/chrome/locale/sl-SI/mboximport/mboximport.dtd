@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Dodaj pripono">
 <!ENTITY dateFormatRefTooltipText "Referenca zapisa datuma">
 <!ENTITY extFilenameFormatRefTooltipText "Razširjena referenca za obliko datoteke">
+<!ENTITY backupOnExit "Varnostno kopiranje ob izhodu">
+<!ENTITY noFolderSelectedMenuTop "[Ni izbrane mape (uvoz / izvoz onemogočen)]">
+<!ENTITY indexCSVdateFormat "Kazalo, oblika zapisa datuma CSV:">

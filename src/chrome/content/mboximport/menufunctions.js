@@ -100,7 +100,7 @@ function rfc822test() {
 
 
 function IETsetMBmenu() {
-    console.debug('IETsetMBmenu');
+    // console.debug('IETsetMBmenu');
     document.getElementById("mboxexport").removeAttribute("disabled");
     var msgFolder = GetSelectedMsgFolders()[0];
     var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
@@ -113,7 +113,6 @@ function IETsetMBmenu() {
 
     // the folder is the account pseudo-folder? we must set the right label and
     if (msgFolder.isServer) {
-        console.debug('isServer');
         document.getElementById("mboxexportallstruct").collapsed = false;
         document.getElementById("mboxexport").label = mboximportbundle.GetStringFromName("exportAccount");
         document.getElementById("mboxexportZIP").collapsed = true;
@@ -171,17 +170,11 @@ function IETsetMBmenu() {
 function IETsetMBmenu2(popup) {
     var i = popup.getAttribute("mboxIndex");
 
-    console.debug('IETsetMBmenu2');
-    // if (!msgFolder) {
-	// 	alert(mboximportbundle.GetStringFromName("noFolderSelected"));
-	// }
+    // console.debug('IETsetMBmenu2');
 
-    console.debug(GetSelectedMsgFolders()[0]);
     var msgFolder = GetSelectedMsgFolders()[0];
 
     if (msgFolder === null || msgFolder === undefined) {
-        console.debug('fol === n');
-        // alert(mboximportbundle.GetStringFromName("noFolderSelected"));
         
         document.getElementById("mboxexportnofolder" + i).setAttribute("hidden", "false");
         document.getElementById("mboxexport" + i).setAttribute("disabled", "true");
@@ -208,12 +201,10 @@ function IETsetMBmenu2(popup) {
     }
 
     var msgFolder = GetSelectedMsgFolders()[0];
-    console.debug(msgFolder.name);
     var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 
     // the folder is the account pseudo-folder? we must set the right label
     if (msgFolder.isServer) {
-        console.debug('isserver');
         document.getElementById("mboximportEML" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportsub" + i).collapsed = true;
         document.getElementById("mboxexportstruct" + i).collapsed = true;

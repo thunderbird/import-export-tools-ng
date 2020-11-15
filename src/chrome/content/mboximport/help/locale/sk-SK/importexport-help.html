@@ -20,9 +20,34 @@
       aktuálna stránka sa zameriava na ponuky a nové možnosti. V ďalších verziách bude neustále
       aktualizovaný.<br />
     </p>
-    <h3>Verzia 10.0.0: Nové funkcie - 26. septembra 2020</h3>
+    <h3>Verzia 10.0.2: Vydanie údržby - 14. novembra 2020</h3>
     <p>
-      - Aktualizácia na kompatibilitu 78/68 - Nové miestne nastavenia: el<br />
+      Problémy s opravou chyby:<br /><br />
+      - # 140 Kliknite pravým tlačidlom myši na nevybratý priečinok<br />
+      - # 149 opráv importu EML<br />
+      - # 154 Zálohovanie sa nespustí, ak sa použije príkaz File / Exit<br />
+      - # 157, # 159 Zlyhanie zálohovania<br />
+      - # 173 Spracovanie žiadneho vybratého priečinka<br />
+      - # 174 Pre prílohy chýbajú tokeny Sender_email a recipient_email<br />
+      - # 175 Podpora čiarky a jednoduchých úvodzoviek v názvoch súborov<br /><br />
+      Významné osobnosti:<br /><br />
+      - Pridaná možnosť Zálohovanie pri ukončení<br />
+      - Použite možnosť `Register, formát dátumu CSV` pre úplný vlastný formát (možnosti karta Rôzne)<br /><br />
+      <h3>Verzia 10.0.1: Vydanie údržby - 14. októbra 2020</h3>
+      <br />
+      Problémy s opravou chyby:<br />
+      - # 163, # 158, # 153 Opravená konverzia UTF-8 pre holý text / csv<br />
+      - # 161 Opravte formát dátumu CSV<br /><br />
+      Významné osobnosti:<br />
+      - Pridajte lepšiu detekciu chyby hlavičky, ladiaci výstup<br />
+      - Povoliť formát dátumu indexu pre CSV<br /><br />
+      Známe problémy:<br />
+      - Zálohovanie nefunguje v 78<br /><br />
+      <h3>Verzia 10.0.0: Nové funkcie - 26. septembra 2020</h3>
+    </p>
+    <p>
+      - Inovujte na kompatibilitu 78/68<br />
+      - Nové miestne nastavenia: el<br />
       - Vlastný formát dátumu indexu<br />
       - nové tokeny pre názvy súborov: e-mail odosielateľa / príjemcu<br />
       - Použite `% d` v hlavičke / päte nastavenia tlače pre vlastný dátum<br /><br /><br />
@@ -772,9 +797,9 @@
     <br />
     <p>
       Formátovanie rozšíreného názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
-      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Anglické (en-US) tokeny sú k
-      dispozícii v akomkoľvek miestnom prostredí. K dispozícii sú tiež miestne tokeny, ktoré sú uvedené pod
-      anglickou tabuľkou.<br /><br />
+      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú k dispozícii v akomkoľvek miestnom
+      prostredí. K dispozícii sú tiež miestne tokeny, ktoré sú uvedené pod anglickou tabuľkou.<br /><br />
       Príklady:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - predvolený formát<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - namiesto predvoleného

@@ -20,7 +20,32 @@
       Denne aktuelle side fokuserer på menuerne og de nye indstillinger. Det opdateres løbende i efterfølgende
       versioner.<br />
     </p>
-    <h3>Version 10.0.0: Nye funktioner - 26. september 2020</h3>
+    <h3>Version 10.0.2: Vedligeholdelsesudgivelse - 14. november 2020</h3>
+    <p>
+      Fejlrettede problemer:<br /><br />
+      - # 140 Håndter højreklik på ikke-valgt mappe<br />
+      - # 149 EML-importrettelser<br />
+      - # 154 Backup kører ikke, hvis File / Exit bruges<br />
+      - # 157, # 159 Sikkerhedskopier mislykkedes<br />
+      - # 173 Håndter ingen valgt mappe<br />
+      - # 174 Sender_email &amp; recipient_email tokens mangler til vedhæftede filer<br />
+      - # 175 Support komma og enkelt citat i filnavne<br /><br />
+      Bemærkelsesværdige:<br /><br />
+      - Tilføjet Backup ved afslutningsmulighed<br />
+      - Brug valgmuligheden &#39;Indeks, CSV-datoformat&#39; til fuldt brugerdefineret format (valgmuligheder
+      Diverse-fanen)<br /><br />
+      <h3>Version 10.0.1: Vedligeholdelsesudgivelse - 14. oktober 2020</h3>
+      <br />
+      Fejlrettede problemer:<br />
+      - # 163, # 158, # 153 Fast UTF-8-konvertering til almindelig tekst / csv<br />
+      - # 161 Ret CSV-datoformat<br /><br />
+      Bemærkelsesværdige:<br />
+      - Tilføj bedre detektering af headerfejl, fejlret output<br />
+      - Tillad indeksdatoformat for CSV<br /><br />
+      Kendte problemer:<br />
+      - Backup fungerer ikke i 78<br /><br />
+      <h3>Version 10.0.0: Nye funktioner - 26. september 2020</h3>
+    </p>
     <p>
       - Opgrader til 78/68 kompatibilitet<br />
       - Nye lokaliteter: el<br />
@@ -100,7 +125,7 @@
         Funktionerne er kontekstafhængige. Menuer tilføjes for:<br />
         - Mappepanelkonteksten (mappebetjening)<br />
         - Meddelelseslistekonteksten (valgte meddelelser)<br />
-        - menuen Funktioner (mappe- og profilhandlinger)<br /><br />
+        - Værktøjsmenuen (mappe- og profilhandlinger)<br /><br />
         Der er mange muligheder, der er tilgængelige under den tilføjede post under &quot;Funktioner /
         Tilføjelsesindstillinger&quot; for udvidelsesmulighederne. Hver af menuerne har også et menupunkt
         Indstillinger for at få adgang til indstillingsdialogen.<br />
@@ -558,9 +583,9 @@
     <p>
       Indstillingen brugerdefineret dato giver mulighed for fuldstændig kontrol over datoformateringen, der
       bruges til begge filer i indekset. Både standardformatet &quot;Dato&quot; såvel som det nye tilpassede
-      format &quot;Dato (brugerdefineret)&quot; er tilgængelige i filnavnet. Den brugerdefinerede dato kan
-      også bruges med $ {date_custom} -tokenet, der bruges i de udvidede brugerdefinerede filnavne. Det
-      originale (standard) datoformat er:<br />
+      format &quot;Dato (brugerdefineret)&quot; er tilgængelige i filnavnet. Den tilpassede dato kan også
+      bruges med token $ {date_custom}, der bruges i de udvidede brugerdefinerede filnavne. Det originale
+      (standard) datoformat er:<br />
       ÅÅÅÅMMDDHHmm: 202011060808<br /><br />
       Det brugerdefinerede datoformat bruger% sekvenser, der matcher <code>strftime()</code> Unix-lignende
       funktionalitet. Det er baseret på en JavaScript-port af
@@ -702,7 +727,7 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601 ugenummer for det aktuelle år som et decimaltal (interval 01 til 53), hvor uge 1 er den
+            ISO 8601-ugenummer for det aktuelle år som et decimaltal (interval 01 til 53), hvor uge 1 er den
             første uge, der har mindst 4 dage i det nye år (det vil sige den første torsdag).
           </td>
         </tr>
@@ -777,8 +802,9 @@
     <br />
     <p>
       Den udvidede filnavnformatering bruger tokens. Det nøjagtige filnavn kan konstrueres ved hjælp af tokens
-      såvel som enhver tekst eller gyldige filnavnetegn. De engelske (en-US) tokens er tilgængelige på ethvert
-      sted. Lokale specifikke tokens er også tilgængelige og er angivet under den engelske tabel.<br /><br />
+      såvel som enhver tekst eller gyldige filnavnetegn. Ugyldige tegn er:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelske (en-US) tokens er tilgængelige i alle
+      landestandarder. Lokalspecifikke tokens er også tilgængelige og er angivet under den engelske tabel.<br /><br />
       Eksempler:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Brug det tilpassede
@@ -894,7 +920,7 @@
       Når disse funktioner er stabiliseret, føjes de til brugergrænsefladen.<br />
       For at kunne bruge dem skal de indstilles i Config Editor. For at få adgang til editoren, brug menuen
       Funktioner / Indstillinger, vælg derefter sektionen Avanceret, og der er en &#39;Config Editor&#39;
-      -knap nederst. Hvis du skriver &#39;importexporttoolsng&#39; i søgefeltet, får du alle
+      -knap i bunden. Hvis du skriver &#39;importexporttoolsng&#39; i søgefeltet, får du alle
       udvidelsesindstillinger. Du kan derefter redigere de forskellige præferencer nedenfor efter behov.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>

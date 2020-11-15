@@ -20,7 +20,32 @@
       évidemment beaucoup à ajouter. Cette page actuelle se concentre sur les menus et les nouvelles options.
       Il sera continuellement mis à jour dans les versions ultérieures.<br />
     </p>
-    <h3>Version 10.0.0: Nouvelles fonctionnalités - 26 septembre 2020</h3>
+    <h3>Version 10.0.2: Version de maintenance - 14 novembre 2020</h3>
+    <p>
+      Problèmes de bogue résolus:<br /><br />
+      - # 140 Gérez un clic droit sur un dossier non sélectionné<br />
+      - Correctifs d&#39;importation EML # 149<br />
+      - La sauvegarde n ° 154 ne s&#39;exécute pas si File / Exit est utilisé<br />
+      - Échec des sauvegardes n ° 157, n ° 159<br />
+      - # 173 Gérer aucun dossier sélectionné<br />
+      - # 174 jetons Sender_email et receiver_email manquants pour les pièces jointes<br />
+      - # 175 Prise en charge de la virgule et des guillemets simples dans les noms de fichiers<br /><br />
+      Notables:<br /><br />
+      - Ajout de l&#39;option de sauvegarde à la sortie<br />
+      - Utilisez l&#39;option `Index, Format de date CSV` pour un format personnalisé complet (options onglet
+      Divers)<br /><br />
+      <h3>Version 10.0.1: version de maintenance - 14 octobre 2020</h3>
+      <br />
+      Problèmes de bogue résolus:<br />
+      - # 163, # 158, # 153 Correction de la conversion UTF-8 pour le texte brut / csv<br />
+      - # 161 Correction du format de date CSV<br /><br />
+      Notables:<br />
+      - Ajouter une meilleure détection d&#39;erreur d&#39;en-tête, sortie de débogage<br />
+      - Autoriser le format de date d&#39;index pour CSV<br /><br />
+      Problèmes connus:<br />
+      - La sauvegarde ne fonctionne pas dans 78<br /><br />
+      <h3>Version 10.0.0: Nouvelles fonctionnalités - 26 septembre 2020</h3>
+    </p>
     <p>
       - Mise à niveau pour la compatibilité 78/68<br />
       - Nouveaux lieux: el<br />
@@ -52,7 +77,7 @@
       Problèmes de bogue résolus:<br />
       - # 68 correctif pour l&#39;index de pièce jointe<br />
       - Correction n ° 74 pour les pièces jointes d&#39;images en ligne non exportées<br />
-      - Correction de l&#39;annulation de la poignée n ° 56 dans la boîte de dialogue d&#39;importation<br />
+      - Correction de l&#39;annulation de la poignée # 56 dans la boîte de dialogue d&#39;importation<br />
       - # 77 utiliser les préférences pour la sortie PDF<br />
       - Ajustements de nettoyage de l&#39;interface utilisateur (# 80, # 81, # 82) Variations du système
       d&#39;exploitation - @ovari<br />
@@ -820,9 +845,10 @@
     <br />
     <p>
       Le formatage du nom de fichier étendu utilise des jetons. Le nom de fichier exact peut être construit en
-      utilisant les jetons ainsi que tout texte ou caractère de nom de fichier valide. Les jetons anglais
-      (en-US) sont disponibles dans tous les paramètres régionaux. Les jetons spécifiques aux paramètres
-      régionaux sont également disponibles et répertoriés sous le tableau anglais.<br /><br />
+      utilisant les jetons ainsi que tout texte ou caractère de nom de fichier valide. Les caractères non
+      valides sont: <code>| * : &lt; &gt; ? \ / &quot;</code> Les jetons anglais (en-US) sont disponibles dans
+      tous les paramètres régionaux. Les jetons spécifiques aux paramètres régionaux sont également
+      disponibles et répertoriés sous le tableau anglais.<br /><br />
       Exemples:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Le format par défaut<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Utilisez le format de

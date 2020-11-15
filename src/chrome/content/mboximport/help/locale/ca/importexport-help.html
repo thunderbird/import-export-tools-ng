@@ -20,7 +20,32 @@
       afegir. Aquesta pàgina actual se centra en els menús i les noves opcions. S’actualitzarà contínuament en
       versions posteriors.<br />
     </p>
-    <h3>Versió 10.0.0: funcions noves: 26 de setembre de 2020</h3>
+    <h3>Versió 10.0.2: versió de manteniment: 14 de novembre de 2020</h3>
+    <p>
+      S&#39;han corregit els problemes d&#39;error:<br /><br />
+      - # 140 Manejar el clic dret a la carpeta no seleccionada<br />
+      - # 149 Correccions d&#39;importació EML<br />
+      - La còpia de seguretat # 154 no s&#39;executa si s&#39;utilitza File / Exit<br />
+      - Error de les còpies de seguretat # 157 i # 159<br />
+      - # 173 No gestiona cap carpeta seleccionada<br />
+      - Falten # 174 fitxes Sender_email i recipient_email per als fitxers adjunts<br />
+      - # 175 Admet la coma i el pressupost únic en noms de fitxer<br /><br />
+      Notables:<br /><br />
+      - S&#39;ha afegit l&#39;opció Còpia de seguretat en sortir<br />
+      - Utilitzeu l&#39;opció &quot;Índex, format de data CSV&quot; per al format personalitzat complet
+      (pestanya Diversos d&#39;opcions)<br /><br />
+      <h3>Versió 10.0.1: versió de manteniment: 14 d’octubre de 2020</h3>
+      <br />
+      S&#39;han corregit els problemes d&#39;error:<br />
+      - # 163, # 158, # 153 S&#39;ha corregit la conversió UTF-8 per a text pla / csv<br />
+      - # 161 Corregiu el format de data CSV<br /><br />
+      Notables:<br />
+      - Afegiu una millor detecció d&#39;errors de capçalera, sortida de depuració<br />
+      - Permetre el format de data de l&#39;índex per a CSV<br /><br />
+      Problemes coneguts:<br />
+      - La còpia de seguretat no funciona al 78<br /><br />
+      <h3>Versió 10.0.0: funcions noves: 26 de setembre de 2020</h3>
+    </p>
     <p>
       - Actualització per compatibilitat 78/68<br />
       - Noves configuracions regionals: el<br />
@@ -40,8 +65,8 @@
     <h3>Versió 4.1.0: noves funcions</h3>
     <p>
       - Ajuda / Guia de l&#39;usuari: totalment localitzat - Opció de sufix per als noms de fitxer<br />
-      - Opció de data personalitzada per a noms de fitxer que permeten a strftime () com el format de data i
-      hora completes<br />
+      - Opció de data personalitzada per als noms de fitxers que permeten estrftime (), com ara el format de
+      data i hora completes<br />
       - Utilitzeu noms de fitxers personalitzats tant per als fitxers adjunts com per als fitxers adjunts
       incrustats<br />
       - Opció de data personalitzada per als noms de fitxers de l’índex<br />
@@ -52,7 +77,7 @@
       S&#39;han corregit els problemes d&#39;error:<br />
       - Correcció # 68 per al senyalador de fitxers adjunts d&#39;índex<br />
       - Solució # 74 per als fitxers adjunts d&#39;imatges en línia que no s&#39;exporten<br />
-      - Corregiu la cancel·lació del gestor # 56 al diàleg d&#39;importació<br />
+      - Corregiu la cancel·lació del gestor # 56 al quadre de diàleg d&#39;importació<br />
       - Preferències d&#39;ús # 77 per a la sortida de PDF<br />
       - Modificacions de la neteja de la interfície d’usuari (# 80, # 81, # 82) variacions del sistema
       operatiu - @ovari<br />
@@ -96,7 +121,7 @@
       - text simple<br />
       - CSV (valors separats per comes)<br />
       - PDF<br /><br />
-      Tot i que la major part de la funcionalitat gira al voltant dels missatges, també hi ha suport per a la
+      Tot i que la major part de la funcionalitat gira entorn dels missatges, també hi ha suport per a la
       importació i exportació de perfils Thunderbird. A més, les exportacions també poden incloure un fitxer
       d&#39;índex HTML o CSV. La còpia de seguretat del perfil Thunderbird és una altra característica.<br />
       <p>
@@ -804,9 +829,10 @@
     <br />
     <p>
       El format ampliat del nom del fitxer utilitza fitxes. El nom de fitxer exacte es pot construir
-      utilitzant les fitxes, així com qualsevol text o caràcters de nom de fitxer vàlids. Les fitxes en anglès
-      (en-US) estan disponibles en qualsevol configuració regional. També hi ha disponibles fitxes
-      específiques locals que es mostren a la taula anglesa.<br /><br />
+      utilitzant les fitxes, així com qualsevol text o caràcters de nom de fitxer vàlids. Els caràcters no
+      vàlids són: <code>| * : &lt; &gt; ? \ / &quot;</code> Les fitxes en anglès (en-US) estan disponibles en
+      qualsevol configuració regional. També hi ha fitxes específiques per a la configuració regional i es
+      mostren a la taula anglesa.<br /><br />
       Exemples:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> : el format predeterminat<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : utilitzeu el format
@@ -926,7 +952,7 @@
       utilitzeu el menú Eines / Opcions i seleccioneu la secció Avançada i hi haurà un botó &quot;Config
       Editor&quot; a la part inferior. Si escriviu &quot;importexporttoolsng&quot; a la barra de cerca,
       obtindreu totes les preferències d&#39;extensió. A continuació, podeu editar les diverses preferències
-      que apareixen a continuació, segons calgui.
+      que apareixen a continuació, segons sigui necessari.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>

@@ -20,7 +20,32 @@
       páxina actual céntrase nos menús e novas opcións. Actualizarase continuamente nas versións
       posteriores.<br />
     </p>
-    <h3>Versión 10.0.0: novas funcións: 26 de setembro de 2020</h3>
+    <h3>Versión 10.0.2: lanzamento de mantemento - 14 de novembro de 2020</h3>
+    <p>
+      Erros solucionados:<br /><br />
+      - # 140 Manexa o botón dereito no cartafol non seleccionado<br />
+      - # 149 correccións de importación de EML<br />
+      - A copia de seguridade # 154 non se executa se se usa Ficheiro / Saída<br />
+      - Fallo das copias de seguridade # 157, # 159<br />
+      - # 173 Non manipule ningún cartafol seleccionado<br />
+      - Faltan # 174 fichas Sender_email e recipient_email para os anexos<br />
+      - # 175 Admite comas e comiñas simples nos nomes dos ficheiros<br /><br />
+      Notables:<br /><br />
+      - Engadiuse a opción Backup on exit<br />
+      - Use a opción `Índice, formato de data CSV` para o formato personalizado completo (pestana Misc
+      opcións)<br /><br />
+      <h3>Versión 10.0.1: lanzamento de mantemento - 14 de outubro de 2020</h3>
+      <br />
+      Erros solucionados:<br />
+      - # 163, # 158, # 153 Fixouse a conversión UTF-8 para texto plano / csv<br />
+      - # 161 Corrixe o formato de data CSV<br /><br />
+      Notables:<br />
+      - Engade unha mellor detección de erros de cabeceira, saída de depuración<br />
+      - Permitir o formato de data do índice para CSV<br /><br />
+      Problemas coñecidos:<br />
+      - A copia de seguridade non funciona no 78<br /><br />
+      <h3>Versión 10.0.0: novas funcións: 26 de setembro de 2020</h3>
+    </p>
     <p>
       - Actualización para compatibilidade 78/68<br />
       - Novos lugares: el<br />
@@ -781,9 +806,10 @@
     <br />
     <p>
       O formato de nome de ficheiro ampliado utiliza tokens. O nome de ficheiro exacto pódese construír
-      empregando as fichas, así como calquera texto ou caracteres de nome de ficheiro válidos. Os tokens en
-      inglés (en-US) están dispoñibles en calquera rexión. Tamén hai dispoñibles fichas específicas locais e
-      listadas debaixo da táboa en inglés.<br /><br />
+      empregando as fichas, así como calquera texto ou caracteres de nome de ficheiro válidos. Os caracteres
+      non válidos son: <code>| * : &lt; &gt; ? \ / &quot;</code> Os tokens en inglés (en-US) están dispoñibles
+      en calquera rexión local. Tamén están dispoñibles os tokens específicos para local e listados debaixo da
+      táboa en inglés.<br /><br />
       Exemplos:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - O formato predeterminado<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : use o formato de data
@@ -942,7 +968,7 @@
       <code class="notranslate">key</code> : a tecla (carácter único)<br />
       <code class="notranslate">keycode</code> : o código de clave &quot;VK_ *&quot;<br />
       Pode incluírse calquera clave ou código de clave, pero non ambas as dúas<br />
-      <code class="notranslate">modifiers</code> - os modificadores clave, lista separada por espazo
+      <code class="notranslate">modifiers</code> : os modificadores de teclas, lista separada por espazo
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> : unha cadea de comando directa<br />
       <code class="notranslate">contexts</code> : o <code class="notranslate">contexts</code> da xanela onde a

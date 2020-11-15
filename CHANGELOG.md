@@ -17,7 +17,7 @@ Bug Issues Fixed:
 Notables:
 
 - Added Backup on exit option
-- Use `Index, CSV Date Format` option for full custom format
+- Use `Index, CSV Date Format` option for full custom format (options Misc tab)
 
 Version 10.0.1 : Maintenance Release - October 14, 2020
 

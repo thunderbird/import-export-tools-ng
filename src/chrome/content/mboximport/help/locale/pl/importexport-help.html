@@ -19,7 +19,31 @@
       To minimalistyczny pierwszy początek podręcznika użytkownika. Oczywiście jest wiele do dodania. Ta
       bieżąca strona skupia się na menu i nowych opcjach. Będzie stale aktualizowana w kolejnych wersjach.<br />
     </p>
-    <h3>Wersja 10.0.0: Nowe funkcje - 26 września 2020 r</h3>
+    <h3>Wersja 10.0.2: wydanie konserwacyjne - 14 listopada 2020 r</h3>
+    <p>
+      Naprawione problemy:<br /><br />
+      - # 140 Klawisz prawym przyciskiem myszy na niezaznaczonym folderze<br />
+      - # 149 Poprawki importu EML<br />
+      - # 154 Kopia zapasowa nie działa, jeśli używana jest opcja Plik / Zakończ<br />
+      - # 157, # 159 Niepowodzenie kopii zapasowych<br />
+      - # 173 Nie obsługuje żadnego wybranego folderu<br />
+      - # 174 Sender_email i receiver_email brakuje tokenów dla załączników<br />
+      - # 175 Obsługa przecinka i pojedynczego cudzysłowu w nazwach plików<br /><br />
+      Notables:<br /><br />
+      - Dodano opcję Kopia zapasowa przy wyjściu<br />
+      - Użyj opcji `Indeks, format daty CSV` dla pełnego formatu niestandardowego (opcje karta Różne)<br /><br />
+      <h3>Wersja 10.0.1: wydanie konserwacyjne - 14 października 2020 r</h3>
+      <br />
+      Naprawione problemy:<br />
+      - # 163, # 158, # 153 Poprawiona konwersja UTF-8 dla zwykłego tekstu / csv<br />
+      - # 161 Popraw format daty CSV<br /><br />
+      Notables:<br />
+      - Dodaj lepsze wykrywanie błędów nagłówka, wyjście debugowania<br />
+      - Zezwalaj na format daty indeksu dla CSV<br /><br />
+      Znane problemy:<br />
+      - Kopia zapasowa nie działa w 78<br /><br />
+      <h3>Wersja 10.0.0: Nowe funkcje - 26 września 2020 r</h3>
+    </p>
     <p>
       - Uaktualnij dla kompatybilności 78/68<br />
       - Nowe lokalizacje: el<br />
@@ -619,9 +643,9 @@
           <td><code class="code1">%G</code></td>
           <td>
             Tygodniowy rok ISO 8601 ze stuleciem jako liczbą dziesiętną. 4-cyfrowy rok odpowiada numerowi
-            tygodnia ISO (patrz <code class="code1">%V</code> ). Ma ten sam format i wartość jak
-            <code class="code1">%Y</code> , z tą różnicą, że jeśli numer tygodnia ISO należy do poprzedniego
-            lub następnego roku, zamiast tego używany jest ten rok.
+            tygodnia ISO (patrz <code class="code1">%V</code> ). Ma ten sam format i wartość co
+            <code class="code1">%Y</code> , z wyjątkiem tego, że jeśli numer tygodnia ISO należy do
+            poprzedniego lub następnego roku, zamiast tego używany jest ten rok.
           </td>
         </tr>
         <tr>
@@ -782,9 +806,9 @@
     <br />
     <p>
       Rozszerzone formatowanie nazw plików wykorzystuje tokeny. Dokładną nazwę pliku można skonstruować przy
-      użyciu tokenów, a także dowolnego tekstu lub prawidłowych znaków nazwy pliku. Tokeny angielskie (en-US)
-      są dostępne w każdym języku. Tokeny specyficzne dla lokalizacji są również dostępne i wymienione pod
-      tabelą w języku angielskim.<br /><br />
+      użyciu tokenów, a także dowolnego tekstu lub prawidłowych znaków nazwy pliku. Nieprawidłowe znaki to:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Tokeny angielskie (en-US) są dostępne w każdym języku. Tokeny
+      specyficzne dla języka są również dostępne i wymienione poniżej tabeli języka angielskiego.<br /><br />
       Przykłady:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - format domyślny<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - użyj niestandardowego

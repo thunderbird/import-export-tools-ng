@@ -10,35 +10,34 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 
-![IETng_version](https://img.shields.io/badge/version-v10.0.1-darkorange.png?label=ImportExportTools%20NG)
-[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.1-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
+![IETng_version](https://img.shields.io/badge/version-v10.0.2-darkorange.png?label=ImportExportTools%20NG)
+[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.2-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
 ![Thunderbird_version](https://img.shields.io/badge/version-v68.0--78.*-blue.png?label=Thunderbird)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.1%20Released-brightgreen.png)
+![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.2%20Released-brightgreen.png)
 
 #
 
 ## Import Export Tools NG Add-On Features
 
-Version 10.0.1 : Maintenance Release - October 14, 2020
 
-- See change log
-- Backups not working in 78
-
-Version 10.0.0 : New Features - September 26, 2020
-
-- 78 Compatible
-- New locales: el
-- Index custom date format
-- new tokens for filenames : sender/recipient e-mail
-- Use `%d` in print settings header/footer for custom date
+Latest Version 10.0.2 : Maintenance Release - November 14, 2020
 
 Bug Issues Fixed:
-- #118, #63 Fixed conversion for plaintext
-- #57 Use ForceDBClose to Close open files (fixes folders and messages)
-- #77 Use global settings for PDF
-- #130 scheduled backups
-- #134 Correctly handle read, forwarded, replied flags
+
+- #140 Handle right click on unselected folder
+- #149 EML import fixes
+- #154 Backup does not run if File/Exit used
+- #157, #159 Backups failing
+- #173 Handle no selected folder
+- #174 Sender_email & recipient_email  tokens missing for  attachments
+- #175 Support comma and single quote in filenames
+
+Notables:
+
+- Added Backup on exit option
+- Use `Index, CSV Date Format` option for full custom format (options Misc tab)
+
 
 Thanks to many! : See issues
 

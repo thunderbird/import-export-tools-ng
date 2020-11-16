@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Добавить суффикс">
 <!ENTITY dateFormatRefTooltipText "Формат даты">
 <!ENTITY extFilenameFormatRefTooltipText "Расширенная ссылка на формат имени файла">
+<!ENTITY backupOnExit "Резервное копирование при выходе">
+<!ENTITY noFolderSelectedMenuTop "[Папка не выбрана (импорт \ экспорт отключен)]">
+<!ENTITY indexCSVdateFormat "Индекс, формат даты CSV:">

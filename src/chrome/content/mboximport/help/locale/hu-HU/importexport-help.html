@@ -20,7 +20,31 @@
       jelenlegi oldal a menükre és az új opciókra összpontosít. Folyamatosan frissítjük a következő
       verziókban.<br />
     </p>
-    <h3>10.0.0 verzió: Új funkciók - 2020. szeptember 26</h3>
+    <h3>10.0.2 verzió: Karbantartási kiadás - 2020. november 14</h3>
+    <p>
+      Javított hibakeresések:<br /><br />
+      - # 140 Kezelje a jobb egérgombbal a kijelöletlen mappát<br />
+      - # 149 EML import javítások<br />
+      - # 154 A biztonsági mentés nem fut, ha a Fájl / Kilépés lehetőséget használja<br />
+      - # 157, # 159 A biztonsági mentések sikertelenek<br />
+      - # 173 Nincs kiválasztott mappa kezelése<br />
+      - # 174 A csatolókhoz hiányoznak a Sender_email és a recipient_email tokenek<br />
+      - # 175 Vessző és egyetlen idézet támogatása a fájlnevekben<br /><br />
+      Nevezetességek:<br /><br />
+      - Biztonsági mentés kilépéskor opció<br />
+      - Használja az `Index, CSV dátumformátum` opciót a teljes egyéni formátumhoz (opciók Egyéb lap)<br /><br />
+      <h3>10.0.1 verzió: Karbantartási kiadás - 2020. október 14</h3>
+      <br />
+      Javított hibakeresések:<br />
+      - # 163, # 158, # 153 Fix UTF-8 átalakítás egyszerű szöveg / csv-hez<br />
+      - # 161 Javítsa a CSV dátumformátumot<br /><br />
+      Nevezetességek:<br />
+      - Jobb fejléchiba észlelés, hibakeresési kimenet hozzáadása<br />
+      - Index dátumformátum engedélyezése a CSV fájlhoz<br /><br />
+      Ismert problémák:<br />
+      - A biztonsági mentés nem működik 78-ban<br /><br />
+      <h3>10.0.0 verzió: Új funkciók - 2020. szeptember 26</h3>
+    </p>
     <p>
       - Frissítés a 78/68 kompatibilitás érdekében<br />
       - Új helyek: el<br />
@@ -771,8 +795,9 @@
     <br />
     <p>
       A kiterjesztett fájlnév-formátum tokeneket használ. A pontos fájlnév elkészíthető a tokenek, valamint
-      bármilyen szöveg vagy érvényes fájlnév karakter felhasználásával. Az angol (en-USA) tokenek bármilyen
-      nyelven elérhetők. A helyi nyelvű tokenek is elérhetők, és az angol táblázat alatt vannak felsorolva.<br /><br />
+      bármilyen szöveg vagy érvényes fájlnév karakter felhasználásával. Érvénytelen karakterek:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Az angol (en-USA) tokenek minden nyelven elérhetők. A helyi
+      nyelvű tokenek is elérhetők, és fel vannak sorolva az angol táblázat alatt.<br /><br />
       Példák:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Az alapértelmezett
       formátum<br />

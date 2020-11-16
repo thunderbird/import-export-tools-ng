@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "添加后缀">
 <!ENTITY dateFormatRefTooltipText "日期格式参考">
 <!ENTITY extFilenameFormatRefTooltipText "扩展文件名格式参考">
+<!ENTITY backupOnExit "退出时备份">
+<!ENTITY noFolderSelectedMenuTop "[未选择文件夹（导入\导出已禁用）]">
+<!ENTITY indexCSVdateFormat "索引，CSV日期格式：">

@@ -9,17 +9,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, services, globals, progress meter changes
@@ -49,7 +49,6 @@ var autoBackup = {
 	},
 
 	load: function () {
-		console.debug('start the backup load ');
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");
@@ -289,14 +288,14 @@ var autoBackup = {
 				serverFile = server.localPath;
 				// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
 			} else {
-				
+
 				try {
 					serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
 				} catch (e) {
 					server = servers[i];
 					serverFile = server.localPath;
 				}
-	
+
 			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;

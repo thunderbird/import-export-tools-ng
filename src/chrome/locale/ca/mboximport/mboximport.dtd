@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Afegir el sufix">
 <!ENTITY dateFormatRefTooltipText "Data de referència de format">
 <!ENTITY extFilenameFormatRefTooltipText "Referència ampliada del format de fitxer">
+<!ENTITY backupOnExit "Còpia de seguretat a la sortida">
+<!ENTITY noFolderSelectedMenuTop "[No hi ha cap carpeta seleccionada (Importació \ Exportació desactivada)]">
+<!ENTITY indexCSVdateFormat "Índex, format de data CSV:">

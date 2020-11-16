@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Pridať prípona">
 <!ENTITY dateFormatRefTooltipText "Referencia formátu dátumu">
 <!ENTITY extFilenameFormatRefTooltipText "Odkaz na formát rozšíreného názvu súboru">
+<!ENTITY backupOnExit "Zálohovanie pri výstupe">
+<!ENTITY noFolderSelectedMenuTop "[No Selected Folder (Import \ Export Disabled)]">
+<!ENTITY indexCSVdateFormat "Register, formát dátumu CSV:">

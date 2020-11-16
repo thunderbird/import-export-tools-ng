@@ -20,7 +20,33 @@
       página actual se centra en los menús y las nuevas opciones. Se actualizará continuamente en versiones
       posteriores.<br />
     </p>
-    <h3>Versión 10.0.0: Nuevas funciones - 26 de septiembre de 2020</h3>
+    <h3>Versión 10.0.2: Versión de mantenimiento - 14 de noviembre de 2020</h3>
+    <p>
+      Problemas de errores solucionados:<br /><br />
+      - # 140 Manejar haga clic derecho en la carpeta no seleccionada<br />
+      - Correcciones de importación de EML # 149<br />
+      - # 154 La copia de seguridad no se ejecuta si se usa Archivo / Salir<br />
+      - # 157, # 159 Copias de seguridad fallando<br />
+      - # 173 Manejar ninguna carpeta seleccionada<br />
+      - Faltan los tokens de correo electrónico de remitente y correo electrónico de destinatario para los
+      archivos adjuntos.<br />
+      - # 175 Soporta comas y comillas simples en nombres de archivos<br /><br />
+      Notables:<br /><br />
+      - Se agregó la opción de copia de seguridad al salir<br />
+      - Use la opción `Index, CSV Date Format` para un formato personalizado completo (opciones de la pestaña
+      Misc)<br /><br />
+      <h3>Versión 10.0.1: Versión de mantenimiento - 14 de octubre de 2020</h3>
+      <br />
+      Problemas de errores solucionados:<br />
+      - # 163, # 158, # 153 Conversión UTF-8 fija para texto plano / csv<br />
+      - # 161 Corregir formato de fecha CSV<br /><br />
+      Notables:<br />
+      - Agregue una mejor detección de errores de encabezado, salida de depuración<br />
+      - Permitir formato de fecha de índice para CSV<br /><br />
+      Problemas conocidos:<br />
+      - La copia de seguridad no funciona en 78<br /><br />
+      <h3>Versión 10.0.0: Nuevas funciones - 26 de septiembre de 2020</h3>
+    </p>
     <p>
       - Actualización para compatibilidad con 78/68<br />
       - Nuevos locales: el<br />
@@ -642,7 +668,7 @@
             Año basado en la semana ISO 8601 con siglo como número decimal. El año de 4 dígitos corresponde al
             número de semana ISO (ver <code class="code1">%V</code> ). Tiene el mismo formato y valor que
             <code class="code1">%Y</code> , excepto que si el número de semana ISO pertenece al año anterior o
-            al año siguiente, ese año se utiliza en su lugar.
+            al año siguiente, ese año se usa en su lugar.
           </td>
         </tr>
         <tr>
@@ -724,9 +750,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Número de semana ISO 8601 del año actual como un número decimal (rango de 01 a 53), donde la
-            semana 1 es la primera semana que tiene al menos 4 días en el año nuevo (es decir, el primer
-            jueves).
+            Número de semana ISO 8601 del año actual como un número decimal (rango 01 a 53), donde la semana 1
+            es la primera semana que tiene al menos 4 días en el año nuevo (es decir, el primer jueves).
           </td>
         </tr>
         <tr>
@@ -799,9 +824,10 @@
     <br />
     <p>
       El formato de nombre de archivo extendido utiliza tokens. El nombre de archivo exacto se puede construir
-      utilizando los tokens, así como cualquier texto o caracteres de nombre de archivo válidos. Los tokens en
-      inglés (en-US) están disponibles en cualquier lugar. Los tokens específicos de la configuración regional
-      también están disponibles y se enumeran debajo de la tabla en inglés.<br /><br />
+      utilizando los tokens, así como cualquier texto o caracteres de nombre de archivo válidos. Los
+      caracteres no válidos son: <code>| * : &lt; &gt; ? \ / &quot;</code> Los tokens en inglés (en-US) están
+      disponibles en cualquier lugar. Los tokens específicos del lugar también están disponibles y se enumeran
+      debajo de la tabla en inglés.<br /><br />
       Ejemplos:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - El formato predeterminado<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : usa el formato de

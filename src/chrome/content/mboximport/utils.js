@@ -255,7 +255,9 @@ function getSubjectForHdr(hdr, dirPath) {
 
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
 		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
@@ -271,10 +273,12 @@ function getSubjectForHdr(hdr, dirPath) {
 	fname = fname.replace(/[\x00-\x1F]/g, "_");
 	if (mustcorrectname)
 		fname = nametoascii(fname);
-	else
-		// fname = fname.replace(/[\/\\:,<>*\?\"\|\']/g, "_");
-		fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
-
+	else {
+		// Allow ',' and single quote character which is valid
+		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
+	}
+	
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
 		if (fname.length > maxFN)
@@ -534,7 +538,8 @@ function IETstr_converter(str) {
 function nametoascii(str) {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
 		str = str.replace(/[\x00-\x19]/g, "_");
-		return str.replace(/[\/\\:,<>*\?\"\|]/g, "_");
+		// Allow ',' and single quote character which is valid
+		return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
 	}
 	if (str)
 		str = str.replace(/[^a-zA-Z0-9\-]/g, "_");
@@ -793,6 +798,22 @@ function constructAttachmentsFilename(type, hdr) {
 	// Name
 	let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
 	let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+
+	var authEmail = "";
+	var recEmail = "";
+
+	if (hdr.mime2DecodedAuthor) {
+		authEmail = stripDisplayName(hdr.mime2DecodedAuthor)[0].email;
+	}
+	if (hdr.mime2DecodedRecipients) {
+		recEmail = stripDisplayName(hdr.mime2DecodedRecipients)[0].email;
+	}
+
+	// deal with e-mail without 'To:' header
+	if (recEmail === "" || !recEmail) {
+		recEmail = "(none)";
+	}
+
 	// Sent of Drafts folder
 	let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
 	let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
@@ -811,7 +832,9 @@ function constructAttachmentsFilename(type, hdr) {
 	// Allow en-US tokens always
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${subject}", subj);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${sender}", authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${sender_email}", authEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient}", recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient_email}", recEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${smart_name}", smartName);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
@@ -821,7 +844,9 @@ function constructAttachmentsFilename(type, hdr) {
 
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);

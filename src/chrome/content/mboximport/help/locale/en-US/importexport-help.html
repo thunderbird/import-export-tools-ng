@@ -20,6 +20,39 @@
 		This current page focuses on the menus and new options.
 		It will be continually updated in subsequent versions.<br>
 	</p>
+
+	<h3>Version 10.0.2 : Maintenance Release - November 14, 2020</h3>
+	<p>
+	Bug Issues Fixed:<br>
+	<br>
+	- #140 Handle right click on unselected folder<br>
+	- #149 EML import fixes<br>
+	- #154 Backup does not run if File/Exit used<br>
+	- #157, #159 Backups failing<br>
+	- #173 Handle no selected folder<br>
+	- #174 Sender_email & recipient_email tokens missing for attachments<br>
+	- #175 Support comma and single quote in filenames<br>
+	<br>
+	Notables:<br>
+	<br>
+	- Added Backup on exit option<br>
+	- Use `Index, CSV Date Format` option for full custom format (options Misc tab)<br>
+	<br>
+	<h3>Version 10.0.1 : Maintenance Release - October 14, 2020</h3>
+	<br>
+	Bug Issues Fixed:<br>
+	- #163, #158, #153 Fixed UTF-8 conversion for plaintext/csv<br>
+	- #161 Fix CSV date format<br>
+	<br>
+	Notables:<br>
+	- Add better header err detection, debug output<br>
+	- Allow index date format for CSV<br>
+	<br>
+	Known Issues:<br>
+	- Backup not working in 78<br>
+	<br>
+	
+
 	<h3>Version 10.0.0 : New Features - September 26, 2020</h3>
 	<p>
 	- Upgrade for 78/68 compatibility<br>
@@ -750,6 +783,7 @@
 					<p>
 					The extended file name formatting utilizes tokens. The exact filename can be constructed
 					utilizing the tokens as well as any text or valid filename characters.
+					Invalid characters are: <code> | * : < > ? \ / " </code>
 					The English (en-US) tokens are available in any locale. Locale specific tokens
 					are also available and listed below the English table.
 					<br><br>

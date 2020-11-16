@@ -100,10 +100,16 @@ function rfc822test() {
 
 
 function IETsetMBmenu() {
+    // console.debug('IETsetMBmenu');
     document.getElementById("mboxexport").removeAttribute("disabled");
     var msgFolder = GetSelectedMsgFolders()[0];
     var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
     var storeFormat = IETstoreFormat();
+
+    if (!msgFolder) {
+		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
+		return;
+	}
 
     // the folder is the account pseudo-folder? we must set the right label and
     if (msgFolder.isServer) {
@@ -164,7 +170,13 @@ function IETsetMBmenu() {
 function IETsetMBmenu2(popup) {
     var i = popup.getAttribute("mboxIndex");
 
-    if (GetSelectedMsgFolders()[0] === null) {
+    // console.debug('IETsetMBmenu2');
+
+    var msgFolder = GetSelectedMsgFolders()[0];
+
+    if (msgFolder === null || msgFolder === undefined) {
+        
+        document.getElementById("mboxexportnofolder" + i).setAttribute("hidden", "false");
         document.getElementById("mboxexport" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportZIP" + i).setAttribute("disabled", "true");
         document.getElementById("mboximport" + i).setAttribute("disabled", "true");
@@ -175,7 +187,12 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboxexportstruct" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexport" + i).label = mboximportbundle.GetStringFromName("exportFolder");
         document.getElementById("exportALLMSG" + i).setAttribute("disabled", "true");
-        document.getElementById("mboximportALLEML" + i).setAttribute("disabled", "true");
+        document.getElementById("mboximportALLEMLt" + i).setAttribute("disabled", "true");
+        document.getElementById("mboxexportRemote" + i).setAttribute("disabled", "true");
+        document.getElementById("mboximportsearch" + i).setAttribute("disabled", "true");
+        // document.getElementById("" + i).setAttribute("disabled", "true");
+
+        
         return;
         // eslint-disable-next-line no-else-return
     } else {
@@ -195,7 +212,7 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboxexportZIP" + i).collapsed = true;
         document.getElementById("mboxexportallstruct" + i).collapsed = false;
         document.getElementById("exportALLMSG" + i).setAttribute("disabled", "true");
-        document.getElementById("mboximportALLEML" + i).setAttribute("disabled", "true");
+        document.getElementById("mboximportALLEMLt" + i).setAttribute("disabled", "true");
         document.getElementById("mboxexportRemote" + i).collapsed = true;
     } else {
         document.getElementById("mboxexport" + i).label = mboximportbundle.GetStringFromName("exportFolder");
@@ -206,7 +223,7 @@ function IETsetMBmenu2(popup) {
         document.getElementById("mboxexportZIP" + i).collapsed = false;
         if (!isVirtFol) {
             document.getElementById("mboximportEML" + i).removeAttribute("disabled");
-            document.getElementById("mboximportALLEML" + i).removeAttribute("disabled");
+            document.getElementById("mboximportALLEMLt" + i).removeAttribute("disabled");
         }
         if (msgFolder.server.type === "imap" || msgFolder.server.type === "nntp")
             document.getElementById("mboxexportRemote" + i).collapsed = false;
@@ -226,7 +243,7 @@ function IETsetMBmenu2(popup) {
     if (isVirtFol) {
         document.getElementById("mboximport" + i).setAttribute("disabled", "true");
         document.getElementById("mboximportEML" + i).setAttribute("disabled", "true");
-        document.getElementById("mboximportALLEML" + i).setAttribute("disabled", "true");
+        document.getElementById("mboximportALLEMLt" + i).setAttribute("disabled", "true");
     } else {
         document.getElementById("mboximport" + i).removeAttribute("disabled");
         document.getElementById("mboximportMD" + i).removeAttribute("disabled");
@@ -242,4 +259,7 @@ function IETsetMBmenu2(popup) {
     }
 }
 
+function noFoldersSelectedAlert() {
+    alert(mboximportbundle.GetStringFromName("noFolderSelected"));
+}
 // window.addEventListener("load", IETinit, false);

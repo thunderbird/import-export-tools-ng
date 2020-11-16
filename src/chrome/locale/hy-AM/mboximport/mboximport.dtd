@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "Ավելացնել վերջածանց">
 <!ENTITY dateFormatRefTooltipText "Ամսաթվի ձևաչափի տեղեկանք">
 <!ENTITY extFilenameFormatRefTooltipText "Ֆայլի անվան ձևաչափի ընդլայնված հղում">
+<!ENTITY backupOnExit "Ելքի պահուստավորում">
+<!ENTITY noFolderSelectedMenuTop "[Ընտրված պանակ չկա (ներմուծումը \ արտահանումն անջատված է)]">
+<!ENTITY indexCSVdateFormat "Ինդեքս, CSV Ամսաթիվ Ձևաչափը.">

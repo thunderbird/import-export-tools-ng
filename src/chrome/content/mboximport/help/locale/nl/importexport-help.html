@@ -20,7 +20,32 @@
       voegen. Deze huidige pagina richt zich op de menu&#39;s en nieuwe opties. Het zal in volgende versies
       voortdurend worden bijgewerkt.<br />
     </p>
-    <h3>Versie 10.0.0: nieuwe functies - 26 september 2020</h3>
+    <h3>Versie 10.0.2: onderhoudsrelease - 14 november 2020</h3>
+    <p>
+      Bugproblemen opgelost:<br /><br />
+      - # 140 Klik met de rechtermuisknop op een niet-geselecteerde map<br />
+      - # 149 EML-importfixes<br />
+      - # 154 Back-up werkt niet als File / Exit wordt gebruikt<br />
+      - # 157, # 159 Back-ups mislukken<br />
+      - # 173 Behandel geen geselecteerde map<br />
+      - # 174 Sender_email &amp; recipient_email tokens ontbreken voor bijlagen<br />
+      - # 175 Ondersteunt komma&#39;s en enkele aanhalingstekens in bestandsnamen<br /><br />
+      Notabelen:<br /><br />
+      - Back-up toegevoegd bij afsluiten<br />
+      - Gebruik de optie `Index, CSV-datumnotatie` voor een volledig aangepast formaat (tabblad Opties
+      Diversen)<br /><br />
+      <h3>Versie 10.0.1: Onderhoudsrelease - 14 oktober 2020</h3>
+      <br />
+      Bugproblemen opgelost:<br />
+      - # 163, # 158, # 153 UTF-8-conversie voor platte tekst / csv opgelost<br />
+      - # 161 Fix CSV-datumnotatie<br /><br />
+      Notabelen:<br />
+      - Voeg betere header-foutdetectie toe, debug-uitvoer<br />
+      - Sta index datumnotatie toe voor CSV<br /><br />
+      Bekende problemen:<br />
+      - Back-up werkt niet in 78<br /><br />
+      <h3>Versie 10.0.0: nieuwe functies - 26 september 2020</h3>
+    </p>
     <p>
       - Upgrade voor compatibiliteit met 78/68<br />
       - Nieuwe locaties: el<br />
@@ -614,7 +639,7 @@
             ISO 8601 jaar op weekbasis met eeuw als decimaal getal. Het 4-cijferige jaar komt overeen met het
             ISO-weeknummer (zie <code class="code1">%V</code> ). Dit heeft hetzelfde formaat en dezelfde
             waarde als <code class="code1">%Y</code> , behalve dat als het ISO-weeknummer bij het vorige of
-            volgende jaar hoort, in plaats daarvan dat jaar wordt gebruikt.
+            volgende jaar hoort, dat jaar wordt gebruikt.
           </td>
         </tr>
         <tr>
@@ -780,9 +805,10 @@
     <br />
     <p>
       De uitgebreide bestandsnaamopmaak maakt gebruik van tokens. De exacte bestandsnaam kan worden
-      geconstrueerd met behulp van de tokens en eventuele tekst of geldige tekens voor de bestandsnaam. De
-      Engelse (en-US) tokens zijn beschikbaar in elke landinstelling. Landspecifieke tokens zijn ook
-      beschikbaar en worden vermeld onder de Engelse tabel.<br /><br />
+      geconstrueerd met behulp van de tokens en eventuele tekst of geldige tekens voor de bestandsnaam.
+      Ongeldige tekens zijn: <code>| * : &lt; &gt; ? \ / &quot;</code> De Engelse (en-US) tokens zijn
+      beschikbaar in elke landinstelling. Landspecifieke tokens zijn ook beschikbaar en staan vermeld onder de
+      Engelse tabel.<br /><br />
       Voorbeelden:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Het standaardformaat<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Gebruik de aangepaste
@@ -900,10 +926,10 @@
       dialoogvenster met opties. Zodra deze functies zijn gestabiliseerd, worden ze aan de gebruikersinterface
       toegevoegd.<br />
       Om ze te kunnen gebruiken, moeten ze worden ingesteld in de configuratie-editor. Om toegang te krijgen
-      tot de editor gebruikt u het menu Extra / Opties en selecteert u vervolgens de sectie Geavanceerd en er
-      zal onderaan een knop &#39;Configuratie-editor&#39; zijn. Als u &#39;importexporttoolsng&#39; in de
-      zoekbalk typt, krijgt u alle extensievoorkeuren. U kunt vervolgens de verschillende voorkeuren hieronder
-      naar wens bewerken.
+      tot de editor, gebruikt u het menu Extra / Opties en selecteert u de sectie Geavanceerd en er zal
+      onderaan een knop &#39;Configuratie-editor&#39; zijn. Als u &#39;importexporttoolsng&#39; in de zoekbalk
+      typt, krijgt u alle extensievoorkeuren. U kunt vervolgens de verschillende voorkeuren hieronder naar
+      wens bewerken.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>

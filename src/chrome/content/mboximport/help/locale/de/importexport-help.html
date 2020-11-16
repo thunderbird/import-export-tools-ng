@@ -20,7 +20,32 @@
       hinzuzufügen. Diese aktuelle Seite konzentriert sich auf die Menüs und neuen Optionen. Es wird in
       nachfolgenden Versionen ständig aktualisiert.<br />
     </p>
-    <h3>Version 10.0.0: Neue Funktionen - 26. September 2020</h3>
+    <h3>Version 10.0.2: Wartungsversion - 14. November 2020</h3>
+    <p>
+      Fehler behoben:<br /><br />
+      - # 140 Rechtsklick auf nicht ausgewählten Ordner<br />
+      - # 149 EML-Importkorrekturen<br />
+      - # 154 Backup wird nicht ausgeführt, wenn File / Exit verwendet wird<br />
+      - # 157, # 159 Backups schlagen fehl<br />
+      - # 173 Behandle keinen ausgewählten Ordner<br />
+      - # 174 Sender_email- und Empfänger_email-Token für Anhänge fehlen<br />
+      - # 175 Unterstützungskomma und einfaches Anführungszeichen in Dateinamen<br /><br />
+      Bemerkenswert:<br /><br />
+      - Backup beim Beenden hinzugefügt<br />
+      - Verwenden Sie die Option &quot;Index, CSV-Datumsformat&quot; für das vollständige benutzerdefinierte
+      Format (Optionen &quot;Verschiedenes&quot;).<br /><br />
+      <h3>Version 10.0.1: Wartungsversion - 14. Oktober 2020</h3>
+      <br />
+      Fehler behoben:<br />
+      - # 163, # 158, # 153 UTF-8-Konvertierung für Klartext / CSV behoben<br />
+      - # 161 CSV-Datumsformat korrigieren<br /><br />
+      Bemerkenswert:<br />
+      - Bessere Fehlererkennung für Header hinzufügen, Ausgabe debuggen<br />
+      - Index-Datumsformat für CSV zulassen<br /><br />
+      Bekannte Probleme:<br />
+      - Backup funktioniert in 78 nicht<br /><br />
+      <h3>Version 10.0.0: Neue Funktionen - 26. September 2020</h3>
+    </p>
     <p>
       - Upgrade für 78/68 Kompatibilität<br />
       - Neue Gebietsschemas: el<br />
@@ -803,9 +828,10 @@
     <br />
     <p>
       Bei der Formatierung des erweiterten Dateinamens werden Token verwendet. Der genaue Dateiname kann unter
-      Verwendung der Token sowie aller Text- oder gültigen Dateinamenzeichen erstellt werden. Die englischen
-      (en-US) Token sind in jedem Gebietsschema verfügbar. Gebietsschemaspezifische Token sind ebenfalls
-      verfügbar und unter der englischen Tabelle aufgeführt.<br /><br />
+      Verwendung der Token sowie aller Text- oder gültigen Dateinamenzeichen erstellt werden. Ungültige
+      Zeichen sind: <code>| * : &lt; &gt; ? \ / &quot;</code> Die englischen (en-US) Token sind in jedem
+      Gebietsschema verfügbar. Länderspezifische Token sind ebenfalls verfügbar und unter der englischen
+      Tabelle aufgeführt.<br /><br />
       Beispiele:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Das Standardformat<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Verwenden Sie das

@@ -15,13 +15,11 @@ const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
 var translationArray = [
-	// { key: "dateFormatRefTooltipText", text: "Date Format Reference" },
-	// { key: "extFilenameFormatRefTooltipText", text: "Extended Filename Format Reference" },
-	{ key: "ColumnsWizard.CustCol.Move", text: "Move" },
-	{ key: "ColumnsWizard.Info.Credits", text: "Credits" },
-	{ key: "ColumnsWizard.Info.Authors", text: "Authors" },
-	{ key: "ColumnsWizard.Info.ReleaseNotes", text: "Release Notes" },
-	{ key: "ColumnsWizard.Advanced.DebuggingOptions", text: "Debugging Options" },
+	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
+	{ key: "backupOnExit", text: "Backup On Exit" },
+	{ key: "noFolderSelectedMenuTop", text: "[ No Selected Folder (Import \\ Export Disabled) ]" },
+	{ key: "indexCSVdateFormat", text: "Index, CSV Date Format:" },
+	// { key: "", text: "" },
 ]
 
 // const localeDir = "../src/chrome/locale";
@@ -157,11 +155,21 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 			lt = `{\n${lt}\n}`;
 		}
 
+		lt = lt.replace(/<nl>/g, "\\n");
 		console.debug('TranslationMessages ' + lt.length);
 		console.debug(lt);
 		// let outputFileName = iFile.replace('.', '-') + ".json";
 		let outputFileName = iFile;
-		fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, lt);
+
+		if (options.append) {
+			console.debug('AppendingMessages');
+			lt = "\n" + lt;
+			fs.appendFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
+			
+		} else {
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, lt);
+			
+		}
 	}
 }
 
@@ -175,12 +183,13 @@ function sleep(ms) {
 async function translateHelpPage() {
 	var localeFolders = _getAllFilesOrFolders(localeDir, true);
 	
-	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM',
-		'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
+	// var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM'];
+
+	var supportedLocales = ['it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 	//  const supportedLocales2 = ['pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE' ];
-	// supportedLocales = ['da',  'de'];
-	// var supportedLocales = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
+	// supportedLocales = ['es-ES'];
+	// supportedLocales = ['el', 'gl-ES', 'hu-HU', 'hy-AM',
 	// 'sk-SK', 'sl-SI', 'sv-SE', 'el'];
 
 
@@ -397,6 +406,7 @@ function loadTranslationArray(inputFiles, options) {
 var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
+	outputLocaleDirSuffix: "mboximport/",
 	append: true,
 	outputFormat: 0,
 };
@@ -414,13 +424,13 @@ let inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
-var localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
-'el', 'pl', 'da', 'pt-PT'];
+localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
+'el', 'pl', 'da', 'pt-PT', 'ca', 'gl-ES', 'sk-SK', 'sl-SI', 'sv-SE'];
 
 // var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
-// localeFolders = ['el'];
+localeFolders = ['es-ES'];
 
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
@@ -428,6 +438,7 @@ localeFile = "settings.json";
 // t();
 translateHelpPage();
 // translatePage();
-// translateAll(options);
+// translateAll("mboximport.properties", translationArray, options);
+// translateAll("mboximport.dtd", translationArray, options);
 // loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];

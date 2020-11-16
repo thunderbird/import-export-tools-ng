@@ -312,7 +312,7 @@ function exportSelectedMsgs(type) {
 // sets the destination directory and makes some checks about the types of the selected folders;
 // all the selected folders are stored in IETglobalMsgFolders global array
 
-function exportAllMsgs(type) {
+function exportAllMsgs(type, t) {
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
@@ -328,6 +328,10 @@ function exportAllMsgs(type) {
 		if (!question)
 			return;
 	}
+
+	// console.debug(t);
+	// console.debug(event.target.outerHTML);
+
 
 	var file = getPredefinedFolder(1);
 	if (!file) {
@@ -352,6 +356,8 @@ function exportAllMsgs(type) {
 	} catch (e) { }
 
 	IETglobalMsgFolders = GetSelectedMsgFolders();
+	console.debug(IETglobalMsgFolders[0].name);
+
 	IETglobalMsgFoldersExported = 0;
 	for (var i = 0; i < IETglobalMsgFolders.length; i++) {
 		// Check if there is a multiple selection and one of the folders is a virtual one.
@@ -1052,10 +1058,10 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		if (customDateFormat === "") {
 			csvDate = msgDate.toLocaleDateString() + " " + objHour + ":" + objMin;
-			console.debug('DefaultDate ' + csvDate);
+			// console.debug('DefaultDate ' + csvDate);
 		} else {
 			csvDate = strftime.strftime(customDateFormat, msgDate);
-			console.debug(' customDate ' + csvDate);
+			// console.debug(' customDate ' + csvDate);
 		}
 
 		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)

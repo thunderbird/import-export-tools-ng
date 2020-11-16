@@ -20,7 +20,31 @@
       trenutna stran se osredotoča na menije in nove možnosti. V naslednjih različicah se bo nenehno
       posodabljal.<br />
     </p>
-    <h3>Različica 10.0.0: Nove funkcije - 26. september 2020</h3>
+    <h3>Različica 10.0.2: Izdanje o vzdrževanju - 14. november 2020</h3>
+    <p>
+      Odpravljene napake:<br /><br />
+      - # 140 Upravljajte z desnim klikom na neizbrano mapo<br />
+      - # 149 popravki za uvoz EML<br />
+      - # 154 Varnostno kopiranje se ne zažene, če je uporabljena datoteka / izhod<br />
+      - # 157, # 159 Varnostne kopije ne uspejo<br />
+      - # 173 Obravnava nobene izbrane mape<br />
+      - # 174 Za priloge manjkajo žetoni pošiljatelja in e-pošte prejemnika<br />
+      - # 175 Podpira vejico in en narekovaj v imenih datotek<br /><br />
+      Pomembnejši:<br /><br />
+      - Dodana možnost Varnostno kopiranje ob izhodu<br />
+      - Za popolno obliko po meri uporabite možnost `Indeks, oblika zapisa datuma CSV` (zavihek Razno)<br /><br />
+      <h3>Različica 10.0.1: Izdanje o vzdrževanju - 14. oktober 2020</h3>
+      <br />
+      Odpravljene napake:<br />
+      - # 163, # 158, # 153 Fiksna pretvorba UTF-8 za navadno besedilo / csv<br />
+      - # 161 Popravite format datuma CSV<br /><br />
+      Pomembnejši:<br />
+      - Dodajte boljše zaznavanje napak glave, izhod za odpravljanje napak<br />
+      - Dovoli obliko zapisa datuma indeksa za CSV<br /><br />
+      Znane težave:<br />
+      - Varnostna kopija ne deluje v 78<br /><br />
+      <h3>Različica 10.0.0: Nove funkcije - 26. september 2020</h3>
+    </p>
     <p>
       - Nadgradnja za združljivost 78/68<br />
       - Novi kraji: el<br />
@@ -154,7 +178,7 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
+            Sporočila map izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -425,7 +449,7 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
+            Sporočila map izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -695,8 +719,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Številka tedna ISO 8601 tekočega leta kot decimalno število (razpon od 01 do 53), kjer je 1. teden
-            prvi teden, ki ima v novem letu vsaj 4 dni (torej prvi četrtek).
+            Številka tedna tekočega leta ISO 8601 kot decimalna številka (razpon od 01 do 53), kjer je 1.
+            teden prvi teden, ki ima v novem letu vsaj 4 dni (torej prvi četrtek).
           </td>
         </tr>
         <tr>
@@ -769,9 +793,9 @@
     <br />
     <p>
       Formatiranje razširjenega imena datoteke uporablja žetone. Natančno ime datoteke je mogoče izdelati z
-      uporabo žetonov, pa tudi katerega koli besedila ali veljavnih znakov imena datoteke. Angleški (en-US)
-      žetoni so na voljo v vseh jezikih. Na voljo so tudi žetoni, značilni za lokacijo, in navedeni pod
-      angleško tabelo.<br /><br />
+      uporabo žetonov, pa tudi katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki
+      so: <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na
+      voljo so tudi žetoni, značilni za lokacijo, in navedeni pod tabelo v angleščini.<br /><br />
       Primeri:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Privzeta oblika<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - namesto privzete
@@ -926,8 +950,8 @@
       <code class="notranslate">key</code> - tipka (en znak)<br />
       <code class="notranslate">keycode</code> - v nadaljevanju VK_ * &#39;defind keycode<br />
       Vključena je lahko ključ ali koda ključa, ne pa obeh<br />
-      <code class="notranslate">modifiers</code> - <code class="notranslate">modifiers</code> tipk, seznam,
-      ločen s presledkom (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam, ločen s presledkom
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />
       <code class="notranslate">contexts</code> - <code class="notranslate">contexts</code> okna, kjer je
       ključ aktiven<br />

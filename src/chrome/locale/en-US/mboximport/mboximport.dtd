@@ -115,3 +115,6 @@
 
 <!ENTITY dateFormatRefTooltipText "Date Format Reference">
 <!ENTITY extFilenameFormatRefTooltipText "Extended Filename Format Reference">
+<!ENTITY noFolderSelectedMenuTop "[ No Selected Folder (Import \ Export Disabled) ]">
+<!ENTITY backupOnExit "Backup On Exit">
+<!ENTITY indexCSVdateFormat "Index, CSV Date Format:">

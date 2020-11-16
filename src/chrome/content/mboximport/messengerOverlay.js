@@ -29,14 +29,14 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 function IETmessOverlayInit() {
-	Services.console.logStringMessage("Start overland");
+	Services.console.logStringMessage("Start backup check");
 	var last = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 	var frequency = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 	if (frequency === 0)
 		return;
 	
 	if (frequency === 99)
-		frequency = 0.002;
+		frequency = 0.001;
 
 	var now = new Date;
 	var time = now.getTime();
@@ -47,9 +47,10 @@ function IETmessOverlayInit() {
 	console.debug(time-last);
 	console.debug(days);
 
-	if ((time - last) < days)
+	if ((time - last) < (days - (60 * 5)))
 		return;
 
+	console.debug('Open dialogue');
 	var WM = Cc['@mozilla.org/appshell/window-mediator;1']
 		.getService(Ci.nsIWindowMediator);
 	var os = navigator.platform.toLowerCase();
@@ -59,13 +60,59 @@ function IETmessOverlayInit() {
 	else
 		wins = WM.getEnumerator("mail:3pane");
 	if (!wins.hasMoreElements()) {
-		if (IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog"))
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
+			console.debug('openModel');
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
-		else
+		} else {
+			console.debug('openD');
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, time, now);
+		}
+		console.debug('after open ');
+	} else {
+		console.debug('open with more elements');
+		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
 	}
 
+	// btest();
+	
+	// window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
 
+}
+
+function getDir() {
+	var file = null;
+
+	try {
+		// var dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
+		file = Cc["@mozilla.org/file/local;1"]
+			.createInstance(Ci.nsIFile);
+		file.initWithPath(dir);
+		if (!file.exists() || !file.isDirectory())
+			file = null;
+	} catch (e) {
+		file = null;
+	}
+	if (!file) {
+		file = IETgetPickerModeFolder();
+		// autoBackup.filePicker = true;
+	}
+	return file;
+}
+
+
+function btest() {
+	console.debug('btest start');
+	var dir = autoBackup.getDir();
+	if (!dir)
+		return;
+	console.debug(dir.leafName);
+	var entries = dir.directoryEntries;
+	while (entries.hasMoreElements()) {
+		var entry = entries.getNext();
+		entry.QueryInterface(Ci.nsIFile);
+		console.debug(entry.leafName);
+	}
+	console.debug('btest end');
 }
 
 function keyEvent(e) {
@@ -83,5 +130,6 @@ function keyEvent(e) {
 setupHotKeys("messenger");
 setupHotKeysObserver();
 
-// window.addEventListener("unload", IETmessOverlayInit, false);
+// Services.console.logStringMessage("before listeners");
+// window.addEventListener("beforeunload", IETmessOverlayInit, false);
 // window.addEventListener("keydown", keyEvent, false);

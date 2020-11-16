@@ -112,3 +112,6 @@
 <!ENTITY addSuffix "Προσθέστε επίθημα">
 <!ENTITY dateFormatRefTooltipText "Αναφορά μορφής ημερομηνίας">
 <!ENTITY extFilenameFormatRefTooltipText "Αναφορά εκτεταμένης μορφής ονόματος αρχείου">
+<!ENTITY backupOnExit "Δημιουργία αντιγράφων ασφαλείας στην έξοδο">
+<!ENTITY noFolderSelectedMenuTop "[Χωρίς επιλεγμένο φάκελο (Εισαγωγή \ Εξαγωγή απενεργοποιημένη)]">
+<!ENTITY indexCSVdateFormat "Ευρετήριο, Μορφή ημερομηνίας CSV:">

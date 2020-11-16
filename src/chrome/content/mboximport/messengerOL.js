@@ -12,6 +12,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menu
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/messengerOverlay.js", window, "UTF-8");
+// Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/autobackup2.js", window, "UTF-8");
 
 
 function onLoad() {
@@ -32,7 +33,7 @@ function onLoad() {
 			<menuseparator />
 			<menu label="&allMsgsFolder;" id="exportALLMSG">
 				<menupopup>
-					<menuitem id="allAsEML" label="&asEML;" oncommand="exportAllMsgs(0)" />
+					<menuitem id="allAsEML" label="&asEML;" oncommand="exportAllMsgs(0, this)" />
 					<menuitem id="allAsHTML" label="&asHTML;" oncommand="exportAllMsgs(1)" />
 					<menuitem id="allAsHTMLatt" label="&asHTML; &withattach;" oncommand="exportAllMsgs(8)" />
 					<menuitem id="allAsTXT" label="&asTXT;" oncommand="exportAllMsgs(2)" />
@@ -131,6 +132,7 @@ function onLoad() {
 <menupopup id="taskPopup">
 <menu label="&labelmenuMItools;" insertbefore="javaScriptConsole" accesskey="&taskMenuAccesskey;">
 	<menupopup id="mboxpopup2" onpopupshowing="IETsetMBmenu2(this);" mboxIndex="2">
+		<menuitem id="mboxexportnofolder2" label="&noFolderSelectedMenuTop;" hidden="true" oncommand="noFoldersSelectedAlert();"/>
 		<menuitem id="mboxexport2" label="" oncommand="exportfolder(false,false,true,false);" />
 		<menuitem id="mboxexportZIP2" label="&exportZIP;" oncommand="exportfolder(false,false,true,true);" />
 		<menuitem id="mboxexportallstruct2" label="&exportAllStruct;" oncommand="exportfolder(true,true,true,false);" collapsed="true" />
@@ -140,7 +142,7 @@ function onLoad() {
 		<menuseparator />
 		<menu label="&allMsgsFolder;" id="exportALLMSG2">
 			<menupopup>
-				<menuitem id="allAsEML2" label="&asEML;" oncommand="exportAllMsgs(0)" />
+				<menuitem id="allAsEML2" label="&asEML;" oncommand="exportAllMsgs(0, this)" />
 				<menuitem id="allAsHTML2" label="&asHTML;" oncommand="exportAllMsgs(1)" />
 				<menuitem id="allAsHTML2att" label="&asHTML; &withattach;" oncommand="exportAllMsgs(8)" />
 				<menuitem id="allAsTXT2" label="&asTXT;" oncommand="exportAllMsgs(2)" />
@@ -165,12 +167,12 @@ function onLoad() {
 			</menupopup>
 		</menu>
 		<menuseparator />
-		<menuitem label="&searchAndExport;" oncommand="searchANDsave();" />
+		<menuitem id="mboximportsearch2" label="&searchAndExport;" oncommand="searchANDsave();" />
 		<menuseparator />
 		<menuitem id="mboximport2" label="&importMbox;" oncommand="openMboxDialog();" />
 		<menuitem id="mboximportMD2" label="&importMAILDIR;" oncommand="trytocopyMAILDIR()" />
 		<menuitem id="mboximportEML2" label="&importEML;" oncommand="importEMLs();" />
-		<menu id="mboximportALLEML2" label="&importALLEML;">
+		<menu id="mboximportALLEMLt2" label="&importALLEML;">
 			<menupopup>
 				<menuitem label="&importALLEML1;" oncommand="importALLasEML(false)" />
 				<menuitem label="&importALLEML2;" oncommand="importALLasEML(true)" />
@@ -180,6 +182,7 @@ function onLoad() {
 		<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
 		<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 		<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
+		<menuitem id="IETBackupProfile2" label="Backup" oncommand="autoBackup.btest()" />
 		<menuseparator />
 		<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 		<menuitem id="openIEThelp3" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
@@ -278,5 +281,7 @@ window.setupHotKeys('messenger');
 }
 
 function onUnload() {
+	Services.console.logStringMessage("onUnload messenger");
 	window.IETmessOverlayInit();
+	// window.autoBackup.btest();
 }

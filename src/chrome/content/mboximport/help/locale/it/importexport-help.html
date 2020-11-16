@@ -20,7 +20,32 @@
       aggiungere. Questa pagina corrente si concentra sui menu e sulle nuove opzioni. Sarà continuamente
       aggiornato nelle versioni successive.<br />
     </p>
-    <h3>Versione 10.0.0: nuove funzionalità - 26 settembre 2020</h3>
+    <h3>Versione 10.0.2: versione di manutenzione - 14 novembre 2020</h3>
+    <p>
+      Problemi di bug risolti:<br /><br />
+      - # 140 Gestisci il clic destro sulla cartella non selezionata<br />
+      - # 149 Correzioni all&#39;importazione EML<br />
+      - # 154 Il backup non viene eseguito se si utilizza File / Esci<br />
+      - # 157, # 159 Backup non riusciti<br />
+      - # 173 Non gestisce nessuna cartella selezionata<br />
+      - # 174 token Sender_email e recipient_email mancanti per gli allegati<br />
+      - # 175 Supporta virgole e virgolette singole nei nomi dei file<br /><br />
+      Notabili:<br /><br />
+      - Aggiunta l&#39;opzione Backup in uscita<br />
+      - Usa l&#39;opzione &quot;Indice, Formato data CSV&quot; per il formato completamente personalizzato
+      (opzioni scheda Varie)<br /><br />
+      <h3>Versione 10.0.1: versione di manutenzione - 14 ottobre 2020</h3>
+      <br />
+      Problemi di bug risolti:<br />
+      - # 163, # 158, # 153 Correzione della conversione UTF-8 per testo normale / csv<br />
+      - # 161 Risolto il problema con il formato della data CSV<br /><br />
+      Notabili:<br />
+      - Aggiungi una migliore rilevazione degli errori di intestazione, output di debug<br />
+      - Consenti formato data indice per CSV<br /><br />
+      Problemi noti:<br />
+      - Backup non funzionante in 78<br /><br />
+      <h3>Versione 10.0.0: nuove funzionalità - 26 settembre 2020</h3>
+    </p>
     <p>
       - Aggiornamento per compatibilità 78/68<br />
       - Nuovi locali: el<br />
@@ -51,7 +76,7 @@
       Problemi di bug risolti:<br />
       - # 68 risolto il flag di allegato dell&#39;indice<br />
       - # 74 correzione per allegati di immagini in linea non esportati<br />
-      - Risolto il problema con l&#39;annullamento dell&#39;handle # 56 nella finestra di dialogo di
+      - Risolto il problema con l&#39;annullamento della maniglia # 56 nella finestra di dialogo di
       importazione<br />
       - # 77 usa le preferenze per l&#39;output PDF<br />
       - Modifiche alla pulizia dell&#39;interfaccia utente (# 80, # 81, # 82) Varianti del sistema operativo -
@@ -97,8 +122,8 @@
       - testo in chiaro<br />
       - CSV (valori separati da virgola)<br />
       - PDF<br /><br />
-      Sebbene la maggior parte delle funzionalità per ruotare attorno ai messaggi, c&#39;è anche il supporto
-      per l&#39;importazione e l&#39;esportazione dei profili Thunderbird. Inoltre, le esportazioni possono
+      Mentre la maggior parte delle funzionalità per ruota attorno ai messaggi, c&#39;è anche il supporto per
+      l&#39;importazione e l&#39;esportazione dei profili Thunderbird. Inoltre, le esportazioni possono
       includere anche un file indice HTML o CSV. Il backup del profilo Thunderbird è un&#39;altra
       caratteristica.<br />
       <p>
@@ -791,9 +816,10 @@
     <br />
     <p>
       La formattazione del nome file esteso utilizza i token. Il nome del file esatto può essere costruito
-      utilizzando i token così come qualsiasi testo o caratteri di nomi di file validi. I token inglesi
-      (en-US) sono disponibili in qualsiasi lingua. Sono disponibili anche token specifici per le impostazioni
-      locali ed elencati sotto la tabella inglese.<br /><br />
+      utilizzando i token così come qualsiasi testo o caratteri di nome file validi. I caratteri non validi
+      sono: <code>| * : &lt; &gt; ? \ / &quot;</code> I token inglesi (en-US) sono disponibili in qualsiasi
+      lingua. Sono disponibili anche token specifici per le impostazioni internazionali ed elencati sotto la
+      tabella inglese.<br /><br />
       Esempi:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Il formato predefinito<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Utilizza il formato
@@ -920,7 +946,7 @@
       all&#39;editor usa il menu Strumenti / Opzioni quindi seleziona la sezione Avanzate e ci sarà un
       pulsante &quot;Editor di configurazione&quot; in basso. Se digiti &quot;importexporttoolsng&quot; nella
       barra di ricerca otterrai tutte le preferenze di estensione. È quindi possibile modificare le varie
-      preferenze di seguito in base alle esigenze.
+      preferenze di seguito secondo necessità.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
@@ -948,7 +974,7 @@
       client di posta del destinatario. Questa data verrà utilizzata sia per i nomi dei file che per la data
       nei file indice.
     </p>
-    <h2>Funzione di base (scorciatoie) globale e rapida</h2>
+    <h2>Funzionalità di base e globale di tasti di scelta rapida (scorciatoie)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Questa nuova preferenza consente all&#39;utente di impostare fino a 10 scorciatoie da tastiera. Le
@@ -962,9 +988,9 @@
       <code class="notranslate">key</code> - la chiave (carattere singolo)<br />
       <code class="notranslate">keycode</code> : il &quot;VK_ *&quot; definisce il codice chiave<br />
       È possibile includere una chiave o un codice chiave, ma non entrambi<br />
-      <code class="notranslate">modifiers</code> : i modificatori chiave, elenco separato da spazi
+      <code class="notranslate">modifiers</code> - i modificatori chiave, elenco separato da spazi
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> - una stringa di comando diretta<br />
+      <code class="notranslate">oncommand</code> - una stringa di comando diretto<br />
       <code class="notranslate">contexts</code> : il contesto della finestra in cui la chiave è attiva<br />
       <code class="notranslate">&#39;all&#39;</code> : tutte le finestre in messenger, componi, ricerca<br />
       <code class="notranslate">&#39;messenger&#39;</code> : la finestra principale di Messenger e i suoi

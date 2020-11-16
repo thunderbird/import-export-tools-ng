@@ -20,7 +20,32 @@
       página atual enfoca os menus e novas opções. Ele será atualizado continuamente nas versões
       subsequentes.<br />
     </p>
-    <h3>Versão 10.0.0: Novos recursos - 26 de setembro de 2020</h3>
+    <h3>Versão 10.0.2: Lançamento de manutenção - 14 de novembro de 2020</h3>
+    <p>
+      Problemas de bug corrigidos:<br /><br />
+      - # 140 Handle clique com o botão direito na pasta não selecionada<br />
+      - # 149 correções de importação de EML<br />
+      - # 154 O backup não é executado se Arquivo / Saída for usado<br />
+      - # 157, # 159 Backups falhando<br />
+      - # 173 Não manipula nenhuma pasta selecionada<br />
+      - # 174 Sender_email &amp; receiver_email tokens ausentes para anexos<br />
+      - # 175 Suporta vírgula e aspas simples em nomes de arquivos<br /><br />
+      Notáveis:<br /><br />
+      - Adicionado Backup na opção de saída<br />
+      - Use a opção `Índice, formato de data CSV` para o formato personalizado completo (opções da guia
+      Diversos)<br /><br />
+      <h3>Versão 10.0.1: Lançamento de manutenção - 14 de outubro de 2020</h3>
+      <br />
+      Problemas de bug corrigidos:<br />
+      - # 163, # 158, # 153 Conversão UTF-8 fixa para texto simples / csv<br />
+      - # 161 Corrigir formato de data CSV<br /><br />
+      Notáveis:<br />
+      - Adicionar melhor detecção de erro de cabeçalho, saída de depuração<br />
+      - Permitir formato de data de índice para CSV<br /><br />
+      Problemas conhecidos:<br />
+      - Backup não funciona em 78<br /><br />
+      <h3>Versão 10.0.0: Novos recursos - 26 de setembro de 2020</h3>
+    </p>
     <p>
       - Atualização para compatibilidade 78/68<br />
       - Novos locais: el<br />
@@ -781,9 +806,10 @@
     <br />
     <p>
       A formatação de nome de arquivo estendido utiliza tokens. O nome de arquivo exato pode ser construído
-      utilizando os tokens, bem como qualquer texto ou caracteres de nome de arquivo válidos. Os tokens em
-      inglês (en-US) estão disponíveis em qualquer local. Tokens específicos do local também estão disponíveis
-      e listados abaixo da tabela em inglês.<br /><br />
+      utilizando os tokens, bem como qualquer texto ou caracteres de nome de arquivo válidos. Os caracteres
+      inválidos são: <code>| * : &lt; &gt; ? \ / &quot;</code> Os tokens em inglês (en-US) estão disponíveis
+      em qualquer local. Os tokens específicos da localidade também estão disponíveis e listados abaixo da
+      tabela em inglês.<br /><br />
       Exemplos:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - O formato padrão<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Use o formato de data

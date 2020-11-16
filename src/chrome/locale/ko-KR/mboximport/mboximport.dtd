@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "접미사 추가">
 <!ENTITY dateFormatRefTooltipText "날짜 형식 참조">
 <!ENTITY extFilenameFormatRefTooltipText "확장 파일 이름 형식 참조">
+<!ENTITY backupOnExit "종료시 백업">
+<!ENTITY noFolderSelectedMenuTop "[선택한 폴더 없음 (가져 오기 / 내보내기 비활성화 됨)]">
+<!ENTITY indexCSVdateFormat "색인, CSV 날짜 형식 :">

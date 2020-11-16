@@ -114,3 +114,6 @@
 <!ENTITY addSuffix "接尾辞を追加">
 <!ENTITY dateFormatRefTooltipText "日付形式リファレンス">
 <!ENTITY extFilenameFormatRefTooltipText "拡張ファイル名形式リファレンス">
+<!ENTITY backupOnExit "終了時のバックアップ">
+<!ENTITY noFolderSelectedMenuTop "[選択したフォルダがありません（インポート\エクスポートが無効）]">
+<!ENTITY indexCSVdateFormat "インデックス、CSV日付形式：">

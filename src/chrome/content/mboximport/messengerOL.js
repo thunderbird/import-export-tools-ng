@@ -275,7 +275,7 @@ WL.injectElements(`
   
 
 window.ver = WL.extension.addonData.version;
-window.extension = WL.extension;
+// window.extension = WL.extension;
 window.IETinit();
 window.setupHotKeys('messenger');
 }

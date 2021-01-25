@@ -21,7 +21,7 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 ## New Wiki 
 
 - Notes, help and utility scripts (WIP)
-- Apple mail conversion help(https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
+- [Apple mail conversion help](https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
 
 ## Import Export Tools NG Add-On Features
 

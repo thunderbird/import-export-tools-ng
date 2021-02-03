@@ -9,13 +9,13 @@
 
   <!-- locale information -->
   <RDF:Description about="urn:mozilla:locale:de"
-        chrome:displayName="German(DE)"
+        chrome:displayName="German (DE)"
         chrome:name="de">
     <chrome:packages>
-      <RDF:Seq about="urn:mozilla:locale:da:packages">
-        <RDF:li resource="urn:mozilla:locale:da:mboximport"/>
+      <RDF:Seq about="urn:mozilla:locale:de:packages">
+        <RDF:li resource="urn:mozilla:locale:de:mboximport"/>
       </RDF:Seq>
     </chrome:packages>
   </RDF:Description>
 
-</RDF:RD
+</RDF:RDF>

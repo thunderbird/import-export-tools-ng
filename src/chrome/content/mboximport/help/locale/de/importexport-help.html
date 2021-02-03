@@ -29,7 +29,7 @@
       - # 157, # 159 Backups schlagen fehl<br />
       - # 173 Behandle keinen ausgewählten Ordner<br />
       - # 174 Sender_email- und Empfänger_email-Token für Anhänge fehlen<br />
-      - # 175 Unterstützungskomma und einfaches Anführungszeichen in Dateinamen<br /><br />
+      - # 175 Unterstützung für Komma und einfaches Anführungszeichen in Dateinamen<br /><br />
       Bemerkenswert:<br /><br />
       - Backup beim Beenden hinzugefügt<br />
       - Verwenden Sie die Option &quot;Index, CSV-Datumsformat&quot; für das vollständige benutzerdefinierte
@@ -60,7 +60,7 @@
       - # 77 Verwenden Sie globale Einstellungen für PDF<br />
       - # 130 geplante Backups<br />
       - # 134 Lesen, weiterleiten, beantwortete Flags korrekt behandeln<br /><br /><br />
-      Vielen Dank an viele! : Siehe Probleme<br />
+      Vielen Dank an alle! : Siehe Probleme<br />
     </p>
     <br /><br />
     <h3>Version 4.1.0: Neue Funktionen</h3>
@@ -112,14 +112,14 @@
       ImportExportTools NG ist eine Folgeerweiterung, die auf der Originalarbeit von Paolo &quot;Kaosmos&quot;
       basiert. Die Erweiterung bietet mehrere Import- und Exportfunktionen, die verschiedene Dateiformate
       unterstützen, darunter: Hinweis: Einige Formate werden nicht in allen Funktionen unterstützt.<br />
-      - mbox<br />
+      - Mbox<br />
       - EML<br />
       - Maildir<br />
       - HTML<br />
-      - Klartext<br />
+      - Reintext<br />
       - CSV (Comma Separated Values)<br />
       - PDF<br /><br />
-      Während sich die meisten Funktionen für Nachrichten drehen, wird auch der Import und Export von
+      Während sich die meisten Funktionen um Nachrichten drehen, wird auch der Import und Export von
       Thunderbird-Profilen unterstützt. Zusätzlich können Exporte auch eine HTML- oder CSV-Indexdatei
       enthalten. Die Sicherung des Thunderbird-Profils ist eine weitere Funktion.<br />
       <p>
@@ -358,7 +358,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>Hängen Sie die ausgewählten Nachrichten an eine vorhandene mbox-Datei an</td>
+          <td>Hängen Sie die ausgewählten Nachrichten an eine vorhandene Mbox-Datei an</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
@@ -608,9 +608,9 @@
       neue benutzerdefinierte Format &quot;Datum (benutzerdefiniert)&quot; sind in den Dropdown-Listen für
       Dateinamen verfügbar. Das benutzerdefinierte Datum kann auch mit dem Token $ {date_custom} verwendet
       werden, das in den erweiterten benutzerdefinierten Dateinamen verwendet wird. Das ursprüngliche
-      (Standard-) Datumsformat lautet:<br />
+      (Standard-)Datumsformat lautet:<br />
       JJJJMMTTHHmm: 202011060808<br /><br />
-      Das benutzerdefinierte Datumsformat verwendet% -Sequenzen, die mit der Unix-ähnlichen Funktion
+      Das benutzerdefinierte Datumsformat verwendet %-Sequenzen, die mit der Unix-ähnlichen Funktion
       <code>strftime()</code> übereinstimmen. Es basiert auf einem JavaScript-Port von
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , einer Funktion zum Formatieren von Datum und Uhrzeit.<br />
@@ -673,7 +673,7 @@
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            Wie <code class="code1">%G</code> , jedoch ohne Jahrhundert, dh mit einem zweistelligen Jahr
+            Wie <code class="code1">%G</code> , jedoch ohne Jahrhundert, d. h., mit einem zweistelligen Jahr
             (00-99).
           </td>
         </tr>
@@ -753,7 +753,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             ISO 8601-Wochennummer des aktuellen Jahres als Dezimalzahl (Bereich 01 bis 53), wobei Woche 1 die
-            erste Woche ist, die mindestens 4 Tage im neuen Jahr hat (dh den ersten Donnerstag).
+            erste Woche ist, die mindestens 4 Tage im neuen Jahr hat (d. h., den ersten Donnerstag).
           </td>
         </tr>
         <tr>
@@ -997,7 +997,7 @@
       <code class="notranslate">keycode</code> - Der &#39;VK_ *&#39; Defind-Schlüsselcode<br />
       Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, aber nicht beide<br />
       <code class="notranslate">modifiers</code> - die Schlüsselmodifikatoren, durch Leerzeichen getrennte
-      Liste (&#39;Steuerung&#39;, &#39;Verschiebung&#39;, &#39;Alt&#39;, &#39;Beschleunigung&#39;)<br />
+      Liste (&#39;Steuerung&#39;, &#39;Umschalt&#39;, &#39;Alt&#39;, &#39;Accel&#39;)<br />
       <code class="notranslate">oncommand</code> - eine direkte Befehlszeichenfolge<br />
       <code class="notranslate">contexts</code> - Der Fensterkontext, in dem der Schlüssel aktiv ist<br />
       <code class="notranslate">&#39;all&#39;</code> - alle Fenster unter Messenger, komponieren, suchen<br />

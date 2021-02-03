@@ -3,7 +3,7 @@
 <!ENTITY description2 "Ihren Einstellungen zufolge ist es nötig, jetzt ein Backup zu machen.">
 <!ENTITY description3 "Während dieser Operation wird das Programm einige Minuten nicht ansprechbar sein.">
 <!ENTITY description4 "Möchten Sie fortfahren?">
-<!ENTITY description5 "Backup läuft... bitte warten.">
+<!ENTITY description5 "Backup läuft, bitte warten…">
 <!ENTITY description6 "Backup abgeschlossen.">
 <!ENTITY backupTab "Backup-Planung">
 <!ENTITY backupSettings "Backup-Einstellungen">
@@ -23,7 +23,7 @@
 <!ENTITY justMailFiles "Nur Mail-Dateien">
 <!ENTITY lastBackup "Letztes Backup">
 <!ENTITY allFilesMode "Immer alle Dateien">
-<!ENTITY newFilesMode "Nur seit dem letztem Backup Modifiziertes">
+<!ENTITY newFilesMode "Nur Dateien, die nach dem letzten Backup geändert wurden">
 <!ENTITY save "Speichern">
-<!ENTITY modal "Benutze ein 'Modus'-Fenster">
+<!ENTITY modal "Modales Fenster benutzen">
 <!ENTITY MACwarning "Vor dem Fortfahren bitte alle anderen Fenster schließen.">

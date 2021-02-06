@@ -274,8 +274,10 @@ WL.injectElements(`
 //   <key id="hot-key3" key="D" modifiers="shift control" oncommand="exportSelectedMsgs(5)" contexts="all"/>
   
 
-window.ver = WL.extension.addonData.version;
-window.extension = WL.extension;
+// inject extension object into private context
+window.ietng = {};
+window.ietng.extension = WL.extension;
+
 window.IETinit();
 window.setupHotKeys('messenger');
 }

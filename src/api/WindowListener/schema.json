@@ -43,6 +43,23 @@
         ]
       },
       {
+        "name": "waitForMasterPassword",
+        "type": "function",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "openOptionsDialog",
+        "type": "function",
+        "parameters": [
+          {
+            "name": "windowId",
+            "type": "integer",
+            "description": "Id of the window the dialog should be opened from."
+          }
+        ]
+      },
+      {
         "name": "startListening",
         "type": "function",
         "async": true,

@@ -10,6 +10,7 @@
 <window
 width="550"
   height="400"
+   title="&title;" 
   onload="IETimportWizard.start();"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -27,10 +28,11 @@ width="550"
   </linkset>
 
 
-<wizard id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<html:div id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 
-<wizardpage onpageshow="IETimportWizard.start()">
+<html:div id="page1" onshow="IETimportWizard.start()">
+<!-- <html:div id="page1" > -->
 	<description>&intro1;</description>
 	<spacer height="20" />
 	<label value="&profilePath;: "/>
@@ -38,15 +40,16 @@ width="550"
 		<html:input id="pathBox" flex="1" readonly="true" size="25"/>
 		<button label="&browse;" oncommand="IETimportWizard.pickFile(this)" />
 		</hbox>
-	<spacer height="20" />
+	<html:div style="height: 20px;">
+	</html:div>
 	<hbox align="center">
 		<label value="&profileName;: "/>
 		<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
 		</hbox>
 	<label value="&changeProfileNameLabel;" />
-</wizardpage>
+</html:div>
 
-<wizardpage onpageshow="IETimportWizard.secondPage()">
+<html:div  id="page2" onshow="IETimportWizard.secondPage()" style="display: none;">
 	<description>&intro2;</description>
 	<spacer height="30" />
 	<button label="&start;" oncommand="IETimportWizard.importProfile(this)" />
@@ -55,15 +58,25 @@ width="550"
 	<description id="importEnd" hidden="true">&importEnd;</description>
 	<description id="error" hidden="true">&error;</description>
 	<description id="errorDetails" hidden="true"></description>
-</wizardpage>
+</html:div>
 
-<wizardpage onpageshow="IETimportWizard.thirdPage()">
+<html:div id="page3" onshow="IETimportWizard.thirdPage()"  style="display: none;">
 	<description id="newProfDetails" />
 	<spacer height="20" />
 	<description>&intro3;</description>
 	<spacer height="30" />
 	<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
-</wizardpage>
+</html:div>
 
-</wizard>
+<spacer height="130" />
+<html:hr>
+</html:hr>
+
+<html:div>
+<button id="backButton" label="Back" oncommand="IETimportWizard.back()" />
+<button id="nextButton"  label="Next" oncommand="IETimportWizard.next()" />
+<button label="Cancel" oncommand="IETimportWizard.cancel()" />
+</html:div>
+</html:div>
+
 </window>

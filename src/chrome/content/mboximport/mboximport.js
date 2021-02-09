@@ -208,15 +208,20 @@ var IETprintPDFmain = {
 
 function openProfileImportWizard() {
 	var quit = {};
-	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
 	
+	quit.v = 99;
+
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
+	// window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen");
+	console.debug('after dialogue')
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
-	if (quit.value)
+	if (quit.value) {
+		console.debug('quitting');
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
-
+	}
 
 	}
 

@@ -6,77 +6,99 @@
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <!-- for the textbox -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
-
+<?xml-stylesheet href="chrome://mboximport/content/mboximport/profileWiz.css" type="text/css"?>
 <window
 width="550"
-  height="400"
+  height="320"
    title="&title;" 
   onload="IETimportWizard.start();"
-  xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-<!-- <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/accountWizard.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
-
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<!-- 
+	<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+	<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
+	<?xml-stylesheet type="text/css" href="chrome://messenger/skin/accountWizard.css"?><?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/profileImportWizard.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
+	<linkset>
+		<html:link rel="localization" href="toolkit/global/wizard.ftl"/>
+	</linkset>
+	<html:div id="profileImportWizard" title="&title;"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" class="wcontainer">
+		<html:div id="page1" onshow="IETimportWizard.start()" class="main-wpage">
+			<!-- <html:div id="page1" > -->
+			<description>&intro1;</description>
+			<!-- <spacer height="20" /> -->
+			<html:div style="height: 20px;"></html:div>
 
-  <linkset>
-    <html:link rel="localization" href="toolkit/global/wizard.ftl"/>
-  </linkset>
+			<html:table >
+				<html:tr>
+					<html:td style="vertical-align: center;">
+						<label value="&profilePath;: "/>
+					</html:td>
+					<html:td style="vertical-align: center;">
+						<html:input id="pathBox"  readonly="true" size="30"/>
+						<button label="&browse;" oncommand="IETimportWizard.pickFile(this)" />
+					</html:td>
+				</html:tr>
+				<html:tr>
+					<html:td>
+						<label value="&profileName;: "/>
+					</html:td>
+					<html:td>
+						<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
+						<!-- </hbox> -->
+					</html:td>
+				</html:tr>
+				</html:table>
+				<label value="&changeProfileNameLabel;" />
 
-
-<html:div id="profileImportWizard" title="&title;" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-
-<html:div id="page1" onshow="IETimportWizard.start()">
-<!-- <html:div id="page1" > -->
-	<description>&intro1;</description>
-	<spacer height="20" />
-	<label value="&profilePath;: "/>
-	<hbox>
-		<html:input id="pathBox" flex="1" readonly="true" size="25"/>
-		<button label="&browse;" oncommand="IETimportWizard.pickFile(this)" />
-		</hbox>
-	<html:div style="height: 20px;">
-	</html:div>
-	<hbox align="center">
-		<label value="&profileName;: "/>
-		<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
-		</hbox>
-	<label value="&changeProfileNameLabel;" />
+			</html:div>
+			<html:div  id="page2" onshow="IETimportWizard.secondPage()" style="display: none;" class="main-wpage">
+				<description>&intro2;</description>
+				<!-- <spacer height="30" /> -->
+				<html:br>
+				</html:br>
+				<html:br>
+				</html:br>
+				
+				<button label="&start;" oncommand="IETimportWizard.importProfile(this)" width="350px" />
+				<!-- <spacer height="20" /> -->
+				<html:br>
+				</html:br>
+				
+				<description id="importRunning" hidden="true">&importRunning;</description>
+				<html:br>
+				</html:br>
+				<description id="importEnd" hidden="true">&importEnd;</description>
+				<description id="error" hidden="true">&error;</description>
+				<description id="errorDetails" hidden="true"></description>
+			</html:div>
+			<html:div id="page3" onshow="IETimportWizard.thirdPage()"  style="display: none;" class="main-wpage">
+				<description id="newProfDetails" style="white-space: pre;" />
+				<html:br>
+				</html:br>
+				
+				<spacer height="20" />
+				<description>&intro3;</description>
+				<html:br>
+				</html:br>
+				
+				<spacer height="30" />
+				<html:br>
+				</html:br>
+				
+				<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
+			</html:div>
+			<!-- <spacer height="130" /> -->
+			<html:div class="wgap">
+x
 </html:div>
-
-<html:div  id="page2" onshow="IETimportWizard.secondPage()" style="display: none;">
-	<description>&intro2;</description>
-	<spacer height="30" />
-	<button label="&start;" oncommand="IETimportWizard.importProfile(this)" />
-	<spacer height="20" />
-	<description id="importRunning" hidden="true">&importRunning;</description>
-	<description id="importEnd" hidden="true">&importEnd;</description>
-	<description id="error" hidden="true">&error;</description>
-	<description id="errorDetails" hidden="true"></description>
-</html:div>
-
-<html:div id="page3" onshow="IETimportWizard.thirdPage()"  style="display: none;">
-	<description id="newProfDetails" />
-	<spacer height="20" />
-	<description>&intro3;</description>
-	<spacer height="30" />
-	<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
-</html:div>
-
-<spacer height="130" />
-<html:hr>
-</html:hr>
-
-<html:div>
-<button id="backButton" label="Back" oncommand="IETimportWizard.back()" />
-<button id="nextButton"  label="Next" oncommand="IETimportWizard.next()" />
-<button label="Cancel" oncommand="IETimportWizard.cancel()" />
-</html:div>
-</html:div>
-
-</window>
+			<html:hr></html:hr>
+			<html:div class="wbuttons">
+				<button id="backButton" label="Back" oncommand="IETimportWizard.back()" />
+				<button id="nextButton"  label="Next" oncommand="IETimportWizard.next()" />
+				<button label="Cancel" oncommand="IETimportWizard.cancel()" />
+			</html:div>
+		</html:div>
+	</window>

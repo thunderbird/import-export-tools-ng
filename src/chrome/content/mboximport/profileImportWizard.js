@@ -143,7 +143,7 @@ var IETimportWizard = {
 	thirdPage: function () {
 		Services.console.logStringMessage("profile page 3");
 		document.getElementById("profileImportWizard").canRewind = false;
-		document.getElementById("newProfDetails").textContent = IETimportWizard.bundle.GetStringFromName("profilePath") + "\n" + IETimportWizard.profDir.path;
+		document.getElementById("newProfDetails").textContent = IETimportWizard.bundle.GetStringFromName("profilePath") + "\r\n" + IETimportWizard.profDir.path;
 		IETimportWizard.backElement = document.getElementById("backButton");
 		IETimportWizard.nextElement = document.getElementById("nextButton");
 		IETimportWizard.canAdvance = false;
@@ -186,7 +186,7 @@ var IETimportWizard = {
 				document.getElementById("profileImportWizard").canAdvance = true;
 			else
 				document.getElementById("profileImportWizard").canAdvance = false;
-			var box = el.previousSibling;
+			var box = document.getElementById("pathBox");
 			box.value = fp.file.path;
 			IETimportWizard.file = fp.file;
 		}

@@ -1,0 +1,38 @@
+.wcontainer {
+	display: flex;
+	flex-direction: column;
+	/* background-color: beige; */
+	height: 320px;
+}
+
+.wgap {
+	/* background-color: aliceblue; */
+	flex-grow: 2;
+	height: 55px;
+	border-bottom: black;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+.wbuttons {
+	/* background-color: cornsilk; */
+	height: 30px;
+	flex-grow: 0;
+	/* margin: 20px; */
+	text-align: right;
+	margin-bottom: 12px;
+	margin-right: 12px;
+}
+.main-wpage {
+	flex-grow: 1;
+	margin: 12px;
+}
+
+table, th, td {
+	/* border: 1px solid black; */
+	border-collapse: collapse;
+}
+
+td {
+	height: 25px;
+}

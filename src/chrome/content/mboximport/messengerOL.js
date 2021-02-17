@@ -15,8 +15,30 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mess
 // Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/autobackup2.js", window, "UTF-8");
 
 
+const { Localization } =
+ChromeUtils.import("resource://gre/modules/Localization.jsm", {});
+
+async function getl(lcontext) {
+	  
+let [ msg ] = await lcontext.formatValues([
+	{id: "wizard-win-button-back.label"}
+  ]);
+  
+  Services.console.logStringMessage(msg);
+
+}
+
+
 function onLoad() {
-	// console.debug('messenger OL');
+	console.debug('messenger OL');
+
+	
+// const myL10n = new Localization([
+// 	"toolkit/global/wizard.ftl"
+// ]);
+
+// getl(myL10n);
+
 
 	// FolderPane Menu
 	WL.injectElements(`

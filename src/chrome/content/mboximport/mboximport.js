@@ -211,7 +211,7 @@ function openProfileImportWizard() {
 	
 	quit.v = 99;
 
-	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen", window);
 	// window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen");
 	console.debug('after dialogue')
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]

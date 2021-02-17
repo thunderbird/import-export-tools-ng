@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0"?>
-<!DOCTYPE dialog SYSTEM "chrome://mboximport/locale/profilewizard.dtd">
+<!DOCTYPE dialog [
+<!ENTITY % importexportDTD SYSTEM "chrome://mboximport/locale/profilewizard.dtd" >%importexportDTD;
+<!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd">%messengerDTD;
+]>
+
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/skin/searchDialog.css" type="text/css"?>
 <!-- for the groupbox -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <!-- for the textbox -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<?xml-stylesheet type="text/css" href="toolkit/global/wizard.css"?>
 <?xml-stylesheet href="chrome://mboximport/content/mboximport/profileWiz.css" type="text/css"?>
 <window
 width="550"
@@ -22,6 +28,7 @@ width="550"
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<linkset>
 		<html:link rel="localization" href="toolkit/global/wizard.ftl"/>
+		<!-- <html:link rel="localization" href="wizard2.ftl"/> -->
 	</linkset>
 	<html:div id="profileImportWizard" title="&title;"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" class="wcontainer">
@@ -96,9 +103,15 @@ x
 </html:div>
 			<html:hr></html:hr>
 			<html:div class="wbuttons">
-				<button id="backButton" label="Back" oncommand="IETimportWizard.back()" />
-				<button id="nextButton"  label="Next" oncommand="IETimportWizard.next()" />
+				<!-- <label id="h1i" data-l10n-id="wizard-win-button-next.label">test x</label> -->
+
+				<button id="backButton" label="&goBackCmd.label;" oncommand="IETimportWizard.back()" />
+				<!-- <button id="nextButton"  label="&nextMenu.label;" oncommand="IETimportWizard.next()" /> -->
+				<button id="nextButton"  data-l10n-id="wizard-win-button-next"  oncommand="IETimportWizard.next()" />
+
 				<button label="Cancel" oncommand="IETimportWizard.cancel()" />
+				<button  id="fButton" data-l10n-id="wizard-win-button-finish" class="wizard-button"
+                    dlgtype="finish" default="true" />
 			</html:div>
 		</html:div>
 	</window>

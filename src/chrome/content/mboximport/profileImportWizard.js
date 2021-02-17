@@ -34,6 +34,11 @@ IETopenFPsync
 */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
+
+const { Localization } =
+ChromeUtils.import("resource://gre/modules/Localization.jsm", {});
+
 Services.console.logStringMessage("profile start");
 console.debug('profile import');
 Services.console.logStringMessage(window);
@@ -114,9 +119,44 @@ var IETimportWizard = {
 		Services.console.logStringMessage("profile Back finish");
 	},
 
-	start: function () {
+  
+  
+  
+
+	start: async function  () {
+		const myL10n = new Localization([
+			"toolkit/global/wizard.ftl"
+		], false);
+
+		// this is for changes to Localization
+		try {
+			myL10n.addResourceId("toolkit/global/wizard.ftl");
+			myL10n.activate(true, true);
+
+		} catch (error) {
+			
+		}
+		
+
+		// let [ msg ] = await myL10n.formatValues([
+		// 	{id: "wizard-win-button-back.label"}
+		//   ]);
+		  
+
+		  let [ msg ] = myL10n.formatValuesSync([
+			{id: "wizard-win-button-back.label"}
+		  ]);
+		  
+		  
+		  Services.console.logStringMessage("performed message");
+		  Services.console.logStringMessage(msg);
+		
 		Services.console.logStringMessage("profile start page");
-		Services.console.logStringMessage(window);
+		// let id = backLabelElement.getAttribute("data-l10n-id");
+        // document.l10n.setAttributes(backLabelElement, id);
+		// Services.console.logStringMessage(id);
+		// Services.console.logStringMessage(backLabelElement.outerHTML);
+		Services.console.logStringMessage('after localization');
 		// IETimportWizard.addObservers();
 		// Services.console.logStringMessage(document.documentElement.outerHTML);
 		// if (document.getElementById("pathBox").value.length === 0)

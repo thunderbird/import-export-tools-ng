@@ -1382,7 +1382,8 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	var top = data.substring(0, 2000);
 
 	let lines = top.split('\n');
-	if (!lines[0].includes(": ") && !lines[0].includes("From: ") && !lines[0].includes("From ")) {
+	// Fix check for ':' does not require trailing space
+	if (!lines[0].includes(":") && !lines[0].includes("From: ") && !lines[0].includes("From ")) {
 		console.debug(`Msg #: ${++gEMLimported} Err #: ${++gEMLimportedErrs}\n Folder: ${msgFolder.name}\n Filename: ${file.path}\n FirstLine ${lines[0]}\n`);
 		return 0;
 	}

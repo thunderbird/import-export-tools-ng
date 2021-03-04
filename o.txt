@@ -1,22 +1,130 @@
-["locale", "mboximport", "ca", "chrome/locale/ca/mboximport/"],
-["locale", "mboximport", "da", "chrome/locale/da/mboximport/"],
-["locale", "mboximport", "de", "chrome/locale/de/mboximport/"],
-["locale", "mboximport", "en-US", "chrome/locale/en-US/mboximport/"],
-["locale", "mboximport", "es-ES", "chrome/locale/es-ES/mboximport/"],
-["locale", "mboximport", "fr", "chrome/locale/fr/mboximport/"],
-["locale", "mboximport", "gl-ES", "chrome/locale/gl-ES/mboximport/"],
-["locale", "mboximport", "hu-HU", "chrome/locale/hu-HU/mboximport/"],
-["locale", "mboximport", "hu-HG", "chrome/locale/hu-HG/mboximport/"],
-["locale", "mboximport", "hy-AM", "chrome/locale/hy-AM/mboximport/"],
-["locale", "mboximport", "it", "chrome/locale/it/mboximport/"],
-["locale", "mboximport", "ja", "chrome/locale/ja/mboximport/"],
-["locale", "mboximport", "ko-KR", "chrome/locale/ko-KR/mboximport/"],
-["locale", "mboximport", "nl", "chrome/locale/nl/mboximport/"],
-["locale", "mboximport", "pl", "chrome/locale/pl/mboximport/"],
-["locale", "mboximport", "pt-PT", "chrome/locale/pt-PT/mboximport/"],
-["locale", "mboximport", "ru", "chrome/locale/ru/mboximport/"],
-["locale", "mboximport", "sk-SK", "chrome/locale/sk-SK/mboximport/"],
-["locale", "mboximport", "sl-SI", "chrome/locale/sl-SI/mboximport/"],
-["locale", "mboximport", "sv-SE", "chrome/locale/sv-SE/mboximport/"],
-["locale", "mboximport", "zh-CN", "chrome/locale/zh-CN/mboximport/"],
-["locale", "mboximport", "el", "chrome/locale/el/mboximport/"],
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+wizard-macos-button-back =
+  .label = Go Back
+  .accesskey = B
+wizard-linux-button-back =
+  .label = Back
+  .accesskey = B
+wizard-win-button-back =
+  .label = < Back
+  .accesskey = B
+
+wizard-macos-button-next =
+  .label = Continue
+  .accesskey = C
+wizard-linux-button-next =
+  .label = Next
+  .accesskey = N
+wizard-win-button-next =
+  .label = Next >
+  .accesskey = N
+
+wizard-macos-button-finish =
+  .label = Done
+wizard-linux-button-finish =
+  .label = Finish
+wizard-win-button-finish =
+  .label = Finish
+
+wizard-macos-button-cancel =
+  .label = Cancel
+wizard-linux-button-cancel =
+  .label = Cancel
+wizard-win-button-cancel =
+  .label = Cancel
+
+FluentBundle {
+  _terms: Map {},
+  _messages: Map {
+    'wizard-macos-button-back' => {
+      id: 'wizard-macos-button-back',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-linux-button-back' => {
+      id: 'wizard-linux-button-back',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-win-button-back' => {
+      id: 'wizard-win-button-back',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-macos-button-next' => {
+      id: 'wizard-macos-button-next',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-linux-button-next' => {
+      id: 'wizard-linux-button-next',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-win-button-next' => {
+      id: 'wizard-win-button-next',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-macos-button-finish' => {
+      id: 'wizard-macos-button-finish',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-linux-button-finish' => {
+      id: 'wizard-linux-button-finish',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-win-button-finish' => {
+      id: 'wizard-win-button-finish',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-macos-button-cancel' => {
+      id: 'wizard-macos-button-cancel',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-linux-button-cancel' => {
+      id: 'wizard-linux-button-cancel',
+      value: null,
+      attributes: [Object: null prototype]
+    },
+    'wizard-win-button-cancel' => {
+      id: 'wizard-win-button-cancel',
+      value: null,
+      attributes: [Object: null prototype]
+    }
+  },
+  _intls: WeakMap { <items unknown> },
+  locales: [ 'en-US' ],
+  _functions: { NUMBER: [Function: NUMBER], DATETIME: [Function: DATETIME] },
+  _useIsolating: true,
+  _transform: [Function: transform]
+}
+< Back
+[
+  'wizard-macos-button-back',
+  {
+    id: 'wizard-macos-button-back',
+    value: null,
+    attributes: [Object: null prototype] { label: 'Go Back', accesskey: 'B' }
+  }
+]
+[Object: null prototype] { label: 'Go Back', accesskey: 'B' }
+wizard-macos-button-back
+wizard-linux-button-back
+wizard-win-button-back
+wizard-macos-button-next
+wizard-linux-button-next
+wizard-win-button-next
+wizard-macos-button-finish
+wizard-linux-button-finish
+wizard-win-button-finish
+wizard-macos-button-cancel
+wizard-linux-button-cancel
+wizard-win-button-cancel

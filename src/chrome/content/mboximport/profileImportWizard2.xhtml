@@ -2,6 +2,7 @@
 <!DOCTYPE dialog [
 <!ENTITY % importexportDTD SYSTEM "chrome://mboximport/locale/profilewizard.dtd" >%importexportDTD;
 <!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd">%messengerDTD;
+<!ENTITY % acDTD SYSTEM "chrome://messenger/locale/accountCreation.dtd">%acDTD;
 ]>
 
 
@@ -16,7 +17,7 @@
 <window
 width="550"
   height="320"
-   title="&title;" 
+   title="&emailWizard.title;"
   onload="IETimportWizard.start();"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -105,13 +106,10 @@ x
 			<html:div class="wbuttons">
 				<!-- <label id="h1i" data-l10n-id="wizard-win-button-next.label">test x</label> -->
 
-				<button id="backButton" label="&goBackCmd.label;" oncommand="IETimportWizard.back()" />
-				<!-- <button id="nextButton"  label="&nextMenu.label;" oncommand="IETimportWizard.next()" /> -->
-				<button id="nextButton"  data-l10n-id="wizard-win-button-next"  oncommand="IETimportWizard.next()" />
-
-				<button label="Cancel" oncommand="IETimportWizard.cancel()" />
-				<button  id="fButton" data-l10n-id="wizard-win-button-finish" class="wizard-button"
-                    dlgtype="finish" default="true" />
+				<button id="backButton" label="&lt; &goBackCmd.label;"  accesskey="&goBackCmd.accesskey;" oncommand="IETimportWizard.back()" />
+				<button id="nextButton"  label="&goForwardCmd.label; &gt;" accesskey="&goForwardCmd.accesskey;" oncommand="IETimportWizard.next()" />
+				<button label="&cancel.label;" accesskey="&cancel.accesskey;" oncommand="IETimportWizard.cancel()" />
+				<!-- <button label="&cancel.label;" accesskey="&cancel.accesskey;" oncommand="IETimportWizard.cancel()" /> -->
 			</html:div>
 		</html:div>
 	</window>

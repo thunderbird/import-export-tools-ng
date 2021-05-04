@@ -36,12 +36,7 @@ IETopenFPsync
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 
-const { Localization } =
-ChromeUtils.import("resource://gre/modules/Localization.jsm", {});
-
-Services.console.logStringMessage("profile start");
-console.debug('profile import');
-Services.console.logStringMessage(window);
+// Services.console.logStringMessage("profile start");
 
 var IETimportWizard = {
 
@@ -54,7 +49,6 @@ var IETimportWizard = {
 	canAdvance: false,
 
 	check: function () {
-		Services.console.logStringMessage("p2 c");
 	},
 
 	addObservers: function () {
@@ -73,13 +67,7 @@ var IETimportWizard = {
 					named "attributeName". There is a few other properties in a record
 					but I'll let you work it out yourself.
 				 **/
-				Services.console.logStringMessage("profile mutation");
-				Services.console.logStringMessage(mutation);
-				console.debug(mutation);
-				Services.console.logStringMessage(mutation[0]);
-				console.debug(mutation[0]);
 				target.onchange();
-				console.debug('after');
 			}),
 			// configuration of the observer:
 			config = {
@@ -107,7 +95,6 @@ var IETimportWizard = {
 		// }
 	},
 	back: function () {
-		Services.console.logStringMessage("profile Back");
 		let cp = document.getElementById("page" + IETimportWizard.currentPage);
 		let pp = document.getElementById("page" + (IETimportWizard.currentPage - 1));
 		IETimportWizard.currentPage -= 1;
@@ -116,7 +103,6 @@ var IETimportWizard = {
 		// IETimportWizard.secondPage();
 		pp.onshow();
 
-		Services.console.logStringMessage("profile Back finish");
 	},
 
   
@@ -124,43 +110,9 @@ var IETimportWizard = {
   
 
 	start: async function  () {
-		const myL10n = new Localization([
-			"toolkit/global/wizard.ftl"
-		], false);
-
-		// this is for changes to Localization
-		try {
-			myL10n.addResourceId("toolkit/global/wizard.ftl");
-			myL10n.activate(true, true);
-
-		} catch (error) {
-			
-		}
-		
-
-		// let [ msg ] = await myL10n.formatValues([
-		// 	{id: "wizard-win-button-back.label"}
-		//   ]);
-		  
-
-		  let [ msg ] = myL10n.formatValuesSync([
-			{id: "wizard-win-button-back.label"}
-		  ]);
 		  
 		  
-		  Services.console.logStringMessage("performed message");
-		  Services.console.logStringMessage(msg);
-		
-		Services.console.logStringMessage("profile start page");
-		// let id = backLabelElement.getAttribute("data-l10n-id");
-        // document.l10n.setAttributes(backLabelElement, id);
-		// Services.console.logStringMessage(id);
-		// Services.console.logStringMessage(backLabelElement.outerHTML);
-		Services.console.logStringMessage('after localization');
-		// IETimportWizard.addObservers();
-		// Services.console.logStringMessage(document.documentElement.outerHTML);
-		// if (document.getElementById("pathBox").value.length === 0)
-		// document.getElementById("profileImportWizard").canAdvance = false;
+		// Services.console.logStringMessage("profile start page");
 		IETimportWizard.backElement = document.getElementById("backButton");
 		IETimportWizard.nextElement = document.getElementById("nextButton");
 		IETimportWizard.canAdvance = false;
@@ -173,15 +125,14 @@ var IETimportWizard = {
 	},
 
 	secondPage: function () {
-		Services.console.logStringMessage("profile page 2");
-		// document.getElementById("profileImportWizard").canAdvance = false;
+		// Services.console.logStringMessage("profile page 2");
 		IETimportWizard.canAdvance = false;
 		IETimportWizard.nextElement.disabled = true;
 		IETimportWizard.backElement.disabled = false;
 	},
 
 	thirdPage: function () {
-		Services.console.logStringMessage("profile page 3");
+		// Services.console.logStringMessage("profile page 3");
 		document.getElementById("profileImportWizard").canRewind = false;
 		document.getElementById("newProfDetails").textContent = IETimportWizard.bundle.GetStringFromName("profilePath") + "\r\n" + IETimportWizard.profDir.path;
 		IETimportWizard.backElement = document.getElementById("backButton");
@@ -194,11 +145,8 @@ var IETimportWizard = {
 
 	checkName: function (el) {
 		if (el.value.length > 0 && document.getElementById("pathBox").value.length > 0) {
-			// document.getElementById("profileImportWizard").canAdvance = true;
 			IETimportWizard.nextElement.disabled = false;
-			// IETimportWizard.backElement.disabled = false;
 		} else {
-			// document.getElementById("profileImportWizard").canAdvance = false;
 			IETimportWizard.nextElement.disabled = true;
 			IETimportWizard.backElement.disabled = true;
 		}

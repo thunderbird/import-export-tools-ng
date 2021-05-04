@@ -1,6 +1,100 @@
 // background.js - this kicks off the WindowListener framework
 console.debug('background Start');
 
+
+var bPage;
+
+var m = 0;
+var s = "hello";
+async function traverseFolders (rootFolderPath) {
+
+	console.debug('traverse ' + bPage.t);
+	bPage.t = 0;
+	m = 0;
+	let accountID = "account1";
+	let account = await messenger.accounts.get(accountID);
+	var folders = account.folders;
+	var fArray = [];
+
+	// console.debug(`count ${await getMsgCount(folders[2])}`);
+	let fa = await walkFolders(folders, getMsgCount);
+	console.debug(fa);
+	console.debug(`m ${m}`);
+}
+
+async function getMsgCount(folder) {
+	let accountID = "account1";
+	// let account = await messenger.accounts.get(accountID);
+	// var folders = account.folders;
+	var count = 0;
+	let page = await messenger.messages.list(folder);
+	// console.debug(page);
+	// console.debug(page.messages.length);
+	count+= page.messages.length;
+	while (page.id) {
+		page = await messenger.messages.continueList(page.id);
+		// console.debug(page.messages.length);
+		count+= page.messages.length;
+	}
+	console.debug('total ' + count +' ' + m);
+	m = m + count;
+	bPage.t += count;
+	console.debug('gm ' + bPage.t);
+	return count;
+}
+
+async function walkFolders2(folders, cb) {
+	console.debug(folders);
+	
+	var folderPromises = [];
+	folders.forEach(async folder => {
+		// folderPromises.push(getMsgCount(folder));
+		// let mc = await cb(folder);
+		let mc = 3;
+		folderPromises.push({path: folder.path, msgCount: mc});
+		// folderPromises.push(folder.path);
+		console.debug(`FP ${folder.path} ${folder.subFolders.length}`);
+
+		if (folder.subFolders.length) {
+			var fp2 = [];
+			folder.subFolders.forEach(async folder => {
+				// await cb(folder);
+				// fp2.push(folder.path);
+				let mc = 4; 
+				// fp2.push({path: folder.path, msgCount: mc});
+				console.debug(folder.path);
+				console.debug('recursive call');
+				// let fp3 = await walkFolders(folder.subFolders, cb);
+				// fp2.push(walkFolders(folder.subFolders, cb));
+				// console.debug(fp2);
+				// folderPromises.push(fp3);
+				// folderPromises = folderPromises.concat(fp3);
+				// folderPromises = folderPromises.concat(await walkFolders(folder.subFolders, cb));
+				fp2 = fp2.concat(walkFolders(folder.subFolders, cb));
+			console.debug('fp2');
+			console.debug(fp2);
+			// console.debug(folderPromises);
+			});
+			
+			let rfp2 = await Promise.all(fp2);
+			console.debug('rf2');
+			console.debug(rfp2);
+			console.debug('before fo ');
+			console.debug(folderPromises);
+			folderPromises = folderPromises.concat(fp2);
+			console.debug('after fo ');
+			console.debug(folderPromises);
+
+			return folderPromises;
+		}
+	});
+
+	return folderPromises;
+}
+
+
+// traverseFolders();
+
 messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 // Register all necessary content, Resources, and locales
@@ -88,3 +182,27 @@ messenger.WindowListener.registerWindow(
 
 
 messenger.WindowListener.startListening();
+
+messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
+	switch (info.command) {
+	  case "doTest":
+		//   Services.console.logStringMessage("mboximport_tests background");
+		console.debug('check state');
+		await traverseFolders();
+		console.debug(bPage.t);
+		// bPage.t += 2;
+		return bPage.t;
+	  break;
+	}
+  });
+  
+
+//   window.addEventListener("load", async function (event) {
+// 	bPage = await browser.runtime.getBackgroundPage();
+// 	bPage.t = 2;
+// // await getMsgCount(folder);
+// 	console.debug(`load ${bPage.t}`);
+
+// 	await traverseFolders();
+// 	console.debug(`load finish ${bPage.t}`);
+// });

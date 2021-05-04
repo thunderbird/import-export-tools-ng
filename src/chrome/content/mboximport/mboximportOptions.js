@@ -29,6 +29,15 @@
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
+var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+Services.scriptloader.loadSubScript(
+  ExtensionParent.GlobalManager.getExtension("ImportExportToolsNG@cleidigh.kokkini.net").rootURI.resolve("chrome/content/mboximport/notifyTools.js"),
+    window,
+  "UTF-8"
+);
+
+
+
 function IETsetCharsetPopup(charsetPref) {
     const versionChecker = Services.vc;
     const currentVersion = Services.appinfo.platformVersion;
@@ -55,10 +64,13 @@ function IETsetCharsetPopup(charsetPref) {
     }
 }
 
-function initMboxImportPanel() {
+async function initMboxImportPanel() {
 
-    // Services.console.logStringMessage("options initialization");
+    Services.console.logStringMessage("options initialization");
 
+    let m = await notifyTools.notifyBackground({command: "doTest"});
+    Services.console.logStringMessage(m);
+    
     const versionChecker = Services.vc;
     const currentVersion = Services.appinfo.platformVersion;
 

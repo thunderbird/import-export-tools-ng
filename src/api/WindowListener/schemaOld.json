@@ -1,6 +1,6 @@
 [
   {
-    "namespace": "WindowListener",    
+    "namespace": "WindowListener",
     "functions": [
       {
         "name": "registerDefaultPrefs",

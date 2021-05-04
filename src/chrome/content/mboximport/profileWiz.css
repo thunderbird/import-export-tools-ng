@@ -12,6 +12,7 @@
 	border-bottom: black;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
+	margin: 0;
 }
 
 .wbuttons {
@@ -20,12 +21,21 @@
 	flex-grow: 0;
 	/* margin: 20px; */
 	text-align: right;
-	margin-bottom: 12px;
-	margin-right: 12px;
+	padding-bottom: 12px;
+	padding-right: 12px;
+	padding-top: 12px;
 }
+
+button[disabled] {
+	background-color: #d9d9d9;
+}
+
 .main-wpage {
 	flex-grow: 1;
-	margin: 12px;
+	margin-left: 12px;
+	margin-top: 12px;
+	margin-right: 12px;
+	margin-bottom: 0px;
 }
 
 table, th, td {

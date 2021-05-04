@@ -1,130 +1,85 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-wizard-macos-button-back =
-  .label = Go Back
-  .accesskey = B
-wizard-linux-button-back =
-  .label = Back
-  .accesskey = B
-wizard-win-button-back =
-  .label = < Back
-  .accesskey = B
-
-wizard-macos-button-next =
-  .label = Continue
-  .accesskey = C
-wizard-linux-button-next =
-  .label = Next
-  .accesskey = N
-wizard-win-button-next =
-  .label = Next >
-  .accesskey = N
-
-wizard-macos-button-finish =
-  .label = Done
-wizard-linux-button-finish =
-  .label = Finish
-wizard-win-button-finish =
-  .label = Finish
-
-wizard-macos-button-cancel =
-  .label = Cancel
-wizard-linux-button-cancel =
-  .label = Cancel
-wizard-win-button-cancel =
-  .label = Cancel
-
-FluentBundle {
-  _terms: Map {},
-  _messages: Map {
-    'wizard-macos-button-back' => {
-      id: 'wizard-macos-button-back',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-linux-button-back' => {
-      id: 'wizard-linux-button-back',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-win-button-back' => {
-      id: 'wizard-win-button-back',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-macos-button-next' => {
-      id: 'wizard-macos-button-next',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-linux-button-next' => {
-      id: 'wizard-linux-button-next',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-win-button-next' => {
-      id: 'wizard-win-button-next',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-macos-button-finish' => {
-      id: 'wizard-macos-button-finish',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-linux-button-finish' => {
-      id: 'wizard-linux-button-finish',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-win-button-finish' => {
-      id: 'wizard-win-button-finish',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-macos-button-cancel' => {
-      id: 'wizard-macos-button-cancel',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-linux-button-cancel' => {
-      id: 'wizard-linux-button-cancel',
-      value: null,
-      attributes: [Object: null prototype]
-    },
-    'wizard-win-button-cancel' => {
-      id: 'wizard-win-button-cancel',
-      value: null,
-      attributes: [Object: null prototype]
-    }
-  },
-  _intls: WeakMap { <items unknown> },
-  locales: [ 'en-US' ],
-  _functions: { NUMBER: [Function: NUMBER], DATETIME: [Function: DATETIME] },
-  _useIsolating: true,
-  _transform: [Function: transform]
-}
-< Back
+walk F
 [
-  'wizard-macos-button-back',
   {
-    id: 'wizard-macos-button-back',
-    value: null,
-    attributes: [Object: null prototype] { label: 'Go Back', accesskey: 'B' }
+    "path": "\\Archives",
+    "subFolders": []
+  },
+  {
+    "path": "\\inbox",
+    "subFolders": [
+      {
+        "path": "\\S1",
+        "subFolders": []
+      },
+      {
+        "path": "\\S2",
+        "subFolders": []
+      }
+    ]
+  },
+  {
+    "path": "\\top three",
+    "subFolders": []
+  },
+  {
+    "path": "\\top four",
+    "subFolders": []
   }
 ]
-[Object: null prototype] { label: 'Go Back', accesskey: 'B' }
-wizard-macos-button-back
-wizard-linux-button-back
-wizard-win-button-back
-wizard-macos-button-next
-wizard-linux-button-next
-wizard-win-button-next
-wizard-macos-button-finish
-wizard-linux-button-finish
-wizard-win-button-finish
-wizard-macos-button-cancel
-wizard-linux-button-cancel
-wizard-win-button-cancel
+after
+FP \Archives 
+FP \inbox [object Object],[object Object]
+recursive call 
+S FP \S1 
+[]
+walk F
+[]
+after
+[]
+{}
+[
+  {}
+]
+recursive call 
+S FP \S2 
+[]
+walk F
+[]
+after
+[]
+{}
+[
+  {},
+  {}
+]
+FP \top three 
+FP \top four 
+[
+  {
+    "path": "\\Archives",
+    "msgCount": 3
+  },
+  {
+    "path": "\\inbox",
+    "msgCount": 3
+  },
+  {
+    "path": "\\top three",
+    "msgCount": 3
+  },
+  {
+    "path": "\\top four",
+    "msgCount": 3
+  }
+]
+[
+  { path: '\\Archives', msgCount: 3 },
+  { path: '\\inbox', msgCount: 3 },
+  { path: '\\top three', msgCount: 3 },
+  { path: '\\top four', msgCount: 3 }
+]
+rf2
+[
+  [],
+  []
+]

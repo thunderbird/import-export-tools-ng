@@ -1,7 +1,7 @@
 {
     "title": "ImportExportTools NG",
     "name": "import-export-tools-ng",
-    "version": "10.0.5-b4",
+    "version": "10.0.5-b5",
     "description": "Import and export next-gen tools for messages and folders",
     "author": "Christopher Leidigh",
     "engines": {

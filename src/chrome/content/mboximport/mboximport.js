@@ -211,13 +211,10 @@ function openProfileImportWizard() {
 	
 	quit.v = 99;
 
-	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen", window);
-	// window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard2.xhtml", "", "dialog,chrome,modal,centerscreen");
-	console.debug('after dialogue')
+	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
 	if (quit.value) {
-		console.debug('quitting');
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
@@ -1018,7 +1015,7 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 function importALLasEML(recursive) {
-	console.debug('Start eml import');
+	// console.debug('Start eml import');
 
 	msgFolder = GetSelectedMsgFolders()[0];
 	// console.debug(msgFolder);
@@ -1073,7 +1070,7 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 		return;
 	}
 	
-	console.debug('RUNimportALLasEML');
+	// console.debug('RUNimportALLasEML');
 	// console.debug(msgFolder);
 	// console.debug(msgFolder.URI);
 	// console.debug(msgFolder.incomingServerType);
@@ -1130,7 +1127,7 @@ function buildEMLarray(file, fol, recursive) {
 			// https://github.com/thundernest/import-export-tools-ng/issues/57
 			if (folderCount++ % 400 === 0) {
 				rootFolder.ForceDBClosed();
-				console.debug('ForceDBClosed');
+				// console.debug('ForceDBClosed');
 			}
 
 			var newFolder = msgFolder.getChildNamed(afile.leafName);

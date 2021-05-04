@@ -1,16 +1,19 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "10.0.5-b4",
+    "version": "10.0.5-b5",
     "description": "__MSG_extensionDescription__",
     "author": "Christopher Leidigh",
     "applications": {
         "gecko": {
             "id": "ImportExportToolsNG@cleidigh.kokkini.net",
             "strict_min_version": "68.0",
-            "strict_max_version": "78.*"
+            "strict_max_version": "89.*"
         }
     },
+    "permissions": 
+      ["accountsFolders", "accountsRead", "messagesRead", "messagesMove"],
+    
     "experiment_apis": {
         "WindowListener": {
           "schema": "api/WindowListener/schema.json",
@@ -19,10 +22,18 @@
             "paths": [["WindowListener"]],
             "script": "api/WindowListener/implementation.js"
           }
+        },
+        "NotifyTools": {
+          "schema": "api/NotifyTools/schema.json",
+          "parent": {
+            "scopes": ["addon_parent"],
+            "paths": [["NotifyTools"]],
+            "script": "api/NotifyTools/implementation.js"
+          }
         }
       },
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["background.js", "iet_tests.js"]
     },
     
     "icons": {

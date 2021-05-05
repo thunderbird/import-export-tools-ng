@@ -19,7 +19,7 @@ async function traverseFolders(rootFolderPath) {
 	console.log(JSON.stringify(folders, null, 2));
 
 	// console.debug(`count ${await getMsgCount(folders[2])}`);
-	let fa = walkFolders(folders, getMsgCount);
+	let fa = await walkFolders(folders, getMsgCount);
 	console.debug(fa);
 	console.debug(`m ${m}`);
 }
@@ -38,10 +38,10 @@ async function getMsgCount(folder) {
 		// console.debug(page.messages.length);
 		count += page.messages.length;
 	}
-	console.debug('total ' + count + ' ' + m);
+	// console.debug('total ' + count + ' ' + m);
 	m = m + count;
 	bPage.t += count;
-	console.debug('gm ' + bPage.t);
+	// console.debug('gm ' + bPage.t);
 	return count;
 }
 
@@ -95,7 +95,71 @@ async function walkFolders2(folders, cb) {
 }
 
 
-function walkFolders(folders, cb) {
+async function walkFolders(folders, cb) {
+	console.debug('walk F');
+	// console.log(JSON.stringify(folders, null, 2));
+	// console.debug('after');
+
+	var fs = [];
+
+	// folders.forEach(async folder => {
+	for (let i = 0; i < folders.length; i++) {
+		const folder = folders[i];
+	
+			let mc = await getMsgCount(folder);
+			console.debug(folder.path +' '+ i);
+			// console.debug(mc);
+		
+		console.debug(`n count ${mc}`);
+		fs.push({ path: folder.path, msgCount: mc });
+		console.debug(`FP ${folder.path} `);
+		console.log(JSON.stringify(folder.subFolders, null, 2));
+		console.debug('after FP');
+		if (folder.subFolders.length) {
+
+			var fs2 = [];
+			// folder.subFolders.forEach(async folder => {
+			for (let i = 0; i < folder.subFolders.length; i++) {
+					const sfolder = folder.subFolders[i];
+			
+			let mc = await getMsgCount(sfolder);
+				fs.push({ path: sfolder.path, msgCount: mc });
+				console.debug(`R FP ${sfolder.path}`);
+
+				// console.debug('Wf recursive call ');
+				if (sfolder.subFolders.length) {
+				console.debug(`S FP ${sfolder.path} ${folder.subFolders}`);
+				console.log(JSON.stringify(sfolder.subFolders, null, 2));
+				// fs2 = fs2.concat(walkFolders(sfolder.subFolders, cb));
+				let fs3 = walkFolders(sfolder.subFolders, cb);
+				if (fs3) {
+					fs2 = fs2.concat(fs3);
+					
+				}
+				}
+
+				// console.log(JSON.stringify(fs, null, 2));
+			};
+			
+			let rfs2 = await Promise.all(fs2);
+			console.debug(rfs2);
+			if (rfs2[0]) {
+				fs = fs.concat(rfs2[0]);
+				
+			}
+			// fs = fs.concat(rfs2[0]);
+			console.debug('after promise all ');
+			console.log(JSON.stringify(fs, null, 2));
+
+		}
+	};
+	// return fs.concat(fp2);
+	return fs;
+}
+
+
+
+function walkFoldersSimple(folders, cb) {
 	console.debug('walk F');
 	// console.log(JSON.stringify(folders, null, 2));
 	// console.debug('after');

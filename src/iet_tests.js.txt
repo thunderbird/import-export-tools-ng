@@ -16,13 +16,12 @@ async function traverseFolders(rootFolderPath) {
 	let account = await messenger.accounts.get(accountID);
 	var folders = account.folders;
 	var fArray = [];
-	// console.log(JSON.stringify(folders, null, 2));
+	console.log(JSON.stringify(folders, null, 2));
 
 	// console.debug(`count ${await getMsgCount(folders[2])}`);
-	let fa = await walkFolders_usePromiseAll(folders, getMsgCount);
+	let fa = await walkFolders(folders, getMsgCount);
 	console.debug(fa);
-	console.debug(`m total ${m}`);
-	await getMsgCount2(folders[4]);
+	console.debug(`m ${m}`);
 }
 
 async function getMsgCount(folder) {
@@ -33,61 +32,17 @@ async function getMsgCount(folder) {
 	let page = await messenger.messages.list(folder);
 	// console.debug(page);
 	// console.debug(page.messages.length);
-	count+= page.messages.length;
+	count += page.messages.length;
 	while (page.id) {
 		page = await messenger.messages.continueList(page.id);
 		// console.debug(page.messages.length);
-		count+= page.messages.length;
-	}
-	// console.debug('total ' + count +' ' + m);
-	m = m + count;
-	bPage.t += count;
-	// console.debug('gm ' + bPage.t);
-	return count;
-}
-
-async function getMsgCount2(folder) {
-	let accountID = "account1";
-	console.debug(folder.path);
-	// let account = await messenger.accounts.get(accountID);
-	// var folders = account.folders;
-	var count = 0;
-	
-	var totalFolder = 0;
-
-	let page = await messenger.messages.list(folder);
-	// console.debug(page);
-	// console.debug(page.messages.length);
-	// page.messages.forEach(async message => {
-		for (let msg of page.messages) {
-			let m = await messenger.messages.getFull(msg.id);
-			console.debug(m.size);
-		// 	totalFolder += m.size;
-	
-		}
-
 		count += page.messages.length;
-
-		while (page.id && count < 200) {
-		page = await messenger.messages.continueList(page.id);
-		// console.debug(page.messages.length);
-		count += page.messages.length;
-		for (let msg of page.messages) {
-			let m = await messenger.messages.getFull(msg.id);
-			console.debug(m.size);
-			console.debug(m.subject);
-			totalFolder += m.size;
-	
-		}
-
-		console.debug(page.id);
-		
 	}
 	// console.debug('total ' + count + ' ' + m);
 	m = m + count;
 	bPage.t += count;
 	// console.debug('gm ' + bPage.t);
-	return {msgCount: count, size: totalFolder};
+	return count;
 }
 
 
@@ -173,7 +128,7 @@ async function walkFolders(folders, cb) {
 					console.debug(`S FP ${sfolder.path} ${folder.subFolders}`);
 					console.log(JSON.stringify(sfolder.subFolders, null, 2));
 					// fs2 = fs2.concat(walkFolders(sfolder.subFolders, cb));
-					let fs3 = await walkFolders(sfolder.subFolders, cb);
+					let fs3 = walkFolders(sfolder.subFolders, cb);
 					if (fs3) {
 						fs2 = fs2.concat(fs3);
 
@@ -199,37 +154,6 @@ async function walkFolders(folders, cb) {
 	return fs;
 }
 
-
-async function walkFolders_usePromiseAll(folders, cb) {
-	var fs = [];
-	console.debug(`walkFolders: ${folders.length}`);
-
-	let fdata_promisses = [];
-	let subfolders_promisses = [];
-	for (let folder of folders) {
-        fdata_promisses.push(cb(folder));
-        subfolders_promisses.push(walkFolders_usePromiseAll(folder.subFolders, cb));
-	}
-	// await everything
-	let fdata_rv = await Promise.all(fdata_promisses);
-	let subfolders_rv = await Promise.all(subfolders_promisses);
-
-	// prepare return value, we need to use index again :-(
-	for (let i=0; i < folders.length; i++) {
-		fs.push({
-            accountId: folders[i].accountId,
-            path: folders[i].path,
-            fData: fdata_rv[i],
-        });
-	
-        // Using the spread operator here as I do not like concat, which creates a new array.
-        // All I want is to push all the elements of subfolders into fs and the spread operator
-        // is doing just that, as push supports multiple elements to be pushed.        
-        fs.push(...subfolders_rv[i]);
-	};
-	
-	return fs;
-}
 
 
 function walkFoldersSimple(folders, cb) {
@@ -272,33 +196,6 @@ window.addEventListener("load", async function (event) {
 	// await getMsgCount(folder);
 	console.debug(`load ${bPage.t}`);
 
-	// await traverseFolders();
+	await traverseFolders();
 	console.debug(`load finish ${bPage.t}`);
 });
-
-
-messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
-	switch (info.command) {
-	  case "doTest":
-		//   Services.console.logStringMessage("mboximport_tests background");
-		console.debug('check state');
-		console.debug(new Date());
-		await traverseFolders();
-		console.debug(new Date());
-		console.debug(bPage.t);
-		// bPage.t += 2;
-		return bPage.t;
-	  break;
-	  case "doTest2":
-		//   Services.console.logStringMessage("mboximport_tests background");
-		console.debug('check sent');
-		console.debug(new Date());
-		await getMsgCount2("\\Sent");
-		console.debug(new Date());
-		console.debug(bPage.t);
-		// bPage.t += 2;
-		return bPage.t;
-	  break;
-
-	}
-  });

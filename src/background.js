@@ -182,27 +182,4 @@ messenger.WindowListener.registerWindow(
 
 
 messenger.WindowListener.startListening();
-
-messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
-	switch (info.command) {
-	  case "doTest":
-		//   Services.console.logStringMessage("mboximport_tests background");
-		console.debug('check state');
-		await traverseFolders();
-		console.debug(bPage.t);
-		// bPage.t += 2;
-		return bPage.t;
-	  break;
-	}
-  });
   
-
-//   window.addEventListener("load", async function (event) {
-// 	bPage = await browser.runtime.getBackgroundPage();
-// 	bPage.t = 2;
-// // await getMsgCount(folder);
-// 	console.debug(`load ${bPage.t}`);
-
-// 	await traverseFolders();
-// 	console.debug(`load finish ${bPage.t}`);
-// });

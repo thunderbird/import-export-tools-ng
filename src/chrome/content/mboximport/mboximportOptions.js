@@ -44,7 +44,7 @@ function IETsetCharsetPopup(charsetPref) {
             // replacement for createElement post TB60
             menuitem = document.createXULElement("menuitem");
         } else {
-            menuitem = document.createElement("menuitem");
+            menuitem = document.createXULElement("menuitem");
         }
 
         menuitem.setAttribute("label", charsetItems[i]);
@@ -66,12 +66,12 @@ function initMboxImportPanel() {
     if (versionChecker.compare(currentVersion, "61") >= 0) {
         var captions = document.querySelectorAll("caption");
         for (let i = 0; i < captions.length; i++) {
-            captions[i].style.display = "none";
+            // captions[i].style.display = "none";
         }
     } else {
         var groupboxtitles = document.querySelectorAll(".groupbox-title");
         for (let i = 0; i < groupboxtitles.length; i++) {
-            groupboxtitles[i].style.display = "none";
+            // groupboxtitles[i].style.display = "none";
         }
     }
 
@@ -115,24 +115,28 @@ function initMboxImportPanel() {
         document.getElementById("export_mbox_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
         document.getElementById("use_export_mbox_dir").checked = true;
-        document.getElementById("export_mbox_dir").removeAttribute("disabled");
-        document.getElementById("export_mbox_dir").nextSibling.removeAttribute("disabled");
+        toggleDirCheck(document.getElementById("use_export_mbox_dir"));
+        // document.getElementById("export_mbox_dir").removeAttribute("disabled");
+        // document.getElementById("export_mbox_dir").nextSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_mbox_dir").checked = false;
-        document.getElementById("export_mbox_dir").setAttribute("disabled", "true");
-        document.getElementById("export_mbox_dir").nextSibling.setAttribute("disabled", "true");
+        toggleDirCheck(document.getElementById("use_export_mbox_dir"));
+        // document.getElementById("export_mbox_dir").setAttribute("disabled", "true");
+        // document.getElementById("export_mbox_dir").nextSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
         document.getElementById("export_eml_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportEML.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
-        document.getElementById("export_eml_dir").removeAttribute("disabled");
-        document.getElementById("export_eml_dir").nextSibling.removeAttribute("disabled");
+        toggleDirCheck(document.getElementById("use_export_eml_dir"));
+        // document.getElementById("export_eml_dir").removeAttribute("disabled");
+        // document.getElementById("export_eml_dir").nextSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_eml_dir").checked = false;
-        document.getElementById("export_eml_dir").setAttribute("disabled", "true");
-        document.getElementById("export_eml_dir").nextSibling.setAttribute("disabled", "true");
+        toggleDirCheck(document.getElementById("use_export_eml_dir"));
+        // document.getElementById("export_eml_dir").setAttribute("disabled", "true");
+        // document.getElementById("export_eml_dir").nextSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMSG.dir") > 0)
@@ -140,12 +144,14 @@ function initMboxImportPanel() {
         document.getElementById("export_msgs_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMSG.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
-        document.getElementById("export_msgs_dir").removeAttribute("disabled");
-        document.getElementById("export_msgs_dir").nextSibling.removeAttribute("disabled");
+        toggleDirCheck(document.getElementById("use_export_msgs_dir"));
+        // document.getElementById("export_msgs_dir").removeAttribute("disabled");
+        // document.getElementById("export_msgs_dir").nextSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_msgs_dir").checked = false;
-        document.getElementById("export_msgs_dir").setAttribute("disabled", "true");
-        document.getElementById("export_msgs_dir").nextSibling.setAttribute("disabled", "true");
+        toggleDirCheck(document.getElementById("use_export_msgs_dir"));
+        // document.getElementById("export_msgs_dir").setAttribute("disabled", "true");
+        // document.getElementById("export_msgs_dir").nextSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.export.filename_pattern") > 0) {
@@ -445,12 +451,17 @@ function extendedFormatCheck(el) {
 
 
 function toggleDirCheck(el) {
+    var b = document.getElementById(el.id.split("use_")[1]);
+    var brs = document.getElementById(el.id.split("use_")[1] + "_browse");
+
     if (!el.checked) {
-        el.nextSibling.setAttribute("disabled", "true");
-        el.nextSibling.nextSibling.setAttribute("disabled", "true");
+        b.setAttribute("disabled", "true");
+        brs.setAttribute("disabled", "true");
+        // el.nextSibling.nextSibling.setAttribute("disabled", "true");
     } else {
-        el.nextSibling.removeAttribute("disabled");
-        el.nextSibling.nextSibling.removeAttribute("disabled");
+        b.removeAttribute("disabled");
+        brs.removeAttribute("disabled");
+        // el.nextSibling.nextSibling.removeAttribute("disabled");
     }
 }
 

@@ -30,11 +30,15 @@
 		</tabs>
 		<tabpanels>
 			<tabpanel>
+			
 				<hbox>
-					<groupbox class="groupbox-multi-os">
-						<caption label="&MBcaptionlabel1;" />
-						<hbox class="groupbox-os-title">
-							<label class="groupbox-os-label">&MBcaptionlabel1;</label>
+				<spacer height="8px" />
+					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
+						<!-- <caption label="&MBcaptionlabel1;" /> -->
+						<!-- <hbox class="groupbox-title2" style="margin-top: -20px;"> -->
+						<hbox class="groupbox-os-title" >
+							<!-- <label class="header2" style="background-color: #ffffff; padding-left: 3px; padding-right: 3px; color2: #111111">&MBcaptionlabel1;</label> -->
+							<label class="groupbox-os-label" >&MBcaptionlabel1;</label>
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="&MBlabel1;" />
@@ -68,29 +72,29 @@
 							</menulist>
 						</hbox>
 						<spacer height="20px" />
-						<grid>
-							<columns>
-								<column />
-								<column />
-							</columns>
-							<rows>
-								<row align="center" style="margin-bottom: 4px;">
+						<html:table>
+						<html:tr>
+								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
-								</row>
-								<row align="center"  style="margin-bottom: 4px;">
+								</html:td>
+						</html:tr>
+						<html:tr>
+								<html:td align="left"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
-								</row>
-								<row align="center" style="margin-bottom: 4px;">
+								</html:td>
+						</html:tr>
+						<html:tr>
+								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
-								</row>
-							</rows>
-						</grid>
+								</html:td>
+						</html:tr>
+					</html:table>
 						<spacer height="6px" />
 						<hbox style="height: ;" >
 							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&indexCSVdateFormat;</label>
@@ -111,6 +115,7 @@
 				</hbox>
 			</tabpanel>
 			<tabpanel>
+			<spacer height="8px" />
 				<vbox>
 					<hbox align="center">
 						<checkbox id="MBasciiname" label="&MBlabel2;" />
@@ -215,7 +220,7 @@
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>
-					<spacer height="6px" />
+					<spacer height="12px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&misc;" />
 						<hbox class="groupbox-os-title">
@@ -237,38 +242,41 @@
 				</vbox>
 			</tabpanel>
 			<tabpanel orient="vertical">
+			<spacer height="8px" />
 				<groupbox class="groupbox-multi-os">
 					<caption label="&savedirs;" />
 					<hbox class="groupbox-os-title">
 						<label class="groupbox-os-label">&savedirs;</label>
 					</hbox>
-					<grid>
-						<columns>
-							<column />
-							<column flex="1" />
-							<column />
-						</columns>
-						<rows>
-							<row style="margin-bottom: 4px;">
+
+					<html:table>
+						<html:tr>
+							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_mbox_dir" value="" size="35" />
-								<button label="&browse;" oncommand="pickFile(this)" />
-							</row>
-							<row style="margin-bottom: 4px;">
+								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+							</html:td>
+						</html:tr>
+						<html:tr>
+						
+							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_eml_dir" value="" size="35" />
-								<button label="&browse;" oncommand="pickFile(this)" />
-							</row>
-							<row style="margin-bottom: 4px;">
+								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+						</html:td>
+						</html:tr>
+						<html:tr>
+							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_msgs_dir" label="&selExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_msgs_dir" value="" size="35" />
-								<button label="&browse;" oncommand="pickFile(this)" />
-							</row>
-						</rows>
-					</grid>
+								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+							</html:td>
+						</html:tr>
+				</html:table>
+				
 				</groupbox>
 				<groupbox class="groupbox-multi-os">
 					<caption label="&allMsg;" />
@@ -289,7 +297,11 @@
 				</groupbox>
 			</tabpanel>
 			<tabpanel>
-				<groupbox class="groupbox-multi-os">
+			<vbox>
+			<spacer height="8px" />
+			</vbox>
+			<vbox>
+				<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
 					<caption label="&backupSettings;" />
 					<hbox class="groupbox-os-title">
 						<label class="groupbox-os-label">&backupSettings;</label>
@@ -348,6 +360,7 @@
 						<html:input id="backupLast" readonly="true" value="" size="35" />
 					</hbox>
 				</groupbox>
+				</vbox>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>

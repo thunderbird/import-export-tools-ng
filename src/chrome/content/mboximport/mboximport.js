@@ -1327,14 +1327,19 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			.getService(Ci.nsIIOService);
 		var fileURI = ios.newFileURI(file);
 		var channel;
-
+		let varNsILoadInfo;
+		if (versionChecker.compare(currentVersion, "80") >= 0) {
+			varNsILoadInfo = Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_SEC_CONTEXT_IS_NULL;
+		} else {
+			varNsILoadInfo = Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL;
+		}
 		if (Services.io.newChannelFromURI2) {
 			channel = Services.io.newChannelFromURI2(
 				fileURI,
 				null,
 				Services.scriptSecurityManager.getSystemPrincipal(),
 				null,
-				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				varNsILoadInfo,
 				Ci.nsIContentPolicy.TYPE_OTHER
 			);
 		} else {
@@ -1343,7 +1348,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 				null,
 				Services.scriptSecurityManager.getSystemPrincipal(),
 				null,
-				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				varNsILoadInfo,
 				Ci.nsIContentPolicy.TYPE_OTHER
 			);
 		}

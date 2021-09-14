@@ -269,34 +269,10 @@ var autoBackup = {
 		file.append("ExternalMailFolders");
 		if (!file.exists())
 			file.create(1, 0775);
-		var servers = Cc["@mozilla.org/messenger/account-manager;1"]
-			.getService(Ci.nsIMsgAccountManager).allServers;
-
-		var cntServers;
-		var serverFile;
-		if (servers.Count)
-			cntServers = servers.Count();
-		else
-			// Thunderbird >17 return nsIArray
-			cntServers = servers.length;
-		// Scan servers storage path on disk
-		for (var i = 0; i < cntServers; ++i) {
+		for (let server of MailServices.accounts.allServers) {
 			var parentDir = null;
-			let server;
-			if (servers.Count) {
-				server = servers[i];
-				serverFile = server.localPath;
-				// serverFile = servers.GetElementAt(i).QueryInterface(Ci.nsIMsgIncomingServer).localPath;
-			} else {
+			let serverFile = server.localPath;
 
-				try {
-					serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
-				} catch (e) {
-					server = servers[i];
-					serverFile = server.localPath;
-				}
-
-			}
 			if (serverFile.parent && serverFile.parent.parent)
 				parentDir = serverFile.parent.parent;
 			var clone = file.clone();

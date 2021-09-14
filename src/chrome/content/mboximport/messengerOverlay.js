@@ -27,6 +27,7 @@
 /* global IETprefs, IETgetComplexPref, setupHotKeys */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/autobackup.js", window, "UTF-8");
 
 function IETmessOverlayInit() {
 	Services.console.logStringMessage("Start backup check");
@@ -73,7 +74,7 @@ function IETmessOverlayInit() {
 		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
 	}
 
-	// btest();
+	// runAutoBackupTest();
 	
 	// window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, time, now);
 
@@ -100,8 +101,8 @@ function getDir() {
 }
 
 
-function btest() {
-	console.debug('btest start');
+function runAutoBackupTest() {
+	console.debug('runAutoBackupTest start');
 	var dir = autoBackup.getDir();
 	if (!dir)
 		return;
@@ -112,7 +113,7 @@ function btest() {
 		entry.QueryInterface(Ci.nsIFile);
 		console.debug(entry.leafName);
 	}
-	console.debug('btest end');
+	console.debug('runAutoBackupTest end');
 }
 
 function keyEvent(e) {

@@ -495,41 +495,13 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 }
 
 function storeImportedSubFolders(msgFolder) {
-	var subfolders;
-	var next;
-	var obj = {};
-
-	if (msgFolder.GetSubFolders) {
-		subfolders = msgFolder.GetSubFolders();
-		while (true) {
-			next = subfolders.currentItem();
-			var subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = {};
+	if (msgFolder.subFolders) {
+		for (let subfolder of msgFolder.subFolders) {
+			let obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
-			// If the subfolder has subfodlers, the function calls itself
-			if (subfolder.hasSubFolders)
-				storeImportedSubFolders(subfolder);
-			try {
-				subfolders.next();
-			} catch (ex) {
-				break;
-			}
-		}
-
-	} else {
-		// Gecko 1.9
-
-		subfolders = msgFolder.subFolders;
-		while (subfolders.hasMoreElements()) {
-			next = subfolders.getNext();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = {};
-			obj.msgFolder = subfolder;
-			obj.forceCompact = false;
-			gMsgFolderImported.push(obj);
-			// If the subfolder has subfodlers, the function calls itself
+			// If the subfolder has subfolders, the function calls itself.
 			if (subfolder.hasSubFolders)
 				storeImportedSubFolders(subfolder);
 		}

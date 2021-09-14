@@ -387,8 +387,12 @@ function IETexport_all_delayed(just_mail, file) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
 			// console.debug(entry.leafName);
-			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock") {
-				entry.copyTo(file, "");
+			try {
+				if (!["chrome_debugger_profile", "lock", "parent.lock"].includes(entry.leafName)) {
+					entry.copyTo(file, "");
+				}
+			} catch (e) {
+				console.warn(e, entry, file);
 			}
 
 		}

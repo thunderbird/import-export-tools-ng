@@ -922,7 +922,7 @@ function loadTabPage(url, load_localized_page) {
 	}
 	let tabmail = getMail3Pane();
 
-	tabmail.openTab("chromeTab", { chromePage: url });
+	tabmail.openTab("contentTab", { url });
 
 }
 

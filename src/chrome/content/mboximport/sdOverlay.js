@@ -79,7 +79,6 @@ function SDexportMsg() {
 		all = (document.getElementById("IETall").selectedIndex === 0);
 	else
 		all = (rg[rg.length - 2].selectedIndex === 0);
-	var emlsArray = [];
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -117,8 +116,10 @@ function SDexportMsg() {
 		else
 			return;
 	}
-	var i = 0;
+	
+	let emlsArray = [];
 	if (all) {
+		let i = 0;
 		while (true) {
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
@@ -127,14 +128,9 @@ function SDexportMsg() {
 				break;
 			}
 		}
-	} else if (String.trim)
-			emlsArray = view.getURIsForSelection({});
-		else {
-			var messageArray = {};
-			var len = {};
-			view.getURIsForSelection(messageArray, len);
-			emlsArray = messageArray.value;
-		}
+	} else {
+		emlsArray = view.getURIsForSelection();
+	}
 
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;

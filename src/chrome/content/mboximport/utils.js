@@ -406,31 +406,16 @@ function saveExternalMailFolders(file) {
 	file.append("ExternalMailFolders");
 	file.create(1, 0775);
 
-	let serverFile;
-
 	// Scan servers storage path on disk
-	// TODO: This is only using the serverFile of the LAST server found, and IGNORES
-	//       all others. WHY?
 	for (let server of MailServices.accounts.allServers) {
-		serverFile = server.localPath;
-	}
-	var parentDir = null;
-	if (serverFile.parent && serverFile.parent.parent)
-		parentDir = serverFile.parent.parent;
-	if (!parentDir || !profDir.equals(parentDir)) {
-		var index = 1;
-		var fname = serverFile.leafName;
-		while (true) {
-			var clone = file.clone();
-			clone.append(fname);
-			if (clone.exists()) {
-				fname = fname + "-" + index.toString();
-				index++;
-			} else {
-				break;
-			}
+		let serverFile = server.localPath;
+		
+		// Exclude all folders which are located inside the profile folder.
+		if (serverFile.path.startsWith(profDir.path)) {
+			continue;
 		}
-		// The server storage path on disk is outside the profile, so copy it
+		
+		// The server storage path on disk is outside the profile, so copy it.
 		try {
 			serverFile.copyTo(file, "");
 		} catch (e) {

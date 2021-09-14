@@ -400,34 +400,19 @@ function IETexport_all_delayed(just_mail, file) {
 }
 
 function saveExternalMailFolders(file) {
-	var profDir = Cc["@mozilla.org/file/directory_service;1"]
+	let profDir = Cc["@mozilla.org/file/directory_service;1"]
 		.getService(Ci.nsIProperties)
 		.get("ProfD", Ci.nsIFile);
 	file.append("ExternalMailFolders");
 	file.create(1, 0775);
-	var servers = Cc["@mozilla.org/messenger/account-manager;1"]
-		.getService(Ci.nsIMsgAccountManager).allServers;
-	// console.debug(servers);
 
-	var nsIArray;
-	var cntServers;
-	var serverFile;
+	let serverFile;
 
-	if (servers.Count) {
-		nsIArray = false;
-		cntServers = servers.Count();
-	} else {
-		nsIArray = true;
-		cntServers = servers.length;
-	}
 	// Scan servers storage path on disk
-	for (var i = 0; i < cntServers; ++i) {
-		if (nsIArray) {
-			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
-		} else {
-			let server = servers[i];
-			serverFile = server.localPath;
-		}
+	// TODO: This is only using the serverFile of the LAST server found, and IGNORES
+	//       all others. WHY?
+	for (let server of MailServices.accounts.allServers) {
+		serverFile = server.localPath;
 	}
 	var parentDir = null;
 	if (serverFile.parent && serverFile.parent.parent)

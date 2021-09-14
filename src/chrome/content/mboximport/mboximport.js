@@ -52,8 +52,8 @@ IETemlx2eml,
 IETescapeBeginningFrom,
 */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 // Services.console.logStringMessage("mboximport start");
 
 var MBstrBundleService = Services.strings;
@@ -1225,9 +1225,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 	importEMLlistener.allEML = allEML;
 	if (String.prototype.trim && msgFolder.server.type === "imap") {
 		importEMLlistener.imap = true;
-		var cs = Cc["@mozilla.org/messenger/messagecopyservice;1"]
-			.getService(Ci.nsIMsgCopyService);
-		cs.CopyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
+		MailServices.copy.copyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
 		if (!removeFile) {
 			gEMLimported = gEMLimported + 1;
 			let errs = "";

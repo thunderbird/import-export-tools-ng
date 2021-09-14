@@ -878,98 +878,39 @@ var MBOXIMPORTscandir = {
 
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
-	// Gecko 1.8 and earlier
-	var subfolder;
-	var subfolders;
-	var next;
-	var subfolderNS;
-	var destdirNsFile;
-	var newname;
-	var destdirNSIFILEclone;
-	var sbd;
-	var listMSF;
-
-	if (msgFolder.GetSubFolders) {
-		subfolders = msgFolder.GetSubFolders();
-		while (true) {
-			next = subfolders.currentItem();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			// Search for a good name
-			newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
-			subfolderNS = msgFolder2LocalFile(subfolder);
-			if (subfolderNS.exists())
-				subfolderNS.copyTo(destdirNSIFILE, newname);
-			else {
-				newname = IETcleanName(newname);
-				destdirNSIFILEclone = destdirNSIFILE.clone();
-				destdirNSIFILEclone.append(newname);
-				destdirNSIFILEclone.create(0, 0644);
-			}
-			if (keepstructure) {
-				sbd = subfolderNS.parent;
-				sbd.append(subfolderNS.leafName + ".sbd");
-				if (sbd.exists() && sbd.directoryEntries.hasMoreElements()) {
-					sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-					destdirNsFile = destdirNSIFILE.clone();
-					destdirNsFile.append(newname + ".sbd");
-					listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (var i = 0; i < listMSF.length; ++i) {
-						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
-							try {
-								listMSF[i].remove(false);
-							} catch (e) { }
-						}
+	for (let subfolder of msgFolder.subFolders) {
+		// Search for a good name
+		let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
+		let subfolderNS = msgFolder2LocalFile(subfolder);
+		if (subfolderNS.exists())
+			subfolderNS.copyTo(destdirNSIFILE, newname);
+		else {
+			newname = IETcleanName(newname);
+			let destdirNSIFILEclone = destdirNSIFILE.clone();
+			destdirNSIFILEclone.append(newname);
+			destdirNSIFILEclone.create(0, 0644);
+		}
+		if (keepstructure) {
+			let sbd = subfolderNS.parent;
+			sbd.append(subfolderNS.leafName + ".sbd");
+			if (sbd.exists() && sbd.directoryEntries.length > 0) {
+				sbd.copyTo(destdirNSIFILE, newname + ".sbd");
+				let destdirNsFile = destdirNSIFILE.clone();
+				destdirNsFile.append(newname + ".sbd");
+				let listMSF = MBOXIMPORTscandir.find(destdirNsFile);
+				for (i = 0; i < listMSF.length; ++i) {
+					if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
+						try {
+							listMSF[i].remove(false);
+						} catch (e) { }
 					}
 				}
 			}
-			// If the subfolder has subfodlers, the function calls itself
-			if (subfolder.hasSubFolders && !keepstructure)
-				exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
-			try {
-				subfolders.next();
-			} catch (ex) {
-				break;
-			}
 		}
-	} else {
-		// Gecko 1.9
-		subfolders = msgFolder.subFolders;
-		while (subfolders.hasMoreElements()) {
-			next = subfolders.getNext();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			// Search for a good name
-			newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
-			subfolderNS = msgFolder2LocalFile(subfolder);
-			if (subfolderNS.exists())
-				subfolderNS.copyTo(destdirNSIFILE, newname);
-			else {
-				newname = IETcleanName(newname);
-				destdirNSIFILEclone = destdirNSIFILE.clone();
-				destdirNSIFILEclone.append(newname);
-				destdirNSIFILEclone.create(0, 0644);
-			}
-			if (keepstructure) {
-				sbd = subfolderNS.parent;
-				sbd.append(subfolderNS.leafName + ".sbd");
-				if (sbd.exists() && sbd.directoryEntries.hasMoreElements()) {
-					sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-					destdirNsFile = destdirNSIFILE.clone();
-					destdirNsFile.append(newname + ".sbd");
-					listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (i = 0; i < listMSF.length; ++i) {
-						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
-							try {
-								listMSF[i].remove(false);
-							} catch (e) { }
-						}
-					}
-				}
-			}
 
-			// If the subfolder has subfodlers, the function calls itself
-			if (subfolder.hasSubFolders && !keepstructure)
-				exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
-		}
+		// If the subfolder has subfolders, the function calls itself
+		if (subfolder.hasSubFolders && !keepstructure)
+			exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
 	}
 }
 

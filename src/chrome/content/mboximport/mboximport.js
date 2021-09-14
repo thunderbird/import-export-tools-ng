@@ -969,7 +969,7 @@ function importALLasEML(recursive) {
 var folderCount;
 var rootFolder;
 
-function RUNimportALLasEML(msgFolder, file, recursive) {
+async function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
@@ -993,9 +993,8 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 
 	rootFolder = msgFolder;
 	
-	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
+	await buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
-	// console.debug('buildEMLarray done ' + gEMLtotal);
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
 		document.getElementById("IETabortIcon").collapsed = true;
@@ -1007,7 +1006,7 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
 }
 
-function buildEMLarray(file, fol, recursive) {
+async function buildEMLarray(file, fol, recursive) {
 	// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
 	var allfiles = file.directoryEntries;
 	var msgFolder;
@@ -1033,19 +1032,28 @@ function buildEMLarray(file, fol, recursive) {
 		}
 
 		if (recursive && is_Dir) {
-			msgFolder.createSubfolder(afile.leafName, msgWindow);
-			// document.getElementById("IETabortIcon").collapsed = false;
-			// console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
-			// open files bug
-			// https://github.com/thundernest/import-export-tools-ng/issues/57
-			if (folderCount++ % 400 === 0) {
-				rootFolder.ForceDBClosed();
-				console.debug('ForceDBClosed');
-			}
-
-			var newFolder = msgFolder.getChildNamed(afile.leafName);
-			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
-			buildEMLarray(afile, newFolder, true);
+			let folderName = afile.leafName;
+			
+			// Wait for the folder being added.
+			let newFolder = await new Promise(resolve => {
+				let folderListener = {
+					folderAdded: function(aFolder) {
+						if (aFolder.name == folderName && aFolder.parent == msgFolder) {
+							MailServices.mfn.removeListener(folderListener);
+							resolve(aFolder);
+						}
+					}
+				};
+				MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+				msgFolder.createSubfolder(folderName, msgWindow);
+				// open files bug
+				// https://github.com/thundernest/import-export-tools-ng/issues/57
+				if (folderCount++ % 400 === 0) {
+					rootFolder.ForceDBClosed();
+					console.debug('ForceDBClosed');
+				}
+			})
+			await buildEMLarray(afile, newFolder, true);
 		} else {
 			var emlObj = {};
 			var afilename = afile.leafName;
@@ -1060,6 +1068,7 @@ function buildEMLarray(file, fol, recursive) {
 			// console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
+	
 	return true;
 }
 

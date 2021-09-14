@@ -431,7 +431,11 @@ function saveExternalMailFolders(file) {
 			}
 		}
 		// The server storage path on disk is outside the profile, so copy it
-		serverFile.copyTo(file, "");
+		try {
+			serverFile.copyTo(file, "");
+		} catch (e) {
+			console.warn(e, file);
+		}
 	}
 }
 

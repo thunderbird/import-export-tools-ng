@@ -11,7 +11,6 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expo
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/messengerOverlay.js", window, "UTF-8");
 
 function onLoad() {
 	// console.debug('messenger OL');
@@ -180,7 +179,7 @@ function onLoad() {
 		<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
 		<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 		<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
-		<menuitem id="IETBackupProfile2" label="Backup" oncommand="runAutoBackupTest()" />
+		<menuitem id="IETBackupProfile2" label="Backup" oncommand="window.ietng.OpenBackupDialog('manual')" />
 		<menuseparator />
 		<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 		<menuitem id="openIEThelp3" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
@@ -189,7 +188,7 @@ function onLoad() {
 </menupopup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
-WL.injectElements(`
+	WL.injectElements(`
 <popup id="mailContext">
 <menu label="&toClipMenu;" id="copyToClipContext">
 	<menupopup>
@@ -231,7 +230,6 @@ WL.injectElements(`
 </popup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
-
 	WL.injectElements(`
 <popup id="attachmentListContext">
 <menuitem id="importEMLatt" label="&importAttachedEML;" oncommand="importEmlToFolder()" collapsed="true" />
@@ -245,7 +243,7 @@ WL.injectElements(`
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
 
-// HotKeys overlay fragment
+	// HotKeys overlay fragment
 
 	WL.injectElements(`
 <overlay id="messengerOverlay"
@@ -267,14 +265,45 @@ WL.injectElements(`
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
-// <key id="hot-key1" key="P" modifiers="shift control" oncommand="goDoCommand('cmd_printpreview')" contexts="all"/>
-//   <key id="hot-key2" key="T" modifiers="shift control" oncommand="alert('k2')" contexts="all"/>
-//   <key id="hot-key3" key="D" modifiers="shift control" oncommand="exportSelectedMsgs(5)" contexts="all"/>
-  
 
-// inject extension object into private context
-window.ietng = {};
-window.ietng.extension = WL.extension;
+	// inject extension object into private context
+	window.ietng = {};
+	window.ietng.extension = WL.extension;
+
+	window.ietng.OpenBackupDialog = function (mode = "auto") {
+		Services.console.logStringMessage("Start backup check");
+		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
+		let now = new Date();
+	
+		// Abort in automode, if not yet due.
+		if (mode == "auto") {
+			let frequency = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
+			if (frequency === 0)
+				return;
+			
+			if (frequency === 99)
+				frequency = 0.001;
+		
+			let time = now.getTime() / 1000;
+			let days = 24 * 60 * 60 * frequency;
+			// let days = 0.005;
+			console.debug('OverlayBackup');
+			console.debug(time-last);
+			console.debug(days);
+		
+			if ((time - last) < (days - (60 * 5)))
+				return;
+		}
+	
+		console.debug('Open dialogue');
+		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
+			console.debug('openModel');
+			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
+		} else {
+			console.debug('openD');
+			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
+		}
+	}
 
 	window.IETinit();
 	window.setupHotKeys('messenger');
@@ -282,6 +311,6 @@ window.ietng.extension = WL.extension;
 }
 
 function onUnload() {
-	window.IETmessOverlayInit();
 	window.removeHotKeysObserver();
+	window.ietng.OpenBackupDialog();
 }

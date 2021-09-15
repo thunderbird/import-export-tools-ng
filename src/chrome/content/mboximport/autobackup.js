@@ -38,8 +38,6 @@ var autoBackup = {
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
 		document.documentElement.getButton("accept").disabled = true;
-		autoBackup.time = window.arguments[1];
-		autoBackup.now = window.arguments[2];
 		// saveMode values:
 		// 0 = save all; 1 = save just if new;
 		// 2 = save just if new with custom name, save all with unique name
@@ -54,6 +52,9 @@ var autoBackup = {
 			document.getElementById("macWarn").removeAttribute("collapsed");
 		var label = document.getElementById("last").textContent;
 		autoBackup.last = window.arguments[0];
+		autoBackup.now = window.arguments[1];
+		autoBackup.mode = window.arguments[2];
+
 		if (autoBackup.last > 0) {
 			var last = autoBackup.last * 1000;
 			var time = new Date(last);
@@ -61,6 +62,10 @@ var autoBackup = {
 			document.getElementById("last").textContent = label.replace("$t", localTime);
 		} else {
 			document.getElementById("last").textContent = label.replace("$t", "(none)");
+		}
+
+		if (autoBackup.mode != "auto") {
+			document.getElementById("autoModeDesc").hidden = true;
 		}
 	},
 
@@ -256,7 +261,7 @@ var autoBackup = {
 			window.setTimeout(autoBackup.write, 50, index);
 		} else {
 			document.getElementById("pm").value = 100;
-			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.time);
+			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");

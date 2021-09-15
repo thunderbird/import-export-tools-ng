@@ -1059,7 +1059,8 @@ async function buildEMLarray(file, fol, recursive) {
 			var afilename = afile.leafName;
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);
-			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".nws"))
+			// fix #241 - also import .emlx
+			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== ".nws"))
 				continue;
 			emlObj.file = afile;
 			emlObj.msgFolder = msgFolder;

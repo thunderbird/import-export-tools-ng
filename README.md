@@ -9,14 +9,9 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
-
-![IETng_version](https://img.shields.io/badge/version-v10.0.2-darkorange.png?label=ImportExportTools%20NG)
-[![IETng_tb_version](https://img.shields.io/badge/version-v10.0.2-blue.png?label=Thunderbird%20Add-On)](https://addons.thunderbird.net/en-US/thunderbird/addon/)
-![Thunderbird_version](https://img.shields.io/badge/version-v68.0--78.*-blue.png?label=Thunderbird)
+[![TB78](https://raster.shields.io/badge/version-v10.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%2078)](https://addons.thunderbird.net/addon/importexporttools-ng/)
+[![TB91](https://raster.shields.io/badge/version-v10.1.0%20(beta%20version)-C70039.png?label=Thunderbird%2091)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
-![Release Status](https://img.shields.io/badge/Release%20Status-v10.0.2%20Released-brightgreen.png)
-
-#
 
 ## New Wiki 
 

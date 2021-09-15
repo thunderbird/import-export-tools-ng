@@ -387,8 +387,12 @@ function IETexport_all_delayed(just_mail, file) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
 			// console.debug(entry.leafName);
-			if (entry.leafName !== "lock" && entry.leafName !== "parent.lock") {
-				entry.copyTo(file, "");
+			try {
+				if (!["chrome_debugger_profile", "lock", "parent.lock"].includes(entry.leafName)) {
+					entry.copyTo(file, "");
+				}
+			} catch (e) {
+				console.warn(e, entry, file);
 			}
 
 		}
@@ -400,53 +404,27 @@ function IETexport_all_delayed(just_mail, file) {
 }
 
 function saveExternalMailFolders(file) {
-	var profDir = Cc["@mozilla.org/file/directory_service;1"]
+	let profDir = Cc["@mozilla.org/file/directory_service;1"]
 		.getService(Ci.nsIProperties)
 		.get("ProfD", Ci.nsIFile);
 	file.append("ExternalMailFolders");
 	file.create(1, 0775);
-	var servers = Cc["@mozilla.org/messenger/account-manager;1"]
-		.getService(Ci.nsIMsgAccountManager).allServers;
-	// console.debug(servers);
 
-	var nsIArray;
-	var cntServers;
-	var serverFile;
-
-	if (servers.Count) {
-		nsIArray = false;
-		cntServers = servers.Count();
-	} else {
-		nsIArray = true;
-		cntServers = servers.length;
-	}
 	// Scan servers storage path on disk
-	for (var i = 0; i < cntServers; ++i) {
-		if (nsIArray) {
-			serverFile = servers.queryElementAt(i, Ci.nsIMsgIncomingServer).localPath;
-		} else {
-			let server = servers[i];
-			serverFile = server.localPath;
+	for (let server of MailServices.accounts.allServers) {
+		let serverFile = server.localPath;
+		
+		// Exclude all folders which are located inside the profile folder.
+		if (serverFile.path.startsWith(profDir.path)) {
+			continue;
 		}
-	}
-	var parentDir = null;
-	if (serverFile.parent && serverFile.parent.parent)
-		parentDir = serverFile.parent.parent;
-	if (!parentDir || !profDir.equals(parentDir)) {
-		var index = 1;
-		var fname = serverFile.leafName;
-		while (true) {
-			var clone = file.clone();
-			clone.append(fname);
-			if (clone.exists()) {
-				fname = fname + "-" + index.toString();
-				index++;
-			} else {
-				break;
-			}
+		
+		// The server storage path on disk is outside the profile, so copy it.
+		try {
+			serverFile.copyTo(file, "");
+		} catch (e) {
+			console.warn(e, file);
 		}
-		// The server storage path on disk is outside the profile, so copy it
-		serverFile.copyTo(file, "");
 	}
 }
 
@@ -933,7 +911,7 @@ function loadTabPage(url, load_localized_page) {
 	}
 	let tabmail = getMail3Pane();
 
-	tabmail.openTab("chromeTab", { chromePage: url });
+	tabmail.openTab("contentTab", { url });
 
 }
 

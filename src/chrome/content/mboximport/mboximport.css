@@ -8,17 +8,16 @@
   border-radius: 3px;
   border-bottom: 2px groove ThreeDFace;
   border-top: 2px groove ThreeDFace;
-  padding: 0 0 10px;
   border-left: 2px groove ThreeDFace;
   border-right: 2px groove ThreeDFace;
-  padding-right: 8px;
+  padding-right: 6px;
+  padding-left: 6px;
   padding-top: 10px;
+  padding-bottom: 6px;
 }
 
 .groupbox-os-title {
-  position: absolute;
-  top: -8px;
-  left: 0px;
+  margin-top: -22px;
 }
 
 .groupbox-os-label {

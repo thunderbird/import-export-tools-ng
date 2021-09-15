@@ -41,24 +41,12 @@ messenger.WindowListener.registerOptionsPage("chrome://mboximport/content/mboxim
 // Register each overlay script Which controls subsequent fragment loading
 
 messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/messenger.xul",
-	"chrome://mboximport/content/mboximport/messengerOL.js");
-
-messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/messenger.xhtml",
 	"chrome://mboximport/content/mboximport/messengerOL.js");
 
 messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/SearchDialog.xul",
-	"chrome://mboximport/content/mboximport/SearchDialogOL.js");
-
-messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/SearchDialog.xhtml",
 	"chrome://mboximport/content/mboximport/SearchDialogOL.js");
-
-messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/messengercompose/messengercompose.xul",
-	"chrome://mboximport/content/mboximport/messengercomposeOL.js");
 
 messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/messengercompose/messengercompose.xhtml",
@@ -66,26 +54,15 @@ messenger.WindowListener.registerWindow(
 
 
 messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/messageWindow.xul",
-	"chrome://mboximport/content/mboximport/messageWindowOL.js");
-
-
-messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/messageWindow.xhtml",
 	"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
-// messenger.WindowListener.registerWindow(
-// 	"chrome://mboximport/content/mboximport/pest.xhtml",
-// 	"chrome://mboximport/content/mboximport/ptest.js");
+/* messenger.WindowListener.registerWindow(
+ 	"chrome://mboximport/content/mboximport/pest.xhtml",
+ 	"chrome://mboximport/content/mboximport/ptest.js"); */
 	
-messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/msgPrintEngine.xul",
-	"chrome://mboximport/content/mboximport/msgPrintEngineOL.js");
-
-
-messenger.WindowListener.registerWindow(
+/* messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/msgPrintEngine.xhtml",
-	"chrome://mboximport/content/mboximport/msgPrintEngineOL.js");
-
+	"chrome://mboximport/content/mboximport/msgPrintEngineOL.js"); */
 
 messenger.WindowListener.startListening();

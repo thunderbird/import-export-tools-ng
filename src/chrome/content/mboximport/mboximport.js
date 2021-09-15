@@ -52,8 +52,8 @@ IETemlx2eml,
 IETescapeBeginningFrom,
 */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-
+var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 // Services.console.logStringMessage("mboximport start");
 
 var MBstrBundleService = Services.strings;
@@ -495,41 +495,13 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 }
 
 function storeImportedSubFolders(msgFolder) {
-	var subfolders;
-	var next;
-	var obj = {};
-
-	if (msgFolder.GetSubFolders) {
-		subfolders = msgFolder.GetSubFolders();
-		while (true) {
-			next = subfolders.currentItem();
-			var subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = {};
+	if (msgFolder.subFolders) {
+		for (let subfolder of msgFolder.subFolders) {
+			let obj = {};
 			obj.msgFolder = subfolder;
 			obj.forceCompact = false;
 			gMsgFolderImported.push(obj);
-			// If the subfolder has subfodlers, the function calls itself
-			if (subfolder.hasSubFolders)
-				storeImportedSubFolders(subfolder);
-			try {
-				subfolders.next();
-			} catch (ex) {
-				break;
-			}
-		}
-
-	} else {
-		// Gecko 1.9
-
-		subfolders = msgFolder.subFolders;
-		while (subfolders.hasMoreElements()) {
-			next = subfolders.getNext();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			obj = {};
-			obj.msgFolder = subfolder;
-			obj.forceCompact = false;
-			gMsgFolderImported.push(obj);
-			// If the subfolder has subfodlers, the function calls itself
+			// If the subfolder has subfolders, the function calls itself.
 			if (subfolder.hasSubFolders)
 				storeImportedSubFolders(subfolder);
 		}
@@ -878,84 +850,27 @@ var MBOXIMPORTscandir = {
 
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
-	// Gecko 1.8 and earlier
-	var subfolder;
-	var subfolders;
-	var next;
-	var subfolderNS;
-	var destdirNsFile;
-	var newname;
-	var destdirNSIFILEclone;
-	var sbd;
-	var listMSF;
-
-	if (msgFolder.GetSubFolders) {
-		subfolders = msgFolder.GetSubFolders();
-		while (true) {
-			next = subfolders.currentItem();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
+	if (msgFolder.subFolders) {
+		for (let subfolder of msgFolder.subFolders) {
 			// Search for a good name
-			newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
-			subfolderNS = msgFolder2LocalFile(subfolder);
+			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
+			let subfolderNS = msgFolder2LocalFile(subfolder);
 			if (subfolderNS.exists())
 				subfolderNS.copyTo(destdirNSIFILE, newname);
 			else {
 				newname = IETcleanName(newname);
-				destdirNSIFILEclone = destdirNSIFILE.clone();
+				let destdirNSIFILEclone = destdirNSIFILE.clone();
 				destdirNSIFILEclone.append(newname);
 				destdirNSIFILEclone.create(0, 0644);
 			}
 			if (keepstructure) {
-				sbd = subfolderNS.parent;
+				let sbd = subfolderNS.parent;
 				sbd.append(subfolderNS.leafName + ".sbd");
-				if (sbd.exists() && sbd.directoryEntries.hasMoreElements()) {
+				if (sbd.exists() && sbd.directoryEntries.length > 0) {
 					sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-					destdirNsFile = destdirNSIFILE.clone();
+					let destdirNsFile = destdirNSIFILE.clone();
 					destdirNsFile.append(newname + ".sbd");
-					listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (var i = 0; i < listMSF.length; ++i) {
-						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
-							try {
-								listMSF[i].remove(false);
-							} catch (e) { }
-						}
-					}
-				}
-			}
-			// If the subfolder has subfodlers, the function calls itself
-			if (subfolder.hasSubFolders && !keepstructure)
-				exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
-			try {
-				subfolders.next();
-			} catch (ex) {
-				break;
-			}
-		}
-	} else {
-		// Gecko 1.9
-		subfolders = msgFolder.subFolders;
-		while (subfolders.hasMoreElements()) {
-			next = subfolders.getNext();
-			subfolder = next.QueryInterface(Ci.nsIMsgFolder);
-			// Search for a good name
-			newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
-			subfolderNS = msgFolder2LocalFile(subfolder);
-			if (subfolderNS.exists())
-				subfolderNS.copyTo(destdirNSIFILE, newname);
-			else {
-				newname = IETcleanName(newname);
-				destdirNSIFILEclone = destdirNSIFILE.clone();
-				destdirNSIFILEclone.append(newname);
-				destdirNSIFILEclone.create(0, 0644);
-			}
-			if (keepstructure) {
-				sbd = subfolderNS.parent;
-				sbd.append(subfolderNS.leafName + ".sbd");
-				if (sbd.exists() && sbd.directoryEntries.hasMoreElements()) {
-					sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-					destdirNsFile = destdirNSIFILE.clone();
-					destdirNsFile.append(newname + ".sbd");
-					listMSF = MBOXIMPORTscandir.find(destdirNsFile);
+					let listMSF = MBOXIMPORTscandir.find(destdirNsFile);
 					for (i = 0; i < listMSF.length; ++i) {
 						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 							try {
@@ -966,7 +881,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 				}
 			}
 
-			// If the subfolder has subfodlers, the function calls itself
+			// If the subfolder has subfolders, the function calls itself
 			if (subfolder.hasSubFolders && !keepstructure)
 				exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
 		}
@@ -1054,7 +969,7 @@ function importALLasEML(recursive) {
 var folderCount;
 var rootFolder;
 
-function RUNimportALLasEML(msgFolder, file, recursive) {
+async function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
@@ -1078,9 +993,8 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 
 	rootFolder = msgFolder;
 	
-	var buildEMLarrayRet = buildEMLarray(file, null, recursive);
+	await buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
-	// console.debug('buildEMLarray done ' + gEMLtotal);
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
 		document.getElementById("IETabortIcon").collapsed = true;
@@ -1092,7 +1006,7 @@ function RUNimportALLasEML(msgFolder, file, recursive) {
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
 }
 
-function buildEMLarray(file, fol, recursive) {
+async function buildEMLarray(file, fol, recursive) {
 	// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
 	var allfiles = file.directoryEntries;
 	var msgFolder;
@@ -1118,25 +1032,35 @@ function buildEMLarray(file, fol, recursive) {
 		}
 
 		if (recursive && is_Dir) {
-			msgFolder.createSubfolder(afile.leafName, msgWindow);
-			// document.getElementById("IETabortIcon").collapsed = false;
-			// console.debug('CreateSubfolder ' + folderCount + ' : ' + afile.leafName);
-			// open files bug
-			// https://github.com/thundernest/import-export-tools-ng/issues/57
-			if (folderCount++ % 400 === 0) {
-				rootFolder.ForceDBClosed();
-				console.debug('ForceDBClosed');
-			}
-
-			var newFolder = msgFolder.getChildNamed(afile.leafName);
-			newFolder = newFolder.QueryInterface(Ci.nsIMsgFolder);
-			buildEMLarray(afile, newFolder, true);
+			let folderName = afile.leafName;
+			
+			// Wait for the folder being added.
+			let newFolder = await new Promise(resolve => {
+				let folderListener = {
+					folderAdded: function(aFolder) {
+						if (aFolder.name == folderName && aFolder.parent == msgFolder) {
+							MailServices.mfn.removeListener(folderListener);
+							resolve(aFolder);
+						}
+					}
+				};
+				MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+				msgFolder.createSubfolder(folderName, msgWindow);
+				// open files bug
+				// https://github.com/thundernest/import-export-tools-ng/issues/57
+				if (folderCount++ % 400 === 0) {
+					rootFolder.ForceDBClosed();
+					console.debug('ForceDBClosed');
+				}
+			})
+			await buildEMLarray(afile, newFolder, true);
 		} else {
 			var emlObj = {};
 			var afilename = afile.leafName;
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);
-			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".nws"))
+			// fix #241 - also import .emlx
+			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== ".nws"))
 				continue;
 			emlObj.file = afile;
 			emlObj.msgFolder = msgFolder;
@@ -1145,6 +1069,7 @@ function buildEMLarray(file, fol, recursive) {
 			// console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
+	
 	return true;
 }
 
@@ -1310,9 +1235,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 	importEMLlistener.allEML = allEML;
 	if (String.prototype.trim && msgFolder.server.type === "imap") {
 		importEMLlistener.imap = true;
-		var cs = Cc["@mozilla.org/messenger/messagecopyservice;1"]
-			.getService(Ci.nsIMsgCopyService);
-		cs.CopyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
+		MailServices.copy.copyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
 		if (!removeFile) {
 			gEMLimported = gEMLimported + 1;
 			let errs = "";
@@ -1334,7 +1257,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 				null,
 				Services.scriptSecurityManager.getSystemPrincipal(),
 				null,
-				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_SEC_CONTEXT_IS_NULL,
 				Ci.nsIContentPolicy.TYPE_OTHER
 			);
 		} else {
@@ -1343,7 +1266,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 				null,
 				Services.scriptSecurityManager.getSystemPrincipal(),
 				null,
-				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+				Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_SEC_CONTEXT_IS_NULL,
 				Ci.nsIContentPolicy.TYPE_OTHER
 			);
 		}
@@ -1377,7 +1300,8 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	var top = data.substring(0, 2000);
 
 	let lines = top.split('\n');
-	if (!lines[0].includes(": ") && !lines[0].includes("From: ") && !lines[0].includes("From ")) {
+	// Fix #214 - check for ':' does not require trailing space
+	if (!lines[0].includes(":") && !lines[0].includes("From: ") && !lines[0].includes("From ")) {
 		console.debug(`Msg #: ${++gEMLimported} Err #: ${++gEMLimportedErrs}\n Folder: ${msgFolder.name}\n Filename: ${file.path}\n FirstLine ${lines[0]}\n`);
 		return 0;
 	}

@@ -12,8 +12,6 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menu
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/messengerOverlay.js", window, "UTF-8");
-// Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/autobackup2.js", window, "UTF-8");
-
 
 function onLoad() {
 	// console.debug('messenger OL');
@@ -182,7 +180,7 @@ function onLoad() {
 		<menuitem id="saveProfileMail" label="&saveProfileMail;" oncommand="IETexport_all(true)" />
 		<menuitem id="saveProfile" label="&saveProfile;" oncommand="IETexport_all(false)" />
 		<menuitem id="IETimportProfile" label="&importProfile;" oncommand="openProfileImportWizard()" />
-		<menuitem id="IETBackupProfile2" label="Backup" oncommand="autoBackup.btest()" />
+		<menuitem id="IETBackupProfile2" label="Backup" oncommand="runAutoBackupTest()" />
 		<menuseparator />
 		<menuitem id="openIEToptions" label="&options;" oncommand="openIEToptions()" />
 		<menuitem id="openIEThelp3" label="&helpMenuWin.label;" oncommand="openIEThelp(true)" />
@@ -285,5 +283,4 @@ window.setupHotKeys('messenger');
 function onUnload() {
 	Services.console.logStringMessage("onUnload messenger");
 	window.IETmessOverlayInit();
-	// window.autoBackup.btest();
 }

@@ -32,6 +32,5 @@ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 </overlay>
 `);
 
-window.setupHotKeys('compose');
+	window.setupHotKeys('compose');
 }
-

@@ -32,6 +32,8 @@ IETgetComplexPref,
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]
 
+var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 function normalizeModifiers(modifiers) {
 	// make everything lowercase
 	modifiers = modifiers.toLowerCase();
@@ -186,7 +188,7 @@ function setupHotKeys(contexts) {
 							if (kc) {
 								existingKeys[i].setAttribute("disabled", "true");
 								IETlogger.write('Disable existing key: ' + existingKeys[i].outerHTML);
-								console.debug('disable existing G '  + existingKeys[i].outerHTML);
+								console.debug('disable existing G ' + existingKeys[i].outerHTML);
 							}
 						}
 					}
@@ -195,7 +197,7 @@ function setupHotKeys(contexts) {
 				}
 
 			}
-			
+
 			let keyset = document.getElementById("tasksKeys");
 			keyset.parentNode.appendChild(keyset);
 			// console.debug(keyset.outerHTML);
@@ -225,7 +227,6 @@ function setupHotKeys(contexts) {
 	}
 }
 
-
 function updateHotKeys() {
 	setupHotKeys();
 	let keyset = document.getElementById("tasksKeys");
@@ -252,7 +253,10 @@ var hkObserver = {
 	},
 };
 
-function setupHotKeysObserver() {
-	// console.debug('observers configuration');
-	IETprefs.addObserver("extensions.importexporttoolsng.experimental.hot_keys", hkObserver, false);
+function addHotKeysObserver() {
+	Services.prefs.addObserver("extensions.importexporttoolsng.experimental.hot_keys", hkObserver);
+}
+
+function removeHotKeysObserver() {
+	Services.prefs.removeObserver("extensions.importexporttoolsng.experimental.hot_keys", hkObserver);
 }

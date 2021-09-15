@@ -276,11 +276,12 @@ WL.injectElements(`
 window.ietng = {};
 window.ietng.extension = WL.extension;
 
-window.IETinit();
-window.setupHotKeys('messenger');
+	window.IETinit();
+	window.setupHotKeys('messenger');
+	window.addHotKeysObserver();
 }
 
 function onUnload() {
-	Services.console.logStringMessage("onUnload messenger");
 	window.IETmessOverlayInit();
+	window.removeHotKeysObserver();
 }

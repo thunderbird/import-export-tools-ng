@@ -127,9 +127,6 @@ function keyEvent(e) {
 	console.debug(d.substring(0,100));
 }
 
-// setup hotkeys for the main window
-setupHotKeys("messenger");
-setupHotKeysObserver();
 
 // Services.console.logStringMessage("before listeners");
 // window.addEventListener("beforeunload", IETmessOverlayInit, false);

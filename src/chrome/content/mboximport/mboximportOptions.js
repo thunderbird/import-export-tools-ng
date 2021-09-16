@@ -50,27 +50,7 @@ function IETsetCharsetPopup(charsetPref) {
 }
 
 function initMboxImportPanel() {
-
-    // Services.console.logStringMessage("options initialization");
-
-    const versionChecker = Services.vc;
-    const currentVersion = Services.appinfo.platformVersion;
-
-    // cleidigh - TB68 groupbox needs hbox/label
-    if (versionChecker.compare(currentVersion, "61") >= 0) {
-        var captions = document.querySelectorAll("caption");
-        for (let i = 0; i < captions.length; i++) {
-            // captions[i].style.display = "none";
-        }
-    } else {
-        var groupboxtitles = document.querySelectorAll(".groupbox-title");
-        for (let i = 0; i < groupboxtitles.length; i++) {
-            // groupboxtitles[i].style.display = "none";
-        }
-    }
-
     var IETngVersion = window.opener.ietng.extension.addonData.version;
-
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
     var os = navigator.platform.toLowerCase();

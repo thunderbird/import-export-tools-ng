@@ -96,10 +96,6 @@ function searchANDsave() {
 	if ("GetFirstSelectedMsgFolder" in window)
 		preselectedFolder = GetFirstSelectedMsgFolder();
 	var args = { folder: preselectedFolder };
-
-	// cleidigh - searchdialog changes to xhtml for 78
-	const versionChecker = Services.vc;
-	const currentVersion = Services.appinfo.platformVersion;
 	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 }
 
@@ -1435,11 +1431,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					try {
 						var embImgContainer = null;
 						var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
-
-						const versionChecker = Services.vc;
-						const currentVersion = Services.appinfo.platformVersion;
-
-						// cleidigh - TB68 groupbox needs hbox/label
 
 						// Embedded in-line images can be either 'mailbox' for POP accounts
 						// or 'imap' for IMAP

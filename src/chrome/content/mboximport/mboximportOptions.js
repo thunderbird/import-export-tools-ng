@@ -30,10 +30,6 @@
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 function IETsetCharsetPopup(charsetPref) {
-    const versionChecker = Services.vc;
-    const currentVersion = Services.appinfo.platformVersion;
-
-
     var charsetPopup = document.getElementById("charset-list-popup");
     var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
     var charsetItems = charsetList.split(",");

@@ -40,13 +40,7 @@ function IETsetCharsetPopup(charsetPref) {
     var menuitem;
 
     for (var i = 0; i < charsetItems.length; i++) {
-        if (versionChecker.compare(currentVersion, "68") >= 0) {
-            // replacement for createElement post TB60
-            menuitem = document.createXULElement("menuitem");
-        } else {
-            menuitem = document.createXULElement("menuitem");
-        }
-
+        menuitem = document.createXULElement("menuitem");
         menuitem.setAttribute("label", charsetItems[i]);
         menuitem.setAttribute("value", charsetItems[i]);
         charsetPopup.appendChild(menuitem);

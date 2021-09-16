@@ -11,17 +11,7 @@ window.addEventListener("load", function (event) {
 	var tb_locale = null;
 
 	try {
-		const versionChecker = Services.vc;
-		const currentVersion = Services.appinfo.platformVersion;
-
-		// cleidigh - TB68 groupbox needs hbox/label
-		if (versionChecker.compare(currentVersion, "61") >= 0) {
-			tb_locale = Services.locale.appLocaleAsBCP47;
-		} else {
-			tb_locale = Cc["@mozilla.org/intl/localeservice;1"]
-				.getService(Ci.mozILocaleService)
-				.getAppLocaleAsBCP47();
-		}
+		tb_locale = Services.locale.appLocaleAsBCP47;
 	} catch (e) {
 		tb_locale = 'en-US';
 	}

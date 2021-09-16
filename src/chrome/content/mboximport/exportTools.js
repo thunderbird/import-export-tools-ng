@@ -100,12 +100,7 @@ function searchANDsave() {
 	// cleidigh - searchdialog changes to xhtml for 78
 	const versionChecker = Services.vc;
 	const currentVersion = Services.appinfo.platformVersion;
-
-	if (versionChecker.compare(currentVersion, "78") >= 0) {
-		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
-	} else {
-		window.openDialog("chrome://messenger/content/SearchDialog.xul", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
-	}
+	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 }
 
 function IETgetSortType() {
@@ -1090,15 +1085,9 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		// cleidigh - Handle old/new streamlisteners signatures after TB67
-		onStartRequest60: function (aRequest, aContext) { },
-		onStartRequest68: function (aRequest) { },
+		onStartRequest: function (aRequest) { },
 
-		onStopRequest60: function (aRequest, aContext, aStatusCode) {
-			this.onStopRequest68(aRequest, aStatusCode);
-		},
-
-		onStopRequest68: function (aRequest, aStatusCode) {
+		onStopRequest: function (aRequest, aStatusCode) {
 			var sub;
 			var data;
 
@@ -1206,31 +1195,12 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			}
 		},
 
-		// cleidigh - Handle old/new streamlisteners signatures after TB67
-		onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
-			this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
-		},
-
-		onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
+		onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
 			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(aInputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 	};
-
-	// cleidigh - Handle old/new streamlisteners signatures after TB67
-	const versionChecker = Services.vc;
-	const currentVersion = Services.appinfo.platformVersion;
-
-	if (versionChecker.compare(currentVersion, "61") >= 0) {
-		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable68;
-		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest68;
-		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest68;
-	} else {
-		myEMLlistner.onDataAvailable = myEMLlistner.onDataAvailable60;
-		myEMLlistner.onStartRequest = myEMLlistner.onStartRequest60;
-		myEMLlistner.onStopRequest = myEMLlistner.onStopRequest60;
-	}
 
 	var mms = messenger.messageServiceFromURI(msguri)
 		.QueryInterface(Ci.nsIMsgMessageService);
@@ -1261,24 +1231,15 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		},
 
 		// cleidigh - Handle old/new streamlisteners signatures after TB67
-		onStartRequest60: function (request, context) { },
-		onStartRequest68: function (request) { },
+		onStartRequest: function (request) { },
 
-		onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
-			this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
-		},
-
-		onDataAvailable68: function (aRequest, inputStream, aOffset, aCount) {
+		onDataAvailable: function (aRequest, inputStream, aOffset, aCount) {
 			var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 			scriptStream.init(inputStream);
 			this.emailtext += scriptStream.read(scriptStream.available());
 		},
 
-		onStopRequest60: function (request, context, statusCode) {
-			this.onStopRequest68(request, statusCode);
-		},
-
-		onStopRequest68: function (request, statusCode) {
+		onStopRequest: function (request, statusCode) {
 
 			var data = this.emailtext;
 			if (copyToClip) {
@@ -1591,21 +1552,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		},
 	};
 
-	// cleidigh - Handle old/new streamlisteners signatures after TB67
-	const versionChecker = Services.vc;
-	const currentVersion = Services.appinfo.platformVersion;
-
-	if (versionChecker.compare(currentVersion, "61") >= 0) {
-		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable68;
-		myTxtListener.onStartRequest = myTxtListener.onStartRequest68;
-		myTxtListener.onStopRequest = myTxtListener.onStopRequest68;
-	} else {
-		myTxtListener.onDataAvailable = myTxtListener.onDataAvailable60;
-		myTxtListener.onStartRequest = myTxtListener.onStartRequest60;
-		myTxtListener.onStopRequest = myTxtListener.onStopRequest60;
-	}
-
-
 	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
 	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
 	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
@@ -1705,15 +1651,7 @@ function IEThtmlToText(data) {
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		const versionChecker = Services.vc;
-		const currentVersion = Services.appinfo.platformVersion;
-
-		// signature for format converter changed after 60, dropped in and out lengths
-		if (versionChecker.compare(currentVersion, "61") >= 0) {
-			formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
-		} else {
-			formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
-		}
+		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);	
 	} catch (e) {
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
@@ -1935,15 +1873,9 @@ var copyHeaders = {
 				throw Cr.NS_NOINTERFACE;
 			},
 
-			// cleidigh - Handle old/new streamlisteners signatures after TB67
-			onStartRequest60: function (request, context) { },
-			onStartRequest68: function (request) { },
+			onStartRequest: function (request) { },
 
-			onStopRequest60: function (aRequest, aContext, aStatusCode) {
-				this.onStopRequest68(aRequest, aStatusCode);
-			},
-
-			onStopRequest68: function (aRequest, aStatusCode) {
+			onStopRequest: function (aRequest, aStatusCode) {
 				if (!this.remote)
 					IETcopyStrToClip(this.data);
 				else {
@@ -1954,11 +1886,7 @@ var copyHeaders = {
 				return true;
 			},
 
-			onDataAvailable60: function (aRequest, aContext, inputStream, aOffset, aCount) {
-				this.onDataAvailable68(aRequest, inputStream, aOffset, aCount);
-			},
-
-			onDataAvailable68: function (aRequest, aInputStream, aOffset, aCount) {
+			onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
 				if (this.remote) {
 					var scriptStream = Cc["@mozilla.org/scriptableinputstream;1"].createInstance(Ci.nsIScriptableInputStream);
 					scriptStream.init(aInputStream);
@@ -1970,20 +1898,6 @@ var copyHeaders = {
 				}
 			},
 		};
-
-		// cleidigh - Handle old/new streamlisteners signatures after TB67
-		const versionChecker = Services.vc;
-		const currentVersion = Services.appinfo.platformVersion;
-
-		if (versionChecker.compare(currentVersion, "61") >= 0) {
-			myListener.onDataAvailable = myListener.onDataAvailable68;
-			myListener.onStartRequest = myListener.onStartRequest68;
-			myListener.onStopRequest = myListener.onStopRequest68;
-		} else {
-			myListener.onDataAvailable = myListener.onDataAvailable60;
-			myListener.onStartRequest = myListener.onStartRequest60;
-			myListener.onStopRequest = myListener.onStopRequest60;
-		}
 
 		return myListener;
 	},
@@ -2130,15 +2044,7 @@ function IETstoreBody(msguri) {
 	fromStr.data = dataUTF8;
 
 	try {
-		const versionChecker = Services.vc;
-		const currentVersion = Services.appinfo.platformVersion;
-
-		// signature for format converter changed after 60, dropped in and out lengths
-		if (versionChecker.compare(currentVersion, "61") >= 0) {
-			formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
-		} else {
-			formatConverter.convert("text/html", fromStr, fromStr.toString().length, "text/unicode", toStr, {});
-		}
+		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
 	} catch (e) {
 		text = dataUTF8;
 	}

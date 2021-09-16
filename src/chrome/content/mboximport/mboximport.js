@@ -181,21 +181,10 @@ var IETprintPDFmain = {
 		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
 		document.getElementById("IETabortIcon").collapsed = false;
 		if (!IETabort) {
-			// cleidigh - searchdialog changes to xhtml for 78
-			const versionChecker = Services.vc;
-			const currentVersion = Services.appinfo.platformVersion;
-
-			if (versionChecker.compare(currentVersion, "78") >= 0) {
-				window.openDialog("chrome://messenger/content/msgPrintEngine.xhtml", "",
-					"chrome,dialog=no,all,centerscreen",
-					messageList.length, messageList, null,
-					false);
-			} else {
-				window.openDialog("chrome://messenger/content/msgPrintEngine.xul", "",
-					"chrome,dialog=no,all,centerscreen",
-					messageList.length, messageList, null,
-					false);
-			}
+			window.openDialog("chrome://messenger/content/msgPrintEngine.xhtml", "",
+				"chrome,dialog=no,all,centerscreen",
+				messageList.length, messageList, null,
+				false);
 		} else
 			document.getElementById("IETabortIcon").collapsed = true;
 	},
@@ -1123,20 +1112,11 @@ var importEMLlistener = {
 
 	SetMessageKey: function (aKey) { },
 
-	onStartRequest60: function (aRequest, aContext) {
-		this.onStartRequest68(aRequest);
-	},
-
-	onStartRequest68: function (aRequest) {
+	onStartRequest: function (aRequest) {
 		this.mData = "";
 	},
 
-	// cleidigh - Handle old/new streamlisteners signatures after TB67
-	onDataAvailable60: function (aRequest, aContext, aInputStream, aOffset, aCount) {
-		this.onDataAvailable68(aRequest, aInputStream, aOffset, aCount);
-	},
-
-	onDataAvailable68: function (aRequest, aStream, aSourceOffset, aLength) {
+	onDataAvailable: function (aRequest, aStream, aSourceOffset, aLength) {
 		// Here it's used the nsIBinaryInputStream, because it can read also null bytes
 		var bis = Cc['@mozilla.org/binaryinputstream;1']
 			.createInstance(Ci.nsIBinaryInputStream);
@@ -1144,11 +1124,7 @@ var importEMLlistener = {
 		this.mData += bis.readBytes(aLength);
 	},
 
-	onStopRequest60: function (aRequest, aContext, aStatus) {
-		this.onStopRequest68(aRequest, aStatus);
-	},
-
-	onStopRequest68: function (aRequest, aStatus) {
+	onStopRequest: function (aRequest, aStatus) {
 		var text = this.mData;
 		try {
 			var index = text.search(/\r\n\r\n/);
@@ -1212,22 +1188,6 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		file = IETemlx2eml(file);
 	}
 
-	// cleidigh - Handle old/new streamlisteners signatures after TB67
-	const versionChecker = Services.vc;
-	const currentVersion = Services.appinfo.platformVersion;
-
-	if (versionChecker.compare(currentVersion, "61") >= 0) {
-		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable68;
-		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest68;
-		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest68;
-	} else {
-		importEMLlistener.onDataAvailable = importEMLlistener.onDataAvailable60;
-		importEMLlistener.onStartRequest = importEMLlistener.onStartRequest60;
-		importEMLlistener.onStopRequest = importEMLlistener.onStopRequest60;
-	}
-
-	var listener = importEMLlistener;
-
 	importEMLlistener.msgFolder = msgFolder;
 	importEMLlistener.removeFile = removeFile;
 	importEMLlistener.file = file;
@@ -1271,7 +1231,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			);
 		}
 
-		channel.asyncOpen(listener, null);
+		channel.asyncOpen(importEMLlistener, null);
 	}
 }
 

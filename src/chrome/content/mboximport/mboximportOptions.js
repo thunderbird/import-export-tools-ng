@@ -109,28 +109,24 @@ function initMboxImportPanel() {
         document.getElementById("export_mbox_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
         document.getElementById("use_export_mbox_dir").checked = true;
-        toggleDirCheck(document.getElementById("use_export_mbox_dir"));
-        // document.getElementById("export_mbox_dir").removeAttribute("disabled");
-        // document.getElementById("export_mbox_dir").nextSibling.removeAttribute("disabled");
+        document.getElementById("export_mbox_dir").removeAttribute("disabled");
+        document.getElementById("export_mbox_dir").nextElementSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_mbox_dir").checked = false;
-        toggleDirCheck(document.getElementById("use_export_mbox_dir"));
-        // document.getElementById("export_mbox_dir").setAttribute("disabled", "true");
-        // document.getElementById("export_mbox_dir").nextSibling.setAttribute("disabled", "true");
+        document.getElementById("export_mbox_dir").setAttribute("disabled", "true");
+        document.getElementById("export_mbox_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
         document.getElementById("export_eml_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportEML.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
-        toggleDirCheck(document.getElementById("use_export_eml_dir"));
-        // document.getElementById("export_eml_dir").removeAttribute("disabled");
-        // document.getElementById("export_eml_dir").nextSibling.removeAttribute("disabled");
+        document.getElementById("export_eml_dir").removeAttribute("disabled");
+        document.getElementById("export_eml_dir").nextElementSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_eml_dir").checked = false;
-        toggleDirCheck(document.getElementById("use_export_eml_dir"));
-        // document.getElementById("export_eml_dir").setAttribute("disabled", "true");
-        // document.getElementById("export_eml_dir").nextSibling.setAttribute("disabled", "true");
+        document.getElementById("export_eml_dir").setAttribute("disabled", "true");
+        document.getElementById("export_eml_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMSG.dir") > 0)
@@ -138,14 +134,12 @@ function initMboxImportPanel() {
         document.getElementById("export_msgs_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportMSG.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
-        toggleDirCheck(document.getElementById("use_export_msgs_dir"));
-        // document.getElementById("export_msgs_dir").removeAttribute("disabled");
-        // document.getElementById("export_msgs_dir").nextSibling.removeAttribute("disabled");
+        document.getElementById("export_msgs_dir").removeAttribute("disabled");
+        document.getElementById("export_msgs_dir").nextElementSibling.removeAttribute("disabled");
     } else {
         document.getElementById("use_export_msgs_dir").checked = false;
-        toggleDirCheck(document.getElementById("use_export_msgs_dir"));
-        // document.getElementById("export_msgs_dir").setAttribute("disabled", "true");
-        // document.getElementById("export_msgs_dir").nextSibling.setAttribute("disabled", "true");
+        document.getElementById("export_msgs_dir").setAttribute("disabled", "true");
+        document.getElementById("export_msgs_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.export.filename_pattern") > 0) {
@@ -445,17 +439,12 @@ function extendedFormatCheck(el) {
 
 
 function toggleDirCheck(el) {
-    var b = document.getElementById(el.id.split("use_")[1]);
-    var brs = document.getElementById(el.id.split("use_")[1] + "_browse");
-
     if (!el.checked) {
-        b.setAttribute("disabled", "true");
-        brs.setAttribute("disabled", "true");
-        // el.nextSibling.nextSibling.setAttribute("disabled", "true");
+        el.nextElementSibling.setAttribute("disabled", "true");
+        el.nextElementSibling.nextElementSibling.setAttribute("disabled", "true");
     } else {
-        b.removeAttribute("disabled");
-        brs.removeAttribute("disabled");
-        // el.nextSibling.nextSibling.removeAttribute("disabled");
+        el.nextElementSibling.removeAttribute("disabled");
+        el.nextElementSibling.nextElementSibling.removeAttribute("disabled");
     }
 }
 

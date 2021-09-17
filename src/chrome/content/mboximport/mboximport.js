@@ -954,7 +954,7 @@ function importALLasEML(recursive) {
 	}
 }
 
-// cleidigh create folder fixhttps://github.com/thundernest/import-export-tools-ng/blob/v10.0.2/xpi/import-export-tools-ng-10.0.2-b3-tb.xpi
+// cleidigh create folder fix
 var folderCount;
 var rootFolder;
 

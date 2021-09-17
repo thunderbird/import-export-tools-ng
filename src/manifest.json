@@ -1,32 +1,37 @@
 {
-    "manifest_version": 2,
-    "name": "__MSG_extensionName__",
-    "version": "10.1.0-b7",
-    "description": "__MSG_extensionDescription__",
-    "author": "Christopher Leidigh",
-    "applications": {
-        "gecko": {
-            "id": "ImportExportToolsNG@cleidigh.kokkini.net",
-            "strict_min_version": "91.0",
-            "strict_max_version": "93.0"
-        }
-    },
-    "experiment_apis": {
-        "WindowListener": {
-          "schema": "api/WindowListener/schema.json",
-          "parent": {
-            "scopes": ["addon_parent"],
-            "paths": [["WindowListener"]],
-            "script": "api/WindowListener/implementation.js"
-          }
-        }
-      },
-    "background": {
-        "scripts": ["background.js"]
-    },
-    
-    "icons": {
-        "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
-    },
-    "default_locale": "en_US"
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "version": "10.1.0-b7",
+  "description": "__MSG_extensionDescription__",
+  "author": "Christopher Leidigh",
+  "applications": {
+    "gecko": {
+      "id": "ImportExportToolsNG@cleidigh.kokkini.net",
+      "strict_min_version": "91.0",
+      "strict_max_version": "93.0"
+    }
+  },
+  "experiment_apis": {
+    "WindowListener": {
+      "schema": "api/WindowListener/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "WindowListener"
+          ]
+        ],
+        "script": "api/WindowListener/implementation.js"
+      }
+    }
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "icons": {
+    "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
+  },
+  "default_locale": "en_US"
 }

@@ -81,15 +81,7 @@ var IETabort;
 
 // var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-
-// cleidigh check shift change in signatures
-if (String.prototype.trim) {
-	try {
-		ChromeUtils.import("resource:///modules/gloda/mimemsg.js");
-	} catch (ex) {
-		ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
-	}
-}
+var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
 
 function searchANDsave() {
 	var preselectedFolder = null;
@@ -1226,7 +1218,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			throw Cr.NS_NOINTERFACE;
 		},
 
-		// cleidigh - Handle old/new streamlisteners signatures after TB67
 		onStartRequest: function (request) { },
 
 		onDataAvailable: function (aRequest, inputStream, aOffset, aCount) {

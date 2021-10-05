@@ -148,7 +148,7 @@ var IETprintPDFmain = {
 	 * Runs through IETprintPDFmain.uris and prints all to PDF
 	 * Based on https://searchfox.org/mozilla-central/rev/9bc5dcea99c59dc18eae0de7064131aa20cfbb66/browser/components/extensions/parent/ext-tabs.js#1296
 	 */
-	saveAsPDF: async function (pageSettings = {}) {		
+	saveAsPDF: async function (pageSettings = {}) {
 		let fileFormat = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
 		let filePath = IETprintPDFmain.file.path;
 
@@ -221,6 +221,8 @@ var IETprintPDFmain = {
 		}
 
 		// Create a fake message browser so we do not need to load them into the display area.
+		// If we want to print the currently viewed message, we could just use the messagepane
+		// browser, but we always use our fake browser.
 		let fakeMsgPane = document.createXULElement("browser");
 		fakeMsgPane.setAttribute("context", "mailContext");
 		fakeMsgPane.setAttribute("type", "content");
@@ -252,22 +254,20 @@ var IETprintPDFmain = {
 					undefined, //win.msgWindow,
 					{
 						OnStartRunningUrl(url) {
-							console.log("start");
 						},
 						OnStopRunningUrl(url, exitCode) {
-							console.log("done");
 							resolve();
-						},					
+						},
 					},
 					undefined,
 					{}
 				)
 			});
-			
+
 			await new Promise(resolve => window.setTimeout(resolve, 1000));
 			await fakeMsgPane.browsingContext.print(printSettings);
 		}
-		
+
 		fakeMsgPane.remove();
 	},
 };

@@ -144,20 +144,13 @@ var IETprintPDFmain = {
 		await IETprintPDFmain.saveAsPDF();
 	},
 
-	// Based on https://searchfox.org/mozilla-central/rev/9bc5dcea99c59dc18eae0de7064131aa20cfbb66/browser/components/extensions/parent/ext-tabs.js#1296
-	saveAsPDF: async function (pageSettings = {}) {
-		// Get the next message to print.
-		let uri = IETprintPDFmain.uris.pop();
-		IETprintPDFmain.total = IETprintPDFmain.total - 1;
-
-		let messageService = messenger.messageServiceFromURI(uri);
-		let aMsgHdr = messageService.messageURIToMsgHdr(uri);
-
-		let filePath = IETprintPDFmain.file.path;
+	/**
+	 * Runs through IETprintPDFmain.uris and prints all to PDF
+	 * Based on https://searchfox.org/mozilla-central/rev/9bc5dcea99c59dc18eae0de7064131aa20cfbb66/browser/components/extensions/parent/ext-tabs.js#1296
+	 */
+	saveAsPDF: async function (pageSettings = {}) {		
 		let fileFormat = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
-		let fileName = fileFormat === 2
-			? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
-			: getSubjectForHdr(aMsgHdr, filePath) + ".ps"
+		let filePath = IETprintPDFmain.file.path;
 
 		let psService = Cc[
 			"@mozilla.org/gfx/printsettings-service;1"
@@ -166,7 +159,6 @@ var IETprintPDFmain = {
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 		printSettings.printToFile = true;
-		printSettings.toFileName = PathUtils.join(filePath, fileName);
 		printSettings.printSilent = true;
 		printSettings.showPrintProgress = false;
 		printSettings.outputFormat = fileFormat;
@@ -228,8 +220,55 @@ var IETprintPDFmain = {
 			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
-		let browsingContext = window.document.getElementById("messagepane").browsingContext;
-		browsingContext.print(printSettings);
+		// Create a fake message browser so we do not need to load them into the display area.
+		let fakeMsgPane = document.createXULElement("browser");
+		fakeMsgPane.setAttribute("context", "mailContext");
+		fakeMsgPane.setAttribute("type", "content");
+		fakeMsgPane.setAttribute("disablesecurity", "true");
+		fakeMsgPane.setAttribute("messagemanagergroup", "single-page");
+		fakeMsgPane.setAttribute("remote", "false");
+		fakeMsgPane.setAttribute("primary", "true");
+		fakeMsgPane.hidden = true;
+		fakeMsgPane = window.document.getElementById("messagesBox").parentNode.appendChild(fakeMsgPane);
+
+		let docShell = fakeMsgPane.docShell;
+		docShell.appType = Ci.nsIDocShell.APP_TYPE_MAIL;
+
+		for (let uri of IETprintPDFmain.uris) {
+			let messageService = messenger.messageServiceFromURI(uri);
+			let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+
+			let fileName = fileFormat === 2
+				? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+				: getSubjectForHdr(aMsgHdr, filePath) + ".ps"
+			printSettings.toFileName = PathUtils.join(filePath, fileName);
+
+			// This needs to be improved, we need to wait until the message is
+			// fully loaded.
+			await new Promise(resolve => {
+				messageService.DisplayMessage(
+					uri + "&markRead=false",
+					docShell,
+					undefined, //win.msgWindow,
+					{
+						OnStartRunningUrl(url) {
+							console.log("start");
+						},
+						OnStopRunningUrl(url, exitCode) {
+							console.log("done");
+							resolve();
+						},					
+					},
+					undefined,
+					{}
+				)
+			});
+			
+			await new Promise(resolve => window.setTimeout(resolve, 1000));
+			await fakeMsgPane.browsingContext.print(printSettings);
+		}
+		
+		fakeMsgPane.remove();
 	},
 };
 

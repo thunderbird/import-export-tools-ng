@@ -246,10 +246,6 @@ var IETprintPDFmain = {
 				: getSubjectForHdr(aMsgHdr, filePath) + ".ps"
 			printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-			// This needs to be improved, we need to wait until the message is
-			// fully loaded.
-			await new Promise(resolve => {
-				messageService.DisplayMessage(
 			messageService.DisplayMessage(
 				uri + "&markRead=false",
 				docShell,

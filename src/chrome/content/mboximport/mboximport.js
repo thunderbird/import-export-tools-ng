@@ -2,6 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
+		Copyright (C) 2021 : John Bieling, Christopher Leidigh
 		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
@@ -249,22 +250,21 @@ var IETprintPDFmain = {
 			// fully loaded.
 			await new Promise(resolve => {
 				messageService.DisplayMessage(
-					uri + "&markRead=false",
-					docShell,
-					undefined, //win.msgWindow,
-					{
-						OnStartRunningUrl(url) {
-						},
-						OnStopRunningUrl(url, exitCode) {
-							resolve();
-						},
-					},
-					undefined,
-					{}
-				)
-			});
+			messageService.DisplayMessage(
+				uri + "&markRead=false",
+				docShell,
+				undefined, //win.msgWindow,
+				undefined,
+				undefined,
+				{}
+			)
 
-			await new Promise(resolve => window.setTimeout(resolve, 1000));
+			// Mh, bäh.
+			for (let i = 1; i < 100; i++) {
+				await new Promise(resolve => window.setTimeout(resolve, 20));
+				if (fakeMsgPane.contentDocument.readyState == "complete")
+					break;
+			}
 			await fakeMsgPane.browsingContext.print(printSettings);
 		}
 

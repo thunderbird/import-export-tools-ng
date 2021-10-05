@@ -154,7 +154,8 @@ var IETprintPDFmain = {
 		let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
 		let filePath = IETprintPDFmain.file.path;
-		let fileName = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat") === 2
+		let fileFormat = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
+		let fileName = fileFormat === 2
 			? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
 			: getSubjectForHdr(aMsgHdr, filePath) + ".ps"
 
@@ -168,76 +169,63 @@ var IETprintPDFmain = {
 		printSettings.toFileName = PathUtils.join(filePath, fileName);
 		printSettings.printSilent = true;
 		printSettings.showPrintProgress = false;
-		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+		printSettings.outputFormat = fileFormat;
 
 		// Allow to override settings, todo
-		if (pageSettings.paperSizeUnit) {
+		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
-		}
-		if (pageSettings.paperWidth) {
+		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
-		}
-		if (pageSettings.paperHeight) {
+		if (pageSettings.paperHeight)
 			printSettings.paperHeight = pageSettings.paperHeight;
-		}
-		if (pageSettings.orientation) {
+		if (pageSettings.orientation)
 			printSettings.orientation = pageSettings.orientation;
-		}
-		if (pageSettings.scaling) {
+		if (pageSettings.scaling)
 			printSettings.scaling = pageSettings.scaling;
-		}
-		if (pageSettings.shrinkToFit) {
+		if (pageSettings.shrinkToFit)
 			printSettings.shrinkToFit = pageSettings.shrinkToFit;
-		}
-		if (pageSettings.showBackgroundColors) {
-			printSettings.printBGColors =
-				pageSettings.showBackgroundColors;
-		}
-		if (pageSettings.showBackgroundImages) {
-			printSettings.printBGImages =
-				pageSettings.showBackgroundImages;
-		}
-		if (pageSettings.edgeLeft) {
+		if (pageSettings.showBackgroundColors)
+			printSettings.printBGColors = pageSettings.showBackgroundColors;
+		if (pageSettings.showBackgroundImages)
+			printSettings.printBGImages = pageSettings.showBackgroundImages;
+		if (pageSettings.edgeLeft)
 			printSettings.edgeLeft = pageSettings.edgeLeft;
-		}
-		if (pageSettings.edgeRight) {
+		if (pageSettings.edgeRight)
 			printSettings.edgeRight = pageSettings.edgeRight;
-		}
-		if (pageSettings.edgeTop) {
+		if (pageSettings.edgeTop)
 			printSettings.edgeTop = pageSettings.edgeTop;
-		}
-		if (pageSettings.edgeBottom) {
+		if (pageSettings.edgeBottom)
 			printSettings.edgeBottom = pageSettings.edgeBottom;
-		}
-		if (pageSettings.marginLeft) {
+		if (pageSettings.marginLeft)
 			printSettings.marginLeft = pageSettings.marginLeft;
-		}
-		if (pageSettings.marginRight) {
+		if (pageSettings.marginRight)
 			printSettings.marginRight = pageSettings.marginRight;
-		}
-		if (pageSettings.marginTop) {
+		if (pageSettings.marginTop)
 			printSettings.marginTop = pageSettings.marginTop;
-		}
-		if (pageSettings.marginBottom) {
+		if (pageSettings.marginBottom)
 			printSettings.marginBottom = pageSettings.marginBottom;
-		}
-		if (pageSettings.headerLeft) {
+		if (pageSettings.headerLeft)
 			printSettings.headerStrLeft = pageSettings.headerLeft;
-		}
-		if (pageSettings.headerCenter) {
+		if (pageSettings.headerCenter)
 			printSettings.headerStrCenter = pageSettings.headerCenter;
-		}
-		if (pageSettings.headerRight) {
+		if (pageSettings.headerRight)
 			printSettings.headerStrRight = pageSettings.headerRight;
-		}
-		if (pageSettings.footerLeft) {
+		if (pageSettings.footerLeft)
 			printSettings.footerStrLeft = pageSettings.footerLeft;
-		}
-		if (pageSettings.footerCenter) {
+		if (pageSettings.footerCenter)
 			printSettings.footerStrCenter = pageSettings.footerCenter;
-		}
-		if (pageSettings.footerRight) {
+		if (pageSettings.footerRight)
 			printSettings.footerStrRight = pageSettings.footerRight;
+
+		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+		if (customDateFormat !== "") {
+			let customDate = strftime.strftime(customDateFormat, new Date());
+			printSettings.headerStrRight = printSettings.headerStrRight.replace("%d", customDate);
+			printSettings.headerStrLeft = printSettings.headerStrLeft.replace("%d", customDate);
+			printSettings.headerStrCenter = printSettings.headerStrCenter.replace("%d", customDate);
+			printSettings.footerStrRight = printSettings.footerStrRight.replace("%d", customDate);
+			printSettings.footerStrLeft = printSettings.footerStrLeft.replace("%d", customDate);
+			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
 		let browsingContext = window.document.getElementById("messagepane").browsingContext;

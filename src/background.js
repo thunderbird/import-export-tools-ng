@@ -57,12 +57,4 @@ messenger.WindowListener.registerWindow(
 	"chrome://messenger/content/messageWindow.xhtml",
 	"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
-/* messenger.WindowListener.registerWindow(
- 	"chrome://mboximport/content/mboximport/pest.xhtml",
- 	"chrome://mboximport/content/mboximport/ptest.js"); */
-	
-/* messenger.WindowListener.registerWindow(
-	"chrome://messenger/content/msgPrintEngine.xhtml",
-	"chrome://mboximport/content/mboximport/msgPrintEngineOL.js"); */
-
 messenger.WindowListener.startListening();

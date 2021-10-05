@@ -54,7 +54,9 @@ IETescapeBeginningFrom,
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-// Services.console.logStringMessage("mboximport start");
+var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+
+XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var MBstrBundleService = Services.strings;
 var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
@@ -77,8 +79,7 @@ var gImporting;
 
 var IETprintPDFmain = {
 
-	print: function (allMessages) {
-
+	print: async function (allMessages) {
 		if (navigator.platform.toLowerCase().indexOf("mac") > -1 || navigator.userAgent.indexOf("Postbox") > -1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmac"));
 			return;
@@ -92,8 +93,6 @@ var IETprintPDFmain = {
 		} catch (e) { }
 
 		var msgFolders = GetSelectedMsgFolders();
-		var msgs;
-
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
 			return;
@@ -104,6 +103,7 @@ var IETprintPDFmain = {
 		question = IETformatWarning(0);
 		if (!question)
 			return;
+
 		if (!allMessages) {
 			IETprintPDFmain.uris = IETgetSelectedMessages();
 		} else {
@@ -115,13 +115,7 @@ var IETprintPDFmain = {
 				for (var i = 0; i < total; i++)
 					IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
 			} else {
-				if (msgFolder.getMessages)
-					// Gecko 1.8 and earlier
-					msgs = msgFolder.getMessages(null);
-				else {
-					// Gecko 1.9
-					msgs = msgFolder.messages;
-				}
+				let msgs = msgFolder.messages;
 				while (msgs.hasMoreElements()) {
 					var msg = msgs.getNext();
 					msg = msg.QueryInterface(Ci.nsIMsgDBHdr);
@@ -132,73 +126,129 @@ var IETprintPDFmain = {
 		}
 		if (!IETprintPDFmain.uris)
 			return;
-		IETprintPDFmain.paramObj = {};
-		IETprintPDFmain.total = IETprintPDFmain.uris.length;
-		IETprintPDFmain.totalReal = IETprintPDFmain.total;
-		var dir = getPredefinedFolder(2);
-		if (!dir) {
-			var nsIFilePicker = Ci.nsIFilePicker;
-			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-			var res;
 
-			fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
-			if (fp.show)
-				res = fp.show();
-			else
-				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK)
+		IETprintPDFmain.total = IETprintPDFmain.uris.length;
+		let dir = getPredefinedFolder(2);
+		if (!dir) {
+			let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+			fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
+			let res = await new Promise(resolve => {
+				fp.open(resolve);
+			});
+			if (res === Ci.nsIFilePicker.returnOK)
 				dir = fp.file;
 			else
 				return;
 		}
 		IETprintPDFmain.file = dir;
-		try {
-			if (IETprefs.getPrefType("print.always_print_silent") === 0 || !IETprefs.getBoolPref("print.always_print_silent")) {
-				IETprefs.setBoolPref("print.always_print_silent", true);
-				IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.restore_print_silent", true);
-			}
-		} catch (e) { }
-		// cleidigh check?
-		IETabort = false;
-		IETprintPDFmain.print2();
+		await IETprintPDFmain.saveAsPDF();
 	},
 
-	print2: function () {
-		var uri = IETprintPDFmain.uris.pop();
+	// Based on https://searchfox.org/mozilla-central/rev/9bc5dcea99c59dc18eae0de7064131aa20cfbb66/browser/components/extensions/parent/ext-tabs.js#1296
+	saveAsPDF: async function (pageSettings = {}) {
+		// Get the next message to print.
+		let uri = IETprintPDFmain.uris.pop();
 		IETprintPDFmain.total = IETprintPDFmain.total - 1;
-		var messageService = messenger.messageServiceFromURI(uri);
-		var aMsgHdr = messageService.messageURIToMsgHdr(uri);
-		var pdfName = getSubjectForHdr(aMsgHdr, IETprintPDFmain.file.path);
-		var fileClone = IETprintPDFmain.file.clone();
-		if (IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat") === 2)
-			fileClone.append(pdfName + ".pdf");
-		else
-			fileClone.append(pdfName + ".ps");
-		fileClone.createUnique(0, 0644);
-		IETprintPDFmain.filePath = fileClone.path;
-		IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF.start", true);
-		var messageList = [uri];
-		IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + (IETprintPDFmain.totalReal - IETprintPDFmain.total) + "/" + IETprintPDFmain.totalReal);
-		document.getElementById("IETabortIcon").collapsed = false;
-		if (!IETabort) {
-			window.openDialog("chrome://messenger/content/msgPrintEngine.xhtml", "",
-				"chrome,dialog=no,all,centerscreen",
-				messageList.length, messageList, null,
-				false);
-		} else
-			document.getElementById("IETabortIcon").collapsed = true;
-	},
 
-	printDelayed: function () {
-		IETprefs.setBoolPref("print.always_print_silent", true);
-		setTimeout(function () { IETprintPDFmain.print2(); }, 1000);
+		let messageService = messenger.messageServiceFromURI(uri);
+		let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+
+		let filePath = IETprintPDFmain.file.path;
+		let fileName = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat") === 2
+			? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+			: getSubjectForHdr(aMsgHdr, filePath) + ".ps"
+
+		let psService = Cc[
+			"@mozilla.org/gfx/printsettings-service;1"
+		].getService(Ci.nsIPrintSettingsService);
+		let printSettings = psService.newPrintSettings;
+		printSettings.isInitializedFromPrinter = true;
+		printSettings.isInitializedFromPrefs = true;
+		printSettings.printToFile = true;
+		printSettings.toFileName = PathUtils.join(filePath, fileName);
+		printSettings.printSilent = true;
+		printSettings.showPrintProgress = false;
+		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+
+		// Allow to override settings, todo
+		if (pageSettings.paperSizeUnit) {
+			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+		}
+		if (pageSettings.paperWidth) {
+			printSettings.paperWidth = pageSettings.paperWidth;
+		}
+		if (pageSettings.paperHeight) {
+			printSettings.paperHeight = pageSettings.paperHeight;
+		}
+		if (pageSettings.orientation) {
+			printSettings.orientation = pageSettings.orientation;
+		}
+		if (pageSettings.scaling) {
+			printSettings.scaling = pageSettings.scaling;
+		}
+		if (pageSettings.shrinkToFit) {
+			printSettings.shrinkToFit = pageSettings.shrinkToFit;
+		}
+		if (pageSettings.showBackgroundColors) {
+			printSettings.printBGColors =
+				pageSettings.showBackgroundColors;
+		}
+		if (pageSettings.showBackgroundImages) {
+			printSettings.printBGImages =
+				pageSettings.showBackgroundImages;
+		}
+		if (pageSettings.edgeLeft) {
+			printSettings.edgeLeft = pageSettings.edgeLeft;
+		}
+		if (pageSettings.edgeRight) {
+			printSettings.edgeRight = pageSettings.edgeRight;
+		}
+		if (pageSettings.edgeTop) {
+			printSettings.edgeTop = pageSettings.edgeTop;
+		}
+		if (pageSettings.edgeBottom) {
+			printSettings.edgeBottom = pageSettings.edgeBottom;
+		}
+		if (pageSettings.marginLeft) {
+			printSettings.marginLeft = pageSettings.marginLeft;
+		}
+		if (pageSettings.marginRight) {
+			printSettings.marginRight = pageSettings.marginRight;
+		}
+		if (pageSettings.marginTop) {
+			printSettings.marginTop = pageSettings.marginTop;
+		}
+		if (pageSettings.marginBottom) {
+			printSettings.marginBottom = pageSettings.marginBottom;
+		}
+		if (pageSettings.headerLeft) {
+			printSettings.headerStrLeft = pageSettings.headerLeft;
+		}
+		if (pageSettings.headerCenter) {
+			printSettings.headerStrCenter = pageSettings.headerCenter;
+		}
+		if (pageSettings.headerRight) {
+			printSettings.headerStrRight = pageSettings.headerRight;
+		}
+		if (pageSettings.footerLeft) {
+			printSettings.footerStrLeft = pageSettings.footerLeft;
+		}
+		if (pageSettings.footerCenter) {
+			printSettings.footerStrCenter = pageSettings.footerCenter;
+		}
+		if (pageSettings.footerRight) {
+			printSettings.footerStrRight = pageSettings.footerRight;
+		}
+
+		let browsingContext = window.document.getElementById("messagepane").browsingContext;
+		browsingContext.print(printSettings);
 	},
 };
 
 function openProfileImportWizard() {
 	var quit = {};
 	window.openDialog("chrome://mboximport/content/mboximport/profileImportWizard.xhtml", "", "dialog,chrome,modal,centerscreen", quit);
-	
+
 	var appStartup = Cc["@mozilla.org/toolkit/app-startup;1"]
 		.getService(Ci.nsIAppStartup);
 	if (quit.value)
@@ -207,7 +257,7 @@ function openProfileImportWizard() {
 		}, 1000);
 
 
-	}
+}
 
 function openMboxDialog() {
 	if (IETstoreFormat() !== 0) {
@@ -929,7 +979,7 @@ function importALLasEML(recursive) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
-	
+
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -962,7 +1012,7 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
-	
+
 	// console.debug('RUNimportALLasEML');
 	let msgFolder2 = GetSelectedMsgFolders()[0];
 
@@ -971,17 +1021,17 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
-	
+
 	console.debug('RUNimportALLasEML');
 	// console.debug(msgFolder);
 	// console.debug(msgFolder.URI);
 	// console.debug(msgFolder.incomingServerType);
 	// console.debug(msgFolder.parent);
 	// console.debug(msgFolder.name);
-	
+
 
 	rootFolder = msgFolder;
-	
+
 	await buildEMLarray(file, null, recursive);
 	gEMLtotal = gFileEMLarray.length;
 	if (gEMLtotal < 1) {
@@ -1022,11 +1072,11 @@ async function buildEMLarray(file, fol, recursive) {
 
 		if (recursive && is_Dir) {
 			let folderName = afile.leafName;
-			
+
 			// Wait for the folder being added.
 			let newFolder = await new Promise(resolve => {
 				let folderListener = {
-					folderAdded: function(aFolder) {
+					folderAdded: function (aFolder) {
 						if (aFolder.name == folderName && aFolder.parent == msgFolder) {
 							MailServices.mfn.removeListener(folderListener);
 							resolve(aFolder);
@@ -1058,7 +1108,7 @@ async function buildEMLarray(file, fol, recursive) {
 			// console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
-	
+
 	return true;
 }
 
@@ -1310,13 +1360,13 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 
 	} catch (e) {
 		gImporting = false;
-		console.debug('Exception # ' + e + ' ' + gEMLimported );
+		console.debug('Exception # ' + e + ' ' + gEMLimported);
 		console.debug(msgLocalFolder.filePath.path);
 		rootFolder.ForceDBClosed();
 		alert('Exception importing message # ' + gEMLimported + '\r\n\n' + e);
 		return -1;
 	}
-	
+
 	// cleidigh force files closed
 	if (gEMLimported % 450 === 0) {
 		rootFolder.ForceDBClosed();

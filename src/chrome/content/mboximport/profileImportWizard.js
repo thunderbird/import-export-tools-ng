@@ -26,10 +26,6 @@
 // cleidigh - reformat, globals, services
 
 /* global
-PrintEngineCreateGlobals,
-InitPrintEngineWindow,
-printEngine,
-OnLoadPrintEngine,
 IETopenFPsync
 */
 

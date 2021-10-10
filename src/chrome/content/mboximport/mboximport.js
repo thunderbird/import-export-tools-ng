@@ -32,7 +32,6 @@
 
 /* global IETformatWarning,
 getPredefinedFolder,
-IETopenFPsync,
 IETwritestatus,
 IETstoreFormat,
 GetSelectedMsgFolders,
@@ -74,9 +73,11 @@ var IETcount;
 var gNeedCompact;
 var gMsgFolderImported;
 var IETabort;
-// cleidigh where do we   get this
-var msgFolder;
+
+// cleidigh where do we get this
 var gImporting;
+// cleidigh create folder fix
+var folderCount;
 
 var IETprintPDFmain = {
 
@@ -86,19 +87,19 @@ var IETprintPDFmain = {
 			return;
 		}
 		try {
-			var printSvc = Cc["@mozilla.org/gfx/printsettings-service;1"].getService(Ci.nsIPrintSettingsService);
+			let printSvc = Cc["@mozilla.org/gfx/printsettings-service;1"].getService(Ci.nsIPrintSettingsService);
 			if (printSvc.defaultPrinterName === "") {
 				alert(mboximportbundle.GetStringFromName("noPDFnoPrinter"));
 				return;
 			}
 		} catch (e) { }
 
-		var msgFolders = GetSelectedMsgFolders();
+		let msgFolders = GetSelectedMsgFolders();
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
 			return;
 		}
-		var question = IETformatWarning(1);
+		let question = IETformatWarning(1);
 		if (!question)
 			return;
 		question = IETformatWarning(0);
@@ -109,18 +110,18 @@ var IETprintPDFmain = {
 			IETprintPDFmain.uris = IETgetSelectedMessages();
 		} else {
 			IETprintPDFmain.uris = [];
-			msgFolder = msgFolders[0];
-			var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
+			let msgFolder = msgFolders[0];
+			let isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 			if (isVirtFol) {
 				var total = msgFolder.getTotalMessages(false);
-				for (var i = 0; i < total; i++)
+				for (let i = 0; i < total; i++)
 					IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
 			} else {
 				let msgs = msgFolder.messages;
 				while (msgs.hasMoreElements()) {
-					var msg = msgs.getNext();
+					let msg = msgs.getNext();
 					msg = msg.QueryInterface(Ci.nsIMsgDBHdr);
-					var uri = msgFolder.getUriForMsg(msg);
+					let uri = msgFolder.getUriForMsg(msg);
 					IETprintPDFmain.uris.push(uri);
 				}
 			}
@@ -136,10 +137,10 @@ var IETprintPDFmain = {
 			let res = await new Promise(resolve => {
 				fp.open(resolve);
 			});
-			if (res === Ci.nsIFilePicker.returnOK)
-				dir = fp.file;
-			else
+			if (res !== Ci.nsIFilePicker.returnOK) {
 				return;
+			}
+			dir = fp.file;
 		}
 		IETprintPDFmain.file = dir;
 		await IETprintPDFmain.saveAsPDF();
@@ -282,12 +283,12 @@ function openProfileImportWizard() {
 
 }
 
-function openMboxDialog() {
+async function openMboxDialog() {
 	if (IETstoreFormat() !== 0) {
 		alert(mboximportbundle.GetStringFromName("noMboxStorage"));
 		return;
 	}
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = GetSelectedMsgFolders()[0];
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
@@ -298,7 +299,11 @@ function openMboxDialog() {
 	if (params.cancel) {
 		return;
 	}
-	setTimeout(importmbox, 800, params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
+	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
+	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
+	// using async/await.
+	await new Promise(resolve => setTimeout(resolve, 800));
+	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
 }
 
 
@@ -315,16 +320,14 @@ function IETupdateFolder(folder) {
 	folder.updateFolder(msgWindow);
 }
 
-function trytocopyMAILDIR() {
+async function trytocopyMAILDIR() {
 	if (IETstoreFormat() !== 1) {
 		alert(mboximportbundle.GetStringFromName("noMaildirStorage"));
 		return;
 	}
 
 	// initialize variables
-	var msgFolder = GetSelectedMsgFolders()[0];
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
-	// var openProfDir = XXXX
+	let msgFolder = GetSelectedMsgFolders()[0];
 
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
@@ -332,15 +335,16 @@ function trytocopyMAILDIR() {
 		return;
 	}
 
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	var res;
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), nsIFilePicker.modeGetFolder);
-	fp.appendFilters(nsIFilePicker.filterAll);
-	if (fp.show)
-		res = fp.show();
-	else
-		res = IETopenFPsync(fp);
+	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+	fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
+	fp.appendFilters(Ci.nsIFilePicker.filterAll);
+	let res = await new Promise(resolve => {
+		fp.open(resolve);
+	});
+	if (res !== Ci.nsIFilePicker.returnOK) {
+		return;
+	}
+
 	var destFile = fp.file;
 	var filename = destFile.leafName;
 	var newfilename = filename;
@@ -417,7 +421,7 @@ function trytocopyMAILDIR() {
 // filename = the name of the file to import
 // msgFolder = the folder as nsImsgFolder
 
-function trytocopy(file, filename, msgFolder, keepstructure) {
+async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// If the file isn't mbox format, alert, but doesn't exit (it did in pre 0.5.8 version and lower)
 	// In fact sometimes TB can import also corrupted mbox files
 	var isMbx = isMbox(file);
@@ -527,15 +531,10 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 	// really thanks for his help
 	var newFolder = tempfolder;
 
-	// this notifies listeners that a folder has been added;
-	// the code is different for TB-1.0 and TB > 1.0 because the syntax of
-	// NotifyItemAdded seems to have been modified
-	try {
-		msgFolder.NotifyItemAdded(msgFolder, newFolder, "Folder Added"); // This is for TB1.0
-	} catch (e) { }
-	try {
-		msgFolder.NotifyItemAdded(newFolder); // This is for TB > 1.0
-	} catch (e) { }
+	// At this location was a call to msgFolder.NotifyItemAdded inside a try catch wich was not doing
+	// anything for ages. The correct call would be msgFolder.notifyFolderAdded(newFolder);
+	// BUT I think this is too early as the folder is not actually created
+	//msgFolder.notifyFolderAdded(newFolder);
 
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
@@ -547,12 +546,18 @@ function trytocopy(file, filename, msgFolder, keepstructure) {
 
 	if (keepstructure) {
 		gMsgFolderImported.push(obj);
-		if (newFolder.hasSubFolders)
-			setTimeout(storeImportedSubFolders, 1000, newFolder);
+		if (newFolder.hasSubFolders) {
+			// I have no idea why so many setTimeout are in here, but each spins
+			// out of the main thread and it is hard to keep track of the actual
+			// execution flow. Let us return to sequential coding.
+			await new Promise(resolve => setTimeout(resolve, 1000));
+			storeImportedSubFolders(newFolder);
+		}
 	} else {
 		gMsgFolderImported.push(obj);
 	}
 
+	gFolderTreeView._rebuild();
 	return newfilename;
 }
 
@@ -603,20 +608,24 @@ function addEmptyMessageToForceCompact(msgFolder) {
 }
 
 // these lines *should* create the msf file
-function buildMSGfile(scan) {
+async function buildMSGfile(scan) {
 	for (var i = 0; i < gMsgFolderImported.length; i++) {
 		try {
 			var folder = gMsgFolderImported[i].msgFolder;
 			IETupdateFolder(folder);
 		} catch (e) { }
-		setTimeout(updateImportedFolder, 2000, folder, gMsgFolderImported[i].forceCompact);
+		// I have no idea why so many setTimeout are in here, but each spins out
+		// of the main thread and it is hard to keep track of the actual execution
+		// flow. Let us return to sequential coding.
+		await new Promise(resolve => setTimeout(resolve, 2000));
+		await updateImportedFolder(folder, gMsgFolderImported[i].forceCompact);
 	}
 	gMsgFolderImported = [];
 	if (scan)
 		IETwritestatus(mboximportbundle.GetStringFromName("endscan"));
 }
 
-function updateImportedFolder(msgFolder, forceCompact) {
+async function updateImportedFolder(msgFolder, forceCompact) {
 	try {
 		msgFolder.updateSummaryTotals(true);
 	} catch (e) { }
@@ -628,22 +637,20 @@ function updateImportedFolder(msgFolder, forceCompact) {
 }
 
 // scandir flag is to know if the function must scan a directory or just import mbox file(s)
-function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
+async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
 	// initialize variables
 	gMsgFolderImported = [];
 	gNeedCompact = false;
 	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	var res;
+	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 	var profDir;
 	var filesArray;
 	var mboxname;
 
 	if (!scandir) {
 		// open the filepicker
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), nsIFilePicker.modeOpenMultiple);
-		fp.appendFilters(nsIFilePicker.filterAll);
+		fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeOpenMultiple);
+		fp.appendFilters(Ci.nsIFilePicker.filterAll);
 
 		if (openProfDir) {
 			profDir = Cc["@mozilla.org/file/directory_service;1"]
@@ -651,30 +658,24 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 				.get("ProfD", Ci.nsIFile);
 			fp.displayDirectory = profDir.parent;
 		}
-
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK) {
-			// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
-			var thefiles = fp.files;
-			while (thefiles.hasMoreElements()) {
-				var onefile = thefiles.getNext();
-				onefile = onefile.QueryInterface(Ci.nsIFile);
-				mboxname = onefile.leafName;
-				trytocopy(onefile, mboxname, msgFolder, keepstructure);
-			}
-			if (buildMSF || gNeedCompact) {
-				var timout = keepstructure ? 2000 : 1000;
-				setTimeout(buildMSGfile, timout, false);
-			}
-		} else {
+		let res = await new Promise(resolve => {
+			fp.open(resolve);
+		});
+		if (res !== Ci.nsIFilePicker.returnOK) {
 			return;
+		}
+
+		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
+		var thefiles = fp.files;
+		while (thefiles.hasMoreElements()) {
+			var onefile = thefiles.getNext();
+			onefile = onefile.QueryInterface(Ci.nsIFile);
+			mboxname = onefile.leafName;
+			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
 		}
 	} else {
 		// Open the filepicker to choose the directory
-		fp.init(window, mboximportbundle.GetStringFromName("searchdir"), nsIFilePicker.modeGetFolder);
+		fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
 
 		if (openProfDir) {
 			profDir = Cc["@mozilla.org/file/directory_service;1"]
@@ -682,65 +683,69 @@ function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolde
 				.get("ProfD", Ci.nsIFile);
 			fp.displayDirectory = profDir.parent;
 		}
-
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK) {
-			if (!recursiveMode) {
-				// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
-				var allfiles = fp.file.directoryEntries;
-				filesArray = [];
-				while (allfiles.hasMoreElements()) {
-					var singlefile = allfiles.getNext();
-					singlefile = singlefile.QueryInterface(Ci.nsIFile);
-					filesArray.push(singlefile);
-				}
-			} else {
-				filesArray = MBOXIMPORTscandir.find(fp.file);
-			}
-
-			var importThis;
-
-			// scanning the directory to search files that could be mbox files
-			for (var i = 0; i < filesArray.length; i++) {
-				var afile = filesArray[i];
-				mboxname = afile.leafName;
-				var mboxpath = afile.path;
-				if (isMbox(afile) === 1) {
-					var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
-					if (ask) {
-						var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-							.getService(Ci.nsIPromptService);
-						var checkObj = {};
-						checkObj.value = false;
-						var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
-							prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
-							prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
-							prompts.BUTTON_POS_0_DEFAULT;
-						var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
-						var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
-						IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
-
-						if (button === 0)
-							importThis = true;
-						else if (button === 2)
-							importThis = false;
-						else
-							break;
-					} else {
-						importThis = true;
-					}
-					if (importThis && afile.isFile())
-						trytocopy(afile, mboxname, msgFolder);
-				}
-			}
-			if (buildMSF || gNeedCompact)
-				setTimeout(buildMSGfile, 1000, true);
-			else
-				IETwritestatus(mboximportbundle.GetStringFromName("endscan"));
+		let res = await new Promise(resolve => {
+			fp.open(resolve);
+		});
+		if (res !== Ci.nsIFilePicker.returnOK) {
+			return;
 		}
+
+		if (!recursiveMode) {
+			// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
+			var allfiles = fp.file.directoryEntries;
+			filesArray = [];
+			while (allfiles.hasMoreElements()) {
+				var singlefile = allfiles.getNext();
+				singlefile = singlefile.QueryInterface(Ci.nsIFile);
+				filesArray.push(singlefile);
+			}
+		} else {
+			filesArray = MBOXIMPORTscandir.find(fp.file);
+		}
+
+		var importThis;
+		// scanning the directory to search files that could be mbox files
+		for (var i = 0; i < filesArray.length; i++) {
+			var afile = filesArray[i];
+			mboxname = afile.leafName;
+			var mboxpath = afile.path;
+			if (isMbox(afile) === 1) {
+				var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
+				if (ask) {
+					var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+						.getService(Ci.nsIPromptService);
+					var checkObj = {};
+					checkObj.value = false;
+					var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
+						prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
+						prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
+						prompts.BUTTON_POS_0_DEFAULT;
+					var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
+					var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
+					IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
+
+					if (button === 0)
+						importThis = true;
+					else if (button === 2)
+						importThis = false;
+					else
+						break;
+				} else {
+					importThis = true;
+				}
+				if (importThis && afile.isFile())
+					await trytocopy(afile, mboxname, msgFolder);
+			}
+		}
+	}
+
+	if (buildMSF || gNeedCompact) {
+		// I have no idea why so many setTimeout are in here, but each spins out
+		// of the main thread and it is hard to keep track of the actual execution
+		// flow. Let us return to sequential coding.
+		let timeout = keepstructure ? 2000 : 1000;
+		await new Promise(resolve => setTimeout(resolve, timeout));
+		await buildMSGfile();
 	}
 }
 
@@ -778,7 +783,7 @@ function exportfolder(subfolder, keepstructure, locale, zip) {
 		for (let i = 0; i < folders.length; i++)
 			exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
-		exportVirtualFolder(msgFolder);
+		exportVirtualFolder(msgFolder); //msgFolder?
 	} else {
 		exportRemoteFolders(destdirNSIFILE);
 	}
@@ -989,31 +994,25 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 	return foldername;
 }
 
-function importALLasEML(recursive) {
+async function importALLasEML(recursive) {
 	console.debug('Start eml import');
 
-	msgFolder = GetSelectedMsgFolders()[0];
-	// console.debug(msgFolder);
-	// console.debug(msgFolder.URI);
-	// console.debug(msgFolder.incomingServerType);
-	// console.debug(msgFolder.parent);
-	// console.debug(msgFolder.name);
+	let msgFolder = GetSelectedMsgFolders()[0];
 	if (!msgFolder || !msgFolder.parent) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
 
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	var res;
-
 	// Open the filepicker to choose the directory
-	fp.init(window, mboximportbundle.GetStringFromName("searchdir"), nsIFilePicker.modeGetFolder);
-	// Set the filepicker to open the last opened directory
-	if (fp.show)
-		res = fp.show();
-	else
-		res = IETopenFPsync(fp);
+	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+	fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
+	let res = await new Promise(resolve => {
+		fp.open(resolve);
+	});
+	if (res !== Ci.nsIFilePicker.returnOK) {
+		return;
+	}
+
 	gEMLimported = 0;
 	gEMLimportedErrs = 0;
 	gImporting = true;
@@ -1022,40 +1021,26 @@ function importALLasEML(recursive) {
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
 
-	if (res === nsIFilePicker.returnOK) {
-		setTimeout(function () { RUNimportALLasEML(msgFolder, fp.file, recursive); }, 1000);
-	}
+	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
+	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
+	// using async/await.
+	await new Promise(resolve => window.setTimeout(resolve, 1000));
+	await RUNimportALLasEML(msgFolder, fp.file, recursive);
 }
-
-// cleidigh create folder fix
-var folderCount;
-var rootFolder;
 
 async function RUNimportALLasEML(msgFolder, file, recursive) {
 	gFileEMLarray = [];
 	gFileEMLarrayIndex = 0;
 	folderCount = 1;
 
-	// console.debug('RUNimportALLasEML');
-	let msgFolder2 = GetSelectedMsgFolders()[0];
-
-
 	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
 
-	console.debug('RUNimportALLasEML');
-	// console.debug(msgFolder);
-	// console.debug(msgFolder.URI);
-	// console.debug(msgFolder.incomingServerType);
-	// console.debug(msgFolder.parent);
-	// console.debug(msgFolder.name);
+	let rootFolder = msgFolder;
 
-
-	rootFolder = msgFolder;
-
-	await buildEMLarray(file, null, recursive);
+	await buildEMLarray(file, msgFolder, recursive, rootFolder);
 	gEMLtotal = gFileEMLarray.length;
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
@@ -1068,16 +1053,9 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
 }
 
-async function buildEMLarray(file, fol, recursive) {
+async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 	// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
 	var allfiles = file.directoryEntries;
-	var msgFolder;
-
-	if (!fol) {
-		// msgFolder = GetSelectedMsgFolders()[0];
-		msgFolder = rootFolder;
-	} else
-		msgFolder = fol;
 
 	// console.debug('Build EML array');
 	// console.debug(' folder ' + msgFolder.name);
@@ -1115,7 +1093,7 @@ async function buildEMLarray(file, fol, recursive) {
 					console.debug('ForceDBClosed');
 				}
 			})
-			await buildEMLarray(afile, newFolder, true);
+			await buildEMLarray(afile, newFolder, true, rootFolder);
 		} else {
 			var emlObj = {};
 			var afilename = afile.leafName;
@@ -1135,42 +1113,40 @@ async function buildEMLarray(file, fol, recursive) {
 	return true;
 }
 
-function importEMLs() {
-	var msgFolder = GetSelectedMsgFolders()[0];
+async function importEMLs() {
+	let msgFolder = GetSelectedMsgFolders()[0];
 	// No import for imap and news account, sorry...
 	if ((!String.prototype.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
 		return;
 	}
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	var res;
 
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImportMSG"), nsIFilePicker.modeOpenMultiple);
 	// Set the filepicker to open the last opened directory
+	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+	fp.init(window, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
 	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws");
 	fp.appendFilter("All files", "*.*");
-	if (fp.show)
-		res = fp.show();
-	else
-		res = IETopenFPsync(fp);
-	if (res === nsIFilePicker.returnOK) {
-		var thefiles = fp.files;
-		var fileArray = [];
-		// Files are stored in an array, so that they can be imported one by one
-		while (thefiles.hasMoreElements()) {
-			var onefile = thefiles.getNext();
-			onefile = onefile.QueryInterface(Ci.nsIFile);
-			fileArray.push(onefile);
-		}
-		gEMLimported = 0;
-		gEMLimportedErrs = 0;
-		gImporting = true;
-		gEMLtotal = fileArray.length;
-		IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
-		var dir = fileArray[0].parent;
-		trytoimportEML(fileArray[0], msgFolder, false, fileArray, false);
+	let res = await new Promise(resolve => {
+		fp.open(resolve);
+	});
+	if (res !== Ci.nsIFilePicker.returnOK) {
+		return;
 	}
+
+	var thefiles = fp.files;
+	var fileArray = [];
+	// Files are stored in an array, so that they can be imported one by one
+	while (thefiles.hasMoreElements()) {
+		var onefile = thefiles.getNext();
+		onefile = onefile.QueryInterface(Ci.nsIFile);
+		fileArray.push(onefile);
+	}
+	gEMLimported = 0;
+	gEMLimportedErrs = 0;
+	gImporting = true;
+	gEMLtotal = fileArray.length;
+	IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
+	trytoimportEML(fileArray[0], msgFolder, false, fileArray, false);
 }
 
 var importEMLlistener = {
@@ -1312,7 +1288,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// console.debug('Start write data');
 
 	if (!gImporting) {
-		rootFolder.ForceDBClosed();
+		msgFolder.ForceDBClosed();
 		console.debug('Abort importing message # ' + gEMLimported + '\r\n\n');
 		return -1;
 	}
@@ -1385,14 +1361,14 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 		gImporting = false;
 		console.debug('Exception # ' + e + ' ' + gEMLimported);
 		console.debug(msgLocalFolder.filePath.path);
-		rootFolder.ForceDBClosed();
+		msgFolder.ForceDBClosed();
 		alert('Exception importing message # ' + gEMLimported + '\r\n\n' + e);
 		return -1;
 	}
 
 	// cleidigh force files closed
 	if (gEMLimported % 450 === 0) {
-		rootFolder.ForceDBClosed();
+		msgFolder.ForceDBClosed();
 		// console.debug('message DB ' + gEMLimported);
 	}
 
@@ -1411,7 +1387,7 @@ function importEmlToFolder() {
 	// To import an eml attachment in folder, as a real message, it's necessary to save it
 	// in a temporary file in temp directory
 	var restoreDownloadWindowPref = false;
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = GetSelectedMsgFolders()[0];
 	// 0x0020 is MSG_FOLDER_FLAG_VIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (!String.prototype.trim && ((msgFolder.server.type !== "pop3" && msgFolder.server.type !== "none") || isVirtFol)) {
@@ -1470,13 +1446,13 @@ function openIEToptions() {
 }
 
 function IETcopyFolderPath() {
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = GetSelectedMsgFolders()[0];
 	var file = msgFolder2LocalFile(msgFolder);
 	IETcopyStrToClip(file.path);
 }
 
 function IETopenFolderPath() {
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = GetSelectedMsgFolders()[0];
 	var file = msgFolder2LocalFile(msgFolder);
 	var parent;
 

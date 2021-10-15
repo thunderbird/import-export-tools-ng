@@ -1,6 +1,6 @@
 <!ENTITY dialog.title "ImportExportTools NG - バックアップ">
 <!ENTITY description1 "最終バックアップ日時： $t">
-<!ENTITY description2 "バックアップを作成するためには、予め設定が必要です。">
+<!ENTITY description2 "バックアップを作成するためには予め設定が必要です。">
 <!ENTITY description3 "この操作中はプログラムは数分間応答しなくなります。">
 <!ENTITY description4 "このまま続行してもよろしいですか？">
 <!ENTITY description5 "バックアップ中です。しばらくお待ちください。">
@@ -15,8 +15,8 @@
 <!ENTITY day15 "15 日">
 <!ENTITY day30 "30 日">
 <!ENTITY backupDestination "バックアップ場所">
-<!ENTITY backupFolderName "バックアップ用のフォルダ名">
-<!ENTITY autoName "自動作成（フォルダ名 + 日時）">
+<!ENTITY backupFolderName "バックアップ用のフォルダー名">
+<!ENTITY autoName "自動作成（フォルダー名 + 日時）">
 <!ENTITY customName "カスタマイズ">
 <!ENTITY backupType "バックアップ種別">
 <!ENTITY allFiles "すべてのプロファイル内ファイル">
@@ -26,4 +26,4 @@
 <!ENTITY newFilesMode "最後のバックアップ以降に変更されたファイルのみ">
 <!ENTITY save "保存">
 <!ENTITY modal "ダイアログウィンドウを開く">
-<!ENTITY MACwarning "注意: 続行する前に、すべての他のウィンドウを閉じてください。">
+<!ENTITY MACwarning "注意: 続行する前にすべての他のウィンドウを閉じてください。">

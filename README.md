@@ -85,7 +85,7 @@ Install (with or without Internet access) XPI directly:
 ## Brief Usage Instructions
 
 The extension adds a new menu item in the Tools menu.
-(You may have to enable the Menu Bar from Preferences to make it display.)
+(You may have to enable the Menu Bar from Preferences to make it display. Depending on the version of Thunderbird, the option to show the menu bar may be under "View" or "Customize" instead.)
 The new submenu displays a number of additional actions which you can peform
 to import or export various types of information into and out of Thunderbird.
 

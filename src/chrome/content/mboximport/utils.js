@@ -609,22 +609,6 @@ function IETgetPickerModeFolder() {
 	return dir;
 }
 
-function IETpickFile(el) {
-	var box = el.previousSibling;
-	var nsIFilePicker = Ci.nsIFilePicker;
-	var fp = Cc["@mozilla.org/filepicker;1"]
-		.createInstance(nsIFilePicker);
-	fp.init(window, "", nsIFilePicker.modeGetFolder);
-	var res;
-
-	if (fp.show)
-		res = fp.show();
-	else
-		res = IETopenFPsync(fp);
-	if (res === nsIFilePicker.returnOK)
-		box.value = fp.file.path;
-}
-
 function IETemlx2eml(file) {
 	// For EMLX files, see http://mike.laiosa.org/2009/03/01/emlx.html
 	var istream = Cc["@mozilla.org/network/file-input-stream;1"].

@@ -60,19 +60,17 @@ var IETimportWizard = {
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},
 
-	pickFile: function (el) {
-		var nsIFilePicker = Ci.nsIFilePicker;
-		var fp = Cc["@mozilla.org/filepicker;1"]
-			.createInstance(nsIFilePicker);
-		var res;
+	pickFile: async function (target, inputFieldId) {
+		let box = target.ownerDocument.getElementById(inputFieldId);
+		let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 
-		fp.init(window, IETimportWizard.bundle.GetStringFromName("pickProfile"), nsIFilePicker.modeGetFolder);
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK) {
-			var testFile = fp.file.clone();
+		fp.init(window, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
+		let res = await new Promise(resolve => {
+			fp.open(resolve);
+		});
+
+		if (res === Ci.nsIFilePicker.returnOK) {
+			let testFile = fp.file.clone();
 			testFile.append("prefs.js");
 			if (!testFile.exists()) {
 				alert(IETimportWizard.bundle.GetStringFromName("noProfile"));
@@ -82,7 +80,7 @@ var IETimportWizard = {
 				document.getElementById("profileImportWizard").canAdvance = true;
 			else
 				document.getElementById("profileImportWizard").canAdvance = false;
-			var box = el.previousSibling;
+
 			box.value = fp.file.path;
 			IETimportWizard.file = fp.file;
 		}

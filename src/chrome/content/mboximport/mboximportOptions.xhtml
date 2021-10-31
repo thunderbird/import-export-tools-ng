@@ -252,7 +252,7 @@
 								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_mbox_dir" value="" size="35" />
-								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_mbox_dir')" />
 							</html:td>
 						</html:tr>
 						<html:tr>
@@ -261,7 +261,7 @@
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_eml_dir" value="" size="35" />
-								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_eml_dir')" />
 						</html:td>
 						</html:tr>
 						<html:tr>
@@ -269,7 +269,7 @@
 								<checkbox id="use_export_msgs_dir" label="&selExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_msgs_dir" value="" size="35" />
-								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this)" />
+								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_msgs_dir')" />
 							</html:td>
 						</html:tr>
 				</html:table>
@@ -322,7 +322,7 @@
 					<hbox align="center" style="margin-bottom: 4px;">
 						<label value="&backupDestination;: " />
 						<html:input id="backupDir" value="" size="35" />
-						<button label="&browse;" oncommand="pickFile(this)" />
+						<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
 					</hbox>
 					<spacer height="10" />
 					<label value="&backupFolderName;: " />

@@ -25,7 +25,7 @@
 
 // cleidigh - reformat, services, globals, dialog changes
 
-/* global IETprefs, IETgetComplexPref, IETsetComplexPref, IETpickFile, browser */
+/* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
@@ -300,6 +300,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
     if (document.getElementById("export_eml_dir").value !== "")
         IETsetComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
+    else    
         IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
@@ -432,8 +433,17 @@ function toggleSkipMsg(el) {
     document.getElementById("skipMsg").disabled = (el.selectedIndex === 0);
 }
 
-function pickFile(el) {
-    IETpickFile(el);
+async function pickFile(target, inputFieldId) {
+	var box = target.ownerDocument.getElementById(inputFieldId);
+    let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+    fp.init(window, "", Ci.nsIFilePicker.modeGetFolder);
+    let res = await new Promise(resolve => {
+        fp.open(resolve);
+    });
+    if (res !== Ci.nsIFilePicker.returnOK) {
+        return;
+    }
+    box.value = fp.file.path;    
 }
 
 document.addEventListener("dialogaccept", function (event) {

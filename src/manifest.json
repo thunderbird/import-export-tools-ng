@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "11.2b1",
+  "version": "11.2b2",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
       "strict_min_version": "91.0",
-      "strict_max_version": "94.0"
+      "strict_min_version": "95.0"
     }
   },
   "experiment_apis": {
@@ -24,6 +24,23 @@
           ]
         ],
         "script": "api/WindowListener/implementation.js"
+      }
+    },
+    "SessionRestore": {
+      "schema": "api/SessionRestore/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "SessionRestore"
+          ]
+        ],
+        "script": "api/SessionRestore/implementation.js",
+        "events": [
+          "startup"
+        ]
       }
     }
   },

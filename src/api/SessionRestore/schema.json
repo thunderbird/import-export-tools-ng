@@ -1,0 +1,13 @@
+[
+  {
+    "namespace": "SessionRestore",
+    "events": [
+      {
+        "name": "onStartupSessionRestore",
+        "type": "function",
+        "description": "Fired when the session has been restored after startup.",
+        "parameters": []
+      }
+    ]
+  }
+]

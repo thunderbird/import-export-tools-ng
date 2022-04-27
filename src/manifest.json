@@ -8,7 +8,7 @@
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
       "strict_min_version": "91.0",
-      "strict_min_version": "95.0"
+      "strict_max_version": "95.0"
     }
   },
   "experiment_apis": {

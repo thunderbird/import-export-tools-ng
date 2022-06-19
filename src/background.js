@@ -1,13 +1,34 @@
 // background.js - this kicks off the WindowListener framework
 
+var majorVersion = await getThunderbirdVersion().major;;
 
-// console.debug('background Start');
+console.debug('background Start');
+
+// must delay startup for #274 using SessionRestore for 91, 102
+// does this by default 
+if (majorVersion > 91) {
+	main();
+} else {
+	browser.SessionRestore.onStartupSessionRestore.addListener(main);
+}
 
 
-browser.SessionRestore.onStartupSessionRestore.addListener(main);
+async function  getThunderbirdVersion() {
+	let browserInfo = await messenger.runtime.getBrowserInfo();
+	let parts = browserInfo.version.split(".");
+	return {
+		major: parseInt(parts[0]),
+		minor: parseInt(parts[1]),
+		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+	}
+}
+
 
 function main() {
-	browser.SessionRestore.onStartupSessionRestore.removeListener(main);
+	if (majorVersion == 91) {
+		browser.SessionRestore.onStartupSessionRestore.removeListener(main);
+	}
+
 
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 

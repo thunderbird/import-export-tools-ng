@@ -157,12 +157,22 @@ var IETprintPDFmain = {
 		let psService = Cc[
 			"@mozilla.org/gfx/printsettings-service;1"
 		].getService(Ci.nsIPrintSettingsService);
-		let printSettings = psService.newPrintSettings;
+		
+		// pdf changes for 102
+		// newPrintSettings => createNewPrintSettings()
+		// printSetting.printToFile deprecated in 102, not needed in 91
+		let printSettings;
+		if(psService.newPrintSettings) {
+			printSettings = psService.newPrintSettings;
+		} else {
+			printSettings = psService.createNewPrintSettings();
+		}
+		
+		//console.log(printSettings)
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
-		printSettings.printToFile = true;
+		//printSettings.printToFile = true;
 		printSettings.printSilent = true;
-		printSettings.showPrintProgress = false;
 		printSettings.outputFormat = fileFormat;
 
 		// Allow to override settings, todo

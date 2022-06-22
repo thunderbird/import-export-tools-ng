@@ -1,12 +1,13 @@
 // background.js - this kicks off the WindowListener framework
 
-var majorVersion = await getThunderbirdVersion().major;;
+var majorVersion = await getThunderbirdVersion();
 
-console.debug('background Start');
+console.debug('background Start', majorVersion);
 
 // must delay startup for #274 using SessionRestore for 91, 102
 // does this by default 
-if (majorVersion > 91) {
+if (majorVersion.major > 90) {
+	console.log("r m")
 	main();
 } else {
 	browser.SessionRestore.onStartupSessionRestore.addListener(main);
@@ -25,7 +26,7 @@ async function  getThunderbirdVersion() {
 
 
 function main() {
-	if (majorVersion == 91) {
+	if (majorVersion.major == 91) {
 		browser.SessionRestore.onStartupSessionRestore.removeListener(main);
 	}
 

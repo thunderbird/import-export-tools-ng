@@ -6,7 +6,7 @@ console.debug('background Start', majorVersion);
 
 // must delay startup for #274 using SessionRestore for 91, 102
 // does this by default 
-if (majorVersion.major > 90) {
+if (majorVersion.major > 91) {
 	console.log("r m")
 	main();
 } else {

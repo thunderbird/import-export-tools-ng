@@ -9,16 +9,15 @@ console.debug('background start', majorVersion);
 let startupDelay;
 if (majorVersion.major < 92) {
 	startupDelay = await new Promise(async (resolve) => {
+		const restoreListener = (window, state = true) => {
+			browser.SessionRestore.onStartupSessionRestore.removeListener(restoreListener);
+			resolve(state);
+		}
+		browser.SessionRestore.onStartupSessionRestore.addListener(restoreListener);
+
 		let isRestored = await browser.SessionRestore.isRestored();
-		console.log("session is restored:", isRestored);
 		if (isRestored) {
-			resolve(false);
-		} else {
-			const listener = () => {
-				browser.SessionRestore.onStartupSessionRestore.removeListener(listener);
-				resolve(true);
-			}
-			browser.SessionRestore.onStartupSessionRestore.addListener(listener);
+			restoreListener(null, false);
 		}
 	});
 }

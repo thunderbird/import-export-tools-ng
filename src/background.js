@@ -6,15 +6,21 @@ console.debug('background Start', majorVersion);
 
 // must delay startup for #274 using SessionRestore for 91, 102
 // does this by default 
-if (majorVersion.major > 90) {
-	console.log("r m")
-	main();
-} else {
-	browser.SessionRestore.onStartupSessionRestore.addListener(main);
+let isRestored = await browser.SessionRestore.isRestored();
+if (isRestored && majorVersion.major < 92) {
+	await new Promise(resolve => {
+		const listener = () => {
+			browser.SessionRestore.onStartupSessionRestore.removeListener(listener);
+			resolve();
+		}
+		browser.SessionRestore.onStartupSessionRestore.addListener(listener);
+	});
 }
 
+console.debug('delay background Start');
+main();
 
-async function  getThunderbirdVersion() {
+async function getThunderbirdVersion() {
 	let browserInfo = await messenger.runtime.getBrowserInfo();
 	let parts = browserInfo.version.split(".");
 	return {
@@ -24,13 +30,7 @@ async function  getThunderbirdVersion() {
 	}
 }
 
-
 function main() {
-	if (majorVersion.major == 91) {
-		browser.SessionRestore.onStartupSessionRestore.removeListener(main);
-	}
-
-
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	// Register all necessary content, Resources, and locales

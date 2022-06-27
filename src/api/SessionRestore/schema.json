@@ -8,6 +8,13 @@
         "description": "Fired when the session has been restored after startup.",
         "parameters": []
       }
-    ]
+    ],
+    "functions": [
+      {
+        "name": "isRestored",
+        "type": "function",
+        "parameters": []
+      }
+    ]    
   }
 ]

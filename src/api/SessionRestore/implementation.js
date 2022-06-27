@@ -15,6 +15,7 @@
 var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
 var { ExtensionSupport } = ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var { SessionStoreManager } = ChromeUtils.import("resource:///modules/SessionStoreManager.jsm");
 
 var SessionRestore = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
@@ -25,9 +26,13 @@ var SessionRestore = class extends ExtensionCommon.ExtensionAPI {
     return {
       SessionRestore: {
 
+        isRestored() {
+          return !!SessionStoreManager._restored;
+        },
+
         onStartupSessionRestore: new ExtensionCommon.EventManager({
           context,
-          name: "SessionRestore.onNotifyBackground",
+          name: "SessionRestore.onStartupSessionRestore",
           register: (fire) => {
             let trackerId = self.observerTrackerNext++;
             self.observerTracker[trackerId] = fire.sync;

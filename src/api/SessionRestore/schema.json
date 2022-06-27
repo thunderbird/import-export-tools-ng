@@ -13,6 +13,7 @@
       {
         "name": "isRestored",
         "type": "function",
+        "async": true,
         "parameters": []
       }
     ]    

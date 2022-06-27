@@ -2,23 +2,31 @@
 
 var majorVersion = await getThunderbirdVersion();
 
-console.debug('background Start', majorVersion);
+console.debug('background start', majorVersion);
 
 // must delay startup for #274 using SessionRestore for 91, 102
 // does this by default 
-let isRestored = await browser.SessionRestore.isRestored();
-if (isRestored && majorVersion.major < 92) {
-	await new Promise(resolve => {
-		const listener = () => {
-			browser.SessionRestore.onStartupSessionRestore.removeListener(listener);
-			resolve();
+let startupDelay;
+if (majorVersion.major < 92) {
+	startupDelay = await new Promise(async (resolve) => {
+		let isRestored = await browser.SessionRestore.isRestored();
+		console.log("session is restored:", isRestored);
+		if (isRestored) {
+			resolve(false);
+		} else {
+			const listener = () => {
+				browser.SessionRestore.onStartupSessionRestore.removeListener(listener);
+				resolve(true);
+			}
+			browser.SessionRestore.onStartupSessionRestore.addListener(listener);
 		}
-		browser.SessionRestore.onStartupSessionRestore.addListener(listener);
 	});
 }
+// Tri-state, true, false, undefined.
+console.debug('delay background start', startupDelay);
 
-console.debug('delay background Start');
 main();
+
 
 async function getThunderbirdVersion() {
 	let browserInfo = await messenger.runtime.getBrowserInfo();

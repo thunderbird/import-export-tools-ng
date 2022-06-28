@@ -2,7 +2,7 @@
  * This file is provided by the addon-developer-support repository at
  * https://github.com/thundernest/addon-developer-support
  *
- * Version: 1.56
+ * Version: 1.57
  *
  * Author: John Bieling (john@thunderbird.net)
  *

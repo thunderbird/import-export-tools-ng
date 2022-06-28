@@ -1,3 +1,7 @@
+Version: 1.57
+-------------
+- fix race condition which could prevent the AOM tab to be monkey patched correctly
+
 Version: 1.56
 -------------
 - be precise on which revision the wrench symbol should be displayed, instead of

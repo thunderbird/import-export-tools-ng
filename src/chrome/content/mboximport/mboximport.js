@@ -55,6 +55,7 @@ IETescapeBeginningFrom,
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -760,6 +761,9 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 }
 
 function exportfolder(subfolder, keepstructure, locale, zip) {
+	console.log("exportfolder");
+	console.log("subf", subfolder,"keeps", keepstructure, "local", locale);
+
 	var folders = GetSelectedMsgFolders();
 	for (var i = 0; i < folders.length; i++) {
 		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
@@ -790,11 +794,13 @@ function exportfolder(subfolder, keepstructure, locale, zip) {
 	}
 
 	if (locale) {
+		console.log("local exp");
 		for (let i = 0; i < folders.length; i++)
 			exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
 		exportVirtualFolder(msgFolder); //msgFolder?
 	} else {
+		console.log("rem exp");
 		exportRemoteFolders(destdirNSIFILE);
 	}
 }
@@ -847,6 +853,7 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 	var filex = msgFolder2LocalFile(msgFolder);
 	// thefoldername=the folder name displayed in TB (for ex. "Modelli")
 	var thefoldername = IETcleanName(msgFolder.name);
+	console.log(thefoldername)
 	var newname;
 
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
@@ -864,8 +871,18 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
-		if (filex.exists())
+		console.log(newname)
+		if (filex.exists()) {
 			filex.copyTo(destdirNSIFILE, newname);
+			console.log("copy ", newname)
+		} else {
+			console.log("no file")
+			let fname =  destdirNSIFILE.path + "\\" + newname;
+			console.log(fname)
+			var nsifile   = new FileUtils.File( fname )
+			nsifile.create(0, 0644)
+
+		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
@@ -874,9 +891,16 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 			destdirNsFile.append(newname + ".sbd");
 			var listMSF = MBOXIMPORTscandir.find(destdirNsFile);
 			for (let i = 0; i < listMSF.length; ++i) {
+				console.log(listMSF[i].path)
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
+						let fname = listMSF[i].path.split(".msf")[0]
+						console.log(fname)
+						var nsifile   = new FileUtils.File( fname )
+						if(!nsifile.exists()) {
+						nsifile.create(0, 0644);
+						}
 					} catch (e) { }
 				}
 			}

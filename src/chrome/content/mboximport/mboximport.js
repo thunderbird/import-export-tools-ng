@@ -877,10 +877,12 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 			console.log("copy ", newname)
 		} else {
 			console.log("no file")
-			let fname =  destdirNSIFILE.path + "\\" + newname;
-			console.log(fname)
-			var nsifile   = new FileUtils.File( fname )
-			nsifile.create(0, 0644)
+			var topdestdirNSI = destdirNSIFILE.clone();
+			console.log(topdestdirNSI)
+			topdestdirNSI.append(newname);
+			console.log(topdestdirNSI)
+			//var nsifile   = new FileUtils.File( fname )
+			topdestdirNSI.create(0, 0644)
 
 		}
 		var sbd = filex.parent;

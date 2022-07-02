@@ -1,29 +1,31 @@
 // background.js - this kicks off the WindowListener framework
 
-var majorVersion = await getThunderbirdVersion();
+// Have to wrap top level asyncs in anon func to pass ATN
 
-console.debug('background start', majorVersion);
+await ((async () => {
+	var tbVersionParts = await getThunderbirdVersion();
 
-// must delay startup for #274 using SessionRestore for 91, 102
-// does this by default 
-let startupDelay;
-if (majorVersion.major < 92) {
-	startupDelay = await new Promise(async (resolve) => {
-		const restoreListener = (window, state = true) => {
-			browser.SessionRestore.onStartupSessionRestore.removeListener(restoreListener);
-			resolve(state);
-		}
-		browser.SessionRestore.onStartupSessionRestore.addListener(restoreListener);
+	// must delay startup for #284 using SessionRestore for 91, bypass for 102
+	// does this by default 
+	var startupDelay;
+	if (tbVersionParts.major < 92) {
+		startupDelay = await new Promise(async (resolve) => {
+			const restoreListener = (window, state = true) => {
+				browser.SessionRestore.onStartupSessionRestore.removeListener(restoreListener);
+				resolve(state);
+			}
+			browser.SessionRestore.onStartupSessionRestore.addListener(restoreListener);
 
-		let isRestored = await browser.SessionRestore.isRestored();
-		if (isRestored) {
-			restoreListener(null, false);
-		}
-	});
-}
-// Tri-state, true, false, undefined.
-console.debug('delay background start', startupDelay);
+			let isRestored = await browser.SessionRestore.isRestored();
+			if (isRestored) {
+				restoreListener(null, false);
+			}
+		});
+	}
 
+})());
+
+// now start
 main();
 
 

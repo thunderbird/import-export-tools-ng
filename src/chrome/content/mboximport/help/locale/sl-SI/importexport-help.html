@@ -11,76 +11,26 @@
     <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
     <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
     <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
-    <title>Pomoč za ImportExportTools NG</title>
+    <title>ImportExportTools NG pomoč</title>
   </head>
   <body>
     <h2 id="main_help">ImportExportTools NG Help-User Guide</h2>
     <p>
-      To je minimalističen prvi začetek uporabniškega priročnika. Očitno je treba še veliko dodati. Ta
-      trenutna stran se osredotoča na menije in nove možnosti. V naslednjih različicah se bo nenehno
-      posodabljal.<br />
+      To je minimalističen prvi začetek uporabniškega priročnika. Očitno je treba marsikaj dodati. Ta trenutna
+      stran se osredotoča na menije in nove možnosti. V naslednjih različicah se bo nenehno posodabljal.<br />
     </p>
-    <h3>Različica 10.0.2: Izdanje o vzdrževanju - 14. november 2020</h3>
+    <h3>Različica 12.0.0: podpora za Thunderbird 102 - 1. julij 2022</h3>
     <p>
-      Odpravljene napake:<br /><br />
-      - # 140 Upravljajte z desnim klikom na neizbrano mapo<br />
-      - # 149 popravki za uvoz EML<br />
-      - # 154 Varnostno kopiranje se ne zažene, če je uporabljena datoteka / izhod<br />
-      - # 157, # 159 Varnostne kopije ne uspejo<br />
-      - # 173 Obravnava nobene izbrane mape<br />
-      - # 174 Za priloge manjkajo žetoni pošiljatelja in e-pošte prejemnika<br />
-      - # 175 Podpira vejico in en narekovaj v imenih datotek<br /><br />
-      Pomembnejši:<br /><br />
-      - Dodana možnost Varnostno kopiranje ob izhodu<br />
-      - Za popolno obliko po meri uporabite možnost `Indeks, oblika zapisa datuma CSV` (zavihek Razno)<br /><br />
-      <h3>Različica 10.0.1: Izdanje o vzdrževanju - 14. oktober 2020</h3>
-      <br />
-      Odpravljene napake:<br />
-      - # 163, # 158, # 153 Fiksna pretvorba UTF-8 za navadno besedilo / csv<br />
-      - # 161 Popravite format datuma CSV<br /><br />
-      Pomembnejši:<br />
-      - Dodajte boljše zaznavanje napak glave, izhod za odpravljanje napak<br />
-      - Dovoli obliko zapisa datuma indeksa za CSV<br /><br />
-      Znane težave:<br />
-      - Varnostna kopija ne deluje v 78<br /><br />
-      <h3>Različica 10.0.0: Nove funkcije - 26. september 2020</h3>
-    </p>
-    <p>
-      - Nadgradnja za združljivost 78/68<br />
-      - Novi kraji: el<br />
-      - Indeksni format datuma po meri<br />
-      - novi žetoni za imena datotek: e-pošta pošiljatelja / prejemnika<br />
-      - Uporabite `% d` v glavi / nogi nastavitev tiskanja za datum po meri<br /><br /><br />
-      Odpravljene napake:<br />
-      - # 118, # 63 Fiksna pretvorba za odprto besedilo<br />
-      - # 57 Uporaba ForceDBClose za zapiranje odprtih datotek (popravi mape in sporočila)<br />
-      - # 77 Uporabi globalne nastavitve za PDF<br />
-      - # 130 načrtovanih varnostnih kopij<br />
-      - # 134 Pravilno obravnavanje zastavic za branje, posredovanje in odgovor<br /><br /><br />
-      Hvala mnogim! : Glejte težave<br />
-    </p>
-    <br /><br />
-    <h3>Različica 4.1.0: Nove funkcije</h3>
-    <p>
-      - Pomoč / Navodila za uporabo: Popolnoma lokaliziran - Možnost pripone za imena datotek<br />
-      - Možnost datuma po meri za imena datotek, ki omogoča strftime (), kot je celotno oblikovanje datuma in
-      časa<br />
-      - Uporabite poimenovanje datotek po meri za priloge in vdelane priloge<br />
-      - Možnost datuma po meri za imena datotek indeksa<br />
-      - Možnost uporabe »Prejetega datuma« za ime datoteke in indeks<br />
-      - Uporabniške nastavljive bližnjične tipke (bližnjice na tipkovnici)<br />
-      - Izhod PDF zdaj uporablja globalne možnosti tiskanja<br />
-      - Izboljšana postavitev indeksne datoteke HTML<br /><br /><br />
-      Odpravljene napake:<br />
-      - # 68 popravek za zastavico priloge indeksa<br />
-      - Popravek # 74 za priloge v vrstici, ki niso izvožene<br />
-      - Popravite # 56 preklic ročaja v pogovornem oknu za uvoz<br />
-      - # 77 uporabi nastavitve za izhod PDF<br />
-      - Popravki čiščenja uporabniškega vmesnika (# 80, # 81, # 82) Različice OS - @ovari<br />
-      - Popravek nemškega prevoda # 93 - @dipgithub<br />
-      - popravki v madžarskem prevodu - @ovari<br />
-      - Dodajte manjkajočo licenčno datoteko št. 96<br /><br />
-      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri preizkusu:<br /><br />
+      Obravnavane težave:<br /><br />
+      <p>
+        - Podpora za Thunderbird 102 in 91<br />
+        - Popravite stanje dirke v SessionRestore #284 #314<br />
+        - Popravi izvoz IMAP, ki preskakuje prazne mape #320<br />
+        - Popravi možnosti izvozne mape, ki niso shranjene #318<br />
+        - Popravi spremembe nastavitev tiskanja
+      </p>
+      <br /><br />
+      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
       - <code class="notranslate">@ovari</code><br />
       - <code class="notranslate">@dipgithub</code><br />
       - <code class="notranslate">@artofit</code><br />
@@ -93,22 +43,23 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Prosimo, objavite težave ali zahteve za funkcije v odlagališču razširitev GitHub:
+      Objavite težave ali zahteve po funkcijah v repozitoriju razširitev GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      V težave z napakami vključite naslednje informacije za lažje reševanje težav:<br />
-      - različica ImportExportTools NG<br />
-      - različica Thunderbird<br />
+      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
+      - Različica ImportExportTools NG<br />
+      - Različica Thunderbird<br />
       - Operacijski sistem in različica<br />
-      - izhod za odpravljanje napak (kopija iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
-      - Opis korakov, ki vodijo do težave<br />
+      - Izhod za odpravljanje napak (kopiraj iz konzole za odpravljanje napak - dostop s tipkami
+      Control-Shift-J)<br />
+      – Opis korakov, ki vodijo do težave<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
-      ImportExportTools NG je nadaljevanje razširitve, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
+      ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: Nekatere oblike niso podprte v vseh funkcijah.<br />
+      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -118,21 +69,21 @@
       - PDF<br /><br />
       Medtem ko se večina funkcionalnosti vrti okoli sporočil, obstaja tudi podpora za uvoz in izvoz profilov
       Thunderbird. Poleg tega lahko izvozi vključujejo tudi indeksno datoteko HTML ali CSV. Varnostno
-      kopiranje profila Thunderbird je še ena značilnost.<br />
+      kopiranje profila Thunderbird je še ena funkcija.<br />
       <p>
         Dostop do funkcionalnosti IETng poteka prek več različnih menijev, ki jih namesti razširitev. Funkcije
-        so odvisne od konteksta. Dodani so meniji za:<br />
-        - Kontekst podokna map (delovanje mape)<br />
+        so odvisno od konteksta. Meniji so dodani za:<br />
+        - Kontekst podokna mape (delovanje mape)<br />
         - Kontekst seznama sporočil (izbrana sporočila)<br />
-        - meni Orodja (operacije z mapami in profili)<br /><br />
-        Obstaja veliko možnosti, ki so na voljo v dodanem vnosu pod &quot;Orodja / Možnosti dodatka&quot; za
+        - Meni Orodja (operacije z mapo in profilom)<br /><br />
+        Obstaja veliko možnosti, ki so dostopne pod dodanim vnosom pod &quot;Orodja/možnosti dodatkov&quot; za
         možnosti razširitve. Vsak od menijev ima tudi element menija Možnosti za dostop do pogovornega okna z
         možnostmi.<br />
-        Tu so dokumentirane nove možnosti, pozneje bo dokumentiran celoten sklop.
+        Nove možnosti so dokumentirane tukaj, celoten nabor bo dokumentiran naknadno.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">Funkcije kontekstnega menija map</h2>
+    <h2 id="main_menu_help">Funkcije kontekstnega menija mape</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -142,34 +93,34 @@
       </thead>
       <tbody>
         <tr>
-          <td>Izvozi mapo</td>
+          <td>Izvozna mapa</td>
           <td>Izvozite eno mapo v datoteko formata mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Izvozite eno mapo v stisnjeno datoteko formata mbox</td>
+          <td>Izvozite posamezno mapo v stisnjeno datoteko formata mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Izvozite mapo, ki vključuje vse njene podmape, v drevo sporočil v obliki mbox</td>
+          <td>Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Izvozite mapo, ki vključuje vse njene podmape, v drevo sporočil v obliki mbox<br />
+            Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox<br />
             (podimeniki .sbd)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Izvozite mapo, ki vključuje vse njene podmape, v nabor datotek formata mbox, po eno za vsako
-            podmapo, izvoženo v eno mapo.
+            Izvozite mapo, vključno z vsemi njenimi podmapami, v nabor datotek formata mbox, eno za vsako
+            podmapo, izvoženih v eno mapo.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Izvozite oddaljeno mapo (imap) v eno datoteko mbox.</td>
+          <td>Izvoz oddaljene mape (imap) v eno datoteko mbox.</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="exportALLMSG"></td>
@@ -178,92 +129,93 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Sporočila map izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
+            Izvozite sporočila mape kot datoteke formata EML (brez strukture/podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Sporočila iz mape izvozite kot datoteke v formatu HTML (brez strukture / podmap).<br />
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
             Priloge niso vključene. S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Sporočila iz mape izvozite kot datoteke v formatu HTML (brez strukture / podmap).<br />
-            Priloge se shranijo kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
+            Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
             vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v navadnem besedilu, priloge niso vključene.<br />
+            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v navadnem besedilu, vključno s prilogami.<br />
+            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot eno samo datoteko v odprtem besedilu, priloge niso vključene.<br />
+            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, priloge niso
+            vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot eno samo datoteko v odprtem besedilu, vključno s prilogami.<br />
+            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite v eno samo datoteko v besedilnem formatu CSV (vrednosti, ločene z
-            vejicami), priloge pa niso vključene.<br />
+            Izvozite sporočila mape kot eno samo datoteko besedilnega formata CSV (vrednosti, ločene z
+            vejico), priloge priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot nabor datotek v obliki PDF, vključno s prilogami.<br />
+            Izvozite sporočila mape kot niz datotek v formatu PDF, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.<br />
-            Opomba: Izpis PDF v OSX ni podprt zaradi težave z gonilnikom.
+            Opomba: izpis PDF ni podprt v sistemu OSX zaradi težave z gonilnikom.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko HTML sporočila mape (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko HTML mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko CSV sporočila mape (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Odprite pogovorno okno za iskanje in izvozite želene rezultate</td>
+          <td>Odprite iskalno pogovorno okno in izvozite želene rezultate</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Uvozite datoteko ali datoteke mbox. Izberite z ali brez strukture / podmap</td>
+          <td>Uvozite datoteko ali datoteke mbox. Izberite s strukturo/podmapami ali brez</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Izberite in uvozite datoteke sporočil maildir</td>
+          <td>Izberite in uvozite sporočilne datoteke maildir</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Izberite in uvozite datoteke sporočil EML (brez strukture / podmap)</td>
+          <td>Izberite in uvozite sporočilne datoteke EML (brez strukture/podmap)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -271,23 +223,23 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Uvozi vsa sporočila EML iz ene mape</td>
+          <td>Uvozite vsa sporočila EML iz ene mape</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Uvozi vsa sporočila EML iz ene mape, vključno s strukturo / podmapami</td>
+          <td>Uvozite vsa sporočila EML iz ene mape, vključno s strukturo/podmapami</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
-          <td>Kopirajte pot OS v izbrano mapo</td>
+          <td>Kopirajte pot OS do izbrane mape</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openFolderPath"></td>
-          <td>Odprite pot OS za izbrano mapo</td>
+          <td>Odprite pot OS do izbrane mape</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Odprite pogovorno okno ImportExportTools NG</td>
+          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
@@ -296,7 +248,7 @@
       </tbody>
     </table>
     <br />
-    <h2 id="message_functions_help">Kontekstni meni za sporočila</h2>
+    <h2 id="message_functions_help">Kontekstni meni sporočila</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -315,7 +267,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke formata HTML</td>
+          <td>Shranite izbrana sporočila v datoteke zapisa HTML</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
@@ -323,11 +275,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke z navadnim besedilom</td>
+          <td>Shranite izbrana sporočila v datoteke v obliki navadnega besedila</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke z navadnim besedilom, vključno s prilogami</td>
+          <td>Shranite izbrana sporočila v datoteke v obliki navadnega besedila, vključno s prilogami</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
@@ -339,11 +291,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>Izbrana sporočila dodajte obstoječi datoteki mbox</td>
+          <td>Pripni izbrana sporočila obstoječi datoteki mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke v obliki zapisa PDF</td>
+          <td>Shranite izbrana sporočila v datoteke formata PDF</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
@@ -352,49 +304,49 @@
         <tr>
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
-            Sporočila shranite kot datoteke v formatu EML.<br />
+            Shranite sporočila kot datoteke v formatu EML.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Sporočila shranite kot datoteke v obliki zapisa HTML.<br />
+            Shranite sporočila kot datoteke v formatu HTML.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
-            Sporočila shranite kot datoteke v obliki zapisa HTML, vključno s prilogami<br />
+            Shranite sporočila kot datoteke v formatu HTML, vključno s prilogami<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
-            Sporočila shranite kot datoteke v obliki navadnega besedila<br />
+            Shranite sporočila kot datoteke v obliki navadnega besedila<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
-            Sporočila shranite kot datoteke v navadnem besedilu, vključno s prilogami<br />
+            Shranite sporočila kot datoteke v obliki navadnega besedila, vključno s prilogami<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Za izbrane datoteke ustvarite indeksno datoteko HTML</td>
+          <td>Ustvarite indeksno datoteko HTML za izbrane datoteke</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Za izbrane datoteke ustvarite indeksno datoteko CSV</td>
+          <td>Ustvarite indeksno datoteko CSV za izbrane datoteke</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
-          <td>Odprite pogovorno okno ImportExportTools NG</td>
+          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
@@ -413,34 +365,34 @@
       </thead>
       <tbody>
         <tr>
-          <td>Izvozi mapo</td>
+          <td>Izvozna mapa</td>
           <td>Izvozite eno mapo v datoteko formata mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Izvozite eno mapo v stisnjeno datoteko formata mbox</td>
+          <td>Izvozite posamezno mapo v stisnjeno datoteko formata mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Izvozite mapo, ki vključuje vse njene podmape, v drevo sporočil v obliki mbox</td>
+          <td>Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Izvozite mapo, ki vključuje vse njene podmape, v drevo sporočil v obliki mbox<br />
+            Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox<br />
             (podimeniki .sbd)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Izvozite mapo, ki vključuje vse njene podmape, v nabor datotek formata mbox, po eno za vsako
-            podmapo, izvoženo v eno mapo.
+            Izvozite mapo, vključno z vsemi njenimi podmapami, v nabor datotek formata mbox, eno za vsako
+            podmapo, izvoženih v eno mapo.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Izvozite oddaljeno mapo (imap) v eno datoteko mbox.</td>
+          <td>Izvoz oddaljene mape (imap) v eno datoteko mbox.</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="exportALLMSG"></td>
@@ -449,84 +401,85 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Sporočila map izvozite kot datoteke v formatu EML (brez strukture / podmap).<br />
+            Izvozite sporočila mape kot datoteke formata EML (brez strukture/podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Sporočila iz mape izvozite kot datoteke v formatu HTML (brez strukture / podmap).<br />
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
             Priloge niso vključene. S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Sporočila iz mape izvozite kot datoteke v formatu HTML (brez strukture / podmap).<br />
-            Priloge se shranijo kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
+            Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
             vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v navadnem besedilu, priloge niso vključene.<br />
+            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot datoteke v navadnem besedilu, vključno s prilogami.<br />
+            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot eno samo datoteko v odprtem besedilu, priloge niso vključene.<br />
+            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, priloge niso
+            vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot eno samo datoteko v odprtem besedilu, vključno s prilogami.<br />
+            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite v eno samo datoteko v besedilnem formatu CSV (vrednosti, ločene z
-            vejicami), priloge pa niso vključene.<br />
+            Izvozite sporočila mape kot eno samo datoteko besedilnega formata CSV (vrednosti, ločene z
+            vejico), priloge priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Sporočila mape izvozite kot nabor datotek v obliki PDF, vključno s prilogami.<br />
+            Izvozite sporočila mape kot niz datotek v formatu PDF, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.<br />
-            Opomba: Izpis PDF v OSX ni podprt zaradi težave z gonilnikom.
+            Opomba: izpis PDF ni podprt v sistemu OSX zaradi težave z gonilnikom.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko HTML sporočila mape (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko HTML mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko CSV sporočila mape (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Odprite pogovorno okno za iskanje in izvozite želene rezultate</td>
+          <td>Odprite iskalno pogovorno okno in izvozite želene rezultate</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Uvozite datoteko ali datoteke mbox. Izberite z ali brez strukture / podmap</td>
+          <td>Uvozite datoteko ali datoteke mbox. Izberite s strukturo/podmapami ali brez</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -534,7 +487,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Izberite in uvozite datoteke sporočil EML (brez strukture / podmap)</td>
+          <td>Izberite in uvozite sporočilne datoteke EML (brez strukture/podmap)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -542,11 +495,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Uvozi vsa sporočila EML iz ene mape</td>
+          <td>Uvozite vsa sporočila EML iz ene mape</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Uvozi vsa sporočila EML iz ene mape, vključno s strukturo / podmapami</td>
+          <td>Uvozite vsa sporočila EML iz ene mape, vključno s strukturo/podmapami</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
@@ -558,11 +511,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>Uvozite celoten profil (pošta, razširitve, možnosti)</td>
+          <td>Uvoz celotnega profila (pošta, razširitve, možnosti)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Odprite pogovorno okno ImportExportTools NG</td>
+          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
@@ -573,16 +526,15 @@
     <h2 id="customdate_format_help">Oblika datuma po meri</h2>
     <p>
       Možnost datuma po meri omogoča popoln nadzor nad oblikovanjem datuma, ki se uporablja za obe datoteki v
-      indeksu. Privzeta oblika zapisa &quot;Datum&quot; in nova oblika zapisa po meri &quot;Datum (po
-      meri)&quot; sta na voljo v spustnih menijih datotek. Datum po meri lahko uporabite tudi z žetonom $
-      {date_custom}, ki se uporablja v razširjenih imenih datotek po meri. Prvotna (privzeta) oblika zapisa
-      datuma je:<br />
-      LLLLMMDDHHmm: 202011060808<br /><br />
-      Prilagojena oblika datuma uporablja% zaporedij, ki se ujemajo s <code>strftime()</code> Unix. Temelji na
+      indeksu. Tako privzeta oblika »Datum« kot tudi nova oblika po meri »Datum (po meri)« sta na voljo v
+      spustnih menijih imen datotek. Datum po meri je mogoče uporabiti tudi z žetonom ${date_custom},
+      uporabljenim v razširjenih imenih datotek po meri. Prvotni (privzeti) format datuma je:<br />
+      LLLLMMDDHHmm : 202011060808<br /><br />
+      Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s <code>strftime()</code> Unix. Temelji na
       vratih JavaScript
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , funkcije za oblikovanje datuma in ure.<br />
-      Pristanišče strftime () avtorja TH Doan (https://thdoan.github.io/strftime/)<br />
+      , funkciji za oblikovanje datuma in ure.<br />
+      Pristanišče strftime() TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Opisi zaporedja pretvorb</h3>
     <table class="dateformat-table">
@@ -607,15 +559,15 @@
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
-          <td>Polno mesečno ime.</td>
+          <td>Polno ime meseca.</td>
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Prednostna predstavitev datuma in časa (UTC) za trenutno lokacijo.</td>
+          <td>Predstavitev želenega datuma in časa (UTC) za trenutni jezik.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Številka stoletja (leto / 100) kot dvomestno celo število.</td>
+          <td>Številka stoletja (leto/100) kot 2-mestno celo število.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -632,17 +584,15 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Tedensko leto ISO 8601 s stoletjem kot decimalno številko. Štirimestno leto ustreza številki tedna
-            ISO (glej <code class="code1">%V</code> ). Ta ima enako obliko in vrednost kot
-            <code class="code1">%Y</code> , le če se številka tedna ISO nanaša na prejšnje ali naslednje leto,
-            se namesto tega uporabi to leto.
+            Tedensko leto po ISO 8601 s stoletjem kot decimalnim številom. 4-mestno leto ustreza številki
+            tedna ISO (glejte <code class="code1">%V</code> ). To ima enako obliko in vrednost kot
+            <code class="code1">%Y</code> , le da če številka tedna ISO pripada prejšnjemu ali naslednjemu
+            letu, se namesto tega uporabi to leto.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>
-            Tako kot <code class="code1">%G</code> , vendar brez stoletja, torej z dvomestnim letom (00-99).
-          </td>
+          <td>Kot <code class="code1">%G</code> , vendar brez stoletja, to je z 2-mestno letnico (00-99).</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
@@ -665,15 +615,15 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Ura kot decimalno število s pomočjo 24-urne ure (razpon od 0 do 23). Glej tudi
-            <code class="code1">%H</code>
+            Ura kot decimalno število z uporabo 24-urne ure (razpon od 0 do 23). Glej tudi
+            <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
             Ura kot decimalno število z uporabo 12-urne ure (razpon od 1 do 12). Glej tudi
-            <code class="code1">%I</code>
+            <code class="code1">%I</code> .
           </td>
         </tr>
         <tr>
@@ -682,74 +632,74 @@
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Mesec kot decimalno število (obseg od 1 do 12).</td>
+          <td>Mesec kot decimalno število (razpon od 1 do 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minuta kot decimalno število (obseg od 00 do 59).</td>
+          <td>Minuta kot decimalno število (razpon od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Ali &quot;AM&quot; ali &quot;PM&quot; glede na dano časovno vrednost. Opoldne se obravnava kot
-            &quot;PM&quot;, polnoč pa kot &quot;AM&quot;.
+            Bodisi &quot;AM&quot; ali &quot;PM&quot; glede na podano časovno vrednost. Opoldne se obravnava
+            kot &quot;PM&quot;, polnoč pa kot &quot;AM&quot;.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
           <td>
-            Tako kot <code class="code1">%p</code> vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
+            Kot <code class="code1">%p</code> , vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Število sekund od epohe, 1970-01-01 00:00:00 +0000 (UTC).</td>
+          <td>Število sekund od Epohe, 1970-01-01 00:00:00 +0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Drugič kot decimalno število (obseg od 00 do 59).</td>
+          <td>Sekunda kot decimalno število (razpon od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dan v tednu kot decimalna številka (razpon od 1 do 7), ponedeljek je 1. Glej tudi
+            Dan v tednu kot decimalno število (razpon od 1 do 7), pri čemer je ponedeljek 1. Glejte tudi
             <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Številka tedna tekočega leta ISO 8601 kot decimalna številka (razpon od 01 do 53), kjer je 1.
-            teden prvi teden, ki ima v novem letu vsaj 4 dni (torej prvi četrtek).
+            Številka tedna po ISO 8601 tekočega leta kot decimalno število (razpon od 01 do 53), kjer je 1.
+            teden prvi teden, ki ima vsaj 4 dni v novem letu (to je prvi četrtek).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Dan v tednu kot decimalna številka (razpon od 0 do 6), nedelja je 0. Glej tudi
+            Dan v tednu kot decimalno (razpon od 0 do 6), nedelja je 0. Glejte tudi
             <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Prednostna predstavitev datuma za trenutno lokacijo brez časa.</td>
+          <td>Želena predstavitev datuma za trenutni jezik brez časa.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Prednostna predstavitev časa za trenutno lokacijo brez datuma.</td>
+          <td>Prednostna predstavitev časa za trenutni jezik brez datuma.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Leto kot decimalno število brez stoletja (obseg od 00 do 99).</td>
+          <td>Leto kot decimalno število brez stoletja (razpon od 00 do 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>Leto kot decimalno število, vključno s stoletjem.</td>
+          <td>Leto kot decimalno število vključno s stoletjem.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            Številčni časovni pas <code class="code1">+hhmm</code> ali <code class="code1">-hhmm</code> (to je
+            <code class="code1">+hhmm</code> ali <code class="code1">-hhmm</code> numerični časovni pas (to je
             odmik ure in minute od UTC).
           </td>
         </tr>
@@ -761,46 +711,50 @@
     </table>
     <h3>Opombe o združljivosti:</h3>
     <ul>
-      <li><code class="code1">%c</code> - oblikovan niz je nekoliko drugačen</li>
+      <li><code class="code1">%c</code> - oblikovani niz je nekoliko drugačen</li>
       <li>
-        <code class="code1">%D</code> - ni izvedeno (uporabite <code class="code1">%m/%d/%y</code> ali
+        <code class="code1">%D</code> - ni implementirano (uporabite <code class="code1">%m/%d/%y</code> ali
         <code class="code1">%d/%m/%y</code> )
       </li>
       <li><code class="code1">%e</code> - presledek ni dodan</li>
-      <li><code class="code1">%E</code> - ni izvedeno</li>
-      <li><code class="code1">%h</code> - ni izvedeno (uporabite <code class="code1">%b</code> )</li>
+      <li><code class="code1">%E</code> - ni implementirano</li>
+      <li><code class="code1">%h</code> - ni implementirano (uporabi <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - presledek ni dodan</li>
       <li>
-        <code class="code1">%n</code> - kot <code class="code1">%m</code> , vendar ni začetne ničle (uporabite
-        <code class="code1">\n</code> za novo vrstico)
+        <code class="code1">%n</code> - kot <code class="code1">%m</code> , vendar brez začetne ničle
+        (uporabite <code class="code1">\n</code> za novo vrstico)
       </li>
-      <li><code class="code1">%O</code> - ni izvedeno</li>
-      <li><code class="code1">%r</code> - ni izvedeno (uporabite <code class="code1">%I:%M:%S %p</code> )</li>
+      <li><code class="code1">%O</code> - ni implementirano</li>
+      <li>
+        <code class="code1">%r</code> - ni implementirano (uporabi <code class="code1">%I:%M:%S %p</code> )
+      </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
-        <td>Predmet sporočila</td>
+        <td>Zadeva sporočila</td>
       </tr>
-      <li><code class="code1">%R</code> - ni izvedeno (uporabite <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> - ni izvedeno (uporabite <code class="code1">\t</code> )</li>
-      <li><code class="code1">%T</code> - ni izvedeno (uporabite <code class="code1">%H:%M:%S</code> )</li>
-      <li><code class="code1">%U</code> - ni izvedeno</li>
-      <li><code class="code1">%W</code> - ni izvedeno</li>
-      <li><code class="code1">%+</code> - ni izvedeno</li>
-      <li><code class="code1">%%</code> - ni izvedeno (uporabite <code class="code1">%</code> )</li>
+      <li><code class="code1">%R</code> - ni implementirano (uporabite <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - ni implementirano (uporabite <code class="code1">\t</code> )</li>
+      <li>
+        <code class="code1">%T</code> - ni implementirano (uporabite <code class="code1">%H:%M:%S</code> )
+      </li>
+      <li><code class="code1">%U</code> - ni implementirano</li>
+      <li><code class="code1">%W</code> - ni implementirano</li>
+      <li><code class="code1">%+</code> - ni implementirano</li>
+      <li><code class="code1">%%</code> - ni implementirano (uporabi <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
-    <h2 id="ext_filename_format_help">Format razširjenega imena datoteke:</h2>
+    <h2 id="ext_filename_format_help">Razširjena oblika imena datoteke:</h2>
     <br />
     <p>
-      Formatiranje razširjenega imena datoteke uporablja žetone. Natančno ime datoteke je mogoče izdelati z
-      uporabo žetonov, pa tudi katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki
-      so: <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na
-      voljo so tudi žetoni, značilni za lokacijo, in navedeni pod tabelo v angleščini.<br /><br />
+      Razširjeno oblikovanje imena datoteke uporablja žetone. Natančno ime datoteke je mogoče sestaviti z
+      uporabo žetonov ter katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki so:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na voljo
+      so tudi žetoni, specifični za jezik, in navedeni pod angleško tabelo.<br /><br />
       Primeri:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Privzeta oblika<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - namesto privzete
-      uporabite format datuma po meri<br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - z besedilom po
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – privzeta oblika<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – namesto privzetega
+      uporabite obliko datuma po meri<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - z nekaj besedila po
       meri<br /><br /><br />
     </p>
     <table class="token-table">
@@ -810,7 +764,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>Predmet sporočila. Dolžina je lahko omejena z možnostjo dolžine predmeta.</td>
+        <td>Zadeva sporočila. Dolžina je lahko omejena z možnostjo dolžine predmeta.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -830,7 +784,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>Prejemniki, če je sporočilo v mapi Poslano, sicer pa ime pošiljatelja</td>
+        <td>Prejemniki, če je sporočilo v mapi Poslano, sicer ime pošiljatelja</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
@@ -846,18 +800,18 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardna oblika datuma. Privzeta oblika je: LLLLMMDDHHmm</td>
+        <td>Standardni format datuma. Privzeta oblika je: LLLLMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Oblika datuma po meri. Glejte razdelek o oblikovanju datuma po meri.</td>
+        <td>Oblika datuma po meri. Oglejte si razdelek o oblikovanju datuma po meri.</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Žeton (sl-ZDA)</td>
-        <td>Lokalizirano (<span id="locale1"></span> ) Žeton</td>
+        <td>Žeton (en-US)</td>
+        <td>lokalizirano (<span id="locale1"></span> ) Žeton</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -905,19 +859,19 @@
       </tr>
     </table>
     <br />
-    <h2>Nove in eksperimentalne nastavitve (možnosti)</h2>
+    <h2>Nove in poskusne nastavitve (možnosti)</h2>
     <p>
       Obstaja več novih funkcij in možnosti, ki jih še ni mogoče konfigurirati v pogovornem oknu z možnostmi.
-      Ko se te funkcije stabilizirajo, bodo dodane v uporabniški vmesnik.<br />
-      Če jih želite uporabljati, jih morate nastaviti v urejevalniku konfig. Za dostop do urejevalnika
-      uporabite meni Orodja / Možnosti, nato izberite razdelek Napredno in na dnu bo gumb »Konfiguriraj
-      urejevalnik«. Če v iskalno vrstico vnesete &#39;importexporttoolsng&#39;, boste prejeli vse nastavitve
-      razširitve. Nato lahko po potrebi uredite različne nastavitve spodaj.
+      Ko bodo te funkcije stabilizirane, bodo dodane v uporabniški vmesnik.<br />
+      Če jih želite uporabljati, jih morate nastaviti v urejevalniku konfiguracij. Za dostop do urejevalnika
+      uporabite meni Orodja/Možnosti, nato izberite razdelek Napredno in na dnu bo gumb &#39;Urejevalnik
+      konfiguracij&#39;. Če v iskalno vrstico vnesete &#39;importexporttoolsng&#39;, boste dobili vse
+      nastavitve razširitev. Nato lahko po potrebi uredite različne spodnje nastavitve.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ta nastavitev sledi enakemu polnemu oblikovanju, ki se uporablja za indeksne datoteke. Privzeto je
-      prazen niz, če s formatiranim nizom datuma / časa to spremeni format datuma indeksa.
+      Ta nastavitev sledi istemu polnemu oblikovanju, ki se uporablja za indeksne datoteke. Privzeto je prazen
+      niz, če ima formatiran niz datuma/časa, bo to spremenilo obliko datuma indeksa.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -928,36 +882,34 @@
       </p>
     </p>
     <p>
-      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, ki jih uporablja
-      izvoženo ime datoteke. Prva je za zunanje priloge, druga pa za vdelane (vrstne) priloge.
+      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, kot jih uporablja ime
+      datoteke izvoženih sporočil. Prvi je za zunanje priloge, drugi pa za vdelane (inline) priloge.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Običajno je &#39;Datum&#39; za sporočilo v storitvi Thunderbird datum, ki ga določi poštni odjemalec
-      pošiljatelja. Če nastavite to možnost na »true«, se uporabi datum prejema v prejemnikovem poštnem
-      odjemalcu. Ta datum bo uporabljen za obe imeni datotek in datum v datotekah indeksa.
+      Običajno je &#39;Datum&#39; za sporočilo v Thunderbirdu datum, ki ga nastavi pošiljateljev poštni
+      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v prejemnikovem poštnem
+      odjemalcu. Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
     </p>
-    <h2>Osnovna, globalna bližnjična funkcija (bližnjice)</h2>
+    <h2>Osnovna, globalna funkcija hitre tipke (bližnjice).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Ta nova nastavitev omogoča uporabniku, da nastavi do 10 bližnjic na tipkovnici. Bližnjice lahko izvajajo
-      večino funkcij ImportExportTools NG in druge funkcije Thunderbird. Prednostni niz je oblikovan kot
-      objekt v obliki JSON. Format in tipke so naslednji:
+      večino funkcij ImportExportTools NG kot tudi druge funkcije Thunderbird. Prednostni niz je oblikovan kot
+      objekt v obliki JSON. Format in ključi so naslednji:
     </p>
     <p>
-      Primeri vnosov z bližnjicami (niz objektov JSON)<br /><br />
-      <code class="notranslate">id</code> - indeks ključev (1–10)<br />
-      <code class="notranslate">key</code> - tipka (en znak)<br />
-      <code class="notranslate">keycode</code> - v nadaljevanju VK_ * &#39;defind keycode<br />
-      Vključena je lahko ključ ali koda ključa, ne pa obeh<br />
-      <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam, ločen s presledkom
+      Primer vnosov vročih tipk (niz predmetov JSON)<br /><br />
+      <code class="notranslate">id</code> - indeks ključa (1-10)<br />
+      <code class="notranslate">key</code> - ključ (en znak)<br />
+      ključna koda - ključna koda &#39; <code class="notranslate">keycode</code> *&#39;<br />
+      Vključen je lahko bodisi ključ ali koda ključa, vendar ne obojega<br />
+      <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam ločen s presledki
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />
-      <code class="notranslate">contexts</code> - <code class="notranslate">contexts</code> okna, kjer je
-      ključ aktiven<br />
-      <code class="notranslate">&#39;all&#39;</code> - vsa okna v programu za sporočanje, sestavljanje,
-      iskanje<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - glavno okno sel in njegovi potomci<br />
+      <code class="notranslate">contexts</code> - kontekst okna, kjer je ključ aktiven<br />
+      <code class="notranslate">&#39;all&#39;</code> - vsa okna pod Messenger, sestavi, iskanje<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - glavno okno sporočila in njegovi potomci<br />
       <code class="notranslate">&#39;compose&#39;</code> - okno za sestavljanje sporočila<br />
       <code class="notranslate">&#39;search&#39;</code> - pogovorno okno za iskanje<br /><br />
       <code class="notranslate"
@@ -988,7 +940,8 @@
       ><br />
     </p>
     <p>
-      Ker so bližnjice nove in poskusne, bom v repozitorij dodal tudi več dokumentacije. Preverite razširitev
+      Ker so bližnjice nove in eksperimentalne, bom v skladišče dodal tudi več dokumentacije. Preverite
+      razširitev
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       ><br />

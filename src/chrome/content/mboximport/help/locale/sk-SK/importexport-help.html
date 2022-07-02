@@ -14,73 +14,24 @@
     <title>Pomocník ImportExportTools NG</title>
   </head>
   <body>
-    <h2 id="main_help">Príručka používateľa - Pomocník pre aplikáciu ImportExportTools</h2>
+    <h2 id="main_help">ImportExportTools Pomocník NG – Používateľská príručka</h2>
     <p>
-      Toto je minimalistický prvý štart používateľskej príručky. Je zrejmé, že je potrebné veľa dodať. Táto
-      aktuálna stránka sa zameriava na ponuky a nové možnosti. V ďalších verziách bude neustále
-      aktualizovaný.<br />
+      Toto je minimalistický prvý začiatok používateľskej príručky. Očividne je toho veľa čo dodať. Táto
+      aktuálna stránka sa zameriava na ponuky a nové možnosti. V ďalších verziách sa bude priebežne
+      aktualizovať.<br />
     </p>
-    <h3>Verzia 10.0.2: Vydanie údržby - 14. novembra 2020</h3>
+    <h3>Verzia 12.0.0: Podpora Thunderbird 102 – 1. júla 2022</h3>
     <p>
-      Problémy s opravou chyby:<br /><br />
-      - # 140 Kliknite pravým tlačidlom myši na nevybratý priečinok<br />
-      - # 149 opráv importu EML<br />
-      - # 154 Zálohovanie sa nespustí, ak sa použije príkaz File / Exit<br />
-      - # 157, # 159 Zlyhanie zálohovania<br />
-      - # 173 Spracovanie žiadneho vybratého priečinka<br />
-      - # 174 Pre prílohy chýbajú tokeny Sender_email a recipient_email<br />
-      - # 175 Podpora čiarky a jednoduchých úvodzoviek v názvoch súborov<br /><br />
-      Významné osobnosti:<br /><br />
-      - Pridaná možnosť Zálohovanie pri ukončení<br />
-      - Použite možnosť `Register, formát dátumu CSV` pre úplný vlastný formát (možnosti karta Rôzne)<br /><br />
-      <h3>Verzia 10.0.1: Vydanie údržby - 14. októbra 2020</h3>
-      <br />
-      Problémy s opravou chyby:<br />
-      - # 163, # 158, # 153 Opravená konverzia UTF-8 pre holý text / csv<br />
-      - # 161 Opravte formát dátumu CSV<br /><br />
-      Významné osobnosti:<br />
-      - Pridajte lepšiu detekciu chyby hlavičky, ladiaci výstup<br />
-      - Povoliť formát dátumu indexu pre CSV<br /><br />
-      Známe problémy:<br />
-      - Zálohovanie nefunguje v 78<br /><br />
-      <h3>Verzia 10.0.0: Nové funkcie - 26. septembra 2020</h3>
-    </p>
-    <p>
-      - Inovujte na kompatibilitu 78/68<br />
-      - Nové miestne nastavenia: el<br />
-      - Vlastný formát dátumu indexu<br />
-      - nové tokeny pre názvy súborov: e-mail odosielateľa / príjemcu<br />
-      - Použite `% d` v hlavičke / päte nastavenia tlače pre vlastný dátum<br /><br /><br />
-      Problémy s opravou chyby:<br />
-      - # 118, # 63 Opravená konverzia pre holý text<br />
-      - # 57 Na zatvorenie otvorených súborov (oprava priečinkov a správ) použite ForceDBClose.<br />
-      - # 77 Použiť globálne nastavenia pre PDF<br />
-      - # 130 plánovaných záloh<br />
-      - # 134 Správne zaobchádzajte s príznakmi prečítaného, preposlaného a zodpovedaného<br /><br /><br />
-      Vďaka mnohým! : Pozri problémy<br />
-    </p>
-    <br /><br />
-    <h3>Verzia 4.1.0: Nové funkcie</h3>
-    <p>
-      - Pomocník / Používateľská príručka: Plne lokalizované - Možnosť Prípona pre názvy súborov<br />
-      - Vlastná možnosť dátumu pre názvy súborov, ktorá umožňuje strftime (), ako je formátovanie celého
-      dátumu a času<br />
-      - Použite vlastné pomenovanie súborov pre prílohy aj pre vložené prílohy<br />
-      - Vlastná možnosť dátumu pre názvy indexových súborov<br />
-      - Možnosť použiť „Dátum prijatia“ pre názov súboru a index<br />
-      - Používateľsky konfigurovateľné klávesové skratky (klávesové skratky)<br />
-      - Výstup PDF teraz využíva globálne možnosti tlače<br />
-      - Vylepšené rozloženie indexových súborov HTML<br /><br /><br />
-      Problémy s opravou chyby:<br />
-      - oprava # 68 pre príznak pripojenia indexu<br />
-      - Oprava # 74 pre vložené obrázkové prílohy, ktoré neboli exportované<br />
-      - Oprava zrušenia rukoväte # 56 v dialógovom okne importu<br />
-      - # 77 používa predvoľby pre výstup PDF<br />
-      - Vylepšenia vyčistenia používateľského rozhrania (# 80, # 81, # 82) variácie OS - @ovari<br />
-      - Oprava do nemeckého prekladu # 93 - @dipgithub<br />
-      - Opravy maďarského prekladu - @ovari<br />
-      - Pridajte chýbajúci licenčný súbor # 96<br /><br />
-      Ďakujeme nasledujúcim používateľom za vylepšenia a pomoc s testami:<br /><br />
+      Riešené problémy:<br /><br />
+      <p>
+        - Podpora pre Thunderbird 102 a 91<br />
+        - Opravte podmienky pretekov v SessionRestore #284 #314<br />
+        - Oprava exportu IMAP, ktorý preskakuje prázdne priečinky #320<br />
+        - Opravte neuložené možnosti priečinka exportu #318<br />
+        - Opravte zmeny v nastaveniach tlače
+      </p>
+      <br /><br />
+      Ďakujeme nasledujúcim používateľom za návrhy na zlepšenie a pomoc pri testovaní:<br /><br />
       - <code class="notranslate">@ovari</code><br />
       - <code class="notranslate">@dipgithub</code><br />
       - <code class="notranslate">@artofit</code><br />
@@ -93,61 +44,61 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Zverejnite problémy alebo žiadosti o funkcie v úložisku rozšírení GitHub:
+      Uverejnite problémy alebo požiadavky na funkcie v úložisku GitHub rozšírení:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >Problémy s ImportExportTools NG</a
+        >Problémy s importom ExportTools NG</a
       ><br /><br />
-      V prípade problémov s chybou uveďte nasledujúce informácie, ktoré vám pomôžu problém vyriešiť:<br />
+      Pri problémoch s chybami uveďte nasledujúce informácie, ktoré vám pomôžu vyriešiť problémy:<br />
       - Verzia ImportExportTools NG<br />
-      - Verzia Thunderbirdu<br />
+      - Verzia Thunderbird<br />
       - Operačný systém a verzia<br />
-      - Debug výstup (kópia z Debug Console - prístup s Control-Shift-J)<br />
-      - Opis krokov vedúcich k problému<br />
+      - Výstup ladenia (kopírovanie z konzoly ladenia - prístup pomocou Ctrl-Shift-J)<br />
+      - Popis krokov vedúcich k problému<br />
     </p>
-    <h2 id="main_help">Prehľad a ponuky programu ImportExportTools NG</h2>
+    <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
-      ImportExportTools NG je pokračovanie založené na pôvodnej práci Paola „Kaosmosa“. Prípona ponúka viac
-      funkcií importu a exportu podporujúcich niekoľko rôznych formátov súborov vrátane: Poznámka: Niektoré
-      formáty nie sú podporované vo všetkých funkciách.<br />
+      ImportExportTools NG je nadväzujúce rozšírenie založené na pôvodnej práci Paola „Kaosmos“. Rozšírenie
+      ponúka viacero funkcií importu a exportu s podporou niekoľkých rôznych formátov súborov vrátane:
+      Poznámka: Niektoré formáty nie sú podporované vo všetkých funkciách.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
       - HTML<br />
       - obyčajný text<br />
-      - CSV (hodnoty oddelené čiarkou)<br />
+      – CSV (hodnoty oddelené čiarkou)<br />
       - PDF<br /><br />
-      Zatiaľ čo sa väčšina funkcií pre správy točí okolo správ, existuje aj podpora pre import a export
-      profilov Thunderbirdu. Export môže navyše obsahovať aj indexový súbor HTML alebo CSV. Ďalšou funkciou je
+      Zatiaľ čo väčšina funkcií pre sa točí okolo správ, existuje aj podpora pre import a export profilov
+      Thunderbird. Okrem toho môžu exporty obsahovať aj indexový súbor HTML alebo CSV. Ďalšou funkciou je
       zálohovanie profilu Thunderbird.<br />
       <p>
-        Prístup k funkcii IETng sa vykonáva prostredníctvom niekoľkých rôznych ponúk nainštalovaných
-        rozšírením. Tieto funkcie sú kontextové. Pridávajú sa ponuky pre:<br />
-        - Kontext panela priečinkov (prevádzka priečinka)<br />
+        Prístup k funkciám IETng sa vykonáva prostredníctvom niekoľkých rôznych ponúk nainštalovaných
+        rozšírením. Funkcie sú kontextové. Jedálny lístok je pridaný pre:<br />
+        - Kontext podokna (operácia so zložkami)<br />
         - Kontext zoznamu správ (vybrané správy)<br />
         - Ponuka Nástroje (operácie so zložkami a profilmi)<br /><br />
-        Existuje veľa možností, ktoré sú prístupné pod pridanou položkou v časti „Nástroje / Možnosti doplnku“
-        pre možnosti rozšírenia. Každé z ponúk má tiež položku ponuky Options (Možnosti) pre prístup do
-        dialógového okna možností.<br />
-        Tu sú zdokumentované nové možnosti, celá sada bude zdokumentovaná dodatočne.
+        Existuje veľa možností, ktoré sú dostupné pod pridanou položkou v časti &quot;Nástroje/Možnosti
+        doplnku&quot; pre možnosti rozšírenia. Každá z ponúk má tiež položku ponuky Možnosti na prístup k
+        dialógu možností.<br />
+        Nové možnosti sú zdokumentované tu, celý súbor bude následne zdokumentovaný.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">Funkcie kontextovej ponuky priečinka</h2>
+    <h2 id="main_menu_help">Funkcie kontextového menu priečinka</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Položka ponuky</th>
+          <th>Položka menu</th>
           <th>Popis funkcie</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Exportovať priečinok</td>
-          <td>Exportujte jeden priečinok do súboru formátu mbox</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportujte jeden priečinok do súboru mbox vo formáte ZIP</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte zip mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -163,8 +114,8 @@
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exportujte priečinok vrátane všetkých jeho podpriečinkov do sady súborov vo formáte mbox, jeden
-            pre každý podpriečinok a exportujte ich do jedného priečinka.
+            Exportujte priečinok vrátane všetkých jeho podpriečinkov do súboru súborov vo formáte mbox, jeden
+            pre každý podpriečinok, exportujte do jedného priečinka.
           </td>
         </tr>
         <tr>
@@ -178,78 +129,77 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte EML (bez štruktúry / podpriečinkov).<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako súbory vo formáte EML (žiadna štruktúra/podpriečinky).<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte HTML (bez štruktúry / podpriečinkov).<br />
-            Prílohy nie sú súčasťou dodávky. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
-            jednotlivých správ.
+            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
+            Prílohy nie sú zahrnuté. Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte HTML (bez štruktúry / podpriečinkov).<br />
-            Prílohy sa ukladajú ako samostatné súbory. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
-            jednotlivých správ.
+            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
+            Prílohy sa ukladajú ako samostatné súbory. Tým sa vytvorí aj indexový súbor HTML so zoznamom
+            každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte holého textu, prílohy nie sú súčasťou.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy do priečinka ako súbory vo formáte obyčajného textu, prílohy nie sú zahrnuté.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte holého textu vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako súbory vo formáte obyčajného textu vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
+            Exportujte správy do priečinka ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
             zahrnuté.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor textového formátu CSV (Comma Separated Values),
-            prílohy nie sú zahrnuté.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako jeden textový súbor CSV (hodnoty oddelené čiarkou), prílohy nie
+            sú zahrnuté.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbor súborov vo formáte PDF vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.<br />
-            Poznámka: Výstup PDF nie je v systéme OSX podporovaný z dôvodu problému s ovládačom.
+            Exportujte správy do priečinka ako súbor súborov vo formáte PDF vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.<br />
+            Poznámka: Výstup PDF nie je podporovaný v systéme OSX kvôli problému s ovládačom.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Vytvorí indexový súbor HTML správ v priečinku (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor HTML pre správy priečinka (bez exportu správ)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Vytvorí indexový súbor CSV správ priečinka (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor CSV so správami v priečinku (bez exportu správ)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -257,7 +207,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importujte súbor alebo súbory mbox. Vyberte si s alebo bez štruktúry / podpriečinkov</td>
+          <td>Importujte súbor alebo súbory mbox. Vyberte si so štruktúrou/podpriečinkami alebo bez nich</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -265,7 +215,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Vyberte a importujte súbory správ EML (bez štruktúry / podpriečinkov)</td>
+          <td>Vyberte a importujte súbory správ EML (žiadna štruktúra/podpriečinky)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -277,23 +227,23 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry / podpriečinkov</td>
+          <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry/podpriečinkov</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
-          <td>Skopírujte cestu OS k vybranému priečinku</td>
+          <td>Skopírujte cestu OS k vybratému priečinku</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openFolderPath"></td>
-          <td>Otvorte cestu OS k vybranému priečinku</td>
+          <td>Otvorte cestu OS k vybratému priečinku</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Otvorte dialógové okno možností ImportExportTools NG</td>
+          <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Otvorte hlavnú stránku pomoci</td>
+          <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
     </table>
@@ -302,7 +252,7 @@
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Položka ponuky</th>
+          <th>Položka menu</th>
           <th>Popis funkcie</th>
         </tr>
       </thead>
@@ -329,11 +279,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte holého textu vrátane príloh</td>
+          <td>Uložte vybrané správy do súborov vo formáte obyčajného textu vrátane príloh</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Uložte vybrané správy do jedného textového súboru CSV</td>
+          <td>Uložte vybraté správy do jedného textového súboru CSV</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
@@ -355,52 +305,52 @@
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
             Uložte správy ako súbory vo formáte EML.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
             Uložte správy ako súbory vo formáte HTML.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
             Uložte správy ako súbory vo formáte HTML vrátane príloh<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
             Uložte správy ako súbory vo formáte obyčajného textu<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
-            Uložte správy ako súbory vo formáte holého textu vrátane príloh<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Uložte správy ako súbory vo formáte obyčajného textu vrátane príloh<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Vytvorte indexový súbor HTML pre vybrané súbory</td>
+          <td>Vytvorte indexový súbor HTML pre vybraté súbory</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Vytvorte indexový súbor CSV pre vybrané súbory</td>
+          <td>Vytvorte indexový súbor CSV pre vybraté súbory</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
-          <td>Otvorte dialógové okno možností ImportExportTools NG</td>
+          <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
-          <td>Otvorte hlavnú stránku pomoci</td>
+          <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
     </table>
@@ -409,18 +359,18 @@
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Položka ponuky</th>
+          <th>Položka menu</th>
           <th>Popis funkcie</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Exportovať priečinok</td>
-          <td>Exportujte jeden priečinok do súboru formátu mbox</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportujte jeden priečinok do súboru mbox vo formáte ZIP</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte zip mbox</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -436,8 +386,8 @@
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exportujte priečinok vrátane všetkých jeho podpriečinkov do sady súborov vo formáte mbox, jeden
-            pre každý podpriečinok a exportujte ich do jedného priečinka.
+            Exportujte priečinok vrátane všetkých jeho podpriečinkov do súboru súborov vo formáte mbox, jeden
+            pre každý podpriečinok, exportujte do jedného priečinka.
           </td>
         </tr>
         <tr>
@@ -451,78 +401,77 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte EML (bez štruktúry / podpriečinkov).<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako súbory vo formáte EML (žiadna štruktúra/podpriečinky).<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte HTML (bez štruktúry / podpriečinkov).<br />
-            Prílohy nie sú súčasťou dodávky. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
-            jednotlivých správ.
+            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
+            Prílohy nie sú zahrnuté. Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte HTML (bez štruktúry / podpriečinkov).<br />
-            Prílohy sa ukladajú ako samostatné súbory. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
-            jednotlivých správ.
+            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
+            Prílohy sa ukladajú ako samostatné súbory. Tým sa vytvorí aj indexový súbor HTML so zoznamom
+            každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte holého textu, prílohy nie sú súčasťou.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy do priečinka ako súbory vo formáte obyčajného textu, prílohy nie sú zahrnuté.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbory vo formáte holého textu vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako súbory vo formáte obyčajného textu vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
+            Exportujte správy do priečinka ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
             zahrnuté.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako jeden súbor textového formátu CSV (Comma Separated Values),
-            prílohy nie sú zahrnuté.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.
+            Exportujte správy z priečinka ako jeden textový súbor CSV (hodnoty oddelené čiarkou), prílohy nie
+            sú zahrnuté.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportujte správy priečinkov ako súbor súborov vo formáte PDF vrátane príloh.<br />
-            Týmto sa tiež vytvorí indexový súbor HTML so zoznamom jednotlivých správ.<br />
-            Poznámka: Výstup PDF nie je v systéme OSX podporovaný z dôvodu problému s ovládačom.
+            Exportujte správy do priečinka ako súbor súborov vo formáte PDF vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.<br />
+            Poznámka: Výstup PDF nie je podporovaný v systéme OSX kvôli problému s ovládačom.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Vytvorí indexový súbor HTML správ v priečinku (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor HTML pre správy priečinka (bez exportu správ)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Vytvorí indexový súbor CSV správ priečinka (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor CSV so správami v priečinku (bez exportu správ)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -530,7 +479,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importujte súbor alebo súbory mbox. Vyberte si s alebo bez štruktúry / podpriečinkov</td>
+          <td>Importujte súbor alebo súbory mbox. Vyberte si so štruktúrou/podpriečinkami alebo bez nich</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -538,7 +487,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Vyberte a importujte súbory správ EML (bez štruktúry / podpriečinkov)</td>
+          <td>Vyberte a importujte súbory správ EML (žiadna štruktúra/podpriečinky)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -550,48 +499,48 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry / podpriečinkov</td>
+          <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry/podpriečinkov</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Uložiť všetku poštu do aktuálneho profilu</td>
+          <td>Uložiť všetku poštu v aktuálnom profile</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfile"></td>
-          <td>Uložiť celý profil (e-mail, rozšírenia, možnosti)</td>
+          <td>Uložiť celý profil (pošta, rozšírenia, možnosti)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>Importujte celý profil (e-mail, rozšírenia, možnosti)</td>
+          <td>Importovať úplný profil (e-mail, rozšírenia, možnosti)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Otvorte dialógové okno možností ImportExportTools NG</td>
+          <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Otvorte hlavnú stránku pomoci</td>
+          <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">Vlastný formát dátumu</h2>
     <p>
-      Vlastná voľba dátumu umožňuje úplnú kontrolu nad formátovaním dátumu použitým pre oba súbory v indexe.
-      Predvolený formát „Dátum“ aj nový vlastný formát „Dátum (vlastný)“ sú k dispozícii v rozbaľovacích
-      zoznamoch súborov. Vlastný dátum je možné použiť aj s tokenom $ {date_custom} použitým v rozšírených
+      Možnosť vlastného dátumu umožňuje úplnú kontrolu nad formátovaním dátumu použitého pre oba súbory v
+      indexe. Predvolený formát „Dátum“ aj nový vlastný formát „Dátum (vlastný)“ sú dostupné v rozbaľovacích
+      zoznamoch názvu súboru. Vlastný dátum možno použiť aj s tokenom ${date_custom} použitým v rozšírených
       vlastných názvoch súborov. Pôvodný (predvolený) formát dátumu je:<br />
       RRRRMMDDHHmm: 202011060808<br /><br />
-      Vlastný formát dátumu využíva% sekvencií zodpovedajúcich funkcii podobnej <code>strftime()</code> Unixu.
-      Je založený na JavaScripte portu
+      Vlastný formát dátumu využíva % sekvencie zodpovedajúce funkcii <code>strftime()</code> typu Unix. Je
+      založený na JavaScriptovom porte
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , funkcii na formátovanie dátumu a času.<br />
-      Prístav strftime () od TH Doana (https://thdoan.github.io/strftime/)<br />
+      Port of strftime() od TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
-    <h3>Popisy konverzných sekvencií</h3>
+    <h3>Popisy sekvencií konverzií</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
-          <th>Postupnosť</th>
+          <th>Sekvencia</th>
           <th>Popis</th>
         </tr>
       </thead>
@@ -602,7 +551,7 @@
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>Celé meno dňa v týždni.</td>
+          <td>Celý názov dňa v týždni.</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
@@ -610,7 +559,7 @@
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
-          <td>Celý mesiac.</td>
+          <td>Názov celého mesiaca.</td>
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
@@ -618,7 +567,7 @@
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Číslo storočia (rok / 100) ako 2-miestne celé číslo.</td>
+          <td>Číslo storočia (rok/100) ako 2-miestne celé číslo.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -630,35 +579,32 @@
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>Formát dátumu ISO 8601 (ekvivalent k <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>Formát dátumu ISO 8601 (ekvivalent <code class="code1">%Y-%m-%d</code> ).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Týždeň založený na ISO 8601 so storočím ako desatinné číslo. Štvormiestny rok zodpovedá číslu ISO
-            týždňa (pozri <code class="code1">%V</code> ). Má rovnaký formát a hodnotu ako
-            <code class="code1">%Y</code> , s tým rozdielom, že ak číslo týždňa ISO patrí predchádzajúcemu
-            alebo nasledujúcemu roku, použije sa namiesto toho tento rok.
+            Týždenný rok podľa normy ISO 8601 so storočím ako desatinným číslom. 4-ciferný rok zodpovedá číslu
+            týždňa podľa normy ISO (pozri <code class="code1">%V</code> ). Toto má rovnaký formát a hodnotu
+            ako <code class="code1">%Y</code> , s výnimkou toho, že ak číslo týždňa ISO patrí predchádzajúcemu
+            alebo nasledujúcemu roku, použije sa namiesto neho tento rok.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>
-            Rovnako ako <code class="code1">%G</code> , ale bez storočia, to znamená s dvojciferným rokom
-            (00–99).
-          </td>
+          <td>Ako <code class="code1">%G</code> , ale bez storočia, teda s 2-ciferným rokom (00-99).</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Hodina ako desatinné číslo s použitím 24-hodinového času (rozsah 00 až 23). Pozri tiež
+            Hodina ako desatinné číslo s použitím 24-hodinového formátu hodín (rozsah 00 až 23). Pozri tiež
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Hodina ako desatinné číslo s použitím 12-hodinového času (rozsah 01 až 12). Pozri tiež
+            Hodina ako desatinné číslo s použitím 12-hodinového formátu hodín (rozsah 01 až 12). Pozri tiež
             <code class="code1">%l</code> .
           </td>
         </tr>
@@ -669,15 +615,15 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Hodina ako desatinné číslo pomocou 24-hodinového času (rozsah 0 až 23). Pozri tiež
-            <code class="code1">%H</code>
+            Hodina ako desatinné číslo s použitím 24-hodinového formátu hodín (rozsah 0 až 23). Pozri tiež
+            <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hodina ako desatinné číslo pomocou 12-hodinového času (rozsah 1 až 12). Pozri tiež
-            <code class="code1">%I</code>
+            Hodina ako desatinné číslo s použitím 12-hodinového formátu hodín (rozsah 1 až 12). Pozri tiež
+            <code class="code1">%I</code> .
           </td>
         </tr>
         <tr>
@@ -695,50 +641,51 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Podľa zadanej časovej hodnoty buď „AM“, alebo „PM“. Poludnie sa považuje za „PM“ a o polnoci ako
-            „AM“.
+            Buď „AM“ alebo „PM“ podľa danej časovej hodnoty. Poludnie sa považuje za „PM“ a polnoc ako „AM“.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>Rovnako ako <code class="code1">%p</code> ale malými písmenami („am“ alebo „pm“).</td>
+          <td>
+            Ako <code class="code1">%p</code> , ale malými písmenami (&quot;am&quot; alebo &quot;pm&quot;).
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 +0000 (UTC).</td>
+          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 + 0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Druhé ako desatinné číslo (rozsah 00 až 59).</td>
+          <td>Druhé ako desiatkové číslo (rozsah 00 až 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Deň v týždni ako desatinné miesto (rozsah 1 až 7), pondelok ako 1. Pozri tiež
+            Deň v týždni ako desatinné číslo (rozsah 1 až 7), pondelok je 1. Pozri tiež
             <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Číslo týždňa ISO 8601 aktuálneho roka ako desatinné číslo (rozsah 01 až 53), kde 1. týždeň je prvý
-            týždeň, ktorý má v novom roku minimálne 4 dni (tj. Prvý štvrtok).
+            ISO 8601 číslo týždňa aktuálneho roka ako desatinné číslo (rozsah 01 až 53), kde týždeň 1 je prvý
+            týždeň, ktorý má aspoň 4 dni v novom roku (t. j. prvý štvrtok).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Deň v týždni ako desatinné miesto (rozsah 0 až 6), nedeľa je 0. Pozri tiež
+            Deň v týždni ako desatinné číslo (rozsah 0 až 6), nedeľa je 0. Pozri tiež
             <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Preferované znázornenie dátumu pre aktuálne miestne nastavenie bez času.</td>
+          <td>Preferovaná reprezentácia dátumu pre aktuálne miestne nastavenie bez času.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Preferované časové znázornenie aktuálneho miestneho nastavenia bez dátumu.</td>
+          <td>Preferovaná časová reprezentácia pre aktuálne miestne nastavenie bez dátumu.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
@@ -751,8 +698,8 @@
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            Číselné časové pásmo <code class="code1">+hhmm</code> alebo <code class="code1">-hhmm</code> (to
-            znamená posunutie hodiny a minúty od UTC).
+            Číselné časové pásmo <code class="code1">+hhmm</code> alebo <code class="code1">-hhmm</code> (t.
+            j. hodinový a minútový posun od UTC).
           </td>
         </tr>
         <tr>
@@ -763,48 +710,49 @@
     </table>
     <h3>Poznámky ku kompatibilite:</h3>
     <ul>
-      <li><code class="code1">%c</code> - formátovaný reťazec sa mierne líši</li>
+      <li><code class="code1">%c</code> – formátovaný reťazec sa mierne líši</li>
       <li>
-        <code class="code1">%D</code> - neimplementované (použite <code class="code1">%m/%d/%y</code> alebo
+        <code class="code1">%D</code> – neimplementované (použite <code class="code1">%m/%d/%y</code> alebo
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - priestor nebol pridaný</li>
-      <li><code class="code1">%E</code> - neimplementované</li>
-      <li><code class="code1">%h</code> - neimplementované (použiť <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - medzera sa nepridá</li>
+      <li><code class="code1">%e</code> - medzera sa nepridáva</li>
+      <li><code class="code1">%E</code> – neimplementované</li>
+      <li><code class="code1">%h</code> – neimplementované (použite <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - medzera sa nepridáva</li>
       <li>
-        <code class="code1">%n</code> - ako <code class="code1">%m</code> , ale bez úvodnej nuly (pre nový
-        riadok použite <code class="code1">\n</code> )
+        <code class="code1">%n</code> – ako <code class="code1">%m</code> , ale bez úvodnej nuly (použite
+        <code class="code1">\n</code> pre nový riadok)
       </li>
-      <li><code class="code1">%O</code> - nie je implementované</li>
+      <li><code class="code1">%O</code> – neimplementované</li>
       <li>
-        <code class="code1">%r</code> - neimplementované (použite <code class="code1">%I:%M:%S %p</code> )
+        <code class="code1">%r</code> – neimplementované (použite <code class="code1">%I:%M:%S %p</code> )
       </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>Predmet správy</td>
       </tr>
-      <li><code class="code1">%R</code> - neimplementované (použite <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> - neimplementované (použitie <code class="code1">\t</code> )</li>
-      <li><code class="code1">%T</code> - neimplementované (použite <code class="code1">%H:%M:%S</code> )</li>
-      <li><code class="code1">%U</code> - neimplementované</li>
-      <li><code class="code1">%W</code> - neimplementované</li>
-      <li><code class="code1">%+</code> - nie je implementované</li>
-      <li><code class="code1">%%</code> - neimplementované (použitie <code class="code1">%</code> )</li>
+      <li><code class="code1">%R</code> – neimplementované (použite <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> – neimplementované (použite <code class="code1">\t</code> )</li>
+      <li><code class="code1">%T</code> – neimplementované (použite <code class="code1">%H:%M:%S</code> )</li>
+      <li><code class="code1">%U</code> – neimplementované</li>
+      <li><code class="code1">%W</code> – neimplementované</li>
+      <li><code class="code1">%+</code> – neimplementované</li>
+      <li><code class="code1">%%</code> – neimplementované (použite <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
     <h2 id="ext_filename_format_help">Rozšírený formát názvu súboru:</h2>
     <br />
     <p>
-      Formátovanie rozšíreného názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
-      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú k dispozícii v akomkoľvek miestnom
-      prostredí. K dispozícii sú tiež miestne tokeny, ktoré sú uvedené pod anglickou tabuľkou.<br /><br />
+      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru možno vytvoriť pomocou tokenov,
+      ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú dostupné vo všetkých miestnych
+      nastaveniach. Dostupné sú aj tokeny špecifické pre miestne nastavenia a sú uvedené pod anglickou
+      tabuľkou.<br /><br />
       Príklady:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - predvolený formát<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - namiesto predvoleného
-      nastavenia použite vlastný formát dátumu<br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - s nejakým vlastným
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Predvolený formát<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – použite vlastný
+      formát dátumu namiesto predvoleného<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> – S nejakým vlastným
       textom<br /><br /><br />
     </p>
     <table class="token-table">
@@ -814,7 +762,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>Predmet správy. Dĺžka môže byť obmedzená výberom dĺžky predmetu.</td>
+        <td>Predmet správy. Dĺžka môže byť obmedzená možnosťou dĺžky predmetu.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -834,7 +782,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>Príjemcovia, ak sa správa nachádza v priečinku Odoslané, inak meno odosielateľa</td>
+        <td>Príjemcovia, ak je správa v priečinku Odoslané, inak meno odosielateľa</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
@@ -842,7 +790,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Hodnota možnosti prefixového textu.</td>
+        <td>Hodnota možnosti textu predpony.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
@@ -854,7 +802,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Vlastný formát dátumu. Pozrite si časť prispôsobeného formátovania dátumu.</td>
+        <td>Vlastný formát dátumu. Pozrite si sekciu vlastného formátovania dátumu.</td>
       </tr>
     </table>
     <br />
@@ -911,17 +859,18 @@
     <br />
     <h2>Nové a experimentálne predvoľby (možnosti)</h2>
     <p>
-      Existuje niekoľko nových funkcií a možností, ktoré zatiaľ nie je možné konfigurovať v dialógovom okne
-      možností. Po stabilizácii týchto funkcií sa pridajú do používateľského rozhrania.<br />
-      Aby ich bolo možné použiť, musia byť nastavené v editore konfigurácie. Na prístup do editora použite
-      ponuku Nástroje / Možnosti, potom vyberte sekciu Rozšírené a v dolnej časti bude tlačidlo „Konfigurovať
-      editor“. Ak do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby
-      rozšírenia. Potom môžete podľa potreby upraviť rôzne preferencie uvedené nižšie.
+      Existuje niekoľko nových funkcií a možností, ktoré ešte nie je možné konfigurovať v dialógovom okne
+      možností. Keď budú tieto funkcie stabilizované, pridajú sa do používateľského rozhrania.<br />
+      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácie. Na prístup k editoru použite
+      ponuku Nástroje/Možnosti, potom vyberte časť Rozšírené a v spodnej časti sa zobrazí tlačidlo „Editor
+      konfigurácie“. Ak do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby
+      rozšírenia. Potom môžete podľa potreby upraviť rôzne predvoľby uvedené nižšie.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Táto predvoľba sleduje rovnaké úplné formátovanie, aké sa použije pre indexové súbory. Predvolene je to
-      prázdny reťazec, ak sa použije formátovaný reťazec dátumu a času, zmení sa tým formát dátumu indexu.
+      Táto preferencia sa riadi rovnakým úplným formátovaním, aké sa používa pre indexové súbory. V
+      predvolenom nastavení je to prázdny reťazec, ak má formátovaný reťazec dátumu a času, zmení sa tým
+      formát dátumu indexu.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -932,36 +881,37 @@
       </p>
     </p>
     <p>
-      Obe tieto predvoľby používajú rovnaký typ rozšírených formátov pomenovania súborov, aký používa názov
-      súboru exportovaných správ. Prvý je pre externé prílohy, druhý pre vložené (vložené) prílohy.
+      Obe tieto predvoľby používajú rovnaký typ formátov rozšírených názvov súborov, ktoré používa názov
+      súboru exportovaných správ. Prvá je pre externé prílohy, druhá je pre vložené (inline) prílohy.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      „Dátum“ správy v Thunderbirde je zvyčajne dátum nastavený poštovým klientom odosielateľa. Nastavením
-      tejto možnosti na „true“ sa využije dátum prijatia v poštovom klientovi príjemcu. Tento dátum sa použije
+      Normálne je „Dátum“ správy v Thunderbirde dátum nastavený poštovým klientom odosielateľa. Nastavenie
+      tejto možnosti na „pravda“ využíva dátum prijatia v poštovom klientovi príjemcu. Tento dátum sa použije
       pre oba názvy súborov, ako aj pre dátum v indexových súboroch.
     </p>
-    <h2>Základná, globálna klávesová skratka (skratky)</h2>
+    <h2>Základná, globálna funkcia klávesových skratiek (skratky).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Táto nová preferencia umožňuje používateľovi nastaviť až 10 klávesových skratiek. Skratky môžu vykonávať
+      Táto nová predvoľba umožňuje používateľovi nastaviť až 10 klávesových skratiek. Skratky môžu vykonávať
       väčšinu funkcií ImportExportTools NG, ako aj ďalšie funkcie Thunderbirdu. Reťazec preferencií je
-      naformátovaný ako objekt formátovaný vo formáte JSON. Formát a kľúče sú nasledujúce:
+      naformátovaný ako objekt vo formáte JSON. Formát a kľúče sú nasledovné:
     </p>
     <p>
       Príklady klávesových skratiek (pole objektov JSON)<br /><br />
-      <code class="notranslate">id</code> - index kľúčov (1-10)<br />
+      <code class="notranslate">id</code> - kľúčový index (1-10)<br />
       <code class="notranslate">key</code> - kľúč (jeden znak)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_ *&#39; defind keycode<br />
-      Môže byť zahrnutý buď kľúč, alebo keycode, ale nie obidva<br />
-      <code class="notranslate">modifiers</code> - kľúčové modifikátory, zoznam oddelený medzerami
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definovaný kľúčový kód<br />
+      Môže byť zahrnutý buď kľúč alebo kód kľúča, ale nie oboje<br />
+      <code class="notranslate">modifiers</code> - kľúčové modifikátory, zoznam oddelený medzerou
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - priamy príkazový reťazec<br />
-      <code class="notranslate">contexts</code> - kontext okna, v ktorom je kláves aktívny<br />
-      <code class="notranslate">&#39;all&#39;</code> - všetky okná v aplikácii Messenger, písať, hľadať<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - hlavné okno posla a jeho potomkovia<br />
-      <code class="notranslate">&#39;compose&#39;</code> - okno na napísanie správy<br />
-      <code class="notranslate">&#39;search&#39;</code> - vyhľadávací dialóg<br /><br />
+      <code class="notranslate">contexts</code> - kontext okna, kde je kľúč aktívny<br />
+      <code class="notranslate">&#39;all&#39;</code> - všetky okná v programe Messenger, písanie,
+      vyhľadávanie<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - hlavné okno messenger a jeho potomkovia<br />
+      <code class="notranslate">&#39;compose&#39;</code> – okno na napísanie správy<br />
+      <code class="notranslate">&#39;search&#39;</code> – dialógové okno vyhľadávania<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
@@ -990,7 +940,7 @@
       ><br />
     </p>
     <p>
-      Keďže skratky sú nové a experimentálne, do úložiska pridám aj ďalšiu dokumentáciu. Skontrolujte
+      Keďže skratky sú nové a experimentálne, pridám do úložiska aj ďalšiu dokumentáciu. Skontrolujte
       rozšírenie
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a

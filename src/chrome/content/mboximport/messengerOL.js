@@ -13,7 +13,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/util
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 
 function onLoad() {
-	console.debug('messenger OL');
+	//console.debug('messenger OL');
 
 	// FolderPane Menu
 	WL.injectElements(`

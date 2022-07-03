@@ -1,14 +1,45 @@
 // background.js - this kicks off the WindowListener framework
 
+// Have to wrap top level asyncs in anon func to pass ATN
 
-// console.debug('background Start');
+await ((async () => {
+	var tbVersionParts = await getThunderbirdVersion();
+
+	// must delay startup for #284 using SessionRestore for 91, bypass for 102
+	// does this by default 
+	var startupDelay;
+	if (tbVersionParts.major < 92) {
+		startupDelay = await new Promise(async (resolve) => {
+			const restoreListener = (window, state = true) => {
+				browser.SessionRestore.onStartupSessionRestore.removeListener(restoreListener);
+				resolve(state);
+			}
+			browser.SessionRestore.onStartupSessionRestore.addListener(restoreListener);
+
+			let isRestored = await browser.SessionRestore.isRestored();
+			if (isRestored) {
+				restoreListener(null, false);
+			}
+		});
+	}
+
+})());
+
+// now start
+main();
 
 
-browser.SessionRestore.onStartupSessionRestore.addListener(main);
+async function getThunderbirdVersion() {
+	let browserInfo = await messenger.runtime.getBrowserInfo();
+	let parts = browserInfo.version.split(".");
+	return {
+		major: parseInt(parts[0]),
+		minor: parseInt(parts[1]),
+		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+	}
+}
 
 function main() {
-	browser.SessionRestore.onStartupSessionRestore.removeListener(main);
-
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	// Register all necessary content, Resources, and locales

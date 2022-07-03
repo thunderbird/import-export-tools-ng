@@ -14,73 +14,23 @@
     <title>ImportExportTools NG Hjälp</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Hjälp-Användarhandbok</h2>
+    <h2 id="main_help">ImportExportTools NG Hjälp-användarguide</h2>
     <p>
-      Detta är en minimalistisk första start av en användarhandbok. Det finns uppenbarligen mycket att lägga
-      till. Denna aktuella sida fokuserar på menyerna och de nya alternativen. Den kommer kontinuerligt att
-      uppdateras i efterföljande versioner.<br />
+      Detta är en minimalistisk första början på en användarhandbok. Det finns uppenbarligen mycket att
+      tillägga. Den här aktuella sidan fokuserar på menyerna och nya alternativ. Den kommer att uppdateras
+      kontinuerligt i efterföljande versioner.<br />
     </p>
-    <h3>Version 10.0.2: Underhållsversion - 14 november 2020</h3>
+    <h3>Version 12.0.0: Support för Thunderbird 102 – 1 juli 2022</h3>
     <p>
-      Buggproblem fixade:<br /><br />
-      - # 140 Hantera högerklicka på omarkerad mapp<br />
-      - # 149 EML-fixkorrigeringar<br />
-      - # 154 Backup körs inte om File / Exit används<br />
-      - # 157, # 159 Säkerhetskopior misslyckades<br />
-      - # 173 Hantera ingen vald mapp<br />
-      - # 174 Sender_email &amp; recipient_email tokens saknas för bilagor<br />
-      - # 175 Stödkomma och enstaka offert i filnamn<br /><br />
-      Anmärkningar:<br /><br />
-      - Lagt till Backup vid exit-alternativet<br />
-      - Använd alternativet &#39;Index, CSV Date Format&#39; för fullständigt anpassat format (alternativ
-      Misc-fliken)<br /><br />
-      <h3>Version 10.0.1: Underhållsversion - 14 oktober 2020</h3>
-      <br />
-      Buggproblem fixade:<br />
-      - # 163, # 158, # 153 Fast UTF-8-konvertering för klartext / csv<br />
-      - # 161 Fixa CSV-datumformat<br /><br />
-      Anmärkningar:<br />
-      - Lägg till bättre upptäckt av rubrikfel, felsökningsoutput<br />
-      - Tillåt indexdatumformat för CSV<br /><br />
-      Kända problem:<br />
-      - Säkerhetskopiering fungerar inte 78<br /><br />
-      <h3>Version 10.0.0: Nya funktioner - 26 september 2020</h3>
-    </p>
-    <p>
-      - Uppgradera för 78/68 kompatibilitet<br />
-      - Nya platser: el<br />
-      - Indexera anpassat datumformat<br />
-      - nya tokens för filnamn: avsändarens / mottagarens e-post<br />
-      - Använd &#39;% d&#39; i sidhuvud / sidfot för utskriftsinställningar för anpassat datum<br /><br /><br />
-      Buggproblem fixade:<br />
-      - # 118, # 63 Fast konvertering för klartext<br />
-      - # 57 Använd ForceDBClose för att stänga öppna filer (fixar mappar och meddelanden)<br />
-      - # 77 Använd globala inställningar för PDF<br />
-      - # 130 schemalagda säkerhetskopior<br />
-      - # 134 Korrekt hantera läst, vidarebefordrade, svarade flaggor<br /><br /><br />
-      Tack till många! : Se utgåvor<br />
-    </p>
-    <br /><br />
-    <h3>Version 4.1.0: Nya funktioner</h3>
-    <p>
-      - Hjälp / användarhandbok: Helt lokaliserat - Suffix-alternativ för filnamn<br />
-      - Anpassat datumalternativ för filnamn som tillåter strftime () som fullständig formatering av datum och
-      tid<br />
-      - Använd anpassad filnamn för både bilagor och inbäddade bilagor<br />
-      - Anpassat datumalternativ för indexfilnamn<br />
-      - Alternativ att använda &#39;Mottaget datum&#39; för filnamn och index<br />
-      - Användarkonfigurerbara snabbtangenter (kortkommandon)<br />
-      - PDF-utdata använder nu de globala utskriftsalternativen<br />
-      - Förbättrad HTML-indexfillayout<br /><br /><br />
-      Buggproblem fixade:<br />
-      - # 68 fix för indexbilagflagga<br />
-      - # 74 fix för bildbifogade filer som inte exporteras<br />
-      - Fix # 56 handtag avbryt i importdialog<br />
-      - # 77 använder inställningar för PDF-utdata<br />
-      - UI-sanering tweaks (# 80, # 81, # 82) OS-variationer - @ovari<br />
-      - Tysk översättningskod # 93 - @dipgithub<br />
-      - Ungerska översättningsfixar - @ovari<br />
-      - Lägg till saknad licensfil nr 96<br /><br />
+      Problem som åtgärdas:<br /><br />
+      <p>
+        - Stöd för Thunderbird 102 och 91<br />
+        - Fixa tävlingsvillkoret i SessionRestore #284 #314<br />
+        - Fixa IMAP-export som hoppar över tomma mappar #320<br />
+        - Fixa exportmappalternativ som inte sparats #318<br />
+        - Fixa ändringar i utskriftsinställningar
+      </p>
+      <br /><br />
       Tack till följande användare för förbättringsförslag och testhjälp:<br /><br />
       - <code class="notranslate">@ovari</code><br />
       - <code class="notranslate">@dipgithub</code><br />
@@ -94,21 +44,21 @@
     </p>
     <h3>Stöd:</h3>
     <p>
-      Vänligen posta problem eller funktionsförfrågningar i GitHub-förvaret:
+      Vänligen posta problem eller funktionsförfrågningar i tilläggsförrådet GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      I felproblem ska du inkludera följande information för att lösa problemen:<br />
-      - ImportExportTools NG-version<br />
+      I buggproblem, inkludera följande information för att hjälpa till att lösa problemen:<br />
+      - ImportExportTools NG version<br />
       - Thunderbird-version<br />
       - Operativsystem och version<br />
-      - Felsökningsutdata (kopia från felsökningskonsolen - åtkomst med Control-Shift-J)<br />
+      - Felsökningsutgång (kopiera från felsökningskonsolen - åtkomst med Control-Shift-J)<br />
       - En beskrivning av stegen som leder till problemet<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
-      ImportExportTools NG är en efterföljande förlängning baserad på Paolo &quot;Kaosmos&quot; originalverk.
-      Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat inklusive: Obs!
+      ImportExportTools NG är en uppföljningstillägg baserat på originalverket av Paolo &quot;Kaosmos&quot;.
+      Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat inklusive: Obs:
       Vissa format stöds inte i alla funktioner.<br />
       - mbox<br />
       - EML<br />
@@ -117,55 +67,55 @@
       - oformatterad text<br />
       - CSV (kommaseparerade värden)<br />
       - PDF<br /><br />
-      Medan det mesta av funktionaliteten för kretsar kring meddelanden finns det också stöd för import och
-      export av Thunderbird-profiler. Dessutom kan export också innehålla en HTML- eller CSV-indexfil.
+      Även om det mesta av funktionaliteten för kretsar kring meddelanden, finns det också stöd för import och
+      export av Thunderbird-profiler. Exporter kan dessutom innehålla en HTML- eller CSV-indexfil.
       Säkerhetskopiering av Thunderbird-profilen är en annan funktion.<br />
       <p>
-        Åtkomst till IETng-funktionalitet görs via flera olika menyer installerade av tillägget. Funktionerna
-        är kontextkänsliga. Menyer läggs till för:<br />
-        - Mapprutans sammanhang (mappåtgärd)<br />
-        - Meddelandelistan (utvalda meddelanden)<br />
-        - Verktyg-menyn (mapp- och profilåtgärder)<br /><br />
-        Det finns många alternativ som är tillgängliga under tilläggsposten under &quot;Verktyg /
-        Tilläggsalternativ&quot; för tilläggsalternativen. Var och en av menyerna har också ett
-        alternativmenyalternativ för att öppna alternativdialogen.<br />
-        De nya alternativen dokumenteras här, hela uppsättningen kommer att dokumenteras därefter.
+        Tillgång till IETng-funktioner görs genom flera olika menyer som installeras av tillägget.
+        Funktionerna är kontextkänsliga. Menyer läggs till för:<br />
+        - Mapprutans sammanhang (mappoperation)<br />
+        - Meddelandelistans sammanhang (utvalda meddelanden)<br />
+        - Verktygsmenyn (mapp- och profiloperationer)<br /><br />
+        Det finns många alternativ som är tillgängliga under den tillagda posten under
+        &quot;Verktyg/tilläggsalternativ&quot; för tilläggsalternativen. Var och en av menyerna har också ett
+        alternativ menyalternativ för att komma åt alternativdialogrutan.<br />
+        De nya alternativen dokumenteras här, hela setet kommer att dokumenteras i efterhand.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">Mappens sammanhangsmenyfunktioner</h2>
+    <h2 id="main_menu_help">Mappkontextmenyfunktioner</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Menyalternativ</th>
+          <th>Menyobjekt</th>
           <th>Funktionsbeskrivning</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Exportera mapp</td>
-          <td>Exportera en enda mapp till en mbox-formatfil</td>
+          <td>Exportera en enskild mapp till en fil i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportera en enskild mapp till en zip-fil med mbox-format</td>
+          <td>Exportera en enskild mapp till en zippad fil i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Exportera en mapp med alla dess undermappar till ett meddelande-träd i mbox-format</td>
+          <td>Exportera en mapp inklusive alla dess undermappar till ett meddelandeträd i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportera en mapp med alla dess undermappar till ett meddelande-träd i mbox-format<br />
-            (.sbd-underkataloger)
+            Exportera en mapp inklusive alla dess undermappar till ett meddelandeträd i mbox-format<br />
+            (.sbd underkataloger)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exportera en mapp med alla dess undermappar till en uppsättning filer i mbox-format, en för varje
-            undermapp, exporterad till en enda mapp.
+            Exportera en mapp inklusive alla dess undermappar till en uppsättning mbox-formatfiler, en för
+            varje undermapp, exporterad till en enda mapp.
           </td>
         </tr>
         <tr>
@@ -179,21 +129,21 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i EML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som filer i EML-format (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i HTML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor ingår inte. Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i HTML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor sparas som separata filer. Detta skapar också en HTML-indexfil som listar varje
             meddelande.
           </td>
@@ -201,54 +151,54 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i klartextformat, bilagor ingår inte.<br />
+            Exportera mappmeddelanden som filer i klartextformat, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i klartextformat, inklusive bilagor.<br />
+            Exportera mappmeddelanden som filer i klartextformat, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enda fil i klartextformat, bilagor ingår inte.<br />
+            Exportera mappmeddelanden som en enda fil i klartextformat, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enkel fil i klartextformat, inklusive bilagor.<br />
+            Exportera mappmeddelanden som en enda fil i klartextformat, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enda CSV (Comma Separated Values) textformatfil, bifogade
-            bilagor ingår inte.<br />
+            Exportera mappmeddelanden som en enda CSV-fil (Comma Separated Values) textformat, bifogade filer
+            ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en uppsättning filer i PDF-format, inklusive bilagor.<br />
+            Exportera mappmeddelanden som en uppsättning PDF-filer, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.<br />
-            Obs! PDF-utdata stöds inte på OSX på grund av ett drivrutinsproblem.
+            Obs: PDF-utdata stöds inte på OSX på grund av ett drivrutinsproblem.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Skapar en HTML-indexfil av mappmeddelandena (ingen export av meddelanden)</td>
+          <td>Skapar en HTML-indexfil för mappmeddelanden (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Skapar en CSV-indexfil av mappmeddelandena (ingen export av meddelanden)</td>
+          <td>Skapar en CSV-indexfil för mappmeddelanden (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -256,15 +206,15 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importera en eller flera mbox-filer. Välj med eller utan struktur / undermappar</td>
+          <td>Importera en eller flera mbox-filer. Välj med eller utan struktur/undermappar</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Välj och importera e-postmeddelandefiler</td>
+          <td>Välj och importera maildir-meddelandefiler</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Välj och importera EML-meddelandefiler (ingen struktur / undermappar)</td>
+          <td>Välj och importera EML-meddelandefiler (ingen struktur/undermappar)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -276,11 +226,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importera alla EML-meddelanden från en enda mapp inklusive struktur / undermappar</td>
+          <td>Importera alla EML-meddelanden från en enda mapp inklusive struktur/undermappar</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
-          <td>Kopiera OS-sökvägen till den valda mappen</td>
+          <td>Kopiera OS-sökvägen för den valda mappen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openFolderPath"></td>
@@ -288,20 +238,20 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Öppna alternativdialogrutan ImportExportTools NG</td>
+          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Öppna huvudsidan för hjälpen</td>
+          <td>Öppna huvudhjälpsidan</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="message_functions_help">Meddelandets snabbmeny</h2>
+    <h2 id="message_functions_help">Meddelande snabbmeny</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Menyalternativ</th>
+          <th>Menyobjekt</th>
           <th>Funktionsbeskrivning</th>
         </tr>
       </thead>
@@ -316,35 +266,35 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Spara de valda meddelandena i filer i HTML-format</td>
+          <td>Spara de markerade meddelandena i HTML-formatfiler</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Spara de valda meddelandena i filer i HTML-format inklusive bilagor</td>
+          <td>Spara de valda meddelandena i HTML-formatfiler inklusive bilagor</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Spara de markerade meddelandena i filer i klartextformat</td>
+          <td>Spara de markerade meddelandena till filer i klartextformat</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Spara de valda meddelandena i filer i klartextformat inklusive bilagor</td>
+          <td>Spara de valda meddelandena till filer i klartextformat inklusive bilagor</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Spara de markerade meddelandena i en enda CSV-textfil</td>
+          <td>Spara de valda meddelandena i en enda CSV-textfil</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Spara de valda meddelandena i en enda mbox-fil</td>
+          <td>Spara de markerade meddelandena till en enda mbox-fil</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>Lägg till de valda meddelandena i en befintlig mbox-fil</td>
+          <td>Lägg till de markerade meddelandena till en befintlig mbox-fil</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Spara de valda meddelandena i filer i PDF-format</td>
+          <td>Spara de markerade meddelandena i PDF-formatfiler</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
@@ -360,14 +310,14 @@
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Spara meddelandena som filer i HTML-format.<br />
+            Spara meddelandena som HTML-formatfiler.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
-            Spara meddelandena som filer i HTML-format inklusive bilagor<br />
+            Spara meddelandena som HTML-formatfiler inklusive bilagor<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -395,48 +345,48 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
-          <td>Öppna alternativdialogrutan ImportExportTools NG</td>
+          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
-          <td>Öppna huvudsidan för hjälpen</td>
+          <td>Öppna huvudhjälpsidan</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="tools_functions_help">Verktyg-menyn</h2>
+    <h2 id="tools_functions_help">Verktygsmeny</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Menyalternativ</th>
+          <th>Menyobjekt</th>
           <th>Funktionsbeskrivning</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Exportera mapp</td>
-          <td>Exportera en enda mapp till en mbox-formatfil</td>
+          <td>Exportera en enskild mapp till en fil i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportera en enskild mapp till en zip-fil med mbox-format</td>
+          <td>Exportera en enskild mapp till en zippad fil i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Exportera en mapp med alla dess undermappar till ett meddelande-träd i mbox-format</td>
+          <td>Exportera en mapp inklusive alla dess undermappar till ett meddelandeträd i mbox-format</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
-            Exportera en mapp med alla dess undermappar till ett meddelande-träd i mbox-format<br />
-            (.sbd-underkataloger)
+            Exportera en mapp inklusive alla dess undermappar till ett meddelandeträd i mbox-format<br />
+            (.sbd underkataloger)
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
-            Exportera en mapp med alla dess undermappar till en uppsättning filer i mbox-format, en för varje
-            undermapp, exporterad till en enda mapp.
+            Exportera en mapp inklusive alla dess undermappar till en uppsättning mbox-formatfiler, en för
+            varje undermapp, exporterad till en enda mapp.
           </td>
         </tr>
         <tr>
@@ -450,21 +400,21 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i EML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som filer i EML-format (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i HTML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor ingår inte. Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i HTML-format (ingen struktur / undermappar).<br />
+            Exportera mappmeddelanden som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor sparas som separata filer. Detta skapar också en HTML-indexfil som listar varje
             meddelande.
           </td>
@@ -472,54 +422,54 @@
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i klartextformat, bilagor ingår inte.<br />
+            Exportera mappmeddelanden som filer i klartextformat, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som filer i klartextformat, inklusive bilagor.<br />
+            Exportera mappmeddelanden som filer i klartextformat, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enda fil i klartextformat, bilagor ingår inte.<br />
+            Exportera mappmeddelanden som en enda fil i klartextformat, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enkel fil i klartextformat, inklusive bilagor.<br />
+            Exportera mappmeddelanden som en enda fil i klartextformat, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en enda CSV (Comma Separated Values) textformatfil, bifogade
-            bilagor ingår inte.<br />
+            Exportera mappmeddelanden som en enda CSV-fil (Comma Separated Values) textformat, bifogade filer
+            ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exportera mappmeddelandena som en uppsättning filer i PDF-format, inklusive bilagor.<br />
+            Exportera mappmeddelanden som en uppsättning PDF-filer, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.<br />
-            Obs! PDF-utdata stöds inte på OSX på grund av ett drivrutinsproblem.
+            Obs: PDF-utdata stöds inte på OSX på grund av ett drivrutinsproblem.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Skapar en HTML-indexfil av mappmeddelandena (ingen export av meddelanden)</td>
+          <td>Skapar en HTML-indexfil för mappmeddelanden (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Skapar en CSV-indexfil av mappmeddelandena (ingen export av meddelanden)</td>
+          <td>Skapar en CSV-indexfil för mappmeddelanden (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -527,7 +477,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importera en eller flera mbox-filer. Välj med eller utan struktur / undermappar</td>
+          <td>Importera en eller flera mbox-filer. Välj med eller utan struktur/undermappar</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -535,7 +485,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Välj och importera EML-meddelandefiler (ingen struktur / undermappar)</td>
+          <td>Välj och importera EML-meddelandefiler (ingen struktur/undermappar)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -547,7 +497,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importera alla EML-meddelanden från en enda mapp inklusive struktur / undermappar</td>
+          <td>Importera alla EML-meddelanden från en enda mapp inklusive struktur/undermappar</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
@@ -559,33 +509,33 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>Importera en fullständig profil (e-post, tillägg, alternativ)</td>
+          <td>Importera en komplett profil (e-post, tillägg, alternativ)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
-          <td>Öppna alternativdialogrutan ImportExportTools NG</td>
+          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Öppna huvudsidan för hjälpen</td>
+          <td>Öppna huvudhjälpsidan</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">Anpassat datumformat</h2>
     <p>
-      Det anpassade datumalternativet möjliggör fullständig kontroll över den datumformatering som används för
-      båda filerna i indexet. Både standardformatet &quot;Date&quot; och det nya anpassade formatet &quot;Date
-      (custom)&quot; är tillgängliga i filnamnens nedrullningar. Det anpassade datumet kan också användas med
-      $ {date_custom} -token som används i de utökade anpassade filnamnen. Det ursprungliga (standard)
-      datumformatet är:<br />
-      ÅÅÅÅMMDDHHmm: 202011060808<br /><br />
-      Det anpassade datumformatet använder% sekvenser som matchar <code>strftime()</code> Unix-liknande
-      funktionalitet. Den är baserad på en JavaScript-port för
+      Alternativet anpassat datum tillåter fullständig kontroll över datumformateringen som används för båda
+      filerna i indexet. Både standardformatet &quot;Datum&quot; och det nya anpassade formatet &quot;Datum
+      (anpassat)&quot; är tillgängliga i rullgardinsmenyn för filnamn. Det anpassade datumet kan också
+      användas med token ${date_custom} som används i de utökade anpassade filnamnen. Det ursprungliga
+      (standard) datumformatet är:<br />
+      ÅÅÅÅMMDDHHmm : 202011060808<br /><br />
+      Det anpassade datumformatet använder %-sekvenser som matchar den <code>strftime()</code> Unix-liknande
+      funktionen. Den är baserad på JavaScript-porten
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , en funktion för att formatera datum och tid.<br />
-      Port of strftime () av TH Doan (https://thdoan.github.io/strftime/)<br />
+      Port of strftime() av TH Doan (https://thdoan.github.io/strftime/)<br />
     </p>
-    <h3>Beskrivningar av omvandlingssekvenser</h3>
+    <h3>Konverteringssekvensbeskrivningar</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
@@ -596,11 +546,11 @@
       <tbody>
         <tr>
           <td><code class="code1">%a</code></td>
-          <td>Förkortat namn på veckodagen.</td>
+          <td>Veckodagens förkortade namn.</td>
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>Veckans fullständiga namn.</td>
+          <td>Veckodagens fullständiga namn.</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
@@ -612,51 +562,50 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Prioritering av datum och tid (UTC) för den aktuella platsen.</td>
+          <td>Representation av föredraget datum och tid (UTC) för den aktuella lokalen.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Århundradnummer (år / 100) som ett tvåsiffrigt heltal.</td>
+          <td>Århundradetal (år/100) som ett tvåsiffrigt heltal.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>Månadens dag som ett decimaltal (intervall 01 till 31).</td>
+          <td>Dag i månaden som ett decimaltal (intervall 01 till 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Månadens dag som ett decimaltal (intervall 1 till 31).</td>
+          <td>Dag i månaden som ett decimaltal (intervall 1 till 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>ISO 8601-datumformat (motsvarar <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>ISO 8601 datumformat (motsvarande <code class="code1">%Y-%m-%d</code> ).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 veckobaserat år med århundrade som decimaltal. Det fyrsiffriga året motsvarar
-            ISO-veckonumret (se <code class="code1">%V</code> ). Detta har samma format och värde som
-            <code class="code1">%Y</code> , förutom att om ISO-veckonumret tillhör föregående eller nästa år,
-            används det året istället.
+            ISO 8601 veckobaserat årtal med sekel som decimaltal. Det 4-siffriga året motsvarar ISO-veckans
+            nummer (se <code class="code1">%V</code> ). Detta har samma format och värde som
+            <code class="code1">%Y</code> , förutom att om ISO-veckans nummer tillhör föregående eller nästa
+            år, används det året istället.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            Som <code class="code1">%G</code> , men utan århundrade, det vill säga med ett tvåsiffrigt år
-            (00-99).
+            Som <code class="code1">%G</code> , men utan sekel, alltså med ett 2-siffrigt årtal (00-99).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Timme som ett decimaltal med en 24-timmarsur (intervall 00 till 23). Se även
+            Timme som ett decimaltal med en 24-timmarsklocka (intervall 00 till 23). Se även
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Timme som ett decimaltal med en 12-timmarsur (intervall 01 till 12). Se även
+            Timme som ett decimaltal med en 12-timmarsklocka (intervall 01 till 12). Se även
             <code class="code1">%l</code> .
           </td>
         </tr>
@@ -667,39 +616,39 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Timme som ett decimaltal med en 24-timmarsur (intervall 0 till 23). Se även
-            <code class="code1">%H</code>
+            Timme som ett decimaltal med en 24-timmarsklocka (intervall 0 till 23). Se även
+            <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Timme som ett decimaltal med en 12-timmars klocka (intervall 1 till 12). Se även
-            <code class="code1">%I</code>
+            Timme som ett decimaltal med en 12-timmarsklocka (intervall 1 till 12). Se även
+            <code class="code1">%I</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>Månad som decimaltal (intervall 01 till 12).</td>
+          <td>Månad som ett decimaltal (intervall 01 till 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Månad som decimaltal (intervall 1 till 12).</td>
+          <td>Månad som ett decimaltal (intervall 1 till 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minut som decimaltal (intervall 00 till 59).</td>
+          <td>Minute som ett decimaltal (intervall 00 till 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Antingen &quot;AM&quot; eller &quot;PM&quot; enligt det angivna tidsvärdet. Middag behandlas som
+            Antingen &quot;AM&quot; eller &quot;PM&quot; enligt det givna tidsvärdet. Middag behandlas som
             &quot;PM&quot; och midnatt som &quot;AM&quot;.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>Gilla <code class="code1">%p</code> men i gemener (&quot;am&quot; eller &quot;pm&quot;).</td>
+          <td>Som <code class="code1">%p</code> men med gemener (&quot;am&quot; eller &quot;pm&quot;).</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
@@ -707,7 +656,7 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>För det andra som ett decimaltal (intervall 00 till 59).</td>
+          <td>Andra som ett decimaltal (intervall 00 till 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
@@ -719,7 +668,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             ISO 8601 veckonummer för innevarande år som ett decimaltal (intervall 01 till 53), där vecka 1 är
-            den första veckan som har minst 4 dagar det nya året (det vill säga den första torsdagen).
+            den första veckan som har minst 4 dagar på det nya året (det vill säga den första torsdagen).
           </td>
         </tr>
         <tr>
@@ -730,11 +679,11 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Föredragen datumrepresentation för den aktuella platsen utan tid.</td>
+          <td>Önskad datumrepresentation för den aktuella lokalen utan tiden.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Föredragen tidsrepresentation för den aktuella platsen utan datum.</td>
+          <td>Önskad tidsrepresentation för den aktuella lokalen utan datum.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
@@ -742,14 +691,13 @@
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>År som decimaltal inklusive århundradet.</td>
+          <td>År som ett decimaltal inklusive århundradet.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
             Den numeriska tidszonen <code class="code1">+hhmm</code> eller
-            <code class="code1">-hhmm</code> (det vill säga <code class="code1">+hhmm</code>
-            <code class="code1">-hhmm</code> från UTC).
+            <code class="code1">-hhmm</code> (det vill säga tim- och minutförskjutningen från UTC).
           </td>
         </tr>
         <tr>
@@ -758,50 +706,50 @@
         </tr>
       </tbody>
     </table>
-    <h3>Kompatibilitetsanmärkningar:</h3>
+    <h3>Anmärkningar om kompatibilitet:</h3>
     <ul>
       <li><code class="code1">%c</code> - formaterad sträng är något annorlunda</li>
       <li>
-        <code class="code1">%D</code> - inte implementerat (använd <code class="code1">%m/%d/%y</code> eller
+        <code class="code1">%D</code> - inte implementerad (använd <code class="code1">%m/%d/%y</code> eller
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - utrymme har inte lagts till</li>
-      <li><code class="code1">%E</code> - inte implementerat</li>
-      <li><code class="code1">%h</code> - inte implementerat (använd <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - mellanslag läggs inte till</li>
+      <li><code class="code1">%e</code> - mellanslag har inte lagts till</li>
+      <li><code class="code1">%E</code> - inte implementerad</li>
+      <li><code class="code1">%h</code> - inte implementerad (använd <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - blanksteg har inte lagts till</li>
       <li>
-        <code class="code1">%n</code> - som <code class="code1">%m</code> , men ingen ledande noll (använd
-        <code class="code1">\n</code> för newline)
+        <code class="code1">%n</code> - som <code class="code1">%m</code> , men ingen inledande nolla (använd
+        <code class="code1">\n</code> för nyrad)
       </li>
-      <li><code class="code1">%O</code> - inte implementerat</li>
+      <li><code class="code1">%O</code> - ej implementerad</li>
       <li>
-        <code class="code1">%r</code> - inte implementerat (använd <code class="code1">%I:%M:%S %p</code> )
+        <code class="code1">%r</code> - inte implementerad (använd <code class="code1">%I:%M:%S %p</code> )
       </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>Ämnet för meddelandet</td>
       </tr>
-      <li><code class="code1">%R</code> - inte implementerat (använd <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> - inte implementerat (använd <code class="code1">\t</code> )</li>
+      <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code> )</li>
       <li>
-        <code class="code1">%T</code> - inte implementerat (använd <code class="code1">%H:%M:%S</code> )
+        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> - inte implementerat</li>
       <li><code class="code1">%W</code> - inte implementerat</li>
       <li><code class="code1">%+</code> - inte implementerat</li>
-      <li><code class="code1">%%</code> - inte implementerat (använd <code class="code1">%</code> )</li>
+      <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
-    <h2 id="ext_filename_format_help">Utökat filnamnformat:</h2>
+    <h2 id="ext_filename_format_help">Utökat filnamnsformat:</h2>
     <br />
     <p>
-      Den utökade filnamnformateringen använder tokens. Det exakta filnamnet kan konstrueras med hjälp av
-      tokens såväl som valfri text eller giltiga filnamnstecken. Ogiltiga tecken är:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelska (en-US) tokens finns i alla språk. Lokalspecifika
-      tokens finns också och listas nedanför den engelska tabellen.<br /><br />
+      Den utökade filnamnsformateringen använder tokens. Det exakta filnamnet kan konstrueras med hjälp av
+      tokens såväl som vilken text eller giltiga filnamnstecken som helst. Ogiltiga tecken är:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelska (en-US) tokens är tillgängliga i alla språk.
+      Lokalspecifika tokens är också tillgängliga och listas under den engelska tabellen.<br /><br />
       Exempel:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Använd det anpassade
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Använd det anpassade
       datumformatet istället för standard<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Med lite anpassad
       text<br /><br /><br />
@@ -817,43 +765,43 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td>Namnet på meddelandesändaren.</td>
+        <td>Namnet på meddelandeavsändaren.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td>Namnet på mottagarens meddelande.</td>
+        <td>Namnet på meddelandemottagaren.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td>Meddelande avsändarens e-postadress.</td>
+        <td>E-postadressen till meddelandeavsändaren.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td>Meddelandemottagarens e-postadress.</td>
+        <td>E-postadressen till meddelandemottagaren.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>Mottagarna om meddelandet finns i en Skickad mapp, annars avsändarens namn</td>
+        <td>Mottagarna om meddelandet finns i en Skickat-mapp, annars avsändarens namn</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td>Meddelandeindexnummer.</td>
+        <td>Meddelandets indexnummer.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Prefixets textalternativvärde.</td>
+        <td>Prefixet textalternativ värde.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Valet för suffixstextalternativet.</td>
+        <td>Alternativvärdet för suffixtexten.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standarddatumformatet. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
+        <td>Standard datumformat. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Det anpassade datumformatet. Se avsnittet för anpassad datumformatering.</td>
+        <td>Det anpassade datumformatet. Se avsnittet om anpassad datumformatering.</td>
       </tr>
     </table>
     <br />
@@ -908,20 +856,20 @@
       </tr>
     </table>
     <br />
-    <h2>Nya och experimentella preferenser (alternativ)</h2>
+    <h2>Nya och experimentella inställningar (alternativ)</h2>
     <p>
-      Det finns flera nya funktioner och alternativ som ännu inte kan konfigureras i alternativdialogen. När
-      dessa funktioner har stabiliserats kommer de att läggas till i användargränssnittet.<br />
-      För att kunna använda dem måste de ställas in i Config Editor. För att komma åt redigeraren, använd
-      menyn Verktyg / Alternativ och välj sedan avsnittet Avancerat och det kommer att finnas en &quot;Config
-      Editor&quot; -knapp längst ner. Om du skriver &#39;importexporttoolsng&#39; i sökfältet får du alla
-      tilläggspreferenser. Du kan sedan redigera de olika inställningarna nedan efter behov.
+      Det finns flera nya funktioner och alternativ som ännu inte är konfigurerbara i alternativdialogrutan.
+      När dessa funktioner har stabiliserats kommer de att läggas till i användargränssnittet.<br />
+      För att kunna använda dem måste de ställas in i Config Editor. För att komma åt editorn använd menyn
+      Verktyg/Alternativ och välj sedan avsnittet Avancerat och det kommer att finnas en
+      &#39;Konfigurationsredigerare&#39;-knapp längst ner. Om du skriver &#39;importexporttoolsng&#39; i
+      sökfältet får du alla tilläggsinställningar. Du kan sedan redigera de olika inställningarna nedan efter
+      behov.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Denna inställning följer samma fullständiga formatering som används för indexfilerna. Det är en tom
-      sträng som standard, om den har en formaterad datum / tidsträng, kommer detta att ändra
-      indexdatumformatet.
+      Denna inställning följer samma fullständiga formatering som ska användas för indexfilerna. Det är en tom
+      sträng som standard, om med en formaterad datum-/tidssträng kommer detta att ändra indexdatumformatet.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -932,35 +880,35 @@
       </p>
     </p>
     <p>
-      Båda dessa inställningar använder samma typ av utökade filnamnformat som det exporterade meddelandets
-      filnamn använder. Den första är för externa bilagor, den andra är för inbäddade (inline) bilagor.
+      Båda dessa inställningar använder samma typ av utökade filnamnsformat som filnamnet för exporterade
+      meddelanden använder. Den första är för externa bilagor, den andra är för inbäddade (inline) bilagor.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalt är &#39;Datum&#39; för ett meddelande i Thunderbird det datum som ställts in av avsändarens
-      e-postklient. Om du ställer in det här alternativet till &quot;true&quot; används det mottagna datumet
-      hos mottagarens e-postklient. Detta datum kommer att användas för både filnamn och datum i indexfilerna.
+      e-postklient. Om du ställer in det här alternativet till &quot;true&quot; används mottagningsdatumet i
+      mottagarens e-postklient. Detta datum kommer att användas för både filnamn och datum i indexfilerna.
     </p>
-    <h2>Grundläggande, global snabbkommandofunktion (genvägar)</h2>
+    <h2>Grundläggande, global snabbknappsfunktion (genvägar).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Denna nya inställning tillåter användaren att ställa in upp till 10 kortkommandon. Genvägarna kan utföra
-      de flesta av ImportExportTools NG-funktioner liksom andra Thunderbird-funktioner. Inställningssträngen
-      är formaterad som ett JSON-formaterat objekt. Formatet och tangenterna är som följer:
+      de flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner.
+      Inställningssträngen är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
     </p>
     <p>
-      Exempel på kortkommandon (matris med JSON-objekt)<br /><br />
-      <code class="notranslate">id</code> - nyckelindex (1-10)<br />
-      <code class="notranslate">key</code> - nyckeln (enstaka tecken)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_ *&#39; definierar nyckelkoden<br />
+      Exempel på kortkommandon (array av JSON-objekt)<br /><br />
+      <code class="notranslate">id</code> - nyckelindexet (1-10)<br />
+      <code class="notranslate">key</code> - nyckeln (enkelt tecken)<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definierar nyckelkoden<br />
       Antingen nyckel eller nyckelkod kan inkluderas, men inte båda<br />
-      <code class="notranslate">modifiers</code> - nyckelmodifierarna, platsavgränsad lista
-      (&#39;kontroll&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">modifiers</code> - nyckelmodifierarna, mellanslagsseparerad lista
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - en direkt kommandosträng<br />
-      <code class="notranslate">contexts</code> - fönsterkontext där nyckeln är aktiv<br />
-      <code class="notranslate">&#39;all&#39;</code> - alla fönster under messenger, komponera, sök<br />
+      <code class="notranslate">contexts</code> - fönsterkontexten där nyckeln är aktiv<br />
+      <code class="notranslate">&#39;all&#39;</code> - alla fönster under messenger, skriv, sök<br />
       <code class="notranslate">&#39;messenger&#39;</code> - huvudbudbärarfönstret och dess ättlingar<br />
-      <code class="notranslate">&#39;compose&#39;</code> - meddelandets skrivfönster<br />
+      <code class="notranslate">&#39;compose&#39;</code> - fönstret för meddelandeskrivning<br />
       <code class="notranslate">&#39;search&#39;</code> - sökdialogrutan<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control

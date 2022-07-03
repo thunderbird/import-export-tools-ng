@@ -14,74 +14,24 @@
     <title>ImportExportTools NG Help</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Help-gebruikershandleiding</h2>
+    <h2 id="main_help">ImportExportTools NG Help-Gebruikershandleiding</h2>
     <p>
-      Dit is een minimalistische eerste start van een gebruikershandleiding. Er is natuurlijk veel toe te
-      voegen. Deze huidige pagina richt zich op de menu&#39;s en nieuwe opties. Het zal in volgende versies
-      voortdurend worden bijgewerkt.<br />
+      Dit is een minimalistische eerste start van een gebruikershandleiding. Er is natuurlijk veel aan toe te
+      voegen. Deze huidige pagina richt zich op de menu&#39;s en nieuwe opties. Het zal voortdurend worden
+      bijgewerkt in volgende versies.<br />
     </p>
-    <h3>Versie 10.0.2: onderhoudsrelease - 14 november 2020</h3>
+    <h3>Versie 12.0.0: Ondersteuning voor Thunderbird 102 - 1 juli 2022</h3>
     <p>
-      Bugproblemen opgelost:<br /><br />
-      - # 140 Klik met de rechtermuisknop op een niet-geselecteerde map<br />
-      - # 149 EML-importfixes<br />
-      - # 154 Back-up werkt niet als File / Exit wordt gebruikt<br />
-      - # 157, # 159 Back-ups mislukken<br />
-      - # 173 Behandel geen geselecteerde map<br />
-      - # 174 Sender_email &amp; recipient_email tokens ontbreken voor bijlagen<br />
-      - # 175 Ondersteunt komma&#39;s en enkele aanhalingstekens in bestandsnamen<br /><br />
-      Notabelen:<br /><br />
-      - Back-up toegevoegd bij afsluiten<br />
-      - Gebruik de optie `Index, CSV-datumnotatie` voor een volledig aangepast formaat (tabblad Opties
-      Diversen)<br /><br />
-      <h3>Versie 10.0.1: Onderhoudsrelease - 14 oktober 2020</h3>
-      <br />
-      Bugproblemen opgelost:<br />
-      - # 163, # 158, # 153 UTF-8-conversie voor platte tekst / csv opgelost<br />
-      - # 161 Fix CSV-datumnotatie<br /><br />
-      Notabelen:<br />
-      - Voeg betere header-foutdetectie toe, debug-uitvoer<br />
-      - Sta index datumnotatie toe voor CSV<br /><br />
-      Bekende problemen:<br />
-      - Back-up werkt niet in 78<br /><br />
-      <h3>Versie 10.0.0: nieuwe functies - 26 september 2020</h3>
-    </p>
-    <p>
-      - Upgrade voor compatibiliteit met 78/68<br />
-      - Nieuwe locaties: el<br />
-      - Index aangepaste datumnotatie<br />
-      - nieuwe tokens voor bestandsnamen: e-mail van afzender / ontvanger<br />
-      - Gebruik `% d` in de koptekst / voettekst van de afdrukinstellingen voor een aangepaste datum<br /><br /><br />
-      Bugproblemen opgelost:<br />
-      - # 118, # 63 Conversie voor platte tekst opgelost<br />
-      - # 57 Gebruik ForceDBClose om geopende bestanden te sluiten (repareert mappen en berichten)<br />
-      - # 77 Gebruik algemene instellingen voor PDF<br />
-      - # 130 geplande back-ups<br />
-      - # 134 Correct omgaan met gelezen, doorgestuurde, beantwoorde vlaggen<br /><br /><br />
-      Met dank aan velen! : Zie problemen<br />
-    </p>
-    <br /><br />
-    <h3>Versie 4.1.0: nieuwe functies</h3>
-    <p>
-      - Help / gebruikershandleiding: volledig gelokaliseerd - Achtervoegseloptie voor bestandsnamen<br />
-      - Aangepaste datumoptie voor bestandsnamen waardoor strftime () zoals volledige datum- en tijdopmaak
-      mogelijk is<br />
-      - Gebruik aangepaste bestandsnamen voor zowel bijlagen als ingesloten bijlagen<br />
-      - Aangepaste datumoptie voor indexbestandsnamen<br />
-      - Optie om &#39;Ontvangen datum&#39; te gebruiken voor bestandsnaam en index<br />
-      - Door de gebruiker configureerbare sneltoetsen (sneltoetsen)<br />
-      - PDF-uitvoer maakt nu gebruik van de algemene afdrukopties<br />
-      - Verbeterde lay-out van HTML-indexbestanden<br /><br /><br />
-      Bugproblemen opgelost:<br />
-      - # 68 fix voor indexbijlage-vlag<br />
-      - # 74 fix voor in-line afbeeldingsbijlagen die niet werden geëxporteerd<br />
-      - Fix # 56 handvat annuleren op importdialoog<br />
-      - # 77 gebruik voorkeuren voor PDF-uitvoer<br />
-      - UI-opschoning tweaks (# 80, # 81, # 82) OS-variaties - @ovari<br />
-      - Duitse vertaling fix # 93 - @dipgithub<br />
-      - Fixes voor Hongaarse vertalingen - @ovari<br />
-      - Voeg ontbrekend licentiebestand # 96 toe<br /><br />
-      Dank aan de volgende gebruikers voor suggesties voor verbeteringen en testhulp:<br /><br />
+      Aangepakte problemen:<br /><br />
+      <p>
+        - Ondersteuning voor Thunderbird 102 en 91<br />
+        - Fix race conditie in SessionRestore #284 #314<br />
+        - Fix IMAP-export waarbij lege mappen worden overgeslagen #320<br />
+        - Fix export map opties niet opgeslagen #318<br />
+        - Wijzigingen in printSettings repareren
+      </p>
+      <br /><br />
+      Met dank aan de volgende gebruikers voor suggesties voor verbeteringen en testhulp:<br /><br />
       - <code class="notranslate">@ovari</code><br />
       - <code class="notranslate">@dipgithub</code><br />
       - <code class="notranslate">@artofit</code><br />
@@ -92,22 +42,22 @@
       - <code class="notranslate">@razzmatazzz</code><br />
       - <code class="notranslate">@triplee</code><br />
     </p>
-    <h3>Ondersteuning:</h3>
+    <h3>Steun:</h3>
     <p>
-      Plaats problemen of functieverzoeken in de GitHub-repository van de extensies:
+      Plaats problemen of functieverzoeken in de GitHub-repository voor extensies:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      Neem bij problemen met bugs de volgende informatie op om de problemen op te lossen:<br />
+      Neem bij bugproblemen de volgende informatie op om de problemen op te lossen:<br />
       - ImportExportTools NG-versie<br />
       - Thunderbird-versie<br />
       - Besturingssysteem en versie<br />
-      - Debug-uitvoer (kopiëren vanuit de Debug-console - toegang met Control-Shift-J)<br />
+      - Debug-uitvoer (kopiëren van de Debug Console - toegang met Control-Shift-J)<br />
       - Een beschrijving van de stappen die tot het probleem hebben geleid<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Overzicht en menu&#39;s</h2>
     <p>
-      ImportExportTools NG is een vervolg extensie gebaseerd op het originele werk van Paolo
+      ImportExportTools NG is een vervolguitbreiding gebaseerd op het originele werk van Paolo
       &quot;Kaosmos&quot;. De extensie biedt meerdere import- en exportfuncties die verschillende
       bestandsindelingen ondersteunen, waaronder: Opmerking: sommige indelingen worden niet in alle functies
       ondersteund.<br />
@@ -117,24 +67,24 @@
       - HTML<br />
       - platte tekst<br />
       - CSV (door komma&#39;s gescheiden waarden)<br />
-      - pdf<br /><br />
-      Hoewel de meeste functionaliteit voor berichten draait, is er ook ondersteuning voor het importeren en
-      exporteren van Thunderbird-profielen. Bovendien kunnen exports ook een HTML- of CSV-indexbestand
-      bevatten. Een back-up van het Thunderbird-profiel is een andere functie.<br />
+      - PDF<br /><br />
+      Hoewel de meeste functionaliteit voor berichten draait om berichten, is er ook ondersteuning voor het
+      importeren en exporteren van Thunderbird-profielen. Daarnaast kunnen exports ook een HTML- of
+      CSV-indexbestand bevatten. Back-up van het Thunderbird-profiel is een andere functie.<br />
       <p>
-        Toegang krijgen tot de IETng-functionaliteit gebeurt via verschillende menu&#39;s die door de extensie
-        zijn geïnstalleerd. De functies zijn contextgevoelig. Menu&#39;s zijn toegevoegd voor:<br />
+        Toegang tot IETng-functionaliteit wordt gedaan via verschillende menu&#39;s die door de extensie zijn
+        geïnstalleerd. De functies zijn contextgevoelig. Menu&#39;s zijn toegevoegd voor:<br />
         - De context van het mappenvenster (mapbewerking)<br />
-        - De context van de berichtenlijst (geselecteerde berichten)<br />
+        - De berichtenlijstcontext (geselecteerde berichten)<br />
         - Het menu Extra (map- en profielbewerkingen)<br /><br />
-        Er zijn veel opties die toegankelijk zijn onder het toegevoegde item onder de &quot;Extra /
-        Add-on-opties&quot; voor de extensie-opties. Elk van de menu&#39;s heeft ook een menu-item Opties om
-        het dialoogvenster met opties te openen.<br />
+        Er zijn veel opties die toegankelijk zijn onder het toegevoegde item onder de
+        &quot;Extra/Add-on-opties&quot; voor de extensie-opties. Elk van de menu&#39;s heeft ook een menu-item
+        Opties om toegang te krijgen tot het dialoogvenster Opties.<br />
         De nieuwe opties worden hier gedocumenteerd, de hele set wordt vervolgens gedocumenteerd.
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">Mapcontextmenufuncties</h2>
+    <h2 id="main_menu_help">Map Context Menu Functies</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -145,11 +95,11 @@
       <tbody>
         <tr>
           <td>Exportmap</td>
-          <td>Exporteer een enkele map naar een bestand in mbox-indeling</td>
+          <td>Een enkele map exporteren naar een bestand in mbox-indeling</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporteer een enkele map naar een gezipt mbox-bestand</td>
+          <td>Een enkele map exporteren naar een gecomprimeerd bestand in mbox-formaat</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -159,7 +109,7 @@
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
             Exporteer een map inclusief alle submappen naar een berichtenboom in mbox-indeling<br />
-            (.sbd-submappen)
+            (.sbd submappen)
           </td>
         </tr>
         <tr>
@@ -180,77 +130,77 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in EML-indeling (geen structuur / submappen).<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als bestanden in EML-indeling (geen structuur/submappen).<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur / submappen).<br />
-            Bijlagen zijn niet inbegrepen. Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur/submappen).<br />
+            Bijlagen zijn niet inbegrepen. Dit creëert ook een HTML-indexbestand waarin elk bericht wordt
+            vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur / submappen).<br />
-            Bijlagen worden als aparte bestanden opgeslagen. Hierdoor wordt ook een HTML-indexbestand gemaakt
-            met elk bericht.
+            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur/submappen).<br />
+            Bijlagen worden als aparte bestanden opgeslagen. Dit creëert ook een HTML-indexbestand waarin elk
+            bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
             Exporteer de mapberichten als bestanden in platte tekst, bijlagen zijn niet inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
             Exporteer de mapberichten als bestanden in platte tekst, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel bestand met platte tekst; bijlagen zijn niet
-            inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkelvoudig tekstbestand, bijlagen worden niet meegeleverd.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel bestand in platte tekst, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkelvoudig tekstbestand, inclusief bijlagen.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel CSV-bestand (Comma Separated Values) tekstformaat,
-            bijlagen zijn niet inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkel CSV-bestand (Comma Separated Values) in tekstformaat,
+            bijlagen worden niet meegeleverd.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een set bestanden in pdf-indeling, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.<br />
-            Opmerking: PDF-uitvoer wordt niet ondersteund op OSX vanwege een probleem met de driver.
+            Exporteer de mapberichten als een set bestanden in PDF-indeling, inclusief bijlagen.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.<br />
+            Opmerking: PDF-uitvoer wordt niet ondersteund op OSX vanwege een probleem met het stuurprogramma.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Maakt een HTML-indexbestand van de mapberichten (geen berichtexport)</td>
+          <td>Creëert een HTML-indexbestand van de mapberichten (geen berichtexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Maakt een CSV-indexbestand van de mapberichten (geen berichtexport)</td>
+          <td>Creëert een CSV-indexbestand van de mapberichten (geen berichtexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -258,7 +208,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importeer een of meer mbox-bestanden. Kies met of zonder structuur / submappen</td>
+          <td>Importeer een mbox-bestand of -bestanden. Kies met of zonder structuur/submappen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -266,7 +216,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Selecteer en importeer EML-berichtbestanden (geen structuur / submappen)</td>
+          <td>Selecteer en importeer EML-berichtbestanden (geen structuur/submappen)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -274,11 +224,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importeer alle EML-berichten uit één map</td>
+          <td>Importeer alle EML-berichten uit een enkele map</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importeer alle EML-berichten uit een enkele map inclusief structuur / submappen</td>
+          <td>Importeer alle EML-berichten uit een enkele map, inclusief structuur/submappen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="copyFolderPath"></td>
@@ -294,7 +244,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Open de belangrijkste helppagina</td>
+          <td>Open de hoofdhelppagina</td>
         </tr>
       </tbody>
     </table>
@@ -322,15 +272,15 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Sla de geselecteerde berichten op in bestanden in HTML-indeling, inclusief bijlagen</td>
+          <td>Sla de geselecteerde berichten op in HTML-bestanden, inclusief bijlagen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Sla de geselecteerde berichten op in bestanden met platte tekst</td>
+          <td>Sla de geselecteerde berichten op in platte tekst formaat bestanden</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Sla de geselecteerde berichten op in bestanden met platte tekst, inclusief bijlagen</td>
+          <td>Sla de geselecteerde berichten op in platte tekst-bestanden, inclusief bijlagen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
@@ -338,7 +288,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Sla de geselecteerde berichten op in een enkel mbox-bestand</td>
+          <td>Bewaar de geselecteerde berichten in een enkel mbox-bestand</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
@@ -346,7 +296,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Sla de geselecteerde berichten op in bestanden in PDF-indeling</td>
+          <td>Sla de geselecteerde berichten op in bestanden in PDF-formaat</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
@@ -356,35 +306,35 @@
           <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
           <td>
             Sla de berichten op als bestanden in EML-indeling.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
           <td>
-            Sla de berichten op als bestanden in HTML-indeling.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Sla de berichten op als HTML-bestanden.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
           <td>
             Sla de berichten op als bestanden in HTML-indeling, inclusief bijlagen<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
           <td>
-            Sla de berichten op als bestanden in platte tekst<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Sla de berichten op als bestanden in platte tekst-indeling<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
           <td>
             Sla de berichten op als bestanden in platte tekst, inclusief bijlagen<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
@@ -401,7 +351,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
-          <td>Open de belangrijkste helppagina</td>
+          <td>Open de hoofdhelppagina</td>
         </tr>
       </tbody>
     </table>
@@ -417,11 +367,11 @@
       <tbody>
         <tr>
           <td>Exportmap</td>
-          <td>Exporteer een enkele map naar een bestand in mbox-indeling</td>
+          <td>Een enkele map exporteren naar een bestand in mbox-indeling</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporteer een enkele map naar een gezipt mbox-bestand</td>
+          <td>Een enkele map exporteren naar een gecomprimeerd bestand in mbox-formaat</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboxexportallstruct"></td>
@@ -431,7 +381,7 @@
           <td dtd-text-id-ref="mboxexportstruct"></td>
           <td>
             Exporteer een map inclusief alle submappen naar een berichtenboom in mbox-indeling<br />
-            (.sbd-submappen)
+            (.sbd submappen)
           </td>
         </tr>
         <tr>
@@ -452,77 +402,77 @@
         <tr>
           <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in EML-indeling (geen structuur / submappen).<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als bestanden in EML-indeling (geen structuur/submappen).<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur / submappen).<br />
-            Bijlagen zijn niet inbegrepen. Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur/submappen).<br />
+            Bijlagen zijn niet inbegrepen. Dit creëert ook een HTML-indexbestand waarin elk bericht wordt
+            vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur / submappen).<br />
-            Bijlagen worden als aparte bestanden opgeslagen. Hierdoor wordt ook een HTML-indexbestand gemaakt
-            met elk bericht.
+            Exporteer de mapberichten als bestanden in HTML-indeling (geen structuur/submappen).<br />
+            Bijlagen worden als aparte bestanden opgeslagen. Dit creëert ook een HTML-indexbestand waarin elk
+            bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
           <td>
             Exporteer de mapberichten als bestanden in platte tekst, bijlagen zijn niet inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
           <td>
             Exporteer de mapberichten als bestanden in platte tekst, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel bestand met platte tekst; bijlagen zijn niet
-            inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkelvoudig tekstbestand, bijlagen worden niet meegeleverd.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel bestand in platte tekst, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkelvoudig tekstbestand, inclusief bijlagen.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allCSV" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een enkel CSV-bestand (Comma Separated Values) tekstformaat,
-            bijlagen zijn niet inbegrepen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.
+            Exporteer de mapberichten als een enkel CSV-bestand (Comma Separated Values) in tekstformaat,
+            bijlagen worden niet meegeleverd.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
           <td>
-            Exporteer de mapberichten als een set bestanden in pdf-indeling, inclusief bijlagen.<br />
-            Hierdoor wordt ook een HTML-indexbestand gemaakt met elk bericht.<br />
-            Opmerking: PDF-uitvoer wordt niet ondersteund op OSX vanwege een probleem met de driver.
+            Exporteer de mapberichten als een set bestanden in PDF-indeling, inclusief bijlagen.<br />
+            Dit creëert ook een HTML-indexbestand waarin elk bericht wordt vermeld.<br />
+            Opmerking: PDF-uitvoer wordt niet ondersteund op OSX vanwege een probleem met het stuurprogramma.
           </td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Maakt een HTML-indexbestand van de mapberichten (geen berichtexport)</td>
+          <td>Creëert een HTML-indexbestand van de mapberichten (geen berichtexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Maakt een CSV-indexbestand van de mapberichten (geen berichtexport)</td>
+          <td>Creëert een CSV-indexbestand van de mapberichten (geen berichtexport)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="searchAndexport"></td>
@@ -530,7 +480,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximport"></td>
-          <td>Importeer een of meer mbox-bestanden. Kies met of zonder structuur / submappen</td>
+          <td>Importeer een mbox-bestand of -bestanden. Kies met of zonder structuur/submappen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportMD"></td>
@@ -538,7 +488,7 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Selecteer en importeer EML-berichtbestanden (geen structuur / submappen)</td>
+          <td>Selecteer en importeer EML-berichtbestanden (geen structuur/submappen)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML"></td>
@@ -546,11 +496,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importeer alle EML-berichten uit één map</td>
+          <td>Importeer alle EML-berichten uit een enkele map</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importeer alle EML-berichten uit een enkele map inclusief structuur / submappen</td>
+          <td>Importeer alle EML-berichten uit een enkele map, inclusief structuur/submappen</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfileMail"></td>
@@ -558,11 +508,11 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="saveProfile"></td>
-          <td>Sla het volledige profiel op (mail, extensies, opties)</td>
+          <td>Bewaar het volledige profiel (mail, extensies, opties)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>Importeer een volledig profiel (mail, extensies, opties)</td>
+          <td>Een volledig profiel importeren (e-mail, extensies, opties)</td>
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEToptions"></td>
@@ -570,30 +520,30 @@
         </tr>
         <tr>
           <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>Open de belangrijkste helppagina</td>
+          <td>Open de hoofdhelppagina</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">Aangepaste datumnotatie</h2>
     <p>
-      De aangepaste datumoptie biedt volledige controle over de datumnotatie die voor beide bestanden in de
-      index wordt gebruikt. Zowel het standaardformaat &quot;Datum&quot; als het nieuwe aangepaste formaat
-      &quot;Datum (aangepast)&quot; zijn beschikbaar in de vervolgkeuzelijsten met bestandsnamen. De
-      aangepaste datum kan ook worden gebruikt met het $ {date_custom} -token dat wordt gebruikt in de
-      uitgebreide aangepaste bestandsnamen. De oorspronkelijke (standaard) datumnotatie is:<br />
+      De aangepaste datumoptie zorgt voor de volledige controle over de datumnotatie die voor beide bestanden
+      in de index wordt gebruikt. Zowel het standaardformaat &quot;Datum&quot; als het nieuwe aangepaste
+      formaat &quot;Datum (aangepast)&quot; zijn beschikbaar in de vervolgkeuzelijsten voor bestandsnamen. De
+      aangepaste datum kan ook worden gebruikt met het token ${date_custom} dat wordt gebruikt in de
+      uitgebreide aangepaste bestandsnamen. Het originele (standaard) datumformaat is:<br />
       JJJJMMDDHHmm: 202011060808<br /><br />
-      De aangepaste datumnotatie gebruikt% reeksen die overeenkomen met de
+      De aangepaste datumnotatie gebruikt % reeksen die overeenkomen met de
       <code>strftime()</code> Unix-achtige functionaliteit. Het is gebaseerd op een JavaScript-poort van
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , een functie om de datum en tijd op te maken.<br />
-      Haven van strftime () door TH Doan (https://thdoan.github.io/strftime/)<br />
+      Haven van strftime() door TH Doan (https://thdoan.github.io/strftime/)<br />
     </p>
-    <h3>Beschrijvingen van conversievolgorde</h3>
+    <h3>Beschrijvingen van conversiereeksen</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
-          <th>Volgorde</th>
-          <th>Omschrijving</th>
+          <th>Reeks</th>
+          <th>Beschrijving</th>
         </tr>
       </thead>
       <tbody>
@@ -607,19 +557,19 @@
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
-          <td>Afgekorte maandnaam.</td>
+          <td>Afgekorte naam van de maand.</td>
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
-          <td>Volledige maandnaam.</td>
+          <td>Naam van de volledige maand.</td>
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Voorkeursweergave van datum en tijd (UTC) voor de huidige landinstelling.</td>
+          <td>Weergave van voorkeursdatum en tijd (UTC) voor de huidige landinstelling.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Eeuwenummer (jaar / 100) als een geheel getal van 2 cijfers.</td>
+          <td>Eeuwgetal (jaar/100) als een 2-cijferig geheel getal.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -627,77 +577,77 @@
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Dag van de maand als een decimaal getal (bereik 1 t / m 31).</td>
+          <td>Dag van de maand als decimaal getal (bereik 1 tot 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>Datumformaat volgens ISO 8601 (equivalent aan <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>Datumnotatie volgens ISO 8601 (gelijk aan <code class="code1">%Y-%m-%d</code> ).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 jaar op weekbasis met eeuw als decimaal getal. Het 4-cijferige jaar komt overeen met het
+            ISO 8601 weekgebaseerd jaar met eeuw als decimaal getal. Het 4-cijferige jaar komt overeen met het
             ISO-weeknummer (zie <code class="code1">%V</code> ). Dit heeft hetzelfde formaat en dezelfde
             waarde als <code class="code1">%Y</code> , behalve dat als het ISO-weeknummer bij het vorige of
-            volgende jaar hoort, dat jaar wordt gebruikt.
+            volgende jaar hoort, dat jaar in plaats daarvan wordt gebruikt.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            Zoals <code class="code1">%G</code> , maar zonder eeuw, dat wil zeggen met een 2-cijferig jaar
-            (00-99).
+            Zoals <code class="code1">%G</code> , maar zonder eeuw, dat wil zeggen met een jaartal van 2
+            cijfers (00-99).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Uur als decimaal getal met behulp van een 24-uursklok (bereik 00 tot 23). Zie ook
+            Uur als een decimaal getal met een 24-uurs klok (bereik 00 tot 23). Zie ook
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Uur als decimaal getal met een 12-uursklok (bereik 01 tot 12). Zie ook
+            Uur als decimaal getal met een 12-uurs klok (bereik 01 tot 12). Zie ook
             <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>Dag van het jaar als een decimaal getal (bereik 001 tot 366).</td>
+          <td>Dag van het jaar als decimaal getal (bereik 001 tot 366).</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
             Uur als decimaal getal met een 24-uurs klok (bereik 0 tot 23). Zie ook
-            <code class="code1">%H</code>
+            <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Uur als decimaal getal met een 12-uursklok (bereik 1 tot 12). Zie ook
-            <code class="code1">%I</code>
+            Uur als decimaal getal met een 12-uurs klok (bereik 1 tot 12). Zie ook
+            <code class="code1">%I</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>Maand als een decimaal getal (bereik 01 tot 12).</td>
+          <td>Maand als decimaal getal (bereik 01 tot 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Maand als een decimaal getal (bereik 1 tot 12).</td>
+          <td>Maand als decimaal getal (bereik 1 tot 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minuut als een decimaal getal (bereik 00 tot 59).</td>
+          <td>Minuut als decimaal getal (bereik 00 tot 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Ofwel &quot;AM&quot; of &quot;PM&quot; volgens de opgegeven tijdwaarde. Middag wordt behandeld als
-            &quot;PM&quot; en middernacht als &quot;AM&quot;.
+            Ofwel &quot;AM&quot; of &quot;PM&quot; volgens de opgegeven tijdswaarde. De middag wordt behandeld
+            als &quot;PM&quot; en middernacht als &quot;AM&quot;.
           </td>
         </tr>
         <tr>
@@ -708,7 +658,7 @@
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Aantal seconden sinds de Epoch, 1970-01-01 00:00:00 +0000 (UTC).</td>
+          <td>Aantal seconden sinds het tijdperk, 1970-01-01 00:00:00 +0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
@@ -724,8 +674,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601-weeknummer van het huidige jaar als een decimaal getal (bereik 01 tot 53), waarbij week 1
-            de eerste week is met ten minste 4 dagen in het nieuwe jaar (dat wil zeggen, de eerste donderdag).
+            ISO 8601 weeknummer van het huidige jaar als decimaal getal (bereik 01 tot 53), waarbij week 1 de
+            eerste week is met minimaal 4 dagen in het nieuwe jaar (dat wil zeggen, de eerste donderdag).
           </td>
         </tr>
         <tr>
@@ -737,7 +687,7 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Datumweergave van voorkeur voor de huidige landinstelling zonder de tijd.</td>
+          <td>Voorkeursdatumweergave voor de huidige landinstelling zonder de tijd.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
@@ -754,14 +704,13 @@
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            De <code class="code1">+hhmm</code> <code class="code1">-hhmm</code> of
-            <code class="code1">-hhmm</code> numerieke tijdzone (dat wil zeggen, de uren en minuten ten
-            opzichte van UTC).
+            De <code class="code1">+hhmm</code> uumm of <code class="code1">-hhmm</code> numerieke tijdzone
+            (dat wil zeggen, de uren en minuten afwijking van UTC).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%Z</code></td>
-          <td>Tijdzone naam of afkorting.</td>
+          <td>Tijdzonenaam of afkorting.</td>
         </tr>
       </tbody>
     </table>
@@ -801,25 +750,25 @@
       <li><code class="code1">%%</code> - niet geïmplementeerd (gebruik <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
-    <h2 id="ext_filename_format_help">Uitgebreid bestandsnaamformaat:</h2>
+    <h2 id="ext_filename_format_help">Uitgebreide bestandsnaamindeling:</h2>
     <br />
     <p>
       De uitgebreide bestandsnaamopmaak maakt gebruik van tokens. De exacte bestandsnaam kan worden
-      geconstrueerd met behulp van de tokens en eventuele tekst of geldige tekens voor de bestandsnaam.
-      Ongeldige tekens zijn: <code>| * : &lt; &gt; ? \ / &quot;</code> De Engelse (en-US) tokens zijn
-      beschikbaar in elke landinstelling. Landspecifieke tokens zijn ook beschikbaar en staan vermeld onder de
-      Engelse tabel.<br /><br />
+      geconstrueerd met behulp van de tokens, evenals eventuele tekst of geldige bestandsnaamtekens. Ongeldige
+      tekens zijn: <code>| * : &lt; &gt; ? \ / &quot;</code> De Engelse (en-US) tokens zijn beschikbaar in
+      elke landinstelling. Locale specifieke tokens zijn ook beschikbaar en staan vermeld onder de Engelse
+      tabel.<br /><br />
       Voorbeelden:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Het standaardformaat<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Gebruik de aangepaste
-      datumnotatie in plaats van de standaard<br />
+      datumnotatie in plaats van standaard<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Met wat aangepaste
       tekst<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
-        <td>Teken</td>
-        <td>Omschrijving</td>
+        <td>token</td>
+        <td>Beschrijving</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -845,7 +794,9 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>De ontvangers als het bericht in een map Verzonden staat, anders de naam van de afzender</td>
+        <td>
+          De ontvangers als het bericht zich in een map Verzonden bevindt, anders de naam van de afzender
+        </td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
@@ -853,26 +804,26 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>De waarde van de prefix tekstoptie.</td>
+        <td>De optiewaarde van de prefixtekst.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>De waarde van de tekstoptie voor het achtervoegsel.</td>
+        <td>De waarde van de optie voor het achtervoegsel.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>De standaard datumnotatie. Het standaardformaat is: JJJJMMDDUUmm</td>
+        <td>Het standaard datumformaat. Het standaardformaat is: JJJJMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>De aangepaste datumnotatie. Zie het gedeelte over aangepaste datumnotatie.</td>
+        <td>Het aangepaste datumformaat. Zie de sectie aangepaste datumnotatie.</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
-        <td>Gelokaliseerd (<span id="locale1"></span> ) Teken</td>
+        <td>gelokaliseerd (<span id="locale1"></span> ) Token</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -923,19 +874,19 @@
     <h2>Nieuwe en experimentele voorkeuren (opties)</h2>
     <p>
       Er zijn verschillende nieuwe functies en opties die nog niet kunnen worden geconfigureerd in het
-      dialoogvenster met opties. Zodra deze functies zijn gestabiliseerd, worden ze aan de gebruikersinterface
-      toegevoegd.<br />
-      Om ze te kunnen gebruiken, moeten ze worden ingesteld in de configuratie-editor. Om toegang te krijgen
-      tot de editor, gebruikt u het menu Extra / Opties en selecteert u de sectie Geavanceerd en er zal
-      onderaan een knop &#39;Configuratie-editor&#39; zijn. Als u &#39;importexporttoolsng&#39; in de zoekbalk
-      typt, krijgt u alle extensievoorkeuren. U kunt vervolgens de verschillende voorkeuren hieronder naar
-      wens bewerken.
+      dialoogvenster Opties. Zodra deze functies zijn gestabiliseerd, worden ze toegevoegd aan de
+      gebruikersinterface.<br />
+      Om ze te kunnen gebruiken, moeten ze worden ingesteld in de Config Editor. Om toegang te krijgen tot de
+      editor, gebruikt u het menu Extra/Opties en selecteert u vervolgens het gedeelte Geavanceerd en er zal
+      onderaan een knop &#39;Config Editor&#39; zijn. Als u &#39;importexporttoolsng&#39; typt in de zoekbalk,
+      krijgt u alle extensievoorkeuren. U kunt vervolgens de verschillende voorkeuren hieronder naar behoefte
+      bewerken.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
       Deze voorkeur volgt dezelfde volledige opmaak die wordt gebruikt voor de indexbestanden. Het is
-      standaard een lege tekenreeks, als het een opgemaakte datum / tijd-tekenreeks is, zal dit het
-      indexdatumformaat wijzigen.
+      standaard een lege tekenreeks, als met een opgemaakte datum/tijd-tekenreeks, dan zal dit de
+      indexdatumnotatie veranderen.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -946,38 +897,37 @@
       </p>
     </p>
     <p>
-      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamindelingen die de geëxporteerde
-      bestandsnaam gebruikt. De eerste is voor externe bijlagen, de tweede is voor embedded (inline) bijlagen.
+      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamindelingen die de bestandsnaam van
+      geëxporteerde berichten gebruikt. De eerste is voor externe bijlagen, de tweede is voor ingesloten
+      (inline) bijlagen.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normaal gesproken is de &#39;Datum&#39; voor een bericht in Thunderbird de datum die is ingesteld door
-      de e-mailclient van de afzender. Als u deze optie instelt op &#39;true&#39;, wordt de datum van
-      ontvangst op de e-mailclient van de ontvanger gebruikt. Deze datum wordt gebruikt voor zowel
-      bestandsnamen als de datum in de indexbestanden.
+      de e-mailclient van de afzender. Als u deze optie op &#39;waar&#39; zet, wordt de ontvangstdatum in de
+      e-mailclient van de ontvanger gebruikt. Deze datum wordt gebruikt voor zowel bestandsnamen als de datum
+      in de indexbestanden.
     </p>
-    <h2>Basis, algemene sneltoetsfunctie (snelkoppelingen)</h2>
+    <h2>Basis, globale sneltoetsfunctie (sneltoetsen)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Met deze nieuwe voorkeur kan de gebruiker maximaal 10 sneltoetsen instellen. De snelkoppelingen kunnen
-      de meeste ImportExportTools NG-functies uitvoeren, evenals andere Thunderbird-functies. De
-      voorkeursreeks is opgemaakt als een JSON-geformatteerd object. Het formaat en de sleutels zijn als
-      volgt:
+      Met deze nieuwe voorkeur kan de gebruiker tot 10 sneltoetsen instellen. De snelkoppelingen kunnen de
+      meeste ImportExportTools NG-functies uitvoeren, evenals andere Thunderbird-functies. De voorkeursreeks
+      is opgemaakt als een JSON-geformatteerd object. Het formaat en de sleutels zijn als volgt:
     </p>
     <p>
       Voorbeeld van sneltoetsinvoer (array van JSON-objecten)<br /><br />
       <code class="notranslate">id</code> - de sleutelindex (1-10)<br />
-      <code class="notranslate">key</code> - de sleutel (één teken)<br />
-      <code class="notranslate">keycode</code> - de &#39;VK_ *&#39; defind keycode<br />
-      De sleutel of de sleutelcode kan worden opgenomen, maar niet beide<br />
+      <code class="notranslate">key</code> - de sleutel (enkel teken)<br />
+      <code class="notranslate">keycode</code> - de &#39;VK_*&#39; definieert keycode<br />
+      Ofwel sleutel of sleutelcode kan worden opgenomen, maar niet beide<br />
       <code class="notranslate">modifiers</code> - de belangrijkste modifiers, door spaties gescheiden lijst
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - een directe opdrachtreeks<br />
       <code class="notranslate">contexts</code> - de venstercontext waarin de sleutel actief is<br />
       <code class="notranslate">&#39;all&#39;</code> - alle vensters onder messenger, opstellen, zoeken<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - het belangrijkste messenger-venster en zijn
-      nakomelingen<br />
-      <code class="notranslate">&#39;compose&#39;</code> - het venster voor het opstellen van een bericht<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - het hoofdvenster en zijn afstammelingen<br />
+      <code class="notranslate">&#39;compose&#39;</code> - het venster voor het opstellen van berichten<br />
       <code class="notranslate">&#39;search&#39;</code> - het zoekvenster<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
@@ -1007,7 +957,7 @@
       ><br />
     </p>
     <p>
-      Omdat de snelkoppelingen nieuw en experimenteel zijn, zal ik ook meer documentatie aan de repository
+      Omdat de sneltoetsen nieuw en experimenteel zijn, zal ik ook meer documentatie in de repository
       toevoegen. Controleer de extensie
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a

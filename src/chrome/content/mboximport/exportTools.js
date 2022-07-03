@@ -339,7 +339,7 @@ function exportAllMsgs(type, t) {
 	} catch (e) { }
 
 	IETglobalMsgFolders = GetSelectedMsgFolders();
-	console.debug(IETglobalMsgFolders[0].name);
+	//console.debug(IETglobalMsgFolders[0].name);
 
 	IETglobalMsgFoldersExported = 0;
 	for (var i = 0; i < IETglobalMsgFolders.length; i++) {

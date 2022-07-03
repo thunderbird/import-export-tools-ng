@@ -21,78 +21,18 @@
 		It will be continually updated in subsequent versions.<br>
 	</p>
 
-	<h3>Version 10.0.2 : Maintenance Release - November 14, 2020</h3>
+	<h3>Version 12.0.0 : Thunderbird 102 Support - July 1, 2022</h3>
 	<p>
-	Bug Issues Fixed:<br>
+	Issues Addressed :<br>
+	<br><p>
+	- Support for Thunderbird 102 and 91<br>
+	- Fix race condition in SessionRestore #284 #314<br>
+	- Fix IMAP export skipping empty folders #320<br>
+	- Fix export folder options not saved #318<br>
+	- Fix printSettings changes </p>
 	<br>
-	- #140 Handle right click on unselected folder<br>
-	- #149 EML import fixes<br>
-	- #154 Backup does not run if File/Exit used<br>
-	- #157, #159 Backups failing<br>
-	- #173 Handle no selected folder<br>
-	- #174 Sender_email & recipient_email tokens missing for attachments<br>
-	- #175 Support comma and single quote in filenames<br>
-	<br>
-	Notables:<br>
-	<br>
-	- Added Backup on exit option<br>
-	- Use `Index, CSV Date Format` option for full custom format (options Misc tab)<br>
-	<br>
-	<h3>Version 10.0.1 : Maintenance Release - October 14, 2020</h3>
-	<br>
-	Bug Issues Fixed:<br>
-	- #163, #158, #153 Fixed UTF-8 conversion for plaintext/csv<br>
-	- #161 Fix CSV date format<br>
-	<br>
-	Notables:<br>
-	- Add better header err detection, debug output<br>
-	- Allow index date format for CSV<br>
-	<br>
-	Known Issues:<br>
-	- Backup not working in 78<br>
-	<br>
+
 	
-
-	<h3>Version 10.0.0 : New Features - September 26, 2020</h3>
-	<p>
-	- Upgrade for 78/68 compatibility<br>
-	- New locales: el<br>
-	- Index custom date format<br>
-	- new tokens for filenames : sender/recipient e-mail<br>
-	- Use `%d` in print settings header/footer for custom date<br>
-	<br><br>
-	Bug Issues Fixed:<br>
-	- #118, #63 Fixed conversion for plaintext<br>
-	- #57 Use ForceDBClose to Close open files (fixes folders and messages)<br>
-	- #77 Use global settings for PDF<br>
-	- #130 scheduled backups<br>
-	- #134 Correctly handle read, forwarded, replied flags<br>
-	<br><br>
-	Thanks to many! : See issues<br>
-	</p>
-	<br><br>
-
-	<h3>Version 4.1.0 : New Features</h3>
-	<p>
-		- Help/User guide : Fully localized
-		- Suffix option for filenames<br>
-		- Custom date option for filenames allowing strftime() like full date and time formatting<br>
-		- Use custom file naming for both attachments and embedded attachments<br>
-		- Custom date option for index filenames<br>
-		- Option to use 'Received Date' for filename and index<br>
-		- User configurable Hotkeys (Keyboard shortcuts)<br>
-		- PDF output now uses the global print options<br>
-		- Improved HTML index file layout<br>
-		<br><br>
-	Bug Issues Fixed:<br>
-	- #68 fix for index attachment flag<br>
-	- #74 fix for in-line image attachments not exported<br>
-	- Fix #56 handle cancel on import dialog<br>
-	- #77 use preferences for PDF output<br>
-	- UI cleanup tweaks (#80, #81, #82 ) OS variations - @ovari<br>
-	- German translation fix #93 - @dipgithub<br>
-	- Hungarian translation fixes - @ovari<br>
-	- Add missing license file #96 <br>
 	<br>
 	Thanks to the following users for enhancement suggestions and test help:<br><br>
 - <code class="notranslate">@ovari</code><br>

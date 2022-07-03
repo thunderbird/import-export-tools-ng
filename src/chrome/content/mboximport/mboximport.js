@@ -55,6 +55,7 @@ IETescapeBeginningFrom,
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -157,12 +158,22 @@ var IETprintPDFmain = {
 		let psService = Cc[
 			"@mozilla.org/gfx/printsettings-service;1"
 		].getService(Ci.nsIPrintSettingsService);
-		let printSettings = psService.newPrintSettings;
+
+		// pdf changes for 102
+		// newPrintSettings => createNewPrintSettings()
+		// printSetting.printToFile deprecated in 102, not needed in 91
+		let printSettings;
+		if (psService.newPrintSettings) {
+			printSettings = psService.newPrintSettings;
+		} else {
+			printSettings = psService.createNewPrintSettings();
+		}
+
+		//console.log(printSettings)
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
-		printSettings.printToFile = true;
+		//printSettings.printToFile = true;
 		printSettings.printSilent = true;
-		printSettings.showPrintProgress = false;
 		printSettings.outputFormat = fileFormat;
 
 		// Allow to override settings, todo
@@ -750,6 +761,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 }
 
 function exportfolder(subfolder, keepstructure, locale, zip) {
+
 	var folders = GetSelectedMsgFolders();
 	for (var i = 0; i < folders.length; i++) {
 		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
@@ -854,8 +866,19 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
-		if (filex.exists())
+		console.log(newname)
+		if (filex.exists()) {
 			filex.copyTo(destdirNSIFILE, newname);
+		} else {
+			// This fixes #320 
+			// imap profile folders do not have empty 
+			// mbox files. We create one if we encounter
+			// an msf file, but no mbox file.
+			// This must have changed...
+			var topdestdirNSI = destdirNSIFILE.clone();
+			topdestdirNSI.append(newname);
+			topdestdirNSI.create(0, 0644);
+		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
@@ -867,6 +890,11 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
+						let fname = listMSF[i].path.split(".msf")[0];
+						var nsifile = new FileUtils.File(fname);
+						if (!nsifile.exists()) {
+							nsifile.create(0, 0644);
+						}
 					} catch (e) { }
 				}
 			}

@@ -173,7 +173,6 @@ var IETprintPDFmain = {
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 		if(printSettings.printToFile !== undefined) {
-			console.log("printtofile")
 			printSettings.printToFile = true;
 		}
 		

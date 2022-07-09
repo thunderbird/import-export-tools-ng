@@ -173,7 +173,6 @@ var IETprintPDFmain = {
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 		if(printSettings.printToFile !== undefined) {
-			console.log("printtofile")
 			printSettings.printToFile = true;
 		}
 		
@@ -523,7 +522,32 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
+		let buffer = Uint8Array[10000*1024];
+		let b;
+		let chunk = 10*1000;
+		let offset = 0;
+		
+
+		console.log(file.path)
+		let s = new Date();
+		let eof = false;
+		while(!eof) {
+			b = await IOUtils.read(file.path, { offset: offset, maxBytes: chunk})
+			offset+= b.byteLength
+			//console.log(offset)
+			//console.log(b.byteLength)
+			if(b.byteLength < chunk) {
+				eof = true
+			}
+		}
+		//await IOUtils.copy(file.path, "c:\\Dev")
+		let et = new Date()-s
+		console.log(et)
+		//alert(et)
+		s = new Date();
 		file.copyTo(filex, tempfolder.filePath.leafName);
+		console.log(new Date()-s)
+		
 
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {

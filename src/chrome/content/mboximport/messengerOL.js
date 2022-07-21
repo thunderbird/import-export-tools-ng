@@ -11,6 +11,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expo
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/ioTests.js", window, "UTF-8");
 
 function onLoad() {
 	//console.debug('messenger OL');
@@ -199,6 +200,7 @@ function onLoad() {
 <menuseparator id="multipleSelSep" />
 <menu label="&saveSelected;" id="multipleSaveContext" insertbefore="threadPaneContext-sep-afterMarkMenu">
 	<menupopup>
+		<menuitem id="iotest1" label="ioTest1" oncommand="ioTest1(0)" />
 		<menuitem id="selAsEMLContext" label="&asEML;" oncommand="exportSelectedMsgs(0)" />
 		<menuitem id="selAsHTMLContext" label="&asHTML;" oncommand="exportSelectedMsgs(1)" />
 		<menuitem id="selAsHTMLContextAtt" label="&asHTML; &withattach;" oncommand="exportSelectedMsgs(8)" />

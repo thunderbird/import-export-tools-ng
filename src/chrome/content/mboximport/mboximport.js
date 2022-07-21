@@ -57,6 +57,7 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils
 
+
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var MBstrBundleService = Services.strings;
@@ -282,6 +283,13 @@ var IETprintPDFmain = {
 		fakeMsgPane.remove();
 	},
 };
+
+function bytesToString2(bytes) {
+    return bytes.reduce(function(str, b) {
+      return str + String.fromCharCode(b);
+    }, "");
+  };
+
 
 function openProfileImportWizard() {
 	var quit = {};
@@ -522,31 +530,14 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
-		let buffer = Uint8Array[10000*1024];
-		let b;
-		let chunk = 10*1000;
-		let offset = 0;
+		//let buffer = Uint8Array[10000*1024];
+		await ioTest1();
+		let d = await getData(file.path, filex.path + "\\" + file.leafName);
+		console.log(d)
+		IETwritestatus("Importing ", afile.leafName, " Completed...")
 		
-
-		console.log(file.path)
-		let s = new Date();
-		let eof = false;
-		while(!eof) {
-			b = await IOUtils.read(file.path, { offset: offset, maxBytes: chunk})
-			offset+= b.byteLength
-			//console.log(offset)
-			//console.log(b.byteLength)
-			if(b.byteLength < chunk) {
-				eof = true
-			}
-		}
-		//await IOUtils.copy(file.path, "c:\\Dev")
-		let et = new Date()-s
-		console.log(et)
-		//alert(et)
-		s = new Date();
-		file.copyTo(filex, tempfolder.filePath.leafName);
-		console.log(new Date()-s)
+		//file.copyTo(filex, tempfolder.filePath.leafName);
+		
 		
 
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
@@ -772,8 +763,10 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 				} else {
 					importThis = true;
 				}
-				if (importThis && afile.isFile())
+				if (importThis && afile.isFile()) {
+					IETwritestatus("Importing ", afile.leafName)
 					await trytocopy(afile, mboxname, msgFolder);
+				}
 			}
 		}
 	}

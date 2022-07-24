@@ -25,7 +25,7 @@ onmessage = async function(m) {
 			console.log(m.data)
 			inFile1 = m.data.mdata.filePath1;
 			outFile1 = m.data.mdata.destPath1;
-			rwT1();
+			await rwT1();
 			m.ports[0].postMessage(m.data.mdata);
 			//postMessage("gdata " + m.data.mdata);
 			//getData();

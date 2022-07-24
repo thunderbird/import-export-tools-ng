@@ -526,16 +526,17 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		alert(mboximportbundle.GetStringFromName("internalerror"));
 		return false;
 	}
+	console.log(tempfolder.filePath.leafName)
 	try {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
 		//let buffer = Uint8Array[10000*1024];
 		await ioTest1();
-		let d = await getData(file.path, filex.path + "\\" + file.leafName);
+		let d = await getData(file.path, filex.path + "\\" + tempfolder.filePath.leafName);
 		console.log(d)
-		IETwritestatus("Importing ", afile.leafName, " Completed...")
-		
+		IETwritestatus("Importing " + tempfolder.filePath.leafName + " Completed...")
+		await new Promise(resolve => setTimeout(resolve, 2000));
 		//file.copyTo(filex, tempfolder.filePath.leafName);
 		
 		
@@ -548,8 +549,11 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 				sbd.copyTo(filex, newfilename + ".sbd");
 		}
 	} catch (e) {
+		console.log(e)
 		return false;
 	}
+	
+	console.log("check rw")
 	// inizialize as nsIFile the folder imported in TB and check if it's writable and readable.
 	// if not (for ex. a file imported from a cdrom), change the permissions
 	// filex.append(newfilename);
@@ -566,6 +570,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// BUT I think this is too early as the folder is not actually created
 	//msgFolder.notifyFolderAdded(newFolder);
 
+	console.log("add empty ")
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
 		gNeedCompact = true;
@@ -587,7 +592,9 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		gMsgFolderImported.push(obj);
 	}
 
+	console.log("frebuild")
 	gFolderTreeView._rebuild();
+	console.log("tc done")
 	return newfilename;
 }
 
@@ -658,10 +665,14 @@ async function buildMSGfile(scan) {
 async function updateImportedFolder(msgFolder, forceCompact) {
 	try {
 		msgFolder.updateSummaryTotals(true);
-	} catch (e) { }
+	} catch (e) {
+		console.log(e)
+	 }
 	try {
 		msgFolder.summaryChanged();
-	} catch (e) { }
+	} catch (e) {
+		console.log(e)
+	 }
 	if (forceCompact)
 		msgFolder.compact(null, msgWindow);
 }
@@ -701,7 +712,10 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 			var onefile = thefiles.getNext();
 			onefile = onefile.QueryInterface(Ci.nsIFile);
 			mboxname = onefile.leafName;
+			IETwritestatus("Importing " + onefile.leafName)
 			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
+			
+			console.log("tcopy done ", new Date())
 		}
 	} else {
 		// Open the filepicker to choose the directory
@@ -764,14 +778,18 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 					importThis = true;
 				}
 				if (importThis && afile.isFile()) {
-					IETwritestatus("Importing ", afile.leafName)
+					IETwritestatus("Importing " + afile.leafName)
 					await trytocopy(afile, mboxname, msgFolder);
+					
+					console.log("tcopy done ", new Date())
 				}
 			}
 		}
+		console.log("end else")
 	}
-
+	console.log("before buildmsf")
 	if (buildMSF || gNeedCompact) {
+		console.log("buildmsf")
 		// I have no idea why so many setTimeout are in here, but each spins out
 		// of the main thread and it is hard to keep track of the actual execution
 		// flow. Let us return to sequential coding.

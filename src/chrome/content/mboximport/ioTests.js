@@ -31,8 +31,12 @@ async function getData(filePath, destPath) {
 	return new Promise((resolve) => {
 	  const channel = new MessageChannel();
 	  // this will fire when iframe will answer
-	  channel.port1.onmessage = e => resolve(e.data);
+	  channel.port1.onmessage = e => { 
+		console.log("msg rcvd ", new Date())
+		resolve(e.data);
+	  }
 //	  ioWorker.onmessage = e => resolve(e.data);
+
 
 	  // let iframe know we're expecting an answer
 	  // send it its own port

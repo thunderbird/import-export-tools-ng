@@ -107,7 +107,8 @@ async function rwT1() {
 				writePos = result.index 
 				
 				//console.log(writePos)
-				console.log(totalWrite)
+				console.log("totalWrite bytes:", totalWrite)
+				postMessage({msg: totalWrite})
 				//console.log(buf.slice(result.index , result.index +  200))
 				
 			}
@@ -132,12 +133,12 @@ async function rwT1() {
 
 			//console.log("loop")
 			}
-		console.log("end loop")
+		console.log("end read/fix/write loop")
 
-		console.log(mcnt)
+		console.log("Escape fixups:", mcnt)
 
 		let et = new Date() - s
-		console.error(et)
+		console.log("Elapsed time:", et)
 		console.log(new Date())
 		await new Promise(resolve => setTimeout(resolve, 5500))
 	}

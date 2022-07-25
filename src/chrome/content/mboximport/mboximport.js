@@ -526,14 +526,16 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		alert(mboximportbundle.GetStringFromName("internalerror"));
 		return false;
 	}
-	console.log(tempfolder.filePath.leafName)
+	console.log("src mbox", tempfolder.filePath.leafName)
 	try {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
 		//let buffer = Uint8Array[10000*1024];
 		await ioTest1();
-		let d = await getData(file.path, filex.path + "\\" + tempfolder.filePath.leafName);
+		let destPath = PathUtils.join(filex.path, tempfolder.filePath.leafName);
+		console.log("destPath : ", destPath)
+		let d = await getData(file.path, destPath);
 		console.log(d)
 		IETwritestatus("Importing " + tempfolder.filePath.leafName + " Completed...")
 		await new Promise(resolve => setTimeout(resolve, 2000));

@@ -21,6 +21,11 @@ async function ioTest1() {
 	if(!window.ioWorker) {
 		console.log("wrkr");
 		ioWorker = new ChromeWorker('chrome://mboximport/content/mboximport/ioWorker.js');
+		ioWorker.onmessage = event => {
+			console.log(event.data)
+			
+		  }
+		  
 	}
 
 	//ioWorker.postMessage({cmd: "rw1"});

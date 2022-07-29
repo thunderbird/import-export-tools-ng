@@ -6,13 +6,23 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
-var inFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\Inbox";
-var outFile1 = "";
+//var inFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\Inbox";
 
+var s;
+var d;
 var workerActive;
 var ioWorker;
 
 // menu items
+
+function formatBytes(bytes, decimals) {
+	if (bytes == 0) return '0 Bytes';
+	var k = 1024,
+		dm = decimals || 2,
+		sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+		i = Math.floor(Math.log(bytes) / Math.log(k));
+	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
 async function ioTest1() {
 	console.log("ioTest1");
@@ -23,7 +33,13 @@ async function ioTest1() {
 		ioWorker = new ChromeWorker('chrome://mboximport/content/mboximport/ioWorker.js');
 		ioWorker.onmessage = event => {
 			console.log(event.data)
-			
+			IETwritestatus("Importing " + PathUtils.filename(d) + " Processed: " + formatBytes(event.data.msg, 4), 15000)
+		  }
+		  ioWorker.onerror = event => {
+			console.log(event)
+			let errMsg = event.message
+			console.log(errMsg.split(":")[0])
+			alert(errMsg)
 		  }
 		  
 	}
@@ -33,6 +49,9 @@ async function ioTest1() {
 
 async function getData(filePath, destPath) {
 	console.log("gd")
+	s = filePath;
+	d = destPath;
+
 	return new Promise((resolve) => {
 	  const channel = new MessageChannel();
 	  // this will fire when iframe will answer
@@ -45,7 +64,7 @@ async function getData(filePath, destPath) {
 
 	  // let iframe know we're expecting an answer
 	  // send it its own port
-	  ioWorker.postMessage({cmd: "gdata", mdata: {filePath1: filePath, destPath1: destPath}}, [channel.port2]);  
+	  ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}}, [channel.port2]);  
 	  //ioWorker.postMessage({cmd: "gdata", mdata: "testing"});  
 	});
   }
@@ -54,55 +73,3 @@ function t2() {
 	console.log("t1")
 }
 
-async function rwT1() {
-
-	let b = "";
-	let chunk = 250 * 1000;
-
-
-	for (let i = 0; i < 5; i++) {
-
-		console.log(inFile1)
-		let offset = 0;
-		let s = new Date();
-		let eof = false;
-		let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: )/gm;
-		var m;
-		var cnt = 0;
-		var mcnt = 0;
-		while (!eof) {
-			b = await IOUtils.read(inFile1, { offset: offset, maxBytes: chunk })
-			offset += b.byteLength
-			cnt++;
-			//console.log(offset)
-			//await new Promise(resolve => setTimeout(resolve, 5))
-			//console.log(b.byteLength)
-			let buf = bytesToString2(b)
-			//console.log(buf.slice(0, 1100))
-			m = buf.matchAll(fromRegx)
-			//mcnt += [...m].length
-			//console.log(mcnt)
-			//console.log([...m])
-			//console.log([...m][0])
-			for (result of m) {
-				//console.log(result);
-				mcnt++;
-			}
-
-
-			//console.log("loop")
-			if (b.byteLength < chunk || cnt == 2000) {
-				eof = true
-			}
-		}
-		console.log("end loop")
-
-		console.log(mcnt)
-
-		let et = new Date() - s
-		console.error(et)
-		await new Promise(resolve => setTimeout(resolve, 5500))
-	}
-
-
-}

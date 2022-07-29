@@ -2,33 +2,24 @@
 // io test worker
 // ioTests
 
-//importScripts("resource://gre/modules/Services.jsm");
-//var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-//importScripts("resource://gre/modules/XPCOMUtils.jsm");
-
-//XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
-
-//var inFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\1-5MBmbox";
-var inFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\1GBmbox";
-//var outFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\InboxOut";
-var outFile1 = "C:\\Dev\\Thunderbird\\Profiles\\TB91\\Mail\\1-5MBmbox";;
+//var inFile1 = "C:\\Dev\\Thunderbird\\TestFolder\\ImportTests\\1GBmbox";
+//var outFile1 = "C:\\Dev\\Thunderbird\\Profiles\\TB91\\Mail\\1-5MBmbox";;
 
 
 console.log("ioTest worker");
-onmessage = async function(m) {
-	console.log(m.data);
-	switch (m.data.cmd) {
-		case "rw1":
-			await rwT1();
-			break;
-		case "gdata":
-			console.log(m.data)
-			inFile1 = m.data.mdata.filePath1;
-			outFile1 = m.data.mdata.destPath1;
-			await rwT1();
-			m.ports[0].postMessage(m.data.mdata);
-			//postMessage("gdata " + m.data.mdata);
-			//getData();
+
+// main worker message handler
+
+onmessage = async function(event) {
+	console.log(event.data);
+	switch (event.data.cmd) {
+		
+		case "mboxCopyImport":
+			console.log(event.data.cmd_options)
+			postMessage({msg: "starting"})
+			await mboxCopyImport(event.data.cmd_options);
+			event.ports[0].postMessage(event.data.mdata);
+			
 			break;
 		default:
 			break;
@@ -51,20 +42,40 @@ function bytesToString2(bytes) {
     }, "");
   };
 
-async function rwT1() {
-
-	await IOUtils.remove(outFile1);
-	await IOUtils.write(outFile1, new Uint8Array(), {
+async function mboxCopyImport(options) {
+	// make sure nothing is there, create start 
+	await IOUtils.remove(options.destPath, {ignoreAbsent: true});
+	await IOUtils.write(options.destPath, new Uint8Array(), {
 		mode: "create",
-	  });
-	
+	});
+
+	let fileInfo;
+
+	try {
+		fileInfo = await IOUtils.stat(options.srcPath);
+	} catch(err) {
+		console.log(err)
+		setTimeout(function() { throw err; });
+
+		
+
+	}
+
+	if(fileInfo.size > 10000000) {
+		let err = "too large"
+		console.log(err)
+		postMessage({msg: "eee"})
+
+		return;
+		//setTimeout(function() { throw err; });
+	}
 	let b = "";
 	let chunk = 900 * 1000;
 
 
 	for (let i = 0; i < 1; i++) {
 		console.log(new Date())
-		console.log(inFile1)
+		console.log(options.srcPath)
 		let offset = 0;
 		let s = new Date();
 		let eof = false;
@@ -77,17 +88,25 @@ async function rwT1() {
 		var finalChunk;
 		
 		while (!eof) {
-			b = await IOUtils.read(inFile1, { offset: offset, maxBytes: chunk })
+			b = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: chunk })
 			offset += b.byteLength
 			writePos = 0;
 			cnt++;
+
+
 			//console.log(offset)
 			//await new Promise(resolve => setTimeout(resolve, 5))
 			//console.log(b.byteLength)
 			let buf = bytesToString2(b)
 			//console.log(buf.slice(0, 400))
 			
-			
+			buf = buf.replace(/X-Mozilla-Status: 0001/g, "X-Mozilla-Status: 0000")
+
+			//res = buf.matchAll(/X-Mozilla-Status: 0001/g)
+			//for (result of res) {
+			//	console.log(result);
+			//}
+
 			m = buf.matchAll(fromRegx)
 			//mcnt += [...m].length
 			//console.log(mcnt)
@@ -102,8 +121,8 @@ async function rwT1() {
 				totalWrite += ((result.index - 1) - writePos);
 				//console.log(buf.slice(result.index - 4 , result.index +  20))
 				let raw = stringToBytes(buf.substring(writePos, result.index ));
-				await IOUtils.write(outFile1, raw, { mode: "append" });
-				await IOUtils.write(outFile1, stringToBytes(" "), { mode: "append" }); 
+				await IOUtils.write(options.destPath, raw, { mode: "append" });
+				await IOUtils.write(options.destPath, stringToBytes(" "), { mode: "append" }); 
 				writePos = result.index 
 				
 				//console.log(writePos)
@@ -128,9 +147,9 @@ async function rwT1() {
 
 			let raw = stringToBytes(buf.substring(writePos, finalChunk + 1));
 			//console.log(raw.length)
-    		await IOUtils.write(outFile1, raw, { mode: "append" });
+    		await IOUtils.write(options.destPath, raw, { mode: "append" });
     
-
+			postMessage({msg: totalWrite})
 			//console.log("loop")
 			}
 		console.log("end read/fix/write loop")

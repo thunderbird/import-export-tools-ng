@@ -313,6 +313,8 @@ function onLoad() {
 }
 
 function onUnload() {
+	console.log("sd")
+	window.ioWorker = null;
 	window.removeHotKeysObserver();
 	window.ietng.OpenBackupDialog();
 }

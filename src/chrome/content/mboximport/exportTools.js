@@ -1752,11 +1752,14 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	}
 }
 
-function IETwritestatus(text) {
+function IETwritestatus(text, displayDelay) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
 		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
+		if(displayDelay) {
+			delay = displayDelay;
+		}
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}

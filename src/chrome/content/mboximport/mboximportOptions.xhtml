@@ -112,17 +112,15 @@
 				</hbox>
 			</tabpanel>
 			<tabpanel>
-			<spacer height="8px" />
+			
 				<vbox>
-					<hbox align="center">
-						<checkbox id="MBasciiname" label="&MBlabel2;" />
-					</hbox>
-					<spacer height="15px" />
+					<spacer height="8px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&captionCustomize;" />
 						<hbox class="groupbox-os-title" >
 							<label class="groupbox-os-label">&captionCustomize;</label>
 						</hbox>
+						<spacer height="6px" />
 						<hbox align="center">
 							<checkbox id="customizeFilenames" label="&customizeFilename;" checked="false"
 									oncommand="setTimeout(customNamesCheck,200,this);" />
@@ -217,6 +215,38 @@
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>
+					<spacer height="14px" />
+					<groupbox class="groupbox-multi-os">
+						<caption label="Attachments" />
+						<hbox class="groupbox-os-title">
+							<label class="groupbox-os-label">Attachment Folder Names</label>
+						</hbox>
+						<hbox pack="start"  style="padding-left: 4px;" align="center">
+							<!-- <html:input type="checkbox" id="useAttFormat" checked="false" -->
+									<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<label style="padding-left: -4px;">Attachment Folders:</label>
+							<hbox flex="0">
+								<html:input id="attFolderFormat" stylex="height: 30px;" size="63"/>
+								</hbox>
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="18px" maxheightx="20px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						</hbox>
+						<spacer height="8px" />
+						<hbox pack="start"  style="padding-left: 4px;" align="center">
+							<!-- <html:input type="checkbox" id="useInlineAttFormat" checked="false" -->
+									<!-- onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<label style="padding-left: -4px;">Use for Inline Attachments Folders:</label>
+							<hbox flex="0">
+								<html:input id="inlineAttFolderFormat" stylex="height: 30px;" size="52"/>
+								</hbox>
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="20px" maxheightx="20px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						</hbox>
+
+
+					<spacer height="6px" />
+					</groupbox>
+
 					<spacer height="12px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&misc;" />
@@ -224,16 +254,17 @@
 							<label class="groupbox-os-label">&misc;</label>
 						</hbox>
 						<hbox align="center">
-							<checkbox id="cutSub" label="&cutSub;" />
-						</hbox>
-						<hbox align="center">
-							<checkbox id="cutFN" label="&cutFN;" />
-						</hbox>
-						<hbox align="center">
-							<label value="&filenameCharset;" />
+						<checkbox id="MBasciiname" label="&MBlabel2;" />
+						<spacer width="15px" />
+						<label value="&filenameCharset;" />
 							<html:input id="filenameCharset" />
 						</hbox>
-
+					
+						<hbox align="center">
+							<checkbox id="cutSub" label="&cutSub;" />
+							<spacer width="15px" />
+							<checkbox id="cutFN" label="&cutFN;" />
+						</hbox>
 
 					</groupbox>
 				</vbox>

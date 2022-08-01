@@ -122,7 +122,7 @@
 						</hbox>
 						<spacer height="6px" />
 						<hbox align="center">
-							<checkbox id="customizeFilenames" label="&customizeFilename;" checked="false"
+							<checkbox id="customizeFilenames" label="&customizeFilename;" 
 									oncommand="setTimeout(customNamesCheck,200,this);" />
 						</hbox>
 						<spacer height="10px" />
@@ -202,16 +202,16 @@
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
 						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
-						<hbox pack="start"  style="padding-left: 4px;" >
-							<html:input type="checkbox" id="useExtendedFormat" checked="false"
-									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
-							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>
-							<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
-            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						<hbox pack="start"  style="padding-left: 0px;" align="center">
+							<checkbox id="useExtendedFormat" 
+									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>
+							<label style="padding-left: -12px;">&useExtFilenameFormat;</label>
+							<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="18px" maxheightx="16px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
 						<spacer height="6px" />
 						<hbox valign="center" >
-							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">&extFormat;</label>
+							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">&extFormat;</label>
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>

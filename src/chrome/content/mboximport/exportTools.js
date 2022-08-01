@@ -1260,6 +1260,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								attDirContainer.append("Attachments");
 							} else {
 								let afname = constructAttachmentsFilename(1, hdr);
+								console.log(afname)
 								attDirContainer.append(afname);
 
 							}

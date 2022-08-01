@@ -818,6 +818,9 @@ function constructAttachmentsFilename(type, hdr) {
 
 	fname = attachmentsExtendedFilenameFormat;
 
+	// Allow ',' and single quote character which is valid
+	fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+	
 	return fname;
 }
 /* 

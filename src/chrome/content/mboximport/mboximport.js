@@ -765,7 +765,15 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 
 function exportfolder(subfolder, keepstructure, locale, zip) {
 
+	console.log("Start: ExportFolders (mbox)")
 	var folders = GetSelectedMsgFolders();
+
+	console.log("   Subfolders:", subfolder)
+	console.log("   Structured: ", keepstructure)
+	console.log("   Local: ", locale)
+	console.log("   Zip: ", zip)
+	console.log(folders)
+
 	for (var i = 0; i < folders.length; i++) {
 		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
@@ -795,6 +803,7 @@ function exportfolder(subfolder, keepstructure, locale, zip) {
 	}
 
 	if (locale) {
+		console.log("Using exportSingleLocaleFolder")
 		for (let i = 0; i < folders.length; i++)
 			exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
@@ -849,13 +858,20 @@ function exportRemoteFolders(destdirNSIFILE) {
 
 // The subfolder argument is true if we have to export also the subfolders
 function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {
+	
 	var filex = msgFolder2LocalFile(msgFolder);
 	// thefoldername=the folder name displayed in TB (for ex. "Modelli")
 	var thefoldername = IETcleanName(msgFolder.name);
 	var newname;
 
+	console.log("Start: exportSingleLocaleFolder")
+	console.log("   SrcPath: ", filex.path)
+	console.log("   Folder: ", thefoldername)
+	//console.log("")
+
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
 	if (msgFolder.isServer) {
+		console.log("Exporting server")
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && !keepstructure) {
@@ -868,9 +884,11 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
+		console.log("Exporting with subfolders")
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
 		console.log(newname)
 		if (filex.exists()) {
+			console.log("Copy ", newname)
 			filex.copyTo(destdirNSIFILE, newname);
 		} else {
 			// This fixes #320 
@@ -881,15 +899,20 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 			var topdestdirNSI = destdirNSIFILE.clone();
 			topdestdirNSI.append(newname);
 			topdestdirNSI.create(0, 0644);
+			console.log("Created: ", topdestdirNSI.leafName)
 		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
 			sbd.copyTo(destdirNSIFILE, newname + ".sbd");
+			console.log("Copied: ", sbd.path)
 			var destdirNsFile = destdirNSIFILE.clone();
 			destdirNsFile.append(newname + ".sbd");
 			var listMSF = MBOXIMPORTscandir.find(destdirNsFile);
+			console.log("Msf scan")
+			console.log(listMSF)
 			for (let i = 0; i < listMSF.length; ++i) {
+				console.log("Scan: ", listMSF[i].leafName)
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
@@ -898,7 +921,10 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 						if (!nsifile.exists()) {
 							nsifile.create(0, 0644);
 						}
-					} catch (e) { }
+						console.log("Create: ", listMSF[i].leafName)
+					} catch (e) {
+						console.log(e)
+					 }
 				}
 			}
 		}

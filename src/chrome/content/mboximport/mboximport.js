@@ -952,9 +952,8 @@ async function exportAccount(accountName, accountFolderPath, destPath) {
 	//let accountName = accountFolder.name;
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName)
-	await IOUtils.remove(finalExportFolderPath)
-	let d = PathUtils.join(destPath, tmpAccountFolderName)
-	console.log(d)
+	await IOUtils.remove(finalExportFolderPath, {ignoreAbsent: true});
+	
 	// copy account tree
 	await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
@@ -964,20 +963,19 @@ async function exportAccount(accountName, accountFolderPath, destPath) {
 	console.log(sds)
 
 	for(msfFile of sds) {
-		await IOUtils.remove(msfFile);
-		await IOUtils.write(msfFile, {mode: "create"})
+		await IOUtils.remove(msfFile, {ignoreAbsent: true});
+		await IOUtils.write(msfFile, new Uint8Array(), {mode: "create"})
 	}
 }
 
 async function getDirectoryChildren(rootPath, options) {
 	let list = [];
 	let items = await IOUtils.getChildren(rootPath);
-	//console.log(items)
+	
 	list = items;
 	if (options && options.fileFilter) {
 		list = list.filter(li => li.endsWith(options.fileFilter));
 	}
-	//console.log(list)
 
 	if (options && options.recursive) {
 		for (item of items) {
@@ -985,7 +983,7 @@ async function getDirectoryChildren(rootPath, options) {
 			//console.log(stat)
 			if (stat.type == "directory") {
 				//console.log(item)
-				list = list.concat(await getDirectoryChildren(item));
+				list = list.concat(await getDirectoryChildren(item, options));
 			}
 		}
 	}

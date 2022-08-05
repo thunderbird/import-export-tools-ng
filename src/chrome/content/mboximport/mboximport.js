@@ -172,10 +172,10 @@ var IETprintPDFmain = {
 		//console.log(printSettings)
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
-		if(printSettings.printToFile !== undefined) {
+		if (printSettings.printToFile !== undefined) {
 			printSettings.printToFile = true;
 		}
-		
+
 		printSettings.printSilent = true;
 		printSettings.outputFormat = fileFormat;
 
@@ -763,7 +763,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 	}
 }
 
-function exportfolder(subfolder, keepstructure, locale, zip) {
+async function exportfolder(subfolder, keepstructure, locale, zip) {
 
 	console.log("Start: ExportFolders (mbox)")
 	var folders = GetSelectedMsgFolders();
@@ -805,7 +805,7 @@ function exportfolder(subfolder, keepstructure, locale, zip) {
 	if (locale) {
 		console.log("Using exportSingleLocaleFolder")
 		for (let i = 0; i < folders.length; i++)
-			exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
+			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
 		exportVirtualFolder(msgFolder); //msgFolder?
 	} else {
@@ -857,8 +857,8 @@ function exportRemoteFolders(destdirNSIFILE) {
 }
 
 // The subfolder argument is true if we have to export also the subfolders
-function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {
-	
+async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {
+
 	var filex = msgFolder2LocalFile(msgFolder);
 	// thefoldername=the folder name displayed in TB (for ex. "Modelli")
 	var thefoldername = IETcleanName(msgFolder.name);
@@ -872,7 +872,10 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
 	if (msgFolder.isServer) {
 		console.log("Exporting server")
-		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
+		console.log(msgFolder.filePath.path)
+		console.log(msgFolder.prettyName)
+		let destPath = destdirNSIFILE.path;
+		await exportAccount(msgFolder.prettyName, msgFolder.filePath.path, destPath);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && !keepstructure) {
 		// export the folder with the subfolders
@@ -924,7 +927,7 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 						console.log("Create: ", listMSF[i].leafName)
 					} catch (e) {
 						console.log(e)
-					 }
+					}
 				}
 			}
 		}
@@ -937,6 +940,58 @@ function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNS
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	}
 }
+
+async function exportAccount(accountName, accountFolderPath, destPath) {
+
+	console.log("Start: exportAccount")
+	console.log("   SrcPath: ", accountFolderPath)
+	console.log("   Folder: ", accountName)
+	console.log("   destPath: ", destPath)
+	//let srcAccountPath = accountFolder.
+	// destAccountPath is fixup of account name
+	//let accountName = accountFolder.name;
+	let tmpAccountFolderName = nametoascii(accountName);
+	let finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName)
+	await IOUtils.remove(finalExportFolderPath)
+	let d = PathUtils.join(destPath, tmpAccountFolderName)
+	console.log(d)
+	// copy account tree
+	await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
+
+
+	//let sds = await getSubdirectories("C:\\Users\\Christopher\\Documents");
+	let sds = await getDirectoryChildren(finalExportFolderPath, { recursive: true, fileFilter: ".msf" });
+	console.log(sds)
+
+	for(msfFile of sds) {
+		await IOUtils.remove(msfFile);
+		await IOUtils.write(msfFile, {mode: "create"})
+	}
+}
+
+async function getDirectoryChildren(rootPath, options) {
+	let list = [];
+	let items = await IOUtils.getChildren(rootPath);
+	//console.log(items)
+	list = items;
+	if (options && options.fileFilter) {
+		list = list.filter(li => li.endsWith(options.fileFilter));
+	}
+	//console.log(list)
+
+	if (options && options.recursive) {
+		for (item of items) {
+			let stat = await IOUtils.stat(item);
+			//console.log(stat)
+			if (stat.type == "directory") {
+				//console.log(item)
+				list = list.concat(await getDirectoryChildren(item));
+			}
+		}
+	}
+	return list;
+}
+
 
 var MBOXIMPORTscandir = {
 	list2: [],
@@ -975,12 +1030,16 @@ var MBOXIMPORTscandir = {
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 	if (msgFolder.subFolders) {
+		console.log(msgFolder.subFolders)
 		for (let subfolder of msgFolder.subFolders) {
 			// Search for a good name
+			console.log(subfolder.name)
 			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
 			let subfolderNS = msgFolder2LocalFile(subfolder);
-			if (subfolderNS.exists())
+			if (subfolderNS.exists()) {
 				subfolderNS.copyTo(destdirNSIFILE, newname);
+				console.log("Copy:", newname)
+			}
 			else {
 				newname = IETcleanName(newname);
 				let destdirNSIFILEclone = destdirNSIFILE.clone();
@@ -988,6 +1047,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 				destdirNSIFILEclone.create(0, 0644);
 			}
 			if (keepstructure) {
+				console.log("structure")
 				let sbd = subfolderNS.parent;
 				sbd.append(subfolderNS.leafName + ".sbd");
 				if (sbd.exists() && sbd.directoryEntries.length > 0) {

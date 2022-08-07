@@ -50,6 +50,8 @@ exportIMAPfolder,
 IETcleanName,
 IETemlx2eml,
 IETescapeBeginningFrom,
+IOUtils,
+PathUtils,
 */
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
@@ -945,33 +947,61 @@ async function exportAccount(accountName, accountFolderPath, destPath) {
 
 	console.log("Start: exportAccount")
 	console.log("   SrcPath: ", accountFolderPath)
-	console.log("   Folder: ", accountName)
+	console.log("   srcFolder: ", accountName)
 	console.log("   destPath: ", destPath)
-	//let srcAccountPath = accountFolder.
-	// destAccountPath is fixup of account name
-	//let accountName = accountFolder.name;
+
 	let tmpAccountFolderName = nametoascii(accountName);
-	let finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName)
-	await IOUtils.remove(finalExportFolderPath, {ignoreAbsent: true});
-	
+	let finalExportFolderPath;
+	if (IOUtils.createUniqueDirectory) {
+		finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName)
+	} else {
+		finalExportFolderPath = await createUniqueDirectory(destPath, tmpAccountFolderName);
+		console.log(finalExportFolderPath)
+	}
+	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
+
 	// copy account tree
 	await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
+	// Get all msf files and zero out
+	let msfFiles = await getDirectoryChildren(finalExportFolderPath, { recursive: true, fileFilter: ".msf" });
 
-	//let sds = await getSubdirectories("C:\\Users\\Christopher\\Documents");
-	let sds = await getDirectoryChildren(finalExportFolderPath, { recursive: true, fileFilter: ".msf" });
-	console.log(sds)
-
-	for(msfFile of sds) {
-		await IOUtils.remove(msfFile, {ignoreAbsent: true});
-		await IOUtils.write(msfFile, new Uint8Array(), {mode: "create"})
+	for (let msfFile of msfFiles) {
+		await IOUtils.remove(msfFile, { ignoreAbsent: true });
+		await IOUtils.write(msfFile, new Uint8Array(), { mode: "create" });
 	}
 }
+
+async function createUniqueDirectory(parent, prefix) {
+
+	let ext = prefix.split('.').pop();
+	let name = prefix.substring(0, prefix.lastIndexOf('.'));
+
+	var tmpUniqueName = await PathUtils.join(parent, prefix);
+
+	for (let i = 0; i < 100; i++) {
+		if (i === 0 && !(await IOUtils.exists(tmpUniqueName))) {
+			await IOUtils.makeDirectory(tmpUniqueName);
+			return tmpUniqueName;
+		} else if (i === 0) {
+			continue;
+		}
+
+		tmpUniqueName = await PathUtils.join(parent, `${name}-${i}.${ext}`);
+
+		if (!await IOUtils.exists(tmpUniqueName)) {
+			await IOUtils.makeDirectory(tmpUniqueName);
+			return tmpUniqueName;
+		}
+	}
+	return null;
+}
+
 
 async function getDirectoryChildren(rootPath, options) {
 	let list = [];
 	let items = await IOUtils.getChildren(rootPath);
-	
+
 	list = items;
 	if (options && options.fileFilter) {
 		list = list.filter(li => li.endsWith(options.fileFilter));

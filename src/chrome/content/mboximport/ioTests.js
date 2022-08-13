@@ -32,7 +32,7 @@ async function ioTest1() {
 		console.log("wrkr");
 		ioWorker = new ChromeWorker('chrome://mboximport/content/mboximport/ioWorker.js');
 		ioWorker.onmessage = event => {
-			console.log(event.data)
+			//console.log(event.data)
 			IETwritestatus("Importing " + PathUtils.filename(d) + " Processed: " + formatBytes(event.data.msg, 4), 15000)
 		  }
 		  ioWorker.onerror = event => {
@@ -44,16 +44,20 @@ async function ioTest1() {
 		  
 	}
 
-	//ioWorker.postMessage({cmd: "rw1"});
+	ioWorker.postMessage({cmd: "rw1"});
 }
 
-async function getData(filePath, destPath) {
-	console.log("gd")
+async function mboxCopyImport(filePath, destPath) {
+	console.log("Start: mboxCopyImport")
 	s = filePath;
 	d = destPath;
 
+	console.log(filePath)
+	console.log(destPath)
+
 	return new Promise((resolve) => {
 	  const channel = new MessageChannel();
+	  console.log(channel)
 	  // this will fire when iframe will answer
 	  channel.port1.onmessage = e => { 
 		console.log("msg rcvd ", new Date())
@@ -64,7 +68,10 @@ async function getData(filePath, destPath) {
 
 	  // let iframe know we're expecting an answer
 	  // send it its own port
-	  ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}}, [channel.port2]);  
+	  
+	  ioWorker.postMessage({cmd: "test"});  
+	  ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}},  [channel.port2]);  
+	  //ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}}, [channel.port2]);
 	  //ioWorker.postMessage({cmd: "gdata", mdata: "testing"});  
 	});
   }

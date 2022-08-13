@@ -1,0 +1,7 @@
+DEBUG|014.448|DataBreakpointsManager: Setting 0 data breakpoints
+DEBUG|014.452|FirefoxDebugAdapter: Setting exception filters: ["uncaught"]
+DEBUG|014.466|FirefoxDebugAdapter: 0 threads
+DEBUG|015.832|DebugConnection: Received response/event {"from":"root","applicationType":"browser","testConnectionPrefix":"server1.conn0.","traits":{"networkMonitor":true,"workerConsoleApiMessagesDispatchedToMainThread":true,"noPauseOnThreadActorAttach":true,"supportsThreadActorIsAttached":true,"supportsThreadConfigurationOptions":true}}
+DEBUG|015.832|RootActorProxy: Fetching root
+DEBUG|015.832|DebugConnection: Sending request {"to":"root","type":"getRoot"}
+INFO |015.852|FirefoxDebugSession: Connection to Firefox closed - terminating debug session

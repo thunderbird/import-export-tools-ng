@@ -28,22 +28,32 @@
 			"name": "Launch WebExtension",
 			"type": "firefox",
 			"request": "launch",
- 			"reAttach": true,
+			"reAttach": true,
 			"addonPath": "${workspaceFolder}"
 		},
 		{
-					"name": "Launch TB MailExtension",
-					"type": "firefox",
-					"request": "attach",
-					"addonPath": "${workspaceFolder}/src"
-		}
-
-
-	],
-	"log": {
-        "fileName": "${workspaceFolder}/log.txt",
-        "fileLevel": {
-            "default": "Debug"
-        }
+			"name": "Launch TB MailExtension",
+			"type": "firefox",
+			"request": "launch",
+			"timeout": 50,
+			"reAttach": true,
+			"firefoxExecutable": "C:\\Program Files (x86)\\Mozilla Thunderbird-91\\thunderbird.exe",
+			"reloadOnChange": {
+				"watch": "${workspaceFolder}\\**\\*.js",
+				"ignore": "**\\node_modules\\**"
+			},
+			"profileDir": "C:\\Dev\\Thunderbird\\Profiles\\TB91x",
+			"keepProfileChanges": true,
+			"internalConsoleOptions": "openOnSessionStart",
+			"addonPath": "${workspaceFolder}\\src",
+			"log": {
+				"fileName": "${workspaceFolder}\\log.txt",
+				"fileLevel": {
+					"default": "Debug"
+				}
+			}
+		},
+		
 	
+],
 }

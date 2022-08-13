@@ -43,11 +43,20 @@ function bytesToString2(bytes) {
   };
 
 async function mboxCopyImport(options) {
+	// check and create sbd if necessary 
+	let destSbdPath = options.destPath + ".sbd";
+	if (!IOUtils.exists(destSbdPath)) {
+		//await IOUtils.makeDirectory(destSbdPath);
+	}
+
+	let targetMboxPath = PathUtils.join(destSbdPath, PathUtils.filename(options.finalDestName));
+
 	// make sure nothing is there, create start 
-	await IOUtils.remove(options.destPath, {ignoreAbsent: true});
-	await IOUtils.write(options.destPath, new Uint8Array(), {
+	await IOUtils.remove(targetMboxPath, {ignoreAbsent: true});
+	await IOUtils.write(targetMboxPath, new Uint8Array(), {
 		mode: "create",
 	});
+	
 
 	let fileInfo;
 
@@ -122,12 +131,12 @@ async function mboxCopyImport(options) {
 				totalWrite += ((result.index - 1) - writePos);
 				//console.log(buf.slice(result.index - 4 , result.index +  20))
 				let raw = stringToBytes(buf.substring(writePos, result.index ));
-				await IOUtils.write(options.destPath, raw, { mode: "append" });
-				await IOUtils.write(options.destPath, stringToBytes(" "), { mode: "append" }); 
+				await IOUtils.write(targetMboxPath, raw, { mode: "append" });
+				await IOUtils.write(targetMboxPath, stringToBytes(" "), { mode: "append" }); 
 				writePos = result.index 
 				
 				//console.log(writePos)
-				console.log("totalWrite bytes:", totalWrite)
+				//console.log("totalWrite bytes:", totalWrite)
 				postMessage({msg: totalWrite})
 				//console.log(buf.slice(result.index , result.index +  200))
 				
@@ -148,7 +157,7 @@ async function mboxCopyImport(options) {
 
 			let raw = stringToBytes(buf.substring(writePos, finalChunk + 1));
 			//console.log(raw.length)
-    		await IOUtils.write(options.destPath, raw, { mode: "append" });
+    		await IOUtils.write(targetMboxPath, raw, { mode: "append" });
     
 			postMessage({msg: totalWrite})
 			//console.log("loop")

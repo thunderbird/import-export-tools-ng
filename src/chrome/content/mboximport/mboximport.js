@@ -50,6 +50,8 @@ exportIMAPfolder,
 IETcleanName,
 IETemlx2eml,
 IETescapeBeginningFrom,
+IOUtils,
+PathUtils,
 */
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
@@ -173,10 +175,10 @@ var IETprintPDFmain = {
 		//console.log(printSettings)
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
-		if(printSettings.printToFile !== undefined) {
+		if (printSettings.printToFile !== undefined) {
 			printSettings.printToFile = true;
 		}
-		
+
 		printSettings.printSilent = true;
 		printSettings.outputFormat = fileFormat;
 
@@ -285,10 +287,10 @@ var IETprintPDFmain = {
 };
 
 function bytesToString2(bytes) {
-    return bytes.reduce(function(str, b) {
-      return str + String.fromCharCode(b);
-    }, "");
-  };
+	return bytes.reduce(function (str, b) {
+		return str + String.fromCharCode(b);
+	}, "");
+};
 
 
 function openProfileImportWizard() {
@@ -336,6 +338,7 @@ function msgFolder2LocalFile(msgFolder) {
 }
 
 function IETupdateFolder(folder) {
+	console.log(folder.name)
 	var msgDB = folder.msgDatabase;
 	msgDB.summaryValid = false;
 	folder.ForceDBClosed();
@@ -535,13 +538,13 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		await ioTest1();
 		let destPath = PathUtils.join(filex.path, tempfolder.filePath.leafName);
 		console.log("destPath : ", destPath)
-		let d = await getData(file.path, destPath);
+		let d = await mboxCopyImport(file.path, destPath);
 		console.log(d)
 		IETwritestatus("Importing " + tempfolder.filePath.leafName + " Completed...")
 		await new Promise(resolve => setTimeout(resolve, 2000));
 		//file.copyTo(filex, tempfolder.filePath.leafName);
-		
-		
+
+
 
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
@@ -554,7 +557,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		console.log(e)
 		return false;
 	}
-	
+
 	console.log("check rw")
 	// inizialize as nsIFile the folder imported in TB and check if it's writable and readable.
 	// if not (for ex. a file imported from a cdrom), change the permissions
@@ -665,22 +668,28 @@ async function buildMSGfile(scan) {
 }
 
 async function updateImportedFolder(msgFolder, forceCompact) {
+	console.log(msgFolder.name)
 	try {
 		msgFolder.updateSummaryTotals(true);
 	} catch (e) {
 		console.log(e)
-	 }
+	}
 	try {
 		msgFolder.summaryChanged();
 	} catch (e) {
 		console.log(e)
-	 }
+	}
 	if (forceCompact)
 		msgFolder.compact(null, msgWindow);
 }
 
 // scandir flag is to know if the function must scan a directory or just import mbox file(s)
 async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
+	await importMboxFiles(scandir, keepstructure, openProfDir, recursiveMode, msgFolder);
+
+	console.log("return from importmbox")
+	return
+
 	// initialize variables
 	gMsgFolderImported = [];
 	gNeedCompact = false;
@@ -716,7 +725,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 			mboxname = onefile.leafName;
 			IETwritestatus("Importing " + onefile.leafName)
 			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
-			
+
 			console.log("tcopy done ", new Date())
 		}
 	} else {
@@ -782,7 +791,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 				if (importThis && afile.isFile()) {
 					IETwritestatus("Importing " + afile.leafName)
 					await trytocopy(afile, mboxname, msgFolder);
-					
+
 					console.log("tcopy done ", new Date())
 				}
 			}
@@ -800,6 +809,181 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		await buildMSGfile();
 	}
 }
+
+async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
+	// init vars
+	gMsgFolderImported = [];
+	gNeedCompact = false;
+	
+	let fpTitle;
+	let fpMode;
+	let fpDisplayDirectory;
+
+
+	if (scandir) {
+		fpTitle = mboximportbundle.GetStringFromName("searchdir");
+		fpMode = Ci.nsIFilePicker.modeGetFolder;
+	} else {
+		fpTitle = mboximportbundle.GetStringFromName("filePickerImport");
+		fpMode = Ci.nsIFilePicker.modeOpenMultiple;
+	}
+
+	if (openProfDir) {
+		// we need an nsIFile obj from the path
+		fpDisplayDirectory = nsiFileFromPath(PathUtils.profileDir);
+	} else {
+		fpDisplayDirectory = null;
+	}
+	// use filepicker to select mbox files (mode 0, 1)
+	// select folder (modes 2, 3)
+
+	let resultObj = await openFileDialog(fpMode, fpTitle, fpDisplayDirectory, Ci.nsIFilePicker.filterAll);
+	console.log("res ")
+	console.log(resultObj)
+	if (resultObj.result !== 0) {
+		return;
+	}
+
+	console.log(msgFolder.filePath)
+	
+	let importOptions = {};
+	// mode 0, 1 - import from file list
+	let rv = await scanAndImportMboxFiles("", resultObj.filesArray, msgFolder.filePath.path, importOptions, msgFolder);
+
+	/*
+	await new Promise(resolve => setTimeout(resolve, 2000));
+	console.log(resultObj.filesArray)
+
+	let msgStore = msgFolder.msgStore;
+	msgStore.discoverSubFolders(msgFolder, true);
+	console.log(msgFolder.hasSubFolders)
+	let sf = msgFolder.subFolders
+	//sf[0].createStorageIfMissing(cb);
+	console.log(sf)
+	await new Promise(resolve => setTimeout(resolve, 2000));
+
+
+	let folder = sf[0]
+	
+	return;
+
+	//msgStore.rebuildIndex(sf[0], sf[0].msgDatabase, window, cb)
+	let obj = {};
+			obj.msgFolder = sf[0];
+			obj.forceCompact = false;
+			gMsgFolderImported.push(obj);
+	
+	obj = {};
+			obj.msgFolder = msgFolder;
+			obj.forceCompact = false;
+			gMsgFolderImported.push(obj);
+		
+	buildMSGfile(true);
+	gFolderTreeView._rebuild();
+	console.log("tc done")
+	*/
+}
+
+function rebuildSummaryFile(folder) {
+	// Send a notification that we are triggering a database rebuild.
+	MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+	folder.msgDatabase.summaryValid = false;
+
+	var msgDB = folder.msgDatabase;
+	msgDB.summaryValid = false;
+	try {
+	  folder.closeAndBackupFolderDB("");
+	} catch (e) {
+	  // In a failure, proceed anyway since we're dealing with problems
+	  folder.ForceDBClosed();
+	}
+	folder.updateFolder(msgWindow);
+	
+	gFolderTreeView._rebuild();
+}
+function cb(e) {
+	console.log(e)
+}
+
+async function scanAndImportMboxFiles(srcDirectory, srcRootFiles, destFolderPath, options, msgFolder) {
+
+	// loop through top level file list
+	//		check if mbox file
+	//			processAndCopyImportMbox - dest folder
+	//		if structured import find sbd, create list, walk list
+
+	// Loop over top level files
+	for (let filePath of srcRootFiles) {
+		// check if we can determine it's an mbox file
+		let isMbox = await isMboxFile(filePath);
+		console.log("check ", filePath, isMbox)
+
+		if (isMbox) {
+			
+			// check permission to import if required 
+			if (mboxImportAcceptanceRequired()) {
+				if (mboxImportAcceptanceRequest(filePath)) {
+					await processAndCopyImportMbox(filePath, destFolderPath, options);
+				} else {
+					continue;
+				}
+
+			} else {
+				
+				let sf = msgFolder.addSubfolder(PathUtils.filename(filePath))
+				await processAndCopyImportMbox(filePath, destFolderPath, options);
+				rebuildSummaryFile(sf)
+			}
+		}
+	}
+}
+
+
+async function processAndCopyImportMbox(filePath, destFolderPath, options) {
+	console.log("exp ", filePath )
+	
+	IETwritestatus("Importing " + filePath)
+	//await trytocopy(onefile, mboxname, msgFolder, keepstructure);
+	await ioTest1();
+		
+		let d = await mboxCopyImport(filePath, destFolderPath);
+		console.log(d)
+		IETwritestatus("Importing " + filePath + " Completed...")
+		await new Promise(resolve => setTimeout(resolve, 2000));
+}
+
+// utility functions 
+
+function mboxImportAcceptanceRequired() {
+	return IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
+}
+
+function mboxImportAcceptanceRequest(mboxPath) {
+	let promptSvc = Services.prompt;
+	var checkObj = {};
+	checkObj.value = false;
+	var flags = promptSvc.BUTTON_TITLE_YES * promptSvc.BUTTON_POS_0 +
+		promptSvc.BUTTON_TITLE_NO * promptSvc.BUTTON_POS_2 +
+		promptSvc.BUTTON_TITLE_CANCEL * promptSvc.BUTTON_POS_1 +
+		promptSvc.BUTTON_POS_0_DEFAULT;
+	var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxPath + '" ?';
+	var button = promptSvc.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
+	IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
+
+	if (button === 0)
+		return true;
+	else if (button === 2)
+		return false;
+
+}
+
+async function isMboxFile(filePath) {
+	let nsIFile = nsiFileFromPath(filePath);
+	return isMbox(nsIFile)
+}
+
+// end utilities 
 
 function exportfolder(subfolder, keepstructure, locale, zip) {
 
@@ -1558,5 +1742,68 @@ function openIEThelp(localize) {
 	loadTabPage('importexport-help.html#main_help', true);
 }
 
-// window.addEventListener("load", this.init, false);
-// window.addEventListener("unload", this.shutdown, false);
+
+// file utilities 
+
+
+async function getDirectoryChildren(rootPath, options) {
+	let list = [];
+	let items = await IOUtils.getChildren(rootPath);
+
+	list = items;
+	if (options && options.fileFilter) {
+		list = list.filter(li => li.endsWith(options.fileFilter));
+	}
+
+	if (options && options.recursive) {
+		for (item of items) {
+			let stat = await IOUtils.stat(item);
+			//console.log(stat)
+			if (stat.type == "directory") {
+				//console.log(item)
+				list = list.concat(await getDirectoryChildren(item, options));
+			}
+		}
+	}
+	return list;
+}
+
+async function openFileDialog(mode, title, initialDir, filter) {
+	let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+	fp.init(window, title, mode);
+	fp.appendFilters(filter);
+	if (initialDir) {
+		fp.displayDirectory = nsiFileFromPath(initialDir);
+	}
+	let res = await new Promise(resolve => {
+		fp.open(resolve);
+	});
+	if (res !== Ci.nsIFilePicker.returnOK) {
+		return;
+	}
+
+	console.log(fp.displayDirectory)
+	console.log(fp.file)
+	var files = fp.files;
+	var paths = [];
+	while (files.hasMoreElements()) {
+		var arg = files.getNext().QueryInterface(Ci.nsIFile);
+		paths.push(arg.path);
+		console.log(arg.path)
+	}
+	let resultObj = {};
+	resultObj.result = 0;
+	resultObj.filesArray = paths;
+	return resultObj;
+}
+
+
+
+function nsiFileFromPath(path) {
+	var nsiFile = Cc["@mozilla.org/file/local;1"]
+		.createInstance(Ci.nsIFile);
+	nsiFile.initWithPath(path);
+	return nsiFile;
+}
+
+

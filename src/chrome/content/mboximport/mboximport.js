@@ -810,11 +810,11 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 	}
 }
 
-async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
+async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMode, destMsgFolder) {
 	// init vars
 	gMsgFolderImported = [];
 	gNeedCompact = false;
-	
+
 	let fpTitle;
 	let fpMode;
 	let fpDisplayDirectory;
@@ -844,11 +844,11 @@ async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMod
 		return;
 	}
 
-	console.log(msgFolder.filePath)
-	
-	let importOptions = {};
+	console.log(destMsgFolder.filePath)
+
+	let importOptions = {structuredImport: keepstructure};
 	// mode 0, 1 - import from file list
-	let rv = await scanAndImportMboxFiles("", resultObj.filesArray, msgFolder.filePath.path, importOptions, msgFolder);
+	let rv = await scanAndImportMboxFiles(resultObj.filesArray, destMsgFolder, importOptions);
 
 	/*
 	await new Promise(resolve => setTimeout(resolve, 2000));
@@ -893,20 +893,21 @@ function rebuildSummaryFile(folder) {
 	var msgDB = folder.msgDatabase;
 	msgDB.summaryValid = false;
 	try {
-	  folder.closeAndBackupFolderDB("");
+		folder.closeAndBackupFolderDB("");
 	} catch (e) {
-	  // In a failure, proceed anyway since we're dealing with problems
-	  folder.ForceDBClosed();
+		// In a failure, proceed anyway since we're dealing with problems
+		folder.ForceDBClosed();
 	}
 	folder.updateFolder(msgWindow);
-	
+
 	gFolderTreeView._rebuild();
 }
+
 function cb(e) {
 	console.log(e)
 }
 
-async function scanAndImportMboxFiles(srcDirectory, srcRootFiles, destFolderPath, options, msgFolder) {
+async function scanAndImportMboxFiles(srcRootFiles, destMsgFolder, options) {
 
 	// loop through top level file list
 	//		check if mbox file
@@ -920,19 +921,21 @@ async function scanAndImportMboxFiles(srcDirectory, srcRootFiles, destFolderPath
 		console.log("check ", filePath, isMbox)
 
 		if (isMbox) {
-			
+
 			// check permission to import if required 
 			if (mboxImportAcceptanceRequired()) {
 				if (mboxImportAcceptanceRequest(filePath)) {
-					await processAndCopyImportMbox(filePath, destFolderPath, options);
+					await processAndCopyImportMbox(filePath, destMsgFolder, options);
 				} else {
 					continue;
 				}
 
 			} else {
-				
-				let sf = msgFolder.addSubfolder(PathUtils.filename(filePath))
-				await processAndCopyImportMbox(filePath, destFolderPath, options);
+
+
+				let sf = await processAndCopyImportMbox(filePath, destMsgFolder, options);
+				//await IOUtils.copy(filePath, )
+				console.log(sf)
 				rebuildSummaryFile(sf)
 			}
 		}
@@ -940,17 +943,90 @@ async function scanAndImportMboxFiles(srcDirectory, srcRootFiles, destFolderPath
 }
 
 
-async function processAndCopyImportMbox(filePath, destFolderPath, options) {
-	console.log("exp ", filePath )
+async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options) {
+	// prep everything for mbox copy, setup subfolder if necessary 
+	// create unique folder name
+
+	// check existing sbd
+	let destFolderPath = destMsgFolder.filePath.path;
+	let destFolderSbdPath = PathUtils.join(PathUtils.parent(destFolderPath), PathUtils.filename(destFolderPath) + ".sbd");
+	let destFolderName = PathUtils.filename(srcMboxFilePath);
+
+	// try sbd path
+	let srcMboxSbdFilePath = srcMboxFilePath + ".sbd";
+
+	console.log(destFolderSbdPath)
+	var sf;
+	let uniqueFolderName;
+	if (IOUtils.exists(destFolderSbdPath)) {
+		uniqueFolderName = await createUniqueFilename(destFolderSbdPath, destFolderName, { create: false, fileNameOnly: true });
+		console.log(uniqueFolderName)
+		sf = destMsgFolder.addSubfolder(uniqueFolderName);
+
+	} else {
+		uniqueFolderName = destFolderName;
+		sf = destMsgFolder.addSubfolder(uniqueFolderName);
+		console.log(sf)
+	}
+
+	console.log("importing to: ", uniqueFolderName)
+
+
+	IETwritestatus("Importing " + srcMboxFilePath)
 	
-	IETwritestatus("Importing " + filePath)
-	//await trytocopy(onefile, mboxname, msgFolder, keepstructure);
 	await ioTest1();
+
+	let d = await mboxCopyImport(srcMboxFilePath, destMsgFolder.filePath.path, uniqueFolderName);
+	console.log(d)
+	IETwritestatus("Importing " + srcMboxFilePath + " Completed...")
+	
+	if (options.structuredImport && IOUtils.exists(srcMboxSbdFilePath)) {
+		let destSbdPath = PathUtils.join(destMsgFolder.filePath.path + '.sbd', `${uniqueFolderName}.sbd`);
+		console.log(destSbdPath)
+		console.log(srcMboxSbdFilePath)
+		let sbdFilesTree = await getDirectoryChildren(srcMboxSbdFilePath, {recursive: true})
+		console.log(sbdFilesTree)
+
+		let srcPartsLen = PathUtils.split(srcMboxSbdFilePath).length;
+
+		for (let filePath of sbdFilesTree) {
+			let subD = PathUtils.split(filePath)
+				let relp = subD.slice(srcPartsLen)
+				let destP = PathUtils.join(destSbdPath, ...relp)
+			if (await isMboxFile(filePath)) {
+				IOUtils.copy(filePath, destP, {recursive: false})
+			}
+
+			if ((await IOUtils.stat(filePath)).type === "directory" 
+					&& filePath.endsWith(".sbd")) {
+
+				
+				console.log(relp)
+				console.log(destP)
+				
+				IOUtils.makeDirectory(destP);
+				
+				let emptyMboxFile = destP.slice(0, -4);
+				console.log(emptyMboxFile)
+				if (!(await IOUtils.exists(emptyMboxFile))) {
+					console.log("ce")
+					await IOUtils.write(emptyMboxFile , new Uint8Array(), {mode: "create"});
+				}
+			}
+		}
+		//console.log(directories)
+
+		//let isMbox = await isMboxFile(filePath);
 		
-		let d = await mboxCopyImport(filePath, destFolderPath);
-		console.log(d)
-		IETwritestatus("Importing " + filePath + " Completed...")
-		await new Promise(resolve => setTimeout(resolve, 2000));
+		for (let filePath of sbdFilesTree) {
+			let isMbox = await isMboxFile(filePath);
+
+		}
+		
+		//IOUtils.copy(srcMboxSbdFilePath, destSbdPath, {recursive: true})
+	}
+
+	return sf;
 }
 
 // utility functions 
@@ -1747,6 +1823,7 @@ function openIEThelp(localize) {
 
 
 async function getDirectoryChildren(rootPath, options) {
+	console.log(rootPath)
 	let list = [];
 	let items = await IOUtils.getChildren(rootPath);
 
@@ -1795,6 +1872,87 @@ async function openFileDialog(mode, title, initialDir, filter) {
 	resultObj.result = 0;
 	resultObj.filesArray = paths;
 	return resultObj;
+}
+
+async function createUniqueFilename(parent, prefix, options) {
+
+	let ext = "";
+	if (prefix.includes(".")) {
+		ext = "." + prefix.split('.').pop();
+	}
+
+	let name;
+	if (prefix.lastIndexOf(".") > -1) {
+		name = prefix.substring(0, (prefix.lastIndexOf('.')));
+	} else {
+		name = prefix;
+	}
+
+	var tmpUniqueName = await PathUtils.join(parent, prefix);
+
+	console.log(parent)
+	console.log(name)
+	console.log(ext)
+	console.log(tmpUniqueName)
+
+	for (let i = 0; i < 600; i++) {
+		if (i === 0 && !(await IOUtils.exists(tmpUniqueName))) {
+			console.log("no exist", tmpUniqueName)
+			if (options && options.create) {
+				await IOUtils.write(tmpUniqueName, new Uint8Array(), { mode: "create" });
+			}
+			if (options && options.fileNameOnly) {
+				tmpUniqueName = PathUtils.filename(tmpUniqueName);
+			}
+			return tmpUniqueName;
+
+		} else if (i === 0) {
+			continue;
+		}
+
+		tmpUniqueName = await PathUtils.join(parent, `${name}-${i}${ext}`);
+
+		console.log(tmpUniqueName)
+		if (!await IOUtils.exists(tmpUniqueName)) {
+			if (options && options.create) {
+				await IOUtils.write(tmpUniqueName, new Uint8Array(), { mode: "create" });
+			}
+			if (options && options.fileNameOnly) {
+				console.log("ufo ",tmpUniqueName)
+
+				tmpUniqueName = PathUtils.filename(tmpUniqueName);
+			}
+			return tmpUniqueName;
+		}
+	}
+	return null;
+}
+
+
+
+async function createUniqueDirectory(parent, prefix) {
+
+	let ext = prefix.split('.').pop();
+	let name = prefix.substring(0, prefix.lastIndexOf('.'));
+
+	var tmpUniqueName = await PathUtils.join(parent, prefix);
+
+	for (let i = 0; i < 100; i++) {
+		if (i === 0 && !(await IOUtils.exists(tmpUniqueName))) {
+			await IOUtils.makeDirectory(tmpUniqueName);
+			return tmpUniqueName;
+		} else if (i === 0) {
+			continue;
+		}
+
+		tmpUniqueName = await PathUtils.join(parent, `${name}-${i}.${ext}`);
+
+		if (!await IOUtils.exists(tmpUniqueName)) {
+			await IOUtils.makeDirectory(tmpUniqueName);
+			return tmpUniqueName;
+		}
+	}
+	return null;
 }
 
 

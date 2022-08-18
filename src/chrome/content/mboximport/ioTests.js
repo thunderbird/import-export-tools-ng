@@ -47,13 +47,14 @@ async function ioTest1() {
 	ioWorker.postMessage({cmd: "rw1"});
 }
 
-async function mboxCopyImport(filePath, destPath) {
+async function mboxCopyImport(filePath, destPath, finalDestFolderName) {
 	console.log("Start: mboxCopyImport")
 	s = filePath;
 	d = destPath;
 
 	console.log(filePath)
 	console.log(destPath)
+	console.log(finalDestFolderName)
 
 	return new Promise((resolve) => {
 	  const channel = new MessageChannel();
@@ -70,7 +71,7 @@ async function mboxCopyImport(filePath, destPath) {
 	  // send it its own port
 	  
 	  ioWorker.postMessage({cmd: "test"});  
-	  ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}},  [channel.port2]);  
+	  ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, finalDestFolderName: finalDestFolderName, importOptions: {}}}, [channel.port2]);
 	  //ioWorker.postMessage({cmd: "mboxCopyImport", cmd_options: {srcPath: filePath, destPath: destPath, importOptions: {}}}, [channel.port2]);
 	  //ioWorker.postMessage({cmd: "gdata", mdata: "testing"});  
 	});

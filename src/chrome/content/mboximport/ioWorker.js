@@ -49,13 +49,12 @@ async function mboxCopyImport(options) {
 		//await IOUtils.makeDirectory(destSbdPath);
 	}
 
-	let targetMboxPath = PathUtils.join(destSbdPath, PathUtils.filename(options.finalDestName));
+	//console.log(options.destMsgFolder)
+	let targetMboxPath = PathUtils.join(destSbdPath, options.finalDestFolderName);
 
 	// make sure nothing is there, create start 
 	await IOUtils.remove(targetMboxPath, {ignoreAbsent: true});
-	await IOUtils.write(targetMboxPath, new Uint8Array(), {
-		mode: "create",
-	});
+	await IOUtils.write(targetMboxPath, new Uint8Array(), {mode: "create"});
 	
 
 	let fileInfo;

@@ -136,7 +136,8 @@ async function mboxCopyImport(options) {
 				
 				//console.log(writePos)
 				//console.log("totalWrite bytes:", totalWrite)
-				postMessage({msg: totalWrite})
+				
+				postMessage({msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite})
 				//console.log(buf.slice(result.index , result.index +  200))
 				
 			}
@@ -158,7 +159,7 @@ async function mboxCopyImport(options) {
 			//console.log(raw.length)
     		await IOUtils.write(targetMboxPath, raw, { mode: "append" });
     
-			postMessage({msg: totalWrite})
+			postMessage({msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite})
 			//console.log("loop")
 			}
 		console.log("end read/fix/write loop")
@@ -168,7 +169,7 @@ async function mboxCopyImport(options) {
 		let et = new Date() - s
 		console.log("Elapsed time:", et)
 		console.log(new Date())
-		await new Promise(resolve => setTimeout(resolve, 5500))
+		await new Promise(resolve => setTimeout(resolve, 1500))
 	}
 
 

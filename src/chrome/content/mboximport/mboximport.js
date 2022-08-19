@@ -846,7 +846,7 @@ async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMod
 
 	console.log(destMsgFolder.filePath)
 
-	let importOptions = {structuredImport: keepstructure};
+	let importOptions = { structuredImport: keepstructure };
 	// mode 0, 1 - import from file list
 	let rv = await scanAndImportMboxFiles(resultObj.filesArray, destMsgFolder, importOptions);
 
@@ -973,56 +973,61 @@ async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options)
 
 
 	IETwritestatus("Importing " + srcMboxFilePath)
-	
+
 	await ioTest1();
 
 	let d = await mboxCopyImport(srcMboxFilePath, destMsgFolder.filePath.path, uniqueFolderName);
 	console.log(d)
 	IETwritestatus("Importing " + srcMboxFilePath + " Completed...")
-	
+
 	if (options.structuredImport && IOUtils.exists(srcMboxSbdFilePath)) {
 		let destSbdPath = PathUtils.join(destMsgFolder.filePath.path + '.sbd', `${uniqueFolderName}.sbd`);
 		console.log(destSbdPath)
 		console.log(srcMboxSbdFilePath)
-		let sbdFilesTree = await getDirectoryChildren(srcMboxSbdFilePath, {recursive: true})
+		let sbdFilesTree = await getDirectoryChildren(srcMboxSbdFilePath, { recursive: true })
 		console.log(sbdFilesTree)
 
 		let srcPartsLen = PathUtils.split(srcMboxSbdFilePath).length;
 
 		for (let filePath of sbdFilesTree) {
 			let subD = PathUtils.split(filePath)
-				let relp = subD.slice(srcPartsLen)
-				let destP = PathUtils.join(destSbdPath, ...relp)
+			let relp = subD.slice(srcPartsLen)
+			let destP = PathUtils.join(destSbdPath, ...relp)
 			if (await isMboxFile(filePath)) {
-				IOUtils.copy(filePath, destP, {recursive: false})
+				//IOUtils.copy(filePath, destP, {recursive: false})
+				let destDirectory = PathUtils.parent(destP).slice(0, -4);;
+				console.log(destDirectory)
+				let d = await mboxCopyImport(filePath, destDirectory, PathUtils.filename(destP));
+				//console.log(d)
+				IETwritestatus("Importing " + PathUtils.filename(filePath) + " Completed...")
 			}
 
-			if ((await IOUtils.stat(filePath)).type === "directory" 
-					&& filePath.endsWith(".sbd")) {
+			if ((await IOUtils.stat(filePath)).type === "directory"
+				&& filePath.endsWith(".sbd")) {
 
-				
+
 				console.log(relp)
 				console.log(destP)
-				
+
 				IOUtils.makeDirectory(destP);
-				
+
 				let emptyMboxFile = destP.slice(0, -4);
 				console.log(emptyMboxFile)
 				if (!(await IOUtils.exists(emptyMboxFile))) {
 					console.log("ce")
-					await IOUtils.write(emptyMboxFile , new Uint8Array(), {mode: "create"});
+					await IOUtils.write(emptyMboxFile, new Uint8Array(), { mode: "create" });
 				}
 			}
 		}
 		//console.log(directories)
 
 		//let isMbox = await isMboxFile(filePath);
-		
+
 		for (let filePath of sbdFilesTree) {
 			let isMbox = await isMboxFile(filePath);
 
 		}
-		
+
 		//IOUtils.copy(srcMboxSbdFilePath, destSbdPath, {recursive: true})
 	}
 
@@ -1918,7 +1923,7 @@ async function createUniqueFilename(parent, prefix, options) {
 				await IOUtils.write(tmpUniqueName, new Uint8Array(), { mode: "create" });
 			}
 			if (options && options.fileNameOnly) {
-				console.log("ufo ",tmpUniqueName)
+				console.log("ufo ", tmpUniqueName)
 
 				tmpUniqueName = PathUtils.filename(tmpUniqueName);
 			}

@@ -37,7 +37,8 @@ function importwrapper() {
 		window.arguments[0].scandir = true;
 	else if (document.getElementById("mboxgroup").selectedIndex === 3) {
 		window.arguments[0].scandir = true;
-		window.arguments[0].recursiveMode = true;
+		//window.arguments[0].recursiveMode = true;
+		window.arguments[0].keepstructure = true;
 	}
 }
 

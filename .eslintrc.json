@@ -38,7 +38,9 @@
 		"window": "readonly",
 		"msgWindow": "readonly",
 		"gFolderDisplay": "readonly",
-		"BatchMessageMover": "readonly"
+		"BatchMessageMover": "readonly",
+		"IOUtils": "readonly",
+		"PathUtils": "readonly",
 		
 	},
 	"rules": {

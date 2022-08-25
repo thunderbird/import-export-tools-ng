@@ -1,4 +1,10 @@
-// ioTests
+// ioTest
+
+// This is the IoWorker interface file
+// From here we will dispatch all thread tasks
+// By using IOUtils we only need to pass native types
+// We also process status, exceptions (tricky in promises)
+// Also ui updates eg status bar 
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
@@ -32,7 +38,7 @@ async function ioTest1() {
 		console.log("wrkr");
 		ioWorker = new ChromeWorker('chrome://mboximport/content/mboximport/ioWorker.js');
 		ioWorker.onmessage = event => {
-			//console.log(event.data)
+			console.log(event.data)
 			IETwritestatus("Importing " + event.data.currentFile + " Processed: " + formatBytes(event.data.bytesProcessed, 4), 15000)
 		  }
 		  ioWorker.onerror = event => {
@@ -59,9 +65,11 @@ async function mboxCopyImport(filePath, destPath, finalDestFolderName) {
 	return new Promise((resolve) => {
 	  const channel = new MessageChannel();
 	  console.log(channel)
-	  // this will fire when iframe will answer
+	  // this will fire when we get a port response
+	  // tbd make set of req/rsp ids
+
 	  channel.port1.onmessage = e => { 
-		console.log("msg rcvd ", new Date())
+		console.log("msg rcvd ", new Date(), e.data)
 		resolve(e.data);
 	  }
 //	  ioWorker.onmessage = e => resolve(e.data);

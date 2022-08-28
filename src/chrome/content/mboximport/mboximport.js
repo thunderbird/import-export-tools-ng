@@ -845,12 +845,12 @@ async function importMboxFiles(scandir, keepstructure, openProfDir, recursiveMod
 	}
 
 
-	if (resultObj.file) {
-		resultObj.filesArray = await getDirectoryChildren(resultObj.file.path, {typeFilter: "regular"})
+	if (fpMode === Ci.nsIFilePicker.modeGetFolder && resultObj.file) {
+		resultObj.filesArray = await getDirectoryChildren(resultObj.file.path, { typeFilter: "regular" })
 	}
 	console.log(resultObj.filesArray)
 
-	
+
 	let importOptions = { structuredImport: keepstructure };
 	// mode 0, 1 - import from file list
 	let rv = await scanAndImportMboxFiles(resultObj.filesArray, destMsgFolder, importOptions);
@@ -923,36 +923,36 @@ function isMsgDatabaseOpenable(aFolder, aReparse, aUrlListener) {
 	console.log("isMsgDatabaseOpenable")
 	console.log(aFolder)
 
-    let msgDb;
-    try {
-      msgDb = Cc["@mozilla.org/msgDatabase/msgDBService;1"]
-        .getService(Ci.nsIMsgDBService)
-        .openFolderDB(aFolder, true);
-    } catch (ex) {}
+	let msgDb;
+	try {
+		msgDb = Cc["@mozilla.org/msgDatabase/msgDBService;1"]
+			.getService(Ci.nsIMsgDBService)
+			.openFolderDB(aFolder, true);
+	} catch (ex) { }
 
-    if (msgDb && !aReparse) {
+	if (msgDb && !aReparse) {
 		console.log("db opened")
-      return true;
-    }
+		return true;
+	}
 
-    if (!aReparse) {
-      return false;
-    }
+	if (!aReparse) {
+		return false;
+	}
 
-    // Force a reparse.
-    
-    try {
-      // Ignore error returns.
-      aFolder
-        .QueryInterface(Ci.nsIMsgLocalMailFolder)
-        .getDatabaseWithReparse(aUrlListener, null);
+	// Force a reparse.
+
+	try {
+		// Ignore error returns.
+		aFolder
+			.QueryInterface(Ci.nsIMsgLocalMailFolder)
+			.getDatabaseWithReparse(aUrlListener, null);
 		console.log("db reparsed")
-    } catch (ex) {
+	} catch (ex) {
 		console.log(ex)
 	}
 
-    return false;
-  }
+	return false;
+}
 
 
 function cb(e) {
@@ -966,6 +966,7 @@ async function scanAndImportMboxFiles(srcRootFiles, destMsgFolder, options) {
 	//			processAndCopyImportMbox - dest folder
 	//		if structured import find sbd, create list, walk list
 
+	var sf;
 	// Loop over top level files
 	for (let filePath of srcRootFiles) {
 		// check if we can determine it's an mbox file
@@ -977,18 +978,26 @@ async function scanAndImportMboxFiles(srcRootFiles, destMsgFolder, options) {
 			// check permission to import if required 
 			if (mboxImportAcceptanceRequired()) {
 				if (mboxImportAcceptanceRequest(filePath)) {
-					await processAndCopyImportMbox(filePath, destMsgFolder, options);
+					sf = await processAndCopyImportMbox(filePath, destMsgFolder, options);
+					console.log(sf)
+					isMsgDatabaseOpenable(sf, true, cb)
+					rebuildSummaryFile(sf)
+
 				} else {
 					continue;
 				}
 
 			} else {
 
-
-				let sf = await processAndCopyImportMbox(filePath, destMsgFolder, options);
+				try {
+					sf = await processAndCopyImportMbox(filePath, destMsgFolder, options);
+				} catch (ex) {
+					console.log(ex)
+				}
+				console.log("af pmbc")
 				//await IOUtils.copy(filePath, )
 				console.log(sf)
-				isMsgDatabaseOpenable(sf,true,cb)
+				isMsgDatabaseOpenable(sf, true, cb)
 				rebuildSummaryFile(sf)
 			}
 		}
@@ -1017,7 +1026,7 @@ async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options)
 	console.log(destFolderSbdPath)
 	var sf;
 	let uniqueFolderName;
-	if (IOUtils.exists(destFolderSbdPath)) {
+	if (await IOUtils.exists(destFolderSbdPath)) {
 		uniqueFolderName = await createUniqueFilename(destFolderSbdPath, destFolderName, { create: false, fileNameOnly: true });
 		console.log(uniqueFolderName)
 		sf = destMsgFolder.addSubfolder(uniqueFolderName);
@@ -1049,10 +1058,10 @@ async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options)
 			//destSbdPath = PathUtils.join(destMsgFolder.filePath.path, `${uniqueFolderName}.sbd`);
 		} else {
 			destSbdPath = PathUtils.join(destMsgFolder.filePath.path + '.sbd', `${uniqueFolderName}.sbd`);
-			
+
 		}
 
-		
+
 		console.log(destSbdPath)
 		console.log(srcMboxSbdFilePath)
 		let sbdFilesTree = await getDirectoryChildren(srcMboxSbdFilePath, { recursive: true })
@@ -1065,8 +1074,8 @@ async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options)
 			let relp = subD.slice(srcPartsLen, -1)
 			let destP = PathUtils.join(destSbdPath, ...relp)
 			console.log("repl ", relp)
-			console.log("destp ",destP)
-			
+			console.log("destp ", destP)
+
 			if (await isMboxFile(filePath)) {
 				//IOUtils.copy(filePath, destP, {recursive: false})
 				let destDirectory = PathUtils.parent(destP).slice(0, -4);;
@@ -1097,7 +1106,7 @@ async function processAndCopyImportMbox(srcMboxFilePath, destMsgFolder, options)
 
 		//let isMbox = await isMboxFile(filePath);
 
-		
+
 		//IOUtils.copy(srcMboxSbdFilePath, destSbdPath, {recursive: true})
 	}
 	console.log(sf)
@@ -1958,7 +1967,10 @@ async function openFileDialog(mode, title, initialDir, filter) {
 	let resultObj = {};
 	resultObj.result = 0;
 	resultObj.filesArray = paths;
-	resultObj.file = fp.file;
+	if (mode === Ci.nsIFilePicker.modeGetFolder) {
+		resultObj.file = fp.file;
+	}
+
 	return resultObj;
 }
 

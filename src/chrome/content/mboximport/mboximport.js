@@ -174,13 +174,25 @@ var IETprintPDFmain = {
 		//console.log(printSettings)
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
+		
+		//printSettings.printerName = PrintUtils.SAVE_TO_PDF_PRINTER;
+		printSettings.printSilent = true;
+        printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+		
+		if (printSettings.outputDestination !== undefined) {
+			printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+		}
+		
+		
+		
 		if (printSettings.printToFile !== undefined) {
 			printSettings.printToFile = true;
 		}
 
 		printSettings.printSilent = true;
-		printSettings.outputFormat = fileFormat;
+		//printSettings.outputFormat = fileFormat;
 
+		
 		// Allow to override settings, todo
 		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
@@ -278,7 +290,17 @@ var IETprintPDFmain = {
 				if (fakeMsgPane.contentDocument.readyState == "complete")
 					break;
 			}
-			await fakeMsgPane.browsingContext.print(printSettings);
+
+			// test
+
+			console.log(printSettings)
+			await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+
+			await PrintUtils.printBrowser.browsingContext.print(printSettings);
+
+			console.log("done")
+			// end
+			//await fakeMsgPane.browsingContext.print(printSettings);
 		}
 
 		fakeMsgPane.remove();

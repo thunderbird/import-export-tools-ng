@@ -962,6 +962,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var recc;
 	var auth;
 
+	console.log("start loop")
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
@@ -972,6 +973,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		// Splits the array element to find the needed headers
 		var hdrs = currentMsgHdr.split("§][§^^§");
 
+		console.log(hdrs)
 		switch (IETsortType) {
 			case 1:
 				time = hdrs[3];
@@ -1049,6 +1051,11 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)
 		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
+			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
+			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
+
+			// test-folder
+		record = '"' + hdrs[5] + sep + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
 			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
 

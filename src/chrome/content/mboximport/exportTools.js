@@ -1083,6 +1083,9 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		onStartRequest: function (aRequest) { },
 
 		onStopRequest: function (aRequest, aStatusCode) {
+			// test
+			console.log("stop req\n" + this.emailtext)
+
 			var sub;
 			var data;
 

@@ -1126,7 +1126,14 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				sub = IETstr_converter(sub);
 
 				if (sub) {
-					data = this.emailtext.replace(/^From.+\r?\n/, "");
+					// This probably is removing an mbox separator, but is
+					// not specific enough and originally would replace 
+					// a normal From: field. Make better regex...
+					//data = this.emailtext.replace(/^From.+\r?\n/, "");
+
+					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
+
+					console.log(data)
 					data = IETescapeBeginningFrom(data);
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"

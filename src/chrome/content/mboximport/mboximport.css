@@ -3,6 +3,24 @@
   --question-height: 24px;
 }
 
+/*
+#optionsdialog {
+  background-color: var(--dialog-bgcolor);
+}
+*/
+tab {
+  min-height: 30px;
+  font-weight: 600;
+  font-size: 14px;
+
+}
+
+tab[selected] {
+  color: rgb(27, 107, 186);
+  background-color: var(--tab-selected-background)
+}
+
+
 .groupbox-multi-os {
   position: relative;
   border-radius: 3px;

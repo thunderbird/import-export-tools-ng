@@ -1049,18 +1049,19 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			// console.debug(' customDate ' + csvDate);
 		}
 
-		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)
-		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
-			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
-			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
+		// Add experimental account /folder column #349
+		let accountFolderCol = "";
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
+			accountFolderCol = '"' + hdrs[5] + '"' + sep;
+		}
 
-			// test-folder
-		record = '"' + hdrs[5] + sep + subj.replace(/\"/g, '""') + '"' + sep + '"'
+		var record = accountFolderCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
 			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
 
 		data = data + record;
 	}
+	
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -1126,6 +1127,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				sub = IETstr_converter(sub);
 
 				if (sub) {
+					// Addresses #350
 					// This probably is removing an mbox separator, but is
 					// not specific enough and originally would replace 
 					// a normal From: field. Make better regex...

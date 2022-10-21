@@ -10,11 +10,14 @@
 
 ]>
 
-<!-- cleidigh - Start changing dialog CSS and event handling for TB68 -->
+<!-- cleidigh - Start changing dialog CSS for dark mode experiments  -->
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<!-- <?xml-stylesheet type="text/css" href="chrome://global/skin/in-content/common.css"?> -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?> -->
+<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
+<!-- <?xml-stylesheet href="chrome://mboximport/content/mboximport/tdialogAdj.css" type="text/css"?> -->
 <?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
@@ -169,13 +172,13 @@
 						<hbox align="center" style="display: none;">
 							<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
 						</hbox>
-						<hbox align="center" width="100%" style="background-color: ;" >
+						<hbox align="center" width="100%" >
 							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
 								<html:input id="prefixText" />
 							</hbox>
 
-								<hbox flex="1" style="background-color: ;  padding-right: 2px;" pack="end" >
+								<hbox flex="1" style="padding-right: 2px;" pack="end" >
 								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
 								<html:input id="suffixText" size="22"/>
 								</hbox>
@@ -215,7 +218,7 @@
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>
-					<spacer height="14px" />
+					<spacer height="20px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="Attachments" />
 						<hbox class="groupbox-os-title">
@@ -247,7 +250,7 @@
 					<spacer height="6px" />
 					</groupbox>
 
-					<spacer height="12px" />
+					<spacer height="20px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&misc;" />
 						<hbox class="groupbox-os-title">

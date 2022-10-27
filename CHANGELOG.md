@@ -2,6 +2,18 @@
 
 ## Versions
 
+Version 12.0.2 : Maintenance Release - October 24, 2022
+
+- Fix PDF export on OSX! #353
+- Fix PDF export on Linux 102.* #351
+- Fix account level export folders #296
+- Fix From: first line removal #350
+- Fix escape characters for attachment names #339
+- Add experimental folder column to cvs export #349
+  Set advanced preference to true:
+  extensions.importexporttoolsng.experimental.csv.account_folder_col
+
+
 Version 10.0.2 : Maintenance Release - November 14, 2020
 
 Bug Issues Fixed:

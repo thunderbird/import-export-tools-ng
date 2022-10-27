@@ -168,6 +168,8 @@ function initMboxImportPanel() {
     document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
     document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
+    document.getElementById("attFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+    document.getElementById("inlineAttFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
     document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
@@ -291,6 +293,8 @@ function saveMboxImportPrefs() {
     } else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
 
+
+
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
     if (document.getElementById("export_mbox_dir").value !== "")
         IETsetComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
@@ -326,6 +330,10 @@ function saveMboxImportPrefs() {
     IETsetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
 
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
+
+    IETsetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
+    IETsetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
+
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
@@ -384,6 +392,7 @@ function customNamesCheck(el) {
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        console.log("rem chkd")
         document.getElementById("useExtendedFormat").removeAttribute("checked");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 
@@ -393,7 +402,8 @@ function customNamesCheck(el) {
 
 function extendedFormatCheck(el) {
     if (el.checked) {
-        document.getElementById("customizeFilenames").setAttribute("checked", "false");
+        console.log("enab ex")
+        document.getElementById("customizeFilenames").removeAttribute("checked");
         document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
@@ -410,7 +420,7 @@ function extendedFormatCheck(el) {
     } else {
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
-
+       
     }
 }
 

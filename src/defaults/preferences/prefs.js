@@ -31,8 +31,8 @@ pref("extensions.importexporttoolsng.export.filename_date_custom_format", "%Y%m%
 pref("extensions.importexporttoolsng.export.index_date_custom_format", "%n/%d/%Y");
 pref("extensions.importexporttoolsng.export.filename_use_extended_format", "false");
 pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date_custom}-${index}");
-pref("extensions.importexporttoolsng.export.attachments.filename_extended_format", "");
-pref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", "");
+pref("extensions.importexporttoolsng.export.attachments.filename_extended_format", "Attachments");
+pref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", "EmbeddedImages");
 pref("extensions.importexporttoolsng.export.use_container_folder", true);
 pref("extensions.importexporttoolsng.sms.add_subject", true);
 pref("extensions.importexporttoolsng.autobackup.last", 0);
@@ -59,3 +59,4 @@ pref("extensions.importexporttoolsng.experimental.use_delivery_date", false);
 pref("extensions.importexporttoolsng.experimental.hot_keys", "");
 pref("extensions.importexporttoolsng.experimental.index_short1", false);
 pref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences", true);
+pref("extensions.importexporttoolsng.experimental.csv.account_folder_col", false);

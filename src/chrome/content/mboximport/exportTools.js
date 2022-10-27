@@ -962,6 +962,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var recc;
 	var auth;
 
+	console.log("start loop")
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
@@ -972,6 +973,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		// Splits the array element to find the needed headers
 		var hdrs = currentMsgHdr.split("§][§^^§");
 
+		console.log(hdrs)
 		switch (IETsortType) {
 			case 1:
 				time = hdrs[3];
@@ -1047,13 +1049,19 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			// console.debug(' customDate ' + csvDate);
 		}
 
-		// (strftime.strftime("%n/%d/%Y", new Date(time/1000)) + " " + objHour + ":" + objMin)
-		var record = '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
+		// Add experimental account /folder column #349
+		let accountFolderCol = "";
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
+			accountFolderCol = '"' + hdrs[5] + '"' + sep;
+		}
+
+		var record = accountFolderCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
 			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
 
 		data = data + record;
 	}
+	
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -1076,6 +1084,9 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		onStartRequest: function (aRequest) { },
 
 		onStopRequest: function (aRequest, aStatusCode) {
+			// test
+			console.log("stop req\n" + this.emailtext)
+
 			var sub;
 			var data;
 
@@ -1116,7 +1127,15 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				sub = IETstr_converter(sub);
 
 				if (sub) {
-					data = this.emailtext.replace(/^From.+\r?\n/, "");
+					// Addresses #350
+					// This probably is removing an mbox separator, but is
+					// not specific enough and originally would replace 
+					// a normal From: field. Make better regex...
+					//data = this.emailtext.replace(/^From.+\r?\n/, "");
+
+					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
+
+					console.log(data)
 					data = IETescapeBeginningFrom(data);
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"
@@ -1260,6 +1279,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								attDirContainer.append("Attachments");
 							} else {
 								let afname = constructAttachmentsFilename(1, hdr);
+								console.log(afname)
 								attDirContainer.append(afname);
 
 							}

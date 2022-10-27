@@ -10,11 +10,14 @@
 
 ]>
 
-<!-- cleidigh - Start changing dialog CSS and event handling for TB68 -->
+<!-- cleidigh - Start changing dialog CSS for dark mode experiments  -->
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+<!-- <?xml-stylesheet type="text/css" href="chrome://global/skin/in-content/common.css"?> -->
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?>
+<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?> -->
+<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
+<!-- <?xml-stylesheet href="chrome://mboximport/content/mboximport/tdialogAdj.css" type="text/css"?> -->
 <?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
 <dialog
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
@@ -112,19 +115,17 @@
 				</hbox>
 			</tabpanel>
 			<tabpanel>
-			<spacer height="8px" />
+			
 				<vbox>
-					<hbox align="center">
-						<checkbox id="MBasciiname" label="&MBlabel2;" />
-					</hbox>
-					<spacer height="15px" />
+					<spacer height="8px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&captionCustomize;" />
 						<hbox class="groupbox-os-title" >
 							<label class="groupbox-os-label">&captionCustomize;</label>
 						</hbox>
+						<spacer height="6px" />
 						<hbox align="center">
-							<checkbox id="customizeFilenames" label="&customizeFilename;" checked="false"
+							<checkbox id="customizeFilenames" label="&customizeFilename;" 
 									oncommand="setTimeout(customNamesCheck,200,this);" />
 						</hbox>
 						<spacer height="10px" />
@@ -171,13 +172,13 @@
 						<hbox align="center" style="display: none;">
 							<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
 						</hbox>
-						<hbox align="center" width="100%" style="background-color: ;" >
+						<hbox align="center" width="100%" >
 							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
 								<html:input id="prefixText" />
 							</hbox>
 
-								<hbox flex="1" style="background-color: ;  padding-right: 2px;" pack="end" >
+								<hbox flex="1" style="padding-right: 2px;" pack="end" >
 								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
 								<html:input id="suffixText" size="22"/>
 								</hbox>
@@ -204,36 +205,69 @@
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<spacer height="6px" />
 						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
-						<hbox pack="start"  style="padding-left: 4px;" >
-							<html:input type="checkbox" id="useExtendedFormat" checked="false"
-									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/>
-							<label style="padding-left: -4px;">&useExtFilenameFormat;</label>
-							<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 2px; margin-top: 0px;"
-            					maxwidth="16px" maxheight="16px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						<hbox pack="start"  style="padding-left: 0px;" align="center">
+							<checkbox id="useExtendedFormat" 
+									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>
+							<label style="padding-left: -12px;">&useExtFilenameFormat;</label>
+							<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="18px" maxheightx="16px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
 						<spacer height="6px" />
 						<hbox valign="center" >
-							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 3px;">&extFormat;</label>
+							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">&extFormat;</label>
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
 					</groupbox>
-					<spacer height="12px" />
+					<spacer height="20px" />
+					<groupbox class="groupbox-multi-os">
+						<caption label="Attachments" />
+						<hbox class="groupbox-os-title">
+							<label class="groupbox-os-label">Attachment Folder Names</label>
+						</hbox>
+						<hbox pack="start"  style="padding-left: 4px;" align="center">
+							<!-- <html:input type="checkbox" id="useAttFormat" checked="false" -->
+									<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<label style="padding-left: -4px;">Attachment Folders:</label>
+							<hbox flex="0">
+								<html:input id="attFolderFormat" stylex="height: 30px;" size="63"/>
+								</hbox>
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="18px" maxheightx="20px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						</hbox>
+						<spacer height="8px" />
+						<hbox pack="start"  style="padding-left: 4px;" align="center">
+							<!-- <html:input type="checkbox" id="useInlineAttFormat" checked="false" -->
+									<!-- onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<label style="padding-left: -4px;">Use for Inline Attachments Folders:</label>
+							<hbox flex="0">
+								<html:input id="inlineAttFolderFormat" stylex="height: 30px;" size="52"/>
+								</hbox>
+								<image src="chrome://mboximport/content/mboximport/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+            					maxwidth="20px" maxheightx="20px" onclick="loadTabPage('importexport-help.html#ext_filename_format_help', true)" tooltiptext="&extFilenameFormatRefTooltipText;" />
+						</hbox>
+
+
+					<spacer height="6px" />
+					</groupbox>
+
+					<spacer height="20px" />
 					<groupbox class="groupbox-multi-os">
 						<caption label="&misc;" />
 						<hbox class="groupbox-os-title">
 							<label class="groupbox-os-label">&misc;</label>
 						</hbox>
 						<hbox align="center">
-							<checkbox id="cutSub" label="&cutSub;" />
-						</hbox>
-						<hbox align="center">
-							<checkbox id="cutFN" label="&cutFN;" />
-						</hbox>
-						<hbox align="center">
-							<label value="&filenameCharset;" />
+						<checkbox id="MBasciiname" label="&MBlabel2;" />
+						<spacer width="15px" />
+						<label value="&filenameCharset;" />
 							<html:input id="filenameCharset" />
 						</hbox>
-
+					
+						<hbox align="center">
+							<checkbox id="cutSub" label="&cutSub;" />
+							<spacer width="15px" />
+							<checkbox id="cutFN" label="&cutFN;" />
+						</hbox>
 
 					</groupbox>
 				</vbox>
@@ -275,6 +309,7 @@
 				</html:table>
 				
 				</groupbox>
+				<spacer height="20px" />
 				<groupbox class="groupbox-multi-os">
 					<caption label="&allMsg;" />
 					<hbox class="groupbox-os-title">

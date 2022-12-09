@@ -1091,9 +1091,6 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		onStartRequest: function (aRequest) { },
 
 		onStopRequest: function (aRequest, aStatusCode) {
-			// test
-			console.log("stop req\n" + this.emailtext)
-
 			var sub;
 			var data;
 
@@ -1142,7 +1139,6 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 
-					console.log(data)
 					data = IETescapeBeginningFrom(data);
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"
@@ -1736,6 +1732,7 @@ function exportVirtualFolderDelayed(msgFolder) {
 		} catch (ex) {
 			continue; // ignore errors for dummy rows
 		}
+
 		uriArray.push(msguri);
 
 	}

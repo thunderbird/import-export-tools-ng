@@ -121,11 +121,12 @@ function SDexportMsg() {
 	if (all) {
 		let i = 0;
 		while (true) {
+			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
 				i++;
 			} catch (e) {
-				break;
+				continue; // ignore errors for dummy rows
 			}
 		}
 	} else {

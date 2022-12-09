@@ -120,7 +120,15 @@ var IETprintPDFmain = {
 			if (isVirtFol) {
 				var total = msgFolder.getTotalMessages(false);
 				for (let i = 0; i < total; i++)
-					IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
+					// error handling changed in 102
+					// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+					// Resolves #359
+					try {
+						IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
+					} catch (ex) {
+						continue; // ignore errors for dummy rows
+					}
+
 			} else {
 				let msgs = msgFolder.messages;
 				while (msgs.hasMoreElements()) {
@@ -176,7 +184,7 @@ var IETprintPDFmain = {
 		printSettings.isInitializedFromPrefs = true;
 
 		printSettings.printSilent = true;
-        printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
 
 		// print setup for PDF printing changed somewhere around 102.3
 		// also on 91.x The change first appeared in Linux

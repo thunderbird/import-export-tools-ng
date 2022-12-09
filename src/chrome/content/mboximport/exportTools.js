@@ -404,8 +404,15 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	}
 
 	for (let i = 0; i < total; i++) {
-		var uri = gDBView.getURIForViewIndex(i);
-		msgUriArray[i] = uri;
+		// error handling changed in 102
+		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+		// Resolves #359
+		try {
+			var uri = gDBView.getURIForViewIndex(i);
+			msgUriArray[i] = uri;
+		} catch (ex) {
+			continue; // ignore errors for dummy rows
+		}
 	}
 
 	var folderType = msgFolder.server.type;
@@ -1061,7 +1068,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		data = data + record;
 	}
-	
+
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -1653,7 +1660,7 @@ function IEThtmlToText(data) {
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);	
+		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
 	} catch (e) {
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
@@ -1721,8 +1728,16 @@ function exportVirtualFolderDelayed(msgFolder) {
 	clone.createUnique(0, 0644);
 	var uriArray = [];
 	for (let i = 0; i < IETtotal; i++) {
-		var msguri = gDBView.getURIForViewIndex(i);
+		// error handling changed in 102
+		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+		// Resolves #359
+		try {
+			var msguri = gDBView.getURIForViewIndex(i);
+		} catch (ex) {
+			continue; // ignore errors for dummy rows
+		}
 		uriArray.push(msguri);
+
 	}
 	saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, false, false, null, null);
 }
@@ -1786,7 +1801,7 @@ function IETdeletestatus(text) {
 	if (document.getElementById("statusText").getAttribute("label") === text) {
 		document.getElementById("statusText").setAttribute("label", "");
 		document.getElementById("statusText").setAttribute("value", "");
-	
+
 		if (text.includes("Err")) {
 			delay = 15000;
 		}

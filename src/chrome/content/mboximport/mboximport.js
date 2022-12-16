@@ -430,6 +430,9 @@ async function trytocopyMAILDIR() {
 // msgFolder = the folder as nsImsgFolder
 
 async function trytocopy(file, filename, msgFolder, keepstructure) {
+	
+	console.log("IETNG: trytocopy start");
+
 	// If the file isn't mbox format, alert, but doesn't exit (it did in pre 0.5.8 version and lower)
 	// In fact sometimes TB can import also corrupted mbox files
 	var isMbx = isMbox(file);
@@ -495,6 +498,8 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// console.debug(tempfolder);
 	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 
+	console.log("IETNG: add subfolder");
+
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
 		tempfolder.name = newfilename.replace(reg, "#");
@@ -516,8 +521,10 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
+		console.log("IETNG: start copy");
 		file.copyTo(filex, tempfolder.filePath.leafName);
 
+		console.log("IETNG: end copy");
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
 			var sbd = file.parent;
@@ -552,6 +559,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	obj.msgFolder = newFolder;
 	obj.forceCompact = forceCompact;
 
+	console.log("IETNG: compacted");
 	if (keepstructure) {
 		gMsgFolderImported.push(obj);
 		if (newFolder.hasSubFolders) {
@@ -565,7 +573,9 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		gMsgFolderImported.push(obj);
 	}
 
+	console.log("IETNG: rebuild foldertree");
 	gFolderTreeView._rebuild();
+	console.log("IETNG: end trytocopy: ", new Date());
 	return newfilename;
 }
 
@@ -646,6 +656,17 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 
 // scandir flag is to know if the function must scan a directory or just import mbox file(s)
 async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
+	
+	// mbox import debug #367
+	console.log("IETNG: mboximport start: ", new Date());
+	console.log("IETNG: scandir: ", scandir)
+	console.log("IETNG: keepstructure: ", keepstructure);
+	console.log("IETNG: openProfDir: ", openProfDir);
+	console.log("IETNG: recursiveMode: ",recursiveMode);
+	console.log("IETNG: msgFolder: " , msgFolder.name);
+	//console.log("IETNG: ")
+	
+
 	// initialize variables
 	gMsgFolderImported = [];
 	gNeedCompact = false;
@@ -675,10 +696,14 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 
 		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
 		var thefiles = fp.files;
+		console.log("IETNG: flat import ", thefiles);
+
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();
 			onefile = onefile.QueryInterface(Ci.nsIFile);
 			mboxname = onefile.leafName;
+			console.log("IETNG: call trycopy: ", mboxname);
+
 			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
 		}
 	} else {

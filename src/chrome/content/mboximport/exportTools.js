@@ -1268,6 +1268,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					var noDir = true;
 					var attName;
 					var attNameAscii;
+					var attDirContainerName;
 
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
@@ -1310,6 +1311,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 									.createInstance(Ci.nsIScriptableUnicodeConverter);
 								converter.charset = "UTF-8";
 								attName = converter.ConvertFromUnicode(att.name);
+								attDirContainerName = converter.ConvertFromUnicode(attDirContainer.leafName);
+
 								var attDirContainerClone = attDirContainer.clone();
 								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
@@ -1321,8 +1324,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								console.debug(e);
 							}
 						}
+						// encode for utf-8 - Fixes #355
 						if (success)
-							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
+							footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';							
 					}
 					if (footer) {
 						footer = footer + "</ul></div><div class='' ></div></body>";
@@ -1491,7 +1495,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							embImg.append(i + ".jpg");
 							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
 							// var sep = isWin ? "\\" : "/";
-							data = data.replace(aUrl, embImgContainer.leafName + "/" + i + ".jpg");
+							// encode for utf-8 - Fixes #355
+							data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
 						}
 					} catch (e) {
 						IETlogger.write("save embedded images - error = " + e);

@@ -521,10 +521,14 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
-		console.log("IETNG: start copy");
-		file.copyTo(filex, tempfolder.filePath.leafName);
+		console.log("IETNG: start copy: ", new Date());
+		let src = file.path;
+		let dst = PathUtils.join(filex.path, tempfolder.filePath.leafName);
+		console.log(src, dst)
+		let r = await IOUtils.copy(src, dst);
+		//file.copyTo(filex, tempfolder.filePath.leafName);
 
-		console.log("IETNG: end copy");
+		console.log("IETNG: end copy: ", new Date());
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
 			var sbd = file.parent;

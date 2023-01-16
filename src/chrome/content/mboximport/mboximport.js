@@ -257,11 +257,16 @@ var IETprintPDFmain = {
 			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
+		console.log("IETNG: Save as PDF: ", new Date());
+		console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
 		// We can simply by using PrintUtils.loadPrintBrowser eliminating 
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well 
 
+		var i = 0;
+
 		for (let uri of IETprintPDFmain.uris) {
+			i++;
 			let messageService = messenger.messageServiceFromURI(uri);
 			let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
@@ -270,10 +275,14 @@ var IETprintPDFmain = {
 				: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
 			printSettings.toFileName = PathUtils.join(filePath, fileName);
 
+			console.log("IETNG: Start: ", i, fileName, new Date());
 			await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 			await PrintUtils.printBrowser.browsingContext.print(printSettings);
+			console.log("IETNG: End: ", i, fileName, new Date());
+			
 			IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 		}
+		console.log("IETNG: Save as PDF end: ", i, new Date());
 	},
 };
 

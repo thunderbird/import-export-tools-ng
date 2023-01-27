@@ -263,12 +263,11 @@ var IETprintPDFmain = {
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well 
 
-		
-        var i = 1;
         var errCounter = 0;
         let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-        for (let uri of IETprintPDFmain.uris) {
+        for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
+			let uri = IETprintPDFmain.uris[msgIdx];
             try {
                 let messageService = messenger.messageServiceFromURI(uri);
                 let aMsgHdr = messageService.messageURIToMsgHdr(uri);
@@ -278,31 +277,32 @@ var IETprintPDFmain = {
                     : getSubjectForHdr(aMsgHdr, filePath) + ".ps";
                 printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-                console.log("IETNG: Start: ", i, fileName, new Date());
+                console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
                 await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
                 await PrintUtils.printBrowser.browsingContext.print(printSettings);
-                console.log("IETNG: End: ", i, fileName, new Date());
+                console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
                 
                 IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
-                // When we got here, everything worked, inc i and reset error counter.
-                i++;
+                // When we got here, everything worked, and reset error counter.
                 errCounter = 0;
             } catch (ex) {
                 // Something went wrong, wait a bit and try again.
                 // We did not inc i, so we will retry the same file.
                 //
                 errCounter++;
-                console.log(`Re-trying to print message ${i} (${uri}).`);
+                console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`);
                 if (errCounter > 3) {
-                    console.log(`We retried ${errCounter} times to print message ${i} and abort.`);
-                    i++;
-                }
+                    console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
+                } else {
+					// dec idx so next loop repeats msg that erred
+					msgIdx--;
+				}
                 await new Promise(r => mainWindow.setTimeout(r, 150));
             }
         }
 
 
-		console.log("IETNG: Save as PDF end: ", i, new Date());
+		console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
 	},
 };
 

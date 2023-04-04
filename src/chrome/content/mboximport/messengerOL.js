@@ -12,6 +12,21 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menu
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
+
+// Setup for notifyTools
+var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
+
+var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+
+// Get our extension object.
+let extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
+
+// Load notifyTools into a custom namespace, to prevent clashes with other add-ons.
+window.ietngAddon = {};
+Services.scriptloader.loadSubScript(extension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ptngAddon, "UTF-8");
+
+
 function onLoad() {
 	//console.debug('messenger OL');
 
@@ -313,4 +328,5 @@ function onLoad() {
 function onUnload() {
 	window.removeHotKeysObserver();
 	window.ietng.OpenBackupDialog();
+	window.ietngAddon.notifyTools.removeAllListeners();
 }

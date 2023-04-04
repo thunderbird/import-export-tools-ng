@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "12.0.3-b8",
+  "version": "14.0.0exp1",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
       "strict_min_version": "91.0",
-      "strict_max_version": "102.*"
+      "strict_max_version": "115.*"
     }
   },
   "experiment_apis": {
@@ -42,8 +42,23 @@
           "startup"
         ]
       }
+    },
+    "NotifyTools": {
+      "schema": "api/NotifyTools/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["NotifyTools"]],
+        "script": "api/NotifyTools/implementation.js",
+        "events": ["startup"]
+      }
     }
   },
+  "permissions" : [
+    "menus",
+    "activeTab",
+    "messagesRead",
+    "tabs"
+  ],
   "background": {
     "page": "background.html"
   },

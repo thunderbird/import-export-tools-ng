@@ -140,7 +140,7 @@ function IETabortExport() {
 
 }
 
-function exportSelectedMsgs(type) {
+async function exportSelectedMsgs(type) {
 	/* Export types:
 	0 = EML
 	1 = HTML
@@ -219,7 +219,10 @@ function exportSelectedMsgs(type) {
 		isOffLineImap = false;
 	}
 
-	var emlsArray = IETgetSelectedMessages();
+	// 115
+	isOffLineImap = false;
+
+	var emlsArray = await IETgetSelectedMessages();
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
@@ -1212,9 +1215,12 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		},
 	};
 
-	var mms = messenger.messageServiceFromURI(msguri)
-		.QueryInterface(Ci.nsIMsgMessageService);
+	console.log(msguri)
+	var mms = MailServices.messageServiceFromURI(msguri);
+		//.QueryInterface(Ci.nsIMsgMessageService);
+	console.log(mms)
 	var hdr = mms.messageURIToMsgHdr(msguri);
+	console.log(hdr)
 	try {
 		IETlogger.write("call to saveMsgAsEML - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 	} catch (e) {

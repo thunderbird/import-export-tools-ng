@@ -664,12 +664,14 @@ function IETstoreFormat() {
 	return storeFormat;
 }
 
-function IETgetSelectedMessages() {
+async function IETgetSelectedMessages() {
 	// TB3 has not GetSelectedMessages function
 	var msgs;
 
 	if (typeof GetSelectedMessages === "undefined")
-		msgs = gFolderDisplay.selectedMessageUris;
+		//msgs = gFolderDisplay.selectedMessageUris;
+		msgs = await getSelectedMsgs();
+		
 	else
 		msgs = GetSelectedMessages();
 	// console.debug(' constantly selected messages');

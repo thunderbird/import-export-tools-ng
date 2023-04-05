@@ -32,6 +32,9 @@ IETstoreFormat,
 */
 
 function IETinit() {
+    // 115
+    return;
+    
     // console.debug('menu functions start');
     IETprefs.setBoolPref("extensions.importexporttoolsng.printPDF", false);
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.migrate_prefs"))

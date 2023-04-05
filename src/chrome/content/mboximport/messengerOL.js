@@ -12,7 +12,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menu
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
+
 
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
@@ -24,12 +24,18 @@ let extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
 
 // Load notifyTools into a custom namespace, to prevent clashes with other add-ons.
 window.ietngAddon = {};
-Services.scriptloader.loadSubScript(extension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ptngAddon, "UTF-8");
+Services.scriptloader.loadSubScript(extension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ietngAddon, "UTF-8");
+window.ietngAddon.extension = WL.extension;
 
+console.log(window)
+
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
 
 function onLoad() {
 	//console.debug('messenger OL');
 
+	/*
 	// FolderPane Menu
 	WL.injectElements(`
 	<popup id="folderPaneContext">
@@ -127,6 +133,7 @@ function onLoad() {
 </menupopup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
+
 	// MessagePopUp - clipboard actions
 	WL.injectElements(`
 <menupopup id="messageMenuPopup">
@@ -202,7 +209,24 @@ function onLoad() {
 </menu>
 </menupopup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
+*/
 
+/*
+WL.injectElements(`
+<popup id="mailContext">
+<menu label="&saveSelected;" id="multipleSaveContext" insertbefore="threadPaneContext-sep-afterMarkMenu">
+	<menupopup>
+		<menuitem id="selAsEMLContext" label="&asEML;" oncommand="exportSelectedMsgs(0)" />
+	
+
+</menupopup>
+</menu>
+</popup>
+`, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
+
+*/
+
+/*
 	WL.injectElements(`
 <popup id="mailContext">
 <menu label="&toClipMenu;" id="copyToClipContext">
@@ -245,6 +269,7 @@ function onLoad() {
 </popup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
+
 	WL.injectElements(`
 <popup id="attachmentListContext">
 <menuitem id="importEMLatt" label="&importAttachedEML;" oncommand="importEmlToFolder()" collapsed="true" />
@@ -279,7 +304,7 @@ function onLoad() {
 
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
-
+*/
 
 	// inject extension object into private context
 	window.ietng = {};

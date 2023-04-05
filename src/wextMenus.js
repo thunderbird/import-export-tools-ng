@@ -38,7 +38,7 @@ await messenger.menus.create(
 // Message Context Menu Handlers
 
 async function wextMenu_EML_Format(e) {
-	console.log("EML Format");
+	console.log("EML Format",e);
 
 	var msgList = [];
 	try {

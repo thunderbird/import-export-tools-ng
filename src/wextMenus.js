@@ -34,6 +34,15 @@ await messenger.menus.create(
 	}
 );
 
+const folderCtxMenu_folderTestId = "folderCtxMenu_folderTestId";
+await messenger.menus.create(
+	{
+		id: folderCtxMenu_folderTestId,
+		contexts: ["folder_pane"],
+		title: "Folder test",
+		onclick: wextMenu_folderTest
+	}
+);
 
 // Message Context Menu Handlers
 
@@ -55,4 +64,8 @@ async function wextMenu_EML_Format(e) {
 	messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params}).then((data) => {
 		console.log(data)
 	});
+}
+
+async function wextMenu_folderTest(e) {
+	console.log(e)
 }

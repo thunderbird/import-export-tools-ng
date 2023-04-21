@@ -57,7 +57,8 @@
     "menus",
     "activeTab",
     "messagesRead",
-    "tabs"
+    "tabs",
+    "accountsRead"
   ],
   "background": {
     "page": "background.html"

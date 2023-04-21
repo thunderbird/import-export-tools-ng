@@ -83,6 +83,38 @@ var IETabort;
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
 
+
+//var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+
+var { XPCOMUtils } = ChromeUtils.importESModule(
+	"resource://gre/modules/XPCOMUtils.sys.mjs"
+  );
+
+var lazy = {};
+
+
+//import { AppConstants } from "resource://gre/modules/AppConstants.sys.mjs";
+
+
+var { AppConstants } = ChromeUtils.importESModule(
+	"resource://gre/modules/AppConstants.sys.mjs"
+  );
+
+XPCOMUtils.defineLazyModuleGetters(lazy, {
+  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+  ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
+  DBViewWrapper: "resource:///modules/DBViewWrapper.jsm",
+
+});
+
+/*
+let currentBrowser = () =>
+  lazy.BrowserWindowTracker.getTopWindow()?.gBrowser.selectedBrowser;
+let currentTab = () =>
+  lazy.BrowserWindowTracker.getTopWindow()?.gBrowser.selectedTab;
+
+console.log(currentTab())
+*/
 function searchANDsave() {
 	var preselectedFolder = null;
 	if ("GetFirstSelectedMsgFolder" in window)

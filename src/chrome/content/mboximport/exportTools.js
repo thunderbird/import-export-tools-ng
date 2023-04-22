@@ -107,6 +107,150 @@ XPCOMUtils.defineLazyModuleGetters(lazy, {
 
 });
 
+
+;
+
+var dbViewWrapperListener = {
+  _nextViewIndexAfterDelete: null,
+
+  messenger: null,
+  msgWindow: top.msgWindow,
+  threadPaneCommandUpdater: {
+    QueryInterface: ChromeUtils.generateQI([
+      "nsIMsgDBViewCommandUpdater",
+      "nsISupportsWeakReference",
+    ]),
+    updateCommandStatus() {},
+    displayMessageChanged(folder, subject, keywords) {},
+    updateNextMessageAfterDelete() {
+      dbViewWrapperListener._nextViewIndexAfterDelete = gDBView
+        ? gDBView.msgToSelectAfterDelete
+        : null;
+    },
+    summarizeSelection() {
+      return true;
+    },
+  },
+
+  get shouldUseMailViews() {
+    return false;
+  },
+  get shouldDeferMessageDisplayUntilAfterServerConnect() {
+    return false;
+  },
+  shouldMarkMessagesReadOnLeavingFolder(msgFolder) {
+    return false;
+  },
+  onFolderLoading(isFolderLoading) {},
+  onSearching(isSearching) {},
+  onCreatedView() {
+    if (window.threadTree) {
+      window.threadPane.setTreeView(gViewWrapper.dbView);
+
+      if (
+        gViewWrapper.sortImpliesTemporalOrdering &&
+        gViewWrapper.isSortedAscending
+      ) {
+        window.threadTree.scrollToIndex(gDBView.rowCount - 1, true);
+      } else {
+        window.threadTree.scrollToIndex(0, true);
+      }
+    }
+  },
+  onDestroyingView(folderIsComingBack) {
+    if (!folderIsComingBack && window.threadTree) {
+      if (gDBView) {
+        gDBView.setJSTree(null);
+      }
+      window.threadTree.view = gDBView = null;
+    }
+  },
+  onLoadingFolder(dbFolderInfo) {
+    window.quickFilterBar?.onFolderChanged();
+  },
+  onDisplayingFolder() {},
+  onLeavingFolder() {},
+  onMessagesLoaded(all) {
+    if (all) {
+      window.threadTree?.invalidate();
+    }
+    window.quickFilterBar?.onMessagesChanged();
+  },
+  onMailViewChanged() {},
+  onSortChanged() {
+    window.threadTree?.invalidate();
+  },
+  onMessagesRemoved() {
+    window.quickFilterBar?.onMessagesChanged();
+
+    if (!gDBView || !gFolder) {
+      // This can't be a notification about the message currently displayed.
+      return;
+    }
+
+    let rowCount = gDBView.rowCount;
+
+    // There's no messages left.
+    if (rowCount == 0) {
+      if (location.href == "about:3pane") {
+        // In a 3-pane tab, clear the message pane and selection.
+        window.threadTree.selectedIndex = -1;
+      } else if (parent?.location != "about:3pane") {
+        // In a standalone message tab or window, close the tab or window.
+        let tabmail = top.document.getElementById("tabmail");
+        if (tabmail) {
+          tabmail.closeTab(window.tabOrWindow);
+        } else {
+          top.close();
+        }
+      }
+      this._nextViewIndexAfterDelete = null;
+      return;
+    }
+
+    if (this._nextViewIndexAfterDelete != null) {
+      // Select the next message in the view, based on what we were told in
+      // updateNextMessageAfterDelete.
+      if (this._nextViewIndexAfterDelete >= rowCount) {
+        this._nextViewIndexAfterDelete = rowCount - 1;
+      }
+      if (this._nextViewIndexAfterDelete > -1) {
+        if (location.href == "about:3pane") {
+          // A "select" event should fire here, but setting the selected index
+          // might not fire it. OTOH, we want it to fire only once, so see if
+          // the event is fired, and if not, fire it.
+          let eventFired = false;
+          let onSelect = () => (eventFired = true);
+
+          window.threadTree.addEventListener("select", onSelect, {
+            once: true,
+          });
+          window.threadTree.selectedIndex = this._nextViewIndexAfterDelete;
+          window.threadTree.removeEventListener("select", onSelect);
+
+          if (!eventFired) {
+            window.threadTree.dispatchEvent(new CustomEvent("select"));
+          }
+        } else if (parent?.location != "about:3pane") {
+          gDBView.selection.select(this._nextViewIndexAfterDelete);
+          window.displayMessage(
+            gDBView.getURIForViewIndex(this._nextViewIndexAfterDelete)
+          );
+        }
+      }
+      this._nextViewIndexAfterDelete = null;
+    }
+  },
+  onMessageRemovalFailed() {
+    this._nextViewIndexAfterDelete = null;
+  },
+  onMessageCountsChanged() {
+    window.quickFilterBar?.onMessagesChanged();
+  },
+};
+
+gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
+console.log(gViewWrapper)
 /*
 let currentBrowser = () =>
   lazy.BrowserWindowTracker.getTopWindow()?.gBrowser.selectedBrowser;

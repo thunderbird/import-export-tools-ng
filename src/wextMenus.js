@@ -20,7 +20,7 @@ await messenger.menus.create(
 		id: msgCtxMenu_EML_FormatId,
 		contexts: ["message_list"],
 		title: "EML Message Format",
-		onclick: wextMenu_EML_Format
+		onclick: wextMsgCtx_ExportAs
 	}
 );
 
@@ -31,9 +31,20 @@ await messenger.menus.create(
 		id: msgCtxMenu_HTML_FormatId,
 		contexts: ["message_list"],
 		title: "HTML Format",
+		onclick: wextMsgCtx_ExportAs
 	}
 );
 
+const msgCtxMenu_PDF_FormatId = "msgCtxMenu_PDF_FormatId";
+await messenger.menus.create(
+	{
+		parentId: msgCtxMenu_TopId,
+		id: msgCtxMenu_PDF_FormatId,
+		contexts: ["message_list"],
+		title: "PDF Format",
+		onclick: wextMsgCtx_ExportAs
+	}
+);
 const folderCtxMenu_folderTestId = "folderCtxMenu_folderTestId";
 await messenger.menus.create(
 	{
@@ -64,6 +75,20 @@ async function wextMenu_EML_Format(e) {
 	messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params}).then((data) => {
 		console.log(data)
 	});
+}
+
+async function wextMsgCtx_ExportAs(msgCtxEvent) {
+	switch (msgCtxEvent.menuItemId) {
+		case msgCtxMenu_EML_FormatId:
+			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format"});
+			break;
+		case msgCtxMenu_PDF_FormatId:
+			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format"});
+			break;
+		default:
+			break;
+	}
+
 }
 
 async function wextMenu_folderTest(e) {

@@ -433,8 +433,8 @@ function IETformatWarning(warning_type) {
 		return true;
 	if (warning_type === 1 && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.import_warning"))
 		return true;
-	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Ci.nsIPromptService);
+	// var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+	// .getService(Ci.nsIPromptService);
 	var check = { value: false };
 
 	var text;
@@ -447,7 +447,7 @@ function IETformatWarning(warning_type) {
 		text = mboximportbundle.GetStringFromName("formatWarningImport");
 		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
-	var result = prompts.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWaring"), check);
 	IETprefs.setBoolPref(pref, !check.value);
 	return result;
 }
@@ -671,6 +671,7 @@ async function IETgetSelectedMessages() {
 	if (typeof GetSelectedMessages === "undefined")
 		//msgs = gFolderDisplay.selectedMessageUris;
 		msgs = await getSelectedMsgs();
+		//zmsgs = 
 		
 	else
 		msgs = GetSelectedMessages();

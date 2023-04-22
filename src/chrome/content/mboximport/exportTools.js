@@ -406,6 +406,7 @@ async function exportSelectedMsgs(type) {
 			var eml = emlsArray[i];
 			var mms = messenger.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 			var hdr = mms.messageURIToMsgHdr(eml);
+			console.log(mms)
 			if (hdr.flags & 0x00000080)
 				tempArray.push(eml);
 			else
@@ -417,6 +418,7 @@ async function exportSelectedMsgs(type) {
 	IETexported = 0;
 	var msguri = emlsArray[0];
 
+	console.log(msguri)
 	var hdrArray;
 	switch (type) {
 		case 1:

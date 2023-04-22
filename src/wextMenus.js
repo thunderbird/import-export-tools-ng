@@ -82,6 +82,9 @@ async function wextMsgCtx_ExportAs(msgCtxEvent) {
 		case msgCtxMenu_EML_FormatId:
 			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format"});
 			break;
+		case msgCtxMenu_HTML_FormatId:
+			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format"});
+			break;
 		case msgCtxMenu_PDF_FormatId:
 			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format"});
 			break;

@@ -112,7 +112,8 @@ var IETprintPDFmain = {
 			return;
 
 		if (!allMessages) {
-			IETprintPDFmain.uris = IETgetSelectedMessages();
+			IETprintPDFmain.uris = await IETgetSelectedMessages();
+			console.log(IETprintPDFmain.uris)
 		} else {
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];
@@ -269,7 +270,8 @@ var IETprintPDFmain = {
         for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
             try {
-                let messageService = messenger.messageServiceFromURI(uri);
+				var messageService = MailServices.messageServiceFromURI(uri);
+                //let messageService = messenger.messageServiceFromURI(uri);
                 let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
                 let fileName = fileFormat === 2
@@ -290,7 +292,7 @@ var IETprintPDFmain = {
                 // We did not inc i, so we will retry the same file.
                 //
                 errCounter++;
-                console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`);
+                console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`,ex);
                 if (errCounter > 3) {
                     console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
                 } else {

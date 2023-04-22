@@ -668,13 +668,14 @@ async function IETgetSelectedMessages() {
 	// TB3 has not GetSelectedMessages function
 	var msgs;
 
-	if (typeof GetSelectedMessages === "undefined")
+	if (typeof GetSelectedMessages === "undefined") {
 		//msgs = gFolderDisplay.selectedMessageUris;
 		msgs = await getSelectedMsgs();
-		//zmsgs = 
-		
-	else
+		console.log(msgs)
+	}
+	else {
 		msgs = GetSelectedMessages();
+	}
 	// console.debug(' constantly selected messages');
 	// console.debug(msgs);
 	return msgs;

@@ -334,6 +334,7 @@ async function exportSelectedMsgs(type) {
 		needIndex = true;
 	}
 
+	console.log("type ",type, needIndex)
 	var question;
 	if (type === 1 || type === 2 || type === 7) {
 		question = IETformatWarning(1);

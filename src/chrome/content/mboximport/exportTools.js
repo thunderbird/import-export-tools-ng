@@ -112,7 +112,7 @@ var dbViewWrapperListener = {
   _nextViewIndexAfterDelete: null,
 
   messenger: null,
-  msgWindow: top.msgWindow,
+  msgWindow: null,
   threadPaneCommandUpdater: {
     QueryInterface: ChromeUtils.generateQI([
       "nsIMsgDBViewCommandUpdater",

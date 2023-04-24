@@ -5,12 +5,14 @@
 // Menus - Folder, messages, Tools
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+window.ietngAddon = {};
+window.ietngAddon.window = window;
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window.ietngAddon, "UTF-8");
 
 
 
@@ -23,14 +25,14 @@ var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionPa
 let extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
 
 // Load notifyTools into a custom namespace, to prevent clashes with other add-ons.
-window.ietngAddon = {};
+
 Services.scriptloader.loadSubScript(extension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ietngAddon, "UTF-8");
 window.ietngAddon.extension = WL.extension;
 
 console.log(window)
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window.ietngAddon, "UTF-8");
 
 function onLoad() {
 	//console.debug('messenger OL');

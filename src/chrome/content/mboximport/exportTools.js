@@ -108,8 +108,6 @@ XPCOMUtils.defineLazyModuleGetters(lazy, {
 });
 
 
-;
-
 var dbViewWrapperListener = {
   _nextViewIndexAfterDelete: null,
 
@@ -386,7 +384,12 @@ async function exportSelectedMsgs(type) {
 
 	var msgFolder = GetSelectedMsgFolders()[0];
 	var isOffLineImap;
-	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !msgFolder.verifiedAsOnlineFolder) {
+
+	// 115
+	let imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+	console.log(imapFolder.verifiedAsOnlineFolder)
+
+	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
 		var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
 		if (!go)
 			return;
@@ -395,16 +398,15 @@ async function exportSelectedMsgs(type) {
 		isOffLineImap = false;
 	}
 
-	// 115
-	isOffLineImap = false;
-
+	console.log(isOffLineImap)
 	var emlsArray = await IETgetSelectedMessages();
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
+		console.log(isOffLineImap)
 		for (var i = 0; i < emlsArray.length; i++) {
 			var eml = emlsArray[i];
-			var mms = messenger.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
+			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 			var hdr = mms.messageURIToMsgHdr(eml);
 			console.log(mms)
 			if (hdr.flags & 0x00000080)
@@ -1561,7 +1563,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		},
 
 		onAfterStopRequest: function (clone, data, saveAttachments) {
-			var replyTo = hdr.getProperty("replyTo");
+			var replyTo = hdr.getStringProperty("replyTo");
+			console.log(replyTo)
 			if (replyTo.length > 1) {
 				var rt = '<tr><td><div class="headerdisplayname" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
 				data = data.replace("</table><br>", rt + "</table><br>");
@@ -1751,8 +1754,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 	if (!HTMLasView && !convertToText && !copyToClip)
 		uri = uri + "?header=saveas";
-	var messageService = messenger.messageServiceFromURI(uri);
+	var messageService = MailServices.messageServiceFromURI(uri);
 	var hdr = messageService.messageURIToMsgHdr(uri);
+	console.log(hdr)
 	try {
 		IETlogger.write("call to  exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 	} catch (e) {
@@ -1837,16 +1841,22 @@ function IETcopyToClip(data) {
 }
 
 function IEThtmlToText(data) {
+	console.log("cnv to text")
 	// This is necessay to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
-	var toStr = { value: null };
+	
+	//var toStr = { value: null };
+	var toStr = {};
 	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
 	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
+	//data = data.replace(/\n/g, "<br>")
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
+		console.log("cnv to text fmt")
+		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 	} catch (e) {
+		console.log("cnv to text ex",e)
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
 	}
@@ -2222,7 +2232,7 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 
 function IETstoreBody(msguri) {
 	var content = "";
-	var MsgService = messenger.messageServiceFromURI(msguri);
+	var MsgService = MailServices.messageServiceFromURI(msguri);
 	var MsgStream = Cc["@mozilla.org/network/sync-stream-listener;1"].createInstance();
 	var consumer = MsgStream.QueryInterface(Ci.nsIInputStream);
 	var ScriptInput = Cc["@mozilla.org/scriptableinputstream;1"].createInstance();

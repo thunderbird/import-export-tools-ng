@@ -7,13 +7,17 @@ async function expMenuDispatcher(data) {
 			console.log("mdis: ", data)
 			await exportSelectedMsgs(0);
 			break;
+		case "WXMCMD_HTML_Format":
+			console.log("mdis: ", data)
+			await exportSelectedMsgs(3);
+			break;
 		case "WXMCMD_PDF_Format":
 			await IETprintPDFmain.print(false);
 			break;
 		default:
 			break;
 	}
-	
+
 	return true;
 }
 

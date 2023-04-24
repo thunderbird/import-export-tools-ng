@@ -275,7 +275,7 @@ WL.injectElements(`
 <menuitem id="importEMLatt" label="&importAttachedEML;" oncommand="importEmlToFolder()" collapsed="true" />
 </popup>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
-
+*/
 	WL.injectElements(`
 <hbox id="status-bar" >
 <toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/mboximport/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText"/>
@@ -283,6 +283,7 @@ WL.injectElements(`
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
 
+/*
 	// HotKeys overlay fragment
 
 	WL.injectElements(`

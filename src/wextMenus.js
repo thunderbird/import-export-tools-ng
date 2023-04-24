@@ -42,6 +42,7 @@ await messenger.menus.create(
 		id: msgCtxMenu_PDF_FormatId,
 		contexts: ["message_list"],
 		title: "PDF Format",
+		type: "normal",
 		onclick: wextMsgCtx_ExportAs
 	}
 );

@@ -711,7 +711,7 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 	var hdrArray = [];
 	for (var k = 0; k < emlsArray.length; k++) {
 		var msguri = emlsArray[k];
-		var msserv = messenger.messageServiceFromURI(msguri);
+		var msserv = MailServices.messageServiceFromURI(msguri);
 		var msg = msserv.messageURIToMsgHdr(msguri);
 		var hdrStr = IETstoreHeaders(msg, msguri, file, needBody);
 		hdrArray.push(hdrStr);

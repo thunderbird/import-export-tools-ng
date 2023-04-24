@@ -1,0 +1,3 @@
+
+
+hdr.getProperty => hdr.getStringProperty

@@ -8,11 +8,11 @@ var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 window.ietngAddon = {};
 window.ietngAddon.window = window;
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window.ietngAddon, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window.ietngAddon, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window.ietngAddon, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window.ietngAddon, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 
 
 
@@ -31,8 +31,8 @@ window.ietngAddon.extension = WL.extension;
 
 console.log(window)
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window.ietngAddon, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
 
 function onLoad() {
 	//console.debug('messenger OL');

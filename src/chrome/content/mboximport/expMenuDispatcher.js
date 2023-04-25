@@ -1,5 +1,19 @@
 // expMenuDispatcher
 console.log("load")
+
+/* Export types:
+	0 = EML
+	1 = HTML
+	2 = Plain Text
+	3 = MBOX
+	4 = MBOX (append mode)
+	5 = index (HTML)
+	6 = index (CSV)
+	7 = CSV (with body)
+	8 = HTML with attachments
+	9 = Plain Text with attachments
+	*/
+	
 async function expMenuDispatcher(data) {
 
 	switch (data.command) {

@@ -4,92 +4,92 @@
 
 
 // Message context menu
-const msgCtxMenu_TopId = "msgCtxMenu_TopId";
+const ctxMenu_TopId = "ctxMenu_TopId";
 await messenger.menus.create(
 	{
-		id: msgCtxMenu_TopId,
+		id: ctxMenu_TopId,
 		contexts: ["message_list"],
 		title: "Save or Export Messages As…",
 	}
 );
 
-const msgCtxMenu_Exp_EMLFormat_Id = "msgCtxMenu_Exp_EMLFormat_Id";
+const ctxMenu_Exp_EMLFormat_Id = "ctxMenu_Exp_EMLFormat_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_TopId,
-		id: msgCtxMenu_Exp_EMLFormat_Id,
+		parentId: ctxMenu_TopId,
+		id: ctxMenu_Exp_EMLFormat_Id,
 		contexts: ["message_list"],
 		title: "EML Message Format",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
-const msgCtxMenu_Exp_HTMLFormat_Id = "msgCtxMenu_Exp_HTMLFormat_Id";
+const ctxMenu_Exp_HTMLFormat_Id = "ctxMenu_Exp_HTMLFormat_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_TopId,
-		id: msgCtxMenu_Exp_HTMLFormat_Id,
+		parentId: ctxMenu_TopId,
+		id: ctxMenu_Exp_HTMLFormat_Id,
 		contexts: ["message_list"],
 		title: "HTML Format",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
 
 
-const msgCtxMenu_Exp_HTMLFormatMsgs_Id = "msgCtxMenu_Exp_HTMLFormatMsgs_Id";
+const ctxMenu_Exp_HTMLFormatMsgs_Id = "ctxMenu_Exp_HTMLFormatMsgs_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-		id: msgCtxMenu_Exp_HTMLFormatMsgs_Id,
+		parentId: ctxMenu_Exp_HTMLFormat_Id,
+		id: ctxMenu_Exp_HTMLFormatMsgs_Id,
 		contexts: ["message_list"],
 		title: "Messages Only",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
-const msgCtxMenu_Exp_HTMLFormatSaveAtts_Id = "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id";
+const ctxMenu_Exp_HTMLFormatSaveAtts_Id = "ctxMenu_Exp_HTMLFormatSaveAtts_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-		id: msgCtxMenu_Exp_HTMLFormatSaveAtts_Id,
+		parentId: ctxMenu_Exp_HTMLFormat_Id,
+		id: ctxMenu_Exp_HTMLFormatSaveAtts_Id,
 		contexts: ["message_list"],
 		title: "Save Attachments",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
-const msgCtxMenu_Exp_HTMLFormatCreateIndex_Id = "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id";
+const ctxMenu_Exp_HTMLFormatCreateIndex_Id = "ctxMenu_Exp_HTMLFormatCreateIndex_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-		id: msgCtxMenu_Exp_HTMLFormatCreateIndex_Id,
+		parentId: ctxMenu_Exp_HTMLFormat_Id,
+		id: ctxMenu_Exp_HTMLFormatCreateIndex_Id,
 		contexts: ["message_list"],
 		title: "Create HTML Index",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
-const msgCtxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id = "msgCtxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id";
+const ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id = "ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-		id: msgCtxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id,
+		parentId: ctxMenu_Exp_HTMLFormat_Id,
+		id: ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id,
 		contexts: ["message_list"],
 		title: "Attachments and Index",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
-const msgCtxMenu_Exp_PDFFormat_Id = "msgCtxMenu_Exp_PDFFormat_Id";
+const ctxMenu_Exp_PDFFormat_Id = "ctxMenu_Exp_PDFFormat_Id";
 await messenger.menus.create(
 	{
-		parentId: msgCtxMenu_TopId,
-		id: msgCtxMenu_Exp_PDFFormat_Id,
+		parentId: ctxMenu_TopId,
+		id: ctxMenu_Exp_PDFFormat_Id,
 		contexts: ["message_list"],
 		title: "PDF Format",
 		type: "normal",
-		onclick: wextMsgCtx_ExportAs
+		onclick: wextctx_ExportAs
 	}
 );
 
@@ -113,6 +113,14 @@ await messenger.menus.create(
 		onclick: wextMenu_folderTest
 	}
 );
+
+async function createMenus(menuType, menuArray, options) {
+
+	menuArray.forEach(menuObj  => async {
+		await messenger.menus.create(menuObj.menuDef);
+	});
+}
+
 // Message Context Menu Handlers
 
 async function wextMenu_EML_Format(e) {
@@ -135,27 +143,27 @@ async function wextMenu_EML_Format(e) {
 	});
 }
 
-async function wextMsgCtx_ExportAs(msgCtxEvent) {
-	console.log(msgCtxEvent)
+async function wextctx_ExportAs(ctxEvent) {
+	console.log(ctxEvent)
 	var params = {};
-	if (msgCtxEvent.menuItemId.includes("Atts")) {
+	if (ctxEvent.menuItemId.includes("Atts")) {
 		params.saveAtts = true;
 	}
-	if (msgCtxEvent.menuItemId.includes("Index")) {
+	if (ctxEvent.menuItemId.includes("Index")) {
 		params.createIndex = true;
 	}
 	
-	switch (msgCtxEvent.menuItemId) {
-		case msgCtxMenu_Exp_EMLFormat_Id:
+	switch (ctxEvent.menuItemId) {
+		case ctxMenu_Exp_EMLFormat_Id:
 			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format"});
 			break;
-		case msgCtxMenu_Exp_HTMLFormatMsgs_Id:
-		case msgCtxMenu_Exp_HTMLFormatSaveAtts_Id:
-		case msgCtxMenu_Exp_HTMLFormatCreateIndex_Id:
-		case msgCtxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id:
+		case ctxMenu_Exp_HTMLFormatMsgs_Id:
+		case ctxMenu_Exp_HTMLFormatSaveAtts_Id:
+		case ctxMenu_Exp_HTMLFormatCreateIndex_Id:
+		case ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id:
 			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params});
 			break;
-		case msgCtxMenu_Exp_PDFFormat_Id:
+		case ctxMenu_Exp_PDFFormat_Id:
 			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format"});
 			break;
 		default:

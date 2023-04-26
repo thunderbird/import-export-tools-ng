@@ -15,6 +15,7 @@ const ctxMenu_Exp_Index_Id = "ctxMenu_Exp_Index_Id";
 const ctxMenu_Exp_Options_Id = "ctxMenu_Exp_Options_Id";
 const ctxMenu_Exp_Help_Id = "ctxMenu_Exp_Help_Id";
 
+const ctxMenu_Exp_HTMLFormatMsgs_Id = "ctxMenu_Exp_HTMLFormatMsgs_Id";
 
 
 var msgCtxMenuSet = [
@@ -87,8 +88,28 @@ var msgCtxMenuSet = [
 		}
 
 	},
+	{
+		menuDef: {
+			id: ctxMenu_Exp_Options_Id,
+			title: "Options",
+		}
 
+	},
+	{
+		menuDef: {
+			id: ctxMenu_Exp_Help_Id,
+			title: "Help",
+		}
 
+	},
+	{
+		menuDef: {
+			parentId: ctxMenu_Exp_HTMLFormat_Id,
+			id: ctxMenu_Exp_HTMLFormatMsgs_Id,
+			title: "Messages Only"
+		}
+
+	},
 
 ];
 
@@ -211,7 +232,7 @@ async function createMenus(menuType, menuArray, options) {
 	var defaultParentId = menuArray[0].menuDef.id;
 	for (let index = 0; index < menuArray.length; index++) {
 		let menuObj = menuArray[index];
-		if (index > 0) {
+		if (index > 0 && !menuObj.menuDef.parentId) {
 			menuObj.menuDef.parentId = defaultParentId;
 		}
 		if (!menuObj.menuDef.contexts) {

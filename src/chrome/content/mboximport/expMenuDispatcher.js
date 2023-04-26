@@ -23,7 +23,7 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_HTML_Format":
 			console.log("mdis: ", data.params)
-			if (data.params == {}) {
+			if (Object.keys(data.params).length == 0) {
 				await exportSelectedMsgs(1);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
 				await exportSelectedMsgs(8);

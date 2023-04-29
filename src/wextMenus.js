@@ -113,6 +113,35 @@ var msgCtxMenuSet = [
 
 ];
 
+const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
+const toolsCtxMenu_ExpProfile_Id = "toolsCtxMenu_ExpProfile_Id";
+const toolsCtxMenu_ImpProfile_Id = "toolsCtxMenu_ImpProfile_Id";
+
+var toolsCtxMenuSet = [
+	{
+		menuId: 2,
+		menuDef: {
+			id: toolsCtxMenu_TopId,
+			title: "ImportExportTools NG"
+		}
+	},
+	{
+		menuDef: {
+			id: toolsCtxMenu_ExpProfile_Id,
+			title: "Export Profile"
+		}
+	},
+	{
+		menuDef: {
+			id: toolsCtxMenu_ImpProfile_Id,
+			title: "Import Profile"
+		}
+	}
+	
+
+];
+
+
 /*
 
 await messenger.menus.create(
@@ -225,7 +254,21 @@ await messenger.menus.create(
 );
 */
 
-createMenus("", msgCtxMenuSet, {defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs});
+/*
+const folderCtxMenu_folderTestId = "folderCtxMenu_folderTestId";
+await messenger.menus.create(
+	{
+		id: folderCtxMenu_folderTestId,
+		contexts: ["tools_menu"],
+		title: "menu test",
+		onclick: wextMenu_folderTest
+	}
+);
+*/
+
+
+await createMenus("", msgCtxMenuSet, {defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs});
+await createMenus("", toolsCtxMenuSet, {defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu});
 
 
 async function createMenus(menuType, menuArray, options) {
@@ -297,6 +340,11 @@ async function wextctx_ExportAs(ctxEvent) {
 	}
 
 }
+
+async function wextctx_toolsMenu(ctxEvent) {
+
+}
+
 
 async function wextMenu_folderTest(e) {
 	console.log(e)

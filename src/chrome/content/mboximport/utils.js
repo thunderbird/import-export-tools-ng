@@ -333,10 +333,10 @@ function dateInSecondsTo8601(secs) {
 
 function IETexport_all(just_mail) {
 	if ((IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning2") && just_mail)) {
-		var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Ci.nsIPromptService);
+		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+			//.getService(Ci.nsIPromptService);
 		var check = { value: false };
-		var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else

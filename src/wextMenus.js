@@ -343,6 +343,14 @@ async function wextctx_ExportAs(ctxEvent) {
 
 async function wextctx_toolsMenu(ctxEvent) {
 
+	switch (ctxEvent.menuItemId) {
+		case toolsCtxMenu_ExpProfile_Id:
+			messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile" });
+			break;
+	
+		default:
+			break;
+	}
 }
 
 

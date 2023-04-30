@@ -40,6 +40,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_Exp_Profile":
 			IETexport_all(true);
 			break;
+		case "WXMCMD_Backup":
+			window.ietng.OpenBackupDialog('manual');
+			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);
 			break;

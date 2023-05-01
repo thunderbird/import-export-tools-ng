@@ -148,6 +148,89 @@ var toolsCtxMenuSet = [
 
 ];
 
+const folderCtxMenu_TopId = "folderCtxMenu_TopId";
+const folderCtxMenu_Exp_FolderMbox_Id = "folderCtxMenu_Exp_FolderMbox_Id";
+const folderCtxMenu_Exp_FolderMboxOnly_Id = "folderCtxMenu_Exp_FolderMboxOnly_Id";
+const folderCtxMenu_Exp_FolderMboxZipped_Id = "folderCtxMenu_Exp_FolderMboxZipped_Id";
+const folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id ="folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id";
+const folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id = "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id";
+const folderCtxMenu_Exp_RemoteFolderMbox_Id = "folderCtxMenu_Exp_RemoteFolderMbox_Id";
+const folderCtxMenu_Exp_AllMessages_Id = "folderCtxMenu_Exp_AllMessages_Id";
+
+var folderCtxMenuSet = [
+  {
+    menuId: 3,
+    menuDef: {
+      id: folderCtxMenu_TopId,
+      title: "ImportExportTools NG"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Exp_FolderMbox_Id,
+      title: "Folder Export (mbox)"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_FolderMbox_Id,
+      id: folderCtxMenu_Exp_FolderMboxOnly_Id,
+      title: "As mbox File"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_FolderMbox_Id,
+      id: folderCtxMenu_Exp_FolderMboxOnly_Id,
+      title: "Single mbox File"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_FolderMbox_Id,
+      id: folderCtxMenu_Exp_FolderMboxZipped_Id,
+      title: "Single Zipped mbox File"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_FolderMbox_Id,
+      id: folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id,
+      title: "Structured With Subfolders"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_FolderMbox_Id,
+      id: folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id,
+      title: "With Flattened Subfolders"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Exp_RemoteFolderMbox_Id,
+      title: "Single mbox File"
+    }
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep1",
+      type: "separator"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Exp_AllMessages_Id,
+      title: "Export All Messages In Folder"
+    }
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep2",
+      type: "separator"
+    }
+  },
+];
 
 /*
 
@@ -259,6 +342,7 @@ await messenger.menus.create(
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
+await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
 
 
 async function createMenus(menuType, menuArray, options) {
@@ -346,7 +430,7 @@ async function wextctx_toolsMenu(ctxEvent) {
 }
 
 
-async function wextMenu_folderTest(e) {
+async function wextctx_folderMenu(e) {
   console.log(e)
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
+  //messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
 }

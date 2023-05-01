@@ -151,24 +151,7 @@ var toolsCtxMenuSet = [
 
 /*
 
-await messenger.menus.create(
-  {
-    id: ctxMenu_TopId,
-    contexts: ["message_list"],
-    title: "Save or Export Messages As…",
-  }
-);
 
-const ctxMenu_Exp_EMLFormat_Id = "ctxMenu_Exp_EMLFormat_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_TopId,
-    id: ctxMenu_Exp_EMLFormat_Id,
-    contexts: ["message_list"],
-    title: "EML Message Format",
-    onclick: wextctx_ExportAs
-  }
-);
 
 const ctxMenu_Exp_HTMLFormat_Id = "ctxMenu_Exp_HTMLFormat_Id";
 await messenger.menus.create(

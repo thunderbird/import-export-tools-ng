@@ -43,6 +43,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_Backup":
 			window.ietng.OpenBackupDialog('manual');
 			break;
+		case "WXMCMD_ImpMbox":
+			openMboxDialog();
+			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);
 			break;

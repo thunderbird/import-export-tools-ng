@@ -609,7 +609,9 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 
 	console.log("IETNG: rebuild foldertree");
-	gFolderTreeView._rebuild();
+	// 115 need replacement 
+	//gFolderTreeView._rebuild();
+	IETupdateFolder(newFolder);
 	console.log("IETNG: end trytocopy: ", new Date());
 	return newfilename;
 }

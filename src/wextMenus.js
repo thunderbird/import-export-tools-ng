@@ -23,7 +23,7 @@ var msgCtxMenuSet = [
     menuId: 1,
     menuDef: {
       id: ctxMenu_TopId,
-      title: "Save or Export Messages As…"
+      title: "Export Messages As…"
     }
   }, {
     menuDef: {
@@ -156,6 +156,17 @@ const folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id ="folderCtxMenu_Exp_Fo
 const folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id = "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id";
 const folderCtxMenu_Exp_RemoteFolderMbox_Id = "folderCtxMenu_Exp_RemoteFolderMbox_Id";
 const folderCtxMenu_Exp_AllMessages_Id = "folderCtxMenu_Exp_AllMessages_Id";
+const folderCtxMenu_Exp_SearchExport_Id = "folderCtxMenu_Exp_SearchExport_Id";
+const folderCtxMenu_Imp_MboxFiles_Id = "folderCtxMenu_Imp_MboxFiles_Id";
+const folderCtxMenu_Imp_EMLFormat_Id = "folderCtxMenu_Imp_EMLFormat_Id";
+const folderCtxMenu_Imp_EMLFormatMsgs_Id = "folderCtxMenu_Imp_EMLFormatMsgs_Id";
+const folderCtxMenu_Imp_EMLFormatDir_Id = "folderCtxMenu_Imp_EMLFormatDir_Id";
+const folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id = "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id";
+
+const folderCtxMenu_CopyFolderPath_Id = "folderCtxMenu_CopyFolderPath_Id";
+const folderCtxMenu_OpenFolderDir_Id = "folderCtxMenu_OpenFolderDir_Id";
+const folderCtxMenu_Options_Id = "folderCtxMenu_Options_Id";
+const folderCtxMenu_Help_Id = "folderCtxMenu_Help_Id";
 
 var folderCtxMenuSet = [
   {
@@ -209,7 +220,7 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Exp_RemoteFolderMbox_Id,
-      title: "Single mbox File"
+      title: "Export Remote Folder"
     }
   },
   {
@@ -228,6 +239,87 @@ var folderCtxMenuSet = [
     menuDef: {
       id: "folderCtxMenu_Sep2",
       type: "separator"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Exp_SearchExport_Id,
+      title: "Search And Export Messages"
+    }
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep3",
+      type: "separator"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Imp_MboxFiles_Id,
+      title: "Import mbox Files"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Imp_EMLFormat_Id,
+      title: "Import EML Messages"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_EMLFormat_Id,
+      id: folderCtxMenu_Imp_EMLFormatMsgs_Id,
+      title: "Individual EML Messages"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_EMLFormat_Id,
+      id: folderCtxMenu_Imp_EMLFormatDir_Id,
+      title: "All EML Messages From A Directory"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_EMLFormat_Id,
+      id: folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id,
+      title: "All EML Messages From A Directory And Subdirectories"
+    }
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep4",
+      type: "separator"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_CopyFolderPath_Id,
+      title: "Copy Folder Path"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_OpenFolderDir_Id,
+      title: "Open Folder Directory"
+    }
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep5",
+      type: "separator"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Options_Id,
+      title: "Options"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Help_Id,
+      title: "Help"
     }
   },
 ];
@@ -430,7 +522,15 @@ async function wextctx_toolsMenu(ctxEvent) {
 }
 
 
-async function wextctx_folderMenu(e) {
-  console.log(e)
+async function wextctx_folderMenu(ctxEvent) {
+  console.log(ctxEvent);
+  switch (ctxEvent.menuItemId) {
+    case folderCtxMenu_Imp_MboxFiles_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox" });
+      break;
+  
+    default:
+      break;
+  }
   //messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
 }

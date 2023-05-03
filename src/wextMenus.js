@@ -526,7 +526,8 @@ async function wextctx_folderMenu(ctxEvent) {
   console.log(ctxEvent);
   switch (ctxEvent.menuItemId) {
     case folderCtxMenu_Imp_MboxFiles_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox" });
+      window.folder = ctxEvent.selectedFolder;
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox", params: {selectedFolder: ctxEvent.selectedFolder} });
       break;
   
     default:

@@ -1,6 +1,6 @@
 // wextAPI.js
 
-
+console.log(window.folder)
 messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 	let rv;
 	switch (info.command) {
@@ -33,6 +33,10 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 
 			rv = await getFullMessage(info.messageId);
 			return rv;
+		case "createFolder":
+			console.log(window.folder)
+		break;
+
     }
     return false;
   }

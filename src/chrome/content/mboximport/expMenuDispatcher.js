@@ -44,6 +44,8 @@ async function expMenuDispatcher(data) {
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
+			//var f = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedFolder" });
+			console.log(data.params)
 			openMboxDialog();
 			break;
 		case "WXMCMD_ImportEML":

@@ -322,7 +322,7 @@ function openProfileImportWizard() {
 
 }
 
-async function openMboxDialog() {
+async function openMboxDialog(selectedFolder) {
 	if (IETstoreFormat() !== 0) {
 		alert(mboximportbundle.GetStringFromName("noMboxStorage"));
 		return;
@@ -342,7 +342,12 @@ async function openMboxDialog() {
 	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
 	// using async/await.
 	await new Promise(resolve => setTimeout(resolve, 800));
-	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
+	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder, selectedFolder);
+
+// 115 exp
+
+
+
 }
 
 
@@ -455,6 +460,36 @@ async function trytocopyMAILDIR() {
 	} catch (e) { }
 }
 
+
+
+async function testCopy(file, msgFolder, selectedFolder) {
+	console.log(files)
+	let tf = msgFolder.containsChildNamed("Inbox");
+	console.log(tf)
+	let sf = msgFolder.subFolders;
+	console.log(sf)
+
+	var folder = sf[0]
+
+// Send a notification that we are triggering a database rebuild.
+MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+folder.msgDatabase.summaryValid = false;
+
+const msgDB = folder.msgDatabase;
+msgDB.summaryValid = false;
+try {
+	folder.closeAndBackupFolderDB("");
+} catch (e) {
+	// In a failure, proceed anyway since we're dealing with problems
+	folder.ForceDBClosed();
+}
+folder.updateFolder(top.msgWindow);
+// TODO: Reopen closed views.
+
+
+
+}
 // The arguments of trytocopy are
 // file = the file to import as nsIFile
 // filename = the name of the file to import
@@ -611,7 +646,39 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	console.log("IETNG: rebuild foldertree");
 	// 115 need replacement 
 	//gFolderTreeView._rebuild();
-	IETupdateFolder(newFolder);
+	console.log(newFolder)
+	//IETupdateFolder(newFolder);
+var folder = newFolder.parent;
+
+if (folder.locked) {
+	folder.throwAlertMsg("operationFailedFolderBusy", top.msgWindow);
+	return;
+}
+if (folder.supportsOffline) {
+	// Remove the offline store, if any.
+	await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+		console.error
+	);
+}
+
+// Send a notification that we are triggering a database rebuild.
+MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+folder.msgDatabase.summaryValid = false;
+
+const msgDB = folder.msgDatabase;
+msgDB.summaryValid = false;
+try {
+	folder.closeAndBackupFolderDB("");
+} catch (e) {
+	// In a failure, proceed anyway since we're dealing with problems
+	folder.ForceDBClosed();
+}
+folder.updateFolder(top.msgWindow);
+// TODO: Reopen closed views.
+
+
+
 	console.log("IETNG: end trytocopy: ", new Date());
 	return newfilename;
 }
@@ -734,6 +801,11 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
 		var thefiles = fp.files;
 		console.log("IETNG: flat import ", thefiles);
+
+		// 115
+		await testCopy(thefiles, msgFolder)
+		return;
+
 
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();

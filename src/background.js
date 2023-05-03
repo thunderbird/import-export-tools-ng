@@ -1,5 +1,7 @@
 // background.js - this kicks off the WindowListener framework
 
+window.folder = "t1"
+
 // Have to wrap top level asyncs in anon func to pass ATN
 
 await ((async () => {
@@ -95,4 +97,14 @@ function main() {
 		"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
 	messenger.WindowListener.startListening();
+
+	setFolder("test")
+}
+
+function setFolder(name) {
+	window.folder = name;
+}
+
+function getFolder() {
+	return window.folder;
 }

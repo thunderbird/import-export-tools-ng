@@ -463,14 +463,18 @@ async function trytocopyMAILDIR() {
 
 
 async function testCopy(file, msgFolder, selectedFolder) {
-	console.log(files)
+	console.log(file)
 	let tf = msgFolder.containsChildNamed("Inbox");
 	console.log(tf)
 	let sf = msgFolder.subFolders;
 	console.log(sf)
 
-	var folder = sf[0]
+	//var folder = sf[0]
 
+	var folder = msgFolder.createSubfolder("Test3", top.msgWindow )
+
+	await new Promise(resolve => setTimeout(resolve, 2000));
+	console.log(folder)
 // Send a notification that we are triggering a database rebuild.
 MailServices.mfn.notifyFolderReindexTriggered(folder);
 

@@ -460,21 +460,48 @@ async function trytocopyMAILDIR() {
 	} catch (e) { }
 }
 
+async function importMboxFiles(files, msgFolder, recursive) {
+	for (let i = 0; i < files.length; i++) {
+		const mboxFilePath = files[i];
+		subMsgFolder = importSingleMboxFile(mboxFilePath, msgFolder);
+		if (recursive &&  sbdExists(mboxFilePath)) {
+			var subFiles = scanSbdDir(mboxFilePath);
+			importMboxFiles(subFiles, subMsgFolder, recursive);
+		}
+	}
 
+
+}
 
 async function testCopy(file, msgFolder, selectedFolder) {
+	file = file.QueryInterface(Ci.nsIFile);
+
 	console.log(file)
 	let tf = msgFolder.containsChildNamed("Inbox");
 	console.log(tf)
 	let sf = msgFolder.subFolders;
 	console.log(sf)
 
-	//var folder = sf[0]
+	var src = file.path;
+	var folderName = file.leafName;
+	folderName = msgFolder.generateUniqueSubfolderName(folderName, null);
 
-	var folder = msgFolder.createSubfolder("Test3", top.msgWindow )
+	msgFolder.createSubfolder(folderName, top.msgWindow );
+	var folder = msgFolder.getChildNamed(folderName);
+	await new Promise(resolve => setTimeout(resolve, 200));
 
-	await new Promise(resolve => setTimeout(resolve, 2000));
 	console.log(folder)
+	var folderPath = folder.filePath.QueryInterface(Ci.nsIFile).path;
+	console.log(folderPath)
+	//let dst = PathUtils.join(folderPath, folderName);
+	var dst = folderPath;
+		console.log(src, dst)
+		let r = await IOUtils.copy(src, dst);
+
+	
+	console.log(folder)
+	//return;
+	//folder = null;
 // Send a notification that we are triggering a database rebuild.
 MailServices.mfn.notifyFolderReindexTriggered(folder);
 
@@ -807,7 +834,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		console.log("IETNG: flat import ", thefiles);
 
 		// 115
-		await testCopy(thefiles, msgFolder)
+		await testCopy(thefiles.getNext(), msgFolder)
 		return;
 
 

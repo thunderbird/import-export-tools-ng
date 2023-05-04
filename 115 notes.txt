@@ -1,3 +1,27 @@
 
 
 hdr.getProperty => hdr.getStringProperty
+
+scan and import hierarchy :
+
+id = import directory src
+
+m1
+m2
+m2.sbd
+  m3
+  m4
+  m4.sbd
+
+single or set of top mb files 
+[mb set]
+
+start w mb[0]
+import single mb to top folder 
+check if mb[0].sbd exists  if yes collect all files 
+  scan sbd for files 
+    import all mb files as subfolders 
+    check for sbd 
+
+
+

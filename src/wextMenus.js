@@ -116,7 +116,7 @@ var msgCtxMenuSet = [
 const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_ExpProfile_Id = "toolsCtxMenu_ExpProfile_Id";
 const toolsCtxMenu_ImpProfile_Id = "toolsCtxMenu_ImpProfile_Id";
-const toolsCtxMenu_Backup_Id ="toolsCtxMenu_Backup_Id";
+const toolsCtxMenu_Backup_Id = "toolsCtxMenu_Backup_Id";
 
 var toolsCtxMenuSet = [
   {
@@ -152,12 +152,17 @@ const folderCtxMenu_TopId = "folderCtxMenu_TopId";
 const folderCtxMenu_Exp_FolderMbox_Id = "folderCtxMenu_Exp_FolderMbox_Id";
 const folderCtxMenu_Exp_FolderMboxOnly_Id = "folderCtxMenu_Exp_FolderMboxOnly_Id";
 const folderCtxMenu_Exp_FolderMboxZipped_Id = "folderCtxMenu_Exp_FolderMboxZipped_Id";
-const folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id ="folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id";
+const folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id = "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id";
 const folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id = "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id";
 const folderCtxMenu_Exp_RemoteFolderMbox_Id = "folderCtxMenu_Exp_RemoteFolderMbox_Id";
 const folderCtxMenu_Exp_AllMessages_Id = "folderCtxMenu_Exp_AllMessages_Id";
 const folderCtxMenu_Exp_SearchExport_Id = "folderCtxMenu_Exp_SearchExport_Id";
 const folderCtxMenu_Imp_MboxFiles_Id = "folderCtxMenu_Imp_MboxFiles_Id";
+const folderCtxMenu_Imp_MboxFilesIndv_Id = "folderCtxMenu_Imp_MboxFilesIndv_Id";
+const folderCtxMenu_Imp_MboxFilesIndvRecursive_Id = "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id";
+const folderCtxMenu_Imp_MboxFilesDir_Id = "folderCtxMenu_Imp_MboxFilesDir_Id";
+const folderCtxMenu_Imp_MboxFilesDirRecursive_Id = "folderCtxMenu_Imp_MboxFilesDirRecursive_Id";
+
 const folderCtxMenu_Imp_EMLFormat_Id = "folderCtxMenu_Imp_EMLFormat_Id";
 const folderCtxMenu_Imp_EMLFormatMsgs_Id = "folderCtxMenu_Imp_EMLFormatMsgs_Id";
 const folderCtxMenu_Imp_EMLFormatDir_Id = "folderCtxMenu_Imp_EMLFormatDir_Id";
@@ -257,6 +262,34 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Imp_MboxFiles_Id,
       title: "Import mbox Files"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_MboxFiles_Id,
+      id: folderCtxMenu_Imp_MboxFilesIndv_Id,
+      title: "… Individual mbox Files"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_MboxFiles_Id,
+      id: folderCtxMenu_Imp_MboxFilesIndvRecursive_Id,
+      title: "… Individual mbox Files (with sbd structure)"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_MboxFiles_Id,
+      id: folderCtxMenu_Imp_MboxFilesDir_Id,
+      title: "… All mbox Files from directory"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Imp_MboxFiles_Id,
+      id: folderCtxMenu_Imp_MboxFilesDirRecursive_Id,
+      title: "… All mbox Files from directory (with sbd structure)"
     }
   },
   {
@@ -524,12 +557,42 @@ async function wextctx_toolsMenu(ctxEvent) {
 
 async function wextctx_folderMenu(ctxEvent) {
   console.log(ctxEvent);
-  switch (ctxEvent.menuItemId) {
+  var params = {};
+  switch (ctxEvent.parentMenuItemId) {
+    case folderCtxMenu_TopId:
+      switch (ctxEvent.menuItemId) {
+        case value:
+
+          break;
+
+        default:
+          break;
+      }
     case folderCtxMenu_Imp_MboxFiles_Id:
-      window.folder = ctxEvent.selectedFolder;
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox", params: {selectedFolder: ctxEvent.selectedFolder} });
+      switch (ctxEvent.menuItemId) {
+        case folderCtxMenu_Imp_MboxFilesIndv_Id:
+          params.mboxImpType = "individual";
+          params.mboxImpRecursive = false;
+          break;
+        case folderCtxMenu_Imp_MboxFilesIndvRecursive_Id:
+          params.mboxImpType = "individual";
+          params.mboxImpRecursive = true;
+          break;
+        case folderCtxMenu_Imp_MboxFilesDir_Id:
+          params.mboxImpType = "directory";
+          params.mboxImpRecursive = false;
+          break;
+        case folderCtxMenu_Imp_MboxFilesDir_Id:
+          params.mboxImpType = "directory";
+          params.mboxImpRecursive = true;
+          break;
+        default:
+          break;
+      }
+
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox", params: params });
       break;
-  
+
     default:
       break;
   }

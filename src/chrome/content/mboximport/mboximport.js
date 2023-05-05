@@ -264,44 +264,44 @@ var IETprintPDFmain = {
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well 
 
-        var errCounter = 0;
-        let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
+		var errCounter = 0;
+		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-        for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
+		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
-            try {
+			try {
 				var messageService = MailServices.messageServiceFromURI(uri);
-                //let messageService = messenger.messageServiceFromURI(uri);
-                let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+				//let messageService = messenger.messageServiceFromURI(uri);
+				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
-                let fileName = fileFormat === 2
-                    ? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
-                    : getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-                printSettings.toFileName = PathUtils.join(filePath, fileName);
+				let fileName = fileFormat === 2
+					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
+				printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-                console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
-                await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
-                await PrintUtils.printBrowser.browsingContext.print(printSettings);
-                console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
-                
-                IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
-                // When we got here, everything worked, and reset error counter.
-                errCounter = 0;
-            } catch (ex) {
-                // Something went wrong, wait a bit and try again.
-                // We did not inc i, so we will retry the same file.
-                //
-                errCounter++;
-                console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`,ex);
-                if (errCounter > 3) {
-                    console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
-                } else {
+				console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+				await PrintUtils.printBrowser.browsingContext.print(printSettings);
+				console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
+
+				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+				// When we got here, everything worked, and reset error counter.
+				errCounter = 0;
+			} catch (ex) {
+				// Something went wrong, wait a bit and try again.
+				// We did not inc i, so we will retry the same file.
+				//
+				errCounter++;
+				console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`, ex);
+				if (errCounter > 3) {
+					console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
+				} else {
 					// dec idx so next loop repeats msg that erred
 					msgIdx--;
 				}
-                await new Promise(r => mainWindow.setTimeout(r, 150));
-            }
-        }
+				await new Promise(r => mainWindow.setTimeout(r, 150));
+			}
+		}
 
 
 		console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
@@ -344,7 +344,7 @@ async function openMboxDialog(selectedFolder) {
 	await new Promise(resolve => setTimeout(resolve, 800));
 	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder, selectedFolder);
 
-// 115 exp
+	// 115 exp
 
 
 
@@ -463,15 +463,70 @@ async function trytocopyMAILDIR() {
 async function importMboxFiles(files, msgFolder, recursive) {
 	for (let i = 0; i < files.length; i++) {
 		const mboxFilePath = files[i];
-		subMsgFolder = importSingleMboxFile(mboxFilePath, msgFolder);
-		if (recursive &&  sbdExists(mboxFilePath)) {
-			var subFiles = scanSbdDir(mboxFilePath);
+		var subMsgFolder = await _importMboxFile(mboxFilePath, msgFolder);
+		if (recursive && await _ifSbdExists(mboxFilePath)) {
+			var subFiles = await _scanSbdDirForFiles(mboxFilePath);
+			console.log("sf",subFiles)
 			importMboxFiles(subFiles, subMsgFolder, recursive);
 		}
 	}
 
-
 }
+
+async function _scanSbdDirForFiles(folderPath) {
+	let files = await IOUtils.getChildren(folderPath + ".sbd");
+	var subFiles = [];
+	for (const f of files) {
+		console.log(f)
+		console.log(await IOUtils.stat(f))
+		if ((await IOUtils.stat(f)).type == "regular") {
+			subFiles.push(f);
+		}
+	}
+	return subFiles;
+}
+async function _ifSbdExists(folderPath) {
+	let sbdPath = folderPath + ".sbd";
+	return IOUtils.exists(sbdPath);
+}
+
+async function _importMboxFile(filePath, msgFolder) {
+	var src = filePath;
+	console.log(filePath)
+	var subFolderName = PathUtils.filename(filePath);
+	subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
+	msgFolder.createSubfolder(subFolderName, top.msgWindow);
+	var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+	//await new Promise(resolve => setTimeout(resolve, 200));
+
+	var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
+	console.log(subFolderPath)
+	var dst = subFolderPath;
+	console.log(src, dst)
+	let r = await IOUtils.copy(src, dst);
+	reindexDBandRebuildSummary(subMsgFolder);
+	return subMsgFolder;
+}
+
+
+function reindexDBandRebuildSummary(msgFolder) {
+	// Send a notification that we are triggering a database rebuild.
+	MailServices.mfn.notifyFolderReindexTriggered(msgFolder);
+
+	msgFolder.msgDatabase.summaryValid = false;
+
+	const msgDB = msgFolder.msgDatabase;
+	msgDB.summaryValid = false;
+	try {
+		msgFolder.closeAndBackupFolderDB("");
+	} catch (e) {
+		// In a failure, proceed anyway since we're dealing with problems
+		msgFolder.ForceDBClosed();
+	}
+	msgFolder.updateFolder(top.msgWindow);
+}
+
 
 async function testCopy(file, msgFolder, selectedFolder) {
 	file = file.QueryInterface(Ci.nsIFile);
@@ -486,7 +541,7 @@ async function testCopy(file, msgFolder, selectedFolder) {
 	var folderName = file.leafName;
 	folderName = msgFolder.generateUniqueSubfolderName(folderName, null);
 
-	msgFolder.createSubfolder(folderName, top.msgWindow );
+	msgFolder.createSubfolder(folderName, top.msgWindow);
 	var folder = msgFolder.getChildNamed(folderName);
 	await new Promise(resolve => setTimeout(resolve, 200));
 
@@ -495,28 +550,28 @@ async function testCopy(file, msgFolder, selectedFolder) {
 	console.log(folderPath)
 	//let dst = PathUtils.join(folderPath, folderName);
 	var dst = folderPath;
-		console.log(src, dst)
-		let r = await IOUtils.copy(src, dst);
+	console.log(src, dst)
+	let r = await IOUtils.copy(src, dst);
 
-	
+
 	console.log(folder)
 	//return;
 	//folder = null;
-// Send a notification that we are triggering a database rebuild.
-MailServices.mfn.notifyFolderReindexTriggered(folder);
+	// Send a notification that we are triggering a database rebuild.
+	MailServices.mfn.notifyFolderReindexTriggered(folder);
 
-folder.msgDatabase.summaryValid = false;
+	folder.msgDatabase.summaryValid = false;
 
-const msgDB = folder.msgDatabase;
-msgDB.summaryValid = false;
-try {
-	folder.closeAndBackupFolderDB("");
-} catch (e) {
-	// In a failure, proceed anyway since we're dealing with problems
-	folder.ForceDBClosed();
-}
-folder.updateFolder(top.msgWindow);
-// TODO: Reopen closed views.
+	const msgDB = folder.msgDatabase;
+	msgDB.summaryValid = false;
+	try {
+		folder.closeAndBackupFolderDB("");
+	} catch (e) {
+		// In a failure, proceed anyway since we're dealing with problems
+		folder.ForceDBClosed();
+	}
+	folder.updateFolder(top.msgWindow);
+	// TODO: Reopen closed views.
 
 
 
@@ -527,7 +582,7 @@ folder.updateFolder(top.msgWindow);
 // msgFolder = the folder as nsImsgFolder
 
 async function trytocopy(file, filename, msgFolder, keepstructure) {
-	
+
 	console.log("IETNG: trytocopy start");
 
 	// If the file isn't mbox format, alert, but doesn't exit (it did in pre 0.5.8 version and lower)
@@ -679,34 +734,34 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	//gFolderTreeView._rebuild();
 	console.log(newFolder)
 	//IETupdateFolder(newFolder);
-var folder = newFolder.parent;
+	var folder = newFolder.parent;
 
-if (folder.locked) {
-	folder.throwAlertMsg("operationFailedFolderBusy", top.msgWindow);
-	return;
-}
-if (folder.supportsOffline) {
-	// Remove the offline store, if any.
-	await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
-		console.error
-	);
-}
+	if (folder.locked) {
+		folder.throwAlertMsg("operationFailedFolderBusy", top.msgWindow);
+		return;
+	}
+	if (folder.supportsOffline) {
+		// Remove the offline store, if any.
+		await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+			console.error
+		);
+	}
 
-// Send a notification that we are triggering a database rebuild.
-MailServices.mfn.notifyFolderReindexTriggered(folder);
+	// Send a notification that we are triggering a database rebuild.
+	MailServices.mfn.notifyFolderReindexTriggered(folder);
 
-folder.msgDatabase.summaryValid = false;
+	folder.msgDatabase.summaryValid = false;
 
-const msgDB = folder.msgDatabase;
-msgDB.summaryValid = false;
-try {
-	folder.closeAndBackupFolderDB("");
-} catch (e) {
-	// In a failure, proceed anyway since we're dealing with problems
-	folder.ForceDBClosed();
-}
-folder.updateFolder(top.msgWindow);
-// TODO: Reopen closed views.
+	const msgDB = folder.msgDatabase;
+	msgDB.summaryValid = false;
+	try {
+		folder.closeAndBackupFolderDB("");
+	} catch (e) {
+		// In a failure, proceed anyway since we're dealing with problems
+		folder.ForceDBClosed();
+	}
+	folder.updateFolder(top.msgWindow);
+	// TODO: Reopen closed views.
 
 
 
@@ -791,16 +846,16 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 
 // scandir flag is to know if the function must scan a directory or just import mbox file(s)
 async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
-	
+
 	// mbox import debug #367
 	console.log("IETNG: mboximport start: ", new Date());
 	console.log("IETNG: scandir: ", scandir)
 	console.log("IETNG: keepstructure: ", keepstructure);
 	console.log("IETNG: openProfDir: ", openProfDir);
-	console.log("IETNG: recursiveMode: ",recursiveMode);
-	console.log("IETNG: msgFolder: " , msgFolder.name);
+	console.log("IETNG: recursiveMode: ", recursiveMode);
+	console.log("IETNG: msgFolder: ", msgFolder.name);
 	//console.log("IETNG: ")
-	
+
 
 	// initialize variables
 	gMsgFolderImported = [];
@@ -834,7 +889,10 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		console.log("IETNG: flat import ", thefiles);
 
 		// 115
-		await testCopy(thefiles.getNext(), msgFolder)
+		let f = thefiles.getNext().QueryInterface(Ci.nsIFile);
+		console.log(f)
+		await importMboxFiles([f.path], msgFolder, true);
+		// await testCopy(thefiles.getNext(), msgFolder)
 		return;
 
 

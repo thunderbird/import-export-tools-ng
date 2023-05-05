@@ -322,7 +322,7 @@ function openProfileImportWizard() {
 
 }
 
-async function openMboxDialog(selectedFolder) {
+async function openMboxDialog(params) {
 	if (IETstoreFormat() !== 0) {
 		alert(mboximportbundle.GetStringFromName("noMboxStorage"));
 		return;
@@ -470,21 +470,19 @@ async function importMboxFiles(files, msgFolder, recursive) {
 			importMboxFiles(subFiles, subMsgFolder, recursive);
 		}
 	}
-
 }
 
 async function _scanSbdDirForFiles(folderPath) {
 	let files = await IOUtils.getChildren(folderPath + ".sbd");
 	var subFiles = [];
 	for (const f of files) {
-		console.log(f)
-		console.log(await IOUtils.stat(f))
 		if ((await IOUtils.stat(f)).type == "regular") {
 			subFiles.push(f);
 		}
 	}
 	return subFiles;
 }
+
 async function _ifSbdExists(folderPath) {
 	let sbdPath = folderPath + ".sbd";
 	return IOUtils.exists(sbdPath);

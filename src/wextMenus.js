@@ -197,13 +197,6 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
-      id: folderCtxMenu_Exp_FolderMboxOnly_Id,
-      title: "Single mbox File"
-    }
-  },
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxZipped_Id,
       title: "Single Zipped mbox File"
     }

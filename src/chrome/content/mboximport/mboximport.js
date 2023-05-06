@@ -62,6 +62,9 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
 
+var { openFileDialog } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { mboxDispatcher } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+console.log(mboxDispatcher())
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var MBstrBundleService = Services.strings;
@@ -333,16 +336,17 @@ async function openMboxDialog(params) {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
 		return;
 	}
-	var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
-	window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
-	if (params.cancel) {
-		return;
-	}
+	//var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
+	//window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
+	//if (params.cancel) {
+//		return;
+//	}
 	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
 	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
 	// using async/await.
+	var params = {};
 	await new Promise(resolve => setTimeout(resolve, 800));
-	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder, selectedFolder);
+	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
 
 	// 115 exp
 
@@ -864,7 +868,12 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 	var filesArray;
 	var mboxname;
 
-	if (!scandir) {
+	console.log(window)
+	var res = await openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple,"Select mbox files", null, null);
+	console.log(res)
+
+	/*
+	if (!scandir && 0) {
 		// open the filepicker
 		fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeOpenMultiple);
 		fp.appendFilters(Ci.nsIFilePicker.filterAll);
@@ -881,19 +890,19 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		if (res !== Ci.nsIFilePicker.returnOK) {
 			return;
 		}
-
+*/
 		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
-		var thefiles = fp.files;
+		var thefiles = res.filesArray;
 		console.log("IETNG: flat import ", thefiles);
 
 		// 115
-		let f = thefiles.getNext().QueryInterface(Ci.nsIFile);
-		console.log(f)
-		await importMboxFiles([f.path], msgFolder, true);
+		//let f = thefiles.getNext().QueryInterface(Ci.nsIFile);
+		//console.log(f)
+		await importMboxFiles(thefiles, msgFolder, true);
 		// await testCopy(thefiles.getNext(), msgFolder)
 		return;
 
-
+/*
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();
 			onefile = onefile.QueryInterface(Ci.nsIFile);
@@ -976,6 +985,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 		await new Promise(resolve => setTimeout(resolve, timeout));
 		await buildMSGfile();
 	}
+	*/
 }
 
 async function exportfolder(subfolder, keepstructure, locale, zip) {

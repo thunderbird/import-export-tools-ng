@@ -575,12 +575,12 @@ async function wextctx_folderMenu(ctxEvent) {
           params.mboxImpType = "directory";
           params.mboxImpRecursive = false;
           break;
-        case folderCtxMenu_Imp_MboxFilesDir_Id:
+        case folderCtxMenu_Imp_MboxFilesDirRecursive_Id:
           params.mboxImpType = "directory";
           params.mboxImpRecursive = true;
           break;
         default:
-          break;
+          return;
       }
 
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox", params: params });

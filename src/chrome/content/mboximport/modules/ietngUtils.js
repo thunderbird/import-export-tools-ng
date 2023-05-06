@@ -1,7 +1,9 @@
 // ietngUtils.js
 
-export async function openFileDialog(window, mode, title, initialDir, filter) {
-  console.log(window)
+export var ietngUtils = {
+
+  openFileDialog: async function (window, mode, title, initialDir, filter) {
+
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};
     fp.init(window, title, mode);
@@ -36,5 +38,20 @@ export async function openFileDialog(window, mode, title, initialDir, filter) {
       resultObj.folder = fp.file.path;
     }
     return resultObj;
-  }
+  },
+
+  stringToBytes: function (str) {
+    var bytes = new Uint8Array(str.length);
+    for (let i = 0; i < str.length; i++) {
+      bytes[i] = str.charCodeAt(i);
+    }
+    return bytes;
+  },
+  
+  bytesToString2: function (bytes) {
+    return bytes.reduce(function (str, b) {
+      return str + String.fromCharCode(b);
+    }, "");
+  },
+}
   

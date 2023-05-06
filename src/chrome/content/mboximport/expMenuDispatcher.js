@@ -14,6 +14,13 @@ console.log("load")
 	9 = Plain Text with attachments
 	*/
 	
+var { mboxImportExport, setGlobals } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var gVars = {
+	window: window,
+}
+setGlobals(gVars);
+
+
 async function expMenuDispatcher(data) {
 
 	switch (data.command) {
@@ -44,9 +51,10 @@ async function expMenuDispatcher(data) {
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-			//var f = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedFolder" });
+			
 			console.log(data.params)
-			openMboxDialog(data.params);
+			mboxImportExport.importMboxSetup(data.params);
+			//openMboxDialog(data.params);
 			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);

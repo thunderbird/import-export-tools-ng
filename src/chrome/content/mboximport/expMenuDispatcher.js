@@ -44,6 +44,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_PDF_Format":
 			await IETprintPDFmain.print(false);
 			break;
+		case "WXMCMD_ExpFolderMboxFormat":
+			exportfolder(data.params);
+			break;
 		case "WXMCMD_Exp_Profile":
 			IETexport_all(true);
 			break;

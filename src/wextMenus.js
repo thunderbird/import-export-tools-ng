@@ -561,6 +561,40 @@ async function wextctx_folderMenu(ctxEvent) {
         default:
           break;
       }
+    case folderCtxMenu_Exp_FolderMbox_Id:
+      switch (ctxEvent.menuItemId) {
+        case folderCtxMenu_Exp_FolderMboxOnly_Id:
+          params.localFolder = true;
+          params.zipped = false;
+          params.includeSubfolders = false;
+          params.flattenSubfolders = false;
+          break;
+        case folderCtxMenu_Exp_FolderMboxZipped_Id:
+          params.localFolder = true;
+          params.zipped = true;
+          params.includeSubfolders = false;
+          params.flattenSubfolders = false;
+          break;
+
+        case folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id:
+          params.localFolder = true;
+          params.zipped = false;
+          params.includeSubfolders = true;
+          params.flattenSubfolders = false;
+          break;
+        case folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id:
+          params.localFolder = true;
+          params.zipped = false;
+          params.includeSubfolders = true;
+          params.flattenSubfolders = true;
+          break;
+        default:
+          return;
+
+      }
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
+      return;
+
     case folderCtxMenu_Imp_MboxFiles_Id:
       switch (ctxEvent.menuItemId) {
         case folderCtxMenu_Imp_MboxFilesIndv_Id:

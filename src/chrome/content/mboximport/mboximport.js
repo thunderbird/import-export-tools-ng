@@ -988,14 +988,19 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 	*/
 }
 
-async function exportfolder(subfolder, keepstructure, locale, zip) {
+async function exportfolder(params) {
+
+	var localfolder = params.localFolder;
+	var zip = params.zipped;
+	var subfolder = params.includeSubfolders;
+	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)");
 	var folders = GetSelectedMsgFolders();
 
 	console.log("   Subfolders:", subfolder);
 	console.log("   Structured: ", keepstructure);
-	console.log("   Local: ", locale);
+	console.log("   Local: ", localfolder);
 	console.log("   Zip: ", zip);
 	console.log(folders);
 
@@ -1007,7 +1012,7 @@ async function exportfolder(subfolder, keepstructure, locale, zip) {
 		}
 		var lastType = folders[i].server.type;
 	}
-	if (locale && (lastType === "imap" || lastType === "nntp")) {
+	if (localfolder && (lastType === "imap" || lastType === "nntp")) {
 		var go = IETremoteWarning();
 		if (!go)
 			return;
@@ -1027,7 +1032,7 @@ async function exportfolder(subfolder, keepstructure, locale, zip) {
 		return;
 	}
 
-	if (locale) {
+	if (localfolder) {
 		console.log("Using exportSingleLocaleFolder");
 		for (let i = 0; i < folders.length; i++)
 			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);

@@ -386,9 +386,15 @@ async function exportSelectedMsgs(type) {
 
 	var msgFolder = GetSelectedMsgFolders()[0];
 	var isOffLineImap;
+	console.log(msgFolder)
+	// 115 clean
+	let imapFolder = {};
 
-	// 115
-	let imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+	try {
+	imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+	} catch(e) {
+		console.log(e)
+	}
 	console.log(imapFolder.verifiedAsOnlineFolder)
 
 	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {

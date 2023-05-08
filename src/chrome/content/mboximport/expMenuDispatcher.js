@@ -26,7 +26,11 @@ async function expMenuDispatcher(data) {
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			console.log("mdis: ", data)
-			await exportSelectedMsgs(0);
+			if (Object.keys(data.params).length == 0) {
+				await exportSelectedMsgs(0);
+			} else if (data.params.createIndex) {
+				await exportSelectedMsgs(100);
+			}
 			break;
 		case "WXMCMD_HTML_Format":
 			console.log("mdis: ", data.params)

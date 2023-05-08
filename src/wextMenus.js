@@ -15,7 +15,25 @@ const ctxMenu_Exp_Index_Id = "ctxMenu_Exp_Index_Id";
 const ctxMenu_Exp_Options_Id = "ctxMenu_Exp_Options_Id";
 const ctxMenu_Exp_Help_Id = "ctxMenu_Exp_Help_Id";
 
-const ctxMenu_Exp_HTMLFormatMsgs_Id = "ctxMenu_Exp_HTMLFormatMsgs_Id";
+const ctxMenu_Exp_EMLFormatMsgsOnly_Id = "ctxMenu_Exp_EMLFormatMsgsOnly_Id";
+const ctxMenu_Exp_EMLFormatCreateIndex_Id = "ctxMenu_Exp_EMLFormatCreateIndex_Id";
+
+const ctxMenu_Exp_HTMLFormatMsgsOnly_Id = "ctxMenu_Exp_HTMLFormatMsgsOnly_Id";
+const ctxMenu_Exp_HTMLFormatSaveAtts_Id = "ctxMenu_Exp_HTMLFormatSaveAtts_Id";
+const ctxMenu_Exp_HTMLFormatCreateIndex_Id = "ctxMenu_Exp_HTMLFormatCreateIndex_Id";
+const ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id = "ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id";
+
+
+const ctxMenu_Exp_PlainTextFormatMsgsOnly_Id = "ctxMenu_Exp_PlainTextFormatMsgsOnly_Id";
+const ctxMenu_Exp_PlainTextFormatSaveAtts_Id = "ctxMenu_Exp_PlainTextFormatSaveAtts_Id";
+const ctxMenu_Exp_PlainTextFormatCreateIndex_Id = "ctxMenu_Exp_PlainTextFormatCreateIndex_Id";
+const ctxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id = "ctxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id";
+
+const ctxMenu_Exp_MboxFormatNewMbox_Id = "ctxMenu_Exp_MboxFormatNewMbox_Id";
+const ctxMenu_Exp_MboxFormatAppendMbox_Id = "ctxMenu_Exp_MboxFormatAppendMbox_Id";
+
+const ctxMenu_Exp_IndexHTML_Id = "ctxMenu_Exp_IndexHTML_Id";
+const ctxMenu_Exp_IndexCSV_Id = "ctxMenu_Exp_IndexCSV_Id";
 
 
 var msgCtxMenuSet = [
@@ -102,16 +120,115 @@ var msgCtxMenuSet = [
     }
 
   },
+
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_EMLFormat_Id,
+      id: ctxMenu_Exp_EMLFormatMsgsOnly_Id,
+      title: "Messages (Attachments Embedded)"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_EMLFormat_Id,
+      id: ctxMenu_Exp_EMLFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
   {
     menuDef: {
       parentId: ctxMenu_Exp_HTMLFormat_Id,
-      id: ctxMenu_Exp_HTMLFormatMsgs_Id,
+      id: ctxMenu_Exp_HTMLFormatMsgsOnly_Id,
       title: "Messages Only"
     }
-
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_HTMLFormat_Id,
+      id: ctxMenu_Exp_HTMLFormatSaveAtts_Id,
+      title: "Messages And Attachments"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_HTMLFormat_Id,
+      id: ctxMenu_Exp_HTMLFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_HTMLFormat_Id,
+      id: ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
+      title: "Messages With Attachments And Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_PlainTextFormat_Id,
+      id: ctxMenu_Exp_PlainTextFormatMsgsOnly_Id,
+      title: "Messages Only"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_PlainTextFormat_Id,
+      id: ctxMenu_Exp_PlainTextFormatSaveAtts_Id,
+      title: "Messages And Attachments"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_PlainTextFormat_Id,
+      id: ctxMenu_Exp_PlainTextFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_PlainTextFormat_Id,
+      id: ctxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
+      title: "Messages With Attachments And Index"
+    }
   },
 
+  
+{
+  menuDef: {
+    parentId: ctxMenu_Exp_MboxFormat_Id,
+    id: ctxMenu_Exp_MboxFormatNewMbox_Id,
+    title: "New mbox File"
+  }
+},
+{
+  menuDef: {
+    parentId: ctxMenu_Exp_MboxFormat_Id,
+    id: ctxMenu_Exp_MboxFormatAppendMbox_Id,
+    title: "Append To Existing mbox File"
+  }
+},
+
+
+{
+  menuDef: {
+    parentId: ctxMenu_Exp_Index_Id,
+    id: ctxMenu_Exp_IndexHTML_Id,
+    title: "HTML Format"
+  }
+},
+{
+  menuDef: {
+    parentId: ctxMenu_Exp_Index_Id,
+    id: ctxMenu_Exp_IndexCSV_Id,
+    title: "CSV Format"
+  }
+},
+
+
+
 ];
+
+
 
 const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_ExpProfile_Id = "toolsCtxMenu_ExpProfile_Id";
@@ -350,112 +467,6 @@ var folderCtxMenuSet = [
   },
 ];
 
-/*
-
-
-
-const ctxMenu_Exp_HTMLFormat_Id = "ctxMenu_Exp_HTMLFormat_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_TopId,
-    id: ctxMenu_Exp_HTMLFormat_Id,
-    contexts: ["message_list"],
-    title: "HTML Format",
-    onclick: wextctx_ExportAs
-  }
-);
-
-
-
-const ctxMenu_Exp_HTMLFormatMsgs_Id = "ctxMenu_Exp_HTMLFormatMsgs_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_Exp_HTMLFormat_Id,
-    id: ctxMenu_Exp_HTMLFormatMsgs_Id,
-    contexts: ["message_list"],
-    title: "Messages Only",
-    onclick: wextctx_ExportAs
-  }
-);
-
-const ctxMenu_Exp_HTMLFormatSaveAtts_Id = "ctxMenu_Exp_HTMLFormatSaveAtts_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_Exp_HTMLFormat_Id,
-    id: ctxMenu_Exp_HTMLFormatSaveAtts_Id,
-    contexts: ["message_list"],
-    title: "Save Attachments",
-    onclick: wextctx_ExportAs
-  }
-);
-
-const ctxMenu_Exp_HTMLFormatCreateIndex_Id = "ctxMenu_Exp_HTMLFormatCreateIndex_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_Exp_HTMLFormat_Id,
-    id: ctxMenu_Exp_HTMLFormatCreateIndex_Id,
-    contexts: ["message_list"],
-    title: "Create HTML Index",
-    onclick: wextctx_ExportAs
-  }
-);
-
-const ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id = "ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id";
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_Exp_HTMLFormat_Id,
-    id: ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id,
-    contexts: ["message_list"],
-    title: "Attachments and Index",
-    onclick: wextctx_ExportAs
-  }
-);
-
-
-await messenger.menus.create(
-  {
-    parentId: ctxMenu_TopId,
-    id: ctxMenu_Exp_PDFFormat_Id,
-    contexts: ["message_list"],
-    title: "PDF Format",
-    type: "normal",
-    onclick: wextctx_ExportAs
-  }
-);
-
-const folderCtxMenu_folderTestId = "folderCtxMenu_folderTestId";
-await messenger.menus.create(
-  {
-    id: folderCtxMenu_folderTestId,
-    contexts: ["folder_pane"],
-    title: "Folder test",
-    onclick: wextMenu_folderTest
-  }
-);
-
-const folderCtxMenu_ImportEMLSubdTestId = "folderCtxMenu_ImportEMLSubdTestId";
-await messenger.menus.create(
-  {
-    parentId: folderCtxMenu_folderTestId,
-    id: folderCtxMenu_ImportEMLSubdTestId,
-    contexts: ["folder_pane"],
-    title: "Folder test",
-    onclick: wextMenu_folderTest
-  }
-);
-*/
-
-/*
-const folderCtxMenu_folderTestId = "folderCtxMenu_folderTestId";
-await messenger.menus.create(
-  {
-    id: folderCtxMenu_folderTestId,
-    contexts: ["tools_menu"],
-    title: "menu test",
-    onclick: wextMenu_folderTest
-  }
-);
-*/
 
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
@@ -484,25 +495,6 @@ async function createMenus(menuType, menuArray, options) {
 
 // Message Context Menu Handlers
 
-async function wextMenu_EML_Format(e) {
-  console.log("EML Format", e);
-
-  var msgList = [];
-  try {
-    msgList = await browser.mailTabs.getSelectedMessages();
-  } catch {
-    msgList = null;
-  }
-
-  var params = {
-    selectedMsgIds: msgList,
-  };
-
-  console.log(params)
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params }).then((data) => {
-    console.log(data)
-  });
-}
 
 async function wextctx_ExportAs(ctxEvent) {
   console.log(ctxEvent)
@@ -515,13 +507,14 @@ async function wextctx_ExportAs(ctxEvent) {
   }
 
   switch (ctxEvent.menuItemId) {
-    case ctxMenu_Exp_EMLFormat_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format" });
+    case ctxMenu_Exp_EMLFormatMsgsOnly_Id:
+    case ctxMenu_Exp_EMLFormatCreateIndex_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params });
       break;
-    case ctxMenu_Exp_HTMLFormatMsgs_Id:
+    case ctxMenu_Exp_HTMLFormatMsgsOnly_Id:
     case ctxMenu_Exp_HTMLFormatSaveAtts_Id:
     case ctxMenu_Exp_HTMLFormatCreateIndex_Id:
-    case ctxMenu_Exp_HTMLFormatSaveAttsPlusIndex_Id:
+    case ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params });
       break;
     case ctxMenu_Exp_PDFFormat_Id:

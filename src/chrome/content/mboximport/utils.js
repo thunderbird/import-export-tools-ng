@@ -331,7 +331,12 @@ function dateInSecondsTo8601(secs) {
 	return msgDate8601string;
 }
 
-function IETexport_all(just_mail) {
+function IETexport_all(params) {
+	var just_mail = false;
+	if (params.profileExportType == "mailOnly") {
+		just_mail = true;
+	}
+
 	if ((IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning2") && just_mail)) {
 		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 			//.getService(Ci.nsIPromptService);

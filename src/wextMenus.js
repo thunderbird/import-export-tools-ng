@@ -110,6 +110,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: ctxMenu_Exp_Options_Id,
       title: "Options",
+      onclick: openOptions,
     }
 
   },
@@ -117,6 +118,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: ctxMenu_Exp_Help_Id,
       title: "Help",
+      onclick: openHelp,
     }
 
   },
@@ -192,37 +194,37 @@ var msgCtxMenuSet = [
     }
   },
 
-  
-{
-  menuDef: {
-    parentId: ctxMenu_Exp_MboxFormat_Id,
-    id: ctxMenu_Exp_MboxFormatNewMbox_Id,
-    title: "New mbox File"
-  }
-},
-{
-  menuDef: {
-    parentId: ctxMenu_Exp_MboxFormat_Id,
-    id: ctxMenu_Exp_MboxFormatAppendMbox_Id,
-    title: "Append To Existing mbox File"
-  }
-},
+
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_MboxFormat_Id,
+      id: ctxMenu_Exp_MboxFormatNewMbox_Id,
+      title: "New mbox File"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_MboxFormat_Id,
+      id: ctxMenu_Exp_MboxFormatAppendMbox_Id,
+      title: "Append To Existing mbox File"
+    }
+  },
 
 
-{
-  menuDef: {
-    parentId: ctxMenu_Exp_Index_Id,
-    id: ctxMenu_Exp_IndexHTML_Id,
-    title: "HTML Format"
-  }
-},
-{
-  menuDef: {
-    parentId: ctxMenu_Exp_Index_Id,
-    id: ctxMenu_Exp_IndexCSV_Id,
-    title: "CSV Format"
-  }
-},
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_Index_Id,
+      id: ctxMenu_Exp_IndexHTML_Id,
+      title: "HTML Format"
+    }
+  },
+  {
+    menuDef: {
+      parentId: ctxMenu_Exp_Index_Id,
+      id: ctxMenu_Exp_IndexCSV_Id,
+      title: "CSV Format"
+    }
+  },
 
 
 
@@ -234,7 +236,11 @@ const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_ExpProfile_Id = "toolsCtxMenu_ExpProfile_Id";
 const toolsCtxMenu_ImpProfile_Id = "toolsCtxMenu_ImpProfile_Id";
 const toolsCtxMenu_Backup_Id = "toolsCtxMenu_Backup_Id";
+const toolsCtxMenu_Options_Id = "toolsCtxMenu_Options_Id";
+const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 
+const toolsCtxMenu_ExpProfileFull_Id = "toolsCtxMenu_ExpProfileFull_Id";
+const toolsCtxMenu_ExpProfileMailOnly_Id = "toolsCtxMenu_ExpProfileMailOnly_Id";
 var toolsCtxMenuSet = [
   {
     menuId: 2,
@@ -260,7 +266,45 @@ var toolsCtxMenuSet = [
       id: toolsCtxMenu_Backup_Id,
       title: "Backup"
     }
-  }
+  },
+  {
+    menuDef: {
+      id: "toolsCtxMenu_Exp_Sep1",
+      type: "separator"
+    }
+
+  },
+  {
+    menuDef: {
+      id: toolsCtxMenu_Options_Id,
+      title: "Options",
+      onclick: openOptions,
+    }
+
+  },
+  {
+    menuDef: {
+      id: toolsCtxMenu_Help_Id,
+      title: "Help",
+      onclick: openHelp,
+    }
+
+  },
+  {
+    menuDef: {
+      parentId: toolsCtxMenu_ExpProfile_Id,
+      id: toolsCtxMenu_ExpProfileFull_Id,
+      title: "Full Profile"
+    }
+  },
+  {
+    menuDef: {
+      parentId: toolsCtxMenu_ExpProfile_Id,
+      id: toolsCtxMenu_ExpProfileMailOnly_Id,
+      title: "Mail Only"
+    }
+  },
+
 
 
 ];
@@ -456,13 +500,15 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Options_Id,
-      title: "Options"
+      title: "Options",
+      onclick: openOptions,
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,
-      title: "Help"
+      title: "Help",
+      onclick: openHelp,
     }
   },
 ];
@@ -515,10 +561,10 @@ async function wextctx_ExportAs(ctxEvent) {
     case ctxMenu_Exp_HTMLFormatSaveAtts_Id:
     case ctxMenu_Exp_HTMLFormatCreateIndex_Id:
     case ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params });
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params: params});
       break;
     case ctxMenu_Exp_PDFFormat_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format" });
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format", params: params});
       break;
     default:
       break;
@@ -527,10 +573,15 @@ async function wextctx_ExportAs(ctxEvent) {
 }
 
 async function wextctx_toolsMenu(ctxEvent) {
-
+  var params = {};
   switch (ctxEvent.menuItemId) {
-    case toolsCtxMenu_ExpProfile_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile" });
+    case toolsCtxMenu_ExpProfileFull_Id:
+      params.profileExportType = "full";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params});
+      break;
+    case toolsCtxMenu_ExpProfileMailOnly_Id:
+      params.profileExportType = "mailOnly";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params});
       break;
     case toolsCtxMenu_Backup_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup" });
@@ -618,3 +669,12 @@ async function wextctx_folderMenu(ctxEvent) {
   }
   //messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
 }
+
+async function openOptions() {
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
+}
+
+async function openHelp() {
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
+}
+

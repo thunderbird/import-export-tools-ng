@@ -13,7 +13,7 @@ console.log("load")
 	8 = HTML with attachments
 	9 = Plain Text with attachments
 	*/
-	
+
 var { mboxImportExport, setGlobals } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var gVars = {
 	window: window,
@@ -52,19 +52,25 @@ async function expMenuDispatcher(data) {
 			exportfolder(data.params);
 			break;
 		case "WXMCMD_Exp_Profile":
-			IETexport_all(true);
+			IETexport_all(data.params);
 			break;
 		case "WXMCMD_Backup":
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-			
+
 			console.log(data.params)
 			mboxImportExport.importMboxSetup(data.params);
 			//openMboxDialog(data.params);
 			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);
+			break;
+		case "WXMCMD_OpenOptions":
+			openIEToptions();
+			break;
+		case "WXMCMD_OpenHelp":
+			openIEThelp();
 			break;
 		default:
 			break;

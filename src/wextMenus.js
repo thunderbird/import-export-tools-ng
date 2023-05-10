@@ -561,11 +561,29 @@ async function wextctx_ExportAs(ctxEvent) {
     case ctxMenu_Exp_HTMLFormatSaveAtts_Id:
     case ctxMenu_Exp_HTMLFormatCreateIndex_Id:
     case ctxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params: params});
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params: params });
       break;
     case ctxMenu_Exp_PDFFormat_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format", params: params});
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format", params: params });
       break;
+    case ctxMenu_Exp_PlainTextFormatMsgsOnly_Id:
+    case ctxMenu_Exp_PlainTextFormatSaveAtts_Id:
+    case ctxMenu_Exp_PlainTextFormatCreateIndex_Id:
+    case ctxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PlainText_Format", params: params });
+      break;
+    case ctxMenu_Exp_CSVFormat_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CSV_Format", params: params });
+      break;
+    case ctxMenu_Exp_MboxFormatNewMbox_Id:
+      params.mboxExpType = "newMbox";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
+      break;
+    case ctxMenu_Exp_MboxFormatAppendMbox_Id:
+      params.mboxExpType = "appendMbox";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
+      break;
+
     default:
       break;
   }
@@ -577,14 +595,14 @@ async function wextctx_toolsMenu(ctxEvent) {
   switch (ctxEvent.menuItemId) {
     case toolsCtxMenu_ExpProfileFull_Id:
       params.profileExportType = "full";
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params});
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params });
       break;
     case toolsCtxMenu_ExpProfileMailOnly_Id:
       params.profileExportType = "mailOnly";
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params});
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params });
       break;
     case toolsCtxMenu_ImpProfile_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params});
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params });
       break;
     case toolsCtxMenu_Backup_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup" });

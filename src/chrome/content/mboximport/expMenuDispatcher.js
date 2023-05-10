@@ -48,6 +48,27 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_PDF_Format":
 			await IETprintPDFmain.print(false);
 			break;
+		case "WXMCMD_PlainText_Format":
+			if (Object.keys(data.params).length == 0) {
+				await exportSelectedMsgs(2);
+			} else if (data.params.saveAtts && !data.params.createIndex) {
+				await exportSelectedMsgs(9);
+			} else if (data.params.createIndex && !data.params.saveAtts) {
+				await exportSelectedMsgs(102);
+			} else if (data.params.saveAtts && data.params.createIndex) {
+				await exportSelectedMsgs(109);
+			}
+			break;
+		case "WXMCMD_CSV_Format":
+			await exportSelectedMsgs(7);
+			break;
+		case "WXMCMD_Mbox_Format":
+			if (data.params.mboxExpType == "newMbox") {
+				await exportSelectedMsgs(3);
+			} else if (data.params.mboxExpType == "appendMbox") {
+				await exportSelectedMsgs(4);
+			}
+			break;
 		case "WXMCMD_ExpFolderMboxFormat":
 			exportfolder(data.params);
 			break;

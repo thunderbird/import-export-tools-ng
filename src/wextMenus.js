@@ -583,6 +583,9 @@ async function wextctx_toolsMenu(ctxEvent) {
       params.profileExportType = "mailOnly";
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params});
       break;
+    case toolsCtxMenu_ImpProfile_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params});
+      break;
     case toolsCtxMenu_Backup_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup" });
       break;

@@ -5,6 +5,8 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+//import * as ietngUtils from "./ietngUtils.js";
+//console.log(ietngUtils)
 
 var window;
 

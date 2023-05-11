@@ -67,6 +67,8 @@
 			"always"
 		],
 		"semi": "error",
+		"complexity": ["error", { "max": 40 }],
+
 		"no-restricted-properties": [
 			1,
 			{

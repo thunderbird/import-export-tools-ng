@@ -583,6 +583,14 @@ async function wextctx_ExportAs(ctxEvent) {
       params.mboxExpType = "appendMbox";
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
       break;
+    case ctxMenu_Exp_IndexHTML_Id:
+      params.indexType = "indexHTML";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
+      break;
+    case ctxMenu_Exp_IndexCSV_Id:
+      params.indexType = "indexCSV";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
+      break;
 
     default:
       break;

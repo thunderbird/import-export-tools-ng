@@ -1,5 +1,11 @@
 // expMenuDispatcher
-console.log("load")
+
+/* global
+exportSelectedMsgs,
+
+*/
+
+console.log("load");
 
 /* Export types:
 	0 = EML
@@ -17,7 +23,7 @@ console.log("load")
 var { mboxImportExport, setGlobals } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var gVars = {
 	window: window,
-}
+};
 setGlobals(gVars);
 
 
@@ -25,7 +31,7 @@ async function expMenuDispatcher(data) {
 
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
-			console.log("mdis: ", data)
+			console.log("mdis: ", data);
 			if (Object.keys(data.params).length == 0) {
 				await exportSelectedMsgs(0);
 			} else if (data.params.createIndex) {
@@ -33,7 +39,7 @@ async function expMenuDispatcher(data) {
 			}
 			break;
 		case "WXMCMD_HTML_Format":
-			console.log("mdis: ", data.params)
+			console.log("mdis: ", data.params);
 			if (Object.keys(data.params).length == 0) {
 				await exportSelectedMsgs(1);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
@@ -69,6 +75,14 @@ async function expMenuDispatcher(data) {
 				await exportSelectedMsgs(4);
 			}
 			break;
+		case "WXMCMD_Index":
+			if (data.params.indexType == "indexHTML") {
+				await exportSelectedMsgs(5);
+			} else if (data.params.indexType == "indexCSV") {
+				await exportSelectedMsgs(6);
+			}
+			break;
+				
 		case "WXMCMD_ExpFolderMboxFormat":
 			exportfolder(data.params);
 			break;
@@ -83,7 +97,7 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_ImpMbox":
 
-			console.log(data.params)
+			console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
 			//openMboxDialog(data.params);
 			break;
@@ -104,7 +118,7 @@ async function expMenuDispatcher(data) {
 }
 
 function onUnload() {
-	console.log("unload")
+	console.log("unload");
 }
 // exp listener
 var listener_id = window.ietngAddon.notifyTools.addListener(expMenuDispatcher);

@@ -100,12 +100,15 @@ async function expMenuDispatcher(data) {
 			IETprintPDFmain.print(true);
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
-			if (Object.keys(data.params).length == 0) {
-
-			} else if (data.params.saveAtts) {
-
+			if (data.params.createIndex && !data.params.saveAtts) {
+				exportAllMsgs(2);
+			} else if (data.params.saveAtts && !data.params.singleFile) {
+				exportAllMsgs(9);
+			} else if (!data.params.saveAtts && data.params.singleFile) {
+				exportAllMsgs(4);
+			} else if (data.params.saveAtts && data.params.singleFile) {
+				exportAllMsgs(7);
 			}
-
 			break;
 		case "WXMCMD_Exp_Profile":
 			IETexport_all(data.params);

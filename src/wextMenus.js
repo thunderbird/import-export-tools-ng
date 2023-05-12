@@ -910,6 +910,9 @@ async function wextctx_folderMenu(ctxEvent) {
   if (ctxEvent.menuItemId.includes("Index")) {
     params.createIndex = true;
   }
+  if (ctxEvent.menuItemId.includes("SingleFile")) {
+    params.singleFile = true;
+  }
 
   console.log(params)
   switch (ctxEvent.menuItemId) {

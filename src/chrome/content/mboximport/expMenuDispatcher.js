@@ -99,11 +99,16 @@ async function expMenuDispatcher(data) {
 
 			console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
-			//openMboxDialog(data.params);
 			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);
 			break;
+		case "WXMCMD_CopyFolderPath":
+			IETcopyFolderPath();
+		break;
+		case "WXMCMD_OpenFolderDir":
+			IETopenFolderPath();
+		break;
 		case "WXMCMD_OpenOptions":
 			openIEToptions();
 			break;

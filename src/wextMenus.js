@@ -241,6 +241,7 @@ const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 
 const toolsCtxMenu_ExpProfileFull_Id = "toolsCtxMenu_ExpProfileFull_Id";
 const toolsCtxMenu_ExpProfileMailOnly_Id = "toolsCtxMenu_ExpProfileMailOnly_Id";
+
 var toolsCtxMenuSet = [
   {
     menuId: 2,
@@ -620,6 +621,7 @@ async function wextctx_toolsMenu(ctxEvent) {
   }
 }
 
+// messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_", params: params });
 
 async function wextctx_folderMenu(ctxEvent) {
   console.log(ctxEvent);
@@ -627,10 +629,12 @@ async function wextctx_folderMenu(ctxEvent) {
   switch (ctxEvent.parentMenuItemId) {
     case folderCtxMenu_TopId:
       switch (ctxEvent.menuItemId) {
-        case value:
-
+        case folderCtxMenu_CopyFolderPath_Id:
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyFolderPath", params: params });
           break;
-
+        case folderCtxMenu_OpenFolderDir_Id:
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenFolderDir", params: params });
+          break;
         default:
           break;
       }

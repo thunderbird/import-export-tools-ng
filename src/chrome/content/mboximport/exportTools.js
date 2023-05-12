@@ -293,6 +293,8 @@ function IETgetSortType() {
 }
 
 function selectVirtualFolder() {
+	// 115
+	return;
 	var fTree = document.getElementById("folderTree");
 	var fTreeSel = fTree.view.selection;
 	if (fTreeSel.isSelected(fTreeSel.currentIndex))
@@ -601,9 +603,11 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 		try {
+			let gDBView = gViewWrapper.dbView;
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
+			console.log(ex)
 			continue; // ignore errors for dummy rows
 		}
 	}

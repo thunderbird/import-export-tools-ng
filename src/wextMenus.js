@@ -335,6 +335,37 @@ const folderCtxMenu_OpenFolderDir_Id = "folderCtxMenu_OpenFolderDir_Id";
 const folderCtxMenu_Options_Id = "folderCtxMenu_Options_Id";
 const folderCtxMenu_Help_Id = "folderCtxMenu_Help_Id";
 
+
+const folderCtxMenu_Exp_EMLFormat_Id = "folderCtxMenu_Exp_EMLFormat_Id";
+const folderCtxMenu_Exp_HTMLFormat_Id = "folderCtxMenu_Exp_HTMLFormat_Id";
+const folderCtxMenu_Exp_PDFFormat_Id = "folderCtxMenu_Exp_PDFFormat_Id";
+const folderCtxMenu_Exp_PlainTextFormat_Id = "folderCtxMenu_Exp_PlainTextFormat_Id";
+const folderCtxMenu_Exp_CSVFormat_Id = "folderCtxMenu_Exp_CSVFormat_Id";
+const folderCtxMenu_Exp_MboxFormat_Id = "folderCtxMenu_Exp_MboxFormat_Id";
+const folderCtxMenu_Exp_Index_Id = "folderCtxMenu_Exp_Index_Id";
+const folderCtxMenu_Exp_Options_Id = "folderCtxMenu_Exp_Options_Id";
+const folderCtxMenu_Exp_Help_Id = "folderCtxMenu_Exp_Help_Id";
+
+const folderCtxMenu_Exp_EMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_EMLFormatMsgsOnly_Id";
+const folderCtxMenu_Exp_EMLFormatCreateIndex_Id = "folderCtxMenu_Exp_EMLFormatCreateIndex_Id";
+
+const folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id";
+const folderCtxMenu_Exp_HTMLFormatSaveAtts_Id = "folderCtxMenu_Exp_HTMLFormatSaveAtts_Id";
+const folderCtxMenu_Exp_HTMLFormatCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id";
+const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id";
+
+
+const folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id = "folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id";
+const folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id";
+const folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id";
+const folderCtxMenu_Exp_PlainTextFormatSingleFile_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id";
+const folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id";
+const folderCtxMenu_Exp_IndexHTML_Id = "folderCtxMenu_Exp_IndexHTML_Id";
+const folderCtxMenu_Exp_IndexCSV_Id = "folderCtxMenu_Exp_IndexCSV_Id";
+
+
+
 var folderCtxMenuSet = [
   {
     menuId: 3,
@@ -395,9 +426,69 @@ var folderCtxMenuSet = [
       title: "Export All Messages In Folder"
     }
   },
+
   {
     menuDef: {
-      id: "folderCtxMenu_Sep2",
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_EMLFormat_Id,
+      title: "EML Message Format"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_HTMLFormat_Id,
+      title: "HTML Format"
+    }
+
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_PDFFormat_Id,
+      title: "PDF Format"
+    }
+
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_PlainTextFormat_Id,
+      title: "Plain Text Format",
+    }
+
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_CSVFormat_Id,
+      title: "CSV Format (Spreadsheet)",
+    }
+
+  },
+
+
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: "folderCtxMenu_Exp_Sep2",
+      type: "separator"
+    }
+
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_AllMessages_Id,
+      id: folderCtxMenu_Exp_Index_Id,
+      title: "Message Index",
+    }
+
+  },
+
+
+  {
+    menuDef: {
+      id: "folderCtxMenu_Sep3",
       type: "separator"
     }
   },
@@ -409,7 +500,7 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
-      id: "folderCtxMenu_Sep3",
+      id: "folderCtxMenu_Sep4",
       type: "separator"
     }
   },
@@ -476,7 +567,7 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
-      id: "folderCtxMenu_Sep4",
+      id: "folderCtxMenu_Sep5",
       type: "separator"
     }
   },
@@ -494,7 +585,7 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
-      id: "folderCtxMenu_Sep5",
+      id: "folderCtxMenu_Sep6",
       type: "separator"
     }
   },
@@ -510,6 +601,116 @@ var folderCtxMenuSet = [
       id: folderCtxMenu_Help_Id,
       title: "Help",
       onclick: openHelp,
+    }
+  },
+
+/*
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_EMLFormat_Id,
+      id: folderCtxMenu_Exp_EMLFormatMsgsOnly_Id,
+      title: "Messages (Attachments Embedded)"
+    }
+  },
+  */
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_EMLFormat_Id,
+      id: folderCtxMenu_Exp_EMLFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
+
+  /*
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id,
+      title: "Messages Only"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatSaveAtts_Id,
+      title: "Messages And Attachments"
+    }
+  },
+*/
+
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
+      title: "Messages With Attachments And Index"
+    }
+  },
+
+/*
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
+      title: "Messages Only"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
+      title: "Messages And Attachments"
+    }
+  },
+*/
+
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
+      title: "Messages And HTML Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
+      title: "Messages With Attachments And Index"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSingleFile_Id,
+      title: "Messages As Single File"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id,
+      title: "Messages As Single File With Attachments"
+    }
+  },
+
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_Index_Id,
+      id: folderCtxMenu_Exp_IndexHTML_Id,
+      title: "HTML Format"
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_Index_Id,
+      id: folderCtxMenu_Exp_IndexCSV_Id,
+      title: "CSV Format"
     }
   },
 ];
@@ -701,6 +902,57 @@ async function wextctx_folderMenu(ctxEvent) {
       break;
   }
   //messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
+
+  console.log("sw men")
+  if (ctxEvent.menuItemId.includes("Atts")) {
+    params.saveAtts = true;
+  }
+  if (ctxEvent.menuItemId.includes("Index")) {
+    params.createIndex = true;
+  }
+
+  console.log(params)
+  switch (ctxEvent.menuItemId) {
+    case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
+    case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
+      console.log("exp eml")
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
+      break;
+    case folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
+    case folderCtxMenu_Exp_HTMLFormatSaveAtts_Id:
+    case folderCtxMenu_Exp_HTMLFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_HTML_Format", params: params });
+      break;
+    case folderCtxMenu_Exp_PDFFormat_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PDF_Format", params: params });
+      break;
+    case folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id:
+    case folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSingleFile_Id:
+      case folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PlainText_Format", params: params });
+      break;
+    case folderCtxMenu_Exp_CSVFormat_Id:
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_CSV_Format", params: params });
+      break;
+
+    case folderCtxMenu_Exp_IndexHTML_Id:
+      params.indexType = "indexHTML";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_Index", params: params });
+      break;
+    case folderCtxMenu_Exp_IndexCSV_Id:
+      params.indexType = "indexCSV";
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_Index", params: params });
+      break;
+
+    default:
+      break;
+  }
+
+
 }
 
 async function openOptions() {

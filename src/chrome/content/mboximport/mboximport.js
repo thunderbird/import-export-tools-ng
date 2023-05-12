@@ -118,6 +118,7 @@ var IETprintPDFmain = {
 			IETprintPDFmain.uris = await IETgetSelectedMessages();
 			console.log(IETprintPDFmain.uris)
 		} else {
+			console.log("pdf all")
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];
 			let isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;

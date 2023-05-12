@@ -28,7 +28,7 @@ setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {
-
+	console.log("expMenuDispacher: ", data);
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			console.log("mdis: ", data);
@@ -85,6 +85,27 @@ async function expMenuDispatcher(data) {
 				
 		case "WXMCMD_ExpFolderMboxFormat":
 			exportfolder(data.params);
+			break;
+		case "WXMCMD_FolderExp_EML_Format":
+			exportAllMsgs(0);
+			break;
+		case "WXMCMD_FolderExp_HTML_Format":
+			if (data.params.createIndex && !data.params.saveAtts) {
+			exportAllMsgs(0);
+			} else if (data.params.saveAtts) {
+				exportAllMsgs(8);
+			}
+			break;
+		case "WXMCMD_FolderExp_PDF_Format":
+			IETprintPDFmain.print(true);
+			break;
+		case "WXMCMD_FolderExp_PlainText_Format":
+			if (Object.keys(data.params).length == 0) {
+
+			} else if (data.params.saveAtts) {
+
+			}
+
 			break;
 		case "WXMCMD_Exp_Profile":
 			IETexport_all(data.params);

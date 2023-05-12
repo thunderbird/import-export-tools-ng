@@ -267,6 +267,8 @@ function searchANDsave() {
 }
 
 function IETgetSortType() {
+	let gDBView = gViewWrapper.dbView;
+	
 	if (!gDBView) {
 		IETsortType = 0;
 		return;
@@ -792,6 +794,8 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 	// nsMsgViewSortOrderValue none = 0;
 	// nsMsgViewSortOrderValue ascending = 1;
 	// nsMsgViewSortOrderValue descending = 2;
+	// 115
+	let gDBView = gViewWrapper.dbView;
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);

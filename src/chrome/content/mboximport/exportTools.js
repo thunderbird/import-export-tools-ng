@@ -268,7 +268,7 @@ function searchANDsave() {
 
 function IETgetSortType() {
 	let gDBView = gViewWrapper.dbView;
-	
+	console.log("sort type dbview : ", gDBView)
 	if (!gDBView) {
 		IETsortType = 0;
 		return;
@@ -598,12 +598,15 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
+	
+
 	for (let i = 0; i < total; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 		try {
 			let gDBView = gViewWrapper.dbView;
+			console.log(gDBView)
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
@@ -692,6 +695,7 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 
 function exportAllMsgsDelayed(type, file, msgFolder) {
 	try {
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -759,9 +763,12 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 
 	var file2 = file.clone();
 	IETgetSortType();
+	console.log(msgArray)
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {
+		
 		var msg = msgArray.getNext();
+		console.log(msg)
 		var skip = false;
 		msg = msg.QueryInterface(Ci.nsIMsgDBHdr);
 		var tempExists = false;

@@ -113,7 +113,7 @@ var dbViewWrapperListener = {
   _nextViewIndexAfterDelete: null,
 
   messenger: null,
-  msgWindow: null,
+  msgWindow: window.msgWindow,
   threadPaneCommandUpdater: {
     QueryInterface: ChromeUtils.generateQI([
       "nsIMsgDBViewCommandUpdater",
@@ -137,15 +137,17 @@ var dbViewWrapperListener = {
   onFolderLoading(isFolderLoading) {},
   onSearching(isSearching) {},
   onCreatedView() {
-   
+   console.log("created view")
   },
   onDestroyingView(folderIsComingBack) {
     
   },
   onLoadingFolder(dbFolderInfo) {
-    
+    console.log(dbFolderInfo)
   },
-  onDisplayingFolder() {},
+  onDisplayingFolder() {
+		console.log("fold")
+	},
   onLeavingFolder() {},
   onMessagesLoaded(all) {
    
@@ -167,14 +169,8 @@ var dbViewWrapperListener = {
 
 var gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
 console.log(gViewWrapper)
-/*
-let currentBrowser = () =>
-  lazy.BrowserWindowTracker.getTopWindow()?.gBrowser.selectedBrowser;
-let currentTab = () =>
-  lazy.BrowserWindowTracker.getTopWindow()?.gBrowser.selectedTab;
 
-console.log(currentTab())
-*/
+
 function searchANDsave() {
 	var preselectedFolder = null;
 	if ("GetFirstSelectedMsgFolder" in window)
@@ -185,7 +181,7 @@ function searchANDsave() {
 
 function IETgetSortType() {
 	let gDBView = gViewWrapper.dbView;
-	console.log("sort type dbview : ", gDBView)
+	//console.log("sort type dbview : ", gDBView.sortType)
 	if (!gDBView) {
 		IETsortType = 0;
 		return;
@@ -515,17 +511,22 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
-	
+	gViewWrapper.displayedFolder = msgFolder;
+		console.log(gViewWrapper)
 
 	for (let i = 0; i < total; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 
-		gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
-		console.log(gViewWrapper.dbView)
+		//gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
+		
+		//var dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
+		//var gDBView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
+		//console.log(gDBView)
+		let gDBView = gViewWrapper.dbView;
 		try {
-			let gDBView = gViewWrapper.dbView;
+			//let gDBView = gViewWrapper.dbView;
 			console.log(gDBView)
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;

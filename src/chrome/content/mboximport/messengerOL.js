@@ -13,8 +13,9 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expo
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
+//Services.scriptloader.loadSubScript("chrome://messenger/content/mailCommon.js", window, "UTF-8");
 
-
+console.log(window.gDBview)
 
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";

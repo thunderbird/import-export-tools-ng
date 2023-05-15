@@ -110,6 +110,13 @@ async function expMenuDispatcher(data) {
 				exportAllMsgs(7);
 			}
 			break;
+		case "WXMCMD_FolderExp_Index":
+			if (data.params.indexType == "indexHTML") {
+				exportAllMsgs(3);
+			} else if (data.params.indexType == "indexCSV") {
+				exportAllMsgs(5);
+			}
+			break;
 		case "WXMCMD_Exp_Profile":
 			IETexport_all(data.params);
 			break;

@@ -1007,6 +1007,7 @@ async function exportfolder(params) {
 
 	for (var i = 0; i < folders.length; i++) {
 		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
+		console.log(isVirtualFolder)
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
 			alert(mboximportbundle.GetStringFromName("noFolderExport"));
 			return;
@@ -1033,12 +1034,12 @@ async function exportfolder(params) {
 		return;
 	}
 
-	if (localfolder) {
+	if (localfolder && !isVirtualFolder) {
 		console.log("Using exportSingleLocaleFolder");
 		for (let i = 0; i < folders.length; i++)
 			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
-		exportVirtualFolder(msgFolder); //msgFolder?
+		exportVirtualFolder(folders[0]); //msgFolder?
 	} else {
 		exportRemoteFolders(destdirNSIFILE);
 	}

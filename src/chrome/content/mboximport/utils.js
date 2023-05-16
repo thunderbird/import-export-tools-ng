@@ -460,10 +460,9 @@ function IETformatWarning(warning_type) {
 function IETremoteWarning() {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.remote_warning"))
 		return true;
-	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Ci.nsIPromptService);
+
 	var check = { value: false };
-	var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
 	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }

@@ -180,8 +180,9 @@ function searchANDsave() {
 }
 
 function IETgetSortType() {
-	let gDBView = gViewWrapper.dbView;
-	//console.log("sort type dbview : ", gDBView.sortType)
+	
+	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	console.log("sort type dbview : ", gDBView.sortType)
 	if (!gDBView) {
 		IETsortType = 0;
 		return;
@@ -309,7 +310,7 @@ async function exportSelectedMsgs(type) {
 
 	try {
 	imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
-	} catch(e) {
+	} catch (e) {
 		console.log(e)
 	}
 	console.log(imapFolder.verifiedAsOnlineFolder)
@@ -514,6 +515,10 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	gViewWrapper.displayedFolder = msgFolder;
 		console.log(gViewWrapper)
 
+
+		var gDBView = gTabmail.currentAbout3Pane.gDBView;
+
+
 	for (let i = 0; i < total; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
@@ -524,7 +529,7 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		//var dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
 		//var gDBView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
 		//console.log(gDBView)
-		let gDBView = gViewWrapper.dbView;
+		//let gDBView = gViewWrapper.dbView;
 		try {
 			//let gDBView = gViewWrapper.dbView;
 			console.log(gDBView)
@@ -588,7 +593,7 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	// Export the messages one by one
 	for (let j = 0; j < msgUriArray.length; j++) {
 		var msguri = msgUriArray[j];
-		var msserv = messenger.messageServiceFromURI(msguri);
+		var msserv = MailServices.messageServiceFromURI(msguri);
 		var msg = msserv.messageURIToMsgHdr(msguri);
 
 		if (type !== 3 && type !== 5 && (msg.folder.server.type === "imap" || msg.folder.server.type === "news")
@@ -1840,6 +1845,7 @@ function exportVirtualFolder(msgFolder) {
 
 function exportVirtualFolderDelayed(msgFolder) {
 	// Open the filepicker to choose the directory
+	console.log("export vf")
 	var file = getPredefinedFolder(0);
 	if (!file) {
 		var nsIFilePicker = Ci.nsIFilePicker;
@@ -1866,6 +1872,9 @@ function exportVirtualFolderDelayed(msgFolder) {
 	clone.append(foldername);
 	clone.createUnique(0, 0644);
 	var uriArray = [];
+
+	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	
 	for (let i = 0; i < IETtotal; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
@@ -2062,7 +2071,7 @@ var copyHeaders = {
 	start: function () {
 		var mess = IETgetSelectedMessages();
 		var msguri = mess[0];
-		var mms = messenger.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+		var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
 		var streamListner = copyHeaders.getListener();
 		if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
 			streamListner.remote = true;

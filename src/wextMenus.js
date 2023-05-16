@@ -604,15 +604,15 @@ var folderCtxMenuSet = [
     }
   },
 
-/*
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_EMLFormat_Id,
-      id: folderCtxMenu_Exp_EMLFormatMsgsOnly_Id,
-      title: "Messages (Attachments Embedded)"
-    }
-  },
-  */
+  /*
+    {
+      menuDef: {
+        parentId: folderCtxMenu_Exp_EMLFormat_Id,
+        id: folderCtxMenu_Exp_EMLFormatMsgsOnly_Id,
+        title: "Messages (Attachments Embedded)"
+      }
+    },
+    */
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
@@ -653,22 +653,22 @@ var folderCtxMenuSet = [
     }
   },
 
-/*
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
-      id: folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
-      title: "Messages Only"
-    }
-  },
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
-      id: folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
-      title: "Messages And Attachments"
-    }
-  },
-*/
+  /*
+    {
+      menuDef: {
+        parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+        id: folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
+        title: "Messages Only"
+      }
+    },
+    {
+      menuDef: {
+        parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+        id: folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
+        title: "Messages And Attachments"
+      }
+    },
+  */
 
   {
     menuDef: {
@@ -830,6 +830,14 @@ async function wextctx_folderMenu(ctxEvent) {
   switch (ctxEvent.parentMenuItemId) {
     case folderCtxMenu_TopId:
       switch (ctxEvent.menuItemId) {
+        case folderCtxMenu_Exp_RemoteFolderMbox_Id:
+          console.log("rem")
+          params.localFolder = false;
+          params.zipped = false;
+          params.includeSubfolders = false;
+          params.flattenSubfolders = false;
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderRemote", params: params });
+          break;
         case folderCtxMenu_CopyFolderPath_Id:
           messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyFolderPath", params: params });
           break;
@@ -872,7 +880,6 @@ async function wextctx_folderMenu(ctxEvent) {
       }
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
       return;
-
     case folderCtxMenu_Imp_MboxFiles_Id:
       switch (ctxEvent.menuItemId) {
         case folderCtxMenu_Imp_MboxFilesIndv_Id:
@@ -935,7 +942,7 @@ async function wextctx_folderMenu(ctxEvent) {
     case folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
     case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
     case folderCtxMenu_Exp_PlainTextFormatSingleFile_Id:
-      case folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PlainText_Format", params: params });
       break;
     case folderCtxMenu_Exp_CSVFormat_Id:

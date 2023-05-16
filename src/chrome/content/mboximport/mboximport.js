@@ -123,6 +123,7 @@ var IETprintPDFmain = {
 			let msgFolder = msgFolders[0];
 			let isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 			if (isVirtFol) {
+				var gDBView = gTabmail.currentAbout3Pane.gDBView;
 				var total = msgFolder.getTotalMessages(false);
 				for (let i = 0; i < total; i++)
 					// error handling changed in 102

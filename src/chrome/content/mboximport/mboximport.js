@@ -276,7 +276,6 @@ var IETprintPDFmain = {
 			let uri = IETprintPDFmain.uris[msgIdx];
 			try {
 				var messageService = MailServices.messageServiceFromURI(uri);
-				//let messageService = messenger.messageServiceFromURI(uri);
 				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
 				let fileName = fileFormat === 2
@@ -285,10 +284,12 @@ var IETprintPDFmain = {
 				printSettings.toFileName = PathUtils.join(filePath, fileName);
 
 				console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
 				console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
 
+				//try {
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;

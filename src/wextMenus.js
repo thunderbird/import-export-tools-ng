@@ -838,6 +838,9 @@ async function wextctx_folderMenu(ctxEvent) {
           params.flattenSubfolders = false;
           messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderRemote", params: params });
           break;
+        case folderCtxMenu_Exp_SearchExport_Id:
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpSearch", params: params });
+          break;
         case folderCtxMenu_CopyFolderPath_Id:
           messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyFolderPath", params: params });
           break;

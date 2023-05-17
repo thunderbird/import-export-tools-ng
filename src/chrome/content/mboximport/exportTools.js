@@ -89,7 +89,7 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 /*
 var { XPCOMUtils } = ChromeUtils.importESModule(
 	"resource://gre/modules/XPCOMUtils.sys.mjs"
-  );
+	);
 */
 var lazy = {};
 
@@ -99,72 +99,72 @@ var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.j
 /*
 var { AppConstants } = ChromeUtils.importESModule(
 	"resource://gre/modules/AppConstants.sys.mjs"
-  );
+	);
 */
 XPCOMUtils.defineLazyModuleGetters(lazy, {
-  BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-  ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
-  DBViewWrapper: "resource:///modules/DBViewWrapper.jsm",
+	BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
+	ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
+	DBViewWrapper: "resource:///modules/DBViewWrapper.jsm",
 
 });
 
 
 var dbViewWrapperListener = {
-  _nextViewIndexAfterDelete: null,
+	_nextViewIndexAfterDelete: null,
 
-  messenger: null,
-  msgWindow: window.msgWindow,
-  threadPaneCommandUpdater: {
-    QueryInterface: ChromeUtils.generateQI([
-      "nsIMsgDBViewCommandUpdater",
-      "nsISupportsWeakReference",
-    ]),
-    updateCommandStatus() {},
-    displayMessageChanged(folder, subject, keywords) {},
-    updateNextMessageAfterDelete() {},
-    summarizeSelection() {},
-  },
+	messenger: null,
+	msgWindow: window.msgWindow,
+	threadPaneCommandUpdater: {
+		QueryInterface: ChromeUtils.generateQI([
+			"nsIMsgDBViewCommandUpdater",
+			"nsISupportsWeakReference",
+		]),
+		updateCommandStatus() { },
+		displayMessageChanged(folder, subject, keywords) { },
+		updateNextMessageAfterDelete() { },
+		summarizeSelection() { },
+	},
 
-  get shouldUseMailViews() {
-    return false;
-  },
-  get shouldDeferMessageDisplayUntilAfterServerConnect() {
-    return false;
-  },
-  shouldMarkMessagesReadOnLeavingFolder(msgFolder) {
-    return false;
-  },
-  onFolderLoading(isFolderLoading) {},
-  onSearching(isSearching) {},
-  onCreatedView() {
-   console.log("created view")
-  },
-  onDestroyingView(folderIsComingBack) {
-    
-  },
-  onLoadingFolder(dbFolderInfo) {
-    console.log(dbFolderInfo)
-  },
-  onDisplayingFolder() {
+	get shouldUseMailViews() {
+		return false;
+	},
+	get shouldDeferMessageDisplayUntilAfterServerConnect() {
+		return false;
+	},
+	shouldMarkMessagesReadOnLeavingFolder(msgFolder) {
+		return false;
+	},
+	onFolderLoading(isFolderLoading) { },
+	onSearching(isSearching) { },
+	onCreatedView() {
+		console.log("created view")
+	},
+	onDestroyingView(folderIsComingBack) {
+
+	},
+	onLoadingFolder(dbFolderInfo) {
+		console.log(dbFolderInfo)
+	},
+	onDisplayingFolder() {
 		console.log("fold")
 	},
-  onLeavingFolder() {},
-  onMessagesLoaded(all) {
-   
-  },
-  onMailViewChanged() {},
-  onSortChanged() {
-    
-  },
-  onMessagesRemoved() {
-   
-  },
-  onMessageRemovalFailed() {
-    
-  },
-  onMessageCountsChanged() {
-    
-  },
+	onLeavingFolder() { },
+	onMessagesLoaded(all) {
+
+	},
+	onMailViewChanged() { },
+	onSortChanged() {
+
+	},
+	onMessagesRemoved() {
+
+	},
+	onMessageRemovalFailed() {
+
+	},
+	onMessageCountsChanged() {
+
+	},
 };
 
 var gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
@@ -180,7 +180,7 @@ function searchANDsave() {
 }
 
 function IETgetSortType() {
-	
+
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 	console.log("sort type dbview : ", gDBView.sortType)
 	if (!gDBView) {
@@ -253,7 +253,7 @@ async function exportSelectedMsgs(type) {
 		needIndex = true;
 	}
 
-	console.log("type ",type, needIndex)
+	console.log("type ", type, needIndex)
 	var question;
 	if (type === 1 || type === 2 || type === 7) {
 		question = IETformatWarning(1);
@@ -309,7 +309,7 @@ async function exportSelectedMsgs(type) {
 	let imapFolder = {};
 
 	try {
-	imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+		imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
 	} catch (e) {
 		console.log(e)
 	}
@@ -512,11 +512,9 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
-	gViewWrapper.displayedFolder = msgFolder;
-		console.log(gViewWrapper)
 
 
-		var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 
 
 	for (let i = 0; i < total; i++) {
@@ -525,7 +523,7 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		// Resolves #359
 
 		//gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
-		
+
 		//var dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
 		//var gDBView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
 		//console.log(gDBView)
@@ -692,7 +690,7 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 	console.log(msgArray)
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {
-		
+
 		var msg = msgArray.getNext();
 		console.log(msg)
 		var skip = false;
@@ -1346,7 +1344,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 	console.log(msguri)
 	var mms = MailServices.messageServiceFromURI(msguri);
-		//.QueryInterface(Ci.nsIMsgMessageService);
+	//.QueryInterface(Ci.nsIMsgMessageService);
 	console.log(mms)
 	var hdr = mms.messageURIToMsgHdr(msguri);
 	console.log(hdr)
@@ -1461,7 +1459,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						}
 						// encode for utf-8 - Fixes #355
 						if (success)
-							footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';							
+							footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
 					}
 					if (footer) {
 						footer = footer + "</ul></div><div class='' ></div></body>";
@@ -1793,7 +1791,7 @@ function IEThtmlToText(data) {
 	console.log("cnv to text")
 	// This is necessay to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
-	
+
 	//var toStr = { value: null };
 	var toStr = {};
 	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
@@ -1805,7 +1803,7 @@ function IEThtmlToText(data) {
 		console.log("cnv to text fmt")
 		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 	} catch (e) {
-		console.log("cnv to text ex",e)
+		console.log("cnv to text ex", e)
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
 	}
@@ -1874,7 +1872,7 @@ function exportVirtualFolderDelayed(msgFolder) {
 	var uriArray = [];
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
-	
+
 	for (let i = 0; i < IETtotal; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428

@@ -15,13 +15,20 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOv
 function onLoad() {
 	// Services.console.logStringMessage("SearchDialogue OL");
 
-	WL.injectElements(`
-	<overlay id="sdOverlay"
+	console.log("sd ov load")
+	var sb = window.document.getElementById("status-bar")
+	console.log(sb)
+	
+	/*
+<overlay id="sdOverlay"
 		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 		 xmlns:html="http://www.w3.org/1999/xhtml">
-		 
+		*/
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true">
+	WL.injectElements(`
+	 
+
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed2="true">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
@@ -68,8 +75,6 @@ function onLoad() {
   <key id="hot-key10" modifiers="" oncommand=""/>
 
 </keyset>
-
-</overlay>
 
 `, ["chrome://mboximport/locale/mboximport.dtd"]);
 

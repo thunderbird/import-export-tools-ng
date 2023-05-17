@@ -88,6 +88,10 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_ExpFolderRemote":
 			exportfolder(data.params);
+			break;
+		case "WXMCMD_ExpSearch":
+			searchANDsave();
+			break;
 		case "WXMCMD_FolderExp_EML_Format":
 			exportAllMsgs(0);
 			break;

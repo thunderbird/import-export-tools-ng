@@ -58,11 +58,15 @@ function SDexportMsg() {
 	var view;
 	var all;
 
+	console.log("exp search", window)
+	//var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	console.log(gDBView)
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
 
+		console.log(view.getKeyAt(0))
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
 	if (view.getKeyAt(0) === 4294967295)
@@ -105,6 +109,9 @@ function SDexportMsg() {
 	} else
 		file = getPredefinedFolder(2);
 
+		console.log("filep")
+
+
 	if (!file) {
 		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
@@ -113,10 +120,13 @@ function SDexportMsg() {
 			res = IETopenFPsync(fp);
 		if (res === nsIFilePicker.returnOK)
 			file = fp.file;
-		else
+		else {
+			console.log("after Return ")
 			return;
+		}
 	}
-	
+
+	console.log("build arr")
 	let emlsArray = [];
 	if (all) {
 		let i = 0;
@@ -133,6 +143,7 @@ function SDexportMsg() {
 		emlsArray = view.getURIsForSelection();
 	}
 
+	console.log(emlsArray)
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
 	IETexported = 0;
@@ -154,7 +165,7 @@ function SDexportMsg() {
 		var hdrArray = [];
 		for (var k = 0; k < emlsArray.length; k++) {
 			msguri = emlsArray[k];
-			var msserv = messenger.messageServiceFromURI(msguri);
+			var msserv = MailServices.messageServiceFromURI(msguri);
 			var msg = msserv.messageURIToMsgHdr(msguri);
 			var hdrStr = IETstoreHeaders(msg, msguri, file, true);
 			hdrArray.push(hdrStr);
@@ -168,9 +179,9 @@ function SDexportMsg() {
 function SDinit() {
 	console.debug('SD for the initialize ');
 	if (window.arguments && window.arguments[1]) {
-		// var sb = document.getElementById("status-bar");
+		var sb = document.getElementById("status-bar");
 		var sf = document.getElementById("IETSearchFrame");
-		
+		console.log(sf)
 		sf.removeAttribute("collapsed");
 		// sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
 		window.sizeToContent();

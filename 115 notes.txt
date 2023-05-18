@@ -1,6 +1,14 @@
 
 change csv index name to index
+MailServices
+gDBView
 
+gTabmail.currentAbout3Pane.gDBView.getMsgHdrAt(0)
+
+gTabmail.currentAbout3Pane.gDBView.getURIForViewIndex(0) 
+
+gTabmail.tabInfo[0].chromeBrowser.contentWindow.gDBView.getMsgHdrAt(0)
+gTabmail.currentAbout3Pane.document.getElementById("threadTree").table.addEventListener("sort-changed", console.log)
 
 hdr.getProperty => hdr.getStringProperty
 

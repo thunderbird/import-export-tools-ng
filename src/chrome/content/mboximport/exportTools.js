@@ -83,92 +83,7 @@ var IETabort;
 // var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
-
-
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-/*
-var { XPCOMUtils } = ChromeUtils.importESModule(
-	"resource://gre/modules/XPCOMUtils.sys.mjs"
-	);
-*/
-var lazy = {};
-
-
-var { AppConstants } = ChromeUtils.import("resource://gre/modules/AppConstants.jsm");
-
-/*
-var { AppConstants } = ChromeUtils.importESModule(
-	"resource://gre/modules/AppConstants.sys.mjs"
-	);
-*/
-XPCOMUtils.defineLazyModuleGetters(lazy, {
-	BrowserWindowTracker: "resource:///modules/BrowserWindowTracker.jsm",
-	ExtensionsUI: "resource:///modules/ExtensionsUI.jsm",
-	DBViewWrapper: "resource:///modules/DBViewWrapper.jsm",
-
-});
-
-
-var dbViewWrapperListener = {
-	_nextViewIndexAfterDelete: null,
-
-	messenger: null,
-	msgWindow: window.msgWindow,
-	threadPaneCommandUpdater: {
-		QueryInterface: ChromeUtils.generateQI([
-			"nsIMsgDBViewCommandUpdater",
-			"nsISupportsWeakReference",
-		]),
-		updateCommandStatus() { },
-		displayMessageChanged(folder, subject, keywords) { },
-		updateNextMessageAfterDelete() { },
-		summarizeSelection() { },
-	},
-
-	get shouldUseMailViews() {
-		return false;
-	},
-	get shouldDeferMessageDisplayUntilAfterServerConnect() {
-		return false;
-	},
-	shouldMarkMessagesReadOnLeavingFolder(msgFolder) {
-		return false;
-	},
-	onFolderLoading(isFolderLoading) { },
-	onSearching(isSearching) { },
-	onCreatedView() {
-		console.log("created view")
-	},
-	onDestroyingView(folderIsComingBack) {
-
-	},
-	onLoadingFolder(dbFolderInfo) {
-		console.log(dbFolderInfo)
-	},
-	onDisplayingFolder() {
-		console.log("fold")
-	},
-	onLeavingFolder() { },
-	onMessagesLoaded(all) {
-
-	},
-	onMailViewChanged() { },
-	onSortChanged() {
-
-	},
-	onMessagesRemoved() {
-
-	},
-	onMessageRemovalFailed() {
-
-	},
-	onMessageCountsChanged() {
-
-	},
-};
-
-var gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
-console.log(gViewWrapper)
 
 
 function searchANDsave() {
@@ -512,29 +427,17 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
-
-
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
-
 
 	for (let i = 0; i < total; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 
-		//gViewWrapper = new lazy.DBViewWrapper(dbViewWrapperListener)
-
-		//var dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
-		//var gDBView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
-		//console.log(gDBView)
-		//let gDBView = gViewWrapper.dbView;
 		try {
-			//let gDBView = gViewWrapper.dbView;
-			console.log(gDBView)
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
-			console.log(ex)
 			continue; // ignore errors for dummy rows
 		}
 	}

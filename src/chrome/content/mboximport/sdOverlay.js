@@ -10,17 +10,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+		it under the terms of the GNU General Public License as published by
+		the Free Software Foundation, either version 3 of the License, or
+		(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+		This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, globals, services
@@ -59,6 +59,7 @@ function SDexportMsg() {
 	var all;
 
 	console.log("exp search", window)
+	var msgFolder = GetSelectedMsgFolders()[0];
 	//var gDBView = gTabmail.currentAbout3Pane.gDBView;
 	console.log(gDBView)
 	if (typeof gSearchView === "undefined")
@@ -66,7 +67,7 @@ function SDexportMsg() {
 	else
 		view = gSearchView;
 
-		console.log(view.getKeyAt(0))
+	console.log(view.getKeyAt(0))
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
 	if (view.getKeyAt(0) === 4294967295)
@@ -109,7 +110,7 @@ function SDexportMsg() {
 	} else
 		file = getPredefinedFolder(2);
 
-		console.log("filep")
+	console.log("filep")
 
 
 	if (!file) {
@@ -126,15 +127,18 @@ function SDexportMsg() {
 		}
 	}
 
-	console.log("build arr")
+	console.log("build arr", file)
+
+
 	let emlsArray = [];
 	if (all) {
-		let i = 0;
-		while (true) {
+
+		var total = msgFolder.getTotalMessages(false);
+		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
-				i++;
+
 			} catch (e) {
 				continue; // ignore errors for dummy rows
 			}

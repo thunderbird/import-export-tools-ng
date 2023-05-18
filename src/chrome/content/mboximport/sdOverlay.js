@@ -59,7 +59,8 @@ function SDexportMsg() {
 	var all;
 
 	console.log("exp search", window)
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let m3pwin = getMail3Pane();
+	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
 	//var gDBView = gTabmail.currentAbout3Pane.gDBView;
 	console.log(gDBView)
 	if (typeof gSearchView === "undefined")
@@ -181,15 +182,16 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	console.debug('SD for the initialize ');
+	console.debug('SD for the initialize ', window.arguments);
 	if (window.arguments && window.arguments[1]) {
-		var sb = document.getElementById("status-bar");
 		var sf = document.getElementById("IETSearchFrame");
-		console.log(sf)
+		var sw = document.getElementById("searchMailWindow");
+		sw.setAttribute("height", "520");
+		sw.setAttribute("screenY", "50");
+
 		sf.removeAttribute("collapsed");
-		// sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
-		window.sizeToContent();
 	}
+
 }
 
 // setupHotKeys('search');

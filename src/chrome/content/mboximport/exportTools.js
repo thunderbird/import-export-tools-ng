@@ -175,14 +175,14 @@ function searchANDsave() {
 	var preselectedFolder = null;
 	if ("GetFirstSelectedMsgFolder" in window)
 		preselectedFolder = GetFirstSelectedMsgFolder();
-	var args = { folder: preselectedFolder };
+	var args = { folder: preselectedFolder, ietngSearch: true};
 	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 }
 
 function IETgetSortType() {
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
-	console.log("sort type dbview : ", gDBView.sortType)
+
 	if (!gDBView) {
 		IETsortType = 0;
 		return;
@@ -1342,12 +1342,9 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		},
 	};
 
-	console.log(msguri)
 	var mms = MailServices.messageServiceFromURI(msguri);
-	//.QueryInterface(Ci.nsIMsgMessageService);
-	console.log(mms)
 	var hdr = mms.messageURIToMsgHdr(msguri);
-	console.log(hdr)
+
 	try {
 		IETlogger.write("call to saveMsgAsEML - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 	} catch (e) {
@@ -1954,7 +1951,9 @@ function IETdeletestatus(text) {
 		}
 
 		if (!gImporting) {
+			if (document.getElementById("IETabortIcon")) {
 			document.getElementById("IETabortIcon").collapsed = true;
+			}
 		}
 	}
 }

@@ -13,40 +13,28 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOv
 
 
 function onLoad() {
-	// Services.console.logStringMessage("SearchDialogue OL");
-
-	console.log("sd ov load")
-	var sb = window.document.getElementById("status-bar")
-	console.log(sb)
-	
-	/*
-<overlay id="sdOverlay"
-		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		 xmlns:html="http://www.w3.org/1999/xhtml">
-		*/
 
 	WL.injectElements(`
-	 
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed2="true">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true" style="padding-left: 6px">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
 		<button label="&sdExportButton;" oncommand="SDexportMsg()"   />
 		<spacer flex="1" />
 	</vbox>
-	<groupbox>
+	
 	<radiogroup id="IETall" orient="horizontal">
 		<radio label="&sdAll;" selected="true"/>
 		<radio label="&sdSelected;"/>
 	</radiogroup>
-	</groupbox>
-	</hbox>
-	<hbox>
-	<groupbox>
+	
+	
+	
+	<groupbox style="padding-left: 30px">
 	<hbox align="center">
 	<label value="&sdFormat;:" />
-	<menulist style="min-width:240px">
+	<menulist style="min-width:120px">
 		<menupopup>
 			<menuitem label="&sdEML;"/>
 			<menuitem label="&sdHTML;"/>

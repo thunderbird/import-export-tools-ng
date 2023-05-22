@@ -93,13 +93,13 @@ async function expMenuDispatcher(data) {
 			searchANDsave();
 			break;
 		case "WXMCMD_FolderExp_EML_Format":
-			exportAllMsgs(0);
+			await exportAllMsgs(0);
 			break;
 		case "WXMCMD_FolderExp_HTML_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-			exportAllMsgs(0);
+			await exportAllMsgs(0);
 			} else if (data.params.saveAtts) {
-				exportAllMsgs(8);
+				await exportAllMsgs(8);
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
@@ -107,20 +107,20 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-				exportAllMsgs(2);
+				await exportAllMsgs(2);
 			} else if (data.params.saveAtts && !data.params.singleFile) {
-				exportAllMsgs(9);
+				await exportAllMsgs(9);
 			} else if (!data.params.saveAtts && data.params.singleFile) {
-				exportAllMsgs(4);
+				await exportAllMsgs(4);
 			} else if (data.params.saveAtts && data.params.singleFile) {
-				exportAllMsgs(7);
+				await exportAllMsgs(7);
 			}
 			break;
 		case "WXMCMD_FolderExp_Index":
 			if (data.params.indexType == "indexHTML") {
-				exportAllMsgs(3);
+				await exportAllMsgs(3);
 			} else if (data.params.indexType == "indexCSV") {
-				exportAllMsgs(5);
+				await exportAllMsgs(5);
 			}
 			break;
 		case "WXMCMD_Exp_Profile":

@@ -52,6 +52,7 @@ MsgHdrToMimeMessage,
 findGoodFolderName,
 IETgetComplexPref,
 constructAttachmentsFilename,
+gTabmail,
 */
 
 /* eslint complexity: [0,30] */
@@ -80,7 +81,7 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
-// var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -96,6 +97,7 @@ function searchANDsave() {
 
 function IETgetSortType() {
 
+	// get gDBView from 3pane - 115
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 
 	if (!gDBView) {
@@ -122,7 +124,7 @@ function IETgetSortType() {
 }
 
 function selectVirtualFolder() {
-	// 115
+	// 115 - this should go??
 	return;
 	var fTree = document.getElementById("folderTree");
 	var fTreeSel = fTree.view.selection;
@@ -219,16 +221,13 @@ async function exportSelectedMsgs(type) {
 
 	var msgFolder = GetSelectedMsgFolders()[0];
 	var isOffLineImap;
-	console.log(msgFolder)
-	// 115 clean
+
 	let imapFolder = {};
 
 	try {
 		imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
 	} catch (e) {
-		console.log(e)
 	}
-	console.log(imapFolder.verifiedAsOnlineFolder)
 
 	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
 		var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
@@ -239,17 +238,17 @@ async function exportSelectedMsgs(type) {
 		isOffLineImap = false;
 	}
 
-	console.log(isOffLineImap)
+
 	var emlsArray = await IETgetSelectedMessages();
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
-		console.log(isOffLineImap)
+
 		for (var i = 0; i < emlsArray.length; i++) {
 			var eml = emlsArray[i];
 			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 			var hdr = mms.messageURIToMsgHdr(eml);
-			console.log(mms)
+
 			if (hdr.flags & 0x00000080)
 				tempArray.push(eml);
 			else
@@ -319,7 +318,7 @@ async function exportSelectedMsgs(type) {
 // sets the destination directory and makes some checks about the types of the selected folders;
 // all the selected folders are stored in IETglobalMsgFolders global array
 
-function exportAllMsgs(type, t) {
+async function exportAllMsgs(type) {
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
@@ -335,10 +334,6 @@ function exportAllMsgs(type, t) {
 		if (!question)
 			return;
 	}
-
-	// console.debug(t);
-	// console.debug(event.target.outerHTML);
-
 
 	var file = getPredefinedFolder(1);
 	if (!file) {
@@ -363,7 +358,6 @@ function exportAllMsgs(type, t) {
 	} catch (e) { }
 
 	IETglobalMsgFolders = GetSelectedMsgFolders();
-	//console.debug(IETglobalMsgFolders[0].name);
 
 	IETglobalMsgFoldersExported = 0;
 	for (var i = 0; i < IETglobalMsgFolders.length; i++) {
@@ -377,8 +371,6 @@ function exportAllMsgs(type, t) {
 			var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
 			if (!go)
 				return;
-			// cleidigh
-			// else
 			break;
 		}
 	}
@@ -387,7 +379,7 @@ function exportAllMsgs(type, t) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
-	exportAllMsgsStart(type, file, IETglobalMsgFolders[0]);
+	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0]);
 }
 
 // 2) exportAllMsgsStart
@@ -395,20 +387,20 @@ function exportAllMsgs(type, t) {
 // If we must export a virtual folder is called the function for that,
 // otherwise is called the "normal" function of export
 
-function exportAllMsgsStart(type, file, msgFolder) {
+async function exportAllMsgsStart(type, file, msgFolder) {
 	// 0x0020 is MSG_FOLDER_FLAG_expVIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
-			// To export messages from virtual folder, it's necessary to select it
-			selectVirtualFolder();
-			setTimeout(function () { exportAllMsgsDelayedVF(type, file, msgFolder); }, 1500);
+      await new Promise(resolve => setTimeout(resolve, 500));
+			await exportAllMsgsDelayedVF(type, file, msgFolder);
 		} else {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-			exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 		}
 	} else {
-		setTimeout(function () { exportAllMsgsDelayed(type, file, msgFolder); }, 1000);
+    await new Promise(resolve => setTimeout(resolve, 500));
+		await exportAllMsgsDelayed(type, file, msgFolder);
 	}
 }
 
@@ -417,13 +409,13 @@ function exportAllMsgsStart(type, file, msgFolder) {
 // The virtual folders are only a collection of messages that are really in other folders.
 // So we must select the folderm do some pre-export stuff and call the export routine
 
-function exportAllMsgsDelayedVF(type, file, msgFolder) {
+async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	var msgUriArray = [];
 	var total = msgFolder.getTotalMessages(false);
 	if (total === 0) {
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 		if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-			exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 		return;
 	}
 
@@ -520,14 +512,14 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 //
 // The same of 3a for not-virtual folder
 
-function exportAllMsgsDelayed(type, file, msgFolder) {
+async function exportAllMsgsDelayed(type, file, msgFolder) {
 	try {
 		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-				exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 			return;
 		}
 		IETexported = 0;
@@ -633,9 +625,10 @@ function exportAllMsgsDelayed(type, file, msgFolder) {
 	// nsMsgViewSortOrderValue ascending = 1;
 	// nsMsgViewSortOrderValue descending = 2;
 	// 115
-	let gDBView = gViewWrapper.dbView;
-	if (gDBView && gDBView.sortOrder === 2)
+	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
+  }
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 

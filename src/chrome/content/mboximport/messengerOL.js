@@ -349,6 +349,132 @@ WL.injectElements(`
 		}
 	}
 
+
+	let ctxMenu =
+		`<menupopup>
+			<menuitem id="ptng-button-print3" label="New Local Folder" />
+			<menuitem id="ptng-button-print2" label="Show all Local Folders" />
+		</menupopup>`;
+
+	let dtdFiles = ["chrome://mboximport/locale/mboximport.dtd"];
+
+	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, []);
+
+	console.log("aft")
+
+
+
+function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttCtxMenu, ctxMenuDTDs) {
+	// width of ucarret dropdown area in px
+	const dropdownTargetWidth = 21;
+	// we need tabmail for its tabMonitor
+	var tabmail = document.getElementById("tabmail");
+
+	if (!mainButtFunc && !buttCtxMenu) {
+		// can't operate on ziltch
+		return false;
+	}
+
+	// The toolbar buttons are added in a lazy fashion. They do not get
+	// placed in the toolbar DOM at install or startup, instead they 
+	// get added the fist time either the 3Pane or a messageDisplay tab
+	// is focused. We therefore use a tabmonitor to listen when we have
+	// our button we can add the listener. We then remove the tabmonitor.
+
+	var tabMonitor = {
+		monitorName: "tbButtonListenerMonitor",
+
+		onTabTitleChanged() { },
+		onTabOpened() { },
+		onTabPersist() { },
+		onTabRestored() { },
+		onTabClosing() { },
+
+		async onTabSwitched(newTabInfo, oldTabInfo) {
+			// console.log(newTabInfo.mode?.name)
+			if (newTabInfo.mode?.name == "mail3PaneTab" || newTabInfo.mode?.name == "mailMessageTab") {
+				await setup();
+			}
+		}
+	}
+
+	// register tabmonitor for setting up listener
+	tabmail.registerTabMonitor(tabMonitor);
+	return true;
+
+	// Setup parent div listener according to parameters.
+	// Wait until button is installed to add listener.
+
+	async function setup() {
+		var tbExtButton;
+		for (var index = 0; index < 100; index++) {
+			tbExtButton = document.querySelector(`button.${toolbarClass}[extension="${addOnId}"]`);
+			if (tbExtButton) {
+				break;
+			}
+			await new Promise(resolve => window.setTimeout(resolve, 1));
+		}
+
+		if (!tbExtButton) {
+			console("Exception: Extension button not found on toolbar")
+			return;
+		}
+		// get parent div for listener
+		let listenerTarget = tbExtButton.parentElement;
+		let listenerTargetId = `tbButtonParentListenerDiv_${addOnId}`;
+		listenerTarget.setAttribute("id", listenerTargetId);
+
+		// setup for context menu if requested
+		if (buttCtxMenu) {
+			let ctxMenuXML = `<div id="${listenerTargetId}"> ${buttCtxMenu} </div>`;
+			try {
+				WL.injectElements(ctxMenuXML, ctxMenuDTDs);
+			} catch (e) {
+				console.log("Exception adding context menu:", e);
+				return;
+			}
+		}
+
+		// we setup our listener on the button container parent div
+		// key is to use the capture phase mode, this follows the propagation from the
+		// top of the DOM down and proceeds the bubbling phase where our listener would 
+		// be blocked by the normal button listener 
+		listenerTarget.addEventListener('click', listenerFunc, true);
+		tabmail.unregisterTabMonitor(tabMonitor);
+	}
+
+	// Listener function called when on mail type tabs, however we need
+	// to poll for button. Not ideal, but given it's not instant no
+	// beter way. Setup according to call params. Kill unnecessary tabmonitor.
+
+	function listenerFunc(e) {
+		e.stopImmediatePropagation();
+		e.stopPropagation();
+
+		if (e.target.nodeName == "menuitem") {
+			return;
+		}
+		if (mainButtFunc && !buttCtxMenu) {
+			// only a main click action
+			mainButtFunc();
+			return;
+		}
+
+		let tbExtButton = document.querySelector(`button.${toolbarClass}[extension="${addOnId}"]`);
+		// get click location and determine if in dropdown window if split button
+		let targetDivBRect = tbExtButton.getBoundingClientRect();
+		let inTargetWindow = e.clientX > (targetDivBRect.x + targetDivBRect.width - dropdownTargetWidth);
+		// open context menu if configure
+		console.log("check")
+		if ((buttCtxMenu && !mainButtFunc) || (buttCtxMenu && inTargetWindow)) {
+			tbExtButton.nextElementSibling.openPopup(tbExtButton, "after_start", 0, 0, false, false);
+		} else {
+			mainButtFunc();
+		}
+	};
+}
+
+
 	window.IETinit();
 	window.setupHotKeys('messenger');
 	window.addHotKeysObserver();

@@ -11,6 +11,11 @@
       "strict_max_version": "115.*"
     }
   },
+  "browser_action": {
+		"default_area": "maintoolbar",
+		"default_icon": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png",
+    "default_popup": "chrome/content/test.html"
+	  },
   "experiment_apis": {
     "WindowListener": {
       "schema": "api/WindowListener/schema.json",

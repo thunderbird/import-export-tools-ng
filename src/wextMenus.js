@@ -716,10 +716,20 @@ var folderCtxMenuSet = [
 ];
 
 
+var browserCtxMenuSet = [
+  {
+    menuId: 4,
+    menuDef: {
+      id: "btest",
+      title: "ImportExportTools NG"
+    }
+  },
+];
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+await createMenus("", browserCtxMenuSet, { defaultContexts: ["browser_action"], defaultOnclick: wextctx_folderMenu });
 
 
 async function createMenus(menuType, menuArray, options) {
@@ -967,6 +977,8 @@ async function wextctx_folderMenu(ctxEvent) {
 
 
 }
+
+
 
 async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });

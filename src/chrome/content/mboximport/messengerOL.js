@@ -352,18 +352,19 @@ WL.injectElements(`
 
 	let ctxMenu =
 		`<menupopup>
-			<menuitem id="ptng-button-print3" label="New Local Folder" />
-			<menuitem id="ptng-button-print2" label="Show all Local Folders" />
+			<menuitem  label="Export Profile" oncommand="IETexport_all(true)" />
+			<menuitem  label="Import Profile" oncommand="openProfileImportWizard()" />
+			<menuitem  label="Backup" oncommand="window.ietng.OpenBackupDialog('manual')" />
+			<menuseparator />
+			<menuitem  label="Options" oncommand="openIEToptions()"/>
+			<menuitem  label="Help" oncommand="openIEThelp(true)"/>
 		</menupopup>`;
 
 	let dtdFiles = ["chrome://mboximport/locale/mboximport.dtd"];
 
 	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, []);
 
-	console.log("aft")
-
-
-
+	
 function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttCtxMenu, ctxMenuDTDs) {
 	// width of ucarret dropdown area in px
 	const dropdownTargetWidth = 21;

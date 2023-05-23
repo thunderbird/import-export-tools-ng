@@ -352,7 +352,12 @@ WL.injectElements(`
 
 	let ctxMenu =
 		`<menupopup>
-			<menuitem  label="Export Profile" oncommand="IETexport_all(true)" />
+			<menu  label="Export Profile" >
+			<menupopup>
+			<menuitem  label="Full Profile" oncommand="IETexport_all(true)" />
+			<menuitem  label="Mail Only" oncommand="IETexport_all(false)" />
+			</menupopup>
+			</menu>
 			<menuitem  label="Import Profile" oncommand="openProfileImportWizard()" />
 			<menuitem  label="Backup" oncommand="window.ietng.OpenBackupDialog('manual')" />
 			<menuseparator />

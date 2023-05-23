@@ -230,7 +230,9 @@ var msgCtxMenuSet = [
 
 ];
 
-
+function localizeMenuTitle(id) {
+  return browser.i18n.getMessage(id);
+}
 
 const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_ExpProfile_Id = "toolsCtxMenu_ExpProfile_Id";
@@ -242,11 +244,14 @@ const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 const toolsCtxMenu_ExpProfileFull_Id = "toolsCtxMenu_ExpProfileFull_Id";
 const toolsCtxMenu_ExpProfileMailOnly_Id = "toolsCtxMenu_ExpProfileMailOnly_Id";
 
+//title2: localizeMenuTitle("toolsCtxMenu_TopId.title"),
+
 var toolsCtxMenuSet = [
   {
     menuId: 2,
     menuDef: {
       id: toolsCtxMenu_TopId,
+      
       title: "ImportExportTools NG"
     }
   },
@@ -305,9 +310,6 @@ var toolsCtxMenuSet = [
       title: "Mail Only"
     }
   },
-
-
-
 ];
 
 const folderCtxMenu_TopId = "folderCtxMenu_TopId";
@@ -716,20 +718,11 @@ var folderCtxMenuSet = [
 ];
 
 
-var browserCtxMenuSet = [
-  {
-    menuId: 4,
-    menuDef: {
-      id: "btest",
-      title: "ImportExportTools NG"
-    }
-  },
-];
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-await createMenus("", browserCtxMenuSet, { defaultContexts: ["browser_action"], defaultOnclick: wextctx_folderMenu });
+
 
 
 async function createMenus(menuType, menuArray, options) {
@@ -750,6 +743,26 @@ async function createMenus(menuType, menuArray, options) {
   }
 
 }
+
+await createtitles("", toolsCtxMenuSet, null);
+
+
+async function createtitles(menuType, menuArray, options) {
+  console.log("start")
+  var defaultParentId = menuArray[0].menuDef.id;
+  var titleArray = [];
+  for (let index = 0; index < menuArray.length; index++) {
+    let menuObj = menuArray[index];
+    let titleObj = {key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title}
+    titleArray.push(titleObj);
+  }
+  console.log(titleArray)
+  let params = {path: "C:\\Dev\\Thunderbird\\tools.json", obj: titleArray};
+  
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
+  IOUtils.writeJSON("C:\\Dev\\Thunderbird\\tools.json", titleArray)
+}
+
 
 // Message Context Menu Handlers
 

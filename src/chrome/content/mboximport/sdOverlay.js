@@ -58,17 +58,15 @@ function SDexportMsg() {
 	var view;
 	var all;
 
-	console.log("exp search", window)
+
 	let m3pwin = getMail3Pane();
 	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
-	//var gDBView = gTabmail.currentAbout3Pane.gDBView;
-	console.log(gDBView)
+
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
 
-	console.log(view.getKeyAt(0))
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
 	if (view.getKeyAt(0) === 4294967295)

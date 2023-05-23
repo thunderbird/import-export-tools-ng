@@ -1,9 +1,11 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
 	"extensionDescription": {
 		"message": "Adds tools to import/export messages and folders (NextGen)"
+	},
+	"toolsCtxMenu_TopId.title": {
+		"message": "ImportExportTools NG"
 	}
 }

@@ -33,7 +33,7 @@
 
 		"messenger": "readonly",
 		"MailServices": "readonly",
-		"gDBView": "readonly",
+		"gTabmail": "readonly",
 		"OS": "readonly",
 		"window": "readonly",
 		"msgWindow": "readonly",

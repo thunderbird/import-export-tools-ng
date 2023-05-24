@@ -1596,7 +1596,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		uri = uri + "?header=saveas";
 	var messageService = MailServices.messageServiceFromURI(uri);
 	var hdr = messageService.messageURIToMsgHdr(uri);
-	console.log(hdr)
+
 	try {
 		IETlogger.write("call to  exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 	} catch (e) {
@@ -1652,6 +1652,10 @@ function IETconvertToUTF8(string) {
 	}
 }
 
+function getLoadContext() {
+  return window.docShell.QueryInterface(Ci.nsILoadContext);
+}
+
 
 function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
@@ -1667,33 +1671,28 @@ function IETcopyToClip(data) {
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
 	if (!trans)
 		return false;
+		trans.init(getLoadContext())
 	trans.addDataFlavor("text/html");
-	trans.addDataFlavor("text/unicode");
+	trans.addDataFlavor("text/plain");
 	if (!justText)
 		trans.setTransferData("text/html", str2, data.length * 2);
-	trans.setTransferData("text/unicode", str, data.length * 2);
-	var clipid = Ci.nsIClipboard;
-	var clip = Cc["@mozilla.org/widget/clipboard;1"].getService(clipid);
-	if (!clip)
-		return false;
-	clip.setData(trans, null, clipid.kGlobalClipboard);
+	trans.setTransferData("text/plain", str, data.length * 2);
+
+	Services.clipboard.setData(trans, null, Services.clipboard.kGlobalClipboard);
 	return true;
 }
 
 function IEThtmlToText(data) {
-	console.log("cnv to text")
+
 	// This is necessay to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
 
-	//var toStr = { value: null };
 	var toStr = {};
 	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
 	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	//data = data.replace(/\n/g, "<br>")
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		console.log("cnv to text fmt")
 		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 	} catch (e) {
 		console.log("cnv to text ex", e)
@@ -1909,9 +1908,10 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-function copyMSGtoClip() {
-	var uris = IETgetSelectedMessages();
+async function copyMSGtoClip() {
+	var uris = await IETgetSelectedMessages();
 	var msguri = uris[0];
+
 	if (!msguri)
 		return;
 	exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
@@ -1961,8 +1961,8 @@ var copyHeaders = {
 		return myListener;
 	},
 
-	start: function () {
-		var mess = IETgetSelectedMessages();
+	start: async function () {
+		var mess = await IETgetSelectedMessages();
 		var msguri = mess[0];
 		var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
 		var streamListner = copyHeaders.getListener();

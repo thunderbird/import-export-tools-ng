@@ -675,7 +675,7 @@ async function IETgetSelectedMessages() {
 	if (typeof GetSelectedMessages === "undefined") {
 		//msgs = gFolderDisplay.selectedMessageUris;
 		msgs = await getSelectedMsgs();
-		console.log(msgs)
+		// console.log(msgs)
 	}
 	else {
 		msgs = GetSelectedMessages();

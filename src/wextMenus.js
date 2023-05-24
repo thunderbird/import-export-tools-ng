@@ -12,6 +12,7 @@ const msgCtxMenu_Exp_PlainTextFormat_Id = "msgCtxMenu_Exp_PlainTextFormat_Id";
 const msgCtxMenu_Exp_CSVFormat_Id = "msgCtxMenu_Exp_CSVFormat_Id";
 const msgCtxMenu_Exp_MboxFormat_Id = "msgCtxMenu_Exp_MboxFormat_Id";
 const msgCtxMenu_Exp_Index_Id = "msgCtxMenu_Exp_Index_Id";
+const msgCtxMenu_CopyToClipboard_Id = "msgCtxMenu_CopyToClipboard_Id";
 const msgCtxMenu_Options_Id = "msgCtxMenu_Options_Id";
 const msgCtxMenu_Help_Id = "msgCtxMenu_Help_Id";
 
@@ -34,6 +35,9 @@ const msgCtxMenu_Exp_MboxFormatAppendMbox_Id = "msgCtxMenu_Exp_MboxFormatAppendM
 
 const msgCtxMenu_Exp_IndexHTML_Id = "msgCtxMenu_Exp_IndexHTML_Id";
 const msgCtxMenu_Exp_IndexCSV_Id = "msgCtxMenu_Exp_IndexCSV_Id";
+
+const msgCtxMenu_CopyToClipboardMessage_Id = "msgCtxMenu_CopyToClipboardMessage_Id";
+const msgCtxMenu_CopyToClipboardHeaders_Id = "msgCtxMenu_CopyToClipboardHeaders_Id";
 
 
 var msgCtxMenuSet = [
@@ -104,8 +108,21 @@ var msgCtxMenuSet = [
       id: "msgCtxMenu_Exp_Sep2",
       type: "separator"
     }
-
   },
+  {
+    menuDef: {
+      id: msgCtxMenu_CopyToClipboard_Id,
+      title: "Copy To Clipboard",
+    }
+  },
+
+  {
+    menuDef: {
+      id: "msgCtxMenu_Exp_Sep3",
+      type: "separator"
+    }
+  },
+
   {
     menuDef: {
       id: msgCtxMenu_Options_Id,
@@ -209,8 +226,6 @@ var msgCtxMenuSet = [
       title: "Append To Existing mbox File"
     }
   },
-
-
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_Index_Id,
@@ -225,7 +240,22 @@ var msgCtxMenuSet = [
       title: "CSV Format"
     }
   },
-
+  {
+    menuDef: {
+      parentId: msgCtxMenu_CopyToClipboard_Id,
+      id: msgCtxMenu_CopyToClipboardMessage_Id,
+      title: "Message",
+      onclick: copyToClipboard
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_CopyToClipboard_Id,
+      id: msgCtxMenu_CopyToClipboardHeaders_Id,
+      title: "Headers",
+      onclick: copyToClipboard
+    }
+  },
 
 
 ];
@@ -993,6 +1023,15 @@ async function wextctx_folderMenu(ctxEvent) {
 
 }
 
+async function copyToClipboard(ctxEvent) {
+  let params = {};
+  if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id) {
+    params.clipboardType = "Message";
+  } else {
+    params.clipboardType = "Headers";
+  }
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
+}
 
 
 async function openOptions() {

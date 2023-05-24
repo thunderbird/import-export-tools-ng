@@ -75,6 +75,13 @@ async function expMenuDispatcher(data) {
 				await exportSelectedMsgs(4);
 			}
 			break;
+		case "WXMCMD_CopyToClipboard":
+			if (data.params.clipboardType == "Message") {
+				await copyMSGtoClip();
+			} else {
+				copyHeaders.start();
+			}
+			break;
 		case "WXMCMD_Index":
 			if (data.params.indexType == "indexHTML") {
 				await exportSelectedMsgs(5);

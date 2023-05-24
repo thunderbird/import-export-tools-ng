@@ -357,6 +357,8 @@ const folderCtxMenu_Imp_MboxFilesIndvRecursive_Id = "folderCtxMenu_Imp_MboxFiles
 const folderCtxMenu_Imp_MboxFilesDir_Id = "folderCtxMenu_Imp_MboxFilesDir_Id";
 const folderCtxMenu_Imp_MboxFilesDirRecursive_Id = "folderCtxMenu_Imp_MboxFilesDirRecursive_Id";
 
+const folderCtxMenu_Imp_MaildirFiles_Id = "folderCtxMenu_Imp_MaildirFiles_Id";
+
 const folderCtxMenu_Imp_EMLFormat_Id = "folderCtxMenu_Imp_EMLFormat_Id";
 const folderCtxMenu_Imp_EMLFormatMsgs_Id = "folderCtxMenu_Imp_EMLFormatMsgs_Id";
 const folderCtxMenu_Imp_EMLFormatDir_Id = "folderCtxMenu_Imp_EMLFormatDir_Id";
@@ -546,28 +548,35 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndv_Id,
-      title: "… Individual mbox Files"
+      title: "Individual mbox Files"
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndvRecursive_Id,
-      title: "… Individual mbox Files (with sbd structure)"
+      title: "Individual mbox Files (with sbd structure)"
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDir_Id,
-      title: "… All mbox Files from directory"
+      title: "All mbox Files from directory"
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDirRecursive_Id,
-      title: "… All mbox Files from directory (with sbd structure)"
+      title: "All mbox Files from directory (with sbd structure)"
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Imp_MaildirFiles_Id,
+      title: "Import Maildir Files",
+      onclick: importMaildirFiles
     }
   },
   {
@@ -1033,6 +1042,9 @@ async function copyToClipboard(ctxEvent) {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }
 
+async function importMaildirFiles() {
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles" });
+}
 
 async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });

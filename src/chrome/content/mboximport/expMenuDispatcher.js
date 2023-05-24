@@ -144,6 +144,9 @@ async function expMenuDispatcher(data) {
 			console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
 			break;
+		case "WXMCMD_ImpMaildirFiles":
+			trytocopyMAILDIR();
+			break;
 		case "WXMCMD_ImportEML":
 			importALLasEML(true);
 			break;

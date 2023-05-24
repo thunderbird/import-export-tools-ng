@@ -433,6 +433,7 @@ async function trytocopyMAILDIR() {
 		newFolder.name = newfilename.replace(reg, "#");
 	}
 
+	console.log(msgFolder)
 	// 2. find the MAILDIR directory created above
 	var filex = msgFolder2LocalFile(newFolder);
 	try {

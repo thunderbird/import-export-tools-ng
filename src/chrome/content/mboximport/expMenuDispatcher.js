@@ -152,6 +152,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_OpenHelp":
 			openIEThelp();
 			break;
+		case "WXMCMD_SaveJSON":
+			IOUtils.writeJSON(data.params.path, data.params.obj);
+			break;
 		default:
 			break;
 	}

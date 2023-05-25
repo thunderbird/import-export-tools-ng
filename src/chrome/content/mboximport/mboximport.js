@@ -379,7 +379,7 @@ async function trytocopyMAILDIR() {
 
 	// initialize variables
 	let msgFolder = GetSelectedMsgFolders()[0];
-	console.log(msgFolder)
+
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
@@ -462,7 +462,7 @@ async function trytocopyMAILDIR() {
 		return false;
 	}
 
-	// 3. update the database by selecting the folder and rebuilding the index
+	// 3. update the database by using our fancy new reindexDBandRebuildSummary
 	try {
 		mboxImportExport.reindexDBandRebuildSummary(newFolder);
 	} catch (e) {
@@ -470,70 +470,6 @@ async function trytocopyMAILDIR() {
 	}
 }
 
-async function importMboxFiles(files, msgFolder, recursive) {
-	for (let i = 0; i < files.length; i++) {
-		const mboxFilePath = files[i];
-		var subMsgFolder = await _importMboxFile(mboxFilePath, msgFolder);
-		if (recursive && await _ifSbdExists(mboxFilePath)) {
-			var subFiles = await _scanSbdDirForFiles(mboxFilePath);
-			console.log("sf",subFiles)
-			importMboxFiles(subFiles, subMsgFolder, recursive);
-		}
-	}
-}
-
-async function _scanSbdDirForFiles(folderPath) {
-	let files = await IOUtils.getChildren(folderPath + ".sbd");
-	var subFiles = [];
-	for (const f of files) {
-		if ((await IOUtils.stat(f)).type == "regular") {
-			subFiles.push(f);
-		}
-	}
-	return subFiles;
-}
-
-async function _ifSbdExists(folderPath) {
-	let sbdPath = folderPath + ".sbd";
-	return IOUtils.exists(sbdPath);
-}
-
-async function _importMboxFile(filePath, msgFolder) {
-	var src = filePath;
-	console.log(filePath)
-	var subFolderName = PathUtils.filename(filePath);
-	subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
-
-	msgFolder.createSubfolder(subFolderName, top.msgWindow);
-	var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-	//await new Promise(resolve => setTimeout(resolve, 200));
-
-	var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
-	console.log(subFolderPath)
-	var dst = subFolderPath;
-	console.log(src, dst)
-	let r = await IOUtils.copy(src, dst);
-	reindexDBandRebuildSummary(subMsgFolder);
-	return subMsgFolder;
-}
-
-
-function reindexDBandRebuildSummary(msgFolder) {
-	// Send a notification that we are triggering a database rebuild.
-	MailServices.mfn.notifyFolderReindexTriggered(msgFolder);
-
-	msgFolder.msgDatabase.summaryValid = false;
-
-	const msgDB = msgFolder.msgDatabase;
-	msgDB.summaryValid = false;
-	try {
-		msgFolder.closeAndBackupFolderDB("");
-	} catch (e) {
-		// In a failure, proceed anyway since we're dealing with problems
-		msgFolder.ForceDBClosed();
-	}
-	msgFolder.updateFolder(top.msgWindow);
-}
 
 
 async function testCopy(file, msgFolder, selectedFolder) {

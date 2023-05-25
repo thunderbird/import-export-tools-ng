@@ -274,14 +274,18 @@ const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 const toolsCtxMenu_Exp_ProfileFull_Id = "toolsCtxMenu_Exp_ProfileFull_Id";
 const toolsCtxMenu_Exp_ProfileMailOnly_Id = "toolsCtxMenu_Exp_ProfileMailOnly_Id";
 
-//title2: localizeMenuTitle("toolsCtxMenu_TopId.title"),
+/*
+(id:\s(\w+),\n\s+title:\s)"[\w\s]+"
+$1localizeMenuTitle("$2.title")
+
+*/
+
 
 var toolsCtxMenuSet = [
   {
     menuId: 2,
     menuDef: {
       id: toolsCtxMenu_TopId,
-      
       title: "ImportExportTools NG"
     }
   },
@@ -575,7 +579,7 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Imp_MaildirFiles_Id,
-      title: "Import Maildir Files",
+      title: "Import Maildir Folder",
       onclick: importMaildirFiles
     }
   },
@@ -644,16 +648,6 @@ var folderCtxMenuSet = [
       onclick: openHelp,
     }
   },
-
-  /*
-    {
-      menuDef: {
-        parentId: folderCtxMenu_Exp_EMLFormat_Id,
-        id: folderCtxMenu_Exp_EMLFormatMsgsOnly_Id,
-        title: "Messages (Attachments Embedded)"
-      }
-    },
-    */
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
@@ -661,24 +655,6 @@ var folderCtxMenuSet = [
       title: "Messages And HTML Index"
     }
   },
-
-  /*
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
-      id: folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id,
-      title: "Messages Only"
-    }
-  },
-  {
-    menuDef: {
-      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
-      id: folderCtxMenu_Exp_HTMLFormatSaveAtts_Id,
-      title: "Messages And Attachments"
-    }
-  },
-*/
-
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
@@ -694,23 +670,7 @@ var folderCtxMenuSet = [
     }
   },
 
-  /*
-    {
-      menuDef: {
-        parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
-        id: folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
-        title: "Messages Only"
-      }
-    },
-    {
-      menuDef: {
-        parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
-        id: folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
-        title: "Messages And Attachments"
-      }
-    },
-  */
-
+  
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
@@ -783,23 +743,48 @@ async function createMenus(menuType, menuArray, options) {
 
 }
 
-await createtitles("", toolsCtxMenuSet, null);
+await createtitles("folderCtxMenu", folderCtxMenuSet, null);
+//await editMenus("", toolsCtxMenuSet, null);
 
 
-async function createtitles(menuType, menuArray, options) {
+async function createtitles(name, menuArray, options) {
   console.log("start")
   var defaultParentId = menuArray[0].menuDef.id;
   var titleArray = [];
   for (let index = 0; index < menuArray.length; index++) {
     let menuObj = menuArray[index];
-    let titleObj = {key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title}
+    
+    if (menuObj.menuDef.type) {
+      continue;
+    }
+    let titleObj = {key: menuObj.menuDef.id + ".title", text: menuObj.menuDef.title}
     titleArray.push(titleObj);
   }
   console.log(titleArray)
-  let params = {path: "C:\\Dev\\Thunderbird\\tools.json", obj: titleArray};
+  let basePath = "C:\\Dev\\Thunderbird";
+  let path = basePath + "\\" + name +".json";
+  let params = {path: path, obj: titleArray};
+  console.log(params)
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
+  console.log("done")
+}
+
+async function editMenus(menuType, menuArray, options) {
+  console.log("start")
+  var defaultParentId = menuArray[0].menuDef.id;
+  var newArray = [];
+  for (let index = 0; index < menuArray.length; index++) {
+    let menuObj = menuArray[index];
+    let titleObj = {key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title}
+    let title = menuObj.title;
+    //title = 
+    newArray.push(menuObj);
+  }
+  console.log(newArray)
+  let params = {path: "C:\\Dev\\Thunderbird\\tools2.json", obj: newArray};
 
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
-  
+  console.log("done")
 }
 
 

@@ -63,7 +63,7 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
 
 var { openFileDialog } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
-var { mboxDispatcher } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -379,7 +379,7 @@ async function trytocopyMAILDIR() {
 
 	// initialize variables
 	let msgFolder = GetSelectedMsgFolders()[0];
-
+	console.log(msgFolder)
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
@@ -399,6 +399,7 @@ async function trytocopyMAILDIR() {
 	var destFile = fp.file;
 	var filename = destFile.leafName;
 	var newfilename = filename;
+
 
 	var folderFile = msgFolder2LocalFile(msgFolder);
 	var clonex = folderFile.clone();
@@ -427,13 +428,14 @@ async function trytocopyMAILDIR() {
 	}
 
 	// 1. add a subfolder with the name of the folder to import
-	var newFolder = msgFolder.addSubfolder(newfilename);
+	// cdl - convert addSubfolder => createSubfolder
+	msgFolder.createSubfolder(newfilename, top.msgWindow);
+	var newFolder = msgFolder.getChildNamed(newfilename);
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
 		newFolder.name = newfilename.replace(reg, "#");
 	}
 
-	console.log(msgFolder)
 	// 2. find the MAILDIR directory created above
 	var filex = msgFolder2LocalFile(newFolder);
 	try {
@@ -462,10 +464,10 @@ async function trytocopyMAILDIR() {
 
 	// 3. update the database by selecting the folder and rebuilding the index
 	try {
-		msgFolder.NotifyItemAdded(newFolder);
-		SelectFolder(newFolder.URI);
-		IETupdateFolder(newFolder);
-	} catch (e) { }
+		mboxImportExport.reindexDBandRebuildSummary(newFolder);
+	} catch (e) {
+		console.log(e)
+	}
 }
 
 async function importMboxFiles(files, msgFolder, recursive) {

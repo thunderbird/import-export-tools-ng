@@ -1,1 +1,0 @@
-test_label = Test label

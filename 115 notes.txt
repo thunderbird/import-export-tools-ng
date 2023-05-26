@@ -12,6 +12,8 @@ gTabmail.currentAbout3Pane.document.getElementById("threadTree").table.addEventL
 
 hdr.getProperty => hdr.getStringProperty
 
+maildir imp dir dlg label 
+
 scan and import hierarchy :
 
 id = import directory src

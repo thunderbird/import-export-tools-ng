@@ -16,9 +16,8 @@ const translate = new Translate({ projectId, key });
 // console.debug( translate );
 var translationArray = [
 	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
-	{ key: "backupOnExit", text: "Backup On Exit" },
-	{ key: "noFolderSelectedMenuTop", text: "[ No Selected Folder (Import \\ Export Disabled) ]" },
-	{ key: "indexCSVdateFormat", text: "Index, CSV Date Format:" },
+	{ key: "manifest.title", text: "test" },
+
 	// { key: "", text: "" },
 ]
 
@@ -396,14 +395,14 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
-// var options = {
-// 	inputLocaleDir: `./src/_locales/en-US`,
-// 	outputLocaleDir: "./src/_locales",
-// 	append: true,
-// 	outputFormat: 3,
-// };
-
 var options = {
+	inputLocaleDir: `./src/_locales/en-US`,
+	outputLocaleDir: "./src/_locales",
+	append: true,
+	outputFormat: 3,
+};
+
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -418,9 +417,9 @@ var options = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-// let inputFiles = ["messages.json"];
+let inputFiles = ["messages.json"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-let inputFiles = ["mboximport.properties"];
+//let inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -430,15 +429,18 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
-localeFolders = ['es-ES'];
+localeFolders = ['en-US', 'es-ES'];
 
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
-localeFile = "settings.json";
+//localeFile = "settings.json";
 // t();
-translateHelpPage();
+//translateHelpPage();
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-// translateAll("mboximport.dtd", translationArray, options);
+translateAll(inputFiles, translationArray, options);
 // loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];
+/*
+node .\scripts\translate-gc.js
+*/

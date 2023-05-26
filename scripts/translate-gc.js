@@ -14,12 +14,20 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray = [
+var translationArray = 
 	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
-	{ key: "manifest.title", text: "test" },
+
+	[{"key":"toolsCtxMenu_TopId.title","text":"ImportExportTools NG"},
+	{"key":"toolsCtxMenu_Exp_Profile_Id.title","text":"Export Profile"},
+	{"key":"toolsCtxMenu_Imp_Profile_Id.title","text":"Import Profile"},
+	{"key":"toolsCtxMenu_Backup_Id.title","text":"Backup"},
+	{"key":"toolsCtxMenu_Options_Id.title","text":"Options"},
+	{"key":"toolsCtxMenu_Help_Id.title","text":"Help"},
+	{"key":"toolsCtxMenu_Exp_ProfileFull_Id.title","text":"Full Profile"},
+	{"key":"toolsCtxMenu_Exp_ProfileMailOnly_Id.title","text":"Mail Only"}];
 
 	// { key: "", text: "" },
-]
+
 
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
@@ -133,7 +141,10 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 					entry = `<!ENTITY ${sourceArray[i].key} "${s}">`;
 					break;
 				case 3:
-					entry = `\t"${sourceArray[i].key}": {\n\t\t"message": "${s}"\n\t},\n`;
+					entry = `\t"${sourceArray[i].key}": {\n\t\t"message": "${s}"\n\t}`;
+					if (i < sourceArray.length - 1) {
+						entry += ",\n";
+					}
 					break;
 				default:
 					break;
@@ -151,7 +162,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		lt = lt.join('\n');
 
 		if (options.outputFormat === 3) {
-			lt = `{\n${lt}\n}`;
+			lt = `\n${lt}\n}`;
 		}
 
 		lt = lt.replace(/<nl>/g, "\\n");

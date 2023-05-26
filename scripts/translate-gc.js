@@ -69,7 +69,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		var locale = locales[i].toLowerCase();
 		var shortLocale = locale.split('-')[0];
 
-		if (shortLocale === referenceLocaleId) {
+		if (shortLocale === referenceLocaleId && options.skipEN) {
 			continue;
 		}
 

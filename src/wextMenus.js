@@ -286,25 +286,25 @@ var toolsCtxMenuSet = [
     menuId: 2,
     menuDef: {
       id: toolsCtxMenu_TopId,
-      title: "ImportExportTools NG"
+      title: localizeMenuTitle("toolsCtxMenu_TopId.title")
     }
   },
   {
     menuDef: {
       id: toolsCtxMenu_Exp_Profile_Id,
-      title: "Export Profile"
+      title: localizeMenuTitle("toolsCtxMenu_Exp_Profile_Id.title")
     }
   },
   {
     menuDef: {
       id: toolsCtxMenu_Imp_Profile_Id,
-      title: "Import Profile"
+      title: localizeMenuTitle("toolsCtxMenu_Imp_Profile_Id.title")
     }
   },
   {
     menuDef: {
       id: toolsCtxMenu_Backup_Id,
-      title: "Backup"
+      title: localizeMenuTitle("toolsCtxMenu_Backup_Id.title")
     }
   },
   {
@@ -317,7 +317,7 @@ var toolsCtxMenuSet = [
   {
     menuDef: {
       id: toolsCtxMenu_Options_Id,
-      title: "Options",
+      title: localizeMenuTitle("toolsCtxMenu_Options_Id.title"),
       onclick: openOptions,
     }
 
@@ -325,7 +325,7 @@ var toolsCtxMenuSet = [
   {
     menuDef: {
       id: toolsCtxMenu_Help_Id,
-      title: "Help",
+      title: localizeMenuTitle("toolsCtxMenu_Help_Id.title"),
       onclick: openHelp,
     }
 
@@ -334,17 +334,18 @@ var toolsCtxMenuSet = [
     menuDef: {
       parentId: toolsCtxMenu_Exp_Profile_Id,
       id: toolsCtxMenu_Exp_ProfileFull_Id,
-      title: "Full Profile"
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileFull_Id.title")
     }
   },
   {
     menuDef: {
       parentId: toolsCtxMenu_Exp_Profile_Id,
       id: toolsCtxMenu_Exp_ProfileMailOnly_Id,
-      title: "Mail Only"
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileMailOnly_Id.title")
     }
   },
 ];
+
 
 const folderCtxMenu_TopId = "folderCtxMenu_TopId";
 const folderCtxMenu_Exp_FolderMbox_Id = "folderCtxMenu_Exp_FolderMbox_Id";

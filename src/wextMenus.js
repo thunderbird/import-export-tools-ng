@@ -40,68 +40,66 @@ const msgCtxMenu_CopyToClipboardMessage_Id = "msgCtxMenu_CopyToClipboardMessage_
 const msgCtxMenu_CopyToClipboardHeaders_Id = "msgCtxMenu_CopyToClipboardHeaders_Id";
 
 
+
 var msgCtxMenuSet = [
   {
     menuId: 1,
     menuDef: {
       id: msgCtxMenu_TopId,
-      title: "Export Messages As…"
+      title: localizeMenuTitle("msgCtxMenu_TopId.title")
     }
   }, {
     menuDef: {
       id: msgCtxMenu_Exp_EMLFormat_Id,
-      title: "EML Message Format"
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormat_Id.title")
     }
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_HTMLFormat_Id,
-      title: "HTML Format"
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormat_Id.title")
     }
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_PDFFormat_Id,
-      title: "PDF Format"
+      title: localizeMenuTitle("msgCtxMenu_Exp_PDFFormat_Id.title")
     }
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_PlainTextFormat_Id,
-      title: "Plain Text Format",
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormat_Id.title"),
     }
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_CSVFormat_Id,
-      title: "CSV Format (Spreadsheet)",
+      title: localizeMenuTitle("msgCtxMenu_Exp_CSVFormat_Id.title")
     }
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_MboxFormat_Id,
-      title: "mbox Format",
+      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormat_Id.title"),
     }
 
   },
-
   {
     menuDef: {
       id: "msgCtxMenu_Exp_Sep1",
       type: "separator"
     }
-
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_Index_Id,
-      title: "Message Index",
+      title: localizeMenuTitle("msgCtxMenu_Exp_Index_Id.title"),
     }
-
   },
   {
     menuDef: {
@@ -112,7 +110,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       id: msgCtxMenu_CopyToClipboard_Id,
-      title: "Copy To Clipboard",
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboard_Id.title"),
     }
   },
 
@@ -126,7 +124,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       id: msgCtxMenu_Options_Id,
-      title: "Options",
+      title: localizeMenuTitle("msgCtxMenu_Options_Id.title"),
       onclick: openOptions,
     }
 
@@ -134,7 +132,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       id: msgCtxMenu_Help_Id,
-      title: "Help",
+      title: localizeMenuTitle("msgCtxMenu_Help_Id.title"),
       onclick: openHelp,
     }
 
@@ -144,107 +142,105 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: msgCtxMenu_Exp_EMLFormatMsgsOnly_Id,
-      title: "Messages (Attachments Embedded)"
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: msgCtxMenu_Exp_EMLFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id,
-      title: "Messages Only"
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatSaveAtts_Id,
-      title: "Messages And Attachments"
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
-      title: "Messages With Attachments And Index"
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
-      title: "Messages Only"
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
-      title: "Messages And Attachments"
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
-      title: "Messages With Attachments And Index"
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title")
     }
   },
-
-
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_MboxFormat_Id,
       id: msgCtxMenu_Exp_MboxFormatNewMbox_Id,
-      title: "New mbox File"
+      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatNewMbox_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_MboxFormat_Id,
       id: msgCtxMenu_Exp_MboxFormatAppendMbox_Id,
-      title: "Append To Existing mbox File"
+      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_Index_Id,
       id: msgCtxMenu_Exp_IndexHTML_Id,
-      title: "HTML Format"
+      title: localizeMenuTitle("msgCtxMenu_Exp_IndexHTML_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_Index_Id,
       id: msgCtxMenu_Exp_IndexCSV_Id,
-      title: "CSV Format"
+      title: localizeMenuTitle("msgCtxMenu_Exp_IndexCSV_Id.title")
     }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardMessage_Id,
-      title: "Message",
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
       onclick: copyToClipboard
     }
   },
@@ -252,12 +248,10 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardHeaders_Id,
-      title: "Headers",
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
       onclick: copyToClipboard
     }
   },
-
-
 ];
 
 function localizeMenuTitle(id) {
@@ -404,53 +398,52 @@ const folderCtxMenu_Exp_IndexHTML_Id = "folderCtxMenu_Exp_IndexHTML_Id";
 const folderCtxMenu_Exp_IndexCSV_Id = "folderCtxMenu_Exp_IndexCSV_Id";
 
 
-
 var folderCtxMenuSet = [
   {
     menuId: 3,
     menuDef: {
       id: folderCtxMenu_TopId,
-      title: "ImportExportTools NG"
+      title: localizeMenuTitle("folderCtxMenu_TopId.title")
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_FolderMbox_Id,
-      title: "Folder Export (mbox)"
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMbox_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxOnly_Id,
-      title: "As mbox File"
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxOnly_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxZipped_Id,
-      title: "Single Zipped mbox File"
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxZipped_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id,
-      title: "Structured With Subfolders"
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id,
-      title: "With Flattened Subfolders"
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title")
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_RemoteFolderMbox_Id,
-      title: "Export Remote Folder"
+      title: localizeMenuTitle("folderCtxMenu_Exp_RemoteFolderMbox_Id.title")
     }
   },
   {
@@ -462,7 +455,7 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Exp_AllMessages_Id,
-      title: "Export All Messages In Folder"
+      title: localizeMenuTitle("folderCtxMenu_Exp_AllMessages_Id.title")
     }
   },
 
@@ -470,14 +463,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_EMLFormat_Id,
-      title: "EML Message Format"
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormat_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_HTMLFormat_Id,
-      title: "HTML Format"
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormat_Id.title")
     }
 
   },
@@ -485,7 +478,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_PDFFormat_Id,
-      title: "PDF Format"
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormat_Id.title")
     }
 
   },
@@ -493,7 +486,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_PlainTextFormat_Id,
-      title: "Plain Text Format",
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormat_Id.title"),
     }
 
   },
@@ -501,7 +494,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_CSVFormat_Id,
-      title: "CSV Format (Spreadsheet)",
+      title: localizeMenuTitle("folderCtxMenu_Exp_CSVFormat_Id.title"),
     }
 
   },
@@ -519,7 +512,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_Index_Id,
-      title: "Message Index",
+      title: localizeMenuTitle("folderCtxMenu_Exp_Index_Id.title"),
     }
 
   },
@@ -534,7 +527,7 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Exp_SearchExport_Id,
-      title: "Search And Export Messages"
+      title: localizeMenuTitle("folderCtxMenu_Exp_SearchExport_Id.title")
     }
   },
   {
@@ -546,69 +539,69 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Imp_MboxFiles_Id,
-      title: "Import mbox Files"
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFiles_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndv_Id,
-      title: "Individual mbox Files"
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndv_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndvRecursive_Id,
-      title: "Individual mbox Files (with sbd structure)"
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDir_Id,
-      title: "All mbox Files from directory"
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDir_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDirRecursive_Id,
-      title: "All mbox Files from directory (with sbd structure)"
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title")
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Imp_MaildirFiles_Id,
-      title: "Import Maildir Folder",
+      title: localizeMenuTitle("folderCtxMenu_Imp_MaildirFiles_Id.title"),
       onclick: importMaildirFiles
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Imp_EMLFormat_Id,
-      title: "Import EML Messages"
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormat_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatMsgs_Id,
-      title: "Individual EML Messages"
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatMsgs_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatDir_Id,
-      title: "All EML Messages From A Directory"
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDir_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id,
-      title: "All EML Messages From A Directory And Subdirectories"
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title")
     }
   },
   {
@@ -620,13 +613,13 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_CopyFolderPath_Id,
-      title: "Copy Folder Path"
+      title: localizeMenuTitle("folderCtxMenu_CopyFolderPath_Id.title")
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_OpenFolderDir_Id,
-      title: "Open Folder Directory"
+      title: localizeMenuTitle("folderCtxMenu_OpenFolderDir_Id.title")
     }
   },
   {
@@ -638,14 +631,14 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Options_Id,
-      title: "Options",
+      title: localizeMenuTitle("folderCtxMenu_Options_Id.title"),
       onclick: openOptions,
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,
-      title: "Help",
+      title: localizeMenuTitle("folderCtxMenu_Help_Id.title"),
       onclick: openHelp,
     }
   },
@@ -653,21 +646,21 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: folderCtxMenu_Exp_EMLFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
-      title: "Messages With Attachments And Index"
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title")
     }
   },
 
@@ -676,28 +669,28 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
-      title: "Messages And HTML Index"
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
-      title: "Messages With Attachments And Index"
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSingleFile_Id,
-      title: "Messages As Single File"
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id,
-      title: "Messages As Single File With Attachments"
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title")
     }
   },
 
@@ -705,17 +698,18 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_Index_Id,
       id: folderCtxMenu_Exp_IndexHTML_Id,
-      title: "HTML Format"
+      title: localizeMenuTitle("folderCtxMenu_Exp_IndexHTML_Id.title")
     }
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_Index_Id,
       id: folderCtxMenu_Exp_IndexCSV_Id,
-      title: "CSV Format"
+      title: localizeMenuTitle("folderCtxMenu_Exp_IndexCSV_Id.title")
     }
   },
 ];
+
 
 
 

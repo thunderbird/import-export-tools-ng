@@ -25,6 +25,7 @@ await ((async () => {
 		});
 	}
 
+
 })());
 
 // now start
@@ -98,13 +99,8 @@ function main() {
 
 	messenger.WindowListener.startListening();
 
-	setFolder("test")
-}
+	browser.runtime.onInstalled.addListener(async (info) => {
+		messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
+	});
 
-function setFolder(name) {
-	window.folder = name;
-}
-
-function getFolder() {
-	return window.folder;
 }

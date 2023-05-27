@@ -124,7 +124,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       id: msgCtxMenu_Options_Id,
-      title: localizeMenuTitle("msgCtxMenu_Options_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
     }
 
@@ -132,7 +132,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       id: msgCtxMenu_Help_Id,
-      title: localizeMenuTitle("msgCtxMenu_Help_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: openHelp,
     }
 
@@ -280,7 +280,7 @@ var toolsCtxMenuSet = [
     menuId: 2,
     menuDef: {
       id: toolsCtxMenu_TopId,
-      title: localizeMenuTitle("toolsCtxMenu_TopId.title")
+      title: localizeMenuTitle("ctxMenu_ExtensionName.title")
     }
   },
   {
@@ -311,7 +311,7 @@ var toolsCtxMenuSet = [
   {
     menuDef: {
       id: toolsCtxMenu_Options_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Options_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
     }
 
@@ -319,7 +319,7 @@ var toolsCtxMenuSet = [
   {
     menuDef: {
       id: toolsCtxMenu_Help_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Help_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: openHelp,
     }
 
@@ -403,7 +403,7 @@ var folderCtxMenuSet = [
     menuId: 3,
     menuDef: {
       id: folderCtxMenu_TopId,
-      title: localizeMenuTitle("folderCtxMenu_TopId.title")
+      title: localizeMenuTitle("ctxMenu_ExtensionName.title")
     }
   },
   {
@@ -631,14 +631,14 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_Options_Id,
-      title: localizeMenuTitle("folderCtxMenu_Options_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
     }
   },
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,
-      title: localizeMenuTitle("folderCtxMenu_Help_Id.title"),
+      title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: openHelp,
     }
   },

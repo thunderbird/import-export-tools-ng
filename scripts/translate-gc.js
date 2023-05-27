@@ -14,15 +14,19 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray = 
-	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
+var translationArray = [
+	// common titles
 
-	[{"key": "toolsCtxMenu_TopId.title", "text": "ImportExportTools NG"},
+	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
+	{"key": "ctxMenu_Options.title", "text": "Options"},
+	{"key": "ctxMenu_Help.title", "text": "Help"},
+
+
+	
 	{"key": "toolsCtxMenu_Exp_Profile_Id.title", "text": "Export Profile"},
 	{"key": "toolsCtxMenu_Imp_Profile_Id.title", "text": "Import Profile"},
 	{"key": "toolsCtxMenu_Backup_Id.title", "text": "Backup"},
-	{"key": "toolsCtxMenu_Options_Id.title", "text": "Options"},
-	{"key": "toolsCtxMenu_Help_Id.title", "text": "Help"},
+	
 	{"key": "toolsCtxMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
 	{"key": "toolsCtxMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
 
@@ -35,8 +39,7 @@ var translationArray =
 {"key": "msgCtxMenu_Exp_MboxFormat_Id.title", "text": "mbox Format"},
 {"key": "msgCtxMenu_Exp_Index_Id.title", "text": "Message Index"},
 {"key": "msgCtxMenu_CopyToClipboard_Id.title", "text": "Copy To Clipboard"},
-{"key": "msgCtxMenu_Options_Id.title", "text": "Options"},
-{"key": "msgCtxMenu_Help_Id.title", "text": "Help"},
+
 {"key": "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title", "text": "Messages (Attachments Embedded)"},
 {"key": "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
 {"key": "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title", "text": "Messages Only"},
@@ -54,7 +57,7 @@ var translationArray =
 {"key": "msgCtxMenu_CopyToClipboardMessage_Id.title", "text": "Message"},
 {"key": "msgCtxMenu_CopyToClipboardHeaders_Id.title", "text": "Headers"},
 
-{"key": "folderCtxMenu_TopId.title", "text": "ImportExportTools NG"},
+
 {"key": "folderCtxMenu_Exp_FolderMbox_Id.title", "text": "Folder Export (mbox)"},
 {"key": "folderCtxMenu_Exp_FolderMboxOnly_Id.title", "text": "As mbox File"},
 {"key": "folderCtxMenu_Exp_FolderMboxZipped_Id.title", "text": "Single Zipped mbox File"},
@@ -81,8 +84,7 @@ var translationArray =
 {"key": "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title", "text": "All EML Messages From A Directory And Subdirectories"},
 {"key": "folderCtxMenu_CopyFolderPath_Id.title", "text": "Copy Folder Path"},
 {"key": "folderCtxMenu_OpenFolderDir_Id.title", "text": "Open Folder Directory"},
-{"key": "folderCtxMenu_Options_Id.title", "text": "Options"},
-{"key": "folderCtxMenu_Help_Id.title", "text": "Help"},
+
 {"key": "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
 {"key": "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
 {"key": "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},

@@ -4,7 +4,8 @@
 	//console.debug(WL);
 	//console.debug(window.WL);
 	
-
+	document.getElementById("extVersion").innerText = "v" + browser.runtime.getManifest().version;
+	
 	//fixIDReferenceLabels();
 	//fixPropertyReferenceLabels();
 	var tb_locale = null;

@@ -738,7 +738,7 @@ async function createMenus(menuType, menuArray, options) {
 
 }
 
-await createtitles("folderCtxMenu", folderCtxMenuSet, null);
+await createtitles("folderCtxMenuMSGS", folderCtxMenuSet, null);
 //await editMenus("", toolsCtxMenuSet, null);
 
 
@@ -752,13 +752,15 @@ async function createtitles(name, menuArray, options) {
     if (menuObj.menuDef.type) {
       continue;
     }
-    let titleObj = {key: menuObj.menuDef.id + ".title", text: menuObj.menuDef.title}
+    //let titleObj = {key: menuObj.menuDef.id + ".title", text: menuObj.menuDef.title}
+    let titleObj = {key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>"}
     titleArray.push(titleObj);
   }
   console.log(titleArray)
   let basePath = "C:\\Dev\\Thunderbird";
   let path = basePath + "\\" + name +".json";
   let params = {path: path, obj: titleArray};
+
   console.log(params)
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
   console.log("done")

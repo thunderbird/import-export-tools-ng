@@ -1803,7 +1803,7 @@ function IETopenFolderPath() {
 
 function openIEThelp(localize) {
 	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
-	loadTabPage('importexport-help.html#main_help', true);
+	loadTabPage('importexport-help.html#main-help', true);
 }
 
 // window.addEventListener("load", this.init, false);

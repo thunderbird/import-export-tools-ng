@@ -13,7 +13,7 @@
   },
   "browser_action": {
 		"default_area": "maintoolbar",
-		"default_icon": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png",
+		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImpExp NG",
     "default_popup": "chrome/content/test.html"
 	  },
@@ -70,7 +70,7 @@
     "page": "background.html"
   },
   "icons": {
-    "64": "chrome/content/mboximport/import-export-tools-ng-icon-64px.png"
+    "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
   },
   "default_locale": "en_US"
 }

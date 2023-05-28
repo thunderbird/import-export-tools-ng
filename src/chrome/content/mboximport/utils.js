@@ -860,6 +860,7 @@ function fixPropertyReferenceLabels() {
 }
  */
 function loadTabPage(url, load_localized_page) {
+	console.log("loadtab")
 	if (load_localized_page) {
 
 		var tb_locale = null;
@@ -896,7 +897,7 @@ function loadTabPage(url, load_localized_page) {
 	let tabmail = getMail3Pane();
 
 	tabmail.openTab("contentTab", { url });
-
+	console.log(url)
 }
 
 function getMail3Pane() {

@@ -28,8 +28,16 @@ await ((async () => {
 
 })());
 
+
+
 // now start
 main();
+
+var currentLocale = messenger.i18n.getUILanguage();
+
+browser.runtime.onInstalled.addListener(async (info) => {
+	await openHelp({opentype: "tab"});
+});
 
 
 async function getThunderbirdVersion() {
@@ -99,8 +107,43 @@ function main() {
 
 	messenger.WindowListener.startListening();
 
-	browser.runtime.onInstalled.addListener(async (info) => {
-		messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
-	});
+	
 
+}
+
+async function openHelp(info) {
+	var locale = currentLocale;
+	console.log("help")
+	var bm = "";
+	if (info.bmark) {
+		bm = info.bmark;
+	}
+	try {
+		if (info.opentype == "tab") {
+			// use fetch to see if help file exists, throws if not, fix #212
+			await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
+			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
+		} else {
+			await fetch(`chrome/content/help/locale/${locale}/importexport-help.html`);
+			await browser.windows.create({ url: `chrome/content/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+		}
+	} catch {
+		try {
+			locale = locale.Split('-')[0];
+			if (info.opentype == "tab") {
+				await fetch(`chrome/content/help/locale/${locale}/importexport-help.html`);
+				await browser.tabs.create({ url: `chrome/content/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
+			} else {
+				await fetch(`chrome/content/help/locale/${locale}/importexport-help.html`);
+				await browser.windows.create({ url: `chrome/content/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+			}
+		} catch {
+			if (info.opentype == "tab") {
+				await browser.tabs.create({ url: `chrome/content/help/locale/en-US/importexport-help.html${bm}`, index: 1 })
+			} else {
+				await browser.windows.create({ url: `chrome/content/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+			}
+		}
+	}
+	return "help";
 }

@@ -1,13 +1,12 @@
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
-window.addEventListener("load", function (event) {
+//window.addEventListener("load", function (event) {
 	console.debug('LoadsHelp');
-	// console.debug(WL);
-	// console.debug(window.WL);
+	//console.debug(WL);
+	//console.debug(window.WL);
 	
 
-	fixIDReferenceLabels();
-	fixPropertyReferenceLabels();
+	//fixIDReferenceLabels();
+	//fixPropertyReferenceLabels();
 	var tb_locale = null;
 
 	try {
@@ -20,11 +19,24 @@ window.addEventListener("load", function (event) {
 	if (tb_locale === 'en-US' || tb_locale.split('-')[0] === 'en') {
 		document.getElementById("localized-token-table").classList.add('hide-ltoken-table');
 	}
-});
+
+	//await new Promise(r => mainWindow.setTimeout(r, 150));
+/*
+	var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+let extension = ExtensionParent.GlobalManager.getExtension("ImportExportToolsNG@cleidigh.kokkini.net");
+console.log(extension)
+// Provide a relative path to i18.js from the root of your extension.
+let i18nScriptPath = extension.rootURI.resolve("chrome/content/mboximport/modules/i18n.js");
+Services.scriptloader.loadSubScript(i18nScriptPath, this, "UTF-8");
+*/
+document.addEventListener('DOMContentLoaded', () => {
+  i18n.updateDocument();
+}, { once: true });
+
 
 function fixIDReferenceLabels() {
 	var ids = document.querySelectorAll("[dtd-text-id-ref]");
-
+	console.log(ids)
 	var w = getMail3Pane();
 	var sourceDocument = w.document;
 

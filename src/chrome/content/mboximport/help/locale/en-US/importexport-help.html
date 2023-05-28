@@ -4,10 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="chrome://mboximport/content/mboximport/importexport-help.css" type="text/css">
-	<link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-	<!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-	<script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+	
+	<link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
 
 	<title>ImportExportTools NG Help</title>
 </head>
@@ -18,15 +16,15 @@
 	<table style="width: 100%;" id="main-help" >
 		<tr>
 			<td style="vertical-align: top;">
-				<div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Help</div>
+				<div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Help3</div>
 				<div id="extVersion" style="padding-left: 4px;">v14.0.0</div>
 			</td>
 			<td style="text-align: right; padding-right: 30px;"><img
-					src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" /> </td>
+					src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" /> </td>
 		</tr>
 	</table>
 
-
+	<div>__MSG_extensionName__</div>
 	<h3>Version 12.0.0 : Thunderbird 102 Support - July 1, 2022</h3>
 	<p>
 	Issues Addressed :<br>
@@ -108,11 +106,15 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Export Folder</td>
+					<td>__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
 					<td>Export a single folder to an mbox format file</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboxexportZIP"></td>
+					<td dtd-text-id-ref="mboxexportZIP" class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
 					<td>Export a single folder to a zipped mbox format file</td>
 				</tr>
 				<tr>
@@ -908,6 +910,8 @@ Example hot key entrys (array of JSON objects)<br><br>
 </p>
 <br>
 
+<script type="application/javascript" src="../../../modules/i18n.js"></script>
+<script type="application/javascript" src="../../help.js"></script>
 
 </body>
 

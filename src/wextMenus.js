@@ -738,7 +738,9 @@ async function createMenus(menuType, menuArray, options) {
 
 }
 
-await createtitles("folderCtxMenuMSGS", folderCtxMenuSet, null);
+
+await new Promise(resolve => window.setTimeout(resolve, 100));
+//await createtitles("folderCtxMenuMSGS", folderCtxMenuSet, null);
 //await editMenus("", toolsCtxMenuSet, null);
 
 

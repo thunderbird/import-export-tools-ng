@@ -118,73 +118,95 @@
 					<td>Export a single folder to a zipped mbox format file</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboxexportallstruct"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__</td>
 					<td>Export a folder including all of its subfolders to an mbox format message tree</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboxexportstruct"></td>
-					<td>Export a folder including all of its subfolders to an mbox format message tree<br> (.sbd
-						subdirectories)</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="mboxexportsub"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
 					<td>Export a folder including all of its subfolders to a set of mbox format files, one for each
 						subfolder, exported to a single folder.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboxexportRemote"></td>
+					<td class="" >__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
 					<td>Export a remote (imap) folder to single mbox file.</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="exportALLMSG"></td>
+					<td class="" >__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
 					<td>Export the folder messages as EML format files (no structure/subfolders).<br>
 						This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+					<td class="submenu1" ></td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
 					<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
 						Attachments are not included. This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
 					<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
 						Attachments are saved as separate files. This also creates an HTML index file listing each
 						message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+					<td>Export the folder messages as a set of PDF format files, including attachments.<br>
+						This also creates an HTML index file listing each message.<br>
+						Note: PDF output is not supported on OSX due to a driver issue.
+					</td>
+				</tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
 					<td>Export the folder messages as plaintext format files, attachments are not included.<br>
 						This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
 					<td>Export the folder messages as plaintext format files, including attachments.<br>
 						This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
 					<td>Export the folder messages as a single plaintext format file, attachments are not included.<br>
 						This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__</td>
 					<td>Export the folder messages as a single plaintext format file, including attachments.<br>
 						This also creates an HTML index file listing each message.
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allCSV" class="submenu1"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
 					<td>Export the folder messages as a single CSV (Comma Separated Values) text format file,
 						attachments
 						attachments are not included.<br>
@@ -192,63 +214,98 @@
 					</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-					<td>Export the folder messages as a set of PDF format files, including attachments.<br>
-						This also creates an HTML index file listing each message.<br>
-						Note: PDF output is not supported on OSX due to a driver issue.
-					</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="justIndex" class="submenu1"></td>
-					<td>Creates an HTML index file of the folder messages (no message export)</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-					<td>Creates a CSV index file of the folder messages (no message export)</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="searchAndexport"></td>
-					<td>Open search dialog and export desired results </td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="mboximport"></td>
-					<td>Import an mbox file or files. Choose with or without structure/subfolders</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="mboximportMD"></td>
-					<td>Select and import maildir message files</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="mboximportEML"></td>
-					<td>Select and import EML message files (no structure/subfolders)</td>
-				</tr>
-				<tr>
-					<td dtd-text-id-ref="mboximportALLEML"></td>
+
+					<td class="" ></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+					<td>Creates an HTML index file of the folder messages (no message export)</td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+					<td>Creates a CSV index file of the folder messages (no message export)</td>
+				</tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+					<td>Open search dialog and export desired results </td>
+				</tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+					<td>Import one or more mbox files from a direct directory. </td>
+				</tr>
+				<tr>
+					<td class="submenu2" >__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+					<td class="" ></td>
+					<td></td>
+				</tr>
+				<tr>
+					<tr>
+						<td class="submenu2" >__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+						<td class="" ></td>
+						<td></td>
+					</tr>
+					<tr>
+						<tr>
+							<td class="submenu2" >__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+							<td class="" ></td>
+							<td></td>
+						</tr>
+						<tr>
+							<tr>
+
+								<td class="" ></td>
+								<td></td>
+							</tr>
+							<tr>
+
+				<tr>
+					<td class="" >__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+					<td>Select and import a maildir folder</td>
+				</tr>
+				<tr>
+					<tr>
+						<td class="" >__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+						<td class="" ></td>
+					</tr>
+					<tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+					<td>Select and import EML message files (no structure/subfolders)</td>
+				</tr>
+				<tr>
+					<td class="submenu1" >__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
 					<td>Import all EML messages from a single folder</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+					<td class="submenu1" >__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
 					<td>Import all EML messages from a single folder including structure/subfolders</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="copyFolderPath"></td>
+					<td class="" >__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
 					<td>Copy the OS path of the selected folder</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="openFolderPath"></td>
+					<td class="" >__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
 					<td>Open the OS path of the selected folder</td>
 				</tr>
 				
 				<tr>
-					<td dtd-text-id-ref="openIEToptions"></td>
+					<td class="" >__MSG_ctxMenu_Options.title__</td>
 					<td>Open the ImportExportTools NG options dialog</td>
 				</tr>
 				<tr>
-					<td dtd-text-id-ref="openIEThelp1"></td>
+					<td class="" >__MSG_ctxMenu_Help.title__</td>
 					<td>Open the main help page</td>
 				</tr>
 

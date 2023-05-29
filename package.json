@@ -10,7 +10,7 @@
     "license": "GPLv3",
     "config": {
         "source_dir": "./src",
-        "target_dir": "./xpi",
+        "target_dir": "./xpi/beta",
         "target_suffix": "-tb",
         "target_extension": ".xpi",
         "target_include_manifest": "true"

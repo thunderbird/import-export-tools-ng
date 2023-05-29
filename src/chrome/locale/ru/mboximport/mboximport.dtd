@@ -66,7 +66,7 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Обычный текст">
 <!ENTITY searchAndExport "Поиск и экспорт">
-<!ENTITY buildMSF.label "Построить индекс для импортированных файлов mbox>
+<!ENTITY buildMSF.label "Построить индекс для импортированных файлов mbox">
 <!ENTITY addPrefix "Добавить префикс">
 <!ENTITY fileLenCaption "Длина имени файла">
 <!ENTITY cutSub "Усечь тему до 50 символов">

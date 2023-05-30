@@ -969,7 +969,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var recc;
 	var auth;
 
-	console.log("start loop")
+
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];

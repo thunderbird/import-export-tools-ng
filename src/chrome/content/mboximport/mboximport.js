@@ -257,52 +257,52 @@ var IETprintPDFmain = {
 			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
-		console.log("IETNG: Save as PDF: ", new Date());
-		console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
+		//console.log("IETNG: Save as PDF: ", new Date());
+		//console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
 		// We can simply by using PrintUtils.loadPrintBrowser eliminating 
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well 
 
-        var errCounter = 0;
-        let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
+		var errCounter = 0;
+		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-        for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
+		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
-            try {
-                let messageService = messenger.messageServiceFromURI(uri);
-                let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+			try {
+				let messageService = messenger.messageServiceFromURI(uri);
+				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
-                let fileName = fileFormat === 2
-                    ? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
-                    : getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-                printSettings.toFileName = PathUtils.join(filePath, fileName);
+				let fileName = fileFormat === 2
+					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
+				printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-                console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
-                await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
-                await PrintUtils.printBrowser.browsingContext.print(printSettings);
-                console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
-                
-                IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
-                // When we got here, everything worked, and reset error counter.
-                errCounter = 0;
-            } catch (ex) {
-                // Something went wrong, wait a bit and try again.
-                // We did not inc i, so we will retry the same file.
-                //
-                errCounter++;
-                console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`);
-                if (errCounter > 3) {
-                    console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
-                } else {
+				//console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+				await PrintUtils.printBrowser.browsingContext.print(printSettings);
+				//console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
+
+				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+				// When we got here, everything worked, and reset error counter.
+				errCounter = 0;
+			} catch (ex) {
+				// Something went wrong, wait a bit and try again.
+				// We did not inc i, so we will retry the same file.
+				//
+				errCounter++;
+				console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`);
+				if (errCounter > 3) {
+					console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
+				} else {
 					// dec idx so next loop repeats msg that erred
 					msgIdx--;
 				}
-                await new Promise(r => mainWindow.setTimeout(r, 150));
-            }
-        }
+				await new Promise(r => mainWindow.setTimeout(r, 150));
+			}
+		}
 
 
-		console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
+		//console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
 	},
 };
 
@@ -459,8 +459,8 @@ async function trytocopyMAILDIR() {
 // msgFolder = the folder as nsImsgFolder
 
 async function trytocopy(file, filename, msgFolder, keepstructure) {
-	
-	console.log("IETNG: trytocopy start");
+
+	//console.log("IETNG: trytocopy start");
 
 	// If the file isn't mbox format, alert, but doesn't exit (it did in pre 0.5.8 version and lower)
 	// In fact sometimes TB can import also corrupted mbox files
@@ -527,7 +527,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// console.debug(tempfolder);
 	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 
-	console.log("IETNG: add subfolder");
+	//console.log("IETNG: add subfolder");
 
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
@@ -550,14 +550,14 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
-		console.log("IETNG: start copy: ", new Date());
+		//console.log("IETNG: start copy: ", new Date());
 		let src = file.path;
 		let dst = PathUtils.join(filex.path, tempfolder.filePath.leafName);
 		console.log(src, dst)
 		let r = await IOUtils.copy(src, dst);
 		//file.copyTo(filex, tempfolder.filePath.leafName);
 
-		console.log("IETNG: end copy: ", new Date());
+		//console.log("IETNG: end copy: ", new Date());
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
 			var sbd = file.parent;
@@ -592,7 +592,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	obj.msgFolder = newFolder;
 	obj.forceCompact = forceCompact;
 
-	console.log("IETNG: compacted");
+	//console.log("IETNG: compacted");
 	if (keepstructure) {
 		gMsgFolderImported.push(obj);
 		if (newFolder.hasSubFolders) {
@@ -606,9 +606,9 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		gMsgFolderImported.push(obj);
 	}
 
-	console.log("IETNG: rebuild foldertree");
+	//console.log("IETNG: rebuild foldertree");
 	gFolderTreeView._rebuild();
-	console.log("IETNG: end trytocopy: ", new Date());
+	//console.log("IETNG: end trytocopy: ", new Date());
 	return newfilename;
 }
 
@@ -689,16 +689,17 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 
 // scandir flag is to know if the function must scan a directory or just import mbox file(s)
 async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
-	
+
 	// mbox import debug #367
+	/*
 	console.log("IETNG: mboximport start: ", new Date());
 	console.log("IETNG: scandir: ", scandir)
 	console.log("IETNG: keepstructure: ", keepstructure);
 	console.log("IETNG: openProfDir: ", openProfDir);
-	console.log("IETNG: recursiveMode: ",recursiveMode);
-	console.log("IETNG: msgFolder: " , msgFolder.name);
+	console.log("IETNG: recursiveMode: ", recursiveMode);
+	console.log("IETNG: msgFolder: ", msgFolder.name);
 	//console.log("IETNG: ")
-	
+*/
 
 	// initialize variables
 	gMsgFolderImported = [];
@@ -729,13 +730,13 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 
 		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
 		var thefiles = fp.files;
-		console.log("IETNG: flat import ", thefiles);
+		//console.log("IETNG: flat import ", thefiles);
 
 		while (thefiles.hasMoreElements()) {
 			var onefile = thefiles.getNext();
 			onefile = onefile.QueryInterface(Ci.nsIFile);
 			mboxname = onefile.leafName;
-			console.log("IETNG: call trycopy: ", mboxname);
+			//console.log("IETNG: call trycopy: ", mboxname);
 
 			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
 		}
@@ -817,14 +818,15 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 
 async function exportfolder(subfolder, keepstructure, locale, zip) {
 
-	console.log("Start: ExportFolders (mbox)");
+	//console.log("Start: ExportFolders (mbox)");
 	var folders = GetSelectedMsgFolders();
-
+/*
 	console.log("   Subfolders:", subfolder);
 	console.log("   Structured: ", keepstructure);
 	console.log("   Local: ", locale);
 	console.log("   Zip: ", zip);
 	console.log(folders);
+*/
 
 	for (var i = 0; i < folders.length; i++) {
 		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
@@ -855,7 +857,7 @@ async function exportfolder(subfolder, keepstructure, locale, zip) {
 	}
 
 	if (locale) {
-		console.log("Using exportSingleLocaleFolder");
+		//console.log("Using exportSingleLocaleFolder");
 		for (let i = 0; i < folders.length; i++)
 			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
@@ -916,9 +918,9 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	var thefoldername = IETcleanName(msgFolder.name);
 	var newname;
 
-	console.log("Start: exportSingleLocaleFolder");
-	console.log("   SrcPath: ", filex.path);
-	console.log("   Folder: ", thefoldername);
+	//console.log("Start: exportSingleLocaleFolder");
+	//console.log("   SrcPath: ", filex.path);
+	//console.log("   Folder: ", thefoldername);
 	//console.log("")
 
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
@@ -939,7 +941,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
-		console.log("Exporting with subfolders");
+		//console.log("Exporting with subfolders");
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
 		console.log(newname);
 		if (filex.exists()) {
@@ -954,20 +956,17 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			var topdestdirNSI = destdirNSIFILE.clone();
 			topdestdirNSI.append(newname);
 			topdestdirNSI.create(0, 0644);
-			console.log("Created: ", topdestdirNSI.leafName);
+			//console.log("Created: ", topdestdirNSI.leafName);
 		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
 			sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-			console.log("Copied: ", sbd.path);
+			//console.log("Copied: ", sbd.path);
 			var destdirNsFile = destdirNSIFILE.clone();
 			destdirNsFile.append(newname + ".sbd");
 			var listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-			console.log("Msf scan");
-			console.log(listMSF);
 			for (let i = 0; i < listMSF.length; ++i) {
-				console.log("Scan: ", listMSF[i].leafName);
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
@@ -976,7 +975,6 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 						if (!nsifile.exists()) {
 							nsifile.create(0, 0644);
 						}
-						console.log("Create: ", listMSF[i].leafName);
 					} catch (e) {
 						console.log(e);
 					}
@@ -1117,7 +1115,6 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 			let subfolderNS = msgFolder2LocalFile(subfolder);
 			if (subfolderNS.exists()) {
 				subfolderNS.copyTo(destdirNSIFILE, newname);
-				console.log("Copy:", newname);
 			}
 			else {
 				newname = IETcleanName(newname);
@@ -1126,7 +1123,6 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 				destdirNSIFILEclone.create(0, 0644);
 			}
 			if (keepstructure) {
-				console.log("structure");
 				let sbd = subfolderNS.parent;
 				sbd.append(subfolderNS.leafName + ".sbd");
 				if (sbd.exists() && sbd.directoryEntries.length > 0) {
@@ -1191,7 +1187,6 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(recursive) {
-	console.debug('Start eml import');
 
 	let msgFolder = GetSelectedMsgFolders()[0];
 	if (!msgFolder || !msgFolder.parent) {
@@ -1286,7 +1281,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 				// https://github.com/thundernest/import-export-tools-ng/issues/57
 				if (folderCount++ % 400 === 0) {
 					rootFolder.ForceDBClosed();
-					console.debug('ForceDBClosed');
+					//console.debug('ForceDBClosed');
 				}
 			});
 			await buildEMLarray(afile, newFolder, true, rootFolder);

@@ -2,6 +2,16 @@
 
 ## Versions
 
+Version 12.0.3 : Maintenance Release - June, 2023
+
+- Fix virtual folder exports #359
+- Fix encoding for attachment names #355
+- Fix bad filename token in pl locale #366
+- Fix PDF exception #369
+- Fix bad filename token in pt-PT locale #398
+- Improved ja locale additions #281
+- Improved ru locale additions PR #401
+
 Version 12.0.2 : Maintenance Release - October 24, 2022
 
 - Fix PDF export on OSX! #353

@@ -740,7 +740,7 @@ async function createMenus(menuType, menuArray, options) {
 
 
 await new Promise(resolve => window.setTimeout(resolve, 100));
-await createtitles("toolsCtxMenuMSGS", toolsCtxMenuSet, null);
+await createtitles("msgCtxMenuMSGS", msgCtxMenuSet, null);
 //await editMenus("", toolsCtxMenuSet, null);
 
 

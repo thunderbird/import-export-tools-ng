@@ -2,7 +2,7 @@
 
 ## Versions
 
-Version 12.0.3 : Maintenance Release - June, 2023
+Version 12.0.3 : Maintenance Release - June 1, 2023
 
 - Fix virtual folder exports #359
 - Fix encoding for attachment names #355

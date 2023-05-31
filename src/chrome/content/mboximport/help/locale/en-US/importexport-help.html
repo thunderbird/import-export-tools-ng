@@ -154,7 +154,7 @@
 			<tr>
 				<td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
 				<td>Export the folder messages as HTML format files (no structure/subfolders).<br>
-					Attachments are not included. This also creates an HTML index file listing each message.
+					This also creates an HTML index file listing each message.
 				</td>
 			</tr>
 			<tr>
@@ -166,9 +166,7 @@
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
-				<td>Export the folder messages as a set of PDF format files, including attachments.<br>
-					This also creates an HTML index file listing each message.<br>
-					Note: PDF output is not supported on OSX due to a driver issue.
+				<td>Export the folder messages as a set of PDF format files
 				</td>
 			</tr>
 			<tr>
@@ -202,7 +200,6 @@
 			<tr>
 				<td class="submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
 				<td>Export the folder messages as a single CSV (Comma Separated Values) text format file,
-					attachments
 					attachments are not included.<br>
 					This also creates an HTML index file listing each message.
 				</td>
@@ -300,41 +297,44 @@
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
-				<td>Save the selected messages to EML format files</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-				<td></td>
+				<td>Export the selected messages to EML format files (attatchments embedded)</td>
 			</tr>
 				<tr>
 					<td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
-					<td></td>
+					<td>Export the selected messages to EML format files<br>
+						This also creates an HTML index file listing each message.
+					</td>
 				</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
-				<td>Save the selected messages to HTML format files</td>
-			</tr>
-			<tr>
-				<td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
 				<td></td>
 			</tr>
 			<tr>
+				<td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+				<td>Export the selected messages to HTML format files</td>
+			</tr>
+			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-				<td>Save the selected messages to HTML format files including attachments</td>
+				<td>Export the selected messages to HTML format files including attachments</td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
-				<td>Save the messages as HTML format files.<br>
+				<td>Export the messages as HTML format files.<br>
 					This also creates an HTML index file listing each message.
 				</td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
-				<td></td>
+				<td>Export the messages as HTML format files including attachments.<br>
+					This also creates an HTML index file listing each message.</td>
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-				<td>Save the selected messages to PDF format files</td>
+				<td>Export the selected messages to PDF format files</td>
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -342,21 +342,21 @@
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-				<td>Save the selected messages to plaintext format files</td>
+				<td>Export the selected messages to plaintext format files</td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-				<td>Save the selected messages to plaintext format files including attachments</td>
+				<td>Export the selected messages to plaintext format files including attachments</td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
-				<td>Save the messages as plaintext format files including attachments<br>
+				<td>Export the messages as plaintext format files including attachments<br>
 					This also creates an HTML index file listing each message.
 				</td>
 			</tr>
 			<tr>
 			<td class="submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
-				<td>Save the selected messages to a single CSV text file</td>
+				<td>Export the selected messages to a single CSV text file</td>
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
@@ -364,7 +364,7 @@
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-				<td>Save the selected messages to a single mbox file</td>
+				<td>Export the selected messages to a single mbox file</td>
 			</tr>
 			<tr>
 				<td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
@@ -376,11 +376,11 @@
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
-				<td>Create an HTML index file for the selected files</td>
+				<td>Create an HTML index file for the selected messages</td>
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-				<td>Create an CSV index file for the selected files</td>
+				<td>Create a CSV index file for the selected messages</td>
 			</tr>
 			<tr>
 				<td >__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -388,11 +388,11 @@
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
-				<td></td>
+				<td>Copy a single selected message to the clipboard</td>
 			</tr>
 			<tr>
 				<td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-				<td></td>
+				<td>Copy the headers of a single selected message to the clipboard</td>
 			</tr>
 			<tr>
 				<td class="">__MSG_ctxMenu_Options.title__</td>

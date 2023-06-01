@@ -5,5 +5,278 @@
 	},
 	"extensionDescription": {
 		"message": "Añade herramientas para importar y exportar mensajes y carpetas (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "Herramientas de importación y exportación de"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Opciones"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Ayuda"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Perfil de exportación"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importar perfil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Respaldo"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Perfil completo"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Solo correo"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Exportar mensajes como…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Formato de mensaje EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Formato PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Formato de texto sin formato"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Formato CSV (hoja de cálculo)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "Formato mbox"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Índice de mensajes"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Copiar al portapapeles"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Mensajes (archivos adjuntos incrustados)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Solo mensajes"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Mensajes y archivos adjuntos"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensajes con archivos adjuntos e índice"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Solo mensajes"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Mensajes y archivos adjuntos"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensajes con archivos adjuntos e índice"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Nuevo archivo mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Agregar a un archivo mbox existente"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Formato CSV"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Mensaje"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Encabezados"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Exportación de carpetas (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Como archivo mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Archivo mbox comprimido único"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Estructurado con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Con subcarpetas aplanadas"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Exportar carpeta remota"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exportar todos los mensajes en la carpeta"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Formato de mensaje EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Formato PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Formato de texto sin formato"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Formato CSV (hoja de cálculo)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Índice de mensajes"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Buscar y exportar mensajes"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importar archivos mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Archivos mbox individuales"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Archivos mbox individuales (con estructura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Todos los archivos mbox del directorio"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Todos los archivos mbox del directorio (con estructura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importar carpeta Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importar mensajes EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Mensajes EML individuales"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Todos los mensajes EML de un directorio"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Todos los mensajes EML de un directorio y subdirectorios"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Copiar ruta de carpeta"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Abrir directorio de carpetas"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensajes con archivos adjuntos e índice"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Mensajes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensajes con archivos adjuntos e índice"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Mensajes como archivo único"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Mensajes como archivo único con archivos adjuntos"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Formato CSV"
 	}
+
 }

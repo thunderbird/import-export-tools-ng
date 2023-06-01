@@ -6,4 +6,278 @@
 	"extensionDescription": {
 		"message": "Afegeix algunes eines per importar i exportar missatges i carpetes (NextGen)"
 	}
+,
+
+	"ctxMenu_ExtensionName.tiTools NG
+		"message": "ImportExportTools OF"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Opcions"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Ajuda"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Exporta el perfil"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importa el perfil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Còpia de seguretat"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Perfil complet"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Només correu"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Exporta missatges com a..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Format de missatge EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Format HTML"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Format PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Format de text pla"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Format CSV (full de càlcul)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "Format mbox"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Índex de missatges"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Copiar al portapapers"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Missatges (arxius adjunts incrustats)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Només missatges"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Missatges i fitxers adjunts"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Missatges amb fitxers adjunts i índex"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Només missatges"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Missatges i fitxers adjunts"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Missatges amb fitxers adjunts i índex"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Nou fitxer mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Afegeix al fitxer mbox existent"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Format HTML"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Format CSV"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Missatge"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Capçaleres"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Exportació de carpetes (box)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Com a fitxer mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Fitxer mbox comprimit únic"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Estructurat amb subcarpetes"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Amb subcarpetes aplanades"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Exporta la carpeta remota"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exporta tots els missatges a la carpeta"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Format de missatge EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Format HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Format PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Format de text pla"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Format CSV (full de càlcul)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Índex de missatges"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Cerca i exporta missatges"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importa fitxers mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Fitxers mbox individuals"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Fitxers mbox individuals (amb estructura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Tots els fitxers mbox del directori"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Tots els fitxers mbox del directori (amb estructura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importa la carpeta Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importa missatges EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Missatges EML individuals"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Tots els missatges EML d&#39;un directori"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Tots els missatges EML d&#39;un directori i subdirectoris"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Copia el camí de la carpeta"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Obriu el directori de carpetes"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Missatges amb fitxers adjunts i índex"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Missatges i índex HTML"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Missatges amb fitxers adjunts i índex"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Missatges com a fitxer únic"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Missatges com a fitxer únic amb fitxers adjunts"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Format HTML"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Format CSV"
+	}
+
 }

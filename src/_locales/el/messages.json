@@ -6,4 +6,278 @@
 	"extensionDescription": {
 		"message": "Προσθέτει εργαλεία για εισαγωγή / εξαγωγή μηνυμάτων και φακέλων (NextGen)"
 	}
+,
+
+	"ctxMenu_ExtensionName.tiTools NG
+		"message": "ImportExportTools OF"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Επιλογές"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Βοήθεια"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Εξαγωγή προφίλ"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Εισαγωγή προφίλ"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Αντιγράφων ασφαλείας"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Πλήρες προφίλ"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Μόνο αλληλογραφία"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Εξαγωγή μηνυμάτων ως…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Μορφή μηνύματος EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Μορφή HTML"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Μορφή PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Μορφή απλού κειμένου"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Μορφή CSV (υπολογιστικό φύλλο)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "Μορφή mbox"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Ευρετήριο μηνυμάτων"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Αντιγραφή στο πρόχειρο"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Μηνύματα (Ενσωματωμένα συνημμένα)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Μόνο μηνύματα"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Μηνύματα και συνημμένα"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Μηνύματα με συνημμένα και ευρετήριο"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Μόνο μηνύματα"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Μηνύματα και συνημμένα"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Μηνύματα με συνημμένα και ευρετήριο"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Νέο αρχείο mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Προσθήκη σε υπάρχον αρχείο mbox"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Μορφή HTML"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Μορφή CSV"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Μήνυμα"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Κεφαλίδες"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Εξαγωγή φακέλου (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Ως αρχείο mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Ενιαίο αρχείο mbox με συμπίεση"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Δομημένο με υποφακέλους"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Με ισοπεδωμένους υποφακέλους"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Εξαγωγή απομακρυσμένου φακέλου"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Εξαγωγή όλων των μηνυμάτων σε φάκελο"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Μορφή μηνύματος EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Μορφή HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Μορφή PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Μορφή απλού κειμένου"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Μορφή CSV (υπολογιστικό φύλλο)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Ευρετήριο μηνυμάτων"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Αναζήτηση και εξαγωγή μηνυμάτων"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Εισαγωγή αρχείων mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Μεμονωμένα αρχεία mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Μεμονωμένα αρχεία mbox (με δομή sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Όλα τα αρχεία mbox από τον κατάλογο"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Όλα τα αρχεία mbox από τον κατάλογο (με δομή sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Εισαγωγή φακέλου Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Εισαγωγή μηνυμάτων EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Μεμονωμένα μηνύματα EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Όλα τα μηνύματα EML από έναν κατάλογο"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Όλα τα μηνύματα EML από έναν κατάλογο και υποκαταλόγους"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Αντιγραφή διαδρομής φακέλου"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Ανοίξτε τον κατάλογο φακέλων"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Μηνύματα με συνημμένα και ευρετήριο"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Μηνύματα και ευρετήριο HTML"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Μηνύματα με συνημμένα και ευρετήριο"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Μηνύματα ως μεμονωμένο αρχείο"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Μηνύματα ως μεμονωμένο αρχείο με συνημμένα"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Μορφή HTML"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Μορφή CSV"
+	}
+
 }

@@ -6,4 +6,278 @@
 	"extensionDescription": {
 		"message": "Üzenetek és mappák importálása/exportálása (NextGen)"
 	}
+,
+
+	"ctxMenu_ExtensionName.tiTools NG
+		"message": "ImportExportTools OF"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Lehetőségek"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Segítség"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Profil exportálása"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Profil importálása"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "biztonsági mentés"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Teljes profil"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Csak posta"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Üzenetek exportálása mint…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML üzenetformátum"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML formátum"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF formátum"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Egyszerű szöveges formátum"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV formátum (táblázat)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox formátum"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Üzenet index"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Másolja a vágólapra"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Üzenetek (mellékletek beágyazva)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Csak üzenetek"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Üzenetek és Mellékletek"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Üzenetek Mellékletekkel és Indexszel"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Csak üzenetek"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Üzenetek és Mellékletek"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Üzenetek Mellékletekkel és Indexszel"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Új mbox fájl"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Hozzáfűzés a meglévő mbox fájlhoz"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML formátum"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV formátum"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Üzenet"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Fejlécek"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Mappa exportálása (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Mbox fájlként"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Egyetlen tömörített mbox fájl"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Almappákkal strukturált"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Lapított almappákkal"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Távoli mappa exportálása"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Az összes üzenet exportálása a mappába"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML üzenetformátum"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML formátum"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF formátum"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Egyszerű szöveges formátum"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV formátum (táblázat)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Üzenet index"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Üzenetek keresése és exportálása"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Mbox fájlok importálása"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Egyedi mbox fájlok"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Egyedi mbox fájlok (sbd szerkezettel)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Minden mbox fájl a könyvtárból"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Minden mbox fájl a könyvtárból (sbd szerkezettel)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importálja a Maildir mappát"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "EML-üzenetek importálása"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Egyedi EML üzenetek"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Minden EML-üzenet egy címtárból"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Minden EML üzenet egy könyvtárból és alkönyvtárakból"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Mappa elérési útjának másolása"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Nyissa meg a Mappa könyvtárát"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Üzenetek Mellékletekkel és Indexszel"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Üzenetek és HTML-index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Üzenetek Mellékletekkel és Indexszel"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Üzenetek egyetlen fájlként"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Üzenetek egyetlen fájlként, mellékletekkel"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML formátum"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV formátum"
+	}
+
 }

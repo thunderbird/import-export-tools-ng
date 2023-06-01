@@ -5,4 +5,278 @@
 	"extensionDescription": {
 		"message": "Lägger till några verktyg för import och export av meddelanden och mappar (NextGen)"
 	}
+,
+
+	"ctxMenu_ExtensionName.tiTools NG
+		"message": "ImportExportTools OF"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "alternativ"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Hjälp"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Exportera profil"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importera profil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Säkerhetskopiering"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Fullständig profil"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Endast post"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Exportera meddelanden som..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML meddelandeformat"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-format"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Oformaterad text"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-format (kalkylblad)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox-format"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Meddelandeindex"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Kopiera till Urklipp"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Meddelanden (inbäddade bilagor)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Endast meddelanden"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Meddelanden och bilagor"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelanden Med Bilagor Och Index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Endast meddelanden"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Meddelanden och bilagor"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelanden Med Bilagor Och Index"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Ny mbox fil"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Lägg till till befintlig mbox-fil"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-format"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Meddelande"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Rubriker"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Mappexport (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Som mbox-fil"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Enkel zippad mbox-fil"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Strukturerad med undermappar"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Med tillplattade undermappar"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Exportera fjärrmapp"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exportera alla meddelanden i mappen"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML meddelandeformat"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-format"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Oformaterad text"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-format (kalkylblad)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Meddelandeindex"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Sök och exportera meddelanden"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importera mbox-filer"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Enskilda mbox-filer"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Enskilda mbox-filer (med sbd-struktur)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Alla mbox-filer från katalogen"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Alla mbox-filer från katalogen (med sbd-struktur)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importera Maildir-mapp"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importera EML-meddelanden"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Individuella EML-meddelanden"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Alla EML-meddelanden från en katalog"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Alla EML-meddelanden från en katalog och underkataloger"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Kopiera mappsökväg"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Öppna mappkatalog"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelanden Med Bilagor Och Index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Meddelanden och HTML-index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelanden Med Bilagor Och Index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Meddelanden som en fil"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Meddelanden Som Enskild Fil Med Bilagor"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-format"
+	}
+
 }

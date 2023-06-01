@@ -4,5 +4,278 @@
 	},
 	"extensionDescription": {
 		"message": "Добавляет инструменты для импорта и экспорта сообщений и папок (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ИмпортЭкспортИнструменты OF"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Параметры"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Помощь"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Экспорт профиля"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Импорт профиля"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Резервное копирование"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Полный профиль"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Только почта"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Экспортировать сообщения как…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Формат сообщения EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-формат"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Формат PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Простой текстовый формат"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Формат CSV (электронная таблица)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox Формат"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Индекс сообщения"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Скопировать в буфер обмена"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Сообщения (встроенные вложения)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Только сообщения"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Сообщения и вложения"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Сообщения с вложениями и указателем"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Только сообщения"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Сообщения и вложения"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Сообщения с вложениями и указателем"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Новый файл mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Добавить к существующему файлу mbox"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-формат"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-формат"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Сообщение"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Заголовки"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Экспорт папки (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Как файл mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Один заархивированный файл mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Структурировано с подпапками"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "С плоскими подпапками"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Экспорт удаленной папки"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Экспортировать все сообщения в папку"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Формат сообщения EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-формат"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Формат PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Простой текстовый формат"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Формат CSV (электронная таблица)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Индекс сообщения"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Поиск и экспорт сообщений"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Импорт файлов mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Отдельные файлы mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Отдельные файлы mbox (со структурой sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Все файлы mbox из каталога"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Все файлы mbox из каталога (со структурой sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Импорт папки Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Импорт сообщений EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Индивидуальные сообщения EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Все сообщения EML из каталога"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Все сообщения EML из каталога и подкаталогов"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Копировать путь к папке"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Открыть каталог папок"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Сообщения с вложениями и указателем"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Сообщения и HTML-индекс"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Сообщения с вложениями и указателем"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Сообщения в виде одного файла"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Сообщения в виде одного файла с вложениями"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-формат"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-формат"
 	}
+
 }

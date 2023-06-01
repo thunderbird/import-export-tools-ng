@@ -4,5 +4,278 @@
 	},
 	"extensionDescription": {
 		"message": "Voegt enkele hulpmiddelen toe om berichten en mappen te importeren en exporteren (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools VAN"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Opties"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Hulp"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Profiel exporteren"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importeer profiel"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Back-up"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Volledig profiel"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Alleen post"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Berichten exporteren als..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-berichtformaat"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-formaat"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-formaat"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Platte tekstformaat"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-indeling (spreadsheet)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox-indeling"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Berichtenindex"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Kopieer naar klembord"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Berichten (bijlagen ingesloten)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Alleen berichten"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Berichten en bijlagen"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Berichten met bijlagen en index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Alleen berichten"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Berichten en bijlagen"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Berichten met bijlagen en index"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Nieuw mbox-bestand"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Toevoegen aan bestaand mbox-bestand"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-indeling"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-formaat"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Bericht"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Kopteksten"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Map exporteren (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Als mbox-bestand"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Eén gecomprimeerd mbox-bestand"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Gestructureerd met submappen"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Met afgeplatte submappen"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Externe map exporteren"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exporteer alle berichten in map"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-berichtindeling"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-indeling"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-formaat"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Platte tekstformaat"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-indeling (spreadsheet)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Berichtenindex"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Zoek en exporteer berichten"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importeer mbox-bestanden"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Individuele mbox-bestanden"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Individuele mbox-bestanden (met sbd-structuur)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Alle mbox-bestanden uit directory"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Alle mbox-bestanden uit directory (met sbd-structuur)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importeer Maildir-map"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "EML-berichten importeren"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Individuele EML-berichten"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Alle EML-berichten uit een map"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Alle EML-berichten uit een map en submappen"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Mappad kopiëren"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Mappenlijst openen"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Berichten met bijlagen en index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Berichten en HTML-index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Berichten met bijlagen en index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Berichten als enkel bestand"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Berichten als enkel bestand met bijlagen"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-indeling"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-formaat"
 	}
+
 }

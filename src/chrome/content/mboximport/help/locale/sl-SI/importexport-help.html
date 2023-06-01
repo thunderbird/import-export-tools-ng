@@ -3,44 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>ImportExportTools NG pomoč</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Help-User Guide</h2>
-    <p>
-      To je minimalističen prvi začetek uporabniškega priročnika. Očitno je treba marsikaj dodati. Ta trenutna
-      stran se osredotoča na menije in nove možnosti. V naslednjih različicah se bo nenehno posodabljal.<br />
-    </p>
-    <h3>Različica 12.0.0: podpora za Thunderbird 102 - 1. julij 2022</h3>
-    <p>
-      Obravnavane težave:<br /><br />
-      <p>
-        - Podpora za Thunderbird 102 in 91<br />
-        - Popravite stanje dirke v SessionRestore #284 #314<br />
-        - Popravi izvoz IMAP, ki preskakuje prazne mape #320<br />
-        - Popravi možnosti izvozne mape, ki niso shranjene #318<br />
-        - Popravi spremembe nastavitev tiskanja
-      </p>
-      <br /><br />
-      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG pomoč</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h3>Podpora:</h3>
     <p>
       Objavite težave ali zahteve po funkcijah v repozitoriju razširitev GitHub:
@@ -93,77 +70,90 @@
       </thead>
       <tbody>
         <tr>
-          <td>Izvozna mapa</td>
+          <td>__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
           <td>Izvozite eno mapo v datoteko formata mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
           <td>Izvozite posamezno mapo v stisnjeno datoteko formata mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__</td>
           <td>Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox<br />
-            (podimeniki .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
           <td>
             Izvozite mapo, vključno z vsemi njenimi podmapami, v nabor datotek formata mbox, eno za vsako
             podmapo, izvoženih v eno mapo.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Izvoz oddaljene mape (imap) v eno datoteko mbox.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke formata EML (brez strukture/podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
-            Priloge niso vključene. S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
+            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
+            Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
             Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
             vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Izvozite sporočila mape kot niz datotek v formatu PDF</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke v obliki navadnega besedila, priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, priloge niso
             vključene.<br />
@@ -171,78 +161,90 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__</td>
           <td>
             Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
             Izvozite sporočila mape kot eno samo datoteko besedilnega formata CSV (vrednosti, ločene z
-            vejico), priloge priloge niso vključene.<br />
+            vejico), priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot niz datotek v formatu PDF, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.<br />
-            Opomba: izpis PDF ni podprt v sistemu OSX zaradi težave z gonilnikom.
-          </td>
+          <td class="">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>Ustvari indeksno datoteko HTML mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Odprite iskalno pogovorno okno in izvozite želene rezultate</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Uvozite datoteko ali datoteke mbox. Izberite s strukturo/podmapami ali brez</td>
+          <td class="">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Izberite in uvozite sporočilne datoteke maildir</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Uvozite eno ali več datotek mbox iz neposrednega imenika.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Izberite in uvozite mapo maildir</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Izberite in uvozite sporočilne datoteke EML (brez strukture/podmap)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Uvozite vsa sporočila EML iz ene mape</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>Uvozite vsa sporočila EML iz ene mape, vključno s strukturo/podmapami</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Kopirajte pot OS do izbrane mape</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Odprite pot OS do izbrane mape</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Odprite glavno stran s pomočjo</td>
         </tr>
       </tbody>
@@ -258,98 +260,119 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td>__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke formata EML</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke zapisa HTML</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Izvozi izbrana sporočila v datoteke formata EML (vdelane priloge)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke formata HTML, vključno s prilogami</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Izvozi izbrana sporočila v datoteke formata EML<br />
+            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke v obliki navadnega besedila</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke v obliki navadnega besedila, vključno s prilogami</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Izvozi izbrana sporočila v datoteke zapisa HTML</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v eno besedilno datoteko CSV</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Izvozite izbrana sporočila v datoteke formata HTML, vključno s prilogami</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v eno datoteko mbox</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Izvozite sporočila kot datoteke v formatu HTML.<br />
+            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Izvozite sporočila kot datoteke v formatu HTML, vključno s prilogami.<br />
+            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Izvozite izbrana sporočila v datoteke formata PDF</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Izvozi izbrana sporočila v datoteke v obliki navadnega besedila</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>Izvozite izbrana sporočila v datoteke v obliki navadnega besedila, vključno s prilogami</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Izvozite sporočila kot datoteke v obliki navadnega besedila, vključno s prilogami<br />
+            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Izvozi izbrana sporočila v eno besedilno datoteko CSV</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Izvozi izbrana sporočila v eno datoteko mbox</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
           <td>Pripni izbrana sporočila obstoječi datoteki mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Shranite izbrana sporočila v datoteke formata PDF</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td>__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Shranite sporočila kot datoteke v formatu EML.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Ustvarite indeksno datoteko HTML za izbrana sporočila</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Shranite sporočila kot datoteke v formatu HTML.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Ustvarite indeksno datoteko CSV za izbrana sporočila</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Shranite sporočila kot datoteke v formatu HTML, vključno s prilogami<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
+          <td>__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Shranite sporočila kot datoteke v obliki navadnega besedila<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Kopirajte posamezno izbrano sporočilo v odložišče</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Shranite sporočila kot datoteke v obliki navadnega besedila, vključno s prilogami<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Kopirajte glave posameznega izbranega sporočila v odložišče</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Ustvarite indeksno datoteko HTML za izbrane datoteke</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Ustvarite indeksno datoteko CSV za izbrane datoteke</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Odprite glavno stran s pomočjo</td>
         </tr>
       </tbody>
@@ -365,160 +388,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Izvozna mapa</td>
-          <td>Izvozite eno mapo v datoteko formata mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Izvozite posamezno mapo v stisnjeno datoteko formata mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox<br />
-            (podimeniki .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Izvozite mapo, vključno z vsemi njenimi podmapami, v nabor datotek formata mbox, eno za vsako
-            podmapo, izvoženih v eno mapo.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Izvoz oddaljene mape (imap) v eno datoteko mbox.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td>__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot datoteke formata EML (brez strukture/podmap).<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
-            Priloge niso vključene. S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
-            Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
-            vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, priloge niso vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot datoteke v obliki navadnega besedila, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, priloge niso
-            vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot eno samo datoteko besedilnega formata CSV (vrednosti, ločene z
-            vejico), priloge priloge niso vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Izvozite sporočila mape kot niz datotek v formatu PDF, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.<br />
-            Opomba: izpis PDF ni podprt v sistemu OSX zaradi težave z gonilnikom.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko HTML mape messages (brez izvoza sporočil)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Odprite iskalno pogovorno okno in izvozite želene rezultate</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Uvozite datoteko ali datoteke mbox. Izberite s strukturo/podmapami ali brez</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Izberite in uvozite sporočilne datoteke EML (brez strukture/podmap)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Uvozite vsa sporočila EML iz ene mape</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Uvozite vsa sporočila EML iz ene mape, vključno s strukturo/podmapami</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
+          <td>__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
           <td>Shrani vso pošto v trenutnem profilu</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Shranite celoten profil (pošta, razširitve, možnosti)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Uvoz celotnega profila (pošta, razširitve, možnosti)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Odprite glavno stran s pomočjo</td>
         </tr>
       </tbody>
@@ -530,8 +424,8 @@
       spustnih menijih imen datotek. Datum po meri je mogoče uporabiti tudi z žetonom ${date_custom},
       uporabljenim v razširjenih imenih datotek po meri. Prvotni (privzeti) format datuma je:<br />
       LLLLMMDDHHmm : 202011060808<br /><br />
-      Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s <code>strftime()</code> Unix. Temelji na
-      vratih JavaScript
+      Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s funkcijo <code>strftime()</code> Unix.
+      Temelji na vratih JavaScript
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , funkciji za oblikovanje datuma in ure.<br />
       Pristanišče strftime() TH Doana (https://thdoan.github.io/strftime/)<br />
@@ -902,8 +796,8 @@
       Primer vnosov vročih tipk (niz predmetov JSON)<br /><br />
       <code class="notranslate">id</code> - indeks ključa (1-10)<br />
       <code class="notranslate">key</code> - ključ (en znak)<br />
-      ključna koda - ključna koda &#39; <code class="notranslate">keycode</code> *&#39;<br />
-      Vključen je lahko bodisi ključ ali koda ključa, vendar ne obojega<br />
+      <code class="notranslate">keycode</code> - ključna koda &#39;VK_*&#39;<br />
+      Vključen je lahko bodisi ključ ali ključna koda, vendar ne obojega<br />
       <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam ločen s presledki
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />
@@ -939,6 +833,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Ker so bližnjice nove in eksperimentalne, bom v skladišče dodal tudi več dokumentacije. Preverite
       razširitev
@@ -946,6 +841,31 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br />
+    <br /><br />
+    <div>__MSG_extensionName__</div>
+    <h3>Različica 12.0.0: podpora za Thunderbird 102 - 1. julij 2022</h3>
+    <p>
+      Obravnavane težave:<br /><br />
+      <p>
+        - Podpora za Thunderbird 102 in 91<br />
+        - Popravite stanje dirke v SessionRestore #284 #314<br />
+        - Popravi izvoz IMAP, ki preskakuje prazne mape #320<br />
+        - Popravi možnosti izvozne mape, ki niso shranjene #318<br />
+        - Popravi spremembe nastavitev tiskanja
+      </p>
+      <br /><br />
+      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <script type="application/javascript" src="../../../modules/i18n.js"></script>
+    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

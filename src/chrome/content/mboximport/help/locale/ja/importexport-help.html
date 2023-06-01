@@ -3,316 +3,371 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
-    <title>ImportExportToolsNGヘルプ</title>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
+    <title>ImportExportTools NG ヘルプ</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportToolsNGヘルプ-ユーザーガイド</h2>
-    <p>
-      これは、ユーザーガイドの最小限の最初のスタートです。明らかに追加することがたくさんあります。この現在のページは、メニューと新しいオプションに焦点を当てています。以降のバージョンでは継続的に更新されます。<br />
-    </p>
-    <h3>バージョン12.0.0：Thunderbird102のサポート-2022年7月1日</h3>
-    <p>
-      対処された問題：<br /><br />
-      <p>
-        -Thunderbird102および91のサポート<br />-SessionRestore＃284＃314の競合状態を修正<br />-空のフォルダをスキップするIMAPエクスポートを修正＃320<br />
-        -保存されないエクスポートフォルダオプションを修正＃318<br />
-        -printSettingsの変更を修正
-      </p>
-      <br /><br />拡張機能の提案とテストのヘルプを提供してくれた次のユーザーに感謝します。<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG ヘルプ</div>
+          <div id="extVersion" style="padding-left: 4px;">バージョン</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h3>サポート：</h3>
     <p>
-      拡張機能のGitHubリポジトリに問題または機能のリクエストを投稿してください：
+      問題や機能リクエストを拡張機能の GitHub リポジトリに投稿してください:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportToolsNGの問題</a
+        >ImportExportTools NG Issues</a
       ><br /><br />バグの問題には、問題の解決に役立つ次の情報を含めてください。<br />
-      -ImportExportToolsNGバージョン<br />-Thunderbirdバージョン<br />-オペレーティングシステムとバージョン<br />-デバッグ出力（デバッグコンソールからコピー-Control-Shift-Jでアクセス）<br />
-      -問題につながる手順の説明<br />
+      - ImportExportTools NG版<br />- サンダーバードのバージョン<br />- オペレーティング
+      システムとバージョン<br />- デバッグ出力 (デバッグ コンソールからコピー - Control-Shift-J でアクセス)<br />
+      - 問題に至る手順の説明<br />
     </p>
-    <h2 id="main_help">ImportExportToolsNGの概要とメニュー</h2>
+    <h2 id="main_help">ImportExportTools NG の概要とメニュー</h2>
     <p>
-      ImportExportTools
-      NGは、Paolo「Kaosmos」のオリジナル作品に基づいた後続の拡張機能です。この拡張機能は、次のようないくつかの異なるファイル形式をサポートする複数のインポートおよびエクスポート機能を提供します。注：一部の形式は、すべての機能でサポートされているわけではありません。<br />
-      --mbox<br />
+      ImportExportTools NG は、Paolo
+      のオリジナル作品「Kaosmos」に基づいた後続の拡張機能です。この拡張機能は、次のようないくつかの異なるファイル形式をサポートする複数のインポートおよびエクスポート機能を提供します。
+      注: 一部の形式はすべての機能でサポートされているわけではありません。<br />
+      - mbox<br />
       -EML<br />
-      --maildir<br />
-      -HTML<br />
-      -平文<br />-CSV（カンマ区切り値）<br />
-      -PDF<br /><br />の機能のほとんどはメッセージを中心に展開しますが、Thunderbirdプロファイルのインポートとエクスポートもサポートされています。さらに、エクスポートにはHTMLまたはCSVインデックスファイルを含めることもできます。
-      Thunderbirdプロファイルのバックアップは別の機能です。<br />
+      - メールディレクトリ<br />- HTML<br />
+      - 平文<br />- CSV (カンマ区切り値)<br />
+      - PDF<br /><br />の機能のほとんどはメッセージを中心に展開していますが、Thunderbird
+      プロファイルのインポートとエクスポートもサポートされています。さらに、エクスポートには HTML または CSV
+      インデックス ファイルを含めることもできます。 Thunderbird プロファイルのバックアップも機能の 1
+      つです。<br />
       <p>
-        IETng機能へのアクセスは、拡張機能によってインストールされたいくつかの異なるメニューを介して行われます。関数は状況依存です。メニューが追加されました：<br />
-        -フォルダペインコンテキスト（フォルダ操作）<br />
-        -メッセージリストコンテキスト（選択されたメッセージ）<br />
-        -[ツール]メニュー（フォルダとプロファイルの操作）<br /><br />拡張オプションの「ツール/アドオンオプション」の下に追加されたエントリの下でアクセスできる多くのオプションがあります。各メニューには、オプションダイアログにアクセスするための[オプション]メニュー項目もあります。<br />新しいオプションはここに文書化されており、セット全体が後で文書化されます。
+        IETng
+        機能へのアクセスは、拡張機能によってインストールされるいくつかの異なるメニューを通じて行われます。関数はコンテキストに依存します。次のメニューが追加されます。<br />
+        - フォルダー ペイン コンテキスト (フォルダー操作)<br />
+        - メッセージ リスト コンテキスト (選択されたメッセージ)<br />
+        - ツールメニュー（フォルダーとプロファイルの操作）<br /><br />拡張オプションの「ツール/アドオン
+        オプション」の下に追加されたエントリからアクセスできるオプションが多数あります。各メニューには、オプション
+        ダイアログにアクセスするためのオプション メニュー項目もあります。<br />新しいオプションはここで文書化され、セット全体については後で文書化されます。
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
-    <h2 id="main_menu_help">フォルダのコンテキストメニュー機能</h2>
+    <h2 id="main_menu_help">フォルダーのコンテキスト メニューの機能</h2>
     <table class="menu-table">
       <thead>
         <tr>
           <th>メニュー項目</th>
-          <th>機能説明</th>
+          <th>機能の説明</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>エクスポートフォルダ</td>
-          <td>単一のフォルダをmbox形式のファイルにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>単一のフォルダーをzip形式のmbox形式のファイルにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>すべてのサブフォルダーを含むフォルダーをmbox形式のメッセージツリーにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            すべてのサブフォルダーを含むフォルダーをmbox形式のメッセージツリーにエクスポートします<br />（.sbdサブディレクトリ）
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            すべてのサブフォルダーを含むフォルダーを、サブフォルダーごとに1つずつ、1つのフォルダーにエクスポートされたmbox形式のファイルのセットにエクスポートします。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>リモート（imap）フォルダーを単一のmboxファイルにエクスポートします。</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td>__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>単一のフォルダーを mbox 形式のファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>単一のフォルダーを zip 形式の mbox 形式ファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__</td>
+          <td>すべてのサブフォルダーを含むフォルダーを mbox 形式のメッセージ ツリーにエクスポートします。</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
           <td>
-            フォルダメッセージをEML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
+            すべてのサブフォルダーを含むフォルダーを一連の mbox 形式ファイルにエクスポートします
+            (サブフォルダーごとに 1 つずつ)。単一のフォルダーにエクスポートされます。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            フォルダメッセージをHTML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />添付ファイルは含まれていません。これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
+          <td class="">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
+          <td>リモート (imap) フォルダーを単一の mbox ファイルにエクスポートします。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージをHTML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />添付ファイルは個別のファイルとして保存されます。これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            フォルダメッセージをプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含むプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            フォルダメッセージを単一のプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含む単一のプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            フォルダメッセージを単一のCSV（カンマ区切り値）テキスト形式ファイルとしてエクスポートします。添付ファイルの添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含むPDF形式のファイルのセットとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。<br />注：ドライバーの問題により、OSXではPDF出力はサポートされていません。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>フォルダメッセージのHTMLインデックスファイルを作成します（メッセージのエクスポートなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>フォルダメッセージのCSVインデックスファイルを作成します（メッセージのエクスポートなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>検索ダイアログを開き、目的の結果をエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>1つまたは複数のmboxファイルをインポートします。構造/サブフォルダーの有無を選択</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>maildirメッセージファイルを選択してインポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>EMLメッセージファイルを選択してインポートします（構造/サブフォルダーなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>単一のフォルダからすべてのEMLメッセージをインポートします</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>構造/サブフォルダーを含む単一のフォルダーからすべてのEMLメッセージをインポートします</td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            フォルダー メッセージを EML 形式ファイル (構造/サブフォルダーなし) としてエクスポートします。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
-          <td>選択したフォルダのOSパスをコピーします</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
-          <td>選択したフォルダのOSパスを開きます</td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            フォルダーのメッセージを HTML 形式のファイルとしてエクスポートします
+            (構造/サブフォルダーなし)。<br />これにより、各メッセージをリストした HTML インデックス
+            ファイルも作成されます。
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
-          <td>ImportExportToolsNGオプションダイアログを開きます</td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            フォルダーのメッセージを HTML 形式のファイルとしてエクスポートします
+            (構造/サブフォルダーなし)。<br />添付ファイルは別のファイルとして保存されます。これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>メインヘルプページを開く</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>フォルダーメッセージを一連の PDF 形式ファイルとしてエクスポートします。</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
+          <td>
+            フォルダーのメッセージをプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            添付ファイルを含むフォルダー
+            メッセージをプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
+          <td>
+            フォルダーのメッセージを単一のプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__</td>
+          <td>
+            添付ファイルを含むフォルダー メッセージを 1
+            つのプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>
+            フォルダーのメッセージを単一の CSV (カンマ区切り)
+            テキスト形式ファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
+          </td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>フォルダーメッセージの HTML インデックスファイルを作成します (メッセージのエクスポートなし)</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>フォルダーメッセージの CSV インデックスファイルを作成します (メッセージのエクスポートなし)</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+          <td>検索ダイアログを開き、必要な結果をエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>1 つ以上の mbox ファイルを直接ディレクトリからインポートします。</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>maildir フォルダーを選択してインポートする</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+          <td>EML メッセージ ファイルを選択してインポートします (構造/サブフォルダーなし)</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
+          <td>すべての EML メッセージを 1 つのフォルダーからインポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+          <td>構造/サブフォルダーを含む単一フォルダーからすべての EML メッセージをインポートします。</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
+          <td>選択したフォルダーのOSパスをコピーします</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
+          <td>選択したフォルダーのOSパスを開きます</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
+          <td>ImportExportTools NG オプション ダイアログを開く</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
+          <td>メインのヘルプ ページを開く</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="message_functions_help">メッセージのコンテキストメニュー</h2>
+    <h2 id="message_functions_help">メッセージコンテキストメニュー</h2>
     <table class="menu-table">
       <thead>
         <tr>
           <th>メニュー項目</th>
-          <th>機能説明</th>
+          <th>機能の説明</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td>__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>選択したメッセージをEML形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>選択したメッセージをHTML形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>選択したメッセージを添付ファイルを含むHTML形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>選択したメッセージをプレーンテキスト形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>選択したメッセージを添付ファイルを含むプレーンテキスト形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>選択したメッセージを単一のCSVテキストファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>選択したメッセージを単一のmboxファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>選択したメッセージを既存のmboxファイルに追加します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>選択したメッセージをPDF形式のファイルに保存します</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>選択したメッセージをEML形式ファイルにエクスポートします(添付ファイルは埋め込まれます)</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            メッセージをEML形式のファイルとして保存します。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
+            選択したメッセージをEML形式ファイルにエクスポートします<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>選択したメッセージをHTML形式ファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>選択したメッセージを添付ファイルも含めて HTML 形式ファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            メッセージをHTML形式のファイルとして保存します。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
+            メッセージを HTML 形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            メッセージを添付ファイルを含むHTML形式のファイルとして保存します<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
+            メッセージを添付ファイルも含めて HTML 形式ファイルとしてエクスポートします。<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>選択したメッセージを PDF 形式ファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>選択したメッセージを平文形式のファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>選択したメッセージを添付ファイルを含むプレーンテキスト形式のファイルにエクスポートします</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            メッセージをプレーンテキスト形式のファイルとして保存します<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
+            添付ファイルを含むメッセージをプレーンテキスト形式のファイルとしてエクスポートします<br />これにより、各メッセージをリストした
+            HTML インデックス ファイルも作成されます。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            メッセージを添付ファイルを含むプレーンテキスト形式のファイルとして保存します<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>選択したメッセージを単一の CSV テキスト ファイルにエクスポートします</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>選択したファイルのHTMLインデックスファイルを作成します</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>選択したファイルのCSVインデックスファイルを作成します</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>選択したメッセージを単一の mbox ファイルにエクスポートします</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
-          <td>ImportExportToolsNGオプションダイアログを開きます</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>選択したメッセージを既存の mbox ファイルに追加します</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
-          <td>メインヘルプページを開く</td>
+          <td>__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>選択したメッセージの HTML インデックス ファイルを作成します</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>選択したメッセージの CSV インデックス ファイルを作成します</td>
+        </tr>
+        <tr>
+          <td>__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>選択した 1 つのメッセージをクリップボードにコピーします</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>選択した 1 つのメッセージのヘッダーをクリップボードにコピーします</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
+          <td>ImportExportTools NG オプション ダイアログを開く</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
+          <td>メインのヘルプ ページを開く</td>
         </tr>
       </tbody>
     </table>
@@ -322,165 +377,53 @@
       <thead>
         <tr>
           <th>メニュー項目</th>
-          <th>機能説明</th>
+          <th>機能の説明</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>エクスポートフォルダ</td>
-          <td>単一のフォルダをmbox形式のファイルにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>単一のフォルダーをzip形式のmbox形式のファイルにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>すべてのサブフォルダーを含むフォルダーをmbox形式のメッセージツリーにエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            すべてのサブフォルダーを含むフォルダーをmbox形式のメッセージツリーにエクスポートします<br />（.sbdサブディレクトリ）
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            すべてのサブフォルダーを含むフォルダーを、サブフォルダーごとに1つずつ、1つのフォルダーにエクスポートされたmbox形式のファイルのセットにエクスポートします。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>リモート（imap）フォルダーを単一のmboxファイルにエクスポートします。</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td>__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            フォルダメッセージをEML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            フォルダメッセージをHTML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />添付ファイルは含まれていません。これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージをHTML形式のファイル（構造/サブフォルダなし）としてエクスポートします。<br />添付ファイルは個別のファイルとして保存されます。これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            フォルダメッセージをプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含むプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            フォルダメッセージを単一のプレーンテキスト形式のファイルとしてエクスポートします。添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含む単一のプレーンテキスト形式のファイルとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            フォルダメッセージを単一のCSV（カンマ区切り値）テキスト形式ファイルとしてエクスポートします。添付ファイルの添付ファイルは含まれません。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            フォルダメッセージを、添付ファイルを含むPDF形式のファイルのセットとしてエクスポートします。<br />これにより、各メッセージをリストするHTMLインデックスファイルも作成されます。<br />注：ドライバーの問題により、OSXではPDF出力はサポートされていません。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>フォルダメッセージのHTMLインデックスファイルを作成します（メッセージのエクスポートなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>フォルダメッセージのCSVインデックスファイルを作成します（メッセージのエクスポートなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>検索ダイアログを開き、目的の結果をエクスポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>1つまたは複数のmboxファイルをインポートします。構造/サブフォルダーの有無を選択</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>EMLメッセージファイルを選択してインポートします（構造/サブフォルダーなし）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>単一のフォルダからすべてのEMLメッセージをインポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>構造/サブフォルダーを含む単一のフォルダーからすべてのEMLメッセージをインポートします</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
+          <td>__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
           <td>現在のプロファイルにすべてのメールを保存します</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
-          <td>プロファイル全体（メール、内線番号、オプション）を保存します</td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+          <td>完全なプロファイル (メール、拡張機能、オプション) を保存します。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>完全なプロファイル（メール、内線番号、オプション）をインポートします</td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+          <td>完全なプロファイル (メール、拡張機能、オプション) をインポートする</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
-          <td>ImportExportToolsNGオプションダイアログを開きます</td>
+          <td>__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
-          <td>メインヘルプページを開く</td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
+          <td>ImportExportTools NG オプション ダイアログを開く</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
+          <td>メインのヘルプ ページを開く</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">カスタム日付形式</h2>
     <p>
-      カスタム日付オプションを使用すると、インデックス内の両方のファイルに使用される日付形式を完全に制御できます。ファイル名のドロップダウンでは、デフォルトの形式「日付」と新しいカスタム形式「日付（カスタム）」の両方を使用できます。カスタム日付は、拡張カスタムファイル名で使用される${date_custom}トークンと一緒に使用することもできます。元の（デフォルトの）日付形式は次のとおりです。<br />
-      YYYYMMDDHHmm：202011060808<br /><br />カスタム日付形式は、
-      <code>strftime()</code>
-      Unixライクな機能に一致する％シーケンスを利用します。これは、日付と時刻をフォーマットする関数である<a
+      カスタム日付オプションを使用すると、インデックス内の両方のファイルに使用される日付形式を完全に制御できます。デフォルト形式「日付」と新しいカスタム形式「日付
+      (カスタム)」の両方がファイル名のドロップダウンで使用できます。カスタム日付は、拡張カスタム
+      ファイル名で使用される ${date_custom} トークンとともに使用することもできます。元の (デフォルト)
+      日付形式は次のとおりです。<br />
+      YYYYMMDDHHmm : 202011060808<br /><br />カスタム日付形式は、 <code>strftime()</code> Unix
+      のような機能に一致する % シーケンスを利用します。これは、日付と時刻をフォーマットする関数である<a
         class="link1"
         href="http://man7.org/linux/man-pages/man3/strftime.3.html"
         ><code>strftime()</code></a
-      >のJavaScriptポートに基づいています。<br />
-      TH Doanによるstrftime（）のポート（https://thdoan.github.io/strftime/）<br />
+      >の JavaScript ポートに基づいています。<br />
+      TH Doan による strftime() のポート (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>変換シーケンスの説明</h3>
     <table class="dateformat-table">
@@ -493,11 +436,11 @@
       <tbody>
         <tr>
           <td><code class="code1">%a</code></td>
-          <td>曜日の省略名。</td>
+          <td>曜日の略称。</td>
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>曜日のフルネーム。</td>
+          <td>曜日の完全な名前。</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
@@ -505,145 +448,149 @@
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
-          <td>完全な月の名前。</td>
+          <td>完全な月名。</td>
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>現在のロケールの優先日時（UTC）表現。</td>
+          <td>現在のロケールで優先される日付と時刻 (UTC) 表現。</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>2桁の整数としての世紀番号（年/ 100）。</td>
+          <td>2 桁の整数で表される世紀番号 (年/100)。</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>10進数としての月の日（範囲01から31）。</td>
+          <td>10 進数で表した日付 (01 ～ 31 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>10進数としての月の日（1から31の範囲）。</td>
+          <td>10 進数で表した日付 (範囲は 1 ～ 31)。</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>ISO 8601日付形式（ <code class="code1">%Y-%m-%d</code>と同等）。</td>
+          <td>ISO 8601 日付形式 ( <code class="code1">%Y-%m-%d</code>と同等)。</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            10進数として世紀を使用するISO8601週ベースの年。 4桁の年は、ISOの週番号に対応します（
-            <code class="code1">%V</code>を参照）。これは<code class="code1">%Y</code
-            >と同じ形式と値ですが、ISOの週番号が前年または翌年に属する場合は、代わりにその年が使用されます。
+            ISO 8601 の週ベースの年 (世紀は 10 進数)。 4 桁の年は ISO の週番号に対応します (
+            <code class="code1">%V</code>を参照)。これは<code class="code1">%Y</code
+            >と同じ形式と値を持ちますが、ISO
+            週番号が前年または翌年に属している場合は、その年が代わりに使用されます。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            <code class="code1">%G</code>と同様ですが、世紀はありません。つまり、2桁の年（00-99）があります。
+            <code class="code1">%G</code>と似ていますが、世紀はありません。つまり、2 桁の年 (00 ～ 99)
+            が付きます。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            24時間制（00から23の範囲）を使用した10進数としての時間。
+            24 時間制を使用した 10 進数での時間 (範囲は 00 ～ 23)。
             <code class="code1">%k</code>も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            12時間制（01から12の範囲）を使用した10進数としての時間。
+            12 時間制を使用した 10 進数での時間 (範囲は 01 ～ 12)。
             <code class="code1">%l</code>も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>10進数としての年の日（001から366の範囲）。</td>
+          <td>10 進数で表した通算日 (001 ～ 366 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            24時間制（0から23の範囲）を使用した10進数としての時間。
+            24 時間制を使用した 10 進数での時間 (範囲は 0 ～ 23)。
             <code class="code1">%H</code>も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            12時間制（1から12の範囲）を使用した10進数としての時間。
+            12 時間制を使用した 10 進数での時間 (範囲は 1 ～ 12)。
             <code class="code1">%I</code>も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>10進数としての月（範囲01から12）。</td>
+          <td>10 進数で表した月 (01 ～ 12 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>10進数としての月（1から12の範囲）。</td>
+          <td>10 進数で表した月 (1 ～ 12 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>10進数としての分（00から59の範囲）。</td>
+          <td>分を 10 進数で表します (範囲は 00 ～ 59)。</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            指定された時間値に応じて、「AM」または「PM」のいずれか。正午は「PM」として扱われ、真夜中は「AM」として扱われます。
+            指定された時刻値に応じて「AM」または「PM」のいずれか。正午は「PM」として扱われ、午前 0
+            時は「AM」として扱われます。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>
-            <code class="code1">%p</code>と同様ですが、小文字（&quot;am&quot;または&quot;pm&quot;）です。
-          </td>
+          <td><code class="code1">%p</code>と似ていますが、小文字 (「am」または「pm」) です。</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>エポックからの秒数、1970-01-01 00:00:00 +0000（UTC）。</td>
+          <td>エポック 1970-01-01 00:00:00 +0000 (UTC) からの秒数。</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>10進数として2番目（範囲00から59）。</td>
+          <td>10 進数で表される秒 (00 ～ 59 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            曜日は小数（1から7の範囲）で、月曜日は1です。 <code class="code1">%w</code>も参照してください。
+            曜日を 10 進数で表します (範囲は 1 ～ 7)。月曜日が 1 です<code class="code1">%w</code
+            >も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            10進数としての現在の年のISO8601週番号（01から53の範囲）。ここで、週1は、新年に少なくとも4日ある最初の週（つまり、最初の木曜日）です。
+            現在の年の ISO 8601 週番号 (範囲 01 ～ 53) を 10 進数で表します。ここで第 1 週は、新年に少なくとも
+            4 日ある最初の週 (つまり、最初の木曜日) です。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            曜日は小数（0から6の範囲）で、日曜日は0です。 <code class="code1">%u</code>も参照してください。
+            10 進数で表した曜日 (0 ～ 6 の範囲)、日曜日は 0 です。
+            <code class="code1">%u</code>も参照してください。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>時刻なしの現在のロケールの優先日付表現。</td>
+          <td>現在のロケールの時刻を除いた優先日付表現。</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>日付なしの現在のロケールの優先時間表現。</td>
+          <td>現在のロケールの日付を除いた優先時刻表現。</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>世紀のない10進数としての年（範囲00から99）。</td>
+          <td>世紀を含まない 10 進数としての年 (00 ～ 99 の範囲)。</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>世紀を含む10進数としての年。</td>
+          <td>世紀を含む 10 進数としての年。</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            <code class="code1">+hhmm</code>または<code class="code1">-hhmm</code
-            >の数値タイムゾーン（つまり、UTCからの時間と分のオフセット）。
+            <code class="code1">+hhmm</code>または<code class="code1">-hhmm</code>数値タイムゾーン
+            (つまり、UTC からの時と分のオフセット)。
           </td>
         </tr>
         <tr>
@@ -652,53 +599,65 @@
         </tr>
       </tbody>
     </table>
-    <h3>互換性に関する注意：</h3>
+    <h3>互換性に関する注意事項:</h3>
     <ul>
-      <li><code class="code1">%c</code>フォーマットされた文字列はわずかに異なります</li>
+      <li><code class="code1">%c</code> - フォーマットされた文字列が少し異なります</li>
       <li>
-        <code class="code1">%D</code>実装されていません（ <code class="code1">%m/%d/%y</code>または<code
+        <code class="code1">%D</code> - 実装されていません ( <code class="code1">%m/%d/%y</code>または<code
           class="code1"
           >%d/%m/%y</code
-        >を使用）
+        >を使用してください)
       </li>
-      <li><code class="code1">%e</code>スペースは追加されません</li>
-      <li><code class="code1">%E</code>実装されていません</li>
-      <li><code class="code1">%h</code>実装されていません（ <code class="code1">%b</code>を使用）</li>
-      <li><code class="code1">%k</code>スペースは追加されません</li>
+      <li><code class="code1">%e</code> - スペースは追加されません</li>
+      <li><code class="code1">%E</code> - 実装されていません</li>
       <li>
-        <code class="code1">%n</code>
-        <code class="code1">%m</code>と同様ですが、先行ゼロはありません（改行には<code class="code1">\n</code
-        >を使用してください）
+        <code class="code1">%h</code> - 実装されていません ( <code class="code1">%b</code>を使用してください)
       </li>
-      <li><code class="code1">%O</code>実装されていません</li>
-      <li><code class="code1">%r</code>実装されていません（ <code class="code1">%I:%M:%S %p</code>使用）</li>
+      <li><code class="code1">%k</code> - スペースは追加されません</li>
+      <li>
+        <code class="code1">%n</code> - <code class="code1">%m</code>と同様ですが、先頭にゼロはありません
+        (改行には<code class="code1">\n</code>を使用します)
+      </li>
+      <li><code class="code1">%O</code> - 未実装</li>
+      <li>
+        <code class="code1">%r</code> - 実装されていません (
+        <code class="code1">%I:%M:%S %p</code>を使用してください)
+      </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>メッセージの件名</td>
       </tr>
-      <li><code class="code1">%R</code>実装されていません（ <code class="code1">%H:%M</code>を使用）</li>
-      <li><code class="code1">%t</code>実装されていません（ <code class="code1">\t</code>を使用）</li>
-      <li><code class="code1">%T</code>実装されていません（ <code class="code1">%H:%M:%S</code>を使用）</li>
-      <li><code class="code1">%U</code>実装されていません</li>
-      <li><code class="code1">%W</code>実装されていません</li>
-      <li><code class="code1">%+</code> -実装されていません</li>
-      <li><code class="code1">%%</code> -実装されていません（ <code class="code1">%</code>を使用）</li>
+      <li>
+        <code class="code1">%R</code> - 実装されていません (
+        <code class="code1">%H:%M</code>を使用してください)
+      </li>
+      <li>
+        <code class="code1">%t</code> - 実装されていません ( <code class="code1">\t</code>を使用してください)
+      </li>
+      <li>
+        <code class="code1">%T</code> - 実装されていません (
+        <code class="code1">%H:%M:%S</code>を使用してください)
+      </li>
+      <li><code class="code1">%U</code> - 実装されていません</li>
+      <li><code class="code1">%W</code> - 未実装</li>
+      <li><code class="code1">%+</code> - 実装されていません</li>
+      <li><code class="code1">%%</code> - 実装されていません ( <code class="code1">%</code>を使用)</li>
     </ul>
     <br /><br />
-    <h2 id="ext_filename_format_help">拡張ファイル名形式：</h2>
+    <h2 id="ext_filename_format_help">拡張ファイル名の形式:</h2>
     <br />
     <p>
-      拡張ファイル名のフォーマットはトークンを利用します。正確なファイル名は、トークン、テキスト、または有効なファイル名文字を使用して作成できます。無効な文字は次のとおり<code
-        >| * : &lt; &gt; ? \ / &quot;</code
-      >英語（en-US）トークンは、どのロケールでも使用できます。ロケール固有のトークンも使用でき、英語の表の下に一覧表示されます。<br /><br />例：<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> -デフォルトの形式<br /><span
+      拡張ファイル名の書式設定ではトークンが使用されます。正確なファイル名は、トークンだけでなくテキストや有効なファイル名文字を利用して作成できます。無効な文字は次のとおりです:
+      <code>| * : &lt; &gt; ? \ / &quot;</code>英語 (en-US)
+      トークンはどのロケールでも使用できます。ロケール固有のトークンも使用でき、英語の表の下にリストされています。<br /><br />例:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - デフォルトの形式<br /><span
         class="notranslate"
         ><code>${prefix}_${date_custom}_${sender}</code></span
       >
-      -デフォルトの代わりにカスタムの日付形式を使用する<br /><span class="notranslate"
+      - デフォルトの代わりにカスタムの日付形式を使用します<br /><span class="notranslate"
         ><code>${subject}-GmailMsg-${date}-${index}</code></span
       >
-      -カスタムテキスト付き<br /><br /><br />
+      - カスタム テキストあり<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
@@ -707,7 +666,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>メッセージの件名。長さは、件名の長さオプションによって制限される場合があります。</td>
+        <td>メッセージの件名。長さは件名の長さのオプションによって制限される場合があります。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -719,11 +678,11 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td>メッセージ送信者の電子メールアドレス。</td>
+        <td>メッセージ送信者の電子メール アドレス。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td>メッセージ受信者の電子メールアドレス。</td>
+        <td>メッセージ受信者の電子メール アドレス。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
@@ -731,30 +690,30 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td>メッセージインデックス番号。</td>
+        <td>メッセージのインデックス番号。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>プレフィックステキストオプション値。</td>
+        <td>プレフィックス テキスト オプションの値。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>接尾辞のテキストオプション値。</td>
+        <td>接尾辞テキストのオプション値。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>標準の日付形式。デフォルトの形式は次のとおりです。YYYYMMDDHHmm</td>
+        <td>標準の日付形式。デフォルトの形式は次のとおりです: YYYYMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>カスタムの日付形式。カスタム日付フォーマットのセクションを参照してください。</td>
+        <td>カスタムの日付形式。カスタム日付形式のセクションを参照してください。</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>トークン（en-US）</td>
-        <td>ローカライズ（<span id="locale1"></span> ）トークン</td>
+        <td>トークン (en-US)</td>
+        <td>ローカライズされた (<span id="locale1"></span> ) トークン</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -802,13 +761,18 @@
       </tr>
     </table>
     <br />
-    <h2>新規および実験的な設定（オプション）</h2>
+    <h2>新しい実験的な設定 (オプション)</h2>
     <p>
-      オプションダイアログ内でまだ構成できないいくつかの新機能とオプションがあります。これらの機能が安定すると、UIに追加されます。<br />それらを使用するには、構成エディター内で設定する必要があります。エディターにアクセスするには、[ツール/オプション]メニューを使用して[詳細]セクションを選択すると、下部に[エディターの構成]ボタンが表示されます。検索バーに「importexporttoolsng」と入力すると、すべての拡張機能の設定が表示されます。その後、必要に応じて以下のさまざまな設定を編集できます。
+      オプション
+      ダイアログ内ではまだ構成できない新しい機能とオプションがいくつかあります。これらの機能が安定すると、UI
+      に追加されます。<br />これらを使用するには、構成エディター内で設定する必要があります。エディターにアクセスするには、[ツール/オプション]
+      メニューを使用し、[詳細設定] セクションを選択すると、下部に [構成エディター]
+      ボタンが表示されます。検索バーに「importexporttoolsng」と入力すると、すべての拡張機能の設定が表示されます。必要に応じて、以下のさまざまな設定を編集できます。
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      この設定は、インデックスファイルに使用されるのと同じ完全なフォーマットに従います。デフォルトでは空の文字列です。フォーマットされた日付/時刻文字列を使用すると、インデックスの日付フォーマットが変更されます。
+      この設定は、インデックス
+      ファイルに使用されるものと同じ完全なフォーマットに従います。デフォルトでは空の文字列ですが、フォーマットされた日付/時刻文字列を使用する場合、インデックスの日付フォーマットが変更されます。
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -819,36 +783,44 @@
       </p>
     </p>
     <p>
-      これらの設定は両方とも、エクスポートされたメッセージファイル名が使用するのと同じタイプの拡張ファイル命名形式を使用します。
-      1つ目は外部アタッチメント用で、2つ目は埋め込み（インライン）アタッチメント用です。
+      これらの設定は両方とも、エクスポートされたメッセージのファイル名で使用されるのと同じタイプの拡張ファイル命名形式を使用します。
+      1 つ目は外部添付ファイル用で、2 つ目は埋め込み (インライン) 添付ファイル用です。
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      通常、Thunderbirdのメッセージの「日付」は、送信者のメールクライアントによって設定された日付です。このオプションを「true」に設定すると、受信者のメールクライアントで受信した日付が利用されます。この日付は、ファイル名とインデックスファイルの日付の両方に使用されます。
+      通常、Thunderbird のメッセージの「日付」は、送信者のメール
+      クライアントによって設定された日付です。このオプションを「true」に設定すると、受信者のメール
+      クライアントでの受信日が使用されます。この日付は、ファイル名とインデックス
+      ファイルの日付の両方に使用されます。
     </p>
-    <h2>基本的なグローバルホットキー（ショートカット）機能</h2>
+    <h2>基本的なグローバル ホットキー (ショートカット) 機能</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      この新しい設定により、ユーザーは最大10個のキーボードショートカットを設定できます。ショートカットは、ほとんどのImportExportToolsNG機能と他のThunderbird機能を実行できます。設定文字列は、JSON形式のオブジェクトとして形式化されています。フォーマットとキーは次のとおりです。
+      この新しい設定により、ユーザーは最大 10 個のキーボード
+      ショートカットを設定できるようになります。ショートカットは、ImportExportTools NG 機能のほとんどと他の
+      Thunderbird 機能を実行できます。設定文字列は、JSON
+      形式のオブジェクトとして形式化されます。形式とキーは次のとおりです。
     </p>
     <p>
-      ホットキーエントリの例（JSONオブジェクトの配列）<br /><br />
-      <code class="notranslate">id</code>キーインデックス（1-10）<br />
-      <code class="notranslate">key</code> -キー（単一文字）<br />
-      <code class="notranslate">keycode</code>
-      -&#39;VK_*&#39;はキーコードを検出します<br />キーまたはキーコードのいずれかを含めることができますが、両方を含めることはできません<br /><code
+      ホットキーエントリの例 (JSON オブジェクトの配列)<br /><br />
+      <code class="notranslate">id</code> - キーのインデックス (1 ～ 10)<br />
+      <code class="notranslate">key</code> - キー (単一文字)<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定義キーコード<br />キーまたはキーコードのいずれかを含めることはできますが、両方を含めることはできません<br /><code
         class="notranslate"
         >modifiers</code
       >
-      -キー修飾子、スペース区切りのリスト（&#39;control&#39;、&#39;shift&#39;、&#39;alt&#39;、&#39;accel&#39;）<br />
-      <code class="notranslate">oncommand</code>直接コマンド文字列<br /><code class="notranslate"
+      - キー修飾子、スペース区切りのリスト
+      (&#39;control&#39;、&#39;shift&#39;、&#39;alt&#39;、&#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> - 直接のコマンド文字列<br /><code class="notranslate"
         >contexts</code
       >
-      -キーがアクティブなウィンドウコンテキスト<br /><code class="notranslate">&#39;all&#39;</code
-      >ウィンドウ、作成、検索<br /><code class="notranslate">&#39;messenger&#39;</code>
-      -メインメッセンジャーウィンドウとその子孫<br /><code class="notranslate">&#39;compose&#39;</code
-      >メッセージ作成ウィンドウ<br /><code class="notranslate">&#39;search&#39;</code>
-      -検索ダイアログ<br /><br /><code class="notranslate"
+      - キーがアクティブなウィンドウ コンテキスト<br /><code class="notranslate">&#39;all&#39;</code> -
+      メッセンジャー、作成、検索の下のすべてのウィンドウ<br /><code class="notranslate"
+        >&#39;messenger&#39;</code
+      >
+      - メインのメッセンジャー ウィンドウとその子孫<br /><code class="notranslate">&#39;compose&#39;</code> -
+      メッセージ作成ウィンドウ<br /><code class="notranslate">&#39;search&#39;</code> - 検索ダイアログ<br /><br /><code
+        class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
@@ -875,13 +847,37 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
-      ショートカットは新しく実験的なものなので、リポジトリにドキュメントを追加します。拡張機能<a
+      ショートカットは新しく実験的なものなので、リポジトリにさらにドキュメントを追加する予定です。拡張機能<a
         class="link1"
         href="https://github.com/thundernest/import-export-tools-ng"
-        >ImportExportToolsNGREADMEを</a
-      >確認してください<br />
+        >ImportExportTools NG README</a
+      >を確認してください<br />
     </p>
-    <br />
+    <br /><br />
+    <div>__MSG_拡張子名__</div>
+    <h3>バージョン 12.0.0 : Thunderbird 102 サポート - 2022 年 7 月 1 日</h3>
+    <p>
+      対処された問題:<br /><br />
+      <p>
+        - Thunderbird 102 および 91 のサポート<br />- SessionRestore の競合状態を修正 #284 #314<br />
+        - 空のフォルダーをスキップする IMAP エクスポートを修正 #320<br />
+        - 保存されないエクスポートフォルダーオプションを修正 #318<br />
+        - printSettings の変更を修正
+      </p>
+      <br /><br />機能拡張の提案とテストの支援については、次のユーザーに感謝します。<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <script type="application/javascript" src="../../../modules/i18n.js"></script>
+    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

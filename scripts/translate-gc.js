@@ -281,9 +281,9 @@ function sleep(ms) {
 // console.debug(translate);
 
 async function translateHelpPage() {
-	var localeFolders = _getAllFilesOrFolders(localeDir, true);
+	//var localeFolders = _getAllFilesOrFolders(localeDir, true);
 	
-	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM'];
+	//var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM'];
 
 	//var supportedLocales = ['it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
@@ -293,7 +293,7 @@ async function translateHelpPage() {
 	// 'sk-SK', 'sl-SI', 'sv-SE', 'el'];
 
 
-	localeFolders = supportedLocales;
+	//localeFolders = supportedLocales;
 	// console.debug(localeFolders);
 	var helpLocaleDir = "./src/chrome/content/mboximport/help/locale";
 	var helpPage = "./src/chrome/content/mboximport/help/locale/en-US/importexport-help.html";
@@ -539,10 +539,10 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-//translateHelpPage();
+translateHelpPage();
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
+//translateAll(inputFiles, translationArray, options);
 // loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];
 /*

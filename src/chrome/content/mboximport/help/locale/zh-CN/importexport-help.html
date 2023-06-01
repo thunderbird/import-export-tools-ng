@@ -3,55 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>ImportExportTools NG 帮助</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG 帮助-用户指南</h2>
-    <p>
-      这是用户指南的极简入门。显然有很多要补充的。当前页面重点介绍菜单和新选项。后续版本会持续更新。<br />
-    </p>
-    <h3>版本 12.0.0：Thunderbird 102 支持 - 2022 年 7 月 1 日</h3>
-    <p>
-      解决的问题：<br /><br />
-      <p>
-        - 支持雷鸟 102 和 91<br />
-        - 修复 SessionRestore #284 #314 中的竞争条件<br />- 修复 IMAP 导出跳过空文件夹 #320<br />
-        - 修复未保存的导出文件夹选项 #318<br />
-        - 修复打印设置更改
-      </p>
-      <br /><br />感谢以下用户的增强建议和测试帮助：<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG 帮助</div>
+          <div id="extVersion" style="padding-left: 4px;">版本</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h3>支持：</h3>
     <p>
       请在扩展 GitHub 存储库中发布问题或功能请求：
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG 问题</a
       ><br /><br />在错误问题中，包括以下信息以帮助解决问题：<br />
-      - ImportExportTools NG 版本<br />- 雷鸟版<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 - 使用
-      Control-Shift-J 访问）<br />
+      - ImportExportTools NG版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
+      使用 Control-Shift-J 访问）<br />
       - 导致问题的步骤的描述<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
       ImportExportTools NG 是基于 Paolo “Kaosmos”
-      原作的后续扩展。该扩展提供多种导入和导出功能，支持多种不同的文件格式，包括：
+      原创作品的后续扩展。该扩展提供了多种导入和导出功能，支持多种不同的文件格式，包括：
       注意：并非所有功能都支持某些格式。<br />
       - mbox<br />
       - EML<br />
@@ -60,10 +40,10 @@
       - PDF<br /><br />虽然大部分功能都围绕消息展开，但也支持导入和导出 Thunderbird
       配置文件。此外，导出还可以包括 HTML 或 CSV 索引文件。 Thunderbird 配置文件的备份是另一个功能。<br />
       <p>
-        访问 IETng 功能是通过扩展安装的几个不同菜单完成的。这些函数是上下文相关的。添加了以下菜单：<br />
-        - 文件夹窗格上下文（文件夹操作）<br />
-        - 消息列表上下文（选定消息）<br />
-        - 工具菜单（文件夹和配置文件操作）<br /><br />在扩展选项的“工具/附加选项”下的添加条目下可以访问许多选项。每个菜单还有一个选项菜单项来访问选项对话框。<br />此处记录了新选项，随后将记录整个设置。
+        访问 IETng 功能是通过扩展安装的几个不同菜单完成的。这些功能是上下文相关的。添加了以下菜单：<br />
+        - The Folder Pane Context（文件夹操作）<br />
+        - 消息列表上下文（选定的消息）<br />
+        - 工具菜单（文件夹和配置文件操作）<br /><br />在扩展选项的“工具/附加选项”下的添加条目下可以访问许多选项。每个菜单还有一个选项菜单项来访问选项对话框。<br />新选项记录在此处，整个集合将在随后记录。
       </p>
       <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
     </p>
@@ -77,143 +57,172 @@
       </thead>
       <tbody>
         <tr>
-          <td>导出文件夹</td>
+          <td>__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
           <td>将单个文件夹导出为 mbox 格式文件</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
           <td>将单个文件夹导出为压缩的 mbox 格式文件</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>将包含所有子文件夹的文件夹导出到 mbox 格式的消息树</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__</td>
+          <td>将包含其所有子文件夹的文件夹导出到 mbox 格式的消息树</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>将包含所有子文件夹的文件夹导出到 mbox 格式的消息树<br />（.sbd 子目录）</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
+          <td>将包含其所有子文件夹的文件夹导出到一组 mbox 格式文件，每个子文件夹一个，导出到单个文件夹。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>将包含所有子文件夹的文件夹导出到一组 mbox 格式文件，每个子文件夹一个，导出到单个文件夹。</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>将远程 (imap) 文件夹导出到单个 mbox 文件。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            将文件夹消息导出为 EML 格式文件（无结构/子文件夹）。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
+            将文件夹消息导出为 EML 格式文件（无结构/子文件夹）。<br />这还会创建一个列出每条消息的 HTML
+            索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />不包括附件。这还会创建一个 HTML
-            索引文件，列出每条消息。
+            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />这还会创建一个列出每条消息的 HTML
+            索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />附件保存为单独的文件。这还会创建一个
-            HTML 索引文件，列出每条消息。
+            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />附件保存为单独的文件。这还会创建一个列出每条消息的
+            HTML 索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>将文件夹消息导出为一组 PDF 格式文件</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
-            将文件夹消息导出为纯文本格式文件，不包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
+            将文件夹消息导出为纯文本格式文件，不包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            将文件夹消息导出为纯文本格式文件，包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
+            将文件夹邮件导出为纯文本格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            将文件夹消息导出为单个纯文本格式文件，不包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
+            将文件夹消息导出为单个纯文本格式文件，不包括附件。<br />这还会创建一个列出每条消息的 HTML
+            索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__</td>
           <td>
-            将文件夹消息导出为单个纯文本格式文件，包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
+            将文件夹消息导出为单个纯文本格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            将文件夹消息导出为单个 CSV（逗号分隔值）文本格式文件，不包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
+            将文件夹消息导出为单个 CSV（逗号分隔值）文本格式文件，不包括附件。<br />这还会创建一个列出每条消息的
+            HTML 索引文件。
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为一组 PDF 格式文件，包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。<br />注意：由于驱动程序问题，OSX 不支持 PDF 输出。
-          </td>
+          <td class="">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>创建文件夹消息的 HTML 索引文件（无消息导出）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>创建文件夹消息的 CSV 索引文件（无消息导出）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>打开搜索对话框并导出所需结果</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>导入一个或多个 mbox 文件。选择有或没有结构/子文件夹</td>
+          <td class="">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>选择并导入 maildir 消息文件</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>从直接目录导入一个或多个 mbox 文件。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>选择并导入一个 maildir 文件夹</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>选择并导入 EML 消息文件（无结构/子文件夹）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>从单个文件夹导入所有 EML 消息</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>从单个文件夹（包括结构/子文件夹）导入所有 EML 消息</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+          <td>从单个文件夹导入所有 EML 消息，包括结构/子文件夹</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>复制所选文件夹的操作系统路径</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>打开所选文件夹的操作系统路径</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>打开 ImportExportTools NG 选项对话框</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>打开主帮助页面</td>
         </tr>
       </tbody>
@@ -229,83 +238,107 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td>__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>将所选消息保存为 EML 格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>将所选消息保存为 HTML 格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>将所选邮件保存为 HTML 格式文件，包括附件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>将所选消息保存为纯文本格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>将所选邮件保存为纯文本格式文件，包括附件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>将所选消息保存到单个 CSV 文本文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>将选定的消息保存到单个 mbox 文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>将所选消息附加到现有 mbox 文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>将所选消息保存为 PDF 格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>将消息保存为 EML 格式文件。<br />这还会创建一个 HTML 索引文件，列出每条消息。</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>将所选消息导出为 EML 格式文件（嵌入附件）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>将消息另存为 HTML 格式文件。<br />这还会创建一个 HTML 索引文件，列出每条消息。</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>将所选消息导出为 EML 格式文件<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>将邮件另存为 HTML 格式文件，包括附件<br />这还会创建一个 HTML 索引文件，列出每条消息。</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>将消息保存为纯文本格式文件<br />这还会创建一个 HTML 索引文件，列出每条消息。</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>将所选消息导出为 HTML 格式文件</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>将消息保存为包含附件的纯文本格式文件<br />这还会创建一个 HTML 索引文件，列出每条消息。</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>将所选邮件导出为 HTML 格式文件，包括附件</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>为所选文件创建 HTML 索引文件</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>将消息导出为 HTML 格式文件。<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>为所选文件创建 CSV 索引文件</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>将消息导出为 HTML 格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>将所选消息导出为 PDF 格式文件</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>将所选消息导出为纯文本格式文件</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>将所选邮件导出为纯文本格式文件，包括附件</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>将消息导出为纯文本格式文件，包括附件<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>将所选消息导出到单个 CSV 文本文件</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>将所选邮件导出到单个 mbox 文件</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>将所选邮件附加到现有的 mbox 文件</td>
+        </tr>
+        <tr>
+          <td>__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>为所选消息创建 HTML 索引文件</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>为所选消息创建 CSV 索引文件</td>
+        </tr>
+        <tr>
+          <td>__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>将单个选定消息复制到剪贴板</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>将单个选定邮件的标题复制到剪贴板</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>打开 ImportExportTools NG 选项对话框</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>打开主帮助页面</td>
         </tr>
       </tbody>
@@ -321,166 +354,50 @@
       </thead>
       <tbody>
         <tr>
-          <td>导出文件夹</td>
-          <td>将单个文件夹导出为 mbox 格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>将单个文件夹导出为压缩的 mbox 格式文件</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>将包含所有子文件夹的文件夹导出到 mbox 格式的消息树</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>将包含所有子文件夹的文件夹导出到 mbox 格式的消息树<br />（.sbd 子目录）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>将包含所有子文件夹的文件夹导出到一组 mbox 格式文件，每个子文件夹一个，导出到单个文件夹。</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>将远程 (imap) 文件夹导出到单个 mbox 文件。</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td>__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为 EML 格式文件（无结构/子文件夹）。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
-          </td>
+          <td>__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>保存当前配置文件中的所有邮件</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />不包括附件。这还会创建一个 HTML
-            索引文件，列出每条消息。
-          </td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+          <td>保存完整的配置文件（邮件、分机、选项）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为 HTML 格式文件（无结构/子文件夹）。<br />附件保存为单独的文件。这还会创建一个
-            HTML 索引文件，列出每条消息。
-          </td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+          <td>导入完整的配置文件（邮件、分机、选项）</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为纯文本格式文件，不包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为纯文本格式文件，包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为单个纯文本格式文件，不包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为单个纯文本格式文件，包括附件。<br />这还会创建一个 HTML 索引文件，列出每条消息。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为单个 CSV（逗号分隔值）文本格式文件，不包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            将文件夹消息导出为一组 PDF 格式文件，包括附件。<br />这还会创建一个 HTML
-            索引文件，列出每条消息。<br />注意：由于驱动程序问题，OSX 不支持 PDF 输出。
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>创建文件夹消息的 HTML 索引文件（无消息导出）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>创建文件夹消息的 CSV 索引文件（无消息导出）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>打开搜索对话框并导出所需结果</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>导入一个或多个 mbox 文件。选择有或没有结构/子文件夹</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
+          <td>__MSG_toolsCtxMenu_Backup_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>选择并导入 EML 消息文件（无结构/子文件夹）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>从单个文件夹导入所有 EML 消息</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>从单个文件夹（包括结构/子文件夹）导入所有 EML 消息</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>将所有邮件保存在当前配置文件中</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
-          <td>保存完整的个人资料（邮件、分机、选项）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
-          <td>导入完整的配置文件（邮件、扩展、选项）</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>打开 ImportExportTools NG 选项对话框</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>打开主帮助页面</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">自定义日期格式</h2>
     <p>
-      自定义日期选项允许完全控制用于索引中两个文件的日期格式。默认格式“日期”和新的自定义格式“日期（自定义）”均在文件名下拉菜单中可用。自定义日期也可以与扩展自定义文件名中使用的
+      自定义日期选项允许完全控制用于索引中两个文件的日期格式。默认格式“日期”和新的自定义格式“日期（自定义）”都可以在文件名下拉列表中找到。自定义日期也可以与扩展自定义文件名中使用的
       ${date_custom} 标记一起使用。原始（默认）日期格式为：<br />
-      YYYYMMDDHHmm : 202011060808<br /><br />自定义日期格式使用与<code>strftime()</code>类 Unix 功能匹配的 %
+      YYYYMMDDHHmm : 202011060808<br /><br />自定义日期格式使用与<code>strftime()</code>类 Unix 功能相匹配的 %
       序列。它基于<a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"
         ><code>strftime()</code></a
-      >的 JavaScript 端口，这是一个格式化日期和时间的函数。<br />
+      >的 JavaScript 端口，用于格式化日期和时间的函数。<br />
       TH Doan 的 strftime() 端口 (https://thdoan.github.io/strftime/)<br />
     </p>
-    <h3>转换序列说明</h3>
+    <h3>转换顺序说明</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
-          <th>序列</th>
+          <th>顺序</th>
           <th>描述</th>
         </tr>
       </thead>
@@ -491,11 +408,11 @@
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>星期几的全名。</td>
+          <td>星期几的全称。</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
-          <td>缩写月份名称。</td>
+          <td>缩写的月份名称。</td>
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
@@ -507,15 +424,15 @@
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>世纪编号（年/100）为 2 位整数。</td>
+          <td>世纪数（年/100）作为 2 位整数。</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>以十进制数表示的月份中的日期（范围 01 到 31）。</td>
+          <td>以十进制数表示的月份中的第几天（范围从 01 到 31）。</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>以十进制数表示的月份中的日期（范围为 1 到 31）。</td>
+          <td>以十进制数表示的月份中的第几天（范围从 1 到 31）。</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
@@ -524,87 +441,79 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 基于周的年份，世纪为十进制数。 4 位数的年份对应于 ISO 周数（请参阅<code class="code1"
+            ISO 8601 基于周的年份，世纪作为十进制数。 4 位年份对应于 ISO 周数（请参阅<code class="code1"
               >%V</code
             >
             ）。这与<code class="code1">%Y</code>具有相同的格式和值，除了如果 ISO
-            周数属于上一年或下一年，则使用该年份。
+            周数属于上一年或下一年，则使用那一年。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>与<code class="code1">%G</code>类似，但没有世纪，即带有 2 位数年份 (00-99)。</td>
+          <td>类似于<code class="code1">%G</code> ，但没有世纪，即具有两位数的年份 (00-99)。</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
-          <td>
-            使用 24 小时制的十进制数字形式的小时（范围 00 到 23）。另请参阅<code class="code1">%k</code> 。
-          </td>
+          <td>使用 24 小时制（范围为 00 到 23）的十进制数形式的小时。另见<code class="code1">%k</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
-          <td>
-            使用 12 小时制的十进制数字形式的小时（范围 01 到 12）。另请参阅<code class="code1">%l</code> 。
-          </td>
+          <td>使用 12 小时制（范围为 01 到 12）的十进制数形式的小时。另见<code class="code1">%l</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>以十进制数表示的一年中的日期（范围 001 到 366）。</td>
+          <td>以十进制数表示的一年中的第几天（范围从 001 到 366）。</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
-          <td>
-            使用 24 小时制的十进制数字形式的小时（范围 0 到 23）。另请参阅<code class="code1">%H</code> 。
-          </td>
+          <td>使用 24 小时制（范围为 0 到 23）的十进制数形式的小时。另见<code class="code1">%H</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
-          <td>
-            使用 12 小时制的十进制数字形式的小时（范围 1 到 12）。另请参阅<code class="code1">%I</code> 。
-          </td>
+          <td>使用 12 小时制（范围为 1 到 12）的十进制数形式的小时。另见<code class="code1">%I</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>十进制数形式的月份（范围 01 到 12）。</td>
+          <td>十进制数形式的月份（范围为 01 到 12）。</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>十进制数形式的月份（范围 1 到 12）。</td>
+          <td>十进制数形式的月份（范围为 1 到 12）。</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>十进制数形式的分钟（范围 00 到 59）。</td>
+          <td>十进制数形式的分钟（范围为 00 到 59）。</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
-          <td>根据给定的时间值选择“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
+          <td>根据给定的时间值，可以是“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>与<code class="code1">%p</code>类似，但使用小写字母（“am”或“pm”）。</td>
+          <td>像<code class="code1">%p</code>但小写（“am”或“pm”）。</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>自纪元以来的秒数，1970-01-01 00:00:00 +0000 (UTC)。</td>
+          <td>自纪元 1970-01-01 00:00:00 +0000 (UTC) 以来的秒数。</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>秒为十进制数（范围 00 到 59）。</td>
+          <td>秒为十进制数（范围为 00 到 59）。</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
-          <td>以小数表示的星期几（范围为 1 到 7），星期一为 1。另请参见<code class="code1">%w</code> 。</td>
+          <td>小数形式的星期几（范围 1 到 7），星期一为 1。另请参见<code class="code1">%w</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            以十进制数表示的当年 ISO 8601 周数（范围 01 到 53），其中第 1 周是新年中至少有 4
+            ISO 8601 当前年份的周数，以十进制数表示（范围从 01 到 53），其中第 1 周是新年中至少有 4
             天的第一周（即第一个星期四）。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
-          <td>星期几为小数（范围 0 到 6），星期日为 0。另见<code class="code1">%u</code> 。</td>
+          <td>小数形式的星期几（范围 0 到 6），星期日为 0。另请参见<code class="code1">%u</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
@@ -616,16 +525,16 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>年作为没有世纪的十进制数（范围 00 到 99）。</td>
+          <td>不带世纪的十进制数字形式的年份（范围从 00 到 99）。</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>年为十进制数，包括世纪。</td>
+          <td>以十进制数字表示的年份，包括世纪。</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            <code class="code1">+hhmm</code>或<code class="code1">-hhmm</code>数字时区（即相对于 UTC
+            <code class="code1">+hhmm</code>或<code class="code1">-hhmm</code>数字时区（即与 UTC
             的小时和分钟偏移量）。
           </td>
         </tr>
@@ -644,17 +553,17 @@
         >
         ）
       </li>
-      <li><code class="code1">%e</code> - 不添加空格</li>
-      <li><code class="code1">%E</code> - 未实现</li>
+      <li><code class="code1">%e</code> - 不添加空间</li>
+      <li><code class="code1">%E</code> - 未实施</li>
       <li><code class="code1">%h</code> - 未实现（使用<code class="code1">%b</code> ）</li>
-      <li><code class="code1">%k</code> - 不添加空格</li>
+      <li><code class="code1">%k</code> - 未添加空间</li>
       <li>
         <code class="code1">%n</code> - 类似<code class="code1">%m</code> ，但没有前导零（使用<code
           class="code1"
           >\n</code
         >换行）
       </li>
-      <li><code class="code1">%O</code> - 未实现</li>
+      <li><code class="code1">%O</code> - 未实施</li>
       <li><code class="code1">%r</code> - 未实现（使用<code class="code1">%I:%M:%S %p</code> ）</li>
       <tr>
         <td><code class="code1">${subject}</code></td>
@@ -663,9 +572,9 @@
       <li><code class="code1">%R</code> - 未实现（使用<code class="code1">%H:%M</code> ）</li>
       <li><code class="code1">%t</code> - 未实现（使用<code class="code1">\t</code> ）</li>
       <li><code class="code1">%T</code> - 未实现（使用<code class="code1">%H:%M:%S</code> ）</li>
-      <li><code class="code1">%U</code> - 未实现</li>
-      <li><code class="code1">%W</code> - 未实施</li>
-      <li><code class="code1">%+</code> - 未实现</li>
+      <li><code class="code1">%U</code> - 未实施</li>
+      <li><code class="code1">%W</code> - 未实现</li>
+      <li><code class="code1">%+</code> - 未实施</li>
       <li><code class="code1">%%</code> - 未实现（使用<code class="code1">%</code> ）</li>
     </ul>
     <br /><br />
@@ -674,7 +583,7 @@
     <p>
       扩展文件名格式使用标记。可以使用标记以及任何文本或有效的文件名字符来构造确切的文件名。无效字符是：
       <code>| * : &lt; &gt; ? \ / &quot;</code>英语 (en-US)
-      标记可用于任何语言环境。特定语言环境的标记也可用并列在英语表下方。<br /><br />例子：<br /><br />
+      标记在任何语言环境中都可用。特定于语言环境的标记也可用并列在英语表下方。<br /><br />例子：<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - 默认格式<br /><span
         class="notranslate"
         ><code>${prefix}_${date_custom}_${sender}</code></span
@@ -686,7 +595,7 @@
     </p>
     <table class="token-table">
       <tr>
-        <td>令牌</td>
+        <td>代币</td>
         <td>描述</td>
       </tr>
       <tr>
@@ -695,11 +604,11 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td>消息发送者的姓名。</td>
+        <td>消息发件人的姓名。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td>邮件收件人的姓名。</td>
+        <td>消息收件人的姓名。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
@@ -738,7 +647,7 @@
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>令牌（en-US）</td>
-        <td>本地化 (<span id="locale1"></span> ) 令牌</td>
+        <td>本地化（<span id="locale1"></span> ) 代币</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -788,11 +697,11 @@
     <br />
     <h2>新的和实验性的偏好（选项）</h2>
     <p>
-      有几个新功能和选项尚未在选项对话框中配置。一旦这些功能稳定下来，它们就会被添加到 UI 中。<br />为了使用它们，必须在配置编辑器中设置它们。要访问编辑器，请使用工具/选项菜单，然后选择高级部分，底部会有一个“配置编辑器”按钮。如果您在搜索栏中键入“importexporttoolsng”，您将获得所有扩展首选项。然后，您可以根据需要编辑下面的各种首选项。
+      在选项对话框中有几个新功能和选项尚不可配置。一旦这些功能稳定下来，它们就会被添加到 UI 中。<br />为了使用它们，必须在配置编辑器中进行设置。要访问编辑器，请使用“工具/选项”菜单，然后选择“高级”部分，底部会有一个“配置编辑器”按钮。如果您在搜索栏中键入“importexporttoolsng”，您将获得所有扩展首选项。然后，您可以根据需要编辑下面的各种首选项。
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      此首选项遵循与索引文件相同的完整格式。默认情况下它是一个空字符串，如果使用格式化的日期/时间字符串，那么这将更改索引日期格式。
+      此首选项遵循用于索引文件的相同完整格式。默认情况下它是一个空字符串，如果带有格式化的日期/时间字符串，那么这将更改索引日期格式。
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -803,34 +712,32 @@
       </p>
     </p>
     <p>
-      这两个首选项都使用与导出消息文件名使用的相同类型的扩展文件命名格式。第一个用于外部附件，第二个用于嵌入式（内联）附件。
+      这两个首选项都使用与导出的消息文件名使用的相同类型的扩展文件命名格式。第一个用于外部附件，第二个用于嵌入式（内联）附件。
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       通常，Thunderbird
-      中消息的“日期”是发件人的邮件客户端设置的日期。将此选项设置为“true”会利用收件人邮件客户端的接收日期。该日期将用于文件名以及索引文件中的日期。
+      中邮件的“日期”是发件人邮件客户端设置的日期。将此选项设置为“true”会利用收件人邮件客户端的接收日期。该日期将用于文件名以及索引文件中的日期。
     </p>
-    <h2>基本的全局热键（快捷键）功能</h2>
+    <h2>基本的全局热键（快捷方式）功能</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      这个新的首选项允许用户设置多达 10 个键盘快捷键。快捷方式可以执行大部分 ImportExportTools NG 功能以及其他
-      Thunderbird 功能。首选项字符串被格式化为 JSON 格式的对象。格式和键如下：
+      这个新首选项允许用户设置最多 10 个键盘快捷键。这些快捷方式可以执行大多数 ImportExportTools NG
+      功能以及其他 Thunderbird 功能。首选项字符串被格式化为 JSON 格式的对象。格式和键值如下：
     </p>
     <p>
       示例热键条目（JSON 对象数组）<br /><br />
       <code class="notranslate">id</code> - 键索引 (1-10)<br />
       <code class="notranslate">key</code> - 键（单个字符）<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包含键或键码，但不能同时包含两者<br /><code
-        class="notranslate"
-        >modifiers</code
-      >
-      - 键修饰符，空格分隔列表（&#39;control&#39;、&#39;shift&#39;、&#39;alt&#39;、&#39;accel&#39;）<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包括密钥或密钥代码，但不能同时包括两者。<br />
+      <code class="notranslate">modifiers</code> - 键修饰符，空格分隔列表（&#39;control&#39;, &#39;shift&#39;,
+      &#39;alt&#39;, &#39;accel&#39;）<br />
       <code class="notranslate">oncommand</code> - 直接命令字符串<br /><code class="notranslate"
         >contexts</code
       >
       - 键处于活动状态的窗口上下文<br /><code class="notranslate">&#39;all&#39;</code> -
-      信使、撰写、搜索下的所有窗口<br /><code class="notranslate">&#39;messenger&#39;</code> -
-      主信使窗口及其后代<br /><code class="notranslate">&#39;compose&#39;</code> - 消息撰写窗口<br /><code
+      Messenger、撰写、搜索下的所有窗口<br /><code class="notranslate">&#39;messenger&#39;</code> - 主
+      Messenger 窗口及其子窗口<br /><code class="notranslate">&#39;compose&#39;</code> - 消息撰写窗口<br /><code
         class="notranslate"
         >&#39;search&#39;</code
       >
@@ -861,6 +768,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       由于快捷方式是新的和实验性的，我还将在存储库中添加更多文档。检查扩展<a
         class="link1"
@@ -868,6 +776,30 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br />
+    <br /><br />
+    <div>__MSG_extensionName__</div>
+    <h3>版本 12.0.0：Thunderbird 102 支持 - 2022 年 7 月 1 日</h3>
+    <p>
+      解决的问题：<br /><br />
+      <p>
+        - 支持 Thunderbird 102 和 91<br />
+        - 修复 SessionRestore 中的竞争条件 #284 #314<br />
+        - 修复 IMAP 导出跳过空文件夹 #320<br />
+        - 修复未保存的导出文件夹选项 #318<br />
+        - 修复 printSettings 更改
+      </p>
+      <br /><br />感谢以下用户的增强建议和测试帮助：<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <script type="application/javascript" src="../../../modules/i18n.js"></script>
+    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

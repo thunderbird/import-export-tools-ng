@@ -3,45 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>ImportExportTools Ajuda NG</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Help-Guia d&#39;usuari</h2>
-    <p>
-      Aquest és un primer inici minimalista d&#39;una guia d&#39;usuari. Òbviament hi ha molt a afegir.
-      Aquesta pàgina actual se centra en els menús i les noves opcions. S&#39;actualitzarà contínuament en
-      versions posteriors.<br />
-    </p>
-    <h3>Versió 12.0.0: suport de Thunderbird 102 - 1 de juliol de 2022</h3>
-    <p>
-      Problemes tractats:<br /><br />
-      <p>
-        - Suport per a Thunderbird 102 i 91<br />
-        - Arreglar la condició de carrera a SessionRestore #284 #314<br />
-        - Arreglar l&#39;exportació IMAP saltant les carpetes buides #320<br />
-        - Corregiu les opcions de carpeta d&#39;exportació no desades #318<br />
-        - Corregiu els canvis a la configuració d&#39;impressió
-      </p>
-      <br /><br />
-      Gràcies als usuaris següents pels suggeriments de millora i l&#39;ajuda de prova:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Ajuda NG</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h3>Suport:</h3>
     <p>
       Si us plau, publiqueu problemes o sol·licituds de funcions al repositori de GitHub d&#39;extensions:
@@ -59,7 +35,7 @@
     <p>
       ImportExportTools NG és una extensió de seguiment basada en el treball original de Paolo
       &quot;Kaosmos&quot;. L&#39;extensió ofereix múltiples funcions d&#39;importació i exportació que admeten
-      diversos formats de fitxer diferents, com ara: Nota: alguns formats no són compatibles amb totes les
+      diversos formats de fitxer diferents, com ara: Nota: Alguns formats no són compatibles amb totes les
       funcions.<br />
       - mbox<br />
       - EML<br />
@@ -95,44 +71,44 @@
       </thead>
       <tbody>
         <tr>
-          <td>Carpeta d&#39;exportació</td>
+          <td>__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
           <td>Exporta una única carpeta a un fitxer en format mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
           <td>Exporteu una única carpeta a un fitxer en format mbox comprimit</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__</td>
           <td>
             Exporta una carpeta que inclou totes les seves subcarpetes a un arbre de missatges en format mbox
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
           <td>
-            Exporta una carpeta que inclou totes les seves subcarpetes a un arbre de missatges en format
-            mbox<br />
-            (subdirectoris .sbd)
+            Exporteu una carpeta que inclou totes les seves subcarpetes a un conjunt de fitxers en format
+            mbox, un per a cada subcarpeta, exportats a una única carpeta.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Exporta una carpeta que inclou totes les seves subcarpetes a un conjunt de fitxers en format mbox,
-            un per a cada subcarpeta, exportats a una única carpeta.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Exporta una carpeta remota (imap) a un únic fitxer mbox.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxers en format EML (sense
             estructura/subcarpetes).<br />
@@ -140,16 +116,19 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxers en format HTML (sense
             estructura/subcarpetes).<br />
-            Els fitxers adjunts no estan inclosos. Això també crea un fitxer d&#39;índex HTML que enumera cada
-            missatge.
+            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxers en format HTML (sense
             estructura/subcarpetes).<br />
@@ -158,7 +137,15 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporteu els missatges de la carpeta com a conjunt de fitxers en format PDF</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxers en format de text sense format, els fitxers
             adjunts no estan inclosos.<br />
@@ -166,7 +153,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxers en format de text sense format, inclosos els
             fitxers adjunts.<br />
@@ -174,7 +161,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxer en format de text sense format, els fitxers
             adjunts no s&#39;inclouen.<br />
@@ -182,7 +169,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxer en format de text sense format, inclosos els
             fitxers adjunts.<br />
@@ -190,76 +177,87 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
             Exporteu els missatges de la carpeta com a fitxer de format de text CSV (valors separats per
-            comes), els fitxers adjunts no s&#39;inclouen.<br />
+            comes), els fitxers adjunts no estan inclosos.<br />
             Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a conjunt de fitxers en format PDF, inclosos els fitxers
-            adjunts.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.<br />
-            Nota: la sortida PDF no és compatible amb OSX a causa d&#39;un problema amb el controlador.
-          </td>
+          <td class="">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>
             Crea un fitxer d&#39;índex HTML dels missatges de la carpeta (sense exportació de missatges)
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Crea un fitxer d&#39;índex CSV dels missatges de la carpeta (sense exportació de missatges)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Obriu el diàleg de cerca i exporteu els resultats desitjats</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importa un fitxer o fitxers mbox. Trieu amb o sense estructura/subcarpetes</td>
+          <td class="">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class=""></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Seleccioneu i importeu fitxers de missatges de maildir</td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importa un o més fitxers mbox des d&#39;un directori directe.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Seleccioneu i importeu una carpeta maildir</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class=""></td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Seleccioneu i importeu fitxers de missatges EML (sense estructura/subcarpetes)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Importeu tots els missatges EML d&#39;una sola carpeta</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>
             Importeu tots els missatges EML d&#39;una sola carpeta, inclosa l&#39;estructura/subcarpetes
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Copieu el camí del sistema operatiu de la carpeta seleccionada</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Obriu la ruta del sistema operatiu de la carpeta seleccionada</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Obriu la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
@@ -275,101 +273,123 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td>__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats en fitxers de format EML</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats en fitxers de format HTML</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a fitxers en format EML (fitxers adjunts incrustats)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats en fitxers de format HTML, inclosos els fitxers adjunts</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats en fitxers de format de text sense format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Deseu els missatges seleccionats en fitxers de format de text sense format, inclosos els fitxers
+            Exporteu els missatges seleccionats a fitxers en format EML<br />
+            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a fitxers de format HTML</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a fitxers de format HTML, inclosos els fitxers adjunts</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporteu els missatges com a fitxers en format HTML.<br />
+            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exporteu els missatges com a fitxers en format HTML, inclosos els fitxers adjunts.<br />
+            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
+          </td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a fitxers en format PDF</td>
+        </tr>
+        <tr>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a fitxers de format de text sense format</td>
+        </tr>
+        <tr>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>
+            Exporteu els missatges seleccionats a fitxers de format de text sense format, inclosos els fitxers
             adjunts
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Desa els missatges seleccionats en un únic fitxer de text CSV</td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exporteu els missatges com a fitxers en format de text sense format, inclosos els fitxers
+            adjunts<br />
+            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Desa els missatges seleccionats en un sol fitxer mbox</td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a un únic fitxer de text CSV</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>Afegeix els missatges seleccionats a un fitxer mbox existent</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Deseu els missatges seleccionats en fitxers en format PDF</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Deseu els missatges com a fitxers en format EML.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Exporteu els missatges seleccionats a un únic fitxer mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Deseu els missatges com a fitxers en format HTML.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
+          <td class="submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>Afegeix els missatges seleccionats a un fitxer mbox existent</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Deseu els missatges com a fitxers en format HTML, inclosos els fitxers adjunts<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
+          <td>__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Deseu els missatges com a fitxers en format de text sense format<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Creeu un fitxer d&#39;índex HTML per als missatges seleccionats</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Deseu els missatges com a fitxers en format de text sense format, inclosos els fitxers adjunts<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
+          <td class="submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Creeu un fitxer d&#39;índex CSV per als missatges seleccionats</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Creeu un fitxer d&#39;índex HTML per als fitxers seleccionats</td>
+          <td>__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Creeu un fitxer d&#39;índex CSV per als fitxers seleccionats</td>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Copieu un sol missatge seleccionat al porta-retalls</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Copieu les capçaleres d&#39;un sol missatge seleccionat al porta-retalls</td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Obriu la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
@@ -385,175 +405,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Carpeta d&#39;exportació</td>
-          <td>Exporta una única carpeta a un fitxer en format mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporteu una única carpeta a un fitxer en format mbox comprimit</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>
-            Exporta una carpeta que inclou totes les seves subcarpetes a un arbre de missatges en format mbox
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Exporta una carpeta que inclou totes les seves subcarpetes a un arbre de missatges en format
-            mbox<br />
-            (subdirectoris .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Exporta una carpeta que inclou totes les seves subcarpetes a un conjunt de fitxers en format mbox,
-            un per a cada subcarpeta, exportats a una única carpeta.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Exporta una carpeta remota (imap) a un únic fitxer mbox.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td>__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxers en format EML (sense
-            estructura/subcarpetes).<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxers en format HTML (sense
-            estructura/subcarpetes).<br />
-            Els fitxers adjunts no estan inclosos. Això també crea un fitxer d&#39;índex HTML que enumera cada
-            missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxers en format HTML (sense
-            estructura/subcarpetes).<br />
-            Els fitxers adjunts es guarden com a fitxers separats. Això també crea un fitxer d&#39;índex HTML
-            que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxers en format de text sense format, els fitxers
-            adjunts no estan inclosos.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxers en format de text sense format, inclosos els
-            fitxers adjunts.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxer en format de text sense format, els fitxers
-            adjunts no s&#39;inclouen.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxer en format de text sense format, inclosos els
-            fitxers adjunts.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a fitxer de format de text CSV (valors separats per
-            comes), els fitxers adjunts no s&#39;inclouen.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exporteu els missatges de la carpeta com a conjunt de fitxers en format PDF, inclosos els fitxers
-            adjunts.<br />
-            Això també crea un fitxer d&#39;índex HTML que enumera cada missatge.<br />
-            Nota: la sortida PDF no és compatible amb OSX a causa d&#39;un problema amb el controlador.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>
-            Crea un fitxer d&#39;índex HTML dels missatges de la carpeta (sense exportació de missatges)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Crea un fitxer d&#39;índex CSV dels missatges de la carpeta (sense exportació de missatges)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Obriu el diàleg de cerca i exporteu els resultats desitjats</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importa un fitxer o fitxers mbox. Trieu amb o sense estructura/subcarpetes</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Seleccioneu i importeu fitxers de missatges EML (sense estructura/subcarpetes)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importeu tots els missatges EML d&#39;una sola carpeta</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>
-            Importeu tots els missatges EML d&#39;una sola carpeta, inclosa l&#39;estructura/subcarpetes
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
+          <td>__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
           <td>Desa tot el correu al perfil actual</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Desa el perfil complet (correu, extensions, opcions)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="submenu1">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Importa un perfil complet (correu, extensions, opcions)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td>__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="">__MSG_ctxMenu_Options.title__</td>
           <td>Obriu el diàleg d&#39;opcions ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="">__MSG_ctxMenu_Help.title__</td>
           <td>Obriu la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
@@ -565,9 +441,9 @@
       personalitzat &quot;Data (personalitzat)&quot; estan disponibles als menús desplegables de noms de
       fitxer. La data personalitzada també es pot utilitzar amb el testimoni ${date_custom} utilitzat als noms
       de fitxer personalitzats ampliats. El format de data original (predeterminat) és:<br />
-      YYYYMMDDHHmm: 202011060808<br /><br />
-      El format de data personalitzat utilitza % seqüències que coincideixen amb la funcionalitat semblant a
-      Unix <code>strftime()</code> . Es basa en un port JavaScript de
+      AAAAMMDDDHHmm: 202011060808<br /><br />
+      El format de data personalitzat utilitza % de seqüències que coincideixen amb la funcionalitat semblant
+      a Unix <code>strftime()</code> . Es basa en un port JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funció per formatar la data i l&#39;hora.<br />
       Port de strftime() per TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -595,11 +471,11 @@
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
-          <td>Nom complet del mes.</td>
+          <td>Nom del mes complet.</td>
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Representació preferida de data i hora (UTC) per a la configuració regional actual.</td>
+          <td>Representació de data i hora (UTC) preferida per a la configuració regional actual.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
@@ -622,8 +498,8 @@
           <td>
             Any setmanal ISO 8601 amb el segle com a nombre decimal. L&#39;any de 4 dígits correspon al número
             de setmana ISO (vegeu <code class="code1">%V</code> ). Té el mateix format i valor que
-            <code class="code1">%Y</code> , tret que si el número de setmana ISO pertany a l&#39;any anterior
-            o següent, s&#39;utilitza aquest any.
+            <code class="code1">%Y</code> , excepte que si el número de setmana ISO pertany a l&#39;any
+            anterior o següent, s&#39;utilitza aquest any.
           </td>
         </tr>
         <tr>
@@ -653,8 +529,8 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            L&#39;hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu
-            també <code class="code1">%H</code> .
+            Hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu també
+            <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
@@ -924,18 +800,18 @@
       </p>
     </p>
     <p>
-      Ambdues preferències utilitzen el mateix tipus de formats de nom de fitxer estès que el nom de fitxer
-      dels missatges exportats. El primer és per a fitxers adjunts externs, el segon és per a fitxers adjunts
-      incrustats (en línia).
+      Ambdues preferències utilitzen el mateix tipus de formats de nom de fitxer estès que utilitza el nom de
+      fitxer dels missatges exportats. El primer és per a fitxers adjunts externs, el segon és per a fitxers
+      adjunts incrustats (en línia).
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
-      correu del remitent. Establir aquesta opció a &quot;true&quot; utilitza la data de recepció al client de
-      correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la data dels
-      fitxers d&#39;índex.
+      correu del remitent. Establir aquesta opció com a &quot;true&quot; utilitza la data de recepció al
+      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la
+      data dels fitxers d&#39;índex.
     </p>
-    <h2>Funció bàsica i global de tecles d&#39;accés directe (dreceres).</h2>
+    <h2>Funció bàsica i global de tecles de drecera (dreceres).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Aquesta nova preferència permet a l&#39;usuari configurar fins a 10 dreceres de teclat. Les dreceres
@@ -947,8 +823,8 @@
       Exemples d&#39;entrades de tecles d&#39;accés ràpid (matriu d&#39;objectes JSON)<br /><br />
       <code class="notranslate">id</code> : l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
-      codi clau: el &quot; <code class="notranslate">keycode</code> *&quot; defineix el codi clau<br />
-      Es pot incloure qualsevol clau o codi de clau, però no tots dos<br />
+      <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
+      Es pot incloure qualsevol clau o codi, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directes<br />
@@ -985,6 +861,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Com que les dreceres són noves i experimentals, també afegiré més documentació al repositori. Comproveu
       l&#39;extensió
@@ -992,6 +869,31 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br />
+    <br /><br />
+    <div>__MSG_extensionName__</div>
+    <h3>Versió 12.0.0: suport de Thunderbird 102 - 1 de juliol de 2022</h3>
+    <p>
+      Problemes tractats:<br /><br />
+      <p>
+        - Suport per a Thunderbird 102 i 91<br />
+        - Arreglar la condició de carrera a SessionRestore #284 #314<br />
+        - Arreglar l&#39;exportació IMAP saltant les carpetes buides #320<br />
+        - Corregiu les opcions de carpeta d&#39;exportació no desades #318<br />
+        - Corregiu els canvis de printSettings
+      </p>
+      <br /><br />
+      Gràcies als usuaris següents pels suggeriments de millora i l&#39;ajuda de prova:<br /><br />
+      - <code class="notranslate">@ovari</code><br />
+      - <code class="notranslate">@dipgithub</code><br />
+      - <code class="notranslate">@artofit</code><br />
+      - <code class="notranslate">@JF1313</code><br />
+      - <code class="notranslate">@jessejmorrow</code><br />
+      - <code class="notranslate">@spd2000</code><br />
+      - <code class="notranslate">@kanlukasz</code><br />
+      - <code class="notranslate">@razzmatazzz</code><br />
+      - <code class="notranslate">@triplee</code> <br />
+    </p>
+    <script type="application/javascript" src="../../../modules/i18n.js"></script>
+    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

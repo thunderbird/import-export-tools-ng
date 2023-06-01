@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Εξαγωγή προφίλ">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Εισαγωγή προφίλ">
+<!ENTITY buttonMenu_Backup_Id.title "Αντιγράφων ασφαλείας">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Πλήρες προφίλ">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Μόνο αλληλογραφία">
+<!ENTITY buttonMenu_Options.title "Επιλογές">
+<!ENTITY buttonMenu_Help.title "Βοήθεια">

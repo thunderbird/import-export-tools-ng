@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Izvozi profil">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Uvozi profil">
+<!ENTITY buttonMenu_Backup_Id.title "Rezerva">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Celoten profil">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Samo po pošti">
+<!ENTITY buttonMenu_Options.title "Opcije">
+<!ENTITY buttonMenu_Help.title "pomoč">

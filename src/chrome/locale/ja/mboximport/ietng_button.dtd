@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "プロファイルのエクスポート">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "プロファイルのインポート">
+<!ENTITY buttonMenu_Backup_Id.title "バックアップ">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "フルプロフィール">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "メールのみ">
+<!ENTITY buttonMenu_Options.title "オプション">
+<!ENTITY buttonMenu_Help.title "ヘルプ">

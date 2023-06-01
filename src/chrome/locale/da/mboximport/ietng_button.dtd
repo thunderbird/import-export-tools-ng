@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Eksporter profil">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Importer profil">
+<!ENTITY buttonMenu_Backup_Id.title "Backup">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Fuld profil">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Kun mail">
+<!ENTITY buttonMenu_Options.title "Muligheder">
+<!ENTITY buttonMenu_Help.title "Hjælp">

@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Exportovať profil">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Importovať profil">
+<!ENTITY buttonMenu_Backup_Id.title "Zálohovanie">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Celý profil">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Iba pošta">
+<!ENTITY buttonMenu_Options.title "možnosti">
+<!ENTITY buttonMenu_Help.title "Pomoc">

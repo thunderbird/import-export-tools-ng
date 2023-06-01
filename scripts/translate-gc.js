@@ -14,7 +14,7 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray2 = [
+var translationArray = [
 	// common titles
 
 	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
@@ -98,7 +98,7 @@ var translationArray2 = [
 
 	// { key: "", text: "" },
 
-	var translationArray = [
+	var translationArray2 = [
 
 		{"key": "buttonMenu_Exp_Profile_Id.title", "text": "Export Profile"},
 	{"key": "buttonMenu_Imp_Profile_Id.title", "text": "Import Profile"},
@@ -494,7 +494,7 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
-var options3 = {
+var options = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -502,7 +502,8 @@ var options3 = {
 	outputFormat: 3,
 };
 
-var options = {
+// dtd=2
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -517,8 +518,8 @@ var options = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-//let inputFiles = ["messages.json"];
-let inputFiles = ["ietng_button.dtd"];
+let inputFiles = ["messages.json"];
+//let inputFiles = ["ietng_button.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 //let inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',

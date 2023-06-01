@@ -1,12 +1,11 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
+
 	"extensionDescription": {
-		"message": "Tilføjer nogle værktøjer til import og eksport af meddelelser og mapper (NextGen)"
-	}
-,
+		"message": "Tilføjer værktøjer til at importere/eksportere beskeder og mapper (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "ImportExportTools NG"
@@ -77,7 +76,7 @@
 	},
 
 	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Meddelelser (vedhæftede vedhæftede filer)"
+		"message": "Beskeder (vedhæftede vedhæftede filer)"
 	},
 
 	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
@@ -279,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV-format"
 	}
-
 }

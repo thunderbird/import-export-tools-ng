@@ -2,13 +2,13 @@
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
-	"extensionDescription": {
-		"message": "Umožňuje import a export súborov vo formáte .mbox (NextGen)"
-	}
-,
 
-	"ctxMenu_ExtensionName.tiTools NG
-		"message": "ImportExportTools OF"
+	"extensionDescription": {
+		"message": "Pridáva nástroje na import/export správ a priečinkov (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
@@ -278,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Formát CSV"
 	}
-
 }

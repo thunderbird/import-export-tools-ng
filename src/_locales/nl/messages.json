@@ -1,10 +1,11 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "ImportExportTools VAN"
 	},
+
 	"extensionDescription": {
-		"message": "Voegt enkele hulpmiddelen toe om berichten en mappen te importeren en exporteren (NextGen)"
-	},
+		"message": "Voegt tools toe om berichten en mappen te importeren/exporteren (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "ImportExportTools VAN"
@@ -47,7 +48,7 @@
 	},
 
 	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-formaat"
+		"message": "HTML-indeling"
 	},
 
 	"msgCtxMenu_Exp_PDFFormat_Id.title": {
@@ -127,7 +128,7 @@
 	},
 
 	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-formaat"
+		"message": "CSV-indeling"
 	},
 
 	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
@@ -171,7 +172,7 @@
 	},
 
 	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-indeling"
+		"message": "HTML-formaat"
 	},
 
 	"folderCtxMenu_Exp_PDFFormat_Id.title": {
@@ -271,11 +272,10 @@
 	},
 
 	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-indeling"
+		"message": "HTML-formaat"
 	},
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-formaat"
+		"message": "CSV-indeling"
 	}
-
 }

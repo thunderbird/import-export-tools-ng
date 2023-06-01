@@ -1,15 +1,14 @@
-						
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
-	"extensionDescription": {
-		"message": "Üzenetek és mappák importálása/exportálása (NextGen)"
-	}
-,
 
-	"ctxMenu_ExtensionName.tiTools NG
-		"message": "ImportExportTools OF"
+	"extensionDescription": {
+		"message": "Eszközök hozzáadása az üzenetek és mappák importálásához/exportálásához (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
@@ -93,7 +92,7 @@
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Üzenetek és HTML-index"
+		"message": "Üzenetek és HTML index"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
@@ -225,7 +224,7 @@
 	},
 
 	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Egyedi EML üzenetek"
+		"message": "Egyéni EML-üzenetek"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
@@ -279,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV formátum"
 	}
-
 }

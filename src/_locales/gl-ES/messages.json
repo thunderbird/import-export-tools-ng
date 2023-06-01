@@ -1,14 +1,14 @@
-
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "Ferramentas de importación e exportación de"
 	},
+
 	"extensionDescription": {
-		"message": "Engade algunhas ferramentas para exportar mensaxes e cartafoles (NextGen)"
-	},
+		"message": "Engade ferramentas para importar/exportar mensaxes e cartafoles (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
-		"message": "Ferramentas de importación de exportación"
+		"message": "Ferramentas de importación e exportación de"
 	},
 
 	"ctxMenu_Options.title": {
@@ -278,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Formato CSV"
 	}
-
 }

@@ -16,6 +16,8 @@ const translate = new Translate({ projectId, key });
 // console.debug( translate );
 var translationArray = [
 	// common titles
+	{"key":"extensionName", "text":"ImportExportTools NG"},
+	{"key":"extensionDescription", "text":"Adds tools to import/export messages and folders (NextGen)"},
 
 	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
 	{"key": "ctxMenu_Options.title", "text": "Options"},
@@ -243,7 +245,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		lt = lt.join('\n');
 
 		if (options.outputFormat === 3) {
-			lt = `\n${lt}\n`;
+			lt = `{\n${lt}\n}`;
 		}
 
 		lt = lt.replace(/<nl>/g, "\\n");
@@ -498,7 +500,7 @@ var options = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
-	append: true,
+	append: false,
 	outputFormat: 3,
 };
 

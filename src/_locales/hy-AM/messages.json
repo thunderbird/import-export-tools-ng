@@ -1,14 +1,14 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "ImportExport Tools NG"
 	},
-	"extensionDescription": {
-		"message": "Ավելացնում է որոշ գործիքներ՝ ներմուծելու և արտածելու Ձեր նամակները և թղթապանակները (NextGen)"
-	}
-,
 
-	"ctxMenu_ExtensionName.titTools NG
-		"message": "ImportExport Tools OF"
+	"extensionDescription": {
+		"message": "Ավելացնում է գործիքներ հաղորդագրությունների և թղթապանակների ներմուծման/արտահանման համար (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
@@ -278,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV ձևաչափ"
 	}
-
 }

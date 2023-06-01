@@ -2,13 +2,13 @@
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
-	"extensionDescription": {
-		"message": "Doda nekaj orodij k sporočilom in mapam za uvoz in izvoz (NextGen)"
-	}
-,
 
-	"ctxMenu_ExtensionName.tiTools NG
-		"message": "ImportExportTools OF"
+	"extensionDescription": {
+		"message": "Doda orodja za uvoz/izvoz sporočil in map (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
@@ -278,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Oblika CSV"
 	}
-
 }

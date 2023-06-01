@@ -1,10 +1,11 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "インポートエクスポートツール OF"
 	},
+
 	"extensionDescription": {
-		"message": "メッセージやフォルダのインポート・エクスポート機能を追加します (NextGen)"
-	},
+		"message": "メッセージとフォルダーをインポート/エクスポートするツールを追加 (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "インポートエクスポートツール OF"
@@ -277,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV形式"
 	}
-
 }

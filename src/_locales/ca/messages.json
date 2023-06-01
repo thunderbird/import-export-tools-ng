@@ -1,15 +1,14 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
-	"extensionDescription": {
-		"message": "Afegeix algunes eines per importar i exportar missatges i carpetes (NextGen)"
-	}
-,
 
-	"ctxMenu_ExtensionName.tiTools NG
-		"message": "ImportExportTools OF"
+	"extensionDescription": {
+		"message": "Afegeix eines per importar/exportar missatges i carpetes (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
@@ -279,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Format CSV"
 	}
-
 }

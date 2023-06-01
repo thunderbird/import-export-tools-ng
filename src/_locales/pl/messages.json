@@ -1,10 +1,11 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "Importuj EksportujNarzędzia OF"
 	},
+
 	"extensionDescription": {
-		"message": "Umożliwia importowanie i eksportowanie plików w formacie mbox (NextGen)"
-	},
+		"message": "Dodaje narzędzia do importowania/eksportowania wiadomości i folderów (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "Importuj EksportujNarzędzia OF"
@@ -277,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Format CSV"
 	}
-
 }

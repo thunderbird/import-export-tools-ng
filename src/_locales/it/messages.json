@@ -1,10 +1,11 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "ImportExportTool OF"
 	},
+
 	"extensionDescription": {
-		"message": "Aggiunge diversi strumenti per importare ed esportare i messaggi (NextGen)"
-	},
+		"message": "Aggiunge strumenti per importare/esportare messaggi e cartelle (NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "ImportExportTool OF"
@@ -55,7 +56,7 @@
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Formato testo normale"
+		"message": "Formato testo semplice"
 	},
 
 	"msgCtxMenu_Exp_CSVFormat_Id.title": {
@@ -179,7 +180,7 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Formato testo semplice"
+		"message": "Formato testo normale"
 	},
 
 	"folderCtxMenu_Exp_CSVFormat_Id.title": {
@@ -277,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Formato CSV"
 	}
-
 }

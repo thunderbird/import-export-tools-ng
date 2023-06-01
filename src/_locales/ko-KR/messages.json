@@ -1,10 +1,11 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools NG"
+		"message": "ImportExport도구 OF"
 	},
+
 	"extensionDescription": {
-		"message": "메세지나 폴더를 불러오거나 내보낼 도구를 추가합니다 (NextGen)"
-	},
+		"message": "메시지 및 폴더 가져오기/내보내기 도구 추가(NextGen)"
+	},
 
 	"ctxMenu_ExtensionName.title": {
 		"message": "ImportExport도구 OF"
@@ -67,7 +68,7 @@
 	},
 
 	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "메시지 인덱스"
+		"message": "메시지 색인"
 	},
 
 	"msgCtxMenu_CopyToClipboard_Id.title": {
@@ -151,7 +152,7 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "하위 폴더로 구성됨"
+		"message": "하위 폴더로 구성"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
@@ -187,7 +188,7 @@
 	},
 
 	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "메시지 인덱스"
+		"message": "메시지 색인"
 	},
 
 	"folderCtxMenu_Exp_SearchExport_Id.title": {
@@ -267,7 +268,7 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "첨부 파일이 있는 단일 파일로서의 메시지"
+		"message": "첨부 파일이 있는 단일 파일로 메시지"
 	},
 
 	"folderCtxMenu_Exp_IndexHTML_Id.title": {
@@ -277,5 +278,4 @@
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV 형식"
 	}
-
 }

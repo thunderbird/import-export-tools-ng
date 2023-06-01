@@ -14,7 +14,7 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray = [
+var translationArray2 = [
 	// common titles
 
 	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
@@ -98,6 +98,17 @@ var translationArray = [
 
 	// { key: "", text: "" },
 
+	var translationArray = [
+
+		{"key": "buttonMenu_Exp_Profile_Id.title", "text": "Export Profile"},
+	{"key": "buttonMenu_Imp_Profile_Id.title", "text": "Import Profile"},
+	{"key": "buttonMenu_Backup_Id.title", "text": "Backup"},
+	
+	{"key": "buttonMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
+	{"key": "buttonMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
+	{"key": "buttonMenu_Options.title", "text": "Options"},
+	{"key": "buttonMenu_Help.title", "text": "Help"},
+	];
 
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
@@ -254,7 +265,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 			fs.appendFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
 			
 		} else {
-			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, lt);
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
 			
 		}
 	}
@@ -483,7 +494,7 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
-var options = {
+var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -491,12 +502,12 @@ var options = {
 	outputFormat: 3,
 };
 
-var options2 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
-	append: true,
-	outputFormat: 0,
+	append: false,
+	outputFormat: 2,
 };
 
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];
@@ -506,7 +517,8 @@ var options2 = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-let inputFiles = ["messages.json"];
+//let inputFiles = ["messages.json"];
+let inputFiles = ["ietng_button.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 //let inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',

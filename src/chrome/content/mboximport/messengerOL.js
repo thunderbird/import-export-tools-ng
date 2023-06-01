@@ -348,26 +348,26 @@ WL.injectElements(`
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
 		}
 	}
-
+	
 
 	let ctxMenu =
 		`<menupopup>
-			<menu  label="Export Profile" >
+			<menu  label="&buttonMenu_Exp_Profile_Id.title;" >
 			<menupopup>
-			<menuitem  label="Full Profile" oncommand="IETexport_all(true)" />
-			<menuitem  label="Mail Only" oncommand="IETexport_all(false)" />
+			<menuitem  label="&buttonMenu_Exp_ProfileFull_Id.title;" oncommand="IETexport_all(true)" />
+			<menuitem  label="&buttonMenu_Exp_ProfileMailOnly_Id.title;" oncommand="IETexport_all(false)" />
 			</menupopup>
 			</menu>
-			<menuitem  label="Import Profile" oncommand="openProfileImportWizard()" />
-			<menuitem  label="Backup" oncommand="window.ietng.OpenBackupDialog('manual')" />
+			<menuitem  label="&buttonMenu_Imp_Profile_Id.title;" oncommand="openProfileImportWizard()" />
+			<menuitem  label="&buttonMenu_Backup_Id.title;" oncommand="window.ietng.OpenBackupDialog('manual')" />
 			<menuseparator />
-			<menuitem  label="Options" oncommand="openIEToptions()"/>
-			<menuitem  label="Help" oncommand="openIEThelp(true)"/>
+			<menuitem  label="&buttonMenu_Options.title;" oncommand="openIEToptions()"/>
+			<menuitem  label="&buttonMenu_Help.title;" oncommand="openIEThelp(true)"/>
 		</menupopup>`;
 
-	let dtdFiles = ["chrome://mboximport/locale/mboximport.dtd"];
+	let dtdFiles = ["chrome://mboximport/locale/ietng_button.dtd"];
 
-	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, []);
+	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, [dtdFiles]);
 
 	
 function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttCtxMenu, ctxMenuDTDs) {

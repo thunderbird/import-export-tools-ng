@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.0.0-b2",
+  "version": "14.0.0-b3",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
-      "strict_min_version": "110.0",
+      "strict_min_version": "102.0",
       "strict_max_version": "115.*"
     }
   },

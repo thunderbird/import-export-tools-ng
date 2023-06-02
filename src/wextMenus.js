@@ -133,7 +133,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: msgCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: openHelp,
+      onclick: window.openHelp,
     }
 
   },
@@ -320,7 +320,7 @@ var toolsCtxMenuSet = [
     menuDef: {
       id: toolsCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: openHelp,
+      onclick: window.openHelp,
     }
 
   },
@@ -639,7 +639,7 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: openHelp,
+      onclick: window.openHelp,
     }
   },
   {
@@ -664,7 +664,7 @@ var folderCtxMenuSet = [
     }
   },
 
-  
+
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
@@ -740,7 +740,7 @@ async function createMenus(menuType, menuArray, options) {
 
 
 await new Promise(resolve => window.setTimeout(resolve, 100));
-await createtitles("msgCtxMenuMSGS", msgCtxMenuSet, null);
+//await createtitles("msgCtxMenuMSGS", msgCtxMenuSet, null);
 //await editMenus("", toolsCtxMenuSet, null);
 
 
@@ -750,18 +750,18 @@ async function createtitles(name, menuArray, options) {
   var titleArray = [];
   for (let index = 0; index < menuArray.length; index++) {
     let menuObj = menuArray[index];
-    
+
     if (menuObj.menuDef.type) {
       continue;
     }
     //let titleObj = {key: menuObj.menuDef.id + ".title", text: menuObj.menuDef.title}
-    let titleObj = {key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>"}
+    let titleObj = { key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>" }
     titleArray.push(titleObj);
   }
   console.log(titleArray)
   let basePath = "C:\\Dev\\Thunderbird";
-  let path = basePath + "\\" + name +".json";
-  let params = {path: path, obj: titleArray};
+  let path = basePath + "\\" + name + ".json";
+  let params = { path: path, obj: titleArray };
 
   console.log(params)
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
@@ -774,13 +774,13 @@ async function editMenus(menuType, menuArray, options) {
   var newArray = [];
   for (let index = 0; index < menuArray.length; index++) {
     let menuObj = menuArray[index];
-    let titleObj = {key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title}
+    let titleObj = { key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title }
     let title = menuObj.title;
     //title = 
     newArray.push(menuObj);
   }
   console.log(newArray)
-  let params = {path: "C:\\Dev\\Thunderbird\\tools2.json", obj: newArray};
+  let params = { path: "C:\\Dev\\Thunderbird\\tools2.json", obj: newArray };
 
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
   console.log("done")
@@ -1034,7 +1034,42 @@ async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
 }
 
-async function openHelp() {
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
+async function openHelp2(options) {
+
+  var locale = messenger.i18n.getUILanguage();
+
+  var bm = "";
+  if (options.bmark) {
+    bm = info.bmark;
+  }
+
+  try {
+    if (options.opentype == "tab") {
+      // use fetch to see if help file exists, throws if not, fix #212
+      await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
+      await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
+    } else {
+      await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
+      await browser.windows.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+    }
+  } catch {
+    try {
+      locale = locale.Split('-')[0];
+      if (options.opentype == "tab") {
+        await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
+        await browser.tabs.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, index: 1 })
+      } else {
+        await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
+        await browser.windows.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+      }
+    } catch {
+      if (options.opentype == "tab") {
+        await browser.tabs.create({ url: `chrome/content/help/locale/en-US/printingtoolsng-help.html${bm}`, index: 1 })
+      } else {
+        await browser.windows.create({ url: `chrome/content/help/locale/en-US/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+      }
+    }
+  }
+  //  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
 }
 

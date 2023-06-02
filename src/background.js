@@ -36,6 +36,7 @@ main();
 var currentLocale = messenger.i18n.getUILanguage();
 
 browser.runtime.onInstalled.addListener(async (info) => {
+	console.log("install event")
 	await openHelp({opentype: "tab"});
 });
 
@@ -113,7 +114,7 @@ function main() {
 
 async function openHelp(info) {
 	var locale = currentLocale;
-	console.log("help")
+	console.log("open help")
 	var bm = "";
 	if (info.bmark) {
 		bm = info.bmark;

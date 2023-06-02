@@ -1,6 +1,6 @@
 
 //window.addEventListener("load", function (event) {
-	console.debug('LoadsHelp');
+	console.debug('Load Help');
 	//console.debug(WL);
 	//console.debug(window.WL);
 	

@@ -35,8 +35,9 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			return rv;
 		case "createFolder":
 			console.log(window.folder)
-		break;
-
+			break;
+		case "openHelp":
+			
     }
     return false;
   }

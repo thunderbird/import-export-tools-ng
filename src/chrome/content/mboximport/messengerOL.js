@@ -362,7 +362,7 @@ WL.injectElements(`
 			<menuitem  label="&buttonMenu_Backup_Id.title;" oncommand="window.ietng.OpenBackupDialog('manual')" />
 			<menuseparator />
 			<menuitem  label="&buttonMenu_Options.title;" oncommand="openIEToptions()"/>
-			<menuitem  label="&buttonMenu_Help.title;" oncommand="openIEThelp(true)"/>
+			<menuitem  label="&buttonMenu_Help.title;" oncommand="openHelp(null)"/>
 		</menupopup>`;
 
 	let dtdFiles = ["chrome://mboximport/locale/ietng_button.dtd"];

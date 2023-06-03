@@ -15,3 +15,11 @@ async function getSelectedMsgs() {
 	});
 	return msgURIS;
 }
+
+async function openHelp(bookmark) {
+	let win = getMail3Pane();
+
+	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
+
+	
+}

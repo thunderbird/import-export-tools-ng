@@ -133,7 +133,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: msgCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.openHelp,
+      onclick: window.wextOpenHelp,
     }
 
   },
@@ -320,7 +320,7 @@ var toolsCtxMenuSet = [
     menuDef: {
       id: toolsCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.openHelp,
+      onclick: window.wextOpenHelp,
     }
 
   },
@@ -639,7 +639,7 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.openHelp,
+      onclick: window.wextOpenHelp,
     }
   },
   {
@@ -1034,42 +1034,4 @@ async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
 }
 
-async function openHelp2(options) {
-
-  var locale = messenger.i18n.getUILanguage();
-
-  var bm = "";
-  if (options.bmark) {
-    bm = info.bmark;
-  }
-
-  try {
-    if (options.opentype == "tab") {
-      // use fetch to see if help file exists, throws if not, fix #212
-      await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
-      await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
-    } else {
-      await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
-      await browser.windows.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
-    }
-  } catch {
-    try {
-      locale = locale.Split('-')[0];
-      if (options.opentype == "tab") {
-        await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
-        await browser.tabs.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, index: 1 })
-      } else {
-        await fetch(`chrome/content/help/locale/${locale}/printingtoolsng-help.html`);
-        await browser.windows.create({ url: `chrome/content/help/locale/${locale}/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
-      }
-    } catch {
-      if (options.opentype == "tab") {
-        await browser.tabs.create({ url: `chrome/content/help/locale/en-US/printingtoolsng-help.html${bm}`, index: 1 })
-      } else {
-        await browser.windows.create({ url: `chrome/content/help/locale/en-US/printingtoolsng-help.html${bm}`, type: "panel", width: 1180, height: 520 })
-      }
-    }
-  }
-  //  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenHelp" });
-}
 

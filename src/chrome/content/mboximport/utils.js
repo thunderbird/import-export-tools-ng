@@ -859,46 +859,6 @@ function fixPropertyReferenceLabels() {
 	}
 }
  */
-function loadTabPage(url, load_localized_page) {
-	console.log("loadtab")
-	if (load_localized_page) {
-
-		var tb_locale = null;
-		try {
-			tb_locale = Services.locale.appLocaleAsBCP47;			
-		} catch (e) {
-			tb_locale = 'en-US';
-		}
-
-		// console.debug("locale   " + tb_locale);
-		// console.debug(supportedLocales);
-
-		var supportedLocaleRegions = supportedLocales.filter(l => {
-			if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
-				return true;
-			}
-			return false;
-		});
-
-		// console.debug(supportedLocaleRegions);
-		if (!tb_locale || supportedLocaleRegions.length === 0) {
-			tb_locale = "en-US";
-		} else if (!supportedLocaleRegions.includes(tb_locale)) {
-			tb_locale = supportedLocaleRegions[0];
-		}
-
-		// console.debug(' locale subset');
-		// console.debug(supportedLocaleRegions);
-
-		var urlparts = url.split('.');
-		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
-		url = `chrome://mboximport/content/mboximport/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
-	}
-	let tabmail = getMail3Pane();
-
-	tabmail.openTab("contentTab", { url });
-	console.log(url)
-}
 
 function getMail3Pane() {
 	var w = Cc["@mozilla.org/appshell/window-mediator;1"]

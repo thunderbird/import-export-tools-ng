@@ -456,6 +456,12 @@ async function pickFile(target, inputFieldId) {
     box.value = fp.file.path;    
 }
 
+async function openHelp2(bookmark) {
+    console.log(bookmark)
+    let win = getMail3Pane();
+    await win.openHelp(bookmark)
+}
+
 document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();
 });

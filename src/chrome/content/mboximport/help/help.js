@@ -8,13 +8,7 @@
 	
 	//fixIDReferenceLabels();
 	//fixPropertyReferenceLabels();
-	var tb_locale = null;
-
-	try {
-		tb_locale = Services.locale.appLocaleAsBCP47;
-	} catch (e) {
-		tb_locale = 'en-US';
-	}
+	var tb_locale = messenger.i18n.getUILanguage();
 
 	document.getElementById("locale1").textContent = tb_locale;
 	if (tb_locale === 'en-US' || tb_locale.split('-')[0] === 'en') {

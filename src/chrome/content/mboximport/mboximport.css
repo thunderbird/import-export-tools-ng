@@ -1,13 +1,14 @@
 :root {
-  --groupbox-header-bg: white;
+  --dialog-bgcolor: whitesmoke;
+  --groupbox-header-bg: whitesmoke;
   --question-height: 24px;
 }
 
-/*
+
 #optionsdialog {
   background-color: var(--dialog-bgcolor);
 }
-*/
+
 tab {
   min-height: 30px;
   font-weight: 600;

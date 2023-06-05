@@ -119,6 +119,11 @@ function SDexportMsg() {
 			return;
 	}
 	
+	var m3pwin = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
+	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
+
 	let emlsArray = [];
 	if (all) {
 

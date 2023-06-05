@@ -1809,7 +1809,9 @@ function IETdeletestatus(text) {
 		}
 
 		if (!gImporting) {
+			if (document.getElementById("IETabortIcon")) {
 			document.getElementById("IETabortIcon").collapsed = true;
+			}
 		}
 	}
 }

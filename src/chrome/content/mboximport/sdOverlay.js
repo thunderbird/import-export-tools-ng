@@ -58,11 +58,13 @@ function SDexportMsg() {
 	var view;
 	var all;
 
+	console.log("search export")
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
 
+	console.log(gDBView)
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
 	if (view.getKeyAt(0) === 4294967295)
@@ -133,6 +135,8 @@ function SDexportMsg() {
 		emlsArray = view.getURIsForSelection();
 	}
 
+	console.log(emlsArray)
+	
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
 	IETexported = 0;

@@ -121,12 +121,13 @@ function SDexportMsg() {
 	
 	let emlsArray = [];
 	if (all) {
-		let i = 0;
-		while (true) {
+
+		var total = msgFolder.getTotalMessages(false);
+		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
-				i++;
+
 			} catch (e) {
 				continue; // ignore errors for dummy rows
 			}

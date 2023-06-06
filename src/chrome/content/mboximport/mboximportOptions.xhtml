@@ -37,7 +37,8 @@
 			<tabpanel style="margin: 10px;">
 			
 				<hbox>
-				<html:div style="height: 8px"></html:div>
+						<html:div style="width: 10px; height: 0px; background-color: yellow" ></html:div>
+
 					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">					
 						<hbox class="groupbox-os-title" >
 							<label class="groupbox-os-label" style="background-color2: red" >&MBcaptionlabel1;</label>
@@ -119,7 +120,7 @@
 			<tabpanel style="margin: 10px;">
 			
 				<vbox>
-					<html:div style="height: 8px"></html:div>
+					<html:div style="height: 0px"></html:div>
 					<groupbox class="groupbox-multi-os">
 						<caption label="&captionCustomize;" />
 						<hbox class="groupbox-os-title" >
@@ -260,7 +261,7 @@
 						</hbox>
 						<hbox align="center">
 						<checkbox id="MBasciiname" label="&MBlabel2;" />
-						<html:div style="width: 10px; height: 20px; background-color: red" ></html:div>
+						<html:div style="width: 10px; height: 20px; background-color: yellow" ></html:div>
 						<label value="&filenameCharset;" />
 							<html:input id="filenameCharset" />
 						</hbox>
@@ -268,6 +269,8 @@
 						<hbox align="center">
 							<checkbox id="cutSub" label="&cutSub;" />
 							<spacer width="15px" />
+						<html:div style="width: 15px; height: 10px; background-color: yellow" ></html:div>
+							
 							<checkbox id="cutFN" label="&cutFN;" />
 						</hbox>
 
@@ -326,6 +329,8 @@
 					</hbox>
 					<hbox>
 						<spacer width="20" />
+						<html:div style="width: 20px; height: 20px; background-color: yellow" ></html:div>
+
 						<checkbox id="skipMsg" label="&skipMsgLabel;" />
 					</hbox>
 				</groupbox>
@@ -356,12 +361,16 @@
 						</menulist>
 					</hbox>
 					<spacer height="10" />
+						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+
 					<hbox align="center" style="margin-bottom: 4px;">
 						<label value="&backupDestination;: " />
 						<html:input id="backupDir" value="" size="35" />
 						<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
 					</hbox>
 					<spacer height="10" />
+						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+
 					<label value="&backupFolderName;: " />
 					<hbox align="center" style="margin-bottom: 4px;">
 						<radiogroup orient="horizontal" id="backupDirName">
@@ -371,6 +380,8 @@
 						<html:input id="backupCustomName" value="" size="35" />
 					</hbox>
 					<spacer height="10" />
+						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+
 					<hbox align="center">
 						<label value="&save;: " />
 						<radiogroup orient="horizontal" id="saveMode">
@@ -386,6 +397,8 @@
 						</radiogroup>
 					</hbox>
 					<spacer height="10" />
+						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+
 					<hbox align="center">
 						<checkbox id="modalWin" label="&modal;" />
 					</hbox>

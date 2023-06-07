@@ -58,10 +58,13 @@ function SDexportMsg() {
 	var view;
 	var all;
 
+	console.log("Search export start")
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
+
+		console.log("gDBView", gDBView)
 
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
@@ -122,16 +125,19 @@ function SDexportMsg() {
 		.getMostRecentWindow("mail:3pane");
 	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
 
+	console.log("build uri array all:", all)
 	let emlsArray = [];
 	if (all) {
 
-		var total = msgFolder.getTotalMessages(false);
+		//var total = msgFolder.getTotalMessages(false);
+		var total = view.rowCount;
+		console.log("total view msgs: ", total)
 		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
-
 			} catch (e) {
+				console.log("dummy", e)
 				continue; // ignore errors for dummy rows
 			}
 		}
@@ -139,6 +145,7 @@ function SDexportMsg() {
 		emlsArray = view.getURIsForSelection();
 	}
 
+	console.log("final array ",emlsArray)
 	
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
@@ -173,7 +180,7 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	console.debug('SD for the initialize ');
+	console.debug('SD initialize ');
 	if (window.arguments && window.arguments[1]) {
 		// var sb = document.getElementById("status-bar");
 		var sf = document.getElementById("IETSearchFrame");

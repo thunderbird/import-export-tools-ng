@@ -1,12 +1,80 @@
+/*
 :root {
   --dialog-bgcolor: whitesmoke;
   --groupbox-header-bg: whitesmoke;
   --question-height: 24px;
 }
+*/
+
+:root {
+	--groupbox-header-bg: Field;
+	--question-height: 24px;
+}
+
+
+:root {
+	--dialog-bgcolor: Field;
+	--dialog-text-color: FieldText;
+	--in-content-box-background: Field !important;
+	--in-content-accent-color: rgb(69, 161, 255);
+	--list-item-hover: rgb(116, 183, 249);
+	--list-highlight-text-color: black;
+	--in-content-button-background: rgba(207, 207, 216, 0.33);
+	--list-disabled-font-color: #cccccc;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dialog-bgcolor: rgb(35, 34, 43);
+		--dialog-text-color: #f7f7f7;
+		--checkbox-unchecked-bgcolor: rgb(50, 49, 57);
+		--toolbarbutton-hover-background: #393842;
+		--toolbarbutton-active-background: #505054;
+		--in-content-item-selected: rgb(69, 161, 255);
+		--in-content-accent-color: rgb(69, 161, 255);
+		--list-item-hover: rgb(116, 183, 249);
+		--list-disabled-font-color: #626262;
+	}
+}
+
+@media (-moz-toolbar-prefers-color-scheme: dark) {
+	:root {
+		--dialog-bgcolor: rgb(35, 34, 43);
+		--dialog-text-color: #f7f7f7;
+		--checkbox-unchecked-bgcolor: rgb(50, 49, 57);
+		--toolbarbutton-hover-background: #393842;
+		--toolbarbutton-active-background: #505054;
+		--popup-item-hover: rgb(69, 161, 255);
+		--box-text-color: white;
+		--in-content-accent-color: rgb(69, 161, 255);
+		--field-background-color: var(--dialog-bgcolor);
+		--field-text-color: var(--dialog-text-color);
+		--list-item-hover: rgb(116, 183, 249);
+		--list-disabled-font-color: #626262;
+	}
+
+	tab[selected] {
+		/* color: red !important; */
+		font-weight: 600 !important;
+	}
+
+	legend {
+		font-weight: 100 !important;
+		background-color: var(--dialog-bgcolor) !important;
+		color: var(--dialog-text-color);
+	}
+
+	#ptng-options {
+		background-color: var(--dialog-bgcolor);
+		color: var(--dialog-text-color);
+	}
+
+}
 
 
 #optionsdialog {
   background-color: var(--dialog-bgcolor);
+
 }
 
 tab {
@@ -21,7 +89,9 @@ tab[selected] {
   background-color: var(--tab-selected-background)
 }
 
-
+caption {
+  font-weight: 700;
+}
 .groupbox-multi-os {
   position: relative;
   border-radius: 3px;
@@ -33,6 +103,7 @@ tab[selected] {
   padding-left: 6px;
   padding-top: 10px;
   padding-bottom: 6px;
+	border-color: var(--dialog-text-color);
 }
 
 .groupbox-os-title {
@@ -41,7 +112,7 @@ tab[selected] {
 
 .groupbox-os-label {
   background-color: var(--groupbox-header-bg);
-  font-weight: normal;
+  font-weight: 700;
   margin-inline-start: 3px;
   padding-right: 3px;
   padding-left: 3px;

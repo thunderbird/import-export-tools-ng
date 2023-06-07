@@ -14,6 +14,8 @@ hdr.getProperty => hdr.getStringProperty
 
 maildir imp dir dlg label 
 
+fix search and export per 12.0.4
+fix plaintext output name
 scan and import hierarchy :
 
 id = import directory src

@@ -34,14 +34,17 @@
 			<tab label="&backupTab;" />
 		</tabs>
 		<tabpanels>
-			<tabpanel style="margin: 10px;">
-			
-				<hbox>
-						<html:div style="width: 10px; height: 0px; background-color: yellow" ></html:div>
+			<tabpanel style="margin: 10px;" orient="vertical">
+				<html:div >
 
-					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">					
+			<html:div style="padding-left: 5px; float: left">
+			
+				<!-- <hbox> -->
+						<html:div style="width: 10px; height: 10px; background-color2: yellow" ></html:div>
+
+					<!-- <groupbox class="groupbox-multi-os"  style="margin-top: 8px;">					 -->
 						<hbox class="groupbox-os-title" >
-							<label class="groupbox-os-label" style="background-color2: red" >&MBcaptionlabel1;</label>
+							<label class="groupbox-os-label" style="padding-bottom: 5px" >&MBcaptionlabel1;</label>
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="&MBlabel1;" />
@@ -74,7 +77,7 @@
 								<menupopup id="charset-list-popup" />
 							</menulist>
 						</hbox>
-						<html:div style="height: 20px"></html:div>
+						<html:div style="height: 10px"></html:div>
 						<html:table>
 						<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
@@ -110,19 +113,27 @@
 							</hbox>
 						</hbox>
 
-					</groupbox>
-				</hbox>
+					<!-- </groupbox> -->
+				<!-- </hbox> -->
+				</html:div>
+				<html:div style="float: left">
+
 				<hbox flex="1" pack="end" style="height: 48px;">
 					<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
 				</hbox>
+				</html:div>
+				</html:div>
+
 			</tabpanel>
 			<tabpanel style="margin: 10px;">
 			
+			<html:div style="padding-left: 15px; float: left">
+
 				<vbox>
-					<html:div style="height: 0px"></html:div>
-					<groupbox class="groupbox-multi-os">
-						<caption label="&captionCustomize;" />
+					<html:div style="height: 10px"></html:div>
+					<!-- <groupbox class="groupbox-multi-os"> -->
+						<caption label="&captionCustomize;" style="padding-left: -8px"/>
 						<hbox class="groupbox-os-title" >
 							<label class="groupbox-os-label">&captionCustomize;</label>
 						</hbox>
@@ -178,12 +189,12 @@
 						<hbox align="center" width="100%" >
 							<hbox>
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
-								<html:input id="prefixText" />
+								<html:input id="prefixText" size="15"/>
 							</hbox>
 
 								<hbox flex="1" style="padding-right: 2px;" pack="end" >
 								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
-								<html:input id="suffixText" size="22"/>
+								<html:input id="suffixText" size="15"/>
 								</hbox>
 						</hbox>
 						
@@ -218,11 +229,11 @@
 						<html:div style="height: 6px"></html:div>
 						<hbox valign="center" >
 							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">&extFormat;</label>
-							<html:input id="extendedFormat" size="72"/>
+							<html:input id="extendedFormat" size="60"/>
 						</hbox>
-					</groupbox>
+					<!-- </groupbox> -->
 					<html:div style="height: 20px"></html:div>
-					<groupbox class="groupbox-multi-os">
+					<!-- <groupbox class="groupbox-multi-os"> -->
 						<caption label="Attachments" />
 						<hbox class="groupbox-os-title">
 							<label class="groupbox-os-label">Attachment Folder Names</label>
@@ -232,7 +243,7 @@
 									<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
 							<label style="padding-left: -4px;">Attachment Folders:</label>
 							<hbox flex="0">
-								<html:input id="attFolderFormat" stylex="height: 30px;" size="63"/>
+								<html:input id="attFolderFormat" stylex="height: 30px;" size="40"/>
 								</hbox>
 								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="18px" maxheightx="20px" onclick="openHelp('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
@@ -243,7 +254,7 @@
 									<!-- onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/> -->
 							<label style="padding-left: -4px;">Use for Inline Attachments Folders:</label>
 							<hbox flex="0">
-								<html:input id="inlineAttFolderFormat" stylex="height: 30px;" size="52"/>
+								<html:input id="inlineAttFolderFormat" stylex="height: 30px;" size="30"/>
 								</hbox>
 								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="20px" maxheightx="20px" onclick="openHelp('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
@@ -251,17 +262,19 @@
 
 
 					<html:div style="height: 6px"></html:div>
-					</groupbox>
+					<!-- </groupbox> -->
 
 					<html:div style="height: 20px"></html:div>
-					<groupbox class="groupbox-multi-os">
+					<!-- <groupbox class="groupbox-multi-os"> -->
 						<caption label="&misc;" />
 						<hbox class="groupbox-os-title">
 							<label class="groupbox-os-label">&misc;</label>
 						</hbox>
 						<hbox align="center">
 						<checkbox id="MBasciiname" label="&MBlabel2;" />
-						<html:div style="width: 10px; height: 20px; background-color: yellow" ></html:div>
+						</hbox>
+						<hbox>
+						<html:div style="width: 5px; height: 20px; background-color2: yellow" ></html:div>
 						<label value="&filenameCharset;" />
 							<html:input id="filenameCharset" />
 						</hbox>
@@ -274,8 +287,10 @@
 							<checkbox id="cutFN" label="&cutFN;" />
 						</hbox>
 
-					</groupbox>
+					<!-- </groupbox> -->
 				</vbox>
+			</html:div>
+
 			</tabpanel>
 			<tabpanel orient="vertical"  style="margin: 10px;">
 			<html:div style="height: 8px"></html:div>
@@ -373,7 +388,7 @@
 
 					<label value="&backupFolderName;: " />
 					<hbox align="center" style="margin-bottom: 4px;">
-						<radiogroup orient="horizontal" id="backupDirName">
+						<radiogroup orient="vertical" id="backupDirName">
 							<radio label="&autoName;" />
 							<radio label="&customName;:" />
 						</radiogroup>

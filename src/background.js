@@ -36,7 +36,11 @@ main();
 
 browser.runtime.onInstalled.addListener(async (info) => {
 	console.log("install event")
-	await wextOpenHelp({opentype: "tab"});
+	//await wextOpenHelp({opentype: "tab"});
+	await new Promise(resolve => window.setTimeout(resolve, 100));
+
+	await window.openOptions({opentype: "tab"});
+
 });
 
 

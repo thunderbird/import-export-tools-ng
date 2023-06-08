@@ -1034,4 +1034,5 @@ async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
 }
 
+window.openOptions = openOptions;
 

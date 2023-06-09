@@ -11,11 +11,11 @@
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
 <?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
-<dialog
+<window
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
-		title="ImportExportTools NG ">
+		title="ImportExportTools NG " style="minmin--width: 100%">
 	<tabbox>
 		<tabs>
 			<tab label="&misc;" selected2="true" />
@@ -26,7 +26,7 @@
 		<tabpanels>
 			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
 				<label class="top-header" >&MBcaptionlabel1;</label>
-				<html:div >
+				<html:div style="min-width: 550px">
 					<html:div style="padding-left: 10px; float: left">
 						<html:div style="width: 10px; height: 10px; background-color2: yellow" ></html:div>
 						<hbox align="center">
@@ -96,7 +96,7 @@
 							</hbox>
 						</hbox>
 					</html:div>
-					<html:div style="float: left">
+					<html:div style="float: left; ">
 						<hbox flex="1" pack="end" style="height: 48px;">
 							<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
@@ -106,7 +106,7 @@
 			</tabpanel>
 			<tabpanel style="margin-left: 10px; margin-right: 15px;" orient="vertical">
 				<label class="top-header" >&captionCustomize;</label>
-				<html:div style="padding-left: 10px; background-color2: yellow ">
+				<html:div style="padding-left: 10px; background-color: yellow ">
 					<vbox>
 						<html:div style="height: 10px"></html:div>
 						<hbox align="center">
@@ -157,14 +157,14 @@
 						<hbox align="center" style="display: none;">
 							<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
 						</hbox>
-						<hbox align="center" width="100%" >
-							<hbox>
+						<hbox align="center" width="100%" flex="1">
+							<hbox flex="1">
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
-								<html:input id="prefixText" size="15"/>
+								<html:input id="prefixText" size="14"/>
 							</hbox>
 							<hbox flex="1" style="padding-right: 2px;" pack="end" >
 								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
-								<html:input id="suffixText" size="15"/>
+								<html:input id="suffixText" size="20" />
 							</hbox>
 						</hbox>
 						<html:div style="height: 10px"></html:div>
@@ -225,24 +225,23 @@
 					</vbox>
 				</html:div>
 				<label class="section-header">&misc;</label>
-				<html:div style="padding-left: 10px; background-color2: green">
-					<vbox>
-						<hbox align="center">
+				<html:div style="padding-left: 10px; background-color: green">
+					<!-- <vbox> -->
+						<hbox align="center" flex="1" width="100%">
 							<checkbox id="MBasciiname" label="&MBlabel2;" />
 						</hbox>
 						
-						<hbox align="center">
+						<hbox align="center" flex="1">
 							<checkbox id="cutSub" label="&cutSub;" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
-							<checkbox id="cutFN" label="&cutFN;" />
+							<checkbox id="cutFN" label="&cutFN;xxxxxxxxx xxxxxxxxx " />
 						</hbox>
-							<html:div style="width: 5px; height: 2px;" ></html:div>
 
-						<hbox>
+						<hbox flex="1">
 							<label value="&filenameCharset;" style="padding-left: 2px;"/>
 							<html:input id="filenameCharset" />
 						</hbox>
-					</vbox>
+					<!-- </vbox> -->
 				</html:div>
 			</tabpanel>
 			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
@@ -323,9 +322,11 @@
 						<hbox align="center" style="margin-bottom: 4px;">
 							<radiogroup orient="vertical" id="backupDirName">
 								<radio label="&autoName;" />
+								<hbox>
 								<radio label="&customName;:" />
+								<html:input id="backupCustomName" value="" size="35" />
+								</hbox>
 							</radiogroup>
-							<html:input id="backupCustomName" value="" size="35" />
 						</hbox>
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center">
@@ -358,4 +359,4 @@
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/wextAPIcmds.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />
-</dialog>
+</window>

@@ -76,6 +76,7 @@
   background-color: var(--dialog-bgcolor);
   margin-bottom: 10px;
   padding-right: 8px !important;
+	width: 100%;
 }
 
 tab {

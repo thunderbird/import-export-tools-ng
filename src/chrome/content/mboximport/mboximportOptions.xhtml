@@ -113,11 +113,7 @@
 			<tabpanel style="margin: 10px;">
 				<vbox>
 					<html:div style="height: 0px"></html:div>
-					<groupbox class="groupbox-multi-os">
-						<caption label="&captionCustomize;" />
-						<hbox class="groupbox-os-title" >
-							<label class="groupbox-os-label">&captionCustomize;</label>
-						</hbox>
+							<label class="top-header">&captionCustomize;</label>
 						<html:div style="height: 6px"></html:div>
 						<hbox align="center">
 							<checkbox id="customizeFilenames" label="&customizeFilename;" 
@@ -204,13 +200,8 @@
 							<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">&extFormat;</label>
 							<html:input id="extendedFormat" size="72"/>
 						</hbox>
-					</groupbox>
 					<html:div style="height: 20px"></html:div>
-					<groupbox class="groupbox-multi-os">
-						<caption label="Attachments" />
-						<hbox class="groupbox-os-title">
-							<label class="groupbox-os-label">Attachment Folder Names</label>
-						</hbox>
+							<label class="section-header">Attachment Folder Names</label>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<!-- <html:input type="checkbox" id="useAttFormat" checked="false" -->
 							<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
@@ -233,7 +224,6 @@
             					maxwidth="20px" maxheightx="20px" onclick="openHelp('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
 						<html:div style="height: 6px"></html:div>
-					</groupbox>
 					<html:div style="height: 20px"></html:div>
 					<!-- <groupbox class="groupbox-multi-os"> -->
 						<!-- <caption label="&misc;" /> -->

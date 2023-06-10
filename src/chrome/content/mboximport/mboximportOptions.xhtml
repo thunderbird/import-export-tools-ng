@@ -1,21 +1,16 @@
 <?xml version="1.0"?>
-<!DOCTYPE dialog [ 
-
-
+<!DOCTYPE dialog [
 <!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
 %mainDTD;
-
 <!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 	%backupDTD;
 
 ]>
-
 <!-- cleidigh - Start changing dialog CSS for dark mode experiments  -->
 <!-- <?xml-stylesheet type="text/css" href="chrome://global/skin/in-content/common.css"?> -->
 <!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?> -->
 <!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
 <!-- <?xml-stylesheet href="chrome://mboximport/content/mboximport/tdialogAdj.css" type="text/css"?> -->
-
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/icons.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/colors.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
@@ -35,11 +30,9 @@
 		</tabs>
 		<tabpanels>
 			<tabpanel style="margin: 10px;">
-			
 				<hbox>
-						<html:div style="width: 10px; height: 0px; background-color: yellow" ></html:div>
-
-					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">					
+					<html:div style="width: 10px; height: 0px; background-color: yellow" ></html:div>
+					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
 						<hbox class="groupbox-os-title" >
 							<label class="groupbox-os-label" style="background-color2: red" >&MBcaptionlabel1;</label>
 						</hbox>
@@ -76,28 +69,28 @@
 						</hbox>
 						<html:div style="height: 20px"></html:div>
 						<html:table>
-						<html:tr>
+							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</html:td>
-						</html:tr>
-						<html:tr>
+							</html:tr>
+							<html:tr>
 								<html:td align="left"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</html:td>
-						</html:tr>
-						<html:tr>
+							</html:tr>
+							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
 									<label value=" &MBlabel7b;" />
 								</html:td>
-						</html:tr>
-					</html:table>
+							</html:tr>
+						</html:table>
 						<html:div style="height: 6px"></html:div>
 						<hbox style="height: ;" >
 							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&indexCSVdateFormat;</label>
@@ -109,7 +102,6 @@
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
 							</hbox>
 						</hbox>
-
 					</groupbox>
 				</hbox>
 				<hbox flex="1" pack="end" style="height: 48px;">
@@ -118,7 +110,6 @@
 				</hbox>
 			</tabpanel>
 			<tabpanel style="margin: 10px;">
-			
 				<vbox>
 					<html:div style="height: 0px"></html:div>
 					<groupbox class="groupbox-multi-os">
@@ -180,31 +171,23 @@
 								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
 								<html:input id="prefixText" />
 							</hbox>
-
-								<hbox flex="1" style="padding-right: 2px;" pack="end" >
+							<hbox flex="1" style="padding-right: 2px;" pack="end" >
 								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
 								<html:input id="suffixText" size="22"/>
-								</hbox>
+							</hbox>
 						</hbox>
-						
 						<html:div style="height: 10px"></html:div>
-
-
 						<hbox style="height: ;" >
 							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >&customDate;</label>
 							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
 								<html:input id="customDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
 							</hbox>
 							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
- 
 								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
-
 							</hbox>
 						</hbox>
-
 						<html:div style="height: 4px"></html:div>
-
 						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
 						<html:div style="height: 6px"></html:div>
 						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
@@ -229,62 +212,52 @@
 						</hbox>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<!-- <html:input type="checkbox" id="useAttFormat" checked="false" -->
-									<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<!-- onclick="setTimeout(attFolderdFormatCheck,200,this);" style="padding-left: 8px;"/> -->
 							<label style="padding-left: -4px;">Attachment Folders:</label>
 							<hbox flex="0">
 								<html:input id="attFolderFormat" stylex="height: 30px;" size="63"/>
-								</hbox>
-								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+							</hbox>
+							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="18px" maxheightx="20px" onclick="openHelp('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
 						<html:div style="height: 8px"></html:div>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<!-- <html:input type="checkbox" id="useInlineAttFormat" checked="false" -->
-									<!-- onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/> -->
+							<!-- onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 8px;"/> -->
 							<label style="padding-left: -4px;">Use for Inline Attachments Folders:</label>
 							<hbox flex="0">
 								<html:input id="inlineAttFolderFormat" stylex="height: 30px;" size="52"/>
-								</hbox>
-								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+							</hbox>
+							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="20px" maxheightx="20px" onclick="openHelp('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
 						</hbox>
-
-
-					<html:div style="height: 6px"></html:div>
+						<html:div style="height: 6px"></html:div>
 					</groupbox>
-
 					<html:div style="height: 20px"></html:div>
-					<groupbox class="groupbox-multi-os">
-						<caption label="&misc;" />
-						<hbox class="groupbox-os-title">
-							<label class="groupbox-os-label">&misc;</label>
-						</hbox>
-						<hbox align="center">
-						<checkbox id="MBasciiname" label="&MBlabel2;" />
-						<html:div style="width: 10px; height: 20px; background-color: yellow" ></html:div>
-						<label value="&filenameCharset;" />
-							<html:input id="filenameCharset" />
-						</hbox>
-					
-						<hbox align="center">
+					<!-- <groupbox class="groupbox-multi-os"> -->
+						<!-- <caption label="&misc;" /> -->
+						<!-- <hbox class="groupbox-os-title"> -->
+							<label class="section-header">&misc;</label>
+						<!-- </hbox> -->
+						<hbox align="center" flex="1">
 							<checkbox id="cutSub" label="&cutSub;" />
-							<spacer width="15px" />
-						<html:div style="width: 15px; height: 10px; background-color: yellow" ></html:div>
-							
+							<html:div style="width: 15px; height: 10px;" ></html:div>
 							<checkbox id="cutFN" label="&cutFN;" />
 						</hbox>
-
-					</groupbox>
+						<hbox flex="1">
+							<label value="&filenameCharset;" style="padding-left: 2px;"/>
+							<html:input id="filenameCharset" />
+						</hbox>
+					<!-- </groupbox> -->
 				</vbox>
 			</tabpanel>
 			<tabpanel orient="vertical"  style="margin: 10px;">
-			<html:div style="height: 8px"></html:div>
+				<html:div style="height: 8px"></html:div>
 				<groupbox class="groupbox-multi-os">
 					<caption label="&savedirs;" />
 					<hbox class="groupbox-os-title">
 						<label class="groupbox-os-label">&savedirs;</label>
 					</hbox>
-
 					<html:table>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
@@ -295,13 +268,12 @@
 							</html:td>
 						</html:tr>
 						<html:tr>
-						
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_eml_dir" value="" size="35" />
 								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_eml_dir')" />
-						</html:td>
+							</html:td>
 						</html:tr>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
@@ -311,8 +283,7 @@
 								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_msgs_dir')" />
 							</html:td>
 						</html:tr>
-				</html:table>
-				
+					</html:table>
 				</groupbox>
 				<html:div style="height: 20px"></html:div>
 				<groupbox class="groupbox-multi-os">
@@ -330,89 +301,82 @@
 					<hbox>
 						<spacer width="20" />
 						<html:div style="width: 20px; height: 20px; background-color: yellow" ></html:div>
-
 						<checkbox id="skipMsg" label="&skipMsgLabel;" />
 					</hbox>
 				</groupbox>
 			</tabpanel>
 			<tabpanel  style="margin: 10px;">
-			<vbox>
-			<html:div style="height: 8px"></html:div>
-			</vbox>
-			<vbox>
-				<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
-					<caption label="&backupSettings;" />
-					<hbox class="groupbox-os-title">
-						<label class="groupbox-os-label">&backupSettings;</label>
-					</hbox>
-					<hbox align="center">
-						<checkbox id="backupEnable" label="&backupOn;" oncommand="toggleBackup(this)" />
-						<label value="&backupFreq;: " />
-						<menulist id="frequencyList">
-							<menupopup>
-								<menuitem label="&day1;" value="1" />
-								<menuitem label="&day3;" value="3" />
-								<menuitem label="&day7;" value="7" />
-								<menuitem label="&day15;" value="15" />
-								<menuitem label="&day30;" value="30" />
-								<menuitem label="&backupOnExit;" value="99" />
-
-							</menupopup>
-						</menulist>
-					</hbox>
-					<spacer height="10" />
+				<vbox>
+					<html:div style="height: 8px"></html:div>
+				</vbox>
+				<vbox>
+					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
+						<caption label="&backupSettings;" />
+						<hbox class="groupbox-os-title">
+							<label class="groupbox-os-label">&backupSettings;</label>
+						</hbox>
+						<hbox align="center">
+							<checkbox id="backupEnable" label="&backupOn;" oncommand="toggleBackup(this)" />
+							<label value="&backupFreq;: " />
+							<menulist id="frequencyList">
+								<menupopup>
+									<menuitem label="&day1;" value="1" />
+									<menuitem label="&day3;" value="3" />
+									<menuitem label="&day7;" value="7" />
+									<menuitem label="&day15;" value="15" />
+									<menuitem label="&day30;" value="30" />
+									<menuitem label="&backupOnExit;" value="99" />
+								</menupopup>
+							</menulist>
+						</hbox>
+						<spacer height="10" />
 						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
-
-					<hbox align="center" style="margin-bottom: 4px;">
-						<label value="&backupDestination;: " />
-						<html:input id="backupDir" value="" size="35" />
-						<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
-					</hbox>
-					<spacer height="10" />
+						<hbox align="center" style="margin-bottom: 4px;">
+							<label value="&backupDestination;: " />
+							<html:input id="backupDir" value="" size="35" />
+							<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
+						</hbox>
+						<spacer height="10" />
 						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
-
-					<label value="&backupFolderName;: " />
-					<hbox align="center" style="margin-bottom: 4px;">
-						<radiogroup orient="horizontal" id="backupDirName">
-							<radio label="&autoName;" />
-							<radio label="&customName;:" />
-						</radiogroup>
-						<html:input id="backupCustomName" value="" size="35" />
-					</hbox>
-					<spacer height="10" />
+						<label value="&backupFolderName;: " />
+						<hbox align="center" style="margin-bottom: 4px;">
+							<radiogroup orient="horizontal" id="backupDirName">
+								<radio label="&autoName;" />
+								<radio label="&customName;:" />
+							</radiogroup>
+							<html:input id="backupCustomName" value="" size="35" />
+						</hbox>
+						<spacer height="10" />
 						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
-
-					<hbox align="center">
-						<label value="&save;: " />
-						<radiogroup orient="horizontal" id="saveMode">
-							<radio label="&allFilesMode;" />
-							<radio label="&newFilesMode;" />
-						</radiogroup>
-					</hbox>
-					<hbox align="center">
-						<label value="&backupType;: " />
-						<radiogroup orient="horizontal" id="backupType">
-							<radio label="&allFiles;" />
-							<radio label="&justMailFiles;" />
-						</radiogroup>
-					</hbox>
-					<spacer height="10" />
+						<hbox align="center">
+							<label value="&save;: " />
+							<radiogroup orient="horizontal" id="saveMode">
+								<radio label="&allFilesMode;" />
+								<radio label="&newFilesMode;" />
+							</radiogroup>
+						</hbox>
+						<hbox align="center">
+							<label value="&backupType;: " />
+							<radiogroup orient="horizontal" id="backupType">
+								<radio label="&allFiles;" />
+								<radio label="&justMailFiles;" />
+							</radiogroup>
+						</hbox>
+						<spacer height="10" />
 						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
-
-					<hbox align="center">
-						<checkbox id="modalWin" label="&modal;" />
-					</hbox>
-					<hbox align="center">
-						<label value="&lastBackup;: " />
-						<html:input id="backupLast" readonly="true" value="" size="35" />
-					</hbox>
-				</groupbox>
+						<hbox align="center">
+							<checkbox id="modalWin" label="&modal;" />
+						</hbox>
+						<hbox align="center">
+							<label value="&lastBackup;: " />
+							<html:input id="backupLast" readonly="true" value="" size="35" />
+						</hbox>
+					</groupbox>
 				</vbox>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/wextAPIcmds.js" />
-
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />
 </dialog>

@@ -61,7 +61,7 @@
 						</hbox>
 						<hbox align="center">
 							<label value="&textCharset;" />
-							<menulist id="charset-list">
+							<menulist id="charset-list" style="width: 120px">
 								<menupopup id="charset-list-popup" />
 							</menulist>
 						</hbox>
@@ -70,33 +70,43 @@
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
+								</html:td>
+
+								<html:td align="left" style="margin-bottom: 4px;">
+
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
+								</html:td>
+
+								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
+								</html:td>
+
+								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 						</html:table>
 						<html:div style="height: 6px"></html:div>
 						<hbox style="height: ;" >
-							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&indexCSVdateFormat;</label>
-							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
-								<html:input id="indexDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 3px;" >&indexCSVdateFormat;</label>
+							<hbox align="center"  style="padding-left: 0px; height: ;">
+								<html:input id="indexDateFormat" class="adjusted-image-height2"  style=" background-color: ;" />
 							</hbox>
-							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
-								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+							<hbox class="adjusted-image-height2" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="padding-left: 3px; padding-top: 0px;  margin-bottom: 0px; background-color: ;"
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
 							</hbox>
 						</hbox>
@@ -109,7 +119,7 @@
 					</html:div>
 				</html:div>
 			</tabpanel>
-			<tabpanel style="margin: 10px;">
+			<tabpanel style="margin-left: 10px;">
 				<vbox>
 					<label class="top-header" style="padding-left: 0px;">&captionCustomize;</label>
 					<vbox style="padding-left: 10px;">
@@ -185,9 +195,8 @@
 							</hbox>
 						</hbox>
 						<html:div style="height: 4px"></html:div>
-						<html:div style="height: 0.5px;  background-color: #808080; margin: 6px;" ></html:div>
+						<html:div style="height: 1px;  background-color: #c0c0c0; margin: 6px;" ></html:div>
 						<html:div style="height: 6px"></html:div>
-						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
 						<hbox pack="start"  style="padding-left: 0px;" align="center">
 							<checkbox id="useExtendedFormat" 
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>

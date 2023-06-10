@@ -251,13 +251,10 @@
 					<!-- </groupbox> -->
 				</vbox>
 			</tabpanel>
-			<tabpanel orient="vertical"  style="margin: 10px;">
-				<html:div style="height: 8px"></html:div>
-				<groupbox class="groupbox-multi-os">
-					<caption label="&savedirs;" />
-					<hbox class="groupbox-os-title">
-						<label class="groupbox-os-label">&savedirs;</label>
-					</hbox>
+		<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
+				<label class="section-header">&savedirs;</label>
+				<html:div style="padding-left: 10px; background-color2: green">
+					<html:div style="height: 8px"></html:div>
 					<html:table>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
@@ -284,13 +281,10 @@
 							</html:td>
 						</html:tr>
 					</html:table>
-				</groupbox>
-				<html:div style="height: 20px"></html:div>
-				<groupbox class="groupbox-multi-os">
-					<caption label="&allMsg;" />
-					<hbox class="groupbox-os-title">
-						<label class="groupbox-os-label">&allMsg;</label>
-					</hbox>
+					<html:div style="height: 20px"></html:div>
+				</html:div>
+				<label class="section-header">&allMsg;</label>
+				<html:div style="padding-left: 10px; background-color2: green">
 					<label value="&indexSettingLabel;" />
 					<hbox align="center">
 						<radiogroup id="indexSetting" oncommand="toggleSkipMsg(this)">
@@ -299,22 +293,16 @@
 						</radiogroup>
 					</hbox>
 					<hbox>
-						<spacer width="20" />
-						<html:div style="width: 20px; height: 20px; background-color: yellow" ></html:div>
+						<html:div style="width: 20px; height: 20px;" ></html:div>
 						<checkbox id="skipMsg" label="&skipMsgLabel;" />
 					</hbox>
-				</groupbox>
+				</html:div>
 			</tabpanel>
-			<tabpanel  style="margin: 10px;">
-				<vbox>
+			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
+				<label class="top-header">&backupSettings;</label>
+				<html:div style="padding-left: 10px;">
 					<html:div style="height: 8px"></html:div>
-				</vbox>
-				<vbox>
-					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
-						<caption label="&backupSettings;" />
-						<hbox class="groupbox-os-title">
-							<label class="groupbox-os-label">&backupSettings;</label>
-						</hbox>
+					<vbox>
 						<hbox align="center">
 							<checkbox id="backupEnable" label="&backupOn;" oncommand="toggleBackup(this)" />
 							<label value="&backupFreq;: " />
@@ -329,25 +317,25 @@
 								</menupopup>
 							</menulist>
 						</hbox>
-						<spacer height="10" />
-						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center" style="margin-bottom: 4px;">
 							<label value="&backupDestination;: " />
 							<html:input id="backupDir" value="" size="35" />
 							<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
 						</hbox>
 						<spacer height="10" />
-						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<label value="&backupFolderName;: " />
 						<hbox align="center" style="margin-bottom: 4px;">
-							<radiogroup orient="horizontal" id="backupDirName">
+							<radiogroup orient="vertical" id="backupDirName">
 								<radio label="&autoName;" />
+								<hbox>
 								<radio label="&customName;:" />
+								<html:input id="backupCustomName" value="" size="35" />
+								</hbox>
 							</radiogroup>
-							<html:input id="backupCustomName" value="" size="35" />
 						</hbox>
-						<spacer height="10" />
-						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center">
 							<label value="&save;: " />
 							<radiogroup orient="horizontal" id="saveMode">
@@ -362,8 +350,7 @@
 								<radio label="&justMailFiles;" />
 							</radiogroup>
 						</hbox>
-						<spacer height="10" />
-						<html:div style="width: 10px; height: 10px; background-color: yellow" ></html:div>
+						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center">
 							<checkbox id="modalWin" label="&modal;" />
 						</hbox>
@@ -371,8 +358,8 @@
 							<label value="&lastBackup;: " />
 							<html:input id="backupLast" readonly="true" value="" size="35" />
 						</hbox>
-					</groupbox>
-				</vbox>
+					</vbox>
+				</html:div>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>

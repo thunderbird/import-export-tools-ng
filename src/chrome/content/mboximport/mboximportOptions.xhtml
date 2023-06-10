@@ -23,19 +23,17 @@
 		title="ImportExportTools NG ">
 	<tabbox>
 		<tabs>
-			<tab label="&misc;" selected="true" />
-			<tab label="&filenameFormat;" />
+			<tab label="&misc;" selected="false" />
+			<tab label="&filenameFormat;" selected="true"/>
 			<tab label="&savedirs;" />
 			<tab label="&backupTab;" />
 		</tabs>
 		<tabpanels>
-			<tabpanel style="margin: 10px;">
-				<hbox>
-					<html:div style="width: 10px; height: 0px; background-color: yellow" ></html:div>
-					<groupbox class="groupbox-multi-os"  style="margin-top: 8px;">
-						<hbox class="groupbox-os-title" >
-							<label class="groupbox-os-label" style="background-color2: red" >&MBcaptionlabel1;</label>
-						</hbox>
+			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
+				<label class="top-header" >&MBcaptionlabel1;</label>
+				<html:div style="min-width: 550px">
+					<html:div style="padding-left: 10px; float: left">
+						<html:div style="width: 10px; height: 10px; background-color2: yellow" ></html:div>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="&MBlabel1;" />
 						</hbox>
@@ -67,7 +65,7 @@
 								<menupopup id="charset-list-popup" />
 							</menulist>
 						</hbox>
-						<html:div style="height: 20px"></html:div>
+						<html:div style="height: 10px"></html:div>
 						<html:table>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
@@ -102,13 +100,16 @@
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
 							</hbox>
 						</hbox>
-					</groupbox>
-				</hbox>
-				<hbox flex="1" pack="end" style="height: 48px;">
-					<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
+					</html:div>
+					<html:div style="float: left; ">
+						<hbox flex="1" pack="end" style="height: 48px;">
+							<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
-				</hbox>
+						</hbox>
+					</html:div>
+				</html:div>
 			</tabpanel>
+
 			<tabpanel style="margin: 10px;">
 				<vbox>
 					<html:div style="height: 0px"></html:div>

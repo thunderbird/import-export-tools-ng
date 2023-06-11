@@ -532,7 +532,7 @@ var options = {
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
 	append: false,
-	outputFormat: 1,
+	outputFormat: 3,
 };
 
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];

@@ -277,7 +277,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		}
 		else if (options.append) {
 			console.debug('AppendingMessages');
-			lt = "\n" + lt;
+			lt = "\n\n" + lt;
 			fs.appendFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
 			
 		} else {

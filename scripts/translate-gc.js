@@ -534,10 +534,10 @@ var options2 = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-let inputFiles = ["messages.json"];
+//let inputFiles = ["messages.json"];
 //let inputFiles = ["ietng_button.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-//let inputFiles = ["mboximport.properties"];
+let inputFiles = ["mboximport2.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -549,7 +549,7 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 
 localeFolders = ['en-US', 'es-ES', 'de', 'fr'];
 
-localeFolders = ['en-US'];
+//localeFolders = ['en-US'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
@@ -557,8 +557,8 @@ localeFolders = ['en-US'];
 //translateHelpPage();
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
-// loadTranslationArray(inputFiles, options);
+//translateAll(inputFiles, translationArray, options);
+ loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];
 /*
 node .\scripts\translate-gc.js

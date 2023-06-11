@@ -510,7 +510,7 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
-var options = {
+var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -525,6 +525,14 @@ var options2 = {
 	outputLocaleDirSuffix: "mboximport/",
 	append: false,
 	outputFormat: 2,
+};
+
+var options = {
+	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	outputLocaleDir: "./src/_locales",
+	outputLocaleDirSuffix: "",
+	append: false,
+	outputFormat: 1,
 };
 
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];

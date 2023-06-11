@@ -14,7 +14,7 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray = [
+var translationArray3 = [
 	// common titles
 	{"key":"extensionName", "text":"ImportExportTools NG"},
 	{"key":"extensionDescription", "text":"Adds tools to import/export messages and folders (NextGen)"},
@@ -112,6 +112,20 @@ var translationArray = [
 	{"key": "buttonMenu_Help.title", "text": "Help"},
 	];
 
+	var translationArray = [
+
+  { key: "subjectFmtToken", text: "${subject}"},
+  { key: "senderFmtToken", text: "${sender}"},
+  { key: "recipientFmtToken", text: "${recipient}"},
+  { key: "senderEmailFmtToken", text: "${sender_email}"},
+  { key: "recipientEmailFmtToken", text: "${recipient_email}"},
+  { key: "smartNameFmtToken", text: "${smart_name}"},
+  { key: "indexFmtToken", text: "${index}"},
+  { key: "prefixFmtToken", text: "${prefix}"},
+  { key: "suffixFmtToken", text: "${suffix}"},
+  { key: "dateCustomFmtToken", text: "${date_custom}"},
+  { key: "dateFmtToken", text: "${date}"},
+];
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
 // const outputLocaleDir = "./src/_locales";
@@ -244,7 +258,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 
 		lt = lt.join('\n');
 
-		if (options.outputFormat === 3) {
+		if (options.outputFormat === 3 && !options.append) {
 			lt = `{\n${lt}\n}`;
 		}
 
@@ -500,7 +514,7 @@ var options = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
-	append: false,
+	append: true,
 	outputFormat: 3,
 };
 
@@ -533,16 +547,17 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
-//localeFolders = ['en-US', 'es-ES', 'de', 'fr'];
+localeFolders = ['en-US', 'es-ES', 'de', 'fr'];
 
+localeFolders = ['en-US'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-translateHelpPage();
+//translateHelpPage();
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
 // loadTranslationArray(inputFiles, options);
 // let inputFiles = ["settings.dtd"];
 /*

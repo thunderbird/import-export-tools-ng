@@ -532,7 +532,7 @@ function convert(iFile, options) {
 		})
 		outputJson += "\n};";
  	//	outputJson = prettier.format(outputJson	, { parser: 'json', printWidth: 110 });
-
+		let targetLocale = locale;
 		console.log(outputJson)
 		var source = fs.readFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, { encoding: 'utf8' });
 			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + lt + "\n}";

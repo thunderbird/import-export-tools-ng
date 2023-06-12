@@ -520,23 +520,26 @@ function convert(iFile, options) {
 		var strings = loadPropertys(iFile, options);
 		console.log(strings)
 
-		let outputJson = " {\n ";
-		strings.forEach(keyText => {
+		let outputJson = "";
+		strings.forEach((keyText, index) => {
 			let key = keyText.key;
 			let text = keyText.text;
 			//let entry = eval(`{"${key}": {message: "${text}" }`)
-			let entry = `\t"${key}": {\n\t\t"message": "${text}"\n\t},\n`;
+			var entry = `\t"${key}": {\n\t\t"message": "${text}"\n\t}`;
+			if (index < strings.length) {
+				entry+= ",\n\n"
+			}
 			console.log(entry)
 			outputJson += entry;
 			
 		})
-		outputJson += "\n};";
+		//outputJson += "\n};";
  	//	outputJson = prettier.format(outputJson	, { parser: 'json', printWidth: 110 });
 		let targetLocale = locale;
 		let outputFileName = "messages.json";
 		console.log(outputJson)
 		var source = fs.readFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, { encoding: 'utf8' });
-			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + lt + "\n}";
+			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + outputJson + "\n}";
 			console.debug(source);
 			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, source);
 		

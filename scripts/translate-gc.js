@@ -510,6 +510,41 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
+function convert(iFile, options) {
+	localeFolders.forEach(locale => {
+		let input = `./src/chrome/locale/${locale}/mboximport/${iFile}`;
+		console.log(input)
+		let output = `./src/_locale/${locale}/tokens.json`;
+		console.log(output)
+		options.inputLocaleDir = `./src/chrome/locale/${locale}/mboximport`
+		var strings = loadPropertys(iFile, options);
+		console.log(strings)
+
+		let outputJson = " {\n ";
+		strings.forEach(keyText => {
+			let key = keyText.key;
+			let text = keyText.text;
+			//let entry = eval(`{"${key}": {message: "${text}" }`)
+			let entry = `\t"${key}": {\n\t\t"message": "${text}"\n\t},\n`;
+			console.log(entry)
+			outputJson += entry;
+			
+		})
+		outputJson += "\n};";
+ 	//	outputJson = prettier.format(outputJson	, { parser: 'json', printWidth: 110 });
+
+		console.log(outputJson)
+		var source = fs.readFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, { encoding: 'utf8' });
+			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + lt + "\n}";
+			console.debug(source);
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, source);
+		
+		//fs.outputFileSync(output, outputJson);
+
+	});
+}
+
+
 var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
@@ -545,7 +580,7 @@ var options = {
 //let inputFiles = ["messages.json"];
 //let inputFiles = ["ietng_button.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-let inputFiles = ["mboximport2.properties"];
+let inputFiles = ["mb2.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -555,7 +590,7 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
-localeFolders = ['en-US', 'es-ES', 'de', 'fr'];
+localeFolders = ['en-US', 'de'];
 
 //localeFolders = ['en-US'];
 
@@ -566,7 +601,9 @@ localeFolders = ['en-US', 'es-ES', 'de', 'fr'];
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
 //translateAll(inputFiles, translationArray, options);
- loadTranslationArray(inputFiles, options);
+ //loadTranslationArray(inputFiles, options);
+ convert(inputFiles, options);
+
 // let inputFiles = ["settings.dtd"];
 /*
 node .\scripts\translate-gc.js

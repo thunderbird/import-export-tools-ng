@@ -1,6 +1,6 @@
 {
 	"extensionName": {
-		"message": "ImportExportTools VAN"
+		"message": "ImportExportTools NG"
 	},
 
 	"extensionDescription": {
@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV-indeling"
+	},
+
+	"subjectFmtToken": {
+		"message": "${onderwerp}"
+	},
+
+	"senderFmtToken": {
+		"message": "${afzender}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${ontvanger}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${afzender_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${ontvanger_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${slimme_naam}"
+	},
+
+	"indexFmtToken": {
+		"message": "${index}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${voorvoegsel}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${achtervoegsel}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${data_aangepast}"
+	},
+
+	"dateFmtToken": {
+		"message": "${datum}"
 	}
 }

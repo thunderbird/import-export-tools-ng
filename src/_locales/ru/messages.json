@@ -1,6 +1,6 @@
 {
 	"extensionName": {
-		"message": "ИмпортЭкспортИнструменты OF"
+		"message": "ImportExportTools NG"
 	},
 
 	"extensionDescription": {
@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV-формат"
+	},
+
+	"subjectFmtToken": {
+		"message": "${тема}"
+	},
+
+	"senderFmtToken": {
+		"message": "${отправитель}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${получатель}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${отправитель_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${получатель_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${умное_имя}"
+	},
+
+	"indexFmtToken": {
+		"message": "${индекс}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${префикс}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${суффикс}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${пользовательская_дата}"
+	},
+
+	"dateFmtToken": {
+		"message": "${дата}"
 	}
 }

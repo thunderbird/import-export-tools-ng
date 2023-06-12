@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Oblika CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${zadeva}"
+	},
+
+	"senderFmtToken": {
+		"message": "${pošiljatelj}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${prejemnik}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${pošiljatelj_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${prejemnik_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${pametno_ime}"
+	},
+
+	"indexFmtToken": {
+		"message": "${kazalo}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${predpono}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${pripona}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${datum_po_meri}"
+	},
+
+	"dateFmtToken": {
+		"message": "${datum}"
 	}
 }

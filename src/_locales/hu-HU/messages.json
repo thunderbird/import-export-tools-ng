@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV formátum"
+	},
+
+	"subjectFmtToken": {
+		"message": "${tárgy}"
+	},
+
+	"senderFmtToken": {
+		"message": "${feladó}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${címzett}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${feladó_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${címzett_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${okos_név}"
+	},
+
+	"indexFmtToken": {
+		"message": "${azonosító}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${előtag}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${utótag}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${dátum_egyedi}"
+	},
+
+	"dateFmtToken": {
+		"message": "${dátum}"
 	}
 }

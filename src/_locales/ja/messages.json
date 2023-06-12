@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV形式"
+	},
+
+	"subjectFmtToken": {
+		"message": "${タイトル}"
+	},
+
+	"senderFmtToken": {
+		"message": "${送信者}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${受信者}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${送信者_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${受信者_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${スマート名}"
+	},
+
+	"indexFmtToken": {
+		"message": "${インデックス}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${プレフィックス}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${サフィックス}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${カスタム日付}"
+	},
+
+	"dateFmtToken": {
+		"message": "${日付}"
 	}
 }

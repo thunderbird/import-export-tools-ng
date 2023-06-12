@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV ձևաչափ"
+	},
+
+	"subjectFmtToken": {
+		"message": "${Վերնագիրը}"
+	},
+
+	"senderFmtToken": {
+		"message": "${ուղարկող}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${ստացող}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${ուղարկող_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${ստացող_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${խելացի_անուն}"
+	},
+
+	"indexFmtToken": {
+		"message": "${ինդեքս}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${նախածանց}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${վերջածանց}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${ամսաթիվի_մաքսային}"
+	},
+
+	"dateFmtToken": {
+		"message": "${ամսաթիվը}"
 	}
 }

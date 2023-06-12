@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV-format"
+	},
+
+	"subjectFmtToken": {
+		"message": "${emne}"
+	},
+
+	"senderFmtToken": {
+		"message": "${afsender}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${modtager}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${afsender_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${modtager_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${smart_navn}"
+	},
+
+	"indexFmtToken": {
+		"message": "${indeks}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${præfiks}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${suffiks}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${dato_brugerdefineret}"
+	},
+
+	"dateFmtToken": {
+		"message": "${dato}"
 	}
 }

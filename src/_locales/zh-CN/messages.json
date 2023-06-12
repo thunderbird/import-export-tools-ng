@@ -277,5 +277,53 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV 格式"
+	},
+
+	"subjectFmtToken": {
+		"message": "${主题}"
+	},
+
+	"senderFmtToken": {
+		"message": "${发件人}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${收件人}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${发件人_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${收件人_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${聪明的名字}"
+	},
+
+	"indexFmtToken": {
+		"message": "${索引}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${前缀}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${后缀}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${日期自定义}"
+	},
+
+	"dateFmtToken": {
+		"message": "${日期}"
+	},
+
+	"Received": {
+		"message": "已收到"
 	}
 }

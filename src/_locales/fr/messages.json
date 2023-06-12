@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Format CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${sujet}"
+	},
+
+	"senderFmtToken": {
+		"message": "${expéditeur}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${expéditeur_email}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${destinataire}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${destinataire_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${nom_intelligent}"
+	},
+
+	"indexFmtToken": {
+		"message": "${index}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${préfixe}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${suffixe}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${date_personnalisée}"
+	},
+
+	"dateFmtToken": {
+		"message": "${date}"
 	}
 }

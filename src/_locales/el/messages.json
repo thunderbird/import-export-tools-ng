@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Μορφή CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${θέμα}"
+	},
+
+	"senderFmtToken": {
+		"message": "${αποστολέας}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${παραλήπτης}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${αποστολέας_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${παραλήπτης_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${smart_name}"
+	},
+
+	"indexFmtToken": {
+		"message": "${ευρετήριο}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${πρόθεμα}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${επίθημα}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${date_custom}"
+	},
+
+	"dateFmtToken": {
+		"message": "${ημερομηνία}"
 	}
 }

@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "CSV 형식"
+	},
+
+	"subjectFmtToken": {
+		"message": "${제목}"
+	},
+
+	"senderFmtToken": {
+		"message": "${발신자}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${수신자}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${발신자_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${수신자_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${스마트_이름}"
+	},
+
+	"indexFmtToken": {
+		"message": "${색인}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${접두사}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${접미사}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${날짜_사용자_정의}"
+	},
+
+	"dateFmtToken": {
+		"message": "${날짜}"
 	}
 }

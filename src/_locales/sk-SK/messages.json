@@ -277,5 +277,49 @@
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Formát CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${predmet}"
+	},
+
+	"senderFmtToken": {
+		"message": "${odosielateľ}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${príjemca}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${odosielateľ_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${príjemca_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${inteligentné_meno}"
+	},
+
+	"indexFmtToken": {
+		"message": "${značka}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${predpona}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${prípona}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${dátum_vlastné}"
+	},
+
+	"dateFmtToken": {
+		"message": "${dátum}"
 	}
 }

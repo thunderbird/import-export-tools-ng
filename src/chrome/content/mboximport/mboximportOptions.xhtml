@@ -6,11 +6,7 @@
 	%backupDTD;
 
 ]>
-<!-- cleidigh - Start changing dialog CSS for dark mode experiments  -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://global/skin/in-content/common.css"?> -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?> -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
-<!-- <?xml-stylesheet href="chrome://mboximport/content/mboximport/tdialogAdj.css" type="text/css"?> -->
+
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/icons.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/colors.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
@@ -23,8 +19,8 @@
 		title="ImportExportTools NG ">
 	<tabbox>
 		<tabs>
-			<tab label="&misc;" selected="false" />
-			<tab label="&filenameFormat;" selected="true"/>
+			<tab label="&misc;" selected="true" />
+			<tab label="&filenameFormat;" />
 			<tab label="&savedirs;" />
 			<tab label="&backupTab;" />
 		</tabs>
@@ -49,17 +45,17 @@
 						<hbox align="center">
 							<checkbox id="setTimestamp" label="&addTimestamp;" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="display: none">
 							<checkbox id="buildMSF" label="&buildMSF.label;" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="addNumber" label="&addNumber.label;" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="padding-left: 4px">
 							<label value="&csvSep;" />
 							<html:input id="csvSep" size="1" maxlength="1" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="padding-left: 4px">
 							<label value="&textCharset;" />
 							<menulist id="charset-list" style="width: 120px">
 								<menupopup id="charset-list-popup" />
@@ -71,9 +67,7 @@
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
 								</html:td>
-
 								<html:td align="left" style="margin-bottom: 4px;">
-
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
 									<label value="&MBlabel7b;" />
 								</html:td>
@@ -82,7 +76,6 @@
 								<html:td align="left"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
 								</html:td>
-
 								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
 									<label value="&MBlabel7b;" />
@@ -92,7 +85,6 @@
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
 								</html:td>
-
 								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
 									<label value="&MBlabel7b;" />
@@ -112,7 +104,7 @@
 						</hbox>
 					</html:div>
 					<html:div style="float: left; ">
-						<hbox flex="1" pack="end" style="height: 48px;">
+						<hbox flex="1" pack="end" style="height: 48px; padding-left: 25px">
 							<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
 						</hbox>
@@ -247,6 +239,9 @@
 					</vbox>
 					<label class="section-header">&misc;</label>
 					<vbox style="padding-left: 10px;">
+					<hbox align="center" >
+							<checkbox id="MBasciiname" label="&MBlabel2;" />
+						</hbox>
 						<hbox align="center" flex="1">
 							<checkbox id="cutSub" label="&cutSub;" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
@@ -270,7 +265,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_mbox_dir" value="" size="35" />
+								<html:input id="export_mbox_dir" value="" size="60" />
 								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_mbox_dir')" />
 							</html:td>
 						</html:tr>
@@ -278,7 +273,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_eml_dir" value="" size="35" />
+								<html:input id="export_eml_dir" value="" size="60" />
 								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_eml_dir')" />
 							</html:td>
 						</html:tr>
@@ -286,7 +281,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_msgs_dir" label="&selExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_msgs_dir" value="" size="35" />
+								<html:input id="export_msgs_dir" value="" size="60" />
 								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_msgs_dir')" />
 							</html:td>
 						</html:tr>
@@ -330,7 +325,7 @@
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center" style="margin-bottom: 4px;">
 							<label value="&backupDestination;: " />
-							<html:input id="backupDir" value="" size="35" />
+							<html:input id="backupDir" value="" size="50" />
 							<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
 						</hbox>
 						<spacer height="10" />

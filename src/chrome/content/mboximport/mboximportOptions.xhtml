@@ -6,11 +6,7 @@
 	%backupDTD;
 
 ]>
-<!-- cleidigh - Start changing dialog CSS for dark mode experiments  -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://global/skin/in-content/common.css"?> -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?> -->
-<!-- <?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
-<!-- <?xml-stylesheet href="chrome://mboximport/content/mboximport/tdialogAdj.css" type="text/css"?> -->
+
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/icons.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/colors.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
@@ -23,8 +19,8 @@
 		title="ImportExportTools NG ">
 	<tabbox>
 		<tabs>
-			<tab label="&misc;" selected="false" />
-			<tab label="&filenameFormat;" selected="true"/>
+			<tab label="&misc;" selected="true" />
+			<tab label="&filenameFormat;" />
 			<tab label="&savedirs;" />
 			<tab label="&backupTab;" />
 		</tabs>
@@ -49,19 +45,19 @@
 						<hbox align="center">
 							<checkbox id="setTimestamp" label="&addTimestamp;" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="display: none">
 							<checkbox id="buildMSF" label="&buildMSF.label;" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="addNumber" label="&addNumber.label;" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="padding-left: 4px">
 							<label value="&csvSep;" />
 							<html:input id="csvSep" size="1" maxlength="1" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="padding-left: 4px">
 							<label value="&textCharset;" />
-							<menulist id="charset-list">
+							<menulist id="charset-list" style="width: 120px">
 								<menupopup id="charset-list-popup" />
 							</menulist>
 						</hbox>
@@ -70,46 +66,52 @@
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7a;" />
+								</html:td>
+								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left"  style="margin-bottom: 4px;">
 									<label value="&MBlabel7c;" />
+								</html:td>
+								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<label value="&MBlabel7d;" />
+								</html:td>
+								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
-									<label value=" &MBlabel7b;" />
+									<label value="&MBlabel7b;" />
 								</html:td>
 							</html:tr>
 						</html:table>
 						<html:div style="height: 6px"></html:div>
 						<hbox style="height: ;" >
-							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 0px;" >&indexCSVdateFormat;</label>
-							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
-								<html:input id="indexDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 3px;" >&indexCSVdateFormat;</label>
+							<hbox align="center"  style="padding-left: 0px; height: ;">
+								<html:input id="indexDateFormat" class="adjusted-image-height2"  style=" background-color: ;" />
 							</hbox>
-							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
-								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+							<hbox class="adjusted-image-height2" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="padding-left: 3px; padding-top: 0px;  margin-bottom: 0px; background-color: ;"
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
 							</hbox>
 						</hbox>
 					</html:div>
 					<html:div style="float: left; ">
-						<hbox flex="1" pack="end" style="height: 48px;">
+						<hbox flex="1" pack="end" style="height: 48px; padding-left: 25px">
 							<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
 					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
 						</hbox>
 					</html:div>
 				</html:div>
 			</tabpanel>
-			<tabpanel style="margin: 10px;">
+			<tabpanel style="margin-left: 10px;">
 				<vbox>
 					<label class="top-header" style="padding-left: 0px;">&captionCustomize;</label>
 					<vbox style="padding-left: 10px;">
@@ -121,8 +123,8 @@
 						</hbox>
 						<html:div style="height: 10px"></html:div>
 						<hbox align="center">
-							<menulist id="part1">
-								<menupopup id="part1-popup-list">
+							<menulist id="part1" style="width: 30%">
+								<menupopup id="part1-popup-list" style="min-width: 24px">
 									<menuitem id="m0" label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" />
 									<menuitem label="&dateCustomOpt;" value="%D" />
@@ -133,7 +135,7 @@
 								</menupopup>
 							</menulist>
 							<label value="-" />
-							<menulist id="part2">
+							<menulist id="part2" style="width: 30%">
 								<menupopup id="part2-popup-list">
 									<menuitem label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" selected="true" />
@@ -146,7 +148,7 @@
 								</menupopup>
 							</menulist>
 							<label value="-" />
-							<menulist id="part3">
+							<menulist id="part3" style="width: 30%">
 								<menupopup id="part3-popup-list">
 									<menuitem label="&subject;" value="%s" />
 									<menuitem label="&date;" value="%d" />
@@ -176,18 +178,17 @@
 						<html:div style="height: 10px"></html:div>
 						<hbox style="height: ;" >
 							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >&customDate;</label>
-							<hbox align="center" class="input-container" style="padding-left: -3px; height: ;">
-								<html:input id="customDateFormat" class="adjusted-image-height"  style=" background-color: ;" />
+							<hbox align="center" class="input-container2" style="padding-left: -3px; height: ;">
+								<html:input id="customDateFormat" class="adjusted-image-height2"  style=" background-color: ;" size="21"/>
 							</hbox>
 							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
-								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; margin-top: 0px;  margin-bottom: 0px; background-color: ;"
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; padding-top: 4px;  margin-bottom2: 2px; background-color: ;"
             					  maxwidth="16px"  onclick="openHelp('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
 							</hbox>
 						</hbox>
 						<html:div style="height: 4px"></html:div>
-						<html:div style="height: 0.5px;  background-color: lightgrey; margin: 6px;" ></html:div>
+						<html:div style="height: 1px;  background-color: #c0c0c0; margin: 6px;" ></html:div>
 						<html:div style="height: 6px"></html:div>
-						<!-- <hbox pack="start" class="input-container" style="padding-left: 4px;" > -->
 						<hbox pack="start"  style="padding-left: 0px;" align="center">
 							<checkbox id="useExtendedFormat" 
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>
@@ -238,16 +239,20 @@
 					</vbox>
 					<label class="section-header">&misc;</label>
 					<vbox style="padding-left: 10px;">
+					<hbox align="center" >
+							<checkbox id="MBasciiname" label="&MBlabel2;" />
+						</hbox>
 						<hbox align="center" flex="1">
 							<checkbox id="cutSub" label="&cutSub;" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
 							<checkbox id="cutFN" label="&cutFN;" />
 						</hbox>
+						<html:div style="height: 3px"></html:div>
+
 						<hbox flex="1">
-							<label value="&filenameCharset;" style="padding-left: 2px;"/>
+							<label value="&filenameCharset;" style="padding-left: 4px;"/>
 							<html:input id="filenameCharset" />
 						</hbox>
-						<!-- </groupbox> -->
 					</vbox>
 				</vbox>
 			</tabpanel>
@@ -260,7 +265,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_mbox_dir" value="" size="35" />
+								<html:input id="export_mbox_dir" value="" size="60" />
 								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_mbox_dir')" />
 							</html:td>
 						</html:tr>
@@ -268,7 +273,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_eml_dir" label="&emlExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_eml_dir" value="" size="35" />
+								<html:input id="export_eml_dir" value="" size="60" />
 								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_eml_dir')" />
 							</html:td>
 						</html:tr>
@@ -276,7 +281,7 @@
 							<html:td style="margin-bottom: 4px;">
 								<checkbox id="use_export_msgs_dir" label="&selExport;"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
-								<html:input id="export_msgs_dir" value="" size="35" />
+								<html:input id="export_msgs_dir" value="" size="60" />
 								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_msgs_dir')" />
 							</html:td>
 						</html:tr>
@@ -320,7 +325,7 @@
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center" style="margin-bottom: 4px;">
 							<label value="&backupDestination;: " />
-							<html:input id="backupDir" value="" size="35" />
+							<html:input id="backupDir" value="" size="50" />
 							<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
 						</hbox>
 						<spacer height="10" />

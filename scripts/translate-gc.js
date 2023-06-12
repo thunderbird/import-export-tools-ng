@@ -595,7 +595,7 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
 localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
-	'nl', 'pl', 'pt-PT'];
+	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 //localeFolders = ['en-US'];
 

@@ -526,7 +526,7 @@ function convert(iFile, options) {
 			let text = keyText.text;
 			//let entry = eval(`{"${key}": {message: "${text}" }`)
 			var entry = `\t"${key}": {\n\t\t"message": "${text}"\n\t}`;
-			if (index < strings.length) {
+			if (index < strings.length - 1) {
 				entry+= ",\n\n"
 			}
 			console.log(entry)

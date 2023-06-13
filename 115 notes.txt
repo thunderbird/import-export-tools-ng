@@ -13,6 +13,7 @@ gTabmail.currentAbout3Pane.document.getElementById("threadTree").table.addEventL
 hdr.getProperty => hdr.getStringProperty
 
 maildir imp dir dlg label 
+missing messages for sk-sk
 
 fix search and export per 12.0.4
 fix plaintext output name

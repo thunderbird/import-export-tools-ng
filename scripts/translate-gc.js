@@ -112,7 +112,7 @@ var translationArray3 = [
 	{"key": "buttonMenu_Help.title", "text": "Help"},
 	];
 
-	var translationArray = [
+	var translationArray4 = [
 
   { key: "subjectFmtToken", text: "${subject}"},
   { key: "senderFmtToken", text: "${sender}"},
@@ -126,6 +126,16 @@ var translationArray3 = [
   { key: "dateCustomFmtToken", text: "${date_custom}"},
   { key: "dateFmtToken", text: "${date}"},
 ];
+
+var translationArray = [
+  { key: "attachmentFolderNames", text: "Attachment Folder Names"},
+  { key: "attachmentFolders", text: "Attachment Folders"},
+  { key: "inlineAttachmentsFolders", text: "Inline Attachments Folders"},
+  { key: "cutPathLen", text: "Cut file path length to 256 characters"},
+
+
+];
+
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
 // const outputLocaleDir = "./src/_locales";
@@ -558,15 +568,15 @@ var options3 = {
 };
 
 // dtd=2
-var options2 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
-	append: false,
+	append: true,
 	outputFormat: 2,
 };
 
-var options = {
+var options4 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -582,9 +592,9 @@ var options = {
 
 
 //let inputFiles = ["messages.json"];
-//let inputFiles = ["ietng_button.dtd"];
+let inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-let inputFiles = ["mb2.properties"];
+//let inputFiles = ["mb2.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -602,10 +612,10 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-translateHelpPage();
+//translateHelpPage();
 // translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 

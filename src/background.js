@@ -39,7 +39,7 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	//await wextOpenHelp({opentype: "tab"});
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
-	await window.openOptions({opentype: "tab"});
+	await window.wextOpenHelp({opentype: "tab"});
 
 });
 

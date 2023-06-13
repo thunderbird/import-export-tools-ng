@@ -1,6 +1,28 @@
+
+:root {
+	--dialog-bgcolor: Field;
+	--dialog-text-color: FieldText;
+--in-content-box-background: Field !important;
+--in-content-accent-color: rgb(69, 161, 255);
+--list-item-hover: rgb(116, 183, 249);
+--list-highlight-text-color: black;
+--in-content-button-background: rgba(207, 207, 216, 0.33);
+--list-disabled-font-color: #cccccc;
+--table-stripe-even: #f2f2f2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+			--dialog-bgcolor: rgb(35, 34, 43);
+			--dialog-text-color: #f7f7f7;
+	--table-stripe-even: rgb(66, 64, 80);
+}
+}
+
 body {
-	background-color: whitesmoke !important;
-	font-family: 'Roboto', sans-serif;
+background-color: var(--dialog-bgcolor);
+font-family: 'Roboto', sans-serif;
+color: var(--dialog-text-color);
 }
 
 p {

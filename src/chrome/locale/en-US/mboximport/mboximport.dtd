@@ -118,3 +118,8 @@
 <!ENTITY noFolderSelectedMenuTop "[ No Selected Folder (Import \ Export Disabled) ]">
 <!ENTITY backupOnExit "Backup On Exit">
 <!ENTITY indexCSVdateFormat "Index, CSV Date Format:">
+
+<!ENTITY attachmentFolderNames "Attachment Folder Names">
+<!ENTITY attachmentFolders "Attachment Folders">
+<!ENTITY inlineAttachmentsFolders "Inline Attachments Folders">
+<!ENTITY cutPathLen "Cut file path length to 256 characters">

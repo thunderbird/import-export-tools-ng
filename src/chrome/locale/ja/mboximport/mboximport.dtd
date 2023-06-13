@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "終了時のバックアップ">
 <!ENTITY noFolderSelectedMenuTop "[選択したフォルダがありません（インポート\エクスポートが無効）]">
 <!ENTITY indexCSVdateFormat "インデックス、CSV日付形式：">
+<!ENTITY attachmentFolderNames "添付ファイルのフォルダー名">
+<!ENTITY attachmentFolders "添付ファイルフォルダー">
+<!ENTITY inlineAttachmentsFolders "インライン添付ファイルフォルダー">
+<!ENTITY cutPathLen "ファイルパスの長さを 256 文字にカット">

@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Backup all&#39;uscita">
 <!ENTITY noFolderSelectedMenuTop "[Nessuna cartella selezionata (importazione \ esportazione disabilitata)]">
 <!ENTITY indexCSVdateFormat "Indice, formato data CSV:">
+<!ENTITY attachmentFolderNames "Nomi delle cartelle degli allegati">
+<!ENTITY attachmentFolders "Cartelle allegati">
+<!ENTITY inlineAttachmentsFolders "Cartelle allegati in linea">
+<!ENTITY cutPathLen "Riduci la lunghezza del percorso del file a 256 caratteri">

@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Sauvegarde à la sortie">
 <!ENTITY noFolderSelectedMenuTop "[Aucun dossier sélectionné (importation \ exportation désactivée)]">
 <!ENTITY indexCSVdateFormat "Index, format de date CSV:">
+<!ENTITY attachmentFolderNames "Noms des dossiers de pièces jointes">
+<!ENTITY attachmentFolders "Dossiers de pièces jointes">
+<!ENTITY inlineAttachmentsFolders "Dossiers de pièces jointes en ligne">
+<!ENTITY cutPathLen "Coupez la longueur du chemin d&#39;accès au fichier à 256 caractères">

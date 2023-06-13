@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Backup ved afslutning">
 <!ENTITY noFolderSelectedMenuTop "[Ingen valgt mappe (Import \ Export deaktiveret)]">
 <!ENTITY indexCSVdateFormat "Indeks, CSV-datoformat:">
+<!ENTITY attachmentFolderNames "Navne på vedhæftede mapper">
+<!ENTITY attachmentFolders "Vedhæftede mapper">
+<!ENTITY inlineAttachmentsFolders "Inline vedhæftede mapper">
+<!ENTITY cutPathLen "Klip filstilængden til 256 tegn">

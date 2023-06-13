@@ -117,3 +117,8 @@
 <!ENTITY backupOnExit "Backup beim Beenden">
 <!ENTITY noFolderSelectedMenuTop "[Kein ausgewählter Ordner (Import/Export deaktiviert)]">
 <!ENTITY indexCSVdateFormat "Index, CSV-Datumsformat:">
+
+<!ENTITY attachmentFolderNames "Namen der Anhangsordner">
+<!ENTITY attachmentFolders "Anhangsordner">
+<!ENTITY inlineAttachmentsFolders "Inline-Anhangsordner">
+<!ENTITY cutPathLen "Dateipfadlänge auf 256 Zeichen reduzieren">

@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Back-up bij afsluiten">
 <!ENTITY noFolderSelectedMenuTop "[Geen geselecteerde map (importeren / exporteren uitgeschakeld)]">
 <!ENTITY indexCSVdateFormat "Index, CSV-datumnotatie:">
+<!ENTITY attachmentFolderNames "Namen van bijlagemappen">
+<!ENTITY attachmentFolders "Bijlagemappen">
+<!ENTITY inlineAttachmentsFolders "Inline bijlagenmappen">
+<!ENTITY cutPathLen "Snijd de lengte van het bestandspad in tot 256 tekens">

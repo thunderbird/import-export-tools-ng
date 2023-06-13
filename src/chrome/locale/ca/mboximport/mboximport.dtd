@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Còpia de seguretat a la sortida">
 <!ENTITY noFolderSelectedMenuTop "[No hi ha cap carpeta seleccionada (Importació \ Exportació desactivada)]">
 <!ENTITY indexCSVdateFormat "Índex, format de data CSV:">
+<!ENTITY attachmentFolderNames "Noms de carpetes adjunts">
+<!ENTITY attachmentFolders "Carpetes adjuntes">
+<!ENTITY inlineAttachmentsFolders "Carpetes de fitxers adjunts en línia">
+<!ENTITY cutPathLen "Retalla la longitud del camí del fitxer a 256 caràcters">

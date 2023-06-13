@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Zálohovanie pri výstupe">
 <!ENTITY noFolderSelectedMenuTop "[No Selected Folder (Import \ Export Disabled)]">
 <!ENTITY indexCSVdateFormat "Register, formát dátumu CSV:">
+<!ENTITY attachmentFolderNames "Názvy priečinkov príloh">
+<!ENTITY attachmentFolders "Priečinky príloh">
+<!ENTITY inlineAttachmentsFolders "Vložené priečinky príloh">
+<!ENTITY cutPathLen "Znížte dĺžku cesty k súboru na 256 znakov">

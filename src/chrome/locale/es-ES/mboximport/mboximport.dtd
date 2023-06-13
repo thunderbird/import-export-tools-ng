@@ -117,3 +117,7 @@
 <!ENTITY backupOnExit "Copia de seguridad al salir">
 <!ENTITY noFolderSelectedMenuTop "[Ninguna carpeta seleccionada (importación / exportación inhabilitada)]">
 <!ENTITY indexCSVdateFormat "Índice, formato de fecha CSV:">
+<!ENTITY attachmentFolderNames "Nombres de carpetas de archivos adjuntos">
+<!ENTITY attachmentFolders "Carpetas de archivos adjuntos">
+<!ENTITY inlineAttachmentsFolders "Carpetas de archivos adjuntos en línea">
+<!ENTITY cutPathLen "Cortar la longitud de la ruta del archivo a 256 caracteres">

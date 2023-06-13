@@ -118,3 +118,7 @@
 <!ENTITY backupOnExit "Biztonsági mentés a kilépéskor">
 <!ENTITY noFolderSelectedMenuTop "[Nincs kijelölt mappa (importálás / exportálás letiltva)]">
 <!ENTITY indexCSVdateFormat "Index, CSV dátumformátum:">
+<!ENTITY attachmentFolderNames "Mellékletmappák nevei">
+<!ENTITY attachmentFolders "Mellékletek mappák">
+<!ENTITY inlineAttachmentsFolders "Beépített mellékletek mappái">
+<!ENTITY cutPathLen "Vágja le a fájl elérési útját 256 karakterre">

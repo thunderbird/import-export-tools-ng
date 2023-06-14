@@ -1,28 +1,32 @@
-
 :root {
 	--dialog-bgcolor: Field;
 	--dialog-text-color: FieldText;
---in-content-box-background: Field !important;
---in-content-accent-color: rgb(69, 161, 255);
---list-item-hover: rgb(116, 183, 249);
---list-highlight-text-color: black;
---in-content-button-background: rgba(207, 207, 216, 0.33);
---list-disabled-font-color: #cccccc;
---table-stripe-even: #f2f2f2;
+	--in-content-box-background: Field !important;
+	--in-content-accent-color: rgb(69, 161, 255);
+	--list-item-hover: rgb(116, 183, 249);
+	--list-highlight-text-color: black;
+	--in-content-button-background: rgba(207, 207, 216, 0.33);
+	--list-disabled-font-color: #cccccc;
+	--table-border-color: black;
+	--table-stripe-even: #e8e8e8;
+	--link-color: darkblue;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-			--dialog-bgcolor: rgb(35, 34, 43);
-			--dialog-text-color: #f7f7f7;
-	--table-stripe-even: rgb(66, 64, 80);
-}
+		--dialog-bgcolor: rgb(35, 34, 43);
+		--dialog-text-color: #f7f7f7;
+		--table-border-color: #404040;
+		--table-stripe-even: #303030;
+		--link-color: lightblue;
+
+	}
 }
 
 body {
-background-color: var(--dialog-bgcolor);
-font-family: 'Roboto', sans-serif;
-color: var(--dialog-text-color);
+	background-color: var(--dialog-bgcolor);
+	font-family: 'Roboto', sans-serif;
+	color: var(--dialog-text-color);
 }
 
 p {
@@ -31,12 +35,12 @@ p {
 }
 
 .link1 {
-	color: darkblue;
+	color: var(--link-color);
 	text-decoration: underline;
 }
 
 table.menu-table {
-	border: 1px solid black;
+	border: 1px solid var(--table-border-color) !important;
 	border-collapse: collapse;
 	width: 95%;
 	margin-left: 30px;
@@ -44,22 +48,17 @@ table.menu-table {
 	/* margin-top: 5px; */
 }
 
-table.menu-table tr,  table.menu-table td,  table.menu-table th {
-	border: 1px solid #d2d2ff;
+table.menu-table tr,
+table.menu-table td,
+table.menu-table th {
+	border: 1px solid var(--table-border-color) !important;
 	border-collapse: collapse;
 	padding: 6px;
 	/* padding-right: 10px; */
 }
 
-
-table.menu-table tr td:first-child {
-	/* padding-left: 6px; */
-	/* width: 100%; */
-}
-
-
 table.menu-table tr:nth-child(even) {
-	background-color: #f2f2f2;
+	background-color: var(--table-stripe-even);
 }
 
 table.menu-table thead {
@@ -91,7 +90,9 @@ table.dateformat-table {
 	margin-right: 30px;
 }
 
-table.dateformat-table tr,  table.dateformat-table td,  table.dateformat-table th {
+table.dateformat-table tr,
+table.dateformat-table td,
+table.dateformat-table th {
 	border: 1px solid #d2d2d2;
 	border-collapse: collapse;
 	padding: 6px;
@@ -120,7 +121,9 @@ table.token-table {
 	margin-right: 30px;
 }
 
-table.token-table tr,  table.token-table td,  table.token-table th {
+table.token-table tr,
+table.token-table td,
+table.token-table th {
 	border: 1px solid #d2d2d2;
 	border-collapse: collapse;
 	padding: 6px;

@@ -1018,25 +1018,38 @@ async function wextctx_folderMenu(ctxEvent) {
 
 async function menusUpdate(info, tab) {
   console.log(info)
+  var accountId = info.selectedFolder.accountId;
+  var folderPath = info.selectedFolder.path;
 
   if (info.menuIds[0] == folderCtxMenu_TopId) {
-    let accountId = info.selectedFolder.accountId;
-    let account = await messenger.accounts.get(accountId, false);
-    console.log(account)
-    let mailStoreType = await getMailStoreType();
+    let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
     if (mailStoreType == 0) {
-    console.log("upd")
-      
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, {visible: false});
+      await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, {visible: true});
+      await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, {visible: true});
+      await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, {visible: true});
+      await messenger.menus.update("folderCtxMenu_Sep1", {visible: true});
+    
       await messenger.menus.refresh();
+    } else if (mailStoreType == 1) {
+      await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, {visible: true});
+      await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, {visible: false});
+      await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, {visible: false});
+      await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, {visible: false});
+      await messenger.menus.update("folderCtxMenu_Sep1", {visible: false});
+      //await messenger.menus.update(, {visible: false});
+      await messenger.menus.refresh();
+
     }
   }
 }
 
-async function getMailStoreType() {
+async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};
-  let storeType = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getMailStoreType", params: params });
-  console.log(storeType)
+  params.accountId = accountId;
+  params.folderPath = folderPath;
+
+  let storeType = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getMailStoreFromFolderPath", params: params });
   return storeType;
 }
 

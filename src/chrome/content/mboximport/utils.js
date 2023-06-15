@@ -672,6 +672,27 @@ function IETstoreFormat() {
 	return storeFormat;
 }
 
+function getMailStoreFromFolderPath(accountId, folderPath) {
+	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
+
+	var storeFormat = 0;
+	try {
+		var store = msgFolder.server.getCharValue("storeContractID");
+		console.log(store)
+		if (store && store.includes("maildirstore"))
+			storeFormat = 1;
+		else if (store && !store.includes("berkeleystore")) {
+			storeFormat = 2;
+		}
+	} catch (e) { 
+		console.log(e)
+	}
+	console.log(storeFormat)
+
+	return storeFormat;
+
+}
+
 async function IETgetSelectedMessages() {
 	// TB3 has not GetSelectedMessages function
 	var msgs;

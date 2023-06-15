@@ -165,8 +165,8 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_SaveJSON":
 			IOUtils.writeJSON(data.params.path, data.params.obj);
 			break;
-		case "WXMCMD_getMailStoreType":
-			let storeType = IETstoreFormat();
+		case "WXMCMD_getMailStoreFromFolderPath":
+			let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);
 			console.log(storeType)
 			return storeType;
 		

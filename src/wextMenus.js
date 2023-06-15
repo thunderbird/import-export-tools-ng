@@ -717,7 +717,7 @@ await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaul
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
 
-
+messenger.menus.onShown.addListener(menusUpdate);
 
 async function createMenus(menuType, menuArray, options) {
   var defaultParentId = menuArray[0].menuDef.id;
@@ -1014,6 +1014,30 @@ async function wextctx_folderMenu(ctxEvent) {
   }
 
 
+}
+
+async function menusUpdate(info, tab) {
+  console.log(info)
+
+  if (info.menuIds[0] == folderCtxMenu_TopId) {
+    let accountId = info.selectedFolder.accountId;
+    let account = await messenger.accounts.get(accountId, false);
+    console.log(account)
+    let mailStoreType = await getMailStoreType();
+    if (mailStoreType == 0) {
+    console.log("upd")
+      
+      await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, {visible: false});
+      await messenger.menus.refresh();
+    }
+  }
+}
+
+async function getMailStoreType() {
+  let params = {};
+  let storeType = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getMailStoreType", params: params });
+  console.log(storeType)
+  return storeType;
 }
 
 async function copyToClipboard(ctxEvent) {

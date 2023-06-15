@@ -658,12 +658,16 @@ function IETstoreFormat() {
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");
+		console.log(store)
 		if (store && store.includes("maildirstore"))
 			storeFormat = 1;
 		else if (store && !store.includes("berkeleystore")) {
 			storeFormat = 2;
 		}
-	} catch (e) { }
+	} catch (e) { 
+		console.log(e)
+	}
+	console.log(storeFormat)
 
 	return storeFormat;
 }

@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Հավելվածի թղթապանակներ">
 <!ENTITY inlineAttachmentsFolders "Ներդիր հավելվածների թղթապանակներ">
 <!ENTITY cutPathLen "Կտրեք ֆայլի ուղու երկարությունը մինչև 256 նիշ">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

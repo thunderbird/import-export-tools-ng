@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Bijlagemappen">
 <!ENTITY inlineAttachmentsFolders "Inline bijlagenmappen">
 <!ENTITY cutPathLen "Snijd de lengte van het bestandspad in tot 256 tekens">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

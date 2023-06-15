@@ -69,6 +69,7 @@ function initMboxImportPanel() {
     document.getElementById("addtimeCheckbox").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
     document.getElementById("buildMSF").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
     document.getElementById("addNumber").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number");
+    document.getElementById("stripCR").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_carriage_return");
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
         document.getElementById("customizeFilenames").checked = true;
@@ -288,6 +289,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_addtime", document.getElementById("addtimeCheckbox").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.build_mbox_index", document.getElementById("buildMSF").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.name_add_number", document.getElementById("addNumber").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.strip_carriage_return", document.getElementById("stripCR").checked);
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);

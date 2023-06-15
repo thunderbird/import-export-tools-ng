@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Priečinky príloh">
 <!ENTITY inlineAttachmentsFolders "Vložené priečinky príloh">
 <!ENTITY cutPathLen "Znížte dĺžku cesty k súboru na 256 znakov">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

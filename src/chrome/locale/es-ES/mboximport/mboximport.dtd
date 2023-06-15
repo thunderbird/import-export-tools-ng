@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Carpetas de archivos adjuntos">
 <!ENTITY inlineAttachmentsFolders "Carpetas de archivos adjuntos en línea">
 <!ENTITY cutPathLen "Cortar la longitud de la ruta del archivo a 256 caracteres">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

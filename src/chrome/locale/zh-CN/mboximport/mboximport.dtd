@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "附件文件夹">
 <!ENTITY inlineAttachmentsFolders "内联附件文件夹">
 <!ENTITY cutPathLen "将文件路径长度缩短为 256 个字符">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

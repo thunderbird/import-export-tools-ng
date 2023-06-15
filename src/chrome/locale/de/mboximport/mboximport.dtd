@@ -122,3 +122,5 @@
 <!ENTITY attachmentFolders "Anhangsordner">
 <!ENTITY inlineAttachmentsFolders "Inline-Anhangsordner">
 <!ENTITY cutPathLen "Dateipfadlänge auf 256 Zeichen reduzieren">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

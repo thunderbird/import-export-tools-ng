@@ -1166,6 +1166,11 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 
 					data = IETescapeBeginningFrom(data);
+
+					if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_carriage_return")) {
+						data = data.replace(/\r\n/g,"\n");
+					}
+
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"
 					clone.append(sub + ".eml");

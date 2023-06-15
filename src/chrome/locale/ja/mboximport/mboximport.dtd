@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "添付ファイルフォルダー">
 <!ENTITY inlineAttachmentsFolders "インライン添付ファイルフォルダー">
 <!ENTITY cutPathLen "ファイルパスの長さを 256 文字にカット">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

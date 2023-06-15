@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Carpetes adjuntes">
 <!ENTITY inlineAttachmentsFolders "Carpetes de fitxers adjunts en línia">
 <!ENTITY cutPathLen "Retalla la longitud del camí del fitxer a 256 caràcters">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

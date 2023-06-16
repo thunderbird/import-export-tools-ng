@@ -114,13 +114,13 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-				await exportAllMsgs(2);
+				await exportAllMsgs(2, data.params);
 			} else if (data.params.saveAtts && !data.params.singleFile) {
-				await exportAllMsgs(9);
+				await exportAllMsgs(9, data.params);
 			} else if (!data.params.saveAtts && data.params.singleFile) {
-				await exportAllMsgs(4);
+				await exportAllMsgs(4, data.params);
 			} else if (data.params.saveAtts && data.params.singleFile) {
-				await exportAllMsgs(7);
+				await exportAllMsgs(7, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_Index":

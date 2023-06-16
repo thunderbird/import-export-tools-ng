@@ -148,7 +148,7 @@ function IETabortExport() {
 
 }
 
-async function exportSelectedMsgs(type) {
+async function exportSelectedMsgs(type, params) {
 	/* Export types:
 	0 = EML
 	1 = HTML
@@ -217,7 +217,8 @@ async function exportSelectedMsgs(type) {
 		}
 	} catch (e) { }
 
-	var msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+
 	var isOffLineImap;
 
 	let imapFolder = {};

@@ -278,7 +278,7 @@ function getSubjectForHdr(hdr, dirPath) {
 		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
-	
+
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
 		if (fname.length > maxFN)
@@ -339,7 +339,7 @@ function IETexport_all(params) {
 
 	if ((IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning2") && just_mail)) {
 		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-			//.getService(Ci.nsIPromptService);
+		//.getService(Ci.nsIPromptService);
 		var check = { value: false };
 		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
 		if (just_mail)
@@ -418,12 +418,12 @@ function saveExternalMailFolders(file) {
 	// Scan servers storage path on disk
 	for (let server of MailServices.accounts.allServers) {
 		let serverFile = server.localPath;
-		
+
 		// Exclude all folders which are located inside the profile folder.
 		if (serverFile.path.startsWith(profDir.path)) {
 			continue;
 		}
-		
+
 		// The server storage path on disk is outside the profile, so copy it.
 		try {
 			serverFile.copyTo(file, "");
@@ -664,7 +664,7 @@ function IETstoreFormat() {
 		else if (store && !store.includes("berkeleystore")) {
 			storeFormat = 2;
 		}
-	} catch (e) { 
+	} catch (e) {
 		console.log(e)
 	}
 	console.log(storeFormat)
@@ -684,13 +684,18 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 		else if (store && !store.includes("berkeleystore")) {
 			storeFormat = 2;
 		}
-	} catch (e) { 
+	} catch (e) {
 		console.log(e)
 	}
 	console.log(storeFormat)
 
 	return storeFormat;
 
+}
+
+function getMsgFolderFromAccountAndPath(accountId, folderPath) {
+	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
+	return msgFolder;
 }
 
 async function IETgetSelectedMessages() {
@@ -854,7 +859,7 @@ function constructAttachmentsFilename(type, hdr) {
 	// Addresses escaping #339
 	// Allow ',' and single quote character which is valid
 	fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
-	
+
 	return fname;
 }
 /* 

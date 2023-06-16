@@ -875,6 +875,11 @@ async function wextctx_toolsMenu(ctxEvent) {
 async function wextctx_folderMenu(ctxEvent) {
   console.log(ctxEvent);
   var params = {};
+  // we need the accountId and path of the folder to get 
+  // the actual selected folder in legacy side
+  params.selectedFolder = ctxEvent.selectedFolder;
+  params.selectedAccount = ctxEvent.selectedAccount;
+
   switch (ctxEvent.parentMenuItemId) {
     case folderCtxMenu_TopId:
       switch (ctxEvent.menuItemId) {
@@ -955,7 +960,23 @@ async function wextctx_folderMenu(ctxEvent) {
 
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMbox", params: params });
       break;
-
+    case folderCtxMenu_Imp_EMLFormat_Id:
+      switch (ctxEvent.menuItemId) {
+        case folderCtxMenu_Imp_EMLFormatMsgs_Id:
+          params.emlImpType = "individual";
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpEML", params: params});
+          break;
+        case folderCtxMenu_Imp_EMLFormatDir_Id:
+          params.emlImpType = "directory";
+          params.emlImpRecursive = false;
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpEMLAll", params: params});
+          break;
+        case folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id:
+          params.emlImpType = "directory";
+          params.emlImpRecursive = true;
+          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpEMLAll", params: params});
+          break;
+     }
     default:
       break;
   }

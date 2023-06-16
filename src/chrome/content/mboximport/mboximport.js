@@ -1311,10 +1311,12 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 	return foldername;
 }
 
-async function importALLasEML(recursive) {
+async function importALLasEML(params) {
 	console.debug('Start eml import');
 
-	let msgFolder = GetSelectedMsgFolders()[0];
+	var recursive = params.emlImpRecursive;
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+
 	if (!msgFolder || !msgFolder.parent) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
@@ -1430,8 +1432,9 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 	return true;
 }
 
-async function importEMLs() {
-	let msgFolder = GetSelectedMsgFolders()[0];
+async function importEMLs(params) {
+
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	// No import for imap and news account, sorry...
 	if ((!String.prototype.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
 		alert(mboximportbundle.GetStringFromName("badfolder"));

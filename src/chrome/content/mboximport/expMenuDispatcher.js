@@ -147,9 +147,12 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_ImpMaildirFiles":
 			trytocopyMAILDIR();
 			break;
-		case "WXMCMD_ImportEML":
-			importALLasEML(true);
+		case "WXMCMD_ImpEML":
+			importEMLs(data.params);
 			break;
+			case "WXMCMD_ImpEMLAll":
+				importALLasEML(data.params);
+				break;
 		case "WXMCMD_CopyFolderPath":
 			IETcopyFolderPath();
 		break;

@@ -125,9 +125,9 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_FolderExp_Index":
 			if (data.params.indexType == "indexHTML") {
-				await exportAllMsgs(3);
+				await exportAllMsgs(3, data.params);
 			} else if (data.params.indexType == "indexCSV") {
-				await exportAllMsgs(5);
+				await exportAllMsgs(5, data.params);
 			}
 			break;
 		case "WXMCMD_Exp_Profile":

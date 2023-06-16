@@ -154,10 +154,10 @@ async function expMenuDispatcher(data) {
 				importALLasEML(data.params);
 				break;
 		case "WXMCMD_CopyFolderPath":
-			IETcopyFolderPath();
+			IETcopyFolderPath(data.params);
 		break;
 		case "WXMCMD_OpenFolderDir":
-			IETopenFolderPath();
+			IETopenFolderPath(data.params);
 		break;
 		case "WXMCMD_OpenOptions":
 			openIEToptions();

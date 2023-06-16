@@ -984,7 +984,7 @@ async function exportfolder(params) {
 	} else if (folders.length === 1 && isVirtualFolder) {
 		exportVirtualFolder(folders[0]); //msgFolder?
 	} else {
-		exportRemoteFolders(destdirNSIFILE);
+		exportRemoteFolders(destdirNSIFILE, folders);
 	}
 }
 
@@ -1022,8 +1022,8 @@ function IETaddFolderContentsToZip(zipW, folder, root) {
 	}
 }
 
-function exportRemoteFolders(destdirNSIFILE) {
-	let IETglobalMsgFolders = GetSelectedMsgFolders();
+function exportRemoteFolders(destdirNSIFILE, folders) {
+	let IETglobalMsgFolders = folders;
 	if (IETglobalMsgFolders[0].isServer)
 		return;
 	// cleidigh ?

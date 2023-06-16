@@ -372,14 +372,16 @@ function IETupdateFolder(folder) {
 	folder.updateFolder(msgWindow);
 }
 
-async function trytocopyMAILDIR() {
-	if (IETstoreFormat() !== 1) {
+async function trytocopyMAILDIR(params) {
+	let storeType = getMailStoreFromFolderPath(params.selectedFolder.accountId, params.selectedFolder.folderPath);
+
+	if (storeType !== 1) {
 		alert(mboximportbundle.GetStringFromName("noMaildirStorage"));
 		return;
 	}
 
 	// initialize variables
-	let msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {

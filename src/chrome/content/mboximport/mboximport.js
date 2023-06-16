@@ -91,7 +91,7 @@ var folderCount;
 
 var IETprintPDFmain = {
 
-	print: async function (allMessages) {
+	print: async function (allMessages, params) {
 		// New built in Mozilla PDF driver finally works on OSX - enable for Mac 
 		// Addresses #353
 
@@ -102,8 +102,8 @@ var IETprintPDFmain = {
 				return;
 			}
 		} catch (e) { }
+		let msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
-		let msgFolders = GetSelectedMsgFolders();
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
 			return;

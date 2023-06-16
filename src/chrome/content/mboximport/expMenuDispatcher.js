@@ -100,17 +100,17 @@ async function expMenuDispatcher(data) {
 			searchANDsave(data.params);
 			break;
 		case "WXMCMD_FolderExp_EML_Format":
-			await exportAllMsgs(0);
+			await exportAllMsgs(0, data.params);
 			break;
 		case "WXMCMD_FolderExp_HTML_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-			await exportAllMsgs(0);
+			await exportAllMsgs(1, data.params);
 			} else if (data.params.saveAtts) {
-				await exportAllMsgs(8);
+				await exportAllMsgs(8, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
-			IETprintPDFmain.print(true);
+			IETprintPDFmain.print(true, data.params);
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {

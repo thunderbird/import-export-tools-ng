@@ -37,8 +37,9 @@ export var mboxImportExport = {
     }
 
     console.log(mboxFiles)
-    let msgfolder = window.GetSelectedMsgFolders()[0];
-    this.importMboxFiles(mboxFiles, msgfolder, params.mboxImpRecursive);
+    var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+
+    this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {

@@ -55,6 +55,7 @@ IOUtils,
 PathUtils,
 PrintUtils,
 strftime,
+getMsgFolderFromAccountAndPath,
 */
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
@@ -938,7 +939,8 @@ async function exportfolder(params) {
 	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)");
-	var folders = GetSelectedMsgFolders();
+	let folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+
 
 	console.log("   Subfolders:", subfolder);
 	console.log("   Structured: ", keepstructure);

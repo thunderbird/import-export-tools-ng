@@ -87,10 +87,8 @@ var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/Mime
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 
-function searchANDsave() {
-	var preselectedFolder = null;
-	if ("GetFirstSelectedMsgFolder" in window)
-		preselectedFolder = GetFirstSelectedMsgFolder();
+function searchANDsave(params) {
+	let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	var args = { folder: preselectedFolder, ietngSearch: true};
 	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 }

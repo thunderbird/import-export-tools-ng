@@ -97,7 +97,7 @@ async function expMenuDispatcher(data) {
 			exportfolder(data.params);
 			break;
 		case "WXMCMD_ExpSearch":
-			searchANDsave();
+			searchANDsave(data.params);
 			break;
 		case "WXMCMD_FolderExp_EML_Format":
 			await exportAllMsgs(0);

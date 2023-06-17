@@ -1084,8 +1084,11 @@ async function copyToClipboard(ctxEvent) {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }
 
-async function importMaildirFiles() {
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles" });
+async function importMaildirFiles(ctxEvent) {
+  let params = {};
+  params.selectedFolder = ctxEvent.selectedFolder;
+  params.selectedAccount = ctxEvent.selectedAccount;
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles", params: params});
 }
 
 async function openOptions() {

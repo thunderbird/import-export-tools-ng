@@ -34,7 +34,6 @@
 getPredefinedFolder,
 IETwritestatus,
 IETstoreFormat,
-GetSelectedMsgFolders,
 IETgetSelectedMessages,
 isMbox,
 IETprefs,
@@ -373,7 +372,7 @@ function IETupdateFolder(folder) {
 }
 
 async function trytocopyMAILDIR(params) {
-	let storeType = getMailStoreFromFolderPath(params.selectedFolder.accountId, params.selectedFolder.folderPath);
+	let storeType = getMailStoreFromFolderPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
 	if (storeType !== 1) {
 		alert(mboximportbundle.GetStringFromName("noMaildirStorage"));

@@ -32,47 +32,47 @@ async function expMenuDispatcher(data) {
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			console.log("mdis: ", data);
-			if (Object.keys(data.params).length == 0) {
-				await exportSelectedMsgs(0);
+			if (data.params.msgsOnly) {
+				await exportSelectedMsgs(0, data.params);
 			} else if (data.params.createIndex) {
-				await exportSelectedMsgs(100);
+				await exportSelectedMsgs(100, data.params);
 			}
 			break;
 		case "WXMCMD_HTML_Format":
 			console.log("mdis: ", data.params);
-			if (Object.keys(data.params).length == 0) {
-				await exportSelectedMsgs(1);
+			if (data.params.msgsOnly) {
+				await exportSelectedMsgs(1, data.params);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
-				await exportSelectedMsgs(8);
+				await exportSelectedMsgs(8, data.params);
 			} else if (data.params.createIndex && !data.params.saveAtts) {
-				await exportSelectedMsgs(101);
+				await exportSelectedMsgs(101, data.params);
 			} else if (data.params.saveAtts && data.params.createIndex) {
-				await exportSelectedMsgs(108);
+				await exportSelectedMsgs(108, data.params);
 			}
 
 			break;
 		case "WXMCMD_PDF_Format":
-			await IETprintPDFmain.print(false);
+			await IETprintPDFmain.print(false, data.params);
 			break;
 		case "WXMCMD_PlainText_Format":
-			if (Object.keys(data.params).length == 0) {
-				await exportSelectedMsgs(2);
+			if (data.params.msgsOnly) {
+				await exportSelectedMsgs(2, data.params);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
-				await exportSelectedMsgs(9);
+				await exportSelectedMsgs(9, data.params);
 			} else if (data.params.createIndex && !data.params.saveAtts) {
-				await exportSelectedMsgs(102);
+				await exportSelectedMsgs(102, data.params);
 			} else if (data.params.saveAtts && data.params.createIndex) {
-				await exportSelectedMsgs(109);
+				await exportSelectedMsgs(109, data.params);
 			}
 			break;
 		case "WXMCMD_CSV_Format":
-			await exportSelectedMsgs(7);
+			await exportSelectedMsgs(7, data.params);
 			break;
 		case "WXMCMD_Mbox_Format":
 			if (data.params.mboxExpType == "newMbox") {
-				await exportSelectedMsgs(3);
+				await exportSelectedMsgs(3, data.params);
 			} else if (data.params.mboxExpType == "appendMbox") {
-				await exportSelectedMsgs(4);
+				await exportSelectedMsgs(4, data.params);
 			}
 			break;
 		case "WXMCMD_CopyToClipboard":
@@ -84,9 +84,9 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_Index":
 			if (data.params.indexType == "indexHTML") {
-				await exportSelectedMsgs(5);
+				await exportSelectedMsgs(5, data.params);
 			} else if (data.params.indexType == "indexCSV") {
-				await exportSelectedMsgs(6);
+				await exportSelectedMsgs(6, data.params);
 			}
 			break;
 				

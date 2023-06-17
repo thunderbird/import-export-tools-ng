@@ -793,6 +793,15 @@ async function editMenus(menuType, menuArray, options) {
 async function wextctx_ExportAs(ctxEvent) {
   console.log(ctxEvent)
   var params = {};
+
+  // we need the accountId and path of the folder to get 
+  // the actual selected folder in legacy side
+  params.selectedFolder = ctxEvent.displayedFolder;
+  params.selectedAccount = ctxEvent.selectedAccount;
+
+  if (ctxEvent.menuItemId.includes("MsgsOnly")) {
+    params.msgsOnly = true;
+  }
   if (ctxEvent.menuItemId.includes("Atts")) {
     params.saveAtts = true;
   }

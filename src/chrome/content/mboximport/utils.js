@@ -652,26 +652,6 @@ function IETemlx2eml(file) {
 	return tempFile;
 }
 
-function IETstoreFormat() {
-	// it will return 0 for Mbox format, 1 for Maildir format, 2 for unknown format
-	var msgFolder = GetSelectedMsgFolders()[0];
-	var storeFormat = 0;
-	try {
-		var store = msgFolder.server.getCharValue("storeContractID");
-		console.log(store)
-		if (store && store.includes("maildirstore"))
-			storeFormat = 1;
-		else if (store && !store.includes("berkeleystore")) {
-			storeFormat = 2;
-		}
-	} catch (e) {
-		console.log(e)
-	}
-	console.log(storeFormat)
-
-	return storeFormat;
-}
-
 function getMailStoreFromFolderPath(accountId, folderPath) {
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
 

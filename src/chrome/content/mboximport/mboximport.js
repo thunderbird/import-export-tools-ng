@@ -33,7 +33,6 @@
 /* global IETformatWarning,
 getPredefinedFolder,
 IETwritestatus,
-IETstoreFormat,
 IETgetSelectedMessages,
 isMbox,
 IETprefs,

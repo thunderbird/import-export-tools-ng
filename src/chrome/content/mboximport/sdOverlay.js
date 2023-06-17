@@ -54,13 +54,13 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
+var searchFolder = null;
+
 function SDexportMsg() {
 	var view;
 	var all;
 
-
-	let m3pwin = getMail3Pane();
-	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
+	let msgFolder = searchFolder;
 
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
@@ -109,8 +109,6 @@ function SDexportMsg() {
 	} else
 		file = getPredefinedFolder(2);
 
-	console.log("filep")
-
 
 	if (!file) {
 		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
@@ -121,18 +119,14 @@ function SDexportMsg() {
 		if (res === nsIFilePicker.returnOK)
 			file = fp.file;
 		else {
-			console.log("after Return ")
 			return;
 		}
 	}
 
-	console.log("build arr", file)
-
-
 	let emlsArray = [];
 	if (all) {
 
-		var total = msgFolder.getTotalMessages(false);
+		var total = gDBView.rowCount;
 		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
@@ -146,7 +140,6 @@ function SDexportMsg() {
 		emlsArray = view.getURIsForSelection();
 	}
 
-	console.log(emlsArray)
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
 	IETexported = 0;
@@ -188,9 +181,9 @@ function SDinit() {
 		sw.setAttribute("screenY", "50");
 
 		sf.removeAttribute("collapsed");
+		searchFolder = window.arguments[0];
 	}
 
 }
 
-// setupHotKeys('search');
 // window.addEventListener("load", SDinit, false);

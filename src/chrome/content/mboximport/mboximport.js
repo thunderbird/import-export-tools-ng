@@ -328,36 +328,6 @@ function openProfileImportWizard() {
 
 }
 
-async function openMboxDialog(params) {
-	if (IETstoreFormat() !== 0) {
-		alert(mboximportbundle.GetStringFromName("noMboxStorage"));
-		return;
-	}
-	let msgFolder = GetSelectedMsgFolders()[0];
-	// we don't import the file in imap or nntp accounts
-	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
-		alert(mboximportbundle.GetStringFromName("badfolder"));
-		return;
-	}
-	//var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
-	//window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
-	//if (params.cancel) {
-//		return;
-//	}
-	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
-	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
-	// using async/await.
-	var params = {};
-	await new Promise(resolve => setTimeout(resolve, 800));
-	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
-
-	// 115 exp
-
-
-
-}
-
-
 function msgFolder2LocalFile(msgFolder) {
 	if (msgFolder.filePath)
 		var LocalFile = msgFolder.filePath;

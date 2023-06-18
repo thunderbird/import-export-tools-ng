@@ -342,6 +342,9 @@ var toolsCtxMenuSet = [
 
 
 const folderCtxMenu_TopId = "folderCtxMenu_TopId";
+
+const folderCtxMenu_Exp_Account_Id = "folderCtxMenu_Exp_Account_Id";
+
 const folderCtxMenu_Exp_FolderMbox_Id = "folderCtxMenu_Exp_FolderMbox_Id";
 const folderCtxMenu_Exp_FolderMboxOnly_Id = "folderCtxMenu_Exp_FolderMboxOnly_Id";
 const folderCtxMenu_Exp_FolderMboxZipped_Id = "folderCtxMenu_Exp_FolderMboxZipped_Id";
@@ -404,6 +407,13 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_TopId,
       title: localizeMenuTitle("ctxMenu_ExtensionName.title")
+    }
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_Exp_Account_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title"),
+      visible: false
     }
   },
   {
@@ -1048,19 +1058,50 @@ async function wextctx_folderMenu(ctxEvent) {
 
 async function menusUpdate(info, tab) {
   console.log(info)
-  var accountId = info.selectedFolder.accountId;
-  var folderPath = info.selectedFolder.path;
 
+  var folderPath;
+  var accountId;
+  if (info.selectedAccount) {
+    accountId = info.selectedAccount.id;
+  }
+  if (info.selectedFolder) {
+    folderPath = info.selectedFolder.path;
+    accountId = info.selectedFolder.accountId;
+  } else if (info.displayedFolder) {
+    folderPath = info.displayedFolder.path;
+  }
+  
+  if (accountId && !folderPath) {
+    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, {visible: true});
+    let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " " + info.selectedAccount.name;
+    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, {title: newTitle});
+
+    await messenger.menus.refresh();
+
+    return;
+  } else {
+    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, {visible: false});
+    await messenger.menus.refresh();
+
+  }
+
+  console.log(accountId)
+  console.log(folderPath)
+
+  
+
+  // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
+    // 0 = mbox
     if (mailStoreType == 0) {
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, {visible: false});
       await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, {visible: true});
       await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, {visible: true});
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, {visible: true});
       await messenger.menus.update("folderCtxMenu_Sep1", {visible: true});
-    
       await messenger.menus.refresh();
+      // 1 = maildir
     } else if (mailStoreType == 1) {
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, {visible: true});
       await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, {visible: false});
@@ -1069,7 +1110,6 @@ async function menusUpdate(info, tab) {
       await messenger.menus.update("folderCtxMenu_Sep1", {visible: false});
       //await messenger.menus.update(, {visible: false});
       await messenger.menus.refresh();
-
     }
   }
 }

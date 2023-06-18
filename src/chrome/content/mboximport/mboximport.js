@@ -782,7 +782,7 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 	var mboxname;
 
 	console.log(window)
-	var res = await openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple,"Select mbox files", null, null);
+	var res = await openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files", null, null);
 	console.log(res)
 
 	/*
@@ -804,101 +804,101 @@ async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, ms
 			return;
 		}
 */
-		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
-		var thefiles = res.filesArray;
-		console.log("IETNG: flat import ", thefiles);
+	// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
+	var thefiles = res.filesArray;
+	console.log("IETNG: flat import ", thefiles);
 
-		// 115
-		//let f = thefiles.getNext().QueryInterface(Ci.nsIFile);
-		//console.log(f)
-		await importMboxFiles(thefiles, msgFolder, true);
-		// await testCopy(thefiles.getNext(), msgFolder)
-		return;
+	// 115
+	//let f = thefiles.getNext().QueryInterface(Ci.nsIFile);
+	//console.log(f)
+	await importMboxFiles(thefiles, msgFolder, true);
+	// await testCopy(thefiles.getNext(), msgFolder)
+	return;
 
-/*
-		while (thefiles.hasMoreElements()) {
-			var onefile = thefiles.getNext();
-			onefile = onefile.QueryInterface(Ci.nsIFile);
-			mboxname = onefile.leafName;
-			console.log("IETNG: call trycopy: ", mboxname);
-
-			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
-		}
-	} else {
-		// Open the filepicker to choose the directory
-		fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
-
-		if (openProfDir) {
-			profDir = Cc["@mozilla.org/file/directory_service;1"]
-				.getService(Ci.nsIProperties)
-				.get("ProfD", Ci.nsIFile);
-			fp.displayDirectory = profDir.parent;
-		}
-		let res = await new Promise(resolve => {
-			fp.open(resolve);
-		});
-		if (res !== Ci.nsIFilePicker.returnOK) {
-			return;
-		}
-
-		if (!recursiveMode) {
-			// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
-			var allfiles = fp.file.directoryEntries;
-			filesArray = [];
-			while (allfiles.hasMoreElements()) {
-				var singlefile = allfiles.getNext();
-				singlefile = singlefile.QueryInterface(Ci.nsIFile);
-				filesArray.push(singlefile);
+	/*
+			while (thefiles.hasMoreElements()) {
+				var onefile = thefiles.getNext();
+				onefile = onefile.QueryInterface(Ci.nsIFile);
+				mboxname = onefile.leafName;
+				console.log("IETNG: call trycopy: ", mboxname);
+	
+				await trytocopy(onefile, mboxname, msgFolder, keepstructure);
 			}
 		} else {
-			filesArray = MBOXIMPORTscandir.find(fp.file);
-		}
-
-		var importThis;
-		// scanning the directory to search files that could be mbox files
-		for (var i = 0; i < filesArray.length; i++) {
-			var afile = filesArray[i];
-			mboxname = afile.leafName;
-			var mboxpath = afile.path;
-			if (isMbox(afile) === 1) {
-				var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
-				if (ask) {
-					var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-						.getService(Ci.nsIPromptService);
-					var checkObj = {};
-					checkObj.value = false;
-					var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
-						prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
-						prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
-						prompts.BUTTON_POS_0_DEFAULT;
-					var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
-					var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
-					IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
-
-					if (button === 0)
-						importThis = true;
-					else if (button === 2)
-						importThis = false;
-					else
-						break;
-				} else {
-					importThis = true;
+			// Open the filepicker to choose the directory
+			fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
+	
+			if (openProfDir) {
+				profDir = Cc["@mozilla.org/file/directory_service;1"]
+					.getService(Ci.nsIProperties)
+					.get("ProfD", Ci.nsIFile);
+				fp.displayDirectory = profDir.parent;
+			}
+			let res = await new Promise(resolve => {
+				fp.open(resolve);
+			});
+			if (res !== Ci.nsIFilePicker.returnOK) {
+				return;
+			}
+	
+			if (!recursiveMode) {
+				// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
+				var allfiles = fp.file.directoryEntries;
+				filesArray = [];
+				while (allfiles.hasMoreElements()) {
+					var singlefile = allfiles.getNext();
+					singlefile = singlefile.QueryInterface(Ci.nsIFile);
+					filesArray.push(singlefile);
 				}
-				if (importThis && afile.isFile())
-					await trytocopy(afile, mboxname, msgFolder);
+			} else {
+				filesArray = MBOXIMPORTscandir.find(fp.file);
+			}
+	
+			var importThis;
+			// scanning the directory to search files that could be mbox files
+			for (var i = 0; i < filesArray.length; i++) {
+				var afile = filesArray[i];
+				mboxname = afile.leafName;
+				var mboxpath = afile.path;
+				if (isMbox(afile) === 1) {
+					var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
+					if (ask) {
+						var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+							.getService(Ci.nsIPromptService);
+						var checkObj = {};
+						checkObj.value = false;
+						var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
+							prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
+							prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
+							prompts.BUTTON_POS_0_DEFAULT;
+						var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
+						var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
+						IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
+	
+						if (button === 0)
+							importThis = true;
+						else if (button === 2)
+							importThis = false;
+						else
+							break;
+					} else {
+						importThis = true;
+					}
+					if (importThis && afile.isFile())
+						await trytocopy(afile, mboxname, msgFolder);
+				}
 			}
 		}
-	}
-
-	if (buildMSF || gNeedCompact) {
-		// I have no idea why so many setTimeout are in here, but each spins out
-		// of the main thread and it is hard to keep track of the actual execution
-		// flow. Let us return to sequential coding.
-		let timeout = keepstructure ? 2000 : 1000;
-		await new Promise(resolve => setTimeout(resolve, timeout));
-		await buildMSGfile();
-	}
-	*/
+	
+		if (buildMSF || gNeedCompact) {
+			// I have no idea why so many setTimeout are in here, but each spins out
+			// of the main thread and it is hard to keep track of the actual execution
+			// flow. Let us return to sequential coding.
+			let timeout = keepstructure ? 2000 : 1000;
+			await new Promise(resolve => setTimeout(resolve, timeout));
+			await buildMSGfile();
+		}
+		*/
 }
 
 async function exportfolder(params) {
@@ -909,8 +909,22 @@ async function exportfolder(params) {
 	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)");
-	let folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
+	var folders = [];
+	var account;
+
+	if (params.selectedAccount && !params.selectedFolder) {
+		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+                                .getService(Components.interfaces.nsIMsgAccountManager);
+		account = accountManager.accounts.find(account => {
+  		if (account.key == params.selectedAccount.id) {
+				return true;
+			}
+		})
+		folders[0] = account.incomingServer.rootMsgFolder;
+	} else {
+		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+	}
 
 	console.log("   Subfolders:", subfolder);
 	console.log("   Structured: ", keepstructure);
@@ -918,8 +932,9 @@ async function exportfolder(params) {
 	console.log("   Zip: ", zip);
 	console.log(folders);
 
+	var isVirtualFolder = false;
 	for (var i = 0; i < folders.length; i++) {
-		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
+		isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
 		console.log(isVirtualFolder)
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
 			alert(mboximportbundle.GetStringFromName("noFolderExport"));

@@ -7,14 +7,14 @@
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
-      "strict_min_version": "102.0",
+      "strict_min_version": "115.0",
       "strict_max_version": "115.*"
     }
   },
   "browser_action": {
 		"default_area": "maintoolbar",
 		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
-    "default_title": "ImpExp NG",
+    "default_title": "ImportExport",
     "default_popup": "chrome/content/test.html"
 	  },
   "experiment_apis": {

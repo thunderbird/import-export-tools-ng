@@ -616,9 +616,9 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 //localeFile = "settings.json";
 // t();
 //translateHelpPage();
-// translatePage();
+translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
+//translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 

@@ -127,15 +127,17 @@ var translationArray3 = [
   { key: "dateFmtToken", text: "${date}"},
 ];
 
-var translationArray = [
+var translationArray5 = [
   { key: "attachmentFolderNames", text: "Attachment Folder Names"},
   { key: "attachmentFolders", text: "Attachment Folders"},
   { key: "inlineAttachmentsFolders", text: "Inline Attachments Folders"},
   { key: "cutPathLen", text: "Cut file path length to 256 characters"},
-
-
 ];
 
+var translationArray = [
+  { key: "folderCtxMenu_Exp_Account_Id.title", text: "Export Account"},
+	
+];
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
 // const outputLocaleDir = "./src/_locales";
@@ -559,16 +561,17 @@ function convert(iFile, options) {
 }
 
 
-var options3 = {
+var options = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
 	append: true,
 	outputFormat: 3,
+	skipEN: true
 };
 
 // dtd=2
-var options = {
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -591,8 +594,8 @@ var options4 = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-//let inputFiles = ["messages.json"];
-let inputFiles = ["mboximport.dtd"];
+let inputFiles = ["messages.json"];
+//let inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 //let inputFiles = ["mb2.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
@@ -607,7 +610,7 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
-//localeFolders = ['en-US'];
+//localeFolders = ['en-US', 'de'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";

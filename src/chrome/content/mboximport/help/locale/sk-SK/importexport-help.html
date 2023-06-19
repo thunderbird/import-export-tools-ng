@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Podpora:</h3>
-    <p>
-      Uverejnite problémy alebo požiadavky na funkcie v úložisku GitHub rozšírení:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >Problémy s importom ExportTools NG</a
-      ><br /><br />
-      Pri problémoch s chybami uveďte nasledujúce informácie, ktoré vám pomôžu vyriešiť problémy:<br />
-      - Verzia ImportExportTools NG<br />
-      - Verzia Thunderbird<br />
-      - Operačný systém a verzia<br />
-      - Výstup ladenia (kopírovanie z konzoly ladenia - prístup pomocou Ctrl-Shift-J)<br />
-      - Popis krokov vedúcich k problému<br />
-    </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
       ImportExportTools NG je nadväzujúce rozšírenie založené na pôvodnej práci Paola „Kaosmos“. Rozšírenie
@@ -51,13 +38,24 @@
         rozšírením. Funkcie sú kontextové. Jedálny lístok je pridaný pre:<br />
         - Kontext podokna (operácia so zložkami)<br />
         - Kontext zoznamu správ (vybrané správy)<br />
-        - Ponuka Nástroje (operácie so zložkami a profilmi)<br /><br />
-        Existuje veľa možností, ktoré sú dostupné pod pridanou položkou v časti &quot;Nástroje/Možnosti
-        doplnku&quot; pre možnosti rozšírenia. Každá z ponúk má tiež položku ponuky Možnosti na prístup k
-        dialógu možností.<br />
-        Nové možnosti sú zdokumentované tu, celý súbor bude následne zdokumentovaný.
+        - Ponuka Nástroje (operácie profilu a zálohovania)<br /><br />
+        Možnosti, ktoré sú dostupné v ponuke „Nástroje“, sa nenachádzajú v ponuke „Hamburger“, budú v budúcej
+        verzii. Tieto funkcie sú dostupné aj v novom tlačidle na paneli nástrojov. Každá z ponúk a tlačidiel
+        má tiež položku ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Podpora:</h3>
+    <p>
+      Uverejnite problémy alebo požiadavky na funkcie v úložisku GitHub rozšírení:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >Problémy s importom ExportTools NG</a
+      ><br /><br />
+      Pri problémoch s chybami uveďte nasledujúce informácie, ktoré vám pomôžu vyriešiť problémy:<br />
+      - Verzia ImportExportTools NG<br />
+      - Verzia Thunderbird<br />
+      - Operačný systém a verzia<br />
+      - Výstup ladenia (kopírovanie z konzoly ladenia - prístup pomocou Ctrl-Shift-J)<br />
+      - Popis krokov vedúcich k problému<br />
     </p>
     <h2 id="main_menu_help">Funkcie kontextového menu priečinka</h2>
     <table class="menu-table">
@@ -68,6 +66,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportujte celý účet so štruktúrou a podpriečinkami vo formáte mbox. Export sa vykonáva pomocou
+            kontajnera s názvom účtu.<br />
+            Poznámka: Táto položka ponuky sa zobrazí iba po kliknutí pravým tlačidlom myši na položku účtu.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -206,19 +212,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importujte jeden alebo viac súborov mbox z priameho adresára.</td>
+          <td>Importujte jeden alebo viac súborov mbox z adresára.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -766,7 +776,7 @@
     <p>
       Existuje niekoľko nových funkcií a možností, ktoré ešte nie je možné konfigurovať v dialógovom okne
       možností. Keď budú tieto funkcie stabilizované, pridajú sa do používateľského rozhrania.<br />
-      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácií. Na prístup k editoru použite
+      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácie. Na prístup k editoru použite
       ponuku Nástroje/Možnosti, potom vyberte časť Rozšírené a v spodnej časti sa zobrazí tlačidlo „Editor
       konfigurácie“. Ak do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby
       rozšírenia. Potom môžete podľa potreby upraviť rôzne predvoľby uvedené nižšie.
@@ -852,31 +862,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Verzia 12.0.0: Podpora Thunderbird 102 – 1. júla 2022</h3>
+    <br />
+    <h3>Verzia 14.0.0 : Podpora Thunderbird 115 – 10. júla 2023</h3>
     <p>
-      Riešené problémy:<br /><br />
+      Vlastnosti a riešené problémy:<br />
       <p>
-        - Podpora pre Thunderbird 102 a 91<br />
-        - Opravte podmienky pretekov v SessionRestore #284 #314<br />
-        - Oprava exportu IMAP, ktorý preskakuje prázdne priečinky #320<br />
-        - Opravte neuložené možnosti priečinka exportu #318<br />
-        - Opravte zmeny v nastaveniach tlače
+        - Podpora pre Thunderbird 115 Supernova<br />
+        - Prepracovať a zmodernizovať používateľské rozhranie Možnosti<br />
+        - Kompletná podpora tmavého režimu<br />
+        - Nový, konzistentný systém menu<br />
+        - Nové tlačidlo na paneli nástrojov<br />
+        - Vylepšená pomoc, otvorená pri inštalácii<br />
+        - Aktualizujte exportný účet<br /><br />
+        Ďakujeme nasledujúcim používateľom za návrhy na zlepšenie a pomoc pri testovaní:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Ďakujeme nasledujúcim používateľom za návrhy na zlepšenie a pomoc pri testovaní:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

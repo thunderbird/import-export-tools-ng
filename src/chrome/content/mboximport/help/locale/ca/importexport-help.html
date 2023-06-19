@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Suport:</h3>
-    <p>
-      Si us plau, publiqueu problemes o sol·licituds de funcions al repositori de GitHub d&#39;extensions:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      En problemes d&#39;error, incloeu la informació següent per ajudar a resoldre els problemes:<br />
-      - ImportExportTools versió NG<br />
-      - Versió Thunderbird<br />
-      - Sistema operatiu i versió<br />
-      - Sortida de depuració (còpia des de la consola de depuració - accés amb Control-Maj-J)<br />
-      - Una descripció dels passos que han conduït al problema<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
       ImportExportTools NG és una extensió de seguiment basada en el treball original de Paolo
@@ -53,13 +40,25 @@
         l&#39;extensió. Les funcions són sensibles al context. S&#39;afegeixen menús per a:<br />
         - El context del panell de carpetes (operació de carpetes)<br />
         - El context de la llista de missatges (missatges seleccionats)<br />
-        - El menú Eines (operacions de carpetes i perfils)<br /><br />
-        Hi ha moltes opcions a les quals es pot accedir a l&#39;entrada afegida a &quot;Opcions
-        d&#39;eines/complements&quot; per a les opcions d&#39;extensió. Cadascun dels menús també té un
-        element de menú Opcions per accedir al diàleg d&#39;opcions.<br />
-        Les noves opcions es documenten aquí, tot el conjunt es documentarà posteriorment.
+        - El menú Eines (perfil i operacions de còpia de seguretat)<br /><br />
+        Hi ha opcions que són accessibles al &quot;Menú d&#39;eines&quot; no es troben al menú
+        &quot;Hamburguesa&quot;, sinó que estaran en una versió futura. Aquestes funcions també estan
+        disponibles al botó de la nova barra d&#39;eines. Cadascun dels menús i botons també tenen un element
+        de menú Ajuda i Opcions per accedir al diàleg d&#39;opcions.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Suport:</h3>
+    <p>
+      Si us plau, publiqueu problemes o sol·licituds de funcions al repositori de GitHub d&#39;extensions:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      En problemes d&#39;error, incloeu la informació següent per ajudar a resoldre els problemes:<br />
+      - ImportExportTools versió NG<br />
+      - Versió Thunderbird<br />
+      - Sistema operatiu i versió<br />
+      - Sortida de depuració (còpia des de la consola de depuració - accés amb Control-Maj-J)<br />
+      - Una descripció dels passos que han conduït al problema<br />
     </p>
     <h2 id="main_menu_help">Funcions del menú contextual de la carpeta</h2>
     <table class="menu-table">
@@ -70,6 +69,15 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exporteu tot el compte amb l&#39;estructura i les subcarpetes en format mbox. L&#39;exportació es
+            fa mitjançant un contenidor amb el nom del compte.<br />
+            Nota: aquest element del menú només apareix quan es fa clic amb el botó dret sobre una entrada del
+            compte.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -218,19 +226,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importa un o més fitxers mbox des d&#39;un directori directe.</td>
+          <td>Importa un o més fitxers mbox d&#39;un directori.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -881,31 +893,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Versió 12.0.0: suport de Thunderbird 102 - 1 de juliol de 2022</h3>
+    <br />
+    <h3>Versió 14.0.0: suport de Thunderbird 115 - 10 de juliol de 2023</h3>
     <p>
-      Problemes tractats:<br /><br />
+      Característiques i problemes abordats:<br />
       <p>
-        - Suport per a Thunderbird 102 i 91<br />
-        - Arreglar la condició de carrera a SessionRestore #284 #314<br />
-        - Arreglar l&#39;exportació IMAP saltant les carpetes buides #320<br />
-        - Corregiu les opcions de carpeta d&#39;exportació no desades #318<br />
-        - Corregiu els canvis a la configuració d&#39;impressió
+        - Suport per a Thunderbird 115 Supernova<br />
+        - Reelaborar i modernitzar la interfície d&#39;usuari d&#39;Opcions<br />
+        - Suport complet del mode fosc<br />
+        - Nou sistema de menús consistent<br />
+        - Nou botó de la barra d&#39;eines<br />
+        - Ajuda millorada, oberta en instal·lar<br />
+        - Actualitzar el compte d&#39;exportació<br /><br />
+        Gràcies als usuaris següents pels suggeriments de millora i l&#39;ajuda de prova:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Gràcies als usuaris següents pels suggeriments de millora i l&#39;ajuda de prova:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

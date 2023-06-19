@@ -18,20 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Soutien:</h3>
-    <p>
-      Veuillez publier des problèmes ou des demandes de fonctionnalités dans le référentiel GitHub des
-      extensions :
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      Dans les problèmes de bogue, incluez les informations suivantes pour aider à résoudre les problèmes :<br />
-      - Version ImportExportTools NG<br />
-      -Version Thunderbird<br />
-      - Système d&#39;exploitation et version<br />
-      - Sortie de débogage (copie depuis la console de débogage - accès avec Control-Shift-J)<br />
-      - Une description des étapes menant au problème<br />
-    </p>
     <h2 id="main_help">Vue d&#39;ensemble et menus d&#39;ImportExportTools NG</h2>
     <p>
       ImportExportTools NG est une extension de suivi basée sur le travail original de Paolo
@@ -54,13 +40,26 @@
         l&#39;extension. Les fonctions sont contextuelles. Des menus sont ajoutés pour :<br />
         - Le contexte du volet dossier (opération de dossier)<br />
         - Le contexte de la liste des messages (messages sélectionnés)<br />
-        - Le menu Outils (opérations sur les dossiers et les profils)<br /><br />
-        De nombreuses options sont accessibles sous l&#39;entrée ajoutée sous &quot;Outils/Options
-        complémentaires&quot; pour les options d&#39;extension. Chacun des menus possède également un élément
-        de menu Options pour accéder à la boîte de dialogue des options.<br />
-        Les nouvelles options sont documentées ici, l&#39;ensemble complet sera documenté ultérieurement.
+        - Le menu Outils (opérations de profil et de sauvegarde)<br /><br />
+        Les options accessibles sous le &quot;Menu Outils&quot; ne sont pas dans le menu
+        &quot;Hamburger&quot;, elles le seront dans une future version. Ces fonctions sont également
+        disponibles dans le nouveau bouton de la barre d&#39;outils. Chacun des menus et des boutons comporte
+        également un élément de menu Aide et Options pour accéder à la boîte de dialogue des options.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Soutien:</h3>
+    <p>
+      Veuillez publier des problèmes ou des demandes de fonctionnalités dans le référentiel GitHub des
+      extensions :
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Dans les problèmes de bogue, incluez les informations suivantes pour aider à résoudre les problèmes :<br />
+      - Version ImportExportTools NG<br />
+      -Version Thunderbird<br />
+      - Système d&#39;exploitation et version<br />
+      - Sortie de débogage (copie depuis la console de débogage - accès avec Control-Shift-J)<br />
+      - Une description des étapes menant au problème<br />
     </p>
     <h2 id="main_menu_help">Fonctions du menu contextuel du dossier</h2>
     <table class="menu-table">
@@ -71,6 +70,15 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportez l&#39;intégralité du compte avec la structure et les sous-dossiers au format mbox.
+            L&#39;exportation se fait à l&#39;aide d&#39;un conteneur avec le nom du compte.<br />
+            Remarque : Cet élément de menu n&#39;apparaît que lorsque vous cliquez avec le bouton droit sur
+            une entrée de compte.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -218,19 +226,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importez un ou plusieurs fichiers mbox à partir d&#39;un répertoire direct.</td>
+          <td>Importez un ou plusieurs fichiers mbox à partir d&#39;un répertoire.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -887,31 +899,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Version 12.0.0 : Prise en charge de Thunderbird 102 - 1er juillet 2022</h3>
+    <br />
+    <h3>Version 14.0.0 : Prise en charge de Thunderbird 115 - 10 juillet 2023</h3>
     <p>
-      Problèmes abordés :<br /><br />
+      Fonctionnalités et problèmes résolus :<br />
       <p>
-        - Prise en charge de Thunderbird 102 et 91<br />
-        - Correction de la condition de concurrence dans SessionRestore #284 #314<br />
-        - Correction de l&#39;export IMAP en sautant les dossiers vides #320<br />
-        - Correction des options de dossier d&#39;exportation non enregistrées #318<br />
-        - Correction des modifications apportées aux paramètres d&#39;impression
+        - Prise en charge de Thunderbird 115 Supernova<br />
+        - Retravailler et moderniser l&#39;interface utilisateur des options<br />
+        - Prise en charge complète du mode sombre<br />
+        - Nouveau système de menu cohérent<br />
+        - Nouveau bouton de barre d&#39;outils<br />
+        - Aide améliorée, ouverte à l&#39;installation<br />
+        - Mettre à jour le compte d&#39;exportation<br /><br />
+        Merci aux utilisateurs suivants pour leurs suggestions d&#39;amélioration et leur aide au test :<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Merci aux utilisateurs suivants pour leurs suggestions d&#39;amélioration et leur aide au test :<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

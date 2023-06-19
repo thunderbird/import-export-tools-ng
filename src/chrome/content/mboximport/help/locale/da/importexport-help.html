@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Support:</h3>
-    <p>
-      Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-lageret:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      I fejlproblemer skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
-      - ImportExportTools NG version<br />
-      - Thunderbird version<br />
-      - Operativsystem og version<br />
-      - Debug output (kopi fra fejlfindingskonsollen - adgang med Control-Shift-J)<br />
-      - En beskrivelse af de trin, der fører til problemet<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
     <p>
       ImportExportTools NG er en opfølgende udvidelse baseret på det originale værk af Paolo
@@ -51,13 +38,25 @@
         Funktionerne er kontekstafhængige. Menuer tilføjes til:<br />
         - Mapperudens kontekst (mappeoperation)<br />
         - Beskedlistekonteksten (udvalgte meddelelser)<br />
-        - Menuen Værktøjer (mappe- og profilhandlinger)<br /><br />
-        Der er mange muligheder, der er tilgængelige under den tilføjede post under
-        &quot;Værktøjer/Tilføjelsesmuligheder&quot; for udvidelsesmulighederne. Hver af menuerne har også et
-        menupunkt Indstillinger for at få adgang til indstillingsdialogen.<br />
-        De nye muligheder er dokumenteret her, hele sættet vil blive dokumenteret efterfølgende.
+        - Menuen Værktøjer (profil og sikkerhedskopiering)<br /><br />
+        De muligheder, der er tilgængelige under &quot;Værktøjsmenuen&quot;, er ikke i menuen
+        &quot;Hamburger&quot;, de vil være i en fremtidig version. Disse funktioner er også tilgængelige i den
+        nye knap på værktøjslinjen. Hver af menuerne og knappen har også et menupunkt Hjælp og indstillinger
+        for at få adgang til indstillingsdialogen.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Support:</h3>
+    <p>
+      Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-lageret:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      I fejlproblemer skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
+      - ImportExportTools NG version<br />
+      - Thunderbird version<br />
+      - Operativsystem og version<br />
+      - Debug output (kopi fra fejlfindingskonsollen - adgang med Control-Shift-J)<br />
+      - En beskrivelse af de trin, der fører til problemet<br />
     </p>
     <h2 id="main_menu_help">Mappekontekstmenufunktioner</h2>
     <table class="menu-table">
@@ -68,6 +67,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Eksporter hele kontoen med strukturen og undermapper i mbox-format. Eksporten sker ved hjælp af en
+            container med kontonavnet.<br />
+            Bemærk: Dette menupunkt vises kun, når du højreklikker på en kontopost.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -208,19 +215,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importer en eller flere mbox-filer fra en direkte mappe.</td>
+          <td>Importer en eller flere mbox-filer fra en mappe.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -236,7 +247,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
-          <td>Importer alle EML-meddelelser fra en enkelt mappe</td>
+          <td>Importer alle EML-beskeder fra en enkelt mappe</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
@@ -853,31 +864,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_udvidelsesnavn__</div>
-    <h3>Version 12.0.0: Thunderbird 102 Support - 1. juli 2022</h3>
+    <br />
+    <h3>Version 14.0.0: Thunderbird 115 Support - 10. juli 2023</h3>
     <p>
-      Problemer behandlet:<br /><br />
+      Funktioner og problemer behandlet:<br />
       <p>
-        - Understøttelse af Thunderbird 102 og 91<br />
-        - Ret løbstilstanden i SessionRestore #284 #314<br />
-        - Ret IMAP-eksport, der springer tomme mapper #320 over<br />
-        - Ret eksportmappeindstillinger, der ikke er gemt #318<br />
-        - Ret ændringer i printindstillinger
+        - Understøttelse af Thunderbird 115 Supernova<br />
+        - Omarbejd og moderniser Options UI<br />
+        - Komplet understøttelse af Dark Mode<br />
+        - Nyt, konsekvent menusystem<br />
+        - Ny knap på værktøjslinjen<br />
+        - Forbedret hjælp, åben ved installation<br />
+        - Opdater eksportkonto<br /><br />
+        Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

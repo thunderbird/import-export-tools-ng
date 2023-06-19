@@ -18,20 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Támogatás:</h3>
-    <p>
-      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a GitHub bővítménytárában:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      Hibaproblémák esetén adja meg a következő információkat a problémák megoldásához:<br />
-      - ImportExportTools NG verzió<br />
-      - Thunderbird verzió<br />
-      - Operációs rendszer és verzió<br />
-      - Hibakeresési kimenet (másolás a Debug Console-ról - hozzáférés a Control-Shift-J
-      billentyűkombinációval)<br />
-      - A problémához vezető lépések leírása<br />
-    </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
       Az ImportExportTools NG egy további bővítmény, amely Paolo &quot;Kaosmos&quot; eredeti munkáján alapul.
@@ -52,13 +38,26 @@
         függvények környezetérzékenyek. A menük hozzáadva:<br />
         - A mappapanel kontextusa (mappaművelet)<br />
         - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
-        - Az Eszközök menü (mappa- és profilműveletek)<br /><br />
-        Számos lehetőség érhető el az „Eszközök/Kiegészítők beállításai” alatti hozzáadott bejegyzés alatt a
-        bővítési lehetőségekhez. Mindegyik menü rendelkezik egy Opciók menüponttal is, amellyel elérheti a
-        beállítások párbeszédablakot.<br />
-        Az új lehetőségeket itt dokumentáljuk, a teljes készletet utólag dokumentáljuk.
+        - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
+        Az &quot;Eszközök menü&quot; alatt elérhető opciók nincsenek a &quot;Hamburger&quot; menüben, hanem
+        egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és gombok
+        mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
+        párbeszédpanelt.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Támogatás:</h3>
+    <p>
+      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a GitHub bővítménytárában:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Hibaproblémák esetén adja meg a következő információkat a problémák megoldásához:<br />
+      - ImportExportTools NG verzió<br />
+      - Thunderbird verzió<br />
+      - Operációs rendszer és verzió<br />
+      - Hibakeresési kimenet (másolás a Debug Console-ról - hozzáférés a Control-Shift-J
+      billentyűkombinációval)<br />
+      - A problémához vezető lépések leírása<br />
     </p>
     <h2 id="main_menu_help">Mappa helyi menü funkciói</h2>
     <table class="menu-table">
@@ -69,6 +68,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportálja a teljes fiókot a szerkezettel és az almappákkal együtt mbox formátumban. Az exportálás
+            egy fióknévvel rendelkező tároló használatával történik.<br />
+            Megjegyzés: Ez a menüpont csak akkor jelenik meg, ha a jobb gombbal kattint egy fiókbejegyzésre.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -210,19 +217,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importáljon egy vagy több mbox fájlt egy közvetlen könyvtárból.</td>
+          <td>Importáljon egy vagy több mbox fájlt egy könyvtárból.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -861,31 +872,33 @@
       >
       kiterjesztést<br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>12.0.0 verzió: Thunderbird 102 támogatás – 2022. július 1.</h3>
+    <br />
+    <h3>14.0.0 verzió: Thunderbird 115 támogatás – 2023. július 10.</h3>
     <p>
-      Megoldott problémák:<br /><br />
+      Jellemzők és kezelt problémák:<br />
       <p>
-        - Thunderbird 102 és 91 támogatása<br />
-        - Javítsa ki a verseny állapotát a SessionRestore #284 #314-ben<br />
-        - Javítsa ki az IMAP-exportálást, amely kihagyja az üres mappákat #320<br />
-        - Javítsa ki a nem mentett exportmappa-beállításokat #318<br />
-        - Javítsa ki a nyomtatási beállítások módosításait
+        - Thunderbird 115 Supernova támogatása<br />
+        - Az Options UI átdolgozása és korszerűsítése<br />
+        - Teljes sötét mód támogatás<br />
+        - Új, egységes menürendszer<br />
+        - Új eszköztár gomb<br />
+        - Továbbfejlesztett súgó, telepítéskor megnyílik<br />
+        - Exportálási fiók frissítése<br /><br />
+        Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

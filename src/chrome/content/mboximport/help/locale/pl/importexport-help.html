@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Wsparcie:</h3>
-    <p>
-      Opublikuj problemy lub prośby o funkcje w repozytorium rozszerzeń GitHub:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Problemy</a
-      ><br /><br />
-      W przypadku problemów z błędami podaj następujące informacje, aby pomóc w rozwiązaniu problemów:<br />
-      - Wersja ImportExportTools NG<br />
-      - Wersja Thunderbirda<br />
-      - System operacyjny i wersja<br />
-      - Wyjście debugowania (kopiowanie z konsoli debugowania - dostęp za pomocą Control-Shift-J)<br />
-      - Opis kroków prowadzących do problemu<br />
-    </p>
     <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
       ImportExportTools NG to kontynuacja rozszerzenia oparta na oryginalnej pracy Paolo „Kaosmos”.
@@ -51,13 +38,24 @@
         rozszerzenie. Funkcje są zależne od kontekstu. Dodano menu dla:<br />
         - Kontekst panelu folderów (operacja na folderze)<br />
         - Kontekst listy wiadomości (wybrane wiadomości)<br />
-        - Menu Narzędzia (operacje na folderach i profilach)<br /><br />
-        Istnieje wiele opcji, które są dostępne pod dodanym wpisem w „Narzędzia/Opcje dodatków” dla opcji
-        rozszerzeń. Każde z menu ma również element menu Opcje, który umożliwia dostęp do okna dialogowego
-        opcji.<br />
-        Nowe opcje są udokumentowane tutaj, cały zestaw zostanie udokumentowany później.
+        - Menu Narzędzia (operacje na profilach i kopiach zapasowych)<br /><br />
+        Opcje, które są dostępne w menu „Narzędzia”, nie znajdują się w menu „Hamburger”, będą w przyszłej
+        wersji. Funkcje te są również dostępne w nowym przycisku paska narzędzi. Każde menu i przycisk mają
+        również pozycje menu Pomoc i Opcje umożliwiające dostęp do okna dialogowego opcji.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Wsparcie:</h3>
+    <p>
+      Opublikuj problemy lub prośby o funkcje w repozytorium rozszerzeń GitHub:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Problemy</a
+      ><br /><br />
+      W przypadku problemów z błędami podaj następujące informacje, aby pomóc w rozwiązaniu problemów:<br />
+      - Wersja ImportExportTools NG<br />
+      - Wersja Thunderbirda<br />
+      - System operacyjny i wersja<br />
+      - Wyjście debugowania (kopiowanie z konsoli debugowania - dostęp za pomocą Control-Shift-J)<br />
+      - Opis kroków prowadzących do problemu<br />
     </p>
     <h2 id="main_menu_help">Funkcje menu kontekstowego folderu</h2>
     <table class="menu-table">
@@ -68,6 +66,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Wyeksportuj całe konto ze strukturą i podfolderami w formacie mbox. Eksport odbywa się za pomocą
+            kontenera z nazwą konta.<br />
+            Uwaga: Ten element menu pojawia się tylko po kliknięciu wpisu konta prawym przyciskiem myszy.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -208,19 +214,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Zaimportuj jeden lub więcej plików mbox z katalogu bezpośredniego.</td>
+          <td>Zaimportuj jeden lub więcej plików mbox z katalogu.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -853,31 +863,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_nazwarozszerzenia__</div>
-    <h3>Wersja 12.0.0: Obsługa Thunderbirda 102 — 1 lipca 2022 r</h3>
+    <br />
+    <h3>Wersja 14.0.0: Obsługa Thunderbirda 115 — 10 lipca 2023 r</h3>
     <p>
-      Rozwiązane problemy:<br /><br />
+      Rozwiązane funkcje i problemy:<br />
       <p>
-        - Wsparcie dla Thunderbirda 102 i 91<br />
-        — Naprawiono stan wyścigu w SessionRestore #284 #314<br />
-        — Naprawiono pomijanie pustych folderów w eksporcie IMAP nr 320<br />
-        - Napraw niezapisane opcje folderów eksportu # 318<br />
-        - Napraw zmiany ustawień drukowania
+        - Wsparcie dla Thunderbirda 115 Supernova<br />
+        - Przerób i zmodernizuj interfejs opcji<br />
+        - Pełna obsługa trybu ciemnego<br />
+        - Nowy, spójny system menu<br />
+        - Nowy przycisk paska narzędzi<br />
+        - Ulepszona pomoc, otwierana podczas instalacji<br />
+        - Zaktualizuj konto eksportu<br /><br />
+        Dziękujemy następującym użytkownikom za sugestie dotyczące ulepszeń i pomoc w testowaniu:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Dziękujemy następującym użytkownikom za sugestie dotyczące ulepszeń i pomoc w testowaniu:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

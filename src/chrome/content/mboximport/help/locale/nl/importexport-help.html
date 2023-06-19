@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Steun:</h3>
-    <p>
-      Plaats problemen of functieverzoeken in de extensies GitHub-repository:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      Neem bij bugproblemen de volgende informatie op om de problemen op te lossen:<br />
-      - ImportExportTools NG-versie<br />
-      - Thunderbird-versie<br />
-      - Besturingssysteem en versie<br />
-      - Debug uitvoer (kopiëren van de Debug Console - toegang met Control-Shift-J)<br />
-      - Een beschrijving van de stappen die tot het probleem hebben geleid<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Overzicht en menu&#39;s</h2>
     <p>
       ImportExportTools NG is een vervolgextensie gebaseerd op het originele werk van Paolo
@@ -52,13 +39,25 @@
         zijn geïnstalleerd. De functies zijn contextgevoelig. Menu&#39;s zijn toegevoegd voor:<br />
         - De context van het mappenvenster (mapbediening)<br />
         - De context van de berichtenlijst (geselecteerde berichten)<br />
-        - Het Tools-menu (map- en profielbewerkingen)<br /><br />
-        Er zijn veel opties die toegankelijk zijn onder het toegevoegde item onder &quot;Tools/Add-on
-        Options&quot; voor de extensie-opties. Elk van de menu&#39;s heeft ook een menu-item Opties om toegang
-        te krijgen tot het dialoogvenster Opties.<br />
-        Hier worden de nieuwe opties gedocumenteerd, daarna wordt de gehele set gedocumenteerd.
+        - Het Tools-menu (profiel- en back-upbewerkingen)<br /><br />
+        De opties die toegankelijk zijn onder het menu &quot;Tools&quot; staan niet in het menu
+        &quot;Hamburger&quot;, maar in een toekomstige versie. Deze functies zijn ook beschikbaar in de nieuwe
+        werkbalkknop. Elk van de menu&#39;s en knoppen heeft ook een menu-item Help en Opties om toegang te
+        krijgen tot het dialoogvenster met opties.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Steun:</h3>
+    <p>
+      Plaats problemen of functieverzoeken in de extensies GitHub-repository:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Neem bij bugproblemen de volgende informatie op om de problemen op te lossen:<br />
+      - ImportExportTools NG-versie<br />
+      - Thunderbird-versie<br />
+      - Besturingssysteem en versie<br />
+      - Debug uitvoer (kopiëren van de Debug Console - toegang met Control-Shift-J)<br />
+      - Een beschrijving van de stappen die tot het probleem hebben geleid<br />
     </p>
     <h2 id="main_menu_help">Functies van het contextmenu van de map</h2>
     <table class="menu-table">
@@ -69,6 +68,15 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exporteer het volledige account met de structuur en submappen in mbox-formaat. De export gebeurt
+            met behulp van een container met de accountnaam.<br />
+            Opmerking: dit menu-item verschijnt alleen wanneer u met de rechtermuisknop op een accountinvoer
+            klikt.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -206,19 +214,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importeer een of meer mbox-bestanden vanuit een directe map.</td>
+          <td>Importeer een of meer mbox-bestanden uit een directory.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -862,37 +874,39 @@
     </p>
 
     <p>
-      Omdat de snelkoppelingen nieuw en experimenteel zijn, zal ik ook meer documentatie toevoegen aan de
+      Aangezien de snelkoppelingen nieuw en experimenteel zijn, zal ik ook meer documentatie toevoegen aan de
       repository. Controleer de extensie
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensieNaam__</div>
-    <h3>Versie 12.0.0: Thunderbird 102-ondersteuning - 1 juli 2022</h3>
+    <br />
+    <h3>Versie 14.0.0: Thunderbird 115-ondersteuning - 10 juli 2023</h3>
     <p>
-      Problemen aangepakt:<br /><br />
+      Functies en problemen aangepakt:<br />
       <p>
-        - Ondersteuning voor Thunderbird 102 en 91<br />
-        - Herstel de raceconditie in SessionRestore #284 #314<br />
-        - IMAP-export repareren waarbij lege mappen worden overgeslagen #320<br />
-        - Fix exportmapopties niet opgeslagen #318<br />
-        - Fix printSettings wijzigingen
+        - Ondersteuning voor Thunderbird 115 Supernova<br />
+        - Herwerk en moderniseer de gebruikersinterface van Opties<br />
+        - Volledige ondersteuning voor donkere modus<br />
+        - Nieuw, consistent menusysteem<br />
+        - Nieuwe werkbalkknop<br />
+        - Verbeterde hulp, open bij installatie<br />
+        - Exportaccount bijwerken<br /><br />
+        Dank aan de volgende gebruikers voor verbeteringssuggesties en testhulp:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Dank aan de volgende gebruikers voor verbeteringssuggesties en testhulp:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

@@ -18,16 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>支持：</h3>
-    <p>
-      请在扩展 GitHub 存储库中发布问题或功能请求：
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG 问题</a
-      ><br /><br />在错误问题中，包括以下信息以帮助解决问题：<br />
-      - ImportExportTools NG版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
-      使用 Control-Shift-J 访问）<br />
-      - 导致问题的步骤的描述<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
       ImportExportTools NG 是基于 Paolo “Kaosmos”
@@ -43,9 +33,19 @@
         访问 IETng 功能是通过扩展安装的几个不同菜单完成的。这些功能是上下文相关的。添加了以下菜单：<br />
         - The Folder Pane Context（文件夹操作）<br />
         - 消息列表上下文（选定的消息）<br />
-        - 工具菜单（文件夹和配置文件操作）<br /><br />在扩展选项的“工具/附加选项”下的添加条目下可以访问许多选项。每个菜单还有一个选项菜单项来访问选项对话框。<br />新选项记录在此处，整个集合将在随后记录。
+        - 工具菜单（配置文件和备份操作）<br /><br />
+        “工具菜单”下可访问的选项不在“汉堡包”菜单中，它们将在未来的版本中。这些功能在新的工具栏按钮中也可用。每个菜单和按钮还有一个帮助和选项菜单项，用于访问选项对话框。<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>支持：</h3>
+    <p>
+      请在扩展 GitHub 存储库中发布问题或功能请求：
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG 问题</a
+      ><br /><br />在错误问题中，包括以下信息以帮助解决问题：<br />
+      - ImportExportTools NG版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
+      使用 Control-Shift-J 访问）<br />
+      - 导致问题的步骤的描述<br />
     </p>
     <h2 id="main_menu_help">文件夹上下文菜单功能</h2>
     <table class="menu-table">
@@ -56,6 +56,12 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            以 mbox 格式导出具有结构和子文件夹的整个帐户。导出是使用带有帐户名称的容器完成的。<br />注意：此菜单项仅在右键单击帐户条目时出现。
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -185,19 +191,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>从直接目录导入一个或多个 mbox 文件。</td>
+          <td>从目录导入一个或多个 mbox 文件。</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -788,30 +798,27 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>版本 12.0.0：Thunderbird 102 支持 - 2022 年 7 月 1 日</h3>
+    <br />
+    <h3>版本 14.0.0：Thunderbird 115 支持 - 2023 年 7 月 10 日</h3>
     <p>
-      解决的问题：<br /><br />
+      功能和解决的问题：<br />
       <p>
-        - 支持 Thunderbird 102 和 91<br />
-        - 修复 SessionRestore 中的竞争条件 #284 #314<br />
-        - 修复 IMAP 导出跳过空文件夹 #320<br />
-        - 修复未保存的导出文件夹选项 #318<br />
-        - 修复 printSettings 更改
+        - 支持雷鸟 115 超新星<br />- 返工和现代化选项用户界面<br />- 完整的黑暗模式支持<br />-
+        新的、一致的菜单系统<br />- 新的工具栏按钮<br />- 改进的帮助，在安装时打开<br />- 更新出口账户<br /><br />感谢以下用户的增强建议和测试帮助：<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />感谢以下用户的增强建议和测试帮助：<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

@@ -18,20 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Podpora:</h3>
-    <p>
-      Objavite težave ali zahteve po funkcijah v repozitoriju razširitev GitHub:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
-      - Različica ImportExportTools NG<br />
-      - Različica Thunderbird<br />
-      - Operacijski sistem in različica<br />
-      - Izhod za odpravljanje napak (kopiraj iz konzole za odpravljanje napak - dostop s tipkami
-      Control-Shift-J)<br />
-      – Opis korakov, ki vodijo do težave<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
@@ -52,13 +38,25 @@
         so odvisno od konteksta. Meniji so dodani za:<br />
         - Kontekst podokna mape (delovanje mape)<br />
         - Kontekst seznama sporočil (izbrana sporočila)<br />
-        - Meni Orodja (operacije z mapo in profilom)<br /><br />
-        Obstaja veliko možnosti, ki so dostopne pod dodanim vnosom pod &quot;Orodja/možnosti dodatkov&quot; za
-        možnosti razširitve. Vsak od menijev ima tudi element menija Možnosti za dostop do pogovornega okna z
-        možnostmi.<br />
-        Nove možnosti so dokumentirane tukaj, celoten nabor bo dokumentiran naknadno.
+        - Meni Orodja (profil in operacije varnostnega kopiranja)<br /><br />
+        Možnosti, ki so dostopne v meniju »Orodja«, niso v meniju »Hamburger«, ampak bodo v prihodnji
+        različici. Te funkcije so na voljo tudi v novem gumbu orodne vrstice. Vsak od menijev in gumb ima tudi
+        menijsko postavko Pomoč in Možnosti za dostop do pogovornega okna z možnostmi.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Podpora:</h3>
+    <p>
+      Objavite težave ali zahteve po funkcijah v repozitoriju razširitev GitHub:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
+      - Različica ImportExportTools NG<br />
+      - Različica Thunderbird<br />
+      - Operacijski sistem in različica<br />
+      - Izhod za odpravljanje napak (kopiraj iz konzole za odpravljanje napak - dostop s tipkami
+      Control-Shift-J)<br />
+      – Opis korakov, ki vodijo do težave<br />
     </p>
     <h2 id="main_menu_help">Funkcije kontekstnega menija mape</h2>
     <table class="menu-table">
@@ -69,6 +67,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Izvoz celotnega računa s strukturo in podmapami v format mbox. Izvoz se izvede z vsebnikom z
+            imenom računa.<br />
+            Opomba: ta element menija se prikaže samo, ko z desno miškino tipko kliknete vnos računa.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -207,19 +213,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Uvozite eno ali več datotek mbox iz neposrednega imenika.</td>
+          <td>Uvozite eno ali več datotek mbox iz imenika.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -853,31 +863,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Različica 12.0.0: podpora za Thunderbird 102 - 1. julij 2022</h3>
+    <br />
+    <h3>Različica 14.0.0: podpora za Thunderbird 115 - 10. julij 2023</h3>
     <p>
-      Obravnavane težave:<br /><br />
+      Funkcije in obravnavane težave:<br />
       <p>
-        - Podpora za Thunderbird 102 in 91<br />
-        - Popravite stanje dirke v SessionRestore #284 #314<br />
-        - Popravi izvoz IMAP, ki preskakuje prazne mape #320<br />
-        - Popravi možnosti izvozne mape, ki niso shranjene #318<br />
-        - Popravi spremembe nastavitev tiskanja
+        - Podpora za Thunderbird 115 Supernova<br />
+        - Predelava in posodobitev uporabniškega vmesnika možnosti<br />
+        - Popolna podpora za temni način<br />
+        - Nov, dosleden sistem menijev<br />
+        - Nov gumb orodne vrstice<br />
+        - Izboljšana pomoč, odprta ob namestitvi<br />
+        - Posodobite izvozni račun<br /><br />
+        Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

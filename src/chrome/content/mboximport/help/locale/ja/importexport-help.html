@@ -18,16 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>サポート：</h3>
-    <p>
-      問題や機能リクエストを拡張機能の GitHub リポジトリに投稿してください:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />バグの問題には、問題の解決に役立つ次の情報を含めてください。<br />
-      - ImportExportTools NG版<br />- サンダーバードのバージョン<br />- オペレーティング
-      システムとバージョン<br />- デバッグ出力 (デバッグ コンソールからコピー - Control-Shift-J でアクセス)<br />
-      - 問題に至る手順の説明<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG の概要とメニュー</h2>
     <p>
       ImportExportTools NG は、Paolo
@@ -46,11 +36,21 @@
         機能へのアクセスは、拡張機能によってインストールされるいくつかの異なるメニューを通じて行われます。関数はコンテキストに依存します。次のメニューが追加されます。<br />
         - フォルダー ペイン コンテキスト (フォルダー操作)<br />
         - メッセージ リスト コンテキスト (選択されたメッセージ)<br />
-        - ツールメニュー（フォルダーとプロファイルの操作）<br /><br />拡張オプションの「ツール/アドオン
-        オプション」の下に追加されたエントリからアクセスできるオプションが多数あります。各メニューには、オプション
-        ダイアログにアクセスするためのオプション メニュー項目もあります。<br />新しいオプションはここで文書化され、セット全体については後で文書化されます。
+        - [ツール] メニュー (プロファイルおよびバックアップ操作)<br /><br />
+        「ツールメニュー」からアクセスできるオプションは「ハンバーガー」メニューにはありません。これらは将来のバージョンで追加される予定です。これらの機能は、新しいツールバー
+        ボタンでも使用できます。各メニューとボタンには、オプション ダイアログにアクセスするための [ヘルプ]
+        および [オプション] メニュー項目もあります。<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>サポート：</h3>
+    <p>
+      問題や機能リクエストを拡張機能の GitHub リポジトリに投稿してください:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />バグの問題には、問題の解決に役立つ次の情報を含めてください。<br />
+      - ImportExportTools NG版<br />- サンダーバードのバージョン<br />- オペレーティング
+      システムとバージョン<br />- デバッグ出力 (デバッグ コンソールからコピー - Control-Shift-J でアクセス)<br />
+      - 問題に至る手順の説明<br />
     </p>
     <h2 id="main_menu_help">フォルダーのコンテキスト メニューの機能</h2>
     <table class="menu-table">
@@ -61,6 +61,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            構造とサブフォルダーを含むアカウント全体を mbox
+            形式でエクスポートします。エクスポートは、アカウント名のコンテナーを使用して行われます。<br />注:
+            このメニュー項目は、アカウント エントリを右クリックした場合にのみ表示されます。
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -201,19 +209,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>1 つ以上の mbox ファイルを直接ディレクトリからインポートします。</td>
+          <td>ディレクトリから 1 つ以上の mbox ファイルをインポートします。</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -867,29 +879,28 @@
         >ImportExportTools NG README</a
       >を確認してください<br />
     </p>
-    <br /><br />
-    <div>__MSG_拡張子名__</div>
-    <h3>バージョン 12.0.0 : Thunderbird 102 サポート - 2022 年 7 月 1 日</h3>
+    <br />
+    <h3>バージョン 14.0.0 : Thunderbird 115 サポート - 2023 年 7 月 10 日</h3>
     <p>
-      対処された問題:<br /><br />
+      対処された機能と問題点:<br />
       <p>
-        - Thunderbird 102 および 91 のサポート<br />- SessionRestore の競合状態を修正 #284 #314<br />
-        - 空のフォルダーをスキップする IMAP エクスポートを修正 #320<br />
-        - 保存されないエクスポートフォルダーオプションを修正 #318<br />
-        - printSettings の変更を修正
+        - Thunderbird 115 Supernova のサポート<br />- オプション UI を作り直して最新化<br />-
+        完全なダークモードのサポート<br />- 新しい一貫したメニュー システム<br />- 新しいツールバーボタン<br />-
+        ヘルプが改善され、インストール時に開きます<br />- エクスポートアカウントの更新<br /><br />機能拡張の提案とテストの支援については、次のユーザーに感謝します。<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />機能拡張の提案とテストの支援については、次のユーザーに感謝します。<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

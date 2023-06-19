@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Apoiar:</h3>
-    <p>
-      Publica problemas ou solicitudes de funcións no repositorio de extensións de GitHub:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      En problemas de erro, inclúa a seguinte información para axudar a resolver os problemas:<br />
-      - Versión ImportExportTools NG<br />
-      - Versión Thunderbird<br />
-      - Sistema operativo e versión<br />
-      - Saída de depuración (copia desde a Consola de depuración - acceso con Control-Shift-J)<br />
-      - Descrición dos pasos que conducen ao problema<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
     <p>
       ImportExportTools NG é unha extensión de seguimento baseada no traballo orixinal de Paolo
@@ -52,13 +39,25 @@
         As funcións son sensibles ao contexto. Engádense menús para:<br />
         - Contexto do panel de cartafoles (operación de cartafoles)<br />
         - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
-        - O menú Ferramentas (operacións de cartafol e perfil)<br /><br />
-        Hai moitas opcións accesibles baixo a entrada engadida en &quot;Ferramentas/Opcións de
-        complementos&quot; para as opcións de extensión. Cada un dos menús tamén ten un elemento de menú
-        Opcións para acceder ao diálogo de opcións.<br />
-        As novas opcións están documentadas aquí, todo o conxunto documentarase posteriormente.
+        - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
+        As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
+        que estarán nunha versión futura. Estas funcións tamén están dispoñibles no novo botón da barra de
+        ferramentas. Cada un dos menús e cada botón tamén ten un elemento de menú Axuda e Opcións para acceder
+        ao diálogo de opcións.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Apoiar:</h3>
+    <p>
+      Publica problemas ou solicitudes de funcións no repositorio de extensións de GitHub:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      En problemas de erro, inclúa a seguinte información para axudar a resolver os problemas:<br />
+      - Versión ImportExportTools NG<br />
+      - Versión Thunderbird<br />
+      - Sistema operativo e versión<br />
+      - Saída de depuración (copia desde a Consola de depuración - acceso con Control-Shift-J)<br />
+      - Descrición dos pasos que conducen ao problema<br />
     </p>
     <h2 id="main_menu_help">Funcións do menú contextual do cartafol</h2>
     <table class="menu-table">
@@ -69,6 +68,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exporta toda a conta coa estrutura e os subcartafoles en formato mbox. A exportación realízase
+            mediante un contedor co nome da conta.<br />
+            Nota: Este elemento do menú só aparece ao facer clic co botón dereito nunha entrada da conta.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -212,19 +219,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importa un ou máis ficheiros mbox desde un directorio directo.</td>
+          <td>Importa un ou máis ficheiros mbox desde un directorio.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -824,7 +835,7 @@
       <code class="notranslate">oncommand</code> - unha cadea de comando directa<br />
       <code class="notranslate">contexts</code> - o contexto da xanela onde a chave está activa<br />
       <code class="notranslate">&#39;all&#39;</code> : todas as fiestras en messenger, redactar, buscar<br />
-      <code class="notranslate">&#39;messenger&#39;</code> : a xanela principal do mensaxeiro e os seus
+      <code class="notranslate">&#39;messenger&#39;</code> - a xanela principal de mensaxería e os seus
       descendentes<br />
       <code class="notranslate">&#39;compose&#39;</code> - a xanela de redacción da mensaxe<br />
       <code class="notranslate">&#39;search&#39;</code> - o diálogo de busca<br /><br />
@@ -863,31 +874,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__Nome_extensión_MSG__</div>
-    <h3>Versión 12.0.0: compatibilidade con Thunderbird 102 - 1 de xullo de 2022</h3>
+    <br />
+    <h3>Versión 14.0.0: compatibilidade con Thunderbird 115 - 10 de xullo de 2023</h3>
     <p>
-      Problemas abordados:<br /><br />
+      Características e problemas abordados:<br />
       <p>
-        - Soporte para Thunderbird 102 e 91<br />
-        - Corrixir a condición de carreira en SessionRestore #284 #314<br />
-        - Corrixir a exportación IMAP saltando os cartafoles baleiros #320<br />
-        - Corrixir as opcións do cartafol de exportación non gardadas #318<br />
-        - Corrixir os cambios da configuración de impresión
+        - Soporte para Thunderbird 115 Supernova<br />
+        - Reelaborar e modernizar a interface de usuario de opcións<br />
+        - Soporte completo do modo escuro<br />
+        - Sistema de menú novo e consistente<br />
+        - Novo botón da barra de ferramentas<br />
+        - Axuda mellorada, aberta na instalación<br />
+        - Actualizar a conta de exportación<br /><br />
+        Grazas aos seguintes usuarios polas suxestións de mellora e a axuda de proba:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Grazas aos seguintes usuarios polas suxestións de mellora e a axuda de proba:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

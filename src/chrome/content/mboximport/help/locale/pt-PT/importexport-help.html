@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Apoiar:</h3>
-    <p>
-      Publique problemas ou solicitações de recursos no repositório do GitHub de extensões:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      Em problemas de bug, inclua as seguintes informações para ajudar a resolver os problemas:<br />
-      - versão ImportExportTools NG<br />
-      - Versão Thunderbird<br />
-      - Sistema operacional e versão<br />
-      - Saída de depuração (copiar do console de depuração - acesso com Control-Shift-J)<br />
-      - Uma descrição das etapas que levaram ao problema<br />
-    </p>
     <h2 id="main_help">Visão geral e menus do ImportExportTools NG</h2>
     <p>
       ImportExportTools NG é uma extensão baseada no trabalho original de Paolo &quot;Kaosmos&quot;. A
@@ -51,13 +38,25 @@
         As funções são sensíveis ao contexto. Os menus são adicionados para:<br />
         - O Contexto do Painel de Pastas (operação de pasta)<br />
         - O contexto da lista de mensagens (mensagens selecionadas)<br />
-        - O menu Ferramentas (operações de pasta e perfil)<br /><br />
-        Existem muitas opções acessíveis na entrada adicionada em &quot;Ferramentas/Opções de
-        complemento&quot; para as opções de extensão. Cada um dos menus também possui um item de menu Opções
-        para acessar a caixa de diálogo de opções.<br />
-        As novas opções são documentadas aqui, todo o conjunto será documentado posteriormente.
+        - O menu Ferramentas (operações de perfil e backup)<br /><br />
+        As opções acessíveis no &quot;Menu Ferramentas&quot; não estão no menu &quot;Hamburguer&quot;, estarão
+        em uma versão futura. Essas funções também estão disponíveis no novo botão da barra de ferramentas.
+        Cada um dos menus e botões também possui um item de menu Ajuda e Opções para acessar a caixa de
+        diálogo de opções.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Apoiar:</h3>
+    <p>
+      Publique problemas ou solicitações de recursos no repositório do GitHub de extensões:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Em problemas de bug, inclua as seguintes informações para ajudar a resolver os problemas:<br />
+      - versão ImportExportTools NG<br />
+      - Versão Thunderbird<br />
+      - Sistema operacional e versão<br />
+      - Saída de depuração (copiar do console de depuração - acesso com Control-Shift-J)<br />
+      - Uma descrição das etapas que levaram ao problema<br />
     </p>
     <h2 id="main_menu_help">Funções do Menu de Contexto da Pasta</h2>
     <table class="menu-table">
@@ -68,6 +67,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exporte toda a conta com a estrutura e subpastas no formato mbox. A exportação é feita usando um
+            container com o nome da conta.<br />
+            Nota: Este item de menu só aparece ao clicar com o botão direito do mouse em uma entrada de conta.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -211,19 +218,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importe um ou mais arquivos mbox de um diretório direto.</td>
+          <td>Importe um ou mais arquivos mbox de um diretório.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -863,31 +874,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Versão 12.0.0: Suporte Thunderbird 102 - 1º de julho de 2022</h3>
+    <br />
+    <h3>Versão 14.0.0: Suporte Thunderbird 115 - 10 de julho de 2023</h3>
     <p>
-      Problemas abordados:<br /><br />
+      Recursos e problemas abordados:<br />
       <p>
-        - Suporte para Thunderbird 102 e 91<br />
-        - Correção da condição de corrida em SessionRestore #284 #314<br />
-        - Correção de exportação IMAP ignorando pastas vazias #320<br />
-        - Corrige opções de pasta de exportação não salvas #318<br />
-        - Corrigir alterações de printSettings
+        - Suporte para Thunderbird 115 Supernova<br />
+        - Retrabalhar e modernizar a interface do usuário de opções<br />
+        - Suporte completo ao modo escuro<br />
+        - Sistema de menu novo e consistente<br />
+        - Novo botão da barra de ferramentas<br />
+        - Ajuda aprimorada, aberta na instalação<br />
+        - Atualizar conta de exportação<br /><br />
+        Agradecemos aos seguintes usuários pelas sugestões de aprimoramento e ajuda nos testes:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Agradecemos aos seguintes usuários pelas sugestões de aprimoramento e ajuda nos testes:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

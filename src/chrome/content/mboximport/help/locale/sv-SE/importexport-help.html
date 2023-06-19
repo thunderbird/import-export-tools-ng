@@ -18,19 +18,6 @@
         </td>
       </tr>
     </table>
-    <h3>Stöd:</h3>
-    <p>
-      Vänligen posta problem eller funktionsförfrågningar i tilläggsförrådet GitHub:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      I buggproblem, inkludera följande information för att hjälpa till att lösa problemen:<br />
-      - ImportExportTools NG version<br />
-      - Thunderbird-version<br />
-      - Operativsystem och version<br />
-      - Felsökningsutgång (kopiera från felsökningskonsolen - åtkomst med Control-Shift-J)<br />
-      - En beskrivning av stegen som leder till problemet<br />
-    </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
       ImportExportTools NG är en uppföljningstillägg baserat på originalverket av Paolo &quot;Kaosmos&quot;.
@@ -51,13 +38,25 @@
         Funktionerna är kontextkänsliga. Menyer läggs till för:<br />
         - Mapprutans sammanhang (mappoperation)<br />
         - Meddelandelistans sammanhang (utvalda meddelanden)<br />
-        - Verktygsmenyn (mapp- och profiloperationer)<br /><br />
-        Det finns många alternativ som är tillgängliga under den tillagda posten under
-        &quot;Verktyg/tilläggsalternativ&quot; för tilläggsalternativen. Var och en av menyerna har också ett
-        alternativ menyalternativ för att komma åt alternativdialogrutan.<br />
-        De nya alternativen dokumenteras här, hela setet kommer att dokumenteras i efterhand.
+        - Menyn Verktyg (profil och säkerhetskopiering)<br /><br />
+        Det alternativ som är tillgängliga under &quot;Verktygsmenyn&quot; finns inte i
+        &quot;Hamburger&quot;-menyn, de kommer att finnas i en framtida version. Dessa funktioner är också
+        tillgängliga i den nya knappen i verktygsfältet. Var och en av menyerna och knapparna har också ett
+        hjälp- och alternativmenyalternativ för att komma åt alternativdialogrutan.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Stöd:</h3>
+    <p>
+      Vänligen posta problem eller funktionsförfrågningar i tilläggsförrådet GitHub:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      I buggproblem, inkludera följande information för att hjälpa till att lösa problemen:<br />
+      - ImportExportTools NG version<br />
+      - Thunderbird-version<br />
+      - Operativsystem och version<br />
+      - Felsökningsutgång (kopiera från felsökningskonsolen - åtkomst med Control-Shift-J)<br />
+      - En beskrivning av stegen som leder till problemet<br />
     </p>
     <h2 id="main_menu_help">Mappkontextmenyfunktioner</h2>
     <table class="menu-table">
@@ -68,6 +67,14 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med hjälp av en
+            behållare med kontonamnet.<br />
+            Obs: Detta menyalternativ visas endast när du högerklickar på en kontopost.
+          </td>
+        </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
           <td></td>
@@ -205,19 +212,23 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importera en eller flera mbox-filer från en direktkatalog.</td>
+          <td>Importera en eller flera mbox-filer från en katalog.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
@@ -849,31 +860,33 @@
         >ImportExportTools NG README</a
       ><br />
     </p>
-    <br /><br />
-    <div>__MSG_extensionName__</div>
-    <h3>Version 12.0.0: Support för Thunderbird 102 - 1 juli 2022</h3>
+    <br />
+    <h3>Version 14.0.0: Support för Thunderbird 115 – 10 juli 2023</h3>
     <p>
-      Problem som åtgärdas:<br /><br />
+      Funktioner och problem som åtgärdas:<br />
       <p>
-        - Stöd för Thunderbird 102 och 91<br />
-        - Fixa tävlingsvillkoret i SessionRestore #284 #314<br />
-        - Fixa IMAP-export som hoppar över tomma mappar #320<br />
-        - Fixa exportmappalternativ som inte sparats #318<br />
-        - Fixa ändringar i utskriftsinställningar
+        - Stöd för Thunderbird 115 Supernova<br />
+        - Omarbeta och modernisera Options UI<br />
+        - Fullständigt stöd för mörkt läge<br />
+        - Nytt, konsekvent menysystem<br />
+        - Ny knapp i verktygsfältet<br />
+        - Förbättrad hjälp, öppnas vid installation<br />
+        - Uppdatera exportkonto<br /><br />
+        Tack till följande användare för förbättringsförslag och testhjälp:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
       </p>
-      <br /><br />
-      Tack till följande användare för förbättringsförslag och testhjälp:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code> <br />
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
     </p>
-    <script type="application/javascript" src="../../../modules/i18n.js"></script>
-    <script type="application/javascript" src="../../help.js"></script>
   </body>
 </html>

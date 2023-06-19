@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${дата}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Экспорт учетной записи"
 	}
 }

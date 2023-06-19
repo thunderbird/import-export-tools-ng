@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${fecha}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Cuenta de exportación"
 	}
 }

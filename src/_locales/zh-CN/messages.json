@@ -325,5 +325,9 @@
 
 	"Received": {
 		"message": "已收到"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "出口账户"
 	}
 }

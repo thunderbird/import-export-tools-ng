@@ -321,5 +321,9 @@
 
 	"dataCustomFmtToken": {
 		"message": "${data}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Conta de exportación"
 	}
 }

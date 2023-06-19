@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${dátum}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Exportovať účet"
 	}
 }

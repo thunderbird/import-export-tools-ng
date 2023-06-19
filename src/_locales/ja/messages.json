@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${日付}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "エクスポートアカウント"
 	}
 }

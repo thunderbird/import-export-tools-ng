@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${data}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Eksportuj konto"
 	}
 }

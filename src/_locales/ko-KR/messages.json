@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${날짜}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "계정 내보내기"
 	}
 }

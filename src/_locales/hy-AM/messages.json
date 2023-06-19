@@ -321,5 +321,9 @@
 
 	"dateFmtToken": {
 		"message": "${ամսաթիվը}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Արտահանման հաշիվ"
 	}
 }

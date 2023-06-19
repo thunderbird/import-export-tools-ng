@@ -317,5 +317,9 @@
 
 	"dateCustomFmtToken": {
 		"message": "${data_personalitzada}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Compte d&#39;exportació"
 	}
 }

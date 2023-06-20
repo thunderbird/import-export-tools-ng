@@ -1400,7 +1400,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 		onAfterStopRequest: function (clone, data, saveAttachments) {
 			var replyTo = hdr.getStringProperty("replyTo");
-			console.log(replyTo)
 			if (replyTo.length > 1) {
 				var rt = '<tr><td><div class="headerdisplayname" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
 				data = data.replace("</table><br>", rt + "</table><br>");

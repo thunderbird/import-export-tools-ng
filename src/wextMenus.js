@@ -268,13 +268,6 @@ const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 const toolsCtxMenu_Exp_ProfileFull_Id = "toolsCtxMenu_Exp_ProfileFull_Id";
 const toolsCtxMenu_Exp_ProfileMailOnly_Id = "toolsCtxMenu_Exp_ProfileMailOnly_Id";
 
-/*
-(id:\s(\w+),\n\s+title:\s)"[\w\s]+"
-$1localizeMenuTitle("$2.title")
-
-*/
-
-
 var toolsCtxMenuSet = [
   {
     menuId: 2,
@@ -751,8 +744,6 @@ async function createMenus(menuType, menuArray, options) {
 
 await new Promise(resolve => window.setTimeout(resolve, 100));
 //await createtitles("msgCtxMenuMSGS", msgCtxMenuSet, null);
-//await editMenus("", toolsCtxMenuSet, null);
-
 
 async function createtitles(name, menuArray, options) {
   console.log("start")
@@ -778,23 +769,6 @@ async function createtitles(name, menuArray, options) {
   console.log("done")
 }
 
-async function editMenus(menuType, menuArray, options) {
-  console.log("start")
-  var defaultParentId = menuArray[0].menuDef.id;
-  var newArray = [];
-  for (let index = 0; index < menuArray.length; index++) {
-    let menuObj = menuArray[index];
-    let titleObj = { key: menuObj.menuDef.id + ".title", value: menuObj.menuDef.title }
-    let title = menuObj.title;
-    //title = 
-    newArray.push(menuObj);
-  }
-  console.log(newArray)
-  let params = { path: "C:\\Dev\\Thunderbird\\tools2.json", obj: newArray };
-
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
-  console.log("done")
-}
 
 
 // Message Context Menu Handlers
@@ -910,7 +884,6 @@ async function wextctx_folderMenu(ctxEvent) {
           messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
           break;
         case folderCtxMenu_Exp_RemoteFolderMbox_Id:
-          console.log("rem")
           params.localFolder = false;
           params.zipped = false;
           params.includeSubfolders = false;
@@ -1006,9 +979,7 @@ async function wextctx_folderMenu(ctxEvent) {
     default:
       break;
   }
-  //messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImportEML" });
 
-  console.log("sw men")
   if (ctxEvent.menuItemId.includes("Atts")) {
     params.saveAtts = true;
   }
@@ -1019,11 +990,9 @@ async function wextctx_folderMenu(ctxEvent) {
     params.singleFile = true;
   }
 
-  console.log(params)
   switch (ctxEvent.menuItemId) {
     case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
-      console.log("exp eml")
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
       break;
     case folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
@@ -1064,7 +1033,6 @@ async function wextctx_folderMenu(ctxEvent) {
 }
 
 async function menusUpdate(info, tab) {
-  console.log(info)
 
   var folderPath;
   var accountId;
@@ -1119,11 +1087,6 @@ async function menusUpdate(info, tab) {
 
   }
 
-  console.log(accountId)
-  console.log(folderPath)
-
-
-
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
@@ -1142,7 +1105,6 @@ async function menusUpdate(info, tab) {
       await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
       await messenger.menus.update("folderCtxMenu_Sep1", { visible: false });
-      //await messenger.menus.update(, {visible: false});
       await messenger.menus.refresh();
     }
   }

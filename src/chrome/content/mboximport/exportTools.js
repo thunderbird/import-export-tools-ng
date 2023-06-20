@@ -167,7 +167,6 @@ async function exportSelectedMsgs(type, params) {
 		needIndex = true;
 	}
 
-	console.log("type ", type, needIndex)
 	var question;
 	if (type === 1 || type === 2 || type === 7) {
 		question = IETformatWarning(1);
@@ -258,7 +257,6 @@ async function exportSelectedMsgs(type, params) {
 	IETexported = 0;
 	var msguri = emlsArray[0];
 
-	console.log(msguri)
 	var hdrArray;
 	switch (type) {
 		case 1:

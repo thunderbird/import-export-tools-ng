@@ -339,12 +339,9 @@ WL.injectElements(`
 				return;
 		}
 	
-		console.debug('Open dialogue');
 		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
-			console.debug('openModel');
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		} else {
-			console.debug('openD');
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
 		}
 	}
@@ -471,7 +468,6 @@ function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttC
 		let targetDivBRect = tbExtButton.getBoundingClientRect();
 		let inTargetWindow = e.clientX > (targetDivBRect.x + targetDivBRect.width - dropdownTargetWidth);
 		// open context menu if configure
-		console.log("check")
 		if ((buttCtxMenu && !mainButtFunc) || (buttCtxMenu && inTargetWindow)) {
 			tbExtButton.nextElementSibling.openPopup(tbExtButton, "after_start", 0, 0, false, false);
 		} else {

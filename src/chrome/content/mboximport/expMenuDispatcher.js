@@ -170,7 +170,6 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_getMailStoreFromFolderPath":
 			let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);
-			console.log(storeType)
 			return storeType;
 		
 		default:
@@ -181,7 +180,6 @@ async function expMenuDispatcher(data) {
 }
 
 function onUnload() {
-	console.log("unload");
 }
 // exp listener
 var listener_id = window.ietngAddon.notifyTools.addListener(expMenuDispatcher);

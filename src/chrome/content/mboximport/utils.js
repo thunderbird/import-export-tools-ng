@@ -658,7 +658,6 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");
-		console.log(store)
 		if (store && store.includes("maildirstore"))
 			storeFormat = 1;
 		else if (store && !store.includes("berkeleystore")) {
@@ -667,10 +666,8 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 	} catch (e) {
 		console.log(e)
 	}
-	console.log(storeFormat)
 
 	return storeFormat;
-
 }
 
 function getMsgFolderFromAccountAndPath(accountId, folderPath) {
@@ -842,33 +839,7 @@ function constructAttachmentsFilename(type, hdr) {
 
 	return fname;
 }
-/* 
-function fixIDReferenceLabels() {
-	console.debug('fixIDReferenceLabels:');
-	var ids = document.querySelectorAll("[dtd-text-id-ref]");
 
-	var w = getMail3Pane();
-	var sourceDocument = w.document;
-
-	for (let element of ids) {
-		let sourceElement = sourceDocument.getElementById(element.getAttribute("dtd-text-id-ref"));
-		let label = sourceElement.getAttribute("label");
-		element.textContent = label;
-	}
-}
-
-function fixPropertyReferenceLabels() {
-	var MBstrBundleService = Services.strings;
-	var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
-	var ids = document.querySelectorAll("[property-text-ref]");
-
-	for (let element of ids) {
-		let sourceProperty = element.getAttribute("property-text-ref");
-		let text = mboximportbundle.GetStringFromName(sourceProperty);
-		element.textContent = text;
-	}
-}
- */
 
 function getMail3Pane() {
 	var w = Cc["@mozilla.org/appshell/window-mediator;1"]

@@ -193,8 +193,6 @@ function initMboxImportPanel() {
         csvSep = "";
     }
 
-    console.log(csvSep)
-    
 
     IETsetCharsetPopup(textCharset);
     document.getElementById("filenameCharset").value = charset;
@@ -460,6 +458,10 @@ async function pickFile(target, inputFieldId) {
     box.value = fp.file.path;    
 }
 
+async function openHelpBM(bookmark) {
+    let win = getMail3Pane();
+	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
+}
 
 document.addEventListener("dialogaccept", function (event) {
     saveMboxImportPrefs();

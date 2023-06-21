@@ -1305,7 +1305,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								attDirContainer.append("Attachments");
 							} else {
 								let afname = constructAttachmentsFilename(1, hdr);
-								console.log(afname)
 								attDirContainer.append(afname);
 
 							}
@@ -1364,20 +1363,6 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 						// just remove outlines for now
 						data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
-
-						// let re = /<fieldset(.*?)*</fieldset>/ig;
-
-						// let regex = /<div class="moz-attached-image-container"(.*?)*?<\/div><br>/gi;
-						// rs = data.match(regex);
-
-						// data = data.replace(/<\/fieldset>/ig, "");
-
-						// if (!!rs && rs.length > 0) {
-						// 	for (let index = 0; index < rs.length; index++) {
-						// 		const element = rs[index];
-						// 		data = data.replace(element, element.substr(0, rs[index].length - 4) + "\n</fieldset><br>\n");
-						// 	}
-						// }
 
 						let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
 						rs = null;

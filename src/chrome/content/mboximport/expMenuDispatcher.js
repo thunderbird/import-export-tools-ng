@@ -5,8 +5,6 @@ exportSelectedMsgs,
 
 */
 
-console.log("load");
-
 /* Export types:
 	0 = EML
 	1 = HTML

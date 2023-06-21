@@ -115,9 +115,7 @@ var IETprintPDFmain = {
 
 		if (!allMessages) {
 			IETprintPDFmain.uris = await IETgetSelectedMessages();
-			console.log(IETprintPDFmain.uris)
 		} else {
-			console.log("pdf all")
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];
 			let isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
@@ -262,8 +260,8 @@ var IETprintPDFmain = {
 			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
-		console.log("IETNG: Save as PDF: ", new Date());
-		console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
+		// console.log("IETNG: Save as PDF: ", new Date());
+		// console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
 		// We can simply by using PrintUtils.loadPrintBrowser eliminating 
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well 
@@ -282,11 +280,11 @@ var IETprintPDFmain = {
 					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
 				printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-				console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
-				console.log(messageService.getUrlForUri(uri).spec)
+				// console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				// console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-				console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
+				// console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
 
 				//try {
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
@@ -309,7 +307,7 @@ var IETprintPDFmain = {
 		}
 
 
-		console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
+		// console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
 	},
 };
 

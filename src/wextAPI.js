@@ -1,8 +1,6 @@
 // wextAPI.js
 
-console.log(window.folder)
 messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
-	console.log(info)
 	let rv;
 	switch (info.command) {
 		case "windowsGetAll":

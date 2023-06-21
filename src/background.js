@@ -35,12 +35,8 @@ await ((async () => {
 main();
 
 browser.runtime.onInstalled.addListener(async (info) => {
-	console.log("install event")
-	//await wextOpenHelp({opentype: "tab"});
 	await new Promise(resolve => window.setTimeout(resolve, 100));
-
 	await window.wextOpenHelp({opentype: "tab"});
-
 });
 
 
@@ -115,7 +111,6 @@ function main() {
 }
 
 async function wextOpenHelp(info) {
-	console.log(info)
 	var locale = messenger.i18n.getUILanguage();
 
 	var bm = "";

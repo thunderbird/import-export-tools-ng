@@ -13,9 +13,6 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expo
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
-//Services.scriptloader.loadSubScript("chrome://messenger/content/mailCommon.js", window, "UTF-8");
-
-console.log(window.gDBview)
 
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
@@ -29,8 +26,6 @@ let extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
 
 Services.scriptloader.loadSubScript(extension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ietngAddon, "UTF-8");
 window.ietngAddon.extension = WL.extension;
-
-console.log(window)
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");

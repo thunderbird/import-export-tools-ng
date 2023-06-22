@@ -924,16 +924,15 @@ async function exportfolder(params) {
 		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 	}
 
-	console.log("   Subfolders:", subfolder);
-	console.log("   Structured: ", keepstructure);
-	console.log("   Local: ", localfolder);
-	console.log("   Zip: ", zip);
-	console.log(folders);
+	// console.log("   Subfolders:", subfolder);
+	// console.log("   Structured: ", keepstructure);
+	// console.log("   Local: ", localfolder);
+	// console.log("   Zip: ", zip);
+	// console.log(folders);
 
 	var isVirtualFolder = false;
 	for (var i = 0; i < folders.length; i++) {
 		isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
-		console.log(isVirtualFolder)
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
 			alert(mboximportbundle.GetStringFromName("noFolderExport"));
 			return;
@@ -961,7 +960,7 @@ async function exportfolder(params) {
 	}
 
 	if (localfolder && !isVirtualFolder) {
-		console.log("Using exportSingleLocaleFolder");
+		// console.log("Using exportSingleLocaleFolder");
 		for (let i = 0; i < folders.length; i++)
 			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
@@ -1022,16 +1021,15 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	var thefoldername = IETcleanName(msgFolder.name);
 	var newname;
 
-	console.log("Start: exportSingleLocaleFolder");
-	console.log("   SrcPath: ", filex.path);
-	console.log("   Folder: ", thefoldername);
-	//console.log("")
+	// console.log("Start: exportSingleLocaleFolder");
+	// console.log("   SrcPath: ", filex.path);
+	// console.log("   Folder: ", thefoldername);
 
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
 	if (msgFolder.isServer) {
-		console.log("Exporting server");
-		console.log(msgFolder.filePath.path);
-		console.log(msgFolder.prettyName);
+		// console.log("Exporting server");
+		// console.log(msgFolder.filePath.path);
+		// console.log(msgFolder.prettyName);
 		let destPath = destdirNSIFILE.path;
 		await exportAccount(msgFolder.prettyName, msgFolder.filePath.path, destPath);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
@@ -1045,11 +1043,9 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
-		console.log("Exporting with subfolders");
+		// console.log("Exporting with subfolders");
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
-		console.log(newname);
 		if (filex.exists()) {
-			console.log("Copy ", newname);
 			filex.copyTo(destdirNSIFILE, newname);
 		} else {
 			// This fixes #320
@@ -1102,10 +1098,10 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 // Rewrite / fix account level export - use IOUtils #296
 async function exportAccount(accountName, accountFolderPath, destPath) {
 
-	console.log("Start: exportAccount");
-	console.log("   SrcPath: ", accountFolderPath);
-	console.log("   srcFolder: ", accountName);
-	console.log("   destPath: ", destPath);
+	// console.log("Start: exportAccount");
+	// console.log("   SrcPath: ", accountFolderPath);
+	// console.log("   srcFolder: ", accountName);
+	// console.log("   destPath: ", destPath);
 
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath;
@@ -1113,7 +1109,6 @@ async function exportAccount(accountName, accountFolderPath, destPath) {
 		finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName);
 	} else {
 		finalExportFolderPath = await createUniqueDirectory(destPath, tmpAccountFolderName);
-		console.log(finalExportFolderPath);
 	}
 	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 

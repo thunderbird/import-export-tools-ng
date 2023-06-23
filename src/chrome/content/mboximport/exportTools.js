@@ -578,12 +578,10 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 
 	var file2 = file.clone();
 	IETgetSortType();
-	console.log(msgArray)
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {
 
 		var msg = msgArray.getNext();
-		console.log(msg)
 		var skip = false;
 		msg = msg.QueryInterface(Ci.nsIMsgDBHdr);
 		var tempExists = false;
@@ -620,7 +618,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	// nsMsgViewSortOrderValue none = 0;
 	// nsMsgViewSortOrderValue ascending = 1;
 	// nsMsgViewSortOrderValue descending = 2;
-	// 115
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();

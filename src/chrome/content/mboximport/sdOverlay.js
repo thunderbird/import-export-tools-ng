@@ -58,11 +58,13 @@ function SDexportMsg() {
 	var view;
 	var all;
 
+	console.log("search export")
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
 
+	console.log(gDBView)
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
 	if (view.getKeyAt(0) === 4294967295)
@@ -117,21 +119,30 @@ function SDexportMsg() {
 			return;
 	}
 	
+	var m3pwin = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
+	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
+
 	let emlsArray = [];
 	if (all) {
-		let i = 0;
-		while (true) {
+
+		var total = msgFolder.getTotalMessages(false);
+		for (let i = 0; i < total; i++) {
+			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
-				i++;
+
 			} catch (e) {
-				break;
+				continue; // ignore errors for dummy rows
 			}
 		}
 	} else {
 		emlsArray = view.getURIsForSelection();
 	}
 
+	console.log(emlsArray)
+	
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
 	IETexported = 0;

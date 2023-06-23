@@ -861,7 +861,7 @@ function loadTabPage(url, load_localized_page) {
 			tb_locale = 'en-US';
 		}
 
-		// console.debug("locale   " + tb_locale);
+		//console.debug("locale   " + tb_locale);
 		// console.debug(supportedLocales);
 
 		var supportedLocaleRegions = supportedLocales.filter(l => {
@@ -887,6 +887,7 @@ function loadTabPage(url, load_localized_page) {
 	}
 	let tabmail = getMail3Pane();
 
+	//console.log(url)
 	tabmail.openTab("contentTab", { url });
 
 }

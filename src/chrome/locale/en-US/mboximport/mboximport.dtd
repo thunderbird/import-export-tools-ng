@@ -106,13 +106,11 @@
 <!ENTITY csvSep "Separator for export in CSV format:">
 <!ENTITY saveProfile "Export profile">
 <!ENTITY withIndexLabel "with HTML index">
-
 <!ENTITY customDate "Custom Date:">
 <!ENTITY extFormat "Format:">
 <!ENTITY dateCustomOpt "Date (Custom)">
 <!ENTITY useExtFilenameFormat "Use Extended Format">
 <!ENTITY addSuffix "Add suffix">
-
 <!ENTITY dateFormatRefTooltipText "Date Format Reference">
 <!ENTITY extFilenameFormatRefTooltipText "Extended Filename Format Reference">
 <!ENTITY noFolderSelectedMenuTop "[ No Selected Folder (Import \ Export Disabled) ]">

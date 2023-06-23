@@ -404,8 +404,15 @@ function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	}
 
 	for (let i = 0; i < total; i++) {
-		var uri = gDBView.getURIForViewIndex(i);
-		msgUriArray[i] = uri;
+		// error handling changed in 102
+		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+		// Resolves #359
+		try {
+			var uri = gDBView.getURIForViewIndex(i);
+			msgUriArray[i] = uri;
+		} catch (ex) {
+			continue; // ignore errors for dummy rows
+		}
 	}
 
 	var folderType = msgFolder.server.type;
@@ -962,7 +969,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var recc;
 	var auth;
 
-	console.log("start loop")
+
 	// Fill the table with the data of the arrays
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
@@ -1061,7 +1068,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		data = data + record;
 	}
-	
+
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -1084,9 +1091,6 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 		onStartRequest: function (aRequest) { },
 
 		onStopRequest: function (aRequest, aStatusCode) {
-			// test
-			console.log("stop req\n" + this.emailtext)
-
 			var sub;
 			var data;
 
@@ -1135,7 +1139,6 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 
-					console.log(data)
 					data = IETescapeBeginningFrom(data);
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"
@@ -1265,6 +1268,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					var noDir = true;
 					var attName;
 					var attNameAscii;
+					var attDirContainerName;
 
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
@@ -1307,6 +1311,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 									.createInstance(Ci.nsIScriptableUnicodeConverter);
 								converter.charset = "UTF-8";
 								attName = converter.ConvertFromUnicode(att.name);
+								attDirContainerName = converter.ConvertFromUnicode(attDirContainer.leafName);
+
 								var attDirContainerClone = attDirContainer.clone();
 								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
@@ -1318,8 +1324,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								console.debug(e);
 							}
 						}
+						// encode for utf-8 - Fixes #355
 						if (success)
-							footer = footer + '<li><a href="' + attDirContainer.leafName + "/" + attNameAscii + '">' + attDirContainer.leafName + "/" + attName + '</li></a>';
+							footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';							
 					}
 					if (footer) {
 						footer = footer + "</ul></div><div class='' ></div></body>";
@@ -1488,7 +1495,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							embImg.append(i + ".jpg");
 							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
 							// var sep = isWin ? "\\" : "/";
-							data = data.replace(aUrl, embImgContainer.leafName + "/" + i + ".jpg");
+							// encode for utf-8 - Fixes #355
+							data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
 						}
 					} catch (e) {
 						IETlogger.write("save embedded images - error = " + e);
@@ -1653,7 +1661,7 @@ function IEThtmlToText(data) {
 	var dataUTF8 = IETconvertToUTF8(data);
 	fromStr.data = dataUTF8;
 	try {
-		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);	
+		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
 	} catch (e) {
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
@@ -1721,8 +1729,17 @@ function exportVirtualFolderDelayed(msgFolder) {
 	clone.createUnique(0, 0644);
 	var uriArray = [];
 	for (let i = 0; i < IETtotal; i++) {
-		var msguri = gDBView.getURIForViewIndex(i);
+		// error handling changed in 102
+		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+		// Resolves #359
+		try {
+			var msguri = gDBView.getURIForViewIndex(i);
+		} catch (ex) {
+			continue; // ignore errors for dummy rows
+		}
+
 		uriArray.push(msguri);
+
 	}
 	saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, false, false, null, null);
 }
@@ -1786,13 +1803,15 @@ function IETdeletestatus(text) {
 	if (document.getElementById("statusText").getAttribute("label") === text) {
 		document.getElementById("statusText").setAttribute("label", "");
 		document.getElementById("statusText").setAttribute("value", "");
-	
+
 		if (text.includes("Err")) {
 			delay = 15000;
 		}
 
 		if (!gImporting) {
+			if (document.getElementById("IETabortIcon")) {
 			document.getElementById("IETabortIcon").collapsed = true;
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 {
     "title": "ImportExportTools NG",
     "name": "import-export-tools-ng",
-    "version": "12.0.2",
+    "version": "12.0.4-b1",
     "description": "Import and export next-gen tools for messages and folders",
     "author": "Christopher Leidigh",
     "engines": {
@@ -10,7 +10,7 @@
     "license": "GPLv3",
     "config": {
         "source_dir": "./src",
-        "target_dir": "./xpi",
+        "target_dir": "./xpi/beta",
         "target_suffix": "-tb",
         "target_extension": ".xpi",
         "target_include_manifest": "true"

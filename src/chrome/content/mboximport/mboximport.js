@@ -1056,20 +1056,15 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			var topdestdirNSI = destdirNSIFILE.clone();
 			topdestdirNSI.append(newname);
 			topdestdirNSI.create(0, 0644);
-			console.log("Created: ", topdestdirNSI.leafName);
 		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
 			sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-			console.log("Copied: ", sbd.path);
 			var destdirNsFile = destdirNSIFILE.clone();
 			destdirNsFile.append(newname + ".sbd");
 			var listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-			console.log("Msf scan");
-			console.log(listMSF);
 			for (let i = 0; i < listMSF.length; ++i) {
-				console.log("Scan: ", listMSF[i].leafName);
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
@@ -1078,7 +1073,6 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 						if (!nsifile.exists()) {
 							nsifile.create(0, 0644);
 						}
-						console.log("Create: ", listMSF[i].leafName);
 					} catch (e) {
 						console.log(e);
 					}

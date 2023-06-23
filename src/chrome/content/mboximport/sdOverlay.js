@@ -3,7 +3,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -58,13 +58,11 @@ function SDexportMsg() {
 	var view;
 	var all;
 
-	console.log("Search export start")
+	//console.log("Search export start")
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
 		view = gSearchView;
-
-		console.log("gDBView", gDBView)
 
 	// There is no message, so exit
 	// 4294967295 is the unsigned value for -1
@@ -120,24 +118,15 @@ function SDexportMsg() {
 			return;
 	}
 	
-	var m3pwin = Cc["@mozilla.org/appshell/window-mediator;1"]
-		.getService(Ci.nsIWindowMediator)
-		.getMostRecentWindow("mail:3pane");
-	var msgFolder = m3pwin.GetSelectedMsgFolders()[0];
-
-	console.log("build uri array all:", all)
 	let emlsArray = [];
 	if (all) {
 
-		//var total = msgFolder.getTotalMessages(false);
 		var total = view.rowCount;
-		console.log("total view msgs: ", total)
 		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
 			} catch (e) {
-				console.log("dummy", e)
 				continue; // ignore errors for dummy rows
 			}
 		}
@@ -145,8 +134,6 @@ function SDexportMsg() {
 		emlsArray = view.getURIsForSelection();
 	}
 
-	console.log("final array ",emlsArray)
-	
 	var msguri = emlsArray[0];
 	IETtotal = emlsArray.length;
 	IETexported = 0;
@@ -180,13 +167,10 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	console.debug('SD initialize ');
+	//console.debug('SD initialize ');
 	if (window.arguments && window.arguments[1]) {
-		// var sb = document.getElementById("status-bar");
 		var sf = document.getElementById("IETSearchFrame");
-		
 		sf.removeAttribute("collapsed");
-		// sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
 		window.sizeToContent();
 	}
 }

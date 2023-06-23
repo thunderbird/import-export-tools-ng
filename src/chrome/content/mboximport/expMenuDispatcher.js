@@ -121,6 +121,9 @@ async function expMenuDispatcher(data) {
 				await exportAllMsgs(7, data.params);
 			}
 			break;
+		case "WXMCMD_FolderExp_CSV_Format":
+			await exportAllMsgs(6, data.params);
+			break;
 		case "WXMCMD_FolderExp_Index":
 			if (data.params.indexType == "indexHTML") {
 				await exportAllMsgs(3, data.params);

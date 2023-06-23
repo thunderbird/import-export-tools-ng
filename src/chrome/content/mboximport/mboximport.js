@@ -1204,15 +1204,12 @@ var MBOXIMPORTscandir = {
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 	if (msgFolder.subFolders) {
-		console.log(msgFolder.subFolders);
 		for (let subfolder of msgFolder.subFolders) {
 			// Search for a good name
-			console.log(subfolder.name);
 			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
 			let subfolderNS = msgFolder2LocalFile(subfolder);
 			if (subfolderNS.exists()) {
 				subfolderNS.copyTo(destdirNSIFILE, newname);
-				console.log("Copy:", newname);
 			}
 			else {
 				newname = IETcleanName(newname);
@@ -1221,7 +1218,6 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 				destdirNSIFILEclone.create(0, 0644);
 			}
 			if (keepstructure) {
-				console.log("structure");
 				let sbd = subfolderNS.parent;
 				sbd.append(subfolderNS.leafName + ".sbd");
 				if (sbd.exists() && sbd.directoryEntries.length > 0) {
@@ -1229,7 +1225,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 					let destdirNsFile = destdirNSIFILE.clone();
 					destdirNsFile.append(newname + ".sbd");
 					let listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (i = 0; i < listMSF.length; ++i) {
+					for (let i = 0; i < listMSF.length; ++i) {
 						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 							try {
 								listMSF[i].remove(false);

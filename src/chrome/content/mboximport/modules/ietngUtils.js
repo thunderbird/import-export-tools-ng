@@ -2,6 +2,9 @@
 
 export var ietngUtils = {
 
+  IETprefs: Cc["@mozilla.org/preferences-service;1"]
+	.getService(Ci.nsIPrefBranch),
+
   openFileDialog: async function (window, mode, title, initialDir, filter) {
 
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
@@ -53,5 +56,31 @@ export var ietngUtils = {
       return str + String.fromCharCode(b);
     }, "");
   },
+
+   writeStatusLine: function (window, text, statusDelay) {
+    if (window.document.getElementById("statusText")) {
+      window.document.getElementById("statusText").setAttribute("label", text);
+      window.document.getElementById("statusText").setAttribute("value", text);
+      var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
+      if (statusDelay) {
+        delay = statusDelay;
+      }
+      if (delay > 0)
+        window.setTimeout(function () { this.deleteStatusLine(text); }, delay);
+    }
+  },
+  
+  deleteStatusLine: function (window, text) {
+    if (window.document.getElementById("statusText").getAttribute("label") === text) {
+      window.document.getElementById("statusText").setAttribute("label", "");
+      window.document.getElementById("statusText").setAttribute("value", "");
+  
+      if (text.includes("Err")) {
+        delay = 15000;
+      }
+  
+    }
+  }
+  
 }
   

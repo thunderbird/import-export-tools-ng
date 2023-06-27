@@ -5,8 +5,6 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
-//import * as ietngUtils from "./ietngUtils.js";
-//console.log(ietngUtils)
 
 var window;
 
@@ -17,13 +15,16 @@ export async function setGlobals(gVars) {
 
 export var mboxImportExport = {
 
+  totalImported: 0,
+  totalSkipped: 0,
+
   importMboxSetup: async function (params) {
     // Either individual mboxes or by directory
     var fpRes;
     var mboxFiles;
 
     if (params.mboxImpType == "individual") {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files", null, null);
+      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files to import", null, null);
       if (fpRes.result == -1) {
         return;
       }
@@ -36,33 +37,38 @@ export var mboxImportExport = {
       mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
     }
 
-    console.log(mboxFiles)
     var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
     this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+    await new Promise(r => window.setTimeout(r, 3000));
+
+    ietngUtils.writeStatusLine(window, "Done Importing:" , 6000);
+
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
     for (let i = 0; i < files.length; i++) {
       const mboxFilePath = files[i];
+      console.log(mboxFilePath)
+      ietngUtils.writeStatusLine(window, "Importing:" + mboxFilePath, 6000);
+				//await new Promise(r => window.setTimeout(r, 4000));
+
       let rv = await this._isMboxFile(mboxFilePath);
-      console.log(rv)
-      console.log(await this._isMboxFile(mboxFilePath))
       if (!(await this._isMboxFile(mboxFilePath))) {
         console.log("IETNG: Skip non-mbox file: ", mboxFilePath);
+        ietngUtils.writeStatusLine(window, "IETNG: Skip non-mbox file: " + mboxFilePath, 3000);
+
         continue;
       }
       var subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
       if (recursive && await this._ifSbdExists(mboxFilePath)) {
         var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
-        console.log("sf", subFiles)
         await this.importMboxFiles(subFiles, subMsgFolder, recursive);
       }
     }
   },
 
   _scanDirForMboxFiles: async function (folderPath) {
-    console.log(folderPath)
     let files = await IOUtils.getChildren(folderPath);
     var mboxFiles = [];
     for (const f of files) {
@@ -108,18 +114,14 @@ export var mboxImportExport = {
 
   _importMboxFile: async function (filePath, msgFolder) {
     var src = filePath;
-    console.log(filePath)
     var subFolderName = PathUtils.filename(filePath);
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     msgFolder.createSubfolder(subFolderName, window.msgWindow);
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-    //await new Promise(resolve => setTimeout(resolve, 200));
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
-    console.log(subFolderPath)
     var dst = subFolderPath;
-    console.log(src, dst)
     let r = await IOUtils.copy(src, dst);
     this.reindexDBandRebuildSummary(subMsgFolder);
     this.forceFolderCompact(subMsgFolder);

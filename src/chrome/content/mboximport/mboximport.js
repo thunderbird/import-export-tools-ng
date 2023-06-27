@@ -1083,8 +1083,11 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	} else {
 		// export just the folder
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
-		if (filex.exists())
-			filex.copyTo(destdirNSIFILE, newname);
+		if (filex.exists()) {
+			let dest = PathUtils.join(destdirNSIFILE.path, newname)
+
+			await IOUtils.copy(filex.path, dest);
+		}
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	}
 }

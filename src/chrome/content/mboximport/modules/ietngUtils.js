@@ -65,11 +65,21 @@ export var ietngUtils = {
       if (statusDelay) {
         delay = statusDelay;
       }
-      if (delay > 0)
-        window.setTimeout(function () { this.deleteStatusLine(text); }, delay);
+      var _this = this;
+      if (delay > 0) {
+        window.setTimeout(function () { _this.deleteStatusLine(window, text); }, delay);
+      }
+      //window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
+
+
     }
   },
   
+  refreshStatusLine: function (window, text) {
+    window.document.getElementById("statusText").setAttribute("label", text);
+    window.document.getElementById("statusText").setAttribute("value", text);
+  },
+
   deleteStatusLine: function (window, text) {
     if (window.document.getElementById("statusText").getAttribute("label") === text) {
       window.document.getElementById("statusText").setAttribute("label", "");

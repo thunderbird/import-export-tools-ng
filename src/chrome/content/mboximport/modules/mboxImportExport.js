@@ -17,11 +17,16 @@ export var mboxImportExport = {
 
   totalImported: 0,
   totalSkipped: 0,
+  toCompactFolderList: [],
 
   importMboxSetup: async function (params) {
     // Either individual mboxes or by directory
     var fpRes;
     var mboxFiles;
+
+    this.totalImported = 0;
+    this.totalSkipped = 0;
+    this.toCompactFolderList = [];
 
     if (params.mboxImpType == "individual") {
       fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files to import", null, null);
@@ -39,10 +44,17 @@ export var mboxImportExport = {
 
     var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
-    this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
-    await new Promise(r => window.setTimeout(r, 3000));
+    await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+    //await new Promise(r => window.setTimeout(r, 1000));
+    
+    let result = "Done Importing: " + this.totalImported;
+    // "Done Importing: " + this.totalImported + " / " + (this.totalImported + this.totalSkipped) , 6000);
 
-    ietngUtils.writeStatusLine(window, "Done Importing:" , 6000);
+    ietngUtils.writeStatusLine(window, result, 8000);
+    //await new Promise(r => window.setTimeout(r, 2000));
+    this.compactAllFolders();
+    ietngUtils.writeStatusLine(window, result, 8000);
+    Services.prompt.alert(window, "Mbox Import", result)
 
   },
 
@@ -51,16 +63,19 @@ export var mboxImportExport = {
       const mboxFilePath = files[i];
       console.log(mboxFilePath)
       ietngUtils.writeStatusLine(window, "Importing:" + mboxFilePath, 6000);
-				//await new Promise(r => window.setTimeout(r, 4000));
+				await new Promise(r => window.setTimeout(r, 100));
 
       let rv = await this._isMboxFile(mboxFilePath);
       if (!(await this._isMboxFile(mboxFilePath))) {
         console.log("IETNG: Skip non-mbox file: ", mboxFilePath);
         ietngUtils.writeStatusLine(window, "IETNG: Skip non-mbox file: " + mboxFilePath, 3000);
-
+        this.totalSkipped++;
         continue;
       }
       var subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
+      if (subMsgFolder) {
+        this.totalImported++;
+      }
       if (recursive && await this._ifSbdExists(mboxFilePath)) {
         var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
         await this.importMboxFiles(subFiles, subMsgFolder, recursive);
@@ -124,7 +139,9 @@ export var mboxImportExport = {
     var dst = subFolderPath;
     let r = await IOUtils.copy(src, dst);
     this.reindexDBandRebuildSummary(subMsgFolder);
-    this.forceFolderCompact(subMsgFolder);
+    this.toCompactFolderList.push(subMsgFolder);
+    console.log("push: ", subMsgFolder.name)
+    //this.forceFolderCompact(subMsgFolder);
     return subMsgFolder;
   },
 
@@ -146,8 +163,14 @@ export var mboxImportExport = {
     msgFolder.updateFolder(window.msgWindow);
   },
 
+  compactAllFolders: function () {
+    this.toCompactFolderList.forEach(msgFolder => {
+      this.forceFolderCompact(msgFolder);
+    });
+  },
+
   forceFolderCompact: function (msgFolder) {
-    console.log(msgFolder)
+    console.log("Compact:", msgFolder.name)
     var file = msgFolder.filePath.QueryInterface(Ci.nsIFile);
     var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
       createInstance(Ci.nsIFileOutputStream);

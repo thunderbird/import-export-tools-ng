@@ -3,7 +3,7 @@
 export var ietngUtils = {
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
-	.getService(Ci.nsIPrefBranch),
+    .getService(Ci.nsIPrefBranch),
 
   openFileDialog: async function (window, mode, title, initialDir, filter) {
 
@@ -50,17 +50,19 @@ export var ietngUtils = {
     }
     return bytes;
   },
-  
+
   bytesToString2: function (bytes) {
     return bytes.reduce(function (str, b) {
       return str + String.fromCharCode(b);
     }, "");
   },
 
-   writeStatusLine: function (window, text, statusDelay) {
-    if (window.document.getElementById("statusText")) {
-      window.document.getElementById("statusText").setAttribute("label", text);
-      window.document.getElementById("statusText").setAttribute("value", text);
+  writeStatusLine: function (window, text, statusDelay) {
+    if (window.document.getElementById("ietngStatusText")) {
+      window.document.getElementById("ietngStatusText").setAttribute("label", text);
+      window.document.getElementById("ietngStatusText").setAttribute("value", text);
+      window.document.getElementById("ietngStatusText").innerText = text;
+
       var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
       if (statusDelay) {
         delay = statusDelay;
@@ -74,23 +76,31 @@ export var ietngUtils = {
 
     }
   },
-  
-  refreshStatusLine: function (window, text) {
-    window.document.getElementById("statusText").setAttribute("label", text);
-    window.document.getElementById("statusText").setAttribute("value", text);
+
+  createStatusLine: function (window) {
+    let s = window.document.getElementById("statusText")
+    let s2 = window.document.createElement("label")
+    s2.classList.add("statusbarpanel");
+    s2.setAttribute("id", "ietngStatusText")
+    s2.style.width = "420px";
+    s2.style.overflow = "hidden"
+    s.before(s2)
+
   },
 
   deleteStatusLine: function (window, text) {
-    if (window.document.getElementById("statusText").getAttribute("label") === text) {
-      window.document.getElementById("statusText").setAttribute("label", "");
-      window.document.getElementById("statusText").setAttribute("value", "");
-  
-      if (text.includes("Err")) {
-        delay = 15000;
+    try {
+      if (window.document.getElementById("ietngStatusText").getAttribute("label") === text) {
+        window.document.getElementById("ietngStatusText").setAttribute("label", "");
+        window.document.getElementById("ietngStatusText").setAttribute("value", "");
+        window.document.getElementById("ietngStatusText").innerText = "";
+
+        if (text.includes("Err")) {
+          delay = 15000;
+        }
       }
-  
-    }
+    } catch (e) { }
   }
-  
+
 }
-  
+

@@ -1285,7 +1285,7 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(params) {
-	console.debug('Start eml import');
+	//	console.debug('Start eml import');
 
 	var recursive = params.emlImpRecursive;
 	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);

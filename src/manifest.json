@@ -12,7 +12,6 @@
     }
   },
   "browser_action": {
-		"default_area": "maintoolbar",
 		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImportExport",
     "default_popup": "chrome/content/test.html"
@@ -72,5 +71,5 @@
   "icons": {
     "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
   },
-  "default_locale": "en_US"
+  "default_locale": "en-US"
 }

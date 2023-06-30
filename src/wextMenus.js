@@ -254,9 +254,7 @@ var msgCtxMenuSet = [
   },
 ];
 
-function localizeMenuTitle(id) {
-  return browser.i18n.getMessage(id);
-}
+
 
 const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_Exp_Profile_Id = "toolsCtxMenu_Exp_Profile_Id";
@@ -715,10 +713,12 @@ var folderCtxMenuSet = [
 
 
 
+//await ((async () => {
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+//})());
 
 messenger.menus.onShown.addListener(menusUpdate);
 
@@ -736,15 +736,11 @@ async function createMenus(menuType, menuArray, options) {
       menuObj.menuDef.onclick = options.defaultOnclick;
     }
     await messenger.menus.create(menuObj.menuDef);
-
   }
-
 }
 
 
-await new Promise(resolve => window.setTimeout(resolve, 100));
-//await createtitles("msgCtxMenuMSGS", msgCtxMenuSet, null);
-
+// helper for titles
 async function createtitles(name, menuArray, options) {
   console.log("start")
   var defaultParentId = menuArray[0].menuDef.id;
@@ -862,8 +858,6 @@ async function wextctx_toolsMenu(ctxEvent) {
       break;
   }
 }
-
-// messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_", params: params });
 
 async function wextctx_folderMenu(ctxEvent) {
   console.log(ctxEvent);
@@ -1028,8 +1022,10 @@ async function wextctx_folderMenu(ctxEvent) {
     default:
       break;
   }
+}
 
-
+function localizeMenuTitle(id) {
+  return browser.i18n.getMessage(id);
 }
 
 async function menusUpdate(info, tab) {

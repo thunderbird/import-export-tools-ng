@@ -964,7 +964,7 @@ async function exportfolder(params) {
 		for (let i = 0; i < folders.length; i++)
 			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
 	} else if (folders.length === 1 && isVirtualFolder) {
-		exportVirtualFolder(folders[0]); //msgFolder?
+		exportVirtualFolder(folders[0], destdirNSIFILE); //msgFolder?
 	} else {
 		exportRemoteFolders(destdirNSIFILE, folders);
 	}

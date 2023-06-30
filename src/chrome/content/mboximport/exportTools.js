@@ -88,7 +88,7 @@ var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm")
 
 function searchANDsave(params) {
 	let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	var args = { folder: preselectedFolder, ietngSearch: true};
+	var args = { folder: preselectedFolder, ietngSearch: true };
 	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 }
 
@@ -118,21 +118,6 @@ function IETgetSortType() {
 			// For any other value of nsMsgViewSortTypeValue  the sort index is by date
 			IETsortType = 0;
 	}
-}
-
-function selectVirtualFolder() {
-	// 115 - this should go??
-	return;
-	var fTree = document.getElementById("folderTree");
-	var fTreeSel = fTree.view.selection;
-	if (fTreeSel.isSelected(fTreeSel.currentIndex))
-		return;
-	var rangeCount = fTree.view.selection.getRangeCount();
-	var startIndex = {};
-	var endIndex = {};
-	fTree.view.selection.getRangeAt(0, startIndex, endIndex);
-	fTree.view.selection.currentIndex = startIndex.value;
-	FolderPaneSelectionChange();
 }
 
 function IETabortExport() {
@@ -388,14 +373,14 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
-      await new Promise(resolve => setTimeout(resolve, 500));
+			await new Promise(resolve => setTimeout(resolve, 500));
 			await exportAllMsgsDelayedVF(type, file, msgFolder);
 		} else {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 		}
 	} else {
-    await new Promise(resolve => setTimeout(resolve, 500));
+		await new Promise(resolve => setTimeout(resolve, 500));
 		await exportAllMsgsDelayed(type, file, msgFolder);
 	}
 }
@@ -416,8 +401,11 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	}
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	// Have to expand view to iterate across all threads
+	// Should be a better way that does not change UI
+	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 
-	for (let i = 0; i < total; i++) {
+	for (let i = 0; i < gDBView.rowCount; i++) {
 		// error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
@@ -429,6 +417,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			continue; // ignore errors for dummy rows
 		}
 	}
+	// collapse back view
+	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
@@ -621,7 +611,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
-  }
+	}
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 
@@ -1627,7 +1617,7 @@ function IETconvertToUTF8(string) {
 }
 
 function getLoadContext() {
-  return window.docShell.QueryInterface(Ci.nsILoadContext);
+	return window.docShell.QueryInterface(Ci.nsILoadContext);
 }
 
 
@@ -1645,7 +1635,7 @@ function IETcopyToClip(data) {
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
 	if (!trans)
 		return false;
-		trans.init(getLoadContext())
+	trans.init(getLoadContext())
 	trans.addDataFlavor("text/html");
 	trans.addDataFlavor("text/plain");
 	if (!justText)
@@ -1701,31 +1691,13 @@ function IEThtmlToText(data) {
 	return dataUTF8;
 }
 
-function exportVirtualFolder(msgFolder) {
-	// To export virtual folder, it's necessary to select it really
-	selectVirtualFolder();
-	setTimeout(function () { exportVirtualFolderDelayed(msgFolder); }, 1500);
+function exportVirtualFolder(msgFolder, destDir) {
+	setTimeout(function () { exportVirtualFolderDelayed(msgFolder, destDir); }, 500);
 }
 
-function exportVirtualFolderDelayed(msgFolder) {
-	// Open the filepicker to choose the directory
-	console.log("export vf")
-	var file = getPredefinedFolder(0);
-	if (!file) {
-		var nsIFilePicker = Ci.nsIFilePicker;
-		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		var res;
+function exportVirtualFolderDelayed(msgFolder, destDir) {
 
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK)
-			file = fp.file;
-		else
-			return;
-	}
+	var file = destDir;
 	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 	IETtotal = msgFolder.getTotalMessages(false);
 	if (IETtotal === 0)
@@ -1738,6 +1710,7 @@ function exportVirtualFolderDelayed(msgFolder) {
 	var uriArray = [];
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 
 	for (let i = 0; i < IETtotal; i++) {
 		// error handling changed in 102
@@ -1752,6 +1725,8 @@ function exportVirtualFolderDelayed(msgFolder) {
 		uriArray.push(msguri);
 
 	}
+	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+
 	saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, false, false, null, null);
 }
 
@@ -1821,7 +1796,7 @@ function IETdeletestatus(text) {
 
 		if (!gImporting) {
 			if (document.getElementById("IETabortIcon")) {
-			document.getElementById("IETabortIcon").collapsed = true;
+				document.getElementById("IETabortIcon").collapsed = true;
 			}
 		}
 	}

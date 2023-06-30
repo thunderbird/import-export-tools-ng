@@ -713,12 +713,12 @@ var folderCtxMenuSet = [
 
 
 
-//await ((async () => {
+await ((async () => {
 
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-//})());
+})());
 
 messenger.menus.onShown.addListener(menusUpdate);
 

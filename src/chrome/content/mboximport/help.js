@@ -1,4 +1,6 @@
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 window.addEventListener("load", function (event) {
 	console.debug('LoadsHelp');

@@ -27,7 +27,9 @@
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");

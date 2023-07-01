@@ -32,13 +32,13 @@ width="550"
 
 <wizardpage onpageshow="IETimportWizard.start()">
 	<description>&intro1;</description>
-	<spacer height="20" />
+	<html:div style="height: 20px"></html:div>
 	<label value="&profilePath;: "/>
 	<hbox>
 		<html:input id="pathBox" flex="1" readonly="true" size="25"/>
 		<button label="&browse;" oncommand="IETimportWizard.pickFile(this, 'pathBox')" />
 		</hbox>
-	<spacer height="20" />
+		<html:div style="height: 20px"></html:div>
 	<hbox align="center">
 		<label value="&profileName;: "/>
 		<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
@@ -48,9 +48,9 @@ width="550"
 
 <wizardpage onpageshow="IETimportWizard.secondPage()">
 	<description>&intro2;</description>
-	<spacer height="30" />
+		<html:div style="height: 20px"></html:div>
 	<button label="&start;" oncommand="IETimportWizard.importProfile(this)" />
-	<spacer height="20" />
+		<html:div style="height: 20px"></html:div>
 	<description id="importRunning" hidden="true">&importRunning;</description>
 	<description id="importEnd" hidden="true">&importEnd;</description>
 	<description id="error" hidden="true">&error;</description>
@@ -59,9 +59,9 @@ width="550"
 
 <wizardpage onpageshow="IETimportWizard.thirdPage()">
 	<description id="newProfDetails" />
-	<spacer height="20" />
+		<html:div style="height: 20px"></html:div>
 	<description>&intro3;</description>
-	<spacer height="30" />
+		<html:div style="height: 30px"></html:div>
 	<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
 </wizardpage>
 

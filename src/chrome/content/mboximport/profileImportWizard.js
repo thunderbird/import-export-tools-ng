@@ -41,8 +41,8 @@ var IETimportWizard = {
 		let wiz = document.getElementById("profileImportWizard");
 		let shadowWiz = wiz && wiz.shadowRoot;
 		let hdr = shadowWiz.querySelector(".wizard-header-label");
-		hdr.innerHTML = "outer";
-		hdr.innerText = "inner te"
+		hdr.innerHTML = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
+
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},

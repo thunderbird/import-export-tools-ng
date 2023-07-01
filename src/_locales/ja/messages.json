@@ -1,18 +1,18 @@
 {
 	"extensionName": {
-		"message": "インポートエクスポートツール OF"
+		"message": "ImportExportTools NG"
 	},
 
 	"extensionDescription": {
-		"message": "メッセージとフォルダーをインポート/エクスポートするツールを追加 (NextGen)"
+		"message": "メッセージとフォルダーのインポート・エクスポート機能を追加します (NextGen)"
 	},
 
 	"ctxMenu_ExtensionName.title": {
-		"message": "インポートエクスポートツール OF"
+		"message": "ImportExportTools NG"
 	},
 
 	"ctxMenu_Options.title": {
-		"message": "オプション"
+		"message": "設定"
 	},
 
 	"ctxMenu_Help.title": {
@@ -32,11 +32,11 @@
 	},
 
 	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "フルプロフィール"
+		"message": "プロファイル"
 	},
 
 	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "メールのみ"
+		"message": "メッセージのみ"
 	},
 
 	"msgCtxMenu_TopId.title": {
@@ -44,15 +44,15 @@
 	},
 
 	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EMLメッセージフォーマット"
+		"message": "EML 形式"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML形式"
+		"message": "HTML 形式"
 	},
 
 	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF形式"
+		"message": "PDF 形式"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
@@ -60,11 +60,11 @@
 	},
 
 	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV形式（スプレッドシート）"
+		"message": "CSV 形式（スプレッドシート）"
 	},
 
 	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox形式"
+		"message": "mbox 形式"
 	},
 
 	"msgCtxMenu_Exp_Index_Id.title": {
@@ -76,7 +76,7 @@
 	},
 
 	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "メッセージ (添付ファイルが埋め込まれています)"
+		"message": "メッセージ(インライン添付ファイル)"
 	},
 
 	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
@@ -96,7 +96,7 @@
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイルとインデックス付きのメッセージ"
+		"message": "添付ファイル付きのメッセージとインデックス"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
@@ -112,11 +112,11 @@
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイルとインデックス付きのメッセージ"
+		"message": "添付ファイル付きのメッセージとインデックス"
 	},
 
 	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "新しい mbox ファイル"
+		"message": "新規 mbox ファイル"
 	},
 
 	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
@@ -124,11 +124,11 @@
 	},
 
 	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML形式"
+		"message": "HTML 形式"
 	},
 
 	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV形式"
+		"message": "CSV 形式"
 	},
 
 	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
@@ -144,7 +144,7 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "mbox ファイルとして"
+		"message": "mbox ファイル"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
@@ -152,11 +152,11 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "サブフォルダーを使用した構造化"
+		"message": "ツリー構造を維持したサブフォルダー"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "フラット化されたサブフォルダーを使用する場合"
+		"message": "フラット構造に変換したサブフォルダー"
 	},
 
 	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
@@ -168,15 +168,15 @@
 	},
 
 	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EMLメッセージフォーマット"
+		"message": "EML 形式"
 	},
 
 	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML形式"
+		"message": "HTML 形式"
 	},
 
 	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF形式"
+		"message": "PDF 形式"
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
@@ -184,7 +184,7 @@
 	},
 
 	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV形式（スプレッドシート）"
+		"message": "CSV 形式（スプレッドシート）"
 	},
 
 	"folderCtxMenu_Exp_Index_Id.title": {
@@ -196,7 +196,7 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "mbox ファイルをインポートする"
+		"message": "mbox ファイルをインポート"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
@@ -204,15 +204,15 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "個別の mbox ファイル (sbd 構造を持つ)"
+		"message": "個々の mbox ファイル (sbd 有り)"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "ディレクトリからのすべての mbox ファイル"
+		"message": "フォルダー内のすべての mbox ファイル"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "ディレクトリからのすべての mbox ファイル (sbd 構造を持つ)"
+		"message": "フォルダー内のすべての mbox ファイル (sbd 有り)"
 	},
 
 	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
@@ -220,19 +220,19 @@
 	},
 
 	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "EMLメッセージのインポート"
+		"message": "EML メッセージのインポート"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "個別の EML メッセージ"
+		"message": "個々の EML メッセージ"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "ディレクトリからのすべての EML メッセージ"
+		"message": "フォルダー内のすべての EML メッセージ"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "ディレクトリおよびサブディレクトリからのすべての EML メッセージ"
+		"message": "フォルダーとサブフォルダー内のすべての EML メッセージ"
 	},
 
 	"folderCtxMenu_CopyFolderPath_Id.title": {
@@ -240,7 +240,7 @@
 	},
 
 	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "フォルダーディレクトリを開く"
+		"message": "フォルダーの場所を開く"
 	},
 
 	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
@@ -264,27 +264,31 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "単一ファイルとしてのメッセージ"
+		"message": "単一ファイルのメッセージ"
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "添付ファイル付きの単一ファイルとしてのメッセージ"
+		"message": "添付ファイル付きの単一ファイルのメッセージ"
 	},
 
 	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML形式"
+		"message": "HTML 形式"
 	},
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV形式"
+		"message": "CSV 形式"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "アカウントのエクスポート"
 	},
 
 	"subjectFmtToken": {
-		"message": "${タイトル}"
+		"message": "${件名}"
 	},
 
 	"senderFmtToken": {
-		"message": "${送信者}"
+		"message": "${差出人}"
 	},
 
 	"recipientFmtToken": {
@@ -292,11 +296,11 @@
 	},
 
 	"senderEmailFmtToken": {
-		"message": "${送信者_email}"
+		"message": "${差出人アドレス}"
 	},
 
 	"recipientEmailFmtToken": {
-		"message": "${受信者_email}"
+		"message": "${受信者アドレス}"
 	},
 
 	"smartNameFmtToken": {
@@ -308,22 +312,18 @@
 	},
 
 	"prefixFmtToken": {
-		"message": "${プレフィックス}"
+		"message": "${接頭文字}"
 	},
 
 	"suffixFmtToken": {
-		"message": "${サフィックス}"
+		"message": "${接尾文字}"
 	},
 
 	"dateCustomFmtToken": {
-		"message": "${カスタム日付}"
+		"message": "${カスタム日時}"
 	},
 
 	"dateFmtToken": {
-		"message": "${日付}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "エクスポートアカウント"
+		"message": "${日時}"
 	}
 }

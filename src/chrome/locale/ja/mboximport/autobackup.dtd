@@ -15,11 +15,11 @@
 <!ENTITY day15 "15 日">
 <!ENTITY day30 "30 日">
 <!ENTITY backupDestination "バックアップ場所">
-<!ENTITY backupFolderName "バックアップ用のフォルダ名">
-<!ENTITY autoName "自動作成（フォルダ名 + 日時）">
+<!ENTITY backupFolderName "バックアップ用のフォルダー名">
+<!ENTITY autoName "自動作成（フォルダー名 + 日時）">
 <!ENTITY customName "カスタマイズ">
 <!ENTITY backupType "バックアップ種別">
-<!ENTITY allFiles "すべてのプロファイル内ファイル">
+<!ENTITY allFiles "プロファイル内のすべてのファイル">
 <!ENTITY justMailFiles "メッセージファイルのみ">
 <!ENTITY lastBackup "最終バックアップ日時">
 <!ENTITY allFilesMode "常にすべてのファイル">

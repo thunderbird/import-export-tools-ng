@@ -220,8 +220,16 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
+	let msgIdList = params.selectedMessages.messages;
+	var emlsArray = [];
+	msgIdList.forEach(msg => {
+		let realMessage = window.ietngAddon.extension
+			.messageManager.get(msg.id);
 
-	var emlsArray = await IETgetSelectedMessages();
+		let uri = realMessage.folder.getUriForMsg(realMessage);
+		emlsArray.push(uri);
+	});
+
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
@@ -1150,7 +1158,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 
 					// strip CR option - @ashikase
 					if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
-						data = data.replace(/\r\n/g,"\n");
+						data = data.replace(/\r\n/g, "\n");
 						console.log("rmv cr")
 					}
 

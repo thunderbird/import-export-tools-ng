@@ -791,6 +791,8 @@ async function wextctx_ExportAs(ctxEvent) {
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.displayedFolder;
   params.selectedAccount = ctxEvent.selectedAccount;
+  params.selectedMessages = ctxEvent.selectedMessages;
+
 
   if (ctxEvent.menuItemId.includes("MsgsOnly")) {
     params.msgsOnly = true;

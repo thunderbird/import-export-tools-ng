@@ -471,7 +471,6 @@ function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttC
 }
 
 
-	window.IETinit();
 	window.setupHotKeys('messenger');
 	window.addHotKeysObserver();
 }

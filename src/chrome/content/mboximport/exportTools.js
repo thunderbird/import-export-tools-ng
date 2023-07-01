@@ -1147,6 +1147,13 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 
 					data = IETescapeBeginningFrom(data);
+
+					// strip CR option - @ashikase
+					if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
+						data = data.replace(/\r\n/g,"\n");
+						console.log("rmv cr")
+					}
+
 					var clone = file.clone();
 					// The name is taken from the subject "corrected"
 					clone.append(sub + ".eml");

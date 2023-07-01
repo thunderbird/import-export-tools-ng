@@ -123,3 +123,4 @@
 <!ENTITY attachmentFolders "Attachment Folders">
 <!ENTITY inlineAttachmentsFolders "Inline Attachments Folders">
 <!ENTITY cutPathLen "Cut file path length to 256 characters">
+<!ENTITY strip_eml_CR.label "Strip CR from line ending for eml exports">

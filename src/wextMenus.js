@@ -1,3 +1,18 @@
+/*
+	ImportExportTools NG is a extension for Thunderbird mail client
+	providing import and export tools for messages and folders.
+	The extension authors:
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 // wextMenus
 // Installs wext context and main menus
 // Interface via notifytools to expMenus
@@ -712,15 +727,13 @@ var folderCtxMenuSet = [
 ];
 
 
-
-await ((async () => {
-
-await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
-await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
-await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+// Use non async to pass ATN
+await((async () => {
+  await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
+  await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
+  await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
 })());
 
-messenger.menus.onShown.addListener(menusUpdate);
 
 async function createMenus(menuType, menuArray, options) {
   var defaultParentId = menuArray[0].menuDef.id;
@@ -1136,5 +1149,8 @@ async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
 }
 
+// listener to change folder menus
+messenger.menus.onShown.addListener(menusUpdate);
+// make openOptions window accessible
 window.openOptions = openOptions;
 

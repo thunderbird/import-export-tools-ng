@@ -1,29 +1,17 @@
-// cleidigh
 /*
-    ImportExportTools NG is a derivative extension for Thunderbird 60+
-    providing import and export tools for messages and folders.
-    The derivative extension authors:
-        Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+	ImportExportTools NG is a extension for Thunderbird mail client
+	providing import and export tools for messages and folders.
+	The extension authors:
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-    The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
-    is covered by the GPLv3 open-source license (see LICENSE file).
-        Copyright (C) 2007 : Paolo "Kaosmos"
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-// cleidigh - reformat, services, globals, dialog changes
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
 

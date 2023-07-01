@@ -122,3 +122,5 @@
 <!ENTITY attachmentFolders "Mellékletek mappák">
 <!ENTITY inlineAttachmentsFolders "Beépített mellékletek mappái">
 <!ENTITY cutPathLen "Vágja le a fájl elérési útját 256 karakterre">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

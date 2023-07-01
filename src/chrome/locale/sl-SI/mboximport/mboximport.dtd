@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Mape s priponkami">
 <!ENTITY inlineAttachmentsFolders "Vgrajene mape s prilogami">
 <!ENTITY cutPathLen "Zmanjšajte dolžino poti do datoteke na 256 znakov">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

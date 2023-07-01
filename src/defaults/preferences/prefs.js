@@ -60,3 +60,4 @@ pref("extensions.importexporttoolsng.experimental.hot_keys", "");
 pref("extensions.importexporttoolsng.experimental.index_short1", false);
 pref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences", true);
 pref("extensions.importexporttoolsng.experimental.csv.account_folder_col", false);
+pref("extensions.importexporttoolsng.export.strip_carriage_return", false);

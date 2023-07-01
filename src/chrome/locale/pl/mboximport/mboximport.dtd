@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Foldery załączników">
 <!ENTITY inlineAttachmentsFolders "Wbudowane foldery załączników">
 <!ENTITY cutPathLen "Skróć długość ścieżki pliku do 256 znaków">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

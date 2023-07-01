@@ -119,3 +119,5 @@
 <!ENTITY attachmentFolders "Φάκελοι συνημμένων">
 <!ENTITY inlineAttachmentsFolders "Ενσωματωμένοι φάκελοι συνημμένων">
 <!ENTITY cutPathLen "Κόψτε το μήκος της διαδρομής του αρχείου σε 256 χαρακτήρες">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

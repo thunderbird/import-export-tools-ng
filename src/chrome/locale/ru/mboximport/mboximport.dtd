@@ -122,3 +122,5 @@
 <!ENTITY attachmentFolders "Папки вложений">
 <!ENTITY inlineAttachmentsFolders "Встроенные папки вложений">
 <!ENTITY cutPathLen "Сократите длину пути к файлу до 256 символов.">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

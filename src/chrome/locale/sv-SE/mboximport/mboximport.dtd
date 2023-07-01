@@ -121,3 +121,5 @@
 <!ENTITY attachmentFolders "Bifogade mappar">
 <!ENTITY inlineAttachmentsFolders "Inline bifogade mappar">
 <!ENTITY cutPathLen "Skär filsökvägen till 256 tecken">
+
+<!ENTITY stripCR.label "Strip carriage return when exporting eml files">

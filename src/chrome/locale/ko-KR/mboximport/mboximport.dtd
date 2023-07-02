@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "첨부파일">
 <!ENTITY inlineAttachmentsFolders "인라인 첨부 파일 폴더">
 <!ENTITY cutPathLen "파일 경로 길이를 256자로 자릅니다.">
+<!ENTITY strip_eml_CR.label "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거">

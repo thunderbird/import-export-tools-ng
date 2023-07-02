@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "附件文件夹">
 <!ENTITY inlineAttachmentsFolders "内联附件文件夹">
 <!ENTITY cutPathLen "将文件路径长度缩短为 256 个字符">
+<!ENTITY strip_eml_CR.label "从 eml 消息导出的行结尾中去除 CR">

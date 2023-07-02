@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "Հավելվածի թղթապանակներ">
 <!ENTITY inlineAttachmentsFolders "Ներդիր հավելվածների թղթապանակներ">
 <!ENTITY cutPathLen "Կտրեք ֆայլի ուղու երկարությունը մինչև 256 նիշ">
+<!ENTITY strip_eml_CR.label "Հեռացրեք CR-ը տողերի վերջավորություններից eml հաղորդագրությունների արտահանման համար">

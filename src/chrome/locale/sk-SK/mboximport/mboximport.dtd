@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "Priečinky príloh">
 <!ENTITY inlineAttachmentsFolders "Vložené priečinky príloh">
 <!ENTITY cutPathLen "Znížte dĺžku cesty k súboru na 256 znakov">
+<!ENTITY strip_eml_CR.label "Odstráňte CR z koncov riadkov pre exporty správ EML">

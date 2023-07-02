@@ -122,3 +122,4 @@
 <!ENTITY attachmentFolders "Anhangsordner">
 <!ENTITY inlineAttachmentsFolders "Inline-Anhangsordner">
 <!ENTITY cutPathLen "Dateipfadlänge auf 256 Zeichen reduzieren">
+<!ENTITY strip_eml_CR.label "Entfernen Sie CR von Zeilenenden für EML-Nachrichtenexporte">

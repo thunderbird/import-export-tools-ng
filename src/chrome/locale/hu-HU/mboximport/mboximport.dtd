@@ -122,3 +122,4 @@
 <!ENTITY attachmentFolders "Mellékletek mappák">
 <!ENTITY inlineAttachmentsFolders "Beépített mellékletek mappái">
 <!ENTITY cutPathLen "Vágja le a fájl elérési útját 256 karakterre">
+<!ENTITY strip_eml_CR.label "Távolítsa el a CR-t a sorvégekről az eml-üzenetek exportálásához">

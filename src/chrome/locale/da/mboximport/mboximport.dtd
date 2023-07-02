@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "Vedhæftede mapper">
 <!ENTITY inlineAttachmentsFolders "Inline vedhæftede mapper">
 <!ENTITY cutPathLen "Klip filstilængden til 256 tegn">
+<!ENTITY strip_eml_CR.label "Fjern CR fra linjeafslutninger for eml-meddelelseseksport">

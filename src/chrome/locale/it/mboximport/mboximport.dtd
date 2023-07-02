@@ -121,3 +121,4 @@
 <!ENTITY attachmentFolders "Cartelle allegati">
 <!ENTITY inlineAttachmentsFolders "Cartelle allegati in linea">
 <!ENTITY cutPathLen "Riduci la lunghezza del percorso del file a 256 caratteri">
+<!ENTITY strip_eml_CR.label "Rimuovi CR dalle terminazioni di riga per le esportazioni di messaggi eml">

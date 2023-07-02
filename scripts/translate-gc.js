@@ -135,7 +135,8 @@ var translationArray5 = [
 ];
 
 var translationArray = [
-  { key: "folderCtxMenu_Exp_Account_Id.title", text: "Export Account"},
+  { key: "profileImportWizHdr", text: "ImportExportTools NG - Profile import"},
+
 	
 ];
 // const localeDir = "../src/chrome/locale";
@@ -561,7 +562,7 @@ function convert(iFile, options) {
 }
 
 
-var options = {
+var options1 = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -571,12 +572,13 @@ var options = {
 };
 
 // dtd=2
-var options2 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
-	outputFormat: 2,
+	skipEN: true,
+	outputFormat: 1,
 };
 
 var options4 = {
@@ -597,7 +599,7 @@ var options4 = {
 let inputFiles = ["messages.json"];
 //let inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-//let inputFiles = ["mb2.properties"];
+inputFiles = ["profilewizard.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -615,10 +617,10 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-translateHelpPage();
+//translateHelpPage();
 //translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 

@@ -772,9 +772,9 @@ async function exportfolder(params) {
 
 	if (params.selectedAccount && !params.selectedFolder) {
 		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
-                                .getService(Components.interfaces.nsIMsgAccountManager);
+			.getService(Components.interfaces.nsIMsgAccountManager);
 		account = accountManager.accounts.find(account => {
-  		if (account.key == params.selectedAccount.id) {
+			if (account.key == params.selectedAccount.id) {
 				return true;
 			}
 		})
@@ -814,7 +814,7 @@ async function exportfolder(params) {
 		if (!String.prototype.trim)
 			alert(mboximportbundle.GetStringFromName("needTB3"));
 		else
-			IETexportZip(destdirNSIFILE, folders);
+			await IETexportZip(destdirNSIFILE, folders);
 		return;
 	}
 
@@ -829,7 +829,7 @@ async function exportfolder(params) {
 	}
 }
 
-function IETexportZip(destdirNSIFILE, folders) {
+async function IETexportZip(destdirNSIFILE, folders) {
 	for (var i = 0; i < folders.length; i++) {
 		var zipFile = destdirNSIFILE.clone();
 		var file = msgFolder2LocalFile(folders[i]);
@@ -842,12 +842,19 @@ function IETexportZip(destdirNSIFILE, folders) {
 			zipFile.append(zipName + ".zip");
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
+			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+			await new Promise(resolve => window.setTimeout(resolve, 1000));
+
 			zipW.open(zipFile, 0x04 | 0x08 | 0x20);
 			if (file.isDirectory())
 				IETaddFolderContentsToZip(zipW, file, "");
 			else
 				zipW.addEntryFile(path, Ci.nsIZipWriter.COMPRESSION_DEFAULT, file, false);
 			zipW.close();
+			await new Promise(resolve => window.setTimeout(resolve, 500));
+
+			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+
 		}
 	}
 }

@@ -135,7 +135,9 @@ var translationArray5 = [
 ];
 
 var translationArray = [
-  { key: "profileImportWizHdr", text: "ImportExportTools NG - Profile import"},
+  { key: "importDone", text: "Import Done"},
+  { key: "importing", text: "Importing"},
+  { key: "skipNonMbox", text: "Skip non-mbox file"},
 
 	
 ];
@@ -599,7 +601,7 @@ var options4 = {
 let inputFiles = ["messages.json"];
 //let inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-inputFiles = ["profilewizard.properties"];
+inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 

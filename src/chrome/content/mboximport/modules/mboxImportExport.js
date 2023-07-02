@@ -31,6 +31,7 @@ export async function setGlobals(gVars) {
 
 export var mboxImportExport = {
 
+  mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
   totalImported: 0,
   totalSkipped: 0,
   toCompactFolderList: [],
@@ -63,9 +64,9 @@ export var mboxImportExport = {
     var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
     await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
-    //await new Promise(r => window.setTimeout(r, 1000));
     let total = this.totalImported + this.totalSkipped;
-    let result = `Import Done: ${this.totalImported}/${total}`;
+    let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
+    let result = `${doneMsg}: ${this.totalImported}/${total}`;
 
     ietngUtils.writeStatusLine(window, result, 8000);
     this.compactAllFolders();
@@ -77,13 +78,17 @@ export var mboxImportExport = {
   importMboxFiles: async function (files, msgFolder, recursive) {
     for (let i = 0; i < files.length; i++) {
       const mboxFilePath = files[i];
-      ietngUtils.writeStatusLine(window, "Importing: " + PathUtils.filename(mboxFilePath), 6000);
+      let impMsg = this.mboximportbundle.GetStringFromName("importing");
+
+      ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
 				await new Promise(r => window.setTimeout(r, 100));
 
       let rv = await this._isMboxFile(mboxFilePath);
       if (!(await this._isMboxFile(mboxFilePath))) {
-        console.log("IETNG: Skip non-mbox file: ", mboxFilePath);
-        ietngUtils.writeStatusLine(window, "Skip non-mbox file: " + PathUtils.filename(mboxFilePath), 3000);
+      let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
+
+        console.log("IETNG: " + skipNonMboxMsg + ": " + mboxFilePath);
+        ietngUtils.writeStatusLine(window, skipNonMboxMsg + ": " + PathUtils.filename(mboxFilePath), 3000);
         this.totalSkipped++;
         continue;
       }

@@ -26,7 +26,9 @@
 // cleidigh - reformat, services, globals, Streamlisteners
 
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 function importwrapper() {
 	window.arguments[0].openProfDir = document.getElementById("openProfDir").checked;

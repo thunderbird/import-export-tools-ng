@@ -29,7 +29,9 @@
 IETopenFPsync
 */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 Services.console.logStringMessage("profile start");
 console.debug('profile import');
 

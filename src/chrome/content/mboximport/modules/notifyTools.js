@@ -8,14 +8,17 @@ var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
  * For usage descriptions, please check:
  * https://github.com/thundernest/addon-developer-support/tree/master/scripts/notifyTools
  *
- * Version: 1.5
+ * Version 1.6
+ * - adjusted to Thunderbird Supernova (Services is now in globalThis)
+ *
+ * Version 1.5
  * - deprecate enable(), disable() and registerListener()
  * - add setAddOnId()
  *
- * Version: 1.4
+ * Version 1.4
  * - auto enable/disable
  *
- * Version: 1.3
+ * Version 1.3
  * - registered listeners for notifyExperiment can return a value
  * - remove WindowListener from name of observer
  *
@@ -26,7 +29,8 @@ var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var Services = globalThis.Services || 
+  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
 
 var notifyTools = {
   registeredCallbacks: {},

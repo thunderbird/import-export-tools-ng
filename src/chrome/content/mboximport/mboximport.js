@@ -122,6 +122,8 @@ var IETprintPDFmain = {
 			if (isVirtFol) {
 				var gDBView = gTabmail.currentAbout3Pane.gDBView;
 				var total = msgFolder.getTotalMessages(false);
+				// We need to expand all-iterate-collapse all to get all msgs
+				gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 				for (let i = 0; i < total; i++)
 					// error handling changed in 102
 					// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
@@ -131,6 +133,8 @@ var IETprintPDFmain = {
 					} catch (ex) {
 						continue; // ignore errors for dummy rows
 					}
+				// collapse back view
+				gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
 
 			} else {
 				let msgs = msgFolder.messages;

@@ -17,7 +17,7 @@
 <!ENTITY backupDestination "バックアップ場所">
 <!ENTITY backupFolderName "バックアップ用のフォルダー名">
 <!ENTITY autoName "自動作成（フォルダー名 + 日時）">
-<!ENTITY customName "カスタマイズ">
+<!ENTITY customName "カスタマイズ形式">
 <!ENTITY backupType "バックアップ種別">
 <!ENTITY allFiles "プロファイル内のすべてのファイル">
 <!ENTITY justMailFiles "メッセージファイルのみ">

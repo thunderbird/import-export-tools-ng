@@ -1,7 +1,7 @@
 <!ENTITY exportWithSub "サブフォルダーと共にフォルダーをエクスポート (簡易)">
-<!ENTITY importMbox "mbox ファイルをインポート">
+<!ENTITY importMbox "mbox ファイルのインポート">
 <!ENTITY labelmenuMI "ImportExportTools NG">
-<!ENTITY MBlabel1 "出力先フォルダーにある同じ名前の mbox ファイルを上書き">
+<!ENTITY MBlabel1 "出力先フォルダーにある同じ名前の mbox ファイルを上書きする">
 <!ENTITY importDir "インポートする mbox ファイルを検索してフォルダーを選択">
 <!ENTITY labelmenuMItools "ImportExportTools NG">
 <!ENTITY importFile "単一または複数の mbox ファイルを直接インポート">
@@ -10,17 +10,17 @@
 <!ENTITY importStruct "サブフォルダーを含む単一または複数の mbox ファイルをインポート">
 <!ENTITY exportStruct "サブフォルダーを含むフォルダーをエクスポート (フォルダー構成を含む)">
 <!ENTITY exportAllStruct "すべてのフォルダーをエクスポート (フォルダー構成を含む)">
-<!ENTITY MBlabel2 "単一ファイルのエクスポートに英数字のみを使用">
+<!ENTITY MBlabel2 "単一ファイルのエクスポートに英数字のみを使用する">
 <!ENTITY allMsgsFolder "フォルダー内のすべてのメッセージをエクスポート">
-<!ENTITY asEML "eml 形式">
+<!ENTITY asEML "EML 形式">
 <!ENTITY asHTML "HTML 形式">
 <!ENTITY asTXT "プレーンテキスト形式">
 <!ENTITY saveSelected "選択済みメッセージを保存">
 <!ENTITY justIndex "インデックスのみ">
 <!ENTITY toClip "メッセージをクリップボードにコピー">
-<!ENTITY MBlabel3 "フォルダーから mbox ファイルをインポートする前に確認">
-<!ENTITY MBlabel4 "メッセージペインに表示されたとおりの HTML 形式">
-<!ENTITY MBlabel5 "テキスト形式でクリップボードにコピー (互換性の問題があります)">
+<!ENTITY MBlabel3 "フォルダーから mbox ファイルをインポートする前に確認する">
+<!ENTITY MBlabel4 "メッセージペインに表示されたとおりの HTML 形式を使用する">
+<!ENTITY MBlabel5 "テキスト形式でクリップボードにコピーする (互換性の問題があります)">
 <!ENTITY MBlabel6 "存在する場合は、エクスポートするファイルの先頭に日付を追加">
 <!ENTITY MBlabel7a "件名の最大長:">
 <!ENTITY MBlabel7b "文字">
@@ -44,17 +44,17 @@
 <!ENTITY misc "全般">
 <!ENTITY filenameFormat "ファイル名">
 <!ENTITY savedirs "エクスポートフォルダー">
-<!ENTITY addTimestamp "ファイルのプロパティに追加">
-<!ENTITY customizeFilename "以下の形式を使用：">
+<!ENTITY addTimestamp "ファイルのプロパティに追加する">
+<!ENTITY customizeFilename "以下の形式を使用する：">
 <!ENTITY captionCustomize "ファイル名のカスタマイズ">
 <!ENTITY browse "参照">
 <!ENTITY subject "タイトル">
 <!ENTITY date "日付">
 <!ENTITY key "インデックス">
 <!ENTITY addtime.label "データ日付に時間を追加">
-<!ENTITY mboxExport "フォルダーを mbox ファイルでエクスポート：">
-<!ENTITY emlExport "フォルダーを単一ファイルでエクスポート：">
-<!ENTITY selExport "選択メッセージをエクスポート：">
+<!ENTITY mboxExport "フォルダーを mbox ファイルでエクスポートする場所：">
+<!ENTITY emlExport "フォルダーを単一ファイルでエクスポートする場所：">
+<!ENTITY selExport "選択メッセージをエクスポートする場所：">
 <!ENTITY MBcaptionlabel1 "設定">
 <!ENTITY saveProfileMail "すべてのメッセージファイルを保存">
 <!ENTITY sdExportButton "エクスポート">
@@ -82,8 +82,8 @@
 <!ENTITY abortExport "現在のエクスポートを中止">
 <!ENTITY allMsg "すべてのメッセージをエクスポート">
 <!ENTITY indexSettingLabel "メッセージフォルダーのすべてのメッセージをエクスポートするとき:">
-<!ENTITY indexOn "メッセージの新しいフォルダーおよびインデックスを作成 ">
-<!ENTITY indexOff "選択したインデックスなしのフォルダーを使用">
+<!ENTITY indexOn "メッセージの新しいフォルダーおよびインデックスを作成する">
+<!ENTITY indexOff "選択したインデックスなしのフォルダーを使用する">
 <!ENTITY copyFolderPath "ディスク上のフォルダーパスをコピー">
 <!ENTITY importSMS "SMS をインポート">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
@@ -95,20 +95,20 @@
 <!ENTITY asCSV "スプレッドシート (CSV)">
 <!ENTITY exportZIP "フォルダーをエクスポート（zip 圧縮形式）">
 <!ENTITY openFolderPath "ファイルのあるフォルダーを開く">
-<!ENTITY addNumber.label "mbox ファイルをインポートするときは、常にランダムな番号を名前に追加">
+<!ENTITY addNumber.label "mbox ファイルをインポートするときは、常にランダムな番号を名前に追加する">
 <!ENTITY textCharset "テキストおよび CSV 形式でエクスポートするときの文字コード：">
-<!ENTITY importEML "eml ファイルをインポート">
-<!ENTITY importALLEML "フォルダーからすべての eml ファイルをインポート">
+<!ENTITY importEML "EML ファイルをインポート">
+<!ENTITY importALLEML "フォルダーからすべての EML ファイルをインポート">
 <!ENTITY importMAILDIR "Maildir フォルダーからインポート">
 <!ENTITY withattach "(添付ファイル含む)">
 <!ENTITY asPDF "PDF 形式">
 <!ENTITY importProfile "プロファイルのインポート">
-<!ENTITY csvSep "CSV 形式でエクスポート時のセパレーター:">
+<!ENTITY csvSep "CSV 形式でエクスポートするときのセパレーター:">
 <!ENTITY saveProfile "プロファイルのエクスポート (保存)">
 <!ENTITY withIndexLabel "HTML インデックス付き">
 
-<!ENTITY customDate "カスタマイズ日時：">
-<!ENTITY extFormat "カスタマイズ：">
+<!ENTITY customDate "カスタマイズ日時形式：">
+<!ENTITY extFormat "カスタマイズ形式：">
 <!ENTITY dateCustomOpt "日時（カスタム）">
 <!ENTITY useExtFilenameFormat "カスタム形式を使用する">
 <!ENTITY addSuffix "接尾文字の追加">
@@ -119,7 +119,7 @@
 <!ENTITY noFolderSelectedMenuTop "[選択したフォルダーがありません（インポート\エクスポートが無効）]">
 <!ENTITY indexCSVdateFormat "インデックス、CSV 日時形式：">
 <!ENTITY attachmentFolderNames "添付ファイルのフォルダー名">
-<!ENTITY attachmentFolders "添付ファイルフォルダー">
-<!ENTITY inlineAttachmentsFolders "インライン添付ファイルフォルダー">
+<!ENTITY attachmentFolders "添付ファイルフォルダー名">
+<!ENTITY inlineAttachmentsFolders "インライン添付ファイルフォルダー名">
 <!ENTITY cutPathLen "ファイルパスの長さを 256 文字でカットする">
-<!ENTITY strip_eml_CR.label "eml メッセージのエクスポートの行末から CR を削除する">
+<!ENTITY strip_eml_CR.label "EML メッセージのエクスポートの行末から CR を削除する">

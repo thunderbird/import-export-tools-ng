@@ -44,7 +44,6 @@ async function expMenuDispatcher(data) {
 	console.log("expMenuDispacher: ", data);
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
-			console.log("mdis: ", data);
 			if (data.params.msgsOnly) {
 				await exportSelectedMsgs(0, data.params);
 			} else if (data.params.createIndex) {
@@ -52,7 +51,6 @@ async function expMenuDispatcher(data) {
 			}
 			break;
 		case "WXMCMD_HTML_Format":
-			console.log("mdis: ", data.params);
 			if (data.params.msgsOnly) {
 				await exportSelectedMsgs(1, data.params);
 			} else if (data.params.saveAtts && !data.params.createIndex) {

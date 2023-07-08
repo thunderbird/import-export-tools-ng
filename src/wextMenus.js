@@ -15,7 +15,7 @@
 
 // wextMenus
 // Installs wext context and main menus
-// Interface via notifytools to expMenus
+// Interface via notifytools to expMenuDispatcher
 
 
 // Message context menu
@@ -150,9 +150,7 @@ var msgCtxMenuSet = [
       title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: window.wextOpenHelp,
     }
-
   },
-
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
@@ -268,8 +266,6 @@ var msgCtxMenuSet = [
     }
   },
 ];
-
-
 
 const toolsCtxMenu_TopId = "toolsCtxMenu_TopId";
 const toolsCtxMenu_Exp_Profile_Id = "toolsCtxMenu_Exp_Profile_Id";
@@ -474,7 +470,6 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("folderCtxMenu_Exp_AllMessages_Id.title")
     }
   },
-
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
@@ -488,7 +483,6 @@ var folderCtxMenuSet = [
       id: folderCtxMenu_Exp_HTMLFormat_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormat_Id.title")
     }
-
   },
   {
     menuDef: {
@@ -496,7 +490,6 @@ var folderCtxMenuSet = [
       id: folderCtxMenu_Exp_PDFFormat_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormat_Id.title")
     }
-
   },
   {
     menuDef: {
@@ -512,17 +505,13 @@ var folderCtxMenuSet = [
       id: folderCtxMenu_Exp_CSVFormat_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_CSVFormat_Id.title"),
     }
-
   },
-
-
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: "folderCtxMenu_Exp_Sep2",
       type: "separator"
     }
-
   },
   {
     menuDef: {
@@ -530,10 +519,7 @@ var folderCtxMenuSet = [
       id: folderCtxMenu_Exp_Index_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_Index_Id.title"),
     }
-
   },
-
-
   {
     menuDef: {
       id: "folderCtxMenu_Sep3",
@@ -679,8 +665,6 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title")
     }
   },
-
-
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
@@ -709,7 +693,6 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title")
     }
   },
-
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_Index_Id,
@@ -753,7 +736,7 @@ async function createMenus(menuType, menuArray, options) {
 }
 
 
-// helper for titles
+// helper for titles development
 async function createtitles(name, menuArray, options) {
   console.log("start")
   var defaultParentId = menuArray[0].menuDef.id;
@@ -778,10 +761,7 @@ async function createtitles(name, menuArray, options) {
   console.log("done")
 }
 
-
-
 // Message Context Menu Handlers
-
 
 async function wextctx_ExportAs(ctxEvent) {
   console.log(ctxEvent)
@@ -925,7 +905,6 @@ async function wextctx_folderMenu(ctxEvent) {
           params.includeSubfolders = false;
           params.flattenSubfolders = false;
           break;
-
         case folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id:
           params.localFolder = true;
           params.zipped = false;
@@ -940,7 +919,6 @@ async function wextctx_folderMenu(ctxEvent) {
           break;
         default:
           return;
-
       }
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
       return;
@@ -1043,6 +1021,7 @@ function localizeMenuTitle(id) {
   return browser.i18n.getMessage(id);
 }
 
+// update menus based on folder type
 async function menusUpdate(info, tab) {
 
   var folderPath;

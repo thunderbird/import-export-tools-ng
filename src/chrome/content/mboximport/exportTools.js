@@ -220,15 +220,14 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-	let msgIdList = params.selectedMessages.messages;
-	var emlsArray = [];
-	msgIdList.forEach(msg => {
-		let realMessage = window.ietngAddon.extension
-			.messageManager.get(msg.id);
+	let msgHdrs = gTabmail.currentAbout3Pane.gDBView.getSelectedMsgHdrs();
 
-		let uri = realMessage.folder.getUriForMsg(realMessage);
+	var emlsArray = [];
+	msgHdrs.forEach(msg => {
+		let uri = msgFolder.getUriForMsg(msg);
 		emlsArray.push(uri);
 	});
+
 
 	IETskipped = 0;
 	if (isOffLineImap) {

@@ -956,7 +956,10 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		if (filex.exists()) {
 			let dest = PathUtils.join(destdirNSIFILE.path, newname)
 
-			await IOUtils.copy(filex.path, dest);
+			console.log("copyfix")
+			mboxImportExport.copyAndFixMboxFile(filex.path, dest);
+
+			//await IOUtils.copy(filex.path, dest);
 		}
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	}

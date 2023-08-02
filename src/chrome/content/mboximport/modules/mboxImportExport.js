@@ -103,6 +103,22 @@ export var mboxImportExport = {
     }
   },
 
+  
+copyAndFixMboxFile: async function (source, destination) {
+	if (!(await this._isMboxFile(source))) {
+
+	// Read initial block, check for existing first From
+	let firstBlock = await IOUtils.read(source, {maxBytes: 10000});
+  let strBuffer = ietngUtils.bytesToString2(firstBlock);
+  let fromRegx = /^From:([^\n\r]*)$/gm;
+  let fromStr = strBuffer.match(fromRegx);
+  console.log(fromStr)
+
+
+	}
+},
+
+
   _scanDirForMboxFiles: async function (folderPath) {
     let files = await IOUtils.getChildren(folderPath);
     var mboxFiles = [];

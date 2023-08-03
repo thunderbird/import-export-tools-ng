@@ -1,16 +1,16 @@
 /*
-	ImportExportTools NG is a extension for Thunderbird mail client
-	providing import and export tools for messages and folders.
-	The extension authors:
-		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-	ImportExportTools NG is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 
@@ -18,7 +18,7 @@
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+import { parse5322 } from "./email-addresses.js";
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
@@ -81,11 +81,11 @@ export var mboxImportExport = {
       let impMsg = this.mboximportbundle.GetStringFromName("importing");
 
       ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
-				await new Promise(r => window.setTimeout(r, 100));
+      await new Promise(r => window.setTimeout(r, 100));
 
       let rv = await this._isMboxFile(mboxFilePath);
       if (!(await this._isMboxFile(mboxFilePath))) {
-      let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
+        let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
 
         console.log("IETNG: " + skipNonMboxMsg + ": " + mboxFilePath);
         ietngUtils.writeStatusLine(window, skipNonMboxMsg + ": " + PathUtils.filename(mboxFilePath), 3000);
@@ -103,20 +103,35 @@ export var mboxImportExport = {
     }
   },
 
-  
-copyAndFixMboxFile: async function (source, destination) {
-	if (!(await this._isMboxFile(source))) {
 
-	// Read initial block, check for existing first From
-	let firstBlock = await IOUtils.read(source, {maxBytes: 10000});
-  let strBuffer = ietngUtils.bytesToString2(firstBlock);
-  let fromRegx = /^From:([^\n\r]*)$/gm;
-  let fromStr = strBuffer.match(fromRegx);
-  console.log(fromStr)
+  copyAndFixMboxFile: async function (source, destination) {
+    if (!(await this._isMboxFile(source))) {
 
+      // Read initial block, check for existing first From
+      let firstBlock = await IOUtils.read(source, { maxBytes: 10000 });
+      let strBuffer = ietngUtils.bytesToString2(firstBlock);
+      let fromRegx = /^From: ([^\n\r]*)$/m;
+      let dateRegx = /^Date: ([^\n\r]*)$/m;
 
-	}
-},
+      let fromStr = strBuffer.match(fromRegx);
+      let dateStr = strBuffer.match(dateRegx)[1];
+
+      console.log(fromStr[1])
+      console.log(parse5322.parseFrom(fromStr[1])[0].address)
+      console.log(parse5322.parseOneAddress(fromStr[1]).address)
+      let fromAddr = parse5322.parseOneAddress(fromStr[1]).address;
+
+      let FromSeparator = "From - " + fromAddr + " " + dateStr + "\r";
+      console.log(FromSeparator)
+      let firstBlockOut = FromSeparator + strBuffer;
+      await IOUtils.write(destination, ietngUtils.stringToBytes(firstBlockOut));
+
+      var offset = 10000;
+      const maxBytes = 20000;
+
+      
+    }
+  },
 
 
   _scanDirForMboxFiles: async function (folderPath) {

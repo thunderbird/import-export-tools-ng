@@ -354,6 +354,8 @@ WL.injectElements(`
 			<menuseparator />
 			<menuitem  label="&buttonMenu_Options.title;" oncommand="openIEToptions()"/>
 			<menuitem  label="&buttonMenu_Help.title;" oncommand="openHelp(null)"/>
+			<menuitem  label="Test" oncommand="test()"/>
+
 		</menupopup>`;
 
 	let dtdFiles = ["chrome://mboximport/locale/ietng_button.dtd"];

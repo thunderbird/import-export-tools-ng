@@ -87,6 +87,24 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
+async function test() {
+	//alert("test")
+
+	var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+
+	let progPath = file.initWithPath("cmd.exe");
+	let process = Cc[
+		"@mozilla.org/process/util;1"
+	].createInstance(Ci.nsIProcess);
+	process.init(progPath);
+	process.startHidden = false;
+	process.noShell = true;
+
+	let arrParams = ["dir"]
+	process.runw(true, arrParams, arrParams.length);
+	console.log("done")
+}
+
 var IETprintPDFmain = {
 
 	print: async function (allMessages, params) {

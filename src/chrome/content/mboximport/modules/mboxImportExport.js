@@ -21,6 +21,7 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 import { parse5322 } from "./email-addresses.js";
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
 var window;
 
@@ -107,6 +108,8 @@ export var mboxImportExport = {
   copyAndFixMboxFile: async function (source, destination) {
     if (!(await this._isMboxFile(source))) {
 
+      console.log("copy borked mbox")
+      console.log(new Date())
       // Read initial block, check for existing first From
       let firstBlock = await IOUtils.read(source, { maxBytes: 10000 });
       let strBuffer = ietngUtils.bytesToString2(firstBlock);
@@ -126,10 +129,38 @@ export var mboxImportExport = {
       let firstBlockOut = FromSeparator + strBuffer;
       await IOUtils.write(destination, ietngUtils.stringToBytes(firstBlockOut));
 
-      var offset = 10000;
-      const maxBytes = 20000;
 
-      
+      let env = Subprocess.getEnvironment();
+      console.log(env)
+
+      //let arrParams = ["/c","timeout /t 10 /nobreak &dir&timeout /t 5 /nobreak"]
+      let arrParams = ["/c", "copy", destination, "+", source, destination]
+      //let arrParams = ["/c","dir"]
+
+
+      let p = await Subprocess.call({ command: env.ComSpec, arguments: arrParams, stderr: "stdout" })
+      console.log(p)
+      p.stdin.close()
+      let result = await p.stdout.readString();
+      result += await p.stdout.readString();
+      result += await p.stdout.readString();
+
+      console.log(result);
+
+      let { exitCode } = await p.wait();
+      console.log(p, exitCode)
+
+      //await window.printingtools.test(source, destination)
+      console.log(new Date())
+
+
+    } else {
+      console.log("copy normal mbox")
+      console.log(new Date())
+
+      await IOUtils.copy(source, destination);
+      console.log(new Date())
+
     }
   },
 

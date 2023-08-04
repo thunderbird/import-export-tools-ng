@@ -63,6 +63,7 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 
 var { openFileDialog } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -87,20 +88,41 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
-async function test() {
+async function test(src, dst) {
 	//alert("test")
 
+	let env = Subprocess.getEnvironment();
+	console.log(env)
+
+	//let arrParams = ["/c","timeout /t 10 /nobreak &dir&timeout /t 5 /nobreak"]
+	let arrParams = ["/c","copy", dst, "+" ,src, dst]
+	//let arrParams = ["/c","dir"]
+
+
+	let p = await Subprocess.call({command: env.ComSpec, arguments: arrParams, stderr: "stdout"})
+	console.log(p)
+	p.stdin.close()
+	let result = await p.stdout.readString();
+	result += await p.stdout.readString();
+	result += await p.stdout.readString();
+
+console.log(result);
+
+let { exitCode} = await p.wait();
+console.log(p,exitCode)
+
+
+	return;
 	var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 
-	let progPath = file.initWithPath("cmd.exe");
+	let progPath = file.initWithPath(env.ComSpec);
 	let process = Cc[
 		"@mozilla.org/process/util;1"
 	].createInstance(Ci.nsIProcess);
-	process.init(progPath);
+	process.init(file);
 	process.startHidden = false;
 	process.noShell = true;
 
-	let arrParams = ["dir"]
 	process.runw(true, arrParams, arrParams.length);
 	console.log("done")
 }
@@ -975,6 +997,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			let dest = PathUtils.join(destdirNSIFILE.path, newname)
 
 			console.log("copyfix")
+			//this.test(filex.path, dest)
 			mboxImportExport.copyAndFixMboxFile(filex.path, dest);
 
 			//await IOUtils.copy(filex.path, dest);

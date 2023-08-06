@@ -220,14 +220,7 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-	let msgHdrs = gTabmail.currentAbout3Pane.gDBView.getSelectedMsgHdrs();
-
-	var emlsArray = [];
-	msgHdrs.forEach(msg => {
-		let uri = msgFolder.getUriForMsg(msg);
-		emlsArray.push(uri);
-	});
-
+	let emlsArray = gTabmail.currentAbout3Pane.gDBView.getURIsForSelection();
 
 	IETskipped = 0;
 	if (isOffLineImap) {

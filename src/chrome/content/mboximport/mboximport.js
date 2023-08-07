@@ -88,7 +88,12 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
-async function test(src, dst) {
+function test() {
+	importEmlToFolder()
+}
+
+
+async function test2(src, dst) {
 	//alert("test")
 
 	let env = Subprocess.getEnvironment();
@@ -1593,6 +1598,20 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 function importEmlToFolder() {
 	// To import an eml attachment in folder, as a real message, it's necessary to save it
 	// in a temporary file in temp directory
+
+	if (window.document.URL.endsWith("messenger.xhtml")) {
+		var mail3PaneTabBrowser1Doc = gTabmail.currentTabInfo.chromeBrowser.contentDocument;
+
+		if (mail3PaneTabBrowser1Doc.getElementById("messagepane")) {
+			messagePaneBrowser = mail3PaneTabBrowser1Doc.getElementById("messagepane")
+		} else {
+			let messageBrowserDoc = mail3PaneTabBrowser1Doc.getElementById("messageBrowser").contentDocument;
+			messagePaneBrowser = messageBrowserDoc.getElementById("messagepane")
+		}
+	}
+
+	let mb = mail3PaneTabBrowser1Doc.getElementById("messageBrowser").contentDocument
+	//let mp = document.getElementById("messagepane")
 	var restoreDownloadWindowPref = false;
 	let msgFolder = GetSelectedMsgFolders()[0];
 	// 0x0020 is MSG_FOLDER_FLAG_VIRTUAL
@@ -1601,7 +1620,7 @@ function importEmlToFolder() {
 		alert(mboximportbundle.GetStringFromName("badfolder2"));
 		return;
 	}
-	var item = document.getElementById("attachmentList").selectedItem;
+	var item = mb.getElementById("attachmentList").selectedItem;
 	var attachment = item.attachment;
 	var tempdir = Cc["@mozilla.org/file/directory_service;1"]
 		.getService(Ci.nsIProperties)
@@ -1620,7 +1639,10 @@ function importEmlToFolder() {
 	IETcount = 0;
 	try {
 		var uri = attachment.uri ? attachment.uri : attachment.messageUri;
+		console.log(uri)
 		var tempfile = messenger.saveAttachmentToFolder(attachment.contentType, attachment.url, encodeURIComponent(attachment.displayName), uri, tempdir);
+		console.log(tempfile)
+		
 		window.setTimeout(checkToImportEMLattach, 1000, tempfile, msgFolder);
 	} catch (e) {
 		alert(mboximportbundle.GetStringFromName("temp_error"));
@@ -1632,6 +1654,8 @@ function importEmlToFolder() {
 function checkToImportEMLattach(file, msgFolder) {
 	// To see if the download is finished, the extension checks the filesize
 	// every second, for 20 times (20 sec. are enough for every attachment)
+	console.log(file.path)
+
 	if (!file.exists())
 		return;
 	if (file.fileSize !== IETtempfilesize) {

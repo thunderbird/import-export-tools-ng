@@ -1622,9 +1622,19 @@ function importEmlToFolder() {
 	}
 	var item = mb.getElementById("attachmentList").selectedItem;
 	var attachment = item.attachment;
-	var tempdir = Cc["@mozilla.org/file/directory_service;1"]
-		.getService(Ci.nsIProperties)
-		.get("TmpD", Ci.nsIFile);
+	//var tempdir = Cc["@mozilla.org/file/directory_service;1"]
+		//.getService(Ci.nsIProperties)
+		//.get("TmpD", Ci.nsIFile);
+
+		
+		let tempdir = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+		tempdir.initWithPath("C:\\Dev");
+
+	tempdir = tempdir.QueryInterface(Ci.nsIFile)
+	console.log(tempdir.path)
+	console.log(item)
+
+
 
 	// Hide download window, if necessary (TB2 only)
 	try {
@@ -1639,8 +1649,16 @@ function importEmlToFolder() {
 	IETcount = 0;
 	try {
 		var uri = attachment.uri ? attachment.uri : attachment.messageUri;
+		
 		console.log(uri)
-		var tempfile = messenger.saveAttachmentToFolder(attachment.contentType, attachment.url, encodeURIComponent(attachment.displayName), uri, tempdir);
+		console.log(attachment.contentType)
+		console.log(attachment.url)
+		console.log(encodeURIComponent(attachment.displayName))
+		console.log(attachment.displayName)
+
+
+		let ename = attachment.name.replace(/(.{74}).*(.{10})$/u, "$1...$2")
+		var tempfile = messenger.saveAttachmentToFolder(attachment.contentType, attachment.url, ename, attachment.uri, tempdir);
 		console.log(tempfile)
 		
 		window.setTimeout(checkToImportEMLattach, 1000, tempfile, msgFolder);
@@ -1655,6 +1673,9 @@ function checkToImportEMLattach(file, msgFolder) {
 	// To see if the download is finished, the extension checks the filesize
 	// every second, for 20 times (20 sec. are enough for every attachment)
 	console.log(file.path)
+	console.log(file.leafName)
+	console.log(file.exists())
+
 
 	if (!file.exists())
 		return;

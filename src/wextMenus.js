@@ -715,6 +715,9 @@ await((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+
+  await messenger.menus.create({id: "importEmlToFolderMenuId", title: "Save attachment to this folder", contexts: ["message_attachments"], onclick: importEml, visible: false});
+  
 })());
 
 
@@ -761,6 +764,26 @@ async function createtitles(name, menuArray, options) {
   console.log("done")
 }
 
+async function importEml(attCtx) {
+  console.log(attCtx)
+  let id = (await messenger.mailTabs.getSelectedMessages()).messages[0].id
+  console.log(id)
+  let att = await messenger.messages.getAttachmentFile(id, attCtx.attachments[0].partName)
+  console.log(att)
+  let currentFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
+  console.log(currentFolder)
+  let curaccount = await messenger.accounts.get(currentFolder.accountId, true);
+  let allAccounts = await messenger.accounts.list(true);
+  console.log(allAccounts)
+  let localFolder = allAccounts.find(acc => acc.type == "none" && acc.name == "Local Folders")
+  console.log(localFolder)
+  let msgHdr = await messenger.messages.import(att, localFolder.folders[0])
+  console.log(msgHdr)
+  await messenger.messages.move([msgHdr.id], currentFolder)
+
+
+
+}
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent) {
@@ -1024,6 +1047,17 @@ function localizeMenuTitle(id) {
 // update menus based on folder type
 async function menusUpdate(info, tab) {
 
+  console.log(info)
+  if (info.contexts.includes("message_attachments")) {
+    console.log("att menu")
+    if (info.attachments[0].contentType == "message/rfc822") {
+    console.log("att eml")
+    await messenger.menus.update("importEmlToFolderMenuId", { visible: true });
+    } else {
+    await messenger.menus.update("importEmlToFolderMenuId", { visible: false});
+
+    }
+  }
   var folderPath;
   var accountId;
   if (info.selectedAccount) {

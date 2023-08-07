@@ -63,7 +63,12 @@
     "activeTab",
     "messagesRead",
     "tabs",
-    "accountsRead"
+    "accountsRead",
+    "accountsFolders",
+    "accountsRead",
+    "messagesImport",
+    "messagesMove"
+
   ],
   "background": {
     "page": "background.html"

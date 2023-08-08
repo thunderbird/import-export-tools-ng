@@ -1,16 +1,16 @@
 /*
-	ImportExportTools NG is a extension for Thunderbird mail client
-	providing import and export tools for messages and folders.
-	The extension authors:
-		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-	ImportExportTools NG is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // wextMenus
@@ -61,79 +61,79 @@ var msgCtxMenuSet = [
     menuId: 1,
     menuDef: {
       id: msgCtxMenu_TopId,
-      title: localizeMenuTitle("msgCtxMenu_TopId.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_TopId.title"),
+    },
   }, {
     menuDef: {
       id: msgCtxMenu_Exp_EMLFormat_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormat_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormat_Id.title"),
+    },
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_HTMLFormat_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormat_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormat_Id.title"),
+    },
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_PDFFormat_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PDFFormat_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_PDFFormat_Id.title"),
+    },
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_PlainTextFormat_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormat_Id.title"),
-    }
+    },
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_CSVFormat_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_CSVFormat_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_CSVFormat_Id.title"),
+    },
 
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_MboxFormat_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormat_Id.title"),
-    }
+    },
 
   },
   {
     menuDef: {
       id: "msgCtxMenu_Exp_Sep1",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: msgCtxMenu_Exp_Index_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_Index_Id.title"),
-    }
+    },
   },
   {
     menuDef: {
       id: "msgCtxMenu_Exp_Sep2",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: msgCtxMenu_CopyToClipboard_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboard_Id.title"),
-    }
+    },
   },
 
   {
     menuDef: {
       id: "msgCtxMenu_Exp_Sep3",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
 
   {
@@ -141,7 +141,7 @@ var msgCtxMenuSet = [
       id: msgCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
-    }
+    },
 
   },
   {
@@ -149,121 +149,121 @@ var msgCtxMenuSet = [
       id: msgCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: window.wextOpenHelp,
-    }
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: msgCtxMenu_Exp_EMLFormatMsgsOnly_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: msgCtxMenu_Exp_EMLFormatCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatSaveAtts_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_MboxFormat_Id,
       id: msgCtxMenu_Exp_MboxFormatNewMbox_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatNewMbox_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatNewMbox_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_MboxFormat_Id,
       id: msgCtxMenu_Exp_MboxFormatAppendMbox_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_Index_Id,
       id: msgCtxMenu_Exp_IndexHTML_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_IndexHTML_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_IndexHTML_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_Index_Id,
       id: msgCtxMenu_Exp_IndexCSV_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_IndexCSV_Id.title")
-    }
+      title: localizeMenuTitle("msgCtxMenu_Exp_IndexCSV_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardMessage_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
-      onclick: copyToClipboard
-    }
+      onclick: copyToClipboard,
+    },
   },
   {
     menuDef: {
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
-      onclick: copyToClipboard
-    }
+      onclick: copyToClipboard,
+    },
   },
 ];
 
@@ -282,32 +282,32 @@ var toolsCtxMenuSet = [
     menuId: 2,
     menuDef: {
       id: toolsCtxMenu_TopId,
-      title: localizeMenuTitle("ctxMenu_ExtensionName.title")
-    }
+      title: localizeMenuTitle("ctxMenu_ExtensionName.title"),
+    },
   },
   {
     menuDef: {
       id: toolsCtxMenu_Exp_Profile_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Exp_Profile_Id.title")
-    }
+      title: localizeMenuTitle("toolsCtxMenu_Exp_Profile_Id.title"),
+    },
   },
   {
     menuDef: {
       id: toolsCtxMenu_Imp_Profile_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Imp_Profile_Id.title")
-    }
+      title: localizeMenuTitle("toolsCtxMenu_Imp_Profile_Id.title"),
+    },
   },
   {
     menuDef: {
       id: toolsCtxMenu_Backup_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Backup_Id.title")
-    }
+      title: localizeMenuTitle("toolsCtxMenu_Backup_Id.title"),
+    },
   },
   {
     menuDef: {
       id: "toolsCtxMenu_Exp_Sep1",
-      type: "separator"
-    }
+      type: "separator",
+    },
 
   },
   {
@@ -315,7 +315,7 @@ var toolsCtxMenuSet = [
       id: toolsCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
-    }
+    },
 
   },
   {
@@ -323,22 +323,22 @@ var toolsCtxMenuSet = [
       id: toolsCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: window.wextOpenHelp,
-    }
+    },
 
   },
   {
     menuDef: {
       parentId: toolsCtxMenu_Exp_Profile_Id,
       id: toolsCtxMenu_Exp_ProfileFull_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileFull_Id.title")
-    }
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileFull_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: toolsCtxMenu_Exp_Profile_Id,
       id: toolsCtxMenu_Exp_ProfileMailOnly_Id,
-      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileMailOnly_Id.title")
-    }
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileMailOnly_Id.title"),
+    },
   },
 ];
 
@@ -408,95 +408,95 @@ var folderCtxMenuSet = [
     menuId: 3,
     menuDef: {
       id: folderCtxMenu_TopId,
-      title: localizeMenuTitle("ctxMenu_ExtensionName.title")
-    }
+      title: localizeMenuTitle("ctxMenu_ExtensionName.title"),
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_Account_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title"),
-      visible: false
-    }
+      visible: false,
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_FolderMbox_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMbox_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMbox_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxOnly_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxOnly_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxOnly_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxZipped_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxZipped_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxZipped_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_FolderMbox_Id,
       id: folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title"),
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_RemoteFolderMbox_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_RemoteFolderMbox_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_RemoteFolderMbox_Id.title"),
+    },
   },
   {
     menuDef: {
       id: "folderCtxMenu_Sep1",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_AllMessages_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_AllMessages_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_AllMessages_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_EMLFormat_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormat_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormat_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_HTMLFormat_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormat_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormat_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_PDFFormat_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormat_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormat_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_PlainTextFormat_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormat_Id.title"),
-    }
+    },
 
   },
   {
@@ -504,220 +504,223 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_CSVFormat_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_CSVFormat_Id.title"),
-    }
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: "folderCtxMenu_Exp_Sep2",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: folderCtxMenu_Exp_Index_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_Index_Id.title"),
-    }
+    },
   },
   {
     menuDef: {
       id: "folderCtxMenu_Sep3",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Exp_SearchExport_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_SearchExport_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_SearchExport_Id.title"),
+    },
   },
   {
     menuDef: {
       id: "folderCtxMenu_Sep4",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Imp_MboxFiles_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFiles_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFiles_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndv_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndv_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndv_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesIndvRecursive_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDir_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDir_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDir_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_MboxFiles_Id,
       id: folderCtxMenu_Imp_MboxFilesDirRecursive_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title"),
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Imp_MaildirFiles_Id,
       title: localizeMenuTitle("folderCtxMenu_Imp_MaildirFiles_Id.title"),
-      onclick: importMaildirFiles
-    }
+      onclick: importMaildirFiles,
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Imp_EMLFormat_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormat_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormat_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatMsgs_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatMsgs_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatMsgs_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatDir_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDir_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDir_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Imp_EMLFormat_Id,
       id: folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id,
-      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title"),
+    },
   },
   {
     menuDef: {
       id: "folderCtxMenu_Sep5",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_CopyFolderPath_Id,
-      title: localizeMenuTitle("folderCtxMenu_CopyFolderPath_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_CopyFolderPath_Id.title"),
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_OpenFolderDir_Id,
-      title: localizeMenuTitle("folderCtxMenu_OpenFolderDir_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_OpenFolderDir_Id.title"),
+    },
   },
   {
     menuDef: {
       id: "folderCtxMenu_Sep6",
-      type: "separator"
-    }
+      type: "separator",
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
-    }
+    },
   },
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
       onclick: window.wextOpenHelp,
-    }
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: folderCtxMenu_Exp_EMLFormatCreateIndex_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndex_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSingleFile_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_Index_Id,
       id: folderCtxMenu_Exp_IndexHTML_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_IndexHTML_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_IndexHTML_Id.title"),
+    },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_Index_Id,
       id: folderCtxMenu_Exp_IndexCSV_Id,
-      title: localizeMenuTitle("folderCtxMenu_Exp_IndexCSV_Id.title")
-    }
+      title: localizeMenuTitle("folderCtxMenu_Exp_IndexCSV_Id.title"),
+    },
   },
 ];
 
+// attachments menu
+const attCtxMenu_Top_Id = "attCtxMenu_Top_Id";
 
-// Use non async to pass ATN
+
+// Use anon async to pass ATN
 await((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
 
-  await messenger.menus.create({id: "importEmlToFolderMenuId", title: "Save attachment to this folder", contexts: ["message_attachments"], onclick: importEml, visible: false});
-  
+  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
+
 })());
 
 
@@ -741,7 +744,7 @@ async function createMenus(menuType, menuArray, options) {
 
 // helper for titles development
 async function createtitles(name, menuArray, options) {
-  console.log("start")
+  console.log("start");
   var defaultParentId = menuArray[0].menuDef.id;
   var titleArray = [];
   for (let index = 0; index < menuArray.length; index++) {
@@ -750,44 +753,24 @@ async function createtitles(name, menuArray, options) {
     if (menuObj.menuDef.type) {
       continue;
     }
-    //let titleObj = {key: menuObj.menuDef.id + ".title", text: menuObj.menuDef.title}
-    let titleObj = { key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>" }
+    let titleObj = { key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>" };
     titleArray.push(titleObj);
   }
-  console.log(titleArray)
+  console.log(titleArray);
   let basePath = "C:\\Dev\\Thunderbird";
   let path = basePath + "\\" + name + ".json";
   let params = { path: path, obj: titleArray };
 
-  console.log(params)
+  console.log(params);
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
-  console.log("done")
+  console.log("done");
 }
 
-async function importEml(attCtx) {
-  console.log(attCtx)
-  let id = (await messenger.mailTabs.getSelectedMessages()).messages[0].id
-  console.log(id)
-  let att = await messenger.messages.getAttachmentFile(id, attCtx.attachments[0].partName)
-  console.log(att)
-  let currentFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
-  console.log(currentFolder)
-  let curaccount = await messenger.accounts.get(currentFolder.accountId, true);
-  let allAccounts = await messenger.accounts.list(true);
-  console.log(allAccounts)
-  let localFolder = allAccounts.find(acc => acc.type == "none" && acc.name == "Local Folders")
-  console.log(localFolder)
-  let msgHdr = await messenger.messages.import(att, localFolder.folders[0])
-  console.log(msgHdr)
-  await messenger.messages.move([msgHdr.id], currentFolder)
 
-
-
-}
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent) {
-  console.log(ctxEvent)
+  console.log(ctxEvent);
   var params = {};
 
   // we need the accountId and path of the folder to get 
@@ -1045,19 +1028,23 @@ function localizeMenuTitle(id) {
 }
 
 // update menus based on folder type
+// update for attachment menu based on eml type
 async function menusUpdate(info, tab) {
 
-  console.log(info)
+  // check if we have attachment menu open
+  // we only make our menu visible for eml rfc822 atts
   if (info.contexts.includes("message_attachments")) {
-    console.log("att menu")
     if (info.attachments[0].contentType == "message/rfc822") {
-    console.log("att eml")
-    await messenger.menus.update("importEmlToFolderMenuId", { visible: true });
+      await messenger.menus.update("attCtxMenu_Top_Id", { visible: true });
     } else {
-    await messenger.menus.update("importEmlToFolderMenuId", { visible: false});
-
+      await messenger.menus.update("attCtxMenu_Top_Id", { visible: false });
     }
+    await messenger.menus.refresh();
+    return;
   }
+
+  // deal with folderCtx for maildir and account entries
+
   var folderPath;
   var accountId;
   if (info.selectedAccount) {
@@ -1070,6 +1057,7 @@ async function menusUpdate(info, tab) {
     folderPath = info.displayedFolder.path;
   }
 
+  // update for an account item
   if (accountId && !folderPath) {
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;
@@ -1089,9 +1077,10 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
     await messenger.menus.refresh();
-
     return;
-  } else {
+  }
+
+  // default visibility
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
@@ -1109,7 +1098,7 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
     await messenger.menus.refresh();
 
-  }
+  
 
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
@@ -1164,7 +1153,31 @@ async function openOptions() {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
 }
 
-// listener to change folder menus
+// import eml/rfv822 msg attachment as new msg in current folder
+async function importEmlAttToFolder(attCtx) {
+
+  try {
+  // get attachment as File blob
+  let id = (await messenger.mailTabs.getSelectedMessages()).messages[0].id;
+  let attachmentFile = await messenger.messages.getAttachmentFile(id, attCtx.attachments[0].partName);
+  let currentFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
+
+  // we cannot import directly to an imap folder
+  // get the first local folder account and import to first folder as tmp msg
+  // move to current folder
+
+  let allAccounts = await messenger.accounts.list(true);
+
+  // we cannot know name so just grab first "none" type account
+  let localFolder = allAccounts.find(acc => acc.type == "none");
+  let msgHdr = await messenger.messages.import(attachmentFile, localFolder.folders[0]);
+  await messenger.messages.move([msgHdr.id], currentFolder);
+  } catch (ex) {
+    alert("There was a problem importing the message:\n" + ex);
+  }
+}
+
+// listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);
 // make openOptions window accessible
 window.openOptions = openOptions;

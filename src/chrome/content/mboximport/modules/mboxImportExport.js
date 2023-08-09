@@ -129,6 +129,7 @@ export var mboxImportExport = {
       let firstBlockOut = FromSeparator + strBuffer;
       await IOUtils.write(destination, ietngUtils.stringToBytes(firstBlockOut));
 
+      if (navigator.platform.toLowerCase().includes("win")) {
 
       let env = Subprocess.getEnvironment();
       console.log(env)
@@ -153,7 +154,17 @@ export var mboxImportExport = {
       //await window.printingtools.test(source, destination)
       console.log(new Date())
 
+      } else {
+        //alert("")
+        // under non windows platforms we assume the shell is bash
+        // find it
+        let bashPath = Subprocess.pathFind("bash");
+        let argsArr = ["-c,", `cat ${source} >> ${destination}`];
+        let proc = await Subprocess.call({ command: bashPath, arguments: argsArr, stderr: "stdout" });
+        proc.stdin.close();
 
+
+      }
     } else {
       console.log("copy normal mbox")
       console.log(new Date())

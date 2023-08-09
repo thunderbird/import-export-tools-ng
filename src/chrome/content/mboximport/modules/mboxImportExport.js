@@ -113,55 +113,76 @@ export var mboxImportExport = {
       // Read initial block, check for existing first From
       let firstBlock = await IOUtils.read(source, { maxBytes: 10000 });
       let strBuffer = ietngUtils.bytesToString2(firstBlock);
+      console.log(strBuffer)
       let fromRegx = /^From: ([^\n\r]*)$/m;
       let dateRegx = /^Date: ([^\n\r]*)$/m;
+      let deliveryDateRegx = /^Delivery-date: ([^\n\r]*)$/m;
 
       let fromStr = strBuffer.match(fromRegx);
-      let dateStr = strBuffer.match(dateRegx)[1];
+      let dateStr = strBuffer.match(dateRegx);
+      let deliveryDateStr = strBuffer.match(deliveryDateRegx);
 
-      console.log(fromStr[1])
+      console.log(fromStr)
+      console.log(dateStr)
+      console.log(deliveryDateStr)
+
+      let dateMatch = dateStr || deliveryDateStr;
+      let date = dateMatch[1] || "";
+      console.log(date)
+
       console.log(parse5322.parseFrom(fromStr[1])[0].address)
       console.log(parse5322.parseOneAddress(fromStr[1]).address)
       let fromAddr = parse5322.parseOneAddress(fromStr[1]).address;
 
-      let FromSeparator = "From - " + fromAddr + " " + dateStr + "\r";
+      let FromSeparator = "From - " + fromAddr + " " + date + "\r";
       console.log(FromSeparator)
-      let firstBlockOut = FromSeparator + strBuffer;
-      await IOUtils.write(destination, ietngUtils.stringToBytes(firstBlockOut));
+      await IOUtils.write(destination, ietngUtils.stringToBytes(FromSeparator));
 
-      if (navigator.platform.toLowerCase().includes("win")) {
+      if (window.navigator.platform.toLowerCase().includes("win")) {
 
-      let env = Subprocess.getEnvironment();
-      console.log(env)
+        let env = Subprocess.getEnvironment();
+        console.log(env)
 
-      //let arrParams = ["/c","timeout /t 10 /nobreak &dir&timeout /t 5 /nobreak"]
-      let arrParams = ["/c", "copy", destination, "+", source, destination]
-      //let arrParams = ["/c","dir"]
+        //let arrParams = ["/c","timeout /t 10 /nobreak &dir&timeout /t 5 /nobreak"]
+        let arrParams = ["/c", "copy", destination, "+", source, destination]
+        //let arrParams = ["/c","dir"]
 
 
-      let p = await Subprocess.call({ command: env.ComSpec, arguments: arrParams, stderr: "stdout" })
-      console.log(p)
-      p.stdin.close()
-      let result = await p.stdout.readString();
-      result += await p.stdout.readString();
-      result += await p.stdout.readString();
+        let p = await Subprocess.call({ command: env.ComSpec, arguments: arrParams, stderr: "stdout" })
+        console.log(p)
+        p.stdin.close()
+        let result = await p.stdout.readString();
+        result += await p.stdout.readString();
+        result += await p.stdout.readString();
 
-      console.log(result);
+        console.log(result);
 
-      let { exitCode } = await p.wait();
-      console.log(p, exitCode)
+        let { exitCode } = await p.wait();
+        console.log(p, exitCode)
 
-      //await window.printingtools.test(source, destination)
-      console.log(new Date())
+        //await window.printingtools.test(source, destination)
+        console.log(new Date())
 
       } else {
         //alert("")
         // under non windows platforms we assume the shell is bash
         // find it
-        let bashPath = Subprocess.pathFind("bash");
-        let argsArr = ["-c,", `cat ${source} >> ${destination}`];
+        let bashPath = await Subprocess.pathSearch("bash");
+        let argsArr = ["-c", `cat "${source}" >> "${destination}"`];
+        console.log(argsArr[1])
         let proc = await Subprocess.call({ command: bashPath, arguments: argsArr, stderr: "stdout" });
         proc.stdin.close();
+        let result = "";
+        let string;
+        while ((string = await proc.stdout.readString())) {
+          result += string;
+        }
+        
+        console.log(result);
+
+        let { exitCode } = await proc.wait();
+        console.log(proc)
+        console.log(proc.exitCode)
 
 
       }

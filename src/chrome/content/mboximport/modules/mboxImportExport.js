@@ -162,7 +162,9 @@ export var mboxImportExport = {
 
         //await window.printingtools.test(source, destination)
         console.log(new Date())
-
+        if (p.exitCode) {
+          alert(result)
+        }
       } else {
         //alert("")
         // under non windows platforms we assume the shell is bash
@@ -184,7 +186,9 @@ export var mboxImportExport = {
         console.log(proc)
         console.log(proc.exitCode)
 
-
+        if (proc.exitCode) {
+          alert(result)
+        }
       }
     } else {
       console.log("copy normal mbox")

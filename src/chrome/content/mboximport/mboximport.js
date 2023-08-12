@@ -92,19 +92,23 @@ var gImporting;
 var folderCount;
 
 async function test() {
-	await testBuildMbox();
+	let dir = getPredefinedFolder(0);
+	let msgFolder = GetFirstSelectedMsgFolder();
+
+	await testBuildMbox(msgFolder, dir);
 }
 
-async function testBuildMbox() {
+async function testBuildMbox(msgFolder, dest) {
 	let st = new Date();
-	console.log("Start: ", st)
+	console.log("Start: ", st, dest.path, msgFolder.prettyName)
+	var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
 
 	let emlsArray = gTabmail.currentAbout3Pane.gDBView.getURIsForSelection();
 	//let emlsArray = gTabmail.currentAbout3Pane.gDBView.getSelectedMsgHdrs();
 	let fromRegx = /^From: ([^\n\r]*)$/m;
 	var msgsBuffer = "";
 	var sep = "";
-	const maxFileSize = 1000000000;
+	const maxFileSize = 1011000000;
 	const kFileChunkSize = 10000000;
 
 	const getMsgLoop = async (emlsArray, startIndex) => {
@@ -114,9 +118,10 @@ async function testBuildMbox() {
 		console.log("write ", emlsArray.length)
 
 				
-		let r = await IOUtils.write("C:\\Dev\\testmbx", new Uint8Array(), {mode: "overwrite"})
+		//let r = await IOUtils.write(mboxDestPath, new Uint8Array(), {mode: "overwrite"})
+		let r = await IOUtils.writeUTF8(mboxDestPath, "", {mode: "overwrite"})
 
-		for (index = startIndex; index < emlsArray.length - 1; index++) {
+		for (index = startIndex; index < emlsArray.length; index++) {
 			const msgUri = emlsArray[index];
 
 			let rawBytes = await getRawMessage(msgUri);
@@ -150,28 +155,30 @@ async function testBuildMbox() {
 				sep = "\n";
 			}
 			msgsBuffer = msgsBuffer + sep + rawBytes;
-			console.log("msg ", index)
+			//console.log("msg ", index  + 1)
 
 			if (index == emlsArray.length - 1) {
 				console.log("end")
 			}
 			
-			//if (msgsBuffer.length >= kFileChunkSize || index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
-				if (msgsBuffer.length >= kFileChunkSize || index == (emlsArray.length - 1)) {
+			if (msgsBuffer.length >= kFileChunkSize || index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
+			//	if (msgsBuffer.length >= kFileChunkSize || index == (emlsArray.length - 1)) {
 
-				console.log("write ", index)
-				msgsBuffer = ietngUtils.stringToBytes(msgsBuffer)
+				console.log("write ", index + 1)
+				//msgsBuffer = ietngUtils.stringToBytes(msgsBuffer)
 
-				let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {mode: "append"})
+				//let r = await IOUtils.write(mboxDestPath, msgsBuffer, {mode: "append"})
+				let r = await IOUtils.writeUTF8(mboxDestPath, msgsBuffer, {mode: "append"})
+
 				totalBytes += msgsBuffer.length;
 
 				msgsBuffer = "";
-				if (index == emlsArray.length - 1) {
-				IETwritestatus("Msgs: " + index + " Time: " + (new Date() - st))
+				if (index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
+				IETwritestatus("Msgs: " + (index + 1) + " Time: " + (new Date() - st))
 
 					break;
 				}
-				IETwritestatus("Msgs: " + index)
+				//IETwritestatus("Msgs: " + (index + 1))
 			}
 
 		}

@@ -104,11 +104,19 @@ async function testBuildMbox() {
 	let fromRegx = /^From: ([^\n\r]*)$/m;
 	var msgsBuffer = "";
 	var sep = "";
-	const kFileChunkSize = 1000000000;
+	const maxFileSize = 1000000000;
+	const kFileChunkSize = 10000000;
+
 	const getMsgLoop = async (emlsArray, startIndex) => {
 		var msgsBuffer = "";
 		var index;
-		for (index = startIndex; index < emlsArray.length; index++) {
+		var totalBytes = 0;
+		console.log("write ", emlsArray.length)
+
+				
+		let r = await IOUtils.write("C:\\Dev\\testmbx", new Uint8Array(), {mode: "overwrite"})
+
+		for (index = startIndex; index < emlsArray.length - 1; index++) {
 			const msgUri = emlsArray[index];
 
 			let rawBytes = await getRawMessage(msgUri);
@@ -142,20 +150,41 @@ async function testBuildMbox() {
 				sep = "\n";
 			}
 			msgsBuffer = msgsBuffer + sep + rawBytes;
-			if (msgsBuffer.length >= kFileChunkSize) {
-				console.log("break")
-				break;
+			console.log("msg ", index)
+
+			if (index == emlsArray.length - 1) {
+				console.log("end")
+			}
+			
+			//if (msgsBuffer.length >= kFileChunkSize || index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
+				if (msgsBuffer.length >= kFileChunkSize || index == (emlsArray.length - 1)) {
+
+				console.log("write ", index)
+				msgsBuffer = ietngUtils.stringToBytes(msgsBuffer)
+
+				let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {mode: "append"})
+				totalBytes += msgsBuffer.length;
+
+				msgsBuffer = "";
+				if (index == emlsArray.length - 1) {
+				IETwritestatus("Msgs: " + index + " Time: " + (new Date() - st))
+
+					break;
+				}
+				IETwritestatus("Msgs: " + index)
 			}
 
 		}
-		return {msgsBuffer: msgsBuffer, index: index}
+		console.log(totalBytes)
+		return index;
 	};
 
 	let rv = await getMsgLoop(emlsArray, 0);
-	console.log(rv.index)
+	console.log(rv)
 	
-	console.log("buffer len ", rv.msgsBuffer.length)
+	//console.log("buffer len ", rv.msgsBuffer.length)
 	//console.log(msgsBuffer)
+	/*
 	msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
 	let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer)
 
@@ -168,10 +197,10 @@ async function testBuildMbox() {
 		console.log("buffer len ", rv.msgsBuffer.length)
 		//console.log(msgsBuffer)
 		msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
-		let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {append: true})
-	
+		let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {mode: "append"})
+	*/
 
-	}
+	
 	let end = new Date();
 	console.log("End: ", end, (end - st)/1000)
 }

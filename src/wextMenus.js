@@ -1059,7 +1059,9 @@ async function menusUpdate(info, tab) {
 
   // update for an account item
   if (accountId && !folderPath) {
-    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
+    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
+
+
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { title: newTitle });
     await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
@@ -1121,6 +1123,13 @@ async function menusUpdate(info, tab) {
       await messenger.menus.refresh();
     }
   }
+
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { enabled: false });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { enabled: false });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id, { enabled: false });
+  await messenger.menus.refresh();
+
+
 }
 
 async function getMailStoreFromFolderPath(accountId, folderPath) {

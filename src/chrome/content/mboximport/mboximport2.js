@@ -226,24 +226,6 @@ async function testBuildMbox(msgFolder, dest) {
 	let rv = await getMsgLoop("", 0);
 	console.log(rv)
 	
-	//console.log("buffer len ", rv.msgsBuffer.length)
-	//console.log(msgsBuffer)
-	/*
-	msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
-	let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer)
-
-	if (rv.index < emlsArray.length) {
-		let off = msgsBuffer.length;
-		msgsBuffer = ""
-		rv = await getMsgLoop(emlsArray, rv.index);
-		console.log(rv.index)
-		
-		console.log("buffer len ", rv.msgsBuffer.length)
-		//console.log(msgsBuffer)
-		msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
-		let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {mode: "append"})
-	*/
-
 	
 	let end = new Date();
 	console.log("End: ", end, (end - st)/1000)

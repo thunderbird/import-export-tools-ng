@@ -39,4 +39,19 @@ check if mb[0].sbd exists  if yes collect all files
     check for sbd 
 
 
+thist that yup 
+so this was the last few years ago when we are 
+From the start
 
+we weren't sure. The young people to the review.
+
+
+if at last From fixup or from fixups == 0
+  take last 400 bytes and search for ^F 
+  this could stradle boundry
+  read 400 next chars
+  now regex from ^F to end of 800 bytes
+  regex for ^From
+  if none save to end of first buffer
+  if found save up to the last ^F
+  read full buffer after >

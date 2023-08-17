@@ -38,7 +38,7 @@ async function ioTest1() {
 		console.log("wrkr");
 		ioWorker = new ChromeWorker('chrome://mboximport/content/mboximport/ioWorker.js');
 		ioWorker.onmessage = event => {
-			console.log(event.data)
+			//console.log(event.data)
 			IETwritestatus("Importing " + event.data.currentFile + " Processed: " + formatBytes(event.data.bytesProcessed, 4), 15000)
 		  }
 		  ioWorker.onerror = event => {

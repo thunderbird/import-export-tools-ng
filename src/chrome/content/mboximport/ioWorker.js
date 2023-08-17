@@ -34,6 +34,7 @@ onmessage = async function (event) {
 
 async function mboxCopyImport(options) {
 
+  console.log(options)
   let targetMboxPath = PathUtils.join(options.destPath, options.finalDestFolderName);
 
   // make sure nothing is there, create start 
@@ -62,7 +63,7 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  let READ_CHUNK = 900 * 1000;
+  let READ_CHUNK = 600 * 1000;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -71,7 +72,9 @@ async function mboxCopyImport(options) {
     let offset = 0;
     let s = new Date();
     let eof = false;
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: )/gm;
+    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: )/gm;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+
     var fromExceptions;
     var cnt = 0;
     var fromEscCount = 0;
@@ -82,7 +85,10 @@ async function mboxCopyImport(options) {
     while (!eof) {
       // Read chunk as uint8
       rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: READ_CHUNK });
+      //strBuffer = await IOUtils.readUTF8(options.srcPath, { offset: offset, maxBytes: READ_CHUNK });
+
       offset += rawBytes.byteLength;
+      //offset += strBuffer.length;
       writePos = 0;
       cnt++;
 
@@ -103,8 +109,14 @@ async function mboxCopyImport(options) {
         // write out up to From_ exception, write space then process 
         // from Beginning of line. 
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
+        
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-        await IOUtils.write(targetMboxPath, stringToBytes(" "), { mode: "append" });
+
+        //await IOUtils.writeUTF8(targetMboxPath, strBuffer.substring(writePos, result.index), { mode: "append" });
+
+        await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
+        //await IOUtils.writeUTF8(targetMboxPath, ">", { mode: "append" });
+
         writePos = result.index;
 
         //console.log(writePos)
@@ -126,12 +138,22 @@ async function mboxCopyImport(options) {
 
       totalWrite += (finalChunk - writePos);
       //console.log(totalWrite)
-
+      
+      /*
+      let re = /^Fr/gm;
+      var bufferTail = strBuffer.substring(finalChunk - 300, finalChunk + 1);
+      var fm = re.exec(bufferTail);
+      if (fm) {
+        //console.log(fm)
+      }
+      */
       // convert back to uint8 and write out 
       let raw = stringToBytes(strBuffer.substring(writePos, finalChunk + 1));
+      
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
+      //await IOUtils.writeUTF8(targetMboxPath, strBuffer.substring(writePos, finalChunk + 1), { mode: "append" });
 
-      postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
+      //postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
       //console.log("loop")
     }
     console.log("end read/fix/write loop");

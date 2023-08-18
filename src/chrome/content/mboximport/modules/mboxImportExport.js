@@ -23,6 +23,8 @@ import { parse5322 } from "./email-addresses.js";
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
+
 var window;
 
 export async function setGlobals(gVars) {
@@ -38,6 +40,9 @@ export var mboxImportExport = {
   toCompactFolderList: [],
 
   importMboxSetup: async function (params) {
+    console.log("setup")
+    ietngUtils.writeStatusLine(window, "setup", 8000);
+
     // Either individual mboxes or by directory
     var fpRes;
     var mboxFiles;
@@ -65,6 +70,7 @@ export var mboxImportExport = {
     var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
     await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+
     let total = this.totalImported + this.totalSkipped;
     let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
     let result = `${doneMsg}: ${this.totalImported}/${total}`;
@@ -77,6 +83,7 @@ export var mboxImportExport = {
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
+    console.log("imp mboxf")
     for (let i = 0; i < files.length; i++) {
       const mboxFilePath = files[i];
       let impMsg = this.mboximportbundle.GetStringFromName("importing");
@@ -259,7 +266,10 @@ export var mboxImportExport = {
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
-    let r = await IOUtils.copy(src, dst);
+    //let r = await IOUtils.copy(src, dst);
+
+    await mboxCopyImport({srcPath: src, destPath: dst});
+
     this.reindexDBandRebuildSummary(subMsgFolder);
     this.toCompactFolderList.push(subMsgFolder);
     return subMsgFolder;

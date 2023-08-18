@@ -154,7 +154,7 @@ async function expMenuDispatcher(data) {
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-
+			console.log("imp mbox call")
 			console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
 			break;

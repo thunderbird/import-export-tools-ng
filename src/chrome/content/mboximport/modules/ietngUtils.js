@@ -16,7 +16,9 @@
 
 // ietngUtils.js
 
-export var ietngUtils = {
+var EXPORTED_SYMBOLS = ["ietngUtils"];
+
+var ietngUtils = {
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),

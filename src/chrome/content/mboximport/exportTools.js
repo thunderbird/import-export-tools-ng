@@ -57,8 +57,9 @@ gTabmail,
 /* eslint complexity: [0,30] */
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
+
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-var { Utils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 // console.debug('exportTools start');
 

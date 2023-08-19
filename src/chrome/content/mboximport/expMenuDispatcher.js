@@ -33,11 +33,11 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
-var { mboxImportExport, setGlobals } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var gVars = {
 	window: window,
 };
-setGlobals(gVars);
+mboxImportExport.setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {

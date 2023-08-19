@@ -61,11 +61,11 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
 
-//var { openFileDialog } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);

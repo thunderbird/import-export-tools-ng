@@ -16,28 +16,33 @@
 
 // mboxImportExport.js
 
+var EXPORTED_SYMBOLS = ["mboxImportExport"];
+
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-import { parse5322 } from "./email-addresses.js";
 
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
 
+
 var window;
 
-export async function setGlobals(gVars) {
-  window = gVars.window;
-  return
-}
 
-export var mboxImportExport = {
+
+var mboxImportExport = {
 
   mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
   totalImported: 0,
   totalSkipped: 0,
   toCompactFolderList: [],
+
+  setGlobals: async function (gVars) {
+    window = gVars.window;
+    return
+  },
 
   importMboxSetup: async function (params) {
     console.log("setup")

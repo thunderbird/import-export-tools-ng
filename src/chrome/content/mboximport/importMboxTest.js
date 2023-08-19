@@ -93,12 +93,17 @@ async function mboxCopyImport(options) {
       //offset += strBuffer.length;
       writePos = 0;
       cnt++;
-
+      //let strBuffer;
       // convert to faster String for regex etc
       let strBuffer = bytesToString2(rawBytes);
-
+      //let strBuffer = new TextDecoder().decode(rawBytes);
+      
+      //for (let i = 0; i < rawBytes.length; i++) {
+        //strBuffer += String.fromCharCode(parseInt(rawBytes[i], 2));
+      //}
+    
       // Force unread state, messages wo status default to unread
-      strBuffer = strBuffer.replace(/X-Mozilla-Status: 0001/g, "X-Mozilla-Status: 0000");
+      //strBuffer = strBuffer.replace(/X-Mozilla-Status: 0001/g, "X-Mozilla-Status: 0000");
 
       fromExceptions = strBuffer.matchAll(fromRegx);
 

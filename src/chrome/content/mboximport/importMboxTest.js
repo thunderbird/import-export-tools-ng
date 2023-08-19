@@ -37,6 +37,7 @@ async function mboxCopyImport(options) {
   console.log(options);
   //let targetMboxPath = PathUtils.join(options.destPath, options.finalDestFolderName);
   let targetMboxPath = options.destPath;
+  let folderName = PathUtils.filename(options.srcPath);
 
   // make sure nothing is there, create start 
   await IOUtils.remove(targetMboxPath, { ignoreAbsent: true });
@@ -125,7 +126,7 @@ async function mboxCopyImport(options) {
 
         // This is for our ui status update
         //postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
-        writeStatusLine(window, "Processed" + ": " + totalWrite/1000, 3000);
+        writeStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
 
       }
 
@@ -237,4 +238,13 @@ function deleteStatusLine(window, text) {
       }
     }
   } catch (e) { }
+}
+
+function formatBytes(bytes, decimals) {
+	if (bytes == 0) return '0 Bytes';
+	var k = 1024,
+		dm = decimals || 2,
+		sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+		i = Math.floor(Math.log(bytes) / Math.log(k));
+	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }

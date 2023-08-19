@@ -16,7 +16,7 @@
 
 // mboxImportExport.js
 
-var EXPORTED_SYMBOLS = ["mboxImportExport"];
+//var EXPORTED_SYMBOLS = ["mboxImportExport"];
 
 var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
@@ -32,7 +32,7 @@ var window;
 
 
 
-var mboxImportExport = {
+export var mboxImportExport = {
 
   mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
   totalImported: 0,

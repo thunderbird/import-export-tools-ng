@@ -281,6 +281,194 @@ export var mboxImportExport = {
   },
 
 
+  exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
+
+    //var thefoldername = IETcleanName(rootMsgFolder.name);
+    //let uniqueName = findGoodFolderName(thefoldername, destdirNSIFILE, false);
+    let uniqueName = rootMsgFolder.prettyName;
+    let fullFolderPath = PathUtils.join(destPath, uniqueName);
+
+    await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
+
+    console.log(inclSubfolders)
+    console.log(rootMsgFolder.hasSubFolders)
+
+    if (inclSubfolders && rootMsgFolder.hasSubFolders) {
+      console.log("has subf")
+      let fullSbdDirPath = PathUtils.join(destPath, uniqueName + ".sbd");
+      await IOUtils.makeDirectory(fullSbdDirPath);
+      await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
+
+    }
+
+  },
+
+  exportSubFolders: async function (msgFolder, fullSbdDirPath) {
+
+    console.log(msgFolder)
+
+		for (let subMsgFolder of msgFolder.subFolders) {
+
+      console.log("sf")
+      let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
+      await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
+      if (subMsgFolder.hasSubFolders) {
+        let fullSbdDirPath = PathUtils.join(fullSubMsgFolderPath + ".sbd", subMsgFolder.prettyName + ".sbd");
+      console.log(fullSbdDirPath)
+
+        await IOUtils.makeDirectory(fullSbdDirPath);
+        await this.exportSubFolders(subMsgFolder, fullSbdDirPath);
+      } else {
+        //return;
+      }
+
+    }
+  },
+
+  
+  buildAndExportMbox: async function (msgFolder, dest) {
+	let st = new Date();
+	console.log("Start: ", st, dest, msgFolder.prettyName)
+	//var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
+	var mboxDestPath = dest;
+	var folderMsgs = msgFolder.messages;
+	var sep = "";
+	const maxFileSize = 1021000000;
+	const kFileChunkSize = 10000000;
+
+	const getMsgLoop = async (emlsArray, startIndex) => {
+
+		var msgsBuffer = "";
+		var index = 0;
+		var totalBytes = 0;
+		var totalMessages = msgFolder.getTotalMessages(false);
+		var totalTime;
+		var fromAddr;
+
+		console.log("Total msgs: ", totalMessages)
+
+		let r = await IOUtils.writeUTF8(mboxDestPath, "", { mode: "overwrite" })
+
+		while (folderMsgs.hasMoreElements()) {
+			let msgHdr = folderMsgs.getNext();
+			msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
+			let msgUri = msgFolder.getUriForMsg(msgHdr);
+
+			try {
+				fromAddr = parse5322.parseFrom(msgHdr.author)[0].address;
+			} catch (ex) {
+				fromAddr = "";
+			}
+
+			let rawBytes = await this.getRawMessage(msgUri);
+
+			if (index) {
+				sep = "\n";
+			}
+
+			let fromHdr = `${sep}From - ${fromAddr}\n`;
+
+			msgsBuffer = msgsBuffer + fromHdr + rawBytes;
+
+			//if (msgsBuffer.length >= kFileChunkSize || index == totalMessages - 1 || totalBytes >= maxFileSize) {
+			if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
+				ietngUtils.writeStatusLine(window, "Msgs: " + (index + 1))
+
+				//console.log("write ", index + 1)
+
+				let r = await IOUtils.writeUTF8(mboxDestPath, msgsBuffer, { mode: "append" })
+
+				totalBytes += msgsBuffer.length;
+
+				msgsBuffer = "";
+				if (index == totalMessages - 1 || totalBytes >= maxFileSize) {
+					ietngUtils.writeStatusLine(window, "Msgs: " + (index + 1) + " Time: " + (new Date() - st))
+					totalTime = (new Date() - st)/1000;
+					break;
+				}
+				//IETwritestatus("Msgs: " + (index + 1))
+			}
+			index++;
+
+		}
+		console.log(totalBytes)
+		console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index++}\n\nExport Time: ${totalTime}s`);
+		return index;
+	};
+
+	let rv = await getMsgLoop("", 0);
+	console.log(rv)
+
+	let end = new Date();
+	console.log("End: ", end, (end - st) / 1000)
+},
+
+getRawMessage: async function (msgUri) {
+	/*
+	// If this message is a sub-message (an attachment of another message), get it
+	// as an attachment from the parent message and return its raw content.
+	let subMsgPartName = getSubMessagePartName(msgHdr);
+	if (subMsgPartName) {
+		let parentMsgHdr = getParentMsgHdr(msgHdr);
+		let attachment = await getAttachment(parentMsgHdr, subMsgPartName);
+		return attachment.raw.reduce(
+			(prev, curr) => prev + String.fromCharCode(curr),
+			""
+		);
+	}
+	
+	// Messages opened from file do not have a folder property, but
+	// have their url stored as a string property.
+	let msgUri = msgHdr.folder
+		? msgHdr.folder.generateMessageURI(msgHdr.messageKey)
+		: msgHdr.getStringProperty("dummyMsgUrl");
+*/
+
+
+	let service = MailServices.messageServiceFromURI(msgUri);
+	return new Promise((resolve, reject) => {
+		let streamlistener = {
+			_data: [],
+			_stream: null,
+			onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+				if (!this._stream) {
+					this._stream = Cc[
+						"@mozilla.org/scriptableinputstream;1"
+					].createInstance(Ci.nsIScriptableInputStream);
+					this._stream.init(aInputStream);
+				}
+				this._data.push(this._stream.read(aCount));
+			},
+			onStartRequest() { },
+			onStopRequest(request, status) {
+				if (Components.isSuccessCode(status)) {
+					resolve(this._data.join(""));
+				} else {
+					reject(
+						new ExtensionError(
+							`Error while streaming message <${msgUri}>: ${status}`
+						)
+					);
+				}
+			},
+			QueryInterface: ChromeUtils.generateQI([
+				"nsIStreamListener",
+				"nsIRequestObserver",
+			]),
+		};
+
+		// This is not using aConvertData and therefore works for news:// messages.
+		service.streamMessage(
+			msgUri,
+			streamlistener,
+			null, // aMsgWindow
+			null, // aUrlListener
+			false, // aConvertData
+			"" //aAdditionalHeader
+		);
+	});
+},
+
   reindexDBandRebuildSummary: function (msgFolder) {
     // Send a notification that we are triggering a database rebuild.
     MailServices.mfn.notifyFolderReindexTriggered(msgFolder);

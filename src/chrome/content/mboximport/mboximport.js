@@ -1032,6 +1032,9 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 		msgFolder.compact(null, msgWindow);
 }
 
+
+
+
 async function exportfolder(params) {
 
 	var localfolder = params.localFolder;
@@ -1091,6 +1094,16 @@ async function exportfolder(params) {
 			await IETexportZip(destdirNSIFILE, folders);
 		return;
 	}
+
+// new export
+	let rootFolder = folders[0];
+	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);
+
+	let flatten = !keepstructure;
+	let destPath = destdirNSIFILE.path;
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolder, flatten);
+	return;
+
 
 	if (localfolder && !isVirtualFolder) {
 		// console.log("Using exportSingleLocaleFolder");
@@ -1152,6 +1165,10 @@ function exportRemoteFolders(destdirNSIFILE, folders) {
 	IETglobalMsgFoldersExported = 0;
 	exportIMAPfolder(IETglobalMsgFolders[0], destdirNSIFILE);
 }
+
+
+
+
 
 // The subfolder argument is true if we have to export also the subfolders
 async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {

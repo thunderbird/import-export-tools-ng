@@ -55,3 +55,19 @@ if at last From fixup or from fixups == 0
   if none save to end of first buffer
   if found save up to the last ^F
   read full buffer after >
+
+exportFoldersToMbox(rootMsgFolder, destPath, includeSubfolders, flattenFolders)
+
+exp rootMsgFolder
+if(includeSubfolders && hasSubfolders)
+  create sbd
+  addSubfolders(rootMsgFolder, subfPath)
+
+
+addSubfolders(curFolder, subfPath)
+  sfs = getSubf
+  for subf
+    expFolder 
+    if subf hasSubfolders
+      create sbd(subfPath)
+      addSubfolders(subf, subfPath)

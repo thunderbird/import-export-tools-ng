@@ -127,7 +127,70 @@ var ietngUtils = {
         }
       }
     } catch (e) { }
-  }
+  },
 
-}
 
+
+  sanitizeFileOrFolderName: function (str) {
+    str = str.replace(/[\\:?"\*\/<>#]/g, "_");
+    str = str.replace(/[\x00-\x19]/g, "_");
+    return str;
+  },
+
+  nameToAcii: function (str) {
+    if (!this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
+      str = str.replace(/[\x00-\x19]/g, "_");
+      // Allow ',' and single quote character which is valid
+      return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
+    }
+    if (str)
+      str = str.replace(/[^a-zA-Z0-9\-]/g, "_");
+    else
+      str = "Undefinied_or_empty";
+    return str;
+  },
+
+  createUniqueFolderName: function (foldername, destDirPath, structure) {
+
+    var destdirNSIFILE = Cc["@mozilla.org/file/local;1"]
+      .createInstance(Ci.nsIFile);
+    destdirNSIFILE.initWithPath(destDirPath);
+
+    var overwrite = this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
+    var index = 0;
+    var nameIndex = "";
+    var NSclone = destdirNSIFILE.clone();
+
+    // Change unsafe chars for filenames with underscore
+    foldername = this.sanitizeFileOrFolderName(foldername);
+    NSclone.append(foldername);
+    foldername = this.nameToAcii(foldername);
+    // if the user wants to overwrite the files with the same name in the folder destination
+    // the function must delete the existing files and then return the original filename.
+    // If it's a structured export, it's deleted also the filename.sbd subdirectory
+    if (overwrite) {
+      if (NSclone.exists()) {
+        NSclone.remove(false);
+        if (structure) {
+          var NSclone2 = destdirNSIFILE.clone();
+          NSclone2.append(foldername + ".sbd");
+          NSclone2.remove(true);
+        }
+      }
+      return foldername;
+    }
+    NSclone = destdirNSIFILE.clone();
+    NSclone.append(foldername);
+    while (NSclone.exists()) {
+      index++;
+      nameIndex = foldername + "-" + index.toString();
+      NSclone = destdirNSIFILE.clone();
+      NSclone.append(nameIndex);
+    }
+    if (nameIndex !== "")
+      return nameIndex;
+
+    return foldername;
+  },
+
+};

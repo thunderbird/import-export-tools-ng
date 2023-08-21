@@ -93,9 +93,18 @@ var folderCount;
 
 async function test() {
 	let dir = getPredefinedFolder(0);
-	let msgFolder = GetFirstSelectedMsgFolder();
 
-	await buildAndExportMbox(msgFolder, dir);
+	//await buildAndExportMbox(msgFolder, dir);
+	let params = {};
+
+	params.selectedFolder = GetFirstSelectedMsgFolder();
+	params.localFolder = true;
+	params.zipped = false;
+	params.includeSubfolders = true;
+	params.flattenSubfolders = false;
+
+	exportfolder(params);
+
 }
 
 async function testBuildMbox(msgFolder, dest) {
@@ -270,7 +279,7 @@ async function buildAndExportMbox(msgFolder, dest) {
 				msgsBuffer = "";
 				if (index == totalMessages - 1 || totalBytes >= maxFileSize) {
 					IETwritestatus("Msgs: " + (index + 1) + " Time: " + (new Date() - st))
-					totalTime = (new Date() - st)/1000;
+					totalTime = (new Date() - st) / 1000;
 					break;
 				}
 				//IETwritestatus("Msgs: " + (index + 1))
@@ -1095,7 +1104,7 @@ async function exportfolder(params) {
 		return;
 	}
 
-// new export
+	// new export
 	let rootFolder = folders[0];
 	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);
 

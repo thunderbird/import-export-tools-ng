@@ -305,19 +305,21 @@ export var mboxImportExport = {
 
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
 
-    console.log(msgFolder)
+    console.log(msgFolder.name)
+    console.log(fullSbdDirPath)
 
 		for (let subMsgFolder of msgFolder.subFolders) {
 
-      console.log("sf")
+      console.log("sf ", subMsgFolder.name)
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
+      console.log("fullSubMsgFolderPath ", fullSubMsgFolderPath)
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
-        let fullSbdDirPath = PathUtils.join(fullSubMsgFolderPath + ".sbd", subMsgFolder.prettyName + ".sbd");
-      console.log(fullSbdDirPath)
+        let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath , subMsgFolder.prettyName + ".sbd");
+      console.log(fullNewSbdDirPath)
 
-        await IOUtils.makeDirectory(fullSbdDirPath);
-        await this.exportSubFolders(subMsgFolder, fullSbdDirPath);
+        await IOUtils.makeDirectory(fullNewSbdDirPath);
+        await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
       } else {
         //return;
       }

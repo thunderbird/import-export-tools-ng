@@ -56,7 +56,6 @@ export var mboxImportExport = {
     this.totalSkipped = 0;
     this.toCompactFolderList = [];
 
-    ietngUtils.createStatusLine(window);
 
     if (params.mboxImpType == "individual") {
       fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files to import", null, null);
@@ -343,6 +342,7 @@ export var mboxImportExport = {
       var totalMessages = msgFolder.getTotalMessages(false);
       var totalTime;
       var fromAddr;
+      let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
       console.log("Total msgs: ", totalMessages)
 
@@ -361,24 +361,31 @@ export var mboxImportExport = {
 
         let rawBytes = await this.getRawMessage(msgUri);
 
-        console.log(rawBytes.substring(0,500))
+        //console.log(rawBytes.substring(0,500))
 
         if (index) {
           sep = "\n";
         }
 
         let fromHdr = `${sep}From - ${fromAddr}\n`;
-        console.log(rawBytes.substring(0, 5))
-
+        //console.log(rawBytes.substring(0, 5))
+        var firstLineIndex;
         if (rawBytes.substring(0, 5) == "From ") {
           fromHdr = "";
-          console.log("no fh")
+          firstLineIndex = rawBytes.indexOf("\n")
+          console.log("fi ", firstLineIndex)
+          console.log(rawBytes.substring(0, firstLineIndex))
+        } else {
+          firstLineIndex = -1;
         }
+
+        rawBytes = rawBytes.substring(firstLineIndex + 1).replace(fromRegx, ">$1" )
+        //console.log(rawBytes)
         msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 
         //if (msgsBuffer.length >= kFileChunkSize || index == totalMessages - 1 || totalBytes >= maxFileSize) {
         if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
-          ietngUtils.writeStatusLine(window, "Msgs: " + (index + 1))
+          ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
 
           //console.log("write ", index + 1)
           let outBuffer = ietngUtils.stringToBytes(msgsBuffer)
@@ -388,7 +395,8 @@ export var mboxImportExport = {
 
           msgsBuffer = "";
           if (index == totalMessages - 1 || totalBytes >= maxFileSize) {
-            ietngUtils.writeStatusLine(window, "Msgs: " + (index + 1) + " Time: " + (new Date() - st))
+            ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
+
             totalTime = (new Date() - st) / 1000;
             break;
           }

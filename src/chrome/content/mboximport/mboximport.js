@@ -91,6 +91,8 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
+ietngUtils.createStatusLine(window);
+
 async function test() {
 	let dir = getPredefinedFolder(0);
 

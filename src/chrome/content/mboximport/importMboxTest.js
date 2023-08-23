@@ -163,12 +163,17 @@ async function mboxCopyImport(options) {
 
       //postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
       //console.log("loop")
+      writeStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
+
     }
+    let et = new Date() - s;
+
+    writeStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et + "s", 14000);
+
     console.log("end read/fix/write loop");
 
     console.log("Escape fixups:", fromEscCount);
 
-    let et = new Date() - s;
     console.log("Elapsed time:", et);
     console.log(new Date());
 

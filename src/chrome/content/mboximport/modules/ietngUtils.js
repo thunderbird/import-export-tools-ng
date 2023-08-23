@@ -101,10 +101,16 @@ var ietngUtils = {
       //window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
 
 
+    } else {
+      alert("no status ")
     }
   },
 
   createStatusLine: function (window) {
+    if (window.document.getElementById("ietngStatusText")) {
+      return;
+    }
+    
     let s = window.document.getElementById("statusText")
     let s2 = window.document.createElement("label")
     s2.classList.add("statusbarpanel");

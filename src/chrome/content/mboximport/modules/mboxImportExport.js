@@ -46,6 +46,8 @@ export var mboxImportExport = {
 
   importMboxSetup: async function (params) {
     console.log("setup")
+    ietngUtils.createStatusLine(window);
+
     ietngUtils.writeStatusLine(window, "setup", 8000);
 
     // Either individual mboxes or by directory
@@ -78,6 +80,8 @@ export var mboxImportExport = {
     let total = this.totalImported + this.totalSkipped;
     let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
     let result = `${doneMsg}: ${this.totalImported}/${total}`;
+
+    await new Promise(r => window.setTimeout(r, 4500));
 
     ietngUtils.writeStatusLine(window, result, 8000);
     this.compactAllFolders();
@@ -285,6 +289,8 @@ export var mboxImportExport = {
     let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
+    ietngUtils.createStatusLine(window);
+
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
     //console.log(inclSubfolders)
@@ -297,6 +303,8 @@ export var mboxImportExport = {
       await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
     }
 
+    await new Promise(r => window.setTimeout(r, 8000));
+    window.document.getElementById("ietngStatusText").remove();
   },
 
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
@@ -326,12 +334,12 @@ export var mboxImportExport = {
 
   buildAndExportMbox: async function (msgFolder, dest) {
     let st = new Date();
-    console.log("Start: ", st, dest, msgFolder.prettyName)
+    console.log("Start: ", st, dest, msgFolder.prettyName, msgFolder)
     //var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
     var sep = "";
-    const maxFileSize = 1021000000;
+    const maxFileSize = 1821000000;
     const kFileChunkSize = 10000000;
 
     const getMsgLoop = async (emlsArray, startIndex) => {
@@ -373,13 +381,15 @@ export var mboxImportExport = {
         if (rawBytes.substring(0, 5) == "From ") {
           fromHdr = "";
           firstLineIndex = rawBytes.indexOf("\n")
-          console.log("fi ", firstLineIndex)
-          console.log(rawBytes.substring(0, firstLineIndex))
+          //console.log("fi ", index)
+          //console.log(rawBytes.substring(0, firstLineIndex))
         } else {
           firstLineIndex = -1;
         }
 
-        rawBytes = rawBytes.substring(firstLineIndex + 1).replace(fromRegx, ">$1" )
+        rawBytes = rawBytes.replace(fromRegx, ">$1" )
+        //console.log(rawBytes.substring(0,500))
+
         //console.log(rawBytes)
         msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 

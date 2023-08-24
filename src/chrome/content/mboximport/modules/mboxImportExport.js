@@ -271,6 +271,7 @@ export var mboxImportExport = {
 
     msgFolder.createSubfolder(subFolderName, window.msgWindow);
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    await new Promise(r => window.setTimeout(r, 1000));
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
@@ -278,8 +279,20 @@ export var mboxImportExport = {
 
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
-    this.reindexDBandRebuildSummary(subMsgFolder);
+    window.gTabmail.currentTabInfo.folder = msgFolder;
+    window.SelectFolder(msgFolder.URI)
+    await new Promise(r => window.setTimeout(r, 4000));
+
+    //this.reindexDBandRebuildSummary(subMsgFolder);
+    this.rebuildSummary(subMsgFolder);
+    console.log(subMsgFolder.getTotalMessages(true))
+    await new Promise(r => window.setTimeout(r, 4000));
+
+    this.rebuildSummary(subMsgFolder);
+    console.log(subMsgFolder.getTotalMessages(true))
+
     this.toCompactFolderList.push(subMsgFolder);
+
     return subMsgFolder;
   },
 
@@ -494,6 +507,10 @@ export var mboxImportExport = {
   },
 
   reindexDBandRebuildSummary: function (msgFolder) {
+    //window.SelectFolder(msgFolder.URI)
+    console.log("select fol")
+    //await new Promise(r => window.setTimeout(r, 8000));
+
     // Send a notification that we are triggering a database rebuild.
     MailServices.mfn.notifyFolderReindexTriggered(msgFolder);
 
@@ -508,7 +525,51 @@ export var mboxImportExport = {
       msgFolder.ForceDBClosed();
     }
     msgFolder.updateFolder(window.msgWindow);
+    msgFolder.updateSummaryTotals(true);
+    console.log(msgFolder.name)
   },
+
+
+
+rebuildSummary: async function (folder) {
+  if (folder.locked) {
+    folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+    return;
+  }
+  if (folder.supportsOffline) {
+    // Remove the offline store, if any.
+    await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+      console.error
+    );
+  }
+
+  // We may be rebuilding a folder that is not the displayed one.
+  // TODO: Close any open views of this folder.
+
+  // Send a notification that we are triggering a database rebuild.
+  MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+  folder.msgDatabase.summaryValid = false;
+
+  const msgDB = folder.msgDatabase;
+  msgDB.summaryValid = false;
+  try {
+    folder.closeAndBackupFolderDB("");
+  } catch (e) {
+    // In a failure, proceed anyway since we're dealing with problems
+    folder.ForceDBClosed();
+  }
+
+  if (0) {
+    gViewWrapper?.close();
+    folder.updateFolder(window.msgWindow);
+    folderTree.dispatchEvent(new CustomEvent("select"));
+  } else {
+    window.gTabmail.currentAbout3Pane.gDBView.close()
+    folder.updateFolder(window.msgWindow);
+  }
+},
+
 
   compactAllFolders: function () {
     this.toCompactFolderList.forEach(msgFolder => {

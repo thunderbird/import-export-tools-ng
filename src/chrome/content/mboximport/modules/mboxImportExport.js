@@ -84,7 +84,7 @@ export var mboxImportExport = {
     await new Promise(r => window.setTimeout(r, 4500));
 
     ietngUtils.writeStatusLine(window, result, 8000);
-    this.compactAllFolders();
+    await this.compactAllFolders();
     // wait for status done, remove our status element
     await new Promise(r => window.setTimeout(r, 8000));
     window.document.getElementById("ietngStatusText").remove();
@@ -271,7 +271,7 @@ export var mboxImportExport = {
 
     msgFolder.createSubfolder(subFolderName, window.msgWindow);
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-    await new Promise(r => window.setTimeout(r, 1000));
+    await new Promise(r => window.setTimeout(r, 100));
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
@@ -279,17 +279,17 @@ export var mboxImportExport = {
 
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
-    window.gTabmail.currentTabInfo.folder = msgFolder;
-    window.SelectFolder(msgFolder.URI)
-    await new Promise(r => window.setTimeout(r, 4000));
+    //window.gTabmail.currentTabInfo.folder = msgFolder;
+    //window.SelectFolder(msgFolder.URI)
+    //await new Promise(r => window.setTimeout(r, 4000));
 
     //this.reindexDBandRebuildSummary(subMsgFolder);
     this.rebuildSummary(subMsgFolder);
     console.log(subMsgFolder.getTotalMessages(true))
-    await new Promise(r => window.setTimeout(r, 4000));
+    //await new Promise(r => window.setTimeout(r, 4000));
 
-    this.rebuildSummary(subMsgFolder);
-    console.log(subMsgFolder.getTotalMessages(true))
+    //this.rebuildSummary(subMsgFolder);
+    //console.log(subMsgFolder.getTotalMessages(true))
 
     this.toCompactFolderList.push(subMsgFolder);
 
@@ -571,10 +571,32 @@ rebuildSummary: async function (folder) {
 },
 
 
-  compactAllFolders: function () {
-    this.toCompactFolderList.forEach(msgFolder => {
+  compactAllFolders: async function () {
+    //this.toCompactFolderList.forEach(msgFolder => {
+    for (let index = 0; index < this.toCompactFolderList.length; index++) {
+      const msgFolder = this.toCompactFolderList[index];
+      
+      console.log(msgFolder.name)
+      console.log("selecting")
+      window.gTabmail.currentTabInfo.folder = msgFolder;
+
       this.forceFolderCompact(msgFolder);
-    });
+      for (let index = 0; index < 100; index++) {
+      window.gTabmail.currentTabInfo.folder = msgFolder;
+        console.log(msgFolder.getTotalMessages(false))
+        try {
+          let m = msgFolder.messages;
+          console.log("ms",m)
+
+          break;
+        } catch(ex) {
+          console.log("wait",ex)
+        }
+        await new Promise(r => window.setTimeout(r, 100));
+
+      }
+
+    };
   },
 
   forceFolderCompact: function (msgFolder) {

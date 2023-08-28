@@ -34,11 +34,12 @@ onmessage = async function (event) {
 
 async function mboxCopyImport(options) {
 
-  console.log(options);
+  //console.log(options);
   //let targetMboxPath = PathUtils.join(options.destPath, options.finalDestFolderName);
   let targetMboxPath = options.destPath;
   let folderName = PathUtils.filename(options.srcPath);
 
+  console.log("Importing:", folderName)
   // make sure nothing is there, create start 
   await IOUtils.remove(targetMboxPath, { ignoreAbsent: true });
   await IOUtils.write(targetMboxPath, new Uint8Array(), { mode: "create" });
@@ -58,8 +59,8 @@ async function mboxCopyImport(options) {
   if (fileInfo.size > 4000000000) {
     let err = "too large";
     console.log(fileInfo.size);
-    postMessage({ msg: "Error: File exceeds 4GB" });
-
+    //postMessage({ msg: "Error: File exceeds 4GB" });
+    alert("Cannot import: mbox larger than 4GB")
     return "Error: File exceeds 4GB";
 
   }
@@ -69,8 +70,8 @@ async function mboxCopyImport(options) {
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
-    console.log(new Date());
-    console.log(options.srcPath);
+    console.log("Start:", new Date());
+    //console.log(options.srcPath);
     let offset = 0;
     let s = new Date();
     let eof = false;
@@ -139,7 +140,7 @@ async function mboxCopyImport(options) {
       if (rawBytes.byteLength < READ_CHUNK) {
         eof = true;
         finalChunk = rawBytes.byteLength;
-        console.log("fchunk ", finalChunk);
+        //console.log("fchunk ", finalChunk);
       } else {
         finalChunk = READ_CHUNK;
       }
@@ -168,13 +169,13 @@ async function mboxCopyImport(options) {
     }
     let et = new Date() - s;
 
-    writeStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et + "s", 14000);
+    writeStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
 
     console.log("end read/fix/write loop");
 
     console.log("Escape fixups:", fromEscCount);
 
-    console.log("Elapsed time:", et);
+    console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
 
     // Breathing time?

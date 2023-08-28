@@ -861,7 +861,7 @@ async function wextctx_toolsMenu(ctxEvent) {
 }
 
 async function wextctx_folderMenu(ctxEvent) {
-  console.log(ctxEvent);
+  //console.log(ctxEvent);
   var params = {};
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side

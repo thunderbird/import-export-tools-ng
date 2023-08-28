@@ -45,7 +45,7 @@ export var mboxImportExport = {
   },
 
   importMboxSetup: async function (params) {
-    console.log("setup")
+    //console.log("setup")
     ietngUtils.createStatusLine(window);
 
     ietngUtils.writeStatusLine(window, "setup", 8000);
@@ -81,7 +81,7 @@ export var mboxImportExport = {
     let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
     let result = `${doneMsg}: ${this.totalImported}/${total}`;
 
-    await new Promise(r => window.setTimeout(r, 4500));
+    await new Promise(r => window.setTimeout(r, 2500));
 
     ietngUtils.writeStatusLine(window, result, 8000);
     //await this.compactAllFolders();
@@ -91,7 +91,7 @@ export var mboxImportExport = {
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
-    console.log("imp mboxf")
+    //console.log("imp mboxf")
     for (let i = 0; i < files.length; i++) {
       const mboxFilePath = files[i];
       let impMsg = this.mboximportbundle.GetStringFromName("importing");
@@ -285,8 +285,8 @@ export var mboxImportExport = {
 
     //this.reindexDBandRebuildSummary(subMsgFolder);
     await this.rebuildSummary(subMsgFolder);
-    console.log(subMsgFolder.getTotalMessages(true))
-    await new Promise(r => window.setTimeout(r, 4000));
+    //console.log(subMsgFolder.getTotalMessages(true))
+    await new Promise(r => window.setTimeout(r, 200));
 
     //this.rebuildSummary(subMsgFolder);
     //console.log(subMsgFolder.getTotalMessages(true))
@@ -322,19 +322,19 @@ export var mboxImportExport = {
 
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
 
-    console.log(msgFolder.name)
-    console.log(fullSbdDirPath)
+    //console.log(msgFolder.name)
+    //console.log(fullSbdDirPath)
 
     for (let subMsgFolder of msgFolder.subFolders) {
 
-      console.log("sf ", subMsgFolder.name)
+      //console.log("sf ", subMsgFolder.name)
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
-      console.log("fullSubMsgFolderPath ", fullSubMsgFolderPath)
+      //console.log("fullSubMsgFolderPath ", fullSubMsgFolderPath)
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
         let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName + ".sbd");
-        console.log(fullNewSbdDirPath)
+        //console.log(fullNewSbdDirPath)
 
         await IOUtils.makeDirectory(fullNewSbdDirPath);
         await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
@@ -348,12 +348,13 @@ export var mboxImportExport = {
 
   buildAndExportMbox: async function (msgFolder, dest) {
     let st = new Date();
-    console.log("Start: ", st, dest, msgFolder.prettyName, msgFolder)
+    console.log("Start: ", st, msgFolder.prettyName)
     //var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
     var sep = "";
-    const maxFileSize = 1821000000;
+    //const maxFileSize = 1021000000;
+    const maxFileSize = 4000000000;
     const kFileChunkSize = 10000000;
 
     const getMsgLoop = async (emlsArray, startIndex) => {
@@ -435,7 +436,7 @@ export var mboxImportExport = {
     };
 
     let rv = await getMsgLoop("", 0);
-    console.log(rv)
+    //console.log(rv)
 
     let end = new Date();
     console.log("End: ", end, (end - st) / 1000)
@@ -579,7 +580,7 @@ rebuildSummary: async function (folder) {
         dbDone = false;
       },
       OnStopRunningUrl(url, status) {
-        console.log("pf list",status)
+        //console.log("pf list",status)
         dbDone = true;
       }};
 
@@ -587,10 +588,10 @@ rebuildSummary: async function (folder) {
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
     var cnt = 0;
     while (!dbDone) {
-      await new Promise(r => window.setTimeout(r, 100));
+      await new Promise(r => window.setTimeout(r, 50));
       cnt++;
     }
-    console.log("dbr cnt ", cnt)
+    //console.log("dbr cnt ", cnt)
 
   }
 },

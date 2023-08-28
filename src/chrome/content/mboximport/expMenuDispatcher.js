@@ -41,7 +41,7 @@ mboxImportExport.setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {
-	console.log("expMenuDispacher: ", data);
+	//console.log("expMenuDispacher: ", data);
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {
@@ -154,8 +154,7 @@ async function expMenuDispatcher(data) {
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-			console.log("imp mbox call")
-			console.log(data.params);
+			//console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
 			break;
 		case "WXMCMD_ImpMaildirFiles":

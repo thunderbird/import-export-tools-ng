@@ -84,7 +84,7 @@ export var mboxImportExport = {
     await new Promise(r => window.setTimeout(r, 4500));
 
     ietngUtils.writeStatusLine(window, result, 8000);
-    await this.compactAllFolders();
+    //await this.compactAllFolders();
     // wait for status done, remove our status element
     await new Promise(r => window.setTimeout(r, 8000));
     window.document.getElementById("ietngStatusText").remove();
@@ -284,9 +284,9 @@ export var mboxImportExport = {
     //await new Promise(r => window.setTimeout(r, 4000));
 
     //this.reindexDBandRebuildSummary(subMsgFolder);
-    this.rebuildSummary(subMsgFolder);
+    await this.rebuildSummary(subMsgFolder);
     console.log(subMsgFolder.getTotalMessages(true))
-    //await new Promise(r => window.setTimeout(r, 4000));
+    await new Promise(r => window.setTimeout(r, 4000));
 
     //this.rebuildSummary(subMsgFolder);
     //console.log(subMsgFolder.getTotalMessages(true))
@@ -328,6 +328,7 @@ export var mboxImportExport = {
     for (let subMsgFolder of msgFolder.subFolders) {
 
       console.log("sf ", subMsgFolder.name)
+
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
       console.log("fullSubMsgFolderPath ", fullSubMsgFolderPath)
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
@@ -555,9 +556,12 @@ rebuildSummary: async function (folder) {
   msgDB.summaryValid = false;
   try {
     folder.closeAndBackupFolderDB("");
+    folder.msgDatabase = null;
   } catch (e) {
     // In a failure, proceed anyway since we're dealing with problems
     folder.ForceDBClosed();
+    folder.msgDatabase = null;
+
   }
 
   if (0) {
@@ -565,11 +569,35 @@ rebuildSummary: async function (folder) {
     folder.updateFolder(window.msgWindow);
     folderTree.dispatchEvent(new CustomEvent("select"));
   } else {
-    window.gTabmail.currentAbout3Pane.gDBView.close()
-    folder.updateFolder(window.msgWindow);
+    //window.gTabmail.currentAbout3Pane.gDBView.close()
+    //folder.updateFolder(window.msgWindow);
+
+    var dbDone;
+    // @implements {nsIUrlListener}
+    let urlListener = {
+      OnStartRunningUrl(url) {
+        dbDone = false;
+      },
+      OnStopRunningUrl(url, status) {
+        console.log("pf list",status)
+        dbDone = true;
+      }};
+
+	var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
+    msgLocalFolder.parseFolder(window.msgWindow, urlListener)
+    var cnt = 0;
+    while (!dbDone) {
+      await new Promise(r => window.setTimeout(r, 100));
+      cnt++;
+    }
+    console.log("dbr cnt ", cnt)
+
   }
 },
 
+  parseListner: function () {
+    console.log("pf list")
+  },
 
   compactAllFolders: async function () {
     //this.toCompactFolderList.forEach(msgFolder => {
@@ -582,6 +610,7 @@ rebuildSummary: async function (folder) {
 
       this.forceFolderCompact(msgFolder);
       for (let index = 0; index < 100; index++) {
+        break;
       window.gTabmail.currentTabInfo.folder = msgFolder;
         console.log(msgFolder.getTotalMessages(false))
         try {

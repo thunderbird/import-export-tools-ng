@@ -107,6 +107,8 @@ var ietngUtils = {
   },
 
   createStatusLine: function (window) {
+    console.log("inserted status")
+    
     if (window.document.getElementById("ietngStatusText")) {
       return;
     }
@@ -118,7 +120,6 @@ var ietngUtils = {
     s2.style.width = "420px";
     s2.style.overflow = "hidden"
     s.before(s2)
-    //console.log("inserted status")
   },
 
   deleteStatusLine: function (window, text) {

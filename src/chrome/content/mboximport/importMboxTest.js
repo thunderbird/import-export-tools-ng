@@ -234,7 +234,7 @@ function createStatusLine(window) {
   s2.style.width = "420px";
   s2.style.overflow = "hidden"
   s.before(s2)
-
+  console.log("status 2")
 }
 
 function deleteStatusLine(window, text) {

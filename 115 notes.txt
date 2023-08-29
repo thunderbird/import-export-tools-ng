@@ -72,7 +72,7 @@ addSubfolders(curFolder, subfPath)
       create sbd(subfPath)
       addSubfolders(subf, subfPath)
 
-      PLEASE, PLEASE, PLEASE - READ AND GIVE FEEDBACK !!!
+PLEASE, PLEASE, PLEASE - READ AND GIVE FEEDBACK !!!
 
 B7 should Be one step away from the v14 release pending no
 surprises, HOWEVER, there are over 200 beta users and I have 
@@ -86,4 +86,10 @@ issues "
 Or of course flag problems.
 
 My apologies b7 took so long. I had to discover and then 
-com
+completely redo mbox support so anyone doing mbox imports 
+or exports, your help is requested.
+
+Please do feedback in the feedback issue not here:
+
+Thanks in advance 
+Christopher 

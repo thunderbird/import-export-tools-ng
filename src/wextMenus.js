@@ -1165,11 +1165,13 @@ async function openOptions() {
 // import eml/rfv822 msg attachment as new msg in current folder
 async function importEmlAttToFolder(attCtx) {
 
-  try {
   // get attachment as File blob
   let id = (await messenger.mailTabs.getSelectedMessages()).messages[0].id;
   let attachmentFile = await messenger.messages.getAttachmentFile(id, attCtx.attachments[0].partName);
   let currentFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
+
+  console.log(currentFolder)
+  
 
   // we cannot import directly to an imap folder
   // get the first local folder account and import to first folder as tmp msg
@@ -1179,11 +1181,16 @@ async function importEmlAttToFolder(attCtx) {
 
   // we cannot know name so just grab first "none" type account
   let localFolder = allAccounts.find(acc => acc.type == "none");
+
+  console.log(localFolder)
+  console.log(localFolder.folders)
+  console.log(localFolder.folders[0])
+
+
+
   let msgHdr = await messenger.messages.import(attachmentFile, localFolder.folders[0]);
   await messenger.messages.move([msgHdr.id], currentFolder);
-  } catch (ex) {
-    alert("There was a problem importing the message:\n" + ex);
-  }
+    //alert("There was a problem importing the message:\n" + ex);
 }
 
 // listener to change any  menus

@@ -71,3 +71,19 @@ addSubfolders(curFolder, subfPath)
     if subf hasSubfolders
       create sbd(subfPath)
       addSubfolders(subf, subfPath)
+
+      PLEASE, PLEASE, PLEASE - READ AND GIVE FEEDBACK !!!
+
+B7 should Be one step away from the v14 release pending no
+surprises, HOWEVER, there are over 200 beta users and I have 
+heard from only a handful of people. Please for myself and 
+the sake of a solid release I would realy appreciate even
+a small bit of info like :
+
+"I am onsystem XYZ and I used features abc and had no
+issues "
+
+Or of course flag problems.
+
+My apologies b7 took so long. I had to discover and then 
+com

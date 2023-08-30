@@ -1083,24 +1083,24 @@ async function menusUpdate(info, tab) {
   }
 
   // default visibility
-    await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
-    await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep2", { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
-    await messenger.menus.refresh();
+  await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep2", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
+  await messenger.menus.refresh();
 
-  
+
 
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
@@ -1165,13 +1165,15 @@ async function openOptions() {
 // import eml/rfv822 msg attachment as new msg in current folder
 async function importEmlAttToFolder(attCtx) {
 
-  // get attachment as File blob
-  let id = (await messenger.mailTabs.getSelectedMessages()).messages[0].id;
-  let attachmentFile = await messenger.messages.getAttachmentFile(id, attCtx.attachments[0].partName);
-  let currentFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
+  let windows = await messenger.windows.getAll({ populate: true });
+  let currentWin = windows.find(fw => fw.focused)
+  let currentTab = currentWin.tabs.find(t => t.active);
 
-  console.log(currentFolder)
-  
+  let msgDisplayed = await messenger.messageDisplay.getDisplayedMessage(currentTab.id);
+  //console.log(msgDisplayed)
+
+  // get attachment as File blob
+  let attachmentFile = await messenger.messages.getAttachmentFile(msgDisplayed.id, attCtx.attachments[0].partName);
 
   // we cannot import directly to an imap folder
   // get the first local folder account and import to first folder as tmp msg
@@ -1182,15 +1184,9 @@ async function importEmlAttToFolder(attCtx) {
   // we cannot know name so just grab first "none" type account
   let localFolder = allAccounts.find(acc => acc.type == "none");
 
-  console.log(localFolder)
-  console.log(localFolder.folders)
-  console.log(localFolder.folders[0])
-
-
-
   let msgHdr = await messenger.messages.import(attachmentFile, localFolder.folders[0]);
-  await messenger.messages.move([msgHdr.id], currentFolder);
-    //alert("There was a problem importing the message:\n" + ex);
+  await messenger.messages.move([msgHdr.id], msgDisplayed.folder);
+  //alert("There was a problem importing the message:\n" + ex);
 }
 
 // listener to change any  menus

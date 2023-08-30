@@ -402,7 +402,7 @@ export var mboxImportExport = {
           firstLineIndex = -1;
         }
 
-        rawBytes = rawBytes.replace(fromRegx, ">$1" )
+        rawBytes = rawBytes.replace(fromRegx, ">$1")
         //console.log(rawBytes.substring(0,500))
 
         //console.log(rawBytes)
@@ -533,45 +533,33 @@ export var mboxImportExport = {
 
 
 
-rebuildSummary: async function (folder) {
-  if (folder.locked) {
-    folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
-    return;
-  }
-  if (folder.supportsOffline) {
-    // Remove the offline store, if any.
-    await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
-      console.error
-    );
-  }
+  rebuildSummary: async function (folder) {
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+        console.error
+      );
+    }
 
-  // We may be rebuilding a folder that is not the displayed one.
-  // TODO: Close any open views of this folder.
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
 
-  // Send a notification that we are triggering a database rebuild.
-  MailServices.mfn.notifyFolderReindexTriggered(folder);
+    folder.msgDatabase.summaryValid = false;
 
-  folder.msgDatabase.summaryValid = false;
-
-  const msgDB = folder.msgDatabase;
-  msgDB.summaryValid = false;
-  try {
-    folder.closeAndBackupFolderDB("");
-    folder.msgDatabase = null;
-  } catch (e) {
-    // In a failure, proceed anyway since we're dealing with problems
-    folder.ForceDBClosed();
-    folder.msgDatabase = null;
-
-  }
-
-  if (0) {
-    gViewWrapper?.close();
-    folder.updateFolder(window.msgWindow);
-    folderTree.dispatchEvent(new CustomEvent("select"));
-  } else {
-    //window.gTabmail.currentAbout3Pane.gDBView.close()
-    //folder.updateFolder(window.msgWindow);
+    const msgDB = folder.msgDatabase;
+    msgDB.summaryValid = false;
+    try {
+      folder.closeAndBackupFolderDB("");
+      folder.msgDatabase = null;
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+      folder.msgDatabase = null;
+    }
 
     var dbDone;
     // @implements {nsIUrlListener}
@@ -582,19 +570,15 @@ rebuildSummary: async function (folder) {
       OnStopRunningUrl(url, status) {
         //console.log("pf list",status)
         dbDone = true;
-      }};
+      }
+    };
 
-	var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
+    var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
-    var cnt = 0;
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 50));
-      cnt++;
     }
-    //console.log("dbr cnt ", cnt)
-
-  }
-},
+  },
 
   parseListner: function () {
     console.log("pf list")
@@ -604,7 +588,7 @@ rebuildSummary: async function (folder) {
     //this.toCompactFolderList.forEach(msgFolder => {
     for (let index = 0; index < this.toCompactFolderList.length; index++) {
       const msgFolder = this.toCompactFolderList[index];
-      
+
       console.log(msgFolder.name)
       console.log("selecting")
       window.gTabmail.currentTabInfo.folder = msgFolder;
@@ -612,15 +596,15 @@ rebuildSummary: async function (folder) {
       this.forceFolderCompact(msgFolder);
       for (let index = 0; index < 100; index++) {
         break;
-      window.gTabmail.currentTabInfo.folder = msgFolder;
+        window.gTabmail.currentTabInfo.folder = msgFolder;
         console.log(msgFolder.getTotalMessages(false))
         try {
           let m = msgFolder.messages;
-          console.log("ms",m)
+          console.log("ms", m)
 
           break;
-        } catch(ex) {
-          console.log("wait",ex)
+        } catch (ex) {
+          console.log("wait", ex)
         }
         await new Promise(r => window.setTimeout(r, 100));
 

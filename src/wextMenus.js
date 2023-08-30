@@ -1124,13 +1124,13 @@ async function menusUpdate(info, tab) {
     }
   }
 
-  console.log((await messenger.accounts.get(accountId)).type)
-  
+  //console.log((await messenger.accounts.get(accountId)).type)
+
   // disable for importing mbox to imaap or nntp
   if (info.selectedFolder &&
-     (await messenger.accounts.get(accountId)).type == "imap" ||
-     (await messenger.accounts.get(accountId)).type == "rss" ||
-     (await messenger.accounts.get(accountId)).type == "nntp") {
+    (await messenger.accounts.get(accountId)).type == "imap" ||
+    (await messenger.accounts.get(accountId)).type == "rss" ||
+    (await messenger.accounts.get(accountId)).type == "nntp") {
     await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
   } else {
     await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });

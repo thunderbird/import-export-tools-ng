@@ -24,6 +24,7 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
 
@@ -382,6 +383,9 @@ export var mboxImportExport = {
           fromAddr = "";
         }
 
+        let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toString().split(" (")[0];
+        // let msgDateReceived = msgHdr.getUint32Property("dateReceived");
+
         let rawBytes = await this.getRawMessage(msgUri);
 
         //console.log(rawBytes.substring(0,500))
@@ -390,7 +394,7 @@ export var mboxImportExport = {
           sep = "\n";
         }
 
-        let fromHdr = `${sep}From - ${fromAddr}\n`;
+        let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
         //console.log(rawBytes.substring(0, 5))
         var firstLineIndex;
         if (rawBytes.substring(0, 5) == "From ") {
@@ -578,10 +582,6 @@ export var mboxImportExport = {
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 50));
     }
-  },
-
-  parseListner: function () {
-    console.log("pf list")
   },
 
   compactAllFolders: async function () {

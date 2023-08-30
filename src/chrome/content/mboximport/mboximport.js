@@ -91,6 +91,10 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
+// make sure there is no lingering ietngStatusText
+if (window.document.getElementById("ietngStatusText")) {
+	window.document.getElementById("ietngStatusText").remove();
+}
 
 async function test() {
 	let dir = getPredefinedFolder(0);

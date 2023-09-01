@@ -97,6 +97,31 @@ if (window.document.getElementById("ietngStatusText")) {
 }
 
 async function test() {
+
+
+	// Make the DB view
+  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
+  let dbView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
+  dbView.init(null, null, null);
+
+
+  let outCount = {};
+  dbView.open(
+    GetFirstSelectedMsgFolder(),
+    Ci.nsMsgViewSortType.byDate,
+    Ci.nsMsgViewSortOrder.ascending,
+    0,
+    outCount
+  );
+
+	console.log(outCount)
+
+  // Did
+	var msguri = dbView.getURIForViewIndex(1);
+	console.log(msguri)
+	return;
+
+
 	let dir = getPredefinedFolder(0);
 
 	//await buildAndExportMbox(msgFolder, dir);
@@ -1023,21 +1048,11 @@ async function exportfolder(params) {
 
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
-	console.log("calling ex f mbox")
 
-	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolder, flatten);
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 	return;
 
 
-	if (localfolder && !isVirtualFolder) {
-		// console.log("Using exportSingleLocaleFolder");
-		for (let i = 0; i < folders.length; i++)
-			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
-	} else if (folders.length === 1 && isVirtualFolder) {
-		exportVirtualFolder(folders[0], destdirNSIFILE); //msgFolder?
-	} else {
-		exportRemoteFolders(destdirNSIFILE, folders);
-	}
 }
 
 async function IETexportZip(destdirNSIFILE, folders) {

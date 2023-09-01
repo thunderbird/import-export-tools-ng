@@ -41,7 +41,7 @@ mboxImportExport.setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {
-	//console.log("expMenuDispacher: ", data);
+	console.log("expMenuDispacher: ", data);
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {

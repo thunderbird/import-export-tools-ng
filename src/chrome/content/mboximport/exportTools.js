@@ -60,6 +60,7 @@ gTabmail,
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 // console.debug('exportTools start');
 
@@ -222,6 +223,8 @@ async function exportSelectedMsgs(type, params) {
 	}
 
 	let emlsArray = gTabmail.currentAbout3Pane.gDBView.getURIsForSelection();
+
+	console.log(emlsArray)
 
 	IETskipped = 0;
 	if (isOffLineImap) {
@@ -1115,11 +1118,15 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					data = this.emailtext + "\n";
 					// Some Imap servers don't add to the message the "From" prologue
 					if (data && !data.match(/^From/)) {
-						var da = new Date;
-						// Mbox format requires that the date in "From" first line is 24 characters long
-						var now = da.toString().substring(0, 24);
-						now = now.replace(da.getFullYear() + " ", "") + " " + da.getFullYear();
-						var prologue = "From - " + now + "\n";
+						let fromAddr;
+						try {
+							fromAddr = parse5322.parseFrom(hdr.author)[0].address;
+						} catch (ex) {
+							fromAddr = "";
+						}
+						let msgDate = (new Date(hdr.dateInSeconds * 1000)).toString().split(" (")[0];
+
+						var prologue = "From - " + fromAddr + "  " + msgDate + "\n";
 						data = prologue + data;
 					}
 					data = IETescapeBeginningFrom(data);

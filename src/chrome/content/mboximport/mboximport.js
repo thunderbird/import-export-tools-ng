@@ -112,120 +112,6 @@ async function test() {
 
 }
 
-async function testBuildMbox(msgFolder, dest) {
-	let st = new Date();
-	console.log("Start: ", st, dest.path, msgFolder.prettyName)
-	var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
-
-	let emlsArray = gTabmail.currentAbout3Pane.gDBView.getURIsForSelection();
-	//let emlsArray = gTabmail.currentAbout3Pane.gDBView.getSelectedMsgHdrs();
-	let fromRegx = /^From: ([^\n\r]*)$/m;
-	var msgsBuffer = "";
-	var sep = "";
-	const maxFileSize = 1011000000;
-	const kFileChunkSize = 10000000;
-
-	const getMsgLoop = async (emlsArray, startIndex) => {
-		var msgsBuffer = "";
-		var index;
-		var totalBytes = 0;
-		console.log("write ", emlsArray.length)
-
-
-		//let r = await IOUtils.write(mboxDestPath, new Uint8Array(), {mode: "overwrite"})
-		let r = await IOUtils.writeUTF8(mboxDestPath, "", { mode: "overwrite" })
-
-		for (index = startIndex; index < emlsArray.length; index++) {
-			const msgUri = emlsArray[index];
-
-			let rawBytes = await getRawMessage(msgUri);
-			//console.log(rawBytes)
-
-			//console.log(rawBytes.length)
-			let fromStr = "";
-			let fromMatch = rawBytes.match(fromRegx);
-			if (!fromMatch) {
-				fromStr = "";
-			} else {
-				fromStr = fromMatch[1];
-			}
-			let fromAddr = "";
-			if (fromStr == "noFrom") {
-				fromAddr = "";
-			} else {
-				//console.log(fromStr)
-				try {
-					fromAddr = parse5322.parseFrom(fromStr)[0].address;
-				} catch (ex) {
-					fromAddr = "";
-				}
-			}
-			let fromHdr = `From - ${fromAddr}\n`;
-
-			rawBytes = fromHdr + rawBytes;
-			//console.log(rawBytes)
-			//console.log(msgsBuffer)
-			if (index) {
-				sep = "\n";
-			}
-			msgsBuffer = msgsBuffer + sep + rawBytes;
-			//console.log("msg ", index  + 1)
-
-			if (index == emlsArray.length - 1) {
-				console.log("end")
-			}
-
-			if (msgsBuffer.length >= kFileChunkSize || index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
-				//	if (msgsBuffer.length >= kFileChunkSize || index == (emlsArray.length - 1)) {
-
-				console.log("write ", index + 1)
-				//msgsBuffer = ietngUtils.stringToBytes(msgsBuffer)
-
-				//let r = await IOUtils.write(mboxDestPath, msgsBuffer, {mode: "append"})
-				let r = await IOUtils.writeUTF8(mboxDestPath, msgsBuffer, { mode: "append" })
-
-				totalBytes += msgsBuffer.length;
-
-				msgsBuffer = "";
-				if (index == emlsArray.length - 1 || totalBytes >= maxFileSize) {
-					IETwritestatus("Msgs: " + (index + 1) + " Time: " + (new Date() - st))
-
-					break;
-				}
-				//IETwritestatus("Msgs: " + (index + 1))
-			}
-
-		}
-		console.log(totalBytes)
-		return index;
-	};
-
-	let rv = await getMsgLoop(emlsArray, 0);
-	console.log(rv)
-
-	//console.log("buffer len ", rv.msgsBuffer.length)
-	//console.log(msgsBuffer)
-	/*
-	msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
-	let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer)
-
-	if (rv.index < emlsArray.length) {
-		let off = msgsBuffer.length;
-		msgsBuffer = ""
-		rv = await getMsgLoop(emlsArray, rv.index);
-		console.log(rv.index)
-		
-		console.log("buffer len ", rv.msgsBuffer.length)
-		//console.log(msgsBuffer)
-		msgsBuffer = ietngUtils.stringToBytes(rv.msgsBuffer)
-		let r = await IOUtils.write("C:\\Dev\\testmbx", msgsBuffer, {mode: "append"})
-	*/
-
-
-	let end = new Date();
-	console.log("End: ", end, (end - st) / 1000)
-}
-
 
 async function buildAndExportMbox(msgFolder, dest) {
 	let st = new Date();
@@ -1053,7 +939,7 @@ async function exportfolder(params) {
 
 	var localfolder = params.localFolder;
 	var zip = params.zipped;
-	var subfolder = params.includeSubfolders;
+	var subfolders = params.includeSubfolders;
 	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)");
@@ -1074,7 +960,7 @@ async function exportfolder(params) {
 		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 	}
 
-	console.log("   Subfolders:", subfolder);
+	console.log("   Subfolders:", subfolders);
 	console.log("   Structured: ", keepstructure);
 	console.log("   Local: ", localfolder);
 	console.log("   Zip: ", zip);
@@ -1119,6 +1005,13 @@ async function exportfolder(params) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 		return;
 	}
+
+	if (localfolder && !subfolders) {
+		exportVirtualFolder(folders[0], destdirNSIFILE);
+		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		return;
+	}
+
 	// new export
 	let rootFolder = folders[0];
 	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);
@@ -1314,7 +1207,7 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, true, false);
 	//await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
-	
+
 }
 
 async function createUniqueDirectory(parent, prefix) {

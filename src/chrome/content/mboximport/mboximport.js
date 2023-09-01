@@ -1012,6 +1012,11 @@ async function exportfolder(params) {
 		return;
 	}
 
+	if (!localfolder && !subfolders) {
+		exportRemoteFolders(destdirNSIFILE, folders);
+		return;
+	}
+
 	// new export
 	let rootFolder = folders[0];
 	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);

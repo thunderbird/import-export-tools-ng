@@ -299,6 +299,7 @@ export var mboxImportExport = {
 
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
+    console.log(" exp folders to mbox")
 
     let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
@@ -307,45 +308,60 @@ export var mboxImportExport = {
 
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
-    //console.log(inclSubfolders)
+    console.log(inclSubfolders)
+    console.log(flattenSubfolders)
+
     //console.log(rootMsgFolder.hasSubFolders)
 
     // This is our structured subfolder export if subfolders exist
     if (inclSubfolders && rootMsgFolder.hasSubFolders && !flattenSubfolders) {
+      console.log("ex sf")
+
       let fullSbdDirPath = PathUtils.join(destPath, uniqueName + ".sbd");
       await IOUtils.makeDirectory(fullSbdDirPath);
       await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
-    }
+    } else if (inclSubfolders && rootMsgFolder.hasSubFolders && flattenSubfolders) {
+      console.log("fsf")
+      await this.exportSubFoldersFlat(rootMsgFolder, destPath);
 
+
+    }
     await new Promise(r => window.setTimeout(r, 8000));
     window.document.getElementById("ietngStatusText").remove();
   },
 
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
-
     //console.log(msgFolder.name)
     //console.log(fullSbdDirPath)
 
     for (let subMsgFolder of msgFolder.subFolders) {
-
       //console.log("sf ", subMsgFolder.name)
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
-      //console.log("fullSubMsgFolderPath ", fullSubMsgFolderPath)
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
         let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName + ".sbd");
-        //console.log(fullNewSbdDirPath)
-
         await IOUtils.makeDirectory(fullNewSbdDirPath);
         await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
-      } else {
-        //return;
       }
-
     }
   },
 
+
+  exportSubFoldersFlat: async function (msgFolder, fullFolderPath) {
+    console.log(msgFolder.name)
+    //console.log(fullSbdDirPath)
+
+    for (let subMsgFolder of msgFolder.subFolders) {
+      console.log("sf ", subMsgFolder.name)
+      let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, subMsgFolder.prettyName);
+
+      await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
+      if (subMsgFolder.hasSubFolders) {
+        await this.exportSubFoldersFlat(subMsgFolder, fullFolderPath);
+      }
+    }
+  },
 
   buildAndExportMbox: async function (msgFolder, dest) {
     let st = new Date();

@@ -1109,12 +1109,24 @@ async function exportfolder(params) {
 		return;
 	}
 
+	if (folders[0].isServer) {
+		console.log("Exporting server");
+		// console.log(msgFolder.filePath.path);
+		// console.log(msgFolder.prettyName);
+		let destPath = destdirNSIFILE.path;
+		let msgFolder = folders[0];
+		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
+		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		return;
+	}
 	// new export
 	let rootFolder = folders[0];
 	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);
 
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
+	console.log("calling ex f mbox")
+
 	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolder, flatten);
 	return;
 
@@ -1280,13 +1292,14 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 }
 
 // Rewrite / fix account level export - use IOUtils #296
-async function exportAccount(accountName, accountFolderPath, destPath) {
+async function exportAccount(rootFolder, accountFolderPath, destPath) {
 
-	// console.log("Start: exportAccount");
+	console.log("Start: exportAccount");
 	// console.log("   SrcPath: ", accountFolderPath);
 	// console.log("   srcFolder: ", accountName);
 	// console.log("   destPath: ", destPath);
 
+	let accountName = rootFolder.prettyName;
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath;
 	if (IOUtils.createUniqueDirectory) {
@@ -1297,15 +1310,11 @@ async function exportAccount(accountName, accountFolderPath, destPath) {
 	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 
 	// copy account tree
-	await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
+	//let destPath = destdirNSIFILE.path;
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, true, false);
+	//await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
-	// Get all msf files and zero out
-	let msfFiles = await getDirectoryChildren(finalExportFolderPath, { recursive: true, fileFilter: ".msf" });
-
-	for (let msfFile of msfFiles) {
-		await IOUtils.remove(msfFile, { ignoreAbsent: true });
-		await IOUtils.write(msfFile, new Uint8Array(), { mode: "create" });
-	}
+	
 }
 
 async function createUniqueDirectory(parent, prefix) {

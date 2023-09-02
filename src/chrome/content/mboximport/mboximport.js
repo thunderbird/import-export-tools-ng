@@ -100,9 +100,9 @@ async function test() {
 
 
 	// Make the DB view
-  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=xfvf";
+  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=search";
   let dbView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
-  dbView.init(null, null, null);
+  dbView.init(messenger, msgWindow, null);
 
 
   let outCount = {};

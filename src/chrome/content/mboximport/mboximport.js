@@ -100,22 +100,29 @@ async function test() {
 
 
 	// Make the DB view
-  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=search";
+  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=threaded";
   let dbView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
   dbView.init(messenger, msgWindow, null);
 
 
   let outCount = {};
+	dbView.viewFolder = GetFirstSelectedMsgFolder();
+
   dbView.open(
     GetFirstSelectedMsgFolder(),
     Ci.nsMsgViewSortType.byDate,
     Ci.nsMsgViewSortOrder.ascending,
-    0,
+    5,
     outCount
   );
 
-	console.log(outCount)
+	await new Promise(r => window.setTimeout(r, 150));
+  let treeView = dbView.QueryInterface(Ci.nsITreeView);
 
+
+	console.log(treeView.rowCount)
+	console.log(dbView.numSelected)
+	
   // Did
 	var msguri = dbView.getURIForViewIndex(1);
 	console.log(msguri)

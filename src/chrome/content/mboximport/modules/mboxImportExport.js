@@ -338,6 +338,19 @@ export var mboxImportExport = {
       //console.log("sf ", subMsgFolder.name)
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
+
+
+      if (subMsgFolder.flags & 0x0020) {
+      console.log("vf ", subMsgFolder.name)
+      window.gTabmail.currentTabInfo.folder = subMsgFolder;
+    	var dbView = window.gTabmail.currentAbout3Pane.gDBView;
+
+      var msguri = dbView.getURIForViewIndex(1);
+      var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+			var hdr = mms.messageURIToMsgHdr(msguri);
+	    console.log(hdr.subject)
+      }
+
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
         let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName + ".sbd");

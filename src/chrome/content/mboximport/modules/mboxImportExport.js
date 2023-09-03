@@ -339,17 +339,40 @@ export var mboxImportExport = {
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
 
+      console.log(subMsgFolder.flags)
 
       if (subMsgFolder.flags & 0x0020) {
-      console.log("vf ", subMsgFolder.name)
-      window.gTabmail.currentTabInfo.folder = subMsgFolder;
-    	var dbView = window.gTabmail.currentAbout3Pane.gDBView;
+        console.log("vf ", subMsgFolder.name)
+        let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+        window.gTabmail.currentTabInfo.folder = subMsgFolder;
+        var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
 
-      var msguri = dbView.getURIForViewIndex(1);
-      var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-			var hdr = mms.messageURIToMsgHdr(msguri);
-	    console.log(hdr.subject)
+        var msguri = gDBView.getURIForViewIndex(1);
+        var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+        var hdr = mms.messageURIToMsgHdr(msguri);
+        console.log(hdr.subject)
+
+        gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
+
+        var uriArray = [];
+        for (let i = 0; i < subMsgFolder.getTotalMessages(false); i++) {
+          // error handling changed in 102
+          // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+          // Resolves #359
+          try {
+            var msguri = gDBView.getURIForViewIndex(i);
+          } catch (ex) {
+            continue; // ignore errors for dummy rows
+          }
+
+          uriArray.push(msguri);
+
+        }
+        gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+        window.gTabmail.currentTabInfo.folder = curMsgFolder;
+        console.log(uriArray)
       }
+
 
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {

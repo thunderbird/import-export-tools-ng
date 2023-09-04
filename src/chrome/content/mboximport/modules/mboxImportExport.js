@@ -634,7 +634,7 @@ export var mboxImportExport = {
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 50));
     }
-    this.touchCopyFolderMsg(folder);
+    await this._touchCopyFolderMsg(folder);
 
   },
 
@@ -679,7 +679,7 @@ export var mboxImportExport = {
     return true;
   },
 
-  touchCopyFolderMsg: function (msgFolder) {
+  _touchCopyFolderMsg: async function (msgFolder) {
     let folderMsgs = msgFolder.messages;
     if (!folderMsgs.hasMoreElements()) {
       return;
@@ -697,15 +697,73 @@ export var mboxImportExport = {
       true
     );
 
+    await new Promise(r => window.setTimeout(r, 1000));
+
     let trashMsgs = trashFolder.messages;
-    let m = trashMsgs.
+    let m = trashMsgs.hasMoreElements()
+    console.log(m)
     let trashMsg = trashMsgs.getNext();
+
+    
+
+var folderListener = {
+  onFolderAdded() {},
+  onMessageAdded(msgFolder, msgHdr) {
+    console.log("added",msgHdr.subject)
+
+    msgFolder.deleteMessages(
+      [msgHdr],
+      window.msgWindow,
+      false,
+      false,
+      null,
+      false
+    )
+    //msgFolder.delete(msgHdr)
+  },
+  onFolderRemoved(msgfoldername, msgHdr) {
+    console.log("removed")
+
+    console.log(msgHdr.subject)
+
+  },
+  onMessageRemoved() {},
+  onFolderPropertyChanged() {},
+  onFolderIntPropertyChanged() {},
+  onFolderBoolPropertyChanged() {},
+  onFolderUnicharPropertyChanged() {},
+  onFolderPropertyFlagChanged() {},
+  onFolderEvent() {},
+};
+
+  msgFolder.AddFolderListener(folderListener);
+
     MailServices.copy.copyMessages(
       trashFolder,
       [trashMsg],
       msgFolder,
       false,
-      null,
+      {
+        OnStartCopy() {
+          console.log("copy start")
+
+        },
+        OnProgress(progress, progressMax) {},
+        SetMessageKey(key) {
+          console.log("set key ", key)
+
+        },
+        GetMessageId(messageId) {
+          console.log("id ", messageId)
+
+        },
+        OnStopCopy(status) {
+          if (status == Cr.NS_OK) {
+            console.log("copy ok")
+          } else {
+          }
+        },
+      },
       window.msgWindow,
       true
     );

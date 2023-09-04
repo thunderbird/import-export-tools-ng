@@ -634,6 +634,8 @@ export var mboxImportExport = {
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 50));
     }
+    this.touchCopyFolderMsg(folder);
+
   },
 
   compactAllFolders: async function () {
@@ -675,5 +677,38 @@ export var mboxImportExport = {
     foStream.close();
     msgFolder.compact(null, window.msgWindow);
     return true;
+  },
+
+  touchCopyFolderMsg: function (msgFolder) {
+    let folderMsgs = msgFolder.messages;
+    if (!folderMsgs.hasMoreElements()) {
+      return;
+    }
+    let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
+    let firstMsg = folderMsgs.getNext();
+
+    MailServices.copy.copyMessages(
+      msgFolder,
+      [firstMsg],
+      trashFolder,
+      false,
+      null,
+      window.msgWindow,
+      true
+    );
+
+    let trashMsgs = trashFolder.messages;
+    let m = trashMsgs.
+    let trashMsg = trashMsgs.getNext();
+    MailServices.copy.copyMessages(
+      trashFolder,
+      [trashMsg],
+      msgFolder,
+      false,
+      null,
+      window.msgWindow,
+      true
+    );
+
   }
 }

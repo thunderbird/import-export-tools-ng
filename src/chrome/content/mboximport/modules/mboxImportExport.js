@@ -609,12 +609,12 @@ export var mboxImportExport = {
     const msgDB = folder.msgDatabase;
     msgDB.summaryValid = false;
     try {
-      folder.closeAndBackupFolderDB("");
-      folder.msgDatabase = null;
+      //folder.closeAndBackupFolderDB("");
+      //folder.msgDatabase = null;
     } catch (e) {
       // In a failure, proceed anyway since we're dealing with problems
-      folder.ForceDBClosed();
-      folder.msgDatabase = null;
+      //folder.ForceDBClosed();
+      //folder.msgDatabase = null;
     }
 
     var dbDone;
@@ -632,7 +632,7 @@ export var mboxImportExport = {
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
     while (!dbDone) {
-      await new Promise(r => window.setTimeout(r, 50));
+      await new Promise(r => window.setTimeout(r, 100));
     }
     await this._touchCopyFolderMsg(folder);
 
@@ -680,32 +680,70 @@ export var mboxImportExport = {
   },
 
   _touchCopyFolderMsg: async function (msgFolder) {
-    let folderMsgs = msgFolder.messages;
-    if (!folderMsgs.hasMoreElements()) {
-      return;
-    }
-    let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
-    let firstMsg = folderMsgs.getNext();
+    window.gTabmail.currentTabInfo.folder = msgFolder;
+    
+    var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+    tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
+    tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
 
-    MailServices.copy.copyMessages(
+
+    //let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
+    //let firstMsg = folderMsgs.getNext();
+    await new Promise(r => window.setTimeout(r, 1000));
+
+    let newKey;
+
+    MailServices.copy.copyFileMessage(
+      tempEMLFile,
       msgFolder,
-      [firstMsg],
-      trashFolder,
+      null,
+      false,
+      Ci.nsMsgMessageFlags.Read,
+      "",
+      {
+        OnStartCopy() {
+          console.log("copy start")
+
+        },
+        OnProgress(progress, progressMax) {},
+        SetMessageKey(key) {
+          console.log("set key ", key)
+          newKey = key;
+
+        },
+        GetMessageId(messageId) {
+          console.log("id ", messageId)
+
+        },
+        OnStopCopy(status) {
+          if (status == Cr.NS_OK) {
+            console.log("copy ok")
+            //await new Promise(r => window.setTimeout(r, 100));
+
+          } else {
+          }
+        },
+      },
+      window.msgWindow
+    );
+      return
+    
+    await new Promise(r => window.setTimeout(r, 1000));
+
+    msgFolder.deleteMessages(
+      [msgFolder.GetMessageHeader(newKey)],
+      window.msgWindow,
+      false,
       false,
       null,
-      window.msgWindow,
-      true
+      false
     );
 
     await new Promise(r => window.setTimeout(r, 1000));
 
-    let trashMsgs = trashFolder.messages;
-    let m = trashMsgs.hasMoreElements()
-    console.log(m)
-    let trashMsg = trashMsgs.getNext();
+    //msgFolder.compact(null, window.msgWindow);
 
-    
-
+    /*
 var folderListener = {
   onFolderAdded() {},
   onMessageAdded(msgFolder, msgHdr) {
@@ -767,6 +805,6 @@ var folderListener = {
       window.msgWindow,
       true
     );
-
+*/
   }
 }

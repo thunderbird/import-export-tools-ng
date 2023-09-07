@@ -98,6 +98,9 @@ if (window.document.getElementById("ietngStatusText")) {
 
 async function test() {
 
+	let msgFolder = GetFirstSelectedMsgFolder();
+	mboxImportExport._touchCopyFolderMsg(msgFolder)
+	return
 
 	// Make the DB view
   let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=threaded";

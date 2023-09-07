@@ -590,6 +590,9 @@ export var mboxImportExport = {
 
 
   rebuildSummary: async function (folder) {
+    //window.gTabmail.currentTabInfo.folder = folder;
+    //return
+    
     if (folder.locked) {
       folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
       return;
@@ -629,9 +632,12 @@ export var mboxImportExport = {
       }
     };
 
+    //window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
     folder.updateFolder(window.msgWindow)
-    await this._touchCopyFolderMsg(folder);
+    let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
+    //folderTree.dispatchEvent(new CustomEvent("select"));
 
+    await this._touchCopyFolderMsg(folder);
     return
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
@@ -693,7 +699,8 @@ export var mboxImportExport = {
 
     //let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
     //let firstMsg = folderMsgs.getNext();
-    await new Promise(r => window.setTimeout(r, 5000));
+    await new Promise(r => window.setTimeout(r, 7000));
+    window.gTabmail.currentTabInfo.folder = msgFolder;
 
     let newKey;
 
@@ -730,9 +737,8 @@ export var mboxImportExport = {
       },
       window.msgWindow
     );
-      return
     
-    await new Promise(r => window.setTimeout(r, 1000));
+    await new Promise(r => window.setTimeout(r, 5000));
 
     msgFolder.deleteMessages(
       [msgFolder.GetMessageHeader(newKey)],
@@ -743,9 +749,9 @@ export var mboxImportExport = {
       false
     );
 
-    await new Promise(r => window.setTimeout(r, 1000));
+    await new Promise(r => window.setTimeout(r, 5000));
 
-    //msgFolder.compact(null, window.msgWindow);
+    msgFolder.compact(null, window.msgWindow);
 
     /*
 var folderListener = {

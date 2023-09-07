@@ -609,11 +609,11 @@ export var mboxImportExport = {
     const msgDB = folder.msgDatabase;
     msgDB.summaryValid = false;
     try {
-      //folder.closeAndBackupFolderDB("");
+      folder.closeAndBackupFolderDB("");
       //folder.msgDatabase = null;
     } catch (e) {
       // In a failure, proceed anyway since we're dealing with problems
-      //folder.ForceDBClosed();
+      folder.ForceDBClosed();
       //folder.msgDatabase = null;
     }
 
@@ -629,6 +629,10 @@ export var mboxImportExport = {
       }
     };
 
+    folder.updateFolder(window.msgWindow)
+    await this._touchCopyFolderMsg(folder);
+
+    return
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
     while (!dbDone) {
@@ -680,7 +684,7 @@ export var mboxImportExport = {
   },
 
   _touchCopyFolderMsg: async function (msgFolder) {
-    window.gTabmail.currentTabInfo.folder = msgFolder;
+    //window.gTabmail.currentTabInfo.folder = msgFolder;
     
     var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
@@ -689,7 +693,7 @@ export var mboxImportExport = {
 
     //let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
     //let firstMsg = folderMsgs.getNext();
-    await new Promise(r => window.setTimeout(r, 1000));
+    await new Promise(r => window.setTimeout(r, 5000));
 
     let newKey;
 

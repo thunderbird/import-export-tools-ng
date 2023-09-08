@@ -25,6 +25,7 @@ var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
 
@@ -272,7 +273,7 @@ export var mboxImportExport = {
 
     msgFolder.createSubfolder(subFolderName, window.msgWindow);
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-    await new Promise(r => window.setTimeout(r, 100));
+    await new Promise(r => window.setTimeout(r, 1000));
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
@@ -282,7 +283,7 @@ export var mboxImportExport = {
 
     //window.gTabmail.currentTabInfo.folder = msgFolder;
     //window.SelectFolder(msgFolder.URI)
-    //await new Promise(r => window.setTimeout(r, 4000));
+    await new Promise(r => window.setTimeout(r, 1000));
 
     //this.reindexDBandRebuildSummary(subMsgFolder);
     await this.rebuildSummary(subMsgFolder);
@@ -590,9 +591,9 @@ export var mboxImportExport = {
 
 
   rebuildSummary: async function (folder) {
-    //window.gTabmail.currentTabInfo.folder = folder;
+    window.gTabmail.currentTabInfo.folder = folder;
     //return
-    
+
     if (folder.locked) {
       folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
       return;
@@ -632,18 +633,28 @@ export var mboxImportExport = {
       }
     };
 
-    //window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
-    folder.updateFolder(window.msgWindow)
-    let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
-    //folderTree.dispatchEvent(new CustomEvent("select"));
+    //window.gTabmail.currentAbout3Pane.gViewWrapper?.open(folder)
+    //await new Promise(r => window.setTimeout(r, 3000));
 
-    await this._touchCopyFolderMsg(folder);
-    return
+    window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
+
+    //folder.updateFolder(window.msgWindow)
+
+    //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
+    //folderTree.dispatchEvent(new CustomEvent("select"));
+    //return
+
+    //await this._touchCopyFolderMsg(folder);
+
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 100));
     }
+
+    let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
+    folderTree.dispatchEvent(new CustomEvent("select"));
+
     await this._touchCopyFolderMsg(folder);
 
   },
@@ -691,7 +702,7 @@ export var mboxImportExport = {
 
   _touchCopyFolderMsg: async function (msgFolder) {
     //window.gTabmail.currentTabInfo.folder = msgFolder;
-    
+    this._setGlobalSearchEnabled(msgFolder, false)
     var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
     tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
@@ -699,11 +710,12 @@ export var mboxImportExport = {
 
     //let trashFolder = msgFolder.rootFolder.getFoldersWithFlags(0x100)[0];
     //let firstMsg = folderMsgs.getNext();
-    await new Promise(r => window.setTimeout(r, 7000));
+    await new Promise(r => window.setTimeout(r, 500));
     window.gTabmail.currentTabInfo.folder = msgFolder;
 
     let newKey;
 
+    await new Promise((resolve, reject) => {
     MailServices.copy.copyFileMessage(
       tempEMLFile,
       msgFolder,
@@ -716,7 +728,7 @@ export var mboxImportExport = {
           console.log("copy start")
 
         },
-        OnProgress(progress, progressMax) {},
+        OnProgress(progress, progressMax) { },
         SetMessageKey(key) {
           console.log("set key ", key)
           newKey = key;
@@ -729,6 +741,7 @@ export var mboxImportExport = {
         OnStopCopy(status) {
           if (status == Cr.NS_OK) {
             console.log("copy ok")
+            resolve();
             //await new Promise(r => window.setTimeout(r, 100));
 
           } else {
@@ -736,9 +749,9 @@ export var mboxImportExport = {
         },
       },
       window.msgWindow
-    );
-    
-    await new Promise(r => window.setTimeout(r, 5000));
+    )});
+
+    await new Promise(r => window.setTimeout(r, 2000));
 
     msgFolder.deleteMessages(
       [msgFolder.GetMessageHeader(newKey)],
@@ -749,9 +762,11 @@ export var mboxImportExport = {
       false
     );
 
-    await new Promise(r => window.setTimeout(r, 5000));
+    await new Promise(r => window.setTimeout(r, 3000));
 
     msgFolder.compact(null, window.msgWindow);
+
+    this._setGlobalSearchEnabled(msgFolder, true);
 
     /*
 var folderListener = {
@@ -816,5 +831,15 @@ var folderListener = {
       true
     );
 */
+  },
+
+  _setGlobalSearchEnabled: function (msgFolder, searchEnable) {
+    if (searchEnable) {
+      Gloda.resetFolderIndexingPriority(msgFolder, true);
+    } else {
+      Gloda.setFolderIndexingPriority(
+        msgFolder,
+        Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
+    }
   }
 }

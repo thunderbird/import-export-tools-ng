@@ -26,6 +26,8 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
+const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
+
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
 
@@ -279,6 +281,8 @@ export var mboxImportExport = {
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
     //let r = await IOUtils.copy(src, dst);
+
+    await new Promise(r => window.setTimeout(r, 4000));
 
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
@@ -592,10 +596,9 @@ export var mboxImportExport = {
 
 
   rebuildSummary: async function (folder) {
-    let msf = folder.summaryFile.path;
+    //let msf = folder.summaryFile.path;
     //IOUtils.remove(msf);
     //window.gTabmail.currentTabInfo.folder = folder;
-    //return
 
     if (folder.locked) {
       folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
@@ -624,6 +627,9 @@ export var mboxImportExport = {
       //folder.msgDatabase = null;
     }
 
+    //let msf = folder.summaryFile.path;
+    //IOUtils.remove(msf);
+
     var dbDone;
     // @implements {nsIUrlListener}
     let urlListener = {
@@ -642,15 +648,16 @@ export var mboxImportExport = {
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
 
     folder.updateFolder(window.msgWindow)
+    //window.gTabmail.currentTabInfo.folder = folder;
+
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.open(folder)
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.sortAscending()
-
+    
     //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
     //folderTree.dispatchEvent(new CustomEvent("select"));
 
-    await this._touchCopyFolderMsg(folder);
+    //await this._touchCopyFolderMsg(folder);
     return
-
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener)
     while (!dbDone) {
@@ -706,10 +713,15 @@ export var mboxImportExport = {
   },
 
   _touchCopyFolderMsg: async function (msgFolder) {
-    //window.gTabmail.currentTabInfo.folder = msgFolder;
-    //this._setGlobalSearchEnabled(msgFolder, false)
-    //this._setGlobalSearchEnabled(msgFolder, true)
 
+    await new Promise(r => window.setTimeout(r, 4000));
+
+
+    //GlodaMsgIndexer.indexFolder(msgFolder, {force: true})
+    //window.gTabmail.currentTabInfo.folder = msgFolder;
+    this._setGlobalSearchEnabled(msgFolder, false)
+    this._setGlobalSearchEnabled(msgFolder, true)
+    return
     var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
     tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
@@ -749,7 +761,6 @@ export var mboxImportExport = {
           if (status == Cr.NS_OK) {
             console.log("copy ok")
             resolve();
-            //await new Promise(r => window.setTimeout(r, 100));
 
           } else {
           }

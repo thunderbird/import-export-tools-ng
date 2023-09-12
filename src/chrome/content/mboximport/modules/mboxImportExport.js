@@ -627,9 +627,7 @@ export var mboxImportExport = {
       //folder.msgDatabase = null;
     }
 
-    //let msf = folder.summaryFile.path;
-    //IOUtils.remove(msf);
-
+    // we can use this for parseFolder
     var dbDone;
     // @implements {nsIUrlListener}
     let urlListener = {
@@ -647,19 +645,24 @@ export var mboxImportExport = {
 
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
 
-    folder.updateFolder(window.msgWindow)
+    folder.updateFolder(window.msgWindow);
     //window.gTabmail.currentTabInfo.folder = folder;
 
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.open(folder)
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.sortAscending()
-    
+
     //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
     //folderTree.dispatchEvent(new CustomEvent("select"));
 
+    // things we do to get folder to be included in global  search
+    // toggling global search inclusion works, but throws
+    // async tracker errors
+    this._toggleGlobalSearchEnable(folder);
     //await this._touchCopyFolderMsg(folder);
     return
+
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
-    msgLocalFolder.parseFolder(window.msgWindow, urlListener)
+    msgLocalFolder.parseFolder(window.msgWindow, urlListener);
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 100));
     }
@@ -712,16 +715,22 @@ export var mboxImportExport = {
     return true;
   },
 
+  _toggleGlobalSearchEnable(msgFolder) {
+    this._setGlobalSearchEnabled(msgFolder, false);
+    this._setGlobalSearchEnabled(msgFolder, true);
+  },
+
   _touchCopyFolderMsg: async function (msgFolder) {
 
-    await new Promise(r => window.setTimeout(r, 4000));
+    await new Promise(r => window.setTimeout(r, 3000));
 
 
     //GlodaMsgIndexer.indexFolder(msgFolder, {force: true})
     //window.gTabmail.currentTabInfo.folder = msgFolder;
-    this._setGlobalSearchEnabled(msgFolder, false)
-    this._setGlobalSearchEnabled(msgFolder, true)
-    return
+    //this._setGlobalSearchEnabled(msgFolder, false)
+    //this._setGlobalSearchEnabled(msgFolder, true)
+
+
     var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
     tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
@@ -735,74 +744,76 @@ export var mboxImportExport = {
     let newKey;
 
     await new Promise((resolve, reject) => {
-    MailServices.copy.copyFileMessage(
-      tempEMLFile,
-      msgFolder,
-      null,
-      false,
-      Ci.nsMsgMessageFlags.Read,
-      "",
-      {
-        OnStartCopy() {
-          console.log("copy start")
+      MailServices.copy.copyFileMessage(
+        tempEMLFile,
+        msgFolder,
+        null,
+        false,
+        Ci.nsMsgMessageFlags.Read,
+        "",
+        {
+          OnStartCopy() {
+            console.log("copy start")
 
-        },
-        OnProgress(progress, progressMax) { },
-        SetMessageKey(key) {
-          console.log("set key ", key)
-          newKey = key;
+          },
+          OnProgress(progress, progressMax) { },
+          SetMessageKey(key) {
+            console.log("set key ", key)
+            newKey = key;
 
-        },
-        GetMessageId(messageId) {
-          console.log("id ", messageId)
+          },
+          GetMessageId(messageId) {
+            console.log("id ", messageId)
 
-        },
-        OnStopCopy(status) {
-          if (status == Cr.NS_OK) {
-            console.log("copy ok")
-            resolve();
+          },
+          OnStopCopy(status) {
+            if (status == Cr.NS_OK) {
+              console.log("copy ok")
+              resolve();
 
-          } else {
-          }
+            } else {
+            }
+          },
         },
-      },
-      window.msgWindow
-    )});
+        window.msgWindow
+      )
+    });
 
     //await new Promise(r => window.setTimeout(r, 2000));
     await new Promise((resolve, reject) => {
-    msgFolder.deleteMessages(
-      [msgFolder.GetMessageHeader(newKey)],
-      window.msgWindow,
-      false,
-      true,
-      {
-        OnStartCopy() {
-          console.log("delete start")
+      msgFolder.deleteMessages(
+        [msgFolder.GetMessageHeader(newKey)],
+        window.msgWindow,
+        false,
+        true,
+        {
+          OnStartCopy() {
+            console.log("delete start")
 
-        },
-        OnProgress(progress, progressMax) { },
-        SetMessageKey(key) {
-          console.log("set key ", key)
-          newKey = key;
+          },
+          OnProgress(progress, progressMax) { },
+          SetMessageKey(key) {
+            console.log("set key ", key)
+            newKey = key;
 
-        },
-        GetMessageId(messageId) {
-          console.log("id ", messageId)
+          },
+          GetMessageId(messageId) {
+            console.log("id ", messageId)
 
-        },
-        OnStopCopy(status) {
-          if (status == Cr.NS_OK) {
-            console.log("delete ok")
-            resolve();
-            //await new Promise(r => window.setTimeout(r, 100));
+          },
+          OnStopCopy(status) {
+            if (status == Cr.NS_OK) {
+              console.log("delete ok")
+              resolve();
+              //await new Promise(r => window.setTimeout(r, 100));
 
-          } else {
-          }
+            } else {
+            }
+          },
         },
-      },
-      false
-    )});
+        false
+      )
+    });
 
     //await new Promise(r => window.setTimeout(r, 2000));
 
@@ -813,14 +824,14 @@ export var mboxImportExport = {
         dbDone = false;
       },
       OnStopRunningUrl(url, status) {
-        console.log("compact done",status)
+        console.log("compact done", status)
         dbDone = true;
       }
     };
 
     msgFolder.compact(urlListener, window.msgWindow);
     //await new Promise(r => window.setTimeout(r, 3000));
-    
+
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 100));
     }

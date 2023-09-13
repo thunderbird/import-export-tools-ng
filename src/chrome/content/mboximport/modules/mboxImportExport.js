@@ -645,7 +645,11 @@ export var mboxImportExport = {
 
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.close()
 
-    folder.updateFolder(window.msgWindow);
+    //folder.updateFolder(window.msgWindow);
+    // arbitrarily long delay until I can find correct folder listener like parseFolder
+    //await new Promise(r => window.setTimeout(r, 3000));
+    
+    
     //window.gTabmail.currentTabInfo.folder = folder;
 
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.open(folder)
@@ -654,21 +658,24 @@ export var mboxImportExport = {
     //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
     //folderTree.dispatchEvent(new CustomEvent("select"));
 
-    // things we do to get folder to be included in global  search
-    // toggling global search inclusion works, but throws
-    // async tracker errors
-    this._toggleGlobalSearchEnable(folder);
-    //await this._touchCopyFolderMsg(folder);
-    return
-
+    
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener);
     while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 100));
     }
 
+
     //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
     //folderTree.dispatchEvent(new CustomEvent("select"));
+
+
+    // things we do to get folder to be included in global  search
+    // toggling global search inclusion works, but throws
+    // async tracker errors
+    this._toggleGlobalSearchEnable(folder);
+    //await this._touchCopyFolderMsg(folder);
+    return
 
     //await this._touchCopyFolderMsg(folder);
 

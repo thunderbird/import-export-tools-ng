@@ -1139,7 +1139,7 @@ async function menusUpdate(info, tab) {
 
     }
   }
-  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { enabled: false });
+  //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { enabled: false });
   //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { enabled: false });
   //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id, { enabled: false });
   await messenger.menus.refresh();

@@ -1068,9 +1068,19 @@ async function exportfolder(params) {
 async function IETexportZip(destdirNSIFILE, folders) {
 	for (var i = 0; i < folders.length; i++) {
 		var zipFile = destdirNSIFILE.clone();
+		// export folder before zip
+
+
 		var file = msgFolder2LocalFile(folders[i]);
 		if (file.exists()) {
-			var path = file.leafName;
+
+
+			var path = folders[i].name;
+			var destPath = destdirNSIFILE.path;
+			let newname = findGoodFolderName(path, destdirNSIFILE, false);
+			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
+			let newDestPath = PathUtils.join(destPath, newname);
+			file.initWithPath(newDestPath);
 			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
 			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
 			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
@@ -1088,7 +1098,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 				zipW.addEntryFile(path, Ci.nsIZipWriter.COMPRESSION_DEFAULT, file, false);
 			zipW.close();
 			await new Promise(resolve => window.setTimeout(resolve, 500));
-
+			IOUtils.remove(newDestPath);
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 
 		}

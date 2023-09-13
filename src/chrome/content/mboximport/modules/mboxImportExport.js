@@ -673,7 +673,7 @@ export var mboxImportExport = {
     // things we do to get folder to be included in global  search
     // toggling global search inclusion works, but throws
     // async tracker errors
-    this._toggleGlobalSearchEnable(folder);
+    //this._toggleGlobalSearchEnable(folder);
     //await this._touchCopyFolderMsg(folder);
     return
 

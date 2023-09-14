@@ -1030,7 +1030,6 @@ function localizeMenuTitle(id) {
 // update menus based on folder type
 // update for attachment menu based on eml type
 async function menusUpdate(info, tab) {
-
   // check if we have attachment menu open
   // we only make our menu visible for eml rfc822 atts
   if (info.contexts.includes("message_attachments")) {

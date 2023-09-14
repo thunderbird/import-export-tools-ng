@@ -158,6 +158,9 @@ var ietngUtils = {
   },
 
   createUniqueFolderName: function (foldername, destDirPath, structure, isMbox) {
+    console.log("cr u")
+    console.log(isMbox)
+
 
     // for mbox extension we have to gyrate bit
     let addMboxExt = false;
@@ -196,7 +199,6 @@ var ietngUtils = {
       return foldername;
     }
     console.log(foldername)
-    return foldername
     NSclone = destdirNSIFILE.clone();
     NSclone.append(foldername);
     while (NSclone.exists()) {

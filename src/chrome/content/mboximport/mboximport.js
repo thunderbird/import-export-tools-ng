@@ -64,6 +64,7 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
+//var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
@@ -998,7 +999,7 @@ async function exportfolder(params) {
 	console.log("   Subfolders:", subfolders);
 	console.log("   Structured: ", keepstructure);
 	console.log("   Local: ", localfolder);
-	console.log("   Zip: ", zip);
+	console.log("   Zipper: ", zip);
 	// console.log(folders);
 
 	var isVirtualFolder = false;
@@ -1022,6 +1023,8 @@ async function exportfolder(params) {
 			return;
 	}
 
+	console.log("all here")
+
 	if (zip) {
 		if (!String.prototype.trim)
 			alert(mboximportbundle.GetStringFromName("needTB3"));
@@ -1041,16 +1044,24 @@ async function exportfolder(params) {
 		return;
 	}
 
-	if (localfolder && !subfolders) {
+	console.log("bef v")
+
+	if (localfolder && !subfolders && 0) {
+	console.log("exp v")
+
 		exportVirtualFolder(folders[0], destdirNSIFILE);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 		return;
 	}
 
+	console.log("bef rem")
+
 	if (!localfolder && !subfolders) {
 		exportRemoteFolders(destdirNSIFILE, folders);
 		return;
 	}
+
+	console.log("bef mbx")
 
 	// new export
 	let rootFolder = folders[0];
@@ -1059,6 +1070,7 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
+	console.log("calling exp mbox")
 	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 	return;
 
@@ -1066,6 +1078,7 @@ async function exportfolder(params) {
 }
 
 async function IETexportZip(destdirNSIFILE, folders) {
+	console.log("zip")
 	for (var i = 0; i < folders.length; i++) {
 		var zipFile = destdirNSIFILE.clone();
 		// export folder before zip

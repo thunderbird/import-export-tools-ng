@@ -1,3 +1,5 @@
+// Originally a worker ftom test addon, temporarily 
+// straight module for now
 
 // io test worker
 // ioTests
@@ -5,7 +7,8 @@
 // This worker does the heavy-duty file or processing methods
 // Just mbox(s) import now...
 
-console.log("ioTest worker startup");
+//console.log("ioTest worker startup");
+
 var window = Services.wm.getMostRecentWindow("mail:3pane");
 // main worker message handler
 // We receive and dispatch all commands here

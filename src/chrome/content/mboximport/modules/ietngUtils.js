@@ -157,8 +157,14 @@ var ietngUtils = {
     return str;
   },
 
-  createUniqueFolderName: function (foldername, destDirPath, structure) {
+  createUniqueFolderName: function (foldername, destDirPath, structure, isMbox) {
 
+    // for mbox extension we have to gyrate bit
+    let addMboxExt = false;
+    if (isMbox && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+      addMboxExt = true;
+      console.log("ext true")
+    }
     var destdirNSIFILE = Cc["@mozilla.org/file/local;1"]
       .createInstance(Ci.nsIFile);
     destdirNSIFILE.initWithPath(destDirPath);
@@ -170,6 +176,9 @@ var ietngUtils = {
 
     // Change unsafe chars for filenames with underscore
     foldername = this.sanitizeFileOrFolderName(foldername);
+    if (addMboxExt) {
+      foldername += ".mbox";
+    }
     NSclone.append(foldername);
     foldername = this.nameToAcii(foldername);
     // if the user wants to overwrite the files with the same name in the folder destination
@@ -186,11 +195,20 @@ var ietngUtils = {
       }
       return foldername;
     }
+    console.log(foldername)
+    return foldername
     NSclone = destdirNSIFILE.clone();
     NSclone.append(foldername);
     while (NSclone.exists()) {
       index++;
+      if (!addMboxExt) {
       nameIndex = foldername + "-" + index.toString();
+      console.log(nameIndex)
+
+      } else {
+        nameIndex = foldername.split(".mbox")[0] + "-" + index.toString() + ".mbox";
+        console.log(nameIndex)
+      }
       NSclone = destdirNSIFILE.clone();
       NSclone.append(nameIndex);
     }

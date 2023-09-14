@@ -307,12 +307,13 @@ export var mboxImportExport = {
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
     console.log(" exp folders to mbox")
 
-    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false);
+    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false, true);
+    throw new Error(uniqueName)
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
     ietngUtils.createStatusLine(window);
 
-    await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
+    //await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
     console.log(inclSubfolders)
     console.log(flattenSubfolders)

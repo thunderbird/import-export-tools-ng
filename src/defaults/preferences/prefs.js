@@ -22,6 +22,7 @@ pref("extensions.importexporttoolsng.import.build_mbox_index", true);
 pref("extensions.importexporttoolsng.export.format_warning", true);
 pref("extensions.importexporttoolsng.export.cut_subject", false);
 pref("extensions.importexporttoolsng.export.cut_filename", true);
+pref("extensions.importexporttoolsng.export.mbox.use_mboxext", false);
 pref("extensions.importexporttoolsng.export.filename_add_prefix", false);
 pref("extensions.importexporttoolsng.export.filename_prefix", "");
 pref("extensions.importexporttoolsng.export.filename_add_suffix", false);

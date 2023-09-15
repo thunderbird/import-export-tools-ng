@@ -157,17 +157,11 @@ var ietngUtils = {
     return str;
   },
 
-  createUniqueFolderName: function (foldername, destDirPath, structure, isMbox) {
+  createUniqueFolderName: function (foldername, destDirPath, structure, useMboxExt) {
     console.log("cr u")
-    console.log(isMbox)
-
 
     // for mbox extension we have to gyrate bit
-    let addMboxExt = false;
-    if (isMbox && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-      addMboxExt = true;
-      console.log("ext true")
-    }
+    
     var destdirNSIFILE = Cc["@mozilla.org/file/local;1"]
       .createInstance(Ci.nsIFile);
     destdirNSIFILE.initWithPath(destDirPath);
@@ -179,7 +173,7 @@ var ietngUtils = {
 
     // Change unsafe chars for filenames with underscore
     foldername = this.sanitizeFileOrFolderName(foldername);
-    if (addMboxExt) {
+    if (useMboxExt) {
       foldername += ".mbox";
     }
     NSclone.append(foldername);
@@ -203,7 +197,7 @@ var ietngUtils = {
     NSclone.append(foldername);
     while (NSclone.exists()) {
       index++;
-      if (!addMboxExt) {
+      if (!useMboxExt) {
       nameIndex = foldername + "-" + index.toString();
       console.log(nameIndex)
 

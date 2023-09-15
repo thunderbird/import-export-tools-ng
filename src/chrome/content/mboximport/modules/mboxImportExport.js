@@ -38,6 +38,7 @@ var window;
 
 export var mboxImportExport = {
 
+  IETprefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
   mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
   totalImported: 0,
   totalSkipped: 0,
@@ -45,7 +46,7 @@ export var mboxImportExport = {
 
   setGlobals: async function (gVars) {
     window = gVars.window;
-    return
+    return;
   },
 
   importMboxSetup: async function (params) {
@@ -127,12 +128,12 @@ export var mboxImportExport = {
   copyAndFixMboxFile: async function (source, destination) {
     if (!(await this._isMboxFile(source))) {
 
-      console.log("copy borked mbox")
-      console.log(new Date())
+      console.log("copy borked mbox");
+      console.log(new Date());
       // Read initial block, check for existing first From
       let firstBlock = await IOUtils.read(source, { maxBytes: 10000 });
       let strBuffer = ietngUtils.bytesToString2(firstBlock);
-      console.log(strBuffer)
+      console.log(strBuffer);
       let fromRegx = /^From: ([^\n\r]*)$/m;
       let dateRegx = /^Date: ([^\n\r]*)$/m;
       let deliveryDateRegx = /^Delivery-date: ([^\n\r]*)$/m;
@@ -141,35 +142,35 @@ export var mboxImportExport = {
       let dateStr = strBuffer.match(dateRegx);
       let deliveryDateStr = strBuffer.match(deliveryDateRegx);
 
-      console.log(fromStr)
-      console.log(dateStr)
-      console.log(deliveryDateStr)
+      console.log(fromStr);
+      console.log(dateStr);
+      console.log(deliveryDateStr);
 
       let dateMatch = dateStr || deliveryDateStr;
       let date = dateMatch[1] || "";
-      console.log(date)
+      console.log(date);
 
-      console.log(parse5322.parseFrom(fromStr[1])[0].address)
-      console.log(parse5322.parseOneAddress(fromStr[1]).address)
+      console.log(parse5322.parseFrom(fromStr[1])[0].address);
+      console.log(parse5322.parseOneAddress(fromStr[1]).address);
       let fromAddr = parse5322.parseOneAddress(fromStr[1]).address;
 
       let FromSeparator = "From - " + fromAddr + " " + date + "\r";
-      console.log(FromSeparator)
+      console.log(FromSeparator);
       await IOUtils.write(destination, ietngUtils.stringToBytes(FromSeparator));
 
       if (window.navigator.platform.toLowerCase().includes("win")) {
 
         let env = Subprocess.getEnvironment();
-        console.log(env)
+        console.log(env);
 
         //let arrParams = ["/c","timeout /t 10 /nobreak &dir&timeout /t 5 /nobreak"]
-        let arrParams = ["/c", "copy", destination, "+", source, destination]
+        let arrParams = ["/c", "copy", destination, "+", source, destination];
         //let arrParams = ["/c","dir"]
 
 
-        let p = await Subprocess.call({ command: env.ComSpec, arguments: arrParams, stderr: "stdout" })
-        console.log(p)
-        p.stdin.close()
+        let p = await Subprocess.call({ command: env.ComSpec, arguments: arrParams, stderr: "stdout" });
+        console.log(p);
+        p.stdin.close();
         let result = await p.stdout.readString();
         result += await p.stdout.readString();
         result += await p.stdout.readString();
@@ -177,12 +178,12 @@ export var mboxImportExport = {
         console.log(result);
 
         let { exitCode } = await p.wait();
-        console.log(p, exitCode)
+        console.log(p, exitCode);
 
         //await window.printingtools.test(source, destination)
-        console.log(new Date())
+        console.log(new Date());
         if (p.exitCode) {
-          alert(result)
+          alert(result);
         }
       } else {
         //alert("")
@@ -190,7 +191,7 @@ export var mboxImportExport = {
         // find it
         let bashPath = await Subprocess.pathSearch("bash");
         let argsArr = ["-c", `cat "${source}" >> "${destination}"`];
-        console.log(argsArr[1])
+        console.log(argsArr[1]);
         let proc = await Subprocess.call({ command: bashPath, arguments: argsArr, stderr: "stdout" });
         proc.stdin.close();
         let result = "";
@@ -202,19 +203,19 @@ export var mboxImportExport = {
         console.log(result);
 
         let { exitCode } = await proc.wait();
-        console.log(proc)
-        console.log(proc.exitCode)
+        console.log(proc);
+        console.log(proc.exitCode);
 
         if (proc.exitCode) {
-          alert(result)
+          alert(result);
         }
       }
     } else {
-      console.log("copy normal mbox")
-      console.log(new Date())
+      console.log("copy normal mbox");
+      console.log(new Date());
 
       await IOUtils.copy(source, destination);
-      console.log(new Date())
+      console.log(new Date());
 
     }
   },
@@ -274,7 +275,7 @@ export var mboxImportExport = {
     if (src.endsWith(".mbox")) {
       subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
     } else {
-      var subFolderName = PathUtils.filename(filePath);
+      subFolderName = PathUtils.filename(filePath);
     }
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
@@ -311,29 +312,35 @@ export var mboxImportExport = {
 
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
-    console.log(" exp folders to mbox")
-    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false, true);
+    console.log(" exp folders to mbox");
+    let useMboxExt = false;
+    if (!inclSubfolders || flattenSubfolders && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+      useMboxExt = true;
+      console.log("ext true");
+    }
+
+    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false, useMboxExt);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
     ietngUtils.createStatusLine(window);
 
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
-    console.log(inclSubfolders)
-    console.log(flattenSubfolders)
+    console.log(inclSubfolders);
+    console.log(flattenSubfolders);
 
     //console.log(rootMsgFolder.hasSubFolders)
 
     // This is our structured subfolder export if subfolders exist
     if (inclSubfolders && rootMsgFolder.hasSubFolders && !flattenSubfolders) {
-      console.log("ex sf")
+      console.log("ex sf");
 
       let fullSbdDirPath = PathUtils.join(destPath, uniqueName + ".sbd");
       await IOUtils.makeDirectory(fullSbdDirPath);
       await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
     } else if (inclSubfolders && rootMsgFolder.hasSubFolders && flattenSubfolders) {
-      console.log("fsf")
-      await this.exportSubFoldersFlat(rootMsgFolder, destPath);
+      console.log("fsf");
+      await this.exportSubFoldersFlat(rootMsgFolder, destPath, useMboxExt);
 
 
     }
@@ -350,10 +357,10 @@ export var mboxImportExport = {
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
 
-      console.log(subMsgFolder.flags)
+      console.log(subMsgFolder.flags);
 
       if (subMsgFolder.flags & 0x0020) {
-        console.log("vf ", subMsgFolder.name)
+        console.log("vf ", subMsgFolder.name);
         let curMsgFolder = window.gTabmail.currentTabInfo.folder;
         window.gTabmail.currentTabInfo.folder = subMsgFolder;
         var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
@@ -361,7 +368,7 @@ export var mboxImportExport = {
         var msguri = gDBView.getURIForViewIndex(1);
         var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
         var hdr = mms.messageURIToMsgHdr(msguri);
-        console.log(hdr.subject)
+        console.log(hdr.subject);
 
         gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 
@@ -381,7 +388,7 @@ export var mboxImportExport = {
         }
         gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
         window.gTabmail.currentTabInfo.folder = curMsgFolder;
-        console.log(uriArray)
+        console.log(uriArray);
       }
 
 
@@ -395,24 +402,26 @@ export var mboxImportExport = {
   },
 
 
-  exportSubFoldersFlat: async function (msgFolder, fullFolderPath) {
-    console.log(msgFolder.name)
+  exportSubFoldersFlat: async function (msgFolder, fullFolderPath, useMboxExt) {
+    console.log(msgFolder.name);
     //console.log(fullSbdDirPath)
 
     for (let subMsgFolder of msgFolder.subFolders) {
-      console.log("sf ", subMsgFolder.name)
-      let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, subMsgFolder.prettyName);
+      console.log("sf ", subMsgFolder.name);
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.name, fullFolderPath, false, useMboxExt);
+
+      let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, uniqueName);
 
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
-        await this.exportSubFoldersFlat(subMsgFolder, fullFolderPath);
+        await this.exportSubFoldersFlat(subMsgFolder, fullFolderPath, useMboxExt);
       }
     }
   },
 
   buildAndExportMbox: async function (msgFolder, dest) {
     let st = new Date();
-    console.log("Start: ", st, msgFolder.prettyName)
+    console.log("Start: ", st, msgFolder.prettyName);
     //var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
@@ -431,9 +440,9 @@ export var mboxImportExport = {
       var fromAddr;
       let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-      console.log("Total msgs: ", totalMessages)
+      console.log("Total msgs: ", totalMessages);
 
-      let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" })
+      let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
       while (folderMsgs.hasMoreElements()) {
         let msgHdr = folderMsgs.getNext();
@@ -462,14 +471,14 @@ export var mboxImportExport = {
         var firstLineIndex;
         if (rawBytes.substring(0, 5) == "From ") {
           fromHdr = "";
-          firstLineIndex = rawBytes.indexOf("\n")
+          firstLineIndex = rawBytes.indexOf("\n");
           //console.log("fi ", index)
           //console.log(rawBytes.substring(0, firstLineIndex))
         } else {
           firstLineIndex = -1;
         }
 
-        rawBytes = rawBytes.replace(fromRegx, ">$1")
+        rawBytes = rawBytes.replace(fromRegx, ">$1");
         //console.log(rawBytes.substring(0,500))
 
         //console.log(rawBytes)
@@ -480,8 +489,8 @@ export var mboxImportExport = {
           ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
 
           //console.log("write ", index + 1)
-          let outBuffer = ietngUtils.stringToBytes(msgsBuffer)
-          let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" })
+          let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
+          let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
 
           totalBytes += outBuffer.length;
 
@@ -497,7 +506,7 @@ export var mboxImportExport = {
         index++;
 
       }
-      console.log(totalBytes)
+      console.log(totalBytes);
       console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index++}\n\nExport Time: ${totalTime}s`);
       return index;
     };
@@ -506,7 +515,7 @@ export var mboxImportExport = {
     //console.log(rv)
 
     let end = new Date();
-    console.log("End: ", end, (end - st) / 1000)
+    console.log("End: ", end, (end - st) / 1000);
   },
 
   getRawMessage: async function (msgUri) {
@@ -577,7 +586,7 @@ export var mboxImportExport = {
 
   reindexDBandRebuildSummary: function (msgFolder) {
     //window.SelectFolder(msgFolder.URI)
-    console.log("select fol")
+    console.log("select fol");
     //await new Promise(r => window.setTimeout(r, 8000));
 
     // Send a notification that we are triggering a database rebuild.
@@ -595,7 +604,7 @@ export var mboxImportExport = {
     }
     msgFolder.updateFolder(window.msgWindow);
     msgFolder.updateSummaryTotals(true);
-    console.log(msgFolder.name)
+    console.log(msgFolder.name);
   },
 
 
@@ -680,7 +689,7 @@ export var mboxImportExport = {
     // async tracker errors
     //this._toggleGlobalSearchEnable(folder);
     //await this._touchCopyFolderMsg(folder);
-    return
+    return;
 
     //await this._touchCopyFolderMsg(folder);
 
@@ -691,22 +700,22 @@ export var mboxImportExport = {
     for (let index = 0; index < this.toCompactFolderList.length; index++) {
       const msgFolder = this.toCompactFolderList[index];
 
-      console.log(msgFolder.name)
-      console.log("selecting")
+      console.log(msgFolder.name);
+      console.log("selecting");
       window.gTabmail.currentTabInfo.folder = msgFolder;
 
       this.forceFolderCompact(msgFolder);
       for (let index = 0; index < 100; index++) {
         break;
         window.gTabmail.currentTabInfo.folder = msgFolder;
-        console.log(msgFolder.getTotalMessages(false))
+        console.log(msgFolder.getTotalMessages(false));
         try {
           let m = msgFolder.messages;
-          console.log("ms", m)
+          console.log("ms", m);
 
           break;
         } catch (ex) {
-          console.log("wait", ex)
+          console.log("wait", ex);
         }
         await new Promise(r => window.setTimeout(r, 100));
 
@@ -765,22 +774,22 @@ export var mboxImportExport = {
         "",
         {
           OnStartCopy() {
-            console.log("copy start")
+            console.log("copy start");
 
           },
           OnProgress(progress, progressMax) { },
           SetMessageKey(key) {
-            console.log("set key ", key)
+            console.log("set key ", key);
             newKey = key;
 
           },
           GetMessageId(messageId) {
-            console.log("id ", messageId)
+            console.log("id ", messageId);
 
           },
           OnStopCopy(status) {
             if (status == Cr.NS_OK) {
-              console.log("copy ok")
+              console.log("copy ok");
               resolve();
 
             } else {
@@ -788,7 +797,7 @@ export var mboxImportExport = {
           },
         },
         window.msgWindow
-      )
+      );
     });
 
     //await new Promise(r => window.setTimeout(r, 2000));
@@ -800,22 +809,22 @@ export var mboxImportExport = {
         true,
         {
           OnStartCopy() {
-            console.log("delete start")
+            console.log("delete start");
 
           },
           OnProgress(progress, progressMax) { },
           SetMessageKey(key) {
-            console.log("set key ", key)
+            console.log("set key ", key);
             newKey = key;
 
           },
           GetMessageId(messageId) {
-            console.log("id ", messageId)
+            console.log("id ", messageId);
 
           },
           OnStopCopy(status) {
             if (status == Cr.NS_OK) {
-              console.log("delete ok")
+              console.log("delete ok");
               resolve();
               //await new Promise(r => window.setTimeout(r, 100));
 
@@ -824,7 +833,7 @@ export var mboxImportExport = {
           },
         },
         false
-      )
+      );
     });
 
     //await new Promise(r => window.setTimeout(r, 2000));
@@ -836,7 +845,7 @@ export var mboxImportExport = {
         dbDone = false;
       },
       OnStopRunningUrl(url, status) {
-        console.log("compact done", status)
+        console.log("compact done", status);
         dbDone = true;
       }
     };
@@ -924,4 +933,4 @@ var folderListener = {
         Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
     }
   }
-}
+};

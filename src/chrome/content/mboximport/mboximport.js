@@ -912,12 +912,17 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			var path = folders[i].name;
 			var destPath = destdirNSIFILE.path;
 			let newname = findGoodFolderName(path, destdirNSIFILE, false);
+			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+				path += ".mbox";
+				newname += ".mbox";
+			}
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
 			file.initWithPath(newDestPath);
 			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
 			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
 			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
+			
 			var zipName = folders[i].name;
 			zipFile.append(zipName + ".zip");
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");

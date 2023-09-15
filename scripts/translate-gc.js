@@ -135,7 +135,7 @@ var translationArray5 = [
 ];
 
 var translationArray = [
-  { key: "strip_eml_CR.label", text: "Strip CR from line endings for eml message exports"},
+  { key: "useMboxExt.label", text: "Use .mbox extension for mbox files (non-structured)"},
 
 	
 ];

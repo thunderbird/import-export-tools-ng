@@ -270,7 +270,13 @@ export var mboxImportExport = {
 
   _importMboxFile: async function (filePath, msgFolder) {
     var src = filePath;
-    var subFolderName = PathUtils.filename(filePath);
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
+    } else {
+      var subFolderName = PathUtils.filename(filePath);
+    }
+
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     msgFolder.createSubfolder(subFolderName, window.msgWindow);
@@ -647,8 +653,8 @@ export var mboxImportExport = {
     //folder.updateFolder(window.msgWindow);
     // arbitrarily long delay until I can find correct folder listener like parseFolder
     //await new Promise(r => window.setTimeout(r, 3000));
-    
-    
+
+
     //window.gTabmail.currentTabInfo.folder = folder;
 
     //window.gTabmail.currentAbout3Pane.gViewWrapper?.open(folder)
@@ -657,7 +663,7 @@ export var mboxImportExport = {
     //let folderTree = window.gTabmail.currentAbout3Pane.folderTree;
     //folderTree.dispatchEvent(new CustomEvent("select"));
 
-    
+
     var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
     msgLocalFolder.parseFolder(window.msgWindow, urlListener);
     while (!dbDone) {

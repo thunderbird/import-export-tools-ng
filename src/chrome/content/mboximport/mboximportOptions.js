@@ -372,8 +372,8 @@ function customNamesCheck(el) {
         document.getElementById("prefixText").setAttribute("disabled", "true");
         document.getElementById("addSuffix").setAttribute("disabled", "true");
         document.getElementById("suffixText").setAttribute("disabled", "true");
-        document.getElementById("customDateFormat").setAttribute("disabled", "true");
-        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+        //document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        //document.getElementById("customDateLabel").setAttribute("disabled", "true");
 
     } else {
         console.debug('disable file names');
@@ -388,9 +388,8 @@ function customNamesCheck(el) {
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
-        console.log("rem chkd")
-        document.getElementById("useExtendedFormat").removeAttribute("checked");
-        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+        //document.getElementById("useExtendedFormat").removeAttribute("checked");
+        //document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 
     }
 }

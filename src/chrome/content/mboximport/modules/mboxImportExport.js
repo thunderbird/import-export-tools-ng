@@ -344,7 +344,7 @@ export var mboxImportExport = {
 
 
     }
-    await new Promise(r => window.setTimeout(r, 8000));
+    await new Promise(r => window.setTimeout(r, 2000));
     window.document.getElementById("ietngStatusText").remove();
   },
 

@@ -825,7 +825,7 @@ async function exportfolder(params) {
 
 	var isVirtualFolder = false;
 	for (var i = 0; i < folders.length; i++) {
-		isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
+		isVirtualFolder = folders[i] ? folders[i].flags & Ci.nsMsgFolderFlags.Virtual : false;
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
 			alert(mboximportbundle.GetStringFromName("noFolderExport"));
 			return;
@@ -867,7 +867,7 @@ async function exportfolder(params) {
 
 	console.log("bef v")
 
-	if (localfolder && !subfolders && 0) {
+	if (localfolder && !subfolders && isVirtualFolder) {
 	console.log("exp v")
 
 		exportVirtualFolder(folders[0], destdirNSIFILE);

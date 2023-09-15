@@ -202,7 +202,11 @@ async function exportSelectedMsgs(type, params) {
 		}
 	} catch (e) { }
 
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	try {
+		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	} catch (ex) {
+		msgFolder = GetFirstSelectedMsgFolder();
+	}
 
 	var isOffLineImap;
 
@@ -1795,7 +1799,7 @@ function IETwritestatus(text) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
 		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
-		delay+= 2000;
+		delay += 2000;
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}

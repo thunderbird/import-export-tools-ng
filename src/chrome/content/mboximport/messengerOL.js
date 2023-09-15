@@ -355,7 +355,9 @@ WL.injectElements(`
 			<menuseparator />
 			<menuitem  label="&buttonMenu_Options.title;" oncommand="openIEToptions()"/>
 			<menuitem  label="&buttonMenu_Help.title;" oncommand="openHelp(null)"/>
-			<menuitem  label="Test" oncommand="test()"/>
+			<menuitem  label="Force Global Search Toggle" oncommand="test()"/>
+			<menuitem  label="CopyDelete Msg - Compact" oncommand="test2()"/>
+
 
 		</menupopup>`;
 

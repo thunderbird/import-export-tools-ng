@@ -98,53 +98,16 @@ if (window.document.getElementById("ietngStatusText")) {
 }
 
 async function test() {
+	let msgFolder = GetFirstSelectedMsgFolder();
+	mboxImportExport._toggleGlobalSearchEnable(msgFolder);
+	return;
+}
+
+async function test2() {
 
 	let msgFolder = GetFirstSelectedMsgFolder();
 	mboxImportExport._touchCopyFolderMsg(msgFolder)
 	return
-
-	// Make the DB view
-  let dbviewContractId = "@mozilla.org/messenger/msgdbview;1?type=threaded";
-  let dbView = Cc[dbviewContractId].createInstance(Ci.nsIMsgDBView);
-  dbView.init(messenger, msgWindow, null);
-
-
-  let outCount = {};
-	dbView.viewFolder = GetFirstSelectedMsgFolder();
-
-  dbView.open(
-    GetFirstSelectedMsgFolder(),
-    Ci.nsMsgViewSortType.byDate,
-    Ci.nsMsgViewSortOrder.ascending,
-    5,
-    outCount
-  );
-
-	await new Promise(r => window.setTimeout(r, 150));
-  let treeView = dbView.QueryInterface(Ci.nsITreeView);
-
-
-	console.log(treeView.rowCount)
-	console.log(dbView.numSelected)
-	
-  // Did
-	var msguri = dbView.getURIForViewIndex(1);
-	console.log(msguri)
-	return;
-
-
-	let dir = getPredefinedFolder(0);
-
-	//await buildAndExportMbox(msgFolder, dir);
-	let params = {};
-
-	params.selectedFolder = GetFirstSelectedMsgFolder();
-	params.localFolder = true;
-	params.zipped = false;
-	params.includeSubfolders = true;
-	params.flattenSubfolders = false;
-
-	exportfolder(params);
 
 }
 

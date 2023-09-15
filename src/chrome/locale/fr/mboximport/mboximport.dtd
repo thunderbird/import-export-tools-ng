@@ -122,3 +122,4 @@
 <!ENTITY inlineAttachmentsFolders "Dossiers de pièces jointes en ligne">
 <!ENTITY cutPathLen "Coupez la longueur du chemin d&#39;accès au fichier à 256 caractères">
 <!ENTITY strip_eml_CR.label "Supprimer le CR des fins de ligne pour les exportations de messages eml">
+<!ENTITY useMboxExt.label "Utilisez l&#39;extension .mbox pour les fichiers mbox (non structurés)">

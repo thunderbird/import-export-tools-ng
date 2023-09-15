@@ -123,3 +123,4 @@
 <!ENTITY inlineAttachmentsFolders "インライン添付ファイルフォルダー名">
 <!ENTITY cutPathLen "ファイルパスの長さを 256 文字でカットする">
 <!ENTITY strip_eml_CR.label "EML メッセージのエクスポートの行末から CR を削除する">
+<!ENTITY useMboxExt.label "mbox ファイルには .mbox 拡張子を使用します (非構造化)">

@@ -122,3 +122,4 @@
 <!ENTITY inlineAttachmentsFolders "Carpetes de fitxers adjunts en línia">
 <!ENTITY cutPathLen "Retalla la longitud del camí del fitxer a 256 caràcters">
 <!ENTITY strip_eml_CR.label "Elimina CR dels finals de línia per a les exportacions de missatges eml">
+<!ENTITY useMboxExt.label "Utilitzeu l&#39;extensió .mbox per a fitxers mbox (no estructurats)">

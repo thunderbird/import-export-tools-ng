@@ -122,3 +122,4 @@
 <!ENTITY inlineAttachmentsFolders "Carpetas de archivos adjuntos en línea">
 <!ENTITY cutPathLen "Cortar la longitud de la ruta del archivo a 256 caracteres">
 <!ENTITY strip_eml_CR.label "Retire CR de los finales de línea para las exportaciones de mensajes eml">
+<!ENTITY useMboxExt.label "Utilice la extensión .mbox para archivos mbox (no estructurados)">

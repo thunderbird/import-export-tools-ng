@@ -122,3 +122,4 @@
 <!ENTITY inlineAttachmentsFolders "Inline bijlagenmappen">
 <!ENTITY cutPathLen "Snijd de lengte van het bestandspad in tot 256 tekens">
 <!ENTITY strip_eml_CR.label "Verwijder CR van regeleinden voor export van eml-berichten">
+<!ENTITY useMboxExt.label "Gebruik de .mbox-extensie voor mbox-bestanden (niet-gestructureerd)">

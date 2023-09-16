@@ -394,7 +394,6 @@ export var mboxImportExport = {
     //var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
-    console.log(folderMsgs)
 
     var sep = "";
     //const maxFileSize = 1021000000;
@@ -425,8 +424,6 @@ export var mboxImportExport = {
         } else {
         msgHdr = folderMsgs.getNext();
         msgUri = msgFolder.getUriForMsg(msgHdr);
-        console.log(msgUri)
-
         }
         msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
 
@@ -488,13 +485,13 @@ export var mboxImportExport = {
 
       }
       console.log(totalBytes);
-      console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index++}\n\nExport Time: ${totalTime}s`);
+      console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
       return index;
     };
 
     var vfMsgUris = [];
     if (msgFolder.flags & Ci.nsMsgFolderFlags.Virtual) {
-      vfMsgUris = this._getVirtualFolderUriArray(msgFolder);
+      vfMsgUris = await this._getVirtualFolderUriArray(msgFolder);
       console.log(vfMsgUris)
     }
 
@@ -723,7 +720,7 @@ export var mboxImportExport = {
     return true;
   },
 
-  _getVirtualFolderUriArray: function (msgFolder) {
+  _getVirtualFolderUriArray: async function (msgFolder) {
       console.log("vf ", msgFolder.name);
       let curMsgFolder = window.gTabmail.currentTabInfo.folder;
       window.gTabmail.currentTabInfo.folder = msgFolder;
@@ -733,11 +730,13 @@ export var mboxImportExport = {
       var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
       var hdr = mms.messageURIToMsgHdr(msguri);
       console.log(hdr.subject);
+      await new Promise(r => window.setTimeout(r, 500));
 
       gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
+      await new Promise(r => window.setTimeout(r, 500));
 
       var uriArray = [];
-      for (let i = 0; i < msgFolder.getTotalMessages(false); i++) {
+      for (let i = 0; i < gDBView.numMsgsInView; i++) {
         // error handling changed in 102
         // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
         // Resolves #359

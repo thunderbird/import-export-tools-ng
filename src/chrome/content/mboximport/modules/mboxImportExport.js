@@ -280,22 +280,47 @@ export var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    console.log("add subf")
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            console.log(childFolder.name);
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+
+
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-    await new Promise(r => window.setTimeout(r, 1000));
+    //await new Promise(r => window.setTimeout(r, 1000));
     //this._setGlobalSearchEnabled(msgFolder, false)
 
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
     //let r = await IOUtils.copy(src, dst);
 
-    await new Promise(r => window.setTimeout(r, 4000));
+    //await new Promise(r => window.setTimeout(r, 4000));
 
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
     //window.gTabmail.currentTabInfo.folder = msgFolder;
     //window.SelectFolder(msgFolder.URI)
-    await new Promise(r => window.setTimeout(r, 1000));
+    //await new Promise(r => window.setTimeout(r, 1000));
 
     //this.reindexDBandRebuildSummary(subMsgFolder);
     await this.rebuildSummary(subMsgFolder);
@@ -359,7 +384,7 @@ export var mboxImportExport = {
 
       console.log(subMsgFolder.flags);
 
-      
+
 
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
@@ -422,8 +447,8 @@ export var mboxImportExport = {
           msgUri = vfMsgUris.shift();
           msgHdr = window.messenger.msgHdrFromURI(msgUri);
         } else {
-        msgHdr = folderMsgs.getNext();
-        msgUri = msgFolder.getUriForMsg(msgHdr);
+          msgHdr = folderMsgs.getNext();
+          msgUri = msgFolder.getUriForMsg(msgHdr);
         }
         msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
 
@@ -721,38 +746,38 @@ export var mboxImportExport = {
   },
 
   _getVirtualFolderUriArray: async function (msgFolder) {
-      console.log("vf ", msgFolder.name);
-      let curMsgFolder = window.gTabmail.currentTabInfo.folder;
-      window.gTabmail.currentTabInfo.folder = msgFolder;
-      var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
+    console.log("vf ", msgFolder.name);
+    let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+    window.gTabmail.currentTabInfo.folder = msgFolder;
+    var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
 
-      var msguri = gDBView.getURIForViewIndex(1);
-      var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-      var hdr = mms.messageURIToMsgHdr(msguri);
-      console.log(hdr.subject);
-      await new Promise(r => window.setTimeout(r, 500));
+    var msguri = gDBView.getURIForViewIndex(1);
+    var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+    var hdr = mms.messageURIToMsgHdr(msguri);
+    console.log(hdr.subject);
+    await new Promise(r => window.setTimeout(r, 500));
 
-      gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
-      await new Promise(r => window.setTimeout(r, 500));
+    gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
+    await new Promise(r => window.setTimeout(r, 500));
 
-      var uriArray = [];
-      for (let i = 0; i < gDBView.numMsgsInView; i++) {
-        // error handling changed in 102
-        // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
-        // Resolves #359
-        try {
-          var msguri = gDBView.getURIForViewIndex(i);
-        } catch (ex) {
-          continue; // ignore errors for dummy rows
-        }
-
-        uriArray.push(msguri);
-
+    var uriArray = [];
+    for (let i = 0; i < gDBView.numMsgsInView; i++) {
+      // error handling changed in 102
+      // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+      // Resolves #359
+      try {
+        var msguri = gDBView.getURIForViewIndex(i);
+      } catch (ex) {
+        continue; // ignore errors for dummy rows
       }
-      gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
-      window.gTabmail.currentTabInfo.folder = curMsgFolder;
-      console.log(uriArray);
-      return uriArray;
+
+      uriArray.push(msguri);
+
+    }
+    gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+    window.gTabmail.currentTabInfo.folder = curMsgFolder;
+    console.log(uriArray);
+    return uriArray;
   },
 
   _toggleGlobalSearchEnable: function (msgFolder) {

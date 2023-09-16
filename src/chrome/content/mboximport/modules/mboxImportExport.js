@@ -394,6 +394,8 @@ export var mboxImportExport = {
     //var mboxDestPath = PathUtils.join(dest.path, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
+    console.log(folderMsgs)
+
     var sep = "";
     //const maxFileSize = 1021000000;
     const maxFileSize = 4000000000;
@@ -419,10 +421,12 @@ export var mboxImportExport = {
 
         if (vfMsgUris.length) {
           msgUri = vfMsgUris.shift();
-          msgHdr = messenger.msgHdrFromUri(msgUri);
+          msgHdr = window.messenger.msgHdrFromURI(msgUri);
         } else {
         msgHdr = folderMsgs.getNext();
         msgUri = msgFolder.getUriForMsg(msgHdr);
+        console.log(msgUri)
+
         }
         msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
 

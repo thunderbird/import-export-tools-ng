@@ -868,7 +868,7 @@ async function exportfolder(params) {
 	console.log("bef v")
 
 	if (localfolder && !subfolders && isVirtualFolder) {
-	console.log("exp v")
+		console.log("exp v")
 
 		exportVirtualFolder(folders[0], destdirNSIFILE);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
@@ -891,8 +891,11 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
-	console.log("calling exp mbox")
-	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+	//for (let index = 0; index < 10; index++) {
+		console.log("calling exp mbox")
+		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+	//}
+
 	return;
 
 
@@ -922,7 +925,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
 			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
 			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
-			
+
 			var zipName = folders[i].name;
 			zipFile.append(zipName + ".zip");
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");

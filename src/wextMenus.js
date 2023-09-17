@@ -1137,6 +1137,8 @@ async function menusUpdate(info, tab) {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
 
     }
+    await messenger.menus.refresh();
+
   }
 
 }

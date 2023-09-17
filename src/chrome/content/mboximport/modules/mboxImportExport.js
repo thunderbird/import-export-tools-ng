@@ -99,6 +99,16 @@ export var mboxImportExport = {
     //console.log("imp mboxf")
     for (let i = 0; i < files.length; i++) {
       const mboxFilePath = files[i];
+
+      let stat = await IOUtils.stat(mboxFilePath);
+      console.log("size ", stat.size)
+      let fname = PathUtils.filename(mboxFilePath);
+      if (stat.size > 4000000000) {
+        console.log(`Mbox ${fname} larger than 4GB, skipping`);
+        window.alert(`Mbox ${fname} larger than 4GB, skipping`);
+        return
+      }
+
       let impMsg = this.mboximportbundle.GetStringFromName("importing");
 
       ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
@@ -337,6 +347,7 @@ export var mboxImportExport = {
 
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
+    
     console.log(" exp folders to mbox");
     let useMboxExt = false;
     if (!inclSubfolders || flattenSubfolders && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
@@ -425,102 +436,126 @@ export var mboxImportExport = {
     const maxFileSize = 4000000000;
     const kFileChunkSize = 10000000;
 
-    const getMsgLoop = async (vfMsgUris, startIndex) => {
 
-      var msgsBuffer = "";
-      var index = 0;
-      var totalBytes = 0;
-      var totalMessages = msgFolder.getTotalMessages(false);
-      var totalTime;
-      var fromAddr;
-      let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-      console.log("Total msgs: ", totalMessages);
+    //const getMsgLoop = async (vfMsgUris, startIndex) => {
 
-      let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
+    var msgsBuffer = "";
+    var index = 0;
+    var totalBytes = 0;
+    var totalMessages = msgFolder.getTotalMessages(false);
+    var totalTime;
+    var fromAddr;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-      while (folderMsgs?.hasMoreElements() || vfMsgUris.length) {
-        let msgUri;
-        let msgHdr;
-
-        if (vfMsgUris.length) {
-          msgUri = vfMsgUris.shift();
-          msgHdr = window.messenger.msgHdrFromURI(msgUri);
-        } else {
-          msgHdr = folderMsgs.getNext();
-          msgUri = msgFolder.getUriForMsg(msgHdr);
-        }
-        msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
-
-        try {
-          fromAddr = parse5322.parseFrom(msgHdr.author)[0].address;
-        } catch (ex) {
-          fromAddr = "";
-        }
-
-        let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toString().split(" (")[0];
-        // let msgDateReceived = msgHdr.getUint32Property("dateReceived");
-
-        let rawBytes = await this.getRawMessage(msgUri);
-
-        //console.log(rawBytes.substring(0,500))
-
-        if (index) {
-          sep = "\n";
-        }
-
-        let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
-        //console.log(rawBytes.substring(0, 5))
-        var firstLineIndex;
-        if (rawBytes.substring(0, 5) == "From ") {
-          fromHdr = "";
-          firstLineIndex = rawBytes.indexOf("\n");
-          //console.log("fi ", index)
-          //console.log(rawBytes.substring(0, firstLineIndex))
-        } else {
-          firstLineIndex = -1;
-        }
-
-        rawBytes = rawBytes.replace(fromRegx, ">$1");
-        //console.log(rawBytes.substring(0,500))
-
-        //console.log(rawBytes)
-        msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-
-        //if (msgsBuffer.length >= kFileChunkSize || index == totalMessages - 1 || totalBytes >= maxFileSize) {
-        if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
-          ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
-
-          //console.log("write ", index + 1)
-          let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
-          let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
-
-          totalBytes += outBuffer.length;
-
-          msgsBuffer = "";
-          if (index == totalMessages - 1 || totalBytes >= maxFileSize) {
-            ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
-
-            totalTime = (new Date() - st) / 1000;
-            break;
-          }
-          //IETwritestatus("Msgs: " + (index + 1))
-        }
-        index++;
-
-      }
-      console.log(totalBytes);
-      console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
-      return index;
-    };
+    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
 
     var vfMsgUris = [];
-    if (msgFolder.flags & Ci.nsMsgFolderFlags.Virtual) {
+    if (isVirtualFolder) {
       vfMsgUris = await this._getVirtualFolderUriArray(msgFolder);
-      console.log(vfMsgUris)
+      //console.log(vfMsgUris)
+      //console.log(vfMsgUris.length)
+
+      if (vfMsgUris.length == 0) {
+        window.alert("no vf msgs");
+        console.log("no vf msgs");
+
+        return 1;
+      }
     }
 
-    let rv = await getMsgLoop(vfMsgUris, 0);
+    console.log("Total msgs: ", totalMessages);
+
+    let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
+
+    function hasMoreMsgs() {
+      if (isVirtualFolder) {
+        return vfMsgUris.length;
+      } else {
+        return folderMsgs?.hasMoreElements();
+      }
+    };
+
+    while (hasMoreMsgs()) {
+      let msgUri;
+      let msgHdr;
+
+      if (vfMsgUris.length) {
+        msgUri = vfMsgUris.shift();
+        //console.log("vf ", msgUri)
+        msgHdr = window.messenger.msgHdrFromURI(msgUri);
+      } else {
+        msgHdr = folderMsgs.getNext();
+        msgUri = msgFolder.getUriForMsg(msgHdr);
+        //console.log("fm ", msgUri)
+
+      }
+      msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
+
+      try {
+        fromAddr = parse5322.parseFrom(msgHdr.author)[0].address;
+      } catch (ex) {
+        fromAddr = "";
+      }
+
+      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toString().split(" (")[0];
+      // let msgDateReceived = msgHdr.getUint32Property("dateReceived");
+
+      let rawBytes = await this.getRawMessage(msgUri);
+
+      //console.log(rawBytes.substring(0,500))
+
+      if (index) {
+        sep = "\n";
+      }
+
+      let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
+      //console.log(rawBytes.substring(0, 5))
+      var firstLineIndex;
+      if (rawBytes.substring(0, 5) == "From ") {
+        fromHdr = "";
+        firstLineIndex = rawBytes.indexOf("\n");
+        //console.log("fi ", index)
+        //console.log(rawBytes.substring(0, firstLineIndex))
+      } else {
+        firstLineIndex = -1;
+      }
+
+      rawBytes = rawBytes.replace(fromRegx, ">$1");
+      //console.log(rawBytes.substring(0,500))
+
+      //console.log(rawBytes)
+      msgsBuffer = msgsBuffer + fromHdr + rawBytes;
+
+      //if (msgsBuffer.length >= kFileChunkSize || index == totalMessages - 1 || totalBytes >= maxFileSize) {
+      if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
+        ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
+
+        //console.log("write ", index + 1)
+        let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
+        let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
+
+        totalBytes += outBuffer.length;
+
+        msgsBuffer = "";
+        if (index == totalMessages - 1 || totalBytes >= maxFileSize) {
+          ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
+
+          totalTime = (new Date() - st) / 1000;
+          break;
+        }
+        //IETwritestatus("Msgs: " + (index + 1))
+      }
+      index++;
+
+    }
+    console.log(totalBytes);
+    console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
+    //return index;
+    //};
+
+
+    //let rv = await getMsgLoop(vfMsgUris, 0);
     //console.log(rv)
 
     let end = new Date();
@@ -759,24 +794,31 @@ export var mboxImportExport = {
 
     gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
     await new Promise(r => window.setTimeout(r, 500));
+    console.log(gDBView.rowCount)
+    console.log(gDBView.numMsgsInView)
+    console.log(gDBView.getURIForViewIndex(1))
 
     var uriArray = [];
+    var msgUri;
     for (let i = 0; i < gDBView.numMsgsInView; i++) {
       // error handling changed in 102
       // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
       // Resolves #359
       try {
-        var msguri = gDBView.getURIForViewIndex(i);
+        msgUri = gDBView.getURIForViewIndex(i);
+        //console.log(msgUri)
+        uriArray.push(msgUri);
+        //console.log(uriArray)
       } catch (ex) {
+        console.log("excep")
         continue; // ignore errors for dummy rows
       }
 
-      uriArray.push(msguri);
 
     }
     gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
     window.gTabmail.currentTabInfo.folder = curMsgFolder;
-    console.log(uriArray);
+    //console.log(uriArray);
     return uriArray;
   },
 

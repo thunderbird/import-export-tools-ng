@@ -456,6 +456,7 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Exp_RemoteFolderMbox_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_RemoteFolderMbox_Id.title"),
+      visible: false,
     },
   },
   {
@@ -1085,7 +1086,7 @@ async function menusUpdate(info, tab) {
   await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
   await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: true });
   await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: true });
@@ -1108,7 +1109,7 @@ async function menusUpdate(info, tab) {
     if (mailStoreType == 0) {
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
-      await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: true });
+      await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
       await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
       await messenger.menus.refresh();
@@ -1197,7 +1198,6 @@ async function importEmlAttToFolder(attCtx) {
 
   let msgHdr = await messenger.messages.import(attachmentFile, localFolder.folders[0]);
   await messenger.messages.move([msgHdr.id], msgDisplayed.folder);
-  //alert("There was a problem importing the message:\n" + ex);
 }
 
 // listener to change any  menus

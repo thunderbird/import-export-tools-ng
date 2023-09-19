@@ -1,16 +1,32 @@
-// Originally a worker ftom test addon, temporarily 
-// straight module for now
+/*
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-// io test worker
-// ioTests
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// Originally a worker ftom test addon, temporarily
+// straight module for now, will convert back to worker for performance
+
 
 // This worker does the heavy-duty file or processing methods
 // Just mbox(s) import now...
 
-//console.log("ioTest worker startup");
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 var window = Services.wm.getMostRecentWindow("mail:3pane");
-// main worker message handler
+
+// main worker message handler (when worker)
 // We receive and dispatch all commands here
 // MessageChannel is used so directed async messages can be used
 
@@ -32,18 +48,16 @@ onmessage = async function (event) {
 
 // mboxCopyImport reads, processes and writes a single mbox file
 // we only do IOUtils and file processing no large data transfers
-// across thread boundaries 
-// We fix From_ escapes and mark all unread
+// across thread boundaries
+// We fix From_ escapes
 
 async function mboxCopyImport(options) {
 
-  //console.log(options);
-  //let targetMboxPath = PathUtils.join(options.destPath, options.finalDestFolderName);
   let targetMboxPath = options.destPath;
   let folderName = PathUtils.filename(options.srcPath);
 
-  console.log("Importing:", folderName)
-  // make sure nothing is there, create start 
+  // console.log("Importing:", folderName)
+  // make sure nothing is there, create start
   await IOUtils.remove(targetMboxPath, { ignoreAbsent: true });
   await IOUtils.write(targetMboxPath, new Uint8Array(), { mode: "create" });
 
@@ -54,31 +68,31 @@ async function mboxCopyImport(options) {
     fileInfo = await IOUtils.stat(options.srcPath);
   } catch (err) {
     console.log(err);
-    // trick to throw out of Promise 
+    // trick to throw out of Promise
     setTimeout(function () { throw err; });
   }
 
 
   if (fileInfo.size > 4000000000) {
     let err = "too large";
-    console.log(fileInfo.size);
-    //postMessage({ msg: "Error: File exceeds 4GB" });
-    alert("Cannot import: mbox larger than 4GB")
+    // console.log(fileInfo.size);
+    // postMessage({ msg: "Error: File exceeds 4GB" });
+    alert("Cannot import: mbox larger than 4GB");
     return "Error: File exceeds 4GB";
-
   }
 
   let rawBytes = "";
-  let READ_CHUNK = 600 * 1000;
+  const kREAD_CHUNK = 600 * 1000;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
     console.log("Start:", new Date());
-    //console.log(options.srcPath);
     let offset = 0;
     let s = new Date();
     let eof = false;
-    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: )/gm;
+
+    // fromRegex used for From_ escaping
+    // Requires From_ followed by two headers
     let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
     var fromExceptions;
@@ -90,108 +104,74 @@ async function mboxCopyImport(options) {
 
     while (!eof) {
       // Read chunk as uint8
-      rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: READ_CHUNK });
-      //strBuffer = await IOUtils.readUTF8(options.srcPath, { offset: offset, maxBytes: READ_CHUNK });
+      rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kREAD_CHUNK });
 
       offset += rawBytes.byteLength;
-      //offset += strBuffer.length;
       writePos = 0;
       cnt++;
-      //let strBuffer;
-      // convert to faster String for regex etc
-      let strBuffer = bytesToString2(rawBytes);
-      //let strBuffer = new TextDecoder().decode(rawBytes);
-      
-      //for (let i = 0; i < rawBytes.length; i++) {
-        //strBuffer += String.fromCharCode(parseInt(rawBytes[i], 2));
-      //}
-    
-      // Force unread state, messages wo status default to unread
-      //strBuffer = strBuffer.replace(/X-Mozilla-Status: 0001/g, "X-Mozilla-Status: 0000");
 
+      // convert to faster String for regex etc
+      let strBuffer = bytesToString(rawBytes);
+
+      // match all From_ exceptions for escaping
       fromExceptions = strBuffer.matchAll(fromRegx);
 
-      for (result of fromExceptions) {
-        //console.log(result);
+      for (let result of fromExceptions) {
 
         fromEscCount++;
         totalWrite += ((result.index - 1) - writePos);
 
-        // write out up to From_ exception, write space then process 
-        // from Beginning of line. 
+        // write out up to From_ exception, write space then process
+        // from Beginning of line.
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-
-        //await IOUtils.writeUTF8(targetMboxPath, strBuffer.substring(writePos, result.index), { mode: "append" });
-
         await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
-        //await IOUtils.writeUTF8(targetMboxPath, ">", { mode: "append" });
 
         writePos = result.index;
 
-        //console.log(writePos)
-        //console.log("totalWrite bytes:", totalWrite)
+        // console.log(writePos)
+        // console.log("totalWrite bytes:", totalWrite)
 
         // This is for our ui status update
-        //postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
-        writeStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
+        // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
 
+        writeIetngStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
       }
 
       // Determine final write chunk
-      if (rawBytes.byteLength < READ_CHUNK) {
+      if (rawBytes.byteLength < kREAD_CHUNK) {
         eof = true;
         finalChunk = rawBytes.byteLength;
-        //console.log("fchunk ", finalChunk);
       } else {
-        finalChunk = READ_CHUNK;
+        finalChunk = kREAD_CHUNK;
       }
 
       totalWrite += (finalChunk - writePos);
-      //console.log(totalWrite)
 
-      /*
-      let re = /^Fr/gm;
-      var bufferTail = strBuffer.substring(finalChunk - 300, finalChunk + 1);
-      var fm = re.exec(bufferTail);
-      if (fm) {
-        //console.log(fm)
-      }
-      */
-      // convert back to uint8 and write out 
+      // convert back to uint8 and write out
       let raw = stringToBytes(strBuffer.substring(writePos, finalChunk + 1));
-
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-      //await IOUtils.writeUTF8(targetMboxPath, strBuffer.substring(writePos, finalChunk + 1), { mode: "append" });
 
-      //postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
-      //console.log("loop")
-      writeStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
-
+      // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
+      writeIetngStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
     }
+
     let et = new Date() - s;
 
-    writeStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
+    writeIetngStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
 
     console.log("end read/fix/write loop");
-
     console.log("Escape fixups:", fromEscCount);
-
     console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
 
-    // Breathing time?
-    //await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // tbd use status codes
-    return "Done";
   }
-
-
+  // tbd use status codes
+  return "Done";
 }
 
-// tbd move utility functions 
+// tbd move utility functions
 
 function stringToBytes(str) {
   var bytes = new Uint8Array(str.length);
@@ -201,21 +181,19 @@ function stringToBytes(str) {
   return bytes;
 }
 
-
-function bytesToString2(bytes) {
+function bytesToString(bytes) {
   return bytes.reduce(function (str, b) {
     return str + String.fromCharCode(b);
   }, "");
 }
 
-function writeStatusLine(window, text, statusDelay) {
+function writeIetngStatusLine(window, text, statusDelay) {
   if (window.document.getElementById("ietngStatusText")) {
     window.document.getElementById("ietngStatusText").setAttribute("label", text);
     window.document.getElementById("ietngStatusText").setAttribute("value", text);
     window.document.getElementById("ietngStatusText").innerText = text;
 
     var delay = 4000;
-    //var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
     if (statusDelay) {
       delay = statusDelay;
     }
@@ -223,21 +201,20 @@ function writeStatusLine(window, text, statusDelay) {
     if (delay > 0) {
       window.setTimeout(function () { _this.deleteStatusLine(window, text); }, delay);
     }
-    //window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
-
-
   }
 }
 
-function createStatusLine(window) {
-  let s = window.document.getElementById("statusText")
-  let s2 = window.document.createElement("label")
+// This creates our own, secondary status line to not
+// compete with rebuild or other messages
+function createIetngStatusLine(window) {
+  let s = window.document.getElementById("statusText");
+  let s2 = window.document.createElement("label");
   s2.classList.add("statusbarpanel");
-  s2.setAttribute("id", "ietngStatusText")
+  s2.setAttribute("id", "ietngStatusText");
   s2.style.width = "420px";
-  s2.style.overflow = "hidden"
-  s.before(s2)
-  console.log("status 2")
+  s2.style.overflow = "hidden";
+  s.before(s2);
+  console.log("status 2");
 }
 
 function deleteStatusLine(window, text) {
@@ -247,9 +224,6 @@ function deleteStatusLine(window, text) {
       window.document.getElementById("ietngStatusText").setAttribute("value", "");
       window.document.getElementById("ietngStatusText").innerText = "";
 
-      if (text.includes("Err")) {
-        delay = 15000;
-      }
     }
   } catch (e) { }
 }

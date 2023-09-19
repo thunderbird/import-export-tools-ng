@@ -54,9 +54,14 @@ PathUtils,
 PrintUtils,
 strftime,
 getMsgFolderFromAccountAndPath,
+globalThis,
 */
 
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
+//var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
@@ -64,6 +69,7 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
+// sometimes we want straight module for testing
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 
@@ -958,6 +964,7 @@ function IETaddFolderContentsToZip(zipW, folder, root) {
 	}
 }
 
+// To be deprecated
 function exportRemoteFolders(destdirNSIFILE, folders) {
 	let IETglobalMsgFolders = folders;
 	if (IETglobalMsgFolders[0].isServer)

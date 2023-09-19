@@ -29,7 +29,7 @@ var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
 
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxTest.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule.js", window, "UTF-8");
 
 
 var window;

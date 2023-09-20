@@ -721,6 +721,7 @@ await((async () => {
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
 
+    // tbd translate
   await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
   await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["message_display_action"], onclick: copyToClipboard});
   

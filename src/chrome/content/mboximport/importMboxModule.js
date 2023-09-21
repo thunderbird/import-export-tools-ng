@@ -93,7 +93,9 @@ async function mboxCopyImport(options) {
 
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+
 
     var fromExceptions;
     var cnt = 0;

@@ -512,7 +512,6 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: "folderCtxMenu_Exp_Sep2",
       type: "separator",
-      visible: false,
     },
   },
   {
@@ -522,7 +521,6 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("folderCtxMenu_Exp_Index_Id.title"),
     },
   },
-  
   {
     menuDef: {
       id: folderCtxMenu_Exp_SearchExport_Id,
@@ -720,7 +718,7 @@ await((async () => {
     // tbd translate
   await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
   //await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["message_display_action_menu"], onclick: importEmlAttToFolder});
-  await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["page"], onclick: importEmlAttToFolder});
+  await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["page"], onclick: copyToClipboard});
   
 
 })());
@@ -1155,11 +1153,13 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 }
 
 async function copyToClipboard(ctxEvent) {
+  console.log(ctxEvent)
   let params = {};
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";
   } else {
     params.clipboardType = "Headers";
+    params.pageUrl = ctxEvent.pageUrl;
   }
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }

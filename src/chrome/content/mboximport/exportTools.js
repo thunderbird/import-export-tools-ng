@@ -1930,9 +1930,17 @@ var copyHeaders = {
 		return myListener;
 	},
 
-	start: async function () {
+	start: async function (pageUrl) {
+		var msguri;
+		if (pageUrl) {
+			msguri = pageUrl;
+			console.log(msguri)
+		} else {
 		var mess = await IETgetSelectedMessages();
-		var msguri = mess[0];
+		msguri = mess[0];
+		console.log(msguri)
+
+		}
 		var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
 		var streamListner = copyHeaders.getListener();
 		if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)

@@ -512,6 +512,7 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_AllMessages_Id,
       id: "folderCtxMenu_Exp_Sep2",
       type: "separator",
+      visible: false,
     },
   },
   {
@@ -521,12 +522,7 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("folderCtxMenu_Exp_Index_Id.title"),
     },
   },
-  {
-    menuDef: {
-      id: "folderCtxMenu_Sep3",
-      type: "separator",
-    },
-  },
+  
   {
     menuDef: {
       id: folderCtxMenu_Exp_SearchExport_Id,

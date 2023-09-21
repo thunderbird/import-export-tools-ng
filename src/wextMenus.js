@@ -723,7 +723,8 @@ await((async () => {
 
     // tbd translate
   await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
-  await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["message_display_action"], onclick: copyToClipboard});
+  //await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["message_display_action_menu"], onclick: importEmlAttToFolder});
+  await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["page"], onclick: importEmlAttToFolder});
   
 
 })());

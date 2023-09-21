@@ -392,10 +392,6 @@ export var mboxImportExport = {
     var vfMsgUris = [];
     if (isVirtualFolder) {
       vfMsgUris = await this._getVirtualFolderUriArray(msgFolder);
-
-      console.log(vfMsgUris.length)
-      console.log(vfMsgUris)
-
       if (vfMsgUris.length == 0) {
         return 1;
       }
@@ -421,8 +417,6 @@ export var mboxImportExport = {
       if (vfMsgUris.length) {
         msgUri = vfMsgUris.shift();
         msgHdr = window.messenger.msgHdrFromURI(msgUri);
-      console.log(msgUri, vfMsgUris.length)
-
       } else {
         msgHdr = folderMsgs.getNext();
         msgUri = msgFolder.getUriForMsg(msgHdr);
@@ -453,7 +447,7 @@ export var mboxImportExport = {
         firstLineIndex = -1;
       }
 
-      // do only single From_ escape, assumepre escape handling by TB
+      // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
@@ -633,19 +627,24 @@ export var mboxImportExport = {
     window.gTabmail.currentTabInfo.folder = msgFolder;
     var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
 
-    var msguri = gDBView.getURIForViewIndex(1);
-    var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-    var hdr = mms.messageURIToMsgHdr(msguri);
-
     // give ui time
-    await new Promise(r => window.setTimeout(r, 500));
+    //await new Promise(r => window.setTimeout(r, 0));
 
     // we have to expand all threads to iterate
+    // unless and until the view is expanded, we
+    // iterate over all messages. 
+    // we wait until rowCount == numMsgsInView
+
     gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
-    await new Promise(r => window.setTimeout(r, 500));
-    // console.log(gDBView.rowCount)
-    // console.log(gDBView.numMsgsInView)
-    // console.log(gDBView.getURIForViewIndex(1))
+
+    var waitCnt = 100;
+    while (waitCnt--) {
+      if (gDBView.rowCount == gDBView.numMsgsInView) {
+        console.log("wait t", waitCnt);
+        break;
+      }
+    await new Promise(r => window.setTimeout(r, 50));
+    }
 
     var uriArray = [];
     var msgUri;
@@ -656,8 +655,6 @@ export var mboxImportExport = {
       try {
         msgUri = gDBView.getURIForViewIndex(i);
         uriArray.push(msgUri);
-        console.log(msgUri)
-
       } catch (ex) {
         continue; // ignore errors for dummy rows
       }
@@ -667,7 +664,6 @@ export var mboxImportExport = {
     gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
     // jump back to top folder
     window.gTabmail.currentTabInfo.folder = curMsgFolder;
-    console.log(uriArray)
     return uriArray;
   },
 

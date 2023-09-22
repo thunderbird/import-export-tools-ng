@@ -1152,14 +1152,19 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
   return storeType;
 }
 
-async function copyToClipboard(ctxEvent) {
+async function copyToClipboard(ctxEvent, tab) {
   console.log(ctxEvent)
+  console.log(tab)
+  let msgId = await messenger.messageDisplay.getDisplayedMessage(tab.id);
+  console.log(msgId)
   let params = {};
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";
   } else {
     params.clipboardType = "Headers";
     params.pageUrl = ctxEvent.pageUrl;
+    params.msgId = ctxEvent.msgId;
+
   }
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }

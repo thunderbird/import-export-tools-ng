@@ -1930,11 +1930,28 @@ var copyHeaders = {
 		return myListener;
 	},
 
-	start: async function (pageUrl) {
+	//imap://test1@kokkini.net@imap.kokkini.net:143/fetch>UID>.INBOX>3229 exportTools.js:1938:12
+
+	start: async function (msgId) {
 		var msguri;
-		if (pageUrl) {
+		
+		if (msgId) {
+			let realMessage = window.ietngAddon.extension
+			.messageManager.get(msgId);
+			
+			msguri = realMessage.folder.getUriForMsg(realMessage);
+			/*
 			msguri = pageUrl;
 			console.log(msguri)
+			console.log(decodeURIComponent(msguri));
+			msguri = decodeURIComponent(msguri);
+
+			msguri = msguri.replace("imap", "imap-message");
+			msguri = msguri.replace(":143/fetch>UID>.", "/");
+			msguri = msguri.replace(">", "#");
+			console.log(msguri)
+			*/
+
 		} else {
 		var mess = await IETgetSelectedMessages();
 		msguri = mess[0];

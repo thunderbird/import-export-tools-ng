@@ -120,7 +120,7 @@ function compareKeyDefinition(hotKey, keyElement) {
 }
 
 function setupHotKeys(contexts) {
-	// console.debug('setupHotKs ' + contexts);
+	console.debug('setupHotKs ' + contexts);
 	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
 	IETlogger.write('Setup hot-keys: ' + contexts);
@@ -128,16 +128,16 @@ function setupHotKeys(contexts) {
 
 	IETlogger.write(hotKeysStr);
 
-	// console.debug('HotK ' + hotKeysStr);
+	console.debug('HotK ' + hotKeysStr);
 
 	if (hotKeysStr !== "") {
 		try {
 			var hotKeysArray = JSON.parse(hotKeysStr);
-			// console.debug(hotKeysArray);
+			console.debug(hotKeysArray);
 			for (let index = 0; (index < hotKeysArray.length && index < 10); index++) {
 				var hotKey = hotKeysArray[index];
 				if (hotKey) {
-					// console.debug(hotKey);
+					console.debug(hotKey);
 					// check that we have either 'key' or 'keycode' not both
 					if (!!hotKey.key && !!hotKey.keycode) {
 						console.debug('HotKey with both key and keycode');
@@ -153,7 +153,7 @@ function setupHotKeys(contexts) {
 						}
 
 						let hkeyElement = document.getElementById(`hot-key${id}`);
-						// console.debug(`hot-key${id} ${hkeyElement.outerHTML}`);
+						console.debug(`hot-key${id} ${hkeyElement.outerHTML}`);
 
 						let key = hotKey.key || null;
 						let keycode = hotKey.keycode || null;
@@ -178,7 +178,7 @@ function setupHotKeys(contexts) {
 						}
 						hkeyElement.setAttribute("modifiers", modifiers);
 						hkeyElement.setAttribute("oncommand", oncommand);
-						// console.debug(hkeyElement.outerHTML);
+						console.debug(hkeyElement.outerHTML);
 						IETlogger.write('Add key: ');
 						IETlogger.write(hotKey);
 						for (let i = 0; i < existingKeys.length; i++) {

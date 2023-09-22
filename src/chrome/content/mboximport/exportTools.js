@@ -202,12 +202,35 @@ async function exportSelectedMsgs(type, params) {
 		}
 	} catch (e) { }
 
+	var curDBView;
+	// lets see where we are
+	if (gTabmail.currentAbout3Pane) {
+		// on 3p
+		curDBView = gTabmail.currentAbout3Pane.gDBView;
+	} else if (gTabmail.currentAboutMessage) {
+		curDBView = gTabmail.currentAboutMessage.gDBView;
+	}
+
+	let emlsArray = curDBView.getURIsForSelection();
+
+	// use first message to get current folder
+	var mms1 = MailServices.messageServiceFromURI(emlsArray[0]).QueryInterface(Ci.nsIMsgMessageService);
+	var hdr1 = mms1.messageURIToMsgHdr(emlsArray[0]);
+	var curMsgFolder = hdr1.folder;
+
 	try {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	} catch (ex) {
 		msgFolder = GetFirstSelectedMsgFolder();
+		if (!msgFolder) {
+			msgFolder = curMsgFolder;
+		}
+		//console.log(msgFolder)
 	}
+		console.log(gTabmail)
 
+
+	console.log(emlsArray)
 	var isOffLineImap;
 
 	let imapFolder = {};
@@ -226,9 +249,7 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-	let emlsArray = gTabmail.currentAbout3Pane.gDBView.getURIsForSelection();
-
-	console.log(emlsArray)
+	
 
 	IETskipped = 0;
 	if (isOffLineImap) {

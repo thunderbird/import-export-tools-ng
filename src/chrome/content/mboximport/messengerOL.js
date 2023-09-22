@@ -281,7 +281,7 @@ WL.injectElements(`
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
 
 
-/*
+
 	// HotKeys overlay fragment
 
 	WL.injectElements(`
@@ -303,7 +303,7 @@ WL.injectElements(`
 
 </overlay>
 `, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
-*/
+
 
 	// inject extension object into private context
 	window.ietng = {};

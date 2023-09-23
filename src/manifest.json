@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.0.0-b8hk1",
+  "version": "14.0.0-b9",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {

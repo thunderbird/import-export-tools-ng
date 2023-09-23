@@ -90,7 +90,7 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_CopyToClipboard":
 			if (data.params.clipboardType == "Message") {
-				await copyMSGtoClip();
+				await copyMSGtoClip(data.params.msgId);
 			} else {
 				copyHeaders.start(data.params.msgId);
 			}

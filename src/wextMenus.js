@@ -708,18 +708,47 @@ var folderCtxMenuSet = [
 // attachments menu
 const attCtxMenu_Top_Id = "attCtxMenu_Top_Id";
 
+// messageDisplay copyToClipboard menu
+const msgDisplayCtxMenu_Top_Id = "msgDisplayCtxMenu_Top_Id";
+const msgDisplayCtxMenu_CopyToClipboardMessage_Id = "msgDisplayCtxMenu_CopyToClipboardMessage_Id";
+const msgDisplayCtxMenu_CopyToClipboardHeaders_Id = "msgDisplayCtxMenu_CopyToClipboardHeaders_Id";
+
+var msgDisplayCtxMenuSet = [
+  {
+    menuDef: {
+      id: msgDisplayCtxMenu_Top_Id,
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboard_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: msgDisplayCtxMenu_Top_Id,
+      id: msgDisplayCtxMenu_CopyToClipboardMessage_Id,
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
+      onclick: copyToClipboard,
+    },
+  },
+  {
+    menuDef: {
+      parentId: msgDisplayCtxMenu_Top_Id,
+      id: msgDisplayCtxMenu_CopyToClipboardHeaders_Id,
+      title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
+      onclick: copyToClipboard,
+    },
+  },
+];
+
 
 // Use anon async to pass ATN
 await((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+  await createMenus("", msgDisplayCtxMenuSet, { defaultContexts: ["page"] });
 
-    // tbd translate
+
+  // tbd translate
   await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
-  //await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["message_display_action_menu"], onclick: importEmlAttToFolder});
-  await messenger.menus.create({ id: "msgDisplayCtxMenu_Top_Id", title: "Copy To Clipboard", contexts: ["page"], onclick: copyToClipboard});
-  
 
 })());
 
@@ -1030,6 +1059,13 @@ function localizeMenuTitle(id) {
 // update menus based on folder type
 // update for attachment menu based on eml type
 async function menusUpdate(info, tab) {
+  
+  if (info.contexts.includes("page")) {
+    console.log("SHOW");
+    messenger.menus.update("pagemenu", {visible: tab.mailTab});
+    messenger.menus.refresh();
+  }
+
   // check if we have attachment menu open
   // we only make our menu visible for eml rfc822 atts
   if (info.contexts.includes("message_attachments")) {
@@ -1155,16 +1191,16 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 async function copyToClipboard(ctxEvent, tab) {
   console.log(ctxEvent)
   console.log(tab)
-  let msgId = await messenger.messageDisplay.getDisplayedMessage(tab.id);
+  let msgId = (await messenger.messageDisplay.getDisplayedMessage(tab.id)).id;
   console.log(msgId)
   let params = {};
-  if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id) {
+  params.msgId = msgId;
+
+  if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
+      ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";
   } else {
     params.clipboardType = "Headers";
-    params.pageUrl = ctxEvent.pageUrl;
-    params.msgId = ctxEvent.msgId;
-
   }
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }

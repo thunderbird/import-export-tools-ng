@@ -227,7 +227,7 @@ async function exportSelectedMsgs(type, params) {
 		}
 		//console.log(msgFolder)
 	}
-		console.log(gTabmail)
+	console.log(gTabmail)
 
 
 	console.log(emlsArray)
@@ -249,7 +249,7 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-	
+
 
 	IETskipped = 0;
 	if (isOffLineImap) {
@@ -1898,13 +1898,18 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-async function copyMSGtoClip() {
-	var uris = await IETgetSelectedMessages();
-	var msguri = uris[0];
+async function copyMSGtoClip(msgId) {
+	var msguri;
 
-	if (!msguri)
-		return;
-	exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
+	if (msgId) {
+		let realMessage = window.ietngAddon.extension
+			.messageManager.get(msgId);
+		msguri = realMessage.folder.getUriForMsg(realMessage);
+
+		if (!msguri)
+			return;
+		exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
+	}
 }
 
 var copyHeaders = {
@@ -1955,38 +1960,19 @@ var copyHeaders = {
 
 	start: async function (msgId) {
 		var msguri;
-		
+
 		if (msgId) {
 			let realMessage = window.ietngAddon.extension
-			.messageManager.get(msgId);
-			
+				.messageManager.get(msgId);
 			msguri = realMessage.folder.getUriForMsg(realMessage);
-			/*
-			msguri = pageUrl;
-			console.log(msguri)
-			console.log(decodeURIComponent(msguri));
-			msguri = decodeURIComponent(msguri);
 
-			msguri = msguri.replace("imap", "imap-message");
-			msguri = msguri.replace(":143/fetch>UID>.", "/");
-			msguri = msguri.replace(">", "#");
-			console.log(msguri)
-			*/
-
-		} else {
-		var mess = await IETgetSelectedMessages();
-		msguri = mess[0];
-		console.log(msguri)
-
+			var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+			var streamListner = copyHeaders.getListener();
+			if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
+				streamListner.remote = true;
+			mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
 		}
-		var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-		var streamListner = copyHeaders.getListener();
-		if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
-			streamListner.remote = true;
-		mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
 	},
-
-
 };
 
 function IETescapeBeginningFrom(data) {

@@ -1060,10 +1060,11 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 async function menusUpdate(info, tab) {
   
+  // toggle copyToClipboard visibility 
   if (info.contexts.includes("page")) {
-    console.log("SHOW");
-    messenger.menus.update("pagemenu", {visible: tab.mailTab});
+    messenger.menus.update(msgDisplayCtxMenu_Top_Id, {visible: tab.mailTab});
     messenger.menus.refresh();
+    return;
   }
 
   // check if we have attachment menu open

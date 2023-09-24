@@ -1050,10 +1050,9 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
-  
   // toggle copyToClipboard visibility 
   if (info.contexts.includes("page")) {
-    messenger.menus.update(msgDisplayCtxMenu_Top_Id, {visible: tab.mailTab});
+    messenger.menus.update(msgDisplayCtxMenu_Top_Id, {visible: (tab.type == "mail" || tab.type == "messageDisplay")});
     messenger.menus.refresh();
     return;
   }

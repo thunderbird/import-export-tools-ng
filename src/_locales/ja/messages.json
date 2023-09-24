@@ -325,5 +325,9 @@
 
 	"dateFmtToken": {
 		"message": "${日時}"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "EML 添付ファイルをこのフォルダーに保存します"
 	}
 }

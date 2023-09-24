@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Εξαγωγή λογαριασμού"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Αποθηκεύστε το συνημμένο EML σε αυτόν τον φάκελο"
 	}
 }

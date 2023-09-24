@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Eksportuj konto"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Zapisz załącznik EML w tym folderze"
 	}
 }

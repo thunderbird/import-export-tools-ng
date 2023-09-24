@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "계정 내보내기"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "EML 첨부 파일을 이 폴더에 저장"
 	}
 }

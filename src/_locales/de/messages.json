@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Konto exportieren"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Speichern Sie den EML-Anhang in diesem Ordner"
 	}
 }

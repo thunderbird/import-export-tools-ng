@@ -329,5 +329,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "出口账户"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "将 EML 附件保存到此文件夹"
 	}
 }

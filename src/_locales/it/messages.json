@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Conto di esportazione"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Salva l&#39;allegato EML in questa cartella"
 	}
 }

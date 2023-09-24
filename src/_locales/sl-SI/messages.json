@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Izvozi račun"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Shranite prilogo EML v to mapo"
 	}
 }

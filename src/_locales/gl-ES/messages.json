@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Conta de exportación"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Garda o anexo EML neste cartafol"
 	}
 }

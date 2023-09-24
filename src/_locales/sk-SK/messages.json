@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Exportovať účet"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Uložiť prílohu EML do tohto priečinka"
 	}
 }

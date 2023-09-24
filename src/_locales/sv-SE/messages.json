@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Exportera konto"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Spara EML-bilaga till den här mappen"
 	}
 }

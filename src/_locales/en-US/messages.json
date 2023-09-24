@@ -325,5 +325,9 @@
 
 	"dateFmtToken": {
 		"message": "${date}"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Save EML attachment to this folder"
 	}
 }

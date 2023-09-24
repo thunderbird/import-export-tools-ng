@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Eksporter konto"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Gem EML-vedhæftet fil i denne mappe"
 	}
 }

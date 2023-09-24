@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Экспорт учетной записи"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Сохраните вложение EML в эту папку."
 	}
 }

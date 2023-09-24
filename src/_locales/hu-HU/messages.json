@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Számla exportálása"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "EML melléklet mentése ebbe a mappába"
 	}
 }

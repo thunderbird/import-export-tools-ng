@@ -321,5 +321,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Compte d&#39;exportació"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Desa el fitxer adjunt EML en aquesta carpeta"
 	}
 }

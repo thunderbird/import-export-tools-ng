@@ -325,5 +325,9 @@
 
 	"folderCtxMenu_Exp_Account_Id.title": {
 		"message": "Արտահանման հաշիվ"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Պահպանեք EML հավելվածն այս թղթապանակում"
 	}
 }

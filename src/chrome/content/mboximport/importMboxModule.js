@@ -87,13 +87,13 @@ async function mboxCopyImport(options) {
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
-    console.log("Start:", new Date());
+    //console.log("Start:", new Date());
     let offset = 0;
     let s = new Date();
     let eof = false;
 
     // fromRegex used for From_ escaping
-    // Requires From_ followed by two headers
+    // Requires From_ followed by two headers, including multiline hdrs
     //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
     let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
@@ -168,11 +168,12 @@ async function mboxCopyImport(options) {
     
     writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
 
+    /*
     console.log("end read/fix/write loop");
     console.log("Escape fixups:", fromEscCount);
     console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
-
+*/
   }
   // tbd use status codes
   return "Done";

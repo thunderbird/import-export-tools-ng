@@ -61,7 +61,7 @@ var Services = globalThis.Services || ChromeUtils.import(
   'resource://gre/modules/Services.jsm'
 ).Services;
 
-//var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+// var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
@@ -70,7 +70,7 @@ var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 // sometimes we want straight module for testing
-//var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+// var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
@@ -112,8 +112,8 @@ async function test() {
 async function test2() {
 
 	let msgFolder = GetFirstSelectedMsgFolder();
-	mboxImportExport._touchCopyFolderMsg(msgFolder)
-	return
+	mboxImportExport._touchCopyFolderMsg(msgFolder);
+	return;
 
 }
 
@@ -123,7 +123,7 @@ async function test2() {
 var IETprintPDFmain = {
 
 	print: async function (allMessages, params) {
-		// New built in Mozilla PDF driver finally works on OSX - enable for Mac 
+		// New built in Mozilla PDF driver finally works on OSX - enable for Mac
 		// Addresses #353
 
 		try {
@@ -299,9 +299,9 @@ var IETprintPDFmain = {
 
 		// console.log("IETNG: Save as PDF: ", new Date());
 		// console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
-		// We can simply by using PrintUtils.loadPrintBrowser eliminating 
+		// We can simply by using PrintUtils.loadPrintBrowser eliminating
 		// the fakeBrowser NB: if the printBrowser does not exist we
-		// can create with PrintUtils as well 
+		// can create with PrintUtils as well
 
 		var errCounter = 0;
 		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
@@ -323,7 +323,7 @@ var IETprintPDFmain = {
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
 				// console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
 
-				//try {
+				// try {
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;
@@ -472,7 +472,7 @@ async function trytocopyMAILDIR(params) {
 	try {
 		mboxImportExport.reindexDBandRebuildSummary(newFolder);
 	} catch (e) {
-		console.log(e)
+		console.log(e);
 	}
 }
 
@@ -481,11 +481,11 @@ async function trytocopyMAILDIR(params) {
 async function testCopy(file, msgFolder, selectedFolder) {
 	file = file.QueryInterface(Ci.nsIFile);
 
-	console.log(file)
+	console.log(file);
 	let tf = msgFolder.containsChildNamed("Inbox");
-	console.log(tf)
+	console.log(tf);
 	let sf = msgFolder.subFolders;
-	console.log(sf)
+	console.log(sf);
 
 	var src = file.path;
 	var folderName = file.leafName;
@@ -495,18 +495,18 @@ async function testCopy(file, msgFolder, selectedFolder) {
 	var folder = msgFolder.getChildNamed(folderName);
 	await new Promise(resolve => setTimeout(resolve, 200));
 
-	console.log(folder)
+	console.log(folder);
 	var folderPath = folder.filePath.QueryInterface(Ci.nsIFile).path;
-	console.log(folderPath)
-	//let dst = PathUtils.join(folderPath, folderName);
+	console.log(folderPath);
+	// let dst = PathUtils.join(folderPath, folderName);
 	var dst = folderPath;
-	console.log(src, dst)
+	console.log(src, dst);
 	let r = await IOUtils.copy(src, dst);
 
 
-	console.log(folder)
-	//return;
-	//folder = null;
+	console.log(folder);
+	// return;
+	// folder = null;
 	// Send a notification that we are triggering a database rebuild.
 	MailServices.mfn.notifyFolderReindexTriggered(folder);
 
@@ -627,9 +627,9 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		console.log("IETNG: start copy: ", new Date());
 		let src = file.path;
 		let dst = PathUtils.join(filex.path, tempfolder.filePath.leafName);
-		console.log(src, dst)
+		console.log(src, dst);
 		let r = await IOUtils.copy(src, dst);
-		//file.copyTo(filex, tempfolder.filePath.leafName);
+		// file.copyTo(filex, tempfolder.filePath.leafName);
 
 		console.log("IETNG: end copy: ", new Date());
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
@@ -656,7 +656,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// At this location was a call to msgFolder.NotifyItemAdded inside a try catch wich was not doing
 	// anything for ages. The correct call would be msgFolder.notifyFolderAdded(newFolder);
 	// BUT I think this is too early as the folder is not actually created
-	//msgFolder.notifyFolderAdded(newFolder);
+	// msgFolder.notifyFolderAdded(newFolder);
 
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
@@ -681,10 +681,10 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	}
 
 	console.log("IETNG: rebuild foldertree");
-	// 115 need replacement 
-	//gFolderTreeView._rebuild();
-	console.log(newFolder)
-	//IETupdateFolder(newFolder);
+	// 115 need replacement
+	// gFolderTreeView._rebuild();
+	console.log(newFolder);
+	// IETupdateFolder(newFolder);
 	var folder = newFolder.parent;
 
 	if (folder.locked) {
@@ -805,7 +805,7 @@ async function exportfolder(params) {
 	var subfolders = params.includeSubfolders;
 	var keepstructure = !params.flattenSubfolders;
 
-	console.log("Start: ExportFolders (mbox)");
+	// console.log("Start: ExportFolders (mbox)");
 
 	var folders = [];
 	var account;
@@ -817,17 +817,18 @@ async function exportfolder(params) {
 			if (account.key == params.selectedAccount.id) {
 				return true;
 			}
-		})
+		});
 		folders[0] = account.incomingServer.rootMsgFolder;
 	} else {
 		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 	}
 
+	/*
 	console.log("   Subfolders:", subfolders);
 	console.log("   Structured: ", keepstructure);
 	console.log("   Local: ", localfolder);
 	console.log("   Zipper: ", zip);
-	// console.log(folders);
+*/
 
 	var isVirtualFolder = false;
 	for (var i = 0; i < folders.length; i++) {
@@ -850,8 +851,6 @@ async function exportfolder(params) {
 			return;
 	}
 
-	console.log("all here")
-
 	if (zip) {
 		if (!String.prototype.trim)
 			alert(mboximportbundle.GetStringFromName("needTB3"));
@@ -861,9 +860,6 @@ async function exportfolder(params) {
 	}
 
 	if (folders[0].isServer) {
-		console.log("Exporting server");
-		// console.log(msgFolder.filePath.path);
-		// console.log(msgFolder.prettyName);
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
@@ -871,24 +867,16 @@ async function exportfolder(params) {
 		return;
 	}
 
-	console.log("bef v")
-
 	if (localfolder && !subfolders && isVirtualFolder) {
-		console.log("exp v")
-
 		exportVirtualFolder(folders[0], destdirNSIFILE);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 		return;
 	}
 
-	console.log("bef rem")
-
 	if (!localfolder && !subfolders) {
 		exportRemoteFolders(destdirNSIFILE, folders);
 		return;
 	}
-
-	console.log("bef mbx")
 
 	// new export
 	let rootFolder = folders[0];
@@ -897,10 +885,7 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
-	//for (let index = 0; index < 10; index++) {
-		console.log("calling exp mbox")
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
-	//}
 
 	return;
 
@@ -908,15 +893,12 @@ async function exportfolder(params) {
 }
 
 async function IETexportZip(destdirNSIFILE, folders) {
-	console.log("zip")
 	for (var i = 0; i < folders.length; i++) {
 		var zipFile = destdirNSIFILE.clone();
 		// export folder before zip
 
-
 		var file = msgFolder2LocalFile(folders[i]);
 		if (file.exists()) {
-
 
 			var path = folders[i].name;
 			var destPath = destdirNSIFILE.path;
@@ -937,7 +919,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
 			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
-			await new Promise(resolve => window.setTimeout(resolve, 1000));
+			await new Promise(resolve => window.setTimeout(resolve, 100));
 
 			zipW.open(zipFile, 0x04 | 0x08 | 0x20);
 			if (file.isDirectory())
@@ -974,10 +956,7 @@ function exportRemoteFolders(destdirNSIFILE, folders) {
 	exportIMAPfolder(IETglobalMsgFolders[0], destdirNSIFILE);
 }
 
-
-
-
-
+// To be deprecated
 // The subfolder argument is true if we have to export also the subfolders
 async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {
 
@@ -986,7 +965,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	var thefoldername = IETcleanName(msgFolder.name);
 	var newname;
 
-	console.log("Start: exportSingleLocaleFolder");
+	//console.log("Start: exportSingleLocaleFolder");
 	// console.log("   SrcPath: ", filex.path);
 	// console.log("   Folder: ", thefoldername);
 
@@ -1001,31 +980,31 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	} else if (subfolder && !keepstructure) {
 		// export the folder with the subfolders
 		// first we copy the folder, finding a good name from its displayed name
-		console.log("flat")
+		console.log("flat");
 
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
 		if (filex.exists()) {
-			console.log("copy ", newname)
+			console.log("copy ", newname);
 
-			//filex.copyTo(destdirNSIFILE, newname);
-			let dest = PathUtils.join(destdirNSIFILE.path, newname)
-			console.log("copyfix")
-			//mboxImportExport.copyAndFixMboxFile(filex.path, dest);
+			// filex.copyTo(destdirNSIFILE, newname);
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
+			// mboxImportExport.copyAndFixMboxFile(filex.path, dest);
 			await buildAndExportMbox(msgFolder, dest);
 		}
 		// then we export the subfolders
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
-		//IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
 		console.log("Exporting with subfolders");
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
 		if (filex.exists()) {
-			//filex.copyTo(destdirNSIFILE, newname);
-			let dest = PathUtils.join(destdirNSIFILE.path, newname)
-			console.log("copyfix")
+			// filex.copyTo(destdirNSIFILE, newname);
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
 			mboxImportExport.copyAndFixMboxFile(filex.path, dest);
 		} else {
-			console.log("create ", newname)
+			console.log("create ", newname);
 			// This fixes #320
 			// imap profile folders do not have empty
 			// mbox files. We create one if we encounter
@@ -1062,14 +1041,14 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		// export just the folder
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
 		if (filex.exists()) {
-			let dest = PathUtils.join(destdirNSIFILE.path, newname)
-			console.log("copyfix")
-			//mboxImportExport.copyAndFixMboxFile(filex.path, dest);
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
+			// mboxImportExport.copyAndFixMboxFile(filex.path, dest);
 			await buildAndExportMbox(msgFolder, dest);
 
-			//await IOUtils.copy(filex.path, dest);
+			// await IOUtils.copy(filex.path, dest);
 		}
-		//IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	}
 }
 
@@ -1092,9 +1071,9 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 
 	// copy account tree
-	//let destPath = destdirNSIFILE.path;
+	// let destPath = destdirNSIFILE.path;
 	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, true, false);
-	//await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
+	// await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
 
 }
@@ -1137,9 +1116,9 @@ async function getDirectoryChildren(rootPath, options) {
 	if (options && options.recursive) {
 		for (item of items) {
 			let stat = await IOUtils.stat(item);
-			//console.log(stat)
+			// console.log(stat)
 			if (stat.type == "directory") {
-				//console.log(item)
+				// console.log(item)
 				list = list.concat(await getDirectoryChildren(item, options));
 			}
 		}
@@ -1185,29 +1164,28 @@ var MBOXIMPORTscandir = {
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 	if (msgFolder.subFolders) {
-		console.log("copy Subfolders ")
+		console.log("copy Subfolders ");
 
 		for (let subfolder of msgFolder.subFolders) {
 			// Search for a good name
-			console.log(subfolder)
-			console.log(subfolder.filePath)
-			console.log(subfolder.name)
+			console.log(subfolder);
+			console.log(subfolder.filePath);
+			console.log(subfolder.name);
 
 
 			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
 			let subfolderNS = msgFolder2LocalFile(subfolder);
-			console.log(subfolderNS)
+			console.log(subfolderNS);
 
-			console.log(subfolderNS.exists())
-			console.log(subfolderNS.path)
+			console.log(subfolderNS.exists());
+			console.log(subfolderNS.path);
 
 			if (subfolderNS.exists()) {
-				//subfolderNS.copyTo(destdirNSIFILE, newname);
-				let dest = PathUtils.join(destdirNSIFILE.path, newname)
-				console.log("copyfix")
+				// subfolderNS.copyTo(destdirNSIFILE, newname);
+				let dest = PathUtils.join(destdirNSIFILE.path, newname);
+				console.log("copyfix");
 				mboxImportExport.copyAndFixMboxFile(subfolderNS.path, dest);
-			}
-			else {
+			} else {
 				newname = IETcleanName(newname);
 				let destdirNSIFILEclone = destdirNSIFILE.clone();
 				destdirNSIFILEclone.append(newname);
@@ -1367,7 +1345,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 							MailServices.mfn.removeListener(folderListener);
 							resolve(aFolder);
 						}
-					}
+					},
 				};
 				MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
 				msgFolder.createSubfolder(folderName, msgWindow);

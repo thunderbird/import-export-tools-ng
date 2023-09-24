@@ -98,28 +98,27 @@ var ietngUtils = {
       if (delay > 0) {
         window.setTimeout(function () { _this.deleteStatusLine(window, text); }, delay);
       }
-      //window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
+      // window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
 
 
     } else {
-      alert("no status ")
+      alert("no status ");
     }
   },
 
   createStatusLine: function (window) {
-    console.log("inserted status")
-    
+
     if (window.document.getElementById("ietngStatusText")) {
       return;
     }
-    
-    let s = window.document.getElementById("statusText")
-    let s2 = window.document.createElement("label")
+
+    let s = window.document.getElementById("statusText");
+    let s2 = window.document.createElement("label");
     s2.classList.add("statusbarpanel");
-    s2.setAttribute("id", "ietngStatusText")
+    s2.setAttribute("id", "ietngStatusText");
     s2.style.width = "420px";
-    s2.style.overflow = "hidden"
-    s.before(s2)
+    s2.style.overflow = "hidden";
+    s.before(s2);
   },
 
   deleteStatusLine: function (window, text) {
@@ -158,10 +157,9 @@ var ietngUtils = {
   },
 
   createUniqueFolderName: function (foldername, destDirPath, structure, useMboxExt) {
-    console.log("cr u")
 
     // for mbox extension we have to gyrate bit
-    
+
     var destdirNSIFILE = Cc["@mozilla.org/file/local;1"]
       .createInstance(Ci.nsIFile);
     destdirNSIFILE.initWithPath(destDirPath);
@@ -192,18 +190,15 @@ var ietngUtils = {
       }
       return foldername;
     }
-    console.log(foldername)
     NSclone = destdirNSIFILE.clone();
     NSclone.append(foldername);
     while (NSclone.exists()) {
       index++;
       if (!useMboxExt) {
       nameIndex = foldername + "-" + index.toString();
-      console.log(nameIndex)
 
       } else {
         nameIndex = foldername.split(".mbox")[0] + "-" + index.toString() + ".mbox";
-        console.log(nameIndex)
       }
       NSclone = destdirNSIFILE.clone();
       NSclone.append(nameIndex);

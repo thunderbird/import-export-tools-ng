@@ -375,7 +375,7 @@ export var mboxImportExport = {
     var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
 
     let st = new Date();
-    console.log("Start: ", st, msgFolder.prettyName);
+    //console.log("Start: ", st, msgFolder.prettyName);
     var mboxDestPath = dest;
     var folderMsgs = msgFolder.messages;
 
@@ -444,12 +444,10 @@ export var mboxImportExport = {
       }
 
       let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
-      var firstLineIndex;
       if (rawBytes.substring(0, 5) == "From ") {
         fromHdr = "";
-        firstLineIndex = rawBytes.indexOf("\n");
       } else {
-        firstLineIndex = -1;
+        // may need to look ahead
       }
 
       // do only single From_ escape, assume pre escape handling by TB
@@ -481,7 +479,7 @@ export var mboxImportExport = {
     // console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
 
     let end = new Date();
-    console.log("End: ", end, (end - st) / 1000);
+    //console.log("End: ", end, (end - st) / 1000);
   },
 
   getRawMessage: async function (msgUri) {
@@ -645,7 +643,6 @@ export var mboxImportExport = {
     var waitCnt = 100;
     while (waitCnt--) {
       if (gDBView.rowCount == gDBView.numMsgsInView) {
-        console.log("wait t", waitCnt);
         break;
       }
     await new Promise(r => window.setTimeout(r, 50));

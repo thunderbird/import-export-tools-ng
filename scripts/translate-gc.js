@@ -593,7 +593,7 @@ var options = {
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
-	skipEN: true,
+	skipEN: false,
 	outputFormat: 1,
 };
 

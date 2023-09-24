@@ -25,6 +25,7 @@ var Services = globalThis.Services || ChromeUtils.import(
 ).Services;
 
 var window = Services.wm.getMostRecentWindow("mail:3pane");
+var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // main worker message handler (when worker)
 // We receive and dispatch all commands here
@@ -104,6 +105,9 @@ async function mboxCopyImport(options) {
     var totalWrite = 0;
     var finalChunk;
 
+    let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
+    let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
+
     while (!eof) {
       // Read chunk as uint8
       rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kREAD_CHUNK });
@@ -138,7 +142,7 @@ async function mboxCopyImport(options) {
         // This is for our ui status update
         // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
 
-        writeIetngStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
+        writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
       }
 
       // Determine final write chunk
@@ -156,12 +160,13 @@ async function mboxCopyImport(options) {
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
 
       // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
-      writeIetngStatusLine(window, "Processing " + folderName + ": " + formatBytes(totalWrite, 2), 14000);
+      writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
     }
 
     let et = new Date() - s;
 
-    writeIetngStatusLine(window, "Imported " + folderName + ": " + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
+    
+    writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
 
     console.log("end read/fix/write loop");
     console.log("Escape fixups:", fromEscCount);

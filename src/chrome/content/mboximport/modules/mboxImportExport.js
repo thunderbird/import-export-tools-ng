@@ -57,15 +57,18 @@ export var mboxImportExport = {
     this.totalSkipped = 0;
     this.toCompactFolderList = [];
 
-    // tbd translate
+    let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
+    let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
+    
+
     if (params.mboxImpType == "individual") {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, "Select mbox files to import", null, null);
+      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
       if (fpRes.result == -1) {
         return;
       }
       mboxFiles = fpRes.filesArray;
     } else {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, "Select folder to import mbox files", null, null);
+      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
       if (fpRes.result == -1) {
         return;
       }
@@ -95,10 +98,11 @@ export var mboxImportExport = {
       let stat = await IOUtils.stat(mboxFilePath);
       let fname = PathUtils.filename(mboxFilePath);
       
-      // tbd translate
+      let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
+      
       if (stat.size > 4000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
-        window.alert(`Mbox ${fname} larger than 4GB, skipping`);
+        window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
         return
       }
 
@@ -368,6 +372,8 @@ export var mboxImportExport = {
   },
 
   buildAndExportMbox: async function (msgFolder, dest) {
+    var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
+
     let st = new Date();
     console.log("Start: ", st, msgFolder.prettyName);
     var mboxDestPath = dest;
@@ -453,7 +459,7 @@ export var mboxImportExport = {
 
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
-        ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
+        ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + "  Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
 
         let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
         let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
@@ -462,7 +468,7 @@ export var mboxImportExport = {
 
         msgsBuffer = "";
         if (index == totalMessages - 1 || totalBytes >= kMaxFileSize) {
-          ietngUtils.writeStatusLine(window, "Exporting " + msgFolder.name + " Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
+          ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + "   Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
 
           totalTime = (new Date() - st) / 1000;
           break;

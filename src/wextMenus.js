@@ -738,7 +738,7 @@ await((async () => {
 
 
   // tbd translate
-  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: "Save EML attachment to this folder", contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
+  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"), contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
 
 })());
 

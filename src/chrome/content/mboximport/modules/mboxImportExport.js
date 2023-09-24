@@ -93,7 +93,6 @@ export var mboxImportExport = {
       const mboxFilePath = files[i];
 
       let stat = await IOUtils.stat(mboxFilePath);
-      console.log("size ", stat.size)
       let fname = PathUtils.filename(mboxFilePath);
       
       // tbd translate

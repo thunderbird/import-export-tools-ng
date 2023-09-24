@@ -135,7 +135,13 @@ var translationArray5 = [
 ];
 
 var translationArray = [
-  { key: "useMboxExt.label", text: "Use .mbox extension for mbox files (non-structured)"},
+  { key: "selectMboxFiles_title", text: "Select mbox files to import"},
+  { key: "selectFolderForMboxes_title", text: "Select folder to import mbox files"},
+  { key: "over4GBskipMsg", text: "larger than 4GB, skipping"},
+  { key: "exportingMsg", text: "Exporting"},
+  { key: "processingMsg", text: "Processing"},
+  { key: "importedMsg", text: "Imported"},
+
 
 	
 ];
@@ -572,13 +578,23 @@ var options1 = {
 };
 
 // dtd=2
-var options = {
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
 	skipEN: true,
 	outputFormat: 2,
+};
+
+// properties=1
+var options = {
+	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	outputLocaleDir: "./src/chrome/locale",
+	outputLocaleDirSuffix: "mboximport/",
+	append: true,
+	skipEN: true,
+	outputFormat: 1,
 };
 
 var options4 = {
@@ -599,7 +615,7 @@ var options4 = {
 let inputFiles = ["messages.json"];
 inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-//inputFiles = ["mboximport.properties"];
+inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 

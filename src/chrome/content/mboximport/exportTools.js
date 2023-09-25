@@ -225,12 +225,8 @@ async function exportSelectedMsgs(type, params) {
 		if (!msgFolder) {
 			msgFolder = curMsgFolder;
 		}
-		//console.log(msgFolder)
 	}
-	console.log(gTabmail)
 
-
-	console.log(emlsArray)
 	var isOffLineImap;
 
 	let imapFolder = {};

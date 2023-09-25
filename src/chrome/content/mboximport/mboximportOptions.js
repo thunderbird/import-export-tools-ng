@@ -376,7 +376,6 @@ function customNamesCheck(el) {
         //document.getElementById("customDateLabel").setAttribute("disabled", "true");
 
     } else {
-        console.debug('disable file names');
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");

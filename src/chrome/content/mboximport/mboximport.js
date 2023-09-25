@@ -985,7 +985,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 // Rewrite / fix account level export - use IOUtils #296
 async function exportAccount(rootFolder, accountFolderPath, destPath) {
 
-	console.log("Start: exportAccount");
+	//console.log("Start: exportAccount");
 	// console.log("   SrcPath: ", accountFolderPath);
 	// console.log("   srcFolder: ", accountName);
 	// console.log("   destPath: ", destPath);

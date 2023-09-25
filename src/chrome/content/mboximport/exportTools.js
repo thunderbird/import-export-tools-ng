@@ -525,7 +525,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 
 async function exportAllMsgsDelayed(type, file, msgFolder) {
 	try {
-		console.log("exportAllMsgsDelayed")
+		//console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;

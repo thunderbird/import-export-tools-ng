@@ -10,8 +10,9 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotK
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/composeOverlay.js", window, "UTF-8");
 
 function onLoad() {
-	console.debug('Load messengercompose OL');
+	//console.debug('Load messengercompose OL');
 
+	/*
 	WL.injectElements(`
 <overlay id="composeOverlay"
 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -33,4 +34,6 @@ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 `);
 
 	window.setupHotKeys('compose');
+*/
+
 }

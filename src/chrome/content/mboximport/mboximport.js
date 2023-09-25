@@ -103,23 +103,6 @@ if (window.document.getElementById("ietngStatusText")) {
 	window.document.getElementById("ietngStatusText").remove();
 }
 
-async function test() {
-	let msgFolder = GetFirstSelectedMsgFolder();
-	mboxImportExport._toggleGlobalSearchEnable(msgFolder);
-	return;
-}
-
-async function test2() {
-
-	let msgFolder = GetFirstSelectedMsgFolder();
-	mboxImportExport._touchCopyFolderMsg(msgFolder);
-	return;
-
-}
-
-
-
-
 var IETprintPDFmain = {
 
 	print: async function (allMessages, params) {
@@ -358,8 +341,6 @@ function openProfileImportWizard() {
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
-
-
 }
 
 function msgFolder2LocalFile(msgFolder) {
@@ -474,57 +455,6 @@ async function trytocopyMAILDIR(params) {
 	} catch (e) {
 		console.log(e);
 	}
-}
-
-
-
-async function testCopy(file, msgFolder, selectedFolder) {
-	file = file.QueryInterface(Ci.nsIFile);
-
-	console.log(file);
-	let tf = msgFolder.containsChildNamed("Inbox");
-	console.log(tf);
-	let sf = msgFolder.subFolders;
-	console.log(sf);
-
-	var src = file.path;
-	var folderName = file.leafName;
-	folderName = msgFolder.generateUniqueSubfolderName(folderName, null);
-
-	msgFolder.createSubfolder(folderName, top.msgWindow);
-	var folder = msgFolder.getChildNamed(folderName);
-	await new Promise(resolve => setTimeout(resolve, 200));
-
-	console.log(folder);
-	var folderPath = folder.filePath.QueryInterface(Ci.nsIFile).path;
-	console.log(folderPath);
-	// let dst = PathUtils.join(folderPath, folderName);
-	var dst = folderPath;
-	console.log(src, dst);
-	let r = await IOUtils.copy(src, dst);
-
-
-	console.log(folder);
-	// return;
-	// folder = null;
-	// Send a notification that we are triggering a database rebuild.
-	MailServices.mfn.notifyFolderReindexTriggered(folder);
-
-	folder.msgDatabase.summaryValid = false;
-
-	const msgDB = folder.msgDatabase;
-	msgDB.summaryValid = false;
-	try {
-		folder.closeAndBackupFolderDB("");
-	} catch (e) {
-		// In a failure, proceed anyway since we're dealing with problems
-		folder.ForceDBClosed();
-	}
-	folder.updateFolder(top.msgWindow);
-	// TODO: Reopen closed views.
-
-
-
 }
 
 // The arguments of trytocopy are

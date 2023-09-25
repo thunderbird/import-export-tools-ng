@@ -136,7 +136,9 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "attCtxMenu_Top_Id.title", text: "Save EML attachment to this folder"},
+  { key: "timeMsg", text: "Time"},
+  { key: "messagesMsg", text: "Messages"},
+  { key: "", text: ""},
 
 
 	
@@ -564,7 +566,7 @@ function convert(iFile, options) {
 }
 
 
-var options = {
+var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
@@ -584,7 +586,7 @@ var options2 = {
 };
 
 // properties=1
-var options1 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",

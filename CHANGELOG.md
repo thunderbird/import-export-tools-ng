@@ -2,6 +2,18 @@
 
 ## Versions
 
+Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
+
+- Thunderbird v115 ESR support
+- New UI refresh
+- New Dark mode support
+- New clean, consistent and logical menus
+- New toolbar button for profile, backup and options support
+- New .mbox extension option for non-structured exports
+- New strip CR from eml exports
+- Improved mbox From_ escaping
+
+
 Version 12.0.2 : Maintenance Release - October 24, 2022
 
 - Fix PDF export on OSX! #353

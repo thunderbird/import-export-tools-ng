@@ -138,7 +138,6 @@ var translationArray = [
  
   { key: "timeMsg", text: "Time"},
   { key: "messagesMsg", text: "Messages"},
-  { key: "", text: ""},
 
 
 	

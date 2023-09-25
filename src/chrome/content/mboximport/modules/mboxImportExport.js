@@ -373,6 +373,9 @@ export var mboxImportExport = {
 
   buildAndExportMbox: async function (msgFolder, dest) {
     var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
+    var messagesMsg = this.mboximportbundle.GetStringFromName("messagesMsg");
+    let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+
 
     let st = new Date();
     //console.log("Start: ", st, msgFolder.prettyName);
@@ -457,7 +460,7 @@ export var mboxImportExport = {
 
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
-        ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + "  Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
+        ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
 
         let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
         let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
@@ -466,7 +469,7 @@ export var mboxImportExport = {
 
         msgsBuffer = "";
         if (index == totalMessages - 1 || totalBytes >= kMaxFileSize) {
-          ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + "   Msgs: " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + " Time: " + ((new Date() - st) / 1000) + "s", 14000);
+          ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + "  " + timeMsg + ":  " + ((new Date() - st) / 1000) + "s", 14000);
 
           totalTime = (new Date() - st) / 1000;
           break;

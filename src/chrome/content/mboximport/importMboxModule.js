@@ -107,6 +107,8 @@ async function mboxCopyImport(options) {
 
     let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
     let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
+    let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+
 
     while (!eof) {
       // Read chunk as uint8
@@ -166,7 +168,7 @@ async function mboxCopyImport(options) {
     let et = new Date() - s;
 
     
-    writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + " Time: " + et / 1000 + "s", 14000);
+    writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
 
     /*
     console.log("end read/fix/write loop");

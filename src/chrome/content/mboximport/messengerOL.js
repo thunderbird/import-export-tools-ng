@@ -346,8 +346,8 @@ WL.injectElements(`
 		`<menupopup>
 			<menu  label="&buttonMenu_Exp_Profile_Id.title;" >
 			<menupopup>
-			<menuitem  label="&buttonMenu_Exp_ProfileFull_Id.title;" oncommand="IETexport_all(true)" />
-			<menuitem  label="&buttonMenu_Exp_ProfileMailOnly_Id.title;" oncommand="IETexport_all(false)" />
+			<menuitem  label="&buttonMenu_Exp_ProfileFull_Id.title;" oncommand="IETexport_all({profileExportType: 'full'})" />
+			<menuitem  label="&buttonMenu_Exp_ProfileMailOnly_Id.title;" oncommand="IETexport_all({profileExportType: 'mailOnly'})" />
 			</menupopup>
 			</menu>
 			<menuitem  label="&buttonMenu_Imp_Profile_Id.title;" oncommand="openProfileImportWizard()" />

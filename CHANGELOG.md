@@ -2,6 +2,10 @@
 
 ## Versions
 
+Version 12.0.4 : Maintenance Release - June 24, 2023
+
+- Fix search and export failure #412, #414, #418
+
 Version 12.0.3 : Maintenance Release - June 1, 2023
 
 - Fix virtual folder exports #359

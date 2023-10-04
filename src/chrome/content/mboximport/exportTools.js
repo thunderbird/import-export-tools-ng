@@ -980,7 +980,6 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		// Splits the array element to find the needed headers
 		var hdrs = currentMsgHdr.split("§][§^^§");
 
-		console.log(hdrs)
 		switch (IETsortType) {
 			case 1:
 				time = hdrs[3];

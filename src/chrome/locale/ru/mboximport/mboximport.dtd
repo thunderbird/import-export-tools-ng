@@ -117,3 +117,10 @@
 <!ENTITY backupOnExit "Резервное копирование при выходе">
 <!ENTITY noFolderSelectedMenuTop "[Папка не выбрана (импорт \ экспорт отключён)]">
 <!ENTITY indexCSVdateFormat "Индекс, формат даты CSV:">
+
+<!ENTITY attachmentFolderNames "Имена папок вложений">
+<!ENTITY attachmentFolders "Папки вложений">
+<!ENTITY inlineAttachmentsFolders "Встроенные папки вложений">
+<!ENTITY cutPathLen "Сократите длину пути к файлу до 256 символов.">
+<!ENTITY strip_eml_CR.label "Удалите CR из концов строк для экспорта сообщений eml">
+<!ENTITY useMboxExt.label "Используйте расширение .mbox для файлов mbox (неструктурированных).">

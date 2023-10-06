@@ -115,3 +115,9 @@
 <!ENTITY backupOnExit "Δημιουργία αντιγράφων ασφαλείας στην έξοδο">
 <!ENTITY noFolderSelectedMenuTop "[Χωρίς επιλεγμένο φάκελο (Εισαγωγή \ Εξαγωγή απενεργοποιημένη)]">
 <!ENTITY indexCSVdateFormat "Ευρετήριο, Μορφή ημερομηνίας CSV:">
+<!ENTITY attachmentFolderNames "Ονόματα φακέλων συνημμένων">
+<!ENTITY attachmentFolders "Φάκελοι συνημμένων">
+<!ENTITY inlineAttachmentsFolders "Ενσωματωμένοι φάκελοι συνημμένων">
+<!ENTITY cutPathLen "Κόψτε το μήκος της διαδρομής του αρχείου σε 256 χαρακτήρες">
+<!ENTITY strip_eml_CR.label "Αφαιρέστε το CR από τις καταλήξεις των γραμμών για εξαγωγές μηνυμάτων eml">
+<!ENTITY useMboxExt.label "Χρησιμοποιήστε την επέκταση .mbox για αρχεία mbox (μη δομημένα)">

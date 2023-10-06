@@ -3,60 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>Βοήθεια ImportExportTools NG</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Βοήθεια-Οδηγός χρήστη</h2>
-    <p>
-      Αυτή είναι μια μινιμαλιστική πρώτη αρχή ενός οδηγού χρήσης. Υπάρχουν προφανώς πολλά να προσθέσουμε. Αυτή
-      η τρέχουσα σελίδα εστιάζει στα μενού και στις νέες επιλογές. Θα ενημερώνεται συνεχώς σε επόμενες
-      εκδόσεις.<br />
-    </p>
-    <h3>Έκδοση 12.0.0 : Υποστήριξη Thunderbird 102 - 1 Ιουλίου 2022</h3>
-    <p>
-      Θέματα που αντιμετωπίστηκαν:<br /><br />
-      <p>
-        - Υποστήριξη για Thunderbird 102 και 91<br />
-        - Διορθώστε την κατάσταση αγώνα στο SessionRestore #284 #314<br />
-        - Διορθώστε την εξαγωγή IMAP παράλειψη κενών φακέλων #320<br />
-        - Διορθώστε τις επιλογές του φακέλου εξαγωγής που δεν έχουν αποθηκευτεί #318<br />
-        - Διόρθωση αλλαγών στις ρυθμίσεις εκτύπωσης
-      </p>
-      <br /><br />
-      Ευχαριστούμε τους ακόλουθους χρήστες για τις προτάσεις βελτίωσης και τη βοήθεια δοκιμής:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
-    <h3>Υποστήριξη:</h3>
-    <p>
-      Δημοσιεύστε ζητήματα ή αιτήματα για δυνατότητες στο αποθετήριο GitHub επεκτάσεων:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      Σε ζητήματα σφαλμάτων, συμπεριλάβετε τις ακόλουθες πληροφορίες για να βοηθήσετε στην επίλυση των
-      προβλημάτων:<br />
-      - Έκδοση ImportExportTools NG<br />
-      - Έκδοση Thunderbird<br />
-      - Λειτουργικό σύστημα και έκδοση<br />
-      - Έξοδος εντοπισμού σφαλμάτων (αντιγραφή από την Κονσόλα εντοπισμού σφαλμάτων - πρόσβαση με
-      Control-Shift-J)<br />
-      - Περιγραφή των βημάτων που οδηγούν στο ζήτημα<br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">Βοήθεια ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h2 id="main_help">Επισκόπηση και μενού ImportExportTools NG</h2>
     <p>
       Το ImportExportTools NG είναι μια επόμενη επέκταση που βασίζεται στο πρωτότυπο έργο του Paolo
@@ -79,13 +40,27 @@
         επέκταση. Οι συναρτήσεις είναι ευαίσθητες στο πλαίσιο. Προστίθενται μενού για:<br />
         - Το πλαίσιο του παραθύρου φακέλου (λειτουργία φακέλου)<br />
         - Το περιεχόμενο της λίστας μηνυμάτων (επιλεγμένα μηνύματα)<br />
-        - Το μενού Εργαλεία (λειτουργίες φακέλου και προφίλ)<br /><br />
-        Υπάρχουν πολλές επιλογές που είναι προσβάσιμες κάτω από την καταχώριση που προστέθηκε κάτω από τα
-        &quot;Εργαλεία/Επιλογές πρόσθετων&quot; για τις επιλογές επέκτασης. Κάθε ένα από τα μενού έχει επίσης
-        ένα στοιχείο μενού Επιλογές για πρόσβαση στο παράθυρο διαλόγου επιλογών.<br />
-        Οι νέες επιλογές τεκμηριώνονται εδώ, ολόκληρο το σύνολο θα τεκμηριωθεί στη συνέχεια.
+        - Το μενού Εργαλεία (προφίλ και λειτουργίες δημιουργίας αντιγράφων ασφαλείας)<br /><br />
+        Υπάρχουν επιλογές που είναι προσβάσιμες στο &quot;Μενού Εργαλείων&quot; δεν βρίσκονται στο μενού
+        &quot;Χάμπουργκερ&quot;, θα είναι σε μελλοντική έκδοση. Αυτές οι λειτουργίες είναι επίσης διαθέσιμες
+        στο κουμπί της νέας γραμμής εργαλείων. Κάθε ένα από τα μενού και το κουμπί έχει επίσης ένα στοιχείο
+        μενού Βοήθεια και Επιλογές για πρόσβαση στο παράθυρο διαλόγου επιλογών.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Υποστήριξη:</h3>
+    <p>
+      Δημοσιεύστε ζητήματα ή αιτήματα για δυνατότητες στο αποθετήριο GitHub επεκτάσεων:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Σε ζητήματα σφαλμάτων, συμπεριλάβετε τις ακόλουθες πληροφορίες για να βοηθήσετε στην επίλυση των
+      προβλημάτων:<br />
+      - Έκδοση ImportExportTools NG<br />
+      - Έκδοση Thunderbird<br />
+      - Λειτουργικό σύστημα και έκδοση<br />
+      - Έξοδος εντοπισμού σφαλμάτων (αντιγραφή από την Κονσόλα εντοπισμού σφαλμάτων - πρόσβαση με
+      Control-Shift-J)<br />
+      - Περιγραφή των βημάτων που οδηγούν στο ζήτημα<br />
     </p>
     <h2 id="main_menu_help">Λειτουργίες μενού περιβάλλοντος φακέλου</h2>
     <table class="menu-table">
@@ -97,60 +72,78 @@
       </thead>
       <tbody>
         <tr>
-          <td>Εξαγωγή φακέλου</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Εξαγωγή ολόκληρου του λογαριασμού με τη δομή και τους υποφακέλους σε μορφή mbox. Η εξαγωγή
+            πραγματοποιείται χρησιμοποιώντας ένα κοντέινερ με το όνομα λογαριασμού.<br />
+            Σημείωση: Αυτό το στοιχείο μενού εμφανίζεται μόνο όταν κάνετε δεξί κλικ σε μια καταχώριση
+            λογαριασμού.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
           <td>Εξαγωγή ενός φακέλου σε αρχείο μορφής mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
           <td>Εξαγωγή ενός φακέλου σε συμπιεσμένο αρχείο μορφής mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
           <td>
             Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
             mbox
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
-            mbox<br />
-            (υποκατάλογοι .sbd)
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
             Εξάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα σύνολο αρχείων μορφής mbox,
             ένα για κάθε υποφάκελο, που εξάγονται σε έναν μόνο φάκελο.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Εξαγωγή ενός απομακρυσμένου φακέλου (imap) σε μεμονωμένο αρχείο mbox.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής EML (χωρίς δομή/υποφακέλους).<br />
             Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής HTML (χωρίς δομή/υποφακέλους).<br />
-            Τα συνημμένα δεν περιλαμβάνονται. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που
-            περιλαμβάνει κάθε μήνυμα.
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής HTML (χωρίς δομή/υποφακέλους).<br />
             Τα συνημμένα αποθηκεύονται ως ξεχωριστά αρχεία. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML
@@ -158,7 +151,15 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Εξάγετε τα μηνύματα του φακέλου ως ένα σύνολο αρχείων μορφής PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής απλού κειμένου, τα συνημμένα δεν
             περιλαμβάνονται.<br />
@@ -166,7 +167,9 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων των
             συνημμένων.<br />
@@ -174,7 +177,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Εξαγάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής απλού κειμένου, τα συνημμένα δεν
             περιλαμβάνονται.<br />
@@ -182,7 +185,9 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
           <td>
             Εξάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής απλού κειμένου, συμπεριλαμβανομένων των
             συνημμένων.<br />
@@ -190,74 +195,89 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Εξαγάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής κειμένου CSV (Τιμές διαχωρισμένες με
-            κόμμα), τα συνημμένα δεν περιλαμβάνονται.<br />
+            Εξάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής κειμένου CSV (Τιμές διαχωρισμένες με κόμμα),
+            τα συνημμένα δεν περιλαμβάνονται.<br />
             Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως ένα σύνολο αρχείων μορφής PDF, συμπεριλαμβανομένων των
-            συνημμένων.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.<br />
-            Σημείωση: Η έξοδος PDF δεν υποστηρίζεται στο OSX λόγω προβλήματος με το πρόγραμμα οδήγησης.
-          </td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>Δημιουργεί ένα αρχείο ευρετηρίου HTML των μηνυμάτων του φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Δημιουργεί ένα αρχείο ευρετηρίου CSV των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Ανοίξτε το παράθυρο διαλόγου αναζήτησης και εξάγετε τα επιθυμητά αποτελέσματα</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Εισαγάγετε ένα αρχείο ή αρχεία mbox. Επιλέξτε με ή χωρίς δομή/υποφακέλους</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Επιλέξτε και εισαγάγετε αρχεία μηνυμάτων maildir</td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Εισαγάγετε ένα ή περισσότερα αρχεία mbox από έναν κατάλογο.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Επιλέξτε και εισαγάγετε ένα φάκελο maildir</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Επιλογή και εισαγωγή αρχείων μηνυμάτων EML (χωρίς δομή/υποφακέλους)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>
             Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο, συμπεριλαμβανομένων των δομών/υποφακέλων
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Αντιγράψτε τη διαδρομή του λειτουργικού συστήματος του επιλεγμένου φακέλου</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Ανοίξτε τη διαδρομή του λειτουργικού συστήματος του επιλεγμένου φακέλου</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ανοίξτε το παράθυρο διαλόγου επιλογών ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
         </tr>
       </tbody>
@@ -273,101 +293,124 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής EML</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής HTML</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής EML (ενσωματωμένα συνημμένα)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής απλού κειμένου</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής απλού κειμένου συμπεριλαμβανομένων των
+            Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής EML<br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής HTML</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Εξαγωγή των μηνυμάτων ως αρχεία μορφής HTML.<br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Εξάγετε τα μηνύματα ως αρχεία μορφής HTML, συμπεριλαμβανομένων των συνημμένων.<br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής απλού κειμένου</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>
+            Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής απλού κειμένου συμπεριλαμβανομένων των
             συνημμένων
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε ένα μόνο αρχείο κειμένου CSV</td>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Εξάγετε τα μηνύματα ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων των συνημμένων<br />
+            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε ένα μόνο αρχείο mbox</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Εξάγετε τα επιλεγμένα μηνύματα σε ένα μόνο αρχείο κειμένου CSV</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
-          <td>Προσθέστε τα επιλεγμένα μηνύματα σε ένα υπάρχον αρχείο mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Αποθηκεύστε τα επιλεγμένα μηνύματα σε αρχεία μορφής PDF</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής EML.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Εξαγωγή των επιλεγμένων μηνυμάτων σε ένα μόνο αρχείο mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής HTML.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>Προσθέστε τα επιλεγμένα μηνύματα σε ένα υπάρχον αρχείο mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής απλού κειμένου<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Δημιουργήστε ένα αρχείο ευρετηρίου HTML για τα επιλεγμένα μηνύματα</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Αποθηκεύστε τα μηνύματα ως αρχεία μορφής απλού κειμένου συμπεριλαμβανομένων των συνημμένων<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Δημιουργήστε ένα αρχείο ευρετηρίου CSV για τα επιλεγμένα μηνύματα</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Δημιουργήστε ένα αρχείο ευρετηρίου HTML για τα επιλεγμένα αρχεία</td>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Δημιουργήστε ένα αρχείο ευρετηρίου CSV για τα επιλεγμένα αρχεία</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Αντιγράψτε ένα μόνο επιλεγμένο μήνυμα στο πρόχειρο</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Αντιγράψτε τις κεφαλίδες ενός μόνο επιλεγμένου μηνύματος στο πρόχειρο</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ανοίξτε το παράθυρο διαλόγου επιλογών ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
         </tr>
       </tbody>
@@ -383,171 +426,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Εξαγωγή φακέλου</td>
-          <td>Εξαγωγή ενός φακέλου σε αρχείο μορφής mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Εξαγωγή ενός φακέλου σε συμπιεσμένο αρχείο μορφής mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>
-            Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
-            mbox
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Εξαγωγή ενός φακέλου που περιλαμβάνει όλους τους υποφακέλους του σε ένα δέντρο μηνυμάτων μορφής
-            mbox<br />
-            (υποκατάλογοι .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Εξάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα σύνολο αρχείων μορφής mbox,
-            ένα για κάθε υποφάκελο, που εξάγονται σε έναν μόνο φάκελο.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Εξαγωγή ενός απομακρυσμένου φακέλου (imap) σε μεμονωμένο αρχείο mbox.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής EML (χωρίς δομή/υποφακέλους).<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής HTML (χωρίς δομή/υποφακέλους).<br />
-            Τα συνημμένα δεν περιλαμβάνονται. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που
-            περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής HTML (χωρίς δομή/υποφακέλους).<br />
-            Τα συνημμένα αποθηκεύονται ως ξεχωριστά αρχεία. Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML
-            που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής απλού κειμένου, τα συνημμένα δεν
-            περιλαμβάνονται.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως αρχεία μορφής απλού κειμένου, συμπεριλαμβανομένων των
-            συνημμένων.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Εξαγάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής απλού κειμένου, τα συνημμένα δεν
-            περιλαμβάνονται.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής απλού κειμένου, συμπεριλαμβανομένων των
-            συνημμένων.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Εξαγάγετε τα μηνύματα του φακέλου ως ένα αρχείο μορφής κειμένου CSV (Τιμές διαχωρισμένες με
-            κόμμα), τα συνημμένα δεν περιλαμβάνονται.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Εξάγετε τα μηνύματα του φακέλου ως ένα σύνολο αρχείων μορφής PDF, συμπεριλαμβανομένων των
-            συνημμένων.<br />
-            Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.<br />
-            Σημείωση: Η έξοδος PDF δεν υποστηρίζεται στο OSX λόγω προβλήματος με το πρόγραμμα οδήγησης.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Δημιουργεί ένα αρχείο ευρετηρίου HTML των μηνυμάτων του φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Δημιουργεί ένα αρχείο ευρετηρίου CSV των μηνυμάτων φακέλου (χωρίς εξαγωγή μηνυμάτων)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Ανοίξτε το παράθυρο διαλόγου αναζήτησης και εξάγετε τα επιθυμητά αποτελέσματα</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Εισαγάγετε ένα αρχείο ή αρχεία mbox. Επιλέξτε με ή χωρίς δομή/υποφακέλους</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Επιλογή και εισαγωγή αρχείων μηνυμάτων EML (χωρίς δομή/υποφακέλους)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>
-            Εισαγάγετε όλα τα μηνύματα EML από έναν μόνο φάκελο, συμπεριλαμβανομένων των δομών/υποφακέλων
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Αποθηκεύστε όλα τα μηνύματα στο τρέχον προφίλ</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Αποθηκεύστε ολόκληρο το προφίλ (ταχυδρομείο, επεκτάσεις, επιλογές)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Αποθηκεύστε όλα τα μηνύματα στο τρέχον προφίλ</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Εισαγωγή πλήρους προφίλ (ταχυδρομείο, επεκτάσεις, επιλογές)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ανοίξτε το παράθυρο διαλόγου επιλογών ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ανοίξτε την κύρια σελίδα βοήθειας</td>
         </tr>
       </tbody>
@@ -623,7 +526,7 @@
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>Όπως το <code class="code1">%G</code> , αλλά χωρίς αιώνα, δηλαδή με 2ψήφιο έτος (00-99).</td>
+          <td>Όπως <code class="code1">%G</code> , αλλά χωρίς αιώνα, δηλαδή με 2ψήφιο έτος (00-99).</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
@@ -729,7 +632,7 @@
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            Η αριθμητική ζώνη ώρας <code class="code1">+hhmm</code> hhmm ή
+            Η αριθμητική ζώνη ώρας <code class="code1">+hhmm</code> ή
             <code class="code1">-hhmm</code> (δηλαδή, η ώρα και τα λεπτά μετατοπίζονται από το UTC).
           </td>
         </tr>
@@ -851,47 +754,47 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td><code property-text-ref="subjectFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td><code property-text-ref="senderFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td><code property-text-ref="recipientFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td><code property-text-ref="smartNameFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td><code property-text-ref="indexFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td><code property-text-ref="prefixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td><code property-text-ref="suffixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td><code property-text-ref="dateFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
       </tr>
     </table>
     <br />
@@ -944,7 +847,7 @@
       <code class="notranslate">id</code> - ο βασικός δείκτης (1-10)<br />
       <code class="notranslate">key</code> - το κλειδί (μονός χαρακτήρας)<br />
       <code class="notranslate">keycode</code> - ο καθορισμένος κωδικός κλειδιού &#39;VK_*&#39;<br />
-      Μπορεί να περιλαμβάνεται είτε το κλειδί είτε ο κωδικός κλειδιού, αλλά όχι και τα δύο<br />
+      Μπορεί να περιλαμβάνεται κλειδί ή κωδικός κλειδιού , αλλά όχι και τα δύο<br />
       <code class="notranslate">modifiers</code> - οι βασικοί τροποποιητές, λίστα διαχωρισμένων με κενό
       διάστημα (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - μια άμεση συμβολοσειρά εντολών<br />
@@ -982,6 +885,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Καθώς οι συντομεύσεις είναι νέες και πειραματικές, θα προσθέσω επίσης περισσότερη τεκμηρίωση στο
       αποθετήριο. Ελέγξτε την επέκταση
@@ -990,5 +894,32 @@
       ><br />
     </p>
     <br />
+    <h3>Έκδοση 14.0.0 : Υποστήριξη Thunderbird 115 - 10 Ιουλίου 2023</h3>
+    <p>
+      Χαρακτηριστικά και ζητήματα που αντιμετωπίστηκαν:<br />
+      <p>
+        - Υποστήριξη για Thunderbird 115 Supernova<br />
+        - Επεξεργαστείτε ξανά και εκσυγχρονίστε το Options UI<br />
+        - Πλήρης υποστήριξη Dark Mode<br />
+        - Νέο, συνεπές σύστημα μενού<br />
+        - Κουμπί νέας γραμμής εργαλείων<br />
+        - Βελτιωμένη βοήθεια, ανοιχτή κατά την εγκατάσταση<br />
+        - Ενημέρωση λογαριασμού εξαγωγής<br /><br />
+        Ευχαριστούμε τους ακόλουθους χρήστες για τις προτάσεις βελτίωσης και τη βοήθεια δοκιμής:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
   </body>
 </html>

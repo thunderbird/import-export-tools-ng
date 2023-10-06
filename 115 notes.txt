@@ -1,0 +1,95 @@
+
+change csv index name to index
+MailServices
+gDBView
+
+gTabmail.currentAbout3Pane.gDBView.getMsgHdrAt(0)
+
+gTabmail.currentAbout3Pane.gDBView.getURIForViewIndex(0) 
+
+gTabmail.tabInfo[0].chromeBrowser.contentWindow.gDBView.getMsgHdrAt(0)
+gTabmail.currentAbout3Pane.document.getElementById("threadTree").table.addEventListener("sort-changed", console.log)
+
+hdr.getProperty => hdr.getStringProperty
+
+maildir imp dir dlg label 
+missing messages for sk-sk
+
+fix search and export per 12.0.4
+fix plaintext output name
+scan and import hierarchy :
+
+id = import directory src
+
+m1
+m2
+m2.sbd
+  m3
+  m4
+  m4.sbd
+
+single or set of top mb files 
+[mb set]
+
+start w mb[0]
+import single mb to top folder 
+check if mb[0].sbd exists  if yes collect all files 
+  scan sbd for files 
+    import all mb files as subfolders 
+    check for sbd 
+
+
+thist that yup 
+so this was the last few years ago when we are 
+From the start
+
+we weren't sure. The young people to the review.
+
+
+if at last From fixup or from fixups == 0
+  take last 400 bytes and search for ^F 
+  this could stradle boundry
+  read 400 next chars
+  now regex from ^F to end of 800 bytes
+  regex for ^From
+  if none save to end of first buffer
+  if found save up to the last ^F
+  read full buffer after >
+
+exportFoldersToMbox(rootMsgFolder, destPath, includeSubfolders, flattenFolders)
+
+exp rootMsgFolder
+if(includeSubfolders && hasSubfolders)
+  create sbd
+  addSubfolders(rootMsgFolder, subfPath)
+
+
+addSubfolders(curFolder, subfPath)
+  sfs = getSubf
+  for subf
+    expFolder 
+    if subf hasSubfolders
+      create sbd(subfPath)
+      addSubfolders(subf, subfPath)
+
+PLEASE, PLEASE, PLEASE - READ AND GIVE FEEDBACK !!!
+
+B7 should Be one step away from the v14 release pending no
+surprises, HOWEVER, there are over 200 beta users and I have 
+heard from only a handful of people. Please for myself and 
+the sake of a solid release I would realy appreciate even
+a small bit of info like :
+
+"I am onsystem XYZ and I used features abc and had no
+issues "
+
+Or of course flag problems.
+
+My apologies b7 took so long. I had to discover and then 
+completely redo mbox support so anyone doing mbox imports 
+or exports, your help is requested.
+
+Please do feedback in the feedback issue not here:
+
+Thanks in advance 
+Christopher 

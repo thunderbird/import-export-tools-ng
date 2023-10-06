@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "导出配置文件">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "导入配置文件">
+<!ENTITY buttonMenu_Backup_Id.title "备份">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "完整资料">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "仅限邮寄">
+<!ENTITY buttonMenu_Options.title "选项">
+<!ENTITY buttonMenu_Help.title "帮助">

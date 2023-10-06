@@ -14,14 +14,134 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray = [
-	// { key: "noFolderSelected", text: "No message folder selected:<nl><nl> Please create or select a valid account or Local Folder subfolder." },
-	{ key: "backupOnExit", text: "Backup On Exit" },
-	{ key: "noFolderSelectedMenuTop", text: "[ No Selected Folder (Import \\ Export Disabled) ]" },
-	{ key: "indexCSVdateFormat", text: "Index, CSV Date Format:" },
-	// { key: "", text: "" },
-]
+var translationArray3 = [
+	// common titles
+	{"key":"extensionName", "text":"ImportExportTools NG"},
+	{"key":"extensionDescription", "text":"Adds tools to import/export messages and folders (NextGen)"},
 
+	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
+	{"key": "ctxMenu_Options.title", "text": "Options"},
+	{"key": "ctxMenu_Help.title", "text": "Help"},
+
+
+	
+	{"key": "toolsCtxMenu_Exp_Profile_Id.title", "text": "Export Profile"},
+	{"key": "toolsCtxMenu_Imp_Profile_Id.title", "text": "Import Profile"},
+	{"key": "toolsCtxMenu_Backup_Id.title", "text": "Backup"},
+	
+	{"key": "toolsCtxMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
+	{"key": "toolsCtxMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
+
+	{"key": "msgCtxMenu_TopId.title", "text": "Export Messages As…"},
+{"key": "msgCtxMenu_Exp_EMLFormat_Id.title", "text": "EML Message Format"},
+{"key": "msgCtxMenu_Exp_HTMLFormat_Id.title", "text": "HTML Format"},
+{"key": "msgCtxMenu_Exp_PDFFormat_Id.title", "text": "PDF Format"},
+{"key": "msgCtxMenu_Exp_PlainTextFormat_Id.title", "text": "Plain Text Format"},
+{"key": "msgCtxMenu_Exp_CSVFormat_Id.title", "text": "CSV Format (Spreadsheet)"},
+{"key": "msgCtxMenu_Exp_MboxFormat_Id.title", "text": "mbox Format"},
+{"key": "msgCtxMenu_Exp_Index_Id.title", "text": "Message Index"},
+{"key": "msgCtxMenu_CopyToClipboard_Id.title", "text": "Copy To Clipboard"},
+
+{"key": "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title", "text": "Messages (Attachments Embedded)"},
+{"key": "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title", "text": "Messages Only"},
+{"key": "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title", "text": "Messages And Attachments"},
+{"key": "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
+{"key": "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title", "text": "Messages Only"},
+{"key": "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title", "text": "Messages And Attachments"},
+{"key": "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
+{"key": "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title", "text": "New mbox File"},
+{"key": "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title", "text": "Append To Existing mbox File"},
+{"key": "msgCtxMenu_Exp_IndexHTML_Id.title", "text": "HTML Format"},
+{"key": "msgCtxMenu_Exp_IndexCSV_Id.title", "text": "CSV Format"},
+{"key": "msgCtxMenu_CopyToClipboardMessage_Id.title", "text": "Message"},
+{"key": "msgCtxMenu_CopyToClipboardHeaders_Id.title", "text": "Headers"},
+
+
+{"key": "folderCtxMenu_Exp_FolderMbox_Id.title", "text": "Folder Export (mbox)"},
+{"key": "folderCtxMenu_Exp_FolderMboxOnly_Id.title", "text": "As mbox File"},
+{"key": "folderCtxMenu_Exp_FolderMboxZipped_Id.title", "text": "Single Zipped mbox File"},
+{"key": "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title", "text": "Structured With Subfolders"},
+{"key": "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title", "text": "With Flattened Subfolders"},
+{"key": "folderCtxMenu_Exp_RemoteFolderMbox_Id.title", "text": "Export Remote Folder"},
+{"key": "folderCtxMenu_Exp_AllMessages_Id.title", "text": "Export All Messages In Folder"},
+{"key": "folderCtxMenu_Exp_EMLFormat_Id.title", "text": "EML Message Format"},
+{"key": "folderCtxMenu_Exp_HTMLFormat_Id.title", "text": "HTML Format"},
+{"key": "folderCtxMenu_Exp_PDFFormat_Id.title", "text": "PDF Format"},
+{"key": "folderCtxMenu_Exp_PlainTextFormat_Id.title", "text": "Plain Text Format"},
+{"key": "folderCtxMenu_Exp_CSVFormat_Id.title", "text": "CSV Format (Spreadsheet)"},
+{"key": "folderCtxMenu_Exp_Index_Id.title", "text": "Message Index"},
+{"key": "folderCtxMenu_Exp_SearchExport_Id.title", "text": "Search And Export Messages"},
+{"key": "folderCtxMenu_Imp_MboxFiles_Id.title", "text": "Import mbox Files"},
+{"key": "folderCtxMenu_Imp_MboxFilesIndv_Id.title", "text": "Individual mbox Files"},
+{"key": "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title", "text": "Individual mbox Files (with sbd structure)"},
+{"key": "folderCtxMenu_Imp_MboxFilesDir_Id.title", "text": "All mbox Files from directory"},
+{"key": "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title", "text": "All mbox Files from directory (with sbd structure)"},
+{"key": "folderCtxMenu_Imp_MaildirFiles_Id.title", "text": "Import Maildir Folder"},
+{"key": "folderCtxMenu_Imp_EMLFormat_Id.title", "text": "Import EML Messages"},
+{"key": "folderCtxMenu_Imp_EMLFormatMsgs_Id.title", "text": "Individual EML Messages"},
+{"key": "folderCtxMenu_Imp_EMLFormatDir_Id.title", "text": "All EML Messages From A Directory"},
+{"key": "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title", "text": "All EML Messages From A Directory And Subdirectories"},
+{"key": "folderCtxMenu_CopyFolderPath_Id.title", "text": "Copy Folder Path"},
+{"key": "folderCtxMenu_OpenFolderDir_Id.title", "text": "Open Folder Directory"},
+
+{"key": "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
+{"key": "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
+{"key": "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
+{"key": "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title", "text": "Messages As Single File"},
+{"key": "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title", "text": "Messages As Single File With Attachments"},
+{"key": "folderCtxMenu_Exp_IndexHTML_Id.title", "text": "HTML Format"},
+{"key": "folderCtxMenu_Exp_IndexCSV_Id.title", "text": "CSV Format"}
+];
+
+	// { key: "", text: "" },
+
+	var translationArray2 = [
+
+		{"key": "buttonMenu_Exp_Profile_Id.title", "text": "Export Profile"},
+	{"key": "buttonMenu_Imp_Profile_Id.title", "text": "Import Profile"},
+	{"key": "buttonMenu_Backup_Id.title", "text": "Backup"},
+	
+	{"key": "buttonMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
+	{"key": "buttonMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
+	{"key": "buttonMenu_Options.title", "text": "Options"},
+	{"key": "buttonMenu_Help.title", "text": "Help"},
+	];
+
+	var translationArray4 = [
+
+  { key: "subjectFmtToken", text: "${subject}"},
+  { key: "senderFmtToken", text: "${sender}"},
+  { key: "recipientFmtToken", text: "${recipient}"},
+  { key: "senderEmailFmtToken", text: "${sender_email}"},
+  { key: "recipientEmailFmtToken", text: "${recipient_email}"},
+  { key: "smartNameFmtToken", text: "${smart_name}"},
+  { key: "indexFmtToken", text: "${index}"},
+  { key: "prefixFmtToken", text: "${prefix}"},
+  { key: "suffixFmtToken", text: "${suffix}"},
+  { key: "dateCustomFmtToken", text: "${date_custom}"},
+  { key: "dateFmtToken", text: "${date}"},
+];
+
+var translationArray5 = [
+  { key: "attachmentFolderNames", text: "Attachment Folder Names"},
+  { key: "attachmentFolders", text: "Attachment Folders"},
+  { key: "inlineAttachmentsFolders", text: "Inline Attachments Folders"},
+  { key: "cutPathLen", text: "Cut file path length to 256 characters"},
+];
+
+var translationArray = [
+ 
+  { key: "timeMsg", text: "Time"},
+  { key: "messagesMsg", text: "Messages"},
+
+
+	
+];
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
 // const outputLocaleDir = "./src/_locales";
@@ -70,7 +190,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		var locale = locales[i].toLowerCase();
 		var shortLocale = locale.split('-')[0];
 
-		if (shortLocale === referenceLocaleId) {
+		if (shortLocale === referenceLocaleId && options.skipEN) {
 			continue;
 		}
 
@@ -134,7 +254,10 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 					entry = `<!ENTITY ${sourceArray[i].key} "${s}">`;
 					break;
 				case 3:
-					entry = `\t"${sourceArray[i].key}": {\n\t\t"message": "${s}"\n\t},\n`;
+					entry = `\t"${sourceArray[i].key}": {\n\t\t"message": "${s}"\n\t}`;
+					if (i < sourceArray.length - 1) {
+						entry += ",\n";
+					}
 					break;
 				default:
 					break;
@@ -151,7 +274,7 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 
 		lt = lt.join('\n');
 
-		if (options.outputFormat === 3) {
+		if (options.outputFormat === 3 && !options.append) {
 			lt = `{\n${lt}\n}`;
 		}
 
@@ -161,13 +284,20 @@ async function translateAllLocales(iFile, sourceArray, locales, format, options)
 		// let outputFileName = iFile.replace('.', '-') + ".json";
 		let outputFileName = iFile;
 
-		if (options.append) {
+		
+		if (options.append && options.outputFormat === 3) {
+			var source = fs.readFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, { encoding: 'utf8' });
+			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + lt + "\n}";
+			console.debug(source);
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, source);
+		}
+		else if (options.append) {
 			console.debug('AppendingMessages');
 			lt = "\n" + lt;
 			fs.appendFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
 			
 		} else {
-			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, lt);
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, lt);
 			
 		}
 	}
@@ -181,9 +311,9 @@ function sleep(ms) {
 // console.debug(translate);
 
 async function translateHelpPage() {
-	var localeFolders = _getAllFilesOrFolders(localeDir, true);
+	//var localeFolders = _getAllFilesOrFolders(localeDir, true);
 	
-	var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM'];
+	//var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM'];
 
 	//var supportedLocales = ['it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
@@ -193,7 +323,7 @@ async function translateHelpPage() {
 	// 'sk-SK', 'sl-SI', 'sv-SE', 'el'];
 
 
-	localeFolders = supportedLocales;
+	//localeFolders = supportedLocales;
 	// console.debug(localeFolders);
 	var helpLocaleDir = "./src/chrome/content/mboximport/help/locale";
 	var helpPage = "./src/chrome/content/mboximport/help/locale/en-US/importexport-help.html";
@@ -396,19 +526,80 @@ function loadTranslationArray(inputFiles, options) {
 	});
 }
 
-// var options = {
-// 	inputLocaleDir: `./src/_locales/en-US`,
-// 	outputLocaleDir: "./src/_locales",
-// 	append: true,
-// 	outputFormat: 3,
-// };
+function convert(iFile, options) {
+	localeFolders.forEach(locale => {
+		let input = `./src/chrome/locale/${locale}/mboximport/${iFile}`;
+		console.log(input)
+		let output = `./src/_locale/${locale}/tokens.json`;
+		console.log(output)
+		options.inputLocaleDir = `./src/chrome/locale/${locale}/mboximport`
+		var strings = loadPropertys(iFile, options);
+		console.log(strings)
 
+		let outputJson = "";
+		strings.forEach((keyText, index) => {
+			let key = keyText.key;
+			let text = keyText.text;
+			//let entry = eval(`{"${key}": {message: "${text}" }`)
+			var entry = `\t"${key}": {\n\t\t"message": "${text}"\n\t}`;
+			if (index < strings.length - 1) {
+				entry+= ",\n\n"
+			}
+			console.log(entry)
+			outputJson += entry;
+			
+		})
+		//outputJson += "\n};";
+ 	//	outputJson = prettier.format(outputJson	, { parser: 'json', printWidth: 110 });
+		let targetLocale = locale;
+		let outputFileName = "messages.json";
+		console.log(outputJson)
+		var source = fs.readFileSync(`${options.outputLocaleDir}/${targetLocale}/${options.outputLocaleDirSuffix}${outputFileName}`, { encoding: 'utf8' });
+			source = source.substr(0, source.lastIndexOf('}') - 1) + ",\n\n" + outputJson + "\n}";
+			console.debug(source);
+			fs.outputFileSync(`${options.outputLocaleDir}/${targetLocale}/${outputFileName}`, source);
+		
+		//fs.outputFileSync(output, outputJson);
+
+	});
+}
+
+
+var options3 = {
+	inputLocaleDir: `./src/_locales/en-US`,
+	outputLocaleDir: "./src/_locales",
+	outputLocaleDirSuffix: "",
+	append: true,
+	outputFormat: 3,
+	skipEN: false,
+};
+
+// dtd=2
+var options2 = {
+	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	outputLocaleDir: "./src/chrome/locale",
+	outputLocaleDirSuffix: "mboximport/",
+	append: true,
+	skipEN: true,
+	outputFormat: 2,
+};
+
+// properties=1
 var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
-	outputFormat: 0,
+	skipEN: false,
+	outputFormat: 1,
+};
+
+var options4 = {
+	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	outputLocaleDir: "./src/_locales",
+	outputLocaleDirSuffix: "",
+	append: false,
+	outputFormat: 3,
 };
 
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];
@@ -418,9 +609,10 @@ var options = {
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-// let inputFiles = ["messages.json"];
+//let inputFiles = ["messages.json"];
+//inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-let inputFiles = ["mboximport.properties"];
+inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -430,15 +622,22 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 // var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
 // 	'sk-SK', 'sl-SI', 'sv-SE'];
 
-localeFolders = ['es-ES'];
+localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
+	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
+//localeFolders = ['en-US', 'de'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
-localeFile = "settings.json";
+//localeFile = "settings.json";
 // t();
-translateHelpPage();
-// translatePage();
+//translateHelpPage();
+//translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-// translateAll("mboximport.dtd", translationArray, options);
-// loadTranslationArray(inputFiles, options);
+translateAll(inputFiles, translationArray, options);
+ //loadTranslationArray(inputFiles, options);
+ //convert(inputFiles, options);
+
 // let inputFiles = ["settings.dtd"];
+/*
+node .\scripts\translate-gc.js
+*/

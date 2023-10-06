@@ -1,9 +1,333 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
+
 	"extensionDescription": {
-		"message": "Ermöglicht das Im- und Exportieren von Nachrichten und Ordnern (NextGen)"
+		"message": "Fügt Tools zum Importieren/Exportieren von Nachrichten und Ordnern hinzu (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Optionen"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Hilfe"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Profil exportieren"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importprofil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Sicherung"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Vollständiges Profil"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Nur per Post"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Nachrichten exportieren als…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-Nachrichtenformat"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-Format"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-Format"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Nur-Text-Format"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-Format (Tabelle)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox-Format"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Nachrichtenindex"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "In die Zwischenablage kopieren"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Nachrichten (eingebettete Anhänge)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Nur Nachrichten"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Nachrichten und Anhänge"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Nachrichten mit Anhängen und Index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Nur Nachrichten"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Nachrichten und Anhänge"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Nachrichten mit Anhängen und Index"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Neue mbox-Datei"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "An vorhandene mbox-Datei anhängen"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-Format"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-Format"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Nachricht"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Überschriften"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Ordnerexport (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Als mbox-Datei"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Einzelne gezippte mbox-Datei"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Strukturiert mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Mit abgeflachten Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Remote-Ordner exportieren"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Alle Nachrichten im Ordner exportieren"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-Nachrichtenformat"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-Format"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-Format"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Nur-Text-Format"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-Format (Tabelle)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Nachrichtenindex"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Nachrichten suchen und exportieren"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Mbox-Dateien importieren"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Einzelne mbox-Dateien"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Einzelne Mbox-Dateien (mit SBD-Struktur)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Alle mbox-Dateien aus dem Verzeichnis"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Alle Mbox-Dateien aus dem Verzeichnis (mit SBD-Struktur)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Maildir-Ordner importieren"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "EML-Nachrichten importieren"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Einzelne EML-Nachrichten"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Alle EML-Nachrichten aus einem Verzeichnis"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Alle EML-Nachrichten aus einem Verzeichnis und Unterverzeichnissen"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Ordnerpfad kopieren"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Öffnen Sie das Ordnerverzeichnis"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Nachrichten mit Anhängen und Index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Nachrichten mit Anhängen und Index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Nachrichten als einzelne Datei"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Nachrichten als einzelne Datei mit Anhängen"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-Format"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-Format"
+	},
+
+	"subjectFmtToken": {
+		"message": "${betreff}"
+	},
+
+	"senderFmtToken": {
+		"message": "${absender}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${empfänger}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${absender_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${empfänger_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${kluger_name}"
+	},
+
+	"indexFmtToken": {
+		"message": "${index}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${präfix}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${suffix}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${datum_benutzerdefiniert}"
+	},
+
+	"dateFmtToken": {
+		"message": "${datum}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Konto exportieren"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Speichern Sie den EML-Anhang in diesem Ordner"
 	}
 }

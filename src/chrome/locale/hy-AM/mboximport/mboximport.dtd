@@ -117,3 +117,9 @@
 <!ENTITY backupOnExit "Ելքի պահուստավորում">
 <!ENTITY noFolderSelectedMenuTop "[Ընտրված պանակ չկա (ներմուծումը \ արտահանումն անջատված է)]">
 <!ENTITY indexCSVdateFormat "Ինդեքս, CSV Ամսաթիվ Ձևաչափը.">
+<!ENTITY attachmentFolderNames "Հավելվածի թղթապանակների անունները">
+<!ENTITY attachmentFolders "Հավելվածի թղթապանակներ">
+<!ENTITY inlineAttachmentsFolders "Ներդիր հավելվածների թղթապանակներ">
+<!ENTITY cutPathLen "Կտրեք ֆայլի ուղու երկարությունը մինչև 256 նիշ">
+<!ENTITY strip_eml_CR.label "Հեռացրեք CR-ը տողերի վերջավորություններից eml հաղորդագրությունների արտահանման համար">
+<!ENTITY useMboxExt.label "Օգտագործեք .mbox ընդլայնում mbox ֆայլերի համար (ոչ կառուցվածքային)">

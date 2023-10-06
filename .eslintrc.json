@@ -33,11 +33,13 @@
 
 		"messenger": "readonly",
 		"MailServices": "readonly",
-		"gDBView": "readonly",
+		"gTabmail": "readonly",
 		"OS": "readonly",
 		"window": "readonly",
 		"msgWindow": "readonly",
 		"gFolderDisplay": "readonly",
+		"IOUtils": "readonly",
+		"PathUtils": "readonly",
 		"BatchMessageMover": "readonly"
 		
 	},
@@ -47,7 +49,6 @@
 		"no-unused-vars":"off",
 		"space-before-function-paren":"off",
 		"no-array-constructor": "warn",
-		"eqeqeq":"error",
 		"no-octal":"off",
 
 		"mozilla/import-globals": "off",
@@ -68,6 +69,8 @@
 			"always"
 		],
 		"semi": "error",
+		"complexity": ["error", { "max": 80 }],
+
 		"no-restricted-properties": [
 			1,
 			{

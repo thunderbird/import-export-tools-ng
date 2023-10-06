@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Profil exportieren">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Importprofil">
+<!ENTITY buttonMenu_Backup_Id.title "Sicherung">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Vollständiges Profil">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Nur per Post">
+<!ENTITY buttonMenu_Options.title "Optionen">
+<!ENTITY buttonMenu_Help.title "Hilfe">

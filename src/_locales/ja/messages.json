@@ -2,7 +2,332 @@
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
+
 	"extensionDescription": {
-		"message": "メッセージやフォルダのインポート・エクスポート機能を追加します (NextGen)"
+		"message": "メッセージとフォルダーのインポート・エクスポート機能を追加します (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "設定"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "ヘルプ"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "プロファイルのエクスポート"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "プロファイルのインポート"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "バックアップ"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "プロファイル"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "メッセージのみ"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "メッセージを次の形式でエクスポート…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML 形式"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML 形式"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF 形式"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "プレーンテキスト形式"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV 形式（スプレッドシート）"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox 形式"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "メッセージインデックス"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "クリップボードにコピー"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "メッセージ(インライン添付ファイル)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "メッセージのみ"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "メッセージと添付ファイル"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "添付ファイル付きのメッセージとインデックス"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "メッセージのみ"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "メッセージと添付ファイル"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "添付ファイル付きのメッセージとインデックス"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "新規 mbox ファイル"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "既存の mbox ファイルに追加"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML 形式"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV 形式"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "メッセージ"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "ヘッダー"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "フォルダーのエクスポート (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "mbox ファイル"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "単一の zip 形式の mbox ファイル"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "ツリー構造を維持したサブフォルダー"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "フラット構造に変換したサブフォルダー"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "リモートフォルダーのエクスポート"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "フォルダー内のすべてのメッセージをエクスポート"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML 形式"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML 形式"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF 形式"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "プレーンテキスト形式"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV 形式（スプレッドシート）"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "メッセージインデックス"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "メッセージの検索とエクスポート"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "mbox ファイルをインポート"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "個々の mbox ファイル"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "個々の mbox ファイル (sbd 有り)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "フォルダー内のすべての mbox ファイル"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "フォルダー内のすべての mbox ファイル (sbd 有り)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Maildir フォルダーのインポート"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "EML メッセージのインポート"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "個々の EML メッセージ"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "フォルダー内のすべての EML メッセージ"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "フォルダーとサブフォルダー内のすべての EML メッセージ"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "フォルダーのパスをコピー"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "フォルダーの場所を開く"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "添付ファイルとインデックス付きのメッセージ"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "メッセージと HTML インデックス"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "添付ファイルとインデックス付きのメッセージ"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "単一ファイルのメッセージ"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "添付ファイル付きの単一ファイルのメッセージ"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML 形式"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV 形式"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "アカウントのエクスポート"
+	},
+
+	"subjectFmtToken": {
+		"message": "${件名}"
+	},
+
+	"senderFmtToken": {
+		"message": "${差出人}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${受信者}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${差出人アドレス}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${受信者アドレス}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${スマート名}"
+	},
+
+	"indexFmtToken": {
+		"message": "${インデックス}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${接頭文字}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${接尾文字}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${カスタム日時}"
+	},
+
+	"dateFmtToken": {
+		"message": "${日時}"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "EML 添付ファイルをこのフォルダーに保存します"
 	}
 }

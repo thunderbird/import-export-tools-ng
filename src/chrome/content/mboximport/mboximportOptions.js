@@ -1,29 +1,17 @@
-// cleidigh
 /*
-    ImportExportTools NG is a derivative extension for Thunderbird 60+
-    providing import and export tools for messages and folders.
-    The derivative extension authors:
-        Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+	ImportExportTools NG is a extension for Thunderbird mail client
+	providing import and export tools for messages and folders.
+	The extension authors:
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-    The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
-    is covered by the GPLv3 open-source license (see LICENSE file).
-        Copyright (C) 2007 : Paolo "Kaosmos"
+	ImportExportTools NG is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-// cleidigh - reformat, services, globals, dialog changes
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
 
@@ -57,6 +45,7 @@ function initMboxImportPanel() {
 
     IETsetCharsetPopup("");
 
+    document.getElementById("useMboxExt").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
     document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
     document.getElementById("MBasciiname").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
     document.getElementById("MBconfrimimport").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
@@ -69,6 +58,8 @@ function initMboxImportPanel() {
     document.getElementById("addtimeCheckbox").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
     document.getElementById("buildMSF").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
     document.getElementById("addNumber").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number");
+    document.getElementById("stripEML_CR").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports");
+
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
         document.getElementById("customizeFilenames").checked = true;
@@ -187,10 +178,12 @@ function initMboxImportPanel() {
         textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
         csvSep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
     } catch (e) {
+        console.log(e)
         charset = "";
         textCharset = "";
         csvSep = "";
     }
+
 
     IETsetCharsetPopup(textCharset);
     document.getElementById("filenameCharset").value = charset;
@@ -272,6 +265,7 @@ function toggleType(el) {
 }*/
 
 function saveMboxImportPrefs() {
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", document.getElementById("MBconfrimimport").checked);
@@ -284,6 +278,8 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_addtime", document.getElementById("addtimeCheckbox").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.build_mbox_index", document.getElementById("buildMSF").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.name_add_number", document.getElementById("addNumber").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports", document.getElementById("stripEML_CR").checked);
+
 
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
@@ -376,11 +372,10 @@ function customNamesCheck(el) {
         document.getElementById("prefixText").setAttribute("disabled", "true");
         document.getElementById("addSuffix").setAttribute("disabled", "true");
         document.getElementById("suffixText").setAttribute("disabled", "true");
-        document.getElementById("customDateFormat").setAttribute("disabled", "true");
-        document.getElementById("customDateLabel").setAttribute("disabled", "true");
+        //document.getElementById("customDateFormat").setAttribute("disabled", "true");
+        //document.getElementById("customDateLabel").setAttribute("disabled", "true");
 
     } else {
-        console.debug('disable file names');
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
@@ -392,9 +387,8 @@ function customNamesCheck(el) {
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
-        console.log("rem chkd")
-        document.getElementById("useExtendedFormat").removeAttribute("checked");
-        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+        //document.getElementById("useExtendedFormat").removeAttribute("checked");
+        //document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 
     }
 }
@@ -454,6 +448,11 @@ async function pickFile(target, inputFieldId) {
         return;
     }
     box.value = fp.file.path;    
+}
+
+async function openHelpBM(bookmark) {
+    let win = getMail3Pane();
+	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
 }
 
 document.addEventListener("dialogaccept", function (event) {

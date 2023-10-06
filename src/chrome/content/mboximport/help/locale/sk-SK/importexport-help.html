@@ -3,58 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>Pomocník ImportExportTools NG</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools Pomocník NG – Používateľská príručka</h2>
-    <p>
-      Toto je minimalistický prvý začiatok používateľskej príručky. Očividne je toho veľa čo dodať. Táto
-      aktuálna stránka sa zameriava na ponuky a nové možnosti. V ďalších verziách sa bude priebežne
-      aktualizovať.<br />
-    </p>
-    <h3>Verzia 12.0.0: Podpora Thunderbird 102 – 1. júla 2022</h3>
-    <p>
-      Riešené problémy:<br /><br />
-      <p>
-        - Podpora pre Thunderbird 102 a 91<br />
-        - Opravte podmienky pretekov v SessionRestore #284 #314<br />
-        - Oprava exportu IMAP, ktorý preskakuje prázdne priečinky #320<br />
-        - Opravte neuložené možnosti priečinka exportu #318<br />
-        - Opravte zmeny v nastaveniach tlače
-      </p>
-      <br /><br />
-      Ďakujeme nasledujúcim používateľom za návrhy na zlepšenie a pomoc pri testovaní:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
-    <h3>Podpora:</h3>
-    <p>
-      Uverejnite problémy alebo požiadavky na funkcie v úložisku GitHub rozšírení:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >Problémy s importom ExportTools NG</a
-      ><br /><br />
-      Pri problémoch s chybami uveďte nasledujúce informácie, ktoré vám pomôžu vyriešiť problémy:<br />
-      - Verzia ImportExportTools NG<br />
-      - Verzia Thunderbird<br />
-      - Operačný systém a verzia<br />
-      - Výstup ladenia (kopírovanie z konzoly ladenia - prístup pomocou Ctrl-Shift-J)<br />
-      - Popis krokov vedúcich k problému<br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">Pomocník ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
       ImportExportTools NG je nadväzujúce rozšírenie založené na pôvodnej práci Paola „Kaosmos“. Rozšírenie
@@ -75,13 +38,24 @@
         rozšírením. Funkcie sú kontextové. Jedálny lístok je pridaný pre:<br />
         - Kontext podokna (operácia so zložkami)<br />
         - Kontext zoznamu správ (vybrané správy)<br />
-        - Ponuka Nástroje (operácie so zložkami a profilmi)<br /><br />
-        Existuje veľa možností, ktoré sú dostupné pod pridanou položkou v časti &quot;Nástroje/Možnosti
-        doplnku&quot; pre možnosti rozšírenia. Každá z ponúk má tiež položku ponuky Možnosti na prístup k
-        dialógu možností.<br />
-        Nové možnosti sú zdokumentované tu, celý súbor bude následne zdokumentovaný.
+        - Ponuka Nástroje (operácie profilu a zálohovania)<br /><br />
+        Možnosti, ktoré sú dostupné v ponuke „Nástroje“, sa nenachádzajú v ponuke „Hamburger“, budú v budúcej
+        verzii. Tieto funkcie sú dostupné aj v novom tlačidle na paneli nástrojov. Každá z ponúk a tlačidiel
+        má tiež položku ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Podpora:</h3>
+    <p>
+      Uverejnite problémy alebo požiadavky na funkcie v úložisku GitHub rozšírení:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >Problémy s importom ExportTools NG</a
+      ><br /><br />
+      Pri problémoch s chybami uveďte nasledujúce informácie, ktoré vám pomôžu vyriešiť problémy:<br />
+      - Verzia ImportExportTools NG<br />
+      - Verzia Thunderbird<br />
+      - Operačný systém a verzia<br />
+      - Výstup ladenia (kopírovanie z konzoly ladenia - prístup pomocou Ctrl-Shift-J)<br />
+      - Popis krokov vedúcich k problému<br />
     </p>
     <h2 id="main_menu_help">Funkcie kontextového menu priečinka</h2>
     <table class="menu-table">
@@ -93,55 +67,74 @@
       </thead>
       <tbody>
         <tr>
-          <td>Exportovať priečinok</td>
-          <td>Exportujte jeden priečinok do súboru vo formáte mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportujte jeden priečinok do súboru vo formáte zip mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Exportujte priečinok vrátane všetkých jeho podpriečinkov do stromu správ vo formáte mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Exportujte priečinok vrátane všetkých jeho podpriečinkov do stromu správ vo formáte mbox<br />
-            (podadresáre .sbd)
+            Exportujte celý účet so štruktúrou a podpriečinkami vo formáte mbox. Export sa vykonáva pomocou
+            kontajnera s názvom účtu.<br />
+            Poznámka: Táto položka ponuky sa zobrazí iba po kliknutí pravým tlačidlom myši na položku účtu.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>Exportujte jeden priečinok do súboru vo formáte zip mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
+          <td>Exportujte priečinok vrátane všetkých jeho podpriečinkov do stromu správ vo formáte mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+          </td>
           <td>
             Exportujte priečinok vrátane všetkých jeho podpriečinkov do súboru súborov vo formáte mbox, jeden
             pre každý podpriečinok, exportujte do jedného priečinka.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Exportujte vzdialený priečinok (imap) do jedného súboru mbox.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportujte správy z priečinka ako súbory vo formáte EML (žiadna štruktúra/podpriečinky).<br />
             Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
-            Prílohy nie sú zahrnuté. Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
             Prílohy sa ukladajú ako samostatné súbory. Tým sa vytvorí aj indexový súbor HTML so zoznamom
@@ -149,21 +142,31 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exportujte správy priečinka ako súbor súborov vo formáte PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Exportujte správy do priečinka ako súbory vo formáte obyčajného textu, prílohy nie sú zahrnuté.<br />
             Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Exportujte správy z priečinka ako súbory vo formáte obyčajného textu vrátane príloh.<br />
             Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Exportujte správy do priečinka ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
             zahrnuté.<br />
@@ -171,14 +174,16 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
           <td>
             Exportujte správy z priečinka ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
             Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
             Exportujte správy z priečinka ako jeden textový súbor CSV (hodnoty oddelené čiarkou), prílohy nie
             sú zahrnuté.<br />
@@ -186,63 +191,79 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exportujte správy do priečinka ako súbor súborov vo formáte PDF vrátane príloh.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.<br />
-            Poznámka: Výstup PDF nie je podporovaný v systéme OSX kvôli problému s ovládačom.
-          </td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>Vytvorí indexový súbor HTML pre správy priečinka (bez exportu správ)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Vytvorí indexový súbor CSV so správami v priečinku (bez exportu správ)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Otvorte dialógové okno vyhľadávania a exportujte požadované výsledky</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importujte súbor alebo súbory mbox. Vyberte si so štruktúrou/podpriečinkami alebo bez nich</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Vyberte a importujte súbory správ maildir</td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importujte jeden alebo viac súborov mbox z adresára.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Vyberte a importujte priečinok maildir</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Vyberte a importujte súbory správ EML (žiadna štruktúra/podpriečinky)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Importujte všetky správy EML z jedného priečinka</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry/podpriečinkov</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Skopírujte cestu OS k vybratému priečinku</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Otvorte cestu OS k vybratému priečinku</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
@@ -258,98 +279,121 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte EML</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte HTML</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Exportujte vybrané správy do súborov vo formáte EML (vložené prílohy)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte HTML vrátane príloh</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportujte vybrané správy do súborov formátu EML<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte obyčajného textu</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte obyčajného textu vrátane príloh</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Exportujte vybraté správy do súborov vo formáte HTML</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Uložte vybraté správy do jedného textového súboru CSV</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Exportujte vybrané správy do súborov vo formáte HTML vrátane príloh</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Uložte vybrané správy do jedného súboru mbox</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportujte správy ako súbory vo formáte HTML.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exportujte správy ako súbory vo formáte HTML vrátane príloh.<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exportujte vybrané správy do súborov vo formáte PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Exportujte vybrané správy do súborov vo formáte obyčajného textu</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>Exportujte vybrané správy do súborov vo formáte obyčajného textu vrátane príloh</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exportujte správy ako súbory vo formáte obyčajného textu vrátane príloh<br />
+            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Exportujte vybraté správy do jedného textového súboru CSV</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Exportujte vybrané správy do jedného súboru mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
           <td>Pripojte vybraté správy k existujúcemu súboru mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Uložte vybrané správy do súborov vo formáte PDF</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Uložte správy ako súbory vo formáte EML.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Vytvorte indexový súbor HTML pre vybraté správy</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Uložte správy ako súbory vo formáte HTML.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Vytvorte indexový súbor CSV pre vybraté správy</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Uložte správy ako súbory vo formáte HTML vrátane príloh<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Uložte správy ako súbory vo formáte obyčajného textu<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Skopírujte jednu vybratú správu do schránky</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Uložte správy ako súbory vo formáte obyčajného textu vrátane príloh<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Skopírujte hlavičky jednej vybratej správy do schránky</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Vytvorte indexový súbor HTML pre vybraté súbory</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Vytvorte indexový súbor CSV pre vybraté súbory</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
@@ -365,160 +409,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Exportovať priečinok</td>
-          <td>Exportujte jeden priečinok do súboru vo formáte mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exportujte jeden priečinok do súboru vo formáte zip mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Exportujte priečinok vrátane všetkých jeho podpriečinkov do stromu správ vo formáte mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Exportujte priečinok vrátane všetkých jeho podpriečinkov do stromu správ vo formáte mbox<br />
-            (podadresáre .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Exportujte priečinok vrátane všetkých jeho podpriečinkov do súboru súborov vo formáte mbox, jeden
-            pre každý podpriečinok, exportujte do jedného priečinka.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Exportujte vzdialený priečinok (imap) do jedného súboru mbox.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Exportujte správy z priečinka ako súbory vo formáte EML (žiadna štruktúra/podpriečinky).<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
-            Prílohy nie sú zahrnuté. Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Exportujte správy priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
-            Prílohy sa ukladajú ako samostatné súbory. Tým sa vytvorí aj indexový súbor HTML so zoznamom
-            každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Exportujte správy do priečinka ako súbory vo formáte obyčajného textu, prílohy nie sú zahrnuté.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Exportujte správy z priečinka ako súbory vo formáte obyčajného textu vrátane príloh.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Exportujte správy do priečinka ako jeden súbor vo formáte obyčajného textu, prílohy nie sú
-            zahrnuté.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Exportujte správy z priečinka ako jeden súbor vo formáte obyčajného textu vrátane príloh.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Exportujte správy z priečinka ako jeden textový súbor CSV (hodnoty oddelené čiarkou), prílohy nie
-            sú zahrnuté.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exportujte správy do priečinka ako súbor súborov vo formáte PDF vrátane príloh.<br />
-            Tým sa vytvorí aj indexový súbor HTML so zoznamom každej správy.<br />
-            Poznámka: Výstup PDF nie je podporovaný v systéme OSX kvôli problému s ovládačom.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Vytvorí indexový súbor HTML pre správy priečinka (bez exportu správ)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Vytvorí indexový súbor CSV so správami v priečinku (bez exportu správ)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Otvorte dialógové okno vyhľadávania a exportujte požadované výsledky</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importujte súbor alebo súbory mbox. Vyberte si so štruktúrou/podpriečinkami alebo bez nich</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Vyberte a importujte súbory správ EML (žiadna štruktúra/podpriečinky)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importujte všetky správy EML z jedného priečinka</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importujte všetky správy EML z jedného priečinka vrátane štruktúry/podpriečinkov</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Uložiť všetku poštu v aktuálnom profile</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Uložiť celý profil (pošta, rozšírenia, možnosti)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Uložiť všetku poštu v aktuálnom profile</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Importovať úplný profil (e-mail, rozšírenia, možnosti)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Otvorte dialógové okno Možnosti ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Otvorte hlavnú stránku pomocníka</td>
         </tr>
       </tbody>
@@ -813,47 +728,47 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td><code property-text-ref="subjectFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td><code property-text-ref="senderFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td><code property-text-ref="recipientFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td><code property-text-ref="smartNameFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td><code property-text-ref="indexFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td><code property-text-ref="prefixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td><code property-text-ref="suffixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td><code property-text-ref="dateFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
       </tr>
     </table>
     <br />
@@ -939,6 +854,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Keďže skratky sú nové a experimentálne, pridám do úložiska aj ďalšiu dokumentáciu. Skontrolujte
       rozšírenie
@@ -947,5 +863,32 @@
       ><br />
     </p>
     <br />
+    <h3>Verzia 14.0.0 : Podpora Thunderbird 115 – 10. júla 2023</h3>
+    <p>
+      Vlastnosti a riešené problémy:<br />
+      <p>
+        - Podpora pre Thunderbird 115 Supernova<br />
+        - Prepracovať a zmodernizovať používateľské rozhranie Možnosti<br />
+        - Kompletná podpora tmavého režimu<br />
+        - Nový, konzistentný systém menu<br />
+        - Nové tlačidlo na paneli nástrojov<br />
+        - Vylepšená pomoc, otvorená pri inštalácii<br />
+        - Aktualizujte exportný účet<br /><br />
+        Ďakujeme nasledujúcim používateľom za návrhy na zlepšenie a pomoc pri testovaní:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
   </body>
 </html>

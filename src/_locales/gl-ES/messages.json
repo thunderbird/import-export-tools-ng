@@ -1,0 +1,333 @@
+{
+	"extensionName": {
+		"message": "ImportExportTools NG"
+	},
+
+	"extensionDescription": {
+		"message": "Engade ferramentas para importar/exportar mensaxes e cartafoles (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Opcións"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Axuda"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Exportar perfil"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importar perfil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Copia de seguranza"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Perfil completo"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Só correo"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Exportar mensaxes como..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Formato de mensaxe EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Formato PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Formato de texto plano"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Formato CSV (folla de cálculo)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "Formato mbox"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Índice de mensaxes"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Copiar ao portapapeis"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Mensaxes (anexos incorporados)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Só mensaxes"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Mensaxes e anexos"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensaxes con anexos e índice"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Só mensaxes"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Mensaxes e anexos"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensaxes con anexos e índice"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Novo ficheiro mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Engadir ao ficheiro mbox existente"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Formato CSV"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Mensaxe"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Cabeceiras"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Exportación de cartafoles (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Como ficheiro mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Arquivo mbox comprimido único"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Estruturado con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Con subcarpetas aplanadas"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Exportar cartafol remoto"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exportar todas as mensaxes no cartafol"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Formato de mensaxe EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Formato PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Formato de texto plano"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Formato CSV (folla de cálculo)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Índice de mensaxes"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Busca e exporta mensaxes"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importar ficheiros mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Arquivos mbox individuais"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Arquivos mbox individuais (con estrutura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Todos os ficheiros mbox do directorio"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Todos os ficheiros mbox do directorio (con estrutura sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importar o cartafol Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importar mensaxes EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Mensaxes individuais de EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Todas as mensaxes EML dun directorio"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Todas as mensaxes EML dun directorio e subdirectorios"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Copiar o camiño do cartafol"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Abrir o directorio de cartafoles"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensaxes con anexos e índice"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensaxes con anexos e índice"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Mensaxes como ficheiro único"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Mensaxes como ficheiro único con anexos"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "Formato HTML"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Formato CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${asunto}"
+	},
+
+	"senderFmtToken": {
+		"message": "${remitente}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${destinatario}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${remitente_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${destinatario_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${nome_intelixente}"
+	},
+
+	"indexFmtToken": {
+		"message": "${índice}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${prefixo}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${sufixo}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${data_personalizada}"
+	},
+
+	"dataCustomFmtToken": {
+		"message": "${data}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Conta de exportación"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Garda o anexo EML neste cartafol"
+	}
+}

@@ -117,3 +117,9 @@
 <!ENTITY backupOnExit "退出时备份">
 <!ENTITY noFolderSelectedMenuTop "[未选择文件夹（导入\导出已禁用）]">
 <!ENTITY indexCSVdateFormat "索引，CSV日期格式：">
+<!ENTITY attachmentFolderNames "附件文件夹名称">
+<!ENTITY attachmentFolders "附件文件夹">
+<!ENTITY inlineAttachmentsFolders "内联附件文件夹">
+<!ENTITY cutPathLen "将文件路径长度缩短为 256 个字符">
+<!ENTITY strip_eml_CR.label "从 eml 消息导出的行结尾中去除 CR">
+<!ENTITY useMboxExt.label "对 mbox 文件使用 .mbox 扩展名（非结构化）">

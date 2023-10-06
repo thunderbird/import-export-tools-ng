@@ -1,9 +1,333 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
+
 	"extensionDescription": {
-		"message": "Tilføjer nogle værktøjer til import og eksport af meddelelser og mapper (NextGen)"
+		"message": "Tilføjer værktøjer til at importere/eksportere beskeder og mapper (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Muligheder"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Hjælp"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Eksporter profil"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Importer profil"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Backup"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Fuld profil"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Kun mail"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Eksporter meddelelser som..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-meddelelsesformat"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-format"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Almindeligt tekstformat"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-format (regneark)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox format"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Meddelelsesindeks"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Kopier til udklipsholder"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Beskeder (vedhæftede vedhæftede filer)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Kun beskeder"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Beskeder og vedhæftede filer"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelelser med vedhæftede filer og indeks"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Kun beskeder"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Beskeder og vedhæftede filer"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelelser med vedhæftede filer og indeks"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Ny mbox fil"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Føj til eksisterende mbox-fil"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-format"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Besked"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "Overskrifter"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Mappeeksport (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "Som mbox fil"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Enkelt zippet mbox-fil"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Struktureret med undermapper"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Med fladtrykte undermapper"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Eksporter fjernmappe"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Eksporter alle meddelelser i mappe"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML-meddelelsesformat"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF-format"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Almindeligt tekstformat"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV-format (regneark)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Meddelelsesindeks"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Søg og eksporter meddelelser"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importer mbox-filer"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Individuelle mbox-filer"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Individuelle mbox-filer (med sbd-struktur)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Alle mbox-filer fra mappen"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Alle mbox filer fra mappe (med sbd struktur)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importer Maildir-mappe"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importer EML-meddelelser"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Individuelle EML-meddelelser"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Alle EML-meddelelser fra en adressebog"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Alle EML-meddelelser fra en mappe og undermapper"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Kopier mappesti"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Åbn mappekatalog"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelelser med vedhæftede filer og indeks"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Beskeder og HTML-indeks"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelelser med vedhæftede filer og indeks"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Meddelelser som enkelt fil"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Meddelelser som enkelt fil med vedhæftede filer"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML-format"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV-format"
+	},
+
+	"subjectFmtToken": {
+		"message": "${emne}"
+	},
+
+	"senderFmtToken": {
+		"message": "${afsender}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${modtager}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${afsender_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${modtager_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${smart_navn}"
+	},
+
+	"indexFmtToken": {
+		"message": "${indeks}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${præfiks}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${suffiks}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${dato_brugerdefineret}"
+	},
+
+	"dateFmtToken": {
+		"message": "${dato}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Eksporter konto"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Gem EML-vedhæftet fil i denne mappe"
 	}
 }

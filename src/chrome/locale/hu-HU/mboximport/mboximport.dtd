@@ -118,3 +118,9 @@
 <!ENTITY backupOnExit "Biztonsági mentés a kilépéskor">
 <!ENTITY noFolderSelectedMenuTop "[Nincs kijelölt mappa (importálás / exportálás letiltva)]">
 <!ENTITY indexCSVdateFormat "Index, CSV dátumformátum:">
+<!ENTITY attachmentFolderNames "Mellékletmappák nevei">
+<!ENTITY attachmentFolders "Mellékletek mappák">
+<!ENTITY inlineAttachmentsFolders "Beépített mellékletek mappái">
+<!ENTITY cutPathLen "Vágja le a fájl elérési útját 256 karakterre">
+<!ENTITY strip_eml_CR.label "Távolítsa el a CR-t a sorvégekről az eml-üzenetek exportálásához">
+<!ENTITY useMboxExt.label ".mbox kiterjesztés használata mbox fájlokhoz (nem strukturált)">

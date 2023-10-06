@@ -117,3 +117,9 @@
 <!ENTITY backupOnExit "Varnostno kopiranje ob izhodu">
 <!ENTITY noFolderSelectedMenuTop "[Ni izbrane mape (uvoz / izvoz onemogočen)]">
 <!ENTITY indexCSVdateFormat "Kazalo, oblika zapisa datuma CSV:">
+<!ENTITY attachmentFolderNames "Imena map priponk">
+<!ENTITY attachmentFolders "Mape s priponkami">
+<!ENTITY inlineAttachmentsFolders "Vgrajene mape s prilogami">
+<!ENTITY cutPathLen "Zmanjšajte dolžino poti do datoteke na 256 znakov">
+<!ENTITY strip_eml_CR.label "Odstrani CR iz koncev vrstic za izvoz sporočil eml">
+<!ENTITY useMboxExt.label "Uporabite pripono .mbox za datoteke mbox (nestrukturirane)">

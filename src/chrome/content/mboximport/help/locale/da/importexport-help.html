@@ -3,58 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>ImportExportTools NG Hjælp</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Hjælp-brugervejledning</h2>
-    <p>
-      Dette er en minimalistisk første start på en brugervejledning. Der er åbenbart meget at tilføje. Denne
-      aktuelle side fokuserer på menuerne og nye muligheder. Den vil løbende blive opdateret i efterfølgende
-      versioner.<br />
-    </p>
-    <h3>Version 12.0.0: Thunderbird 102 Support - 1. juli 2022</h3>
-    <p>
-      Problemer behandlet:<br /><br />
-      <p>
-        - Understøttelse af Thunderbird 102 og 91<br />
-        - Ret løbstilstanden i SessionRestore #284 #314<br />
-        - Ret IMAP-eksport, der springer tomme mapper #320 over<br />
-        - Ret eksportmappeindstillinger, der ikke er gemt #318<br />
-        - Ret ændringer i printindstillinger
-      </p>
-      <br /><br />
-      Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
-    </p>
-    <h3>Support:</h3>
-    <p>
-      Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-lageret:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      I fejlproblemer skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
-      - ImportExportTools NG version<br />
-      - Thunderbird version<br />
-      - Operativsystem og version<br />
-      - Debug output (kopi fra fejlfindingskonsollen - adgang med Control-Shift-J)<br />
-      - En beskrivelse af de trin, der fører til problemet<br />
-    </p>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Hjælp</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
     <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
     <p>
       ImportExportTools NG er en opfølgende udvidelse baseret på det originale værk af Paolo
@@ -75,13 +38,25 @@
         Funktionerne er kontekstafhængige. Menuer tilføjes til:<br />
         - Mapperudens kontekst (mappeoperation)<br />
         - Beskedlistekonteksten (udvalgte meddelelser)<br />
-        - Værktøjsmenuen (mappe- og profilhandlinger)<br /><br />
-        Der er mange muligheder, der er tilgængelige under den tilføjede post under
-        &quot;Værktøjer/Tilføjelsesmuligheder&quot; for udvidelsesmulighederne. Hver af menuerne har også et
-        menupunkt Indstillinger for at få adgang til indstillingsdialogen.<br />
-        De nye muligheder er dokumenteret her, hele sættet vil blive dokumenteret efterfølgende.
+        - Menuen Værktøjer (profil og sikkerhedskopiering)<br /><br />
+        De muligheder, der er tilgængelige under &quot;Værktøjsmenuen&quot;, er ikke i menuen
+        &quot;Hamburger&quot;, de vil være i en fremtidig version. Disse funktioner er også tilgængelige i den
+        nye knap på værktøjslinjen. Hver af menuerne og knappen har også et menupunkt Hjælp og indstillinger
+        for at få adgang til indstillingsdialogen.<br />
       </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
+    </p>
+    <h3>Support:</h3>
+    <p>
+      Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-lageret:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      I fejlproblemer skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
+      - ImportExportTools NG version<br />
+      - Thunderbird version<br />
+      - Operativsystem og version<br />
+      - Debug output (kopi fra fejlfindingskonsollen - adgang med Control-Shift-J)<br />
+      - En beskrivelse af de trin, der fører til problemet<br />
     </p>
     <h2 id="main_menu_help">Mappekontekstmenufunktioner</h2>
     <table class="menu-table">
@@ -93,56 +68,74 @@
       </thead>
       <tbody>
         <tr>
-          <td>Eksporter mappe</td>
-          <td>Eksporter en enkelt mappe til en fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Eksporter en enkelt mappe til en zip-fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format<br />
-            (.sbd undermapper)
+            Eksporter hele kontoen med strukturen og undermapper i mbox-format. Eksporten sker ved hjælp af en
+            container med kontonavnet.<br />
+            Bemærk: Dette menupunkt vises kun, når du højreklikker på en kontopost.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>Eksporter en enkelt mappe til en fil i mbox-format</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>Eksporter en enkelt mappe til en zip-fil i mbox-format</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
+          <td>Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+          </td>
           <td>
             Eksporter en mappe inklusive alle dens undermapper til et sæt mbox-formatfiler, en for hver
             undermappe, eksporteret til en enkelt mappe.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Eksporter en ekstern (imap) mappe til en enkelt mbox-fil.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksporter mappemeddelelserne som filer i EML-format (ingen struktur/undermapper).<br />
             Dette opretter også en HTML-indeksfil med en liste over hver besked.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksporter mappemeddelelserne som HTML-formatfiler (ingen struktur/undermapper).<br />
-            Vedhæftede filer er ikke inkluderet. Dette opretter også en HTML-indeksfil med en liste over hver
-            besked.
+            Dette opretter også en HTML-indeksfil med en liste over hver besked.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Eksporter mappemeddelelserne som HTML-formatfiler (ingen struktur/undermapper).<br />
             Vedhæftede filer gemmes som separate filer. Dette opretter også en HTML-indeksfil med en liste
@@ -150,7 +143,15 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Eksporter mappemeddelelserne som et sæt PDF-filer</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Eksporter mappemeddelelserne som filer i almindeligt tekstformat, vedhæftede filer er ikke
             inkluderet.<br />
@@ -158,14 +159,16 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Eksporter mappemeddelelserne som filer i almindeligt tekstformat, inklusive vedhæftede filer.<br />
             Dette opretter også en HTML-indeksfil med en liste over hver besked.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Eksporter mappemeddelelserne som en enkelt fil i almindeligt tekstformat, vedhæftede filer er ikke
             inkluderet.<br />
@@ -173,7 +176,9 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
           <td>
             Eksporter mappemeddelelserne som en enkelt fil i almindeligt tekstformat, inklusive vedhæftede
             filer.<br />
@@ -181,71 +186,87 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
             Eksporter mappemeddelelserne som en enkelt CSV (Comma Separated Values) tekstformatfil, vedhæftede
-            vedhæftede filer er ikke inkluderet.<br />
+            filer er ikke inkluderet.<br />
             Dette opretter også en HTML-indeksfil med en liste over hver besked.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som et sæt PDF-filer, inklusive vedhæftede filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.<br />
-            Bemærk: PDF-output understøttes ikke på OSX på grund af et driverproblem.
-          </td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>Opretter en HTML-indeksfil over mappemeddelelserne (ingen meddelelseseksport)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Opretter en CSV-indeksfil over mappebeskederne (ingen beskedeksport)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Åbn søgedialogen og eksporter de ønskede resultater</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importer en eller flere mbox-filer. Vælg med eller uden struktur/undermapper</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Vælg og importer maildir-meddelelsesfiler</td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importer en eller flere mbox-filer fra en mappe.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Vælg og importer en maildir-mappe</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Vælg og importer EML-meddelelsesfiler (ingen struktur/undermapper)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Importer alle EML-beskeder fra en enkelt mappe</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>Importer alle EML-meddelelser fra en enkelt mappe inklusive struktur/undermapper</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Kopier OS-stien til den valgte mappe</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Åbn OS-stien til den valgte mappe</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Åbn hovedhjælpesiden</td>
         </tr>
       </tbody>
@@ -261,98 +282,121 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Gem de valgte beskeder i EML-formatfiler</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Gem de valgte beskeder i HTML-formatfiler</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Eksporter de valgte meddelelser til EML-formatfiler (vedhæftede filer indlejret)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
-          <td>Gem de valgte meddelelser i HTML-formatfiler inklusive vedhæftede filer</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Eksporter de valgte meddelelser til filer i EML-format<br />
+            Dette opretter også en HTML-indeksfil med en liste over hver besked.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Gem de valgte beskeder til filer i almindeligt tekstformat</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
-          <td>Gem de valgte beskeder til filer i almindeligt tekstformat inklusive vedhæftede filer</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Eksporter de valgte meddelelser til HTML-formatfiler</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Gem de valgte beskeder i en enkelt CSV-tekstfil</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Eksporter de valgte meddelelser til HTML-formatfiler inklusive vedhæftede filer</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Gem de valgte beskeder i en enkelt mbox-fil</td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Eksporter meddelelserne som HTML-formatfiler.<br />
+            Dette opretter også en HTML-indeksfil med en liste over hver besked.
+          </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Eksporter meddelelserne som HTML-formatfiler inklusive vedhæftede filer.<br />
+            Dette opretter også en HTML-indeksfil med en liste over hver besked.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Eksporter de valgte beskeder til filer i PDF-format</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Eksporter de valgte beskeder til filer i almindeligt tekstformat</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>Eksporter de valgte beskeder til filer i almindeligt tekstformat inklusive vedhæftede filer</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Eksporter meddelelserne som filer i almindeligt tekstformat inklusive vedhæftede filer<br />
+            Dette opretter også en HTML-indeksfil med en liste over hver besked.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Eksporter de valgte beskeder til en enkelt CSV-tekstfil</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Eksporter de valgte beskeder til en enkelt mbox-fil</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
           <td>Føj de valgte beskeder til en eksisterende mbox-fil</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Gem de valgte beskeder i PDF-formatfiler</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Gem beskederne som filer i EML-format.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Opret en HTML-indeksfil for de valgte meddelelser</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Gem beskederne som HTML-formatfiler.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Opret en CSV-indeksfil for de valgte beskeder</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Gem beskederne som HTML-formatfiler inklusive vedhæftede filer<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Gem beskederne som filer i almindeligt tekstformat<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Kopier en enkelt valgt besked til udklipsholderen</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Gem beskederne som filer i almindeligt tekstformat inklusive vedhæftede filer<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Kopier overskrifterne på en enkelt valgt besked til udklipsholderen</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Opret en HTML-indeksfil for de valgte filer</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Opret en CSV-indeksfil for de valgte filer</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Åbn hovedhjælpesiden</td>
         </tr>
       </tbody>
@@ -368,163 +412,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Eksporter mappe</td>
-          <td>Eksporter en enkelt mappe til en fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Eksporter en enkelt mappe til en zip-fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format<br />
-            (.sbd undermapper)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Eksporter en mappe inklusive alle dens undermapper til et sæt mbox-formatfiler, en for hver
-            undermappe, eksporteret til en enkelt mappe.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Eksporter en ekstern (imap) mappe til en enkelt mbox-fil.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som filer i EML-format (ingen struktur/undermapper).<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som HTML-formatfiler (ingen struktur/undermapper).<br />
-            Vedhæftede filer er ikke inkluderet. Dette opretter også en HTML-indeksfil med en liste over hver
-            besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som HTML-formatfiler (ingen struktur/undermapper).<br />
-            Vedhæftede filer gemmes som separate filer. Dette opretter også en HTML-indeksfil med en liste
-            over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som filer i almindeligt tekstformat, vedhæftede filer er ikke
-            inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som filer i almindeligt tekstformat, inklusive vedhæftede filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som en enkelt fil i almindeligt tekstformat, vedhæftede filer er ikke
-            inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som en enkelt fil i almindeligt tekstformat, inklusive vedhæftede
-            filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som en enkelt CSV (Comma Separated Values) tekstformatfil, vedhæftede
-            vedhæftede filer er ikke inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Eksporter mappemeddelelserne som et sæt PDF-filer, inklusive vedhæftede filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver besked.<br />
-            Bemærk: PDF-output understøttes ikke på OSX på grund af et driverproblem.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Opretter en HTML-indeksfil over mappemeddelelserne (ingen meddelelseseksport)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Opretter en CSV-indeksfil over mappebeskederne (ingen beskedeksport)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Åbn søgedialogen og eksporter de ønskede resultater</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importer en eller flere mbox-filer. Vælg med eller uden struktur/undermapper</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Vælg og importer EML-meddelelsesfiler (ingen struktur/undermapper)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importer alle EML-beskeder fra en enkelt mappe</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>Importer alle EML-meddelelser fra en enkelt mappe inklusive struktur/undermapper</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Gem al mail i den aktuelle profil</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Gem hele profilen (mail, udvidelser, muligheder)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Gem al mail i den aktuelle profil</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Importer en komplet profil (mail, udvidelser, muligheder)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Åbn hovedhjælpesiden</td>
         </tr>
       </tbody>
@@ -818,47 +730,47 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td><code property-text-ref="subjectFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td><code property-text-ref="senderFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td><code property-text-ref="recipientFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td><code property-text-ref="smartNameFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td><code property-text-ref="indexFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td><code property-text-ref="prefixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td><code property-text-ref="suffixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td><code property-text-ref="dateFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
       </tr>
     </table>
     <br />
@@ -944,6 +856,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Da genvejene er nye og eksperimentelle, vil jeg også tilføje mere dokumentation i depotet. Tjek
       udvidelsen
@@ -952,5 +865,32 @@
       ><br />
     </p>
     <br />
+    <h3>Version 14.0.0: Thunderbird 115 Support - 10. juli 2023</h3>
+    <p>
+      Funktioner og problemer behandlet:<br />
+      <p>
+        - Understøttelse af Thunderbird 115 Supernova<br />
+        - Omarbejd og moderniser Options UI<br />
+        - Komplet understøttelse af Dark Mode<br />
+        - Nyt, konsekvent menusystem<br />
+        - Ny knap på værktøjslinjen<br />
+        - Forbedret hjælp, åben ved installation<br />
+        - Opdater eksportkonto<br /><br />
+        Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
   </body>
 </html>

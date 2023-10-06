@@ -1,9 +1,333 @@
-
 {
 	"extensionName": {
 		"message": "ImportExportTools NG"
 	},
+
 	"extensionDescription": {
-		"message": "Permet d'importer et d'exporter les fichiers au format MBox (NextGen)"
+		"message": "Ajoute des outils pour importer/exporter des messages et des dossiers (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "Choix"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "Aider"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "Profil d&#39;exportation"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "Profil d&#39;importation"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "Sauvegarde"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "Profil complet"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "Courrier uniquement"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "Exporter les messages sous…"
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Format de message EML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "FormatHTML"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Format PDF"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Format texte brut"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Format CSV (feuille de calcul)"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "Format mbox"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "Index des messages"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "Copier dans le presse-papier"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "Messages (pièces jointes intégrées)"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "Messages uniquement"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "Messages et pièces jointes"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messages avec pièces jointes et index"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "Messages uniquement"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "Messages et pièces jointes"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messages avec pièces jointes et index"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "Nouveau fichier mbox"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "Ajouter au fichier mbox existant"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "FormatHTML"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Format CSV"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "Message"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "En-têtes"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "Exportation de dossier (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "En tant que fichier mbox"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "Fichier mbox compressé unique"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "Structuré avec des sous-dossiers"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "Avec des sous-dossiers aplatis"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "Exporter le dossier distant"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "Exporter tous les messages du dossier"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "Format de message EML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "FormatHTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "Format PDF"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "Format texte brut"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "Format CSV (feuille de calcul)"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "Index des messages"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "Rechercher et exporter des messages"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "Importer des fichiers mbox"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "Fichiers mbox individuels"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "Fichiers mbox individuels (avec structure sbd)"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "Tous les fichiers mbox du répertoire"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "Tous les fichiers mbox du répertoire (avec structure sbd)"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "Importer le dossier Maildir"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "Importer des messages EML"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "Messages EML individuels"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "Tous les messages EML d&#39;un répertoire"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "Tous les messages EML d&#39;un répertoire et de sous-répertoires"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "Copier le chemin du dossier"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "Ouvrir le répertoire des dossiers"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messages avec pièces jointes et index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "Messages et index HTML"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messages avec pièces jointes et index"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "Messages en fichier unique"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "Messages en fichier unique avec pièces jointes"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "FormatHTML"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "Format CSV"
+	},
+
+	"subjectFmtToken": {
+		"message": "${sujet}"
+	},
+
+	"senderFmtToken": {
+		"message": "${expéditeur}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${expéditeur_email}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${destinataire}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${destinataire_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${nom_intelligent}"
+	},
+
+	"indexFmtToken": {
+		"message": "${index}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${préfixe}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${suffixe}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${date_personnalisée}"
+	},
+
+	"dateFmtToken": {
+		"message": "${date}"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Compte d&#39;exportation"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "Enregistrer la pièce jointe EML dans ce dossier"
 	}
 }

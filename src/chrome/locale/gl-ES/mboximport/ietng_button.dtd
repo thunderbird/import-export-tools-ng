@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "Exportar perfil">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "Importar perfil">
+<!ENTITY buttonMenu_Backup_Id.title "Copia de seguranza">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Perfil completo">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Só correo">
+<!ENTITY buttonMenu_Options.title "Opcións">
+<!ENTITY buttonMenu_Help.title "Axuda">

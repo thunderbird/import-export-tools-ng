@@ -3,44 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="chrome://mboximport/content/mboximport/importexport-help.css"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="src/chrome/content/mboximport/importexport-help.css" type="text/css" />
-    <!-- <script type="application/javascript" src="chrome://mboximport/content/utils.js"></script> -->
-    <script type="application/javascript" src="chrome://mboximport/content/mboximport/help.js"></script>
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
     <title>Aide d&#39;ImportExportTools NG</title>
   </head>
   <body>
-    <h2 id="main_help">ImportExportTools NG Aide-Guide de l&#39;utilisateur</h2>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">Aide d&#39;ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px;">voir</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
+    <h2 id="main_help">Vue d&#39;ensemble et menus d&#39;ImportExportTools NG</h2>
     <p>
-      Il s&#39;agit d&#39;un premier démarrage minimaliste d&#39;un guide de l&#39;utilisateur. Il y a
-      évidemment beaucoup à ajouter. Cette page actuelle se concentre sur les menus et les nouvelles options.
-      Il sera continuellement mis à jour dans les versions ultérieures.<br />
-    </p>
-    <h3>Version 12.0.0 : Prise en charge de Thunderbird 102 - 1er juillet 2022</h3>
-    <p>
-      Problèmes abordés :<br /><br />
+      ImportExportTools NG est une extension de suivi basée sur le travail original de Paolo
+      &quot;Kaosmos&quot;. L&#39;extension offre plusieurs fonctions d&#39;importation et d&#39;exportation
+      prenant en charge plusieurs formats de fichiers différents, notamment : Remarque : Certains formats ne
+      sont pas pris en charge dans toutes les fonctions.<br />
+      - mbox<br />
+      -EML<br />
+      - maildir<br />
+      - HTML<br />
+      - texte clair<br />
+      - CSV (valeurs séparées par des virgules)<br />
+      -PDF<br /><br />
+      Alors que la plupart des fonctionnalités tournent autour des messages, il existe également un support
+      pour l&#39;importation et l&#39;exportation de profils Thunderbird. De plus, les exportations peuvent
+      également inclure un fichier d&#39;index HTML ou CSV. La sauvegarde du profil Thunderbird est une autre
+      fonctionnalité.<br />
       <p>
-        - Prise en charge de Thunderbird 102 et 91<br />
-        - Correction de la condition de concurrence dans SessionRestore #284 #314<br />
-        - Correction de l&#39;export IMAP en sautant les dossiers vides #320<br />
-        - Correction des options de dossier d&#39;exportation non enregistrées #318<br />
-        - Correction des modifications apportées aux paramètres d&#39;impression
+        L&#39;accès à la fonctionnalité IETng se fait via plusieurs menus différents installés par
+        l&#39;extension. Les fonctions sont contextuelles. Des menus sont ajoutés pour :<br />
+        - Le contexte du volet dossier (opération de dossier)<br />
+        - Le contexte de la liste des messages (messages sélectionnés)<br />
+        - Le menu Outils (opérations de profil et de sauvegarde)<br /><br />
+        Les options accessibles sous le &quot;Menu Outils&quot; ne sont pas dans le menu
+        &quot;Hamburger&quot;, elles le seront dans une future version. Ces fonctions sont également
+        disponibles dans le nouveau bouton de la barre d&#39;outils. Chacun des menus et des boutons comporte
+        également un élément de menu Aide et Options pour accéder à la boîte de dialogue des options.<br />
       </p>
-      <br /><br />
-      Merci aux utilisateurs suivants pour leurs suggestions d&#39;amélioration et leur aide au test :<br /><br />
-      - <code class="notranslate">@ovari</code><br />
-      - <code class="notranslate">@dipgithub</code><br />
-      - <code class="notranslate">@artofit</code><br />
-      - <code class="notranslate">@JF1313</code><br />
-      - <code class="notranslate">@jessejmorrow</code><br />
-      - <code class="notranslate">@spd2000</code><br />
-      - <code class="notranslate">@kanlukasz</code><br />
-      - <code class="notranslate">@razzmatazzz</code><br />
-      - <code class="notranslate">@triplee</code><br />
     </p>
     <h3>Soutien:</h3>
     <p>
@@ -56,36 +61,6 @@
       - Sortie de débogage (copie depuis la console de débogage - accès avec Control-Shift-J)<br />
       - Une description des étapes menant au problème<br />
     </p>
-    <h2 id="main_help">Vue d&#39;ensemble et menus d&#39;ImportExportTools NG</h2>
-    <p>
-      ImportExportTools NG est une extension de suivi basée sur le travail original de Paolo
-      &quot;Kaosmos&quot;. L&#39;extension offre plusieurs fonctions d&#39;importation et d&#39;exportation
-      prenant en charge plusieurs formats de fichiers différents, notamment : Remarque : Certains formats ne
-      sont pas pris en charge dans toutes les fonctions.<br />
-      - mbox<br />
-      -EML<br />
-      - maildir<br />
-      - HTML<br />
-      - texte clair<br />
-      - CSV (valeurs séparées par des virgules)<br />
-      - PDF<br /><br />
-      Alors que la plupart des fonctionnalités tournent autour des messages, il existe également un support
-      pour l&#39;importation et l&#39;exportation de profils Thunderbird. De plus, les exportations peuvent
-      également inclure un fichier d&#39;index HTML ou CSV. La sauvegarde du profil Thunderbird est une autre
-      fonctionnalité.<br />
-      <p>
-        L&#39;accès à la fonctionnalité IETng se fait via plusieurs menus différents installés par
-        l&#39;extension. Les fonctions sont contextuelles. Des menus sont ajoutés pour :<br />
-        - Le contexte du volet dossier (opération de dossier)<br />
-        - Le contexte de la liste des messages (messages sélectionnés)<br />
-        - Le menu Outils (opérations sur les dossiers et les profils)<br /><br />
-        De nombreuses options sont accessibles sous l&#39;entrée ajoutée sous &quot;Outils/Options
-        complémentaires&quot; pour les options d&#39;extension. Chacun des menus possède également un élément
-        de menu Options pour accéder à la boîte de dialogue des options.<br />
-        Les nouvelles options sont documentées ici, l&#39;ensemble complet sera documenté ultérieurement.
-      </p>
-      <br /><!-- <h2 id="main_functions_help">Main Functions for each Menu</h2> -->
-    </p>
     <h2 id="main_menu_help">Fonctions du menu contextuel du dossier</h2>
     <table class="menu-table">
       <thead>
@@ -96,45 +71,58 @@
       </thead>
       <tbody>
         <tr>
-          <td>Dossier d&#39;exportation</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportez l&#39;intégralité du compte avec la structure et les sous-dossiers au format mbox.
+            L&#39;exportation se fait à l&#39;aide d&#39;un conteneur avec le nom du compte.<br />
+            Remarque : Cet élément de menu n&#39;apparaît que lorsque vous cliquez avec le bouton droit sur
+            une entrée de compte.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
           <td>Exporter un seul dossier vers un fichier au format mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
           <td>Exporter un seul dossier vers un fichier compressé au format mbox</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
           <td>
             Exporter un dossier, y compris tous ses sous-dossiers, vers une arborescence de messages au format
             mbox
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Exporter un dossier, y compris tous ses sous-dossiers, vers une arborescence de messages au format
-            mbox<br />
-            (sous-répertoires .sbd)
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
           <td>
             Exportez un dossier comprenant tous ses sous-dossiers vers un ensemble de fichiers au format mbox,
             un pour chaque sous-dossier, exportés vers un seul dossier.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
           <td>Exportez un dossier distant (imap) vers un seul fichier mbox.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportez les messages du dossier sous forme de fichiers au format EML (pas de
             structure/sous-dossiers).<br />
@@ -142,16 +130,21 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportez les messages du dossier sous forme de fichiers au format HTML (pas de
             structure/sous-dossiers).<br />
-            Les pièces jointes ne sont pas incluses. Cela crée également un fichier d&#39;index HTML
-            répertoriant chaque message.
+            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Exportez les messages du dossier sous forme de fichiers au format HTML (pas de
             structure/sous-dossiers).<br />
@@ -160,7 +153,15 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporter les messages du dossier sous la forme d&#39;un ensemble de fichiers au format PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Exportez les messages du dossier sous forme de fichiers au format texte brut, les pièces jointes
             ne sont pas incluses.<br />
@@ -168,7 +169,9 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
             Exportez les messages du dossier sous forme de fichiers au format texte brut, y compris les pièces
             jointes.<br />
@@ -176,7 +179,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
             Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte brut, les
             pièces jointes ne sont pas incluses.<br />
@@ -184,7 +187,9 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
           <td>
             Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte brut, y
             compris les pièces jointes.<br />
@@ -192,7 +197,7 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
             Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte CSV (Comma
             Separated Values), les pièces jointes ne sont pas incluses.<br />
@@ -200,68 +205,82 @@
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous la forme d&#39;un ensemble de fichiers au format PDF, y
-            compris les pièces jointes.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.<br />
-            Remarque : la sortie PDF n&#39;est pas prise en charge sur OSX en raison d&#39;un problème de
-            pilote.
-          </td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
           <td>Crée un fichier d&#39;index HTML des messages du dossier (pas d&#39;exportation de message)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
           <td>Crée un fichier d&#39;index CSV des messages du dossier (pas d&#39;exportation de message)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
           <td>Ouvrir la boîte de dialogue de recherche et exporter les résultats souhaités</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importer un ou plusieurs fichiers mbox. Choisissez avec ou sans structure/sous-dossiers</td>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td class="notranslate"></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td>Sélectionner et importer des fichiers de messages maildir</td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importez un ou plusieurs fichiers mbox à partir d&#39;un répertoire.</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Sélectionner et importer un dossier maildir</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
           <td>Sélectionner et importer des fichiers de messages EML (pas de structure/sous-dossiers)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
           <td>Importez tous les messages EML à partir d&#39;un seul dossier</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
           <td>
             Importez tous les messages EML à partir d&#39;un seul dossier, y compris la structure/les
             sous-dossiers
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="copyFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
           <td>Copiez le chemin du système d&#39;exploitation du dossier sélectionné</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openFolderPath"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
           <td>Ouvrir le chemin du système d&#39;exploitation du dossier sélectionné</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ouvrez la boîte de dialogue des options d&#39;ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ouvrir la page d&#39;aide principale</td>
         </tr>
       </tbody>
@@ -277,105 +296,128 @@
       </thead>
       <tbody>
         <tr>
-          <td dtd-text-id-ref="multipleSaveContext"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu1"></td>
-          <td>Enregistrez les messages sélectionnés dans des fichiers au format EML</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu1"></td>
-          <td>Enregistrez les messages sélectionnés dans des fichiers au format HTML</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
           <td>
-            Enregistrez les messages sélectionnés dans des fichiers au format HTML, y compris les pièces
+            Exporter les messages sélectionnés vers des fichiers au format EML (pièces jointes intégrées)
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporter les messages sélectionnés vers des fichiers au format EML<br />
+            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Exporter les messages sélectionnés vers des fichiers au format HTML</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>
+            Exporter les messages sélectionnés vers des fichiers au format HTML, y compris les pièces jointes
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportez les messages sous forme de fichiers au format HTML.<br />
+            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exportez les messages sous forme de fichiers au format HTML, y compris les pièces jointes.<br />
+            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporter les messages sélectionnés vers des fichiers au format PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Exporter les messages sélectionnés vers des fichiers au format texte brut</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>
+            Exporter les messages sélectionnés vers des fichiers au format texte brut, y compris les pièces
             jointes
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu1"></td>
-          <td>Enregistrez les messages sélectionnés dans des fichiers au format texte brut</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu1"></td>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
           <td>
-            Enregistrez les messages sélectionnés dans des fichiers au format texte brut, y compris les pièces
-            jointes
+            Exportez les messages sous forme de fichiers au format texte brut, y compris les pièces jointes<br />
+            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
           </td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsCSVContext" class="submenu1"></td>
-          <td>Enregistrez les messages sélectionnés dans un seul fichier texte CSV</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Exporter les messages sélectionnés vers un seul fichier texte CSV</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox1Context" class="submenu1"></td>
-          <td>Enregistrer les messages sélectionnés dans un seul fichier mbox</td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsMbox2Context" class="submenu1"></td>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Exporter les messages sélectionnés vers un seul fichier mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
           <td>Ajouter les messages sélectionnés à un fichier mbox existant</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsPdf2Context" class="submenu1"></td>
-          <td>Enregistrez les messages sélectionnés dans des fichiers au format PDF</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selWithIndexContext" class="submenu1"></td>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsEMLContext" class="submenu2"></td>
-          <td>
-            Enregistrez les messages sous forme de fichiers au format EML.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Créer un fichier d&#39;index HTML pour les messages sélectionnés</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContext" class="submenu2"></td>
-          <td>
-            Enregistrez les messages sous forme de fichiers au format HTML.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Créer un fichier d&#39;index CSV pour les messages sélectionnés</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsHTMLContextAtt" class="submenu2"></td>
-          <td>
-            Enregistrez les messages sous forme de fichiers au format HTML, y compris les pièces jointes<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContext" class="submenu2"></td>
-          <td>
-            Enregistrez les messages sous forme de fichiers au format texte brut<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Copier un seul message sélectionné dans le presse-papiers</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsTXTContextAtt" class="submenu2"></td>
-          <td>
-            Enregistrez les messages sous forme de fichiers au format texte brut, y compris les pièces
-            jointes<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Copier les en-têtes d&#39;un seul message sélectionné dans le presse-papiers</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="selAsIndex1Context" class="submenu1"></td>
-          <td>Créer un fichier d&#39;index HTML pour les fichiers sélectionnés</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="selAsIndex2Context" class="submenu1"></td>
-          <td>Créer un fichier d&#39;index CSV pour les fichiers sélectionnés</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="openIEToptions" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ouvrez la boîte de dialogue des options d&#39;ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1" class="submenu1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ouvrir la page d&#39;aide principale</td>
         </tr>
       </tbody>
@@ -391,176 +433,31 @@
       </thead>
       <tbody>
         <tr>
-          <td>Dossier d&#39;exportation</td>
-          <td>Exporter un seul dossier vers un fichier au format mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportZIP"></td>
-          <td>Exporter un seul dossier vers un fichier compressé au format mbox</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportallstruct"></td>
-          <td>
-            Exporter un dossier, y compris tous ses sous-dossiers, vers une arborescence de messages au format
-            mbox
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportstruct"></td>
-          <td>
-            Exporter un dossier, y compris tous ses sous-dossiers, vers une arborescence de messages au format
-            mbox<br />
-            (sous-répertoires .sbd)
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportsub"></td>
-          <td>
-            Exportez un dossier comprenant tous ses sous-dossiers vers un ensemble de fichiers au format mbox,
-            un pour chaque sous-dossier, exportés vers un seul dossier.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboxexportRemote"></td>
-          <td>Exportez un dossier distant (imap) vers un seul fichier mbox.</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="exportALLMSG"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
           <td></td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="allAsEML" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous forme de fichiers au format EML (pas de
-            structure/sous-dossiers).<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTML" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous forme de fichiers au format HTML (pas de
-            structure/sous-dossiers).<br />
-            Les pièces jointes ne sont pas incluses. Cela crée également un fichier d&#39;index HTML
-            répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsHTMLatt" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous forme de fichiers au format HTML (pas de
-            structure/sous-dossiers).<br />
-            Les pièces jointes sont enregistrées dans des fichiers séparés. Cela crée également un fichier
-            d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXT" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous forme de fichiers au format texte brut, les pièces jointes
-            ne sont pas incluses.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsTXTatt" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous forme de fichiers au format texte brut, y compris les pièces
-            jointes.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXT" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte brut, les
-            pièces jointes ne sont pas incluses.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsOneTXTatt" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte brut, y
-            compris les pièces jointes.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allCSV" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous la forme d&#39;un seul fichier au format texte CSV (Comma
-            Separated Values), les pièces jointes ne sont pas incluses.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="allAsPdf" class="submenu1"></td>
-          <td>
-            Exportez les messages du dossier sous la forme d&#39;un ensemble de fichiers au format PDF, y
-            compris les pièces jointes.<br />
-            Cela crée également un fichier d&#39;index HTML répertoriant chaque message.<br />
-            Remarque : la sortie PDF n&#39;est pas prise en charge sur OSX en raison d&#39;un problème de
-            pilote.
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndex" class="submenu1"></td>
-          <td>Crée un fichier d&#39;index HTML des messages du dossier (pas d&#39;exportation de message)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="justIndexCSV" class="submenu1"></td>
-          <td>Crée un fichier d&#39;index CSV des messages du dossier (pas d&#39;exportation de message)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="searchAndexport"></td>
-          <td>Ouvrir la boîte de dialogue de recherche et exporter les résultats souhaités</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximport"></td>
-          <td>Importer un ou plusieurs fichiers mbox. Choisissez avec ou sans structure/sous-dossiers</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportMD"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportEML"></td>
-          <td>Sélectionner et importer des fichiers de messages EML (pas de structure/sous-dossiers)</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML1" class="submenu1"></td>
-          <td>Importez tous les messages EML à partir d&#39;un seul dossier</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="mboximportALLEML2" class="submenu1"></td>
-          <td>
-            Importez tous les messages EML à partir d&#39;un seul dossier, y compris la structure/les
-            sous-dossiers
-          </td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfileMail"></td>
-          <td>Enregistrer tous les messages dans le profil actuel</td>
-        </tr>
-        <tr>
-          <td dtd-text-id-ref="saveProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
           <td>Enregistrer le profil complet (mail, extensions, options)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="IETimportProfile"></td>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Enregistrer tous les messages dans le profil actuel</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
           <td>Importer un profil complet (mail, extensions, options)</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEToptions"></td>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
           <td>Ouvrez la boîte de dialogue des options d&#39;ImportExportTools NG</td>
         </tr>
         <tr>
-          <td dtd-text-id-ref="openIEThelp1"></td>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
           <td>Ouvrir la page d&#39;aide principale</td>
         </tr>
       </tbody>
@@ -573,7 +470,7 @@
       fichiers. La date personnalisée peut également être utilisée avec le jeton ${date_custom} utilisé dans
       les noms de fichiers personnalisés étendus. Le format de date d&#39;origine (par défaut) est :<br />
       AAAAMMJJHhmm : 202011060808<br /><br />
-      Le format de date personnalisé utilise des séquences % correspondant à la fonctionnalité de type Unix de
+      Le format de date personnalisé utilise des séquences % correspondant à la fonctionnalité de type Unix
       <code>strftime()</code> . Il est basé sur un port JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , une fonction pour formater la date et l&#39;heure.<br />
@@ -584,7 +481,7 @@
       <thead>
         <tr>
           <th>Séquence</th>
-          <th>La description</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
@@ -807,7 +704,7 @@
     <table class="token-table">
       <tr>
         <td>Jeton</td>
-        <td>La description</td>
+        <td>Description</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -862,47 +759,47 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td><code property-text-ref="subjectFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
-        <td><code property-text-ref="senderFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td><code property-text-ref="recipientFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td><code property-text-ref="senderEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td><code property-text-ref="recipientEmailFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td><code property-text-ref="smartNameFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td><code property-text-ref="indexFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td><code property-text-ref="prefixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td><code property-text-ref="suffixFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td><code property-text-ref="dateFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td><code property-text-ref="dateCustomFmtToken"></code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
       </tr>
     </table>
     <br />
@@ -994,6 +891,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Comme les raccourcis sont nouveaux et expérimentaux, j&#39;ajouterai également plus de documentation
       dans le référentiel. Vérifiez l&#39;extension
@@ -1002,5 +900,32 @@
       ><br />
     </p>
     <br />
+    <h3>Version 14.0.0 : Prise en charge de Thunderbird 115 - 10 juillet 2023</h3>
+    <p>
+      Fonctionnalités et problèmes résolus :<br />
+      <p>
+        - Prise en charge de Thunderbird 115 Supernova<br />
+        - Retravailler et moderniser l&#39;interface utilisateur des options<br />
+        - Prise en charge complète du mode sombre<br />
+        - Nouveau système de menu cohérent<br />
+        - Nouveau bouton de barre d&#39;outils<br />
+        - Aide améliorée, ouverte à l&#39;installation<br />
+        - Mettre à jour le compte d&#39;exportation<br /><br />
+        Merci aux utilisateurs suivants pour leurs suggestions d&#39;amélioration et leur aide au test :<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
   </body>
 </html>

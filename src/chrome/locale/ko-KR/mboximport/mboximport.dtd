@@ -117,3 +117,9 @@
 <!ENTITY backupOnExit "종료시 백업">
 <!ENTITY noFolderSelectedMenuTop "[선택한 폴더 없음 (가져 오기 / 내보내기 비활성화 됨)]">
 <!ENTITY indexCSVdateFormat "색인, CSV 날짜 형식 :">
+<!ENTITY attachmentFolderNames "첨부 파일 폴더 이름">
+<!ENTITY attachmentFolders "첨부파일">
+<!ENTITY inlineAttachmentsFolders "인라인 첨부 파일 폴더">
+<!ENTITY cutPathLen "파일 경로 길이를 256자로 자릅니다.">
+<!ENTITY strip_eml_CR.label "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거">
+<!ENTITY useMboxExt.label "mbox 파일에 .mbox 확장자 사용(비구조적)">

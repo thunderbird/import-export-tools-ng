@@ -2100,7 +2100,8 @@ function IETstoreBody(msguri) {
 	fromStr.data = dataUTF8;
 
 	try {
-		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
+		// fix #451 use text/plain output
+		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 	} catch (e) {
 		text = dataUTF8;
 	}

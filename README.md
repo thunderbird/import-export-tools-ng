@@ -4,9 +4,6 @@
 [ImportExportTools NG](https://addons.thunderbird.net/addon/importexporttools-ng/) adds import and 
 export functions for messages, folders and profiles.
 
-This derivative add-on is the update of [ImportExportTools](https://addons.thunderbird.net/addon/importexporttools/), 
-the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/Paolo_Kaosmos/).
-
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v10.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%2078)](https://addons.thunderbird.net/addon/importexporttools-ng/)
@@ -20,8 +17,19 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 
 ## Import Export Tools NG Add-On Features
 
+Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
 
-Latest Version 10.0.2 : Maintenance Release - November 14, 2020
+- Thunderbird v115 ESR support
+- New UI refresh
+- New Dark mode support
+- New clean, consistent and logical menus
+- New toolbar button for profile, backup and options support
+- New .mbox extension option for non-structured exports
+- New strip CR from eml exports
+- Improved mbox From_ escaping
+
+
+Version 10.0.2 : Maintenance Release - November 14, 2020
 
 Bug Issues Fixed:
 

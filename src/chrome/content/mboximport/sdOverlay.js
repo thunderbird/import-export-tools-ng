@@ -3,24 +3,24 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+		it under the terms of the GNU General Public License as published by
+		the Free Software Foundation, either version 3 of the License, or
+		(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+		This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, globals, services
@@ -54,11 +54,14 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
+var searchFolder = null;
+
 function SDexportMsg() {
 	var view;
 	var all;
 
-	//console.log("Search export start")
+	let msgFolder = searchFolder;
+
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
 	else
@@ -106,6 +109,7 @@ function SDexportMsg() {
 	} else
 		file = getPredefinedFolder(2);
 
+
 	if (!file) {
 		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
@@ -114,18 +118,20 @@ function SDexportMsg() {
 			res = IETopenFPsync(fp);
 		if (res === nsIFilePicker.returnOK)
 			file = fp.file;
-		else
+		else {
 			return;
+		}
 	}
-	
+
 	let emlsArray = [];
 	if (all) {
 
-		var total = view.rowCount;
+		var total = gDBView.rowCount;
 		for (let i = 0; i < total; i++) {
 			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
+
 			} catch (e) {
 				continue; // ignore errors for dummy rows
 			}
@@ -155,7 +161,7 @@ function SDexportMsg() {
 		var hdrArray = [];
 		for (var k = 0; k < emlsArray.length; k++) {
 			msguri = emlsArray[k];
-			var msserv = messenger.messageServiceFromURI(msguri);
+			var msserv = MailServices.messageServiceFromURI(msguri);
 			var msg = msserv.messageURIToMsgHdr(msguri);
 			var hdrStr = IETstoreHeaders(msg, msguri, file, true);
 			hdrArray.push(hdrStr);
@@ -167,13 +173,17 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	//console.debug('SD initialize ');
+	console.debug('SD for the initialize ', window.arguments);
 	if (window.arguments && window.arguments[1]) {
 		var sf = document.getElementById("IETSearchFrame");
+		var sw = document.getElementById("searchMailWindow");
+		sw.setAttribute("height", "520");
+		sw.setAttribute("screenY", "50");
+
 		sf.removeAttribute("collapsed");
-		window.sizeToContent();
+		searchFolder = window.arguments[0];
 	}
+
 }
 
-// setupHotKeys('search');
 // window.addEventListener("load", SDinit, false);

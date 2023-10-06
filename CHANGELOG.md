@@ -13,6 +13,19 @@ Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
 - New strip CR from eml exports
 - Improved mbox From_ escaping
 
+Version 12.0.4 : Maintenance Release - June 24, 2023
+
+- Fix search and export failure #412, #414, #418
+
+Version 12.0.3 : Maintenance Release - June 1, 2023
+
+- Fix virtual folder exports #359
+- Fix encoding for attachment names #355
+- Fix bad filename token in pl locale #366
+- Fix PDF exception #369
+- Fix bad filename token in pt-PT locale #398
+- Improved ja locale additions #281
+- Improved ru locale additions PR #401
 
 Version 12.0.2 : Maintenance Release - October 24, 2022
 

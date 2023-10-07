@@ -52,6 +52,11 @@ main();
 
 // open help on install / update 
 browser.runtime.onInstalled.addListener(async (info) => {
+	console.log(info)
+	if (info.reason != "install" && info.reason != "update") {
+		return;
+	}
+	
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 	await window.wextOpenHelp({opentype: "tab"});
 });
@@ -66,7 +71,6 @@ async function getThunderbirdVersion() {
 		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
 	}
 }
-
 function main() {
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 

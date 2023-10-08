@@ -1174,9 +1174,16 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 }
 
 async function copyToClipboard(ctxEvent, tab) {
-  let msgId = (await messenger.messageDisplay.getDisplayedMessage(tab.id)).id;
   let params = {};
-  params.msgId = msgId;
+  
+  if (ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
+    params.msgId = ctxEvent.selectedMessages.messages[0].id;
+    console.log("msg", params.msgId)
+
+  } else {
+    let msgId = (await messenger.messageDisplay.getDisplayedMessage(tab.id)).id;
+    params.msgId = msgId;
+  }
 
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
       ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {

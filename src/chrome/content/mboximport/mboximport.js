@@ -998,11 +998,11 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	} else {
 		finalExportFolderPath = await createUniqueDirectory(destPath, tmpAccountFolderName);
 	}
-	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
+	// await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 
 	// copy account tree
 	// let destPath = destdirNSIFILE.path;
-	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, true, false);
+	await mboxImportExport.exportFoldersToMbox(rootFolder, finalExportFolderPath, true, false);
 	// await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
 
 

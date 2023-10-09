@@ -74,11 +74,21 @@ async function mboxCopyImport(options) {
   }
 
 
-  if (fileInfo.size > 4000000000) {
+  if (fileInfo.size > 1000000000) {
     let err = "too large";
     // console.log(fileInfo.size);
     // postMessage({ msg: "Error: File exceeds 4GB" });
-    alert("Cannot import: mbox larger than 4GB");
+    //alert("Cannot import: mbox larger than 4GB");
+    let prompt = Services.prompt;
+    let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
+    Services.prompt.confirmEx(window, "Mbox over 4GB",
+      "This mbox exceeds the 4GB import size. Do you want to use the copy import? This will not do mbox processing.",
+       buttonFlags,
+       "Use Copy Import",
+       "Skip mbox import",
+       "",
+       null, {});
+
     return "Error: File exceeds 4GB";
   }
 

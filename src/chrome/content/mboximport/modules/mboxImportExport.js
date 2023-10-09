@@ -437,7 +437,8 @@ export var mboxImportExport = {
         fromAddr = "";
       }
 
-      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toString().split(" (")[0];
+      // fix date format to use UTC per RFC 4155 - addresses #455
+      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toUTCString().split(" GMT")[0];
 
       // get message as 8b string
       let rawBytes = await this.getRawMessage(msgUri);
@@ -446,7 +447,8 @@ export var mboxImportExport = {
         sep = "\n";
       }
 
-      let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
+      // fix From format to use RFC 4155 format- addresses #455
+      let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
       if (rawBytes.substring(0, 5) == "From ") {
         fromHdr = "";
       } else {

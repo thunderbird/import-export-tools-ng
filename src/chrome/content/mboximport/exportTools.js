@@ -1894,12 +1894,24 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-async function copyMSGtoClip(msgId) {
+async function copyMSGtoClip(selectedMsgs) {
 	var msguri;
 
-	if (msgId) {
+	if (selectedMsgs.length > 1) {
+		let prompt = Services.prompt;
+		let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+		let buttonReturn = Services.prompt.confirmEx(window, "Copy Messages to Clipboard",
+			"Multple messages selected, only the fist message copied to clipboard",
+			buttonFlags,
+			null,
+			null,
+			"",
+			null, {});
+	}
+
+	if (selectedMsgs[0].id) {
 		let realMessage = window.ietngAddon.extension
-			.messageManager.get(msgId);
+			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
 
 		if (!msguri)
@@ -1952,14 +1964,25 @@ var copyHeaders = {
 		return myListener;
 	},
 
-	//imap://test1@kokkini.net@imap.kokkini.net:143/fetch>UID>.INBOX>3229 exportTools.js:1938:12
 
-	start: async function (msgId) {
+	start: async function (selectedMsgs) {
 		var msguri;
 
-		if (msgId) {
+		if (selectedMsgs.length > 1) {
+			let prompt = Services.prompt;
+			let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+			let buttonReturn = Services.prompt.confirmEx(window, "Copy Headers to Clipboard",
+				"Multple messages selected, only fist message headers copied to clipboard",
+				buttonFlags,
+				null,
+				null,
+				"",
+				null, {});
+		}
+
+		if (selectedMsgs[0].id) {
 			let realMessage = window.ietngAddon.extension
-				.messageManager.get(msgId);
+				.messageManager.get(selectedMsgs[0].id);
 			msguri = realMessage.folder.getUriForMsg(realMessage);
 
 			var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);

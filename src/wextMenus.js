@@ -1177,12 +1177,12 @@ async function copyToClipboard(ctxEvent, tab) {
   let params = {};
   
   if (ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
-    params.msgId = ctxEvent.selectedMessages.messages[0].id;
-    console.log("msg", params.msgId)
+    params.selectedMsgs = ctxEvent.selectedMessages.messages;
+    console.log("msg", params.selectedMsgs)
 
   } else {
-    let msgId = (await messenger.messageDisplay.getDisplayedMessage(tab.id)).id;
-    params.msgId = msgId;
+    let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
+    params.selectedMsgs = [msg];
   }
 
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||

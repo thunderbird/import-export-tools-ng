@@ -1230,8 +1230,17 @@ async function importEmlAttToFolder(attCtx) {
   await messenger.messages.move([msgHdr.id], msgDisplayed.folder);
 }
 
+
+
+async function getBoolPref(boolPref) {
+  let params = {};
+  params.boolPref = boolPref;
+  let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
+  return bp;
+}
+
 // listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);
 // make openOptions window accessible
 window.openOptions = openOptions;
-
+window.getBoolPref = getBoolPref;

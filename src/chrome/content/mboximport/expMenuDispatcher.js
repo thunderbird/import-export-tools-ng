@@ -43,7 +43,7 @@ mboxImportExport.setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {
-	//console.log("expMenuDispacher: ", data);
+	console.log("expMenuDispacher: ", data);
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {
@@ -186,7 +186,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_getMailStoreFromFolderPath":
 			let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);
 			return storeType;
-		
+		case "WXMCMD_getBoolPref":
+			let bp = IETprefs.getBoolPref(data.params.boolPref);
+			return bp;
 		default:
 			break;
 	}

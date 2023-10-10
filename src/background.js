@@ -21,7 +21,7 @@ window.wextOpenHelp = wextOpenHelp;
 
 // Have to wrap top level asyncs in anon func to pass ATN
 
-await ((async () => {
+await((async () => {
 	var tbVersionParts = await getThunderbirdVersion();
 
 	// must delay startup for #284 using SessionRestore for 91, bypass for 102
@@ -56,9 +56,14 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	if (info.reason != "install" && info.reason != "update") {
 		return;
 	}
-	
+
+	// let messengerOL start
 	await new Promise(resolve => window.setTimeout(resolve, 100));
-	await window.wextOpenHelp({opentype: "tab"});
+
+	// add option to not show help - #458
+	if (await window.getBoolPref("extensions.importexporttoolsng.export.help.showOnInstallAndUpdate")) {
+		await window.wextOpenHelp({ opentype: "tab" });
+	}
 });
 
 

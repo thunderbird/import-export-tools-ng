@@ -74,7 +74,7 @@ async function mboxCopyImport(options) {
   }
 
 
-  if (fileInfo.size > 1000000000) {
+  if (fileInfo.size > 4000000000) {
     let err = "too large";
     // console.log(fileInfo.size);
     // postMessage({ msg: "Error: File exceeds 4GB" });

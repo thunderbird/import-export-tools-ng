@@ -107,7 +107,7 @@ export var mboxImportExport = {
 
       let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
 
-      if (stat.size > 1000000000) {
+      if (stat.size > 4000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
         //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
 

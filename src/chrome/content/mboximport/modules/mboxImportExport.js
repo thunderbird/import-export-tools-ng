@@ -107,7 +107,7 @@ export var mboxImportExport = {
 
       let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
 
-      if (stat.size > 4000000000) {
+      if (stat.size > 8000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
         //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
 
@@ -300,7 +300,7 @@ _isMboxFile: async function (filePath) {
   var rawBytes = await IOUtils.read(filePath, { offset: 0, maxBytes: 500 });
   // convert to faster String for regex etc
   let strBuffer = ietngUtils.bytesToString2(rawBytes);
-  console.log(strBuffer)
+  //console.log(strBuffer)
   let rv = fromRegx.test(strBuffer);
   return rv;
 },
@@ -430,7 +430,7 @@ _importMboxFile: async function (filePath, msgFolder) {
   await mboxCopyImport({ srcPath: src, destPath: dst });
 
   // this forces an mbox to be reindexed and build new msf
-  await this.rebuildSummary(subMsgFolder);
+  //await this.rebuildSummary(subMsgFolder);
   // give up some time to ui
   await new Promise(r => window.setTimeout(r, 200));
 
@@ -448,6 +448,9 @@ exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, fl
   let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
   ietngUtils.createStatusLine(window);
+
+  let msgFolderSize = rootMsgFolder.sizeOnDisk;
+  console.log(msgFolderSize)
 
   await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
@@ -505,7 +508,7 @@ buildAndExportMbox: async function (msgFolder, dest) {
 
   var sep = "";
   //const maxFileSize = 1021000000;
-  const kMaxFileSize = 4000000000;
+  const kMaxFileSize = 7000000000;
   const kFileChunkSize = 10000000;
 
   var msgsBuffer = "";

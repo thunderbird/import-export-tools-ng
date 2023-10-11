@@ -731,7 +731,7 @@ var msgDisplayCtxMenuSet = [
 // Create all menus
 // Use anon async to pass ATN
 await((async () => {
-  await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list"], defaultOnclick: wextctx_ExportAs });
+  await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
   await createMenus("", msgDisplayCtxMenuSet, { defaultContexts: ["page"] });
@@ -1050,9 +1050,11 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
-  // toggle copyToClipboard visibility 
+  // toggle copyToClipboard visibility
+  // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
     messenger.menus.update(msgDisplayCtxMenu_Top_Id, {visible: (tab.type == "mail" || tab.type == "messageDisplay")});
+    messenger.menus.update(msgCtxMenu_TopId, {visible: (tab.type == "mail" || tab.type == "messageDisplay")});
     messenger.menus.refresh();
     return;
   }

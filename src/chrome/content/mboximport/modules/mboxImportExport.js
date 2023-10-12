@@ -107,7 +107,7 @@ export var mboxImportExport = {
 
       let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
 
-      if (stat.size > 8000000000) {
+      if (stat.size > 30000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
         //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
 
@@ -430,7 +430,7 @@ _importMboxFile: async function (filePath, msgFolder) {
   await mboxCopyImport({ srcPath: src, destPath: dst });
 
   // this forces an mbox to be reindexed and build new msf
-  //await this.rebuildSummary(subMsgFolder);
+  await this.rebuildSummary(subMsgFolder);
   // give up some time to ui
   await new Promise(r => window.setTimeout(r, 200));
 

@@ -74,7 +74,7 @@ async function mboxCopyImport(options) {
   }
 
 
-  if (fileInfo.size > 4000000000) {
+  if (fileInfo.size > 30000000000) {
     let err = "too large";
     // console.log(fileInfo.size);
     // postMessage({ msg: "Error: File exceeds 4GB" });
@@ -93,7 +93,7 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  const kREAD_CHUNK = 600 * 1000;
+  const kREAD_CHUNK = 2000 * 1000;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -139,6 +139,10 @@ async function mboxCopyImport(options) {
         fromEscCount++;
         totalWrite += ((result.index - 1) - writePos);
 
+        console.log(result)
+        console.log(strBuffer.indexOf(result[1]))
+        console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
+
         // write out up to From_ exception, write space then process
         // from Beginning of line.
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
@@ -180,12 +184,12 @@ async function mboxCopyImport(options) {
     
     writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
 
-    /*
+    
     console.log("end read/fix/write loop");
     console.log("Escape fixups:", fromEscCount);
     console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
-*/
+
   }
   // tbd use status codes
   return "Done";

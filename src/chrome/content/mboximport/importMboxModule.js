@@ -57,7 +57,7 @@ async function mboxCopyImport(options) {
   let targetMboxPath = options.destPath;
   let folderName = PathUtils.filename(options.srcPath);
 
-  // console.log("Importing:", folderName)
+  console.log("Importing:", folderName)
   // make sure nothing is there, create start
   await IOUtils.remove(targetMboxPath, { ignoreAbsent: true });
   await IOUtils.write(targetMboxPath, new Uint8Array(), { mode: "create" });
@@ -83,11 +83,11 @@ async function mboxCopyImport(options) {
     let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
     Services.prompt.confirmEx(window, "Mbox over 4GB",
       "This mbox exceeds the 4GB import size. Do you want to use the copy import? This will not do mbox processing.",
-       buttonFlags,
-       "Use Copy Import",
-       "Skip mbox import",
-       "",
-       null, {});
+      buttonFlags,
+      "Use Copy Import",
+      "Skip mbox import",
+      "",
+      null, {});
 
     return "Error: File exceeds 4GB";
   }
@@ -97,7 +97,7 @@ async function mboxCopyImport(options) {
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
-    //console.log("Start:", new Date());
+    console.log("Start:", new Date());
     let offset = 0;
     let s = new Date();
     let eof = false;
@@ -114,15 +114,28 @@ async function mboxCopyImport(options) {
     var writePos = 0;
     var totalWrite = 0;
     var finalChunk;
+    var lastException = false;
 
     let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
     let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
     let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
 
+    console.log("start import")
+    console.log(lastException)
 
     while (!eof) {
+      console.log("start chunk")
+      console.log(lastException)
       // Read chunk as uint8
       rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kREAD_CHUNK });
+
+      // Determine final write chunk
+      if (rawBytes.byteLength < kREAD_CHUNK) {
+        eof = true;
+        finalChunk = rawBytes.byteLength;
+      } else {
+        finalChunk = kREAD_CHUNK;
+      }
 
       offset += rawBytes.byteLength;
       writePos = 0;
@@ -133,15 +146,36 @@ async function mboxCopyImport(options) {
 
       // match all From_ exceptions for escaping
       fromExceptions = strBuffer.matchAll(fromRegx);
+      fromExceptions = [...fromExceptions];
 
-      for (let result of fromExceptions) {
+      console.log(lastException)
+
+      for (const [index, result] of fromExceptions.entries()) {
+        console.log(lastException)
 
         fromEscCount++;
+        console.log(fromEscCount, result.index)
         totalWrite += ((result.index - 1) - writePos);
 
-        console.log(result)
+        console.log(index, result)
         console.log(strBuffer.indexOf(result[1]))
-        console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
+        let exceptionPos = strBuffer.indexOf(result[1]);
+
+        // handling last exception
+        lastException = false;
+        if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
+          console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
+          lastException = true;
+          console.log(finalChunk)
+          console.log(exceptionPos)
+          console.log(finalChunk - exceptionPos)
+          console.log(result)
+
+
+          console.log(lastException)
+
+          //break;
+        }
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.
@@ -161,13 +195,26 @@ async function mboxCopyImport(options) {
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
       }
 
-      // Determine final write chunk
-      if (rawBytes.byteLength < kREAD_CHUNK) {
-        eof = true;
-        finalChunk = rawBytes.byteLength;
-      } else {
-        finalChunk = kREAD_CHUNK;
+      console.log(lastException)
+
+      // deal with buffer boundaries scenario
+      let strBufferTail = strBuffer.slice(-6)
+      let Fregx = /^F/gm;
+      let FTailMatch = strBufferTail.matchAll(Fregx);
+      if (lastException || FTailMatch || strBuffer.slice(-1) == '\n') {
+        //console.log("process boundary",strBufferTail)
+
+        let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: 250 });
+        // convert to faster String for regex etc
+        let boundaryStrBuffer = strBuffer.slice(-250) + bytesToString(rawBytesNextBuf);
+        let singleFromException = boundaryStrBuffer.match(fromRegx);
+        if (1 || singleFromException) {
+          console.log("end", lastException, strBuffer.slice(-250))
+          console.log(boundaryStrBuffer)
+          console.log(singleFromException)
+        }
       }
+
 
       totalWrite += (finalChunk - writePos);
 
@@ -181,10 +228,10 @@ async function mboxCopyImport(options) {
 
     let et = new Date() - s;
 
-    
+
     writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
 
-    
+
     console.log("end read/fix/write loop");
     console.log("Escape fixups:", fromEscCount);
     console.log("Elapsed time:", et / 1000, "s");
@@ -253,10 +300,10 @@ function deleteStatusLine(window, text) {
 }
 
 function formatBytes(bytes, decimals) {
-	if (bytes == 0) return '0 Bytes';
-	var k = 1024,
-		dm = decimals || 2,
-		sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-		i = Math.floor(Math.log(bytes) / Math.log(k));
-	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  if (bytes == 0) return '0 Bytes';
+  var k = 1024,
+    dm = decimals || 2,
+    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+    i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }

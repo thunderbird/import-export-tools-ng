@@ -67,6 +67,7 @@ async function mboxCopyImport(options) {
 
   try {
     fileInfo = await IOUtils.stat(options.srcPath);
+    console.log("mbox size: ", fileInfo.size)
   } catch (err) {
     console.log(err);
     // trick to throw out of Promise
@@ -97,7 +98,7 @@ async function mboxCopyImport(options) {
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
-    console.log("Start:", new Date());
+    //console.log("Start:", new Date());
     let offset = 0;
     let s = new Date();
     let eof = false;
@@ -121,11 +122,11 @@ async function mboxCopyImport(options) {
     let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
 
     console.log("start import")
-    console.log(lastException)
+    //console.log(lastException)
 
     while (!eof) {
-      console.log("start chunk")
-      console.log(lastException)
+      //console.log("start chunk")
+      //console.log(lastException)
       // Read chunk as uint8
       rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kREAD_CHUNK });
 
@@ -148,7 +149,7 @@ async function mboxCopyImport(options) {
       fromExceptions = strBuffer.matchAll(fromRegx);
       fromExceptions = [...fromExceptions];
 
-      console.log(lastException)
+      //console.log(lastException)
 
       for (const [index, result] of fromExceptions.entries()) {
         console.log(lastException)
@@ -162,6 +163,7 @@ async function mboxCopyImport(options) {
         let exceptionPos = strBuffer.indexOf(result[1]);
 
         // handling last exception
+        /*
         lastException = false;
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
@@ -170,12 +172,10 @@ async function mboxCopyImport(options) {
           console.log(exceptionPos)
           console.log(finalChunk - exceptionPos)
           console.log(result)
-
-
           console.log(lastException)
-
           //break;
         }
+*/
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.
@@ -195,8 +195,8 @@ async function mboxCopyImport(options) {
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
       }
 
+      /*
       console.log(lastException)
-
       // deal with buffer boundaries scenario
       let strBufferTail = strBuffer.slice(-6)
       let Fregx = /^F/gm;
@@ -214,7 +214,7 @@ async function mboxCopyImport(options) {
           console.log(singleFromException)
         }
       }
-
+*/
 
       totalWrite += (finalChunk - writePos);
 

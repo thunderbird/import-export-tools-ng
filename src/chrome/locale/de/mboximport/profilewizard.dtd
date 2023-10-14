@@ -9,5 +9,5 @@
 <!ENTITY importEnd "Der Import war erfolgreich!">
 <!ENTITY intro3 "Um auf das importierte Profil zuzugreifen, führen Sie den Profilmanager aus, indem Sie auf die Schaltfläche unten klicken. Das aktuelle Profil wird automatisch geschlossen.">
 <!ENTITY runProfileManager "Profilmanager starten">
-<!ENTITY title "ImportExportTools NG - Profilimport">
+<!ENTITY title "ImportExportTools NG - Profil-Import">
 <!ENTITY error "Beim Profilimport ist ein Fehler aufgetreten. Die Fehlerdetails sind:">

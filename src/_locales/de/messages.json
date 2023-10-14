@@ -24,11 +24,11 @@
 	},
 
 	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Profil importieren"
+		"message": "Importprofil"
 	},
 
 	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Backup"
+		"message": "Sicherung"
 	},
 
 	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
@@ -36,11 +36,11 @@
 	},
 
 	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Nur E-Mails"
+		"message": "Nur per Post"
 	},
 
 	"msgCtxMenu_TopId.title": {
-		"message": "Nachrichten exportieren im…"
+		"message": "Nachrichten exportieren als…"
 	},
 
 	"msgCtxMenu_Exp_EMLFormat_Id.title": {
@@ -56,7 +56,7 @@
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Reintext-Format"
+		"message": "Nur-Text-Format"
 	},
 
 	"msgCtxMenu_Exp_CSVFormat_Id.title": {
@@ -64,7 +64,7 @@
 	},
 
 	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "Mbox-Format"
+		"message": "mbox-Format"
 	},
 
 	"msgCtxMenu_Exp_Index_Id.title": {
@@ -96,7 +96,7 @@
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Nachrichten mit Anhängen und HTML-Index"
+		"message": "Nachrichten mit Anhängen und Index"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
@@ -112,15 +112,15 @@
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Nachrichten mit Anhängen und HTML-Index"
+		"message": "Nachrichten mit Anhängen und Index"
 	},
 
 	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Neue Mbox-Datei"
+		"message": "Neue mbox-Datei"
 	},
 
 	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "An vorhandene Mbox-Datei anhängen"
+		"message": "An vorhandene mbox-Datei anhängen"
 	},
 
 	"msgCtxMenu_Exp_IndexHTML_Id.title": {
@@ -140,15 +140,15 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Ordnerexport (Mbox)"
+		"message": "Ordnerexport (mbox)"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Als Mbox-Datei"
+		"message": "Als mbox-Datei"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Einzelne gezippte Mbox-Datei"
+		"message": "Einzelne gezippte mbox-Datei"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
@@ -180,7 +180,7 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Reintext-Format"
+		"message": "Nur-Text-Format"
 	},
 
 	"folderCtxMenu_Exp_CSVFormat_Id.title": {
@@ -200,7 +200,7 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Einzelne Mbox-Dateien"
+		"message": "Einzelne mbox-Dateien"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
@@ -208,7 +208,7 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Alle Mbox-Dateien aus dem Verzeichnis"
+		"message": "Alle mbox-Dateien aus dem Verzeichnis"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
@@ -240,7 +240,7 @@
 	},
 
 	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Ordnerverzeichnis öffnen"
+		"message": "Öffnen Sie das Ordnerverzeichnis"
 	},
 
 	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
@@ -328,6 +328,6 @@
 	},
 
 	"attCtxMenu_Top_Id.title": {
-		"message": "EML-Anhang in diesem Ordner speichern"
+		"message": "Speichern Sie den EML-Anhang in diesem Ordner"
 	}
 }

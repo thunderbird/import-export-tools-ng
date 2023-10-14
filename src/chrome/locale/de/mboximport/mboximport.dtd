@@ -33,7 +33,7 @@
 <!ENTITY toClipMenu "In die Zwischenablage kopieren">
 <!ENTITY copyClipMessage "Nachricht">
 <!ENTITY copyClipHeaders "Kopfzeilen">
-<!ENTITY taskMenuAccesskey "X">
+<!ENTITY taskMenuAccesskey "x">
 <!ENTITY clipMenuAccesskey "Z">
 <!ENTITY importDirRec "Ein Verzeichnis wählen, in dem (auch in Unterverzeichnissen) Mbox-Dateien zum Importieren gesucht werden">
 <!ENTITY importDirProf "Dateiauswahldialog mit geöffnetem Profilverzeichnis anzeigen">
@@ -56,7 +56,7 @@
 <!ENTITY emlExport "Ordner als einzelne Dateien exportieren:">
 <!ENTITY selExport "Gewählte Nachrichten exportieren:">
 <!ENTITY MBcaptionlabel1 "Allgemeine Einstellungen">
-<!ENTITY saveProfileMail "Alle E-Mail-Dateien speichern">
+<!ENTITY saveProfileMail "Alle Mail-Dateien speichern">
 <!ENTITY sdExportButton "Export">
 <!ENTITY sdMessages "Nachrichten">
 <!ENTITY sdAll "Alle">
@@ -81,7 +81,7 @@
 <!ENTITY importStructDescr2 "und die Erweiterung &quot;sbd&quot; wird automatisch importiert, wenn vorhanden.">
 <!ENTITY abortExport "Aktuellen Export abbrechen">
 <!ENTITY allMsg "Alle Nachrichten exportieren">
-<!ENTITY indexSettingLabel "Beim Exportieren aller Nachrichten eines E-Mail-Ordners:">
+<!ENTITY indexSettingLabel "Beim Exportieren aller Nachrichten eines Mail-Ordners:">
 <!ENTITY indexOn "Neues Verzeichnis und Nachrichtenindex anlegen">
 <!ENTITY indexOff "Gewähltes Verzeichnis ohne Index benutzen">
 <!ENTITY copyFolderPath "Verzeichnispfad der Festplatte kopieren">
@@ -122,5 +122,5 @@
 <!ENTITY attachmentFolders "Anhangsordner">
 <!ENTITY inlineAttachmentsFolders "Inline-Anhangsordner">
 <!ENTITY cutPathLen "Dateipfadlänge auf 256 Zeichen reduzieren">
-<!ENTITY strip_eml_CR.label "CR am Zeilenende für EML-Nachrichtenexporte entfernen">
-<!ENTITY useMboxExt.label "Erweiterung .mbox für Mbox-Dateien verwenden (nicht strukturiert)">
+<!ENTITY strip_eml_CR.label "Entfernen Sie CR von Zeilenenden für EML-Nachrichtenexporte">
+<!ENTITY useMboxExt.label "Verwenden Sie die Erweiterung .mbox für Mbox-Dateien (nicht strukturiert).">

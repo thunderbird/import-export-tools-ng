@@ -837,6 +837,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 				path += ".mbox";
 				newname += ".mbox";
 			}
+			console.log(newname)
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
 			file.initWithPath(newDestPath);
@@ -858,7 +859,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 				zipW.addEntryFile(path, Ci.nsIZipWriter.COMPRESSION_DEFAULT, file, false);
 			zipW.close();
 			await new Promise(resolve => window.setTimeout(resolve, 500));
-			IOUtils.remove(newDestPath);
+			//IOUtils.remove(newDestPath);
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 
 		}

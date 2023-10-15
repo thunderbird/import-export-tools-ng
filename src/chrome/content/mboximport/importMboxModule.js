@@ -94,7 +94,7 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  const kREAD_CHUNK = 2000 * 1000;
+  const kREAD_CHUNK = 340 * 1000;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -149,21 +149,21 @@ async function mboxCopyImport(options) {
       fromExceptions = strBuffer.matchAll(fromRegx);
       fromExceptions = [...fromExceptions];
 
-      //console.log(lastException)
+      console.log("Total From Excp: ", fromExceptions.length)
 
       for (const [index, result] of fromExceptions.entries()) {
-        console.log(lastException)
+        //console.log(lastException)
 
         fromEscCount++;
-        console.log(fromEscCount, result.index)
+        //console.log(fromEscCount, result.index)
         totalWrite += ((result.index - 1) - writePos);
 
-        console.log(index, result)
-        console.log(strBuffer.indexOf(result[1]))
+        //console.log(index, result)
+        //console.log(strBuffer.indexOf(result[1]))
         let exceptionPos = strBuffer.indexOf(result[1]);
 
         // handling last exception
-        /*
+        
         lastException = false;
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
@@ -175,7 +175,7 @@ async function mboxCopyImport(options) {
           console.log(lastException)
           //break;
         }
-*/
+
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.
@@ -195,26 +195,34 @@ async function mboxCopyImport(options) {
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
       }
 
-      /*
-      console.log(lastException)
+      
+      //console.log("Tail processing")
       // deal with buffer boundaries scenario
-      let strBufferTail = strBuffer.slice(-6)
+      let strBufferTail = strBuffer.slice(-200)
       let Fregx = /^F/gm;
       let FTailMatch = strBufferTail.matchAll(Fregx);
-      if (lastException || FTailMatch || strBuffer.slice(-1) == '\n') {
-        //console.log("process boundary",strBufferTail)
+      FTailMatch = [...FTailMatch];
+      if (lastException || FTailMatch.length || strBuffer.slice(-1) == '\n') {
+        console.log("lastexcp ",lastException)
+        console.log("Fmatch ",FTailMatch.length)
+        console.log("lf end ",strBuffer.slice(-1) == '\n')
+        if (FTailMatch.length) {
+          console.log(FTailMatch[0])
+          console.log(FTailMatch[0].index)
 
-        let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: 250 });
+        }
+
+        //let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: 250 });
         // convert to faster String for regex etc
-        let boundaryStrBuffer = strBuffer.slice(-250) + bytesToString(rawBytesNextBuf);
-        let singleFromException = boundaryStrBuffer.match(fromRegx);
+        //let boundaryStrBuffer = strBuffer.slice(-250) + bytesToString(rawBytesNextBuf);
+        //let singleFromException = boundaryStrBuffer.match(fromRegx);
         if (1 || singleFromException) {
-          console.log("end", lastException, strBuffer.slice(-250))
-          console.log(boundaryStrBuffer)
-          console.log(singleFromException)
+          //console.log("end", lastException, strBuffer.slice(-200))
+          console.log(strBufferTail)
+          //console.log(singleFromException)
         }
       }
-*/
+
 
       totalWrite += (finalChunk - writePos);
 

@@ -444,7 +444,7 @@ exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, fl
     useMboxExt = true;
   }
 
-  let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false, useMboxExt);
+  let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.prettyName, destPath, false, useMboxExt);
   let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
   ietngUtils.createStatusLine(window);
@@ -472,10 +472,12 @@ exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, fl
 exportSubFolders: async function (msgFolder, fullSbdDirPath) {
 
   for (let subMsgFolder of msgFolder.subFolders) {
-    let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
+    let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.prettyName, fullSbdDirPath, false, false);
+
+    let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
     await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
     if (subMsgFolder.hasSubFolders) {
-      let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName + ".sbd");
+      let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, uniqueName + ".sbd");
       await IOUtils.makeDirectory(fullNewSbdDirPath);
       await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
     }

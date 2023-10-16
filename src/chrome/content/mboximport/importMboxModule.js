@@ -94,7 +94,7 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  const kREAD_CHUNK = 340 * 1000;
+  const kREAD_CHUNK = 2000 * 1000;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -116,6 +116,8 @@ async function mboxCopyImport(options) {
     var totalWrite = 0;
     var finalChunk;
     var lastException = false;
+    var lastexpos = null;
+
 
     let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
     let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
@@ -149,13 +151,13 @@ async function mboxCopyImport(options) {
       fromExceptions = strBuffer.matchAll(fromRegx);
       fromExceptions = [...fromExceptions];
 
-      console.log("Total From Excp: ", fromExceptions.length)
+      //console.log("Total From Excp: ", fromExceptions.length)
 
       for (const [index, result] of fromExceptions.entries()) {
         //console.log(lastException)
 
         fromEscCount++;
-        //console.log(fromEscCount, result.index)
+        console.log(fromEscCount, result.index)
         totalWrite += ((result.index - 1) - writePos);
 
         //console.log(index, result)
@@ -165,6 +167,8 @@ async function mboxCopyImport(options) {
         // handling last exception
         
         lastException = false;
+        lastexpos = null;
+
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
           lastException = true;
@@ -172,8 +176,14 @@ async function mboxCopyImport(options) {
           console.log(exceptionPos)
           console.log(finalChunk - exceptionPos)
           console.log(result)
-          console.log(lastException)
+          console.log(lazstException)
+          lastexpos = exceptionPos;
           //break;
+        } else {
+          lastexpos = null;
+          console.log("ep")
+
+
         }
 
 
@@ -202,8 +212,11 @@ async function mboxCopyImport(options) {
       let Fregx = /^F/gm;
       let FTailMatch = strBufferTail.matchAll(Fregx);
       FTailMatch = [...FTailMatch];
-      if (lastException || FTailMatch.length || strBuffer.slice(-1) == '\n') {
-        console.log("lastexcp ",lastException)
+      console.log("lastexcppos ",lastexpos)
+
+      //if (lastException || FTailMatch.length || strBuffer.slice(-1) == '\n') {
+        if (lastexpos && lastexpos < 250) {
+        console.log("lastexcppos ",lastexpos)
         console.log("Fmatch ",FTailMatch.length)
         console.log("lf end ",strBuffer.slice(-1) == '\n')
         if (FTailMatch.length) {

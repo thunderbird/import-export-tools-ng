@@ -171,11 +171,12 @@ var ietngUtils = {
 
     // Change unsafe chars for filenames with underscore
     foldername = this.sanitizeFileOrFolderName(foldername);
+    foldername = this.nameToAcii(foldername);
+
     if (useMboxExt) {
       foldername += ".mbox";
     }
     NSclone.append(foldername);
-    foldername = this.nameToAcii(foldername);
     // if the user wants to overwrite the files with the same name in the folder destination
     // the function must delete the existing files and then return the original filename.
     // If it's a structured export, it's deleted also the filename.sbd subdirectory

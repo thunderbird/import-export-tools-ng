@@ -832,18 +832,24 @@ async function IETexportZip(destdirNSIFILE, folders) {
 
 			var path = folders[i].name;
 			var destPath = destdirNSIFILE.path;
-			let newname = findGoodFolderName(path, destdirNSIFILE, false);
+			let useMboxExt = false;
 			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-				path += ".mbox";
-				newname += ".mbox";
+				useMboxExt = true;
 			}
+			let newname = ietngUtils.createUniqueFolderName(folders[i].prettyName, destPath, false, useMboxExt);
+
+			//let newname = findGoodFolderName(path, destdirNSIFILE, false);
+			path = newname;
+			//if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+				//path += ".mbox";
+				//newname += ".mbox";
+			//}
 			console.log(newname)
+			console.log(path)
+
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
 			file.initWithPath(newDestPath);
-			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
-			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
-			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
 
 			var zipName = folders[i].name;
 			zipFile.append(zipName + ".zip");
@@ -859,7 +865,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 				zipW.addEntryFile(path, Ci.nsIZipWriter.COMPRESSION_DEFAULT, file, false);
 			zipW.close();
 			await new Promise(resolve => window.setTimeout(resolve, 500));
-			//IOUtils.remove(newDestPath);
+			IOUtils.remove(newDestPath);
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 
 		}

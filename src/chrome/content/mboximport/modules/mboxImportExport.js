@@ -520,7 +520,7 @@ export var mboxImportExport = {
     }
     var sep = "";
     //const maxFileSize = 1021000000;
-    const kMaxFileSize = 7000000000;
+    const kMaxFileSize = 30000000000;
     const kFileChunkSize = 10000000;
 
     var msgsBuffer = "";

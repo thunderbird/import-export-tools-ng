@@ -114,9 +114,9 @@ export var mboxImportExport = {
         let prompt = Services.prompt;
         let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
         let buttonReturn = Services.prompt.confirmEx(window, "Mbox over 4GB",
-        "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
+          "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
 
-        buttonFlags,
+          buttonFlags,
           "Use Copy Import",
           "Skip mbox import",
           "",
@@ -157,14 +157,14 @@ export var mboxImportExport = {
       }
       if (subMsgFolder) {
         this.totalImported++;
-    }
+      }
 
-    if (recursive && await this._ifSbdExists(mboxFilePath)) {
-      var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
-      await this.importMboxFiles(subFiles, subMsgFolder, recursive);
+      if (recursive && await this._ifSbdExists(mboxFilePath)) {
+        var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
+        await this.importMboxFiles(subFiles, subMsgFolder, recursive);
+      }
     }
-  }
-},
+  },
 
 
   copyAndFixMboxFile: async function (source, destination) {
@@ -257,661 +257,671 @@ export var mboxImportExport = {
   },
 
 
-_scanDirForMboxFiles: async function (folderPath) {
-  let files = await IOUtils.getChildren(folderPath);
-  var mboxFiles = [];
-  for (const f of files) {
-    if ((await IOUtils.stat(f)).type == "regular") {
-      if (f.endsWith(".msf")) {
-        continue;
+  _scanDirForMboxFiles: async function (folderPath) {
+    let files = await IOUtils.getChildren(folderPath);
+    var mboxFiles = [];
+    for (const f of files) {
+      if ((await IOUtils.stat(f)).type == "regular") {
+        if (f.endsWith(".msf")) {
+          continue;
+        }
+        if (await this._isMboxFile(f)) {
+          mboxFiles.push(f);
+        }
       }
-      if (await this._isMboxFile(f)) {
-        mboxFiles.push(f);
+    }
+    return mboxFiles;
+  },
+
+  _scanSbdDirForFiles: async function (folderPath) {
+    let files = await IOUtils.getChildren(folderPath + ".sbd");
+    var subFiles = [];
+    for (const f of files) {
+      if ((await IOUtils.stat(f)).type == "regular") {
+        subFiles.push(f);
       }
     }
-  }
-  return mboxFiles;
-},
+    return subFiles;
+  },
 
-_scanSbdDirForFiles: async function (folderPath) {
-  let files = await IOUtils.getChildren(folderPath + ".sbd");
-  var subFiles = [];
-  for (const f of files) {
-    if ((await IOUtils.stat(f)).type == "regular") {
-      subFiles.push(f);
+  _ifSbdExists: async function (folderPath) {
+    let sbdPath = folderPath + ".sbd";
+    return IOUtils.exists(sbdPath);
+  },
+
+  _isMboxFile: async function (filePath) {
+    if ((await IOUtils.stat(filePath)).size == 0) {
+      return true;
     }
-  }
-  return subFiles;
-},
 
-_ifSbdExists: async function (folderPath) {
-  let sbdPath = folderPath + ".sbd";
-  return IOUtils.exists(sbdPath);
-},
+    let fromRegx = /^(From (?:.*?)\r?\n)[\x21-\x7E]+:/gm;
 
-_isMboxFile: async function (filePath) {
-  if ((await IOUtils.stat(filePath)).size == 0) {
-    return true;
-  }
+    // Read chunk as uint8
+    var rawBytes = await IOUtils.read(filePath, { offset: 0, maxBytes: 500 });
+    // convert to faster String for regex etc
+    let strBuffer = ietngUtils.bytesToString2(rawBytes);
+    //console.log(strBuffer)
+    let rv = fromRegx.test(strBuffer);
+    return rv;
+  },
 
-  let fromRegx = /^(From (?:.*?)\r?\n)[\x21-\x7E]+:/gm;
-
-  // Read chunk as uint8
-  var rawBytes = await IOUtils.read(filePath, { offset: 0, maxBytes: 500 });
-  // convert to faster String for regex etc
-  let strBuffer = ietngUtils.bytesToString2(rawBytes);
-  //console.log(strBuffer)
-  let rv = fromRegx.test(strBuffer);
-  return rv;
-},
-
-_copyImportMboxFile: async function (filePath, msgFolder) {
-  var src = filePath;
-  var subFolderName;
-  if (src.endsWith(".mbox")) {
-    subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
-  } else {
-    subFolderName = PathUtils.filename(filePath);
-  }
-
-  subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
-
-  await new Promise((resolve, reject) => {
-
-    msgFolder.AddFolderListener(
-      {
-        onFolderAdded(parentFolder, childFolder) {
-          resolve();
-        },
-        onMessageAdded() { },
-        onFolderRemoved() { },
-        onMessageRemoved() { },
-        onFolderPropertyChanged() { },
-        onFolderIntPropertyChanged() { },
-        onFolderBoolPropertyChanged() { },
-        onFolderUnicharPropertyChanged() { },
-        onFolderPropertyFlagChanged() { },
-        onFolderEvent() { },
-      });
-    msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-  });
-
-  var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-  var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
-  var dst = subFolderPath;
-
-  // build our mbox in new subfolder
-  //await mboxCopyImport({ srcPath: src, destPath: dst });
-  console.log(src)
-  await IOUtils.copy(src, dst, {})
-  // this forces an mbox to be reindexed and build new msf
-  await this.rebuildSummary(subMsgFolder);
-  // give up some time to ui
-  await new Promise(r => window.setTimeout(r, 200));
-
-  return subMsgFolder;
-
-},
-
-_createEmptyMboxFile: async function (filePath, msgFolder) {
-  var src = filePath;
-  var subFolderName;
-  if (src.endsWith(".mbox")) {
-    subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
-  } else {
-    subFolderName = PathUtils.filename(filePath);
-  }
-
-  subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
-
-  await new Promise((resolve, reject) => {
-
-    msgFolder.AddFolderListener(
-      {
-        onFolderAdded(parentFolder, childFolder) {
-          resolve();
-        },
-        onMessageAdded() { },
-        onFolderRemoved() { },
-        onMessageRemoved() { },
-        onFolderPropertyChanged() { },
-        onFolderIntPropertyChanged() { },
-        onFolderBoolPropertyChanged() { },
-        onFolderUnicharPropertyChanged() { },
-        onFolderPropertyFlagChanged() { },
-        onFolderEvent() { },
-      });
-    msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-  });
-
-  var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-  return subMsgFolder;
-},
-
-_importMboxFile: async function (filePath, msgFolder) {
-  var src = filePath;
-  var subFolderName;
-  if (src.endsWith(".mbox")) {
-    subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
-  } else {
-    subFolderName = PathUtils.filename(filePath);
-  }
-
-  subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
-
-  await new Promise((resolve, reject) => {
-
-    msgFolder.AddFolderListener(
-      {
-        onFolderAdded(parentFolder, childFolder) {
-          resolve();
-        },
-        onMessageAdded() { },
-        onFolderRemoved() { },
-        onMessageRemoved() { },
-        onFolderPropertyChanged() { },
-        onFolderIntPropertyChanged() { },
-        onFolderBoolPropertyChanged() { },
-        onFolderUnicharPropertyChanged() { },
-        onFolderPropertyFlagChanged() { },
-        onFolderEvent() { },
-      });
-    msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-  });
-
-  var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-  var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
-  var dst = subFolderPath;
-
-  // build our mbox in new subfolder
-  await mboxCopyImport({ srcPath: src, destPath: dst });
-
-  // this forces an mbox to be reindexed and build new msf
-  await this.rebuildSummary(subMsgFolder);
-  // give up some time to ui
-  await new Promise(r => window.setTimeout(r, 200));
-
-  return subMsgFolder;
-},
-
-exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
-
-  let useMboxExt = false;
-  if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-    useMboxExt = true;
-  }
-
-  let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.prettyName, destPath, false, useMboxExt);
-  let fullFolderPath = PathUtils.join(destPath, uniqueName);
-
-  ietngUtils.createStatusLine(window);
-
-  let msgFolderSize = rootMsgFolder.sizeOnDisk;
-  console.log(msgFolderSize)
-
-  await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
-
-  // This is our structured subfolder export if subfolders exist
-  if (inclSubfolders && rootMsgFolder.hasSubFolders && !flattenSubfolders) {
-
-    let fullSbdDirPath = PathUtils.join(destPath, uniqueName + ".sbd");
-    await IOUtils.makeDirectory(fullSbdDirPath);
-    await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
-  } else if (inclSubfolders && rootMsgFolder.hasSubFolders && flattenSubfolders) {
-    await this.exportSubFoldersFlat(rootMsgFolder, destPath, useMboxExt);
-  }
-
-  // wait before removing status text, should be delayed removal
-  await new Promise(r => window.setTimeout(r, 2000));
-  window.document.getElementById("ietngStatusText").remove();
-},
-
-exportSubFolders: async function (msgFolder, fullSbdDirPath) {
-
-  for (let subMsgFolder of msgFolder.subFolders) {
-    let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.prettyName, fullSbdDirPath, false, false);
-
-    let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
-    await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
-    if (subMsgFolder.hasSubFolders) {
-      let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, uniqueName + ".sbd");
-      await IOUtils.makeDirectory(fullNewSbdDirPath);
-      await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
-    }
-  }
-},
-
-exportSubFoldersFlat: async function (msgFolder, fullFolderPath, useMboxExt) {
-
-  for (let subMsgFolder of msgFolder.subFolders) {
-    let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.name, fullFolderPath, false, useMboxExt);
-    let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, uniqueName);
-
-    await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
-    if (subMsgFolder.hasSubFolders) {
-      await this.exportSubFoldersFlat(subMsgFolder, fullFolderPath, useMboxExt);
-    }
-  }
-},
-
-buildAndExportMbox: async function (msgFolder, dest) {
-  var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
-  var messagesMsg = this.mboximportbundle.GetStringFromName("messagesMsg");
-  let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
-
-
-  let st = new Date();
-  //console.log("Start: ", st, msgFolder.prettyName);
-  var mboxDestPath = dest;
-  var folderMsgs = msgFolder.messages;
-
-  var sep = "";
-  //const maxFileSize = 1021000000;
-  const kMaxFileSize = 7000000000;
-  const kFileChunkSize = 10000000;
-
-  var msgsBuffer = "";
-  var index = 0;
-  var totalBytes = 0;
-  var totalMessages = msgFolder.getTotalMessages(false);
-  var totalTime;
-  var fromAddr;
-  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
-
-  var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
-
-  var vfMsgUris = [];
-  if (isVirtualFolder) {
-    vfMsgUris = await this._getVirtualFolderUriArray(msgFolder);
-    if (vfMsgUris.length == 0) {
-      return 1;
-    }
-  }
-
-  // console.log("Total msgs: ", totalMessages);
-
-  let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
-
-  // we have to use different iterators for normal vs virtual folders
-  function hasMoreMsgs() {
-    if (isVirtualFolder) {
-      return vfMsgUris.length;
+  _copyImportMboxFile: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
     } else {
-      return folderMsgs?.hasMoreElements();
+      subFolderName = PathUtils.filename(filePath);
     }
-  };
 
-  while (hasMoreMsgs()) {
-    let msgUri;
-    let msgHdr;
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    if (vfMsgUris.length) {
-      msgUri = vfMsgUris.shift();
-      msgHdr = window.messenger.msgHdrFromURI(msgUri);
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
+    var dst = subFolderPath;
+
+    // build our mbox in new subfolder
+    //await mboxCopyImport({ srcPath: src, destPath: dst });
+    console.log(src)
+    await IOUtils.copy(src, dst, {})
+    // this forces an mbox to be reindexed and build new msf
+    await this.rebuildSummary(subMsgFolder);
+    // give up some time to ui
+    await new Promise(r => window.setTimeout(r, 200));
+
+    return subMsgFolder;
+
+  },
+
+  _createEmptyMboxFile: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
     } else {
-      msgHdr = folderMsgs.getNext();
-      msgUri = msgFolder.getUriForMsg(msgHdr);
+      subFolderName = PathUtils.filename(filePath);
     }
-    msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
 
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    return subMsgFolder;
+  },
+
+  _importMboxFile: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
+    } else {
+      subFolderName = PathUtils.filename(filePath);
+    }
+
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
+    var dst = subFolderPath;
+
+    // build our mbox in new subfolder
+    await mboxCopyImport({ srcPath: src, destPath: dst });
+
+    // this forces an mbox to be reindexed and build new msf
+    await this.rebuildSummary(subMsgFolder);
+    // give up some time to ui
+    await new Promise(r => window.setTimeout(r, 200));
+
+    return subMsgFolder;
+  },
+
+  exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
+
+    let useMboxExt = false;
+    if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+      useMboxExt = true;
+    }
+
+    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.prettyName, destPath, false, useMboxExt);
+    let fullFolderPath = PathUtils.join(destPath, uniqueName);
+
+    ietngUtils.createStatusLine(window);
+
+    let msgFolderSize = rootMsgFolder.sizeOnDisk;
+    console.log(msgFolderSize)
+    rootMsgFolder = rootMsgFolder.QueryInterface(Ci.nsIMsgFolder);
+
+    await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
+
+    // This is our structured subfolder export if subfolders exist
+    if (inclSubfolders && rootMsgFolder.hasSubFolders && !flattenSubfolders) {
+
+      let fullSbdDirPath = PathUtils.join(destPath, uniqueName + ".sbd");
+      await IOUtils.makeDirectory(fullSbdDirPath);
+      await this.exportSubFolders(rootMsgFolder, fullSbdDirPath);
+    } else if (inclSubfolders && rootMsgFolder.hasSubFolders && flattenSubfolders) {
+      await this.exportSubFoldersFlat(rootMsgFolder, destPath, useMboxExt);
+    }
+
+    // wait before removing status text, should be delayed removal
+    await new Promise(r => window.setTimeout(r, 2000));
+    window.document.getElementById("ietngStatusText").remove();
+  },
+
+  exportSubFolders: async function (msgFolder, fullSbdDirPath) {
+
+    for (let subMsgFolder of msgFolder.subFolders) {
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.prettyName, fullSbdDirPath, false, false);
+
+      let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
+      await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
+      if (subMsgFolder.hasSubFolders) {
+        let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, uniqueName + ".sbd");
+        await IOUtils.makeDirectory(fullNewSbdDirPath);
+        await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
+      }
+    }
+  },
+
+  exportSubFoldersFlat: async function (msgFolder, fullFolderPath, useMboxExt) {
+
+    for (let subMsgFolder of msgFolder.subFolders) {
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.name, fullFolderPath, false, useMboxExt);
+      let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, uniqueName);
+
+      await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
+      if (subMsgFolder.hasSubFolders) {
+        await this.exportSubFoldersFlat(subMsgFolder, fullFolderPath, useMboxExt);
+      }
+    }
+  },
+
+  buildAndExportMbox: async function (msgFolder, dest) {
+    var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
+    var messagesMsg = this.mboximportbundle.GetStringFromName("messagesMsg");
+    let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+
+
+    let st = new Date();
+    console.log("Start: ", st, msgFolder.prettyName);
+
+    var mboxDestPath = dest;
+
+    // if we can't get msgFolder.messages just make empty mbox
+    // this happens with the root folder on pop3 accounts
     try {
-      fromAddr = parse5322.parseFrom(msgHdr.author)[0].address;
+      var folderMsgs = msgFolder.messages;
     } catch (ex) {
-      fromAddr = "";
+      let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
+
+      return;
     }
+    var sep = "";
+    //const maxFileSize = 1021000000;
+    const kMaxFileSize = 7000000000;
+    const kFileChunkSize = 10000000;
 
-    // fix date format to use UTC per RFC 4155 - addresses #455
-    let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toUTCString().split(" GMT")[0];
+    var msgsBuffer = "";
+    var index = 0;
+    var totalBytes = 0;
+    var totalMessages = msgFolder.getTotalMessages(false);
+    var totalTime;
+    var fromAddr;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-    // get message as 8b string
-    let rawBytes = await this.getRawMessage(msgUri);
+    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
 
-    if (index) {
-      sep = "\n";
-    }
-
-    // fix From format to use RFC 4155 format- addresses #455
-    let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
-    if (rawBytes.substring(0, 5) == "From ") {
-      fromHdr = "";
-    } else {
-      // may need to look ahead
-    }
-
-    // do only single From_ escape, assume pre escape handling by TB
-    rawBytes = rawBytes.replace(fromRegx, ">$1");
-
-    msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-
-    // tbd translate 
-    if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
-      ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
-
-      let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
-      let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
-
-      totalBytes += outBuffer.length;
-
-      msgsBuffer = "";
-      if (index == totalMessages - 1 || totalBytes >= kMaxFileSize) {
-        ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + "  " + timeMsg + ":  " + ((new Date() - st) / 1000) + "s", 14000);
-
-        totalTime = (new Date() - st) / 1000;
-        break;
+    var vfMsgUris = [];
+    if (isVirtualFolder) {
+      vfMsgUris = await this._getVirtualFolderUriArray(msgFolder);
+      if (vfMsgUris.length == 0) {
+        return 1;
       }
     }
-    index++;
 
-  }
-  // console.log(totalBytes);
-  // console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
+    // console.log("Total msgs: ", totalMessages);
 
-  let end = new Date();
-  //console.log("End: ", end, (end - st) / 1000);
-},
+    let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
-getRawMessage: async function (msgUri) {
-
-  let service = MailServices.messageServiceFromURI(msgUri);
-  return new Promise((resolve, reject) => {
-    let streamlistener = {
-      _data: [],
-      _stream: null,
-      onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
-        if (!this._stream) {
-          this._stream = Cc[
-            "@mozilla.org/scriptableinputstream;1"
-          ].createInstance(Ci.nsIScriptableInputStream);
-          this._stream.init(aInputStream);
-        }
-        this._data.push(this._stream.read(aCount));
-      },
-      onStartRequest() { },
-      onStopRequest(request, status) {
-        if (Components.isSuccessCode(status)) {
-          resolve(this._data.join(""));
-        } else {
-          reject(
-            new ExtensionError(
-              `Error while streaming message <${msgUri}>: ${status}`
-            )
-          );
-        }
-      },
-      QueryInterface: ChromeUtils.generateQI([
-        "nsIStreamListener",
-        "nsIRequestObserver",
-      ]),
+    // we have to use different iterators for normal vs virtual folders
+    function hasMoreMsgs() {
+      if (isVirtualFolder) {
+        return vfMsgUris.length;
+      } else {
+        return folderMsgs?.hasMoreElements();
+      }
     };
 
-    // This is not using aConvertData and therefore works for news:// messages.
-    service.streamMessage(
-      msgUri,
-      streamlistener,
-      null, // aMsgWindow
-      null, // aUrlListener
-      false, // aConvertData
-      "" //aAdditionalHeader
-    );
-  });
-},
+    while (hasMoreMsgs()) {
+      let msgUri;
+      let msgHdr;
 
+      if (vfMsgUris.length) {
+        msgUri = vfMsgUris.shift();
+        msgHdr = window.messenger.msgHdrFromURI(msgUri);
+      } else {
+        msgHdr = folderMsgs.getNext();
+        msgUri = msgFolder.getUriForMsg(msgHdr);
+      }
+      msgHdr = msgHdr.QueryInterface(Ci.nsIMsgDBHdr);
 
-rebuildSummary: async function (folder) {
+      try {
+        fromAddr = parse5322.parseFrom(msgHdr.author)[0].address;
+      } catch (ex) {
+        fromAddr = "";
+      }
 
-  if (folder.locked) {
-    folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
-    return;
-  }
-  if (folder.supportsOffline) {
-    // Remove the offline store, if any.
-    await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
-      console.error
-    );
-  }
+      // fix date format to use UTC per RFC 4155 - addresses #455
+      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toUTCString().split(" GMT")[0];
 
-  // Send a notification that we are triggering a database rebuild.
-  MailServices.mfn.notifyFolderReindexTriggered(folder);
+      // get message as 8b string
+      let rawBytes = await this.getRawMessage(msgUri);
 
-  folder.msgDatabase.summaryValid = false;
+      if (index) {
+        sep = "\n";
+      }
 
-  const msgDB = folder.msgDatabase;
-  msgDB.summaryValid = false;
-  try {
-    folder.closeAndBackupFolderDB("");
-  } catch (e) {
-    // In a failure, proceed anyway since we're dealing with problems
-    folder.ForceDBClosed();
-  }
+      // fix From format to use RFC 4155 format- addresses #455
+      let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
+      if (rawBytes.substring(0, 5) == "From ") {
+        fromHdr = "";
+      } else {
+        // may need to look ahead
+      }
 
-  // we can use this for parseFolder
-  var dbDone;
-  // @implements {nsIUrlListener}
-  let urlListener = {
-    OnStartRunningUrl(url) {
-      dbDone = false;
-    },
-    OnStopRunningUrl(url, status) {
-      dbDone = true;
+      // do only single From_ escape, assume pre escape handling by TB
+      rawBytes = rawBytes.replace(fromRegx, ">$1");
+
+      msgsBuffer = msgsBuffer + fromHdr + rawBytes;
+
+      // tbd translate 
+      if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
+        ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);
+
+        let outBuffer = ietngUtils.stringToBytes(msgsBuffer);
+        let r = await IOUtils.write(mboxDestPath, outBuffer, { mode: "append" });
+
+        totalBytes += outBuffer.length;
+
+        msgsBuffer = "";
+        if (index == totalMessages - 1 || totalBytes >= kMaxFileSize) {
+          ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2) + "  " + timeMsg + ":  " + ((new Date() - st) / 1000) + "s", 14000);
+
+          totalTime = (new Date() - st) / 1000;
+          break;
+        }
+      }
+      index++;
+
     }
-  };
+    // console.log(totalBytes);
+    // console.log(`Exported Folder: ${msgFolder.prettyName}\n\nTotal bytes: ${totalBytes}\nTotal messages: ${index + 1}\n\nExport Time: ${totalTime}s`);
 
-  var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
-  msgLocalFolder.parseFolder(window.msgWindow, urlListener);
-  while (!dbDone) {
-    await new Promise(r => window.setTimeout(r, 100));
-  }
+    let end = new Date();
+    //console.log("End: ", end, (end - st) / 1000);
+  },
 
-  // things we do to get folder to be included in global  search
-  // toggling global search inclusion works, but throws
-  // async tracker errors
-  // we won't do these automatically for now
+  getRawMessage: async function (msgUri) {
 
-  //this._toggleGlobalSearchEnable(folder);
-  //await this._touchCopyFolderMsg(folder);
-  return;
-},
+    let service = MailServices.messageServiceFromURI(msgUri);
+    return new Promise((resolve, reject) => {
+      let streamlistener = {
+        _data: [],
+        _stream: null,
+        onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+          if (!this._stream) {
+            this._stream = Cc[
+              "@mozilla.org/scriptableinputstream;1"
+            ].createInstance(Ci.nsIScriptableInputStream);
+            this._stream.init(aInputStream);
+          }
+          this._data.push(this._stream.read(aCount));
+        },
+        onStartRequest() { },
+        onStopRequest(request, status) {
+          if (Components.isSuccessCode(status)) {
+            resolve(this._data.join(""));
+          } else {
+            reject(
+              new ExtensionError(
+                `Error while streaming message <${msgUri}>: ${status}`
+              )
+            );
+          }
+        },
+        QueryInterface: ChromeUtils.generateQI([
+          "nsIStreamListener",
+          "nsIRequestObserver",
+        ]),
+      };
 
-compactAllFolders: async function () {
-  for (let index = 0; index < this.toCompactFolderList.length; index++) {
-    const msgFolder = this.toCompactFolderList[index];
+      // This is not using aConvertData and therefore works for news:// messages.
+      service.streamMessage(
+        msgUri,
+        streamlistener,
+        null, // aMsgWindow
+        null, // aUrlListener
+        false, // aConvertData
+        "" //aAdditionalHeader
+      );
+    });
+  },
 
-    // console.log(msgFolder.name);
+
+  rebuildSummary: async function (folder) {
+
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+        console.error
+      );
+    }
+
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+    folder.msgDatabase.summaryValid = false;
+
+    const msgDB = folder.msgDatabase;
+    msgDB.summaryValid = false;
+    try {
+      folder.closeAndBackupFolderDB("");
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+    }
+
+    // we can use this for parseFolder
+    var dbDone;
+    // @implements {nsIUrlListener}
+    let urlListener = {
+      OnStartRunningUrl(url) {
+        dbDone = false;
+      },
+      OnStopRunningUrl(url, status) {
+        dbDone = true;
+      }
+    };
+
+    var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
+    msgLocalFolder.parseFolder(window.msgWindow, urlListener);
+    while (!dbDone) {
+      await new Promise(r => window.setTimeout(r, 100));
+    }
+
+    // things we do to get folder to be included in global  search
+    // toggling global search inclusion works, but throws
+    // async tracker errors
+    // we won't do these automatically for now
+
+    //this._toggleGlobalSearchEnable(folder);
+    //await this._touchCopyFolderMsg(folder);
+    return;
+  },
+
+  compactAllFolders: async function () {
+    for (let index = 0; index < this.toCompactFolderList.length; index++) {
+      const msgFolder = this.toCompactFolderList[index];
+
+      // console.log(msgFolder.name);
+      window.gTabmail.currentTabInfo.folder = msgFolder;
+
+      this.forceFolderCompact(msgFolder);
+      for (let index = 0; index < 100; index++) {
+        break;
+        window.gTabmail.currentTabInfo.folder = msgFolder;
+        console.log(msgFolder.getTotalMessages(false));
+        try {
+          let m = msgFolder.messages;
+          console.log("ms", m);
+
+          break;
+        } catch (ex) {
+          console.log("wait", ex);
+        }
+        await new Promise(r => window.setTimeout(r, 100));
+
+      }
+
+    };
+  },
+
+  forceFolderCompact: function (msgFolder) {
+    var file = msgFolder.filePath.QueryInterface(Ci.nsIFile);
+    var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
+      createInstance(Ci.nsIFileOutputStream);
+    var data = "\n\nFrom Moon\nX-Mozilla-Status: 0009\nX-Mozilla-Status2: 00800000\nDate: Fri, 08 Feb 2008 10:30:48 +0100\nFrom: nomail@nomail.no\nMIME-Version: 1.0\nTo: nomail@nomail.no\nSubject: empty\nContent-Type: text/plain\n\n\n\n";
+    foStream.init(file, 0x02 | 0x08 | 0x10, 0o666, 0);
+    foStream.write(data, data.length);
+    foStream.close();
+    msgFolder.compact(null, window.msgWindow);
+    return true;
+  },
+
+  _getVirtualFolderUriArray: async function (msgFolder) {
+
+    // temporarily select virtual folder so we can expand and iterate
+    let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+    window.gTabmail.currentTabInfo.folder = msgFolder;
+    var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
+
+    // give ui time
+    //await new Promise(r => window.setTimeout(r, 0));
+
+    // we have to expand all threads to iterate
+    // unless and until the view is expanded, we
+    // iterate over all messages. 
+    // we wait until rowCount == numMsgsInView
+
+    gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
+
+    var waitCnt = 100;
+    while (waitCnt--) {
+      if (gDBView.rowCount == gDBView.numMsgsInView) {
+        break;
+      }
+      await new Promise(r => window.setTimeout(r, 50));
+    }
+
+    var uriArray = [];
+    var msgUri;
+    for (let i = 0; i < gDBView.numMsgsInView; i++) {
+      // error handling changed in 102
+      // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+      // Resolves #359
+      try {
+        msgUri = gDBView.getURIForViewIndex(i);
+        uriArray.push(msgUri);
+      } catch (ex) {
+        continue; // ignore errors for dummy rows
+      }
+    }
+
+    // collapse threads, not exactly starting point, but ok
+    gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+    // jump back to top folder
+    window.gTabmail.currentTabInfo.folder = curMsgFolder;
+    return uriArray;
+  },
+
+  // this will force a reindex that will make folder globally searchable
+  // usually this triggers a slew of gloda exceptions 
+  // so far these appear to not have negative side effects
+  // but this does bring folder into search
+
+  _toggleGlobalSearchEnable: function (msgFolder) {
+    this._setGlobalSearchEnabled(msgFolder, false);
+    this._setGlobalSearchEnabled(msgFolder, true);
+  },
+
+  // this is another method to get a folder searchable
+  // but less consistent than above
+  // this used to be THE method to use
+
+  _touchCopyFolderMsg: async function (msgFolder) {
+
+    var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+    tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
+    // this needs to be dynamic for real use!!!
+    tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
+
     window.gTabmail.currentTabInfo.folder = msgFolder;
 
-    this.forceFolderCompact(msgFolder);
-    for (let index = 0; index < 100; index++) {
-      break;
-      window.gTabmail.currentTabInfo.folder = msgFolder;
-      console.log(msgFolder.getTotalMessages(false));
-      try {
-        let m = msgFolder.messages;
-        console.log("ms", m);
+    let newKey;
 
-        break;
-      } catch (ex) {
-        console.log("wait", ex);
+    await new Promise((resolve, reject) => {
+      MailServices.copy.copyFileMessage(
+        tempEMLFile,
+        msgFolder,
+        null,
+        false,
+        Ci.nsMsgMessageFlags.Read,
+        "",
+        {
+          OnStartCopy() {
+            //console.log("copy start");
+          },
+          OnProgress(progress, progressMax) { },
+          SetMessageKey(key) {
+            //console.log("set key ", key);
+            newKey = key;
+          },
+          GetMessageId(messageId) {
+          },
+          OnStopCopy(status) {
+            if (status == Cr.NS_OK) {
+              //console.log("copy ok");
+              resolve();
+            } else {
+            }
+          },
+        },
+        window.msgWindow
+      );
+    });
+
+    await new Promise((resolve, reject) => {
+      msgFolder.deleteMessages(
+        [msgFolder.GetMessageHeader(newKey)],
+        window.msgWindow,
+        false,
+        true,
+        {
+          OnStartCopy() {
+            //console.log("delete start");
+          },
+          OnProgress(progress, progressMax) { },
+          SetMessageKey(key) {
+            //console.log("set key ", key);
+            newKey = key;
+          },
+          GetMessageId(messageId) {
+          },
+          OnStopCopy(status) {
+            if (status == Cr.NS_OK) {
+              //console.log("delete ok");
+              resolve();
+            } else {
+            }
+          },
+        },
+        false
+      );
+    });
+
+    var dbDone;
+    // @implements {nsIUrlListener}
+    let urlListener = {
+      OnStartRunningUrl(url) {
+        dbDone = false;
+      },
+      OnStopRunningUrl(url, status) {
+        console.log("compact done", status);
+        dbDone = true;
       }
+    };
+
+    msgFolder.compact(urlListener, window.msgWindow);
+
+    while (!dbDone) {
       await new Promise(r => window.setTimeout(r, 100));
-
     }
+  },
 
-  };
-},
-
-forceFolderCompact: function (msgFolder) {
-  var file = msgFolder.filePath.QueryInterface(Ci.nsIFile);
-  var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
-    createInstance(Ci.nsIFileOutputStream);
-  var data = "\n\nFrom Moon\nX-Mozilla-Status: 0009\nX-Mozilla-Status2: 00800000\nDate: Fri, 08 Feb 2008 10:30:48 +0100\nFrom: nomail@nomail.no\nMIME-Version: 1.0\nTo: nomail@nomail.no\nSubject: empty\nContent-Type: text/plain\n\n\n\n";
-  foStream.init(file, 0x02 | 0x08 | 0x10, 0o666, 0);
-  foStream.write(data, data.length);
-  foStream.close();
-  msgFolder.compact(null, window.msgWindow);
-  return true;
-},
-
-_getVirtualFolderUriArray: async function (msgFolder) {
-
-  // temporarily select virtual folder so we can expand and iterate
-  let curMsgFolder = window.gTabmail.currentTabInfo.folder;
-  window.gTabmail.currentTabInfo.folder = msgFolder;
-  var gDBView = window.gTabmail.currentAbout3Pane.gDBView;
-
-  // give ui time
-  //await new Promise(r => window.setTimeout(r, 0));
-
-  // we have to expand all threads to iterate
-  // unless and until the view is expanded, we
-  // iterate over all messages. 
-  // we wait until rowCount == numMsgsInView
-
-  gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
-
-  var waitCnt = 100;
-  while (waitCnt--) {
-    if (gDBView.rowCount == gDBView.numMsgsInView) {
-      break;
-    }
-    await new Promise(r => window.setTimeout(r, 50));
-  }
-
-  var uriArray = [];
-  var msgUri;
-  for (let i = 0; i < gDBView.numMsgsInView; i++) {
-    // error handling changed in 102
-    // https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
-    // Resolves #359
-    try {
-      msgUri = gDBView.getURIForViewIndex(i);
-      uriArray.push(msgUri);
-    } catch (ex) {
-      continue; // ignore errors for dummy rows
+  // base function to set global search priority
+  _setGlobalSearchEnabled: function (msgFolder, searchEnable) {
+    if (searchEnable) {
+      Gloda.resetFolderIndexingPriority(msgFolder, true);
+    } else {
+      Gloda.setFolderIndexingPriority(
+        msgFolder,
+        Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
     }
   }
-
-  // collapse threads, not exactly starting point, but ok
-  gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
-  // jump back to top folder
-  window.gTabmail.currentTabInfo.folder = curMsgFolder;
-  return uriArray;
-},
-
-// this will force a reindex that will make folder globally searchable
-// usually this triggers a slew of gloda exceptions 
-// so far these appear to not have negative side effects
-// but this does bring folder into search
-
-_toggleGlobalSearchEnable: function (msgFolder) {
-  this._setGlobalSearchEnabled(msgFolder, false);
-  this._setGlobalSearchEnabled(msgFolder, true);
-},
-
-// this is another method to get a folder searchable
-// but less consistent than above
-// this used to be THE method to use
-
-_touchCopyFolderMsg: async function (msgFolder) {
-
-  var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-  tempEMLFile = tempEMLFile.QueryInterface(Ci.nsIFile);
-  // this needs to be dynamic for real use!!!
-  tempEMLFile.initWithPath("C:\\Dev\\dummyMsg.eml");
-
-  window.gTabmail.currentTabInfo.folder = msgFolder;
-
-  let newKey;
-
-  await new Promise((resolve, reject) => {
-    MailServices.copy.copyFileMessage(
-      tempEMLFile,
-      msgFolder,
-      null,
-      false,
-      Ci.nsMsgMessageFlags.Read,
-      "",
-      {
-        OnStartCopy() {
-          //console.log("copy start");
-        },
-        OnProgress(progress, progressMax) { },
-        SetMessageKey(key) {
-          //console.log("set key ", key);
-          newKey = key;
-        },
-        GetMessageId(messageId) {
-        },
-        OnStopCopy(status) {
-          if (status == Cr.NS_OK) {
-            //console.log("copy ok");
-            resolve();
-          } else {
-          }
-        },
-      },
-      window.msgWindow
-    );
-  });
-
-  await new Promise((resolve, reject) => {
-    msgFolder.deleteMessages(
-      [msgFolder.GetMessageHeader(newKey)],
-      window.msgWindow,
-      false,
-      true,
-      {
-        OnStartCopy() {
-          //console.log("delete start");
-        },
-        OnProgress(progress, progressMax) { },
-        SetMessageKey(key) {
-          //console.log("set key ", key);
-          newKey = key;
-        },
-        GetMessageId(messageId) {
-        },
-        OnStopCopy(status) {
-          if (status == Cr.NS_OK) {
-            //console.log("delete ok");
-            resolve();
-          } else {
-          }
-        },
-      },
-      false
-    );
-  });
-
-  var dbDone;
-  // @implements {nsIUrlListener}
-  let urlListener = {
-    OnStartRunningUrl(url) {
-      dbDone = false;
-    },
-    OnStopRunningUrl(url, status) {
-      console.log("compact done", status);
-      dbDone = true;
-    }
-  };
-
-  msgFolder.compact(urlListener, window.msgWindow);
-
-  while (!dbDone) {
-    await new Promise(r => window.setTimeout(r, 100));
-  }
-},
-
-// base function to set global search priority
-_setGlobalSearchEnabled: function (msgFolder, searchEnable) {
-  if (searchEnable) {
-    Gloda.resetFolderIndexingPriority(msgFolder, true);
-  } else {
-    Gloda.setFolderIndexingPriority(
-      msgFolder,
-      Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
-  }
-}
 };

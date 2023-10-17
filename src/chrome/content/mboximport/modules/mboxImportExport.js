@@ -585,8 +585,9 @@ export var mboxImportExport = {
 
       // fix From format to use RFC 4155 format- addresses #455
       let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
+      // If TB gives us a From_ separator, null out
       if (rawBytes.substring(0, 5) == "From ") {
-        fromHdr = "";
+        rawBytes = rawBytes.replace(/^(From (?:.*?)\r?\n)/, "");
       } else {
         // may need to look ahead
       }

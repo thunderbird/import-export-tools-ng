@@ -852,7 +852,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			file.initWithPath(newDestPath);
 
 			var zipName = folders[i].name;
-			zipFile.append(zipName + ".zip");
+			zipFile.append(newname + ".zip");
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
 			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));

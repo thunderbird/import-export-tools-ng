@@ -138,7 +138,7 @@ var ietngUtils = {
 
 
   sanitizeFileOrFolderName: function (str) {
-    str = str.replace(/[\\:?"\*\/<>#]/g, "_");
+    str = str.replace(/[\\:?"\*\/<>|]/g, "_");
     str = str.replace(/[\x00-\x19]/g, "_");
     return str;
   },

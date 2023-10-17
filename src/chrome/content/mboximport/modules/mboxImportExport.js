@@ -508,12 +508,14 @@ export var mboxImportExport = {
     console.log("Start: ", st, msgFolder.prettyName);
 
     var mboxDestPath = dest;
+    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
 
     // if we can't get msgFolder.messages just make empty mbox
     // this happens with the root folder on pop3 accounts
     try {
       var folderMsgs = msgFolder.messages;
     } catch (ex) {
+      console.log( " messages exc")
       let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
       return;
@@ -531,7 +533,6 @@ export var mboxImportExport = {
     var fromAddr;
     let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
 
     var vfMsgUris = [];
     if (isVirtualFolder) {
@@ -545,6 +546,7 @@ export var mboxImportExport = {
 
     let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
+    console.log("af wr")
     // we have to use different iterators for normal vs virtual folders
     function hasMoreMsgs() {
       if (isVirtualFolder) {

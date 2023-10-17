@@ -32,6 +32,8 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
+console.log("mboximportExport b2");
+
 export var mboxImportExport = {
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),

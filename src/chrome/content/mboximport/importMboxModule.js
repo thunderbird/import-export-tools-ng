@@ -94,8 +94,8 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  //const kREAD_CHUNK = (200 * 1000) - 580;
-  const kREAD_CHUNK = 10000;
+  const kREAD_CHUNK = (2000 * 1000);
+  //const kREAD_CHUNK = 10000;
 
   var lastexpos = null;
 
@@ -171,7 +171,8 @@ async function mboxCopyImport(options) {
         lastException = false;
         lastexpos = null;
 
-        if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
+        if(0) {
+        //if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < 250) {
           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
           lastException = true;
           console.log(finalChunk)
@@ -207,7 +208,7 @@ async function mboxCopyImport(options) {
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
       }
 
-      
+      /*
       //console.log("Tail processing")
       // deal with buffer boundaries scenario
       let strBufferTail = strBuffer.slice(-200)
@@ -237,7 +238,7 @@ async function mboxCopyImport(options) {
           //console.log(singleFromException)
         }
       }
-
+*/
 
       totalWrite += (finalChunk - writePos);
 

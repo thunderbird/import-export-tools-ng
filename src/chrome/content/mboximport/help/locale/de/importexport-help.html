@@ -476,7 +476,7 @@
     <table class="dateformat-table">
       <thead>
         <tr>
-          <th>Reihenfolge</th>
+          <th>Sequenz</th>
           <th>Beschreibung</th>
         </tr>
       </thead>
@@ -521,7 +521,7 @@
           <td><code class="code1">%G</code></td>
           <td>
             Wochenbasiertes Jahr nach ISO 8601 mit Jahrhundert als Dezimalzahl. Die 4-stellige Jahreszahl
-            entspricht der ISO-Wochennummer (siehe <code class="code1">%V</code> ). Dies hat das gleiche
+            entspricht der ISO-Wochennummer (siehe <code class="code1">%V</code> ). Diese hat das gleiche
             Format und den gleichen Wert wie <code class="code1">%Y</code> , mit der Ausnahme, dass
             stattdessen dieses Jahr verwendet wird, wenn die ISO-Wochennummer zum vorherigen oder nächsten
             Jahr gehört.
@@ -699,35 +699,42 @@
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Benutzerdefiniertes
       Datumsformat anstelle des Standardformats verwenden<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> – Mit
-      benutzerdefiniertem Text<br /><br /><br />
+      benutzerdefiniertem Text<br /><br />
     </p>
-    <table class="token-table">
+    <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Zeichen</td>
+        <td>Token (en-US)</td>
+        <td>Lokalisierte Zeichen (<span id="locale1"></span>)</td>
         <td>Beschreibung</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
         <td>Der Betreff der Nachricht. Die Länge kann durch die Option für die Betrefflänge begrenzt werden.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
         <td>Der Name des Absenders der Nachricht.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
         <td>Der Name des Nachrichtenempfängers.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
         <td>Die E-Mail-Adresse des Absenders der Nachricht.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
         <td>Die E-Mail-Adresse des Nachrichtenempfängers.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
         <td>
           Die Empfänger, wenn sich die Nachricht in einem Ordner „Gesendet“ befindet, anderenfalls der Name des
           Absenders.
@@ -735,77 +742,31 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
         <td>Die Nachrichtenindexnummer.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
         <td>Der Wert der Präfixtextoption.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
         <td>Der Wert der Suffixtextoption.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
         <td>Das Standarddatumsformat. Das Standardformat ist JJJJMMTTHHmm.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
         <td>
           Das benutzerdefinierte Datumsformat. Weitere Informationen finden Sie im Abschnitt zur
           benutzerdefinierten Datumsformatierung.
         </td>
-      </tr>
-    </table>
-    <br />
-    <table id="localized-token-table" class="token-table">
-      <tr>
-        <td>Token (en-US)</td>
-        <td>Lokalisierte Zeichen (<span id="locale1"></span>)</td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${subject}</code></td>
-        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${sender}</code></td>
-        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${recipient}</code></td>
-        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${sender_email}</code></td>
-        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${recipient_email}</code></td>
-        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${smart_name}</code></td>
-        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${index}</code></td>
-        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${prefix}</code></td>
-        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${suffix}</code></td>
-        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${date}</code></td>
-        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${date_custom}</code></td>
-        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
       </tr>
     </table>
     <br />
@@ -855,44 +816,44 @@
       und die Schlüssel lauten wie folgt:
     </p>
     <p>
-      Beispiel-Hotkey-Einträge (Array von JSON-Objekten)<br /><br />
-      <code class="notranslate">id</code> – der Schlüsselindex (1-10)<br />
-      <code class="notranslate">key</code> – der Schlüssel (einzelnes Zeichen)<br />
-      <code class="notranslate">keycode</code> – der durch „VK_*“ definierte Schlüsselcode<br />
-      Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, jedoch nicht beides<br />
-      <code class="notranslate">modifiers</code> – die Tastenmodifikatoren, durch Leerzeichen getrennte Liste
-      („Strg“, „Umschalt“, „Alt“, „Accel“)<br />
-      <code class="notranslate">oncommand</code> – eine direkte Befehlszeichenfolge<br />
-      <code class="notranslate">contexts</code> – der Fensterkontext, in dem die Taste aktiv ist<br />
-      <code class="notranslate">&#39;all&#39;</code> – alle Fenster unter Messenger, Verfassen, Suchen<br />
-      <code class="notranslate">&#39;messenger&#39;</code> – das Messenger-Hauptfenster und seine
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">id</code> – der Schlüsselindex (1-10)<br />
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">key</code> – der Schlüssel (einzelnes Zeichen)<br />
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">keycode</code> – der durch „VK_*“ definierte Schlüsselcode<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, jedoch nicht beides<br />
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">modifiers</code> – die Tastenmodifikatoren, durch Leerzeichen getrennte Liste
+      ('control', 'shift', 'alt', 'accel')<br />
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">oncommand</code> – eine direkte Befehlszeichenfolge<br />
+      &nbsp;&nbsp;&nbsp; <code class="notranslate">contexts</code> – der Fensterkontext, in dem die Taste aktiv ist<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'all'</code> – alle Fenster unter Messenger, Verfassen, Suchen<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'messenger'</code> – das Messenger-Hauptfenster und seine
       Nachkommen<br />
-      <code class="notranslate">&#39;compose&#39;</code> – das Fenster zum Verfassen von Nachrichten<br />
-      <code class="notranslate">&#39;search&#39;</code> – der Suchdialog<br /><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'compose'</code> – das Fenster zum Verfassen von Nachrichten<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'search'</code> – der Suchdialog<br /><br />
+      Beispiel-Hotkey-Einträge (Array von JSON-Objekten):<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
-        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        shift&quot;, &quot;oncommand&quot;: &quot;alert('Compose alert')&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
-        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+        &quot;alert('testD')&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
       ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
-        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand('cmd_printpreview')&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
       ><br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
-        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand('cmd_printpreview')&quot;,
         &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
         &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
-        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
-        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert('hk3
+        all')&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
         &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
-        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;oncommand&quot;: &quot;goDoCommand('cmd_printPreview')&quot;, &quot;contexts&quot;:
         &quot;compose&quot; }]</code
       ><br />
     </p>

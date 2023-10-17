@@ -94,7 +94,10 @@ async function mboxCopyImport(options) {
   }
 
   let rawBytes = "";
-  const kREAD_CHUNK = 2000 * 1000;
+  //const kREAD_CHUNK = (200 * 1000) - 580;
+  const kREAD_CHUNK = 10000;
+
+  var lastexpos = null;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -116,7 +119,6 @@ async function mboxCopyImport(options) {
     var totalWrite = 0;
     var finalChunk;
     var lastException = false;
-    var lastexpos = null;
 
 
     let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
@@ -157,7 +159,7 @@ async function mboxCopyImport(options) {
         //console.log(lastException)
 
         fromEscCount++;
-        console.log(fromEscCount, result.index)
+        console.log(fromEscCount, result.index, result)
         totalWrite += ((result.index - 1) - writePos);
 
         //console.log(index, result)
@@ -176,12 +178,12 @@ async function mboxCopyImport(options) {
           console.log(exceptionPos)
           console.log(finalChunk - exceptionPos)
           console.log(result)
-          console.log(lazstException)
+          console.log("8888888888888888")
           lastexpos = exceptionPos;
           //break;
         } else {
           lastexpos = null;
-          console.log("ep")
+          //console.log("ep")
 
 
         }
@@ -212,7 +214,7 @@ async function mboxCopyImport(options) {
       let Fregx = /^F/gm;
       let FTailMatch = strBufferTail.matchAll(Fregx);
       FTailMatch = [...FTailMatch];
-      console.log("lastexcppos ",lastexpos)
+      //console.log("lastexcppos ",lastexpos)
 
       //if (lastException || FTailMatch.length || strBuffer.slice(-1) == '\n') {
         if (lastexpos && lastexpos < 250) {

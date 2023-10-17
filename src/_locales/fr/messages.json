@@ -4,7 +4,7 @@
 	},
 
 	"extensionDescription": {
-		"message": "Ajoute des outils pour importer/exporter des messages et des dossiers (NextGen)"
+		"message": "Outils permettant d’importer et d’exporter les messages et les dossiers."
 	},
 
 	"ctxMenu_ExtensionName.title": {
@@ -12,23 +12,23 @@
 	},
 
 	"ctxMenu_Options.title": {
-		"message": "Choix"
+		"message": "Options"
 	},
 
 	"ctxMenu_Help.title": {
-		"message": "Aider"
+		"message": "Aide"
 	},
 
 	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Profil d&#39;exportation"
+		"message": "Exporter le profil"
 	},
 
 	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Profil d&#39;importation"
+		"message": "Importer un profil"
 	},
 
 	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Sauvegarde"
+		"message": "Effectuer une sauvegarde"
 	},
 
 	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
@@ -40,15 +40,15 @@
 	},
 
 	"msgCtxMenu_TopId.title": {
-		"message": "Exporter les messages sous…"
+		"message": "Exporter les messages sélectionnés"
 	},
 
 	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Format de message EML"
+		"message": "Format EML"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "FormatHTML"
+		"message": "Format HTML"
 	},
 
 	"msgCtxMenu_Exp_PDFFormat_Id.title": {
@@ -72,7 +72,7 @@
 	},
 
 	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Copier dans le presse-papier"
+		"message": "Copier dans le presse-papiers"
 	},
 
 	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
@@ -120,11 +120,11 @@
 	},
 
 	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Ajouter au fichier mbox existant"
+		"message": "Ajout à un fichier mbox existant"
 	},
 
 	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "FormatHTML"
+		"message": "Format HTML"
 	},
 
 	"msgCtxMenu_Exp_IndexCSV_Id.title": {
@@ -140,23 +140,23 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Exportation de dossier (mbox)"
+		"message": "Exporter le dossier (mbox)"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "En tant que fichier mbox"
+		"message": "Sous forme de fichier mbox"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Fichier mbox compressé unique"
+		"message": "Fichier mbox unique zippé"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Structuré avec des sous-dossiers"
+		"message": "Structuré avec les sous-dossiers"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Avec des sous-dossiers aplatis"
+		"message": "Avec les sous-dossiers à plat"
 	},
 
 	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
@@ -168,11 +168,11 @@
 	},
 
 	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Format de message EML"
+		"message": "Format EML"
 	},
 
 	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "FormatHTML"
+		"message": "Format HTML"
 	},
 
 	"folderCtxMenu_Exp_PDFFormat_Id.title": {
@@ -208,15 +208,15 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Tous les fichiers mbox du répertoire"
+		"message": "Tous les fichiers mbox d’un dossier"
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Tous les fichiers mbox du répertoire (avec structure sbd)"
+		"message": "Tous les fichiers mbox d’un dossier (avec structure sbd)"
 	},
 
 	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Importer le dossier Maildir"
+		"message": "Importer un dossier Maildir"
 	},
 
 	"folderCtxMenu_Imp_EMLFormat_Id.title": {
@@ -228,11 +228,11 @@
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Tous les messages EML d&#39;un répertoire"
+		"message": "Tous les messages EML d’un dossier"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Tous les messages EML d&#39;un répertoire et de sous-répertoires"
+		"message": "Tous les messages EML d’un dossier et des sous-dossiers"
 	},
 
 	"folderCtxMenu_CopyFolderPath_Id.title": {
@@ -240,7 +240,7 @@
 	},
 
 	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Ouvrir le répertoire des dossiers"
+		"message": "Ouvrir le dossier conteneur"
 	},
 
 	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
@@ -264,19 +264,23 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Messages en fichier unique"
+		"message": "Messages sous forme de fichier unique"
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Messages en fichier unique avec pièces jointes"
+		"message": "Messages sous forme de fichier unique avec pièces jointes"
 	},
 
 	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "FormatHTML"
+		"message": "Format HTML"
 	},
 
 	"folderCtxMenu_Exp_IndexCSV_Id.title": {
 		"message": "Format CSV"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "Exporter le compte"
 	},
 
 	"subjectFmtToken": {
@@ -288,7 +292,7 @@
 	},
 
 	"senderEmailFmtToken": {
-		"message": "${expéditeur_email}"
+		"message": "${courriel_expéditeur}"
 	},
 
 	"recipientFmtToken": {
@@ -296,7 +300,7 @@
 	},
 
 	"recipientEmailFmtToken": {
-		"message": "${destinataire_email}"
+		"message": "${courriel_destinataire}"
 	},
 
 	"smartNameFmtToken": {
@@ -315,16 +319,12 @@
 		"message": "${suffixe}"
 	},
 
-	"dateCustomFmtToken": {
-		"message": "${date_personnalisée}"
-	},
-
 	"dateFmtToken": {
 		"message": "${date}"
 	},
 
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Compte d&#39;exportation"
+	"dateCustomFmtToken": {
+		"message": "${date_personnalisée}"
 	},
 
 	"attCtxMenu_Top_Id.title": {

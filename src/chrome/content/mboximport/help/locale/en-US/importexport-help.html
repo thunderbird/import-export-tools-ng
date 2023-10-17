@@ -25,10 +25,10 @@
 	</table>
 
 	
-	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
+	<h2 id="main_help">Overview and Menus</h2>
 	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".
 		The extension offers multiple import and export functions supporting several different
-		file formats including: Note: Some formats are not supported in all functions.
+		file formats including:
 		<br>
 		- mbox<br>
 		- EML<br>
@@ -37,7 +37,7 @@
 		- plaintext<br>
 		- CSV (Comma Separated Values)<br>
 		- PDF<br>
-		<br>
+		Note: Some formats are not supported in all functions.<br><br>
 		While most of the functionality for revolves around messages, there is also support
 		for the import and export of Thunderbird profiles. Additionally exports can also
 		include an HTML or CSV index file. Backup of the Thunderbird profile is another
@@ -56,7 +56,7 @@
 		Each of the menus and button also have a Help and Options menu item to access the options dialog. <br>
 
 	</p>
-	<h3>Support:</h3>
+	<h2>Support</h2>
 	<p>
 		Please post issues or feature requests in the extensions GitHub repository: <a class="link1"
 			href="https://github.com/thundernest/import-export-tools-ng/issues">ImportExportTools NG Issues</a><br>
@@ -65,7 +65,7 @@
 		- ImportExportTools NG version<br>
 		- Thunderbird version<br>
 		- Operating system and version<br>
-		- Debug output (copy from the Debug Console - access with Control-Shift-J)<br>
+		- Debug output (copy from the Debug Console - access with Control+Shift+J)<br>
 		- A description of the steps leading to the issue<br>
 
 	</p>
@@ -109,7 +109,7 @@
 			</tr>
 			<tr>
 				<td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-				<td>Export a remote (imap) folder to single mbox file.</td>
+				<td>Export a remote (IMAP) folder to single mbox file.</td>
 			</tr>
 			<tr>
 				<td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -283,7 +283,7 @@
 			</tr>
 			<tr>
 				<td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-				<td>Export the selected messages to EML format files (attatchments embedded)</td>
+				<td>Export the selected messages to EML format files (attachments embedded)</td>
 			</tr>
 				<tr>
 					<td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
@@ -418,7 +418,7 @@
 			</tr>
 			<tr>
 				<td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
-				<td></td>
+				<td>Backup of the Thunderbird profile</td>
 			</tr>
 			<tr>
 				<td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -444,9 +444,9 @@
 		Unix like functionality. It is based on a JavaScript port of <a class="link1"
 			href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>,
 		a function to format the date and time.<br>
-		Port of strftime() by T. H. Doan (https://thdoan.github.io/strftime/)<br>
+		Port of strftime() by T. H. Doan (<a class="link1" href="https://thdoan.github.io/strftime/"><code>https://thdoan.github.io/strftime/</code></a>).<br>
 	</p>
-	<h3>Conversion sequence descriptions</h3>
+	<h3>Conversion sequences description</h3>
 	<table class="dateformat-table">
 		<thead>
 			<tr>
@@ -628,11 +628,8 @@
 		<li><code class="code1">%+</code> - not implemented</li>
 		<li><code class="code1">%%</code> - not implemented (use <code class="code1">%</code>)</li>
 	</ul>
-
-	<br><br>
-
-	<h2 id="ext_filename_format_help">Extended Filename Format:</h2>
 	<br>
+	<h2 id="ext_filename_format_help">Extended Filename Format</h2>
 	<p>
 		The extended file name formatting utilizes tokens. The exact filename can be constructed
 		utilizing the tokens as well as any text or valid filename characters.
@@ -649,113 +646,67 @@
 	</p>
 	<table class="token-table">
 		<tr>
-			<td>Token</td>
+			<td>Token (en-US)</td>
+			<td>Localized (<span id="locale1"></span>) Token</td>
 			<td>Description</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${subject}</code></td>
+			<td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
 			<td>The subject of the message. The length may be limited by the subject length option.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${sender}</code></td>
+			<td class="notranslate"><code >__MSG_senderFmtToken__</code></td>
 			<td>The name of the message sender.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${recipient}</code></td>
+			<td class="notranslate"><code >__MSG_recipientFmtToken__</code></td>
 			<td>The name of the message recipient.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${sender_email}</code></td>
+			<td class="notranslate"><code >__MSG_senderEmailFmtToken__</code></td>
 			<td>The e-mail address of the message sender.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${recipient_email}</code></td>
+			<td class="notranslate"><code >__MSG_recipientEmailFmtToken__</code></td>
 			<td>The e-mail address of the message recipient.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${smart_name}</code></td>
+			<td class="notranslate"><code >__MSG_smartNameFmtToken__</code></td>
 			<td>The recipients if the message is in a Sent folder, otherwise the sender name </td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${index}</code></td>
+			<td class="notranslate"><code >__MSG_indexFmtToken__</code></td>
 			<td>The message index number.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${prefix}</code></td>
+			<td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
 			<td>The prefix text option value.</td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${suffix}</code></td>
+			<td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
 			<td>The suffix text option value.</td>
 		</tr>
 
 		<tr>
 			<td class="notranslate"><code>${date}</code></td>
+			<td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
 			<td>The standard date format. The default format is: YYYYMMDDHHmm </td>
 		</tr>
 		<tr>
 			<td class="notranslate"><code>${date_custom}</code></td>
+			<td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
 			<td>The custom date format. See the custom date formatting section.</td>
 		</tr>
-
 	</table>
-
-
-	<br>
-
-	<table id="localized-token-table" class="token-table">
-		<tr>
-			<td>Token (en-US)</td>
-			<td>Localized (<span id="locale1"></span>) Token</td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${subject}</code></td>
-			<td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
-		</tr>
-
-		<tr>
-			<td class="notranslate"><code>${sender}</code></td>
-			<td class="notranslate"><code >__MSG_senderFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${recipient}</code></td>
-			<td class="notranslate"><code >__MSG_recipientFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${sender_email}</code></td>
-			<td class="notranslate"><code >__MSG_senderEmailFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${recipient_email}</code></td>
-			<td class="notranslate"><code >__MSG_recipientEmailFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${smart_name}</code></td>
-			<td class="notranslate"><code >__MSG_smartNameFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${index}</code></td>
-			<td class="notranslate"><code >__MSG_indexFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${prefix}</code></td>
-			<td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${suffix}</code></td>
-			<td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${date}</code></td>
-			<td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
-		</tr>
-		<tr>
-			<td class="notranslate"><code>${date_custom}</code></td>
-			<td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
-		</tr>
-
-	</table>
-
 	<br>
 	<h2>New and Experimental Preferences (options)</h2>
 	<p>There are several new features and options that are not yet configurable within the
@@ -792,11 +743,10 @@
 		as a JSON formatted object. The format and keys are as follows:
 	</p>
 	<p>
-		Example hot key entrys (array of JSON objects)<br><br>
 		&nbsp;&nbsp;&nbsp; <code class="notranslate">id</code> - the key index (1-10)<br>
 
 		&nbsp;&nbsp;&nbsp; <code class="notranslate">key</code> - the key ( single character)<br>
-		&nbsp;&nbsp;&nbsp; <code class="notranslate">keycode</code> - the 'VK_*' defind keycode<br>
+		&nbsp;&nbsp;&nbsp; <code class="notranslate">keycode</code> - the 'VK_*' defined keycode<br>
 		&nbsp;&nbsp;&nbsp;Either key or keycode may be included , but not both<br>
 		&nbsp;&nbsp;&nbsp; <code class="notranslate">modifiers</code> - the key modifiers, space separated list ('control',
 		'shift', 'alt', 'accel')<br>
@@ -805,10 +755,11 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'all'</code> - all windows under messenger, compose,
 		search<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'messenger'</code> - the main messenger window and
-		its descendents<br>
+		its descendants<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'compose'</code> - the message compose window<br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="notranslate">'search'</code> - the search dialog<br>
 		<br>
+		Example hot key entries (array of JSON objects):<br><br>
 		<code
 			class="notranslate">[{"id": "1", "key": "K", "modifiers": "control shift", "oncommand": "alert('Compose alert')", "contexts": "compose"}, {"id": "2", "keycode: "VK_F1", "modifiers": "control shift", "oncommand": "alert('testD')", "contexts": "all"}]</code><br><br>
 		<code
@@ -819,14 +770,14 @@
 	</p>
 	<p>As the shortcuts are new and experimental I will also add more documentation in
 		the repository. Check the extension <a class="link1"
-			href="https://github.com/thundernest/import-export-tools-ng">ImportExportTools NG README</a><br>
+			href="https://github.com/thundernest/import-export-tools-ng">ImportExportTools NG README</a>.<br>
 	</p>
 	<br>
 
 	
 	<h3>Version 14.0.0 : Thunderbird 115 Support - July 10, 2023</h3>
 	<p>
-		Features and Issues Addressed :<br>
+		Features and Issues Addressed:<br>
 	<p>
 		- Support for Thunderbird 115 Supernova<br>
 		- Rework and modernize Options UI<br>
@@ -848,9 +799,9 @@
 	- <code class="notranslate">@artofit</code><br>
 	- <code class="notranslate">@JF1313</code><br>
 	- <code class="notranslate">@jessejmorrow</code><br>
-	- <code class="notranslate">@spd2000 </code><br>
-	- <code class="notranslate">@kanlukasz </code><br>
-	- <code class="notranslate">@razzmatazzz </code><br>
+	- <code class="notranslate">@spd2000</code><br>
+	- <code class="notranslate">@kanlukasz</code><br>
+	- <code class="notranslate">@razzmatazzz</code><br>
 	- <code class="notranslate">@triplee</code><br>
 
 	</p>

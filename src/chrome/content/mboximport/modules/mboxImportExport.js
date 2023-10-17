@@ -515,7 +515,6 @@ export var mboxImportExport = {
     try {
       var folderMsgs = msgFolder.messages;
     } catch (ex) {
-      console.log( " messages exc")
       let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
       return;
@@ -546,7 +545,6 @@ export var mboxImportExport = {
 
     let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
 
-    console.log("af wr")
     // we have to use different iterators for normal vs virtual folders
     function hasMoreMsgs() {
       if (isVirtualFolder) {

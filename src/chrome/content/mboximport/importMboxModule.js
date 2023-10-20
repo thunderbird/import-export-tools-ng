@@ -98,7 +98,7 @@ async function mboxCopyImport(options) {
   //const kREAD_CHUNK = (100 * 1000) + 13; //  1 bndry exc 1 bad msg
   //const kREAD_CHUNK = (100 * 1000) + 13; //  1 bndry exc 19492 msg write bndry exc
   // tail boundary check resolves the one bad message for 1GBmbox
-  const kREAD_CHUNK = (50 * 1000) + 15; //  1 bad msg exc 19493 msg write bndry exc
+  const kReadChunk = (50 * 1000) + 15; //  1 bad msg exc 19493 msg write bndry exc
 
 
   //const kREAD_CHUNK = 10000;
@@ -138,14 +138,14 @@ async function mboxCopyImport(options) {
       //console.log("start chunk")
       //console.log(lastException)
       // Read chunk as uint8
-      rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kREAD_CHUNK });
+      rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kReadChunk });
 
       // Determine final write chunk
-      if (rawBytes.byteLength < kREAD_CHUNK) {
+      if (rawBytes.byteLength < kReadChunk) {
         eof = true;
         finalChunk = rawBytes.byteLength;
       } else {
-        finalChunk = kREAD_CHUNK;
+        finalChunk = kReadChunk;
       }
 
       offset += rawBytes.byteLength;
@@ -193,6 +193,7 @@ async function mboxCopyImport(options) {
 
         //if(0) {
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
+         /*
           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
           lastException = true;
           console.log(finalChunk)
@@ -205,26 +206,7 @@ async function mboxCopyImport(options) {
 
 
           console.log("Tail processing")
-          // deal with buffer boundaries scenario
-          let strBufferTail = strBuffer.slice(-kExceptWin)
-          let Fregx = /^F/gm;
-          let FTailMatch = strBufferTail.matchAll(Fregx);
-          FTailMatch = [...FTailMatch];
-          //console.log("lastexcppos ",lastexpos)
-
-          //if (lastException || FTailMatch.length || strBuffer.slice(-1) == '\n') {
-          //if (lastexpos && lastexpos < 250) {
-          if (0) {
-            console.log("lastexcppos ", lastexpos)
-            console.log("Fmatch ", FTailMatch.length)
-            console.log("lf end ", strBuffer.slice(-1) == '\n')
-            if (FTailMatch.length) {
-              console.log(FTailMatch[0])
-              console.log(FTailMatch[0].index)
-
-            }
-          }
-
+          
           let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
           // convert to faster String for regex etc
           let boundaryStrBuffer = strBuffer.slice(-kExceptWin) + bytesToString(rawBytesNextBuf);
@@ -258,7 +240,7 @@ async function mboxCopyImport(options) {
             console.log("no boundary buf Exception ")
 
           }
-
+*/
 
         } else {
           //console.log("ep")
@@ -279,6 +261,7 @@ async function mboxCopyImport(options) {
           writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
         }
 
+        /*
         if (((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) > kExceptWin) || !fromExceptions.length) {
           console.log("tail check ", cnt)
           let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
@@ -301,11 +284,15 @@ async function mboxCopyImport(options) {
 
 
         }
-
+*/
       }
 
-      //if (cnt == 12679) {
-      if (fromExceptions.length == 0) {
+      if (1) {
+      if (cnt == 4796) {
+
+        console.log("cnt 4796")
+      }
+      //if (fromExceptions.length == 0) {
       //if (((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) > kExceptWin) || !fromExceptions.length) {
         //console.log("tail check end ", cnt)
         let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
@@ -315,12 +302,14 @@ async function mboxCopyImport(options) {
         let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
         singleFromException = [...singleFromException]
         if (singleFromException.length) {
-          let epos = kREAD_CHUNK - (kExceptWin - singleFromException[0].index)
+          let epos = kReadChunk - (kExceptWin - singleFromException[0].index)
         console.log("tail check end ", cnt)
 
           //console.log("end", lastException, strBuffer.slice(-200))
           console.log("last boundary buf Exception ")
           console.log("boundary buf")
+          console.log(strBuffer.slice(-kExceptWin))
+
           console.log(boundaryStrBuffer)
           console.log(singleFromException)
           console.log(strBuffer.substring(epos, epos +80))
@@ -330,12 +319,17 @@ async function mboxCopyImport(options) {
           // write out up to From_ exception, write space then process
           // from Beginning of line.
           
+          console.log("writing exc ",cnt, fromEscCount)
+
           let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
           await IOUtils.write(targetMboxPath, raw, { mode: "append" });
           await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
 
           writePos = epos;
+
+          console.log("after cor:", strBuffer.substring(epos, epos +80))
+
           // console.log(writePos)
           // console.log("totalWrite bytes:", totalWrite)
 
@@ -361,6 +355,18 @@ async function mboxCopyImport(options) {
       let raw = stringToBytes(strBuffer.substring(writePos, finalChunk + 1));
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
 
+      if (cnt == 4796) {
+
+        console.log("cnt 4796 write")
+        await IOUtils.copy(targetMboxPath, "C:\\Dev\\targ4796")
+      }
+
+      if (cnt == 4797) {
+
+        console.log("cnt 4797 wr")
+        await IOUtils.copy(targetMboxPath, "C:\\Dev\\targ4797")
+        
+      }
       // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
       writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
     }

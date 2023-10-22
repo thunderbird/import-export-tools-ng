@@ -156,17 +156,6 @@ async function mboxCopyImport(options) {
       // convert to faster String for regex etc
       let strBuffer = bytesToString(rawBytes);
 
-      let m = strBuffer.matchAll(/^From new carrier/gm);
-      m = [...m];
-
-      if (m.length) {
-        console.log("99999999999999")
-        console.log(cnt, m)
-        let pos = m[0].index;
-        console.log(strBuffer.substring(pos - 250, pos + 100))
-
-      }
-
       // match all From_ exceptions for escaping
       fromExceptions = strBuffer.matchAll(fromRegx);
       fromExceptions = [...fromExceptions];
@@ -179,12 +168,9 @@ async function mboxCopyImport(options) {
         fromExcpCount++;
         console.log(fromExcpCount, result.index, result)
         console.log((finalChunk - result.index))
-        //console.log(strBuffer.substring(result.index, (result.index + 90)))
 
         totalWrite += ((result.index - 1) - writePos);
 
-        //console.log(index, result)
-        //console.log(strBuffer.indexOf(result[1]))
         var exceptionPos = result.index;
 
         // handling last exception
@@ -196,55 +182,6 @@ async function mboxCopyImport(options) {
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
           console.log("defer last excp")
         fromExcpCount--;
-
-          /*
-           console.log(strBuffer.substring(strBuffer.indexOf(result[1])))
-           lastException = true;
-           console.log(finalChunk)
-           console.log(exceptionPos)
-           console.log(finalChunk - exceptionPos)
-           console.log(result)
-           console.log("Last exception window")
- 
-           //console.log(strBuffer.slice(-kExceptWin));
- 
- 
-           console.log("Tail processing")
-           
-           let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
-           // convert to faster String for regex etc
-           let boundaryStrBuffer = strBuffer.slice(-kExceptWin) + bytesToString(rawBytesNextBuf);
- 
-           console.log("boundary buf")
-           console.log(boundaryStrBuffer)
- 
-           let singleFromException = boundaryStrBuffer.match(fromRegx);
-           if (singleFromException) {
-             //console.log("end", lastException, strBuffer.slice(-200))
-             console.log("boundary buf Exception ")
- 
-             console.log(singleFromException)
-             // write normally 
- 
-             // write out up to From_ exception, write space then process
-             // from Beginning of line.
-             let raw = stringToBytes(strBuffer.substring(writePos, result.index));
- 
-             await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-             await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
- 
-             writePos = result.index;
-             // console.log(writePos)
-             // console.log("totalWrite bytes:", totalWrite)
- 
-             // This is for our ui status update
-             // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
-             writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
-           } else {
-             console.log("no boundary buf Exception ")
- 
-           }
- */
 
         } else {
           //console.log("ep")
@@ -265,30 +202,6 @@ async function mboxCopyImport(options) {
           writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
         }
 
-        /*
-        if (((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) > kExceptWin) || !fromExceptions.length) {
-          console.log("tail check ", cnt)
-          let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
-          // convert to faster String for regex etc
-          let boundaryStrBuffer = strBuffer.slice(-kExceptWin) + bytesToString(rawBytesNextBuf);
-
-          let singleFromException = boundaryStrBuffer.match(fromRegx);
-          if (singleFromException) {
-            //console.log("end", lastException, strBuffer.slice(-200))
-            console.log("last boundary buf Exception ")
-            console.log("boundary buf")
-            console.log(boundaryStrBuffer)
-            console.log(singleFromException)
-            // write normally 
-
-          } else {
-            //console.log("no boundary buf Exception ")
-
-          }
-
-
-        }
-*/
       }
 
       if (1) {
@@ -296,9 +209,7 @@ async function mboxCopyImport(options) {
 
           console.log("cnt 4796")
         }
-        //if (fromExceptions.length == 0) {
-        //if (((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) > kExceptWin) || !fromExceptions.length) {
-        //console.log("tail check end ", cnt)
+
         let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
         // convert to faster String for regex etc
         let boundaryStrBuffer = strBuffer.slice(-kExceptWin) + bytesToString(rawBytesNextBuf);

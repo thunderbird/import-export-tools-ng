@@ -851,7 +851,11 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			let newDestPath = PathUtils.join(destPath, newname);
 			file.initWithPath(newDestPath);
 
-			var zipName = folders[i].name;
+			var zipName = newname + ".zip";
+			console.log(zipName)
+			zipName = ietngUtils.createUniqueFolderName(zipName, destPath, false, false);
+			console.log(zipName)
+
 			zipFile.append(newname + ".zip");
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();

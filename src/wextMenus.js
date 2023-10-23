@@ -734,7 +734,7 @@ await((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-  await createMenus("", msgDisplayCtxMenuSet, { defaultContexts: ["page"] });
+  //await createMenus("", msgDisplayCtxMenuSet, { defaultContexts: ["page"] });
 
 
   // tbd translate
@@ -1178,7 +1178,7 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 async function copyToClipboard(ctxEvent, tab) {
   let params = {};
   
-  if (ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
+  if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
     console.log("msg", params.selectedMsgs)
 

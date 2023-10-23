@@ -831,7 +831,9 @@ async function IETexportZip(destdirNSIFILE, folders) {
 		if (file.exists()) {
 
 			var path = folders[i].name;
-			var destPath = destdirNSIFILE.path;
+			var zipDestPath = destdirNSIFILE.path;
+			var destPath = destdirNSIFILE.path + "\\ztmp";
+
 			let useMboxExt = false;
 			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 				useMboxExt = true;
@@ -849,14 +851,16 @@ async function IETexportZip(destdirNSIFILE, folders) {
 
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
+
 			file.initWithPath(newDestPath);
+			console.log(newDestPath)
 
-			var zipName = newname + ".zip";
-			console.log(zipName)
-			zipName = ietngUtils.createUniqueFolderName(zipName, destPath, false, false);
-			console.log(zipName)
 
-			zipFile.append(newname + ".zip");
+			var zipName = path + ".zip";
+			console.log(zipName)
+			zipName = ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
+			console.log(zipName)
+			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
 			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
@@ -870,6 +874,8 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			zipW.close();
 			await new Promise(resolve => window.setTimeout(resolve, 500));
 			IOUtils.remove(newDestPath);
+			IOUtils.remove(destPath);
+
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 
 		}

@@ -193,9 +193,14 @@ var ietngUtils = {
     }
     NSclone = destdirNSIFILE.clone();
     NSclone.append(foldername);
+    var ext = "";
     while (NSclone.exists()) {
       index++;
-      if (!useMboxExt) {
+      let comp = foldername.split(".");
+      if (comp.length > 1) {
+        ext = comp[comp.length - 1];
+        nameIndex = foldername.split(`.${ext}`)[0] + "-" + index.toString() + `.${ext}`;
+      } else if (!useMboxExt) {
       nameIndex = foldername + "-" + index.toString();
 
       } else {

@@ -104,7 +104,6 @@ async function mboxCopyImport(options) {
 
   //const kREAD_CHUNK = 10000;
   const kExceptWin = 300;
-  var lastexpos = null;
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -125,7 +124,6 @@ async function mboxCopyImport(options) {
     var writePos = 0;
     var totalWrite = 0;
     var finalChunk;
-    var lastException = false;
 
 
     let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
@@ -133,11 +131,10 @@ async function mboxCopyImport(options) {
     let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
 
     console.log("start import")
-    //console.log(lastException)
 
     while (!eof) {
       //console.log("start chunk")
-      //console.log(lastException)
+
       // Read chunk as uint8
       rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kReadChunk });
 
@@ -163,11 +160,11 @@ async function mboxCopyImport(options) {
       //console.log("Total From Excp: ", fromExceptions.length)
 
       for (const [index, result] of fromExceptions.entries()) {
-        //console.log(lastException)
 
         fromExcpCount++;
-        console.log(fromExcpCount, result.index, result)
-        console.log((finalChunk - result.index))
+
+        console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
+        //console.log((finalChunk - result.index))
 
         totalWrite += ((result.index - 1) - writePos);
 
@@ -175,12 +172,8 @@ async function mboxCopyImport(options) {
 
         // handling last exception
 
-        lastException = false;
-        lastexpos = null;
-
-        //if(0) {
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-          console.log("defer last excp")
+          //console.log("defer last excp")
         fromExcpCount--;
 
         } else {
@@ -205,10 +198,7 @@ async function mboxCopyImport(options) {
       }
 
       if (1) {
-        if (cnt == 4796) {
-
-          console.log("cnt 4796")
-        }
+        
 
         let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
         // convert to faster String for regex etc
@@ -221,7 +211,6 @@ async function mboxCopyImport(options) {
             console.log("tail check end ", cnt, epos)
           console.log(kReadChunk - epos)
 
-          //console.log("end", lastException, strBuffer.slice(-200))
           console.log("last boundary buf Exception ")
           console.log("boundary buf")
           console.log(strBuffer.slice(-kExceptWin))
@@ -246,7 +235,7 @@ async function mboxCopyImport(options) {
 
             writePos = epos;
 
-            console.log("after cor:", strBuffer.substring(epos, epos + 80))
+            //console.log("after cor:", strBuffer.substring(epos, epos + 80))
 
             // console.log(writePos)
             // console.log("totalWrite bytes:", totalWrite)
@@ -254,6 +243,9 @@ async function mboxCopyImport(options) {
             // This is for our ui status update
             // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
             writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
+          } else {
+            console.log("no boundary buf Exception ")
+
           }
 
         } else {
@@ -273,18 +265,7 @@ async function mboxCopyImport(options) {
       let raw = stringToBytes(strBuffer.substring(writePos, finalChunk + 1));
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
 
-      if (cnt == 4796) {
-
-        console.log("cnt 4796 write")
-        await IOUtils.copy(targetMboxPath, "C:\\Dev\\targ4796")
-      }
-
-      if (cnt == 4797) {
-
-        console.log("cnt 4797 wr")
-        await IOUtils.copy(targetMboxPath, "C:\\Dev\\targ4797")
-
-      }
+      
       // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
       writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
     }

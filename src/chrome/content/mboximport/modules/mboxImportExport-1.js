@@ -32,7 +32,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("mboximportExport b5");
+console.log("mboximportExport -1");
 
 export var mboxImportExport = {
 

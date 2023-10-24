@@ -165,7 +165,9 @@ async function mboxCopyImport(options) {
         fromExcpCount++;
 
         console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
-        //console.log((finalChunk - result.index))
+        let pos = result.index;
+        console.log(strBuffer.substring(pos, pos + 200))
+        console.log((finalChunk - result.index))
 
         totalWrite += ((result.index - 1) - writePos);
 
@@ -174,11 +176,11 @@ async function mboxCopyImport(options) {
         // handling last exception
 
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-          //console.log("defer last excp")
+          console.log("defer last exception : process as tail")
         fromExcpCount--;
 
         } else {
-          //console.log("ep")
+          console.log("write exception")
 
           // write out up to From_ exception, write space then process
           // from Beginning of line.

@@ -5,7 +5,7 @@
 <!ENTITY changeProfileNameLabel "Du kan altid ændre profilnavnet i profilmanageren">
 <!ENTITY intro2 "Mappen indeholder en gyldig profil, der kan importeres. Under denne procedure, som kan tage flere minutter eller mere, kan du ikke bruge programmet.">
 <!ENTITY start "Start import">
-<!ENTITY importRunning "Import kører...">
+<!ENTITY importRunning "Import kører…">
 <!ENTITY importEnd "Importen lykkedes!">
 <!ENTITY intro3 "For at tilgå den importerede profil, kør profilmanageren ved at klikke på knappen nedenunder. Den nuværende profil vil automatisk blive lukket">
 <!ENTITY runProfileManager "Kør profilmanageren">

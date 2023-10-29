@@ -211,7 +211,17 @@ async function exportSelectedMsgs(type, params) {
 		curDBView = gTabmail.currentAboutMessage.gDBView;
 	}
 
-	let emlsArray = curDBView.getURIsForSelection();
+	let emlsArray;
+
+	// check if we have one selected message from wext menu
+
+	if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
+		let realMessage = window.ietngAddon.extension
+			.messageManager.get(params.selectedMessages.messages[0].id);
+		emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
+	} else {
+			emlsArray = curDBView.getURIsForSelection();
+	}
 
 	// Use first message to get current folder
 	var mms1 = MailServices.messageServiceFromURI(emlsArray[0]).QueryInterface(Ci.nsIMsgMessageService);

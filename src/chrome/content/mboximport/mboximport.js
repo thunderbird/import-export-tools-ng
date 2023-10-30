@@ -810,7 +810,8 @@ async function exportfolder(params) {
 		return;
 	}
 
-	if (folders[0].isServer) {
+	if (folders[0].isServer && keepstructure) {
+		console.log("exp acc")
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
@@ -838,6 +839,14 @@ async function exportfolder(params) {
 
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
+	if (folders[0].isServer) {
+		let accountName = rootFolder.prettyName;
+		if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+			accountName += ".mbox";
+		}
+		console.log(accountName)
+		await IOUtils.remove(PathUtils.join(destPath, accountName));
+	}
 	return;
 
 

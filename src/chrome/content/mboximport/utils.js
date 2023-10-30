@@ -671,6 +671,7 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 }
 
 function getMsgFolderFromAccountAndPath(accountId, folderPath) {
+
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
 	return msgFolder;
 }

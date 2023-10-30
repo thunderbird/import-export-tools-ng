@@ -879,7 +879,7 @@ async function wextctx_toolsMenu(ctxEvent) {
 }
 
 async function wextctx_folderMenu(ctxEvent) {
-  //console.log(ctxEvent);
+  console.log(ctxEvent);
   var params = {};
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side
@@ -948,6 +948,9 @@ async function wextctx_folderMenu(ctxEvent) {
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
       return;
     case folderCtxMenu_Imp_MboxFiles_Id:
+      if (!params.selectedFolder) {
+        params.selectedFolder = "__rootFolder__";
+      }
       switch (ctxEvent.menuItemId) {
         case folderCtxMenu_Imp_MboxFilesIndv_Id:
           params.mboxImpType = "individual";
@@ -1053,8 +1056,8 @@ async function menusUpdate(info, tab) {
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
-    messenger.menus.update(msgDisplayCtxMenu_Top_Id, {visible: (tab.type == "mail" || tab.type == "messageDisplay")});
-    messenger.menus.update(msgCtxMenu_TopId, {visible: (tab.type == "mail" || tab.type == "messageDisplay")});
+    messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
+    messenger.menus.update(msgCtxMenu_TopId, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
     messenger.menus.refresh();
     return;
   }
@@ -1089,23 +1092,43 @@ async function menusUpdate(info, tab) {
   if (accountId && !folderPath) {
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 
-
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { title: newTitle });
     await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: false });
-    await messenger.menus.update("folderCtxMenu_Sep1", { visible: false });
+    await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
+    await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
+    await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep2", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
+
+
+    // disable for importing mbox to imaap or nntp
+    if (info.menuIds[0] == folderCtxMenu_TopId) {
+
+      if (
+        (await messenger.accounts.get(accountId)).type == "imap" ||
+        (await messenger.accounts.get(accountId)).type == "rss" ||
+        (await messenger.accounts.get(accountId)).type == "nntp") {
+        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+      } else {
+        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+      }
+    }
+
+
+    // disable submenus
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
+
     await messenger.menus.refresh();
     return;
   }
@@ -1126,6 +1149,12 @@ async function menusUpdate(info, tab) {
   await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
   await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
   await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
+
+  // enable submenus
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: true });
+
   await messenger.menus.refresh();
 
 
@@ -1177,7 +1206,7 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 
 async function copyToClipboard(ctxEvent, tab) {
   let params = {};
-  
+
   if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
     console.log("msg", params.selectedMsgs)
@@ -1188,7 +1217,7 @@ async function copyToClipboard(ctxEvent, tab) {
   }
 
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
-      ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
+    ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";
   } else {
     params.clipboardType = "Headers";

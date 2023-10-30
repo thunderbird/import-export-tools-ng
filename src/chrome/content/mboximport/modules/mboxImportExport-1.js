@@ -77,7 +77,13 @@ export var mboxImportExport = {
       mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
     }
 
-    var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+    
+    var msgFolder;
+    if (params.selectedAccount) {
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, "/");
+    } else {
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+    }
 
     await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
 

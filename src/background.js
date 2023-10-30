@@ -136,41 +136,36 @@ function main() {
 
 }
 
+var helpLocales = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
+	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
 async function wextOpenHelp(info) {
 	var locale = messenger.i18n.getUILanguage();
 
+	if (!helpLocales.includes(locale)) {
+		var baseLocale = locale.split("-")[0];
+
+		locale = helpLocales.find(l => l.split("-")[0] == baseLocale)
+		if (!locale) {
+			locale = "en-US";
+		}
+	}
 	var bm = "";
 	if (info.bmark) {
 		bm = info.bmark;
 	}
-	info.opentype = "tab";
 	try {
 		if (info.opentype == "tab") {
-			// use fetch to see if help file exists, throws if not, fix #212
-			await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
 			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
 		} else {
-			await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
 			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
-
 		}
-	} catch {
-		try {
-			locale = locale.Split('-')[0];
-			if (info.opentype == "tab") {
-				await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
-				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
-			} else {
-				await fetch(`chrome/content/mboximport/help/locale/${locale}/importexport-help.html`);
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
-			}
-		} catch {
+	} catch (ex) {
 			if (info.opentype == "tab") {
 				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 })
 			} else {
 				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
 			}
 		}
-	}
-	return "help";
 }
+

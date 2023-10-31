@@ -1107,10 +1107,10 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
-    await messenger.menus.update("folderCtxMenu_Sep2", { visible: false });
-    await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep2", { visible: true });
+    await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
-    await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
     await messenger.menus.refresh();
 
 

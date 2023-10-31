@@ -1056,10 +1056,13 @@ async function menusUpdate(info, tab) {
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
-    messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
-    messenger.menus.update(msgCtxMenu_TopId, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
-    messenger.menus.refresh();
-    return;
+    await messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
+    await messenger.menus.update(msgCtxMenu_TopId, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
+    await messenger.menus.refresh();
+  } else {
+    await messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: false });
+    await messenger.menus.update(msgCtxMenu_TopId, { visible: true });
+    await messenger.menus.refresh();
   }
 
   // check if we have attachment menu open

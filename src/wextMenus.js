@@ -1111,6 +1111,7 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
+    await messenger.menus.refresh();
 
 
     // disable for importing mbox to imaap or nntp
@@ -1121,8 +1122,10 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+        await messenger.menus.refresh();
       } else {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+        await messenger.menus.refresh();
       }
     }
 

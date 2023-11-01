@@ -136,9 +136,12 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "timeMsg", text: "Time"},
-  { key: "messagesMsg", text: "Messages"},
+  { key: "copyMsgsToClip_promptTitle", text: "Copy Messages to Clipboard"},
+  { key: "copyMsgsToClip_firstOnly", text: "Multiple messages selected, only the fist message copied to clipboard."},
+  { key: "copyHdrsToClip_promptTitle", text: "Copy Headers to Clipboard"},
+  { key: "copyHdrsToClip_firstOnly", text: "Multiple messages selected, only fist message headers copied to clipboard."},
 
+	
 
 	
 ];
@@ -590,7 +593,7 @@ var options = {
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
-	skipEN: false,
+	skipEN: true,
 	outputFormat: 1,
 };
 

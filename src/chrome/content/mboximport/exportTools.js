@@ -1907,11 +1907,13 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 async function copyMSGtoClip(selectedMsgs) {
 	var msguri;
 
+	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
+	let copyMsgsToClip_firstOnly = mboximportbundle.GetStringFromName("copyMsgsToClip_firstOnly");
 	if (selectedMsgs.length > 1) {
 		let prompt = Services.prompt;
 		let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
-		let buttonReturn = Services.prompt.confirmEx(window, "Copy Messages to Clipboard",
-			"Multiple messages selected, only the fist message copied to clipboard.",
+		let buttonReturn = Services.prompt.confirmEx(window, copyMsgsToClip_promptTitle,
+			copyMsgsToClip_firstOnly,
 			buttonFlags,
 			null,
 			null,
@@ -1977,12 +1979,13 @@ var copyHeaders = {
 
 	start: async function (selectedMsgs) {
 		var msguri;
-
+		let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
+		let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
 		if (selectedMsgs.length > 1) {
 			let prompt = Services.prompt;
 			let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
-			let buttonReturn = Services.prompt.confirmEx(window, "Copy Headers to Clipboard",
-				"Multiple messages selected, only fist message headers copied to clipboard.",
+			let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
+				copyHdrsToClip_firstOnly,
 				buttonFlags,
 				null,
 				null,

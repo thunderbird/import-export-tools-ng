@@ -788,16 +788,27 @@ async function createtitles(name, menuArray, options) {
 
 // Message Context Menu Handlers
 
-async function wextctx_ExportAs(ctxEvent) {
-  //console.log(ctxEvent);
+async function wextctx_ExportAs(ctxEvent, tab) {
+  console.log(ctxEvent);
+
   var params = {};
+
+
 
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side
-  params.selectedFolder = ctxEvent.displayedFolder;
-  params.selectedAccount = ctxEvent.selectedAccount;
-  params.selectedMessages = ctxEvent.selectedMessages;
+  // we don't get these in the messageDisplay so have to 
+  // get indirectly from messageDisplay 
 
+  if (!ctxEvent.pageUrl) {
+    params.selectedFolder = ctxEvent.displayedFolder;
+    params.selectedAccount = ctxEvent.selectedAccount;
+    params.selectedMessages = ctxEvent.selectedMessages;
+  } else {
+    let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
+    params.selectedMessages = { id: 0, messages: [msg] };
+    params.selectedFolder = msg.folder;
+  }
 
   if (ctxEvent.menuItemId.includes("MsgsOnly")) {
     params.msgsOnly = true;
@@ -1091,8 +1102,11 @@ async function menusUpdate(info, tab) {
     folderPath = info.displayedFolder.path;
   }
 
+  console.log("check acc")
   // update for an account item
   if (accountId && !folderPath) {
+    console.log("upd acc")
+
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;

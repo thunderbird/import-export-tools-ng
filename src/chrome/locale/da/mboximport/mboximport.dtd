@@ -122,4 +122,4 @@
 <!ENTITY inlineAttachmentsFolders "Mapper med indlejrede vedhæftede filer">
 <!ENTITY cutPathLen "Klip filstilængden til 256 tegn">
 <!ENTITY strip_eml_CR.label "Fjern CR fra linjeafslutninger for eml-meddelelseseksport">
-<!ENTITY useMboxExt.label "Brug .mbox-udvidelsen til mbox-filer (ikke-struktureret)">
+<!ENTITY useMboxExt.label "Brug filendelsen .mbox til mbox-filer (ikke-struktureret)">

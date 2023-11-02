@@ -734,10 +734,6 @@ await((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-  //await createMenus("", msgDisplayCtxMenuSet, { defaultContexts: ["page"] });
-
-
-  // tbd translate
   await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"), contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
 
 })());
@@ -1102,10 +1098,8 @@ async function menusUpdate(info, tab) {
     folderPath = info.displayedFolder.path;
   }
 
-  console.log("check acc")
   // update for an account item
   if (accountId && !folderPath) {
-    console.log("upd acc")
 
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 

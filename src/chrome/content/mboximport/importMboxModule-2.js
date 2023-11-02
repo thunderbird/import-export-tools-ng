@@ -46,7 +46,7 @@ onmessage = async function (event) {
   }
 };
 
-console.log("mbimport -1")
+console.log("mboxImportModule -2")
 
 // mboxCopyImport reads, processes and writes a single mbox file
 // we only do IOUtils and file processing no large data transfers

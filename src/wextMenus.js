@@ -1100,7 +1100,7 @@ async function menusUpdate(info, tab) {
 
   // update for an account item
   if (accountId && !folderPath) {
-
+    console.log("account menu")
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;
@@ -1131,8 +1131,21 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
         await messenger.menus.refresh();
+        console.log("account imp mbox disable")
+
       } else {
-        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+        // we are a LF, check store type
+        let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
+        // 0 = mbox
+        if (mailStoreType == 0) {
+          await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
+          await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
+        } else {
+        console.log("account maildir imp mbox disable")
+          
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+
+        }
         await messenger.menus.refresh();
       }
     }
@@ -1148,6 +1161,7 @@ async function menusUpdate(info, tab) {
   }
 
   // default visibility
+  console.log("def visibility")
   await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
@@ -1174,6 +1188,8 @@ async function menusUpdate(info, tab) {
 
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
+    console.log("check store type")
+
     let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
     // 0 = mbox
     if (mailStoreType == 0) {
@@ -1200,6 +1216,7 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "imap" ||
       (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
+      console.log("disable for imap")
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });

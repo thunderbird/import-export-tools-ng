@@ -653,8 +653,11 @@ function IETemlx2eml(file) {
 }
 
 function getMailStoreFromFolderPath(accountId, folderPath) {
+	if (!folderPath) {
+		folderPath = "/";
+	}
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
-
+	console.log(msgFolder.isServer)
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");

@@ -1626,14 +1626,24 @@ function openIEToptions() {
 }
 
 function IETcopyFolderPath(params) {
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 
 	var file = msgFolder2LocalFile(msgFolder);
 	IETcopyStrToClip(file.path);
 }
 
 function IETopenFolderPath(params) {
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 
 	var file = msgFolder2LocalFile(msgFolder);
 	var parent;

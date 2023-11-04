@@ -1134,12 +1134,18 @@ async function menusUpdate(info, tab) {
         console.log("account imp mbox disable")
 
       } else {
+        console.log("account store check")
+
         // we are a LF, check store type
         let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
         // 0 = mbox
         if (mailStoreType == 0) {
           await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
           await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+          
+
         } else {
         console.log("account maildir imp mbox disable")
           

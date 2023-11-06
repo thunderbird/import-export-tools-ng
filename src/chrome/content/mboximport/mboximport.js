@@ -58,7 +58,7 @@ globalThis,
 */
 
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 // var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
@@ -130,26 +130,27 @@ var IETprintPDFmain = {
 			return;
 
 		if (!allMessages) {
+			
 			var curDBView;
-	// Lets see where we are
-	if (gTabmail.currentAbout3Pane) {
-		// On 3p
-		curDBView = gTabmail.currentAbout3Pane.gDBView;
-	} else if (gTabmail.currentAboutMessage) {
-		curDBView = gTabmail.currentAboutMessage.gDBView;
-	}
+			// Lets see where we are
+			if (gTabmail.currentAbout3Pane) {
+				// On 3p
+				curDBView = gTabmail.currentAbout3Pane.gDBView;
+			} else if (gTabmail.currentAboutMessage) {
+				curDBView = gTabmail.currentAboutMessage.gDBView;
+			}
 
-	var emlsArray;
+			var emlsArray;
 
-	// check if we have one selected message from wext menu
+			// check if we have one selected message from wext menu
 
-	if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
-		let realMessage = window.ietngAddon.extension
-			.messageManager.get(params.selectedMessages.messages[0].id);
-		emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
-	} else {
-			emlsArray = curDBView.getURIsForSelection();
-	}
+			if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
+				let realMessage = window.ietngAddon.extension
+					.messageManager.get(params.selectedMessages.messages[0].id);
+				emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
+			} else {
+				emlsArray = curDBView.getURIsForSelection();
+			}
 
 			IETprintPDFmain.uris = emlsArray;
 		} else {
@@ -837,7 +838,7 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
-		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
 	if (folders[0].isServer) {
 		let accountName = rootFolder.prettyName;
@@ -873,8 +874,8 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			//let newname = findGoodFolderName(path, destdirNSIFILE, false);
 			path = newname;
 			//if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-				//path += ".mbox";
-				//newname += ".mbox";
+			//path += ".mbox";
+			//newname += ".mbox";
 			//}
 			console.log(newname)
 			console.log(path)

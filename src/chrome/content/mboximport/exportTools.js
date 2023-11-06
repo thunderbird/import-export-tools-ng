@@ -211,17 +211,58 @@ async function exportSelectedMsgs(type, params) {
 		curDBView = gTabmail.currentAboutMessage.gDBView;
 	}
 
-	let emlsArray;
+	var emlsArray = [];
 
+	// This should be changed to use pure wext selected message list
+	// Have to determine most efficient way for large message sets
+
+	// we have three scenarios params.selectedMessages exists,
+	// there is a null id therefore fewer than 100 msgs, or
+	// a valid id indicating more than 100 msgs, if no
+	// params we are coming from a shortcut and have to request
+	// the selected msgs
 	// check if we have one selected message from wext menu
 
+	if (params) {
+		// check if we have a valid id (over 100)
+		if (params.selectedMessages.id) {
+			// over 100, use the dbview
+			emlsArray = curDBView.getURIsForSelection();
+		} else {
+			// under, use params.selectedMessages
+			params.selectedMessages.messages.forEach(msg => {
+				let realMessage = window.ietngAddon.extension
+					.messageManager.get(msg.id);
+
+				let uri = realMessage.folder.getUriForMsg(realMessage);
+				emlsArray.push(uri);
+			});
+		}
+	} else {
+		// no params
+		var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
+		if (msgIdList.id) {
+			emlsArray = curDBView.getURIsForSelection();
+		} else {
+			msgIdList.messages.forEach(msg => {
+				let realMessage = window.ietngAddon.extension
+					.messageManager.get(msg.id);
+
+				let uri = realMessage.folder.getUriForMsg(realMessage);
+				emlsArray.push(uri);
+			});
+		}
+	}
+
+/*
 	if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
 		let realMessage = window.ietngAddon.extension
 			.messageManager.get(params.selectedMessages.messages[0].id);
 		emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
 	} else {
-			emlsArray = curDBView.getURIsForSelection();
+		emlsArray = curDBView.getURIsForSelection();
 	}
+*/
 
 	// Use first message to get current folder
 	var mms1 = MailServices.messageServiceFromURI(emlsArray[0]).QueryInterface(Ci.nsIMsgMessageService);

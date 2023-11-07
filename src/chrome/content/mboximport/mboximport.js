@@ -130,29 +130,9 @@ var IETprintPDFmain = {
 			return;
 
 		if (!allMessages) {
-			
-			var curDBView;
-			// Lets see where we are
-			if (gTabmail.currentAbout3Pane) {
-				// On 3p
-				curDBView = gTabmail.currentAbout3Pane.gDBView;
-			} else if (gTabmail.currentAboutMessage) {
-				curDBView = gTabmail.currentAboutMessage.gDBView;
-			}
 
-			var emlsArray;
+			IETprintPDFmain.uris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
 
-			// check if we have one selected message from wext menu
-
-			if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
-				let realMessage = window.ietngAddon.extension
-					.messageManager.get(params.selectedMessages.messages[0].id);
-				emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
-			} else {
-				emlsArray = curDBView.getURIsForSelection();
-			}
-
-			IETprintPDFmain.uris = emlsArray;
 		} else {
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];

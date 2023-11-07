@@ -202,6 +202,7 @@ async function exportSelectedMsgs(type, params) {
 		}
 	} catch (e) { }
 
+
 	var curDBView;
 	// Lets see where we are
 	if (gTabmail.currentAbout3Pane) {
@@ -211,62 +212,13 @@ async function exportSelectedMsgs(type, params) {
 		curDBView = gTabmail.currentAboutMessage.gDBView;
 	}
 
-	var emlsArray = [];
+	var msgUris = [];
 
-	// This should be changed to use pure wext selected message list
-	// Have to determine most efficient way for large message sets
-
-	// we have three scenarios params.selectedMessages exists,
-	// there is a null id therefore fewer than 100 msgs, or
-	// a valid id indicating more than 100 msgs, if no
-	// params we are coming from a shortcut and have to request
-	// the selected msgs
-	// check if we have one selected message from wext menu
-
-	if (params) {
-		// check if we have a valid id (over 100)
-		if (params.selectedMessages.id) {
-			// over 100, use the dbview
-			emlsArray = curDBView.getURIsForSelection();
-		} else {
-			// under, use params.selectedMessages
-			params.selectedMessages.messages.forEach(msg => {
-				let realMessage = window.ietngAddon.extension
-					.messageManager.get(msg.id);
-
-				let uri = realMessage.folder.getUriForMsg(realMessage);
-				emlsArray.push(uri);
-			});
-		}
-	} else {
-		// no params
-		var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
-		if (msgIdList.id) {
-			emlsArray = curDBView.getURIsForSelection();
-		} else {
-			msgIdList.messages.forEach(msg => {
-				let realMessage = window.ietngAddon.extension
-					.messageManager.get(msg.id);
-
-				let uri = realMessage.folder.getUriForMsg(realMessage);
-				emlsArray.push(uri);
-			});
-		}
-	}
-
-/*
-	if (params.selectedMessages.messages.length == 1 && params.selectedMessages.messages[0].id) {
-		let realMessage = window.ietngAddon.extension
-			.messageManager.get(params.selectedMessages.messages[0].id);
-		emlsArray = [realMessage.folder.getUriForMsg(realMessage)];
-	} else {
-		emlsArray = curDBView.getURIsForSelection();
-	}
-*/
+	msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
 
 	// Use first message to get current folder
-	var mms1 = MailServices.messageServiceFromURI(emlsArray[0]).QueryInterface(Ci.nsIMsgMessageService);
-	var hdr1 = mms1.messageURIToMsgHdr(emlsArray[0]);
+	var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
+	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
 
 	try {
@@ -302,8 +254,8 @@ async function exportSelectedMsgs(type, params) {
 	if (isOffLineImap) {
 		var tempArray = [];
 
-		for (var i = 0; i < emlsArray.length; i++) {
-			var eml = emlsArray[i];
+		for (var i = 0; i < msgUris.length; i++) {
+			var eml = msgUris[i];
 			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 			var hdr = mms.messageURIToMsgHdr(eml);
 
@@ -312,22 +264,22 @@ async function exportSelectedMsgs(type, params) {
 			else
 				IETskipped = IETskipped + 1;
 		}
-		emlsArray = tempArray;
+		msgUris = tempArray;
 	}
-	IETtotal = emlsArray.length;
+	IETtotal = msgUris.length;
 	IETexported = 0;
-	var msguri = emlsArray[0];
+	var msguri = msgUris[0];
 
 	var hdrArray;
 	switch (type) {
 		case 1:
-			exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null);
+			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
 			break;
 		case 2:
-			exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null);
+			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
 			break;
 		case 3:
-			saveMsgAsEML(msguri, file, true, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 4:
 			if (isMbox(file) !== 1) {
@@ -335,32 +287,32 @@ async function exportSelectedMsgs(type, params) {
 				alert(string);
 				return;
 			}
-			saveMsgAsEML(msguri, file, true, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 5:
-			hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 			createIndex(type, file, hdrArray, msgFolder, true, true);
 			break;
 		case 6:
-			hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 			createIndexCSV(type, file, hdrArray, msgFolder, false);
 			break;
 		case 7:
-			hdrArray = IETemlArray2hdrArray(emlsArray, true, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, true, file);
 			createIndexCSV(type, file, hdrArray, msgFolder, true);
 			break;
 		case 8:
-			exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, true);
+			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
 			break;
 		case 9:
-			exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, true);
+			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
 			break;
 		default:
-			saveMsgAsEML(msguri, file, false, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
 	}
 
 	if (needIndex) {
-		hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+		hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 		createIndex(type, file, hdrArray, msgFolder, false, false);
 	}
 	if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))

@@ -18,6 +18,27 @@
         </td>
       </tr>
     </table>
+    <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
+    <p>
+      - Új: Fiókszintű mbox import hozzáadása<br />
+      - Új: Fiókszintű mbox exportálás hozzáadása<br />
+      - Új: támogatja az mbox importálást és exportálást a filesys szintre<br />
+      - CSV-exportálás javítása #451, #463 szöveghez<br />
+      - Javítsa ki az export mappát ZIP-re<br />
+      - Csak az IETNG-frissítések súgóterhelésének javítása<br />
+      - Adja hozzá azt a beállítást, hogy soha ne töltse be a súgót a 458-as frissítésekhez<br />
+      extensions.importexporttoolsng.export.help.showOnInstallAndUpdate<br />
+      - Javítsa ki a súgót a szublokálokhoz és a nem támogatott területi beállításokhoz<br />
+      - Javítsa ki az mbox From_ elválasztókat, hogy azok megfeleljenek az RFC 4155 #455 szabványnak<br />
+      - Új üzenetek exportálása az üzenet-megjelenítő ablakokban #459<br />
+      - Fiókexport javítása a pop3 számára<br />
+      - Javítsa ki a pufferhatárt From_ escapeing<br />
+      - A kiválasztott üzenetkezelés javítása #485<br />
+      - Teljesítse a területi beállításokat @Mr-Update<br />
+      - Teljesítsd az fr locale frissítést @DenB10<br />
+      - Teljesítsd a területi beállítások frissítését @Joergen<br />
+      - Frissítve és locale @kiki-ja<br />
+    </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
       Az ImportExportTools NG egy további bővítmény, amely Paolo &quot;Kaosmos&quot; eredeti munkáján alapul.
@@ -102,10 +123,6 @@
             Exportáljon egy mappát az összes almappájával együtt mbox formátumú fájlkészletbe, minden
             almappához egyet, amelyet egyetlen mappába exportál.
           </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-          <td>Távoli (imap) mappa exportálása egyetlen mbox fájlba.</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -887,6 +904,11 @@
         Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
         - <code class="notranslate">@ovari</code><br />
         - <code class="notranslate">@dipgithub</code><br />
         - <code class="notranslate">@artofit</code><br />

@@ -18,23 +18,38 @@
         </td>
       </tr>
     </table>
+    <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
+    <p>
+      - 新增：添加帐户级别 mbox 导入<br />- 新增功能：添加帐户级别 mbox 扁平化导出<br />- 新功能：支持 mbox
+      导入和导出到文件系统级别<br />- 修复 CSV 导出到文本 #451、#463<br />
+      - 修复导出文件夹为 ZIP<br />
+      - 修复了仅在 IETNG 更新时加载帮助的问题<br />- 添加偏好设置以从不加载更新帮助#458<br />扩展.importexporttoolsng.export.help.showOnInstallAndUpdate<br />
+      - 修复子区域设置和不受支持的区域设置的帮助<br />- 修复 mbox From_ 分隔符以遵守 RFC 4155 #455<br />
+      - 在消息显示窗口中重新添加导出消息#459<br />
+      - 修复 pop3 的帐户导出<br />- 修复缓冲区边界From_转义<br />- 修复选定消息的处理#485<br />
+      - 完成区域设置更新@Mr-Update<br />
+      - 完成 fr 语言环境更新@DenB10<br />
+      - 完成区域设置更新@Joergen<br />
+      - 更新了 ja 语言环境@kiki-ja<br />
+    </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
-      ImportExportTools NG 是基于 Paolo “Kaosmos”
-      原创作品的后续扩展。该扩展提供了多种导入和导出功能，支持多种不同的文件格式，包括：
+      ImportExportTools NG 是基于
+      Paolo“Kaosmos”原创作品的后续扩展。该扩展提供了多种导入和导出功能，支持多种不同的文件格式，包括：
       注意：并非所有功能都支持某些格式。<br />
       - mbox<br />
       - EML<br />
       - 邮件目录<br />- HTML<br />
       - 纯文本<br />- CSV（逗号分隔值）<br />
-      - PDF<br /><br />虽然大部分功能都围绕消息展开，但也支持导入和导出 Thunderbird
-      配置文件。此外，导出还可以包括 HTML 或 CSV 索引文件。 Thunderbird 配置文件的备份是另一个功能。<br />
+      - PDF<br /><br />虽然大部分功能都围绕着消息，但也支持 Thunderbird
+      配置文件的导入和导出。此外，导出还可以包括 HTML 或 CSV 索引文件。 Thunderbird
+      配置文件的备份是另一个功能。<br />
       <p>
-        访问 IETng 功能是通过扩展安装的几个不同菜单完成的。这些功能是上下文相关的。添加了以下菜单：<br />
-        - The Folder Pane Context（文件夹操作）<br />
+        访问 IETng 功能是通过扩展安装的几个不同的菜单来完成的。这些函数是上下文相关的。添加菜单用于：<br />
+        - 文件夹窗格上下文（文件夹操作）<br />
         - 消息列表上下文（选定的消息）<br />
         - 工具菜单（配置文件和备份操作）<br /><br />
-        “工具菜单”下可访问的选项不在“汉堡包”菜单中，它们将在未来的版本中。这些功能在新的工具栏按钮中也可用。每个菜单和按钮还有一个帮助和选项菜单项，用于访问选项对话框。<br />
+        “工具菜单”下可访问的选项不在“汉堡”菜单中，它们将在未来版本中出现。这些功能也可在新的工具栏按钮中使用。每个菜单和按钮还具有“帮助”和“选项”菜单项，用于访问选项对话框。<br />
       </p>
     </p>
     <h3>支持：</h3>
@@ -42,7 +57,7 @@
       请在扩展 GitHub 存储库中发布问题或功能请求：
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG 问题</a
-      ><br /><br />在错误问题中，包括以下信息以帮助解决问题：<br />
+      ><br /><br />在错误问题中，包含以下信息以帮助解决问题：<br />
       - ImportExportTools NG版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
       使用 Control-Shift-J 访问）<br />
       - 导致问题的步骤的描述<br />
@@ -59,7 +74,7 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            以 mbox 格式导出具有结构和子文件夹的整个帐户。导出是使用带有帐户名称的容器完成的。<br />注意：此菜单项仅在右键单击帐户条目时出现。
+            以 mbox 格式导出整个帐户及其结构和子文件夹。导出是使用具有帐户名称的容器完成的。<br />注意：此菜单项仅在右键单击帐户条目时出现。
           </td>
         </tr>
         <tr>
@@ -78,17 +93,13 @@
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>将包含其所有子文件夹的文件夹导出到 mbox 格式的消息树</td>
+          <td>将包含其所有子文件夹的文件夹导出为 mbox 格式消息树</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>将包含其所有子文件夹的文件夹导出到一组 mbox 格式文件，每个子文件夹一个，导出到单个文件夹。</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-          <td>将远程 (imap) 文件夹导出到单个 mbox 文件。</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -144,7 +155,7 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            将文件夹邮件导出为纯文本格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
+            将文件夹消息导出为纯文本格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
           </td>
         </tr>
         <tr>
@@ -159,7 +170,8 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            将文件夹消息导出为单个纯文本格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。
+            将文件夹邮件导出为单个纯文本格式文件（包括附件）。<br />这还会创建一个列出每条消息的 HTML
+            索引文件。
           </td>
         </tr>
         <tr>
@@ -183,7 +195,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
-          <td>打开搜索对话框并导出所需结果</td>
+          <td>打开搜索对话框并导出所需的结果</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
@@ -211,7 +223,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
-          <td>选择并导入一个 maildir 文件夹</td>
+          <td>选择并导入 maildir 文件夹</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
@@ -243,7 +255,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>打开主帮助页面</td>
+          <td>打开帮助主页面</td>
         </tr>
       </tbody>
     </table>
@@ -267,11 +279,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-          <td>将所选消息导出为 EML 格式文件（嵌入附件）</td>
+          <td>将选定的消息导出为 EML 格式文件（嵌入附件）</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
-          <td>将所选消息导出为 EML 格式文件<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
+          <td>将选定的消息导出为 EML 格式文件<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
@@ -279,11 +291,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>将所选消息导出为 HTML 格式文件</td>
+          <td>将选定的消息导出为 HTML 格式文件</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-          <td>将所选邮件导出为 HTML 格式文件，包括附件</td>
+          <td>将选定的邮件导出为 HTML 格式文件（包括附件）</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
@@ -291,11 +303,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
-          <td>将消息导出为 HTML 格式文件，包括附件。<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
+          <td>将邮件导出为 HTML 格式文件（包括附件）。<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>将所选消息导出为 PDF 格式文件</td>
+          <td>将选定的消息导出为 PDF 格式文件</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -303,21 +315,21 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>将所选消息导出为纯文本格式文件</td>
+          <td>将选定的消息导出为纯文本格式文件</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>将所选邮件导出为纯文本格式文件，包括附件</td>
+          <td>将选定的邮件导出为纯文本格式文件（包括附件）</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
             __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
-          <td>将消息导出为纯文本格式文件，包括附件<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
+          <td>将消息导出为纯文本格式文件（包括附件）<br />这还会创建一个列出每条消息的 HTML 索引文件。</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
-          <td>将所选消息导出到单个 CSV 文本文件</td>
+          <td>将选定的消息导出到单个 CSV 文本文件</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
@@ -325,11 +337,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>将所选邮件导出到单个 mbox 文件</td>
+          <td>将选定的消息导出到单个 mbox 文件</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
-          <td>将所选邮件附加到现有的 mbox 文件</td>
+          <td>将选定的消息附加到现有 mbox 文件</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
@@ -349,7 +361,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
-          <td>将单个选定消息复制到剪贴板</td>
+          <td>将单个选定的消息复制到剪贴板</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
@@ -361,7 +373,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>打开主帮助页面</td>
+          <td>打开帮助主页面</td>
         </tr>
       </tbody>
     </table>
@@ -381,15 +393,15 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>保存完整的配置文件（邮件、分机、选项）</td>
+          <td>保存完整的配置文件（邮件、扩展名、选项）</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-          <td>保存当前配置文件中的所有邮件</td>
+          <td>将所有邮件保存在当前配置文件中</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>导入完整的配置文件（邮件、分机、选项）</td>
+          <td>导入完整的配置文件（邮件、扩展、选项）</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -401,18 +413,18 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>打开主帮助页面</td>
+          <td>打开帮助主页面</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">自定义日期格式</h2>
     <p>
-      自定义日期选项允许完全控制用于索引中两个文件的日期格式。默认格式“日期”和新的自定义格式“日期（自定义）”都可以在文件名下拉列表中找到。自定义日期也可以与扩展自定义文件名中使用的
+      自定义日期选项允许完全控制索引中两个文件使用的日期格式。文件名下拉列表中提供默认格式“日期”和新的自定义格式“日期（自定义）”。自定义日期还可以与扩展自定义文件名中使用的
       ${date_custom} 标记一起使用。原始（默认）日期格式为：<br />
       YYYYMMDDHHmm : 202011060808<br /><br />自定义日期格式使用与<code>strftime()</code>类 Unix 功能相匹配的 %
       序列。它基于<a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"
         ><code>strftime()</code></a
-      >的 JavaScript 端口，用于格式化日期和时间的函数。<br />
+      >的 JavaScript 端口，这是一个格式化日期和时间的函数。<br />
       TH Doan 的 strftime() 端口 (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>转换顺序说明</h3>
@@ -430,11 +442,11 @@
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>星期几的全称。</td>
+          <td>一周中某一天的全名。</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
-          <td>缩写的月份名称。</td>
+          <td>月份名称缩写。</td>
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
@@ -442,19 +454,19 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>当前语言环境的首选日期和时间 (UTC) 表示。</td>
+          <td>当前区域设置的首选日期和时间 (UTC) 表示形式。</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>世纪数（年/100）作为 2 位整数。</td>
+          <td>世纪数（年/100），为 2 位整数。</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>以十进制数表示的月份中的第几天（范围从 01 到 31）。</td>
+          <td>十进制数形式的月份中的第几天（范围 01 到 31）。</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>以十进制数表示的月份中的第几天（范围从 1 到 31）。</td>
+          <td>十进制数形式的月份中的第几天（范围 1 到 31）。</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
@@ -463,56 +475,62 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 基于周的年份，世纪作为十进制数。 4 位年份对应于 ISO 周数（请参阅<code class="code1"
-              >%V</code
-            >
-            ）。这与<code class="code1">%Y</code>具有相同的格式和值，除了如果 ISO
-            周数属于上一年或下一年，则使用那一年。
+            ISO 8601 基于周的年份，世纪为十进制数。 4 位年份对应于 ISO 周数（参见<code class="code1">%V</code>
+            ）。它与<code class="code1">%Y</code>具有相同的格式和值，但如果 ISO
+            周数属于上一年或下一年，则使用该年。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>类似于<code class="code1">%G</code> ，但没有世纪，即具有两位数的年份 (00-99)。</td>
+          <td>与<code class="code1">%G</code>类似，但没有世纪，即带有 2 位数年份 (00-99)。</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
-          <td>使用 24 小时制（范围为 00 到 23）的十进制数形式的小时。另见<code class="code1">%k</code> 。</td>
+          <td>
+            使用 24 小时制的十进制数字形式的小时（范围 00 到 23）。另请参见<code class="code1">%k</code> 。
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
-          <td>使用 12 小时制（范围为 01 到 12）的十进制数形式的小时。另见<code class="code1">%l</code> 。</td>
+          <td>
+            使用 12 小时制的十进制数字形式的小时（范围 01 到 12）。另请参见<code class="code1">%l</code> 。
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>以十进制数表示的一年中的第几天（范围从 001 到 366）。</td>
+          <td>一年中的第几天，十进制数（范围 001 到 366）。</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
-          <td>使用 24 小时制（范围为 0 到 23）的十进制数形式的小时。另见<code class="code1">%H</code> 。</td>
+          <td>
+            使用 24 小时制的十进制数字形式的小时（范围 0 到 23）。另请参见<code class="code1">%H</code> 。
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
-          <td>使用 12 小时制（范围为 1 到 12）的十进制数形式的小时。另见<code class="code1">%I</code> 。</td>
+          <td>
+            使用 12 小时制的十进制数字形式的小时（范围 1 到 12）。另请参见<code class="code1">%I</code> 。
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>十进制数形式的月份（范围为 01 到 12）。</td>
+          <td>十进制数形式的月份（范围 01 到 12）。</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>十进制数形式的月份（范围为 1 到 12）。</td>
+          <td>十进制数形式的月份（范围 1 到 12）。</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>十进制数形式的分钟（范围为 00 到 59）。</td>
+          <td>分钟为十进制数（范围 00 到 59）。</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
-          <td>根据给定的时间值，可以是“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
+          <td>根据给定的时间值，“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>像<code class="code1">%p</code>但小写（“am”或“pm”）。</td>
+          <td>类似于<code class="code1">%p</code>但为小写（“am”或“pm”）。</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
@@ -520,43 +538,43 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>秒为十进制数（范围为 00 到 59）。</td>
+          <td>秒为十进制数（范围 00 到 59）。</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
-          <td>小数形式的星期几（范围 1 到 7），星期一为 1。另请参见<code class="code1">%w</code> 。</td>
+          <td>小数表示的星期几（范围 1 到 7），星期一为 1。另请参见<code class="code1">%w</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601 十进制数形式的当年的 ISO 8601 周数（范围 01 到 53），其中第 1 周是新年中至少有 4
+            ISO 8601 当前年份的周数为十进制数（范围 01 到 53），其中第 1 周是新的一年中至少有 4
             天的第一周（即第一个星期四）。
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
-          <td>小数形式的星期几（范围 0 到 6），星期日为 0。另请参见<code class="code1">%u</code> 。</td>
+          <td>小数表示的星期几（范围 0 到 6），星期日为 0。另请参见<code class="code1">%u</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>不带时间的当前语言环境的首选日期表示。</td>
+          <td>当前区域设置的首选日期表示形式（不含时间）。</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>不带日期的当前语言环境的首选时间表示。</td>
+          <td>当前区域设置的首选时间表示形式，不带日期。</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>不带世纪的十进制数字形式的年份（范围从 00 到 99）。</td>
+          <td>年份为不带世纪的十进制数（范围 00 到 99）。</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>以十进制数字表示的年份，包括世纪。</td>
+          <td>年份为十进制数，包括世纪。</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            <code class="code1">+hhmm</code>或<code class="code1">-hhmm</code>数字时区（即与 UTC
+            <code class="code1">+hhmm</code>或<code class="code1">-hhmm</code>数字时区（即相对 UTC
             的小时和分钟偏移量）。
           </td>
         </tr>
@@ -566,7 +584,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>兼容性说明：</h3>
+    <h3>兼容性注意事项：</h3>
     <ul>
       <li><code class="code1">%c</code> - 格式化字符串略有不同</li>
       <li>
@@ -575,15 +593,15 @@
         >
         ）
       </li>
-      <li><code class="code1">%e</code> - 不添加空间</li>
+      <li><code class="code1">%e</code> - 未添加空格</li>
       <li><code class="code1">%E</code> - 未实施</li>
       <li><code class="code1">%h</code> - 未实现（使用<code class="code1">%b</code> ）</li>
-      <li><code class="code1">%k</code> - 未添加空间</li>
+      <li><code class="code1">%k</code> - 未添加空格</li>
       <li>
-        <code class="code1">%n</code> - 类似<code class="code1">%m</code> ，但没有前导零（使用<code
+        <code class="code1">%n</code> - 与<code class="code1">%m</code>类似，但没有前导零（使用<code
           class="code1"
           >\n</code
-        >换行）
+        >表示换行符）
       </li>
       <li><code class="code1">%O</code> - 未实施</li>
       <li><code class="code1">%r</code> - 未实现（使用<code class="code1">%I:%M:%S %p</code> ）</li>
@@ -595,7 +613,7 @@
       <li><code class="code1">%t</code> - 未实现（使用<code class="code1">\t</code> ）</li>
       <li><code class="code1">%T</code> - 未实现（使用<code class="code1">%H:%M:%S</code> ）</li>
       <li><code class="code1">%U</code> - 未实施</li>
-      <li><code class="code1">%W</code> - 未实现</li>
+      <li><code class="code1">%W</code> - 未实施</li>
       <li><code class="code1">%+</code> - 未实施</li>
       <li><code class="code1">%%</code> - 未实现（使用<code class="code1">%</code> ）</li>
     </ul>
@@ -603,9 +621,9 @@
     <h2 id="ext_filename_format_help">扩展文件名格式：</h2>
     <br />
     <p>
-      扩展文件名格式使用标记。可以使用标记以及任何文本或有效的文件名字符来构造确切的文件名。无效字符是：
+      扩展文件名格式使用标记。可以使用标记以及任何文本或有效文件名字符来构建确切的文件名。无效字符有：
       <code>| * : &lt; &gt; ? \ / &quot;</code>英语 (en-US)
-      标记在任何语言环境中都可用。特定于语言环境的标记也可用并列在英语表下方。<br /><br />例子：<br /><br />
+      标记在任何区域设置中都可用。区域设置特定的标记也可用并在英语表下方列出。<br /><br />例子：<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - 默认格式<br /><span
         class="notranslate"
         ><code>${prefix}_${date_custom}_${sender}</code></span
@@ -622,7 +640,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>消息的主题。长度可能受主题长度选项的限制。</td>
+        <td>邮件的主题。长度可能受到主题长度选项的限制。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -634,7 +652,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td>邮件发件人的电子邮件地址。</td>
+        <td>消息发件人的电子邮件地址。</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
@@ -642,7 +660,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>如果邮件在已发送文件夹中，则为收件人，否则为发件人姓名</td>
+        <td>如果邮件位于“已发送”文件夹中，则为收件人，否则为发件人姓名</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
@@ -717,13 +735,13 @@
       </tr>
     </table>
     <br />
-    <h2>新的和实验性的偏好（选项）</h2>
+    <h2>新的和实验性的首选项（选项）</h2>
     <p>
-      在选项对话框中有几个新功能和选项尚不可配置。一旦这些功能稳定下来，它们就会被添加到 UI 中。<br />为了使用它们，必须在配置编辑器中进行设置。要访问编辑器，请使用“工具/选项”菜单，然后选择“高级”部分，底部会有一个“配置编辑器”按钮。如果您在搜索栏中键入“importexporttoolsng”，您将获得所有扩展首选项。然后，您可以根据需要编辑下面的各种首选项。
+      有几个新功能和选项尚未在选项对话框中配置。一旦这些功能稳定下来，它们将被添加到用户界面中。<br />为了使用它们，必须在配置编辑器中设置它们。要访问编辑器，请使用“工具/选项”菜单，然后选择“高级”部分，底部将有一个“配置编辑器”按钮。如果您在搜索栏中输入“importexporttoolsng”，您将获得所有扩展首选项。然后，您可以根据需要编辑下面的各种首选项。
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      此首选项遵循用于索引文件的相同完整格式。默认情况下它是一个空字符串，如果带有格式化的日期/时间字符串，那么这将更改索引日期格式。
+      此首选项遵循用于索引文件的相同完整格式。默认情况下它是一个空字符串，如果使用格式化的日期/时间字符串，那么这将更改索引日期格式。
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -734,32 +752,34 @@
       </p>
     </p>
     <p>
-      这两个首选项都使用与导出的消息文件名使用的相同类型的扩展文件命名格式。第一个用于外部附件，第二个用于嵌入式（内联）附件。
+      这两个首选项都使用与导出的消息文件名相同类型的扩展文件命名格式。第一个用于外部附件，第二个用于嵌入式（内联）附件。
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       通常，Thunderbird
-      中邮件的“日期”是发件人邮件客户端设置的日期。将此选项设置为“true”会利用收件人邮件客户端的接收日期。该日期将用于文件名以及索引文件中的日期。
+      中邮件的“日期”是发件人邮件客户端设置的日期。将此选项设置为“true”将利用收件人邮件客户端的接收日期。该日期将用于文件名以及索引文件中的日期。
     </p>
     <h2>基本的全局热键（快捷方式）功能</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       这个新首选项允许用户设置最多 10 个键盘快捷键。这些快捷方式可以执行大多数 ImportExportTools NG
-      功能以及其他 Thunderbird 功能。首选项字符串被格式化为 JSON 格式的对象。格式和键值如下：
+      功能以及其他 Thunderbird 功能。首选项字符串的格式为 JSON 格式的对象。格式和按键如下：
     </p>
     <p>
-      示例热键条目（JSON 对象数组）<br /><br />
+      热键条目示例（JSON 对象数组）<br /><br />
       <code class="notranslate">id</code> - 键索引 (1-10)<br />
       <code class="notranslate">key</code> - 键（单个字符）<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包括密钥或密钥代码，但不能同时包括两者。<br />
-      <code class="notranslate">modifiers</code> - 键修饰符，空格分隔列表（&#39;control&#39;, &#39;shift&#39;,
-      &#39;alt&#39;, &#39;accel&#39;）<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包含密钥或密钥代码，但不能同时包含两者<br /><code
+        class="notranslate"
+        >modifiers</code
+      >
+      - 键修饰符，空格分隔列表（&#39;control&#39;、&#39;shift&#39;、&#39;alt&#39;、&#39;accel&#39;）<br />
       <code class="notranslate">oncommand</code> - 直接命令字符串<br /><code class="notranslate"
         >contexts</code
       >
-      - 键处于活动状态的窗口上下文<br /><code class="notranslate">&#39;all&#39;</code> -
-      Messenger、撰写、搜索下的所有窗口<br /><code class="notranslate">&#39;messenger&#39;</code> - 主
-      Messenger 窗口及其子窗口<br /><code class="notranslate">&#39;compose&#39;</code> - 消息撰写窗口<br /><code
+      - 按键处于活动状态的窗口上下文<br /><code class="notranslate">&#39;all&#39;</code> -
+      Messenger、撰写、搜索下的所有窗口<br /><code class="notranslate">&#39;messenger&#39;</code> -
+      主信使窗口及其后代<br /><code class="notranslate">&#39;compose&#39;</code> - 消息撰写窗口<br /><code
         class="notranslate"
         >&#39;search&#39;</code
       >
@@ -801,12 +821,18 @@
     <br />
     <h3>版本 14.0.0：Thunderbird 115 支持 - 2023 年 7 月 10 日</h3>
     <p>
-      功能和解决的问题：<br />
+      特点和解决的问题：<br />
       <p>
-        - 支持雷鸟 115 超新星<br />- 返工和现代化选项用户界面<br />- 完整的黑暗模式支持<br />-
-        新的、一致的菜单系统<br />- 新的工具栏按钮<br />- 改进的帮助，在安装时打开<br />- 更新出口账户<br /><br />感谢以下用户的增强建议和测试帮助：<br /><br />
+        - 支持 Thunderbird 115 Supernova<br />
+        - 重新设计和现代化选项用户界面<br />- 完整的黑暗模式支持<br />- 新的、一致的菜单系统<br />-
+        新的工具栏按钮<br />- 改进了帮助，安装时打开<br />- 更新出口账户<br /><br />感谢以下用户提供的增强建议和测试帮助：<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
         - <code class="notranslate">@ovari</code><br />
         - <code class="notranslate">@dipgithub</code><br />
         - <code class="notranslate">@artofit</code><br />

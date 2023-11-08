@@ -458,7 +458,6 @@ export var mboxImportExport = {
     ietngUtils.createStatusLine(window);
 
     let msgFolderSize = rootMsgFolder.sizeOnDisk;
-    console.log(msgFolderSize)
     rootMsgFolder = rootMsgFolder.QueryInterface(Ci.nsIMsgFolder);
 
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
@@ -513,7 +512,7 @@ export var mboxImportExport = {
 
 
     let st = new Date();
-    console.log("Start: ", st, msgFolder.prettyName);
+    //console.log("Start: ", st, msgFolder.prettyName);
 
     var mboxDestPath = dest;
     var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;

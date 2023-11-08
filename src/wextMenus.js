@@ -776,16 +776,14 @@ async function createtitles(name, menuArray, options) {
   let path = basePath + "\\" + name + ".json";
   let params = { path: path, obj: titleArray };
 
-  console.log(params);
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
-  console.log("done");
 }
 
 
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {
-  console.log(ctxEvent);
+  //console.log(ctxEvent);
 
   var params = {};
 

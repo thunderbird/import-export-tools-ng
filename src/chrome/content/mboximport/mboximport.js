@@ -792,7 +792,6 @@ async function exportfolder(params) {
 	}
 
 	if (folders[0].isServer && keepstructure) {
-		console.log("exp acc")
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
@@ -825,7 +824,6 @@ async function exportfolder(params) {
 		if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 			accountName += ".mbox";
 		}
-		console.log(accountName)
 		await IOUtils.remove(PathUtils.join(destPath, accountName));
 	}
 	return;
@@ -851,26 +849,15 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			}
 			let newname = ietngUtils.createUniqueFolderName(folders[i].prettyName, destPath, false, useMboxExt);
 
-			//let newname = findGoodFolderName(path, destdirNSIFILE, false);
 			path = newname;
-			//if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-			//path += ".mbox";
-			//newname += ".mbox";
-			//}
-			console.log(newname)
-			console.log(path)
 
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
 
 			file.initWithPath(newDestPath);
-			console.log(newDestPath)
-
 
 			var zipName = path + ".zip";
-			console.log(zipName)
 			zipName = ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
-			console.log(zipName)
 			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();

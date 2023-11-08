@@ -52,7 +52,6 @@ main();
 
 // open help on install / update 
 browser.runtime.onInstalled.addListener(async (info) => {
-	console.log(info)
 	if (info.reason != "install" && info.reason != "update") {
 		return;
 	}

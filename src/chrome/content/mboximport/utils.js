@@ -657,7 +657,6 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 		folderPath = "/";
 	}
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
-	console.log(msgFolder.isServer)
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");

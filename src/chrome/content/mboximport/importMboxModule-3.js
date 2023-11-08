@@ -58,7 +58,7 @@ async function mboxCopyImport(options) {
   let targetMboxPath = options.destPath;
   let folderName = PathUtils.filename(options.srcPath);
 
-  console.log("Importing:", folderName)
+  // console.log("Importing:", folderName)
   // make sure nothing is there, create start
   await IOUtils.remove(targetMboxPath, { ignoreAbsent: true });
   await IOUtils.write(targetMboxPath, new Uint8Array(), { mode: "create" });
@@ -68,7 +68,7 @@ async function mboxCopyImport(options) {
 
   try {
     fileInfo = await IOUtils.stat(options.srcPath);
-    console.log("mbox size: ", fileInfo.size)
+    //console.log("mbox size: ", fileInfo.size)
   } catch (err) {
     console.log(err);
     // trick to throw out of Promise
@@ -76,7 +76,7 @@ async function mboxCopyImport(options) {
   }
 
 
-  if (fileInfo.size > 30000000000) {
+  if (fileInfo.size > 60000000000) {
     let err = "too large";
     // console.log(fileInfo.size);
     // postMessage({ msg: "Error: File exceeds 4GB" });
@@ -131,7 +131,7 @@ async function mboxCopyImport(options) {
     let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
     let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
 
-    console.log("start import")
+    //console.log("start import")
 
     while (!eof) {
       //console.log("start chunk")
@@ -164,10 +164,10 @@ async function mboxCopyImport(options) {
 
         fromExcpCount++;
 
-        console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
+        //console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
         let pos = result.index;
-        console.log(strBuffer.substring(pos, pos + 200))
-        console.log((finalChunk - result.index))
+        //console.log(strBuffer.substring(pos, pos + 200))
+        //console.log((finalChunk - result.index))
 
         totalWrite += ((result.index - 1) - writePos);
 
@@ -176,11 +176,11 @@ async function mboxCopyImport(options) {
         // handling last exception
 
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-          console.log("defer last exception : process as tail")
-        fromExcpCount--;
+          //console.log("defer last exception : process as tail")
+          fromExcpCount--;
 
         } else {
-          console.log("write exception")
+          //console.log("write exception")
 
           // write out up to From_ exception, write space then process
           // from Beginning of line.
@@ -201,7 +201,7 @@ async function mboxCopyImport(options) {
       }
 
       if (1) {
-        
+
 
         let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
         // convert to faster String for regex etc
@@ -211,7 +211,9 @@ async function mboxCopyImport(options) {
         singleFromException = [...singleFromException]
         if (singleFromException.length) {
           let epos = kReadChunk - kExceptWin + singleFromException[0].index;
-            console.log("tail check end ", cnt, epos)
+          
+          /*
+          console.log("tail check end ", cnt, epos)
           console.log(kReadChunk - epos)
 
           console.log("last boundary buf Exception ")
@@ -221,6 +223,7 @@ async function mboxCopyImport(options) {
           console.log(boundaryStrBuffer)
           console.log(singleFromException)
           console.log(strBuffer.substring(epos, epos + 80))
+          */
 
           // write normally 
 
@@ -229,7 +232,7 @@ async function mboxCopyImport(options) {
           if ((kReadChunk - epos) > 0) {
             fromExcpCount++;
 
-            console.log("writing exc ", cnt, fromExcpCount)
+            //console.log("writing exc ", cnt, fromExcpCount)
 
             let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
@@ -247,7 +250,7 @@ async function mboxCopyImport(options) {
             // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
             writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
           } else {
-            console.log("no boundary buf Exception ")
+            //console.log("no boundary buf Exception ")
 
           }
 
@@ -255,12 +258,7 @@ async function mboxCopyImport(options) {
           //console.log("no boundary buf Exception ")
 
         }
-
-
       }
-
-
-
 
       totalWrite += (finalChunk - writePos);
 
@@ -268,7 +266,7 @@ async function mboxCopyImport(options) {
       let raw = stringToBytes(strBuffer.substring(writePos, finalChunk + 1));
       await IOUtils.write(targetMboxPath, raw, { mode: "append" });
 
-      
+
       // postMessage({ msg: "importUpdate", currentFile: options.finalDestFolderName, bytesProcessed: totalWrite });
       writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
     }
@@ -278,11 +276,12 @@ async function mboxCopyImport(options) {
 
     writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
 
-
+/*
     console.log("end read/fix/write loop");
     console.log("Escape fixups:", fromExcpCount);
     console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
+*/
 
   }
   // tbd use status codes

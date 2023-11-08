@@ -24,7 +24,28 @@
 		</tr>
 	</table>
 
-	
+	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
+	<p>
+- New: Add Account level mbox import<br>
+- New: Add Account level mbox flattened export<br>
+- New: Support for mbox import and export to filesys levels<br>
+- Fix CSV export to text #451, #463<br>
+- Fix export folder to ZIP<br>
+- Fix help load only on IETNG updates<br>
+- Add preference to never load help on updates #458<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.help.showOnInstallAndUpdate<br>
+- Fix help for sublocales and unsupported locales<br>
+- Fix mbox From_ separators to adhere to RFC 4155 #455<br>
+- Add back Export Messages in message display windows #459<br>
+- Fix Account export for pop3<br>
+- Fix buffer boundary From_ escaping<br>
+- Fix selected messages handling #485<br>
+- Complete de locale update @Mr-Update<br>
+- Complete fr locale update @DenB10<br>
+- Complete da locale update @Joergen<br>
+- Updated ja locale @kiki-ja<br>
+
+</p>
 	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
 	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".
 		The extension offers multiple import and export functions supporting several different
@@ -106,10 +127,6 @@
 				<td>Export a folder including all of its subfolders to a set of mbox format files, one for each
 					subfolder, exported to a single folder.
 				</td>
-			</tr>
-			<tr>
-				<td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-				<td>Export a remote (imap) folder to single mbox file.</td>
 			</tr>
 			<tr>
 				<td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -842,7 +859,11 @@
 	Thanks to the following users for enhancement suggestions and test help:<br><br>
 	- <code class="notranslate">@kiki-ja</code><br>
 	- <code class="notranslate">@tidebre67</code><br>
-	
+	- <code class="notranslate">@DenB10</code><br>
+	- <code class="notranslate">@Yarny0</code><br>
+	- <code class="notranslate">@librelegal</code><br>
+	- <code class="notranslate">@Mr-Update</code><br>
+	- <code class="notranslate">@Joergen</code><br>
 	- <code class="notranslate">@ovari</code><br>
 	- <code class="notranslate">@dipgithub</code><br>
 	- <code class="notranslate">@artofit</code><br>

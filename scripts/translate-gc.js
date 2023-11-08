@@ -628,6 +628,15 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
+// unmanaged help locales
+localeFolders = ['en-US', 'ca', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
+	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
+
+// managed help locales
+//localeFolders = ['de', 'ja', 'fr', 'da'];
+
+
 //localeFolders = ['en-US', 'de'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];

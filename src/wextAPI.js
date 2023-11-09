@@ -52,7 +52,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			console.log(window.folder)
 			break;
 		case "openHelp":
-			window.wextOpenHelp({opentype: "tab", bmark: info.bmark});
+			window.wextOpenHelp({bmark: info.bmark});
 			break;
     }
     return false;

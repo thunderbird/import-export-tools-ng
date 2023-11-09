@@ -125,3 +125,4 @@
 <!ENTITY cutPathLen "Couper la longueur du chemin du fichier à 256 caractères">
 <!ENTITY strip_eml_CR.label "Supprimer les retours à la ligne pour les exportations de messages eml">
 <!ENTITY useMboxExt.label "Utiliser l’extension .mbox pour les fichiers mbox (non structurés)">
+<!ENTITY openHelpInWindow.label "Ouvrir l&#39;aide dans une fenêtre au lieu d&#39;un onglet">

@@ -124,3 +124,4 @@
 <!ENTITY cutPathLen "Vágja le a fájl elérési útját 256 karakterre">
 <!ENTITY strip_eml_CR.label "Távolítsa el a CR-t a sorvégekről az eml-üzenetek exportálásához">
 <!ENTITY useMboxExt.label ".mbox kiterjesztés használata mbox fájlokhoz (nem strukturált)">
+<!ENTITY openHelpInWindow.label "Lap helyett ablakban nyissa meg a súgót">

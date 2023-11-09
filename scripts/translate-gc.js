@@ -136,10 +136,7 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "copyMsgsToClip_promptTitle", text: "Copy Messages to Clipboard"},
-  { key: "copyMsgsToClip_firstOnly", text: "Multiple messages selected, only the fist message copied to clipboard."},
-  { key: "copyHdrsToClip_promptTitle", text: "Copy Headers to Clipboard"},
-  { key: "copyHdrsToClip_firstOnly", text: "Multiple messages selected, only fist message headers copied to clipboard."},
+  { key: "openHelpInWindow.label", text: "Open help in a window instead of a tab"},
 
 	
 
@@ -578,17 +575,17 @@ var options3 = {
 };
 
 // dtd=2
-var options2 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
-	skipEN: true,
+	skipEN: false,
 	outputFormat: 2,
 };
 
 // properties=1
-var options = {
+var options1 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -605,6 +602,7 @@ var options4 = {
 	outputFormat: 3,
 };
 
+let inputFiles;
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];
 // let inputFiles = ["settings.dtd", "settings.properties"];
 // let inputFiles = ["settings.dtd"];
@@ -613,18 +611,16 @@ var options4 = {
 
 
 //let inputFiles = ["messages.json"];
-//inputFiles = ["mboximport.dtd"];
+inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-inputFiles = ["mboximport.properties"];
+//inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
 localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 'el', 'pl', 'da', 'pt-PT', 'ca', 'gl-ES', 'sk-SK', 'sl-SI', 'sv-SE'];
 
-// var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
-// 	'sk-SK', 'sl-SI', 'sv-SE'];
-
+// full locale set
 localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
@@ -634,7 +630,7 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 
 
 // managed help locales
-localeFolders = ['de', 'ja', 'fr', 'da'];
+//localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
 //localeFolders = ['en-US', 'de'];
@@ -642,10 +638,10 @@ localeFolders = ['de', 'ja', 'fr', 'da'];
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-translateHelpPage();
+//translateHelpPage();
 //translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 

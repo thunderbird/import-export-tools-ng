@@ -124,3 +124,5 @@
 <!ENTITY cutPathLen "Dateipfadlänge auf 256 Zeichen reduzieren">
 <!ENTITY strip_eml_CR.label "CR am Zeilenende für EML-Nachrichtenexporte entfernen">
 <!ENTITY useMboxExt.label "Erweiterung .mbox für Mbox-Dateien verwenden (nicht strukturiert)">
+
+<!ENTITY openHelpInWindow.label "Öffnen Sie die Hilfe in einem Fenster statt in einer Registerkarte">

@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "Skróć długość ścieżki pliku do 256 znaków">
 <!ENTITY strip_eml_CR.label "Usuń CR z zakończeń linii dla eksportu wiadomości eml">
 <!ENTITY useMboxExt.label "Użyj rozszerzenia .mbox dla plików mbox (niestrukturalnych)">
+<!ENTITY openHelpInWindow.label "Otwórz pomoc w oknie zamiast na karcie">

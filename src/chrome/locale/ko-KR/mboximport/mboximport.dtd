@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "파일 경로 길이를 256자로 자릅니다.">
 <!ENTITY strip_eml_CR.label "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거">
 <!ENTITY useMboxExt.label "mbox 파일에 .mbox 확장자 사용(비구조적)">
+<!ENTITY openHelpInWindow.label "탭 대신 창에서 도움말 열기">

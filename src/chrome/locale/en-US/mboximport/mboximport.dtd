@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "Cut file path length to 256 characters">
 <!ENTITY strip_eml_CR.label "Strip CR from line endings for eml message exports">
 <!ENTITY useMboxExt.label "Use .mbox extension for mbox files (non-structured)">
+<!ENTITY openHelpInWindow.label "Open help in a window instead of a tab">

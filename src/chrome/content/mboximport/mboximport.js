@@ -1590,7 +1590,15 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 
 
 function openIEToptions() {
-	window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,modal,centerscreen");
+	let optionsWin = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("ietng:options");
+	console.log(optionsWin)
+	if (!optionsWin) {
+		window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,centerscreen");
+	} else {
+		optionsWin.focus();
+	}
 }
 
 function IETcopyFolderPath(params) {

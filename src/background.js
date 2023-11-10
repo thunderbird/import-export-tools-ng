@@ -172,7 +172,7 @@ async function wextOpenHelp(info) {
 			if (info.opentype == "tab") {
 				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 })
 			} else {
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1180, height: 520 })
+				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 })
 			}
 		}
 }

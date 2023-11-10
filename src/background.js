@@ -32,7 +32,7 @@ await((async () => {
 			const restoreListener = (window, state = true) => {
 				browser.SessionRestore.onStartupSessionRestore.removeListener(restoreListener);
 				resolve(state);
-			}
+			};
 			browser.SessionRestore.onStartupSessionRestore.addListener(restoreListener);
 
 			let isRestored = await browser.SessionRestore.isRestored();
@@ -73,7 +73,7 @@ async function getThunderbirdVersion() {
 		major: parseInt(parts[0]),
 		minor: parseInt(parts[1]),
 		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
-	}
+	};
 }
 function main() {
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
@@ -139,13 +139,9 @@ var helpLocales = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 async function wextOpenHelp(info) {
-	console.log(info)
 	if (!info.opentype) {
 		let openInWindow = await window.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
-	console.log(openInWindow)
-
 		info.opentype = openInWindow ? "window" : "tab";
-		console.log(info)
 	}
 
 	var locale = messenger.i18n.getUILanguage();
@@ -153,7 +149,7 @@ async function wextOpenHelp(info) {
 	if (!helpLocales.includes(locale)) {
 		var baseLocale = locale.split("-")[0];
 
-		locale = helpLocales.find(l => l.split("-")[0] == baseLocale)
+		locale = helpLocales.find(l => l.split("-")[0] == baseLocale);
 		if (!locale) {
 			locale = "en-US";
 		}
@@ -164,15 +160,15 @@ async function wextOpenHelp(info) {
 	}
 	try {
 		if (info.opentype == "tab") {
-			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 })
+			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 });
 		} else {
-			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 })
+			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
 		}
 	} catch (ex) {
 			if (info.opentype == "tab") {
-				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 })
+				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 });
 			} else {
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 })
+				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
 			}
 		}
 }

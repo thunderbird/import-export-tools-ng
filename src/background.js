@@ -60,7 +60,7 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	if (await window.getBoolPref("extensions.importexporttoolsng.export.help.showOnInstallAndUpdate")) {
+	if (await window.getBoolPref("extensions.importexporttoolsng.help.showOnInstallAndUpdate")) {
 		await window.wextOpenHelp({ opentype: "tab" });
 	}
 });
@@ -141,7 +141,7 @@ var helpLocales = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-
 async function wextOpenHelp(info) {
 	console.log(info)
 	if (!info.opentype) {
-		let openInWindow = await window.getBoolPref("extensions.importexporttoolsng.export.help.openInWindow");
+		let openInWindow = await window.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 	console.log(openInWindow)
 
 		info.opentype = openInWindow ? "window" : "tab";

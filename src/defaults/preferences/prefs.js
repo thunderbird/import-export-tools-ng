@@ -62,6 +62,6 @@ pref("extensions.importexporttoolsng.experimental.index_short1", false);
 pref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences", true);
 pref("extensions.importexporttoolsng.experimental.csv.account_folder_col", false);
 pref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports", false);
-pref("extensions.importexporttoolsng.export.help.showOnInstallAndUpdate", true);
-pref("extensions.importexporttoolsng.export.help.openInWindow", false);
+pref("extensions.importexporttoolsng.help.showOnInstallAndUpdate", true);
+pref("extensions.importexporttoolsng.help.openInWindow", false);
 

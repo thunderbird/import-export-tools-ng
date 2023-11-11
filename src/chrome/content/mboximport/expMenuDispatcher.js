@@ -44,6 +44,12 @@ mboxImportExport.setGlobals(gVars);
 
 async function expMenuDispatcher(data) {
 	//console.log("expMenuDispacher: ", data);
+	//console.log("expMenuDispacher focused: ", window.document.hasFocus());
+
+	if (!window.document.hasFocus()) {
+		return;
+	}
+
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {

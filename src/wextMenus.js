@@ -783,10 +783,10 @@ async function createtitles(name, menuArray, options) {
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {
-  //console.log(ctxEvent);
+  //console.log(ctxEvent, tab);
 
   var params = {};
-
+  params.tab = tab;
 
 
   // we need the accountId and path of the folder to get 

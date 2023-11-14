@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "Zmanjšajte dolžino poti do datoteke na 256 znakov">
 <!ENTITY strip_eml_CR.label "Odstrani CR iz koncev vrstic za izvoz sporočil eml">
 <!ENTITY useMboxExt.label "Uporabite pripono .mbox za datoteke mbox (nestrukturirane)">
+<!ENTITY openHelpInWindow.label "Odpiranje pomoči v oknu namesto na zavihku">

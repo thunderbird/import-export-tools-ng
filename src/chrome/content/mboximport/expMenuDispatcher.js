@@ -34,7 +34,7 @@ exportSelectedMsgs,
 	*/
 
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-3.js");
 
 var gVars = {
 	window: window,
@@ -44,6 +44,12 @@ mboxImportExport.setGlobals(gVars);
 
 async function expMenuDispatcher(data) {
 	//console.log("expMenuDispacher: ", data);
+	//console.log("expMenuDispacher focused: ", window.document.hasFocus());
+
+	if (!window.document.hasFocus()) {
+		return;
+	}
+
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {
@@ -90,9 +96,9 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_CopyToClipboard":
 			if (data.params.clipboardType == "Message") {
-				await copyMSGtoClip(data.params.msgId);
+				await copyMSGtoClip(data.params.selectedMsgs);
 			} else {
-				copyHeaders.start(data.params.msgId);
+				copyHeaders.start(data.params.selectedMsgs);
 			}
 			break;
 		case "WXMCMD_Index":
@@ -186,7 +192,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_getMailStoreFromFolderPath":
 			let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);
 			return storeType;
-		
+		case "WXMCMD_getBoolPref":
+			let bp = IETprefs.getBoolPref(data.params.boolPref);
+			return bp;
 		default:
 			break;
 	}

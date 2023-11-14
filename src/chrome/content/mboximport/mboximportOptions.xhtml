@@ -16,7 +16,8 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
-		title="ImportExportTools NG ">
+		title="ImportExportTools NG "
+		windowtype="ietng:options">
 	<tabbox>
 		<tabs>
 			<tab label=" &misc; " selected="true" />
@@ -56,6 +57,9 @@
 						</hbox>
 						<hbox align="center">
 							<checkbox id="stripEML_CR" label="&strip_eml_CR.label;" />
+						</hbox>
+						<hbox align="center">
+							<checkbox id="openHelpInWin" label="&openHelpInWindow.label;" />
 						</hbox>
 						<hbox align="center" style="padding-left: 4px">
 							<label value="&csvSep;" />

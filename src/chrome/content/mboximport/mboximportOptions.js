@@ -59,6 +59,7 @@ function initMboxImportPanel() {
     document.getElementById("buildMSF").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
     document.getElementById("addNumber").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number");
     document.getElementById("stripEML_CR").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports");
+    document.getElementById("openHelpInWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
@@ -279,6 +280,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.build_mbox_index", document.getElementById("buildMSF").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.name_add_number", document.getElementById("addNumber").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports", document.getElementById("stripEML_CR").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
 
 
     if (document.getElementById("customizeFilenames").checked)

@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "Znížte dĺžku cesty k súboru na 256 znakov">
 <!ENTITY strip_eml_CR.label "Odstráňte CR z koncov riadkov pre exporty správ EML">
 <!ENTITY useMboxExt.label "Použiť príponu .mbox pre súbory mbox (neštruktúrované)">
+<!ENTITY openHelpInWindow.label "Otvorte pomocníka v okne namiesto karty">

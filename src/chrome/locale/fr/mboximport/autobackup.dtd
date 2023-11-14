@@ -1,14 +1,14 @@
 <!ENTITY dialog.title "ImportExportTools NG - Sauvegarde">
-<!ENTITY description1 "Dernière Sauvegarde : $t">
-<!ENTITY description2 "D'après les paramètres, il est maintenant nécessaire de réaliser une sauvegarde.">
-<!ENTITY description3 "Durant cette operation, le programme sera bloqué quelques minutes.">
-<!ENTITY description4 "Voulez-vous continuer ?">
-<!ENTITY description5 "Sauvegarde en cours ... Veuillez patienter, svp.">
-<!ENTITY description6 "Sauvegarde réalisée.">
-<!ENTITY backupTab "Planification Sauvegarde">
-<!ENTITY backupSettings "Paramètres Sauvegarde">
-<!ENTITY backupOn "Autoriser">
-<!ENTITY backupFreq "Fréquence">
+<!ENTITY description1 "Date de la dernière sauvegarde : $t">
+<!ENTITY description2 "D’après les réglages, la sauvegarde doit être effectuée maintenant.">
+<!ENTITY description3 "Durant cette opération, le programme ne répondra pas.    ">
+<!ENTITY description4 "Souhaitez-vous continuer ?">
+<!ENTITY description5 "Sauvegarde en cours, veuillez patienter…">
+<!ENTITY description6 "Sauvegarde effectuée.">
+<!ENTITY backupTab "Sauvegarde">
+<!ENTITY backupSettings "Paramètres de sauvegarde">
+<!ENTITY backupOn "Planifier">
+<!ENTITY backupFreq "selon la fréquence ">
 <!ENTITY day1 "1 jour">
 <!ENTITY day3 "3 jours">
 <!ENTITY day7 "7 jours">
@@ -16,14 +16,14 @@
 <!ENTITY day30 "30 jours">
 <!ENTITY backupDestination "Destination ">
 <!ENTITY backupFolderName "Nom du dossier de sauvegarde ">
-<!ENTITY autoName "Automatique (nom dossier + date)">
+<!ENTITY autoName "Automatique (nom + date)">
 <!ENTITY customName "Personnalisé ">
-<!ENTITY backupType "Contenu Sauvegarde ">
-<!ENTITY allFiles "Tous fichiers Profil">
-<!ENTITY justMailFiles "Juste fichiers Mail">
+<!ENTITY backupType "Contenu de la sauvegarde ">
+<!ENTITY allFiles "Profil complet">
+<!ENTITY justMailFiles "Courrier uniquement">
 <!ENTITY lastBackup "Dernière sauvegarde ">
-<!ENTITY allFilesMode "Toujours tous les fichiers">
-<!ENTITY newFilesMode "Juste les fichiers modifiés depuis la dernière sauvegarde">
-<!ENTITY save "Sauvegarde">
-<!ENTITY modal "Utiliser une fenêtre 'modal'">
-<!ENTITY MACwarning "N.B: close every other window, before continue.">
+<!ENTITY allFilesMode "Tous les fichiers">
+<!ENTITY newFilesMode "Uniquement les fichiers modifiés depuis la dernière sauvegarde">
+<!ENTITY save "Mode de sauvegarde ">
+<!ENTITY modal "Utiliser une fenêtre modale">
+<!ENTITY MACwarning "Veuillez fermer toutes les autres fenêtres avant de continuer.">

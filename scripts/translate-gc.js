@@ -136,9 +136,9 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "timeMsg", text: "Time"},
-  { key: "messagesMsg", text: "Messages"},
+  { key: "openHelpInWindow.label", text: "Open help in a window instead of a tab"},
 
+	
 
 	
 ];
@@ -575,22 +575,22 @@ var options3 = {
 };
 
 // dtd=2
-var options2 = {
-	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
-	outputLocaleDir: "./src/chrome/locale",
-	outputLocaleDirSuffix: "mboximport/",
-	append: true,
-	skipEN: true,
-	outputFormat: 2,
-};
-
-// properties=1
 var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
 	append: true,
 	skipEN: false,
+	outputFormat: 2,
+};
+
+// properties=1
+var options1 = {
+	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	outputLocaleDir: "./src/chrome/locale",
+	outputLocaleDirSuffix: "mboximport/",
+	append: true,
+	skipEN: true,
 	outputFormat: 1,
 };
 
@@ -602,6 +602,7 @@ var options4 = {
 	outputFormat: 3,
 };
 
+let inputFiles;
 // let inputFiles = ["settings.dtd", "settings.properties", "overlay.dtd", "overlay.properties"];
 // let inputFiles = ["settings.dtd", "settings.properties"];
 // let inputFiles = ["settings.dtd"];
@@ -610,20 +611,27 @@ var options4 = {
 
 
 //let inputFiles = ["messages.json"];
-//inputFiles = ["mboximport.dtd"];
+inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-inputFiles = ["mboximport.properties"];
+//inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
 localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 'el', 'pl', 'da', 'pt-PT', 'ca', 'gl-ES', 'sk-SK', 'sl-SI', 'sv-SE'];
 
-// var localeFolders = ['ca', 'gl-ES', 'hu-HU', 'hy-AM',
-// 	'sk-SK', 'sl-SI', 'sv-SE'];
-
+// full locale set
 localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
+// unmanaged help locales
+//localeFolders = ['en-US', 'ca', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
+//	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+
+
+// managed help locales
+//localeFolders = ['de', 'ja', 'fr', 'da'];
+
 
 //localeFolders = ['en-US', 'de'];
 

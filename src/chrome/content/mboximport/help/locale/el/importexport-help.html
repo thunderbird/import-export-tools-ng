@@ -18,6 +18,27 @@
         </td>
       </tr>
     </table>
+    <h3 id="release_notes" style="padding-left: 4px;">Σημειώσεις έκδοσης:</h3>
+    <p>
+      - Νέο: Προσθήκη εισαγωγής mbox σε επίπεδο λογαριασμού<br />
+      - Νέο: Προσθήκη ισοπεδωμένης εξαγωγής mbox επιπέδου λογαριασμού<br />
+      - Νέο: Υποστήριξη για εισαγωγή και εξαγωγή mbox σε επίπεδα αρχείων<br />
+      - Διορθώστε την εξαγωγή CSV στο κείμενο #451, #463<br />
+      - Διορθώστε τον φάκελο εξαγωγής σε ZIP<br />
+      - Διορθώστε τη φόρτωση βοήθειας μόνο στις ενημερώσεις IETNG<br />
+      - Προσθέστε προτίμηση για να μην φορτώνεται ποτέ βοήθεια στις ενημερώσεις #458<br />
+      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
+      - Διορθώστε τη βοήθεια για δευτερεύουσες και μη υποστηριζόμενες τοπικές ρυθμίσεις<br />
+      - Διορθώστε τα διαχωριστικά mbox From_ ώστε να προσκολληθούν στο RFC 4155 #455<br />
+      - Προσθήκη πίσω Εξαγωγή μηνυμάτων στα παράθυρα εμφάνισης μηνυμάτων #459<br />
+      - Διορθώστε την εξαγωγή λογαριασμού για το pop3<br />
+      - Διορθώστε το όριο του buffer From_ escaping<br />
+      - Διορθώστε τον χειρισμό επιλεγμένων μηνυμάτων #485<br />
+      - Ολοκληρώστε την τοπική ενημέρωση @Mr-Update<br />
+      - Ολοκληρώστε την ενημέρωση τοπικής ρύθμισης @DenB10<br />
+      - Ολοκληρώστε την ενημέρωση τοπικής ρύθμισης @Joergen<br />
+      - Ενημερώθηκε η τοπική τοποθεσία @kiki-ja<br />
+    </p>
     <h2 id="main_help">Επισκόπηση και μενού ImportExportTools NG</h2>
     <p>
       Το ImportExportTools NG είναι μια επόμενη επέκταση που βασίζεται στο πρωτότυπο έργο του Paolo
@@ -109,10 +130,6 @@
             Εξάγετε έναν φάκελο που περιλαμβάνει όλους τους υποφακέλους του σε ένα σύνολο αρχείων μορφής mbox,
             ένα για κάθε υποφάκελο, που εξάγονται σε έναν μόνο φάκελο.
           </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-          <td>Εξαγωγή ενός απομακρυσμένου φακέλου (imap) σε μεμονωμένο αρχείο mbox.</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -847,7 +864,7 @@
       <code class="notranslate">id</code> - ο βασικός δείκτης (1-10)<br />
       <code class="notranslate">key</code> - το κλειδί (μονός χαρακτήρας)<br />
       <code class="notranslate">keycode</code> - ο καθορισμένος κωδικός κλειδιού &#39;VK_*&#39;<br />
-      Μπορεί να περιλαμβάνεται κλειδί ή κωδικός κλειδιού , αλλά όχι και τα δύο<br />
+      Μπορεί να περιλαμβάνεται είτε το κλειδί είτε ο κωδικός κλειδιού, αλλά όχι και τα δύο<br />
       <code class="notranslate">modifiers</code> - οι βασικοί τροποποιητές, λίστα διαχωρισμένων με κενό
       διάστημα (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - μια άμεση συμβολοσειρά εντολών<br />
@@ -908,6 +925,11 @@
         Ευχαριστούμε τους ακόλουθους χρήστες για τις προτάσεις βελτίωσης και τη βοήθεια δοκιμής:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
         - <code class="notranslate">@ovari</code><br />
         - <code class="notranslate">@dipgithub</code><br />
         - <code class="notranslate">@artofit</code><br />

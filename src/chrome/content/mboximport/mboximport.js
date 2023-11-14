@@ -58,7 +58,7 @@ globalThis,
 */
 
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 // var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
@@ -71,7 +71,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 
 // sometimes we want straight module for testing
 // var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-3.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
@@ -130,7 +130,9 @@ var IETprintPDFmain = {
 			return;
 
 		if (!allMessages) {
-			IETprintPDFmain.uris = await IETgetSelectedMessages();
+
+			IETprintPDFmain.uris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+
 		} else {
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];
@@ -789,7 +791,7 @@ async function exportfolder(params) {
 		return;
 	}
 
-	if (folders[0].isServer) {
+	if (folders[0].isServer && keepstructure) {
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
@@ -815,8 +817,15 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
-		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
+	if (folders[0].isServer) {
+		let accountName = rootFolder.prettyName;
+		if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+			accountName += ".mbox";
+		}
+		await IOUtils.remove(PathUtils.join(destPath, accountName));
+	}
 	return;
 
 
@@ -831,21 +840,25 @@ async function IETexportZip(destdirNSIFILE, folders) {
 		if (file.exists()) {
 
 			var path = folders[i].name;
-			var destPath = destdirNSIFILE.path;
-			let newname = findGoodFolderName(path, destdirNSIFILE, false);
+			var zipDestPath = destdirNSIFILE.path;
+			var destPath = destdirNSIFILE.path + "\\ztmp";
+
+			let useMboxExt = false;
 			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-				path += ".mbox";
-				newname += ".mbox";
+				useMboxExt = true;
 			}
+			let newname = ietngUtils.createUniqueFolderName(folders[i].prettyName, destPath, false, useMboxExt);
+
+			path = newname;
+
 			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
 			let newDestPath = PathUtils.join(destPath, newname);
-			file.initWithPath(newDestPath);
-			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
-			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
-			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
 
-			var zipName = folders[i].name;
-			zipFile.append(zipName + ".zip");
+			file.initWithPath(newDestPath);
+
+			var zipName = path + ".zip";
+			zipName = ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
+			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
 			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
@@ -859,6 +872,8 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			zipW.close();
 			await new Promise(resolve => window.setTimeout(resolve, 500));
 			IOUtils.remove(newDestPath);
+			IOUtils.remove(destPath);
+
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 
 		}
@@ -998,12 +1013,8 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	} else {
 		finalExportFolderPath = await createUniqueDirectory(destPath, tmpAccountFolderName);
 	}
-	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 
-	// copy account tree
-	// let destPath = destdirNSIFILE.path;
-	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, true, false);
-	// await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
+	await mboxImportExport.exportFoldersToMbox(rootFolder, finalExportFolderPath, true, false);
 
 
 }
@@ -1579,18 +1590,35 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 
 
 function openIEToptions() {
-	window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,modal,centerscreen");
+	let optionsWin = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("ietng:options");
+	if (!optionsWin) {
+		window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,centerscreen");
+	} else {
+		optionsWin.focus();
+	}
 }
 
 function IETcopyFolderPath(params) {
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 
 	var file = msgFolder2LocalFile(msgFolder);
 	IETcopyStrToClip(file.path);
 }
 
 function IETopenFolderPath(params) {
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 
 	var file = msgFolder2LocalFile(msgFolder);
 	var parent;

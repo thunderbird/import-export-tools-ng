@@ -123,3 +123,4 @@
 <!ENTITY cutPathLen "Skär filsökvägen till 256 tecken">
 <!ENTITY strip_eml_CR.label "Ta bort CR från radslut för eml-meddelandeexport">
 <!ENTITY useMboxExt.label "Använd tillägget .mbox för mbox-filer (icke-strukturerade)">
+<!ENTITY openHelpInWindow.label "Öppna hjälpen i ett fönster istället för en flik">

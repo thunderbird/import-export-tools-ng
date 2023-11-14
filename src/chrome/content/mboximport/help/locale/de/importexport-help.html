@@ -18,36 +18,59 @@
         </td>
       </tr>
     </table>
-    <h2 id="main_help">ImportExportTools NG Übersicht und Menüs</h2>
+    <h3 id="release_notes" style="padding-left: 4px;">Versionshinweise:</h3>
+    <p>
+      - Neu: Mbox-Import auf Kontoebene hinzufügen<br />
+      - Neu: Abgeflachten Mbox-Export auf Kontoebene hinzufügen<br />
+      - Neu: Unterstützung für Mbox-Import und -Export auf Filesys-Ebene<br />
+      - CSV-Export in Text Nr. 451, Nr. 463 korrigiert<br />
+      - Exportordner in ZIP korrigieren<br />
+      - Das Laden der Hilfe wurde nur bei IETNG-Updates behoben<br />
+      - Einstellung hinzufügen, dass die Hilfe zu Updates Nr. 458 nie geladen wird<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
+      - Korrektur der Hilfe für Sublocales und nicht unterstützte Locales<br />
+      - Mbox From_-Trennzeichen korrigiert, um RFC 4155 #455 zu entsprechen<br />
+      - Exportnachrichten im Nachrichtenanzeigefenster Nr. 459 wieder hinzufügen<br />
+      - Account-Export für Pop3 korrigiert<br />
+      - Puffergrenze From_-Escape behoben<br />
+      - Korrigieren Sie die Behandlung ausgewählter Nachrichten mit #485<br />
+      - Komplettes Locale-Update @Mr-Update<br />
+      - Komplettes Fr-Locale-Update @DenB10<br />
+      - Schließen Sie das Gebietsschema-Update @Joergen ab<br />
+      - Aktualisiertes Ja-Locale @kiki-ja<br />
+    </p>
+
+    <h2 id="main_help">Übersicht und Menüs</h2>
     <p>
       ImportExportTools NG ist eine Nachfolgeerweiterung, die auf dem Originalwerk von Paolo „Kaosmos“
       basiert. Die Erweiterung bietet mehrere Import- und Exportfunktionen, die verschiedene Dateiformate
-      unterstützen, darunter: Hinweis: Einige Formate werden nicht in allen Funktionen unterstützt.<br />
-      - mbox<br />
+      unterstützen, darunter:<br />
+      - Mbox<br />
       - EML<br />
       - Maildir<br />
       - HTML<br />
-      - Klartext<br />
+      - Reintext<br />
       - CSV (durch Kommas getrennte Werte)<br />
-      - PDF<br /><br />
+      - PDF<br />
+      Hinweis: Einige Formate werden nicht in allen Funktionen unterstützt.<br /><br />
       Während sich die meisten Funktionen auf Nachrichten konzentrieren, gibt es auch Unterstützung für den
       Import und Export von Thunderbird-Profilen. Zusätzlich können Exporte auch eine HTML- oder
       CSV-Indexdatei enthalten. Eine weitere Funktion ist die Sicherung des Thunderbird-Profils.<br />
       <p>
         Der Zugriff auf die IETng-Funktionalität erfolgt über mehrere verschiedene Menüs, die von der
         Erweiterung installiert werden. Die Funktionen sind kontextsensitiv. Menüs wurden hinzugefügt für:<br />
-        - Der Ordnerbereichskontext (Ordneroperation)<br />
-        - Der Nachrichtenlistenkontext (ausgewählte Nachrichten)<br />
-        - Das Menü „Extras“ (Profil- und Sicherungsvorgänge)<br /><br />
+        - Ordnerbereichskontext (Ordneroperation)<br />
+        - Nachrichtenlistenkontext (ausgewählte Nachrichten)<br />
+        - Menü „Extras“ (Profil- und Sicherungsvorgänge)<br /><br />
         Einige Optionen, auf die im Menü „Extras“ zugegriffen werden kann, sind nicht im Menü „Hamburger“
         enthalten. Sie werden in einer zukünftigen Version verfügbar sein. Diese Funktionen sind auch in der
         neuen Symbolleistenschaltfläche verfügbar. Jedes Menü und jede Schaltfläche verfügt außerdem über
-        einen Menüpunkt „Hilfe und Optionen“, um auf den Optionsdialog zuzugreifen.<br />
+        die Menüpunkte „Hilfe“ und „Optionen“, um auf den Optionsdialog zuzugreifen.<br />
       </p>
     </p>
-    <h3>Unterstützung:</h3>
+    <h2>Unterstützung</h2>
     <p>
-      Bitte posten Sie Probleme oder Funktionsanfragen im GitHub-Repository der Erweiterungen:
+      Bitte posten Sie Probleme oder Funktionsanfragen im GitHub-Repository der Erweiterung:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -55,15 +78,15 @@
       - ImportExportTools NG-Version<br />
       - Thunderbird-Version<br />
       - Betriebssystem und Version<br />
-      - Debug-Ausgabe (Kopie aus der Debug-Konsole – Zugriff mit Control-Shift-J)<br />
-      – Eine Beschreibung der Schritte, die zu dem Problem führten<br />
+      - Debug-Ausgabe (Kopie aus der Debug-Konsole – Zugriff mit Strg+Umschalt+J)<br />
+      - Eine Beschreibung der Schritte, die zu dem Problem führten<br />
     </p>
     <h2 id="main_menu_help">Funktionen des Ordner-Kontextmenüs</h2>
     <table class="menu-table">
       <thead>
         <tr>
           <th>Menüpunkt</th>
-          <th>Bedienungsanleitung</th>
+          <th>Beschreibung</th>
         </tr>
       </thead>
       <tbody>
@@ -105,10 +128,6 @@
             Exportieren Sie einen Ordner einschließlich aller seiner Unterordner in eine Reihe von Dateien im
             Mbox-Format, eine für jeden Unterordner, und exportieren Sie sie in einen einzelnen Ordner.
           </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-          <td>Exportieren Sie einen Remote-Ordner (IMAP) in eine einzelne Mbox-Datei.</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -157,7 +176,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, Anhänge sind nicht
+            Exportieren Sie die Ordnernachrichten als Dateien im Reintextformat, Anhänge sind nicht
             enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgeführt ist.
           </td>
@@ -167,14 +186,14 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportieren Sie die Ordnernachrichten als Dateien im Klartextformat, einschließlich Anhängen.<br />
+            Exportieren Sie die Ordnernachrichten als Dateien im Reintextformat, einschließlich Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgeführt ist.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat. Anhänge sind nicht
+            Exportieren Sie die Ordnernachrichten als einzelne Datei im Reintextformat. Anhänge sind nicht
             enthalten.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgeführt ist.
           </td>
@@ -184,7 +203,7 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Exportieren Sie die Ordnernachrichten als einzelne Datei im Klartextformat, einschließlich
+            Exportieren Sie die Ordnernachrichten als einzelne Datei im Reintextformat, einschließlich
             Anhängen.<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgeführt ist.
           </td>
@@ -224,17 +243,18 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
           <td class="notranslate">
-            Import one or more mbox files from a directory including their subfolders and structure.
+            Importieren Sie eine oder mehrere Mbox-Dateien aus einem Verzeichnis einschließlich ihrer Unterordner und Struktur.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate">Import all mbox files in a selected folder</td>
+          <td class="notranslate">Importieren Sie alle Mbox-Dateien in einem ausgewählten Ordner
+        </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
           <td class="notranslate">
-            Import all mbox files in a selected folder including their subfolders and structure
+            Importieren Sie alle Mbox-Dateien in einem ausgewählten Ordner, einschließlich ihrer Unterordner und Struktur
           </td>
         </tr>
         <tr>
@@ -284,7 +304,7 @@
       <thead>
         <tr>
           <th>Menüpunkt</th>
-          <th>Bedienungsanleitung</th>
+          <th>Beschreibung</th>
         </tr>
       </thead>
       <tbody>
@@ -347,12 +367,12 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exportieren Sie die ausgewählten Nachrichten in Dateien im Klartextformat</td>
+          <td>Exportieren Sie die ausgewählten Nachrichten in Dateien im Reintextformat</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
           <td>
-            Exportieren Sie die ausgewählten Nachrichten in Dateien im Klartextformat, einschließlich Anhängen
+            Exportieren Sie die ausgewählten Nachrichten in Dateien im Reintextformat, einschließlich Anhängen
           </td>
         </tr>
         <tr>
@@ -360,7 +380,7 @@
             __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportieren Sie die Nachrichten als Dateien im Klartextformat, einschließlich Anhängen<br />
+            Exportieren Sie die Nachrichten als Dateien im Reintextformat, einschließlich Anhängen<br />
             Dadurch wird auch eine HTML-Indexdatei erstellt, in der jede Nachricht aufgeführt ist.
           </td>
         </tr>
@@ -415,12 +435,12 @@
       </tbody>
     </table>
     <br />
-    <h2 id="tools_functions_help">Menü „Extras“.</h2>
+    <h2 id="tools_functions_help">Menü „Extras“</h2>
     <table class="menu-table">
       <thead>
         <tr>
           <th>Menüpunkt</th>
-          <th>Bedienungsanleitung</th>
+          <th>Beschreibung</th>
         </tr>
       </thead>
       <tbody>
@@ -430,7 +450,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>Speichern Sie das komplette Profil (Mail, Erweiterungen, Optionen)</td>
+          <td>Speichern Sie das komplette Profil (E-Mail, Erweiterungen, Optionen)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
@@ -438,11 +458,11 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importieren Sie ein vollständiges Profil (Mail, Erweiterungen, Optionen)</td>
+          <td>Importieren Sie ein vollständiges Profil (E-Mail, Erweiterungen, Optionen)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
-          <td></td>
+          <td>Sicherung des Thunderbird-Profils</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -454,6 +474,7 @@
         </tr>
       </tbody>
     </table>
+    <br />
     <h2 id="customdate_format_help">Benutzerdefiniertes Datumsformat</h2>
     <p>
       Die Option „Benutzerdefiniertes Datum“ ermöglicht die vollständige Kontrolle über die
@@ -461,15 +482,15 @@
       auch das neue benutzerdefinierte Format „Datum (benutzerdefiniert)“ sind in den Dropdown-Listen für
       Dateinamen verfügbar. Das benutzerdefinierte Datum kann auch mit dem Token ${date_custom} verwendet
       werden, das in den erweiterten benutzerdefinierten Dateinamen verwendet wird. Das ursprüngliche
-      (Standard-)Datumsformat ist:<br />
-      JJJJMMTDHHmm: 202011060808<br /><br />
+      (Standard-)Datumsformat ist<br />
+      JJJJMMTTHHmm: 202011060808<br /><br />
       Das benutzerdefinierte Datumsformat verwendet %-Sequenzen, die der Unix-ähnlichen Funktionalität
       <code>strftime()</code> entsprechen. Es basiert auf einer JavaScript-Portierung von
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , einer Funktion zum Formatieren von Datum und Uhrzeit.<br />
-      Portierung von strftime() von TH Doan (https://thdoan.github.io/strftime/)<br />
+      Portierung von strftime() durch T. H. Doan (<a class="link1" href="https://thdoan.github.io/strftime/"><code>https://thdoan.github.io/strftime/</code></a>).<br />
     </p>
-    <h3>Beschreibungen der Konvertierungssequenzen</h3>
+    <h3>Beschreibung der Konvertierungssequenzen</h3>
     <table class="dateformat-table">
       <thead>
         <tr>
@@ -653,7 +674,7 @@
       </li>
       <li><code class="code1">%e</code> – Leerzeichen wurde nicht hinzugefügt</li>
       <li><code class="code1">%E</code> – nicht implementiert</li>
-      <li><code class="code1">%h</code> – nicht implementiert ( <code class="code1">%b</code> verwenden)</li>
+      <li><code class="code1">%h</code> – nicht implementiert (verwenden Sie <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> – Leerzeichen wurde nicht hinzugefügt</li>
       <li>
         <code class="code1">%n</code> – wie <code class="code1">%m</code> , aber keine führende Null
@@ -681,11 +702,10 @@
       <li><code class="code1">%U</code> – nicht implementiert</li>
       <li><code class="code1">%W</code> – nicht implementiert</li>
       <li><code class="code1">%+</code> – nicht implementiert</li>
-      <li><code class="code1">%%</code> – nicht implementiert ( <code class="code1">%</code> verwenden)</li>
+      <li><code class="code1">%%</code> – nicht implementiert (verwenden Sie <code class="code1">%</code> )</li>
     </ul>
-    <br /><br />
-    <h2 id="ext_filename_format_help">Erweitertes Dateinamenformat:</h2>
     <br />
+    <h2 id="ext_filename_format_help">Erweitertes Dateinamenformat</h2>
     <p>
       Die Formatierung erweiterter Dateinamen verwendet Token. Der genaue Dateiname kann mithilfe der Token
       sowie beliebigem Text oder gültigen Dateinamenszeichen erstellt werden. Ungültige Zeichen sind:
@@ -694,8 +714,8 @@
       aufgeführt.<br /><br />
       Beispiele:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Das Standardformat<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Verwenden Sie das
-      benutzerdefinierte Datumsformat anstelle des Standardformats<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Benutzerdefiniertes
+      Datumsformat anstelle des Standardformats verwenden<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> – Mit
       benutzerdefiniertem Text<br /><br /><br />
     </p>
@@ -706,7 +726,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>Der Betreff der Nachricht. Die Länge kann durch die Option „Betrefflänge“ begrenzt werden.</td>
+        <td>Der Betreff der Nachricht. Die Länge kann durch die Option für die Betrefflänge begrenzt werden.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -727,8 +747,8 @@
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
         <td>
-          Die Empfänger, wenn sich die Nachricht in einem Ordner „Gesendet“ befindet, andernfalls der Name des
-          Absenders
+          Die Empfänger, wenn sich die Nachricht in einem Ordner „Gesendet“ befindet, anderenfalls der Name des
+          Absenders.
         </td>
       </tr>
       <tr>
@@ -745,7 +765,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Das Standarddatumsformat. Das Standardformat ist: JJJJMMTDHHmm</td>
+        <td>Das Standarddatumsformat. Das Standardformat ist JJJJMMTTHHmm.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -759,7 +779,7 @@
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
-        <td>Lokalisiert (<span id="locale1"></span> ) Zeichen</td>
+        <td>Lokalisierte Zeichen (<span id="locale1"></span>)</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -840,10 +860,11 @@
     <p>
       Normalerweise ist das „Datum“ für eine Nachricht in Thunderbird das vom E-Mail-Client des Absenders
       festgelegte Datum. Wenn Sie diese Option auf „true“ setzen, wird das Empfangsdatum im E-Mail-Client des
-      Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen als auch als Datum in den Indexdateien
+      Empfängers verwendet. Dieses Datum wird sowohl für Dateinamen als auch für das Datum in den Indexdateien
       verwendet.
     </p>
-    <h2>Grundlegende, globale Hotkey-Funktion (Verknüpfungen).</h2>
+    <br />
+    <h2>Grundlegende, globale Hotkey-Funktion (Verknüpfungen)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Mit dieser neuen Einstellung kann der Benutzer bis zu 10 Tastaturkürzel einrichten. Mit den
@@ -858,11 +879,11 @@
       <code class="notranslate">keycode</code> – der durch „VK_*“ definierte Schlüsselcode<br />
       Es kann entweder ein Schlüssel oder ein Schlüsselcode enthalten sein, jedoch nicht beides<br />
       <code class="notranslate">modifiers</code> – die Tastenmodifikatoren, durch Leerzeichen getrennte Liste
-      („Control“, „Shift“, „Alt“, „Accel“)<br />
+      („Strg“, „Umschalt“, „Alt“, „Accel“)<br />
       <code class="notranslate">oncommand</code> – eine direkte Befehlszeichenfolge<br />
       <code class="notranslate">contexts</code> – der Fensterkontext, in dem die Taste aktiv ist<br />
       <code class="notranslate">&#39;all&#39;</code> – alle Fenster unter Messenger, Verfassen, Suchen<br />
-      <code class="notranslate">&#39;messenger&#39;</code> – das Haupt-Messenger-Fenster und seine
+      <code class="notranslate">&#39;messenger&#39;</code> – das Messenger-Hauptfenster und seine
       Nachkommen<br />
       <code class="notranslate">&#39;compose&#39;</code> – das Fenster zum Verfassen von Nachrichten<br />
       <code class="notranslate">&#39;search&#39;</code> – der Suchdialog<br /><br />
@@ -895,10 +916,10 @@
     </p>
 
     <p>
-      Da die Verknüpfungen neu und experimentell sind, werde ich dem Repository auch weitere Dokumentation
-      hinzufügen. Überprüfen Sie die Erweiterung
+      Da die Verknüpfungen neu und experimentell sind, werde ich dem Repository auch eine weitere Dokumentation
+      hinzufügen. Prüfen Sie die Erweiterung
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
-        >ImportExportTools NG README</a
+        >ImportExportTools NG README.</a
       ><br />
     </p>
     <br />
@@ -916,6 +937,11 @@
         Vielen Dank an folgende Benutzer für Verbesserungsvorschläge und Testhilfe:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br>
+	      - <code class="notranslate">@Yarny0</code><br>
+	      - <code class="notranslate">@librelegal</code><br>
+	      - <code class="notranslate">@Mr-Update</code><br>
+	      - <code class="notranslate">@Joergen</code><br>
         - <code class="notranslate">@ovari</code><br />
         - <code class="notranslate">@dipgithub</code><br />
         - <code class="notranslate">@artofit</code><br />
@@ -924,7 +950,7 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

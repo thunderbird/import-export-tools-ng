@@ -18,6 +18,27 @@
         </td>
       </tr>
     </table>
+    <h3 id="release_notes" style="padding-left: 4px;">リリースノート：</h3>
+    <p>
+      - 新規: アカウントレベルの mbox インポートを追加<br>
+      - 新規: アカウントレベルの mbox フラット化エクスポートを追加<br>
+      - 新規: ファイルシステムレベルの mbox インポートおよびエクスポートに対応<br>
+      - テキストへの CSV エクスポートを修正 #451, #463<br>
+      - エクスポートフォルダーを ZIP に修正<br>
+      - IETNG 更新時のみヘルプを読み込みように修正<br>
+      - 更新時にヘルプをロードしない設定を追加 #458<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.help.showOnInstallAndUpdate<br>
+      - サブロケールとサポートされていないロケールのヘルプを修正<br>
+      - mbox の From_ セパレーターを RFC 4155 に準拠するように修正 #455<br>
+      - メッセージ表示ウィンドウにエクスポートメニューを追加 #459<br>
+      - POP3 のアカウントエクスポートを修正<br>
+      - バッファー境界の From_ エスケープを修正<br>
+      - 選択されたメッセージの処理を修正 #485<br>
+      - de ロケールの更新を完了 @Mr-Update<br>
+      - fr ロケールの更新を完了 @DenB10<br>
+      - da ロケールの更新を完了 @Joergen<br>
+      - ja ロケールの更新 @kiki-ja<br>
+    </p>
     <h2 id="main_help">ImportExportTools NG の概要とメニュー</h2>
     <p>
        ImportExportTools NG は、Paolo 「Kaosmos」 のオリジナル作品に基づいた後継の拡張機能です。この拡張機能は、次のようないくつかの異なるファイル形式をサポートする複数のインポートおよびエクスポート機能を提供します。
@@ -87,10 +108,6 @@
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__</td>
           <td>すべてのサブフォルダーを含むフォルダーを一連の mbox 形式ファイルにエクスポートします
             (サブフォルダーごとに 1 つずつ)。単一のフォルダーにエクスポートします。</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_RemoteFolderMbox_Id.title__</td>
-          <td>リモート (IMAP) フォルダーを単一の mbox ファイルにエクスポートします。</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
@@ -778,6 +795,11 @@
         機能拡張への提案とテストに協力いただいた以下のユーザーの皆さんに感謝します。<br><br>
         - <code class="notranslate">@kiki-ja</code><br>
         - <code class="notranslate">@tidebre67</code><br>
+        - <code class="notranslate">@DenB10</code><br>
+        - <code class="notranslate">@Yarny0</code><br>
+        - <code class="notranslate">@librelegal</code><br>
+        - <code class="notranslate">@Mr-Update</code><br>
+        - <code class="notranslate">@Joergen</code><br>
         - <code class="notranslate">@ovari</code><br>
         - <code class="notranslate">@dipgithub</code><br>
         - <code class="notranslate">@artofit</code><br>
@@ -787,8 +809,6 @@
         - <code class="notranslate">@kanlukasz</code><br>
         - <code class="notranslate">@razzmatazzz</code><br>
         - <code class="notranslate">@triplee</code> <br>
-        <br>
-        <br>
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

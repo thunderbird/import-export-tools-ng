@@ -4,7 +4,7 @@
 	},
 
 	"extensionDescription": {
-		"message": "Tilføjer værktøjer til at importere/eksportere beskeder og mapper (NextGen)"
+		"message": "Tilføjer værktøjer til at importere/eksportere meddelelser og mapper (NextGen)"
 	},
 
 	"ctxMenu_ExtensionName.title": {
@@ -12,7 +12,7 @@
 	},
 
 	"ctxMenu_Options.title": {
-		"message": "Muligheder"
+		"message": "Indstillinger"
 	},
 
 	"ctxMenu_Help.title": {
@@ -28,7 +28,7 @@
 	},
 
 	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Backup"
+		"message": "Sikkerhedskopier"
 	},
 
 	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
@@ -40,7 +40,7 @@
 	},
 
 	"msgCtxMenu_TopId.title": {
-		"message": "Eksporter meddelelser som..."
+		"message": "Eksporter meddelelser som…"
 	},
 
 	"msgCtxMenu_Exp_EMLFormat_Id.title": {
@@ -64,7 +64,7 @@
 	},
 
 	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox format"
+		"message": "mbox-format"
 	},
 
 	"msgCtxMenu_Exp_Index_Id.title": {
@@ -76,23 +76,23 @@
 	},
 
 	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Beskeder (vedhæftede vedhæftede filer)"
+		"message": "Meddelelser (Indlejrede vedhæftede filer)"
 	},
 
 	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Kun beskeder"
+		"message": "Kun meddelelser"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Beskeder og vedhæftede filer"
+		"message": "Meddelelser og vedhæftede filer"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
@@ -100,15 +100,15 @@
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Kun beskeder"
+		"message": "Kun meddelelser"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Beskeder og vedhæftede filer"
+		"message": "Meddelelser og vedhæftede filer"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
@@ -116,7 +116,7 @@
 	},
 
 	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Ny mbox fil"
+		"message": "Ny mbox-fil"
 	},
 
 	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
@@ -132,11 +132,11 @@
 	},
 
 	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Besked"
+		"message": "Meddelelse"
 	},
 
 	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Overskrifter"
+		"message": "Headers"
 	},
 
 	"folderCtxMenu_Exp_FolderMbox_Id.title": {
@@ -144,7 +144,7 @@
 	},
 
 	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Som mbox fil"
+		"message": "Som mbox-fil"
 	},
 
 	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
@@ -212,7 +212,7 @@
 	},
 
 	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Alle mbox filer fra mappe (med sbd struktur)"
+		"message": "Alle mbox-filer fra mappe (med sbd-struktur)"
 	},
 
 	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
@@ -228,7 +228,7 @@
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Alle EML-meddelelser fra en adressebog"
+		"message": "Alle EML-meddelelser fra en mappe"
 	},
 
 	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
@@ -240,15 +240,15 @@
 	},
 
 	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Åbn mappekatalog"
+		"message": "Åbn mappens mappe"
 	},
 
 	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
@@ -256,7 +256,7 @@
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Beskeder og HTML-indeks"
+		"message": "Meddelelser og HTML-indeks"
 	},
 
 	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {

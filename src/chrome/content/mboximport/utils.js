@@ -341,7 +341,7 @@ function IETexport_all(params) {
 		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 		//.getService(Ci.nsIPromptService);
 		var check = { value: false };
-		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else
@@ -452,7 +452,7 @@ function IETformatWarning(warning_type) {
 		text = mboximportbundle.GetStringFromName("formatWarningImport");
 		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWarning"), check);
 	IETprefs.setBoolPref(pref, !check.value);
 	return result;
 }
@@ -462,7 +462,7 @@ function IETremoteWarning() {
 		return true;
 
 	var check = { value: false };
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
 	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }
@@ -562,7 +562,7 @@ function IETcopyStrToClip(str) {
 }
 
 function IETcleanName(str) {
-	str = str.replace(/[\\:?"\*\/<>#]/g, "_");
+	str = str.replace(/[\\:?"\*\/<>|]/g, "_");
 	str = str.replace(/[\x00-\x19]/g, "_");
 	return str;
 }
@@ -653,8 +653,10 @@ function IETemlx2eml(file) {
 }
 
 function getMailStoreFromFolderPath(accountId, folderPath) {
+	if (!folderPath) {
+		folderPath = "/";
+	}
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
-
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");
@@ -671,6 +673,7 @@ function getMailStoreFromFolderPath(accountId, folderPath) {
 }
 
 function getMsgFolderFromAccountAndPath(accountId, folderPath) {
+
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
 	return msgFolder;
 }

@@ -28,9 +28,11 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 //const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-3.js", window, "UTF-8");
 
 var window;
+
+console.log("mboximportExport -3");
 
 export var mboxImportExport = {
 
@@ -59,7 +61,7 @@ export var mboxImportExport = {
 
     let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
     let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
-    
+
 
     if (params.mboxImpType == "individual") {
       fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
@@ -75,7 +77,13 @@ export var mboxImportExport = {
       mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
     }
 
-    var msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+    
+    var msgFolder;
+    if (params.selectedAccount) {
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, "/");
+    } else {
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+    }
 
     await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
 
@@ -92,18 +100,42 @@ export var mboxImportExport = {
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
+
+    var useCopyImport;
+    var skipMbox;
+
     for (let i = 0; i < files.length; i++) {
+      useCopyImport = false;
+      skipMbox = false;
+
       const mboxFilePath = files[i];
 
       let stat = await IOUtils.stat(mboxFilePath);
       let fname = PathUtils.filename(mboxFilePath);
-      
+
       let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
-      
-      if (stat.size > 4000000000) {
+
+      if (stat.size > 30000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
-        window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
-        return
+        //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
+
+        let prompt = Services.prompt;
+        let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
+        let buttonReturn = Services.prompt.confirmEx(window, "Mbox over 4GB",
+          "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
+
+          buttonFlags,
+          "Use Copy Import",
+          "Skip mbox import",
+          "",
+          null, {});
+
+        console.log(buttonReturn)
+        if (buttonReturn == 0) {
+          useCopyImport = true;
+        } else {
+          skipMbox = true;
+        }
       }
 
       let impMsg = this.mboximportbundle.GetStringFromName("importing");
@@ -119,10 +151,22 @@ export var mboxImportExport = {
         this.totalSkipped++;
         continue;
       }
-      var subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
+
+      var subMsgFolder;
+      if (useCopyImport) {
+        console.log("usecopy")
+        subMsgFolder = await this._copyImportMboxFile(mboxFilePath, msgFolder);
+
+      } else if (!skipMbox) {
+        subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
+      } else {
+        subMsgFolder = await this._createEmptyMboxFile(mboxFilePath, msgFolder);
+
+      }
       if (subMsgFolder) {
         this.totalImported++;
       }
+
       if (recursive && await this._ifSbdExists(mboxFilePath)) {
         var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
         await this.importMboxFiles(subFiles, subMsgFolder, recursive);
@@ -269,6 +313,91 @@ export var mboxImportExport = {
     return rv;
   },
 
+  _copyImportMboxFile: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
+    } else {
+      subFolderName = PathUtils.filename(filePath);
+    }
+
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
+    var dst = subFolderPath;
+
+    // build our mbox in new subfolder
+    //await mboxCopyImport({ srcPath: src, destPath: dst });
+    console.log(src)
+    await IOUtils.copy(src, dst, {})
+    // this forces an mbox to be reindexed and build new msf
+    await this.rebuildSummary(subMsgFolder);
+    // give up some time to ui
+    await new Promise(r => window.setTimeout(r, 200));
+
+    return subMsgFolder;
+
+  },
+
+  _createEmptyMboxFile: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
+    } else {
+      subFolderName = PathUtils.filename(filePath);
+    }
+
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    return subMsgFolder;
+  },
+
   _importMboxFile: async function (filePath, msgFolder) {
     var src = filePath;
     var subFolderName;
@@ -317,16 +446,19 @@ export var mboxImportExport = {
   },
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
-    
+
     let useMboxExt = false;
-    if (!inclSubfolders || flattenSubfolders && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+    if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
       useMboxExt = true;
     }
 
-    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.name, destPath, false, useMboxExt);
+    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.prettyName, destPath, false, useMboxExt);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
     ietngUtils.createStatusLine(window);
+
+    let msgFolderSize = rootMsgFolder.sizeOnDisk;
+    rootMsgFolder = rootMsgFolder.QueryInterface(Ci.nsIMsgFolder);
 
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 
@@ -348,10 +480,12 @@ export var mboxImportExport = {
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
 
     for (let subMsgFolder of msgFolder.subFolders) {
-      let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName);
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.prettyName, fullSbdDirPath, false, false);
+
+      let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
       if (subMsgFolder.hasSubFolders) {
-        let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, subMsgFolder.prettyName + ".sbd");
+        let fullNewSbdDirPath = PathUtils.join(fullSbdDirPath, uniqueName + ".sbd");
         await IOUtils.makeDirectory(fullNewSbdDirPath);
         await this.exportSubFolders(subMsgFolder, fullNewSbdDirPath);
       }
@@ -379,12 +513,22 @@ export var mboxImportExport = {
 
     let st = new Date();
     //console.log("Start: ", st, msgFolder.prettyName);
-    var mboxDestPath = dest;
-    var folderMsgs = msgFolder.messages;
 
+    var mboxDestPath = dest;
+    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
+
+    // if we can't get msgFolder.messages just make empty mbox
+    // this happens with the root folder on pop3 accounts
+    try {
+      var folderMsgs = msgFolder.messages;
+    } catch (ex) {
+      let r = await IOUtils.write(mboxDestPath, new Uint8Array(), { mode: "overwrite" });
+
+      return;
+    }
     var sep = "";
     //const maxFileSize = 1021000000;
-    const kMaxFileSize = 4000000000;
+    const kMaxFileSize = 30000000000;
     const kFileChunkSize = 10000000;
 
     var msgsBuffer = "";
@@ -395,7 +539,6 @@ export var mboxImportExport = {
     var fromAddr;
     let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
-    var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
 
     var vfMsgUris = [];
     if (isVirtualFolder) {
@@ -437,7 +580,8 @@ export var mboxImportExport = {
         fromAddr = "";
       }
 
-      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toString().split(" (")[0];
+      // fix date format to use UTC per RFC 4155 - addresses #455
+      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toUTCString().split(" GMT")[0];
 
       // get message as 8b string
       let rawBytes = await this.getRawMessage(msgUri);
@@ -446,9 +590,11 @@ export var mboxImportExport = {
         sep = "\n";
       }
 
-      let fromHdr = `${sep}From - ${fromAddr}  ${msgDate}\n`;
+      // fix From format to use RFC 4155 format- addresses #455
+      let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
+      // If TB gives us a From_ separator, null out
       if (rawBytes.substring(0, 5) == "From ") {
-        fromHdr = "";
+        rawBytes = rawBytes.replace(/^(From (?:.*?)\r?\n)/, "");
       } else {
         // may need to look ahead
       }
@@ -531,7 +677,7 @@ export var mboxImportExport = {
     });
   },
 
-  
+
   rebuildSummary: async function (folder) {
 
     if (folder.locked) {
@@ -648,7 +794,7 @@ export var mboxImportExport = {
       if (gDBView.rowCount == gDBView.numMsgsInView) {
         break;
       }
-    await new Promise(r => window.setTimeout(r, 50));
+      await new Promise(r => window.setTimeout(r, 50));
     }
 
     var uriArray = [];

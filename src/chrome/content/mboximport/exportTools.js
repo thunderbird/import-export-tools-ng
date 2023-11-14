@@ -15,11 +15,11 @@
 
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - Update for TB68
@@ -96,7 +96,7 @@ function searchANDsave(params) {
 
 function IETgetSortType() {
 
-	// get gDBView from 3pane - 115
+	// Get gDBView from 3pane - 115
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 
 	if (!gDBView) {
@@ -113,11 +113,11 @@ function IETgetSortType() {
 			IETsortType = 2;
 			break;
 		case 28:
-			// nsMsgViewSortTypeValue  byRecipient = 28
+			// nsMsgViewSortTypeValue byRecipient = 28
 			IETsortType = 3;
 			break;
 		default:
-			// For any other value of nsMsgViewSortTypeValue  the sort index is by date
+			// For any other value of nsMsgViewSortTypeValue the sort index is by date
 			IETsortType = 0;
 	}
 }
@@ -202,20 +202,23 @@ async function exportSelectedMsgs(type, params) {
 		}
 	} catch (e) { }
 
+
 	var curDBView;
-	// lets see where we are
+	// Lets see where we are
 	if (gTabmail.currentAbout3Pane) {
-		// on 3p
+		// On 3p
 		curDBView = gTabmail.currentAbout3Pane.gDBView;
 	} else if (gTabmail.currentAboutMessage) {
 		curDBView = gTabmail.currentAboutMessage.gDBView;
 	}
 
-	let emlsArray = curDBView.getURIsForSelection();
+	var msgUris = [];
 
-	// use first message to get current folder
-	var mms1 = MailServices.messageServiceFromURI(emlsArray[0]).QueryInterface(Ci.nsIMsgMessageService);
-	var hdr1 = mms1.messageURIToMsgHdr(emlsArray[0]);
+	msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+
+	// Use first message to get current folder
+	var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
+	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
 
 	try {
@@ -251,8 +254,8 @@ async function exportSelectedMsgs(type, params) {
 	if (isOffLineImap) {
 		var tempArray = [];
 
-		for (var i = 0; i < emlsArray.length; i++) {
-			var eml = emlsArray[i];
+		for (var i = 0; i < msgUris.length; i++) {
+			var eml = msgUris[i];
 			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 			var hdr = mms.messageURIToMsgHdr(eml);
 
@@ -261,22 +264,22 @@ async function exportSelectedMsgs(type, params) {
 			else
 				IETskipped = IETskipped + 1;
 		}
-		emlsArray = tempArray;
+		msgUris = tempArray;
 	}
-	IETtotal = emlsArray.length;
+	IETtotal = msgUris.length;
 	IETexported = 0;
-	var msguri = emlsArray[0];
+	var msguri = msgUris[0];
 
 	var hdrArray;
 	switch (type) {
 		case 1:
-			exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null);
+			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
 			break;
 		case 2:
-			exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null);
+			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
 			break;
 		case 3:
-			saveMsgAsEML(msguri, file, true, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 4:
 			if (isMbox(file) !== 1) {
@@ -284,32 +287,32 @@ async function exportSelectedMsgs(type, params) {
 				alert(string);
 				return;
 			}
-			saveMsgAsEML(msguri, file, true, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 5:
-			hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 			createIndex(type, file, hdrArray, msgFolder, true, true);
 			break;
 		case 6:
-			hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 			createIndexCSV(type, file, hdrArray, msgFolder, false);
 			break;
 		case 7:
-			hdrArray = IETemlArray2hdrArray(emlsArray, true, file);
+			hdrArray = IETemlArray2hdrArray(msgUris, true, file);
 			createIndexCSV(type, file, hdrArray, msgFolder, true);
 			break;
 		case 8:
-			exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, true);
+			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
 			break;
 		case 9:
-			exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, true);
+			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
 			break;
 		default:
-			saveMsgAsEML(msguri, file, false, emlsArray, null, null, false, false, null, null);
+			saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
 	}
 
 	if (needIndex) {
-		hdrArray = IETemlArray2hdrArray(emlsArray, false, file);
+		hdrArray = IETemlArray2hdrArray(msgUris, false, file);
 		createIndex(type, file, hdrArray, msgFolder, false, false);
 	}
 	if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
@@ -321,7 +324,7 @@ async function exportSelectedMsgs(type, params) {
 //
 // 1) exportAllMsgs
 //
-// sets the destination directory and makes some checks about the types of the selected folders;
+// Sets the destination directory and makes some checks about the types of the selected folders;
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
@@ -413,7 +416,7 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 // 3a) exportAllMsgsDelayedVF
 //
 // The virtual folders are only a collection of messages that are really in other folders.
-// So we must select the folderm do some pre-export stuff and call the export routine
+// So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	var msgUriArray = [];
@@ -431,7 +434,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 
 	for (let i = 0; i < gDBView.rowCount; i++) {
-		// error handling changed in 102
+		// Error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 
@@ -439,10 +442,10 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
-			continue; // ignore errors for dummy rows
+			continue; // Ignore errors for dummy rows
 		}
 	}
-	// collapse back view
+	// Collapse back view
 	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
 
 	var folderType = msgFolder.server.type;
@@ -457,7 +460,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
 	if (useContainer) {
-		// Check if the name is good or exists alredy another directory with the same name
+		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
 		var subfile;
@@ -519,9 +522,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 
-// 3b exportAllMsgsDelayed
+// 3b) exportAllMsgsDelayed
 //
-// The same of 3a for not-virtual folder
+// The same of 3a for non-virtual folder
 
 async function exportAllMsgsDelayed(type, file, msgFolder) {
 	try {
@@ -556,7 +559,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	var ext = IETgetExt(type);
 
 	if (useContainer) {
-		// Check if the name is good or exists alredy another directory with the same name
+		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
 		var subfile;
@@ -640,7 +643,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 
-// 4 IETrunExport
+// 4) IETrunExport
 //
 // According to the type requested, it's called the routine that performs the export
 
@@ -650,28 +653,28 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 		case 1: // HTML format, with index
 			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
 			break;
-		case 2: // plain text format, with index
+		case 2: // Plain text format, with index
 			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
 			break;
-		case 3: // just HTML index
+		case 3: // Just HTML index
 			createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
-		case 4: // plain text, single file, no index
+		case 4: // Plain text, single file, no index
 			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
 			break;
-		case 5: // just CSV index
+		case 5: // Just CSV index
 			createIndexCSV(type, file2, hdrArray, msgFolder, false);
 			break;
 		case 6: // CSV format, with body too
 			createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
-		case 7: // plain text, single file, no index and with attachments
+		case 7: // Plain text, single file, no index and with attachments
 			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
 			break;
 		case 8: // HTML format, with index and attachments
 			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
-		case 9: // plain text format, with index and attachments
+		case 9: // Plain text format, with index and attachments
 			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		default: // EML format, with index
@@ -722,7 +725,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
 	}
 
-	// improve index table formatting
+	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
 	styles += 'th { background-color: #e6ffff; }\r\n';
@@ -813,7 +816,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		}
 
 
-		// deal with e-mail without 'To:' headerSwitch to insiders
+		// Deal with e-mail without 'To:' headerSwitch to insiders
 		if (recc === "" || !recc) {
 			recc = "(none)";
 		}
@@ -867,7 +870,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
 	}
 
-	// improve index table formatting
+	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
 	styles += 'th { background-color: #e6ffff; }\r\n';
@@ -996,7 +999,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var sep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
-	// Build the index csv page
+	// Build the index CSV page
 
 	var time;
 	var subj;
@@ -1073,7 +1076,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var body = addBody ? hdrs[7] : "";
 
-		// utilize index format for CSV 
+		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
 
 		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
@@ -1137,7 +1140,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			if (append) {
 				if (this.emailtext !== "") {
 					data = this.emailtext + "\n";
-					// Some Imap servers don't add to the message the "From" prologue
+					// Some IMAP servers don't add to the message the "From" prologue
 					if (data && !data.match(/^From/)) {
 						let fromAddr;
 						try {
@@ -1171,13 +1174,13 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					// This probably is removing an mbox separator, but is
 					// not specific enough and originally would replace 
 					// a normal From: field. Make better regex...
-					//data = this.emailtext.replace(/^From.+\r?\n/, "");
+					// data = this.emailtext.replace(/^From.+\r?\n/, "");
 
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 
 					data = IETescapeBeginningFrom(data);
 
-					// strip CR option - @ashikase
+					// Strip CR option - @ashikase
 					if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
 						data = data.replace(/\r\n/g, "\n");
 						console.log("rmv cr")
@@ -1193,7 +1196,7 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					if (myEMLlistner.file2) {
 						var nameNoExt = clone.leafName.replace(/\.eml$/, "");
 						// If the leafName of the file is not equal to "sub", we must change also
-						// the corrispondent section of hdrArray[IETexported], otherwise the link
+						// the correspondent section of hdrArray[IETexported], otherwise the link
 						// in the index will be wrong
 						if (sub !== nameNoExt) {
 							parts[4] = nameNoExt;
@@ -1365,7 +1368,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								console.debug(e);
 							}
 						}
-						// encode for utf-8 - Fixes #355
+						// Encode for UTF-8 - Fixes #355
 						if (success)
 							footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
 					}
@@ -1374,14 +1377,14 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 						data = data.replace("</body>", footer);
 						data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
 
-						// cleidigh - fixup group boxes and images
+						// cleidigh - fix up group boxes and images
 						let rs;
 
 						// cleidigh - original outline for inline images 
 						// regex could somehow go to recursion
 						// https://github.com/thundernest/import-export-tools-ng/issues/98
 
-						// just remove outlines for now
+						// Just remove outlines for now
 						data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
 
 						let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
@@ -1460,7 +1463,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			if (myTxtListener.file2) {
 				if (num > 0) {
 					// If "num" is greater than 0, it means that the filename is not equal to subject
-					// and so the corrispondent section of hdrArray[IETexported] must be modified too,
+					// and so the correspondent section of hdrArray[IETexported] must be modified too,
 					// otherwise the link the index will be wrong
 					parts[4] = sub + "-" + num;
 					hdrArray[IETexported] = parts.join("§][§^^§");
@@ -1492,7 +1495,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							imgs = imgs.concat(imgsImap);
 						}
 
-						// update for extended naming
+						// Update for extended naming
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
 								embImgContainer = file.clone();
@@ -1522,7 +1525,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							embImg.append(i + ".jpg");
 							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
 							// var sep = isWin ? "\\" : "/";
-							// encode for utf-8 - Fixes #355
+							// Encode for UTF-8 - Fixes #355
 							data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
 						}
 					} catch (e) {
@@ -1530,9 +1533,9 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					}
 				}
 				/* Clean HTML code generated by streamMessage and "header=filter":
-				- replace author/recipients/subject with mimeDecoded values
-				- strip off the reference to messageBody.css
-				- add a style rule to make headers name in bold
+				- Replace author/recipients/subject with mimeDecoded values
+				- Strip off the reference to messageBody.css
+				- Add a style rule to make headers name in bold
 				*/
 				var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
 				data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
@@ -1591,14 +1594,14 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 
 	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
 	var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
-	// For additional headers see  http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
+	// For additional headers see http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 	if (!HTMLasView && !convertToText && !copyToClip)
 		uri = uri + "?header=saveas";
 	var messageService = MailServices.messageServiceFromURI(uri);
 	var hdr = messageService.messageURIToMsgHdr(uri);
 
 	try {
-		IETlogger.write("call to  exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
+		IETlogger.write("call to exportAsHtml - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 	} catch (e) {
 		IETlogger.write("call to exportAsHtml - error = " + e);
 	}
@@ -1607,8 +1610,8 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 	myTxtListener.file2 = file2;
 	myTxtListener.msgFolder = msgFolder;
 
-	/* With Thunderbird 5 or higher, nschannel+asyncConverter casues randomly a crash.
-	This is probably due to some Javascript engine bug, for techincal details see
+	/* With Thunderbird 5 or higher, nschannel+asyncConverter causes randomly a crash.
+	This is probably due to some JavaScript engine bug, for technical details see
 	https://bugzilla.mozilla.org/show_bug.cgi?id=692735
 	To use streamMessage with "header=filter" additional header is a quite good compromise,
 	as workaround against this bug. The HTML code generated is less clean than the one generated
@@ -1663,7 +1666,7 @@ function IETcopyToClip(data) {
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data);
 
-	// hack to clean the headers layout!!!
+	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
 	var dataUTF8 = IETconvertToUTF8(data);
@@ -1684,7 +1687,7 @@ function IETcopyToClip(data) {
 
 function IEThtmlToText(data) {
 
-	// This is necessay to avoid the subject ending with ":" can cause wrong parsing
+	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
 
 	var toStr = {};
@@ -1749,13 +1752,13 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 
 	for (let i = 0; i < IETtotal; i++) {
-		// error handling changed in 102
+		// Error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
 		// Resolves #359
 		try {
 			var msguri = gDBView.getURIForViewIndex(i);
 		} catch (ex) {
-			continue; // ignore errors for dummy rows
+			continue; // Ignore errors for dummy rows
 		}
 
 		uriArray.push(msguri);
@@ -1850,7 +1853,7 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (append) {
 		if (fname)
 			file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write,  create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
 	if (data)
@@ -1879,7 +1882,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		.createInstance(Ci.nsIFileOutputStream);
 	if (append) {
 		file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write,  create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
 
@@ -1894,12 +1897,26 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-async function copyMSGtoClip(msgId) {
+async function copyMSGtoClip(selectedMsgs) {
 	var msguri;
 
-	if (msgId) {
+	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
+	let copyMsgsToClip_firstOnly = mboximportbundle.GetStringFromName("copyMsgsToClip_firstOnly");
+	if (selectedMsgs.length > 1) {
+		let prompt = Services.prompt;
+		let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+		let buttonReturn = Services.prompt.confirmEx(window, copyMsgsToClip_promptTitle,
+			copyMsgsToClip_firstOnly,
+			buttonFlags,
+			null,
+			null,
+			"",
+			null, {});
+	}
+
+	if (selectedMsgs[0].id) {
 		let realMessage = window.ietngAddon.extension
-			.messageManager.get(msgId);
+			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
 
 		if (!msguri)
@@ -1952,14 +1969,26 @@ var copyHeaders = {
 		return myListener;
 	},
 
-	//imap://test1@kokkini.net@imap.kokkini.net:143/fetch>UID>.INBOX>3229 exportTools.js:1938:12
 
-	start: async function (msgId) {
+	start: async function (selectedMsgs) {
 		var msguri;
+		let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
+		let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
+		if (selectedMsgs.length > 1) {
+			let prompt = Services.prompt;
+			let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+			let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
+				copyHdrsToClip_firstOnly,
+				buttonFlags,
+				null,
+				null,
+				"",
+				null, {});
+		}
 
-		if (msgId) {
+		if (selectedMsgs[0].id) {
 			let realMessage = window.ietngAddon.extension
-				.messageManager.get(msgId);
+				.messageManager.get(selectedMsgs[0].id);
 			msguri = realMessage.folder.getUriForMsg(realMessage);
 
 			var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
@@ -1975,8 +2004,8 @@ function IETescapeBeginningFrom(data) {
 	// Workaround to fix the "From " in beginning line problem in body messages
 	// See https://bugzilla.mozilla.org/show_bug.cgi?id=119441 and
 	// https://bugzilla.mozilla.org/show_bug.cgi?id=194382
-	// TB2 has uncorrect beahviour with html messages
-	// This is not very fine, but I didnt' find anything better...
+	// TB2 has uncorrect behaviour with html messages
+	// This is not very fine, but I didn't find anything better...
 	var datacorrected = data.replace(/\nFrom /g, "\n From ");
 	return datacorrected;
 }
@@ -2100,7 +2129,8 @@ function IETstoreBody(msguri) {
 	fromStr.data = dataUTF8;
 
 	try {
-		formatConverter.convert("text/html", fromStr, "text/unicode", toStr);
+		// Fix #451 use text/plain output
+		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 	} catch (e) {
 		text = dataUTF8;
 	}

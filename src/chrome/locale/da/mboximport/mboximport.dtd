@@ -106,20 +106,21 @@
 <!ENTITY csvSep "Separator til eksport i CSV-format:">
 <!ENTITY saveProfile "Eksporter profil">
 <!ENTITY withIndexLabel "Med HTML-index">
-
 <!ENTITY customDate "Brugerdefineret dato:">
 <!ENTITY extFormat "Format:">
 <!ENTITY dateCustomOpt "Dato (brugerdefineret)">
 <!ENTITY useExtFilenameFormat "Brug udvidet format">
 <!ENTITY addSuffix "Tilføj suffiks">
-<!ENTITY dateFormatRefTooltipText "Datoformat Henvisning">
-<!ENTITY extFilenameFormatRefTooltipText "Udvidet reference til filnavnsformat">
-<!ENTITY backupOnExit "Backup ved afslutning">
+<!ENTITY dateFormatRefTooltipText "Henvisning til datoformat">
+<!ENTITY extFilenameFormatRefTooltipText "Henvisning til udvidet filnavnsformat">
+<!ENTITY backupOnExit "Sikkerhedskopier ved afslutning">
 <!ENTITY noFolderSelectedMenuTop "[Ingen valgt mappe (Import \ Export deaktiveret)]">
 <!ENTITY indexCSVdateFormat "Indeks, CSV-datoformat:">
-<!ENTITY attachmentFolderNames "Navne på vedhæftede mapper">
-<!ENTITY attachmentFolders "Vedhæftede mapper">
-<!ENTITY inlineAttachmentsFolders "Inline vedhæftede mapper">
+
+<!ENTITY attachmentFolderNames "Navne på mapper med vedhæftede filer">
+<!ENTITY attachmentFolders "Mapper med vedhæftede filer">
+<!ENTITY inlineAttachmentsFolders "Mapper med indlejrede vedhæftede filer">
 <!ENTITY cutPathLen "Klip filstilængden til 256 tegn">
 <!ENTITY strip_eml_CR.label "Fjern CR fra linjeafslutninger for eml-meddelelseseksport">
-<!ENTITY useMboxExt.label "Brug .mbox-udvidelsen til mbox-filer (ikke-struktureret)">
+<!ENTITY useMboxExt.label "Brug filendelsen .mbox til mbox-filer (ikke-struktureret)">
+<!ENTITY openHelpInWindow.label "Åbn hjælp i et vindue i stedet for i et faneblad">

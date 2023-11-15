@@ -4,13 +4,10 @@
 [ImportExportTools NG](https://addons.thunderbird.net/addon/importexporttools-ng/) adds import and 
 export functions for messages, folders and profiles.
 
-This derivative add-on is the update of [ImportExportTools](https://addons.thunderbird.net/addon/importexporttools/), 
-the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/Paolo_Kaosmos/).
-
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
-[![TB78](https://raster.shields.io/badge/version-v10.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%2078)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v10.1.0%20(beta%20version)-C70039.png?label=Thunderbird%2091)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
+[![TB91](https://raster.shields.io/badge/version-v14.0.1%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -20,8 +17,40 @@ the original work of [Paolo “Kaosmos”](https://addons.thunderbird.net/user/P
 
 ## Import Export Tools NG Add-On Features
 
+Version 14.0.1 : Maintenance Release - November 10, 2023
 
-Latest Version 10.0.2 : Maintenance Release - November 14, 2020
+- New: Add Account level mbox import
+- New: Add Account level mbox flattened export
+- New: Support for mbox import and export to filesys levels
+- Fix CSV export to text #451, #463
+- Fix export folder to ZIP
+- Fix help load only on IETNG updates
+- Add preference to never load help on updates #458
+  extensions.importexporttoolsng.export.help.showOnInstallAndUpdate
+- Fix help for sublocales and unsupported locales
+- Fix mbox From_ separators to adhere to RFC 4155 #455
+- Add back Export Messages in message display windows #459
+- Fix Account export for pop3
+- Fix buffer boundary From_ escaping
+- Fix selected messages handling #485
+- Complete de locale update @Mr-Update
+- Complete fr locale update @DenB10
+- Complete da locale update @Joergen
+- Updated ja locale @kiki-ja
+
+Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
+
+- Thunderbird v115 ESR support
+- New UI refresh
+- New Dark mode support
+- New clean, consistent and logical menus
+- New toolbar button for profile, backup and options support
+- New .mbox extension option for non-structured exports
+- New strip CR from eml exports
+- Improved mbox From_ escaping
+
+
+Version 10.0.2 : Maintenance Release - November 14, 2020
 
 Bug Issues Fixed:
 

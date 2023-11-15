@@ -1,0 +1,337 @@
+{
+	"extensionName": {
+		"message": "ImportExportTools NG"
+	},
+
+	"extensionDescription": {
+		"message": "添加工具以导入/导出消息和文件夹 (NextGen)"
+	},
+
+	"ctxMenu_ExtensionName.title": {
+		"message": "ImportExportTools NG"
+	},
+
+	"ctxMenu_Options.title": {
+		"message": "选项"
+	},
+
+	"ctxMenu_Help.title": {
+		"message": "帮助"
+	},
+
+	"toolsCtxMenu_Exp_Profile_Id.title": {
+		"message": "导出配置文件"
+	},
+
+	"toolsCtxMenu_Imp_Profile_Id.title": {
+		"message": "导入配置文件"
+	},
+
+	"toolsCtxMenu_Backup_Id.title": {
+		"message": "备份"
+	},
+
+	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
+		"message": "完整资料"
+	},
+
+	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+		"message": "仅限邮寄"
+	},
+
+	"msgCtxMenu_TopId.title": {
+		"message": "将消息导出为..."
+	},
+
+	"msgCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML 消息格式"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML 格式"
+	},
+
+	"msgCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF格式"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "纯文本格式"
+	},
+
+	"msgCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV 格式（电子表格）"
+	},
+
+	"msgCtxMenu_Exp_MboxFormat_Id.title": {
+		"message": "mbox格式"
+	},
+
+	"msgCtxMenu_Exp_Index_Id.title": {
+		"message": "留言索引"
+	},
+
+	"msgCtxMenu_CopyToClipboard_Id.title": {
+		"message": "复制到剪贴板"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+		"message": "消息（嵌入附件）"
+	},
+
+	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+		"message": "仅消息"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+		"message": "消息和附件"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "带附件和索引的邮件"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+		"message": "仅消息"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+		"message": "消息和附件"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "带附件和索引的邮件"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+		"message": "新建 mbox 文件"
+	},
+
+	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+		"message": "追加到现有的 mbox 文件"
+	},
+
+	"msgCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML 格式"
+	},
+
+	"msgCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV 格式"
+	},
+
+	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
+		"message": "信息"
+	},
+
+	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+		"message": "标头"
+	},
+
+	"folderCtxMenu_Exp_FolderMbox_Id.title": {
+		"message": "文件夹导出 (mbox)"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+		"message": "作为 mbox 文件"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+		"message": "单个压缩的 mbox 文件"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+		"message": "结构化子文件夹"
+	},
+
+	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+		"message": "带有扁平化的子文件夹"
+	},
+
+	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+		"message": "导出远程文件夹"
+	},
+
+	"folderCtxMenu_Exp_AllMessages_Id.title": {
+		"message": "导出文件夹中的所有邮件"
+	},
+
+	"folderCtxMenu_Exp_EMLFormat_Id.title": {
+		"message": "EML 消息格式"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
+		"message": "HTML 格式"
+	},
+
+	"folderCtxMenu_Exp_PDFFormat_Id.title": {
+		"message": "PDF格式"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+		"message": "纯文本格式"
+	},
+
+	"folderCtxMenu_Exp_CSVFormat_Id.title": {
+		"message": "CSV 格式（电子表格）"
+	},
+
+	"folderCtxMenu_Exp_Index_Id.title": {
+		"message": "留言索引"
+	},
+
+	"folderCtxMenu_Exp_SearchExport_Id.title": {
+		"message": "搜索和导出消息"
+	},
+
+	"folderCtxMenu_Imp_MboxFiles_Id.title": {
+		"message": "导入 mbox 文件"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+		"message": "单个 mbox 文件"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+		"message": "单个 mbox 文件（具有 sbd 结构）"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+		"message": "目录中的所有 mbox 文件"
+	},
+
+	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+		"message": "目录中的所有 mbox 文件（具有 sbd 结构）"
+	},
+
+	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
+		"message": "导入 Maildir 文件夹"
+	},
+
+	"folderCtxMenu_Imp_EMLFormat_Id.title": {
+		"message": "导入 EML 消息"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+		"message": "个人 EML 消息"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+		"message": "来自目录的所有 EML 消息"
+	},
+
+	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+		"message": "来自目录和子目录的所有 EML 消息"
+	},
+
+	"folderCtxMenu_CopyFolderPath_Id.title": {
+		"message": "复制文件夹路径"
+	},
+
+	"folderCtxMenu_OpenFolderDir_Id.title": {
+		"message": "打开文件夹目录"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+		"message": "带附件和索引的邮件"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+		"message": "带附件和索引的邮件"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+		"message": "作为单个文件的消息"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+		"message": "作为带有附件的单个文件的消息"
+	},
+
+	"folderCtxMenu_Exp_IndexHTML_Id.title": {
+		"message": "HTML 格式"
+	},
+
+	"folderCtxMenu_Exp_IndexCSV_Id.title": {
+		"message": "CSV 格式"
+	},
+
+	"subjectFmtToken": {
+		"message": "${主题}"
+	},
+
+	"senderFmtToken": {
+		"message": "${发件人}"
+	},
+
+	"recipientFmtToken": {
+		"message": "${收件人}"
+	},
+
+	"senderEmailFmtToken": {
+		"message": "${发件人_email}"
+	},
+
+	"recipientEmailFmtToken": {
+		"message": "${收件人_email}"
+	},
+
+	"smartNameFmtToken": {
+		"message": "${聪明的名字}"
+	},
+
+	"indexFmtToken": {
+		"message": "${索引}"
+	},
+
+	"prefixFmtToken": {
+		"message": "${前缀}"
+	},
+
+	"suffixFmtToken": {
+		"message": "${后缀}"
+	},
+
+	"dateCustomFmtToken": {
+		"message": "${日期自定义}"
+	},
+
+	"dateFmtToken": {
+		"message": "${日期}"
+	},
+
+	"Received": {
+		"message": "已收到"
+	},
+
+	"folderCtxMenu_Exp_Account_Id.title": {
+		"message": "出口账户"
+	},
+
+	"attCtxMenu_Top_Id.title": {
+		"message": "将 EML 附件保存到此文件夹"
+	}
+}

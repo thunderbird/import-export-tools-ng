@@ -20,10 +20,10 @@
 <!ENTITY customName "Benutzerdefiniert">
 <!ENTITY backupType "Backup-Inhalt">
 <!ENTITY allFiles "Alle Profil-Dateien">
-<!ENTITY justMailFiles "Nur Mail-Dateien">
+<!ENTITY justMailFiles "Nur E-Mail-Dateien">
 <!ENTITY lastBackup "Letztes Backup">
 <!ENTITY allFilesMode "Immer alle Dateien">
-<!ENTITY newFilesMode "Nur Dateien, die nach dem letzten Backup geändert wurden">
+<!ENTITY newFilesMode "Nur Dateien, die seit dem letzten Backup geändert wurden">
 <!ENTITY save "Speichern">
 <!ENTITY modal "Modales Fenster benutzen">
 <!ENTITY MACwarning "Vor dem Fortfahren bitte alle anderen Fenster schließen.">

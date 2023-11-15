@@ -3,7 +3,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -30,16 +30,18 @@ IETopenFPsync
 */
 
 var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-Services.console.logStringMessage("profile start");
-console.debug('profile import');
 
 var IETimportWizard = {
 
 	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
 
 	start: function () {
-		Services.console.logStringMessage("profile start 2");
-		// Services.console.logStringMessage(document.documentElement.outerHTML);
+		let wiz = document.getElementById("profileImportWizard");
+		let shadowWiz = wiz && wiz.shadowRoot;
+		let hdr = shadowWiz.querySelector(".wizard-header-label");
+		// we should use innerText, however, this fails on the xul label
+		hdr.innerHTML = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
+
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},

@@ -6,40 +6,34 @@ var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOverlay.js", window, "UTF-8");
 
 
 function onLoad() {
-	// Services.console.logStringMessage("SearchDialogue OL");
 
 	WL.injectElements(`
-	<overlay id="sdOverlay"
-		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		 xmlns:html="http://www.w3.org/1999/xhtml">
-		 
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true" style="padding-left: 6px">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
 		<button label="&sdExportButton;" oncommand="SDexportMsg()"   />
 		<spacer flex="1" />
 	</vbox>
-	<groupbox>
+	
 	<radiogroup id="IETall" orient="horizontal">
 		<radio label="&sdAll;" selected="true"/>
 		<radio label="&sdSelected;"/>
 	</radiogroup>
-	</groupbox>
-	</hbox>
-	<hbox>
-	<groupbox>
+	
+	
+	
+	<groupbox style="padding-left: 30px">
 	<hbox align="center">
 	<label value="&sdFormat;:" />
-	<menulist style="min-width:240px">
+	<menulist style="min-width:120px">
 		<menupopup>
 			<menuitem label="&sdEML;"/>
 			<menuitem label="&sdHTML;"/>
@@ -68,8 +62,6 @@ function onLoad() {
   <key id="hot-key10" modifiers="" oncommand=""/>
 
 </keyset>
-
-</overlay>
 
 `, ["chrome://mboximport/locale/mboximport.dtd"]);
 

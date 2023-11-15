@@ -1,0 +1,7 @@
+<!ENTITY buttonMenu_Exp_Profile_Id.title "프로필 내보내기">
+<!ENTITY buttonMenu_Imp_Profile_Id.title "프로필 가져오기">
+<!ENTITY buttonMenu_Backup_Id.title "지원">
+<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "전체 프로필">
+<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "메일만">
+<!ENTITY buttonMenu_Options.title "옵션">
+<!ENTITY buttonMenu_Help.title "돕다">

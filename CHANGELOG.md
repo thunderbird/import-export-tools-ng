@@ -2,6 +2,53 @@
 
 ## Versions
 
+Version 14.0.1 : Maintenance Release - November 10, 2023
+
+- New: Add Account level mbox import
+- New: Add Account level mbox flattened export
+- New: Support for mbox import and export to filesys levels
+- Fix CSV export to text #451, #463
+- Fix export folder to ZIP
+- Fix help load only on IETNG updates
+- Add preference to never load help on updates #458
+  extensions.importexporttoolsng.export.help.showOnInstallAndUpdate
+- Fix help for sublocales and unsupported locales
+- Fix mbox From_ separators to adhere to RFC 4155 #455
+- Add back Export Messages in message display windows #459
+- Fix Account export for pop3
+- Fix buffer boundary From_ escaping
+- Fix selected messages handling #485
+- Complete de locale update @Mr-Update
+- Complete fr locale update @DenB10
+- Complete da locale update @Joergen
+- Updated ja locale @kiki-ja
+
+
+Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
+
+- Thunderbird v115 ESR support
+- New UI refresh
+- New Dark mode support
+- New clean, consistent and logical menus
+- New toolbar button for profile, backup and options support
+- New .mbox extension option for non-structured exports
+- New strip CR from eml exports
+- Improved mbox From_ escaping
+
+Version 12.0.4 : Maintenance Release - June 24, 2023
+
+- Fix search and export failure #412, #414, #418
+
+Version 12.0.3 : Maintenance Release - June 1, 2023
+
+- Fix virtual folder exports #359
+- Fix encoding for attachment names #355
+- Fix bad filename token in pl locale #366
+- Fix PDF exception #369
+- Fix bad filename token in pt-PT locale #398
+- Improved ja locale additions #281
+- Improved ru locale additions PR #401
+
 Version 12.0.2 : Maintenance Release - October 24, 2022
 
 - Fix PDF export on OSX! #353

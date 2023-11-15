@@ -1,13 +1,13 @@
-<!ENTITY intro1 "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually.">
-<!ENTITY profilePath "Path of the profile to import">
-<!ENTITY browse "Browser">
-<!ENTITY profileName "Name of the profile to import">
-<!ENTITY changeProfileNameLabel "You can anyway change the profile name in the profile manager">
-<!ENTITY intro2 "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program.">
-<!ENTITY start "Start import">
-<!ENTITY importRunning "Import running...">
-<!ENTITY importEnd "The import was successful!">
-<!ENTITY intro3 "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed">
-<!ENTITY runProfileManager "Run the profile manager">
-<!ENTITY title "ImportExportTools NG - Profile import">
-<!ENTITY error "An error occurred during profile import. Error details are:">
+<!ENTITY intro1 "Процедура импорта профиля является экспериментальной. Риск потери данных отсутствует, но нет гарантий, что процедура будет выполнена ожидаемым образом (особенно при импорте профиля с другого компьютера). В любом случае, это безопаснее копирования файлов вручную.">
+<!ENTITY profilePath "Путь к профилю для импорта">
+<!ENTITY browse "Обзор">
+<!ENTITY profileName "Имя профиля для импорта">
+<!ENTITY changeProfileNameLabel "Имя профиля можно изменить с помощью диспетчера профилей">
+<!ENTITY intro2 "Папка содержит корректный профиль, который можно импортировать. Во время процедуры импорта, которая может занять несколько минут или даже больше, пользоваться программой будет нельзя.">
+<!ENTITY start "Начать импорт">
+<!ENTITY importRunning "Выполняется импорт…">
+<!ENTITY importEnd "Импорт выполнен успешно!">
+<!ENTITY intro3 "Чтобы получить доступ к импортированному профилю, запустите диспетчер профилей нажатием расположенной ниже кнопки. Текущий профиль автоматически закроется">
+<!ENTITY runProfileManager "Запустить диспетчер профилей">
+<!ENTITY title "ImportExportTools NG — Импорт профиля">
+<!ENTITY error "При импорте профиля произошла ошибка. Сведения об ошибке:">

@@ -783,10 +783,10 @@ async function createtitles(name, menuArray, options) {
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {
-  //console.log(ctxEvent, tab);
+  console.log(ctxEvent, tab);
 
   var params = {};
-  params.tab = tab;
+  params.targetWinId = tab.windowId;
 
 
   // we need the accountId and path of the folder to get 
@@ -861,8 +861,10 @@ async function wextctx_ExportAs(ctxEvent, tab) {
 }
 
 
-async function wextctx_toolsMenu(ctxEvent) {
+async function wextctx_toolsMenu(ctxEvent, tab) {
   var params = {};
+  params.targetWinId = tab.windowId;
+
   switch (ctxEvent.menuItemId) {
     case toolsCtxMenu_Exp_ProfileFull_Id:
       params.profileExportType = "full";
@@ -883,9 +885,11 @@ async function wextctx_toolsMenu(ctxEvent) {
   }
 }
 
-async function wextctx_folderMenu(ctxEvent) {
+async function wextctx_folderMenu(ctxEvent, tab) {
   //console.log(ctxEvent);
   var params = {};
+  params.targetWinId = tab.windowId;
+
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
@@ -1225,6 +1229,8 @@ async function menusUpdate(info, tab) {
 
 async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+  
   params.accountId = accountId;
   params.folderPath = folderPath;
 
@@ -1234,6 +1240,7 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 
 async function copyToClipboard(ctxEvent, tab) {
   let params = {};
+  params.targetWinId = tab.windowId;
 
   if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
@@ -1254,13 +1261,18 @@ async function copyToClipboard(ctxEvent, tab) {
 
 async function importMaildirFiles(ctxEvent) {
   let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+
   params.selectedFolder = ctxEvent.selectedFolder;
   params.selectedAccount = ctxEvent.selectedAccount;
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles", params: params });
 }
 
 async function openOptions() {
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
+  let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
 }
 
 // import eml/rfv822 msg attachment as new msg in current folder
@@ -1291,7 +1303,10 @@ async function importEmlAttToFolder(attCtx) {
 
 
 async function getBoolPref(boolPref) {
+
   let params = {};
+  console.log(await messenger.windows.getCurrent())
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.boolPref = boolPref;
   let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
   return bp;

@@ -599,6 +599,15 @@ export var mboxImportExport = {
         // may need to look ahead
       }
 
+      // TB seems to have Local Folder messages with Mozilla-Status expunged
+      // flag set despite messages being visible and alive
+      // If we export these will be purged on import so we reset
+      // Mozilla-Status and Mozilla-Status2 to 0000, 00000000 
+
+      rawBytes = rawBytes.replace( /^X-Mozilla-Status: \d\d\d\d/gm, "X-Mozilla-Status: 0000");
+      rawBytes = rawBytes.replace( /^X-Mozilla-Status2: \d\d\d\d\d\d\d\d/gm, "X-Mozilla-Status: 00000000");
+
+
       // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");
 

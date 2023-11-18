@@ -604,8 +604,8 @@ export var mboxImportExport = {
       // If we export these will be purged on import so we reset
       // Mozilla-Status and Mozilla-Status2 to 0000, 00000000 
 
-      rawBytes = rawBytes.replace( /^X-Mozilla-Status: \d\d\d\d/gm, "X-Mozilla-Status: 0000");
-      rawBytes = rawBytes.replace( /^X-Mozilla-Status2: \d\d\d\d\d\d\d\d/gm, "X-Mozilla-Status: 00000000");
+      rawBytes = rawBytes.replace( /^X-Mozilla-Status: [0-9A-Fa-f]{4}/gm, "X-Mozilla-Status: 0000");
+      rawBytes = rawBytes.replace( /^X-Mozilla-Status2: [0-9A-Fa-f]{8}/gm, "X-Mozilla-Status: 00000000");
 
 
       // do only single From_ escape, assume pre escape handling by TB

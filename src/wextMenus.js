@@ -894,6 +894,10 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
   params.selectedAccount = ctxEvent.selectedAccount;
+  if (!params.selectedAccount) {
+    params.selectedAccount = {};
+    params.selectedAccount.id = params.selectedFolder.accountId;
+  }
 
   switch (ctxEvent.parentMenuItemId) {
     case folderCtxMenu_TopId:

@@ -878,7 +878,7 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params });
       break;
     case toolsCtxMenu_Backup_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup" });
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: params });
       break;
     default:
       break;

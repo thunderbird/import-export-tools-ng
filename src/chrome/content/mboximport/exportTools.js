@@ -419,6 +419,8 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 // So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder) {
+	console.log("exportAllMsgsDelayedVF")
+
 	var msgUriArray = [];
 	var total = msgFolder.getTotalMessages(false);
 	if (total === 0) {
@@ -432,7 +434,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	// Have to expand view to iterate across all threads
 	// Should be a better way that does not change UI
 	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
-
 	for (let i = 0; i < gDBView.rowCount; i++) {
 		// Error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
@@ -442,6 +443,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
+
 			continue; // Ignore errors for dummy rows
 		}
 	}
@@ -487,7 +489,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		file.create(1, 0775);
 
 		subfile = file.clone();
-		if (type < 3) {
+		if (type < 3 || type > 6) {
+
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
@@ -508,6 +511,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
+			console.log("skip",j, msguri, msg.flags)
 			continue;
 		}
 		// cleidigh
@@ -1819,7 +1823,7 @@ function IETwritestatus(text) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
 		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
-		delay += 2000;
+		delay += 3000;
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}

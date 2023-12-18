@@ -45,8 +45,8 @@ mboxImportExport.setGlobals(gVars);
 async function expMenuDispatcher(data) {
 	let dispatcherWinId = window.ietngAddon.extension.windowManager.getWrapper(window).id;
 
-	console.log("expMenuDispacher: winId", dispatcherWinId, data);
-	console.log("expMenuDispacher focused: ", window.document.hasFocus());
+	//console.log("expMenuDispacher: winId", dispatcherWinId, data);
+	//console.log("expMenuDispacher focused: ", window.document.hasFocus());
 
 	if (data.params.targetWinId != dispatcherWinId) {
 		console.log("Not for us: ", data.params.targetWinId)

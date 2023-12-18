@@ -46,7 +46,7 @@ onmessage = async function (event) {
   }
 };
 
-console.log("mboxImportModule -3")
+console.log("IETNG: mboxImportModule -4");
 
 // mboxCopyImport reads, processes and writes a single mbox file
 // we only do IOUtils and file processing no large data transfers
@@ -115,8 +115,8 @@ async function mboxCopyImport(options) {
 
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers, including multiline hdrs
-    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: .*?(?:\r?\n)[\x21-\x7E]+: )/gm;
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+    // Remove space after colon requirement #516
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
 
 
     var fromExceptions;

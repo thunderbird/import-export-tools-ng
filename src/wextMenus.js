@@ -893,6 +893,10 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
+  if (!params.selectedFolder) {
+      params.selectedFolder = {};
+      params.selectedFolder.path = "/";
+  }
   params.selectedAccount = ctxEvent.selectedAccount;
   if (!params.selectedAccount) {
     params.selectedAccount = {};
@@ -961,9 +965,6 @@ async function wextctx_folderMenu(ctxEvent, tab) {
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
       return;
     case folderCtxMenu_Imp_MboxFiles_Id:
-      if (!params.selectedFolder) {
-        params.selectedFolder = "__rootFolder__";
-      }
       switch (ctxEvent.menuItemId) {
         case folderCtxMenu_Imp_MboxFilesIndv_Id:
           params.mboxImpType = "individual";
@@ -1309,7 +1310,6 @@ async function importEmlAttToFolder(attCtx) {
 async function getBoolPref(boolPref) {
 
   let params = {};
-  console.log(await messenger.windows.getCurrent())
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.boolPref = boolPref;
   let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });

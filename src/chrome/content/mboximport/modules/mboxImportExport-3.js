@@ -32,7 +32,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("mboximportExport -3");
+console.log("IETNG: mboximportExport -4");
 
 export var mboxImportExport = {
 
@@ -77,13 +77,10 @@ export var mboxImportExport = {
       mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
     }
 
-    
+
     var msgFolder;
-    if (params.selectedAccount) {
-      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, "/");
-    } else {
-      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-    }
+
+    msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 
     await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
 

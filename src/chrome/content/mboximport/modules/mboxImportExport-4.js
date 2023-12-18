@@ -28,7 +28,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 //const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-3.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-4.js", window, "UTF-8");
 
 var window;
 

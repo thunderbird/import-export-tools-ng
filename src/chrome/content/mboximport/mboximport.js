@@ -742,17 +742,21 @@ async function exportfolder(params) {
 	var folders = [];
 	var account;
 
-	if (params.selectedAccount && !params.selectedFolder) {
-		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
-			.getService(Components.interfaces.nsIMsgAccountManager);
-		account = accountManager.accounts.find(account => {
-			if (account.key == params.selectedAccount.id) {
-				return true;
-			}
-		});
-		folders[0] = account.incomingServer.rootMsgFolder;
+	if (params.selectedFolder == "//curentFolder") {
+		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
-		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		if (params.selectedAccount && !params.selectedFolder) {
+			var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+				.getService(Components.interfaces.nsIMsgAccountManager);
+			account = accountManager.accounts.find(account => {
+				if (account.key == params.selectedAccount.id) {
+					return true;
+				}
+			});
+			folders[0] = account.incomingServer.rootMsgFolder;
+		} else {
+			folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		}
 	}
 
 	/*

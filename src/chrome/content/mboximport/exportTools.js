@@ -751,6 +751,8 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "<th><b>" + "Size" + "</b></th>"; // Attachment
+
 	data = data + "</tr>";
 
 
@@ -837,7 +839,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		} else {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
-		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
+		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
+		data = data + '\r\n<td align="center">' + ietngUtils.formatBytes(hdrs[7], 2) + "</td></tr>";
+
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -2023,7 +2027,11 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var author;
 	var recipients;
 	var body;
+	var size;
 	var hdrStr;
+
+	console.log(msg.messageSize)
+	size = msg.messageSize;
 
 	try {
 		// Cut the subject, the author and the recipients at 50 chars
@@ -2081,19 +2089,19 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// will insert §][§^^§ in subject....but why should (s)he write it???
 	switch (IETsortType) {
 		case 1:
-			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		case 2:
-			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		case 3:
-			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		default:
-			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 	}
 	// If the subject begins with a lowercase letter, the sorting will be wrong
 	// so it is changed in uppercase. To track this and restore the original

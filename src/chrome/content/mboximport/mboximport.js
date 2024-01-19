@@ -116,7 +116,13 @@ var IETprintPDFmain = {
 				return;
 			}
 		} catch (e) { }
-		let msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+
+		var msgFolders;
+		try {
+			msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		} catch(e) {
+			msgFolders = [GetFirstSelectedMsgFolder()];
+		}
 
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));

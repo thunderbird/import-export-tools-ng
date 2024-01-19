@@ -221,6 +221,7 @@ async function exportSelectedMsgs(type, params) {
 	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
 
+	// support shortcuts (no params)
 	try {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	} catch (ex) {

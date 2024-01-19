@@ -787,6 +787,7 @@ async function wextctx_ExportAs(ctxEvent, tab) {
 
   var params = {};
   params.targetWinId = tab.windowId;
+  params.tabType = tab.type;
 
 
   // we need the accountId and path of the folder to get 
@@ -886,7 +887,7 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  //console.log(ctxEvent);
+  console.log(ctxEvent, tab);
   var params = {};
   params.targetWinId = tab.windowId;
 

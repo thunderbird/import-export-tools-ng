@@ -10,7 +10,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mess
 
 // May need for hotkeys
 function onLoad() {
-	//console.debug('messageWindow OL');
+	console.debug('messageWindow OL');
 
 
 WL.injectElements(`

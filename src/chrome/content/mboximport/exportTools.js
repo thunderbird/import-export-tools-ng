@@ -691,6 +691,8 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	}
 }
 
+var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
+
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
 		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
@@ -750,7 +752,10 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	
+	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+	
+	//data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
 	data = data + "<th><b>" + "Size" + "</b></th>"; // Attachment
 
 	data = data + "</tr>";
@@ -840,7 +845,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
 		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
-		data = data + '\r\n<td align="center">' + ietngUtils.formatBytes(hdrs[7], 2) + "</td></tr>";
+		data = data + '\r\n<td nowrap align="left">' + ietngUtils.formatBytes(hdrs[7], 2) + "</td></tr>";
 
 	}
 	data = data + "</table></body></html>";
@@ -1078,12 +1083,14 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			recc = "\"" + recc + "\"";
 
 		var hasAtt;
-		if (hdrs[6] === 1)
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
 			hasAtt = "*";
-		else
+		}
+		else {
 			hasAtt = " ";
-
-		var body = addBody ? hdrs[7] : "";
+		}
+		
+		var body = addBody ? hdrs[8] : "";
 
 		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
@@ -1100,6 +1107,8 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			// console.debug(' customDate ' + csvDate);
 		}
 
+		let size = hdrs[7];
+
 		// Add experimental account /folder column #349
 		let accountFolderCol = "";
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
@@ -1108,7 +1117,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var record = accountFolderCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
-			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
+			'"' + sep + csvDate + sep + hasAtt + sep + size + sep + body + "\r\n";
 
 		data = data + record;
 	}

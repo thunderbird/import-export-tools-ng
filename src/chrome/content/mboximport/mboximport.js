@@ -748,7 +748,7 @@ async function exportfolder(params) {
 	var folders = [];
 	var account;
 
-	if (params.selectedFolder == "//curentFolder") {
+	if (params.selectedFolder == "//currentFolder") {
 		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
 		if (params.selectedAccount && !params.selectedFolder) {

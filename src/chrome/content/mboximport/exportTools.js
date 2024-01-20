@@ -1089,7 +1089,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		else {
 			hasAtt = " ";
 		}
-		
+
 		var body = addBody ? hdrs[8] : "";
 
 		// Utilize index format for CSV 
@@ -2039,7 +2039,6 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var size;
 	var hdrStr;
 
-	console.log(msg.messageSize)
 	size = msg.messageSize;
 
 	try {

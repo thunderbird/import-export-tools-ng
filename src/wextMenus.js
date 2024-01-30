@@ -1209,8 +1209,8 @@ async function menusUpdate(info, tab) {
       await messenger.menus.refresh();
       // 1 = maildir
     } else if (mailStoreType == 1) {
+      // remove disable of export mbox #525
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: true });
-      await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
       await messenger.menus.update("folderCtxMenu_Sep1", { visible: false });

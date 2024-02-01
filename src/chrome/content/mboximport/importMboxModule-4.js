@@ -100,7 +100,7 @@ async function mboxCopyImport(options) {
   //const kREAD_CHUNK = (100 * 1000) + 13; //  1 bndry exc 19492 msg write bndry exc
   // tail boundary check resolves the one bad message for 1GBmbox
   //const kReadChunk = (50 * 1000) + 15; //  211 ex 19492 msg write bndry exc
-  const kReadChunk = (150 * 1000) + 0; //  211 ex 19492 msg write bndry exc
+  const kReadChunk = (200 * 1000) + 0; //  211 ex 19492 msg write bndry exc
 
 
   //const kREAD_CHUNK = 10000;
@@ -154,6 +154,9 @@ async function mboxCopyImport(options) {
       // convert to faster String for regex etc
       let strBuffer = bytesToString(rawBytes);
 
+      // date transform
+      let dateRegex = /^Date: (\d\d\d\d)\/(\d\d)\/(\d\d)$/gm;
+      strBuffer = strBuffer.replace(dateRegex, "Date: $2-$3-$1")
       // match all From_ exceptions for escaping
       fromExceptions = strBuffer.matchAll(fromRegx);
       fromExceptions = [...fromExceptions];

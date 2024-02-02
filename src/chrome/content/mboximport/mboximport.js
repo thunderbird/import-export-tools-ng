@@ -751,7 +751,7 @@ async function exportfolder(params) {
 	if (params.selectedFolder == "//currentFolder") {
 		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
-		if (params.selectedAccount && !params.selectedFolder) {
+		if (params.selectedAccount && !params.selectedFolder || params.selectedFolder.path =="/") {
 			var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 				.getService(Components.interfaces.nsIMsgAccountManager);
 			account = accountManager.accounts.find(account => {

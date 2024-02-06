@@ -211,6 +211,10 @@ var IETprintPDFmain = {
 			printSettings = psService.createNewPrintSettings();
 		}
 
+    printSettings.printerName = "Mozilla_Save_to_PDF";
+    psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+
+
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 
@@ -234,10 +238,19 @@ var IETprintPDFmain = {
 
 		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+		
+		console.log("units", printSettings.paperSizeUnit)
+		console.log("paper", printSettings.paperId)
+
 		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
+			console.log("width", printSettings.paperWidth)
+
 		if (pageSettings.paperHeight)
 			printSettings.paperHeight = pageSettings.paperHeight;
+
+		console.log("height", printSettings.paperHeight)
+
 		if (pageSettings.orientation)
 			printSettings.orientation = pageSettings.orientation;
 		if (pageSettings.scaling)

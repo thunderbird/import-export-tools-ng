@@ -764,7 +764,7 @@ async function exportfolder(params) {
 	if (params.selectedFolder == "//currentFolder") {
 		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
-		if (params.selectedAccount && !params.selectedFolder || params.selectedFolder.path =="/") {
+		if (params.selectedAccount && !params.selectedFolder) {
 			var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 				.getService(Components.interfaces.nsIMsgAccountManager);
 			account = accountManager.accounts.find(account => {
@@ -774,7 +774,8 @@ async function exportfolder(params) {
 			});
 			folders[0] = account.incomingServer.rootMsgFolder;
 		} else {
-			folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+			console.log(params.selectedFolder.accountId, params.selectedFolder.path)
+			folders = [getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path)];
 		}
 	}
 

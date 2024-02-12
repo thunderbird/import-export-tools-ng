@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Exportera mapp med undermappar (enkel)">
-<!ENTITY importMbox "Importera MBOX-fil">
 <!ENTITY labelmenuMI "Importera/Exportera">
 <!ENTITY MBlabel1 "Ersätt MBOX-filen i målmappen med filen som importeras om de har samma namn">
 <!ENTITY importDir "Välj mapp för sökning efter MBOX-filer att importera">

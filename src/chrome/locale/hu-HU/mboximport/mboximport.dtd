@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Mappa exportálása az almappákkal együtt (egyszerű)">
-<!ENTITY importMbox "Fájl importálása (MBOX)">
 <!ENTITY labelmenuMI "Importálás/Exportálás">
 <!ENTITY MBlabel1 "Azonos nevű MBOX fájlok felülírása a célmappában">
 <!ENTITY importDir "Az importálható MBOX fájlokat tartalmazó mappa kiválasztása">

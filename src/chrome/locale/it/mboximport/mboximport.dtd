@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Esporta cartella con sottocartelle (semplice)">
-<!ENTITY importMbox "Importa file mbox">
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Sovrascrivi i file mbox con lo stesso nome nella directory di destinazione">
 <!ENTITY importDir " Seleziona una directory in cui cercare i file mbox">

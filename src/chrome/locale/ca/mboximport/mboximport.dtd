@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Exporta la carpeta i les subcarpetes (simple)">
-<!ENTITY importMbox "Importa un fitxer mbox">
 <!ENTITY labelmenuMI "Importació/exportació">
 <!ENTITY MBlabel1 "Sobreescriu els fitxers mbox amb el mateix nom al directori de destinació">
 <!ENTITY importDir "Indiqueu un directori on cercar els fitxer mbox que voleu importar">

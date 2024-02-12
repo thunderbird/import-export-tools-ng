@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "导出信件夹及子目录（简单的）">
-<!ENTITY importMbox "导入mbox文件">
 <!ENTITY labelmenuMI "导入/导出">
 <!ENTITY MBlabel1 "覆盖目标目录中同名的mbox文件">
 <!ENTITY importDir "选定要导入的mbox文件所在的目录">

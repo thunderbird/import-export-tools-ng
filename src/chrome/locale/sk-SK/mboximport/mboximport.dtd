@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Exportovať priečinky a podpriečinky">
-<!ENTITY importMbox "Importovať súbor typu .mbox">
 <!ENTITY labelmenuMI "Import/Export">
 <!ENTITY MBlabel1 "Prepisovať súbory s rovnakým názvom v cieľovom priečinku">
 <!ENTITY importDir "Vyberať priečinok, v ktorom sa nachádzajú súbory určené na importovanie">

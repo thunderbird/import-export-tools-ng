@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Εξαγωγή φακέλου με υποφακέλους (απλό)">
-<!ENTITY importMbox "Εισαγωγή αρχείου mbox">
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Αντικαταστήστε τα αρχεία mbox με το ίδιο όνομα στον κατάλογο προορισμών">
 <!ENTITY importDir "Επιλέξτε έναν κατάλογο όπου αναζητάτε τα αρχεία mbox για εισαγωγή">

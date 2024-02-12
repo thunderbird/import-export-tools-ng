@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Eksporter mappe med undermapper (enkel)">
-<!ENTITY importMbox "Importer mbox-fil">
 <!ENTITY labelmenuMI "ImportEksportTools">
 <!ENTITY MBlabel1 "Overskriv mbox-filer med det samme navn i destinationsmappen">
 <!ENTITY importDir "Vælg en mappe og find mbox-filerne til import">

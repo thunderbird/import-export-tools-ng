@@ -1,5 +1,3 @@
-<!ENTITY exportWithSub "Export folder with subfolders (simple)">
-<!ENTITY importMbox "Import mbox file">
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Overwrite the mbox files with the same name in the destination directory">
 <!ENTITY importDir "Select a directory where searching the mbox files to import">

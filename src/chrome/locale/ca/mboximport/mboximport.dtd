@@ -31,7 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Text pla">
-<!ENTITY sdSingleFile(un fitxer)">
+<!ENTITY sdSingleFile "(un fitxer)">
 <!ENTITY searchAndExport "Cerca i exporta">
 <!ENTITY buildMSF.label "Construeix l\'índex pels fitxers mbox importats">
 <!ENTITY addPrefix "Afegeix el prefix">

@@ -31,7 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Oformaterad text">
-<!ENTITY sdSingleFile(en fil)">
+<!ENTITY sdSingleFile "(en fil)">
 <!ENTITY searchAndExport "Sök och exportera">
 <!ENTITY buildMSF.label "Skapa ett index över importerade MBOX-filer">
 <!ENTITY addPrefix "Lägg till prefix">

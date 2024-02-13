@@ -31,7 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "プレーンテキスト">
-<!ENTITY sdSingleFile単一ファイル">
+<!ENTITY sdSingleFile "単一ファイル">
 <!ENTITY searchAndExport "検索してエクスポート">
 <!ENTITY buildMSF.label "インポートした mbox ファイルのインデックスを作成">
 <!ENTITY addPrefix "接頭文字の追加：">

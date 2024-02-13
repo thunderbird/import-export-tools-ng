@@ -31,7 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Ren tekst">
-<!ENTITY sdSingleFileSom enkelt tekstfil">
+<!ENTITY sdSingleFile "Som enkelt tekstfil">
 <!ENTITY searchAndExport "Søg og eksporter">
 <!ENTITY buildMSF.label "Opbyg indeks for importerede mbox-filer">
 <!ENTITY addPrefix "Tilføj præfiks">

@@ -31,7 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Golo besedilo">
-<!ENTITY sdSingleFileKot enojna besedilna datoteka">
+<!ENTITY sdSingleFile "Kot enojna besedilna datoteka">
 <!ENTITY searchAndExport "Išči in izvozi">
 <!ENTITY buildMSF.label "Sestavi kazalo za uvožene datoteke mbox">
 <!ENTITY addPrefix "Dodaj predpono">

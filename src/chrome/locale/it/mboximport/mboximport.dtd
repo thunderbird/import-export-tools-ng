@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Formato testo">
+<!ENTITY sdSingleFilecome file di testo unico">
 <!ENTITY searchAndExport "Cerca ed esporta">
 <!ENTITY buildMSF.label "Crea indice dei file mbox importati">
 <!ENTITY addPrefix "Aggiungi prefisso">

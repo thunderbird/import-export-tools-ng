@@ -38,7 +38,7 @@ function onLoad() {
 			<menuitem label="&sdEML;"/>
 			<menuitem label="&sdHTML;"/>
 			<menuitem label="&sdText;"/>
-			<menuitem label="&oneFile;"/>
+			<menuitem label="&sdSingleFile;"/>
 			<menuitem id="mbox" label="&sdMBOX;" />
 			<menuitem id="mbox2" label="&sdMBOX2;" />
 			<menuitem id="csv" label="&asCSV;" />

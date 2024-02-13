@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Απλό κείμενο">
+<!ENTITY sdSingleFileως αρχείο μεμονωμένου κειμένου">
 <!ENTITY searchAndExport "Αναζήτηση και εξαγωγή">
 <!ENTITY buildMSF.label "Δημιουργία ευρετηρίου για εισαγόμενα αρχεία mbox">
 <!ENTITY addPrefix "Προσθήκη προθέματος">

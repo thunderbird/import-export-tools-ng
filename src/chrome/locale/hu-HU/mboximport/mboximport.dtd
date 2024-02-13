@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Nem formázott szöveg">
+<!ENTITY sdSingleFile(egy fájl)">
 <!ENTITY searchAndExport "Keresés és exportálás">
 <!ENTITY buildMSF.label "Jegyzék készítése az MBOX fájlokhoz">
 <!ENTITY addPrefix "Előtag hozzáadása">

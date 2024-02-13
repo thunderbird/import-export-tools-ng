@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Platte tekst">
+<!ENTITY sdSingleFileals één tekstbestand">
 <!ENTITY searchAndExport "Zoeken en exporteren">
 <!ENTITY buildMSF.label "Index opbouwen voor geïmporteerde mbox-bestanden">
 <!ENTITY addPrefix "Voorvoegsel toevoegen">

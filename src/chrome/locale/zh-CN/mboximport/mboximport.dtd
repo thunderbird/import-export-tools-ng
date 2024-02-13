@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "纯文本">
+<!ENTITY sdSingleFile(一个文件)">
 <!ENTITY searchAndExport "搜索和导出">
 <!ENTITY buildMSF.label "为导入的 mbox 文件建立索引">
 <!ENTITY addPrefix "添加前缀">

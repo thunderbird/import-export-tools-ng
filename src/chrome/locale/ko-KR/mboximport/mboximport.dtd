@@ -31,6 +31,7 @@
 <!ENTITY sdEML "EML">
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "단순 글">
+<!ENTITY sdSingleFile(파일 1개)">
 <!ENTITY searchAndExport "검색후 내보내기">
 <!ENTITY buildMSF.label "mbox을 들여오기 위해 색인 구축">
 <!ENTITY addPrefix "접두사 추가">

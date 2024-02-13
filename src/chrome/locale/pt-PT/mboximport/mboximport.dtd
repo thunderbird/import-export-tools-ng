@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Importar/exportar">
 <!ENTITY MBlabel1 "Sobrescrever os ficheiros mbox com o mesmo nome na directoria de destino">
-<!ENTITY importDir "Seleccione uma directoria para procurar os ficheiros mbox a importar">
-<!ENTITY labelmenuMItools "Importar/exportar no formato mbox/eml">
-<!ENTITY importFile "Importar directamente um ou mais ficheiros mbox">
-<!ENTITY importDialogLabel "Escolha o modo de importação:">
-<!ENTITY importDialogTitle "Importação de ficheiros mbox">
-<!ENTITY importStruct "Importar um ou mais ficheiros mbox, com as suas sub-directorias">
-<!ENTITY exportStruct "Exportar pasta com sub-pastas (com estrutura)">
-<!ENTITY exportAllStruct "Exportar todas as pastas (com estrutura)">
 <!ENTITY MBlabel2 "Utilizar apenas caracteres alfanuméricos na exportação de ficheiros únicos">
-<!ENTITY allMsgsFolder "Exportar todas as mensagens da pasta">
-<!ENTITY asEML "Formato EML">
-<!ENTITY asHTML "Formato HTML">
-<!ENTITY asTXT "Formato texto">
-<!ENTITY saveSelected "Guardar as mensagens seleccionadas">
-<!ENTITY justIndex "Apenas o índice">
-<!ENTITY toClip "Copiar mensagem para o clipboard">
 <!ENTITY MBlabel3 "Pedir confirmação antes de importar ficheiros mbox de uma directoria">
 <!ENTITY MBlabel4 "Formato HTML como apresentado no painel de mensagens">
 <!ENTITY MBlabel5 "Copiar para o clipboard apenas em formato de texto( pode dar problemas de compatibilidade)">
-<!ENTITY MBlabel6 "Quando presente, colocar a data no inicio dos ficheiros exportados">
 <!ENTITY MBlabel7a "Comprimento máx. do Assunto:">
 <!ENTITY MBlabel7b "caracteres">
 <!ENTITY MBlabel7c "Comprimento máx. do nome do remetente:">
 <!ENTITY MBlabel7d "Comprimento máx. do nome do destinatário:">
-<!ENTITY oneFile "(um ficheiro)">
-<!ENTITY importAttachedEML "Importar mensagem nesta pasta">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Copiar para clipboard">
-<!ENTITY copyClipMessage "Mensagem">
-<!ENTITY copyClipHeaders "Cabeçalhos">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Seleccione uma directoria onde procurar os ficheiros mbox para importar (também nas subdirectorias)">
-<!ENTITY importDirProf "Abrir o filepicker na directoria dos perfis">
-<!ENTITY MBlabel8 "Em \'Guardar mensagens seleccionadas\' adicionar a data ao nome do ficheiro">
-<!ENTITY options "Opções">
-<!ENTITY importALLEML1 "apenas da directoria">
-<!ENTITY importALLEML2 "também das suas sub-directorias">
 <!ENTITY misc "Misc">
 <!ENTITY filenameFormat "Nome dos ficheiros">
 <!ENTITY savedirs "Exportar directorias">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Exportar pastas como ficheiro único:">
 <!ENTITY selExport "Exportar mensagens seleccionadas:">
 <!ENTITY MBcaptionlabel1 "Exportar Definições">
-<!ENTITY saveProfileMail "Guardar todos os ficheiros de correio">
 <!ENTITY sdExportButton "Exportar">
 <!ENTITY sdMessages "Mensagens">
 <!ENTITY sdAll "Tudo">

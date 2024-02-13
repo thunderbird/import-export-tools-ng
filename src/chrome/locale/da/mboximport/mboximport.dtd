@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "ImportEksportTools">
 <!ENTITY MBlabel1 "Overskriv mbox-filer med det samme navn i destinationsmappen">
-<!ENTITY importDir "Vælg en mappe og find mbox-filerne til import">
-<!ENTITY labelmenuMItools "ImportExportTools NG">
-<!ENTITY importFile "Importer en eller flere mbox-filer direkte">
-<!ENTITY importDialogLabel "Vælg importmåden:">
-<!ENTITY importDialogTitle "Mbox-filimport">
-<!ENTITY importStruct "Importer en eller flere mbox-filer med undermapper">
-<!ENTITY exportStruct "Eksporter mappe med undermappe (med struktur)">
-<!ENTITY exportAllStruct "Eksporter alle mapperne (med struktur)">
 <!ENTITY MBlabel2 "Brug kun alfanumeriske tegn ved eksport">
-<!ENTITY allMsgsFolder "Eksporter alle meddelelser i mappen">
-<!ENTITY asEML "EML-format">
-<!ENTITY asHTML "HTML-format">
-<!ENTITY asTXT "Ren tekstformat">
-<!ENTITY saveSelected "Gem valgte meddelelser">
-<!ENTITY justIndex "Kun indeks">
-<!ENTITY toClip "Kopier meddelelse til udklipsholder">
 <!ENTITY MBlabel3 "Bed om bekræftelse før import af mbox-filer fra en mappe">
 <!ENTITY MBlabel4 "HTML-format som vist i meddelelsesruden">
 <!ENTITY MBlabel5 "Kopier kun til udklipsholder i tekstformat (kan give kompatibilitetsproblemer)">
-<!ENTITY MBlabel6 "Hvis datoen er der, sæt den i begyndelsen af de eksporterede filer">
 <!ENTITY MBlabel7a "Maksimum længde på emne:">
 <!ENTITY MBlabel7b "tegn">
 <!ENTITY MBlabel7c "Maksimum længde på afsenders navn:">
 <!ENTITY MBlabel7d "Maksimum længde på modtagers navn:">
-<!ENTITY oneFile "Som enkelt tekstfil">
-<!ENTITY importAttachedEML "Importer meddelelse i denne mappe">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Kopier til udklipsholder">
-<!ENTITY copyClipMessage "Meddelelse">
-<!ENTITY copyClipHeaders "Meddelelseshoveder">
-<!ENTITY taskMenuAccesskey "E">
-<!ENTITY clipMenuAccesskey "u">
-<!ENTITY importDirRec "Vælg en mappe og find mbox-filerne til import (også i undermapper)">
-<!ENTITY importDirProf "Åbn profilmappen med filvælgeren">
-<!ENTITY MBlabel8 "Tilføj dato til filnavnet i 'Gem valgte meddelelser'">
-<!ENTITY options "Indstillinger">
-<!ENTITY importALLEML1 "Kun fra mappen">
-<!ENTITY importALLEML2 "Også fra undermapperne">
 <!ENTITY misc "Diverse">
 <!ENTITY filenameFormat "Filnavne">
 <!ENTITY savedirs "Eksporter mapper">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Eksporter mapper som enkelte filer:">
 <!ENTITY selExport "Eksporter valgte meddelelser:">
 <!ENTITY MBcaptionlabel1 "Generelle indstillinger">
-<!ENTITY saveProfileMail "Gem alle mailfiler">
 <!ENTITY sdExportButton "Eksporter">
 <!ENTITY sdMessages "Meddelelser">
 <!ENTITY sdAll "Alle">

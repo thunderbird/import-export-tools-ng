@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "导入/导出">
 <!ENTITY MBlabel1 "覆盖目标目录中同名的mbox文件">
-<!ENTITY importDir "选定要导入的mbox文件所在的目录">
-<!ENTITY labelmenuMItools "以mbox/eml格式导入/导出">
-<!ENTITY importFile "直接导入一个或者多个mbox文件">
-<!ENTITY importDialogLabel "选择导入方式：">
-<!ENTITY importDialogTitle "导入mbox文件">
-<!ENTITY importStruct "导入一个或者多个mbox文件，以及它们包含的子目录">
-<!ENTITY exportStruct "导出信件夹及子目录（包括目录结构）">
-<!ENTITY exportAllStruct "导出所有的信件夹（包括目录结构）">
 <!ENTITY MBlabel2 "导出单个文件时仅使用阿拉伯数字">
-<!ENTITY allMsgsFolder "导出信件夹内的所有邮件">
-<!ENTITY asEML "EML 格式">
-<!ENTITY asHTML "HTML 格式">
-<!ENTITY asTXT "纯文本格式">
-<!ENTITY saveSelected "保存选定的邮件">
-<!ENTITY justIndex "仅索引">
-<!ENTITY toClip "复制信息到剪贴板">
 <!ENTITY MBlabel3 "从目录中导入mbox文件之前确认">
 <!ENTITY MBlabel4 "在信息面板中使用HTML格式显示">
 <!ENTITY MBlabel5 "以纯文本格式复制到剪贴板（可以提供更好的兼容性）">
-<!ENTITY MBlabel6 "输出时，在导出文件名的开始位置加上日期">
 <!ENTITY MBlabel7a "主题最大长度：">
 <!ENTITY MBlabel7b "字符">
 <!ENTITY MBlabel7c "发件人姓名最大长度：">
 <!ENTITY MBlabel7d "收件人姓名最大长度：">
-<!ENTITY oneFile "(一个文件)">
-<!ENTITY importAttachedEML "导入邮件到该信件夹">
-<!ENTITY iHTML "(HTML格式)">
-<!ENTITY iCSV "(逗号分隔文件CSV)">
-<!ENTITY toClipMenu "复制到剪贴板">
-<!ENTITY copyClipMessage "邮件复制剪贴板">
-<!ENTITY copyClipHeaders "信头复制剪贴板">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "选择一个目录以便搜寻mbox文件导入（包括子目录）">
-<!ENTITY importDirProf "在配置文件 &apos; 目录中打开文件拾取器">
-<!ENTITY MBlabel8 "在 &apos;保存选定的消息时 &apos; 在文件名中加入日期">
-<!ENTITY options "选项">
-<!ENTITY importALLEML1 "仅从该目录">
-<!ENTITY importALLEML2 "还包括子目录">
 <!ENTITY misc "杂项">
 <!ENTITY filenameFormat "文件名">
 <!ENTITY savedirs "导出目录">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "将信件夹作为一个单独文件导出：">
 <!ENTITY selExport "导出选中的消息：">
 <!ENTITY MBcaptionlabel1 "导出设置">
-<!ENTITY saveProfileMail "保存所有邮件文件">
 <!ENTITY sdExportButton "导出">
 <!ENTITY sdMessages "消息">
 <!ENTITY sdAll "全部">

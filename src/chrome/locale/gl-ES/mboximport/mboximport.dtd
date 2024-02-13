@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Importar/exportar">
 <!ENTITY MBlabel1 "Sobrescribir os ficheiros MBOX co mesmo nome e directorio de destino">
-<!ENTITY importDir "Seleccionar un directorio onde procurar os ficheiros MBOX para importar">
-<!ENTITY labelmenuMItools "Importar/exportar en formato MBOX/EML">
-<!ENTITY importFile "Importar directamente un ou máis ficheiros MBOX">
-<!ENTITY importDialogLabel "Escolla a forma de importación:">
-<!ENTITY importDialogTitle "Importar ficheiro MBOX">
-<!ENTITY importStruct "Importar un ou máis ficheiros MBOX, cos seus subcartafoles">
-<!ENTITY exportStruct "Exportar cartafoles cos subcartafoles (con estrutura)">
-<!ENTITY exportAllStruct "Exportar todos os cartafoles (con estrutura)">
 <!ENTITY MBlabel2 "Usar só caracteres alfanuméricos na exportación simple de ficheiros">
-<!ENTITY allMsgsFolder "Exportar todas as mensaxes no cartafol">
-<!ENTITY asEML "Formato EML">
-<!ENTITY asHTML "Formato HTML">
-<!ENTITY asTXT "Formato de texto plano">
-<!ENTITY saveSelected "Gardar mensaxes seleccionadas">
-<!ENTITY justIndex "Só índice">
-<!ENTITY toClip "Copiar mensaxe no portarretallos">
 <!ENTITY MBlabel3 "Pedir confirmación antes de importar ficheiros MBOX dun directorio">
 <!ENTITY MBlabel4 "Formato HTML como se amosa no panel de mensaxes">
 <!ENTITY MBlabel5 "Copiar no portarretallos só en formato texto (pode producir problemas de compatibilidade)">
-<!ENTITY MBlabel6 "Cando teña, pór a data no comezo dos ficheiros exportados">
 <!ENTITY MBlabel7a "Tamaño máximo do asunto:">
 <!ENTITY MBlabel7b "caracteres">
 <!ENTITY MBlabel7c "Lonxitude máxima do remitente:">
 <!ENTITY MBlabel7d "Lonxitude máxima dos destinatarios:">
-<!ENTITY oneFile "(un ficheiro)">
-<!ENTITY importAttachedEML "Importar mensaxe neste cartafol">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CVS)">
-<!ENTITY toClipMenu "Copiar no portarretallos">
-<!ENTITY copyClipMessage "Mensaxe">
-<!ENTITY copyClipHeaders "Cabeceiras">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Seleccionar un cartafol para procurar os ficheiros MBOX a importar (tamén procurará en subcartafoles)">
-<!ENTITY importDirProf "Abrir o selector de ficheiros no directorio do perfil">
-<!ENTITY MBlabel8 "En \'Gardar mensaxes seleccionadas\' engadir a data ao nome do ficheiro">
-<!ENTITY options "Opcións">
-<!ENTITY importALLEML1 "só a partir do directorio">
-<!ENTITY importALLEML2 "tamén dos seus subcartafoles">
 <!ENTITY misc "Varios">
 <!ENTITY filenameFormat "Nome dos ficheiros">
 <!ENTITY savedirs "Exportar directorios">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Exportar cartafoles como ficheiros individuais:">
 <!ENTITY selExport "Exportar mensaxes as seleccionadas:">
 <!ENTITY MBcaptionlabel1 "Exportar axustes">
-<!ENTITY saveProfileMail "Gardar todos os ficheiros do correo">
 <!ENTITY sdExportButton "Exportar">
 <!ENTITY sdMessages "Mensaxes">
 <!ENTITY sdAll "Todos">

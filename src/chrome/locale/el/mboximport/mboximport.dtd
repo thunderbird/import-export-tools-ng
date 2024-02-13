@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Αντικαταστήστε τα αρχεία mbox με το ίδιο όνομα στον κατάλογο προορισμών">
-<!ENTITY importDir "Επιλέξτε έναν κατάλογο όπου αναζητάτε τα αρχεία mbox για εισαγωγή">
-<!ENTITY labelmenuMItools "ImportExportTools NG">
-<!ENTITY importFile "Εισαγάγετε απευθείας ένα ή περισσότερα αρχεία mbox">
-<!ENTITY importDialogLabel "Επιλέξτε τον τρόπο εισαγωγής:">
-<!ENTITY importDialogTitle "Εισαγωγή αρχείων mbox">
-<!ENTITY importStruct "Εισαγάγετε ένα ή περισσότερα αρχεία mbox, με τον υποκατάλογο τους">
-<!ENTITY exportStruct "Εξαγωγή φακέλου με υποφακέλους (με δομή)">
-<!ENTITY exportAllStruct "Εξαγωγή όλων των φακέλων (με δομή)">
 <!ENTITY MBlabel2 "Χρησιμοποιήστε μόνο αλφαριθμητικούς χαρακτήρες κατά την εξαγωγή">
-<!ENTITY allMsgsFolder "Εξαγωγή όλων των μηνυμάτων στο φάκελο">
-<!ENTITY asEML "Μορφή EML">
-<!ENTITY asHTML "Μορφή HTML">
-<!ENTITY asTXT "Μορφή απλού κειμένου">
-<!ENTITY saveSelected "Αποθήκευση επιλεγμένων μηνυμάτων">
-<!ENTITY justIndex "απλά ευρετήριο">
-<!ENTITY toClip "Αντιγράψτε το μήνυμα στο πρόχειρο">
 <!ENTITY MBlabel3 "Ζητήστε επιβεβαίωση πριν από την εισαγωγή αρχείων mbox από έναν κατάλογο">
 <!ENTITY MBlabel4 "Μορφή HTML όπως εμφανίζεται στον πίνακα μηνυμάτων">
 <!ENTITY MBlabel5 "Αντιγραφή στο πρόχειρο μόνο σε μορφή κειμένου (μπορεί να προκαλέσει προβλήματα συμβατότητας)">
-<!ENTITY MBlabel6 "Όταν είναι παρόν, τοποθετήστε την ημερομηνία στην αρχή των εξαγόμενων αρχείων">
 <!ENTITY MBlabel7a "Μέγιστο μήκος θέματος:">
 <!ENTITY MBlabel7b "χαρακτήρες">
 <!ENTITY MBlabel7c "Μέγιστο μήκος ονόματος αποστολέα:">
 <!ENTITY MBlabel7d "Μέγιστο μήκος ονόματος παραλήπτη:">
-<!ENTITY oneFile "ως αρχείο μεμονωμένου κειμένου">
-<!ENTITY importAttachedEML "Εισαγωγή μηνύματος σε αυτόν το φάκελο">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Αντιγραφή στο πρόχειρο">
-<!ENTITY copyClipMessage "Μήνυμα">
-<!ENTITY copyClipHeaders "Κεφαλίδες">
-<!ENTITY taskMenuAccesskey "Χ">
-<!ENTITY clipMenuAccesskey "ο">
-<!ENTITY importDirRec "Επιλέξτε έναν κατάλογο όπου αναζητάτε τα αρχεία mbox για εισαγωγή (επίσης σε υποκαταλόγους)">
-<!ENTITY importDirProf "Ανοίξτε το filepicker στον κατάλογο των προφίλ">
-<!ENTITY MBlabel8 "Στο &quot;Αποθήκευση επιλεγμένων μηνυμάτων&quot; προσθέστε ημερομηνία στο όνομα αρχείου">
-<!ENTITY options "Επιλογές">
-<!ENTITY importALLEML1 "μόνο από τον κατάλογο">
-<!ENTITY importALLEML2 "επίσης από τους υποκαταλόγους του">
 <!ENTITY misc "Διάφορα">
 <!ENTITY filenameFormat "Ονόματα αρχείων">
 <!ENTITY savedirs "Εξαγωγή καταλόγων">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Εξαγωγή φακέλων ως μεμονωμένα αρχεία:">
 <!ENTITY selExport "Εξαγωγή επιλεγμένων μηνυμάτων:">
 <!ENTITY MBcaptionlabel1 "Γενικές Ρυθμίσεις">
-<!ENTITY saveProfileMail "Αποθηκεύστε όλα τα αρχεία αλληλογραφίας">
 <!ENTITY sdExportButton "Εξαγωγή">
 <!ENTITY sdMessages "Μηνύματα">
 <!ENTITY sdAll "Ολα">

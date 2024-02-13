@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "出力先フォルダーにある同じ名前の mbox ファイルを上書きする">
-<!ENTITY importDir "インポートする mbox ファイルを検索してフォルダーを選択">
-<!ENTITY labelmenuMItools "ImportExportTools NG">
-<!ENTITY importFile "単一または複数の mbox ファイルを直接インポート">
-<!ENTITY importDialogLabel "インポート方法の選択:">
-<!ENTITY importDialogTitle "インポート mbox ファイル">
-<!ENTITY importStruct "サブフォルダーを含む単一または複数の mbox ファイルをインポート">
-<!ENTITY exportStruct "サブフォルダーを含むフォルダーをエクスポート (フォルダー構成を含む)">
-<!ENTITY exportAllStruct "すべてのフォルダーをエクスポート (フォルダー構成を含む)">
 <!ENTITY MBlabel2 "単一ファイルのエクスポートに英数字のみを使用する">
-<!ENTITY allMsgsFolder "フォルダー内のすべてのメッセージをエクスポート">
-<!ENTITY asEML "EML 形式">
-<!ENTITY asHTML "HTML 形式">
-<!ENTITY asTXT "プレーンテキスト形式">
-<!ENTITY saveSelected "選択済みメッセージを保存">
-<!ENTITY justIndex "インデックスのみ">
-<!ENTITY toClip "メッセージをクリップボードにコピー">
 <!ENTITY MBlabel3 "フォルダーから mbox ファイルをインポートする前に確認する">
 <!ENTITY MBlabel4 "メッセージペインに表示されたとおりの HTML 形式を使用する">
 <!ENTITY MBlabel5 "テキスト形式でクリップボードにコピーする (互換性の問題があります)">
-<!ENTITY MBlabel6 "存在する場合は、エクスポートするファイルの先頭に日付を追加">
 <!ENTITY MBlabel7a "件名の最大長:">
 <!ENTITY MBlabel7b "文字">
 <!ENTITY MBlabel7c "差出人名の最大長:">
 <!ENTITY MBlabel7d "宛先名の最大長:">
-<!ENTITY oneFile "単一ファイル">
-<!ENTITY importAttachedEML "このフォルダーにあるメッセージをインポート">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "クリップボードにコピー">
-<!ENTITY copyClipMessage "メッセージ">
-<!ENTITY copyClipHeaders "ヘッダー">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "インポートする mbox ファイルを検索するフォルダーを選択 (サブフォルダーを含む)">
-<!ENTITY importDirProf "プロファイルフォルダー内でファイル選択">
-<!ENTITY MBlabel8 "「選択済みメッセージを保存」でファイル名に日付を追加">
-<!ENTITY options "設定">
-<!ENTITY importALLEML1 "フォルダーのみ">
-<!ENTITY importALLEML2 "サブフォルダーも含む">
 <!ENTITY misc "全般">
 <!ENTITY filenameFormat "ファイル名">
 <!ENTITY savedirs "エクスポートフォルダー">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "フォルダーを単一ファイルでエクスポートする場所：">
 <!ENTITY selExport "選択メッセージをエクスポートする場所：">
 <!ENTITY MBcaptionlabel1 "設定">
-<!ENTITY saveProfileMail "すべてのメッセージファイルを保存">
 <!ENTITY sdExportButton "エクスポート">
 <!ENTITY sdMessages "メッセージ">
 <!ENTITY sdAll "すべて">

@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Remplacer les fichiers mbox de même nom dans le dossier de destination">
-<!ENTITY importDir "Sélectionner le dossier contenant les fichiers mbox à importer">
-<!ENTITY labelmenuMItools "ImportExportTools NG">
-<!ENTITY importFile "Importer directement un ou plusieurs fichiers mbox">
-<!ENTITY importDialogLabel "Choisir la méthode d’importation :">
-<!ENTITY importDialogTitle "Importation de fichiers mbox">
-<!ENTITY importStruct "Importer un ou plusieurs fichiers mbox avec leurs sous-dossiers">
-<!ENTITY exportStruct "Exporter le dossier et ses sous-dossiers avec la structure">
-<!ENTITY exportAllStruct "Exporter tous les dossiers avec la structure">
 <!ENTITY MBlabel2 "Utiliser uniquement des caractères alphanumériques en exportation">
-<!ENTITY allMsgsFolder "Exporter tous les messages du dossier">
-<!ENTITY asEML "Format EML">
-<!ENTITY asHTML "Format HTML">
-<!ENTITY asTXT "Format texte brut">
-<!ENTITY saveSelected "Enregistrer les messages sélectionnés">
-<!ENTITY justIndex "Uniquement l’index">
-<!ENTITY toClip "Copier le message dans le presse-papiers">
 <!ENTITY MBlabel3 "Demander confirmation avant d’importer des fichiers mbox d’un dossier">
 <!ENTITY MBlabel4 "Utiliser le format HTML tel qu’affiché dans le panneau des messages">
 <!ENTITY MBlabel5 "Copier dans le presse-papiers uniquement au format texte (peut poser des problèmes de compatibilité)">
-<!ENTITY MBlabel6 "Mettre la date au début des fichiers exportés si présente">
 <!ENTITY MBlabel7a "Longueur maximale du sujet :">
 <!ENTITY MBlabel7b "caractères">
 <!ENTITY MBlabel7c "Longueur maximale du nom de l’expéditeur :">
 <!ENTITY MBlabel7d "Longueur maximale du nom des destinataires :">
-<!ENTITY oneFile "Fichier texte unique">
-<!ENTITY importAttachedEML "Importer le message dans ce dossier">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Copier dans le presse-papiers">
-<!ENTITY copyClipMessage "Message">
-<!ENTITY copyClipHeaders "En-têtes">
-<!ENTITY taskMenuAccesskey "r">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Sélectionner le dossier contenant les fichiers mbox à importer (sous-dossiers inclus)">
-<!ENTITY importDirProf "Ouvrir le sélecteur de fichier dans le dossier des profils">
-<!ENTITY MBlabel8 "Ajouter la date au nom du fichier en enregistrant les messages sélectionnés">
-<!ENTITY options "Options">
-<!ENTITY importALLEML1 "Dossier uniquement">
-<!ENTITY importALLEML2 "Sous-dossiers également">
 <!ENTITY misc "Divers">
 <!ENTITY filenameFormat "Noms de fichiers">
 <!ENTITY savedirs "Dossiers d’exportation">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Exporter les dossiers sous forme de fichiers séparés dans le dossier :">
 <!ENTITY selExport "Exporter les messages sélectionnés dans le dossier :">
 <!ENTITY MBcaptionlabel1 "Paramètres généraux">
-<!ENTITY saveProfileMail "Enregistrer les fichiers de courrier du profil">
 <!ENTITY sdExportButton "Exporter">
 <!ENTITY sdMessages "Messages">
 <!ENTITY sdAll "Tous">

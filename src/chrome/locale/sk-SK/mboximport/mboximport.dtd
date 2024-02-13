@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Import/Export">
 <!ENTITY MBlabel1 "Prepisovať súbory s rovnakým názvom v cieľovom priečinku">
-<!ENTITY importDir "Vyberať priečinok, v ktorom sa nachádzajú súbory určené na importovanie">
-<!ENTITY labelmenuMItools "Import/Export vo formáte .mbox/.eml">
-<!ENTITY importFile "Importovať jeden alebo viacero súborov typu .mbox">
-<!ENTITY importDialogLabel "Vyberte spôsob importovania:">
-<!ENTITY importDialogTitle "Importovanie súborov typu .mbox">
-<!ENTITY importStruct "Importovať jeden alebo viac .mbox súborov, vrátane podpriečinkov">
-<!ENTITY exportStruct "Exportovať priečinok aj s podpriečinkami (vrátane štruktúry)">
-<!ENTITY exportAllStruct "Exportovať všetky priečinky (vrátane štruktúry)">
 <!ENTITY MBlabel2 "V súboroch exportu používať iba alfanumerické znaky">
-<!ENTITY allMsgsFolder "Exportovať všetky správy v priečinku">
-<!ENTITY asEML "EML formát">
-<!ENTITY asHTML "HTML formát">
-<!ENTITY asTXT "Čistý text">
-<!ENTITY saveSelected "Uložiť vybrané správy">
-<!ENTITY justIndex "iba index">
-<!ENTITY toClip "Kopírovať správu do schránky">
 <!ENTITY MBlabel3 "Žiadať potvrdenie pred importom .mbox súborov z priečinka">
 <!ENTITY MBlabel4 "HTML formát, ako zobrazenie v paneli správy">
 <!ENTITY MBlabel5 "Kopírovať do schránky iba v textovom formáte (môžu nastať problémy kompatibility)">
-<!ENTITY MBlabel6 "Ak je uvedený, pridať dátum na začiatok exportovaných súborov">
 <!ENTITY MBlabel7a "Maximálna dĺžka predmetu správy:">
 <!ENTITY MBlabel7b "znakov">
 <!ENTITY MBlabel7c "Max. dĺžka mena odosielateľa:">
 <!ENTITY MBlabel7d "Max. dĺžka mena príjemcu:">
-<!ENTITY oneFile "(jeden súbor)">
-<!ENTITY importAttachedEML "Import správ v tomto priečinku">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Kopírovať do schránky">
-<!ENTITY copyClipMessage "Správa">
-<!ENTITY copyClipHeaders "Hlavičky">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Výber priečinka v ktorom vyhľadávať súbory .mbox na import (aj podpriečinky)">
-<!ENTITY importDirProf "Otvárať dialóg na otváranie súborov v priečinku profilu">
-<!ENTITY MBlabel8 "Pri použití položky \'Uložiť vybrané správy\' pridať do názvu súboru dátum">
-<!ENTITY options "Možnosti">
-<!ENTITY importALLEML1 "iba z priečinku">
-<!ENTITY importALLEML2 "aj z jeho podpriečinkov">
 <!ENTITY misc "Rôzne">
 <!ENTITY filenameFormat "Názvy súborov">
 <!ENTITY savedirs "Export priečinkov">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Export priečinkov ako samostatné súbory:">
 <!ENTITY selExport "Export vybraných správ:">
 <!ENTITY MBcaptionlabel1 "Nastavenia exportovania">
-<!ENTITY saveProfileMail "Uložiť všetky mailové súbory">
 <!ENTITY sdExportButton "Exportovať">
 <!ENTITY sdMessages "Správy">
 <!ENTITY sdAll "Všetky">

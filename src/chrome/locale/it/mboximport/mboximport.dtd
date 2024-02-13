@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "ImportExportTools NG">
 <!ENTITY MBlabel1 "Sovrascrivi i file mbox con lo stesso nome nella directory di destinazione">
-<!ENTITY importDir " Seleziona una directory in cui cercare i file mbox">
-<!ENTITY labelmenuMItools "ImportExportTools NG">
-<!ENTITY importFile "Importa direttamente uno o più file in formato mbox">
-<!ENTITY importDialogLabel "Scegliere una modalità di importazione:">
-<!ENTITY importDialogTitle "Importazione file mbox">
-<!ENTITY importStruct "Importa uno o più file in formato mbox, con le relative sottocartelle">
-<!ENTITY exportStruct "Esporta cartella con sottocartelle (con la struttura)">
-<!ENTITY exportAllStruct "Esporta tutte le cartelle (con la struttura)">
 <!ENTITY MBlabel2 "Usa solo caratteri alfanumerici per l&apos;esportazione">
-<!ENTITY allMsgsFolder "Esporta i messaggi della cartella">
-<!ENTITY asEML "come file EML">
-<!ENTITY asHTML "come file HTML">
-<!ENTITY asTXT "come file di testo">
-<!ENTITY saveSelected "Salva messaggi selezionati">
-<!ENTITY justIndex "solo indice">
-<!ENTITY toClip "Copia messaggio negli appunti">
 <!ENTITY MBlabel3 "Chiedi conferma prima di importare file mbox da una directory">
 <!ENTITY MBlabel4 "Formato HTML come visualizzato nell&apos;anteprima">
 <!ENTITY MBlabel5 "Copia negli appunti solo in formato testo (può dare problemi di compatibilità)">
-<!ENTITY MBlabel6 "Metti la data all&apos;inizio del nome dei file esportati">
 <!ENTITY MBlabel7a "Lunghezza massima dell&apos;oggetto: ">
 <!ENTITY MBlabel7b "caratteri">
 <!ENTITY MBlabel7c "Lunghezza massima del mittente: ">
 <!ENTITY MBlabel7d "Lunghezza massima dei destinatari: ">
-<!ENTITY oneFile "come file di testo unico">
-<!ENTITY importAttachedEML "Importa il messaggio nella cartella">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Copia negli appunti">
-<!ENTITY copyClipMessage "Messaggio">
-<!ENTITY copyClipHeaders "Intestazioni">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Seleziona una directory in cui cercare i file mbox (anche nelle sottodirectory)">
-<!ENTITY importDirProf "Inizia la ricerca dalla directory dei profili">
-<!ENTITY MBlabel8 "In &apos;Salva messaggi selezionati&apos; aggiungi la data al nome del file">
-<!ENTITY options "Opzioni">
-<!ENTITY importALLEML1 "solo della directory">
-<!ENTITY importALLEML2 "anche delle sottodirectory">
 <!ENTITY misc "Varie">
 <!ENTITY filenameFormat "Nomi dei file">
 <!ENTITY savedirs "Directory per l&apos;esportazione">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Esportazione cartelle come singoli file:">
 <!ENTITY selExport "Esportazione messaggi selezionati:">
 <!ENTITY MBcaptionlabel1 "Impostazioni generali">
-<!ENTITY saveProfileMail "Salva tutti i file della posta">
 <!ENTITY sdExportButton "Esporta">
 <!ENTITY sdMessages "Messaggi">
 <!ENTITY sdAll "Tutti">

@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Importera/Exportera">
 <!ENTITY MBlabel1 "Ersätt MBOX-filen i målmappen med filen som importeras om de har samma namn">
-<!ENTITY importDir "Välj mapp för sökning efter MBOX-filer att importera">
-<!ENTITY labelmenuMItools "Import/export-verktyg">
-<!ENTITY importFile "Direktimportera en eller flera MBOX-filer">
-<!ENTITY importDialogLabel "Välj importtyp:">
-<!ENTITY importDialogTitle "Import av MBOX-filer">
-<!ENTITY importStruct "Importera en eller flera MBOX-filer, med undermapp(ar)">
-<!ENTITY exportStruct "Exportera mapp med undermappar (bibehållen struktur)">
-<!ENTITY exportAllStruct "Exportera alla mappar (bibehållen struktur)">
 <!ENTITY MBlabel2 "Använd endast alfanumeriska tecken vid export">
-<!ENTITY allMsgsFolder "Exportera alla meddelanden i mappen">
-<!ENTITY asEML "EML-format">
-<!ENTITY asHTML "HTML-format">
-<!ENTITY asTXT "Oformaterad text">
-<!ENTITY saveSelected "Spara markerade meddelanden">
-<!ENTITY justIndex "endast index">
-<!ENTITY toClip "Kopiera meddelandet till Urklipp">
 <!ENTITY MBlabel3 "Bekräfta innan MBOX-filer importeras från en mapp">
 <!ENTITY MBlabel4 "HTML-format som det ser ut i meddelandepanelen">
 <!ENTITY MBlabel5 "Kopiera till Urklipp endast som oformaterad text (kan orsaka kompatibilitetsproblem)">
-<!ENTITY MBlabel6 "När så är möjligt, infoga datum i början av exporterade filer">
 <!ENTITY MBlabel7a "Ämnesradens maxlängd: ">
 <!ENTITY MBlabel7b "tecken">
 <!ENTITY MBlabel7c "Avsändarnamnets maxlängd: ">
 <!ENTITY MBlabel7d "Mottagarnamnets maxlängd: ">
-<!ENTITY oneFile "(en fil)">
-<!ENTITY importAttachedEML "Importera meddelandet till denna mapp">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Kopiera till Urklipp">
-<!ENTITY copyClipMessage "Meddelande">
-<!ENTITY copyClipHeaders "Meddelandehuvuden">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "Välj mapp för sökning efter MBOX-filer att importera (inkl. undermappar)">
-<!ENTITY importDirProf "Öppna filväljaren i profilmappen">
-<!ENTITY MBlabel8 "Infoga datum i filnamn när &quot;Spara markerade meddelanden&quot; väljs">
-<!ENTITY options "Inställningar">
-<!ENTITY importALLEML1 "endast från huvudmappen">
-<!ENTITY importALLEML2 "även från dess undermappar">
 <!ENTITY misc "Övrigt">
 <!ENTITY filenameFormat "Filnamn">
 <!ENTITY savedirs "Exportera mappar">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Exportera mappar som enskilda filer:">
 <!ENTITY selExport "Exportera markerade meddelanden:">
 <!ENTITY MBcaptionlabel1 "Allmänt">
-<!ENTITY saveProfileMail "Spara alla e-postfiler">
 <!ENTITY sdExportButton "Exportera">
 <!ENTITY sdMessages "Meddelanden">
 <!ENTITY sdAll "Alla">

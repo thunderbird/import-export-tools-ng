@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "불러오기/내보내기">
 <!ENTITY MBlabel1 "목적 디렉토리에 있는 같은 이름의 mbox 파일을 덮어 씁니다">
-<!ENTITY importDir "불러올 mbox 파일을 검색할 디렉토리 선택">
-<!ENTITY labelmenuMItools "mbox/eml 형식으로 불러오기/내보내기">
-<!ENTITY importFile "하나 이상의 mbox 파일을 직접 불러오기">
-<!ENTITY importDialogLabel "불러오기 방식을 선택:">
-<!ENTITY importDialogTitle "읽어들일 mbox 파일">
-<!ENTITY importStruct "하위 디렉토리와 함께 하나 이상의 mbox 파일 불러오기">
-<!ENTITY exportStruct "하위 폴더와 함께 내보내기(구조 포함)">
-<!ENTITY exportAllStruct "모든 폴더 내보내기(구조 포함)">
 <!ENTITY MBlabel2 "단일 파일 내보내기시 영숫자만 사용">
-<!ENTITY allMsgsFolder "폴더 내 모든 메세지 내보내기">
-<!ENTITY asEML "EML 형식">
-<!ENTITY asHTML "HTML 형식">
-<!ENTITY asTXT "Plain text 형식">
-<!ENTITY saveSelected "선택한 메세지 저장">
-<!ENTITY justIndex "목차만">
-<!ENTITY toClip "클립보드로 메세지 복사">
 <!ENTITY MBlabel3 "디렉토리로부터 mbox 파일을 읽어들이기 전에 확인을 요구">
 <!ENTITY MBlabel4 "메세지 패널에 표시되었던 대로의 HTML 형식">
 <!ENTITY MBlabel5 "텍스트 형식으로 클립보드에 카피 (호환성에 문제가 있을 수 있습니다)">
-<!ENTITY MBlabel6 "제출시, 내보내는 파일의 시작에 날짜를 덧붙인다">
 <!ENTITY MBlabel7a "제목 최대 길이:">
 <!ENTITY MBlabel7b "문자">
 <!ENTITY MBlabel7c "보내는 이 이름의 최대 길이:">
 <!ENTITY MBlabel7d "받는이 이름의 최대 길이:">
-<!ENTITY oneFile "(파일 1개)">
-<!ENTITY importAttachedEML "폴더 내 메세지 불러오기">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "클립보드로 복사">
-<!ENTITY copyClipMessage "메세지">
-<!ENTITY copyClipHeaders "헤더">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "o">
-<!ENTITY importDirRec "들여올 mbox 파일을 검색할 디렉토리 선택 (하위 디렉토리 포함)">
-<!ENTITY importDirProf "파일 선택을 프로파일 디렉토리에서 열기">
-<!ENTITY MBlabel8 "\'선택한 메세지 저장\'시 파일명에 날짜를 추가">
-<!ENTITY options "선택사항">
-<!ENTITY importALLEML1 "디렉토리 만으로부터">
-<!ENTITY importALLEML2 "하위 디렉토리로부터도">
 <!ENTITY misc "기타">
 <!ENTITY filenameFormat "파일명">
 <!ENTITY savedirs "내보낼 디렉토리">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "단일 파일로 폴더 내보내기:">
 <!ENTITY selExport "선택된 메세지 내보내기:">
 <!ENTITY MBcaptionlabel1 "일반 설정">
-<!ENTITY saveProfileMail "모든 메일 파일 저장">
 <!ENTITY sdExportButton "내보내기">
 <!ENTITY sdMessages "메세지">
 <!ENTITY sdAll "모두">

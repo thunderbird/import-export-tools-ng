@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Import/Eksport">
 <!ENTITY MBlabel1 "Zastępuj pliki o tej samej nazwie w katalogu docelowym">
-<!ENTITY importDir "Wybierz katalog zawierający pliki mbox">
-<!ENTITY labelmenuMItools "Import/eksport mbox/eml">
-<!ENTITY importFile "Importuj bezpośrednio pliki mbox">
-<!ENTITY importDialogLabel "Wybierz sposób importu:">
-<!ENTITY importDialogTitle "Import plików mbox">
-<!ENTITY importStruct "Importuj pliki mbox z podfolderami">
-<!ENTITY exportStruct "Eksportuj folder z podfolderami, zachowując strukturę">
-<!ENTITY exportAllStruct "Eksportuj wszystkie foldery z podfolderami, zachowując strukturę">
 <!ENTITY MBlabel2 "Podczas eksportowania używaj tylko znaków alfanumerycznych">
-<!ENTITY allMsgsFolder "Eksportuj wszystkie wiadomości z folderu">
-<!ENTITY asEML "w formacie EML">
-<!ENTITY asHTML "w formacie HTML">
-<!ENTITY asTXT "jako zwykły tekst">
-<!ENTITY saveSelected "Zapisz wybrane wiadomości">
-<!ENTITY justIndex "tylko indeks">
-<!ENTITY toClip "Kopiuj wiadomość do schowka">
 <!ENTITY MBlabel3 "Pytaj o potwierdzenie przed zaimportowaniem pliku mbox">
 <!ENTITY MBlabel4 "Format HTML, jak w panelu wiadomości">
 <!ENTITY MBlabel5 "Kopiuj do schowka jako tekst (może powodować problemy z kompatybilnością)">
-<!ENTITY MBlabel6 "Jeśli jest, dołącz datę na początku eksportowanych plików">
 <!ENTITY MBlabel7a "Maksymalna długość pola Temat:">
 <!ENTITY MBlabel7b "znaków">
 <!ENTITY MBlabel7c "Maksymalna długość pola Nadawca:">
 <!ENTITY MBlabel7d "Maksymalna długość pola Do:">
-<!ENTITY oneFile "(jeden plik)">
-<!ENTITY importAttachedEML "Importuj wiadomości do tego katalogu">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Kopiuj do schowka">
-<!ENTITY copyClipMessage "Wiadomość">
-<!ENTITY copyClipHeaders "Nagłówki">
-<!ENTITY taskMenuAccesskey "e">
-<!ENTITY clipMenuAccesskey "s">
-<!ENTITY importDirRec "Wybierz folder, w którym należy szukać plików mbox do zaimportowania (z podfolderami)">
-<!ENTITY importDirProf "Otwórz folder profilu">
-<!ENTITY MBlabel8 "Przy zapisywaniu wybranych wiadomości dodawaj datę do nazwy pliku">
-<!ENTITY options "Opcje">
-<!ENTITY importALLEML1 "tylko z tego">
-<!ENTITY importALLEML2 "również z podkatalogów">
 <!ENTITY misc "Różne">
 <!ENTITY filenameFormat "Nazwy plików">
 <!ENTITY savedirs "Foldery eksportu">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Folder eksportu dla pojedynczych plików:">
 <!ENTITY selExport "Folder eksportu dla wybranych wiadomości:">
 <!ENTITY MBcaptionlabel1 "Ogólne">
-<!ENTITY saveProfileMail "Zapisz wszystkie pliki poczty">
 <!ENTITY sdExportButton "Eksportuj">
 <!ENTITY sdMessages "Wiadomości">
 <!ENTITY sdAll "Wszystko">

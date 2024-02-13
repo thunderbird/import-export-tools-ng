@@ -1,44 +1,13 @@
 <!ENTITY labelmenuMI "Importálás/Exportálás">
 <!ENTITY MBlabel1 "Azonos nevű MBOX fájlok felülírása a célmappában">
-<!ENTITY importDir "Az importálható MBOX fájlokat tartalmazó mappa kiválasztása">
-<!ENTITY labelmenuMItools "Importálás/Exportálás">
-<!ENTITY importFile "Egy vagy több MBOX fájl közvetlen importálása">
-<!ENTITY importDialogLabel "Válassza ki az importálás típusát:">
-<!ENTITY importDialogTitle "Fájl importálása (MBOX)">
-<!ENTITY importStruct "Egy vagy több MBOX fájl importálása almappákkal együtt">
-<!ENTITY exportStruct "Mappa exportálása az almappákkal együtt (szerkezettel)">
-<!ENTITY exportAllStruct "Mindegyik mappa exportálása (szerkezettel)">
 <!ENTITY MBlabel2 "Csak alfanumerikus karakterek használata az exportált fájlban">
-<!ENTITY allMsgsFolder "Mappa mindegyik üzenetének exportálása">
-<!ENTITY asEML "EML formátum">
-<!ENTITY asHTML "HTML formátum">
-<!ENTITY asTXT "Nem formázott szöveg">
-<!ENTITY saveSelected "Kiválasztott üzenetek mentése">
-<!ENTITY justIndex "Csak azonosító">
-<!ENTITY toClip "Üzenet másolása a vágólapra">
 <!ENTITY MBlabel3 "Megerősítés kérése MBOX fájl mappából történő importálása előtt">
 <!ENTITY MBlabel4 "HTML formátum használata mint az üzeneteket tartalmazó panelben">
 <!ENTITY MBlabel5 "Másolás a vágólapra szövegként (probléma lehet a kompatibilitással)">
-<!ENTITY MBlabel6 "Dátum beszúrása az exportált fájl elejére (ha ismert)">
 <!ENTITY MBlabel7a "Üzenet tárgyának maximális hossza:">
 <!ENTITY MBlabel7b "karakter">
 <!ENTITY MBlabel7c "Feladó nevének maximális hossza:">
 <!ENTITY MBlabel7d "Címzett nevének maximális hossza:">
-<!ENTITY oneFile "(egy fájl)">
-<!ENTITY importAttachedEML "Üzenet importálása ebbe a mappába">
-<!ENTITY iHTML "(HTML)">
-<!ENTITY iCSV "(CSV)">
-<!ENTITY toClipMenu "Másolás a vágólapra">
-<!ENTITY copyClipMessage "Üzenet">
-<!ENTITY copyClipHeaders "Fejlécek">
-<!ENTITY taskMenuAccesskey "x">
-<!ENTITY clipMenuAccesskey "M">
-<!ENTITY importDirRec "Válassza ki azt a mappát, amelyben az importálni kívánt MBOX fájl található (almappákban is keres)">
-<!ENTITY importDirProf "Megnyitás alapértelmezettként a profilok mappával">
-<!ENTITY MBlabel8 "Dátum hozzáadása a fájlnévhez a „Kiválasztott üzenetek mentése” során">
-<!ENTITY options "Beállítások">
-<!ENTITY importALLEML1 "csak a mappából">
-<!ENTITY importALLEML2 "annak almappáiból is">
 <!ENTITY misc "Vegyes">
 <!ENTITY filenameFormat "Fájlnév">
 <!ENTITY savedirs "Mappák exportálása">
@@ -54,7 +23,6 @@
 <!ENTITY emlExport "Mappák exportálása külön fájlokként:">
 <!ENTITY selExport "Kijelölt üzenetek exportálása:">
 <!ENTITY MBcaptionlabel1 "Általános beállítások">
-<!ENTITY saveProfileMail "Mindegyik E-mail fájl mentése">
 <!ENTITY sdExportButton "Exportálás">
 <!ENTITY sdMessages "Üzenetek">
 <!ENTITY sdAll "Mindegyik">

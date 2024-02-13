@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Ren tekst">
 <!ENTITY sdSingleFile "Som enkelt tekstfil">
-<!ENTITY searchAndExport "Søg og eksporter">
 <!ENTITY buildMSF.label "Opbyg indeks for importerede mbox-filer">
 <!ENTITY addPrefix "Tilføj præfiks">
 <!ENTITY fileLenCaption "Filnavnes længde">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Klip den fulde filsti ved længde på 256 tegn">
 <!ENTITY sdMBOX "Mbox (ny)">
 <!ENTITY sdMBOX2 "Mbox (tilføj)">
-<!ENTITY asMBOX "Som mbox-fil (ny)">
-<!ENTITY asMBOX2 "Som mbox-fil (tilføj)">
 <!ENTITY filenameCharset "Tegnkodning af filnavne:">
 <!ENTITY name "Navn">
-<!ENTITY importStructDescr1 "Vælg kun mbox-filen, mappen med samme navn">
-<!ENTITY importStructDescr2 "og filendelsen 'sbd' vil automatisk blive importeret, hvis den findes.">
 <!ENTITY abortExport "Stop den pågældende eksport">
 <!ENTITY allMsg "Eksport af alle meddelelser">
 <!ENTITY indexSettingLabel "Når alle meddelelser i en mailmappe eksporteres:">
 <!ENTITY indexOn "Opret en ny mappe og indekset over meddelelserne">
 <!ENTITY indexOff "Brug valgte mappe uden indeks">
 <!ENTITY copyFolderPath "Kopier mappens sti på disken">
-<!ENTITY importSMS "Importer SMS">
 <!-- 'SMS Backup and Restore' is the name of an Android application and so maybe it's better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' til Android">
 <!ENTITY sender "Afsender">
 <!ENTITY recipient "Modtager">
-<!ENTITY exportRemoteFolder "Eksporter fjernmappe">
 <!ENTITY skipMsgLabel "Gem ikke meddelelser når den tilsvarende fil findes">
 <!ENTITY asCSV "Regneark (CSV)">
-<!ENTITY exportZIP "Eksporter mappe (zippet)">
-<!ENTITY openFolderPath "Åbn mappen med mappefilen">
 <!ENTITY addNumber.label "Tilføj altid et tilfældigt tal til filen når mbox-filer importeres">
 <!ENTITY textCharset "Tegnkodning til eksport i tekst- og CSV-format:">
-<!ENTITY importEML "Importer meddelelser">
-<!ENTITY importALLEML "Importer alle meddelelser fra en mappe">
-<!ENTITY importMAILDIR "Importer Maildir-mappe">
-<!ENTITY withattach "(med vedhæftede filer)">
-<!ENTITY asPDF "PDF-format">
-<!ENTITY importProfile "Importer profil">
 <!ENTITY csvSep "Separator til eksport i CSV-format:">
-<!ENTITY saveProfile "Eksporter profil">
-<!ENTITY withIndexLabel "Med HTML-index">
 <!ENTITY customDate "Brugerdefineret dato:">
 <!ENTITY extFormat "Format:">
 <!ENTITY dateCustomOpt "Dato (brugerdefineret)">
@@ -81,7 +63,6 @@
 <!ENTITY dateFormatRefTooltipText "Henvisning til datoformat">
 <!ENTITY extFilenameFormatRefTooltipText "Henvisning til udvidet filnavnsformat">
 <!ENTITY backupOnExit "Sikkerhedskopier ved afslutning">
-<!ENTITY noFolderSelectedMenuTop "[Ingen valgt mappe (Import \ Export deaktiveret)]">
 <!ENTITY indexCSVdateFormat "Indeks, CSV-datoformat:">
 
 <!ENTITY attachmentFolderNames "Navne på mapper med vedhæftede filer">

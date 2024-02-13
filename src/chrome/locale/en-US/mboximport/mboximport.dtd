@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Plain text">
 <!ENTITY sdSingleFile "as single text file">
-<!ENTITY searchAndExport "Search and export">
 <!ENTITY buildMSF.label "Build index for imported mbox files">
 <!ENTITY addPrefix "Add prefix">
 <!ENTITY fileLenCaption "Filenames length">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Cut complete file path length at 256 characters">
 <!ENTITY sdMBOX "Mbox (new)">
 <!ENTITY sdMBOX2 "Mbox (append)">
-<!ENTITY asMBOX "as Mbox file (new)">
-<!ENTITY asMBOX2 "as Mbox file (append)">
 <!ENTITY filenameCharset "Charset for filenames: ">
 <!ENTITY name "Name">
-<!ENTITY importStructDescr1 "Select just the mbox file, the directory with the same name">
-<!ENTITY importStructDescr2 "and the extension “sbd” will be automatically imported, if it exists.">
 <!ENTITY abortExport "Stop the current export">
 <!ENTITY allMsg "Export of all messages">
 <!ENTITY indexSettingLabel "When exporting all messages of a mail folder:">
 <!ENTITY indexOn "create a new directory and the index of messages">
 <!ENTITY indexOff "use selected directory without index">
 <!ENTITY copyFolderPath "Copy folder path on disk">
-<!ENTITY importSMS "Import SMS">
 <!-- “SMS Backup and Restore” is the name of an Android application and so maybe it’s better not to translate it -->
-<!ENTITY android "“SMS Backup and Restore” for Android">
 <!ENTITY sender "Sender">
 <!ENTITY recipient "Recipient">
-<!ENTITY exportRemoteFolder "Export remote folder">
 <!ENTITY skipMsgLabel "don’t save messages when the file already exists">
 <!ENTITY asCSV "Spreadsheet (CSV)">
-<!ENTITY exportZIP "Export folder (zipped)">
-<!ENTITY openFolderPath "Open directory where is the folder file">
 <!ENTITY addNumber.label "Add always to the name a random number when importing mbox files">
 <!ENTITY textCharset "Charset for export in text and CSV format: ">
-<!ENTITY importEML "Import messages">
-<!ENTITY importALLEML "Import all messages from a directory">
-<!ENTITY importMAILDIR "Import Maildir folder">
-<!ENTITY withattach "(with attachments)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "Export profile">
-<!ENTITY withIndexLabel "with HTML index">
 <!ENTITY customDate "Custom Date:">
 <!ENTITY extFormat "Format:">
 <!ENTITY dateCustomOpt "Date (Custom)">
@@ -80,7 +62,6 @@
 <!ENTITY addSuffix "Add suffix">
 <!ENTITY dateFormatRefTooltipText "Date Format Reference">
 <!ENTITY extFilenameFormatRefTooltipText "Extended Filename Format Reference">
-<!ENTITY noFolderSelectedMenuTop "[ No Selected Folder (Import \ Export Disabled) ]">
 <!ENTITY backupOnExit "Backup On Exit">
 <!ENTITY indexCSVdateFormat "Index, CSV Date Format:">
 

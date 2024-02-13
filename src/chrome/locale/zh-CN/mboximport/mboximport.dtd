@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "纯文本">
 <!ENTITY sdSingleFile "(一个文件)">
-<!ENTITY searchAndExport "搜索和导出">
 <!ENTITY buildMSF.label "为导入的 mbox 文件建立索引">
 <!ENTITY addPrefix "添加前缀">
 <!ENTITY fileLenCaption "文件名长度">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "完整文件路径超过256个字符时截断">
 <!ENTITY sdMBOX "Mbox">
 <!ENTITY sdMBOX2 "Mbox （附加）">
-<!ENTITY asMBOX "作为 Mbox 文件（新建）">
-<!ENTITY asMBOX2 "作为 Mbox 文件（附加）">
 <!ENTITY filenameCharset "文件名的字符集：">
 <!ENTITY name "名字">
-<!ENTITY importStructDescr1 "选择 mbox 文件，同名文件夹">
-<!ENTITY importStructDescr2 "azcasdasd">
 <!ENTITY abortExport "停止当前的导出">
 <!ENTITY allMsg "导出全部信息">
 <!ENTITY indexSettingLabel "当从一个信件夹中导出全部信息时：">
 <!ENTITY indexOn "创建一个新的目录并索引信息">
 <!ENTITY indexOff "使用选定的目录并且不进行索引">
 <!ENTITY copyFolderPath "复制磁盘上的文件夹路径">
-<!ENTITY importSMS "导入 SMS">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "Android 的 \\\'SMS 备份和恢复\\\'">
 <!ENTITY sender "发信人">
 <!ENTITY recipient "收信人">
-<!ENTITY exportRemoteFolder "导出远程文件夹">
 <!ENTITY skipMsgLabel "代理文件存在时不要保存信息">
 <!ENTITY asCSV "电子表格(CSV)">
-<!ENTITY exportZIP "导出信件夹（ZIP压缩）">
-<!ENTITY openFolderPath "打开信件夹文件所在目录">
 <!ENTITY addNumber.label "导出 mbox 文件时总是在名字上添加随机数字">
 <!ENTITY textCharset "纯文本和逗号分隔文件（CSV）格式使用的字符集：">
-<!ENTITY importEML "导入eml文件">
-<!ENTITY importALLEML "从一个目录中导入所有的eml文件">
-<!ENTITY importMAILDIR "导入 Maildir 文件夹">
-<!ENTITY withattach "带有附件">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "保存所有配置文件">
-<!ENTITY withIndexLabel "带有 HTML 索引">
 
 <!ENTITY customDate "自订日期：">
 <!ENTITY extFormat "格式：">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "日期格式参考">
 <!ENTITY extFilenameFormatRefTooltipText "扩展文件名格式参考">
 <!ENTITY backupOnExit "退出时备份">
-<!ENTITY noFolderSelectedMenuTop "[未选择文件夹（导入\导出已禁用）]">
 <!ENTITY indexCSVdateFormat "索引，CSV日期格式：">
 <!ENTITY attachmentFolderNames "附件文件夹名称">
 <!ENTITY attachmentFolders "附件文件夹">

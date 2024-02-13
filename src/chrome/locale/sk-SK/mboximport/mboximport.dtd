@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Čistý text">
 <!ENTITY sdSingleFile "(один файл)">
-<!ENTITY searchAndExport "Vyhľadať a exportovať">
 <!ENTITY buildMSF.label "Vytvoriť index pre importované súbory .mbox">
 <!ENTITY addPrefix "Pridať príponu">
 <!ENTITY fileLenCaption "Dĺžka názvov súborov">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Prilepiť kompletný názov s dĺžkou 256 znakov">
 <!ENTITY sdMBOX "Mbox">
 <!ENTITY sdMBOX2 "Mbox (rozšíriť)">
-<!ENTITY asMBOX "ako súbor Mbox (nový)">
-<!ENTITY asMBOX2 "ako súbor Mbox (rozšíriť)">
 <!ENTITY filenameCharset "Znaková sada pre názvy súborov:">
 <!ENTITY name "Názov">
-<!ENTITY importStructDescr1 "Vyberte len mbox súbor, priečinok s rovnakým názvom">
-<!ENTITY importStructDescr2 "a rozšírenie \\\&quot;sbd\\\&quot; bude automaticky importované, ak existuje.">
 <!ENTITY abortExport "Zastaviť aktuálny export">
 <!ENTITY allMsg "Exportovať všetky správy">
 <!ENTITY indexSettingLabel "Pri exporte všetkých správ z poštového priečinka:">
 <!ENTITY indexOn "vytvoriť nový priečinok a index správ">
 <!ENTITY indexOff "použiť vybraný priečinok bez indexu">
 <!ENTITY copyFolderPath "Kopírovať cestu k priečinku na disku">
-<!ENTITY importSMS "Importovať SMS">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' pre Android">
 <!ENTITY sender "Odosielateľ">
 <!ENTITY recipient "Príjemca">
-<!ENTITY exportRemoteFolder "Export vzdialeného priečinka">
 <!ENTITY skipMsgLabel "neukladať správy ak už podobný súbor existuje">
 <!ENTITY asCSV "Tabuľkový formát (CSV)">
-<!ENTITY exportZIP "Priečinok exportu (zipovaný)">
-<!ENTITY openFolderPath "Otvorte priečinok kde sa nachádzajú súbory">
 <!ENTITY addNumber.label "Pri importe mbox súborov vždy pridajte k názvu náhodné číslo">
 <!ENTITY textCharset "Znaková sada pre export v textovom a CVS formáte:">
-<!ENTITY importEML "Importovať súbor typu .eml">
-<!ENTITY importALLEML "Importovať všetky .eml súbory z priečinka">
-<!ENTITY importMAILDIR "Priečinok pošty na import">
-<!ENTITY withattach "(with attachments)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "Uložiť všetky súbory profilu">
-<!ENTITY withIndexLabel "with HTML index">
 
 <!ENTITY customDate "Vlastný dátum:">
 <!ENTITY extFormat "Formát:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Referencia formátu dátumu">
 <!ENTITY extFilenameFormatRefTooltipText "Odkaz na formát rozšíreného názvu súboru">
 <!ENTITY backupOnExit "Zálohovanie pri výstupe">
-<!ENTITY noFolderSelectedMenuTop "[No Selected Folder (Import \ Export Disabled)]">
 <!ENTITY indexCSVdateFormat "Register, formát dátumu CSV:">
 <!ENTITY attachmentFolderNames "Názvy priečinkov príloh">
 <!ENTITY attachmentFolders "Priečinky príloh">

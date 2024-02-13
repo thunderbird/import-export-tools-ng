@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Nem formázott szöveg">
 <!ENTITY sdSingleFile "(egy fájl)">
-<!ENTITY searchAndExport "Keresés és exportálás">
 <!ENTITY buildMSF.label "Jegyzék készítése az MBOX fájlokhoz">
 <!ENTITY addPrefix "Előtag hozzáadása">
 <!ENTITY fileLenCaption "Fájlnév hossza">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Teljes fájlnév hosszának levágása 256 karakterre">
 <!ENTITY sdMBOX "MBOX (új)">
 <!ENTITY sdMBOX2 "MBOX (hozzáfűzés)">
-<!ENTITY asMBOX "mint az MBOX fájlt (új)">
-<!ENTITY asMBOX2 "mint az MBOX fájlt (hozzáfűzés)">
 <!ENTITY filenameCharset "Fájlnév karaktertábla:">
 <!ENTITY name "Név">
-<!ENTITY importStructDescr1 "Csak az mbox fájlt válassza ki. Az azonos nevű mappa">
-<!ENTITY importStructDescr2 "és az SBD kiterjesztés automatikusan importálódik (ha létezik).">
 <!ENTITY abortExport "Jelenlegi exportálás leállítása">
 <!ENTITY allMsg "Minden üzenet exportálása">
 <!ENTITY indexSettingLabel "Üzenet-mappa exportálásakor:">
 <!ENTITY indexOn "új mappa és üzenet-indexek kialakítása">
 <!ENTITY indexOff "kijelölt mappa használata indexek nélkül">
 <!ENTITY copyFolderPath "Mappa útvonalának másolása">
-<!ENTITY importSMS "SMS importálása">
 <!-- “SMS Backup and Restore” is the name of an Android application and so maybe it’s better not to translate it -->
-<!ENTITY android "„SMS mentése és visszaállítása” Android platformon">
 <!ENTITY sender "Feladó">
 <!ENTITY recipient "Címzett">
-<!ENTITY exportRemoteFolder "Távoli mappa exportálása">
 <!ENTITY skipMsgLabel "ne mentse az üzenetet, ha a fájl létezik">
 <!ENTITY asCSV "Táblázatkezelő (CSV)">
-<!ENTITY exportZIP "Mappa exportálása (csomagolt)">
-<!ENTITY openFolderPath "Könyvtár megnyitása, amelyben a mappa fájl található">
 <!ENTITY addNumber.label "Az MBOX fájlok importálásakor egy véletlen szám hozzáadása a névhez">
 <!ENTITY textCharset "Szöveg és CSV formátum karakterkódolása exportáláskor:">
-<!ENTITY importEML "Fájl importálása (EML)">
-<!ENTITY importALLEML "EML fájlok importálása ide egy mappából">
-<!ENTITY importMAILDIR "Maildir mappa importálása">
-<!ENTITY withattach "(mellékletekkel)">
-<!ENTITY asPDF "PDF formátum">
-<!ENTITY importProfile "Profil importálása">
 <!ENTITY csvSep "Elválasztó CSV formátumban történő exportáláshoz:">
-<!ENTITY saveProfile "Mindegyik profil fájl mentése">
-<!ENTITY withIndexLabel "HTML tárgymutató segítségével">
 
 
 <!ENTITY customDate "Egyéni dátum:">
@@ -83,7 +65,6 @@
 <!ENTITY dateFormatRefTooltipText "Dátum formátum referencia">
 <!ENTITY extFilenameFormatRefTooltipText "Bővített fájlnév-formátum-referencia">
 <!ENTITY backupOnExit "Biztonsági mentés a kilépéskor">
-<!ENTITY noFolderSelectedMenuTop "[Nincs kijelölt mappa (importálás / exportálás letiltva)]">
 <!ENTITY indexCSVdateFormat "Index, CSV dátumformátum:">
 <!ENTITY attachmentFolderNames "Mellékletmappák nevei">
 <!ENTITY attachmentFolders "Mellékletek mappák">

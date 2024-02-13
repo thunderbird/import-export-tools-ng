@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "단순 글">
 <!ENTITY sdSingleFile "(파일 1개)">
-<!ENTITY searchAndExport "검색후 내보내기">
 <!ENTITY buildMSF.label "mbox을 들여오기 위해 색인 구축">
 <!ENTITY addPrefix "접두사 추가">
 <!ENTITY fileLenCaption "파일명 길이">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "256자로 완료 파일 경로 길이 자르기">
 <!ENTITY sdMBOX "Mbox(새 파일)">
 <!ENTITY sdMBOX2 "Mbox(추가)">
-<!ENTITY asMBOX "Mbox 파일로(새 파일)">
-<!ENTITY asMBOX2 "Mbox 파일로(추가)">
 <!ENTITY filenameCharset "파일명의 캐릭터셋:">
 <!ENTITY name "이름">
-<!ENTITY importStructDescr1 "mbox파일을 선택하거나, 동일한 이름의 디렉토리와">
-<!ENTITY importStructDescr2 "\'sbd\'확장자가 존재한다면 자동으로 들여옵니다.">
 <!ENTITY abortExport "현재 내보내기 중지">
 <!ENTITY allMsg "모든 메세지 내보내기">
 <!ENTITY indexSettingLabel "메일 폴더 내 모든 메세지 내보낼 때:">
 <!ENTITY indexOn "새 디렉토리 및 메세지 색인 생성">
 <!ENTITY indexOff "색인없이 선택된 디렉토리 사용">
 <!ENTITY copyFolderPath "디스크 내 폴더 경로 복사">
-<!ENTITY importSMS "SMS 불러오기">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "Android용 \'SMS 백업 및 복원\'">
 <!ENTITY sender "보낸이">
 <!ENTITY recipient "받는이">
-<!ENTITY exportRemoteFolder "원격 폴더로 내보내기">
 <!ENTITY skipMsgLabel "통신 파일이 존재하면 메세지를 저장하지 않음">
 <!ENTITY asCSV "스프레드 시트(CSV)">
-<!ENTITY exportZIP "내보내기 폴더 (압축됨)">
-<!ENTITY openFolderPath "Open directory where is the folder file">
 <!ENTITY addNumber.label "mbox파일을 가져올때 언제나 임의의 숫자를 추가">
 <!ENTITY textCharset "Text 및 CSV형식으로 내보내기 위한 문자셋:">
-<!ENTITY importEML "eml 파일 불러오기">
-<!ENTITY importALLEML "디렉토리로 부터 모든 eml 파일 불러오기">
-<!ENTITY importMAILDIR "불러올 메일 디렉토리 폴더">
-<!ENTITY withattach "(with attachments)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "모든 프로파일 파일 저장">
-<!ENTITY withIndexLabel "with HTML index">
 
 <!ENTITY customDate "맞춤 날짜 :">
 <!ENTITY extFormat "형식 :">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "날짜 형식 참조">
 <!ENTITY extFilenameFormatRefTooltipText "확장 파일 이름 형식 참조">
 <!ENTITY backupOnExit "종료시 백업">
-<!ENTITY noFolderSelectedMenuTop "[선택한 폴더 없음 (가져 오기 / 내보내기 비활성화 됨)]">
 <!ENTITY indexCSVdateFormat "색인, CSV 날짜 형식 :">
 <!ENTITY attachmentFolderNames "첨부 파일 폴더 이름">
 <!ENTITY attachmentFolders "첨부파일">

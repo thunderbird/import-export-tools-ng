@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Golo besedilo">
 <!ENTITY sdSingleFile "Kot enojna besedilna datoteka">
-<!ENTITY searchAndExport "Išči in izvozi">
 <!ENTITY buildMSF.label "Sestavi kazalo za uvožene datoteke mbox">
 <!ENTITY addPrefix "Dodaj predpono">
 <!ENTITY fileLenCaption "Dolžina imen datotek">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Prireži celotno dolžino poti datoteke na 256 znakov">
 <!ENTITY sdMBOX "Mbox (novo)">
 <!ENTITY sdMBOX2 "Mbox (pripni)">
-<!ENTITY asMBOX "kot datoteko Mbox (novo)">
-<!ENTITY asMBOX2 "kot datoteko Mbox (pripni)">
 <!ENTITY filenameCharset "Nabor znakov za imena datotek:">
 <!ENTITY name "Ime">
-<!ENTITY importStructDescr1 "Samo izberite datoteko mbox in bo mapa z istim imenom">
-<!ENTITY importStructDescr2 "in končnico \'sbd\' samodejno uvožena, če obstaja.">
 <!ENTITY abortExport "Ustavi trenutni izvoz">
 <!ENTITY allMsg "Izvoz vseh sporočil">
 <!ENTITY indexSettingLabel "Ob izvozu vseh sporočil mape s pošto:">
 <!ENTITY indexOn "ustvari novo mapo in kazalo sporočil">
 <!ENTITY indexOff "uporabi izbrano mapo brez kazala">
 <!ENTITY copyFolderPath "Kopiraj pot mape na disk">
-<!ENTITY importSMS "Uvozi SMS">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' za Android">
 <!ENTITY sender "Pošiljatelj">
 <!ENTITY recipient "Prejemnik">
-<!ENTITY exportRemoteFolder "Izvozi oddaljeno mapo">
 <!ENTITY skipMsgLabel "Ne shrani sporočil, kadar obstaja pripadajoča datoteka">
 <!ENTITY asCSV "Preglednica (CSV)">
-<!ENTITY exportZIP "Mapa za izvoz (stisnjena)">
-<!ENTITY openFolderPath "Odpri mapo z datoteko mape">
 <!ENTITY addNumber.label "Ob uvozu datoteke mbox imenu vedno dodaj naključno število">
 <!ENTITY textCharset "Nabor znakov za izvoz v besedilni obliki in obliki CSV:">
-<!ENTITY importEML "Uvozi sporočila">
-<!ENTITY importALLEML "Uvozi vsa sporočila iz mape">
-<!ENTITY importMAILDIR "Mapa za uvoz Maildir">
-<!ENTITY withattach "(s priponkami)">
-<!ENTITY asPDF "Oblika PDF">
-<!ENTITY importProfile "Profil za uvoz">
 <!ENTITY csvSep "Ločilo za izvoz v obliki CSV:">
-<!ENTITY saveProfile "Izvozi profil">
-<!ENTITY withIndexLabel "s kazalom HTML">
 
 <!ENTITY customDate "Datum po meri:">
 <!ENTITY extFormat "Format:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Referenca zapisa datuma">
 <!ENTITY extFilenameFormatRefTooltipText "Razširjena referenca za obliko datoteke">
 <!ENTITY backupOnExit "Varnostno kopiranje ob izhodu">
-<!ENTITY noFolderSelectedMenuTop "[Ni izbrane mape (uvoz / izvoz onemogočen)]">
 <!ENTITY indexCSVdateFormat "Kazalo, oblika zapisa datuma CSV:">
 <!ENTITY attachmentFolderNames "Imena map priponk">
 <!ENTITY attachmentFolders "Mape s priponkami">

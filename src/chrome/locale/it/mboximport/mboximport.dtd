@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Formato testo">
 <!ENTITY sdSingleFile "come file di testo unico">
-<!ENTITY searchAndExport "Cerca ed esporta">
 <!ENTITY buildMSF.label "Crea indice dei file mbox importati">
 <!ENTITY addPrefix "Aggiungi prefisso">
 <!ENTITY fileLenCaption "Lunghezza nomi dei file">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Tronca la lunghezza totale del percorso a 256 caratteri">
 <!ENTITY sdMBOX "Mbox (nuovo)">
 <!ENTITY sdMBOX2 "Mbox (aggiungi)">
-<!ENTITY asMBOX "come file Mbox (nuovo)">
-<!ENTITY asMBOX2 "come file Mbox (aggiungi)">
 <!ENTITY filenameCharset "Codifica per i nomi dei file: ">
 <!ENTITY name "Nome">
-<!ENTITY importStructDescr1 "Selezionare solo il file mbox, verrà automaticamente importata">
-<!ENTITY importStructDescr2 "la directory con lo stesso nome e l'estensione 'sbd', se presente.">
 <!ENTITY abortExport "Interrompi l'esportazione dei messaggi">
 <!ENTITY allMsg "Esportazione di tutti i messaggi">
 <!ENTITY indexSettingLabel "Quando si esportano tutti i messaggi di una cartella di posta:">
 <!ENTITY indexOn "crea una nuova cartella e l'indice dei messaggi">
 <!ENTITY indexOff "usa la cartella selezionata senza indice">
 <!ENTITY copyFolderPath "Copia il percorso della cartella">
-<!ENTITY importSMS "Importa SMS">
 <!-- 'SMS Backup and Restore' is the name of an Android application and so maybe it's better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' per Android">
 <!ENTITY sender "Mittente">
 <!ENTITY recipient "Destinatario">
-<!ENTITY exportRemoteFolder "Esporta cartella remota">
 <!ENTITY skipMsgLabel "non salvare i messaggi quando il corrispondente file esiste">
 <!ENTITY asCSV "Foglio elettronico (CSV)">
-<!ENTITY exportZIP "Esporta cartella (compressa)">
-<!ENTITY openFolderPath "Apri la cartella sul disco dove si trova il file">
 <!ENTITY addNumber.label "Aggiungi sempre un numero casuale al nome quando si importano i file mbox">
 <!ENTITY textCharset "Codifica per l'esportazione in formato testo e CSV: ">
-<!ENTITY importEML "Importa messaggi">
-<!ENTITY importALLEML "Importa tutti i messaggi di una directory">
-<!ENTITY importMAILDIR "Importa cartella Maildir">
-<!ENTITY withattach "(con allegati)">
-<!ENTITY asPDF "come file PDF">
-<!ENTITY importProfile "Importa profilo">
 <!ENTITY csvSep "Separatore per l'esportazione in CSV:">
-<!ENTITY saveProfile "Esporta profilo">
-<!ENTITY withIndexLabel "con indice HTML">
 
 <!ENTITY customDate "Data personalizzata:">
 <!ENTITY extFormat "Formato:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Riferimento formato data">
 <!ENTITY extFilenameFormatRefTooltipText "Riferimento formato file esteso">
 <!ENTITY backupOnExit "Backup all&#39;uscita">
-<!ENTITY noFolderSelectedMenuTop "[Nessuna cartella selezionata (importazione \ esportazione disabilitata)]">
 <!ENTITY indexCSVdateFormat "Indice, formato data CSV:">
 <!ENTITY attachmentFolderNames "Nomi delle cartelle degli allegati">
 <!ENTITY attachmentFolders "Cartelle allegati">

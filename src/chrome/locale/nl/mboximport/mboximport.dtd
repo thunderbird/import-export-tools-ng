@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Platte tekst">
 <!ENTITY sdSingleFile "als één tekstbestand">
-<!ENTITY searchAndExport "Zoeken en exporteren">
 <!ENTITY buildMSF.label "Index opbouwen voor geïmporteerde mbox-bestanden">
 <!ENTITY addPrefix "Voorvoegsel toevoegen">
 <!ENTITY fileLenCaption "Bestandsnaamlengte">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Lengte van volledig bestandspad afbreken bij 256 tekens">
 <!ENTITY sdMBOX "mbox (nieuw)">
 <!ENTITY sdMBOX2 "mbox (toevoegen)">
-<!ENTITY asMBOX "als mbox-bestand (nieuw)">
-<!ENTITY asMBOX2 "als mbox-bestand (toevoegen)">
 <!ENTITY filenameCharset "Tekenset voor bestandsnamen:">
 <!ENTITY name "Naam">
-<!ENTITY importStructDescr1 "Selecteer alleen het mbox-bestand. De map met dezelfde naam">
-<!ENTITY importStructDescr2 "en de extensie ‘sbd’ worden automatisch geïmporteerd als deze bestaan.">
 <!ENTITY abortExport "Het huidige exporteren stoppen">
 <!ENTITY allMsg "Alle berichten exporteren">
 <!ENTITY indexSettingLabel "Bij het exporteren van alle berichten van een mailmap:">
 <!ENTITY indexOn "een nieuwe map en de index van berichten maken">
 <!ENTITY indexOff "geselecteerde map zonder index gebruiken">
 <!ENTITY copyFolderPath "Mappad op schijf kopiëren">
-<!ENTITY importSMS "Sms importeren">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "‘SMS Backup &amp; Restore’ voor Android">
 <!ENTITY sender "Afzender">
 <!ENTITY recipient "Ontvanger">
-<!ENTITY exportRemoteFolder "Externe map exporteren">
 <!ENTITY skipMsgLabel "geen berichten opslaan als overeenkomend bestand bestaat">
 <!ENTITY asCSV "Spreadsheet (CSV)">
-<!ENTITY exportZIP "Map exporteren (gezipt)">
-<!ENTITY openFolderPath "Map waarin bestand zich bevindt openen">
 <!ENTITY addNumber.label "Altijd een willekeurig getal aan de naam toevoegen bij importeren van mbox-bestanden">
 <!ENTITY textCharset "Tekenset voor exporteren in tekst- en CSV-indeling:">
-<!ENTITY importEML "Berichten importeren">
-<!ENTITY importALLEML "Alle berichten uit een map importeren">
-<!ENTITY importMAILDIR "Maildir-map importeren">
-<!ENTITY withattach "(met bijlagen)">
-<!ENTITY asPDF "PDF-indeling">
-<!ENTITY importProfile "Profiel importeren">
 <!ENTITY csvSep "Scheidingsteken voor exporteren in CSV-indeling:">
-<!ENTITY saveProfile "Profiel exporteren">
-<!ENTITY withIndexLabel "met HTML-index">
 
 <!ENTITY customDate "Aangepaste datum:">
 <!ENTITY extFormat "Formaat:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Referentie voor datumnotatie">
 <!ENTITY extFilenameFormatRefTooltipText "Uitgebreide verwijzing naar bestandsnaamindeling">
 <!ENTITY backupOnExit "Back-up bij afsluiten">
-<!ENTITY noFolderSelectedMenuTop "[Geen geselecteerde map (importeren / exporteren uitgeschakeld)]">
 <!ENTITY indexCSVdateFormat "Index, CSV-datumnotatie:">
 <!ENTITY attachmentFolderNames "Namen van bijlagemappen">
 <!ENTITY attachmentFolders "Bijlagemappen">

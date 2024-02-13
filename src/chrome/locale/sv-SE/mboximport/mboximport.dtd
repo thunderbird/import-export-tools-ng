@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Oformaterad text">
 <!ENTITY sdSingleFile "(en fil)">
-<!ENTITY searchAndExport "Sök och exportera">
 <!ENTITY buildMSF.label "Skapa ett index över importerade MBOX-filer">
 <!ENTITY addPrefix "Lägg till prefix">
 <!ENTITY fileLenCaption "Filnamnslängd">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Kapa den fullständiga filsökvägen efter 256 tecken">
 <!ENTITY sdMBOX "MBOX (ny)">
 <!ENTITY sdMBOX2 "MBOX (bifoga)">
-<!ENTITY asMBOX "som MBOX-fil (ny)">
-<!ENTITY asMBOX2 "som MBOX-fil (bifoga)">
 <!ENTITY filenameCharset "Teckenuppsättning för filnamn:">
 <!ENTITY name "Namn">
-<!ENTITY importStructDescr1 "Välj endast MBOX-filen och mappen med samma namn, så kommer filen med">
-<!ENTITY importStructDescr2 "filtillägget &quot;SBD&quot; att importeras automatiskt, om den finns.">
 <!ENTITY abortExport "Avbryt den aktuella exporten">
 <!ENTITY allMsg "Exportera alla meddelanden">
 <!ENTITY indexSettingLabel "När alla meddelanden i en meddelandemapp exporteras:">
 <!ENTITY indexOn "skapa en ny mapp och ett nytt meddelandeindex">
 <!ENTITY indexOff "använd den markerade mappen utan index">
 <!ENTITY copyFolderPath "Kopiera mappsökväg på disk">
-<!ENTITY importSMS "Importera SMS">
 <!-- 'SMS Backup and Restore' is the name of an Android application and so maybe it's better not to translate it -->
-<!ENTITY android "&quot;SMS Backup and Restore&quot; för Android">
 <!ENTITY sender "Användare">
 <!ENTITY recipient "Mottagare">
-<!ENTITY exportRemoteFolder "Exportera fjärrmapp">
 <!ENTITY skipMsgLabel "spara inte meddelanden om motsvarande fil redan finns">
 <!ENTITY asCSV "Kalkylblad (CSV)">
-<!ENTITY exportZIP "Exportmapp (komprimerad)">
-<!ENTITY openFolderPath "Öppna filens mapp">
 <!ENTITY addNumber.label "Lägg alltid till ett slumpnummer i namnet när MBOX-filer importeras">
 <!ENTITY textCharset "Teckenuppsättning för export i text- och CSV-format:">
-<!ENTITY importEML "Importera EML-fil">
-<!ENTITY importALLEML "Importera alla EML-filer från en mapp">
-<!ENTITY importMAILDIR "Import Maildir folder">
-<!ENTITY withattach "(with attachments)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "Spara alla profilfiler">
-<!ENTITY withIndexLabel "with HTML index">
 
 <!ENTITY customDate "Anpassad datum:">
 <!ENTITY extFormat "Formatera:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Datumformatreferens">
 <!ENTITY extFilenameFormatRefTooltipText "Utökad referens för filnamnsformat">
 <!ENTITY backupOnExit "Säkerhetskopiering vid utgång">
-<!ENTITY noFolderSelectedMenuTop "[Ingen vald mapp (Import \ Export inaktiverad)]">
 <!ENTITY indexCSVdateFormat "Index, CSV-datumformat:">
 <!ENTITY attachmentFolderNames "Bifogade mappnamn">
 <!ENTITY attachmentFolders "Bifogade mappar">

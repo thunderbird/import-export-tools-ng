@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Texto plano">
 <!ENTITY sdSingleFile "(un ficheiro)">
-<!ENTITY searchAndExport "Procurar e exportar">
 <!ENTITY buildMSF.label "Construír un índice para os ficheiros MBOX importados">
 <!ENTITY addPrefix "Engadir prefixo">
 <!ENTITY fileLenCaption "Tamaño dos nomes de ficheiro">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Cortar a lonxitude da ruta do ficheiro a 256 caracteres">
 <!ENTITY sdMBOX "MBOX">
 <!ENTITY sdMBOX2 "Mbox(anexar)">
-<!ENTITY asMBOX "como ficheiro Mbox(novo)">
-<!ENTITY asMBOX2 "como ficheiro Mbox(engadir)">
 <!ENTITY filenameCharset "Codificación para os nomes de ficheiros:">
 <!ENTITY name "Nome">
-<!ENTITY importStructDescr1 "selecciona o ficheiro mbox, o directorio co mesmo nome">
-<!ENTITY importStructDescr2 "e a extensión «sdb» será importada automaticamente, se existir.">
 <!ENTITY abortExport "Deter a actual exportación">
 <!ENTITY allMsg "Exportar todas as mensaxes">
 <!ENTITY indexSettingLabel "Cando exporta todas as mensaxe dun cartafol de correo:">
 <!ENTITY indexOn "crea un novo directorio e o índice de mensaxes">
 <!ENTITY indexOff "empregar o directorio seleccionado sen indice">
 <!ENTITY copyFolderPath "Copiar o camiño do cartafol no disco">
-<!ENTITY importSMS "Importar SMS">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "\'Copia de seguranza e restaurado de SMS\' para Android">
 <!ENTITY sender "Remitente">
 <!ENTITY recipient "Destinatario">
-<!ENTITY exportRemoteFolder "Exportar nun cartafol remoto">
 <!ENTITY skipMsgLabel "non gardar mensaxes cando o ficheiro correspondente existe">
 <!ENTITY asCSV "Folla de cálculo (CVS)">
-<!ENTITY exportZIP "Exportar cartafol (comprimido)">
-<!ENTITY openFolderPath "Abrir o directorio onde está o ficheiro do cartafol.">
 <!ENTITY addNumber.label "Engadir sempre ao nome un número ao chou ao importar ficheiros mbox">
 <!ENTITY textCharset "Codificación para a exportación en formato texto e csv:">
-<!ENTITY importEML "Importar ficheiro EML">
-<!ENTITY importALLEML "Importar todos os ficheiros EML dun directorio">
-<!ENTITY importMAILDIR "Importar cartafol Maildir">
-<!ENTITY withattach "(with attachments)">
-<!ENTITY asPDF "PDF format">
-<!ENTITY importProfile "Import profile">
 <!ENTITY csvSep "Separator for export in CSV format:">
-<!ENTITY saveProfile "Gardar todos os ficheiros do perfil">
-<!ENTITY withIndexLabel "with HTML index">
 
 <!ENTITY customDate "Data personalizada:">
 <!ENTITY extFormat "Formato:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Referencia do formato de data">
 <!ENTITY extFilenameFormatRefTooltipText "Referencia estendida do formato do nome de ficheiro">
 <!ENTITY backupOnExit "Copia de seguridade á saída">
-<!ENTITY noFolderSelectedMenuTop "[Non hai cartafol seleccionado (Importación \ Exportación desactivada)]">
 <!ENTITY indexCSVdateFormat "Índice, formato de data CSV:">
 <!ENTITY attachmentFolderNames "Nomes dos cartafoles de anexos">
 <!ENTITY attachmentFolders "Cartafoles adxuntos">

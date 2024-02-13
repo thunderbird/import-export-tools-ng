@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Plain text">
 <!ENTITY sdSingleFile "որպես եզակի տեքստային ֆայլ">
-<!ENTITY searchAndExport "Փնտրել և արտածել">
 <!ENTITY buildMSF.label "Կառուցել ինդեքսը՝ ներմուծված mbox ֆայլերի համար">
 <!ENTITY addPrefix "Հավելել նախածանց">
 <!ENTITY fileLenCaption "Ֆայլերի անունների երկարությունը">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "Կտրել ֆայլի ամբողջական ճ-ի երկարությունը 256 նիշի">
 <!ENTITY sdMBOX "Mbox (նոր)">
 <!ENTITY sdMBOX2 "Mbox (ավելացնել)">
-<!ENTITY asMBOX "որպես Mbox ֆայլ (նոր)">
-<!ENTITY asMBOX2 "որպես Mbox ֆայլ (ավելացնել)">
 <!ENTITY filenameCharset "Ֆայլերի անունների գրանշանը">
 <!ENTITY name "Անունը">
-<!ENTITY importStructDescr1 "Ընտրեք միայն mbox ֆայլը, թղթապանակը նույն անունով է">
-<!ENTITY importStructDescr2 "և ընդլայնումը \'sbd\' ինքնաշխատ կներմուծվի, եթե գոյություն ունի:">
 <!ENTITY abortExport "Կանգնեցնել ներմուծումը">
 <!ENTITY allMsg "Արտածել բոլոր նամակները">
 <!ENTITY indexSettingLabel "Բոլոր նամակները նամակի թղթապանակում արտածելիս.">
 <!ENTITY indexOn "ստեղծել նոր թղթապանակ և նամակների ինդեքսը">
 <!ENTITY indexOff "օգտագործել նշված թղթապանակը՝ առանց ինդեքսի">
 <!ENTITY copyFolderPath "Պատճենել թղթապանակի ճ-ը պնակում">
-<!ENTITY importSMS "Ներմուծել SMS">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "'SMS Backup and Restore' Android-ի համար">
 <!ENTITY sender "Ուղարկողը">
 <!ENTITY recipient "Ստացողը">
-<!ENTITY exportRemoteFolder "Արտածել հեռադիր թղթապանակը">
 <!ENTITY skipMsgLabel "չպահպանել նամակները, երբ թղթակից ֆայլը առկա է">
 <!ENTITY asCSV "Spreadsheet (CSV)">
-<!ENTITY exportZIP "Արտածել թղթապանակը (սեղմված)">
-<!ENTITY openFolderPath "Բացել թղթապանակը, որտեղ թղթապանակի ֆայլն է">
 <!ENTITY addNumber.label "mbox ֆայլերը ներմուծելիս մշտապես անվանը ավելացնել պատահական համար">
 <!ENTITY textCharset "Արտածելու գրանշանը տեքստային և CSV տեսակի համար՝">
-<!ENTITY importEML "Ներմուծել նամակները">
-<!ENTITY importALLEML "Ներմուծել թղթապանակի բոլոր նամակները">
-<!ENTITY importMAILDIR "Ներմուծել Maildir թղթապանակը">
-<!ENTITY withattach "(կցորդներով)">
-<!ENTITY asPDF "PDF ձևաչափ">
-<!ENTITY importProfile "Ներմուծել պրոֆիլ">
 <!ENTITY csvSep "Բաժանիչ՝ արտածվող CSV ֆայլի համար.">
-<!ENTITY saveProfile "Պահպանել բոլոր պրոֆիլների ֆայլերը">
-<!ENTITY withIndexLabel "with HTML index">
 
 <!ENTITY customDate "Պատվերով ամսաթիվ.">
 <!ENTITY extFormat "Ձևաչափ:">
@@ -82,7 +64,6 @@
 <!ENTITY dateFormatRefTooltipText "Ամսաթվի ձևաչափի տեղեկանք">
 <!ENTITY extFilenameFormatRefTooltipText "Ֆայլի անվան ձևաչափի ընդլայնված հղում">
 <!ENTITY backupOnExit "Ելքի պահուստավորում">
-<!ENTITY noFolderSelectedMenuTop "[Ընտրված պանակ չկա (ներմուծումը \ արտահանումն անջատված է)]">
 <!ENTITY indexCSVdateFormat "Ինդեքս, CSV Ամսաթիվ Ձևաչափը.">
 <!ENTITY attachmentFolderNames "Հավելվածի թղթապանակների անունները">
 <!ENTITY attachmentFolders "Հավելվածի թղթապանակներ">

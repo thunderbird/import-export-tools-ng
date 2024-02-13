@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "プレーンテキスト">
 <!ENTITY sdSingleFile "単一ファイル">
-<!ENTITY searchAndExport "検索してエクスポート">
 <!ENTITY buildMSF.label "インポートした mbox ファイルのインデックスを作成">
 <!ENTITY addPrefix "接頭文字の追加：">
 <!ENTITY fileLenCaption "ファイル名の長さ">
@@ -40,39 +39,22 @@
 <!ENTITY cutFN "ファイルパスを 256 文字でカットする">
 <!ENTITY sdMBOX "mbox (新規)">
 <!ENTITY sdMBOX2 "mbox (追加)">
-<!ENTITY asMBOX "mbox ファイルとして (新規)">
-<!ENTITY asMBOX2 "mbox ファイルとして (追加)">
 <!ENTITY filenameCharset "ファイル名用の文字コード: ">
 <!ENTITY name "名前">
-<!ENTITY importStructDescr1 "同じ名前の mbox フォルダーを選択してください.。">
-<!ENTITY importStructDescr2 "また、サブフォルダーの拡張子「sbd」があれば自動的にインポートします。">
 <!ENTITY abortExport "現在のエクスポートを中止">
 <!ENTITY allMsg "すべてのメッセージをエクスポート">
 <!ENTITY indexSettingLabel "メッセージフォルダーのすべてのメッセージをエクスポートするとき:">
 <!ENTITY indexOn "メッセージの新しいフォルダーおよびインデックスを作成する">
 <!ENTITY indexOff "選択したインデックスなしのフォルダーを使用する">
 <!ENTITY copyFolderPath "ディスク上のフォルダーパスをコピー">
-<!ENTITY importSMS "SMS をインポート">
 <!-- \'SMS Backup and Restore\' is the name of an Android application and so maybe it\'s better not to translate it -->
-<!ENTITY android "Android 用の 'SMS バックアップとリストア'">
 <!ENTITY sender "差出人">
 <!ENTITY recipient "受信者">
-<!ENTITY exportRemoteFolder "リモートフォルダーのエクスポート">
 <!ENTITY skipMsgLabel "送受信中（作成中）のファイルがあるときは保存しない">
 <!ENTITY asCSV "スプレッドシート (CSV)">
-<!ENTITY exportZIP "フォルダーをエクスポート（zip 圧縮形式）">
-<!ENTITY openFolderPath "ファイルのあるフォルダーを開く">
 <!ENTITY addNumber.label "mbox ファイルをインポートするときは、常にランダムな番号を名前に追加する">
 <!ENTITY textCharset "テキストおよび CSV 形式でエクスポートするときの文字コード：">
-<!ENTITY importEML "EML ファイルをインポート">
-<!ENTITY importALLEML "フォルダーからすべての EML ファイルをインポート">
-<!ENTITY importMAILDIR "Maildir フォルダーからインポート">
-<!ENTITY withattach "(添付ファイル含む)">
-<!ENTITY asPDF "PDF 形式">
-<!ENTITY importProfile "プロファイルのインポート">
 <!ENTITY csvSep "CSV 形式でエクスポートするときのセパレーター:">
-<!ENTITY saveProfile "プロファイルのエクスポート (保存)">
-<!ENTITY withIndexLabel "HTML インデックス付き">
 
 <!ENTITY customDate "カスタマイズ日時形式：">
 <!ENTITY extFormat "カスタマイズ形式：">
@@ -83,7 +65,6 @@
 <!ENTITY dateFormatRefTooltipText "日時形式リファレンス">
 <!ENTITY extFilenameFormatRefTooltipText "ファイル名形式リファレンス">
 <!ENTITY backupOnExit "終了時のバックアップ">
-<!ENTITY noFolderSelectedMenuTop "[選択したフォルダーがありません（インポート\エクスポートが無効）]">
 <!ENTITY indexCSVdateFormat "インデックス、CSV 日時形式：">
 <!ENTITY attachmentFolderNames "添付ファイルのフォルダー名">
 <!ENTITY attachmentFolders "添付ファイルフォルダー名">

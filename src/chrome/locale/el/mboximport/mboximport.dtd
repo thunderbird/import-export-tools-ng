@@ -32,7 +32,6 @@
 <!ENTITY sdHTML "HTML">
 <!ENTITY sdText "Απλό κείμενο">
 <!ENTITY sdSingleFile "ως αρχείο μεμονωμένου κειμένου">
-<!ENTITY searchAndExport "Αναζήτηση και εξαγωγή">
 <!ENTITY buildMSF.label "Δημιουργία ευρετηρίου για εισαγόμενα αρχεία mbox">
 <!ENTITY addPrefix "Προσθήκη προθέματος">
 <!ENTITY fileLenCaption "Μήκος ονομάτων αρχείων">
@@ -40,38 +39,21 @@
 <!ENTITY cutFN "Κόψτε ολόκληρο το μήκος διαδρομής αρχείου σε 256 χαρακτήρες">
 <!ENTITY sdMBOX "Mbox (νέο)">
 <!ENTITY sdMBOX2 "Mbox (προσθήκη)">
-<!ENTITY asMBOX "ως αρχείο Mbox (νέο)">
-<!ENTITY asMBOX2 "ως αρχείο Mbox (προσάρτημα)">
 <!ENTITY filenameCharset "Charset για ονόματα αρχείων:">
 <!ENTITY name "Ονομα">
-<!ENTITY importStructDescr1 "Επιλέξτε μόνο το αρχείο mbox, τον κατάλογο με το ίδιο όνομα">
-<!ENTITY importStructDescr2 "και η επέκταση &quot;sbd&quot; θα εισαχθεί αυτόματα, εάν υπάρχει.">
 <!ENTITY abortExport "Διακοπή της τρέχουσας εξαγωγής">
 <!ENTITY allMsg "Εξαγωγή όλων των μηνυμάτων">
 <!ENTITY indexSettingLabel "Κατά την εξαγωγή όλων των μηνυμάτων ενός φακέλου αλληλογραφίας:">
 <!ENTITY indexOn "δημιουργήστε έναν νέο κατάλογο και το ευρετήριο των μηνυμάτων">
 <!ENTITY indexOff "χρησιμοποιήστε τον επιλεγμένο κατάλογο χωρίς ευρετήριο">
 <!ENTITY copyFolderPath "Αντιγραφή διαδρομής φακέλου στο δίσκο">
-<!ENTITY importSMS "Εισαγωγή SMS">
-<!ENTITY android "&quot;Δημιουργία αντιγράφων ασφαλείας και επαναφορά SMS&quot; για Android">
 <!ENTITY sender "Αποστολέας">
 <!ENTITY recipient "Παραλήπτης">
-<!ENTITY exportRemoteFolder "Εξαγωγή απομακρυσμένου φακέλου">
 <!ENTITY skipMsgLabel "μην αποθηκεύετε μηνύματα όταν το αρχείο υπάρχει ήδη">
 <!ENTITY asCSV "Υπολογιστικό φύλλο (CSV)">
-<!ENTITY exportZIP "Εξαγωγή φακέλου (με φερμουάρ)">
-<!ENTITY openFolderPath "Ανοίξτε τον κατάλογο που είναι το αρχείο φακέλου">
 <!ENTITY addNumber.label "Προσθέστε πάντα στο όνομα έναν τυχαίο αριθμό κατά την εισαγωγή αρχείων mbox">
 <!ENTITY textCharset "Charset για εξαγωγή σε μορφή κειμένου και CSV:">
-<!ENTITY importEML "Εισαγωγή μηνυμάτων">
-<!ENTITY importALLEML "Εισαγάγετε όλα τα μηνύματα από έναν κατάλογο">
-<!ENTITY importMAILDIR "Εισαγωγή φακέλου Maildir">
-<!ENTITY withattach "(με συνημμένα)">
-<!ENTITY asPDF "Μορφή PDF">
-<!ENTITY importProfile "Εισαγωγή προφίλ">
 <!ENTITY csvSep "Διαχωριστικό για εξαγωγή σε μορφή CSV:">
-<!ENTITY saveProfile "Εξαγωγή προφίλ">
-<!ENTITY withIndexLabel "με ευρετήριο HTML">
 <!ENTITY customDate "Προσαρμοσμένη ημερομηνία:">
 <!ENTITY extFormat "Μορφή:">
 <!ENTITY dateCustomOpt "Ημερομηνία (Προσαρμοσμένο)">
@@ -80,7 +62,6 @@
 <!ENTITY dateFormatRefTooltipText "Αναφορά μορφής ημερομηνίας">
 <!ENTITY extFilenameFormatRefTooltipText "Αναφορά εκτεταμένης μορφής ονόματος αρχείου">
 <!ENTITY backupOnExit "Δημιουργία αντιγράφων ασφαλείας στην έξοδο">
-<!ENTITY noFolderSelectedMenuTop "[Χωρίς επιλεγμένο φάκελο (Εισαγωγή \ Εξαγωγή απενεργοποιημένη)]">
 <!ENTITY indexCSVdateFormat "Ευρετήριο, Μορφή ημερομηνίας CSV:">
 <!ENTITY attachmentFolderNames "Ονόματα φακέλων συνημμένων">
 <!ENTITY attachmentFolders "Φάκελοι συνημμένων">

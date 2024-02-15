@@ -410,8 +410,41 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 		}
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
-		await exportAllMsgsDelayed(type, file, msgFolder);
+
+
+		var newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
+
+		if (msgFolder.hasSubFolders) {
+			await exportSubFolders(type, file, msgFolder, newTopDir, true);
+
+		}
 	}
+}
+
+async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverride) {
+	for (const subFolder of msgFolder.subFolders) {
+		await new Promise(resolve => setTimeout(resolve, 2000));
+
+		let folderDirName = subFolder.name;
+		console.log(folderDirName, newTopDir.path)
+
+		let folderDirNamePath = newTopDir.path;
+		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		file = await IOUtils.getDirectory(fullFolderPath);
+		console.log(file.path)
+
+		var newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true);
+		console.log(folderDirName, newTopDir2.path)
+
+		if (subFolder.hasSubFolders && 0) {
+		console.log("subf")
+		console.log(folderDirName, newTopDir2.path)
+
+			await exportSubFolders(type, file, subFolder, newTopDir2, true);
+		}
+	}
+
+
 }
 
 // 3a) exportAllMsgsDelayedVF
@@ -500,6 +533,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	}
 
 	var file2 = file.clone();
+
 	IETgetSortType();
 	// Export the messages one by one
 	for (let j = 0; j < msgUriArray.length; j++) {
@@ -512,7 +546,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
-			console.log("skip",j, msguri, msg.flags)
+			console.log("skip", j, msguri, msg.flags)
 			continue;
 		}
 		// cleidigh
@@ -531,7 +565,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 //
 // The same of 3a for non-virtual folder
 
-async function exportAllMsgsDelayed(type, file, msgFolder) {
+async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
+
+
 	try {
 		//console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
@@ -539,7 +575,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
 				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-			return;
+				console.log("ret 1")
+				return file;
 		}
 		IETexported = 0;
 		IETskipped = 0;
@@ -563,7 +600,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
-	if (useContainer) {
+	if (useContainer && !containerOverride) {
 		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
@@ -589,14 +626,34 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 		file = filetemp.clone();
 		// Create the container directory
 		file.create(1, 0775);
+
+		// deal with top then recursive 
+
+
+		let folderDirName = msgFolder.name;
+		let folderDirNamePath = file.path;
+		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		await IOUtils.makeDirectory(fullFolderPath);
+		file = await IOUtils.getDirectory(fullFolderPath);
+		console.log(file)
+
+
 		subfile = file.clone();
 		if (type < 3 || type > 6) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
+		console.log(subfile.path)
 
 	} else {
 		subfile = file.clone();
+		if (type < 3 || type > 6) {
+			subfile.append(IETmesssubdir);
+			subfile.create(1, 0775);
+		console.log(subfile.path)
+
+		}
+
 	}
 
 	var file2 = file.clone();
@@ -645,7 +702,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
 	}
+	console.log(msgFolder.name, hdrArray)
 	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	console.log("ret", file2.path)
+	//alert(msgFolder.name)
+	return file2;
 }
 
 // 4) IETrunExport
@@ -752,9 +813,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
-	
+
 	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
-	
+
 	//data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
 	data = data + "<th><b>" + "Size" + "</b></th>"; // Attachment
 

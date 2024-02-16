@@ -274,10 +274,10 @@ async function exportSelectedMsgs(type, params) {
 	var hdrArray;
 	switch (type) {
 		case 1:
-			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
 			break;
 		case 2:
-			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
 			break;
 		case 3:
 			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
@@ -303,10 +303,10 @@ async function exportSelectedMsgs(type, params) {
 			createIndexCSV(type, file, hdrArray, msgFolder, true);
 			break;
 		case 8:
-			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
 			break;
 		case 9:
-			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
 			break;
 		default:
 			saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
@@ -414,19 +414,18 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
 		msgFolder.subFolders.forEach(element => {
-		console.log(element.name)
-			
+			console.log(element.name)
+
 		});
 
-		
+
 		var newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
+		console.log("newtopdir", newTopDir.path)
 
-		var newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
+		//newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
+		//console.log("all done")
+		//return;
 
-		console.log("all done")
-
-		return;
-		alert("done")
 		if (msgFolder.hasSubFolders) {
 			await exportSubFolders(type, file, msgFolder, newTopDir, true);
 
@@ -449,9 +448,9 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 		var newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true);
 		console.log(folderDirName, newTopDir2.path)
 
-		if (subFolder.hasSubFolders && 0) {
-		console.log("subf")
-		console.log(folderDirName, newTopDir2.path)
+		if (subFolder.hasSubFolders) {
+			console.log("subf")
+			console.log(folderDirName, newTopDir2.path)
 
 			await exportSubFolders(type, file, subFolder, newTopDir2, true);
 		}
@@ -590,8 +589,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
 				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-				console.log("ret 1")
-				return file;
+			console.log("ret 1")
+			return file;
 		}
 		IETexported = 0;
 		IETskipped = 0;
@@ -642,7 +641,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 		file = filetemp.clone();
 		// Create the container directory
 		file.create(1, 0775);
-
+		console.log("container", file.path)
 		// deal with top then recursive 
 
 
@@ -651,7 +650,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);
 		file = await IOUtils.getDirectory(fullFolderPath);
-		console.log(file)
+		console.log("folder", file.path)
 
 
 		subfile = file.clone();
@@ -659,14 +658,15 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
-		console.log(subfile.path)
+		console.log("con msgs", subfile.path)
 
 	} else {
 		subfile = file.clone();
 		if (type < 3 || type > 6) {
 			subfile.append(IETmesssubdir);
+			console.log("nocon msgs", subfile.path)
+
 			subfile.create(1, 0775);
-		console.log(subfile.path)
 
 		}
 
@@ -732,19 +732,20 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
 	exportAsHtmlDone = false;
+	saveAsEmlDone = false;
 
 	switch (type) {
 		case 1: // HTML format, with index
 			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 2: // Plain text format, with index
-			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 3: // Just HTML index
 			createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
 		case 4: // Plain text, single file, no index
-			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
 			break;
 		case 5: // Just CSV index
 			createIndexCSV(type, file2, hdrArray, msgFolder, false);
@@ -753,16 +754,16 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
-			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
 			break;
 		case 8: // HTML format, with index and attachments
-			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
+			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 9: // Plain text format, with index and attachments
-			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		default: // EML format, with index
-			saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
+			await saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
 	}
 	if (type !== 3 && type !== 5 && type !== 6) {
 		IETabort = false;
@@ -1206,7 +1207,9 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
 }
 
-function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
+var saveAsEmlDone = false;
+
+async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
 	var myEMLlistner = {
 
 		scriptStream: null,
@@ -1325,7 +1328,10 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					nextUri = parts[5];
 					nextFile = file;
 				}
-				saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+				((async () => {
+				await saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+				})());
+
 			} else {
 				if (myEMLlistner.file2)
 					createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
@@ -1346,6 +1352,8 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				} else if (document.getElementById("IETabortIcon"))
 					document.getElementById("IETabortIcon").collapsed = true;
 			}
+			saveAsEmlDone = true;
+
 		},
 
 		onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1365,6 +1373,15 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 	myEMLlistner.file2 = file2;
 	myEMLlistner.msgFolder = msgFolder;
 	mms.streamMessage(msguri, myEMLlistner, msgWindow, null, false, null);
+
+	for (let index = 0; index < 1000; index++) {
+		if (saveAsEmlDone) {
+			break;
+		}
+		await new Promise(resolve => setTimeout(resolve, 500));
+	}
+	console.log("saveEml done", IETtotal)
+
 }
 
 var exportAsHtmlDone = false;
@@ -1529,7 +1546,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					parts = hdrArray[IETexported].split("§][§^^§");
 					nextUri = parts[5];
 				}
-				exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				((async () => {
+
+					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				})());
+
 				return;
 			}
 
@@ -1656,7 +1677,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				IETwriteDataOnDisk(clone, data, false, null, time);
 			}
 			IETexported = IETexported + 1;
-			console.log("write", IETexported)
 			IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
 			if (IETabort) {
@@ -1673,7 +1693,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					parts = hdrArray[IETexported].split("§][§^^§");
 					nextUri = parts[5];
 				}
-				exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				((async () => {
+
+					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				})());
+				//await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
 			} else {
 				var type = convertToText ? 2 : 1;
 				if (myTxtListener.file2)
@@ -1742,14 +1766,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 		myTxtListener.chrset = hdr.Charset;
 		messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
 	}
-	
+
 	for (let index = 0; index < 1000; index++) {
-		if(exportAsHtmlDone) {
+		if (exportAsHtmlDone) {
 			break;
 		}
 		await new Promise(resolve => setTimeout(resolve, 500));
-
-		
 	}
 	console.log("exhtml done", IETtotal)
 	return;
@@ -2033,7 +2055,7 @@ async function copyMSGtoClip(selectedMsgs) {
 
 		if (!msguri)
 			return;
-		exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
+		await exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
 	}
 }
 

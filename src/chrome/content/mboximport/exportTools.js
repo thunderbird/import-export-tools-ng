@@ -329,6 +329,8 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
+	console.log("exportAllMsgs")
+
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
@@ -411,9 +413,20 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
+		msgFolder.subFolders.forEach(element => {
+		console.log(element.name)
+			
+		});
 
+		
 		var newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
 
+		var newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
+
+		console.log("all done")
+
+		return;
+		alert("done")
 		if (msgFolder.hasSubFolders) {
 			await exportSubFolders(type, file, msgFolder, newTopDir, true);
 
@@ -423,7 +436,7 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 
 async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverride) {
 	for (const subFolder of msgFolder.subFolders) {
-		await new Promise(resolve => setTimeout(resolve, 2000));
+		await new Promise(resolve => setTimeout(resolve, 200));
 
 		let folderDirName = subFolder.name;
 		console.log(folderDirName, newTopDir.path)
@@ -569,8 +582,10 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 
 
 	try {
-		//console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
+		console.log("total ", IETtotal)
+
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
@@ -589,6 +604,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 			// Gecko 1.9
 			msgArray = msgFolder.messages;
 	} catch (e) {
+		alert(e)
 		return;
 	}
 	var hdrArray = [];
@@ -703,7 +719,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 		hdrArray.reverse();
 	}
 	console.log(msgFolder.name, hdrArray)
-	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 	console.log("ret", file2.path)
 	//alert(msgFolder.name)
 	return file2;
@@ -713,11 +729,13 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 //
 // According to the type requested, it's called the routine that performs the export
 
-function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
+async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
+	exportAsHtmlDone = false;
+
 	switch (type) {
 		case 1: // HTML format, with index
-			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
+			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 2: // Plain text format, with index
 			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
@@ -1349,8 +1367,9 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 	mms.streamMessage(msguri, myEMLlistner, msgWindow, null, false, null);
 }
 
+var exportAsHtmlDone = false;
 
-function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
+async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
 	var myTxtListener = {
 		scriptStream: null,
@@ -1637,6 +1656,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 				IETwriteDataOnDisk(clone, data, false, null, time);
 			}
 			IETexported = IETexported + 1;
+			console.log("write", IETexported)
 			IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
 			if (IETabort) {
@@ -1645,6 +1665,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			}
 
 			var nextUri;
+
 			if (IETexported < IETtotal) {
 				if (!hdrArray)
 					nextUri = uriArray[IETexported];
@@ -1667,6 +1688,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 				else if (document.getElementById("IETabortIcon"))
 					document.getElementById("IETabortIcon").collapsed = true;
+				exportAsHtmlDone = true;
 			}
 		},
 	};
@@ -1720,6 +1742,17 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		myTxtListener.chrset = hdr.Charset;
 		messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
 	}
+	
+	for (let index = 0; index < 1000; index++) {
+		if(exportAsHtmlDone) {
+			break;
+		}
+		await new Promise(resolve => setTimeout(resolve, 500));
+
+		
+	}
+	console.log("exhtml done", IETtotal)
+	return;
 }
 
 

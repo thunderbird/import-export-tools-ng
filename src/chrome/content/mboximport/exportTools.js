@@ -406,7 +406,7 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
 			await new Promise(resolve => setTimeout(resolve, 500));
-			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false);
+			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false, false);
 
 
 		} else {
@@ -416,7 +416,7 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
-		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
+		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, false);
 		console.log("newtopdir", newTopDir.path)
 
 		//newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
@@ -445,9 +445,9 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
 		if (isVirtFol) {
 			console.log("vf", subFolder.name)
-			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true);
+			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, false);
 		} else {
-			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true);
+			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, false);
 			console.log(folderDirName, newTopDir2.path)
 
 		}
@@ -467,7 +467,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 // The virtual folders are only a collection of messages that are really in other folders.
 // So we must select the folder, do some pre-export stuff and call the export routine
 
-async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride) {
+async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
 	console.log("exportAllMsgsDelayedVF")
 
 	var msgUriArray = [];
@@ -553,7 +553,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride) 
 		file.create(1, 0775);
 
 		subfile = file.clone();
-		if (type < 3 || type > 6) {
+		if (type < 3 || type > 6 && useMsgsDir) {
 
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
@@ -595,7 +595,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride) 
 //
 // The same of 3a for non-virtual folder
 
-async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
+async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride, useMsgsDir) {
 
 
 	try {
@@ -673,7 +673,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 
 		subfile = file.clone();
 		
-		if (type < 3 || type > 6) {
+		if ((type < 3 || type > 6) && useMsgsDir) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}

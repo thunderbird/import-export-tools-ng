@@ -400,12 +400,15 @@ async function exportAllMsgs(type, params) {
 // otherwise is called the "normal" function of export
 
 async function exportAllMsgsStart(type, file, msgFolder) {
+	var newTopDir;
 	// 0x0020 is MSG_FOLDER_FLAG_expVIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
 			await new Promise(resolve => setTimeout(resolve, 500));
-			await exportAllMsgsDelayedVF(type, file, msgFolder);
+			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false);
+
+
 		} else {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
@@ -413,13 +416,7 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
-		msgFolder.subFolders.forEach(element => {
-			console.log(element.name)
-
-		});
-
-
-		var newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
+		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false);
 		console.log("newtopdir", newTopDir.path)
 
 		//newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
@@ -428,7 +425,6 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 
 		if (msgFolder.hasSubFolders) {
 			await exportSubFolders(type, file, msgFolder, newTopDir, true);
-
 		}
 	}
 }
@@ -445,9 +441,16 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 		file = await IOUtils.getDirectory(fullFolderPath);
 		console.log(file.path)
 
-		var newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true);
-		console.log(folderDirName, newTopDir2.path)
+		var newTopDir2;
+		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
+		if (isVirtFol) {
+			console.log("vf", subFolder.name)
+			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true);
+		} else {
+			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true);
+			console.log(folderDirName, newTopDir2.path)
 
+		}
 		if (subFolder.hasSubFolders) {
 			console.log("subf")
 			console.log(folderDirName, newTopDir2.path)
@@ -464,7 +467,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 // The virtual folders are only a collection of messages that are really in other folders.
 // So we must select the folder, do some pre-export stuff and call the export routine
 
-async function exportAllMsgsDelayedVF(type, file, msgFolder) {
+async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride) {
 	console.log("exportAllMsgsDelayedVF")
 
 	var msgUriArray = [];
@@ -476,7 +479,19 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
+	// temporarily select virtual folder so we can expand and iterate
+	let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+	window.gTabmail.currentTabInfo.folder = msgFolder;
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+
+	var waitCnt = 100;
+    while (waitCnt--) {
+      if (gDBView.rowCount == gDBView.numMsgsInView) {
+        break;
+      }
+      await new Promise(r => window.setTimeout(r, 50));
+    }
+
 	// Have to expand view to iterate across all threads
 	// Should be a better way that does not change UI
 	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
@@ -495,6 +510,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	}
 	// Collapse back view
 	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+ // jump back to top folder
+ window.gTabmail.currentTabInfo.folder = curMsgFolder;
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
@@ -507,7 +524,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	var datedir = buildContainerDirName();
 	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
-	if (useContainer) {
+	if (useContainer && !containerOverride) {
+
 		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
@@ -570,7 +588,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
-	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 
 // 3b) exportAllMsgsDelayed
@@ -654,6 +672,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 
 
 		subfile = file.clone();
+		
 		if (type < 3 || type > 6) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
@@ -662,14 +681,14 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride) {
 
 	} else {
 		subfile = file.clone();
+		/*
 		if (type < 3 || type > 6) {
 			subfile.append(IETmesssubdir);
 			console.log("nocon msgs", subfile.path)
 
 			subfile.create(1, 0775);
-
 		}
-
+*/
 	}
 
 	var file2 = file.clone();
@@ -1329,7 +1348,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					nextFile = file;
 				}
 				((async () => {
-				await saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+					await saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
 				})());
 
 			} else {

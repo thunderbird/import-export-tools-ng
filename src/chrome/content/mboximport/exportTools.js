@@ -391,7 +391,7 @@ async function exportAllMsgs(type, params) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
-	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0]);
+	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
 }
 
 // 2) exportAllMsgsStart
@@ -399,7 +399,7 @@ async function exportAllMsgs(type, params) {
 // If we must export a virtual folder is called the function for that,
 // otherwise is called the "normal" function of export
 
-async function exportAllMsgsStart(type, file, msgFolder) {
+async function exportAllMsgsStart(type, file, msgFolder, params) {
 	var newTopDir;
 	// 0x0020 is MSG_FOLDER_FLAG_expVIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;

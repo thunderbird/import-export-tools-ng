@@ -383,6 +383,9 @@ const folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_HTMLFormatMsg
 const folderCtxMenu_Exp_HTMLFormatSaveAtts_Id = "folderCtxMenu_Exp_HTMLFormatSaveAtts_Id";
 const folderCtxMenu_Exp_HTMLFormatCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id";
 const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id";
+const folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id";
+const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id";
+
 
 const folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id = "folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id";
@@ -648,6 +651,21 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id,
+      title: "HTML Messages, Index with subfolders",
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id,
+      title: "HTML Messages, Index, Attachments with subfolders",
+
     },
   },
   {
@@ -1019,6 +1037,9 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   if (ctxEvent.menuItemId.includes("SingleFile")) {
     params.singleFile = true;
   }
+  if (ctxEvent.menuItemId.includes("Recursive")) {
+    params.recursive = true;
+  }
 
   switch (ctxEvent.menuItemId) {
     case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
@@ -1029,6 +1050,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     case folderCtxMenu_Exp_HTMLFormatSaveAtts_Id:
     case folderCtxMenu_Exp_HTMLFormatCreateIndex_Id:
     case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
+    case folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id:
+    case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_HTML_Format", params: params });
       break;
     case folderCtxMenu_Exp_PDFFormat_Id:

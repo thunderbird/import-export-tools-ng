@@ -416,20 +416,20 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
-		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, false);
+		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
 		console.log("newtopdir", newTopDir.path)
 
 		//newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
 		//console.log("all done")
 		//return;
 
-		if (msgFolder.hasSubFolders) {
-			await exportSubFolders(type, file, msgFolder, newTopDir, true);
+		if (params.recursive && msgFolder.hasSubFolders) {
+			await exportSubFolders(type, file, msgFolder, newTopDir, params);
 		}
 	}
 }
 
-async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverride) {
+async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
 
@@ -445,9 +445,9 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
 		if (isVirtFol) {
 			console.log("vf", subFolder.name)
-			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, false);
+			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
 		} else {
-			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, false);
+			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
 			console.log(folderDirName, newTopDir2.path)
 
 		}
@@ -455,7 +455,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, containerOverr
 			console.log("subf")
 			console.log(folderDirName, newTopDir2.path)
 
-			await exportSubFolders(type, file, subFolder, newTopDir2, true);
+			await exportSubFolders(type, file, subFolder, newTopDir2, params);
 		}
 	}
 
@@ -485,12 +485,12 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
 
 	var waitCnt = 100;
-    while (waitCnt--) {
-      if (gDBView.rowCount == gDBView.numMsgsInView) {
-        break;
-      }
-      await new Promise(r => window.setTimeout(r, 50));
-    }
+	while (waitCnt--) {
+		if (gDBView.rowCount == gDBView.numMsgsInView) {
+			break;
+		}
+		await new Promise(r => window.setTimeout(r, 50));
+	}
 
 	// Have to expand view to iterate across all threads
 	// Should be a better way that does not change UI
@@ -510,8 +510,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	}
 	// Collapse back view
 	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
- // jump back to top folder
- window.gTabmail.currentTabInfo.folder = curMsgFolder;
+	// jump back to top folder
+	window.gTabmail.currentTabInfo.folder = curMsgFolder;
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
@@ -553,7 +553,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		file.create(1, 0775);
 
 		subfile = file.clone();
-		if (type < 3 || type > 6 && useMsgsDir) {
+		
+		if (type < 3 || type > 6 && !params.recursive) {
 
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
@@ -595,7 +596,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 //
 // The same of 3a for non-virtual folder
 
-async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride, useMsgsDir) {
+async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 
 	try {
@@ -633,7 +634,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride, us
 	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
-	if (useContainer && !containerOverride) {
+	if (useContainer && !overrideContainer) {
 		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
@@ -662,23 +663,22 @@ async function exportAllMsgsDelayed(type, file, msgFolder, containerOverride, us
 		console.log("container", file.path)
 		// deal with top then recursive 
 
-
-		let folderDirName = msgFolder.name;
-		let folderDirNamePath = file.path;
-		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
-		await IOUtils.makeDirectory(fullFolderPath);
-		file = await IOUtils.getDirectory(fullFolderPath);
-		console.log("folder", file.path)
-
-
-		subfile = file.clone();
-		
-		if ((type < 3 || type > 6) && useMsgsDir) {
-			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+		if (params.recursive) {
+			let folderDirName = msgFolder.name;
+			let folderDirNamePath = file.path;
+			let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+			await IOUtils.makeDirectory(fullFolderPath);
+			file = await IOUtils.getDirectory(fullFolderPath);
+			console.log("folder", file.path)
 		}
-		console.log("con msgs", subfile.path)
+		subfile = file.clone();
 
+			if ((type < 3 || type > 6) && !params.recursive) {
+				subfile.append(IETmesssubdir);
+				subfile.create(1, 0775);
+			}
+			console.log("con msgs", subfile.path)
+		
 	} else {
 		subfile = file.clone();
 		/*
@@ -1713,10 +1713,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					nextUri = parts[5];
 				}
 				((async () => {
-
 					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
 				})());
-				//await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+
 			} else {
 				var type = convertToText ? 2 : 1;
 				if (myTxtListener.file2)

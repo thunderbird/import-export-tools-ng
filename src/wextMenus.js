@@ -378,6 +378,7 @@ const folderCtxMenu_Exp_Help_Id = "folderCtxMenu_Exp_Help_Id";
 
 const folderCtxMenu_Exp_EMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_EMLFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_EMLFormatCreateIndex_Id = "folderCtxMenu_Exp_EMLFormatCreateIndex_Id";
+const folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id";
 
 const folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_HTMLFormatSaveAtts_Id = "folderCtxMenu_Exp_HTMLFormatSaveAtts_Id";
@@ -637,6 +638,13 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: folderCtxMenu_Exp_EMLFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_EMLFormat_Id,
+      id: folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id,
+      title: "Messages and Index with Subfolders",
     },
   },
   {
@@ -1044,6 +1052,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   switch (ctxEvent.menuItemId) {
     case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
       break;
     case folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id:

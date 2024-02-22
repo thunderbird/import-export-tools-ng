@@ -391,6 +391,9 @@ const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMe
 const folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id = "folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id";
 const folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id";
+const folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id";
+
 const folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id";
 const folderCtxMenu_Exp_PlainTextFormatSingleFile_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id";
 const folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id";
@@ -688,6 +691,20 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id,
+      title: "Plaintext Messages And Index with Subfolders",
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id,
+      title: "Plaintext Messages, Index And Attachments with Subfolders",
     },
   },
   {
@@ -1070,6 +1087,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     case folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id:
     case folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
     case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
+    case folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id:
     case folderCtxMenu_Exp_PlainTextFormatSingleFile_Id:
     case folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PlainText_Format", params: params });

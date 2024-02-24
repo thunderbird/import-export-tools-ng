@@ -25,6 +25,8 @@ var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm"
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
+var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 //const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
 
@@ -578,8 +580,13 @@ export var mboxImportExport = {
       }
 
       // fix date format to use UTC per RFC 4155 - addresses #455
-      let msgDate = (new Date(msgHdr.dateInSeconds * 1000)).toUTCString().split(" GMT")[0];
-
+      // fix date format to match asctime format: Tue Nov 06 12:30:00 1967
+      // Date is UTC of received date
+      // addresses @xetdx And #537
+      let msgDate = (new Date(msgHdr.dateInSeconds * 1000));
+      msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
+      let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
+      
       // get message as 8b string
       let rawBytes = await this.getRawMessage(msgUri);
 
@@ -588,7 +595,8 @@ export var mboxImportExport = {
       }
 
       // fix From format to use RFC 4155 format- addresses #455
-      let fromHdr = `${sep}From ${fromAddr} ${msgDate}\n`;
+
+      let fromHdr = `${sep}From ${fromAddr} ${msgDateStr}\n`;
       // If TB gives us a From_ separator, null out
       if (rawBytes.substring(0, 5) == "From ") {
         rawBytes = rawBytes.replace(/^(From (?:.*?)\r?\n)/, "");

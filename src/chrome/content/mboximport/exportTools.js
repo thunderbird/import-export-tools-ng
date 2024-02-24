@@ -673,7 +673,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 		subfile = file.clone();
 
-			if ((type < 3 || type > 6) && !params.recursive) {
+			if ((type < 3 || type > 6) && type != 0) {
 				subfile.append(IETmesssubdir);
 				subfile.create(1, 0775);
 			}
@@ -781,6 +781,9 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 		case 9: // Plain text format, with index and attachments
 			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
+		case 10: // PDF format, with index
+			await exportAsPDF(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
+			break;
 		default: // EML format, with index
 			await saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
 	}
@@ -792,7 +795,7 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 
 var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
-function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+function  createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
 		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
 		return;
@@ -818,7 +821,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	var ext = IETgetExt(type);
 	var subdirname;
 
-	if (subdir)
+	if (subdir && type != 0)
 		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
 	else
 		subdirname = "";
@@ -1793,6 +1796,19 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	}
 	console.log("exhtml done", IETtotal)
 	return;
+}
+
+async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
+	var msgUris = [];
+
+	hdrArray.forEach(hdrItem => {
+	var uri = hdrItem.split("§][§^^§")[5];
+		msgUris.push(uri)
+	});
+
+	await IETprintPDFmain.setupPDF(msgUris, file.path);
+	createIndex(10, file2, hdrArray, msgFolder, false, true);
+
 }
 
 

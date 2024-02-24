@@ -568,10 +568,15 @@ function IETcleanName(str) {
 }
 
 function IETgetExt(type) {
-	if (type === 1 || type === 8)
+	if (type === 1 || type === 8) {
 		return ".html";
-	else if (type === 0)
+	}	else if (type === 10) {
+		return ".pdf";
+	}	else if (type === 0) {
 		return ".eml";
+	}
+
+
 
 	return ".txt";
 }

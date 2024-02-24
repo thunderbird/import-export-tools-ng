@@ -350,6 +350,12 @@ var IETprintPDFmain = {
 
 		// console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
 	},
+	async setupPDF(msgUris, outputPath) {
+		IETprintPDFmain.file = {};
+		IETprintPDFmain.file.path = outputPath;
+		IETprintPDFmain.uris = msgUris;
+		await IETprintPDFmain.saveAsPDF();
+	},
 };
 
 function openProfileImportWizard() {
@@ -1221,12 +1227,27 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(params) {
-	//	console.debug('Start eml import');
+	console.debug('Start eml import', params);
 
 	var recursive = params.emlImpRecursive;
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	var msgFolder;
+	if (params.selectedFolder.path == "/") {
+		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+				.getService(Components.interfaces.nsIMsgAccountManager);
+			account = accountManager.accounts.find(account => {
+				if (account.key == params.selectedAccount.id) {
+					return true;
+				}
+			});
+			msgFolder = account.incomingServer.rootMsgFolder;
+	} else {
+		msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+		console.log(msgFolder)
+	}
 
-	if (!msgFolder || !msgFolder.parent) {
+	console.log(msgFolder.parent)
+	
+	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}

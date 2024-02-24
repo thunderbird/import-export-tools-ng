@@ -387,6 +387,9 @@ const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_HT
 const folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id";
 const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id";
 
+const folderCtxMenu_Exp_PDFFormatCreateIndex_Id = "folderCtxMenu_Exp_PDFFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id";
+
 
 const folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id = "folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id";
@@ -668,15 +671,29 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id,
-      title: "HTML Messages, Index with subfolders",
+      title: "Messages And Index with subfolders",
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id,
-      title: "HTML Messages, Index, Attachments with subfolders",
+      title: "Messages, Index And Attachments with subfolders",
 
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PDFFormat_Id,
+      id: folderCtxMenu_Exp_PDFFormatCreateIndex_Id,
+      title: "Messages And HTML Index",
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PDFFormat_Id,
+      id: folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id,
+      title: "Messages And Index with subfolders",
     },
   },
   {
@@ -938,8 +955,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
   if (!params.selectedFolder) {
-      params.selectedFolder = {};
-      params.selectedFolder.path = "/";
+    params.selectedFolder = {};
+    params.selectedFolder.path = "/";
   }
   params.selectedAccount = ctxEvent.selectedAccount;
   if (!params.selectedAccount) {
@@ -1080,7 +1097,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_HTML_Format", params: params });
       break;
-    case folderCtxMenu_Exp_PDFFormat_Id:
+    case folderCtxMenu_Exp_PDFFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PDF_Format", params: params });
       break;
     case folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id:
@@ -1119,6 +1137,8 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
+  console.log("menu update ",info)
+
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
@@ -1169,7 +1189,7 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
@@ -1188,9 +1208,12 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+
         await messenger.menus.refresh();
 
       } else {
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
 
         // we are a LF, check store type
         let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
@@ -1200,10 +1223,10 @@ async function menusUpdate(info, tab) {
           await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
-          
+
 
         } else {
-          
+
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
 
         }
@@ -1269,6 +1292,8 @@ async function menusUpdate(info, tab) {
     }
   }
 
+  console.log("check ")
+
   // disable for importing mbox to imaap or nntp
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     if (info.selectedFolder &&
@@ -1276,8 +1301,13 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+      console.log("disable")
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+      console.log("enable")
+
     }
     await messenger.menus.refresh();
   }
@@ -1287,7 +1317,7 @@ async function menusUpdate(info, tab) {
 async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
-  
+
   params.accountId = accountId;
   params.folderPath = folderPath;
 

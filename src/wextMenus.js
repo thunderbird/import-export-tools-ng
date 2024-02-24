@@ -671,14 +671,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id,
-      title: "Messages And Index with subfolders",
+      title: "Messages and Index with subfolders",
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id,
-      title: "Messages, Index And Attachments with subfolders",
+      title: "Messages, Index and Attachments with subfolders",
 
     },
   },
@@ -686,14 +686,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: folderCtxMenu_Exp_PDFFormatCreateIndex_Id,
-      title: "Messages And HTML Index",
+      title: "Messages and Index",
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id,
-      title: "Messages And Index with subfolders",
+      title: "Messages and Index with subfolders",
     },
   },
   {
@@ -714,14 +714,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id,
-      title: "Plaintext Messages And Index with Subfolders",
+      title: "Messages and Index with Subfolders",
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id,
-      title: "Plaintext Messages, Index And Attachments with Subfolders",
+      title: "Messages, Index and Attachments with Subfolders",
     },
   },
   {

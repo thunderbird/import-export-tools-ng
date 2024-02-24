@@ -1410,6 +1410,8 @@ var exportAsHtmlDone = false;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
+	console.log("html hdrs", msgFolder.name, hdrArray.length)
+
 	var myTxtListener = {
 		scriptStream: null,
 		emailtext: "",
@@ -1800,6 +1802,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 	var msgUris = [];
+
+	console.log("pdf hdrs", msgFolder.name, hdrArray.length)
 
 	hdrArray.forEach(hdrItem => {
 	var uri = hdrItem.split("§][§^^§")[5];

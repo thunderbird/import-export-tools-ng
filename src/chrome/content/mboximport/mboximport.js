@@ -244,12 +244,9 @@ var IETprintPDFmain = {
 
 		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
-			console.log("width", printSettings.paperWidth)
 
 		if (pageSettings.paperHeight)
 			printSettings.paperHeight = pageSettings.paperHeight;
-
-		console.log("height", printSettings.paperHeight)
 
 		if (pageSettings.orientation)
 			printSettings.orientation = pageSettings.orientation;
@@ -307,11 +304,14 @@ var IETprintPDFmain = {
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well
 
+
 		var errCounter = 0;
 		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
 		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
+	console.log("pdf uris", uri, IETprintPDFmain.uris.length)
+
 			try {
 				var messageService = MailServices.messageServiceFromURI(uri);
 				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
@@ -321,7 +321,7 @@ var IETprintPDFmain = {
 					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
 				printSettings.toFileName = PathUtils.join(filePath, fileName);
 
-				// console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
 				// console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);

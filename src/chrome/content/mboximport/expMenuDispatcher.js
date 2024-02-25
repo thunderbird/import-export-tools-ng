@@ -132,7 +132,8 @@ async function expMenuDispatcher(data) {
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
-			if (!data.params.recursive && 0) {
+			//if (!data.params.recursive && 0) {
+			if (0) {
 				await IETprintPDFmain.print(true, data.params);
 			} else {
 				await exportAllMsgs(10, data.params);

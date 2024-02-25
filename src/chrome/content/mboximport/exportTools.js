@@ -663,7 +663,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		console.log("container", file.path)
 		// deal with top then recursive 
 
-		if (params.recursive) {
+		if (params.recursive || 1) {
 			let folderDirName = msgFolder.name;
 			let folderDirNamePath = file.path;
 			let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);

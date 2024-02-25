@@ -319,9 +319,15 @@ var IETprintPDFmain = {
 				let fileName = fileFormat === 2
 					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
 					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-				printSettings.toFileName = PathUtils.join(filePath, fileName);
+					uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
+				console.log(uniqueFileName)
+				//console.log(fileName)
 
-				console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
+				//printSettings.toFileName = PathUtils.join(filePath, uniqueFileName);
+				//printSettings.toFileName = PathUtils.join(filePath, fileName);
+				printSettings.toFileName = uniqueFileName;
+
+				console.log("IETNG: Start: ", msgIdx + 1, uniqueFileName, new Date());
 				// console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);

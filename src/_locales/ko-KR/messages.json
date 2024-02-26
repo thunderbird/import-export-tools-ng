@@ -329,5 +329,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "EML 첨부 파일을 이 폴더에 저장"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지 및 색인"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지 및 색인"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지, 색인 및 첨부 파일"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "메시지 및 HTML 색인"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지 및 색인"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지 및 색인"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "하위 폴더가 포함된 메시지, 색인 및 첨부 파일"
 	}
 }

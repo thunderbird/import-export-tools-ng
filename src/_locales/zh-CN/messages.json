@@ -333,5 +333,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "将 EML 附件保存到此文件夹"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息和索引"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息和索引"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息、索引和附件"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "消息和 HTML 索引"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息和索引"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息和索引"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "带有子文件夹的消息、索引和附件"
 	}
 }

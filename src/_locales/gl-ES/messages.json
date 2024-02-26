@@ -329,5 +329,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "Garda o anexo EML neste cartafol"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes e índice con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes e índice con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes, índices e anexos con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "Mensaxes e índice HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes e índice con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes e índice con subcarpetas"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Mensaxes, índices e anexos con subcarpetas"
 	}
 }

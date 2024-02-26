@@ -329,5 +329,33 @@
 	
 	"attCtxMenu_Top_Id.title": {
 		"message": "EML 添付ファイルをこのフォルダーに保存します"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "メッセージとサブフォルダーのインデックス"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "メッセージとサブフォルダーのインデックス"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "サブフォルダーを含むメッセージ、インデックス、添付ファイル"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "メッセージとHTMLインデックス"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "メッセージとサブフォルダーのインデックス"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "メッセージとサブフォルダーのインデックス"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "サブフォルダーを含むメッセージ、インデックス、添付ファイル"
 	}
 }

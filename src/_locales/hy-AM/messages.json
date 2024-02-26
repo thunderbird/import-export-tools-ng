@@ -329,5 +329,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "Պահպանեք EML հավելվածն այս թղթապանակում"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "Հաղորդագրություններ և HTML ինդեքս"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
 	}
 }

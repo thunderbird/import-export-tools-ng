@@ -329,5 +329,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "EML-Anhang in diesem Ordner speichern"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten und Index mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten und Index mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten, Index und Anhänge mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "Nachrichten und HTML-Index"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten und Index mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten und Index mit Unterordnern"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Nachrichten, Index und Anhänge mit Unterordnern"
 	}
 }

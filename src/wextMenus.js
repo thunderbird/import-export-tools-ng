@@ -650,7 +650,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id,
-      title: "Messages and Index with Subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title"),
     },
   },
   {
@@ -671,14 +671,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id,
-      title: "Messages and Index with subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id,
-      title: "Messages, Index and Attachments with subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),
 
     },
   },
@@ -686,14 +686,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: folderCtxMenu_Exp_PDFFormatCreateIndex_Id,
-      title: "Messages and Index",
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id,
-      title: "Messages and Index with subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),
     },
   },
   {
@@ -714,14 +714,14 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id,
-      title: "Messages and Index with Subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),
     },
   },
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id,
-      title: "Messages, Index and Attachments with Subfolders",
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),
     },
   },
   {

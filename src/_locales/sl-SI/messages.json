@@ -329,5 +329,33 @@
 
 	"attCtxMenu_Top_Id.title": {
 		"message": "Shranite prilogo EML v to mapo"
+	},
+
+	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Sporočila in indeks s podmapami"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+		"message": "Sporočila in indeks s podmapami"
+	},
+
+	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Sporočila, kazalo in priloge s podmapami"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+		"message": "Sporočila in indeks HTML"
+	},
+
+	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+		"message": "Sporočila in indeks s podmapami"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+		"message": "Sporočila in indeks s podmapami"
+	},
+
+	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+		"message": "Sporočila, kazalo in priloge s podmapami"
 	}
 }

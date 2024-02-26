@@ -20,7 +20,7 @@ def newDir(dir):
        print("Directory doesn't exist. Creating. <" +  dir + ">")
        os.makedirs(dir)
 
-def convert(source, destination, current = None, level = 0):
+def convert(source, destination, current = None, level = 1):
     dir = source if current == None else current
     messages = []
     
@@ -28,10 +28,10 @@ def convert(source, destination, current = None, level = 0):
         path = os.path.join(dir, name)
         
         if os.path.isfile(path):
-            if path.endswith('.dtd'):
+            if path.endswith('mboximport.dtd'):
                 messages.extend(convert_dtd(path, dir))
-            if path.endswith('.properties'):
-                messages.extend(convert_prop(path, dir))
+            #if path.endswith('.properties'):
+             #   messages.extend(convert_prop(path, dir))
 
         else:
             messages.extend(convert(source, destination, path, level+1))
@@ -62,6 +62,7 @@ def convert(source, destination, current = None, level = 0):
         final = json.dumps(mergedData, indent=4, sort_keys=True, ensure_ascii=False)
         with io.open(messagesjson, "w", encoding='utf-8') as f:
             f.write(final)
+            print(final)
 
         # check the file for correctness
         print(" -> TESTING " + messagesjson)

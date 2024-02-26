@@ -136,7 +136,14 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "openHelpInWindow.label", text: "Open help in a window instead of a tab"},
+  { key: "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
+  { key: "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
+  { key: "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title", text: "Messages, Index and Attachments with Subfolders"},
+  { key: "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title", text: "Messages and HTML Index"},
+  { key: "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
+  { key: "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
+  { key: "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title", text: "Messages, Index and Attachments with Subfolders"},
+	
 
 	
 
@@ -575,7 +582,7 @@ var options3 = {
 };
 
 // dtd=2
-var options = {
+var options0 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -594,11 +601,12 @@ var options1 = {
 	outputFormat: 1,
 };
 
-var options4 = {
+var options = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
-	append: false,
+	skipEN: false,
+	append: true,
 	outputFormat: 3,
 };
 
@@ -610,8 +618,8 @@ let inputFiles;
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-//let inputFiles = ["messages.json"];
-inputFiles = ["mboximport.dtd"];
+inputFiles = ["messages.json"];
+//inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 //inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',

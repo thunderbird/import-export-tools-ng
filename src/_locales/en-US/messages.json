@@ -1,4 +1,7 @@
 {
+    "MACwarning": {
+        "message": "N.B: Please close every other window before continuing."
+    },
     "MBcaptionlabel1": {
         "message": "General settings"
     },
@@ -47,6 +50,12 @@
     "addtime.label": {
         "message": "Add time to date"
     },
+    "allFiles": {
+        "message": "All profile files"
+    },
+    "allFilesMode": {
+        "message": "Always all files"
+    },
     "allMsg": {
         "message": "Export of all messages"
     },
@@ -62,8 +71,32 @@
     "attachmentFolders": {
         "message": "Attachment Folders"
     },
+    "autoName": {
+        "message": "Automatic (folder name + date)"
+    },
+    "backupDestination": {
+        "message": "Destination"
+    },
+    "backupFolderName": {
+        "message": "Folder name for backup"
+    },
+    "backupFreq": {
+        "message": "Frequency"
+    },
+    "backupOn": {
+        "message": "Enable"
+    },
     "backupOnExit": {
         "message": "Backup On Exit"
+    },
+    "backupSettings": {
+        "message": "Backup settings"
+    },
+    "backupTab": {
+        "message": "Backup scheduling"
+    },
+    "backupType": {
+        "message": "Backup content"
     },
     "browse": {
         "message": "Browse…"
@@ -92,6 +125,9 @@
     "customDate": {
         "message": "Custom Date:"
     },
+    "customName": {
+        "message": "Customized"
+    },
     "customizeFilename": {
         "message": "Use following format:"
     },
@@ -118,6 +154,42 @@
     },
     "dateFormatRefTooltipText": {
         "message": "Date Format Reference"
+    },
+    "day1": {
+        "message": "1 day"
+    },
+    "day15": {
+        "message": "15 days"
+    },
+    "day3": {
+        "message": "3 days"
+    },
+    "day30": {
+        "message": "30 days"
+    },
+    "day7": {
+        "message": "7 days"
+    },
+    "description1": {
+        "message": "Date of last backup: $t"
+    },
+    "description2": {
+        "message": "On the basis of the settings, it's necessary now to make the backup."
+    },
+    "description3": {
+        "message": "During this operation, the program will be unresponsive for some minutes."
+    },
+    "description4": {
+        "message": "Do you want to continue?"
+    },
+    "description5": {
+        "message": "Backup in progress, please wait…"
+    },
+    "description6": {
+        "message": "Backup done."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG- Backup"
     },
     "emlExport": {
         "message": "Export folders as single files:"
@@ -290,17 +362,26 @@
     "inlineAttachmentsFolders": {
         "message": "Inline Attachments Folders"
     },
+    "justMailFiles": {
+        "message": "Just mail files"
+    },
     "key": {
         "message": "Index"
     },
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "lastBackup": {
+        "message": "Last backup"
+    },
     "mboxExport": {
         "message": "Export folders as MBOX file:"
     },
     "misc": {
         "message": "Misc"
+    },
+    "modal": {
+        "message": "Use a “modal” window"
     },
     "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
         "message": "Headers"
@@ -380,6 +461,9 @@
     "name": {
         "message": "Name"
     },
+    "newFilesMode": {
+        "message": "Just files modified after last backup"
+    },
     "openHelpInWindow.label": {
         "message": "Open help in a window instead of a tab"
     },
@@ -394,6 +478,9 @@
     },
     "recipientFmtToken": {
         "message": "${recipient}"
+    },
+    "save": {
+        "message": "Save"
     },
     "savedirs": {
         "message": "Export directories"

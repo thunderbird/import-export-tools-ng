@@ -462,5 +462,11 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
+    console.log(i18n)
+    i18n.updateDocument({extension: this.window.opener.ietngAddon.extension});
     initMboxImportPanel();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    i18n.updateDocument();
+  }, { once: true });

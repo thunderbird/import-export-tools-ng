@@ -99,13 +99,16 @@
         "message": "백업 내용"
     },
     "browse": {
-        "message": "찾아보기"
+        "message": "Browser"
     },
     "buildMSF.label": {
         "message": "mbox을 들여오기 위해 색인 구축"
     },
     "captionCustomize": {
         "message": "파일명 형식 사용자 지정"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
     },
     "copyFolderPath": {
         "message": "디스크 내 폴더 경로 복사"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "단일 파일로 폴더 내보내기:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "확장 파일 이름 형식 참조"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "폴더 디렉토리 열기"
     },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
     "indexCSVdateFormat": {
         "message": "색인, CSV 날짜 형식 :"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "인라인 첨부 파일 폴더"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
     "justMailFiles": {
         "message": "메일 파일만"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${접두사}"
     },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
     "recipient": {
         "message": "받는이"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${수신자}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
     },
     "save": {
         "message": "저장"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${스마트_이름}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Text 및 CSV형식으로 내보내기 위한 문자셋:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "지원"

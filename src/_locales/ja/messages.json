@@ -107,6 +107,9 @@
     "captionCustomize": {
         "message": "ファイル名のカスタマイズ"
     },
+    "changeProfileNameLabel": {
+        "message": "プロファイルマネージャーでプロファイル名を変更することができます。"
+    },
     "copyFolderPath": {
         "message": "ディスク上のフォルダーパスをコピー"
     },
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "フォルダーを単一ファイルでエクスポートする場所："
+    },
+    "error": {
+        "message": "プロファイルのインポート中にエラーが発生しました。エラーの詳細は次のとおりです:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "ファイル名形式リファレンス"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "フォルダーの場所を開く"
     },
+    "importEnd": {
+        "message": "インポート完了！"
+    },
+    "importRunning": {
+        "message": "インポート中..."
+    },
     "indexCSVdateFormat": {
         "message": "インデックス、CSV 日時形式："
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "インライン添付ファイルフォルダー名"
+    },
+    "intro1": {
+        "message": "これはプロファイルのインポートの実験的な機能です。データを失う危険はありません。しかしながら別のコンピューターからプロファイルをインポートする場合は、すべて想定どおりの動作を保証しません。ファイルを手動でコピーするよりは安全です。"
+    },
+    "intro2": {
+        "message": "フォルダーにはインポート可能なプロファイルがあります。実行には数分、あるいはそれ以上かかるかもしれません。あるいは他のプログラムの使用ができなくなるかもしれません。"
+    },
+    "intro3": {
+        "message": "インポートするプロファイルにアクセスするためにはボタンをクリックして、プロファイルマネージャーを起動してください。現在のプロファイルは自動的に閉じます。"
     },
     "justMailFiles": {
         "message": "メッセージファイルのみ"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${接頭文字}"
     },
+    "profileName": {
+        "message": "インポートするプロファイル名"
+    },
+    "profilePath": {
+        "message": "インポートするプロファイルの場所"
+    },
     "recipient": {
         "message": "受信者"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${受信者}"
+    },
+    "runProfileManager": {
+        "message": "プロファイルマネージャーの起動"
     },
     "save": {
         "message": "保存"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${スマート名}"
     },
+    "start": {
+        "message": "インポート開始"
+    },
     "strip_eml_CR.label": {
         "message": "EML メッセージのエクスポートの行末から CR を削除する"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "テキストおよび CSV 形式でエクスポートするときの文字コード："
+    },
+    "title": {
+        "message": "ImportExportTools NG - プロファイルのインポート"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "バックアップ"

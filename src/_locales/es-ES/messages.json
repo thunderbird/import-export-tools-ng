@@ -99,13 +99,16 @@
         "message": "Contenido de la copia"
     },
     "browse": {
-        "message": "Seleccionar"
+        "message": "Browser"
     },
     "buildMSF.label": {
         "message": "Construir índice para los archivos mbox importados"
     },
     "captionCustomize": {
         "message": "Formato personalizado para los nombres de archivos"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
     },
     "copyFolderPath": {
         "message": "Copy folder path on disk"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Exportar carpetas como archivos individuales:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Referencia de formato de nombre de archivo extendido"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Abrir directorio de carpetas"
     },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
     "indexCSVdateFormat": {
         "message": "Índice, formato de fecha CSV:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Carpetas de archivos adjuntos en línea"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
     "justMailFiles": {
         "message": "Sólo los archivos del correo"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${prefijo}"
     },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
     "recipient": {
         "message": "Destinatario"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${destinatario}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
     },
     "save": {
         "message": "Save"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${nombre_inteligente}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "Retire CR de los finales de línea para las exportaciones de mensajes eml"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Codificación para exportar en formatos de texto y CSV:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Respaldo"

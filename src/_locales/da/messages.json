@@ -107,6 +107,9 @@
     "captionCustomize": {
         "message": "Tilpas filnavnes format"
     },
+    "changeProfileNameLabel": {
+        "message": "Du kan altid ændre profilnavnet i profilmanageren"
+    },
     "copyFolderPath": {
         "message": "Kopier mappens sti på disken"
     },
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Eksporter mapper som enkelte filer:"
+    },
+    "error": {
+        "message": "Der opstod en fejl under import af profilen. Fejldetaljer:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Henvisning til udvidet filnavnsformat"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Åbn mappens mappe"
     },
+    "importEnd": {
+        "message": "Importen lykkedes!"
+    },
+    "importRunning": {
+        "message": "Import kører…"
+    },
     "indexCSVdateFormat": {
         "message": "Indeks, CSV-datoformat:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Mapper med indlejrede vedhæftede filer"
+    },
+    "intro1": {
+        "message": "Dette er en eksperimentel procedure til import af en profil. Der er ingen fare for tab af data, men der er ingen garanti for, at alt vil fungere som ventet, specielt ikke, hvis du importere en profil fra en anden computer. Det er dog sikrere end at kopiere filerne manuelt."
+    },
+    "intro2": {
+        "message": "Mappen indeholder en gyldig profil, der kan importeres. Under denne procedure, som kan tage flere minutter eller mere, kan du ikke bruge programmet."
+    },
+    "intro3": {
+        "message": "For at tilgå den importerede profil, kør profilmanageren ved at klikke på knappen nedenunder. Den nuværende profil vil automatisk blive lukket"
     },
     "justMailFiles": {
         "message": "Kun mailfiler"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${præfiks}"
     },
+    "profileName": {
+        "message": "Navnet på profilen der skal importeres"
+    },
+    "profilePath": {
+        "message": "Stien til profilen der skal importeres"
+    },
     "recipient": {
         "message": "Modtager"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${modtager}"
+    },
+    "runProfileManager": {
+        "message": "Kør profilmanageren"
     },
     "save": {
         "message": "Gem"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${smart_navn}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "Fjern CR fra linjeafslutninger for eml-meddelelseseksport"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Tegnkodning til eksport i tekst- og CSV-format:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profilimport"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Sikkerhedskopier"

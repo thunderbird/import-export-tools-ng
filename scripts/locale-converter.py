@@ -28,7 +28,7 @@ def convert(source, destination, current = None, level = 1):
         path = os.path.join(dir, name)
         
         if os.path.isfile(path):
-            if path.endswith('autobackup.dtd'):
+            if path.endswith('profilewizard.dtd'):
                 messages.extend(convert_dtd(path, dir))
             #if path.endswith('.properties'):
              #   messages.extend(convert_prop(path, dir))

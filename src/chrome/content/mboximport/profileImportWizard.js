@@ -36,6 +36,8 @@ var IETimportWizard = {
 	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
 
 	start: function () {
+		i18n.updateDocument({extension: window.opener.ietngAddon.extension});
+
 		let wiz = document.getElementById("profileImportWizard");
 		let shadowWiz = wiz && wiz.shadowRoot;
 		let hdr = shadowWiz.querySelector(".wizard-header-label");

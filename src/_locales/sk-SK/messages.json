@@ -99,13 +99,16 @@
         "message": "Obsah zálohy"
     },
     "browse": {
-        "message": "Prehľadávať"
+        "message": "Browser"
     },
     "buildMSF.label": {
         "message": "Vytvoriť index pre importované súbory .mbox"
     },
     "captionCustomize": {
         "message": "Prispôsobenie formátu názvu súborov"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
     },
     "copyFolderPath": {
         "message": "Kopírovať cestu k priečinku na disku"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Export priečinkov ako samostatné súbory:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Odkaz na formát rozšíreného názvu súboru"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Otvorte adresár priečinka"
     },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
     "indexCSVdateFormat": {
         "message": "Register, formát dátumu CSV:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Vložené priečinky príloh"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
     "justMailFiles": {
         "message": "Len súbory s poštou"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${predpona}"
     },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
     "recipient": {
         "message": "Príjemca"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${príjemca}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
     },
     "save": {
         "message": "Uložiť"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${inteligentné_meno}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "Odstráňte CR z koncov riadkov pre exporty správ EML"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Znaková sada pre export v textovom a CVS formáte:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Zálohovanie"

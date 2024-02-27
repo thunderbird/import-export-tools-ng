@@ -102,13 +102,16 @@
         "message": "备份内容"
     },
     "browse": {
-        "message": "浏览"
+        "message": "浏览器"
     },
     "buildMSF.label": {
         "message": "为导入的 mbox 文件建立索引"
     },
     "captionCustomize": {
         "message": "自定义文件名格式"
+    },
+    "changeProfileNameLabel": {
+        "message": "您可以在配置文件管理器中任意修改配置文件名称"
     },
     "copyFolderPath": {
         "message": "复制磁盘上的文件夹路径"
@@ -196,6 +199,9 @@
     },
     "emlExport": {
         "message": "将信件夹作为一个单独文件导出："
+    },
+    "error": {
+        "message": "导入配置文件时发生错误，错误信息为："
     },
     "extFilenameFormatRefTooltipText": {
         "message": "扩展文件名格式参考"
@@ -347,6 +353,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "打开文件夹目录"
     },
+    "importEnd": {
+        "message": "导入成功！"
+    },
+    "importRunning": {
+        "message": "正在导入…"
+    },
     "indexCSVdateFormat": {
         "message": "索引，CSV日期格式："
     },
@@ -364,6 +376,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "内联附件文件夹"
+    },
+    "intro1": {
+        "message": "导入配置文件的功能正在试验当中，没有丢失数据的风险，但也不保证所有功能都完善，特别是从另外一套电脑导入配置文件的时候。无论如何他都比手动复制文件要可靠。"
+    },
+    "intro2": {
+        "message": "这个文件夹包含一个可以导入的有效配置文件，在处理期间，您可能有数分钟或者更长时间无法使用这个程序。"
+    },
+    "intro3": {
+        "message": "要访问导入的配置文件，点击下面的按钮运行配置文件管理器，当前配置文件会自动关闭"
     },
     "justMailFiles": {
         "message": "仅邮件文件"
@@ -473,6 +494,12 @@
     "prefixFmtToken": {
         "message": "${前缀}"
     },
+    "profileName": {
+        "message": "要导入的配置文件名称"
+    },
+    "profilePath": {
+        "message": "要导入的配置文件路径"
+    },
     "recipient": {
         "message": "收信人"
     },
@@ -481,6 +508,9 @@
     },
     "recipientFmtToken": {
         "message": "${收件人}"
+    },
+    "runProfileManager": {
+        "message": "运行配置文件管理器"
     },
     "save": {
         "message": "保存"
@@ -539,6 +569,9 @@
     "smartNameFmtToken": {
         "message": "${聪明的名字}"
     },
+    "start": {
+        "message": "开始导入"
+    },
     "strip_eml_CR.label": {
         "message": "从 eml 消息导出的行结尾中去除 CR"
     },
@@ -553,6 +586,9 @@
     },
     "textCharset": {
         "message": "纯文本和逗号分隔文件（CSV）格式使用的字符集："
+    },
+    "title": {
+        "message": "ImportExportTools NG - 配置文件导入"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "备份"

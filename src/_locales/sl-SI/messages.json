@@ -99,13 +99,16 @@
         "message": "Vsebina varnostne kopije"
     },
     "browse": {
-        "message": "Brskaj"
+        "message": "Brskalnik"
     },
     "buildMSF.label": {
         "message": "Sestavi kazalo za uvožene datoteke mbox"
     },
     "captionCustomize": {
         "message": "Oblika po meri za imena datotek"
+    },
+    "changeProfileNameLabel": {
+        "message": "Ime profila lahko vedno spremenite v upravitelju profilov"
     },
     "copyFolderPath": {
         "message": "Kopiraj pot mape na disk"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Izvozi mape kot posamezne datoteke:"
+    },
+    "error": {
+        "message": "Med uvozom profila se je pojavila napaka. Podrobnosti o napaki so:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Razširjena referenca za obliko datoteke"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Odpri imenik map"
     },
+    "importEnd": {
+        "message": "Uvoz je bil uspešen!"
+    },
+    "importRunning": {
+        "message": "Uvoz je v teku ..."
+    },
     "indexCSVdateFormat": {
         "message": "Kazalo, oblika zapisa datuma CSV:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Vgrajene mape s prilogami"
+    },
+    "intro1": {
+        "message": "To je preskusni postopek za uvoz profila. Tveganja izgube podatkov ni, toda ni zajamčeno, da bo vse delovalo, kot pričakujete, posebno če uvažate profil iz drugega računalnika. Je bolj varno, kot ročno kopiranje datotek."
+    },
+    "intro2": {
+        "message": "Mapa vsebuje veljaven profil, ki ga lahko uvozite. Med postopkom, ki lahko traja več minut ali celo več, ne boste mogli uporabljati tega programa."
+    },
+    "intro3": {
+        "message": "Za dostop do uvoženega profila, zaženite upravitelja profilov s klikom na spodnji gumb. Trenutni profil bo samodejno zaprt"
     },
     "justMailFiles": {
         "message": "Samo datoteke pošte"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${predpono}"
     },
+    "profileName": {
+        "message": "Ime profila za uvoz"
+    },
+    "profilePath": {
+        "message": "Pot profila za uvoz"
+    },
     "recipient": {
         "message": "Prejemnik"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${prejemnik}"
+    },
+    "runProfileManager": {
+        "message": "Zaženite upravitelja profilov"
     },
     "save": {
         "message": "Shrani"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${pametno_ime}"
     },
+    "start": {
+        "message": "Začni uvoz"
+    },
     "strip_eml_CR.label": {
         "message": "Odstrani CR iz koncev vrstic za izvoz sporočil eml"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Nabor znakov za izvoz v besedilni obliki in obliki CSV:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Uvoz profila"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Rezerva"

@@ -99,13 +99,16 @@
         "message": "Contido da copia de seguranza"
     },
     "browse": {
-        "message": "Explorador"
+        "message": "Browser"
     },
     "buildMSF.label": {
         "message": "Construír un índice para os ficheiros MBOX importados"
     },
     "captionCustomize": {
         "message": "Formato personalizado para nomes de ficheiros"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
     },
     "copyFolderPath": {
         "message": "Copiar o camiño do cartafol no disco"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Exportar cartafoles como ficheiros individuais:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Referencia estendida do formato do nome de ficheiro"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Abrir o directorio de cartafoles"
     },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
     "indexCSVdateFormat": {
         "message": "Índice, formato de data CSV:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Cartafoles de anexos en liña"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
     "justMailFiles": {
         "message": "Só arquivos de correo electrónico"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${prefixo}"
     },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
     "recipient": {
         "message": "Destinatario"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${destinatario}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
     },
     "save": {
         "message": "Gardar"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${nome_intelixente}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "Elimina CR dos finais de liña para as exportacións de mensaxes eml"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Codificación para a exportación en formato texto e csv:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Copia de seguranza"

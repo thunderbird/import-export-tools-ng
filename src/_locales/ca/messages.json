@@ -99,13 +99,16 @@
         "message": "Fes còpia de seguretat de contingut"
     },
     "browse": {
-        "message": "Explora"
+        "message": "Browser"
     },
     "buildMSF.label": {
         "message": "Construeix l\\'índex pels fitxers mbox importats"
     },
     "captionCustomize": {
         "message": "Format personalitzat per als noms de fixers"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
     },
     "copyFolderPath": {
         "message": "Copia la ruta a la carpeta al disc"
@@ -190,6 +193,9 @@
     },
     "emlExport": {
         "message": "Exporta les carpetes a fitxers individuals:"
+    },
+    "error": {
+        "message": "S'ha produït un error en importar el perfil. Els detalls del error són:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Referència ampliada del format de fitxer"
@@ -341,6 +347,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Obriu el directori de carpetes"
     },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
     "indexCSVdateFormat": {
         "message": "Índex, format de data CSV:"
     },
@@ -358,6 +370,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Carpetes de fitxers adjunts en línia"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
     "justMailFiles": {
         "message": "Només fitxers de correu"
@@ -467,6 +488,12 @@
     "prefixFmtToken": {
         "message": "${prefix}"
     },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
     "recipient": {
         "message": "Remitent"
     },
@@ -475,6 +502,9 @@
     },
     "recipientFmtToken": {
         "message": "${destinatari}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
     },
     "save": {
         "message": "Desa"
@@ -533,6 +563,9 @@
     "smartNameFmtToken": {
         "message": "${nom_intel_ligent}"
     },
+    "start": {
+        "message": "Start import"
+    },
     "strip_eml_CR.label": {
         "message": "Elimina CR dels finals de línia per a les exportacions de missatges eml"
     },
@@ -547,6 +580,9 @@
     },
     "textCharset": {
         "message": "Charset for export in text and CSV format: "
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Còpia de seguretat"

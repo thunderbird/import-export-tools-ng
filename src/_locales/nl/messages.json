@@ -107,6 +107,9 @@
     "captionCustomize": {
         "message": "Aangepaste indeling voor bestandsnamen"
     },
+    "changeProfileNameLabel": {
+        "message": "U kunt de profielnaam altijd wijzigen in de profielbeheerder."
+    },
     "copyFolderPath": {
         "message": "Mappad op schijf kopiëren"
     },
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Mappen exporteren als losse bestanden:"
+    },
+    "error": {
+        "message": "Er is een fout opgetreden bij het importeren van het profiel. Foutdetails:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Uitgebreide verwijzing naar bestandsnaamindeling"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Mappenlijst openen"
     },
+    "importEnd": {
+        "message": "Importeren voltooid!"
+    },
+    "importRunning": {
+        "message": "Importeren…"
+    },
     "indexCSVdateFormat": {
         "message": "Index, CSV-datumnotatie:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Inline bijlagenmappen"
+    },
+    "intro1": {
+        "message": "Dit is een experimentele procedure voor het importeren van een profiel. Er is geen kans op gegevensverlies, maar er is geen garantie dat alles naar verwachting werkt, vooral als u een profiel van een andere computer importeert. Het is in elk geval veiliger dan de bestanden handmatig kopiëren."
+    },
+    "intro2": {
+        "message": "De map bevat een geldig profiel dat kan worden geïmporteerd. Tijdens de procedure kunt u het programma mogelijk enkele minuten niet gebruiken."
+    },
+    "intro3": {
+        "message": "Start om het geïmporteerde profiel te benaderen de profielbeheerder door op onderstaande knop te klikken. Het huidige profiel wordt automatisch gesloten."
     },
     "justMailFiles": {
         "message": "Alleen mailbestanden"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${voorvoegsel}"
     },
+    "profileName": {
+        "message": "Naam van het te importeren profiel"
+    },
+    "profilePath": {
+        "message": "Pad van het te importeren profiel"
+    },
     "recipient": {
         "message": "Ontvanger"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${ontvanger}"
+    },
+    "runProfileManager": {
+        "message": "Profielbeheerder starten"
     },
     "save": {
         "message": "Opslaan"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${slimme_naam}"
     },
+    "start": {
+        "message": "Importeren starten"
+    },
     "strip_eml_CR.label": {
         "message": "Verwijder CR van regeleinden voor export van eml-berichten"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Tekenset voor exporteren in tekst- en CSV-indeling:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profiel importeren"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Back-up"

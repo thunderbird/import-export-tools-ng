@@ -107,6 +107,9 @@
     "captionCustomize": {
         "message": "Format personnalisé des noms de fichiers"
     },
+    "changeProfileNameLabel": {
+        "message": "Vous pourrez de toute façon modifier ce nom dans le gestionnaire de profils."
+    },
     "copyFolderPath": {
         "message": "Copier le chemin du dossier sur le disque"
     },
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Exporter les dossiers sous forme de fichiers séparés dans le dossier :"
+    },
+    "error": {
+        "message": "Une erreur est survenue lors de l’importation du profil. Les détails de l’erreur sont :"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Aide pour le format avancé du nom de fichier"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Ouvrir le dossier conteneur"
     },
+    "importEnd": {
+        "message": "L’importation a réussi !"
+    },
+    "importRunning": {
+        "message": "Importation en cours…"
+    },
     "indexCSVdateFormat": {
         "message": "Format de la date pour CSV et index :"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Dossier des pièces jointes intégrées "
+    },
+    "intro1": {
+        "message": "Il s’agit d’une procédure expérimentale pour importer un profil. Il n’y a aucun risque de perte de données mais il n’est pas garanti que tout fonctionne comme prévu, surtout si vous importez un profil depuis un autre ordinateur. C’est tout de même plus sûr que de copier les fichiers manuellement."
+    },
+    "intro2": {
+        "message": "Le dossier contient un profil valide qui peut être importé. Durant la procédure, qui peut prendre quelques minutes voire plus, vous ne pourrez pas utiliser le programme."
+    },
+    "intro3": {
+        "message": "Pour accéder au profil importé, lancez le gestionnaire de profils en cliquant sur le bouton ci-dessous. Le profil actuel sera automatiquement fermé."
     },
     "justMailFiles": {
         "message": "Courrier uniquement"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${préfixe}"
     },
+    "profileName": {
+        "message": "Nom du profil à importer "
+    },
+    "profilePath": {
+        "message": "Chemin du profil à importer "
+    },
     "recipient": {
         "message": "destinataire"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${destinataire}"
+    },
+    "runProfileManager": {
+        "message": "Exécuter le gestionnaire de profils"
     },
     "save": {
         "message": "Mode de sauvegarde "
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${nom_intelligent}"
     },
+    "start": {
+        "message": "Lancer l’importation"
+    },
     "strip_eml_CR.label": {
         "message": "Supprimer les retours à la ligne pour les exportations de messages eml"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Jeu de caractères pour l’exportation au format texte ou CSV :"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Importation de profil"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Effectuer une sauvegarde"

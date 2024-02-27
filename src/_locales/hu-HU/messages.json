@@ -99,13 +99,16 @@
         "message": "Biztonsági mentés tartalma"
     },
     "browse": {
-        "message": "Tallózás"
+        "message": "Tallózás…"
     },
     "buildMSF.label": {
         "message": "Jegyzék készítése az MBOX fájlokhoz"
     },
     "captionCustomize": {
         "message": "Fájlnév formátumának testreszabása"
+    },
+    "changeProfileNameLabel": {
+        "message": "Egyébként megváltoztathatja a profil nevét a profilkezelőben"
     },
     "copyFolderPath": {
         "message": "Mappa útvonalának másolása"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Mappák exportálása külön fájlokként:"
+    },
+    "error": {
+        "message": "Hiba történt a profil importálása során. A hiba részletei:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Bővített fájlnév-formátum-referencia"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Nyissa meg a Mappa könyvtárát"
     },
+    "importEnd": {
+        "message": "Az importálás sikeres!"
+    },
+    "importRunning": {
+        "message": "Importálás folyamatban…"
+    },
     "indexCSVdateFormat": {
         "message": "Index, CSV dátumformátum:"
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Beépített mellékletek mappái"
+    },
+    "intro1": {
+        "message": "Ez egy profil importálására szolgáló kísérleti eljárás. Nincs adatkezelési kockázat, de nem garantált, hogy minden a várt módon működni fog, különösen, ha egy profilt egy másik számítógépről importál. Egyébként biztonságosabb, mint a fájlok manuális másolása."
+    },
+    "intro2": {
+        "message": "A mappa tartalmaz egy érvényes profilt, amely importálható. Az eljárás során, amely akár néhány percet is igénybe vehet, vagy még ennél is többet, nem tudja használni a programot."
+    },
+    "intro3": {
+        "message": "Az importált profil eléréséhez futtassa a profilkezelőt az alábbi gombra kattintva. A jelenlegi profil önműködően bezáródik."
     },
     "justMailFiles": {
         "message": "Csak mail fájlok"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${előtag}"
     },
+    "profileName": {
+        "message": "Az importálandó profil neve"
+    },
+    "profilePath": {
+        "message": "Az importálandó profil útvonala"
+    },
     "recipient": {
         "message": "Címzett"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${címzett}"
+    },
+    "runProfileManager": {
+        "message": "Profilkezelő futtatása"
     },
     "save": {
         "message": "Mentés"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${okos_név}"
     },
+    "start": {
+        "message": "Importálás indítása"
+    },
     "strip_eml_CR.label": {
         "message": "Távolítsa el a CR-t a sorvégekről az eml-üzenetek exportálásához"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Szöveg és CSV formátum karakterkódolása exportáláskor:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profil importálása"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "biztonsági mentés"

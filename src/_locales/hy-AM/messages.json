@@ -99,13 +99,16 @@
         "message": "Պահուստի բով-ը"
     },
     "browse": {
-        "message": "Ընտրել"
+        "message": "Դիտարկիչ"
     },
     "buildMSF.label": {
         "message": "Կառուցել ինդեքսը՝ ներմուծված mbox ֆայլերի համար"
     },
     "captionCustomize": {
         "message": "Հարմարեցված տեսակ՝ ֆայլի անունների համար"
+    },
+    "changeProfileNameLabel": {
+        "message": "Հետագայում կարող եք փոխել պրոֆիլի անունը"
     },
     "copyFolderPath": {
         "message": "Պատճենել թղթապանակի ճ-ը պնակում"
@@ -193,6 +196,9 @@
     },
     "emlExport": {
         "message": "Արտածել թղթապանակները որպես եզակի ֆայլեր."
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Ֆայլի անվան ձևաչափի ընդլայնված հղում"
@@ -344,6 +350,12 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Բացեք Թղթապանակների գրացուցակը"
     },
+    "importEnd": {
+        "message": "Ներմուծեց։"
+    },
+    "importRunning": {
+        "message": "Ներմուծում է…"
+    },
     "indexCSVdateFormat": {
         "message": "Ինդեքս, CSV Ամսաթիվ Ձևաչափը."
     },
@@ -361,6 +373,15 @@
     },
     "inlineAttachmentsFolders": {
         "message": "Ներդիր հավելվածների թղթապանակներ"
+    },
+    "intro1": {
+        "message": "Սա փորձնական գործողություն է։ Որևէ տվյալ չեք կորցնի, բայց նաև չի երաշխավորվում ճիշտ աշխատանքը։"
+    },
+    "intro2": {
+        "message": "Թղթապանակում կա պրոֆիլ, որը կարող է ներմուծվել։ Կարող է տևել մի քանի րոպե։"
+    },
+    "intro3": {
+        "message": "Մուտք ստանալու համար ներմուծված պրոֆիլին՝ բացեք Պրոֆլիների կառավարիչը։ Գործող պրոֆիլը միանգամից կփակվի"
     },
     "justMailFiles": {
         "message": "Պարզապես ուղարկել ֆայլերը"
@@ -470,6 +491,12 @@
     "prefixFmtToken": {
         "message": "${նախածանց}"
     },
+    "profileName": {
+        "message": "Ներմուծվող պրոֆիլի անունը"
+    },
+    "profilePath": {
+        "message": "Պրոֆիլը ներմուծելու ճ-ը"
+    },
     "recipient": {
         "message": "Ստացողը"
     },
@@ -478,6 +505,9 @@
     },
     "recipientFmtToken": {
         "message": "${ստացող}"
+    },
+    "runProfileManager": {
+        "message": "Բացել Պրոֆիլների կառավարիչը"
     },
     "save": {
         "message": "Պահպանել"
@@ -536,6 +566,9 @@
     "smartNameFmtToken": {
         "message": "${խելացի_անուն}"
     },
+    "start": {
+        "message": "Ներմուծել"
+    },
     "strip_eml_CR.label": {
         "message": "Հեռացրեք CR-ը տողերի վերջավորություններից eml հաղորդագրությունների արտահանման համար"
     },
@@ -550,6 +583,9 @@
     },
     "textCharset": {
         "message": "Արտածելու գրանշանը տեքստային և CSV տեսակի համար՝"
+    },
+    "title": {
+        "message": "ImportExportTools NG՝ պրոֆիլի ներմուծում"
     },
     "toolsCtxMenu_Backup_Id.title": {
         "message": "Կրկնօրինակում"

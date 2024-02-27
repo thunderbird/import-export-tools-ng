@@ -1,361 +1,575 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Doda orodja za uvoz/izvoz sporočil in map (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Opcije"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "pomoč"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Izvozi profil"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Uvozi profil"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Rezerva"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Celoten profil"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Samo po pošti"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Izvozi sporočila kot ..."
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Oblika sporočila EML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Oblika HTML"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF format"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Oblika navadnega besedila"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Format CSV (preglednica)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox format"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Indeks sporočil"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Kopirati v odložišče"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Sporočila (vdelane priloge)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Samo sporočila"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Sporočila in priloge"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Sporočila s prilogami in indeksom"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Samo sporočila"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Sporočila in priloge"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Sporočila s prilogami in indeksom"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Nova datoteka mbox"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Dodaj v obstoječo datoteko mbox"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Oblika HTML"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Oblika CSV"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Sporočilo"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Glave"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Izvoz mape (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Kot datoteko mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Ena stisnjena datoteka mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Strukturirano s podmapami"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "S sploščenimi podmapami"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Izvozi oddaljeno mapo"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Izvozi vsa sporočila v mapi"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Oblika sporočila EML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Oblika HTML"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF format"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Oblika navadnega besedila"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Format CSV (preglednica)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Indeks sporočil"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Iskanje in izvoz sporočil"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Uvozite datoteke mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Posamezne datoteke mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Posamezne datoteke mbox (s strukturo sbd)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Vse datoteke mbox iz imenika"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Vse datoteke mbox iz imenika (s strukturo sbd)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Uvozi mapo Maildir"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Uvoz sporočil EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Posamezna sporočila EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Vsa sporočila EML iz imenika"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Vsa sporočila EML iz imenika in podimenikov"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Kopiraj pot do mape"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Odpri imenik map"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Sporočila s prilogami in indeksom"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Sporočila s prilogami in indeksom"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Sporočila kot ena datoteka"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Sporočila kot ena datoteka s prilogami"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Oblika HTML"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Oblika CSV"
-	},
-
-	"subjectFmtToken": {
-		"message": "${zadeva}"
-	},
-
-	"senderFmtToken": {
-		"message": "${pošiljatelj}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${prejemnik}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${pošiljatelj_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${prejemnik_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${pametno_ime}"
-	},
-
-	"indexFmtToken": {
-		"message": "${kazalo}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${predpono}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${pripona}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${datum_po_meri}"
-	},
-
-	"dateFmtToken": {
-		"message": "${datum}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Izvozi račun"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Shranite prilogo EML v to mapo"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Sporočila in indeks s podmapami"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Sporočila in indeks s podmapami"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Sporočila, kazalo in priloge s podmapami"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-		"message": "Sporočila in indeks HTML"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
-		"message": "Sporočila in indeks s podmapami"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
-		"message": "Sporočila in indeks s podmapami"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Sporočila, kazalo in priloge s podmapami"
-	}
+    "MACwarning": {
+        "message": "N.B: zapri vsako drugo okno pred nadaljevanjem"
+    },
+    "MBcaptionlabel1": {
+        "message": "Splošne nastavitve"
+    },
+    "MBlabel1": {
+        "message": "Prepiši datoteke mbox z istim imenom v ciljni mapi"
+    },
+    "MBlabel2": {
+        "message": "V izvozu uporabi samo črke in številke"
+    },
+    "MBlabel3": {
+        "message": "Pred uvozom datotek mbox iz mape vprašaj za potrditev"
+    },
+    "MBlabel4": {
+        "message": "Oblika HTML, kot je prikazana v podoknu sporočil"
+    },
+    "MBlabel5": {
+        "message": "Kopiraj na odložišče samo v golem besedilu (lahko povzroči težave z združljivostjo)"
+    },
+    "MBlabel7a": {
+        "message": "Največja dolžina zadeve:"
+    },
+    "MBlabel7b": {
+        "message": "znakov"
+    },
+    "MBlabel7c": {
+        "message": "Največja dolžina pošiljateljevega imena:"
+    },
+    "MBlabel7d": {
+        "message": "Največja dolžina prejemnikovega imena:"
+    },
+    "abortExport": {
+        "message": "Ustavi trenutni izvoz"
+    },
+    "addNumber.label": {
+        "message": "Ob uvozu datoteke mbox imenu vedno dodaj naključno število"
+    },
+    "addPrefix": {
+        "message": "Dodaj predpono"
+    },
+    "addSuffix": {
+        "message": "Dodaj pripono"
+    },
+    "addTimestamp": {
+        "message": "Dodaj datum lastnostim datoteke"
+    },
+    "addtime.label": {
+        "message": "Dodaj datumu čas"
+    },
+    "allFiles": {
+        "message": "Vse datoteke profila"
+    },
+    "allFilesMode": {
+        "message": "vedno vse datoteke"
+    },
+    "allMsg": {
+        "message": "Izvoz vseh sporočil"
+    },
+    "asCSV": {
+        "message": "Preglednica (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Shranite prilogo EML v to mapo"
+    },
+    "attachmentFolderNames": {
+        "message": "Imena map priponk"
+    },
+    "attachmentFolders": {
+        "message": "Mape s priponkami"
+    },
+    "autoName": {
+        "message": "Samodejno (ime mape + datum)"
+    },
+    "backupDestination": {
+        "message": "Cilj"
+    },
+    "backupFolderName": {
+        "message": "Ime mape za varnostno kopiranje"
+    },
+    "backupFreq": {
+        "message": "Pogostost"
+    },
+    "backupOn": {
+        "message": "Omogoči"
+    },
+    "backupOnExit": {
+        "message": "Varnostno kopiranje ob izhodu"
+    },
+    "backupSettings": {
+        "message": "Nastavitve varnostnega kopiranja"
+    },
+    "backupTab": {
+        "message": "Varnostno kopiranje"
+    },
+    "backupType": {
+        "message": "Vsebina varnostne kopije"
+    },
+    "browse": {
+        "message": "Brskaj"
+    },
+    "buildMSF.label": {
+        "message": "Sestavi kazalo za uvožene datoteke mbox"
+    },
+    "captionCustomize": {
+        "message": "Oblika po meri za imena datotek"
+    },
+    "copyFolderPath": {
+        "message": "Kopiraj pot mape na disk"
+    },
+    "csvSep": {
+        "message": "Ločilo za izvoz v obliki CSV:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "pomoč"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Opcije"
+    },
+    "customDate": {
+        "message": "Datum po meri:"
+    },
+    "customName": {
+        "message": "Po meri"
+    },
+    "customizeFilename": {
+        "message": "Uporabi naslednjo obliko:"
+    },
+    "cutFN": {
+        "message": "Prireži celotno dolžino poti datoteke na 256 znakov"
+    },
+    "cutPathLen": {
+        "message": "Zmanjšajte dolžino poti do datoteke na 256 znakov"
+    },
+    "cutSub": {
+        "message": "Prireži zadevo na 50 znakov"
+    },
+    "date": {
+        "message": "Datum"
+    },
+    "dateCustomFmtToken": {
+        "message": "${datum_po_meri}"
+    },
+    "dateCustomOpt": {
+        "message": "Datum (po meri)"
+    },
+    "dateFmtToken": {
+        "message": "${datum}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Referenca zapisa datuma"
+    },
+    "day1": {
+        "message": "1 dan"
+    },
+    "day15": {
+        "message": "15 dni"
+    },
+    "day3": {
+        "message": "3 dni"
+    },
+    "day30": {
+        "message": "30 dni"
+    },
+    "day7": {
+        "message": "7 dni"
+    },
+    "description1": {
+        "message": "Datum zadnje varnostne kopije: $t"
+    },
+    "description2": {
+        "message": "Na osnovi teh nastavitev je zdaj potrebno narediti varnostno kopijo."
+    },
+    "description3": {
+        "message": "Med tem opravilom bo program neodziven za nekaj minut."
+    },
+    "description4": {
+        "message": "Ali želite nadaljevati?"
+    },
+    "description5": {
+        "message": "Varnostno kopiranje je v teku ... počakajte."
+    },
+    "description6": {
+        "message": "Varnostno kopiranje končano."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG - Varnostna kopija"
+    },
+    "emlExport": {
+        "message": "Izvozi mape kot posamezne datoteke:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Razširjena referenca za obliko datoteke"
+    },
+    "extFormat": {
+        "message": "Format:"
+    },
+    "extensionDescription": {
+        "message": "Doda orodja za uvoz/izvoz sporočil in map (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Dolžina imen datotek"
+    },
+    "filenameCharset": {
+        "message": "Nabor znakov za imena datotek:"
+    },
+    "filenameFormat": {
+        "message": "Imena datotek"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Kopiraj pot do mape"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Izvozi račun"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Izvozi vsa sporočila v mapi"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Format CSV (preglednica)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Sporočila in indeks s podmapami"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Oblika sporočila EML"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "S sploščenimi podmapami"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Kot datoteko mbox"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Strukturirano s podmapami"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Ena stisnjena datoteka mbox"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Izvoz mape (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Sporočila in indeks s podmapami"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Sporočila, kazalo in priloge s podmapami"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Sporočila s prilogami in indeksom"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Oblika HTML"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Oblika CSV"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Oblika HTML"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Indeks sporočil"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Sporočila in indeks s podmapami"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF format"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Sporočila in indeks s podmapami"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Sporočila, kazalo in priloge s podmapami"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Sporočila s prilogami in indeksom"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Sporočila kot ena datoteka s prilogami"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Sporočila kot ena datoteka"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Oblika navadnega besedila"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Izvozi oddaljeno mapo"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Iskanje in izvoz sporočil"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Vsa sporočila EML iz imenika in podimenikov"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Vsa sporočila EML iz imenika"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Posamezna sporočila EML"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Uvoz sporočil EML"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Uvozi mapo Maildir"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Vse datoteke mbox iz imenika (s strukturo sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Vse datoteke mbox iz imenika"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Posamezne datoteke mbox (s strukturo sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Posamezne datoteke mbox"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Uvozite datoteke mbox"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Odpri imenik map"
+    },
+    "indexCSVdateFormat": {
+        "message": "Kazalo, oblika zapisa datuma CSV:"
+    },
+    "indexFmtToken": {
+        "message": "${kazalo}"
+    },
+    "indexOff": {
+        "message": "uporabi izbrano mapo brez kazala"
+    },
+    "indexOn": {
+        "message": "ustvari novo mapo in kazalo sporočil"
+    },
+    "indexSettingLabel": {
+        "message": "Ob izvozu vseh sporočil mape s pošto:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Vgrajene mape s prilogami"
+    },
+    "justMailFiles": {
+        "message": "Samo datoteke pošte"
+    },
+    "key": {
+        "message": "Kazalo"
+    },
+    "labelmenuMI": {
+        "message": "ImportExportTools NG"
+    },
+    "lastBackup": {
+        "message": "Zadnje varnostno kopiranje"
+    },
+    "mboxExport": {
+        "message": "Izvozi mape kot datoteko MBOX:"
+    },
+    "misc": {
+        "message": "Razno"
+    },
+    "modal": {
+        "message": "Uporabi 'načinovno' okno"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Glave"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Sporočilo"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Kopirati v odložišče"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Format CSV (preglednica)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Sporočila (vdelane priloge)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Oblika sporočila EML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Samo sporočila"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Sporočila s prilogami in indeksom"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Sporočila in priloge"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Oblika HTML"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Oblika CSV"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Oblika HTML"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Indeks sporočil"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Dodaj v obstoječo datoteko mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Nova datoteka mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox format"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF format"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Sporočila in indeks HTML"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Samo sporočila"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Sporočila s prilogami in indeksom"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Sporočila in priloge"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Oblika navadnega besedila"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Izvozi sporočila kot ..."
+    },
+    "name": {
+        "message": "Ime"
+    },
+    "newFilesMode": {
+        "message": "samo datoteke, ki so bile spremenjene po zadnjem kopiranju"
+    },
+    "openHelpInWindow.label": {
+        "message": "Odpiranje pomoči v oknu namesto na zavihku"
+    },
+    "prefixFmtToken": {
+        "message": "${predpono}"
+    },
+    "recipient": {
+        "message": "Prejemnik"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${prejemnik_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${prejemnik}"
+    },
+    "save": {
+        "message": "Shrani"
+    },
+    "savedirs": {
+        "message": "Izvoz map"
+    },
+    "sdAll": {
+        "message": "Vse"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Izvozi"
+    },
+    "sdFormat": {
+        "message": "Oblika"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (novo)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (pripni)"
+    },
+    "sdMessages": {
+        "message": "Sporočila"
+    },
+    "sdSelected": {
+        "message": "Izbrana"
+    },
+    "sdSingleFile": {
+        "message": "Kot enojna besedilna datoteka"
+    },
+    "sdText": {
+        "message": "Golo besedilo"
+    },
+    "selExport": {
+        "message": "Izvozi izbrana sporočila:"
+    },
+    "sender": {
+        "message": "Pošiljatelj"
+    },
+    "senderEmailFmtToken": {
+        "message": "${pošiljatelj_email}"
+    },
+    "senderFmtToken": {
+        "message": "${pošiljatelj}"
+    },
+    "skipMsgLabel": {
+        "message": "Ne shrani sporočil, kadar obstaja pripadajoča datoteka"
+    },
+    "smartNameFmtToken": {
+        "message": "${pametno_ime}"
+    },
+    "strip_eml_CR.label": {
+        "message": "Odstrani CR iz koncev vrstic za izvoz sporočil eml"
+    },
+    "subject": {
+        "message": "Zadeva"
+    },
+    "subjectFmtToken": {
+        "message": "${zadeva}"
+    },
+    "suffixFmtToken": {
+        "message": "${pripona}"
+    },
+    "textCharset": {
+        "message": "Nabor znakov za izvoz v besedilni obliki in obliki CSV:"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Rezerva"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Celoten profil"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Samo po pošti"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Izvozi profil"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Uvozi profil"
+    },
+    "useExtFilenameFormat": {
+        "message": "Uporabi razširjeno obliko"
+    },
+    "useMboxExt.label": {
+        "message": "Uporabite pripono .mbox za datoteke mbox (nestrukturirane)"
+    }
 }

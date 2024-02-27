@@ -1,361 +1,575 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Ավելացնում է գործիքներ հաղորդագրությունների և թղթապանակների ներմուծման/արտահանման համար (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Ընտրանքներ"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Օգնություն"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Արտահանել պրոֆիլը"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Ներմուծեք պրոֆիլը"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Կրկնօրինակում"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Ամբողջական պրոֆիլ"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Միայն փոստ"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Արտահանել հաղորդագրությունները որպես…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML հաղորդագրության ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Պարզ տեքստի ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV ձևաչափ (Աղյուսակ)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Հաղորդագրությունների ինդեքս"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Պատճենել սեղմատախտակին"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Հաղորդագրություններ (ներկառուցված հավելվածներ)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Միայն հաղորդագրություններ"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Հաղորդագրություններ և հավելվածներ"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Միայն հաղորդագրություններ"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Հաղորդագրություններ և հավելվածներ"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Նոր mbox ֆայլ"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Ավելացրեք գոյություն ունեցող mbox ֆայլին"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML ձևաչափ"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV ձևաչափ"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Հաղորդագրություն"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Վերնագրեր"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Թղթապանակի արտահանում (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Որպես mbox ֆայլ"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Մեկ zipped mbox ֆայլ"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Կառուցված են ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Հարթեցված ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Արտահանել հեռավոր թղթապանակ"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Արտահանել բոլոր հաղորդագրությունները թղթապանակում"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML հաղորդագրության ձևաչափ"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML ձևաչափ"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF ձևաչափ"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Պարզ տեքստի ձևաչափ"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV ձևաչափ (Աղյուսակ)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Հաղորդագրությունների ինդեքս"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Որոնել և արտահանել հաղորդագրություններ"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Ներմուծեք mbox ֆայլեր"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Անհատական mbox ֆայլեր"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Անհատական mbox ֆայլեր (sbd կառուցվածքով)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Բոլոր mbox ֆայլերը գրացուցակից"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Բոլոր mbox ֆայլերը գրացուցակից (sbd կառուցվածքով)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Ներմուծեք Maildir թղթապանակը"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Ներմուծեք EML հաղորդագրություններ"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Անհատական EML հաղորդագրություններ"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Բոլոր EML հաղորդագրությունները գրացուցակից"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Բոլոր EML հաղորդագրությունները գրացուցակից և ենթագրքերից"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Պատճենել Թղթապանակի ուղին"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Բացեք Թղթապանակների գրացուցակը"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Հաղորդագրությունները որպես մեկ ֆայլ"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Հաղորդագրությունները որպես առանձին ֆայլ՝ հավելվածներով"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML ձևաչափ"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV ձևաչափ"
-	},
-
-	"subjectFmtToken": {
-		"message": "${Վերնագիրը}"
-	},
-
-	"senderFmtToken": {
-		"message": "${ուղարկող}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${ստացող}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${ուղարկող_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${ստացող_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${խելացի_անուն}"
-	},
-
-	"indexFmtToken": {
-		"message": "${ինդեքս}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${նախածանց}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${վերջածանց}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${ամսաթիվի_մաքսային}"
-	},
-
-	"dateFmtToken": {
-		"message": "${ամսաթիվը}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Արտահանման հաշիվ"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Պահպանեք EML հավելվածն այս թղթապանակում"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-		"message": "Հաղորդագրություններ և HTML ինդեքս"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
-	}
+    "MACwarning": {
+        "message": "Ուշադրություն. փակեք բոլոր պատուհանները:"
+    },
+    "MBcaptionlabel1": {
+        "message": "Գլխավոր կարգավորումները"
+    },
+    "MBlabel1": {
+        "message": "Վերագրել mbox միևնույն անունով ֆայլերը նշանակման թղթապանակում"
+    },
+    "MBlabel2": {
+        "message": "Արտածելիս օգտագործել միայն այբենական նշաններ"
+    },
+    "MBlabel3": {
+        "message": "Պահանջել հաստատում՝ mbox ֆայլերը թղթապանակից ներմուծելուց առաջ"
+    },
+    "MBlabel4": {
+        "message": "HTML տեսակի՝ ինչպես-որ ցուցադրված է նամակների վահանակում"
+    },
+    "MBlabel5": {
+        "message": "Պատճենել մեկուսաշրջույթ միայն տեքստային տեսակով (կարող է հանգեցնել համատեղելիության խնդիրների)"
+    },
+    "MBlabel7a": {
+        "message": "Վերնագրի առավ. երկարությունը"
+    },
+    "MBlabel7b": {
+        "message": "նշաններ"
+    },
+    "MBlabel7c": {
+        "message": "Ուղարկողի անվան առավ. երկարությունը"
+    },
+    "MBlabel7d": {
+        "message": "Ստացողների անվան առավ. երկարությունը"
+    },
+    "abortExport": {
+        "message": "Կանգնեցնել ներմուծումը"
+    },
+    "addNumber.label": {
+        "message": "mbox ֆայլերը ներմուծելիս մշտապես անվանը ավելացնել պատահական համար"
+    },
+    "addPrefix": {
+        "message": "Հավելել նախածանց"
+    },
+    "addSuffix": {
+        "message": "Ավելացնել վերջածանց"
+    },
+    "addTimestamp": {
+        "message": "Հավելել ամսաթիվ ֆայլի հատկություններում"
+    },
+    "addtime.label": {
+        "message": "Հավելել ժամանակը ամսաթվում"
+    },
+    "allFiles": {
+        "message": "Բոլոր պրոֆիլների ֆայլերը"
+    },
+    "allFilesMode": {
+        "message": "Մշտապես բոլոր ֆայլերը"
+    },
+    "allMsg": {
+        "message": "Արտածել բոլոր նամակները"
+    },
+    "asCSV": {
+        "message": "Spreadsheet (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Պահպանեք EML հավելվածն այս թղթապանակում"
+    },
+    "attachmentFolderNames": {
+        "message": "Հավելվածի թղթապանակների անունները"
+    },
+    "attachmentFolders": {
+        "message": "Հավելվածի թղթապանակներ"
+    },
+    "autoName": {
+        "message": "Ինքնաշխատ (թղթ. անունը + ամսաթիվը)"
+    },
+    "backupDestination": {
+        "message": "Տեղը՝"
+    },
+    "backupFolderName": {
+        "message": "Պահուստի թղթպ-ի անունը"
+    },
+    "backupFreq": {
+        "message": "Հաճախականությունը"
+    },
+    "backupOn": {
+        "message": "Միացնել"
+    },
+    "backupOnExit": {
+        "message": "Ելքի պահուստավորում"
+    },
+    "backupSettings": {
+        "message": "Պահուստացման կարգավորումներ"
+    },
+    "backupTab": {
+        "message": "Պահուստի պլանավորում"
+    },
+    "backupType": {
+        "message": "Պահուստի բով-ը"
+    },
+    "browse": {
+        "message": "Ընտրել"
+    },
+    "buildMSF.label": {
+        "message": "Կառուցել ինդեքսը՝ ներմուծված mbox ֆայլերի համար"
+    },
+    "captionCustomize": {
+        "message": "Հարմարեցված տեսակ՝ ֆայլի անունների համար"
+    },
+    "copyFolderPath": {
+        "message": "Պատճենել թղթապանակի ճ-ը պնակում"
+    },
+    "csvSep": {
+        "message": "Բաժանիչ՝ արտածվող CSV ֆայլի համար."
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Օգնություն"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Ընտրանքներ"
+    },
+    "customDate": {
+        "message": "Պատվերով ամսաթիվ."
+    },
+    "customName": {
+        "message": "Հարմարեցված"
+    },
+    "customizeFilename": {
+        "message": "Օգտ. հետևյալ տեսակը՝"
+    },
+    "cutFN": {
+        "message": "Կտրել ֆայլի ամբողջական ճ-ի երկարությունը 256 նիշի"
+    },
+    "cutPathLen": {
+        "message": "Կտրեք ֆայլի ուղու երկարությունը մինչև 256 նիշ"
+    },
+    "cutSub": {
+        "message": "Կտրել վերնագիրը 50 նիշի"
+    },
+    "date": {
+        "message": "Ամսաթիվը"
+    },
+    "dateCustomFmtToken": {
+        "message": "${ամսաթիվի_մաքսային}"
+    },
+    "dateCustomOpt": {
+        "message": "Ամսաթիվ (Պատվերով)"
+    },
+    "dateFmtToken": {
+        "message": "${ամսաթիվը}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Ամսաթվի ձևաչափի տեղեկանք"
+    },
+    "day1": {
+        "message": "1 օր"
+    },
+    "day15": {
+        "message": "15 օր"
+    },
+    "day3": {
+        "message": "3 օր"
+    },
+    "day30": {
+        "message": "30 օր"
+    },
+    "day7": {
+        "message": "7 օր"
+    },
+    "description1": {
+        "message": "Վերջին պահուստացման օրը՝ $t"
+    },
+    "description2": {
+        "message": "Համաձայն կարգավորումների՝ այժմ անհրաժեշտ է պահուստացնել"
+    },
+    "description3": {
+        "message": "Գործողության ընթացքում ծրագիրը մի քանի րոպեով չի պատասխանի հարցումներին:"
+    },
+    "description4": {
+        "message": "Շարունակե՞լ"
+    },
+    "description5": {
+        "message": "Պահուստացվում է, մի փոքր սպասեք…"
+    },
+    "description6": {
+        "message": "Պատրաստ է"
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG` Պահուստացնել"
+    },
+    "emlExport": {
+        "message": "Արտածել թղթապանակները որպես եզակի ֆայլեր."
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Ֆայլի անվան ձևաչափի ընդլայնված հղում"
+    },
+    "extFormat": {
+        "message": "Ձևաչափ:"
+    },
+    "extensionDescription": {
+        "message": "Ավելացնում է գործիքներ հաղորդագրությունների և թղթապանակների ներմուծման/արտահանման համար (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Ֆայլերի անունների երկարությունը"
+    },
+    "filenameCharset": {
+        "message": "Ֆայլերի անունների գրանշանը"
+    },
+    "filenameFormat": {
+        "message": "Ֆայլերի անունները"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Պատճենել Թղթապանակի ուղին"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Արտահանման հաշիվ"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Արտահանել բոլոր հաղորդագրությունները թղթապանակում"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV ձևաչափ (Աղյուսակ)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML հաղորդագրության ձևաչափ"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "Հարթեցված ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Որպես mbox ֆայլ"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Կառուցված են ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Մեկ zipped mbox ֆայլ"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Թղթապանակի արտահանում (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML ձևաչափ"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV ձևաչափ"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML ձևաչափ"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Հաղորդագրությունների ինդեքս"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF ձևաչափ"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ և ինդեքս ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Հաղորդագրություններ, ինդեքս և հավելվածներ ենթաթղթապանակներով"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Հաղորդագրությունները որպես առանձին ֆայլ՝ հավելվածներով"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Հաղորդագրությունները որպես մեկ ֆայլ"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Պարզ տեքստի ձևաչափ"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Արտահանել հեռավոր թղթապանակ"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Որոնել և արտահանել հաղորդագրություններ"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Բոլոր EML հաղորդագրությունները գրացուցակից և ենթագրքերից"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Բոլոր EML հաղորդագրությունները գրացուցակից"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Անհատական EML հաղորդագրություններ"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Ներմուծեք EML հաղորդագրություններ"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Ներմուծեք Maildir թղթապանակը"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Բոլոր mbox ֆայլերը գրացուցակից (sbd կառուցվածքով)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Բոլոր mbox ֆայլերը գրացուցակից"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Անհատական mbox ֆայլեր (sbd կառուցվածքով)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Անհատական mbox ֆայլեր"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Ներմուծեք mbox ֆայլեր"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Բացեք Թղթապանակների գրացուցակը"
+    },
+    "indexCSVdateFormat": {
+        "message": "Ինդեքս, CSV Ամսաթիվ Ձևաչափը."
+    },
+    "indexFmtToken": {
+        "message": "${ինդեքս}"
+    },
+    "indexOff": {
+        "message": "օգտագործել նշված թղթապանակը՝ առանց ինդեքսի"
+    },
+    "indexOn": {
+        "message": "ստեղծել նոր թղթապանակ և նամակների ինդեքսը"
+    },
+    "indexSettingLabel": {
+        "message": "Բոլոր նամակները նամակի թղթապանակում արտածելիս."
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Ներդիր հավելվածների թղթապանակներ"
+    },
+    "justMailFiles": {
+        "message": "Պարզապես ուղարկել ֆայլերը"
+    },
+    "key": {
+        "message": "Ինդեքս"
+    },
+    "labelmenuMI": {
+        "message": "Ներմուծել/Արտածել"
+    },
+    "lastBackup": {
+        "message": "Վերջին պահուստացումը"
+    },
+    "mboxExport": {
+        "message": "Արտածել թղթապանակները որպես MBOX ֆայլ."
+    },
+    "misc": {
+        "message": "Խառը"
+    },
+    "modal": {
+        "message": "Օգտ. 'մոդալ'"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Վերնագրեր"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Հաղորդագրություն"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Պատճենել սեղմատախտակին"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV ձևաչափ (Աղյուսակ)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Հաղորդագրություններ (ներկառուցված հավելվածներ)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML հաղորդագրության ձևաչափ"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Միայն հաղորդագրություններ"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Հաղորդագրություններ և հավելվածներ"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML ձևաչափ"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV ձևաչափ"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML ձևաչափ"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Հաղորդագրությունների ինդեքս"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Ավելացրեք գոյություն ունեցող mbox ֆայլին"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Նոր mbox ֆայլ"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox ձևաչափ"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF ձևաչափ"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ և HTML ինդեքս"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Միայն հաղորդագրություններ"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Հաղորդագրություններ հավելվածներով և ինդեքսով"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Հաղորդագրություններ և հավելվածներ"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Պարզ տեքստի ձևաչափ"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Արտահանել հաղորդագրությունները որպես…"
+    },
+    "name": {
+        "message": "Անունը"
+    },
+    "newFilesMode": {
+        "message": "Միայն ֆայլերը, որոնք փոփոխվել են վերջին պահուստացումից հետո"
+    },
+    "openHelpInWindow.label": {
+        "message": "Բացեք օգնությունը պատուհանում՝ ներդիրի փոխարեն"
+    },
+    "prefixFmtToken": {
+        "message": "${նախածանց}"
+    },
+    "recipient": {
+        "message": "Ստացողը"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${ստացող_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${ստացող}"
+    },
+    "save": {
+        "message": "Պահպանել"
+    },
+    "savedirs": {
+        "message": "Արտածել թղթապանակները"
+    },
+    "sdAll": {
+        "message": "Բոլորը"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Արտածել"
+    },
+    "sdFormat": {
+        "message": "Տեսակը"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (նոր)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (ավելացնել)"
+    },
+    "sdMessages": {
+        "message": "Նամակները"
+    },
+    "sdSelected": {
+        "message": "Նշվածերը"
+    },
+    "sdSingleFile": {
+        "message": "որպես եզակի տեքստային ֆայլ"
+    },
+    "sdText": {
+        "message": "Plain text"
+    },
+    "selExport": {
+        "message": "Արտածել ընտրված նամակները."
+    },
+    "sender": {
+        "message": "Ուղարկողը"
+    },
+    "senderEmailFmtToken": {
+        "message": "${ուղարկող_email}"
+    },
+    "senderFmtToken": {
+        "message": "${ուղարկող}"
+    },
+    "skipMsgLabel": {
+        "message": "չպահպանել նամակները, երբ թղթակից ֆայլը առկա է"
+    },
+    "smartNameFmtToken": {
+        "message": "${խելացի_անուն}"
+    },
+    "strip_eml_CR.label": {
+        "message": "Հեռացրեք CR-ը տողերի վերջավորություններից eml հաղորդագրությունների արտահանման համար"
+    },
+    "subject": {
+        "message": "Վերնագիրը"
+    },
+    "subjectFmtToken": {
+        "message": "${Վերնագիրը}"
+    },
+    "suffixFmtToken": {
+        "message": "${վերջածանց}"
+    },
+    "textCharset": {
+        "message": "Արտածելու գրանշանը տեքստային և CSV տեսակի համար՝"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Կրկնօրինակում"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Ամբողջական պրոֆիլ"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Միայն փոստ"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Արտահանել պրոֆիլը"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Ներմուծեք պրոֆիլը"
+    },
+    "useExtFilenameFormat": {
+        "message": "Օգտագործեք երկարացված ձևաչափը"
+    },
+    "useMboxExt.label": {
+        "message": "Օգտագործեք .mbox ընդլայնում mbox ֆայլերի համար (ոչ կառուցվածքային)"
+    }
 }

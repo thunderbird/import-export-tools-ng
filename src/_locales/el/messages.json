@@ -1,361 +1,575 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Προσθέτει εργαλεία για εισαγωγή/εξαγωγή μηνυμάτων και φακέλων (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Επιλογές"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Βοήθεια"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Εξαγωγή προφίλ"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Εισαγωγή προφίλ"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Αντιγράφων ασφαλείας"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Πλήρες προφίλ"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Μόνο αλληλογραφία"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Εξαγωγή μηνυμάτων ως…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Μορφή μηνύματος EML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Μορφή HTML"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Μορφή PDF"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Μορφή απλού κειμένου"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Μορφή CSV (υπολογιστικό φύλλο)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "Μορφή mbox"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Ευρετήριο μηνυμάτων"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Αντιγραφή στο πρόχειρο"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Μηνύματα (Ενσωματωμένα συνημμένα)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Μόνο μηνύματα"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Μηνύματα και συνημμένα"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Μηνύματα με συνημμένα και ευρετήριο"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Μόνο μηνύματα"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Μηνύματα και συνημμένα"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Μηνύματα με συνημμένα και ευρετήριο"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Νέο αρχείο mbox"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Προσθήκη σε υπάρχον αρχείο mbox"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Μορφή HTML"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Μορφή CSV"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Μήνυμα"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Κεφαλίδες"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Εξαγωγή φακέλου (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Ως αρχείο mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Ενιαίο αρχείο mbox με συμπίεση"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Δομημένο με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Με ισοπεδωμένους υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Εξαγωγή απομακρυσμένου φακέλου"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Εξαγωγή όλων των μηνυμάτων σε φάκελο"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Μορφή μηνύματος EML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Μορφή HTML"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Μορφή PDF"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Μορφή απλού κειμένου"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Μορφή CSV (υπολογιστικό φύλλο)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Ευρετήριο μηνυμάτων"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Αναζήτηση και εξαγωγή μηνυμάτων"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Εισαγωγή αρχείων mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Μεμονωμένα αρχεία mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Μεμονωμένα αρχεία mbox (με δομή sbd)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Όλα τα αρχεία mbox από τον κατάλογο"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Όλα τα αρχεία mbox από τον κατάλογο (με δομή sbd)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Εισαγωγή φακέλου Maildir"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Εισαγωγή μηνυμάτων EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Μεμονωμένα μηνύματα EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Όλα τα μηνύματα EML από έναν κατάλογο"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Όλα τα μηνύματα EML από έναν κατάλογο και υποκαταλόγους"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Αντιγραφή διαδρομής φακέλου"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Ανοίξτε τον κατάλογο φακέλων"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Μηνύματα με συνημμένα και ευρετήριο"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Μηνύματα με συνημμένα και ευρετήριο"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Μηνύματα ως μεμονωμένο αρχείο"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Μηνύματα ως μεμονωμένο αρχείο με συνημμένα"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Μορφή HTML"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Μορφή CSV"
-	},
-
-	"subjectFmtToken": {
-		"message": "${θέμα}"
-	},
-
-	"senderFmtToken": {
-		"message": "${αποστολέας}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${παραλήπτης}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${αποστολέας_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${παραλήπτης_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${smart_name}"
-	},
-
-	"indexFmtToken": {
-		"message": "${ευρετήριο}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${πρόθεμα}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${επίθημα}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${date_custom}"
-	},
-
-	"dateFmtToken": {
-		"message": "${ημερομηνία}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Εξαγωγή λογαριασμού"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Αποθηκεύστε το συνημμένο EML σε αυτόν τον φάκελο"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα και ευρετήριο με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα και ευρετήριο με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα, ευρετήριο και συνημμένα με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-		"message": "Μηνύματα και ευρετήριο HTML"
-	},
-
-	"folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα και ευρετήριο με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα και ευρετήριο με υποφακέλους"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
-		"message": "Μηνύματα, ευρετήριο και συνημμένα με υποφακέλους"
-	}
+    "MACwarning": {
+        "message": "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε."
+    },
+    "MBcaptionlabel1": {
+        "message": "Γενικές Ρυθμίσεις"
+    },
+    "MBlabel1": {
+        "message": "Αντικαταστήστε τα αρχεία mbox με το ίδιο όνομα στον κατάλογο προορισμών"
+    },
+    "MBlabel2": {
+        "message": "Χρησιμοποιήστε μόνο αλφαριθμητικούς χαρακτήρες κατά την εξαγωγή"
+    },
+    "MBlabel3": {
+        "message": "Ζητήστε επιβεβαίωση πριν από την εισαγωγή αρχείων mbox από έναν κατάλογο"
+    },
+    "MBlabel4": {
+        "message": "Μορφή HTML όπως εμφανίζεται στον πίνακα μηνυμάτων"
+    },
+    "MBlabel5": {
+        "message": "Αντιγραφή στο πρόχειρο μόνο σε μορφή κειμένου (μπορεί να προκαλέσει προβλήματα συμβατότητας)"
+    },
+    "MBlabel7a": {
+        "message": "Μέγιστο μήκος θέματος:"
+    },
+    "MBlabel7b": {
+        "message": "χαρακτήρες"
+    },
+    "MBlabel7c": {
+        "message": "Μέγιστο μήκος ονόματος αποστολέα:"
+    },
+    "MBlabel7d": {
+        "message": "Μέγιστο μήκος ονόματος παραλήπτη:"
+    },
+    "abortExport": {
+        "message": "Διακοπή της τρέχουσας εξαγωγής"
+    },
+    "addNumber.label": {
+        "message": "Προσθέστε πάντα στο όνομα έναν τυχαίο αριθμό κατά την εισαγωγή αρχείων mbox"
+    },
+    "addPrefix": {
+        "message": "Προσθήκη προθέματος"
+    },
+    "addSuffix": {
+        "message": "Προσθέστε επίθημα"
+    },
+    "addTimestamp": {
+        "message": "Προσθέστε ημερομηνία στις ιδιότητες αρχείου"
+    },
+    "addtime.label": {
+        "message": "Προσθέστε ώρα μέχρι σήμερα"
+    },
+    "allFiles": {
+        "message": "Όλα τα αρχεία προφίλ"
+    },
+    "allFilesMode": {
+        "message": "Πάντα όλα τα αρχεία"
+    },
+    "allMsg": {
+        "message": "Εξαγωγή όλων των μηνυμάτων"
+    },
+    "asCSV": {
+        "message": "Υπολογιστικό φύλλο (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Αποθηκεύστε το συνημμένο EML σε αυτόν τον φάκελο"
+    },
+    "attachmentFolderNames": {
+        "message": "Ονόματα φακέλων συνημμένων"
+    },
+    "attachmentFolders": {
+        "message": "Φάκελοι συνημμένων"
+    },
+    "autoName": {
+        "message": "Αυτόματο (όνομα φακέλου + ημερομηνία)"
+    },
+    "backupDestination": {
+        "message": "Προορισμός"
+    },
+    "backupFolderName": {
+        "message": "Όνομα φακέλου για δημιουργία αντιγράφων ασφαλείας"
+    },
+    "backupFreq": {
+        "message": "Συχνότητα"
+    },
+    "backupOn": {
+        "message": "επιτρέπω"
+    },
+    "backupOnExit": {
+        "message": "Δημιουργία αντιγράφων ασφαλείας στην έξοδο"
+    },
+    "backupSettings": {
+        "message": "Ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας"
+    },
+    "backupTab": {
+        "message": "Προγραμματισμός αντιγράφων ασφαλείας"
+    },
+    "backupType": {
+        "message": "Εφεδρικό περιεχόμενο"
+    },
+    "browse": {
+        "message": "Ξεφυλλίζω…"
+    },
+    "buildMSF.label": {
+        "message": "Δημιουργία ευρετηρίου για εισαγόμενα αρχεία mbox"
+    },
+    "captionCustomize": {
+        "message": "Προσαρμοσμένη μορφή για ονόματα αρχείων"
+    },
+    "copyFolderPath": {
+        "message": "Αντιγραφή διαδρομής φακέλου στο δίσκο"
+    },
+    "csvSep": {
+        "message": "Διαχωριστικό για εξαγωγή σε μορφή CSV:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Βοήθεια"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Επιλογές"
+    },
+    "customDate": {
+        "message": "Προσαρμοσμένη ημερομηνία:"
+    },
+    "customName": {
+        "message": "Προσαρμοσμένη"
+    },
+    "customizeFilename": {
+        "message": "Χρησιμοποιήστε την ακόλουθη μορφή:"
+    },
+    "cutFN": {
+        "message": "Κόψτε ολόκληρο το μήκος διαδρομής αρχείου σε 256 χαρακτήρες"
+    },
+    "cutPathLen": {
+        "message": "Κόψτε το μήκος της διαδρομής του αρχείου σε 256 χαρακτήρες"
+    },
+    "cutSub": {
+        "message": "Κόψτε το θέμα με 50 χαρακτήρες"
+    },
+    "date": {
+        "message": "Ημερομηνία"
+    },
+    "dateCustomFmtToken": {
+        "message": "${date_custom}"
+    },
+    "dateCustomOpt": {
+        "message": "Ημερομηνία (Προσαρμοσμένο)"
+    },
+    "dateFmtToken": {
+        "message": "${ημερομηνία}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Αναφορά μορφής ημερομηνίας"
+    },
+    "day1": {
+        "message": "1 ημέρα"
+    },
+    "day15": {
+        "message": "15 μέρες"
+    },
+    "day3": {
+        "message": "3 ημέρες"
+    },
+    "day30": {
+        "message": "30 μέρες"
+    },
+    "day7": {
+        "message": "7 ημέρες"
+    },
+    "description1": {
+        "message": "Ημερομηνία τελευταίας δημιουργίας αντιγράφων ασφαλείας: $ t"
+    },
+    "description2": {
+        "message": "Με βάση τις ρυθμίσεις, είναι απαραίτητο τώρα να δημιουργήσετε το αντίγραφο ασφαλείας."
+    },
+    "description3": {
+        "message": "Κατά τη διάρκεια αυτής της λειτουργίας, το πρόγραμμα δεν αποκρίνεται για μερικά λεπτά."
+    },
+    "description4": {
+        "message": "Θέλετε να συνεχίσετε;"
+    },
+    "description5": {
+        "message": "Δημιουργία αντιγράφων ασφαλείας σε εξέλιξη, περιμένετε…"
+    },
+    "description6": {
+        "message": "Η δημιουργία αντιγράφων ασφαλείας ολοκληρώθηκε."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG- Δημιουργία αντιγράφων ασφαλείας"
+    },
+    "emlExport": {
+        "message": "Εξαγωγή φακέλων ως μεμονωμένα αρχεία:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Αναφορά εκτεταμένης μορφής ονόματος αρχείου"
+    },
+    "extFormat": {
+        "message": "Μορφή:"
+    },
+    "extensionDescription": {
+        "message": "Προσθέτει εργαλεία για εισαγωγή/εξαγωγή μηνυμάτων και φακέλων (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Μήκος ονομάτων αρχείων"
+    },
+    "filenameCharset": {
+        "message": "Charset για ονόματα αρχείων:"
+    },
+    "filenameFormat": {
+        "message": "Ονόματα αρχείων"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Αντιγραφή διαδρομής φακέλου"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Εξαγωγή λογαριασμού"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Εξαγωγή όλων των μηνυμάτων σε φάκελο"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Μορφή CSV (υπολογιστικό φύλλο)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα και ευρετήριο με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Μορφή μηνύματος EML"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "Με ισοπεδωμένους υποφακέλους"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Ως αρχείο mbox"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Δομημένο με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Ενιαίο αρχείο mbox με συμπίεση"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Εξαγωγή φακέλου (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα και ευρετήριο με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα, ευρετήριο και συνημμένα με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Μηνύματα με συνημμένα και ευρετήριο"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Μορφή HTML"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Μορφή CSV"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Μορφή HTML"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Ευρετήριο μηνυμάτων"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα και ευρετήριο με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Μορφή PDF"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα και ευρετήριο με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Μηνύματα, ευρετήριο και συνημμένα με υποφακέλους"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Μηνύματα με συνημμένα και ευρετήριο"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Μηνύματα ως μεμονωμένο αρχείο με συνημμένα"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Μηνύματα ως μεμονωμένο αρχείο"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Μορφή απλού κειμένου"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Εξαγωγή απομακρυσμένου φακέλου"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Αναζήτηση και εξαγωγή μηνυμάτων"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Όλα τα μηνύματα EML από έναν κατάλογο και υποκαταλόγους"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Όλα τα μηνύματα EML από έναν κατάλογο"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Μεμονωμένα μηνύματα EML"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Εισαγωγή μηνυμάτων EML"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Εισαγωγή φακέλου Maildir"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Όλα τα αρχεία mbox από τον κατάλογο (με δομή sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Όλα τα αρχεία mbox από τον κατάλογο"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Μεμονωμένα αρχεία mbox (με δομή sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Μεμονωμένα αρχεία mbox"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Εισαγωγή αρχείων mbox"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Ανοίξτε τον κατάλογο φακέλων"
+    },
+    "indexCSVdateFormat": {
+        "message": "Ευρετήριο, Μορφή ημερομηνίας CSV:"
+    },
+    "indexFmtToken": {
+        "message": "${ευρετήριο}"
+    },
+    "indexOff": {
+        "message": "χρησιμοποιήστε τον επιλεγμένο κατάλογο χωρίς ευρετήριο"
+    },
+    "indexOn": {
+        "message": "δημιουργήστε έναν νέο κατάλογο και το ευρετήριο των μηνυμάτων"
+    },
+    "indexSettingLabel": {
+        "message": "Κατά την εξαγωγή όλων των μηνυμάτων ενός φακέλου αλληλογραφίας:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Ενσωματωμένοι φάκελοι συνημμένων"
+    },
+    "justMailFiles": {
+        "message": "Απλά αλληλογραφία αρχείων"
+    },
+    "key": {
+        "message": "Δείκτης"
+    },
+    "labelmenuMI": {
+        "message": "ImportExportTools NG"
+    },
+    "lastBackup": {
+        "message": "Τελευταίο αντίγραφο ασφαλείας"
+    },
+    "mboxExport": {
+        "message": "Εξαγωγή φακέλων ως αρχείο MBOX:"
+    },
+    "misc": {
+        "message": "Διάφορα"
+    },
+    "modal": {
+        "message": "Χρησιμοποιήστε ένα παράθυρο &quot;modal&quot;"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Κεφαλίδες"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Μήνυμα"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Αντιγραφή στο πρόχειρο"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Μορφή CSV (υπολογιστικό φύλλο)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Μηνύματα (Ενσωματωμένα συνημμένα)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Μορφή μηνύματος EML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Μόνο μηνύματα"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Μηνύματα με συνημμένα και ευρετήριο"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Μηνύματα και συνημμένα"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Μορφή HTML"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Μορφή CSV"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Μορφή HTML"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Ευρετήριο μηνυμάτων"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Προσθήκη σε υπάρχον αρχείο mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Νέο αρχείο mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "Μορφή mbox"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Μορφή PDF"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Μηνύματα και ευρετήριο HTML"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Μόνο μηνύματα"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Μηνύματα με συνημμένα και ευρετήριο"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Μηνύματα και συνημμένα"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Μορφή απλού κειμένου"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Εξαγωγή μηνυμάτων ως…"
+    },
+    "name": {
+        "message": "Ονομα"
+    },
+    "newFilesMode": {
+        "message": "Απλά τροποποιήθηκαν αρχεία μετά την τελευταία δημιουργία αντιγράφων ασφαλείας"
+    },
+    "openHelpInWindow.label": {
+        "message": "Ανοίξτε τη βοήθεια σε ένα παράθυρο αντί για μια καρτέλα"
+    },
+    "prefixFmtToken": {
+        "message": "${πρόθεμα}"
+    },
+    "recipient": {
+        "message": "Παραλήπτης"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${παραλήπτης_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${παραλήπτης}"
+    },
+    "save": {
+        "message": "Αποθηκεύσετε"
+    },
+    "savedirs": {
+        "message": "Εξαγωγή καταλόγων"
+    },
+    "sdAll": {
+        "message": "Ολα"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Εξαγωγή"
+    },
+    "sdFormat": {
+        "message": "Μορφή"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (νέο)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (προσθήκη)"
+    },
+    "sdMessages": {
+        "message": "Μηνύματα"
+    },
+    "sdSelected": {
+        "message": "Επιλεγμένο"
+    },
+    "sdSingleFile": {
+        "message": "ως αρχείο μεμονωμένου κειμένου"
+    },
+    "sdText": {
+        "message": "Απλό κείμενο"
+    },
+    "selExport": {
+        "message": "Εξαγωγή επιλεγμένων μηνυμάτων:"
+    },
+    "sender": {
+        "message": "Αποστολέας"
+    },
+    "senderEmailFmtToken": {
+        "message": "${αποστολέας_email}"
+    },
+    "senderFmtToken": {
+        "message": "${αποστολέας}"
+    },
+    "skipMsgLabel": {
+        "message": "μην αποθηκεύετε μηνύματα όταν το αρχείο υπάρχει ήδη"
+    },
+    "smartNameFmtToken": {
+        "message": "${smart_name}"
+    },
+    "strip_eml_CR.label": {
+        "message": "Αφαιρέστε το CR από τις καταλήξεις των γραμμών για εξαγωγές μηνυμάτων eml"
+    },
+    "subject": {
+        "message": "Θέμα"
+    },
+    "subjectFmtToken": {
+        "message": "${θέμα}"
+    },
+    "suffixFmtToken": {
+        "message": "${επίθημα}"
+    },
+    "textCharset": {
+        "message": "Charset για εξαγωγή σε μορφή κειμένου και CSV:"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Αντιγράφων ασφαλείας"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Πλήρες προφίλ"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Μόνο αλληλογραφία"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Εξαγωγή προφίλ"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Εισαγωγή προφίλ"
+    },
+    "useExtFilenameFormat": {
+        "message": "Χρησιμοποιήστε εκτεταμένη μορφή"
+    },
+    "useMboxExt.label": {
+        "message": "Χρησιμοποιήστε την επέκταση .mbox για αρχεία mbox (μη δομημένα)"
+    }
 }

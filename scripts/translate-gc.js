@@ -571,6 +571,18 @@ function convert(iFile, options) {
 	});
 }
 
+var cs = "python locale-converter.py ..\\src\\chrome\\locale\\${l1}\\mboximport ..\\src\\_locales\\${l2}"
+
+function locs() {
+	localeFolders.forEach(loc => {
+		let s = cs
+		s = s.replace("${l1}",loc)
+		s = s.replace("${l2}",loc)
+
+		console.log(s)
+	});
+
+}
 
 var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
@@ -649,10 +661,10 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 //translateHelpPage();
 //translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
+//translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
-
+locs()
 // let inputFiles = ["settings.dtd"];
 /*
 node .\scripts\translate-gc.js

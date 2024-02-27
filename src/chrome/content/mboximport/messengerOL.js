@@ -35,9 +35,9 @@ function onLoad() {
 
 	WL.injectElements(`
 <hbox id="status-bar" >
-<toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/mboximport/icons/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="&abortExport;" insertbefore="statusText"/>
+<toolbarbutton id="IETabortIcon" image="chrome://mboximport/content/mboximport/icons/stop.gif" oncommand="IETabortExport()" collapsed="true" tooltiptext="__MSG_abortExport__" insertbefore="statusText"/>
 </hbox>
-`, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
+`, []);
 
 
 	// HotKeys overlay fragment
@@ -60,7 +60,7 @@ function onLoad() {
 </keyset>
 
 </overlay>
-`, ["chrome://mboximport/locale/mboximport.dtd", "chrome://messenger/locale/baseMenuOverlay.dtd"]);
+`, []);
 
 
 	// inject extension object into private context

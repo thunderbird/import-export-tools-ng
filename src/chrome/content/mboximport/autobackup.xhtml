@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/autobackup.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<dialog id="autobackup-window" title="&dialog.title;" windowtype="autobackup-dialog"
+<dialog id="autobackup-window" title="__MSG_dialog.title__" windowtype="autobackup-dialog"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml" >
 
@@ -12,19 +11,20 @@
 </stringbundleset>
 -->
 
-<description id="last">&description1;</description>
-<description id="autoModeDesc">&description2;</description>
-<description>&description3;</description>
-<description id="macWarn" collapsed="true">&MACwarning;</description>
-<description id="go">&description4;</description>
-<description id="start" collapsed="true">&description5;</description>
-<description id="done" collapsed="true">&description6;</description>
+<description id="last">__MSG_description1__</description>
+<description id="autoModeDesc">__MSG_description2__</description>
+<description>__MSG_description3__</description>
+<description id="macWarn" collapsed="true">__MSG_MACwarning__</description>
+<description id="go">__MSG_description4__</description>
+<description id="start" collapsed="true">__MSG_description5__</description>
+<description id="done" collapsed="true">__MSG_description6__</description>
 <hbox>
 <label value="0% "/>
 <html:progress id="pm" mode="determined"  value="0" max="100"/>
 <label value=" 100% "/>
 </hbox>
 
+<script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
 <script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 <script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximport.js" />
 <script type="application/javascript" src="chrome://mboximport/content/mboximport/autobackup.js" />

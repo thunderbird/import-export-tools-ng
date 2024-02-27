@@ -295,9 +295,7 @@ document.addEventListener("dialogaccept", function (event) {
 	event.stopPropagation();
 });
 
-// document.addEventListener("dialogcancel", function (event) {
-// });
-
 window.addEventListener("load", function (event) {
+	i18n.updateDocument({extension: this.window.opener.ietngAddon.extension});
 	autoBackup.load();
 });

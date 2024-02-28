@@ -28,7 +28,7 @@ def convert(source, destination, current = None, level = 1):
         path = os.path.join(dir, name)
         
         if os.path.isfile(path):
-            if path.endswith('profilewizard.dtd'):
+            if path.endswith('ietng_button.dtd'):
                 messages.extend(convert_dtd(path, dir))
             #if path.endswith('.properties'):
              #   messages.extend(convert_prop(path, dir))

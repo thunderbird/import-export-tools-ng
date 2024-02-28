@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Построить индекс для импортированных файлов mbox"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Резервное копирование"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Полный профиль"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Только почта"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Экспорт профиля"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Помощь"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Импорт профиля"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Параметры"
+    },
     "captionCustomize": {
         "message": "Настройка формата имени файлов"
     },

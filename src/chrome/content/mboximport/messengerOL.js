@@ -102,20 +102,20 @@ function onLoad() {
 
 	let ctxMenu =
 		`<menupopup>
-			<menu  label="&buttonMenu_Exp_Profile_Id.title;" >
+			<menu  label="__MSG_buttonMenu_Exp_Profile_Id.title__" >
 			<menupopup>
-			<menuitem  label="&buttonMenu_Exp_ProfileFull_Id.title;" oncommand="IETexport_all({profileExportType: 'full'})" />
-			<menuitem  label="&buttonMenu_Exp_ProfileMailOnly_Id.title;" oncommand="IETexport_all({profileExportType: 'mailOnly'})" />
+			<menuitem  label="__MSG_buttonMenu_Exp_ProfileFull_Id.title__" oncommand="IETexport_all({profileExportType: 'full'})" />
+			<menuitem  label="__MSG_buttonMenu_Exp_ProfileMailOnly_Id.title__" oncommand="IETexport_all({profileExportType: 'mailOnly'})" />
 			</menupopup>
 			</menu>
-			<menuitem  label="&buttonMenu_Imp_Profile_Id.title;" oncommand="openProfileImportWizard()" />
-			<menuitem  label="&buttonMenu_Backup_Id.title;" oncommand="window.ietng.OpenBackupDialog('manual')" />
+			<menuitem  label="__MSG_buttonMenu_Imp_Profile_Id.title__" oncommand="openProfileImportWizard()" />
+			<menuitem  label="__MSG_buttonMenu_Backup_Id.title__" oncommand="window.ietng.OpenBackupDialog('manual')" />
 			<menuseparator />
-			<menuitem  label="&buttonMenu_Options.title;" oncommand="openIEToptions()"/>
-			<menuitem  label="&buttonMenu_Help.title;" oncommand="openHelp(null)"/>
+			<menuitem  label="__MSG_buttonMenu_Options.title__" oncommand="openIEToptions()"/>
+			<menuitem  label="__MSG_buttonMenu_Help.title__" oncommand="openHelp(null)"/>
 		</menupopup>`;
 
-	let dtdFiles = ["chrome://mboximport/locale/ietng_button.dtd"];
+	let dtdFiles = [];
 
 	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, [dtdFiles]);
 

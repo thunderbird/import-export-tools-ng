@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Sestavi kazalo za uvožene datoteke mbox"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Rezerva"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Celoten profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Samo po pošti"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Izvozi profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "pomoč"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Uvozi profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Opcije"
+    },
     "captionCustomize": {
         "message": "Oblika po meri za imena datotek"
     },

@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Կառուցել ինդեքսը՝ ներմուծված mbox ֆայլերի համար"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Կրկնօրինակում"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Ամբողջական պրոֆիլ"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Միայն փոստ"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Արտահանել պրոֆիլը"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Օգնություն"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Ներմուծեք պրոֆիլը"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Ընտրանքներ"
+    },
     "captionCustomize": {
         "message": "Հարմարեցված տեսակ՝ ֆայլի անունների համար"
     },

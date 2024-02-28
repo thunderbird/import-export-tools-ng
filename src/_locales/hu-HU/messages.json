@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Jegyzék készítése az MBOX fájlokhoz"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "biztonsági mentés"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Teljes profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Csak posta"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Profil exportálása"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Segítség"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Profil importálása"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Lehetőségek"
+    },
     "captionCustomize": {
         "message": "Fájlnév formátumának testreszabása"
     },

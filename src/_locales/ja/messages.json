@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "インポートした mbox ファイルのインデックスを作成"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "バックアップ"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "プロファイル全体"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "メッセージのみ"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "プロファイルのエクスポート"
+    },
+    "buttonMenu_Help.title": {
+        "message": "ヘルプ"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "プロファイルのインポート"
+    },
+    "buttonMenu_Options.title": {
+        "message": "設定"
+    },
     "captionCustomize": {
         "message": "ファイル名のカスタマイズ"
     },

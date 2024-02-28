@@ -107,6 +107,27 @@
     "buildMSF.label": {
         "message": "为导入的 mbox 文件建立索引"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "备份"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "完整资料"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "仅限邮寄"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "导出配置文件"
+    },
+    "buttonMenu_Help.title": {
+        "message": "帮助"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "导入配置文件"
+    },
+    "buttonMenu_Options.title": {
+        "message": "选项"
+    },
     "captionCustomize": {
         "message": "自定义文件名格式"
     },

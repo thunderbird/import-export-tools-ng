@@ -712,13 +712,18 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			tempExists = tempFile.exists();
 		}
 
+		console.log("offline",msg.folder.verifiedAsOnlineFolder, msg.flags)
+
+		/*
 		if (tempExists || (type !== 3 && type !== 5 && (msg.folder.server.type === "imap" || msg.folder.server.type === "news")
 			&& !msg.folder.verifiedAsOnlineFolder &&
 			!(msg.flags & 0x00000080))) {
 			skip = true;
+			console.log("skipping")
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
 		}
+*/
 
 		if (!skip) {
 			var addBody = type === 6;
@@ -730,6 +735,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
 		}
+	}
+
+	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
+		console.log("not equal")
+		alert("Iterated not equal to total messages : Please report")
 	}
 
 	hdrArray.sort();

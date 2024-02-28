@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Opbyg indeks for importerede mbox-filer"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Sikkerhedskopier"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fuld profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Kun mail"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Eksporter profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Hjælp"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importer profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Indstillinger"
+    },
     "captionCustomize": {
         "message": "Tilpas filnavnes format"
     },

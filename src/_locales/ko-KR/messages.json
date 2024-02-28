@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "mbox을 들여오기 위해 색인 구축"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "지원"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "전체 프로필"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "메일만"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "프로필 내보내기"
+    },
+    "buttonMenu_Help.title": {
+        "message": "돕다"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "프로필 가져오기"
+    },
+    "buttonMenu_Options.title": {
+        "message": "옵션"
+    },
     "captionCustomize": {
         "message": "파일명 형식 사용자 지정"
     },

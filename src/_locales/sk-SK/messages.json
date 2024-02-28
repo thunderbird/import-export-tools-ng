@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Vytvoriť index pre importované súbory .mbox"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Zálohovanie"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Celý profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Iba pošta"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Exportovať profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Pomoc"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importovať profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "možnosti"
+    },
     "captionCustomize": {
         "message": "Prispôsobenie formátu názvu súborov"
     },

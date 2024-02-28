@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Δημιουργία ευρετηρίου για εισαγόμενα αρχεία mbox"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Αντιγράφων ασφαλείας"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Πλήρες προφίλ"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Μόνο αλληλογραφία"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Εξαγωγή προφίλ"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Βοήθεια"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Εισαγωγή προφίλ"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Επιλογές"
+    },
     "captionCustomize": {
         "message": "Προσαρμοσμένη μορφή για ονόματα αρχείων"
     },

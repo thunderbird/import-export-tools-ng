@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Construír un índice para os ficheiros MBOX importados"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Copia de seguranza"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Perfil completo"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Só correo"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Exportar perfil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Axuda"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importar perfil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Opcións"
+    },
     "captionCustomize": {
         "message": "Formato personalizado para nomes de ficheiros"
     },

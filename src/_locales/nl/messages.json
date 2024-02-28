@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Index opbouwen voor geïmporteerde mbox-bestanden"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Back-up"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Volledig profiel"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Alleen post"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Profiel exporteren"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Hulp"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importeer profiel"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Opties"
+    },
     "captionCustomize": {
         "message": "Aangepaste indeling voor bestandsnamen"
     },

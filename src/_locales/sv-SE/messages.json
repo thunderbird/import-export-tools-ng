@@ -104,6 +104,27 @@
     "buildMSF.label": {
         "message": "Skapa ett index över importerade MBOX-filer"
     },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Säkerhetskopiering"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fullständig profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Endast post"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Exportera profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Hjälp"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importera profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "alternativ"
+    },
     "captionCustomize": {
         "message": "Anpassat format för filnamn"
     },

@@ -1,0 +1,24 @@
+python locale-converter.py ..\src\chrome\locale\en-US\mboximport ..\src\_locales\en-US
+
+
+
+python locale-converter.py ..\src\chrome\locale\de\mboximport ..\src\_locales\de       
+python locale-converter.py ..\src\chrome\locale\ca\mboximport ..\src\_locales\ca       
+python locale-converter.py ..\src\chrome\locale\da\mboximport ..\src\_locales\da       
+python locale-converter.py ..\src\chrome\locale\el\mboximport ..\src\_locales\el       
+python locale-converter.py ..\src\chrome\locale\es-ES\mboximport ..\src\_locales\es-ES 
+python locale-converter.py ..\src\chrome\locale\fr\mboximport ..\src\_locales\fr       
+python locale-converter.py ..\src\chrome\locale\gl-ES\mboximport ..\src\_locales\gl-ES 
+python locale-converter.py ..\src\chrome\locale\hu-HU\mboximport ..\src\_locales\hu-HU 
+python locale-converter.py ..\src\chrome\locale\hy-AM\mboximport ..\src\_locales\hy-AM 
+python locale-converter.py ..\src\chrome\locale\it\mboximport ..\src\_locales\it       
+python locale-converter.py ..\src\chrome\locale\ja\mboximport ..\src\_locales\ja       
+python locale-converter.py ..\src\chrome\locale\ko-KR\mboximport ..\src\_locales\ko-KR 
+python locale-converter.py ..\src\chrome\locale\nl\mboximport ..\src\_locales\nl       
+python locale-converter.py ..\src\chrome\locale\pl\mboximport ..\src\_locales\pl       
+python locale-converter.py ..\src\chrome\locale\pt-PT\mboximport ..\src\_locales\pt-PT 
+python locale-converter.py ..\src\chrome\locale\ru\mboximport ..\src\_locales\ru       
+python locale-converter.py ..\src\chrome\locale\sk-SK\mboximport ..\src\_locales\sk-SK 
+python locale-converter.py ..\src\chrome\locale\sl-SI\mboximport ..\src\_locales\sl-SI 
+python locale-converter.py ..\src\chrome\locale\sv-SE\mboximport ..\src\_locales\sv-SE 
+python locale-converter.py ..\src\chrome\locale\zh-CN\mboximport ..\src\_locales\zh-CN 

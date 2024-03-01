@@ -142,6 +142,7 @@ export var mboxImportExport = {
       ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
 
       let rv = await this._isMboxFile(mboxFilePath);
+      console.log(rv)
       if (!(await this._isMboxFile(mboxFilePath))) {
         let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
 
@@ -301,14 +302,16 @@ export var mboxImportExport = {
       return true;
     }
 
-    let fromRegx = /^(From (?:.*?)\r?\n)[\x21-\x7E]+:/gm;
+    let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))[\x21-\x7E]+:/gm;
 
     // Read chunk as uint8
     var rawBytes = await IOUtils.read(filePath, { offset: 0, maxBytes: 500 });
     // convert to faster String for regex etc
     let strBuffer = ietngUtils.bytesToString2(rawBytes);
-    //console.log(strBuffer)
+    console.log(strBuffer)
     let rv = fromRegx.test(strBuffer);
+    console.log(rv)
+
     return rv;
   },
 

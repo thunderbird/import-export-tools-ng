@@ -116,9 +116,11 @@ async function mboxCopyImport(options) {
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers, including multiline hdrs
     // Remove space after colon requirement #516
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
+    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
+    let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))(?![\x21-\x7E]+:(?:(.|(\r\s)))*?(?:\r)[\x21-\x7E]+:)/gm;
 
 
+    //(?:\r|\n|\r\n)
     var fromExceptions;
     var cnt = 0;
     var fromExcpCount = 0;

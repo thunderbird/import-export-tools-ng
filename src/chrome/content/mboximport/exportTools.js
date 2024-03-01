@@ -1423,7 +1423,7 @@ var exportAsHtmlDone = false;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	console.log("html hdrs", msgFolder.name, hdrArray.length)
+	//console.log("html hdrs", msgFolder.name, hdrArray.length)
 
 	var myTxtListener = {
 		scriptStream: null,
@@ -1851,6 +1851,7 @@ function IETcopyToClip(data) {
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data);
 
+	console.log(str.data)
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 

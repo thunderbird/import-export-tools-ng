@@ -55,8 +55,11 @@ console.log("IETNG: mboxImportModule -4");
 
 async function mboxCopyImport(options) {
 
+  console.log("start mboxCopyImport", options)
+
+  var srcPath = options.srcPath;
   let targetMboxPath = options.destPath;
-  let folderName = PathUtils.filename(options.srcPath);
+  let folderName = PathUtils.filename(srcPath);
 
   // console.log("Importing:", folderName)
   // make sure nothing is there, create start
@@ -67,7 +70,7 @@ async function mboxCopyImport(options) {
   let fileInfo;
 
   try {
-    fileInfo = await IOUtils.stat(options.srcPath);
+    fileInfo = await IOUtils.stat(srcPath);
     //console.log("mbox size: ", fileInfo.size)
   } catch (err) {
     console.log(err);
@@ -101,10 +104,16 @@ async function mboxCopyImport(options) {
   // tail boundary check resolves the one bad message for 1GBmbox
   //const kReadChunk = (50 * 1000) + 15; //  211 ex 19492 msg write bndry exc
   const kReadChunk = (150 * 1000) + 0; //  211 ex 19492 msg write bndry exc
-
-
-  //const kREAD_CHUNK = 10000;
   const kExceptWin = 300;
+
+  //let crLineEndings = await _checkCRLineEndings(srcPath);
+  let crLineEndings = true;
+  if (crLineEndings) {
+    srcPath = await _tmpConvertCRLineEndings(srcPath, kReadChunk);
+  }
+
+  console.log("start ", srcPath)
+
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -116,8 +125,8 @@ async function mboxCopyImport(options) {
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers, including multiline hdrs
     // Remove space after colon requirement #516
-    //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
-    let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))(?![\x21-\x7E]+:(?:(.|(\r\s)))*?(?:\r)[\x21-\x7E]+:)/gm;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
+    //let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))(?![\x21-\x7E]+:(?:(.|(\r\s)))*?(?:\r)[\x21-\x7E]+:)/gm;
 
 
     //(?:\r|\n|\r\n)
@@ -136,10 +145,11 @@ async function mboxCopyImport(options) {
     //console.log("start import")
 
     while (!eof) {
-      //console.log("start chunk")
+      console.log("start chunk")
 
       // Read chunk as uint8
-      rawBytes = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kReadChunk });
+      rawBytes = await IOUtils.read(srcPath, { offset: offset, maxBytes: kReadChunk });
+      console.log("start chunklen ", rawBytes.length)
 
       // Determine final write chunk
       if (rawBytes.byteLength < kReadChunk) {
@@ -192,7 +202,7 @@ async function mboxCopyImport(options) {
           await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
 
           writePos = result.index;
-          // console.log(writePos)
+          console.log(writePos)
           // console.log("totalWrite bytes:", totalWrite)
 
           // This is for our ui status update
@@ -205,7 +215,7 @@ async function mboxCopyImport(options) {
       if (1) {
 
 
-        let rawBytesNextBuf = await IOUtils.read(options.srcPath, { offset: offset, maxBytes: kExceptWin });
+        let rawBytesNextBuf = await IOUtils.read(srcPath, { offset: offset, maxBytes: kExceptWin });
         // convert to faster String for regex etc
         let boundaryStrBuffer = strBuffer.slice(-kExceptWin) + bytesToString(rawBytesNextBuf);
 
@@ -354,4 +364,33 @@ function formatBytes(bytes, decimals) {
     sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
     i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+async function _tmpConvertCRLineEndings(srcPath, readChunk) {
+  console.log("start cr convert")
+  
+  let tmpDstPath = srcPath + "_ietngTMP@mbox";
+  await IOUtils.writeUTF8(tmpDstPath, "", { mode: "overwrite" });
+  var eof = false;
+  var offset = 0;
+
+  while (!eof) {
+    let readBuf = await IOUtils.readUTF8(srcPath, {offset: offset, maxBytes: readChunk});
+    let readLen = readBuf.length;
+    offset += readLen;
+    console.log("read chunk", readLen, offset)
+
+    readBuf = readBuf.replaceAll('\r', '\r\n');
+    await IOUtils.writeUTF8(tmpDstPath, readBuf, {mode: "append"});
+    console.log("read ", readLen, readChunk, (readLen < readChunk))
+
+    if (readLen < readChunk) {
+      eof = true;
+      console.log("eof")
+
+    }
+  }
+  console.log("ret tmp", tmpDstPath)
+
+  return tmpDstPath;
 }

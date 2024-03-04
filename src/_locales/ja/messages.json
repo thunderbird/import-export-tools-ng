@@ -42,7 +42,7 @@
         "message": "接頭文字の追加："
     },
     "addSuffix": {
-        "message": "接尾文字の追加"
+        "message": "接尾文字の追加:"
     },
     "addTimestamp": {
         "message": "ファイルのプロパティに追加する"

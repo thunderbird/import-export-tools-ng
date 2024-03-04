@@ -106,8 +106,8 @@ async function mboxCopyImport(options) {
   const kReadChunk = (150 * 1000) + 0; //  211 ex 19492 msg write bndry exc
   const kExceptWin = 300;
 
-  //let crLineEndings = await _checkCRLineEndings(srcPath);
-  let crLineEndings = true;
+  let crLineEndings = await _checkCRLineEndings(srcPath);
+  //let crLineEndings = true;
   if (crLineEndings) {
     srcPath = await _tmpConvertCRLineEndings(srcPath, kReadChunk);
   }
@@ -366,24 +366,46 @@ function formatBytes(bytes, decimals) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
+async function _checkCRLineEndings(srcPath) {
+  let readBuf = await IOUtils.read(srcPath, {offset: 0, maxBytes: 2000});
+  let strBuf = bytesToString(readBuf);
+  let crlfMatch = strBuf.matchAll(/\r\n/gm);
+  crlfMatch = [...crlfMatch];
+  if (crlfMatch.length > 5) {
+    return false;
+  }
+  let crMatch = strBuf.matchAll(/\r[^\n]/gm);
+  crMatch = [...crMatch];
+  if (crMatch.length > 5) {
+    return true;
+  }
+
+}
+
 async function _tmpConvertCRLineEndings(srcPath, readChunk) {
   console.log("start cr convert")
   
   let tmpDstPath = srcPath + "_ietngTMP@mbox";
-  await IOUtils.writeUTF8(tmpDstPath, "", { mode: "overwrite" });
+  await IOUtils.writeUTF8(tmpDstPath, new Uint8Array(), { mode: "overwrite" });
   var eof = false;
   var offset = 0;
+  var cnt = 0;
 
   while (!eof) {
-    let readBuf = await IOUtils.readUTF8(srcPath, {offset: offset, maxBytes: readChunk});
+    let readBuf = await IOUtils.read(srcPath, {offset: offset, maxBytes: readChunk});
     let readLen = readBuf.length;
+    cnt++;
+
     offset += readLen;
     console.log("read chunk", readLen, offset)
+    let strBuf = bytesToString(readBuf);
 
-    readBuf = readBuf.replaceAll('\r', '\r\n');
-    await IOUtils.writeUTF8(tmpDstPath, readBuf, {mode: "append"});
+    strBuf = strBuf.replaceAll('\r', '\r\n');
+    let outBuf = stringToBytes(strBuf);
+    await IOUtils.write(tmpDstPath, outBuf, {mode: "append"});
+    writeIetngStatusLine(window, `Converting CRs :  ` + formatBytes(offset, 2), 14000);
+
     console.log("read ", readLen, readChunk, (readLen < readChunk))
-
     if (readLen < readChunk) {
       eof = true;
       console.log("eof")

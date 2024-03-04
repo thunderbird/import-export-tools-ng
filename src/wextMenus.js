@@ -1208,7 +1208,7 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
 
         await messenger.menus.refresh();
 
@@ -1301,7 +1301,7 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
       console.log("disable")
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });

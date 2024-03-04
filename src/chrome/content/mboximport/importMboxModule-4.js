@@ -295,6 +295,9 @@ async function mboxCopyImport(options) {
     console.log(new Date());
 */
 
+    if (crLineEndings && srcPath.endsWith("_ietngTMP@mbox")) {
+      await IOUtils.remove(srcPath, {ignoreAbsent: true});
+    }
   }
   // tbd use status codes
   return "Done";

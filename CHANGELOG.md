@@ -2,6 +2,22 @@
 
 ## Versions
 
+Version 14.0.2 : Subfolders Release - March, 2024
+
+- New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538
+- New: Size column in index #508
+- New: Import OSX 9- CR terminations mbox files #540
+- New: Support shortcuts for ExportSelectedMessages #519
+- Fix mbox From_ separator to use asctime() date format #537
+- Fix PDF exports do not use Mozilla Save toPDF settings #528
+- Fix Right-clicking folder doesn't show export mbox option for Maildir #525
+- Fix Cannot import emails with linebreaks in Return-Path header #516
+- Fix Export all messages of a virtual folder to html with attachments and index - missing messages folder #509
+- Fix context menu for message window #505
+- Convert dtd files to messages.json
+
+
+
 Version 14.0.1 : Maintenance Release - November 10, 2023
 
 - New: Add Account level mbox import

@@ -1,7 +1,0 @@
-<!ENTITY buttonMenu_Exp_Profile_Id.title "Profil exportálása">
-<!ENTITY buttonMenu_Imp_Profile_Id.title "Profil importálása">
-<!ENTITY buttonMenu_Backup_Id.title "biztonsági mentés">
-<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Teljes profil">
-<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Csak posta">
-<!ENTITY buttonMenu_Options.title "Lehetőségek">
-<!ENTITY buttonMenu_Help.title "Segítség">

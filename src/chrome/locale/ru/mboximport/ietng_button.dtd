@@ -1,7 +1,0 @@
-<!ENTITY buttonMenu_Exp_Profile_Id.title "Экспорт профиля">
-<!ENTITY buttonMenu_Imp_Profile_Id.title "Импорт профиля">
-<!ENTITY buttonMenu_Backup_Id.title "Резервное копирование">
-<!ENTITY buttonMenu_Exp_ProfileFull_Id.title "Полный профиль">
-<!ENTITY buttonMenu_Exp_ProfileMailOnly_Id.title "Только почта">
-<!ENTITY buttonMenu_Options.title "Параметры">
-<!ENTITY buttonMenu_Help.title "Помощь">

@@ -406,7 +406,8 @@ async function _tmpConvertCRLineEndings(srcPath, readChunk) {
     strBuf = strBuf.replaceAll('\r', '\r\n');
     let outBuf = stringToBytes(strBuf);
     await IOUtils.write(tmpDstPath, outBuf, {mode: "append"});
-    writeIetngStatusLine(window, `Converting CR => CRLF line terminations :  ` + formatBytes(offset, 2), 14000);
+    let CRconversionMsg = window.ietngAddon.extension.localeData.localizeMessage("CRconversion.statusMsg");
+    writeIetngStatusLine(window, `${CRconversionMsg} :  ` + formatBytes(offset, 2), 14000);
 
     console.log("read ", readLen, readChunk, (readLen < readChunk))
     if (readLen < readChunk) {

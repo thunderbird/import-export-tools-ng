@@ -628,9 +628,8 @@
     },
     "useMboxExt.label": {
         "message": "Použiť príponu .mbox pre súbory mbox (neštruktúrované)"
-    },
-
-	"CRconversion.statusMsg": {
-		"message": "Konverzia zakončení CR =&gt; CRLF"
-	}
+    },
+    "CRconversion.statusMsg": {
+        "message": "Konverzia zakončení CR =&gt; CRLF"
+    }
 }

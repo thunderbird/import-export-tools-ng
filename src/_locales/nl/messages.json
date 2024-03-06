@@ -628,9 +628,8 @@
     },
     "useMboxExt.label": {
         "message": "Gebruik de .mbox-extensie voor mbox-bestanden (niet-gestructureerd)"
-    },
-
-	"CRconversion.statusMsg": {
-		"message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
-	}
+    },
+    "CRconversion.statusMsg": {
+        "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
+    }
 }

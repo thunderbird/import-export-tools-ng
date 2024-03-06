@@ -628,9 +628,8 @@
     },
     "useMboxExt.label": {
         "message": "Brug filendelsen .mbox til mbox-filer (ikke-struktureret)"
-    },
-
-	"CRconversion.statusMsg": {
-		"message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
-	}
+    },
+    "CRconversion.statusMsg": {
+        "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
+    }
 }

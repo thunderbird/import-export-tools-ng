@@ -628,9 +628,8 @@
     },
     "useMboxExt.label": {
         "message": "Use .mbox extension for mbox files (non-structured)"
-    },
-
-	"CRconversion.statusMsg": {
-		"message": "Converting CR => CRLF line terminations"
-	}
+    },
+    "CRconversion.statusMsg": {
+        "message": "Converting CR => CRLF line terminations"
+    }
 }

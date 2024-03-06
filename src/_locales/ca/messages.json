@@ -625,9 +625,8 @@
     },
     "useMboxExt.label": {
         "message": "Utilitzeu l&#39;extensió .mbox per a fitxers mbox (no estructurats)"
-    },
-
-	"CRconversion.statusMsg": {
-		"message": "Convertint CR =&gt; CRLF terminacions de línia"
-	}
+    },
+    "CRconversion.statusMsg": {
+        "message": "Convertint CR =&gt; CRLF terminacions de línia"
+    }
 }

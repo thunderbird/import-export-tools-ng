@@ -136,13 +136,7 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
-  { key: "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
-  { key: "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title", text: "Messages, Index and Attachments with Subfolders"},
-  { key: "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title", text: "Messages and HTML Index"},
-  { key: "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
-  { key: "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title", text: "Messages and Index with Subfolders"},
-  { key: "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title", text: "Messages, Index and Attachments with Subfolders"},
+  { key: "CRconversion.statusMsg", text: "Converting CR => CRLF line terminations"},
 	
 
 	
@@ -661,10 +655,10 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 //translateHelpPage();
 //translatePage();
 // translateAll("mboximport.properties", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
-locs()
+//locs()
 // let inputFiles = ["settings.dtd"];
 /*
 node .\scripts\translate-gc.js

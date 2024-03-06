@@ -308,9 +308,7 @@ export var mboxImportExport = {
     var rawBytes = await IOUtils.read(filePath, { offset: 0, maxBytes: 500 });
     // convert to faster String for regex etc
     let strBuffer = ietngUtils.bytesToString2(rawBytes);
-    console.log(strBuffer)
     let rv = fromRegx.test(strBuffer);
-    console.log(rv)
 
     return rv;
   },
@@ -614,14 +612,12 @@ export var mboxImportExport = {
 
       let m = rawBytes.matchAll(/(^X-Mozilla-Status: [0-9A-Fa-f]{3})([0-9A-Fa-f])/gm)
       m = [...m];
-      console.log(m[0])
       if (m[0]) {
         let b = (parseInt(m[0][2], 16))
         const kExpungeBit = 0x8;
         let mask = ~kExpungeBit;
         b &= mask;
         b = b.toString(16)
-        console.log(b)
         rawBytes = rawBytes.replace(m[0][0], m[0][1] + b);
       }
       //rawBytes = rawBytes.replace( /^X-Mozilla-Status: [0-9A-Fa-f]{4}/gm, "X-Mozilla-Status: 0000");

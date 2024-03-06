@@ -843,7 +843,7 @@ async function createtitles(name, menuArray, options) {
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {
-  console.log(ctxEvent, tab);
+  // console.log(ctxEvent, tab);
 
   var params = {};
   params.targetWinId = tab.windowId;
@@ -947,7 +947,7 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  console.log(ctxEvent, tab);
+  // console.log(ctxEvent, tab);
   var params = {};
   params.targetWinId = tab.windowId;
 
@@ -1137,7 +1137,7 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
-  console.log("menu update ",info)
+  // console.log("menu update ",info)
 
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
@@ -1292,8 +1292,6 @@ async function menusUpdate(info, tab) {
     }
   }
 
-  console.log("check ")
-
   // disable for importing mbox to imaap or nntp
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     if (info.selectedFolder &&
@@ -1302,12 +1300,9 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
       await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
-      console.log("disable")
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
       await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
-      console.log("enable")
-
     }
     await messenger.menus.refresh();
   }

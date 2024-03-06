@@ -786,7 +786,6 @@ async function exportfolder(params) {
 			});
 			folders[0] = account.incomingServer.rootMsgFolder;
 		} else {
-			console.log(params.selectedFolder.accountId, params.selectedFolder.path)
 			folders = [getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path)];
 		}
 	}

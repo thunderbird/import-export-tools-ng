@@ -417,11 +417,6 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
 		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
-		console.log("newtopdir", newTopDir.path)
-
-		//newTopDir = await exportAllMsgsDelayed(type, newTopDir, msgFolder.subFolders[0] , true);
-		//console.log("all done")
-		//return;
 
 		if (params.recursive && msgFolder.hasSubFolders) {
 			await exportSubFolders(type, file, msgFolder, newTopDir, params);
@@ -738,8 +733,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	}
 
 	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
-		console.log("not equal")
-		alert("Iterated not equal to total messages : Please report")
+		alert("Iterated not equal to total messages : Please report");
+		return;
 	}
 
 	hdrArray.sort();
@@ -750,10 +745,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
 	}
-	console.log(msgFolder.name, hdrArray)
 	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
-	console.log("ret", file2.path)
-	//alert(msgFolder.name)
 	return file2;
 }
 
@@ -1415,7 +1407,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 		}
 		await new Promise(resolve => setTimeout(resolve, 500));
 	}
-	console.log("saveEml done", IETtotal)
 
 }
 

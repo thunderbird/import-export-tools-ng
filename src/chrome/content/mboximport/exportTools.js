@@ -596,17 +596,14 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
-
 	try {
-		console.log("exportAllMsgsDelayed")
+		// console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
-		console.log("total ", IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
 				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-			console.log("ret 1")
 			return file;
 		}
 		IETexported = 0;
@@ -658,7 +655,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		file = filetemp.clone();
 		// Create the container directory
 		file.create(1, 0775);
-		console.log("container", file.path)
+
 		// deal with top then recursive 
 
 		if (params.recursive || 1) {
@@ -707,7 +704,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			tempExists = tempFile.exists();
 		}
 
-		console.log("offline",msg.folder.verifiedAsOnlineFolder, msg.flags)
+		// check
+		// console.log("offline",msg.folder.verifiedAsOnlineFolder, msg.flags)
 
 		/*
 		if (tempExists || (type !== 3 && type !== 5 && (msg.folder.server.type === "imap" || msg.folder.server.type === "news")

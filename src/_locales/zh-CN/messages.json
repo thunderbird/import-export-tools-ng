@@ -631,5 +631,9 @@
     },
     "useMboxExt.label": {
         "message": "对 mbox 文件使用 .mbox 扩展名（非结构化）"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "转换 CR =&gt; CRLF 线路终止"
+	}
 }

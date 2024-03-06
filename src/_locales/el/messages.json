@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Χρησιμοποιήστε την επέκταση .mbox για αρχεία mbox (μη δομημένα)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
+	}
 }

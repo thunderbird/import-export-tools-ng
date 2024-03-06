@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "mbox 파일에 .mbox 확장자 사용(비구조적)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "CR 변환 =&gt; CRLF 라인 종료"
+	}
 }

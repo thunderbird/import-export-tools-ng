@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Uporabite pripono .mbox za datoteke mbox (nestrukturirane)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Pretvarjanje zaključkov vrstic CR =&gt; CRLF"
+	}
 }

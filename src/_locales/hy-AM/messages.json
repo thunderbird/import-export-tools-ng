@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Օգտագործեք .mbox ընդլայնում mbox ֆայլերի համար (ոչ կառուցվածքային)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+	}
 }

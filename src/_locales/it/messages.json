@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Utilizza l&#39;estensione .mbox per i file mbox (non strutturati)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Conversione delle terminazioni di linea CR =&gt; CRLF"
+	}
 }

@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Använd tillägget .mbox för mbox-filer (icke-strukturerade)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
+	}
 }

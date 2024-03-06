@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": ".mbox kiterjesztés használata mbox fájlokhoz (nem strukturált)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "CR =&gt; CRLF vonalvégződések konvertálása"
+	}
 }

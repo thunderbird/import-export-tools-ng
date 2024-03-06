@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Используйте расширение .mbox для файлов mbox (неструктурированных)."
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Преобразование CR =&gt; окончания строки CRLF"
+	}
 }

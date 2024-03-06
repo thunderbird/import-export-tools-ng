@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "mbox ファイルには .mbox 拡張子を使用します (非構造化)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "CR =&gt; CRLF 行終端の変換"
+	}
 }

@@ -628,5 +628,9 @@
     },
     "useMboxExt.label": {
         "message": "Erweiterung .mbox für Mbox-Dateien verwenden (nicht strukturiert)"
-    }
+    },
+
+	"CRconversion.statusMsg": {
+		"message": "Konvertieren von CR =&gt; CRLF-Leitungsabschlüssen"
+	}
 }

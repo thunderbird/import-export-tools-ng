@@ -329,7 +329,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	console.log("exportAllMsgs")
+	// console.log("exportAllMsgs", type, params);
 
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
@@ -429,32 +429,21 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		await new Promise(resolve => setTimeout(resolve, 200));
 
 		let folderDirName = subFolder.name;
-		console.log(folderDirName, newTopDir.path)
-
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		file = await IOUtils.getDirectory(fullFolderPath);
-		console.log(file.path)
 
 		var newTopDir2;
 		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
 		if (isVirtFol) {
-			console.log("vf", subFolder.name)
 			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
 		} else {
 			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
-			console.log(folderDirName, newTopDir2.path)
-
 		}
 		if (subFolder.hasSubFolders) {
-			console.log("subf")
-			console.log(folderDirName, newTopDir2.path)
-
 			await exportSubFolders(type, file, subFolder, newTopDir2, params);
 		}
 	}
-
-
 }
 
 // 3a) exportAllMsgsDelayedVF
@@ -463,7 +452,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 // So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
-	console.log("exportAllMsgsDelayedVF")
+	// console.log("exportAllMsgsDelayedVF")
 
 	var msgUriArray = [];
 	var total = msgFolder.getTotalMessages(false);
@@ -548,14 +537,15 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		file.create(1, 0775);
 
 		subfile = file.clone();
-		
-		if (type < 3 || type > 6 && type != 0) {
+
+		// no message directory for eml exports
+		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
 	} else {
 		subfile = file.clone();
-		if (type < 3 || type > 6 && type != 0) {
+		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
@@ -575,7 +565,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
-			console.log("skip", j, msguri, msg.flags)
 			continue;
 		}
 		// cleidigh
@@ -658,32 +647,24 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		if (params.recursive || 1) {
-			let folderDirName = msgFolder.name;
-			let folderDirNamePath = file.path;
-			let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
-			await IOUtils.makeDirectory(fullFolderPath);
-			file = await IOUtils.getDirectory(fullFolderPath);
-			console.log("folder", file.path)
-		}
+		let folderDirName = msgFolder.name;
+		let folderDirNamePath = file.path;
+		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		await IOUtils.makeDirectory(fullFolderPath);
+		file = await IOUtils.getDirectory(fullFolderPath);
 		subfile = file.clone();
 
-			if ((type < 3 || type > 6) && type != 0) {
-				subfile.append(IETmesssubdir);
-				subfile.create(1, 0775);
-			}
-			console.log("con msgs", subfile.path)
-		
-	} else {
-		subfile = file.clone();
-		
-		if (type < 3 || type > 6 && type != 0) {
+		// no message directory for eml exports
+		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			console.log("nocon msgs", subfile.path)
-
 			subfile.create(1, 0775);
 		}
-
+	} else {
+		subfile = file.clone();
+		if ((type < 3 || type > 6) && type != 0) {
+			subfile.append(IETmesssubdir);
+			subfile.create(1, 0775);
+		}
 	}
 
 	var file2 = file.clone();
@@ -704,19 +685,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			tempExists = tempFile.exists();
 		}
 
-		// check
-		// console.log("offline",msg.folder.verifiedAsOnlineFolder, msg.flags)
-
-		/*
-		if (tempExists || (type !== 3 && type !== 5 && (msg.folder.server.type === "imap" || msg.folder.server.type === "news")
-			&& !msg.folder.verifiedAsOnlineFolder &&
-			!(msg.flags & 0x00000080))) {
-			skip = true;
-			console.log("skipping")
-			IETskipped = IETskipped + 1;
-			IETtotal = IETtotal - 1;
-		}
-*/
 
 		if (!skip) {
 			var addBody = type === 6;
@@ -798,7 +766,7 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 
 var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
-function  createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
 		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
 		return;
@@ -845,6 +813,7 @@ function  createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
 	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
 	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
 	styles += '</style>\r\n';
 
 	var data = '<html>\r\n<head>\r\n';
@@ -1719,6 +1688,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					parts = hdrArray[IETexported].split("§][§^^§");
 					nextUri = parts[5];
 				}
+				// this really isn't async but it's at the end of the cb
 				((async () => {
 					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
 				})());
@@ -1798,17 +1768,14 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 		}
 		await new Promise(resolve => setTimeout(resolve, 500));
 	}
-	console.log("exhtml done", IETtotal)
 	return;
 }
 
 async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 	var msgUris = [];
 
-	console.log("pdf hdrs", msgFolder.name, hdrArray.length)
-
 	hdrArray.forEach(hdrItem => {
-	var uri = hdrItem.split("§][§^^§")[5];
+		var uri = hdrItem.split("§][§^^§")[5];
 		msgUris.push(uri)
 	});
 

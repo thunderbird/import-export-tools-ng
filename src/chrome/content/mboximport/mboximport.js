@@ -120,7 +120,7 @@ var IETprintPDFmain = {
 		var msgFolders;
 		try {
 			msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
-		} catch(e) {
+		} catch (e) {
 			msgFolders = [GetFirstSelectedMsgFolder()];
 		}
 
@@ -211,8 +211,8 @@ var IETprintPDFmain = {
 			printSettings = psService.createNewPrintSettings();
 		}
 
-    printSettings.printerName = "Mozilla_Save_to_PDF";
-    psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+		printSettings.printerName = "Mozilla_Save_to_PDF";
+		psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
 
 
 		printSettings.isInitializedFromPrinter = true;
@@ -238,9 +238,6 @@ var IETprintPDFmain = {
 
 		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
-		
-		console.log("units", printSettings.paperSizeUnit)
-		console.log("paper", printSettings.paperId)
 
 		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
@@ -310,7 +307,6 @@ var IETprintPDFmain = {
 
 		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
-	console.log("pdf uris", uri, IETprintPDFmain.uris.length)
 
 			try {
 				var messageService = MailServices.messageServiceFromURI(uri);
@@ -319,21 +315,12 @@ var IETprintPDFmain = {
 				let fileName = fileFormat === 2
 					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
 					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-					uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
-				console.log(uniqueFileName)
-				//console.log(fileName)
-
-				//printSettings.toFileName = PathUtils.join(filePath, uniqueFileName);
-				//printSettings.toFileName = PathUtils.join(filePath, fileName);
+				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
 				printSettings.toFileName = uniqueFileName;
 
-				console.log("IETNG: Start: ", msgIdx + 1, uniqueFileName, new Date());
-				// console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-				// console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
 
-				// try {
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;
@@ -352,10 +339,8 @@ var IETprintPDFmain = {
 				await new Promise(r => mainWindow.setTimeout(r, 150));
 			}
 		}
-
-
-		// console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
 	},
+
 	async setupPDF(msgUris, outputPath) {
 		IETprintPDFmain.file = {};
 		IETprintPDFmain.file.path = outputPath;
@@ -1238,20 +1223,20 @@ async function importALLasEML(params) {
 	var msgFolder;
 	if (params.selectedFolder.path == "/") {
 		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
-				.getService(Components.interfaces.nsIMsgAccountManager);
-			account = accountManager.accounts.find(account => {
-				if (account.key == params.selectedAccount.id) {
-					return true;
-				}
-			});
-			msgFolder = account.incomingServer.rootMsgFolder;
+			.getService(Components.interfaces.nsIMsgAccountManager);
+		account = accountManager.accounts.find(account => {
+			if (account.key == params.selectedAccount.id) {
+				return true;
+			}
+		});
+		msgFolder = account.incomingServer.rootMsgFolder;
 	} else {
 		msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
 		console.log(msgFolder)
 	}
 
 	console.log(msgFolder.parent)
-	
+
 	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;

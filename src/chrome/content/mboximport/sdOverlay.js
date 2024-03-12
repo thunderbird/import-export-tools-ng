@@ -173,7 +173,6 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	console.debug('SD for the initialize ', window.arguments);
 	if (window.arguments && window.arguments[1]) {
 		var sf = document.getElementById("IETSearchFrame");
 		var sw = document.getElementById("searchMailWindow");

@@ -148,8 +148,6 @@ async function exportSelectedMsgs(type, params) {
 	9 = Plain Text with attachments
 	*/
 
-	console.log("sel msgs",params)
-
 	var needIndex = false;
 	if (type > 99) {
 		type = type - 100;
@@ -251,8 +249,6 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-
-
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
@@ -274,7 +270,6 @@ async function exportSelectedMsgs(type, params) {
 	var msguri = msgUris[0];
 
 	var hdrArray;
-	console.log("sw type ",type)
 
 	switch (type) {
 		case 1:
@@ -284,8 +279,6 @@ async function exportSelectedMsgs(type, params) {
 			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
 			break;
 		case 3:
-			console.log("call s")
-
 			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 4:
@@ -1210,7 +1203,6 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 var saveAsEmlDone = false;
 
 async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
-	console.log("saveeml",append)
 	
 	var myEMLlistner = {
 
@@ -1231,8 +1223,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 			var sub;
 			var data;
 
-			console.log("d",this.emailtext)
-
 			this.scriptStream = null;
 			if (clipboard) {
 				IETcopyStrToClip(this.emailtext);
@@ -1245,12 +1235,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 				if (this.emailtext !== "") {
 					data = this.emailtext + "\n";
-				console.log("app mbox",data)
 
 					// Some IMAP servers don't add to the message the "From" prologue
 					if (data && !data.match(/^From /)) {
-				console.log("no from")
-
 						let fromAddr;
 						try {
 							fromAddr = parse5322.parseFrom(hdr.author)[0].address;
@@ -1262,7 +1249,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
 						let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
 
-
 						var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
 						data = prologue + data;
 					}
@@ -1272,7 +1258,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 				IETwriteDataOnDisk(fileClone, data, true, null, null);
 				sub = true;
 			} else {
-				console.log("mbox",data)
 				if (!hdrArray)
 					sub = getSubjectForHdr(hdr, file.path);
 				else {
@@ -1290,12 +1275,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					// a normal From: field. Make better regex...
 					// data = this.emailtext.replace(/^From.+\r?\n/, "");
 
-					console.log("pdata",data)
-
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
-
-					console.log("af data",data)
-
 					data = IETescapeBeginningFrom(data);
 
 					// Strip CR option - @ashikase
@@ -1391,11 +1371,12 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	myEMLlistner.msgFolder = msgFolder;
 	mms.streamMessage(msguri, myEMLlistner, msgWindow, null, false, null);
 
+	// yes this is a horrible way to do this 
 	for (let index = 0; index < 1000; index++) {
 		if (saveAsEmlDone) {
 			break;
 		}
-		await new Promise(resolve => setTimeout(resolve, 500));
+		await new Promise(resolve => setTimeout(resolve, 200));
 	}
 
 }

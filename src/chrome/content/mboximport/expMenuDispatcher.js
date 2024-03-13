@@ -92,8 +92,6 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_Mbox_Format":
 			if (data.params.mboxExpType == "newMbox") {
-				console.log("mbox")
-
 				await exportSelectedMsgs(3, data.params);
 			} else if (data.params.mboxExpType == "appendMbox") {
 				await exportSelectedMsgs(4, data.params);

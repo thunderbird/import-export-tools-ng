@@ -176,7 +176,7 @@ async function mboxCopyImport(options) {
 
         fromExcpCount++;
 
-        //console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
+        console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
         let pos = result.index;
         //console.log(strBuffer.substring(pos, pos + 200))
         //console.log((finalChunk - result.index))
@@ -188,7 +188,7 @@ async function mboxCopyImport(options) {
         // handling last exception
 
         if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-          //console.log("defer last exception : process as tail")
+          console.log("defer last exception : process as tail")
           fromExcpCount--;
 
         } else {
@@ -244,7 +244,7 @@ async function mboxCopyImport(options) {
           if ((kReadChunk - epos) > 0) {
             fromExcpCount++;
 
-            //console.log("writing exc ", cnt, fromExcpCount)
+            console.log("writing exc ", cnt, fromExcpCount)
 
             let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
@@ -272,6 +272,8 @@ async function mboxCopyImport(options) {
         }
       }
 
+      console.log("final from exceptions ", fromExcpCount)
+      
       totalWrite += (finalChunk - writePos);
 
       // convert back to uint8 and write out

@@ -125,8 +125,8 @@ async function mboxCopyImport(options) {
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers, including multiline hdrs
     // Remove space after colon requirement #516
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
-    //let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))(?![\x21-\x7E]+:(?:(.|(\r\s)))*?(?:\r)[\x21-\x7E]+:)/gm;
+    // Fix by using ? To make space optional
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: ?(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: ?)/gm;
 
 
     //(?:\r|\n|\r\n)
@@ -177,7 +177,6 @@ async function mboxCopyImport(options) {
         fromExcpCount++;
 
         //console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
-        console.log(result[0])
         let pos = result.index;
         //console.log(strBuffer.substring(pos, pos + 200))
         //console.log((finalChunk - result.index))
@@ -194,6 +193,7 @@ async function mboxCopyImport(options) {
 
         } else {
           //console.log("write exception")
+          console.log(result[0])
 
           // write out up to From_ exception, write space then process
           // from Beginning of line.
@@ -225,7 +225,7 @@ async function mboxCopyImport(options) {
         if (singleFromException.length) {
           let epos = kReadChunk - kExceptWin + singleFromException[0].index;
           
-          /*
+          
           console.log("tail check end ", cnt, epos)
           console.log(kReadChunk - epos)
 
@@ -236,7 +236,7 @@ async function mboxCopyImport(options) {
           console.log(boundaryStrBuffer)
           console.log(singleFromException)
           console.log(strBuffer.substring(epos, epos + 80))
-          */
+          
 
           // write normally 
 
@@ -244,6 +244,7 @@ async function mboxCopyImport(options) {
           // from Beginning of line.
           if ((kReadChunk - epos) > 0) {
             fromExcpCount++;
+            console.log(singleFromException[0])
 
             console.log("writing exc ", cnt, fromExcpCount)
 
@@ -297,6 +298,7 @@ async function mboxCopyImport(options) {
     console.log("Elapsed time:", et / 1000, "s");
     console.log(new Date());
 */
+    console.log("Escape fixups:", fromExcpCount);
 
     if (crLineEndings && srcPath.endsWith("_ietngTMP@mbox")) {
       await IOUtils.remove(srcPath, {ignoreAbsent: true});

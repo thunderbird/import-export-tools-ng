@@ -125,7 +125,7 @@ async function mboxCopyImport(options) {
     // fromRegex used for From_ escaping
     // Requires From_ followed by two headers, including multiline hdrs
     // Remove space after colon requirement #516
-    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+:(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+:)/gm;
+    let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
     //let fromRegx = /^(From (?:.*?)(?:\r|\n|\r\n))(?![\x21-\x7E]+:(?:(.|(\r\s)))*?(?:\r)[\x21-\x7E]+:)/gm;
 
 
@@ -145,11 +145,11 @@ async function mboxCopyImport(options) {
     //console.log("start import")
 
     while (!eof) {
-      console.log("start chunk")
+      //console.log("start chunk")
 
       // Read chunk as uint8
       rawBytes = await IOUtils.read(srcPath, { offset: offset, maxBytes: kReadChunk });
-      console.log("start chunklen ", rawBytes.length)
+      //console.log("start chunklen ", rawBytes.length)
 
       // Determine final write chunk
       if (rawBytes.byteLength < kReadChunk) {
@@ -176,7 +176,8 @@ async function mboxCopyImport(options) {
 
         fromExcpCount++;
 
-        console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
+        //console.log("FromExceptionCnt", fromExcpCount, "chunk", cnt, "pos", result.index, result)
+        console.log(result[0])
         let pos = result.index;
         //console.log(strBuffer.substring(pos, pos + 200))
         //console.log((finalChunk - result.index))
@@ -202,7 +203,7 @@ async function mboxCopyImport(options) {
           await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
 
           writePos = result.index;
-          console.log(writePos)
+          //console.log(writePos)
           // console.log("totalWrite bytes:", totalWrite)
 
           // This is for our ui status update
@@ -272,7 +273,7 @@ async function mboxCopyImport(options) {
         }
       }
 
-      console.log("final from exceptions ", fromExcpCount)
+      //console.log("final from exceptions ", fromExcpCount)
       
       totalWrite += (finalChunk - writePos);
 

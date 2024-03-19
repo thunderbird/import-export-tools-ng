@@ -55,7 +55,7 @@ console.log("IETNG: mboxImportModule -4");
 
 async function mboxCopyImport(options) {
 
-  console.log("start mboxCopyImport", options)
+  // console.log("start mboxCopyImport", options)
 
   var srcPath = options.srcPath;
   let targetMboxPath = options.destPath;
@@ -107,13 +107,9 @@ async function mboxCopyImport(options) {
   const kExceptWin = 300;
 
   let crLineEndings = await _checkCRLineEndings(srcPath);
-  //let crLineEndings = true;
   if (crLineEndings) {
     srcPath = await _tmpConvertCRLineEndings(srcPath, kReadChunk);
   }
-
-  console.log("start ", srcPath)
-
 
   // temp loop for performance exps
   for (let i = 0; i < 1; i++) {
@@ -248,20 +244,12 @@ async function mboxCopyImport(options) {
 
       writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
     }
-
+    // completion
     let et = new Date() - s;
-
-
+    
     writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
 
-/*
-    console.log("end read/fix/write loop");
-    console.log("Escape fixups:", fromExcpCount);
-    console.log("Elapsed time:", et / 1000, "s");
-    console.log(new Date());
-*/
-    console.log("Escape fixups:", fromExcpCount);
-
+    // if we did a CR conversion, remove tmp mbox file
     if (crLineEndings && srcPath.endsWith("_ietngTMP@mbox")) {
       await IOUtils.remove(srcPath, {ignoreAbsent: true});
     }

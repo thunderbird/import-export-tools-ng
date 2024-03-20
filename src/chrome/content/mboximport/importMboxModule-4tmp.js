@@ -78,7 +78,7 @@ async function mboxCopyImport(options) {
   // Remove space after colon requirement #516
   // Fix by using ? To make space optional
   //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: ?(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: ?)/gm;
-  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: ?(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
   var fromExceptions;
   var cnt = 0;

@@ -28,13 +28,12 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
-//const { GlodaMsgIndexer } = ChromeUtils.import("resource:///modules/gloda/IndexMsg.jsm");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-4.js", window, "UTF-8");
 
 var window;
 
-console.log("IETNG: mboximportExport -4");
+console.log("IETNG: mboximportExport.js -v4");
 
 export var mboxImportExport = {
 
@@ -142,7 +141,6 @@ export var mboxImportExport = {
       ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
 
       let rv = await this._isMboxFile(mboxFilePath);
-      console.log(rv)
       if (!(await this._isMboxFile(mboxFilePath))) {
         let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
 

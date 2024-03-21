@@ -77,8 +77,8 @@ async function mboxCopyImport(options) {
   // Requires From_ followed by two headers, including multiline hdrs
   // Remove space after colon requirement #516
   // Fix by using ? To make space optional
-  //let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: ?(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: ?)/gm;
-  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: ?(?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+  //let fromRegx = /^(From (?:.*?)\r?\n)(?!([\x21-\x2b]|[\x2d-\x7e])+: ?(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x2b]|[\x2d-\x7e])+:)/gm;
 
   var fromExceptions;
   var cnt = 0;
@@ -127,10 +127,11 @@ async function mboxCopyImport(options) {
       // handling last exception
 
       if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-        // console.log("defer last exception : process as tail")
+        console.log("defer last exception : process as tail")
         fromExcpCount--;
 
       } else {
+        console.log(result)
         // write out up to From_ exception, write space then process
         // from Beginning of line.
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
@@ -151,7 +152,10 @@ async function mboxCopyImport(options) {
     let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
     singleFromException = [...singleFromException];
     if (singleFromException.length) {
+              console.log(singleFromException[0])
+      
       let epos = kReadChunk - kExceptWin + singleFromException[0].index;
+        console.log(singleFromException[0])
 
       /*
       console.log("tail check end ", cnt, epos)

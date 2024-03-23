@@ -132,10 +132,13 @@ async function mboxCopyImport(options) {
     fromExceptions = strBuffer.matchAll(fromRegx);
     fromExceptions = [...fromExceptions];
 
+    console.log("total excp cnt",fromExceptions.length)
     for (const [index, result] of fromExceptions.entries()) {
 
       fromExcpCount++;
 
+          console.log("processing cnt",fromExcpCount)
+      
       totalWrite += ((result.index - 1) - writePos);
 
       var exceptionPos = result.index;
@@ -181,6 +184,8 @@ async function mboxCopyImport(options) {
       }
     }
 
+    console.log("processing tail")
+    
     // tail processing
     let rawBytesNextBuf = await IOUtils.read(srcPath, { offset: offset, maxBytes: kExceptWin });
     // convert to faster String for regex etc
@@ -214,7 +219,9 @@ async function mboxCopyImport(options) {
       console.log(epos, kReadChunk - epos)
       if ((kReadChunk - epos) > 0) {
         fromExcpCount++;
-        console.log("write excep")
+        console.log("write excep", writePos)
+        console.log(strBuffer.substring(writePos, epos))
+        
         let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
@@ -230,6 +237,8 @@ async function mboxCopyImport(options) {
       // console.log("no boundary buf Exception ")
     }
 
+    console.log("write final", writePos)
+    console.log(strBuffer.substring(writePos, finalChunk + 1))
     totalWrite += (finalChunk - writePos);
 
     // convert back to uint8 and write out

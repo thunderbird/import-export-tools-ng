@@ -30,6 +30,20 @@ var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale
 // as a module loaded by an ES6 module we bump name version so we avoid cache
 console.log("IETNG: mboxImportModule.js -v4");
 
+  // Common RFC822 header field-names for From_ exception analysis
+  const rfc822FieldNames = [
+    "to", "from", "subject", "cc", "bcc", "reply-to", "date", "date-received", "received",
+    "delivered-to", "return-path", "dkim-signature", "deferred-delivery", "envelope-to",
+    "message-id", "user-agent", "mime-version", "content-type", "content-transfer-encoding",
+    "content-language"
+  ];
+
+  const commonX_FieldNames = [
+    "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla-status", "x-mozilla-status2",
+    "x-google-"
+  ];
+
+
 // mboxCopyImport reads, processes and writes a single mbox file
 // we only do IOUtils and file processing no large data transfers
 // across thread boundaries
@@ -38,6 +52,8 @@ console.log("IETNG: mboxImportModule.js -v4");
 async function mboxCopyImport(options) {
 
   // console.log("start mboxCopyImport", options)
+
+
 
   var srcPath = options.srcPath;
   let targetMboxPath = options.destPath;
@@ -132,6 +148,27 @@ async function mboxCopyImport(options) {
 
       } else {
         console.log(result)
+        /*
+        let exceptionBuf = strBuffer.substring(exceptionPos, exceptionPos + 300);
+        console.log(exceptionBuf)
+        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
+        let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
+        exceptionHdrs = [...exceptionHdrs];
+        console.log(exceptionHdrs)
+
+        if (exceptionHdrs[0] && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
+          let fieldName1 = exceptionHdrs[0][3];
+          let fieldName2 = exceptionHdrs[0][5];
+
+          if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
+            // no escape, two valid headers after From_
+            console.log("no exc two valid hdrs")
+            fromExcpCount--;
+            continue;
+          }
+        }
+        */
+
         // write out up to From_ exception, write space then process
         // from Beginning of line.
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
@@ -152,10 +189,10 @@ async function mboxCopyImport(options) {
     let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
     singleFromException = [...singleFromException];
     if (singleFromException.length) {
-              console.log(singleFromException[0])
-      
+      console.log(singleFromException[0])
+
       let epos = kReadChunk - kExceptWin + singleFromException[0].index;
-        console.log(singleFromException[0])
+      console.log(singleFromException[0])
 
       /*
       console.log("tail check end ", cnt, epos)
@@ -174,9 +211,10 @@ async function mboxCopyImport(options) {
 
       // write out up to From_ exception, write space then process
       // from Beginning of line.
+      console.log(epos, kReadChunk - epos)
       if ((kReadChunk - epos) > 0) {
         fromExcpCount++;
-
+        console.log("write excep")
         let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
@@ -211,6 +249,20 @@ async function mboxCopyImport(options) {
   }
   // tbd use status codes
   return "Done";
+}
+
+function _isRFC822FieldName(fieldName) {
+  if (rfc822FieldNames.includes(fieldName.toLowerCase())) {
+    return true;
+  }
+  return false;
+}
+
+function _isCommonX_FieldName(fieldName) {
+  if (commonX_FieldNames.includes(fieldName.toLowerCase())) {
+    return true;
+  }
+  return false;
 }
 
 // tbd move utility functions

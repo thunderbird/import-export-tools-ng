@@ -142,24 +142,26 @@ async function mboxCopyImport(options) {
       totalWrite += ((result.index - 1) - writePos);
 
       var exceptionPos = result.index;
+      console.log("exc pos",exceptionPos)
 
       // handling last exception
 
       if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
         console.log("defer last exception : process as tail")
+        console.log(fromExceptions[index])
         fromExcpCount--;
 
       } else {
         console.log(result)
-        /*
+        
         let exceptionBuf = strBuffer.substring(exceptionPos, exceptionPos + 300);
         console.log(exceptionBuf)
-        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
-        let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
+        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/m;
+        let exceptionHdrs = exceptionBuf.match(hdrsExceptionRegex)
         exceptionHdrs = [...exceptionHdrs];
         console.log(exceptionHdrs)
 
-        if (exceptionHdrs[0] && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
+        if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
           let fieldName1 = exceptionHdrs[0][3];
           let fieldName2 = exceptionHdrs[0][5];
 
@@ -170,7 +172,9 @@ async function mboxCopyImport(options) {
             continue;
           }
         }
-        */
+        
+        console.log("write exception")
+        
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.

@@ -219,6 +219,7 @@ async function mboxCopyImport(options) {
       console.log(epos, kReadChunk - epos)
       if ((kReadChunk - epos) > 0) {
         fromExcpCount++;
+        epos = fromExceptions[fromExceptions.length - 1].index;
         console.log("write excep", writePos)
         console.log(strBuffer.substring(writePos, epos))
         

@@ -155,22 +155,9 @@ async function mboxCopyImport(options) {
         console.log(result)
         
         let exceptionBuf = strBuffer.substring(exceptionPos, exceptionPos + 300);
-        console.log(exceptionBuf)
-        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/m;
-        let exceptionHdrs = exceptionBuf.match(hdrsExceptionRegex)
-        exceptionHdrs = [...exceptionHdrs];
-        console.log(exceptionHdrs)
-
-        if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
-          let fieldName1 = exceptionHdrs[0][3];
-          let fieldName2 = exceptionHdrs[0][5];
-
-          if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
-            // no escape, two valid headers after From_
-            console.log("no exc two valid hdrs")
-            fromExcpCount--;
-            continue;
-          }
+        if (_exceptionHas2Hdrs(exceptionBuf)) {
+          fromExcpCount--;
+          continue;
         }
         
         console.log("write exception")
@@ -197,7 +184,8 @@ async function mboxCopyImport(options) {
 
     let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
     singleFromException = [...singleFromException];
-    if (singleFromException.length) {
+    if (singleFromException.length && _exceptionHas2Hdrs(boundaryStrBuffer.substring(singleFromException[0].index))) {
+      console.log("has single exception")
       console.log(singleFromException[0])
 
       let epos = kReadChunk - kExceptWin + singleFromException[0].index;
@@ -263,6 +251,26 @@ async function mboxCopyImport(options) {
   }
   // tbd use status codes
   return "Done";
+}
+
+function _exceptionHas2Hdrs(exceptionBuf) {
+console.log(exceptionBuf)
+        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
+        let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
+        exceptionHdrs = [...exceptionHdrs];
+        console.log(exceptionHdrs)
+
+        if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
+          let fieldName1 = exceptionHdrs[0][3];
+          let fieldName2 = exceptionHdrs[0][5];
+
+          if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
+            // no escape, two valid headers after From_
+            console.log("no exc two valid hdrs")
+            return true;
+          }
+        }
+        return false;
 }
 
 function _isRFC822FieldName(fieldName) {

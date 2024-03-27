@@ -1428,6 +1428,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					var attName;
 					var attNameAscii;
 					var attDirContainerName;
+					var time = (hdr.dateInSeconds) * 1000;
 
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
@@ -1475,7 +1476,43 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
+								attachments[i].file = attDirContainerClone;
+
+								// @implements {nsIUrlListener}
+									const urlListener = {
+										OnStartRunningUrl(url) {},
+										OnStopRunningUrl(url, status) {
+											console.log(url)
+											console.log(url.spec)
+											console.log(url.asciiSpec)
+
+											console.log(status)
+											console.log(attachments[0])
+											console.log(attachments[0].file)
+											console.log(attachments[0].file.exists())
+
+										attachments[0].file.lastModifiedTime = time;
+
+
+										}
+									}
+								
+								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, urlListener);
+								console.log(time)
+								var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+								attFile.initWithPath(attDirContainerClone.path)
+								console.log(attFile.path)
+								console.log(attFile.exists())
+								console.log(attFile.lastModifiedTime)
+
+								
+								if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+										attDirContainerClone.lastModifiedTime = time;
+										console.log(attDirContainerClone.path)
+										console.log(attDirContainerClone.lastModifiedTime)
+										
+
+								}
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);

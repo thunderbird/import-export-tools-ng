@@ -30,18 +30,18 @@ var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale
 // as a module loaded by an ES6 module we bump name version so we avoid cache
 console.log("IETNG: mboxImportModule.js -v4");
 
-  // Common RFC822 header field-names for From_ exception analysis
-  const rfc822FieldNames = [
-    "to", "from", "subject", "cc", "bcc", "reply-to", "date", "date-received", "received",
-    "delivered-to", "return-path", "dkim-signature", "deferred-delivery", "envelope-to",
-    "message-id", "user-agent", "mime-version", "content-type", "content-transfer-encoding",
-    "content-language"
-  ];
+// Common RFC822 header field-names for From_ exception analysis
+const rfc822FieldNames = [
+  "to", "from", "subject", "cc", "bcc", "reply-to", "date", "date-received", "received",
+  "delivered-to", "return-path", "dkim-signature", "deferred-delivery", "envelope-to",
+  "message-id", "user-agent", "mime-version", "content-type", "content-transfer-encoding",
+  "content-language"
+];
 
-  const commonX_FieldNames = [
-    "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla-status", "x-mozilla-status2",
-    "x-google-"
-  ];
+const commonX_FieldNames = [
+  "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla-status", "x-mozilla-status2",
+  "x-google-"
+];
 
 
 // mboxCopyImport reads, processes and writes a single mbox file
@@ -132,17 +132,17 @@ async function mboxCopyImport(options) {
     fromExceptions = strBuffer.matchAll(fromRegx);
     fromExceptions = [...fromExceptions];
 
-    console.log("total excp cnt",fromExceptions.length)
+    console.log("total excp cnt", fromExceptions.length)
     for (const [index, result] of fromExceptions.entries()) {
 
       fromExcpCount++;
 
-          console.log("processing cnt",fromExcpCount)
-      
+      console.log("processing cnt", fromExcpCount)
+
       totalWrite += ((result.index - 1) - writePos);
 
       var exceptionPos = result.index;
-      console.log("exc pos",exceptionPos)
+      console.log("exc pos", exceptionPos)
 
       // handling last exception
 
@@ -153,15 +153,15 @@ async function mboxCopyImport(options) {
 
       } else {
         console.log(result)
-        
+
         let exceptionBuf = strBuffer.substring(exceptionPos, exceptionPos + 300);
         if (_exceptionHas2Hdrs(exceptionBuf)) {
           fromExcpCount--;
           continue;
         }
-        
+
         console.log("write exception")
-        
+
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.
@@ -176,7 +176,7 @@ async function mboxCopyImport(options) {
     }
 
     console.log("processing tail")
-    
+
     // tail processing
     let rawBytesNextBuf = await IOUtils.read(srcPath, { offset: offset, maxBytes: kExceptWin });
     // convert to faster String for regex etc
@@ -184,7 +184,7 @@ async function mboxCopyImport(options) {
 
     let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
     singleFromException = [...singleFromException];
-    if (singleFromException.length && _exceptionHas2Hdrs(boundaryStrBuffer.substring(singleFromException[0].index))) {
+    if (singleFromException.length && !_exceptionHas2Hdrs(boundaryStrBuffer.substring(singleFromException[0].index))) {
       console.log("has single exception")
       console.log(singleFromException[0])
 
@@ -214,7 +214,7 @@ async function mboxCopyImport(options) {
         epos = fromExceptions[fromExceptions.length - 1].index;
         console.log("write excep", writePos)
         console.log(strBuffer.substring(writePos, epos))
-        
+
         let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
@@ -254,23 +254,24 @@ async function mboxCopyImport(options) {
 }
 
 function _exceptionHas2Hdrs(exceptionBuf) {
-console.log(exceptionBuf)
-        hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
-        let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
-        exceptionHdrs = [...exceptionHdrs];
-        console.log(exceptionHdrs)
+  console.log("2hdr check")
+  console.log(exceptionBuf)
+  hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
+  let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
+  exceptionHdrs = [...exceptionHdrs];
+  console.log(exceptionHdrs)
 
-        if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
-          let fieldName1 = exceptionHdrs[0][3];
-          let fieldName2 = exceptionHdrs[0][5];
+  if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
+    let fieldName1 = exceptionHdrs[0][3];
+    let fieldName2 = exceptionHdrs[0][5];
 
-          if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
-            // no escape, two valid headers after From_
-            console.log("no exc two valid hdrs")
-            return true;
-          }
-        }
-        return false;
+    if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
+      // no escape, two valid headers after From_
+      console.log("no exc two valid hdrs")
+      return true;
+    }
+  }
+  return false;
 }
 
 function _isRFC822FieldName(fieldName) {

@@ -1482,60 +1482,24 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								const urlListener = {
 									OnStartRunningUrl(url) { },
 									OnStopRunningUrl(url, status) {
-										console.log(url.spec)
-											console.log(attachments)
+										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+											return;
+										}
 
 										let curAtt = attachments.find((att) => {
-											console.log(att)
-
-											console.log(att.url)
-											console.log(url.spec)
 
 											if (att.url == url.spec) {
-												console.log(att)
 												return true;
 											}
 										})
 										setTimeout(this.setFileTime, 50, curAtt);
-
-										//var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-										//attFile.initWithPath(attachments[0].file.path)
-										//	attFile.lastModifiedTime = time;
-
-										//console.log(attFile.lastModifiedTime)
-										/*	
-										((async () => {
-												//console.log("delay")
-												await new Promise(resolve => setTimeout(resolve, 50));
-												attFile.lastModifiedTime = time;
-												//console.log(attFile.lastModifiedTime)
-
-											})());
-*/
-
 									},
 									setFileTime(curAtt) {
-										console.log(curAtt.url)
 										curAtt.file.lastModifiedTime = time;
-
 									}
 								}
 
 								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, urlListener);
-								console.log(time)
-								//var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-								//attFile.initWithPath(attDirContainerClone.path)
-								//console.log(attFile.path)
-								//console.log(attFile.exists())
-
-
-								if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-									//attDirContainerClone.lastModifiedTime = time;
-									//console.log(attDirContainerClone.path)
-									//console.log(attDirContainerClone.lastModifiedTime)
-
-
-								}
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);

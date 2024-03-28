@@ -1,0 +1,13 @@
+<!ENTITY intro1 "Toto je experimentální funkce pro importování profilu. Nehrozí riziko ztráty dat, ale není zaručen hladký průběh fungování, zvlášť když importujete profil z jiného počítače. Ale stejně je bezpečnější než ruční kopírování souborů.">
+<!ENTITY profilePath "Cesta profilu pro importování">
+<!ENTITY browse "Procházet…">
+<!ENTITY profileName "Název profilu pro import">
+<!ENTITY changeProfileNameLabel "Mimochodem, můžete změnit název profilu ve správci profilů">
+<!ENTITY intro2 "Složka obsahuje platný profil pro import. Při této proceduře, která může trvat několik minut a více, nemůžete používat program.">
+<!ENTITY start "Zahájit importování">
+<!ENTITY importRunning "Importování běží…">
+<!ENTITY importEnd "Importování bylo úspěšné!">
+<!ENTITY intro3 "Pro přístup k importovanému profilu, spusťte správce profilů kliknutím na tlačítko níže. Současný profil bude automaticky zavřen">
+<!ENTITY runProfileManager "Spustit správce profilů">
+<!ENTITY title "ImportExportTools NG - Importování profilu">
+<!ENTITY error "Nastala chyba při importování profilu. Podrobnosti:">

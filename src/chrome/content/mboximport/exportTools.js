@@ -1489,9 +1489,19 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											console.log(status)
 											console.log(attachments[0])
 											console.log(attachments[0].file)
-											console.log(attachments[0].file.exists())
+											console.log(attachments[0].file.path)
 
-										attachments[0].file.lastModifiedTime = time;
+											console.log(attachments[0].file.exists())
+											console.log(time)
+											var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+											attFile.initWithPath(attachments[0].file.path)
+											console.log(attFile.lastModifiedTime)
+											((async () => {
+												await new Promise(resolve => setTimeout(resolve, 500));
+												attFile.lastModifiedTime = time;
+
+											})());
+										console.log(attFile.lastModifiedTime)
 
 
 										}
@@ -1503,13 +1513,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								attFile.initWithPath(attDirContainerClone.path)
 								console.log(attFile.path)
 								console.log(attFile.exists())
-								console.log(attFile.lastModifiedTime)
 
 								
 								if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-										attDirContainerClone.lastModifiedTime = time;
+										//attDirContainerClone.lastModifiedTime = time;
 										console.log(attDirContainerClone.path)
-										console.log(attDirContainerClone.lastModifiedTime)
+										//console.log(attDirContainerClone.lastModifiedTime)
 										
 
 								}

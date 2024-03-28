@@ -1203,7 +1203,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 var saveAsEmlDone = false;
 
 async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
-	
+
 	var myEMLlistner = {
 
 		scriptStream: null,
@@ -1479,47 +1479,61 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								attachments[i].file = attDirContainerClone;
 
 								// @implements {nsIUrlListener}
-									const urlListener = {
-										OnStartRunningUrl(url) {},
-										OnStopRunningUrl(url, status) {
-											console.log(url)
+								const urlListener = {
+									OnStartRunningUrl(url) { },
+									OnStopRunningUrl(url, status) {
+										console.log(url.spec)
+											console.log(attachments)
+
+										let curAtt = attachments.find((att) => {
+											console.log(att)
+
+											console.log(att.url)
 											console.log(url.spec)
-											console.log(url.asciiSpec)
 
-											console.log(status)
-											console.log(attachments[0])
-											console.log(attachments[0].file)
-											console.log(attachments[0].file.path)
+											if (att.url == url.spec) {
+												console.log(att)
+												return true;
+											}
+										})
+										setTimeout(this.setFileTime, 50, curAtt);
 
-											console.log(attachments[0].file.exists())
-											console.log(time)
-											var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-											attFile.initWithPath(attachments[0].file.path)
-											console.log(attFile.lastModifiedTime)
-											((async () => {
-												await new Promise(resolve => setTimeout(resolve, 500));
+										//var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+										//attFile.initWithPath(attachments[0].file.path)
+										//	attFile.lastModifiedTime = time;
+
+										//console.log(attFile.lastModifiedTime)
+										/*	
+										((async () => {
+												//console.log("delay")
+												await new Promise(resolve => setTimeout(resolve, 50));
 												attFile.lastModifiedTime = time;
+												//console.log(attFile.lastModifiedTime)
 
 											})());
-										console.log(attFile.lastModifiedTime)
+*/
 
+									},
+									setFileTime(curAtt) {
+										console.log(curAtt.url)
+										curAtt.file.lastModifiedTime = time;
 
-										}
 									}
-								
+								}
+
 								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, urlListener);
 								console.log(time)
-								var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-								attFile.initWithPath(attDirContainerClone.path)
-								console.log(attFile.path)
-								console.log(attFile.exists())
+								//var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+								//attFile.initWithPath(attDirContainerClone.path)
+								//console.log(attFile.path)
+								//console.log(attFile.exists())
 
-								
+
 								if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-										//attDirContainerClone.lastModifiedTime = time;
-										console.log(attDirContainerClone.path)
-										//console.log(attDirContainerClone.lastModifiedTime)
-										
+									//attDirContainerClone.lastModifiedTime = time;
+									//console.log(attDirContainerClone.path)
+									//console.log(attDirContainerClone.lastModifiedTime)
+
 
 								}
 							} catch (e) {

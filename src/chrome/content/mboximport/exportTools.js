@@ -1478,16 +1478,21 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								attDirContainerClone.append(att.name);
 								attachments[i].file = attDirContainerClone;
 
+								// The urlListener.OnStopRunningUrl fires before the 
+								// file is truly closed. An attempt to change lastModifiedTime
+								// here gets superceded with the current date. This is likely 
+								// a file descriptor being closed after the event.
+								// A setTimeout delayed action is required. 
+								// Setting the attachment date to match the message date #549
+
 								// @implements {nsIUrlListener}
-								const urlListener = {
+								const attsUrlListener = {
 									OnStartRunningUrl(url) { },
 									OnStopRunningUrl(url, status) {
 										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 											return;
 										}
-
 										let curAtt = attachments.find((att) => {
-
 											if (att.url == url.spec) {
 												return true;
 											}
@@ -1499,7 +1504,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									}
 								}
 
-								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, urlListener);
+								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);
@@ -1637,6 +1642,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							imgs = imgs.concat(imgsImap);
 						}
 
+						let imgAtts = imgs.map(img => {
+							return {imgLink: img}
+						});
+
 						// Update for extended naming
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
@@ -1663,9 +1672,39 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								continue;
 							}
 
+								// The urlListener.OnStopRunningUrl fires before the 
+								// file is truly closed. An attempt to change lastModifiedTime
+								// here gets superceded with the current date. This is likely 
+								// a file descriptor being closed after the event.
+								// A setTimeout delayed action is required. 
+								// Setting the attachment date to match the message date #549
+								
+								// @implements {nsIUrlListener}
+								const embImgsUrlListener = {
+									OnStartRunningUrl(url) { },
+									OnStopRunningUrl(url, status) {
+										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+											return;
+										}
+										let curAtt = imgAtts.find((att) => {
+											if (att.url == url.spec) {
+												return true;
+											}
+										})
+										setTimeout(this.setFileTime, 50, curAtt);
+									},
+									setFileTime(curAtt) {
+										curAtt.file.lastModifiedTime = time;
+									}
+								}
+
 							var embImg = embImgContainer.clone();
+							
 							embImg.append(i + ".jpg");
-							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
+							imgAtts[i].file = embImg;
+							imgAtts[i].url = aUrl;
+							
+							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
 							// var sep = isWin ? "\\" : "/";
 							// Encode for UTF-8 - Fixes #355
 							data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");

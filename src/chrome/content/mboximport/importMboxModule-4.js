@@ -39,7 +39,7 @@ const rfc822FieldNames = [
 ];
 
 const commonX_FieldNames = [
-  "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla-status", "x-mozilla-status2",
+  "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla…",
   "x-google-"
 ];
 
@@ -267,7 +267,7 @@ function _exceptionHas2Hdrs(exceptionBuf) {
 
     if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
       // no escape, two valid headers after From_
-      console.log("no exc two valid hdrs")
+      console.log("no exc two valid hdrs", fieldName1,fieldName2)
       return true;
     }
   }
@@ -284,6 +284,16 @@ function _isRFC822FieldName(fieldName) {
 function _isCommonX_FieldName(fieldName) {
   if (commonX_FieldNames.includes(fieldName.toLowerCase())) {
     return true;
+  }
+  if (fieldName.toLowerCase().startsWith("x-")) {
+    console.log("chek",fieldName)
+    return commonX_FieldNames.find(xFieldName => {
+      console.log(xFieldName)
+      console.log(xFieldName.slice(0, -1))
+      console.log(fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)))
+
+      let rv = (xFieldName.endsWith("…") && fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)));
+    });
   }
   return false;
 }

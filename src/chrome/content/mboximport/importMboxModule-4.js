@@ -24,6 +24,7 @@ var Services = globalThis.Services || ChromeUtils.import(
   'resource://gre/modules/Services.jsm'
 ).Services;
 
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var window = Services.wm.getMostRecentWindow("mail:3pane");
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
@@ -35,12 +36,12 @@ const rfc822FieldNames = [
   "to", "from", "subject", "cc", "bcc", "reply-to", "date", "date-received", "received",
   "delivered-to", "return-path", "dkim-signature", "deferred-delivery", "envelope-to",
   "message-id", "user-agent", "mime-version", "content-type", "content-transfer-encoding",
-  "content-language"
+  "content-language", "autocrypt",
 ];
 
 const commonX_FieldNames = [
-  "x-spam-score", "x-spam-status", "x-spam-bar", "x-mozilla…",
-  "x-google-"
+  "x-spam…", "x-ham…", "x-mozilla…",
+  "x-google…", "x-gm…",
 ];
 
 
@@ -52,8 +53,6 @@ const commonX_FieldNames = [
 async function mboxCopyImport(options) {
 
   // console.log("start mboxCopyImport", options)
-
-
 
   var srcPath = options.srcPath;
   let targetMboxPath = options.destPath;
@@ -92,9 +91,14 @@ async function mboxCopyImport(options) {
   // fromRegex used for From_ escaping
   // Requires From_ followed by two headers, including multiline hdrs
   // Remove space after colon requirement #516
-  // Fix by using ? To make space optional
+  // Fix by using second check for hdrs with no space after :
   let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
-  //let fromRegx = /^(From (?:.*?)\r?\n)(?!([\x21-\x2b]|[\x2d-\x7e])+: ?(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x2b]|[\x2d-\x7e])+:)/gm;
+
+  var fromEscapeChar = ">";
+  if (ietngUtils.getThunderbirdVersion().major >= 115 &&
+      ietngUtils.getThunderbirdVersion().minor >= 9) {
+      fromEscapeChar = " ";
+      }
 
   var fromExceptions;
   var cnt = 0;
@@ -132,19 +136,14 @@ async function mboxCopyImport(options) {
     fromExceptions = strBuffer.matchAll(fromRegx);
     fromExceptions = [...fromExceptions];
 
-    console.log("total excp cnt", fromExceptions.length)
     for (const [index, result] of fromExceptions.entries()) {
 
       fromExcpCount++;
-
-      console.log("processing cnt", fromExcpCount)
-
       totalWrite += ((result.index - 1) - writePos);
 
       var exceptionPos = result.index;
-      console.log("exc pos", exceptionPos)
 
-      // handling last exception
+      // handling last exception in case straddles buffer boundaries
 
       if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
         console.log("defer last exception : process as tail")
@@ -168,7 +167,7 @@ async function mboxCopyImport(options) {
         let raw = stringToBytes(strBuffer.substring(writePos, result.index));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-        await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
+        await IOUtils.write(targetMboxPath, stringToBytes(fromEscapeChar), { mode: "append" });
 
         writePos = result.index;
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
@@ -189,21 +188,7 @@ async function mboxCopyImport(options) {
       console.log(singleFromException[0])
 
       let epos = kReadChunk - kExceptWin + singleFromException[0].index;
-      console.log(singleFromException[0])
-
-      /*
-      console.log("tail check end ", cnt, epos)
-      console.log(kReadChunk - epos)
-
-      console.log("last boundary buf Exception ")
-      console.log("boundary buf")
-      console.log(strBuffer.slice(-kExceptWin))
-
-      console.log(boundaryStrBuffer)
-      console.log(singleFromException)
-      console.log(strBuffer.substring(epos, epos + 80))
-      */
-
+      
       // write normally
 
       // write out up to From_ exception, write space then process
@@ -213,12 +198,11 @@ async function mboxCopyImport(options) {
         fromExcpCount++;
         epos = fromExceptions[fromExceptions.length - 1].index;
         console.log("write excep", writePos)
-        console.log(strBuffer.substring(writePos, epos))
 
         let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
         await IOUtils.write(targetMboxPath, raw, { mode: "append" });
-        await IOUtils.write(targetMboxPath, stringToBytes(">"), { mode: "append" });
+        await IOUtils.write(targetMboxPath, stringToBytes(fromEscapeChar), { mode: "append" });
 
         writePos = epos;
         writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
@@ -231,7 +215,7 @@ async function mboxCopyImport(options) {
     }
 
     console.log("write final", writePos)
-    console.log(strBuffer.substring(writePos, finalChunk + 1))
+    //console.log(strBuffer.substring(writePos, finalChunk + 1))
     totalWrite += (finalChunk - writePos);
 
     // convert back to uint8 and write out
@@ -255,8 +239,8 @@ async function mboxCopyImport(options) {
 
 function _exceptionHas2Hdrs(exceptionBuf) {
   console.log("2hdr check")
-  console.log(exceptionBuf)
-  hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
+  //console.log(exceptionBuf)
+  let hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
   let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
   exceptionHdrs = [...exceptionHdrs];
   console.log(exceptionHdrs)
@@ -265,7 +249,8 @@ function _exceptionHas2Hdrs(exceptionBuf) {
     let fieldName1 = exceptionHdrs[0][3];
     let fieldName2 = exceptionHdrs[0][5];
 
-    if ((_isRFC822FieldName(fieldName1) | _isCommonX_FieldName(fieldName1)) && (_isRFC822FieldName(fieldName2) | _isCommonX_FieldName(fieldName2))) {
+    if ((_isRFC822FieldName(fieldName1) || _isCommonX_FieldName(fieldName1)) &&
+        (_isRFC822FieldName(fieldName2) || _isCommonX_FieldName(fieldName2))) {
       // no escape, two valid headers after From_
       console.log("no exc two valid hdrs", fieldName1,fieldName2)
       return true;
@@ -286,13 +271,8 @@ function _isCommonX_FieldName(fieldName) {
     return true;
   }
   if (fieldName.toLowerCase().startsWith("x-")) {
-    console.log("chek",fieldName)
     return commonX_FieldNames.find(xFieldName => {
-      console.log(xFieldName)
-      console.log(xFieldName.slice(0, -1))
-      console.log(fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)))
-
-      let rv = (xFieldName.endsWith("…") && fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)));
+      return (xFieldName.endsWith("…") && fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)));
     });
   }
   return false;

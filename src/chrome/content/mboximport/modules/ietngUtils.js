@@ -16,6 +16,10 @@
 
 // ietngUtils.js
 
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
 var ietngUtils = {
@@ -283,5 +287,14 @@ var ietngUtils = {
       i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   },
+
+getThunderbirdVersion: function () {
+    let parts = Services.appinfo.version.split(".");
+    return {
+        major: parseInt(parts[0]),
+        minor: parseInt(parts[1]),
+        revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+    };
+},
 
 };

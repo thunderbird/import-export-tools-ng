@@ -598,21 +598,24 @@ var options0 = {
 };
 
 // properties=1
-var options1 = {
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
-	append: true,
+	append: false,
 	skipEN: true,
 	outputFormat: 1,
 };
 
+	//inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+
 var options = {
-	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	inputLocaleDir: `./src/_locales/en-US`,
+
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
 	skipEN: false,
-	append: true,
+	append: false,
 	outputFormat: 3,
 };
 
@@ -627,7 +630,7 @@ let inputFiles;
 inputFiles = ["messages.json"];
 //inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-inputFiles = ["mboximport.properties"];
+//inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -656,7 +659,7 @@ localeFolders = ['cs'];
 //translatePage();
 loadTranslationArray(inputFiles, options);
 
- translateAll("mboximport.properties", translationArray, options);
+ //translateAll("messages.json", translationArray, options);
 //translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);

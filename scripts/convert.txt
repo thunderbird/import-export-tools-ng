@@ -1,4 +1,4 @@
-python locale-converter.py ..\src\chrome\locale\en-US\mboximport ..\src\_locales\en-US
+python locale-converter.py ..\src\chrome\locale\cs\mboximport ..\src\_locales\cs
 
 
 

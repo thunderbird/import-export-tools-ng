@@ -1,333 +1,398 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Přidá nástroje pro import a export zpráv a složek (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Možnosti"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Nápověda"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Exportovat profil"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Importovat profil"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Zálohovat"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Celý profil"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Pouze pošta"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Exportovat zprávy jako…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Formát zprávy EML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Formát HTML"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Formát PDF"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Formát prostého textu"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Formát CSV (tabulka)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "Formát mbox"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Rejstřík zpráv"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Kopírovat do schránky"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Zprávy (vestavěné přílohy)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Pouze zprávy"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Zprávy a přílohy"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Zprávy s přílohami a rejstříkem"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Pouze zprávy"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Zprávy a přílohy"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Zprávy s přílohami a rejstříkem"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Nový soubor mbox"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Doplnit do existujícího souboru mbox"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Formát HTML"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Formát CSV"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Zpráva"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Hlavičky"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Export složky (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Jako soubor mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Jednotně zabalený soubor mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Strukturovaný s podsložkami"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Se zploštěnými podsložkami"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Exportovat vzdálenou složku"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Exportovat všechny zprávy ve složce"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Formát zprávy EML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "Formát HTML"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Formát PDF"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Formát prostého textu"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Formát CSV (tabulka)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Rejstřík zpráv"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Hledat a exportovat zprávy"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Importovat soubory mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Jednotlivé soubory mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Jednotlivé soubory mbox (se strukturou sbd)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Všechny soubory mbox ze složky"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Všechny soubory mbox ze složky (se strukturou sbd)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Importovat složku Maildir"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Importovat zprávy EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Jednotlivé zprávy EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Všechny zprávy EML ze složky"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Všechny zprávy EML ze složky a podsložek"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Kopírovat cestu složky"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Otevřít adresář složky"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Zprávy s přílohami a rejstřík"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Zprávy a rejstřík HTML"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Zprávy s přílohami a rejstřík"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Zprávy jako jednotlivé soubory"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Zprávy jako jednotlivé soubory s přílohami"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "Formát HTML"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "Formát CSV"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Exportovat účet"
-	},
-	
-	"subjectFmtToken": {
-		"message": "${subject}"
-	},
-
-	"senderFmtToken": {
-		"message": "${sender}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${recipient}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${sender_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${recipient_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${smart_name}"
-	},
-
-	"indexFmtToken": {
-		"message": "${index}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${prefix}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${suffix}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${date_custom}"
-	},
-
-	"dateFmtToken": {
-		"message": "${date}"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Uložit přílohu EML do této složky"
-	}
+    "MACwarning": {
+        "message": "Prosíme před pokračováním zavřete všechna ostatní okna."
+    },
+    "allFiles": {
+        "message": "Všechny soubory profilu"
+    },
+    "allFilesMode": {
+        "message": "Vždy všechny soubory"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Uložit přílohu EML do této složky"
+    },
+    "autoName": {
+        "message": "Autmatický (název složky + datum)"
+    },
+    "backupDestination": {
+        "message": "Cíl"
+    },
+    "backupFolderName": {
+        "message": "Název složky pro zálohu"
+    },
+    "backupFreq": {
+        "message": "Četnost"
+    },
+    "backupOn": {
+        "message": "Povolit"
+    },
+    "backupSettings": {
+        "message": "Nastavení záloh"
+    },
+    "backupTab": {
+        "message": "Plánování záloh"
+    },
+    "backupType": {
+        "message": "Obsah zálohy"
+    },
+    "browse": {
+        "message": "Procházet…"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Zálohovat"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Celý profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Pouze pošta"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Exportovat profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Nápověda"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importovat profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Možnosti"
+    },
+    "changeProfileNameLabel": {
+        "message": "Mimochodem, můžete změnit název profilu ve správci profilů"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Nápověda"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Možnosti"
+    },
+    "customName": {
+        "message": "Přizpůsobený"
+    },
+    "dateCustomFmtToken": {
+        "message": "${date_custom}"
+    },
+    "dateFmtToken": {
+        "message": "${date}"
+    },
+    "day1": {
+        "message": "1 den"
+    },
+    "day15": {
+        "message": "15 dní"
+    },
+    "day3": {
+        "message": "3 dny"
+    },
+    "day30": {
+        "message": "30 dní"
+    },
+    "day7": {
+        "message": "7 dní"
+    },
+    "description1": {
+        "message": "Datum poslední zálohy: $t"
+    },
+    "description2": {
+        "message": "Na základě tohoto nastavení je nutné nyní provést zálohu."
+    },
+    "description3": {
+        "message": "Při této operaci bude program na několik minut nereagující."
+    },
+    "description4": {
+        "message": "Chcete pokračovat?"
+    },
+    "description5": {
+        "message": "Probíhá záloha, prosíme čekejte…"
+    },
+    "description6": {
+        "message": "Záloha dokončena."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG- Zálohování"
+    },
+    "error": {
+        "message": "Nastala chyba při importování profilu. Podrobnosti:"
+    },
+    "extensionDescription": {
+        "message": "Přidá nástroje pro import a export zpráv a složek (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Kopírovat cestu složky"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Exportovat účet"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Exportovat všechny zprávy ve složce"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Formát CSV (tabulka)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Formát zprávy EML"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "Se zploštěnými podsložkami"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Jako soubor mbox"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Strukturovaný s podsložkami"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Jednotně zabalený soubor mbox"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Export složky (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Zprávy s přílohami a rejstřík"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Formát HTML"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Formát CSV"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Formát HTML"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Rejstřík zpráv"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Formát PDF"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Zprávy s přílohami a rejstřík"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Zprávy jako jednotlivé soubory s přílohami"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Zprávy jako jednotlivé soubory"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Formát prostého textu"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Exportovat vzdálenou složku"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Hledat a exportovat zprávy"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Všechny zprávy EML ze složky a podsložek"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Všechny zprávy EML ze složky"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Jednotlivé zprávy EML"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Importovat zprávy EML"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Importovat složku Maildir"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Všechny soubory mbox ze složky (se strukturou sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Všechny soubory mbox ze složky"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Jednotlivé soubory mbox (se strukturou sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Jednotlivé soubory mbox"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Importovat soubory mbox"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Otevřít adresář složky"
+    },
+    "importEnd": {
+        "message": "Importování bylo úspěšné!"
+    },
+    "importRunning": {
+        "message": "Importování běží…"
+    },
+    "indexFmtToken": {
+        "message": "${index}"
+    },
+    "intro1": {
+        "message": "Toto je experimentální funkce pro importování profilu. Nehrozí riziko ztráty dat, ale není zaručen hladký průběh fungování, zvlášť když importujete profil z jiného počítače. Ale stejně je bezpečnější než ruční kopírování souborů."
+    },
+    "intro2": {
+        "message": "Složka obsahuje platný profil pro import. Při této proceduře, která může trvat několik minut a více, nemůžete používat program."
+    },
+    "intro3": {
+        "message": "Pro přístup k importovanému profilu, spusťte správce profilů kliknutím na tlačítko níže. Současný profil bude automaticky zavřen"
+    },
+    "justMailFiles": {
+        "message": "Pouze soubory pošty"
+    },
+    "lastBackup": {
+        "message": "Poslední záloha"
+    },
+    "modal": {
+        "message": "Použít modální okno"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Hlavičky"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Zpráva"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Kopírovat do schránky"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Formát CSV (tabulka)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Zprávy (vestavěné přílohy)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Formát zprávy EML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Pouze zprávy"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Zprávy s přílohami a rejstříkem"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Zprávy a přílohy"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "Formát HTML"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "Formát CSV"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "Formát HTML"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Rejstřík zpráv"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Doplnit do existujícího souboru mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Nový soubor mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "Formát mbox"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Formát PDF"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Zprávy a rejstřík HTML"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Pouze zprávy"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Zprávy s přílohami a rejstříkem"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Zprávy a přílohy"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Formát prostého textu"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Exportovat zprávy jako…"
+    },
+    "newFilesMode": {
+        "message": "Pouze změněné soubory od poslední zálohy"
+    },
+    "prefixFmtToken": {
+        "message": "${prefix}"
+    },
+    "profileName": {
+        "message": "Název profilu pro import"
+    },
+    "profilePath": {
+        "message": "Cesta profilu pro importování"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${recipient_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${recipient}"
+    },
+    "runProfileManager": {
+        "message": "Spustit správce profilů"
+    },
+    "save": {
+        "message": "Uložit"
+    },
+    "senderEmailFmtToken": {
+        "message": "${sender_email}"
+    },
+    "senderFmtToken": {
+        "message": "${sender}"
+    },
+    "smartNameFmtToken": {
+        "message": "${smart_name}"
+    },
+    "start": {
+        "message": "Zahájit importování"
+    },
+    "subjectFmtToken": {
+        "message": "${subject}"
+    },
+    "suffixFmtToken": {
+        "message": "${suffix}"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Importování profilu"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Zálohovat"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Celý profil"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Pouze pošta"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Exportovat profil"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Importovat profil"
+    }
 }

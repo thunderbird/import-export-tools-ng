@@ -92,11 +92,11 @@ async function mboxCopyImport(options) {
   // Requires From_ followed by two headers, including multiline hdrs
   // Remove space after colon requirement #516
   // Fix by using second check for hdrs with no space after :
-  let fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
+  const fromRegx = /^(From (?:.*?)\r?\n)(?![\x21-\x7E]+: (?:(.|\r?\n\s))*?(?:\r?\n)[\x21-\x7E]+: )/gm;
 
   var fromEscapeChar = ">";
-  if (ietngUtils.getThunderbirdVersion().major >= 115 &&
-      ietngUtils.getThunderbirdVersion().minor >= 9) {
+  const tbVersion = ietngUtils.getThunderbirdVersion();
+  if (tbVersion.major >= 115 && tbVersion.minor >= 9) {
       fromEscapeChar = " ";
       }
 
@@ -108,9 +108,9 @@ async function mboxCopyImport(options) {
   var finalChunk;
 
   // Status messages
-  let processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
-  let importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
-  let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+  const processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
+  const importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
+  const timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
 
   while (!eof) {
 
@@ -143,24 +143,16 @@ async function mboxCopyImport(options) {
 
       var exceptionPos = result.index;
 
-      // handling last exception in case straddles buffer boundaries
+      // handling last exception in case it straddles buffer boundaries
 
       if ((index == fromExceptions.length - 1) && (finalChunk - exceptionPos) < kExceptWin) {
-        console.log("defer last exception : process as tail")
-        console.log(fromExceptions[index])
         fromExcpCount--;
-
       } else {
-        console.log(result)
-
         let exceptionBuf = strBuffer.substring(exceptionPos, exceptionPos + 300);
         if (_exceptionHas2Hdrs(exceptionBuf)) {
           fromExcpCount--;
           continue;
         }
-
-        console.log("write exception")
-
 
         // write out up to From_ exception, write space then process
         // from Beginning of line.
@@ -174,8 +166,6 @@ async function mboxCopyImport(options) {
       }
     }
 
-    console.log("processing tail")
-
     // tail processing
     let rawBytesNextBuf = await IOUtils.read(srcPath, { offset: offset, maxBytes: kExceptWin });
     // convert to faster String for regex etc
@@ -184,20 +174,15 @@ async function mboxCopyImport(options) {
     let singleFromException = boundaryStrBuffer.matchAll(fromRegx);
     singleFromException = [...singleFromException];
     if (singleFromException.length && !_exceptionHas2Hdrs(boundaryStrBuffer.substring(singleFromException[0].index))) {
-      console.log("has single exception")
-      console.log(singleFromException[0])
-
       let epos = kReadChunk - kExceptWin + singleFromException[0].index;
-      
+
       // write normally
 
       // write out up to From_ exception, write space then process
       // from Beginning of line.
-      console.log(epos, kReadChunk - epos)
       if ((kReadChunk - epos) > 0) {
         fromExcpCount++;
         epos = fromExceptions[fromExceptions.length - 1].index;
-        console.log("write excep", writePos)
 
         let raw = stringToBytes(strBuffer.substring(writePos, epos));
 
@@ -214,8 +199,7 @@ async function mboxCopyImport(options) {
       // console.log("no boundary buf Exception ")
     }
 
-    console.log("write final", writePos)
-    //console.log(strBuffer.substring(writePos, finalChunk + 1))
+    // write final part of chunk
     totalWrite += (finalChunk - writePos);
 
     // convert back to uint8 and write out
@@ -225,9 +209,9 @@ async function mboxCopyImport(options) {
     writeIetngStatusLine(window, `${processingMsg}  ${folderName} :  ` + formatBytes(totalWrite, 2), 14000);
   }
   // completion
-  let et = new Date() - startTime;
+  let totalTime = new Date() - startTime;
 
-  writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + et / 1000 + "s", 14000);
+  writeIetngStatusLine(window, `${importedMsg}  ${folderName}  :  ` + formatBytes(totalWrite, 2) + "  " + timeMsg + ":  " + totalTime / 1000 + "s", 14000);
 
   // if we did a CR conversion, remove tmp mbox file
   if (crLineEndings && srcPath.endsWith("_ietngTMP@mbox")) {
@@ -238,12 +222,9 @@ async function mboxCopyImport(options) {
 }
 
 function _exceptionHas2Hdrs(exceptionBuf) {
-  console.log("2hdr check")
-  //console.log(exceptionBuf)
-  let hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
+  const hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
   let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
   exceptionHdrs = [...exceptionHdrs];
-  console.log(exceptionHdrs)
 
   if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {
     let fieldName1 = exceptionHdrs[0][3];
@@ -252,7 +233,6 @@ function _exceptionHas2Hdrs(exceptionBuf) {
     if ((_isRFC822FieldName(fieldName1) || _isCommonX_FieldName(fieldName1)) &&
         (_isRFC822FieldName(fieldName2) || _isCommonX_FieldName(fieldName2))) {
       // no escape, two valid headers after From_
-      console.log("no exc two valid hdrs", fieldName1,fieldName2)
       return true;
     }
   }
@@ -270,6 +250,7 @@ function _isCommonX_FieldName(fieldName) {
   if (commonX_FieldNames.includes(fieldName.toLowerCase())) {
     return true;
   }
+  // check for common X- roots
   if (fieldName.toLowerCase().startsWith("x-")) {
     return commonX_FieldNames.find(xFieldName => {
       return (xFieldName.endsWith("…") && fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)));
@@ -321,7 +302,6 @@ function createIetngStatusLine(window) {
   s2.style.width = "420px";
   s2.style.overflow = "hidden";
   s.before(s2);
-  console.log("status 2");
 }
 
 function deleteStatusLine(window, text) {
@@ -330,7 +310,6 @@ function deleteStatusLine(window, text) {
       window.document.getElementById("ietngStatusText").setAttribute("label", "");
       window.document.getElementById("ietngStatusText").setAttribute("value", "");
       window.document.getElementById("ietngStatusText").innerText = "";
-
     }
   } catch (e) { }
 }

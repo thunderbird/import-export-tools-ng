@@ -627,7 +627,7 @@ let inputFiles;
 inputFiles = ["messages.json"];
 //inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
-//inputFiles = ["mboximport.properties"];
+inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
 // 						'el', 'pl', 'da', 'pt-PT'];
 
@@ -647,15 +647,17 @@ localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-//localeFolders = ['en-US', 'de'];
+localeFolders = ['cs'];
 
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
 //translateHelpPage();
 //translatePage();
-// translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
+loadTranslationArray(inputFiles, options);
+
+ translateAll("mboximport.properties", translationArray, options);
+//translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 //locs()

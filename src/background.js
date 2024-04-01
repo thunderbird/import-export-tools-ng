@@ -86,6 +86,7 @@ function main() {
 		["locale", "mboximport", "en-US", "chrome/locale/en-US/mboximport/"],
 
 		["locale", "mboximport", "ca", "chrome/locale/ca/mboximport/"],
+		["locale", "mboximport", "cs", "chrome/locale/ca/mboximport/"],
 		["locale", "mboximport", "da", "chrome/locale/da/mboximport/"],
 		["locale", "mboximport", "de", "chrome/locale/de/mboximport/"],
 		["locale", "mboximport", "es-ES", "chrome/locale/es-ES/mboximport/"],
@@ -135,7 +136,7 @@ function main() {
 
 }
 
-var helpLocales = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
+var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 async function wextOpenHelp(info) {

@@ -515,9 +515,10 @@ function loadTranslationArray(inputFiles, options) {
 				translateAll(iFile, strings, options);
 				break;
 			case '.json':
-				strings = loadMessageStrings(iFile, options);
+				translationArray = loadMessageStrings(iFile, options);
 				options.propertiesType = false;
-				translateAll(iFile, strings, options);
+				//translateAll(iFile, strings, options);
+				console.log(translationArray)
 				break;
 	
 			default:
@@ -615,7 +616,7 @@ var options = {
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
 	skipEN: false,
-	append: false,
+	append: true,
 	outputFormat: 3,
 };
 
@@ -658,8 +659,9 @@ localeFolders = ['cs'];
 //translateHelpPage();
 //translatePage();
 loadTranslationArray(inputFiles, options);
-
- //translateAll("messages.json", translationArray, options);
+console.log(translationArray.length)
+translationArray = translationArray.slice(101)
+ translateAll("messages.json", translationArray, options);
 //translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);

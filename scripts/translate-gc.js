@@ -656,12 +656,12 @@ localeFolders = ['cs'];
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-//translateHelpPage();
+translateHelpPage();
 //translatePage();
-loadTranslationArray(inputFiles, options);
-console.log(translationArray.length)
-translationArray = translationArray.slice(101)
- translateAll("messages.json", translationArray, options);
+//loadTranslationArray(inputFiles, options);
+//console.log(translationArray.length)
+//translationArray = translationArray.slice(101)
+//translateAll("messages.json", translationArray, options);
 //translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);

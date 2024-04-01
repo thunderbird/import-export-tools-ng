@@ -223,7 +223,7 @@ async function mboxCopyImport(options) {
 
 function _exceptionHas2Hdrs(exceptionBuf) {
   const hdrsExceptionRegex = /^(From (?:.*?)\r?\n)(([\x21-\x7E]+):(?:(.|\r?\n\s))*?(?:\r?\n)([\x21-\x7E]+):)/gm;
-  let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex)
+  let exceptionHdrs = exceptionBuf.matchAll(hdrsExceptionRegex);
   exceptionHdrs = [...exceptionHdrs];
 
   if (exceptionHdrs[0] && (exceptionHdrs[0].index == 0) && exceptionHdrs[0][3] && exceptionHdrs[0][5]) {

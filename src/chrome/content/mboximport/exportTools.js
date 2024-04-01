@@ -697,10 +697,12 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 	}
 
+	/*
 	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
 		alert("Iterated not equal to total messages : Please report");
 		return;
 	}
+*/
 
 	hdrArray.sort();
 	// nsMsgViewSortOrderValue none = 0;

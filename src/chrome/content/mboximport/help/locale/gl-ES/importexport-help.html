@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools Axuda de NG</title>
+    <title>ImportExportTools Axuda NG</title>
   </head>
   <body>
     <table style="width: 100%;" id="main-help">
       <tr>
         <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda de NG</div>
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda NG</div>
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
@@ -20,24 +20,21 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
     <p>
-      - Novo: Engadir importación mbox de nivel de conta<br />
-      - Novo: Engadir exportación aplanada mbox a nivel de conta<br />
-      - Novo: soporte para importación e exportación de mbox a niveis de filesys<br />
-      - Corrixir a exportación CSV ao texto #451, #463<br />
-      - Corrixir o cartafol de exportación a ZIP<br />
-      - Corrixir a carga de axuda só nas actualizacións de IETNG<br />
-      - Engade preferencia para non cargar nunca axuda nas actualizacións #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Corrixir a axuda para sublocais e locais non compatibles<br />
-      - Corrixir os separadores mbox From_ para que se adhiran ao RFC 4155 #455<br />
-      - Engadir de novo Exportar mensaxes nas ventás de visualización de mensaxes #459<br />
-      - Corrixir a exportación da conta para pop3<br />
-      - Corrixir o límite do búfer From_ escapando<br />
-      - Corrixir o manexo de mensaxes seleccionadas #485<br />
-      - Completa a actualización da configuración local @Mr-Update<br />
-      - Completa a actualización da rede local @DenB10<br />
-      - Completa a actualización da configuración local @Joergen<br />
-      - Actualizado xa local @kiki-ja<br />
+      - Novo: Exportación recursiva de subcarpeta para EML, HTML, PDF e texto plano #538<br />
+      - Novo: columna de tamaño no índice #508<br />
+      - Novo: importar ficheiros mbox de terminacións CR de OSX 9 #540<br />
+      - Novo: admite atallos para ExportSelectedMessages #519<br />
+      - Novo: checo (cs) local - @cewbdex<br />
+      - Corrixe o separador mbox From_ para usar o formato de data asctime() #537<br />
+      - Corrixir as exportacións PDF non use Mozilla Save toPDF configuración #528<br />
+      - Corrixir ao facer clic co botón dereito no cartafol non se mostra a opción de exportación mbox para
+      Maildir #525<br />
+      - Solución Non se poden importar correos electrónicos con saltos de liña na cabeceira Return-Path
+      #516<br />
+      - Fixar Exportar todas as mensaxes dun cartafol virtual a html con anexos e índice: falta o cartafol de
+      mensaxes #509<br />
+      - Corrixir o menú contextual para a xanela de mensaxes #505<br />
+      - Converte ficheiros dtd a messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
     <p>
@@ -56,9 +53,9 @@
       importación e exportación de perfís Thunderbird. Ademais, as exportacións tamén poden incluír un
       ficheiro de índice HTML ou CSV. A copia de seguranza do perfil de Thunderbird é outra característica.<br />
       <p>
-        O acceso á funcionalidade IETng faise a través de varios menús diferentes instalados pola extensión.
-        As funcións son sensibles ao contexto. Engádense menús para:<br />
-        - Contexto do panel de cartafoles (operación de cartafoles)<br />
+        O acceso á funcionalidade de IETng faise a través de varios menús diferentes instalados pola
+        extensión. As funcións son sensibles ao contexto. Engádense menús para:<br />
+        - O contexto do panel de cartafoles (operación de cartafoles)<br />
         - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
         - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
         As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
@@ -585,7 +582,7 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            &quot;AM&quot; ou &quot;PM&quot; segundo o valor de hora indicado. O mediodía trátase como
+            Ou &quot;AM&quot; ou &quot;PM&quot; segundo o valor de hora indicado. O mediodía trátase como
             &quot;PM&quot; e a medianoite como &quot;AM&quot;.
           </td>
         </tr>
@@ -852,7 +849,7 @@
       <code class="notranslate">oncommand</code> - unha cadea de comando directa<br />
       <code class="notranslate">contexts</code> - o contexto da xanela onde a chave está activa<br />
       <code class="notranslate">&#39;all&#39;</code> : todas as fiestras en messenger, redactar, buscar<br />
-      <code class="notranslate">&#39;messenger&#39;</code> : a xanela principal do mensaxeiro e os seus
+      <code class="notranslate">&#39;messenger&#39;</code> - a xanela principal de mensaxería e os seus
       descendentes<br />
       <code class="notranslate">&#39;compose&#39;</code> - a xanela de redacción da mensaxe<br />
       <code class="notranslate">&#39;search&#39;</code> - o diálogo de busca<br /><br />

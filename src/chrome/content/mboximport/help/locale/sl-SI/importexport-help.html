@@ -20,30 +20,25 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
-      - Novo: dodajte uvoz mbox na ravni računa<br />
-      - Novo: dodan sploščen izvoz mbox na ravni računa<br />
-      - Novo: Podpora za uvoz in izvoz mbox na ravni filesys<br />
-      - Popravljen izvoz CSV v besedilo #451, #463<br />
-      - Popravi izvozno mapo v ZIP<br />
-      - Popravi pomoč pri nalaganju samo pri posodobitvah IETNG<br />
-      - Dodajte prednost, da nikoli ne naložite pomoči za posodobitve #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Pomoč za popravke za podokoli in nepodprte področne nastavitve<br />
-      - Popravite ločila mbox From_, da bodo skladna z RFC 4155 #455<br />
-      - Dodajte nazaj Izvozi sporočila v okna za prikaz sporočil #459<br />
-      - Popravi izvoz računa za pop3<br />
-      - Popravljeno uhajanje meje medpomnilnika From_<br />
-      - Popravi izbrano obravnavanje sporočil #485<br />
-      - Popolna lokalna posodobitev @Mr-Update<br />
-      - Dokončajte posodobitev fr jezika @DenB10<br />
-      - Dokončajte lokalno posodobitev @Joergen<br />
-      - Posodobljeno ja locale @kiki-ja<br />
+      - Novo: rekurzivni izvoz podmape za EML, HTML, PDF in golo besedilo #538<br />
+      - Novo: stolpec velikosti v indeksu #508<br />
+      - Novo: Uvoz datotek OSX 9- CR zaključkov mbox #540<br />
+      - Novo: podpora za bližnjice za ExportSelectedMessages #519<br />
+      - Novo: češki (cs) jezik - @cewbdex<br />
+      - Popravljeno ločilo mbox From_ za uporabo formata datuma asctime() #537<br />
+      - Popravek izvozov PDF ne uporablja nastavitev Mozilla Save toPDF #528<br />
+      - Popravek Mapa z desnim klikom ne prikaže možnosti izvoza mbox za Maildir #525<br />
+      - Popravek Ne morem uvoziti e-pošte s prelomi vrstic v glavi povratne poti #516<br />
+      - Popravek Izvozi vsa sporočila navidezne mape v html s prilogami in indeksom - manjkajoča mapa sporočil
+      #509<br />
+      - Popravi kontekstni meni za okno sporočila #505<br />
+      - Pretvorite datoteke dtd v messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
+      Opomba: nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -71,7 +66,7 @@
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
+      Pri težavah z napakami vključite naslednje informacije, da boste lažje rešili težave:<br />
       - Različica ImportExportTools NG<br />
       - Različica Thunderbird<br />
       - Operacijski sistem in različica<br />
@@ -665,7 +660,7 @@
         <td><code class="code1">${subject}</code></td>
         <td>Zadeva sporočila</td>
       </tr>
-      <li><code class="code1">%R</code> - ni implementirano (uporabite <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%R</code> - ni implementirano (uporabi <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - ni implementirano (uporabite <code class="code1">\t</code> )</li>
       <li>
         <code class="code1">%T</code> - ni implementirano (uporabite <code class="code1">%H:%M:%S</code> )
@@ -682,7 +677,7 @@
       Razširjeno oblikovanje imena datoteke uporablja žetone. Natančno ime datoteke je mogoče sestaviti z
       uporabo žetonov ter katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki so:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na voljo
-      so tudi žetoni, specifični za jezik, in navedeni pod angleško tabelo.<br /><br />
+      so tudi žetoni, specifični za jezike, in navedeni pod angleško tabelo.<br /><br />
       Primeri:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – privzeta oblika<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – namesto privzetega
@@ -836,7 +831,7 @@
       <code class="notranslate">id</code> - indeks ključa (1-10)<br />
       <code class="notranslate">key</code> - ključ (en znak)<br />
       <code class="notranslate">keycode</code> - ključna koda &#39;VK_*&#39;<br />
-      Vključen je lahko bodisi ključ ali ključna koda, vendar ne obojega<br />
+      Vključen je lahko bodisi ključ ali koda ključa, vendar ne obojega<br />
       <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam ločen s presledki
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />

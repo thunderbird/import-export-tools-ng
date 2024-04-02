@@ -20,24 +20,20 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamiento:</h3>
     <p>
-      - Nuevo: Agregar importación de mbox a nivel de cuenta<br />
-      - Nuevo: Agregar exportación aplanada de mbox a nivel de cuenta<br />
-      - Nuevo: Soporte para importación y exportación de mbox a niveles de filesys<br />
-      - Se corrigió la exportación CSV al texto #451, #463<br />
-      - Arreglar la carpeta de exportación a ZIP<br />
-      - Se corrigió la carga de ayuda solo en las actualizaciones de IETNG.<br />
-      - Agregue preferencia para no cargar nunca la ayuda en las actualizaciones #458<br />
-      extensiones.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Se corrigió la ayuda para sublocales y locales no compatibles.<br />
-      - Se corrigieron los separadores mbox From_ para que se adhieran a RFC 4155 #455<br />
-      - Volver a agregar mensajes de exportación en las ventanas de visualización de mensajes #459<br />
-      - Arreglar la exportación de cuenta para pop3<br />
-      - Arreglar el límite del búfer From_ escapando<br />
-      - Corregir mensajes seleccionados manejando #485<br />
-      - Actualización completa de la configuración regional @Mr-Update<br />
-      - Actualización completa de la configuración regional @DenB10<br />
-      - Actualización completa de la configuración regional @Joergen<br />
-      - Actualizado ja locale @kiki-ja<br />
+      - Nuevo: Exportación recursiva de subcarpetas para EML, HTML, PDF y texto sin formato #538<br />
+      - Nuevo: columna Tamaño en el índice #508<br />
+      - Nuevo: Importar OSX 9 - Terminaciones CR archivos mbox #540<br />
+      - Nuevo: Admite atajos para ExportSelectedMessages #519<br />
+      - Nuevo: configuración regional checa (cs) - @cewbdex<br />
+      - Se corrigió el separador mbox From_ para usar el formato de fecha asctime() #537<br />
+      - Arreglar las exportaciones de PDF no utiliza la configuración de Guardar en PDF de Mozilla #528<br />
+      - Arreglar la carpeta al hacer clic derecho no muestra la opción de exportar mbox para Maildir #525<br />
+      - Solución No se pueden importar correos electrónicos con saltos de línea en el encabezado de
+      Return-Path #516<br />
+      - Arreglar Exportar todos los mensajes de una carpeta virtual a html con archivos adjuntos e índice -
+      carpeta de mensajes faltantes #509<br />
+      - Arreglar el menú contextual para la ventana de mensaje #505<br />
+      - Convertir archivos dtd a mensajes.json<br />
     </p>
     <h2 id="main_help">Menús y descripción general de ImportExportTools NG</h2>
     <p>
@@ -50,7 +46,7 @@
       -HTML<br />
       - Texto sin formato<br />
       - CSV (valores separados por comas)<br />
-      -PDF<br /><br />
+      - PDF<br /><br />
       Si bien la mayor parte de la funcionalidad gira en torno a los mensajes, también es compatible con la
       importación y exportación de perfiles de Thunderbird. Además, las exportaciones también pueden incluir
       un archivo de índice HTML o CSV. La copia de seguridad del perfil de Thunderbird es otra
@@ -477,7 +473,7 @@
       nombres de archivos personalizados extendidos. El formato de fecha original (predeterminado) es:<br />
       AAAAMMDDHHmm : 202011060808<br /><br />
       El formato de fecha personalizado utiliza secuencias % que coinciden con la funcionalidad similar a Unix
-      <code>strftime()</code> . Se basa en un puerto JavaScript de
+      de <code>strftime()</code> . Se basa en un puerto JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una función para formatear la fecha y la hora.<br />
       Puerto de strftime() por TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -662,7 +658,7 @@
         <code class="code1">%D</code> - no implementado (use <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> : no se agrega espacio</li>
+      <li><code class="code1">%e</code> - no se agrega espacio</li>
       <li><code class="code1">%E</code> - no implementado</li>
       <li><code class="code1">%h</code> - no implementado (use <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> : no se agrega espacio</li>

@@ -20,24 +20,20 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Nou: Afegeix importació mbox a nivell de compte<br />
-      - Nou: Afegeix exportació aplanada mbox a nivell de compte<br />
-      - Nou: suport per a la importació i exportació de mbox a nivells de fitxers<br />
-      - Corregiu l&#39;exportació CSV al text #451, #463<br />
-      - Arreglar la carpeta d&#39;exportació a ZIP<br />
-      - Corregiu la càrrega d&#39;ajuda només a les actualitzacions d&#39;IETNG<br />
-      - Afegeix una preferència per no carregar mai ajuda a les actualitzacions #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Corregiu l&#39;ajuda per a sublocals i locals no compatibles<br />
-      - Arregleu els separadors mbox From_ per adherir-se a RFC 4155 #455<br />
-      - Torna a afegir missatges d&#39;exportació a les finestres de visualització de missatges #459<br />
-      - Corregiu l&#39;exportació del compte per a pop3<br />
-      - Corregir el límit de la memòria intermèdia From_ escapada<br />
-      - Corregiu el tractament dels missatges seleccionats #485<br />
-      - Completa l&#39;actualització de la configuració regional @Mr-Update<br />
-      - Completa l&#39;actualització local de fr @DenB10<br />
-      - Completa l&#39;actualització local @Joergen<br />
-      - Actualitzat ja local @kiki-ja<br />
+      - Novetat: exportació recursiva de subcarpetes per a EML, HTML, PDF i text pla #538<br />
+      - Nou: columna de mida a l&#39;índex #508<br />
+      - Novetat: importació d&#39;arxius mbox de terminacions de CR OSX 9 #540<br />
+      - Nou: admeten dreceres per a ExportSelectedMessages #519<br />
+      - Nou: local txec (cs) - @cewbdex<br />
+      - Arregla el separador mbox From_ per utilitzar el format de data asctime() #537<br />
+      - Corregiu les exportacions de PDF no utilitzeu la configuració de Mozilla Save toPDF #528<br />
+      - Arreglar el clic dret a la carpeta no mostra l&#39;opció d&#39;exportació mbox per a Maildir #525<br />
+      - Solucionar No es poden importar correus electrònics amb salts de línia a la capçalera Return-Path
+      #516<br />
+      - Arreglar Exporta tots els missatges d&#39;una carpeta virtual a html amb fitxers adjunts i índex:
+      falta la carpeta de missatges #509<br />
+      - Corregiu el menú contextual per a la finestra de missatges #505<br />
+      - Converteix fitxers dtd a messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
@@ -670,7 +666,7 @@
         <code class="code1">%D</code> - no implementat (utilitza <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - l&#39;espai no s&#39;ha afegit</li>
+      <li><code class="code1">%e</code> - l&#39;espai no s&#39;afegeix</li>
       <li><code class="code1">%E</code> - no implementat</li>
       <li><code class="code1">%h</code> - no implementat (utilitza <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - l&#39;espai no s&#39;afegeix</li>
@@ -848,9 +844,9 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
-      correu del remitent. Establir aquesta opció com a &quot;true&quot; utilitza la data de recepció al
-      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la
-      data dels fitxers d&#39;índex.
+      correu del remitent. Establir aquesta opció a &quot;true&quot; utilitza la data de recepció al client de
+      correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la data dels
+      fitxers d&#39;índex.
     </p>
     <h2>Funció bàsica i global de tecles de drecera (dreceres).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -865,7 +861,7 @@
       <code class="notranslate">id</code> : l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
       <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
-      Es pot incloure qualsevol clau o codi, però no tots dos<br />
+      Es pot incloure qualsevol clau o codi de clau, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directes<br />

@@ -20,24 +20,22 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Note di rilascio:</h3>
     <p>
-      - Novità: aggiunta importazione mbox a livello di account<br />
-      - Novità: aggiunta dell&#39;esportazione appiattita mbox a livello di account<br />
-      - Novità: supporto per l&#39;importazione e l&#39;esportazione di mbox a livelli filesys<br />
-      - Corretta l&#39;esportazione CSV nel testo n. 451, # 463<br />
-      - Corretta la cartella di esportazione in ZIP<br />
-      - Risolto il problema con il caricamento della guida solo sugli aggiornamenti IETNG<br />
-      - Aggiungi la preferenza per non caricare mai la guida sugli aggiornamenti n. 458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Correzione della guida per le versioni locali secondarie e non supportate<br />
-      - Correggi i separatori mbox From_ per aderire a RFC 4155 #455<br />
-      - Aggiunto nuovamente Esporta messaggi nelle finestre di visualizzazione dei messaggi #459<br />
-      - Corretta l&#39;esportazione dell&#39;account per pop3<br />
-      - Correzione del limite del buffer From_ escape<br />
-      - Corretta la gestione dei messaggi selezionati #485<br />
-      - Completa l&#39;aggiornamento locale @Mr-Update<br />
-      - Completa l&#39;aggiornamento locale fr @DenB10<br />
-      - Completa l&#39;aggiornamento locale @Joergen<br />
-      - Aggiornata la localizzazione ja @kiki-ja<br />
+      - Novità: esportazione ricorsiva di sottocartelle per EML, HTML, PDF e testo normale n. 538<br />
+      - Novità: colonna Dimensioni nell&#39;indice n. 508<br />
+      - Novità: importa i file mbox delle terminazioni OSX 9-CR n. 540<br />
+      - Novità: supporto delle scorciatoie per ExportSelectedMessages #519<br />
+      - Novità: locale ceco (cs) - @cewbdex<br />
+      - Risolto il problema con mbox From_ separator per utilizzare il formato data asctime() #537<br />
+      - Risolto il problema per cui le esportazioni PDF non utilizzano le impostazioni #528 di Mozilla Save
+      toPDF<br />
+      - Risolto il problema facendo clic con il pulsante destro del mouse sulla cartella che non mostra
+      l&#39;opzione di esportazione mbox per Maildir #525<br />
+      - Correzione Impossibile importare e-mail con interruzioni di riga nell&#39;intestazione Return-Path n.
+      516<br />
+      - Risolto il problema con l&#39;esportazione di tutti i messaggi di una cartella virtuale in html con
+      allegati e indice - cartella dei messaggi mancanti n. 509<br />
+      - Risolto il problema con il menu contestuale per la finestra del messaggio #505<br />
+      - Converti file DTD in message.json<br />
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -471,8 +469,8 @@
       file. La data personalizzata può essere utilizzata anche con il token ${date_custom} utilizzato nei nomi
       file personalizzati estesi. Il formato della data originale (predefinito) è:<br />
       AAAAMMGGGHHmm: 202011060808<br /><br />
-      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità simile a
-      Unix <code>strftime()</code> . Si basa su una porta JavaScript di
+      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità Unix simile
+      a <code>strftime()</code> . Si basa su una porta JavaScript di
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funzione per formattare la data e l&#39;ora.<br />
       Porto di strftime() di TH Doan (https://thdoan.github.io/strftime/)<br />

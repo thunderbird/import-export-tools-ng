@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Nowość: Dodano import mbox na poziomie konta<br />
-      - Nowość: Dodano spłaszczony eksport mbox na poziomie konta<br />
-      - Nowość: Obsługa importu i eksportu mbox do poziomów Filesys<br />
-      - Naprawiono eksport CSV do tekstu #451, #463<br />
-      - Napraw folder eksportu do ZIP<br />
-      — Naprawiono ładowanie pomocy tylko w przypadku aktualizacji IETNG<br />
-      - Dodaj preferencję, aby nigdy nie ładować pomocy dotyczącej aktualizacji #458<br />
-      rozszerzenia.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Naprawiono pomoc dla lokalizacji podrzędnych i nieobsługiwanych lokalizacji<br />
-      - Naprawiono separatory mbox From_, aby były zgodne z RFC 4155 #455<br />
-      - Dodaj ponownie wiadomości eksportowe w oknach wyświetlania wiadomości #459<br />
-      - Napraw eksport konta dla pop3<br />
-      - Naprawiono ucieczkę granicy bufora From_<br />
-      - Naprawiono obsługę wybranych wiadomości #485<br />
-      - Zakończ aktualizację regionalną @Mr-Update<br />
-      - Pełna aktualizacja ustawień regionalnych @DenB10<br />
-      - Zakończ aktualizację ustawień regionalnych @Joergen<br />
-      - Zaktualizowano ustawienia regionalne @kiki-ja<br />
+      - Nowość: Rekurencyjny eksport podfolderów do formatów EML, HTML, PDF i zwykłego tekstu #538<br />
+      - Nowość: Kolumna Rozmiar w indeksie #508<br />
+      - Nowość: Importuj pliki mbox z zakończeniami OSX 9-CR #540<br />
+      - Nowość: Obsługa skrótów dla ExportSelectedMessages #519<br />
+      - Nowość: ustawienia regionalne czeskie (cs) - @cewbdex<br />
+      - Naprawiono separator mbox From_, aby używać formatu daty asctime() #537<br />
+      - Naprawiono eksport PDF, który nie korzystał z ustawień Mozilla Save toPDF #528<br />
+      - Napraw folder kliknięty prawym przyciskiem myszy nie wyświetla opcji eksportu mbox dla Maildir #525<br />
+      - Naprawiono Nie można importować wiadomości e-mail z podziałami wierszy w nagłówku Return-Path #516<br />
+      - Naprawiono Eksportuj wszystkie wiadomości z folderu wirtualnego do formatu HTML z załącznikami i
+      indeksem - brakujący folder wiadomości nr 509<br />
+      - Naprawiono menu kontekstowe okna wiadomości nr 505<br />
+      - Konwertuj pliki dtd na Messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Przegląd i menu</h2>
     <p>
@@ -52,8 +47,8 @@
       - CSV (wartości oddzielone przecinkami)<br />
       -PDF<br /><br />
       Chociaż większość funkcji koncentruje się wokół wiadomości, istnieje również obsługa importu i eksportu
-      profili Thunderbirda. Dodatkowo eksport może również zawierać plik indeksu HTML lub CSV. Kolejną funkcją
-      jest tworzenie kopii zapasowych profilu Thunderbirda.<br />
+      profili Thunderbirda. Dodatkowo eksport może również obejmować plik indeksu HTML lub CSV. Kolejną
+      funkcją jest tworzenie kopii zapasowych profilu Thunderbirda.<br />
       <p>
         Dostęp do funkcjonalności IETng odbywa się poprzez kilka różnych menu zainstalowanych przez
         rozszerzenie. Funkcje są zależne od kontekstu. Dodano menu dla:<br />
@@ -737,7 +732,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardowy format daty. Domyślny format to: RRRRMMDDDHHmm</td>
+        <td>Standardowy format daty. Domyślny format to: RRRRMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -881,7 +876,7 @@
     </p>
 
     <p>
-      Ponieważ skróty są nowe i eksperymentalne, dodam także więcej dokumentacji do repozytorium. Sprawdź
+      Ponieważ skróty są nowe i eksperymentalne, dodam także więcej dokumentacji w repozytorium. Sprawdź
       rozszerzenie
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
@@ -890,7 +885,7 @@
     <br />
     <h3>Wersja 14.0.0: Obsługa Thunderbirda 115 – 10 lipca 2023 r</h3>
     <p>
-      Rozwiązane funkcje i problemy:<br />
+      Funkcje i rozwiązane problemy:<br />
       <p>
         - Wsparcie dla Thunderbirda 115 Supernova<br />
         - Przerób i zmodernizuj interfejs opcji<br />

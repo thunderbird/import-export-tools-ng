@@ -20,24 +20,20 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
     <p>
-      - Novinka: Pridajte import mbox na úrovni účtu<br />
-      - Novinka: Pridajte sploštený export mbox na úrovni účtu<br />
-      - Novinka: Podpora importu a exportu mbox na úrovne filesys<br />
-      - Opravte export CSV do textu #451, #463<br />
-      - Opravte exportný priečinok do ZIP<br />
-      - Opravte načítanie pomoci iba pri aktualizáciách IETNG<br />
-      - Pridajte preferenciu, aby sa nikdy nenačítala pomoc pri aktualizáciách #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Opravte pomoc pre sublokácie a nepodporované miestne nastavenia<br />
-      - Opravte oddeľovače mbox From_, aby dodržiavali RFC 4155 #455<br />
-      - Pridať späť Exportovať správy v oknách zobrazenia správ #459<br />
-      - Oprava exportu účtu pre pop3<br />
-      - Oprava hranice vyrovnávacej pamäte From_ escaping<br />
-      - Opravte spracovanie vybratých správ #485<br />
-      - Dokončite aktualizáciu miestnych nastavení @Mr-Update<br />
-      - Kompletná aktualizácia fr locale @DenB10<br />
-      - Dokončite aktualizáciu miestnych nastavení @Joergen<br />
-      - Aktualizované ja locale @kiki-ja<br />
+      - Novinka: Rekurzívny export podpriečinkov pre EML, HTML, PDF a obyčajný text #538<br />
+      - Novinka: Stĺpec veľkosti v indexe #508<br />
+      - Novinka: Import OSX 9- CR ukončenia súborov mbox #540<br />
+      - Novinka: Podpora skratiek pre ExportSelectedMessages #519<br />
+      - Nové: české (cs) miestne nastavenie - @cewbdex<br />
+      - Opravte oddeľovač mbox From_, aby používal formát dátumu asctime() #537<br />
+      - Opravte exporty PDF, nepoužívajte nastavenia Mozilla Save toPDF #528<br />
+      - Opraviť priečinok po kliknutí pravým tlačidlom myši nezobrazuje možnosť exportu mbox pre Maildir
+      #525<br />
+      - Oprava Nemožno importovať e-maily so zalomením riadkov v hlavičke Return-Path #516<br />
+      - Oprava Export všetkých správ virtuálneho priečinka do html s prílohami a indexom - chýbajúci priečinok
+      správ #509<br />
+      - Oprava kontextového menu pre okno správy č. 505<br />
+      - Previesť súbory dtd na messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
@@ -62,7 +58,7 @@
         - Ponuka Nástroje (operácie profilu a zálohovania)<br /><br />
         Možnosti, ktoré sú dostupné v ponuke „Nástroje“, sa nenachádzajú v ponuke „Hamburger“, budú v budúcej
         verzii. Tieto funkcie sú dostupné aj v novom tlačidle na paneli nástrojov. Každá z ponúk a tlačidiel
-        má tiež položku ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
+        má tiež položky ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
       </p>
     </p>
     <h3>Podpora:</h3>
@@ -431,7 +427,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>Uložiť celý profil (pošta, rozšírenia, možnosti)</td>
+          <td>Uložiť celý profil (e-mail, rozšírenia, možnosti)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
@@ -554,7 +550,7 @@
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hodina ako desatinné číslo s použitím 12-hodinového formátu hodín (rozsah 1 až 12). Pozri tiež
+            Hodina ako desatinné číslo s použitím 12-hodinových hodín (rozsah 1 až 12). Pozri tiež
             <code class="code1">%I</code> .
           </td>
         </tr>
@@ -584,7 +580,7 @@
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 + 0000 (UTC).</td>
+          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 +0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
@@ -652,8 +648,8 @@
       <li><code class="code1">%h</code> – neimplementované (použite <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - medzera sa nepridáva</li>
       <li>
-        <code class="code1">%n</code> – ako <code class="code1">%m</code> , ale bez úvodnej nuly (použite
-        <code class="code1">\n</code> pre nový riadok)
+        <code class="code1">%n</code> – ako <code class="code1">%m</code> , ale bez úvodnej nuly (na nový
+        riadok použite <code class="code1">\n</code> )
       </li>
       <li><code class="code1">%O</code> – neimplementované</li>
       <li>
@@ -675,8 +671,8 @@
     <h2 id="ext_filename_format_help">Rozšírený formát názvu súboru:</h2>
     <br />
     <p>
-      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru možno vytvoriť pomocou tokenov,
-      ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
+      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú dostupné vo všetkých miestnych
       nastaveniach. Dostupné sú aj tokeny špecifické pre miestne nastavenia a sú uvedené pod anglickou
       tabuľkou.<br /><br />
@@ -820,7 +816,7 @@
     <p>
       Normálne je „Dátum“ správy v Thunderbirde dátum nastavený poštovým klientom odosielateľa. Nastavenie
       tejto možnosti na „pravda“ využíva dátum prijatia v poštovom klientovi príjemcu. Tento dátum sa použije
-      pre oba názvy súborov, ako aj pre dátum v indexových súboroch.
+      pre oba názvy súborov, ako aj dátum v indexových súboroch.
     </p>
     <h2>Základná, globálna funkcia klávesových skratiek (skratky).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Թողարկման նշումներ:</h3>
     <p>
-      - Նոր. Ավելացնել հաշվի մակարդակի mbox ներմուծում<br />
-      - Նոր. Ավելացնել Հաշվի մակարդակի mbox հարթեցված արտահանում<br />
-      - Նոր. mbox ներմուծման և արտահանման աջակցություն ֆայլերի մակարդակ<br />
-      - Ուղղել CSV արտահանումը #451, #463 տեքստին<br />
-      - Ուղղեք արտահանման թղթապանակը ZIP<br />
-      - Ուղղեք օգնության բեռը միայն IETNG թարմացումների վրա<br />
-      - Ավելացրեք նախապատվություն՝ օգնությունը երբեք չբեռնելու համար #458 թարմացումների վրա<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Ուղղեք օգնությունը ենթալոկալների և չաջակցվող տեղանքների համար<br />
-      - Ուղղեք mbox From_ տարանջատիչները՝ RFC 4155 #455-ին միանալու համար<br />
-      - Հետ ավելացրեք Արտահանման հաղորդագրությունները հաղորդագրությունների ցուցադրման պատուհաններում #459<br />
-      - Ուղղեք հաշվի արտահանումը pop3-ի համար<br />
-      - Ուղղեք բուֆերային սահմանը From_ escaping-ից<br />
-      - Ուղղեք ընտրված հաղորդագրությունների մշակումը #485<br />
-      - Լրացրեք տեղական թարմացումը @Mr-Update<br />
-      - Լրիվ տեղային թարմացում @DenB10<br />
-      - Լրացրեք տեղանքի թարմացումը @Joergen<br />
-      - Թարմացվել է տեղական @kiki-ja<br />
+      - Նոր. ռեկուրսիվ ենթաթղթապանակի արտահանում EML, HTML, PDF և պարզ տեքստ #538-ի համար<br />
+      - Նոր. Չափի սյունակ թիվ 508 ինդեքսում<br />
+      - Նոր. Ներմուծեք OSX 9- CR տերմինացիաներ mbox ֆայլեր #540<br />
+      - Նոր. Աջակցման դյուրանցումներ ExportSelectedMessages #519-ի համար<br />
+      - Նոր. չեխական (cs) տեղայնացում - @cewbdex<br />
+      - Ուղղեք mbox From_ տարանջատիչը՝ asctime() ամսաթվի ձևաչափը #537 օգտագործելու համար<br />
+      - Ուղղել PDF արտահանումները, չեն օգտագործում Mozilla Save toPDF կարգավորումները #528<br />
+      - Ուղղել աջ սեղմումով թղթապանակը չի ցուցադրում արտահանման mbox տարբերակը Maildir #525-ի համար<br />
+      - Ուղղել Հնարավոր չէ ներմուծել էլ. նամակներ Return-Path #516 վերնագրում գծերի ընդհատումներով<br />
+      - Ուղղել Արտահանել վիրտուալ թղթապանակի բոլոր հաղորդագրությունները html հավելվածներով և ինդեքսով -
+      բացակայող հաղորդագրությունների թղթապանակ #509<br />
+      - 505 հաղորդագրության պատուհանի համար շտկել համատեքստային ընտրացանկը<br />
+      - Փոխակերպեք dtd ֆայլերը messages.json-ի<br />
     </p>
     <h2 id="main_help">ImportExportTools NG ակնարկ և ընտրացանկ</h2>
     <p>
@@ -245,7 +240,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Ներմուծեք մեկ կամ մի քանի mbox ֆայլեր գրացուցակից:</td>
+          <td>Ներմուծեք մեկ կամ ավելի mbox ֆայլեր գրացուցակից:</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
@@ -291,7 +286,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Բացեք ընտրված թղթապանակի ՕՀ ուղին</td>
+          <td>Բացեք ընտրված թղթապանակի OS ուղին</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -328,7 +323,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Արտահանեք ընտրված հաղորդագրությունները EML ձևաչափի ֆայլեր<br />
+            Արտահանել ընտրված հաղորդագրությունները EML ձևաչափի ֆայլեր<br />
             Սա նաև ստեղծում է HTML ինդեքսային ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրություն:
           </td>
         </tr>
@@ -360,7 +355,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Արտահանեք ընտրված հաղորդագրությունները PDF ձևաչափի ֆայլեր</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները PDF ֆորմատի ֆայլեր</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -543,7 +538,7 @@
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td><code class="code1">%G</code> ի նման, բայց առանց դարի, այսինքն՝ երկնիշ տարով (00-99)։</td>
+          <td><code class="code1">%G</code> նման, բայց առանց դարի, այսինքն՝ երկնիշ տարով (00-99)։</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
@@ -665,10 +660,10 @@
         <code class="code1">%D</code> - չի իրականացվել (օգտագործել <code class="code1">%m/%d/%y</code> կամ
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - տարածություն ավելացված չէ</li>
+      <li><code class="code1">%e</code> - տարածք չի ավելացվել</li>
       <li><code class="code1">%E</code> - չի իրականացվում</li>
       <li><code class="code1">%h</code> - չի իրականացվել (օգտագործել <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - տարածություն չի ավելացվել</li>
+      <li><code class="code1">%k</code> - բացատ չի ավելացվել</li>
       <li>
         <code class="code1">%n</code> - նման է <code class="code1">%m</code> , բայց առանց սկզբնական զրոյի
         (օգտագործեք <code class="code1">\n</code> նոր տողի համար)
@@ -761,7 +756,7 @@
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Նշան (en-ԱՄՆ)</td>
+        <td>Տոկեն (en-ԱՄՆ)</td>
         <td>Տեղայնացված (<span id="locale1"></span> ) Նշան</td>
       </tr>
       <tr>
@@ -858,7 +853,7 @@
       <code class="notranslate">id</code> - հիմնական ցուցանիշը (1-10)<br />
       <code class="notranslate">key</code> - բանալին (մեկ նիշ)<br />
       <code class="notranslate">keycode</code> - «VK_*» սահմանված բանալի կոդը<br />
-      Բանալին կամ բանալու կոդը կարող են ներառվել, բայց ոչ երկուսն էլ<br />
+      Բանալին կամ բանալի կոդը կարող են ներառվել, բայց ոչ երկուսն էլ<br />
       <code class="notranslate">modifiers</code> - հիմնական մոդիֆիկատորներ, բացատով առանձնացված ցուցակ
       («վերահսկում», «shift», «alt», «accel»)<br />
       <code class="notranslate">oncommand</code> - ուղղակի հրամանի տող<br />

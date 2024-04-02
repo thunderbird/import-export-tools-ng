@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydání:</h3>
     <p>
-      - Novinka: Přidat import mbox na úrovni účtu<br />
-      - Novinka: Přidejte zploštělý export mbox na úrovni účtu<br />
-      - Novinka: Podpora importu a exportu mbox na úrovně filesys<br />
-      - Oprava exportu CSV do textu #451, #463<br />
-      - Oprava exportní složky do ZIP<br />
-      - Oprava načítání nápovědy pouze při aktualizacích IETNG<br />
-      - Přidejte předvolbu nikdy nenačítat nápovědu u aktualizací #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Oprava nápovědy pro dílčí a nepodporovaná národní prostředí<br />
-      - Opravte oddělovače mbox From_, aby odpovídaly RFC 4155 #455<br />
-      - Přidat zpět Exportovat zprávy v okně zobrazení zpráv #459<br />
-      - Oprava exportu účtu pro pop3<br />
-      - Opravte escapování hranice vyrovnávací paměti From_<br />
-      - Opravte zpracování vybraných zpráv #485<br />
-      - Dokončete aktualizaci národního prostředí @Mr-Update<br />
-      - Dokončete aktualizaci národního prostředí fr @DenB10<br />
-      - Dokončete aktualizaci národního prostředí @Joergen<br />
-      - Aktualizováno a locale @kiki-ja<br />
+      - Novinka: Rekurzivní export podsložek pro EML, HTML, PDF a prostý text #538<br />
+      - Novinka: Sloupec velikosti v indexu #508<br />
+      - Novinka: Import OSX 9- CR ukončení souborů mbox #540<br />
+      - Novinka: Podpora zkratek pro ExportSelectedMessages #519<br />
+      - Novinka: české (cs) národní prostředí - @cewbdex<br />
+      - Opravte oddělovač mbox From_, aby používal formát data asctime() #537<br />
+      - Opravit exporty PDF nepoužívat nastavení Mozilla Save toPDF #528<br />
+      - Opravit složku po kliknutí pravým tlačítkem nezobrazuje možnost exportu mbox pro Maildir #525<br />
+      - Oprava Nelze importovat e-maily se zalomením řádků v záhlaví Return-Path #516<br />
+      - Oprava Export všech zpráv z virtuální složky do html s přílohami a indexem - chybějící složka zpráv
+      #509<br />
+      - Oprava kontextové nabídky pro okno zprávy #505<br />
+      - Převeďte soubory dtd na messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools Přehled a nabídky NG</h2>
     <p>
@@ -834,7 +829,7 @@
       Příklady položek klávesových zkratek (pole objektů JSON)<br /><br />
       <code class="notranslate">id</code> – index klíče (1-10)<br />
       <code class="notranslate">key</code> - klíč (jeden znak)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definovaný kód klíče<br />
+      <code class="notranslate">keycode</code> – &#39;VK_*&#39; definovaný kód klíče<br />
       Může být zahrnut buď klíč nebo kód klíče, ale ne obojí<br />
       <code class="notranslate">modifiers</code> - modifikátory kláves, seznam oddělený mezerami
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

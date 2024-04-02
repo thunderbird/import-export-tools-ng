@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
     <p>
-      - Nytt: Lägg till mbox-import på kontonivå<br />
-      - Nytt: Lägg till kontonivå mbox plattad export<br />
-      - Nytt: Stöd för mbox-import och export till Filesy-nivåer<br />
-      - Fixa CSV-export till text #451, #463<br />
-      - Fixa exportmappen till ZIP<br />
-      - Fixa hjälpladdning endast på IETNG-uppdateringar<br />
-      - Lägg till preferens för att aldrig ladda hjälp för uppdateringar #458<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Fixa hjälp för sublokaler och språk som inte stöds<br />
-      - Fixa mbox From_-separatorer för att följa RFC 4155 #455<br />
-      - Lägg tillbaka Exportera meddelanden i meddelandefönster #459<br />
-      - Fixa kontoexport för pop3<br />
-      - Fixa buffertgränsen From_ escaping<br />
-      - Fixa valda meddelanden som hanterar #485<br />
-      - Komplettera den lokala uppdateringen @Mr-Update<br />
-      - Komplett fr språkuppdatering @DenB10<br />
-      - Slutför den lokala uppdateringen @Joergen<br />
-      - Uppdaterad ja locale @kiki-ja<br />
+      - Nytt: Export av rekursiv undermapp för EML, HTML, PDF och klartext #538<br />
+      - Nytt: Storlekskolumn i index #508<br />
+      - Nytt: Importera OSX 9- CR-avslutningar mbox-filer #540<br />
+      - Nytt: Stöd genvägar för ExportSelectedMessages #519<br />
+      - Nytt: tjeckiskt (cs) språk - @cewbdex<br />
+      - Fixa mbox From_ separator för att använda asctime() datumformat #537<br />
+      - Fixa PDF-exporter använd inte Mozilla Spara till PDF-inställningar #528<br />
+      - Fix Högerklicka på mappen visar inte exportmbox-alternativet för Maildir #525<br />
+      - Fix Det går inte att importera e-postmeddelanden med radbrytningar i Return-Path-huvud #516<br />
+      - Fix Exportera alla meddelanden i en virtuell mapp till html med bilagor och index - missing messages
+      folder #509<br />
+      - Fixa snabbmenyn för meddelandefönster #505<br />
+      - Konvertera dtd-filer till messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
@@ -59,7 +54,7 @@
         Funktionerna är kontextkänsliga. Menyer läggs till för:<br />
         - Mapprutans sammanhang (mappoperation)<br />
         - Meddelandelistans sammanhang (utvalda meddelanden)<br />
-        - Menyn Verktyg (profil och säkerhetskopiering)<br /><br />
+        - Verktyg-menyn (profil och säkerhetskopiering)<br /><br />
         Det alternativ som är tillgängliga under &quot;Verktygsmenyn&quot; finns inte i
         &quot;Hamburger&quot;-menyn, de kommer att finnas i en framtida version. Dessa funktioner är också
         tillgängliga i den nya knappen i verktygsfältet. Var och en av menyerna och knapparna har också ett
@@ -91,8 +86,8 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med hjälp av en
-            behållare med kontonamnet.<br />
+            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med en container
+            med kontonamnet.<br />
             Obs: Detta menyalternativ visas endast när du högerklickar på en kontopost.
           </td>
         </tr>
@@ -202,7 +197,7 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Exportera mappmeddelanden som en enda CSV-fil (Comma Separated Values) textformat, bilagor ingår
+            Exportera mappmeddelandena som en enda CSV-fil (kommaseparerade värden) textformat, bilagor ingår
             inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
@@ -665,7 +660,9 @@
       </tr>
       <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code> )</li>
-      <li><code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code></li>
+      <li>
+        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
+      </li>
       <li><code class="code1">%U</code> - inte implementerat</li>
       <li><code class="code1">%W</code> - inte implementerat</li>
       <li><code class="code1">%+</code> - inte implementerat</li>

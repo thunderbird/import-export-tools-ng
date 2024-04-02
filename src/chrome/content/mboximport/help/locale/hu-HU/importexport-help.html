@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
     <p>
-      - Új: Fiókszintű mbox import hozzáadása<br />
-      - Új: Fiókszintű mbox exportálás hozzáadása<br />
-      - Új: támogatja az mbox importálást és exportálást a filesys szintre<br />
-      - CSV-exportálás javítása #451, #463 szöveghez<br />
-      - Javítsa ki az export mappát ZIP-re<br />
-      - Csak az IETNG-frissítések súgóterhelésének javítása<br />
-      - Adja hozzá azt a beállítást, hogy soha ne töltse be a súgót a 458-as frissítésekhez<br />
-      extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - Javítsa ki a súgót a szublokálokhoz és a nem támogatott területi beállításokhoz<br />
-      - Javítsa ki az mbox From_ elválasztókat, hogy azok megfeleljenek az RFC 4155 #455 szabványnak<br />
-      - Új üzenetek exportálása az üzenet-megjelenítő ablakokban #459<br />
-      - Fiókexport javítása a pop3 számára<br />
-      - Javítsa ki a pufferhatárt From_ escapeing<br />
-      - A kiválasztott üzenetkezelés javítása #485<br />
-      - Teljesítse a területi beállításokat @Mr-Update<br />
-      - Teljesítsd az fr locale frissítést @DenB10<br />
-      - Teljesítsd a területi beállítások frissítését @Joergen<br />
-      - Frissítve és locale @kiki-ja<br />
+      - Új: Rekurzív almappa-exportálás EML-hez, HTML-hez, PDF-hez és egyszerű szöveghez #538<br />
+      - Új: Méret oszlop az 508-as indexben<br />
+      - Új: OSX 9- CR terminations mbox fájlok importálása #540<br />
+      - Új: Az ExportSelectedMessages #519 támogatási parancsikonjai<br />
+      - Új: cseh (cs) nyelv - @cewbdex<br />
+      - Javítsa ki az mbox From_ elválasztót az asctime() dátumformátum #537 használatához<br />
+      - A PDF-exportálás javítása nem használja a Mozilla Mentés PDF-be beállításait #528<br />
+      - Javítás A jobb gombbal kattintva a mappa nem mutatja az export mbox opciót a Maildir #525-höz<br />
+      - Javítás Nem lehet importálni az 516-os Return-Path fejlécben sortörést tartalmazó e-maileket<br />
+      - Javítás: Egy virtuális mappa összes üzenetének exportálása html-be mellékletekkel és indexszel -
+      Hiányzó üzenetek mappa #509<br />
+      - Javítsa ki az 505-ös üzenetablak helyi menüjét<br />
+      - A dtd-fájlok konvertálása messages.json formátumba<br />
     </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
@@ -598,7 +593,7 @@
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            A hét napja tizedesjegyként (1-7 tartomány), a hétfő 1. Lásd még <code class="code1">%w</code> .
+            A hét napja tizedesjegyként (1-7 tartomány), a hétfő 1. Lásd még: <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
@@ -648,8 +643,8 @@
     <ul>
       <li><code class="code1">%c</code> – a formázott karakterlánc kissé eltér</li>
       <li>
-        <code class="code1">%D</code> – nincs implementálva (használd:
-        <code class="code1">%m/%d/%y</code> vagy <code class="code1">%d/%m/%y</code> )
+        <code class="code1">%D</code> – nincs implementálva (használd <code class="code1">%m/%d/%y</code> vagy
+        <code class="code1">%d/%m/%y</code> )
       </li>
       <li><code class="code1">%e</code> - szóköz nincs hozzáadva</li>
       <li><code class="code1">%E</code> – nincs implementálva</li>
@@ -677,7 +672,7 @@
       <li><code class="code1">%U</code> – nincs implementálva</li>
       <li><code class="code1">%W</code> – nincs implementálva</li>
       <li><code class="code1">%+</code> – nincs implementálva</li>
-      <li><code class="code1">%%</code> – nincs implementálva (használd <code class="code1">%</code> )</li>
+      <li><code class="code1">%%</code> – nincs implementálva (használd: <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
     <h2 id="ext_filename_format_help">Bővített fájlnév formátum:</h2>
@@ -809,7 +804,7 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint ez egy
+      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint egy
       üres karakterlánc, ha formázott dátum/idő karakterlánccal, akkor ez megváltoztatja az index
       dátumformátumát.
     </p>
@@ -834,8 +829,8 @@
     <h2>Alapvető, globális gyorsbillentyű (parancsikonok) funkció</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy legfeljebb 10 billentyűparancsot állítson
-      be. A parancsikonok végrehajthatják az ImportExportTools NG legtöbb funkcióját, valamint más
+      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy 10 billentyűparancsot állítson be. A
+      parancsikonok végrehajthatják az ImportExportTools NG legtöbb funkcióját, valamint más
       Thunderbird-funkciókat. A beállítási karakterlánc JSON-formátumú objektumként van formázva. A formátum
       és a kulcsok a következők:
     </p>

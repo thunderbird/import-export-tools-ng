@@ -253,18 +253,6 @@ function initMboxImportPanel() {
 
 }
 
-/* function setSaveMode(type) {
-    var saveMode = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
-    if (saveMode == 0 || (saveMode == 2 && type ==0))
-        document.getElementById("saveMode").selectedIndex = 0;
-    else
-        document.getElementById("saveMode").selectedIndex = 1;
-}
-
-function toggleType(el) {
-    setSaveMode(el.selectedIndex);
-}*/
-
 function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
@@ -286,7 +274,6 @@ function saveMboxImportPrefs() {
     if (document.getElementById("customizeFilenames").checked)
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
     else if (document.getElementById("useExtendedFormat").checked) {
-        console.debug('please use extended format ');
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
     } else
         IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
@@ -374,8 +361,6 @@ function customNamesCheck(el) {
         document.getElementById("prefixText").setAttribute("disabled", "true");
         document.getElementById("addSuffix").setAttribute("disabled", "true");
         document.getElementById("suffixText").setAttribute("disabled", "true");
-        //document.getElementById("customDateFormat").setAttribute("disabled", "true");
-        //document.getElementById("customDateLabel").setAttribute("disabled", "true");
 
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
@@ -398,7 +383,6 @@ function customNamesCheck(el) {
 
 function extendedFormatCheck(el) {
     if (el.checked) {
-        console.log("enab ex")
         document.getElementById("customizeFilenames").removeAttribute("checked");
         document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
         document.getElementById("part1").setAttribute("disabled", "true");
@@ -408,15 +392,12 @@ function extendedFormatCheck(el) {
         document.getElementById("prefixText").setAttribute("disabled", "true");
         document.getElementById("addSuffix").setAttribute("disabled", "true");
         document.getElementById("suffixText").setAttribute("disabled", "true");
-        //document.getElementById("customDateFormat").setAttribute("disabled", "true");
-        //document.getElementById("customDateLabel").setAttribute("disabled", "true");
         document.getElementById("extendedFormat").removeAttribute("disabled");
         document.getElementById("extendedFormatLabel").removeAttribute("disabled");
 
     } else {
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
-       
     }
 }
 
@@ -462,10 +443,9 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
-    i18n.updateDocument({extension: this.window.opener.ietngAddon.extension});
     initMboxImportPanel();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    i18n.updateDocument();
+    i18n.updateDocument({extension: this.window.opener.ietngAddon.extension});
   }, { once: true });

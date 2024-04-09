@@ -1,16 +1,16 @@
 /*
-	ImportExportTools NG is a extension for Thunderbird mail client
-	providing import and export tools for messages and folders.
-	The extension authors:
-		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    ImportExportTools NG is a extension for Thunderbird mail client
+    providing import and export tools for messages and folders.
+    The extension authors:
+        Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
-	ImportExportTools NG is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    ImportExportTools NG is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
@@ -289,7 +289,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
     if (document.getElementById("export_eml_dir").value !== "")
         IETsetComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
-    else    
+    else
         IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
@@ -421,7 +421,7 @@ function toggleSkipMsg(el) {
 }
 
 async function pickFile(target, inputFieldId) {
-	var box = target.ownerDocument.getElementById(inputFieldId);
+    var box = target.ownerDocument.getElementById(inputFieldId);
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     fp.init(window, "", Ci.nsIFilePicker.modeGetFolder);
     let res = await new Promise(resolve => {
@@ -430,12 +430,12 @@ async function pickFile(target, inputFieldId) {
     if (res !== Ci.nsIFilePicker.returnOK) {
         return;
     }
-    box.value = fp.file.path;    
+    box.value = fp.file.path;
 }
 
 async function openHelpBM(bookmark) {
     let win = getMail3Pane();
-	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
+    await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
 }
 
 document.addEventListener("dialogaccept", function (event) {
@@ -447,5 +447,5 @@ window.addEventListener("load", function (event) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    i18n.updateDocument({extension: this.window.opener.ietngAddon.extension});
-  }, { once: true });
+    i18n.updateDocument({ extension: this.window.opener.ietngAddon.extension });
+}, { once: true });

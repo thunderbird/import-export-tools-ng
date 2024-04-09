@@ -58,7 +58,10 @@ gTabmail,
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
 var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
@@ -391,6 +394,8 @@ async function exportAllMsgs(type, params) {
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
 	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
+	if (document.getElementById("IETabortIcon"))
+						document.getElementById("IETabortIcon").collapsed = true;
 }
 
 // 2) exportAllMsgsStart

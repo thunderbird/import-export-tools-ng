@@ -19,7 +19,10 @@
 // sometimes we may want to be a regular module
 // var EXPORTED_SYMBOLS = ["mboxImportExport"];
 
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");

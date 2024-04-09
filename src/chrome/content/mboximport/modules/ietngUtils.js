@@ -16,13 +16,14 @@
 
 // ietngUtils.js
 
-var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
-).Services;
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
 var ietngUtils = {
+
+  Services: globalThis.Services || ChromeUtils.import(
+    'resource://gre/modules/Services.jsm'
+  ).Services,
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),
@@ -289,7 +290,7 @@ var ietngUtils = {
   },
 
 getThunderbirdVersion: function () {
-    let parts = Services.appinfo.version.split(".");
+    let parts = this.Services.appinfo.version.split(".");
     return {
         major: parseInt(parts[0]),
         minor: parseInt(parts[1]),

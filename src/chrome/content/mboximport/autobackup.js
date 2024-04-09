@@ -26,7 +26,9 @@
 
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);

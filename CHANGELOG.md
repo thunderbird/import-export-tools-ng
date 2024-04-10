@@ -2,7 +2,7 @@
 
 ## Versions
 
-Version 14.0.2 : Subfolders Release - March, 2024
+Version 14.0.2 : Subfolders Release - April 10, 2024
 
 - New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538
 - New: Size column in index #508

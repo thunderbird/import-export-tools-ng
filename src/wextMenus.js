@@ -1323,6 +1323,7 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 async function copyToClipboard(ctxEvent, tab) {
   let params = {};
   params.targetWinId = tab.windowId;
+  params.tabType = tab.type;
 
   if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
@@ -1350,9 +1351,10 @@ async function importMaildirFiles(ctxEvent) {
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles", params: params });
 }
 
-async function openOptions() {
+async function openOptions(event, tab) {
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
+  params.tabType = tab.type;
 
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
 }

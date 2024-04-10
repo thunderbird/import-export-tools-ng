@@ -8,6 +8,7 @@ Version 14.0.2 : Subfolders Release - March, 2024
 - New: Size column in index #508
 - New: Import OSX 9- CR terminations mbox files #540
 - New: Support shortcuts for ExportSelectedMessages #519
+- New: Czech (cs) locale - @cewbdex
 - Fix mbox From_ separator to use asctime() date format #537
 - Fix PDF exports do not use Mozilla Save toPDF settings #528
 - Fix Right-clicking folder doesn't show export mbox option for Maildir #525

@@ -36,7 +36,10 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
@@ -568,10 +571,15 @@ function IETcleanName(str) {
 }
 
 function IETgetExt(type) {
-	if (type === 1 || type === 8)
+	if (type === 1 || type === 8) {
 		return ".html";
-	else if (type === 0)
+	}	else if (type === 10) {
+		return ".pdf";
+	}	else if (type === 0) {
 		return ".eml";
+	}
+
+
 
 	return ".txt";
 }

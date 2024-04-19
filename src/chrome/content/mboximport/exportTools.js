@@ -58,7 +58,10 @@ gTabmail,
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+
 var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
@@ -221,6 +224,7 @@ async function exportSelectedMsgs(type, params) {
 	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
 
+	// support shortcuts (no params)
 	try {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	} catch (ex) {
@@ -248,8 +252,6 @@ async function exportSelectedMsgs(type, params) {
 		isOffLineImap = false;
 	}
 
-
-
 	IETskipped = 0;
 	if (isOffLineImap) {
 		var tempArray = [];
@@ -271,15 +273,16 @@ async function exportSelectedMsgs(type, params) {
 	var msguri = msgUris[0];
 
 	var hdrArray;
+
 	switch (type) {
 		case 1:
-			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
 			break;
 		case 2:
-			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
 			break;
 		case 3:
-			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
+			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 4:
 			if (isMbox(file) !== 1) {
@@ -287,7 +290,7 @@ async function exportSelectedMsgs(type, params) {
 				alert(string);
 				return;
 			}
-			saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
+			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 			break;
 		case 5:
 			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
@@ -302,13 +305,13 @@ async function exportSelectedMsgs(type, params) {
 			createIndexCSV(type, file, hdrArray, msgFolder, true);
 			break;
 		case 8:
-			exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
 			break;
 		case 9:
-			exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
 			break;
 		default:
-			saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
+			await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
 	}
 
 	if (needIndex) {
@@ -328,6 +331,8 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
+	// console.log("exportAllMsgs", type, params);
+
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
 		question = IETformatWarning(1);
@@ -388,7 +393,9 @@ async function exportAllMsgs(type, params) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
-	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0]);
+	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
+	if (document.getElementById("IETabortIcon"))
+						document.getElementById("IETabortIcon").collapsed = true;
 }
 
 // 2) exportAllMsgsStart
@@ -396,20 +403,50 @@ async function exportAllMsgs(type, params) {
 // If we must export a virtual folder is called the function for that,
 // otherwise is called the "normal" function of export
 
-async function exportAllMsgsStart(type, file, msgFolder) {
+async function exportAllMsgsStart(type, file, msgFolder, params) {
+	var newTopDir;
 	// 0x0020 is MSG_FOLDER_FLAG_expVIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
 			await new Promise(resolve => setTimeout(resolve, 500));
-			await exportAllMsgsDelayedVF(type, file, msgFolder);
+			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false, false);
+
+
 		} else {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 		}
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
-		await exportAllMsgsDelayed(type, file, msgFolder);
+
+		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
+
+		if (params.recursive && msgFolder.hasSubFolders) {
+			await exportSubFolders(type, file, msgFolder, newTopDir, params);
+		}
+	}
+}
+
+async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
+	for (const subFolder of msgFolder.subFolders) {
+		await new Promise(resolve => setTimeout(resolve, 200));
+
+		let folderDirName = subFolder.name;
+		let folderDirNamePath = newTopDir.path;
+		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		file = await IOUtils.getDirectory(fullFolderPath);
+
+		var newTopDir2;
+		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
+		if (isVirtFol) {
+			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
+		} else {
+			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
+		}
+		if (subFolder.hasSubFolders) {
+			await exportSubFolders(type, file, subFolder, newTopDir2, params);
+		}
 	}
 }
 
@@ -418,7 +455,9 @@ async function exportAllMsgsStart(type, file, msgFolder) {
 // The virtual folders are only a collection of messages that are really in other folders.
 // So we must select the folder, do some pre-export stuff and call the export routine
 
-async function exportAllMsgsDelayedVF(type, file, msgFolder) {
+async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
+	// console.log("exportAllMsgsDelayedVF")
+
 	var msgUriArray = [];
 	var total = msgFolder.getTotalMessages(false);
 	if (total === 0) {
@@ -428,11 +467,22 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		return;
 	}
 
+	// temporarily select virtual folder so we can expand and iterate
+	let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+	window.gTabmail.currentTabInfo.folder = msgFolder;
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
+
+	var waitCnt = 100;
+	while (waitCnt--) {
+		if (gDBView.rowCount == gDBView.numMsgsInView) {
+			break;
+		}
+		await new Promise(r => window.setTimeout(r, 50));
+	}
+
 	// Have to expand view to iterate across all threads
 	// Should be a better way that does not change UI
 	gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
-
 	for (let i = 0; i < gDBView.rowCount; i++) {
 		// Error handling changed in 102
 		// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
@@ -442,11 +492,14 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 			var uri = gDBView.getURIForViewIndex(i);
 			msgUriArray[i] = uri;
 		} catch (ex) {
+
 			continue; // Ignore errors for dummy rows
 		}
 	}
 	// Collapse back view
 	gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+	// jump back to top folder
+	window.gTabmail.currentTabInfo.folder = curMsgFolder;
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
@@ -459,7 +512,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	var datedir = buildContainerDirName();
 	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
-	if (useContainer) {
+	if (useContainer && !containerOverride) {
+
 		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
@@ -487,15 +541,22 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 		file.create(1, 0775);
 
 		subfile = file.clone();
-		if (type < 3) {
+
+		// no message directory for eml exports
+		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
 	} else {
 		subfile = file.clone();
+		if ((type < 3 || type > 6) && type != 0) {
+			subfile.append(IETmesssubdir);
+			subfile.create(1, 0775);
+		}
 	}
 
 	var file2 = file.clone();
+
 	IETgetSortType();
 	// Export the messages one by one
 	for (let j = 0; j < msgUriArray.length; j++) {
@@ -519,22 +580,24 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder) {
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
-	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 }
 
 // 3b) exportAllMsgsDelayed
 //
 // The same of 3a for non-virtual folder
 
-async function exportAllMsgsDelayed(type, file, msgFolder) {
+async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
+
 	try {
-		//console.log("exportAllMsgsDelayed")
+		// console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
+
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
 				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-			return;
+			return file;
 		}
 		IETexported = 0;
 		IETskipped = 0;
@@ -547,6 +610,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 			// Gecko 1.9
 			msgArray = msgFolder.messages;
 	} catch (e) {
+		alert(e)
 		return;
 	}
 	var hdrArray = [];
@@ -558,7 +622,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
-	if (useContainer) {
+	if (useContainer && !overrideContainer) {
 		// Check if the name is good or exists already another directory with the same name
 		var filetemp = file.clone();
 		var direname;
@@ -584,14 +648,27 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 		file = filetemp.clone();
 		// Create the container directory
 		file.create(1, 0775);
+
+		// deal with top then recursive 
+
+		let folderDirName = msgFolder.name;
+		let folderDirNamePath = file.path;
+		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		await IOUtils.makeDirectory(fullFolderPath);
+		file = await IOUtils.getDirectory(fullFolderPath);
 		subfile = file.clone();
-		if (type < 3 || type > 6) {
+
+		// no message directory for eml exports
+		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
 			subfile.create(1, 0775);
 		}
-
 	} else {
 		subfile = file.clone();
+		if ((type < 3 || type > 6) && type != 0) {
+			subfile.append(IETmesssubdir);
+			subfile.create(1, 0775);
+		}
 	}
 
 	var file2 = file.clone();
@@ -612,13 +689,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 			tempExists = tempFile.exists();
 		}
 
-		if (tempExists || (type !== 3 && type !== 5 && (msg.folder.server.type === "imap" || msg.folder.server.type === "news")
-			&& !msg.folder.verifiedAsOnlineFolder &&
-			!(msg.flags & 0x00000080))) {
-			skip = true;
-			IETskipped = IETskipped + 1;
-			IETtotal = IETtotal - 1;
-		}
 
 		if (!skip) {
 			var addBody = type === 6;
@@ -632,6 +702,13 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 		}
 	}
 
+	/*
+	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
+		alert("Iterated not equal to total messages : Please report");
+		return;
+	}
+*/
+
 	hdrArray.sort();
 	// nsMsgViewSortOrderValue none = 0;
 	// nsMsgViewSortOrderValue ascending = 1;
@@ -640,27 +717,31 @@ async function exportAllMsgsDelayed(type, file, msgFolder) {
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
 	}
-	IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	return file2;
 }
 
 // 4) IETrunExport
 //
 // According to the type requested, it's called the routine that performs the export
 
-function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
+async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
+	exportAsHtmlDone = false;
+	saveAsEmlDone = false;
+
 	switch (type) {
 		case 1: // HTML format, with index
-			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
+			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 2: // Plain text format, with index
-			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 3: // Just HTML index
 			createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
 		case 4: // Plain text, single file, no index
-			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
 			break;
 		case 5: // Just CSV index
 			createIndexCSV(type, file2, hdrArray, msgFolder, false);
@@ -669,22 +750,27 @@ function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
-			exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
 			break;
 		case 8: // HTML format, with index and attachments
-			exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
+			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 9: // Plain text format, with index and attachments
-			exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
+			break;
+		case 10: // PDF format, with index
+			await exportAsPDF(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		default: // EML format, with index
-			saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
+			await saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
 	}
 	if (type !== 3 && type !== 5 && type !== 6) {
 		IETabort = false;
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
 }
+
+var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
@@ -712,7 +798,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	var ext = IETgetExt(type);
 	var subdirname;
 
-	if (subdir)
+	if (subdir && type != 0)
 		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
 	else
 		subdirname = "";
@@ -733,6 +819,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
 	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
 	styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+	styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
 	styles += '</style>\r\n';
 
 	var data = '<html>\r\n<head>\r\n';
@@ -745,7 +832,12 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
 	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+
+	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+
+	//data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
+	data = data + "<th><b>" + "Size" + "</b></th>"; // Attachment
+
 	data = data + "</tr>";
 
 
@@ -832,7 +924,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		} else {
 			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
 		}
-		data = data + '\r\n<td align="center">' + hasAtt + "</td></tr>";
+		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
+		data = data + '\r\n<td nowrap align="left">' + ietngUtils.formatBytes(hdrs[7], 2) + "</td></tr>";
+
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
@@ -1069,12 +1163,14 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			recc = "\"" + recc + "\"";
 
 		var hasAtt;
-		if (hdrs[6] === 1)
+		if (hdrs[6] === 1 || hdrs[6] === '1') {
 			hasAtt = "*";
-		else
+		}
+		else {
 			hasAtt = " ";
+		}
 
-		var body = addBody ? hdrs[7] : "";
+		var body = addBody ? hdrs[8] : "";
 
 		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
@@ -1091,6 +1187,8 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			// console.debug(' customDate ' + csvDate);
 		}
 
+		let size = hdrs[7];
+
 		// Add experimental account /folder column #349
 		let accountFolderCol = "";
 		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
@@ -1099,7 +1197,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		var record = accountFolderCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
-			'"' + sep + csvDate + sep + hasAtt + sep + body + "\r\n";
+			'"' + sep + csvDate + sep + hasAtt + sep + size + sep + body + "\r\n";
 
 		data = data + record;
 	}
@@ -1109,7 +1207,10 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
 }
 
-function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
+var saveAsEmlDone = false;
+
+async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
+
 	var myEMLlistner = {
 
 		scriptStream: null,
@@ -1138,19 +1239,24 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 			if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
 				this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
 			if (append) {
+
 				if (this.emailtext !== "") {
 					data = this.emailtext + "\n";
+
 					// Some IMAP servers don't add to the message the "From" prologue
-					if (data && !data.match(/^From/)) {
+					if (data && !data.match(/^From /)) {
 						let fromAddr;
 						try {
 							fromAddr = parse5322.parseFrom(hdr.author)[0].address;
 						} catch (ex) {
 							fromAddr = "";
 						}
-						let msgDate = (new Date(hdr.dateInSeconds * 1000)).toString().split(" (")[0];
 
-						var prologue = "From - " + fromAddr + "  " + msgDate + "\n";
+						let msgDate = (new Date(hdr.dateInSeconds * 1000));
+						msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
+						let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
+
+						var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
 						data = prologue + data;
 					}
 					data = IETescapeBeginningFrom(data);
@@ -1177,13 +1283,11 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					// data = this.emailtext.replace(/^From.+\r?\n/, "");
 
 					data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
-
 					data = IETescapeBeginningFrom(data);
 
 					// Strip CR option - @ashikase
 					if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
 						data = data.replace(/\r\n/g, "\n");
-						console.log("rmv cr")
 					}
 
 					var clone = file.clone();
@@ -1228,7 +1332,10 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 					nextUri = parts[5];
 					nextFile = file;
 				}
-				saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+				((async () => {
+					await saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+				})());
+
 			} else {
 				if (myEMLlistner.file2)
 					createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
@@ -1249,6 +1356,8 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 				} else if (document.getElementById("IETabortIcon"))
 					document.getElementById("IETabortIcon").collapsed = true;
 			}
+			saveAsEmlDone = true;
+
 		},
 
 		onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1268,10 +1377,22 @@ function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapF
 	myEMLlistner.file2 = file2;
 	myEMLlistner.msgFolder = msgFolder;
 	mms.streamMessage(msguri, myEMLlistner, msgWindow, null, false, null);
+
+	// yes this is a horrible way to do this 
+	for (let index = 0; index < 1000; index++) {
+		if (saveAsEmlDone) {
+			break;
+		}
+		await new Promise(resolve => setTimeout(resolve, 200));
+	}
+
 }
 
+var exportAsHtmlDone = false;
 
-function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
+async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
+
+	//console.log("html hdrs", msgFolder.name, hdrArray.length)
 
 	var myTxtListener = {
 		scriptStream: null,
@@ -1314,6 +1435,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					var attName;
 					var attNameAscii;
 					var attDirContainerName;
+					var time = (hdr.dateInSeconds) * 1000;
 
 					for (var i = 0; i < attachments.length; i++) {
 						var att = attachments[i];
@@ -1361,7 +1483,35 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 								attNameAscii = encodeURIComponent(att.name);
 								attDirContainerClone.append(att.name);
-								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, null);
+								attachments[i].file = attDirContainerClone;
+
+								// The urlListener.OnStopRunningUrl fires before the 
+								// file is truly closed. An attempt to change lastModifiedTime
+								// here gets superceded with the current date. This is likely 
+								// a file descriptor being closed after the event.
+								// A setTimeout delayed action is required. 
+								// Setting the attachment date to match the message date #549
+
+								// @implements {nsIUrlListener}
+								const attsUrlListener = {
+									OnStartRunningUrl(url) { },
+									OnStopRunningUrl(url, status) {
+										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+											return;
+										}
+										let curAtt = attachments.find((att) => {
+											if (att.url == url.spec) {
+												return true;
+											}
+										})
+										setTimeout(this.setFileTime, 50, curAtt);
+									},
+									setFileTime(curAtt) {
+										curAtt.file.lastModifiedTime = time;
+									}
+								}
+
+								messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 							} catch (e) {
 								success = false;
 								console.debug('save attachment exception ' + att.name);
@@ -1431,7 +1581,11 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					parts = hdrArray[IETexported].split("§][§^^§");
 					nextUri = parts[5];
 				}
-				exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				((async () => {
+
+					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				})());
+
 				return;
 			}
 
@@ -1495,6 +1649,10 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 							imgs = imgs.concat(imgsImap);
 						}
 
+						let imgAtts = imgs.map(img => {
+							return {imgLink: img}
+						});
+
 						// Update for extended naming
 						for (var i = 0; i < imgs.length; i++) {
 							if (!embImgContainer) {
@@ -1521,9 +1679,39 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 								continue;
 							}
 
+								// The urlListener.OnStopRunningUrl fires before the 
+								// file is truly closed. An attempt to change lastModifiedTime
+								// here gets superceded with the current date. This is likely 
+								// a file descriptor being closed after the event.
+								// A setTimeout delayed action is required. 
+								// Setting the attachment date to match the message date #549
+								
+								// @implements {nsIUrlListener}
+								const embImgsUrlListener = {
+									OnStartRunningUrl(url) { },
+									OnStopRunningUrl(url, status) {
+										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+											return;
+										}
+										let curAtt = imgAtts.find((att) => {
+											if (att.url == url.spec) {
+												return true;
+											}
+										})
+										setTimeout(this.setFileTime, 50, curAtt);
+									},
+									setFileTime(curAtt) {
+										curAtt.file.lastModifiedTime = time;
+									}
+								}
+
 							var embImg = embImgContainer.clone();
+							
 							embImg.append(i + ".jpg");
-							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", null);
+							imgAtts[i].file = embImg;
+							imgAtts[i].url = aUrl;
+							
+							messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
 							// var sep = isWin ? "\\" : "/";
 							// Encode for UTF-8 - Fixes #355
 							data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
@@ -1566,6 +1754,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 			}
 
 			var nextUri;
+
 			if (IETexported < IETtotal) {
 				if (!hdrArray)
 					nextUri = uriArray[IETexported];
@@ -1573,7 +1762,11 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					parts = hdrArray[IETexported].split("§][§^^§");
 					nextUri = parts[5];
 				}
-				exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				// this really isn't async but it's at the end of the cb
+				((async () => {
+					await exportAsHtml(nextUri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments);
+				})());
+
 			} else {
 				var type = convertToText ? 2 : 1;
 				if (myTxtListener.file2)
@@ -1588,6 +1781,7 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 					exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 				else if (document.getElementById("IETabortIcon"))
 					document.getElementById("IETabortIcon").collapsed = true;
+				exportAsHtmlDone = true;
 			}
 		},
 	};
@@ -1641,6 +1835,27 @@ function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, a
 		myTxtListener.chrset = hdr.Charset;
 		messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
 	}
+
+	for (let index = 0; index < 1000; index++) {
+		if (exportAsHtmlDone) {
+			break;
+		}
+		await new Promise(resolve => setTimeout(resolve, 500));
+	}
+	return;
+}
+
+async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
+	var msgUris = [];
+
+	hdrArray.forEach(hdrItem => {
+		var uri = hdrItem.split("§][§^^§")[5];
+		msgUris.push(uri)
+	});
+
+	await IETprintPDFmain.setupPDF(msgUris, file.path);
+	createIndex(10, file2, hdrArray, msgFolder, false, true);
+
 }
 
 
@@ -1666,6 +1881,7 @@ function IETcopyToClip(data) {
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data);
 
+	console.log(str.data)
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
@@ -1819,7 +2035,7 @@ function IETwritestatus(text) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
 		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
-		delay += 2000;
+		delay += 3000;
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}
@@ -1921,7 +2137,7 @@ async function copyMSGtoClip(selectedMsgs) {
 
 		if (!msguri)
 			return;
-		exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
+		await exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
 	}
 }
 
@@ -2018,7 +2234,10 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var author;
 	var recipients;
 	var body;
+	var size;
 	var hdrStr;
+
+	size = msg.messageSize;
 
 	try {
 		// Cut the subject, the author and the recipients at 50 chars
@@ -2076,19 +2295,19 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// will insert §][§^^§ in subject....but why should (s)he write it???
 	switch (IETsortType) {
 		case 1:
-			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		case 2:
-			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		case 3:
-			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 			break;
 
 		default:
-			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + body;
+			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
 	}
 	// If the subject begins with a lowercase letter, the sorting will be wrong
 	// so it is changed in uppercase. To track this and restore the original

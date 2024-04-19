@@ -26,7 +26,9 @@
 
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -295,9 +297,7 @@ document.addEventListener("dialogaccept", function (event) {
 	event.stopPropagation();
 });
 
-// document.addEventListener("dialogcancel", function (event) {
-// });
-
 window.addEventListener("load", function (event) {
+	i18n.updateDocument({extension: window.opener.ietngAddon.extension});
 	autoBackup.load();
 });

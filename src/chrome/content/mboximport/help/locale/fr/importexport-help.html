@@ -25,23 +25,18 @@
     </table>
     <h3 id="release_notes">Notes de version</h3>
     <p>
-      - Nouveau : ajout de l’importation mbox au niveau du compte<br>
-      - Nouveau : ajout de l’exportation mbox à plat au niveau du compte<br>
-      - Nouveau : prise en charge de l’importation et de l’exportation mbox au niveau du système de fichiers<br>
-      - Correction de l’exportation CSV en texte (#451, #463)<br>
-      - Correction de l’exportation des dossiers en ZIP<br>
-      - Correction : chargement de l’aide uniquement lors d’une mise à jour de IETNG<br>
-      - Ajout de la préférence « extensions.importexporttoolsng.help.showOnInstallAndUpdate » permettant de ne jamais charger l’aide lors d’une mise à jour (#458)<br>
-      - Correction : aide pour les sous-langues et les langues non supportées<br>
-      - Correction : séparateurs mbox « From_ » afin de respecter RFC 4155 (#455)<br>
-      - Réintégration du menu « Exporter les messages » dans le panneau d’affichage des messages (#459)<br>
-      - Correction de l’exportation d’un compte pop3<br>
-      - Correction : échappement de « From_ » en limite de la zone tampon<br>
-      - Correction de la gestion des messages sélectionnés (#485)<br>
-      - Mise à jour complète de la locale « de » (@Mr-Update)<br>
-      - Mise à jour complète de la locale « fr» (@DenB10)<br>
-      - Mise à jour complète de la locale « da » (@Joergen)<br>
-      - Mise à jour de la locale « ja » (@kiki-ja)<br>
+      - Nouveau : Exportation récursive de sous-dossiers pour EML, HTML, PDF et Plaintext #538<br>
+      - Nouveau : Colonne Taille dans l'index #508<br>
+      - Nouveau : Importer les fichiers mbox de terminaisons OSX 9 CR #540<br>
+      - Nouveau : Prise en charge des raccourcis pour ExportSelectedMessages #519<br>
+      - Nouveau : langue tchèque (cs) - @cewbdex<br>
+      - Correction du séparateur mbox From_ pour utiliser le format de date asctime() #537<br>
+      - Correction des exportations PDF n'utilisant pas les paramètres Mozilla Save toPDF #528<br>
+      - Correction du dossier cliqué avec le bouton droit qui n'affiche pas l'option d'exportation mbox pour Maildir #525<br>
+      - Correction Impossible d'importer des e-mails avec des sauts de ligne dans l'en-tête Return-Path #516<br>
+      - Correctif Exporter tous les messages d'un dossier virtuel au format HTML avec pièces jointes et index - dossier de messages manquant #509<br>
+      - Correction du menu contextuel pour la fenêtre de message #505<br>
+      - Convertir les fichiers dtd en messages.json<br>
     </p>
     <h2 id="main_help">Présentation</h2>
     <p><i>ImportExportTools NG</i> est une extension basée sur le travail original de Paolo "Kaosmos". Elle fournit de multiples fonctions d’importation et d’exportation acceptant plusieurs formats de fichiers (certains n’étant pas supportés par toutes les fonctions) :<br>

@@ -13,7 +13,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-	// expMenuDispatcher
+// expMenuDispatcher
 
 /* global
 exportSelectedMsgs,
@@ -34,7 +34,7 @@ exportSelectedMsgs,
 	*/
 
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-3.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-4.js");
 
 var gVars = {
 	window: window,
@@ -43,10 +43,13 @@ mboxImportExport.setGlobals(gVars);
 
 
 async function expMenuDispatcher(data) {
-	//console.log("expMenuDispacher: ", data);
-	//console.log("expMenuDispacher focused: ", window.document.hasFocus());
+	let dispatcherWinId = window.ietngAddon.extension.windowManager.getWrapper(window).id;
 
-	if (!window.document.hasFocus()) {
+	// console.log("expMenuDispacher: winId", dispatcherWinId, data);
+	// console.log("expMenuDispacher focused: ", window.document.hasFocus());
+	// console.log(window)
+	if (data.params.tabType != "messageDisplay" && data.params.targetWinId != dispatcherWinId) {
+		console.log("Not for us: ", data.params.targetWinId)
 		return;
 	}
 
@@ -108,7 +111,7 @@ async function expMenuDispatcher(data) {
 				await exportSelectedMsgs(6, data.params);
 			}
 			break;
-				
+
 		case "WXMCMD_ExpFolderMboxFormat":
 			exportfolder(data.params);
 			break;
@@ -123,13 +126,18 @@ async function expMenuDispatcher(data) {
 			break;
 		case "WXMCMD_FolderExp_HTML_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-			await exportAllMsgs(1, data.params);
+				await exportAllMsgs(1, data.params);
 			} else if (data.params.saveAtts) {
 				await exportAllMsgs(8, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
-			IETprintPDFmain.print(true, data.params);
+			//if (!data.params.recursive && 0) {
+			if (0) {
+				await IETprintPDFmain.print(true, data.params);
+			} else {
+				await exportAllMsgs(10, data.params);
+			}
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
@@ -162,7 +170,6 @@ async function expMenuDispatcher(data) {
 			window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-			//console.log(data.params);
 			mboxImportExport.importMboxSetup(data.params);
 			break;
 		case "WXMCMD_ImpMaildirFiles":
@@ -171,15 +178,15 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_ImpEML":
 			importEMLs(data.params);
 			break;
-			case "WXMCMD_ImpEMLAll":
-				importALLasEML(data.params);
-				break;
+		case "WXMCMD_ImpEMLAll":
+			importALLasEML(data.params);
+			break;
 		case "WXMCMD_CopyFolderPath":
 			IETcopyFolderPath(data.params);
-		break;
+			break;
 		case "WXMCMD_OpenFolderDir":
 			IETopenFolderPath(data.params);
-		break;
+			break;
 		case "WXMCMD_OpenOptions":
 			openIEToptions();
 			break;

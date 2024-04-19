@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Добавляет инструменты для импорта/экспорта сообщений и папок (NextGen)."
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Параметры"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Помощь"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Экспорт профиля"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Импорт профиля"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Резервное копирование"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Полный профиль"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Только почта"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Экспортировать сообщения как…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Формат сообщения EML"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-формат"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Формат PDF"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Простой текстовый формат"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Формат CSV (электронная таблица)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox Формат"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Индекс сообщения"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Скопировать в буфер обмена"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Сообщения (встроенные вложения)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Только сообщения"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Сообщения и вложения"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Сообщения с вложениями и указателем"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Только сообщения"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Сообщения и вложения"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Сообщения с вложениями и указателем"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Новый файл mbox"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Добавить к существующему файлу mbox"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-формат"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-формат"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Сообщение"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Заголовки"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Экспорт папки (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Как файл mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Один заархивированный файл mbox"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Структурировано с подпапками"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "С плоскими подпапками"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Экспорт удаленной папки"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Экспортировать все сообщения в папку"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "Формат сообщения EML"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-формат"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "Формат PDF"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Простой текстовый формат"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "Формат CSV (электронная таблица)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Индекс сообщения"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Поиск и экспорт сообщений"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Импорт файлов mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Отдельные файлы mbox"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Отдельные файлы mbox (со структурой sbd)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Все файлы mbox из каталога"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Все файлы mbox из каталога (со структурой sbd)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Импорт папки Maildir"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Импорт сообщений EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Индивидуальные сообщения EML"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Все сообщения EML из каталога"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Все сообщения EML из каталога и подкаталогов"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Копировать путь к папке"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Открыть каталог папок"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Сообщения с вложениями и указателем"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Сообщения и HTML-индекс"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Сообщения с вложениями и указателем"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Сообщения в виде одного файла"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Сообщения в виде одного файла с вложениями"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-формат"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-формат"
-	},
-
-	"subjectFmtToken": {
-		"message": "${тема}"
-	},
-
-	"senderFmtToken": {
-		"message": "${отправитель}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${получатель}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${отправитель_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${получатель_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${умное_имя}"
-	},
-
-	"indexFmtToken": {
-		"message": "${индекс}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${префикс}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${суффикс}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${пользовательская_дата}"
-	},
-
-	"dateFmtToken": {
-		"message": "${дата}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Экспорт учетной записи"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Сохраните вложение EML в эту папку."
-	}
+    "MACwarning": {
+        "message": "Внимание: перед продолжением закройте все остальные окна."
+    },
+    "MBcaptionlabel1": {
+        "message": "Общие настройки"
+    },
+    "MBlabel1": {
+        "message": "Заменять файлы с совпадающими именами в целевом каталоге"
+    },
+    "MBlabel2": {
+        "message": "При экспорте использовать только алфавитно-цифровые символы"
+    },
+    "MBlabel3": {
+        "message": "Запрашивать подтверждение перед импортом файлов mbox из каталога"
+    },
+    "MBlabel4": {
+        "message": "HTML формат в том же виде, что и в панели сообщений"
+    },
+    "MBlabel5": {
+        "message": "Копировать в буфер обмена только в текстовом формате (может вызвать проблемы совместимости)"
+    },
+    "MBlabel7a": {
+        "message": "Максимальная длина темы:"
+    },
+    "MBlabel7b": {
+        "message": "символ(а,ов)"
+    },
+    "MBlabel7c": {
+        "message": "Максимальная длина имени отправителя:"
+    },
+    "MBlabel7d": {
+        "message": "Максимальная длина имени получателя:"
+    },
+    "abortExport": {
+        "message": "Остановить текущую операцию экспорта"
+    },
+    "addNumber.label": {
+        "message": "Всегда добавлять к имени случайное число при импорте файлов mbox"
+    },
+    "addPrefix": {
+        "message": "Добавить префикс"
+    },
+    "addSuffix": {
+        "message": "Добавить суффикс"
+    },
+    "addTimestamp": {
+        "message": "Добавить дату к свойствам файла"
+    },
+    "addtime.label": {
+        "message": "Добавить к дате время"
+    },
+    "allFiles": {
+        "message": "Все файлы профиля"
+    },
+    "allFilesMode": {
+        "message": "Всегда все файлы"
+    },
+    "allMsg": {
+        "message": "Экспортировать все сообщения"
+    },
+    "asCSV": {
+        "message": "в формате CSV"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Сохраните вложение EML в эту папку."
+    },
+    "attachmentFolderNames": {
+        "message": "Имена папок вложений"
+    },
+    "attachmentFolders": {
+        "message": "Папки вложений"
+    },
+    "autoName": {
+        "message": "Автоматически (имя + дата)"
+    },
+    "backupDestination": {
+        "message": "Целевой каталог"
+    },
+    "backupFolderName": {
+        "message": "Имя папки резервной копии"
+    },
+    "backupFreq": {
+        "message": "Периодичность"
+    },
+    "backupOn": {
+        "message": "Включить"
+    },
+    "backupOnExit": {
+        "message": "Резервное копирование при выходе"
+    },
+    "backupSettings": {
+        "message": "Настройки резервного копирования"
+    },
+    "backupTab": {
+        "message": "Планирование резервного копирования"
+    },
+    "backupType": {
+        "message": "Состав резервной копии"
+    },
+    "browse": {
+        "message": "Обзор"
+    },
+    "buildMSF.label": {
+        "message": "Построить индекс для импортированных файлов mbox"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Резервное копирование"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Полный профиль"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Только почта"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Экспорт профиля"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Помощь"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Импорт профиля"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Параметры"
+    },
+    "captionCustomize": {
+        "message": "Настройка формата имени файлов"
+    },
+    "changeProfileNameLabel": {
+        "message": "Имя профиля можно изменить с помощью диспетчера профилей"
+    },
+    "copyFolderPath": {
+        "message": "Копировать путь к папке на диске"
+    },
+    "csvSep": {
+        "message": "Разделитель для экспорта в формате CSV:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Помощь"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Параметры"
+    },
+    "customDate": {
+        "message": "Пользовательская дата:"
+    },
+    "customName": {
+        "message": "Индивидуально"
+    },
+    "customizeFilename": {
+        "message": "Использовать следующий формат:"
+    },
+    "cutFN": {
+        "message": "Усечь длину полного пути до 256 символов"
+    },
+    "cutPathLen": {
+        "message": "Сократите длину пути к файлу до 256 символов."
+    },
+    "cutSub": {
+        "message": "Усечь тему до 50 символов"
+    },
+    "date": {
+        "message": "Дата"
+    },
+    "dateCustomFmtToken": {
+        "message": "${пользовательская_дата}"
+    },
+    "dateCustomOpt": {
+        "message": "Дата (пользовательская)"
+    },
+    "dateFmtToken": {
+        "message": "${дата}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Формат даты"
+    },
+    "day1": {
+        "message": "1 день"
+    },
+    "day15": {
+        "message": "15 дней"
+    },
+    "day3": {
+        "message": "3 дня"
+    },
+    "day30": {
+        "message": "30 дней"
+    },
+    "day7": {
+        "message": "7 дней"
+    },
+    "description1": {
+        "message": "Дата последнего резервного копирования: $t"
+    },
+    "description2": {
+        "message": "На основании этих настроек немедленно сделать резервную копию."
+    },
+    "description3": {
+        "message": "На протяжении этой операции программа не будет отвечать на запросы в течение нескольких минут."
+    },
+    "description4": {
+        "message": "Вы хотите продолжить?"
+    },
+    "description5": {
+        "message": "Выполняется резервное копирование, подождите…"
+    },
+    "description6": {
+        "message": "Резервное копирование завершено."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG — Резервное копирование"
+    },
+    "emlExport": {
+        "message": "папок как одного файла:"
+    },
+    "error": {
+        "message": "При импорте профиля произошла ошибка. Сведения об ошибке:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Расширенная ссылка на формат имени файла"
+    },
+    "extFormat": {
+        "message": "Формат:"
+    },
+    "extensionDescription": {
+        "message": "Добавляет инструменты для импорта/экспорта сообщений и папок (NextGen)."
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Длина имени файла"
+    },
+    "filenameCharset": {
+        "message": "Кодировка символов для имён файлов:"
+    },
+    "filenameFormat": {
+        "message": "Имена файлов"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Копировать путь к папке"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Экспорт учетной записи"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Экспортировать все сообщения в папку"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Формат CSV (электронная таблица)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Сообщения и индекс с подпапками"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Формат сообщения EML"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "С плоскими подпапками"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Как файл mbox"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Структурировано с подпапками"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Один заархивированный файл mbox"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Экспорт папки (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Сообщения и индекс с подпапками"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Сообщения, индекс и вложения с подпапками"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Сообщения с вложениями и указателем"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-формат"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-формат"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-формат"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Индекс сообщения"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Сообщения и индекс с подпапками"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Формат PDF"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Сообщения и индекс с подпапками"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Сообщения, индекс и вложения с подпапками"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Сообщения с вложениями и указателем"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Сообщения в виде одного файла с вложениями"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Сообщения в виде одного файла"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Простой текстовый формат"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Экспорт удаленной папки"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Поиск и экспорт сообщений"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Все сообщения EML из каталога и подкаталогов"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Все сообщения EML из каталога"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Индивидуальные сообщения EML"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Импорт сообщений EML"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Импорт папки Maildir"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Все файлы mbox из каталога (со структурой sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Все файлы mbox из каталога"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Отдельные файлы mbox (со структурой sbd)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Отдельные файлы mbox"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Импорт файлов mbox"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Открыть каталог папок"
+    },
+    "importEnd": {
+        "message": "Импорт выполнен успешно!"
+    },
+    "importRunning": {
+        "message": "Выполняется импорт…"
+    },
+    "indexCSVdateFormat": {
+        "message": "Индекс, формат даты CSV:"
+    },
+    "indexFmtToken": {
+        "message": "${индекс}"
+    },
+    "indexOff": {
+        "message": "использовать выбранный каталог без индексирования сообщений"
+    },
+    "indexOn": {
+        "message": "создать новый каталог и индексировать сообщения"
+    },
+    "indexSettingLabel": {
+        "message": "При экспортировании всех сообщений папки почты:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Встроенные папки вложений"
+    },
+    "intro1": {
+        "message": "Процедура импорта профиля является экспериментальной. Риск потери данных отсутствует, но нет гарантий, что процедура будет выполнена ожидаемым образом (особенно при импорте профиля с другого компьютера). В любом случае, это безопаснее копирования файлов вручную."
+    },
+    "intro2": {
+        "message": "Папка содержит корректный профиль, который можно импортировать. Во время процедуры импорта, которая может занять несколько минут или даже больше, пользоваться программой будет нельзя."
+    },
+    "intro3": {
+        "message": "Чтобы получить доступ к импортированному профилю, запустите диспетчер профилей нажатием расположенной ниже кнопки. Текущий профиль автоматически закроется"
+    },
+    "justMailFiles": {
+        "message": "Только файлы почты"
+    },
+    "key": {
+        "message": "Индекс"
+    },
+    "labelmenuMI": {
+        "message": "Импорт/Экспорт NG"
+    },
+    "lastBackup": {
+        "message": "Последняя резервная копия"
+    },
+    "mboxExport": {
+        "message": "папок как файла mbox:"
+    },
+    "misc": {
+        "message": "Разное"
+    },
+    "modal": {
+        "message": "Использовать \\'модальное\\' окно"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Заголовки"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Сообщение"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Скопировать в буфер обмена"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "Формат CSV (электронная таблица)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Сообщения (встроенные вложения)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "Формат сообщения EML"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Только сообщения"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Сообщения с вложениями и указателем"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Сообщения и вложения"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-формат"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-формат"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-формат"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Индекс сообщения"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Добавить к существующему файлу mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Новый файл mbox"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox Формат"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "Формат PDF"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Сообщения и HTML-индекс"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Только сообщения"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Сообщения с вложениями и указателем"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Сообщения и вложения"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Простой текстовый формат"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Экспортировать сообщения как…"
+    },
+    "name": {
+        "message": "Имя"
+    },
+    "newFilesMode": {
+        "message": "Только изменённые после прошлого резервного копирования файлы"
+    },
+    "openHelpInWindow.label": {
+        "message": "Открыть справку в окне вместо вкладки"
+    },
+    "prefixFmtToken": {
+        "message": "${префикс}"
+    },
+    "profileName": {
+        "message": "Имя профиля для импорта"
+    },
+    "profilePath": {
+        "message": "Путь к профилю для импорта"
+    },
+    "recipient": {
+        "message": "Получатель"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${получатель_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${получатель}"
+    },
+    "runProfileManager": {
+        "message": "Запустить диспетчер профилей"
+    },
+    "save": {
+        "message": "Сохранить"
+    },
+    "savedirs": {
+        "message": "Укажите каталоги для экспорта"
+    },
+    "sdAll": {
+        "message": "Все"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Экспорт"
+    },
+    "sdFormat": {
+        "message": "формат"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (новый)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (добавление)"
+    },
+    "sdMessages": {
+        "message": "Сообщения"
+    },
+    "sdSelected": {
+        "message": "Выбранные"
+    },
+    "sdSingleFile": {
+        "message": "(один файл)"
+    },
+    "sdText": {
+        "message": "Обычный текст"
+    },
+    "selExport": {
+        "message": "выбранных сообщений:"
+    },
+    "sender": {
+        "message": "Отправитель"
+    },
+    "senderEmailFmtToken": {
+        "message": "${отправитель_email}"
+    },
+    "senderFmtToken": {
+        "message": "${отправитель}"
+    },
+    "skipMsgLabel": {
+        "message": "Не сохранять сообщения, если соответствующий файл существует"
+    },
+    "smartNameFmtToken": {
+        "message": "${умное_имя}"
+    },
+    "start": {
+        "message": "Начать импорт"
+    },
+    "strip_eml_CR.label": {
+        "message": "Удалите CR из концов строк для экспорта сообщений eml"
+    },
+    "subject": {
+        "message": "Тема"
+    },
+    "subjectFmtToken": {
+        "message": "${тема}"
+    },
+    "suffixFmtToken": {
+        "message": "${суффикс}"
+    },
+    "textCharset": {
+        "message": "Кодировка для экспорта в виде текста и формате CSV: "
+    },
+    "title": {
+        "message": "ImportExportTools NG — Импорт профиля"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Резервное копирование"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Полный профиль"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Только почта"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Экспорт профиля"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Импорт профиля"
+    },
+    "useExtFilenameFormat": {
+        "message": "Использовать расширенный формат"
+    },
+    "useMboxExt.label": {
+        "message": "Используйте расширение .mbox для файлов mbox (неструктурированных)."
+    },
+    "CRconversion.statusMsg": {
+        "message": "Преобразование CR =&gt; окончания строки CRLF"
+    }
 }

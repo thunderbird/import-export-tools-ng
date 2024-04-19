@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "메시지 및 폴더 가져오기/내보내기 도구 추가(NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "옵션"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "돕다"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "프로필 내보내기"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "프로필 가져오기"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "지원"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "전체 프로필"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "메일만"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "다음으로 메시지 내보내기…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML 메시지 형식"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML 형식"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF 형식"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "일반 텍스트 형식"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV 형식(스프레드시트)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox 형식"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "메시지 색인"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "클립 보드에 복사"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "메시지(포함된 첨부 파일)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "메시지만"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "메시지 및 첨부 파일"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "첨부 파일 및 색인이 있는 메시지"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "메시지만"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "메시지 및 첨부 파일"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "첨부 파일 및 색인이 있는 메시지"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "새 mbox 파일"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "기존 mbox 파일에 추가"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML 형식"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV 형식"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "메시지"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "헤더"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "폴더 내보내기(mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "mbox 파일로"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "단일 압축 mbox 파일"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "하위 폴더로 구성"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "병합된 하위 폴더 포함"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "원격 폴더 내보내기"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "폴더의 모든 메시지 내보내기"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML 메시지 형식"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML 형식"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF 형식"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "일반 텍스트 형식"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV 형식(스프레드시트)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "메시지 색인"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "메시지 검색 및 내보내기"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "mbox 파일 가져오기"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "개별 mbox 파일"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "개별 mbox 파일(sbd 구조 포함)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "디렉토리의 모든 mbox 파일"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "디렉토리의 모든 mbox 파일(sbd 구조 사용)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Maildir 폴더 가져오기"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "EML 메시지 가져오기"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "개별 EML 메시지"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "디렉터리의 모든 EML 메시지"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "디렉터리 및 하위 디렉터리의 모든 EML 메시지"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "폴더 경로 복사"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "폴더 디렉토리 열기"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "첨부 파일 및 색인이 있는 메시지"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "메시지 및 HTML 인덱스"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "첨부 파일 및 색인이 있는 메시지"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "단일 파일로서의 메시지"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "첨부 파일이 있는 단일 파일로 메시지"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML 형식"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV 형식"
-	},
-
-	"subjectFmtToken": {
-		"message": "${제목}"
-	},
-
-	"senderFmtToken": {
-		"message": "${발신자}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${수신자}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${발신자_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${수신자_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${스마트_이름}"
-	},
-
-	"indexFmtToken": {
-		"message": "${색인}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${접두사}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${접미사}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${날짜_사용자_정의}"
-	},
-
-	"dateFmtToken": {
-		"message": "${날짜}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "계정 내보내기"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "EML 첨부 파일을 이 폴더에 저장"
-	}
+    "MACwarning": {
+        "message": "주의:계속하기 전에, 모든 다른 창을 닫으세요."
+    },
+    "MBcaptionlabel1": {
+        "message": "일반 설정"
+    },
+    "MBlabel1": {
+        "message": "목적 디렉토리에 있는 같은 이름의 mbox 파일을 덮어 씁니다"
+    },
+    "MBlabel2": {
+        "message": "단일 파일 내보내기시 영숫자만 사용"
+    },
+    "MBlabel3": {
+        "message": "디렉토리로부터 mbox 파일을 읽어들이기 전에 확인을 요구"
+    },
+    "MBlabel4": {
+        "message": "메세지 패널에 표시되었던 대로의 HTML 형식"
+    },
+    "MBlabel5": {
+        "message": "텍스트 형식으로 클립보드에 카피 (호환성에 문제가 있을 수 있습니다)"
+    },
+    "MBlabel7a": {
+        "message": "제목 최대 길이:"
+    },
+    "MBlabel7b": {
+        "message": "문자"
+    },
+    "MBlabel7c": {
+        "message": "보내는 이 이름의 최대 길이:"
+    },
+    "MBlabel7d": {
+        "message": "받는이 이름의 최대 길이:"
+    },
+    "abortExport": {
+        "message": "현재 내보내기 중지"
+    },
+    "addNumber.label": {
+        "message": "mbox파일을 가져올때 언제나 임의의 숫자를 추가"
+    },
+    "addPrefix": {
+        "message": "접두사 추가"
+    },
+    "addSuffix": {
+        "message": "접미사 추가"
+    },
+    "addTimestamp": {
+        "message": "파일 속성에 날짜 추가"
+    },
+    "addtime.label": {
+        "message": "날짜에 시간 추가"
+    },
+    "allFiles": {
+        "message": "전체 프로필 파일"
+    },
+    "allFilesMode": {
+        "message": "언제나 모든 파일을"
+    },
+    "allMsg": {
+        "message": "모든 메세지 내보내기"
+    },
+    "asCSV": {
+        "message": "스프레드 시트(CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "EML 첨부 파일을 이 폴더에 저장"
+    },
+    "attachmentFolderNames": {
+        "message": "첨부 파일 폴더 이름"
+    },
+    "attachmentFolders": {
+        "message": "첨부파일"
+    },
+    "autoName": {
+        "message": "자동(폴더 명+일시)"
+    },
+    "backupDestination": {
+        "message": "도착지"
+    },
+    "backupFolderName": {
+        "message": "백업 폴더 명"
+    },
+    "backupFreq": {
+        "message": "빈도"
+    },
+    "backupOn": {
+        "message": "사용"
+    },
+    "backupOnExit": {
+        "message": "종료시 백업"
+    },
+    "backupSettings": {
+        "message": "백업 설정"
+    },
+    "backupTab": {
+        "message": "백업 예약"
+    },
+    "backupType": {
+        "message": "백업 내용"
+    },
+    "browse": {
+        "message": "Browser"
+    },
+    "buildMSF.label": {
+        "message": "mbox을 들여오기 위해 색인 구축"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "지원"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "전체 프로필"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "메일만"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "프로필 내보내기"
+    },
+    "buttonMenu_Help.title": {
+        "message": "돕다"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "프로필 가져오기"
+    },
+    "buttonMenu_Options.title": {
+        "message": "옵션"
+    },
+    "captionCustomize": {
+        "message": "파일명 형식 사용자 지정"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
+    },
+    "copyFolderPath": {
+        "message": "디스크 내 폴더 경로 복사"
+    },
+    "csvSep": {
+        "message": "Separator for export in CSV format:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "돕다"
+    },
+    "ctxMenu_Options.title": {
+        "message": "옵션"
+    },
+    "customDate": {
+        "message": "맞춤 날짜 :"
+    },
+    "customName": {
+        "message": "사용자 지정"
+    },
+    "customizeFilename": {
+        "message": "다음 형식 사용:"
+    },
+    "cutFN": {
+        "message": "256자로 완료 파일 경로 길이 자르기"
+    },
+    "cutPathLen": {
+        "message": "파일 경로 길이를 256자로 자릅니다."
+    },
+    "cutSub": {
+        "message": "50자로 제목 자르기"
+    },
+    "date": {
+        "message": "날짜"
+    },
+    "dateCustomFmtToken": {
+        "message": "${날짜_사용자_정의}"
+    },
+    "dateCustomOpt": {
+        "message": "날짜 (맞춤 설정)"
+    },
+    "dateFmtToken": {
+        "message": "${날짜}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "날짜 형식 참조"
+    },
+    "day1": {
+        "message": "1일마다"
+    },
+    "day15": {
+        "message": "15일마다"
+    },
+    "day3": {
+        "message": "3일마다"
+    },
+    "day30": {
+        "message": "30일마다"
+    },
+    "day7": {
+        "message": "7일마다"
+    },
+    "description1": {
+        "message": "최종 백업 일시: $t"
+    },
+    "description2": {
+        "message": "설정을 바탕으로, 바로 백업을 만들 필요가 있습니다."
+    },
+    "description3": {
+        "message": "이 작업하는 동안 프로그램이 몇 분 동안 응답하지 않을 것입니다."
+    },
+    "description4": {
+        "message": "계속하시겠습니까?"
+    },
+    "description5": {
+        "message": "백업이 진행되고 있습니다... 기다려주십시오."
+    },
+    "description6": {
+        "message": "백업 완료."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG - Backup"
+    },
+    "emlExport": {
+        "message": "단일 파일로 폴더 내보내기:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "확장 파일 이름 형식 참조"
+    },
+    "extFormat": {
+        "message": "형식 :"
+    },
+    "extensionDescription": {
+        "message": "메시지 및 폴더 가져오기/내보내기 도구 추가(NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "파일명 길이"
+    },
+    "filenameCharset": {
+        "message": "파일명의 캐릭터셋:"
+    },
+    "filenameFormat": {
+        "message": "파일명"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "폴더 경로 복사"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "계정 내보내기"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "폴더의 모든 메시지 내보내기"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV 형식(스프레드시트)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지 및 색인"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML 메시지 형식"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "병합된 하위 폴더 포함"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "mbox 파일로"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "하위 폴더로 구성"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "단일 압축 mbox 파일"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "폴더 내보내기(mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지 및 색인"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지, 색인 및 첨부 파일"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "첨부 파일 및 색인이 있는 메시지"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML 형식"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV 형식"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML 형식"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "메시지 색인"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지 및 색인"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 색인"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF 형식"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지 및 색인"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "하위 폴더가 포함된 메시지, 색인 및 첨부 파일"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "첨부 파일 및 색인이 있는 메시지"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "첨부 파일이 있는 단일 파일로 메시지"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "단일 파일로서의 메시지"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "일반 텍스트 형식"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "원격 폴더 내보내기"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "메시지 검색 및 내보내기"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "디렉터리 및 하위 디렉터리의 모든 EML 메시지"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "디렉터리의 모든 EML 메시지"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "개별 EML 메시지"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "EML 메시지 가져오기"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Maildir 폴더 가져오기"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "디렉토리의 모든 mbox 파일(sbd 구조 사용)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "디렉토리의 모든 mbox 파일"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "개별 mbox 파일(sbd 구조 포함)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "개별 mbox 파일"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "mbox 파일 가져오기"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "폴더 디렉토리 열기"
+    },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
+    "indexCSVdateFormat": {
+        "message": "색인, CSV 날짜 형식 :"
+    },
+    "indexFmtToken": {
+        "message": "${색인}"
+    },
+    "indexOff": {
+        "message": "색인없이 선택된 디렉토리 사용"
+    },
+    "indexOn": {
+        "message": "새 디렉토리 및 메세지 색인 생성"
+    },
+    "indexSettingLabel": {
+        "message": "메일 폴더 내 모든 메세지 내보낼 때:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "인라인 첨부 파일 폴더"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
+    },
+    "justMailFiles": {
+        "message": "메일 파일만"
+    },
+    "key": {
+        "message": "색인"
+    },
+    "labelmenuMI": {
+        "message": "불러오기/내보내기"
+    },
+    "lastBackup": {
+        "message": "최종 백업"
+    },
+    "mboxExport": {
+        "message": "MBOX 파일로 폴더 내보내기:"
+    },
+    "misc": {
+        "message": "기타"
+    },
+    "modal": {
+        "message": "'modal' 창 사용"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "헤더"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "메시지"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "클립 보드에 복사"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV 형식(스프레드시트)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "메시지(포함된 첨부 파일)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML 메시지 형식"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "메시지만"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "첨부 파일 및 색인이 있는 메시지"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "메시지 및 첨부 파일"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML 형식"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV 형식"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML 형식"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "메시지 색인"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "기존 mbox 파일에 추가"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "새 mbox 파일"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox 형식"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF 형식"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "메시지 및 HTML 인덱스"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "메시지만"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "첨부 파일 및 색인이 있는 메시지"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "메시지 및 첨부 파일"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "일반 텍스트 형식"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "다음으로 메시지 내보내기…"
+    },
+    "name": {
+        "message": "이름"
+    },
+    "newFilesMode": {
+        "message": "마지막 백업 이후 수정된 파일만"
+    },
+    "openHelpInWindow.label": {
+        "message": "탭 대신 창에서 도움말 열기"
+    },
+    "prefixFmtToken": {
+        "message": "${접두사}"
+    },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
+    "recipient": {
+        "message": "받는이"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${수신자_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${수신자}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
+    },
+    "save": {
+        "message": "저장"
+    },
+    "savedirs": {
+        "message": "내보낼 디렉토리"
+    },
+    "sdAll": {
+        "message": "모두"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "내보내기"
+    },
+    "sdFormat": {
+        "message": "형식"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox(새 파일)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox(추가)"
+    },
+    "sdMessages": {
+        "message": "메세지"
+    },
+    "sdSelected": {
+        "message": "선택한 것"
+    },
+    "sdSingleFile": {
+        "message": "(파일 1개)"
+    },
+    "sdText": {
+        "message": "단순 글"
+    },
+    "selExport": {
+        "message": "선택된 메세지 내보내기:"
+    },
+    "sender": {
+        "message": "보낸이"
+    },
+    "senderEmailFmtToken": {
+        "message": "${발신자_email}"
+    },
+    "senderFmtToken": {
+        "message": "${발신자}"
+    },
+    "skipMsgLabel": {
+        "message": "통신 파일이 존재하면 메세지를 저장하지 않음"
+    },
+    "smartNameFmtToken": {
+        "message": "${스마트_이름}"
+    },
+    "start": {
+        "message": "Start import"
+    },
+    "strip_eml_CR.label": {
+        "message": "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거"
+    },
+    "subject": {
+        "message": "제목"
+    },
+    "subjectFmtToken": {
+        "message": "${제목}"
+    },
+    "suffixFmtToken": {
+        "message": "${접미사}"
+    },
+    "textCharset": {
+        "message": "Text 및 CSV형식으로 내보내기 위한 문자셋:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "지원"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "전체 프로필"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "메일만"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "프로필 내보내기"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "프로필 가져오기"
+    },
+    "useExtFilenameFormat": {
+        "message": "확장 형식 사용"
+    },
+    "useMboxExt.label": {
+        "message": "mbox 파일에 .mbox 확장자 사용(비구조적)"
+    },
+    "CRconversion.statusMsg": {
+        "message": "CR 변환 =&gt; CRLF 라인 종료"
+    }
 }

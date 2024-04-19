@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Lägger till verktyg för att importera/exportera meddelanden och mappar (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "alternativ"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Hjälp"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Exportera profil"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Importera profil"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Säkerhetskopiering"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Fullständig profil"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Endast post"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Exportera meddelanden som..."
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML meddelandeformat"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF-format"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Oformaterad text"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV-format (kalkylblad)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox-format"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Meddelandeindex"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Kopiera till Urklipp"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Meddelanden (inbäddade bilagor)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Endast meddelanden"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Meddelanden och bilagor"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelanden Med Bilagor Och Index"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Endast meddelanden"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Meddelanden och bilagor"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelanden Med Bilagor Och Index"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Ny mbox fil"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Lägg till till befintlig mbox-fil"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-format"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Meddelande"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Rubriker"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Mappexport (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Som mbox-fil"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Enkel zippad mbox-fil"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Strukturerad med undermappar"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Med tillplattade undermappar"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Exportera fjärrmapp"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Exportera alla meddelanden i mappen"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML meddelandeformat"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF-format"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Oformaterad text"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV-format (kalkylblad)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Meddelandeindex"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Sök och exportera meddelanden"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Importera mbox-filer"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Enskilda mbox-filer"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Enskilda mbox-filer (med sbd-struktur)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Alla mbox-filer från katalogen"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Alla mbox-filer från katalogen (med sbd-struktur)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Importera Maildir-mapp"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Importera EML-meddelanden"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Individuella EML-meddelanden"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Alla EML-meddelanden från en katalog"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Alla EML-meddelanden från en katalog och underkataloger"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Kopiera mappsökväg"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Öppna mappkatalog"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelanden Med Bilagor Och Index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Meddelanden och HTML-index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelanden Med Bilagor Och Index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Meddelanden som en fil"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Meddelanden Som Enskild Fil Med Bilagor"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-format"
-	},
-
-	"subjectFmtToken": {
-		"message": "${ämne}"
-	},
-
-	"senderFmtToken": {
-		"message": "${avsändare}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${mottagare}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${avsändare_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${mottagare_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${smart_namn}"
-	},
-
-	"indexFmtToken": {
-		"message": "${index}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${prefix}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${suffix}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${datum_anpassad}"
-	},
-
-	"dateFmtToken": {
-		"message": "${datum}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Exportera konto"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Spara EML-bilaga till den här mappen"
-	}
+    "MACwarning": {
+        "message": "Obs.: Stäng alla andra fönster innan du går vidare."
+    },
+    "MBcaptionlabel1": {
+        "message": "Allmänt"
+    },
+    "MBlabel1": {
+        "message": "Ersätt MBOX-filen i målmappen med filen som importeras om de har samma namn"
+    },
+    "MBlabel2": {
+        "message": "Använd endast alfanumeriska tecken vid export"
+    },
+    "MBlabel3": {
+        "message": "Bekräfta innan MBOX-filer importeras från en mapp"
+    },
+    "MBlabel4": {
+        "message": "HTML-format som det ser ut i meddelandepanelen"
+    },
+    "MBlabel5": {
+        "message": "Kopiera till Urklipp endast som oformaterad text (kan orsaka kompatibilitetsproblem)"
+    },
+    "MBlabel7a": {
+        "message": "Ämnesradens maxlängd: "
+    },
+    "MBlabel7b": {
+        "message": "tecken"
+    },
+    "MBlabel7c": {
+        "message": "Avsändarnamnets maxlängd: "
+    },
+    "MBlabel7d": {
+        "message": "Mottagarnamnets maxlängd: "
+    },
+    "abortExport": {
+        "message": "Avbryt den aktuella exporten"
+    },
+    "addNumber.label": {
+        "message": "Lägg alltid till ett slumpnummer i namnet när MBOX-filer importeras"
+    },
+    "addPrefix": {
+        "message": "Lägg till prefix"
+    },
+    "addSuffix": {
+        "message": "Lägg till suffix"
+    },
+    "addTimestamp": {
+        "message": "Lägg till datum i filegenskaperna"
+    },
+    "addtime.label": {
+        "message": "Lägg till både tid och datum"
+    },
+    "allFiles": {
+        "message": "Alla profilfiler"
+    },
+    "allFilesMode": {
+        "message": "Alltid alla filer"
+    },
+    "allMsg": {
+        "message": "Exportera alla meddelanden"
+    },
+    "asCSV": {
+        "message": "Kalkylblad (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Spara EML-bilaga till den här mappen"
+    },
+    "attachmentFolderNames": {
+        "message": "Bifogade mappnamn"
+    },
+    "attachmentFolders": {
+        "message": "Bifogade mappar"
+    },
+    "autoName": {
+        "message": "Automatiskt (mappnamn + datum)"
+    },
+    "backupDestination": {
+        "message": "Mål"
+    },
+    "backupFolderName": {
+        "message": "Mappnamn för säkerhetskopian"
+    },
+    "backupFreq": {
+        "message": "Frekvens"
+    },
+    "backupOn": {
+        "message": "Aktivera"
+    },
+    "backupOnExit": {
+        "message": "Säkerhetskopiering vid utgång"
+    },
+    "backupSettings": {
+        "message": "Säkerhetskopieringsinställningar"
+    },
+    "backupTab": {
+        "message": "Schemaläggning av säkerhetskopiering"
+    },
+    "backupType": {
+        "message": "Säkerhetskopians innehåll"
+    },
+    "browse": {
+        "message": "Browser"
+    },
+    "buildMSF.label": {
+        "message": "Skapa ett index över importerade MBOX-filer"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Säkerhetskopiering"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fullständig profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Endast post"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Exportera profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Hjälp"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importera profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "alternativ"
+    },
+    "captionCustomize": {
+        "message": "Anpassat format för filnamn"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the profile manager"
+    },
+    "copyFolderPath": {
+        "message": "Kopiera mappsökväg på disk"
+    },
+    "csvSep": {
+        "message": "Separator for export in CSV format:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Hjälp"
+    },
+    "ctxMenu_Options.title": {
+        "message": "alternativ"
+    },
+    "customDate": {
+        "message": "Anpassad datum:"
+    },
+    "customName": {
+        "message": "Eget"
+    },
+    "customizeFilename": {
+        "message": "Använd följande format:"
+    },
+    "cutFN": {
+        "message": "Kapa den fullständiga filsökvägen efter 256 tecken"
+    },
+    "cutPathLen": {
+        "message": "Skär filsökvägen till 256 tecken"
+    },
+    "cutSub": {
+        "message": "Kapa ämnesraden efter 50 tecken"
+    },
+    "date": {
+        "message": "Datum"
+    },
+    "dateCustomFmtToken": {
+        "message": "${datum_anpassad}"
+    },
+    "dateCustomOpt": {
+        "message": "Datum (anpassad)"
+    },
+    "dateFmtToken": {
+        "message": "${datum}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Datumformatreferens"
+    },
+    "day1": {
+        "message": "1 dag"
+    },
+    "day15": {
+        "message": "15 dagar"
+    },
+    "day3": {
+        "message": "3 dagar"
+    },
+    "day30": {
+        "message": "30 dagar"
+    },
+    "day7": {
+        "message": "7 dagar"
+    },
+    "description1": {
+        "message": "Datum för senaste säkerhetskopiering: $t"
+    },
+    "description2": {
+        "message": "Enligt inställningarna är det hög tid att utföra en säkerhetskopiering."
+    },
+    "description3": {
+        "message": "Under denna operation kommer inte programmet att svara under några minuter."
+    },
+    "description4": {
+        "message": "Vill du fortsätta?"
+    },
+    "description5": {
+        "message": "Säkerhetskopiering pågår… Var vänlig vänta."
+    },
+    "description6": {
+        "message": "Säkerhetskopieringen har slutförts."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG: Säkerhetskopiering"
+    },
+    "emlExport": {
+        "message": "Exportera mappar som enskilda filer:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Utökad referens för filnamnsformat"
+    },
+    "extFormat": {
+        "message": "Formatera:"
+    },
+    "extensionDescription": {
+        "message": "Lägger till verktyg för att importera/exportera meddelanden och mappar (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Filnamnslängd"
+    },
+    "filenameCharset": {
+        "message": "Teckenuppsättning för filnamn:"
+    },
+    "filenameFormat": {
+        "message": "Filnamn"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Kopiera mappsökväg"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Exportera konto"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Exportera alla meddelanden i mappen"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV-format (kalkylblad)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden och index med undermappar"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML meddelandeformat"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "Med tillplattade undermappar"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Som mbox-fil"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Strukturerad med undermappar"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Enkel zippad mbox-fil"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Mappexport (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden och index med undermappar"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden, index och bilagor med undermappar"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelanden Med Bilagor Och Index"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-format"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-format"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-format"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Meddelandeindex"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden och index med undermappar"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF-format"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden och index med undermappar"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Meddelanden, index och bilagor med undermappar"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelanden Med Bilagor Och Index"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Meddelanden Som Enskild Fil Med Bilagor"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Meddelanden som en fil"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Oformaterad text"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Exportera fjärrmapp"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Sök och exportera meddelanden"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Alla EML-meddelanden från en katalog och underkataloger"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Alla EML-meddelanden från en katalog"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Individuella EML-meddelanden"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Importera EML-meddelanden"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Importera Maildir-mapp"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Alla mbox-filer från katalogen (med sbd-struktur)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Alla mbox-filer från katalogen"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Enskilda mbox-filer (med sbd-struktur)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Enskilda mbox-filer"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Importera mbox-filer"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Öppna mappkatalog"
+    },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running..."
+    },
+    "indexCSVdateFormat": {
+        "message": "Index, CSV-datumformat:"
+    },
+    "indexFmtToken": {
+        "message": "${index}"
+    },
+    "indexOff": {
+        "message": "använd den markerade mappen utan index"
+    },
+    "indexOn": {
+        "message": "skapa en ny mapp och ett nytt meddelandeindex"
+    },
+    "indexSettingLabel": {
+        "message": "När alla meddelanden i en meddelandemapp exporteras:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Inline bifogade mappar"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
+    },
+    "justMailFiles": {
+        "message": "Endast meddelandefiler"
+    },
+    "key": {
+        "message": "Index"
+    },
+    "labelmenuMI": {
+        "message": "Importera/Exportera"
+    },
+    "lastBackup": {
+        "message": "Senaste säkerhetskopiering"
+    },
+    "mboxExport": {
+        "message": "Exportera mappar som MBOX-fil:"
+    },
+    "misc": {
+        "message": "Övrigt"
+    },
+    "modal": {
+        "message": "Använd ett modalt fönster"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Rubriker"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Meddelande"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Kopiera till Urklipp"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV-format (kalkylblad)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Meddelanden (inbäddade bilagor)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML meddelandeformat"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Endast meddelanden"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelanden Med Bilagor Och Index"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Meddelanden och bilagor"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-format"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-format"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-format"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Meddelandeindex"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Lägg till till befintlig mbox-fil"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Ny mbox fil"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox-format"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF-format"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Meddelanden och HTML-index"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Endast meddelanden"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelanden Med Bilagor Och Index"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Meddelanden och bilagor"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Oformaterad text"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Exportera meddelanden som..."
+    },
+    "name": {
+        "message": "Namn"
+    },
+    "newFilesMode": {
+        "message": "Endast filer som ändrats sedan senaste säkerhetskopiering"
+    },
+    "openHelpInWindow.label": {
+        "message": "Öppna hjälpen i ett fönster istället för en flik"
+    },
+    "prefixFmtToken": {
+        "message": "${prefix}"
+    },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
+    "recipient": {
+        "message": "Mottagare"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${mottagare_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${mottagare}"
+    },
+    "runProfileManager": {
+        "message": "Run the profile manager"
+    },
+    "save": {
+        "message": "Spara"
+    },
+    "savedirs": {
+        "message": "Exportera mappar"
+    },
+    "sdAll": {
+        "message": "Alla"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Exportera"
+    },
+    "sdFormat": {
+        "message": "Format"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "MBOX (ny)"
+    },
+    "sdMBOX2": {
+        "message": "MBOX (bifoga)"
+    },
+    "sdMessages": {
+        "message": "Meddelanden"
+    },
+    "sdSelected": {
+        "message": "Markerade"
+    },
+    "sdSingleFile": {
+        "message": "(en fil)"
+    },
+    "sdText": {
+        "message": "Oformaterad text"
+    },
+    "selExport": {
+        "message": "Exportera markerade meddelanden:"
+    },
+    "sender": {
+        "message": "Användare"
+    },
+    "senderEmailFmtToken": {
+        "message": "${avsändare_email}"
+    },
+    "senderFmtToken": {
+        "message": "${avsändare}"
+    },
+    "skipMsgLabel": {
+        "message": "spara inte meddelanden om motsvarande fil redan finns"
+    },
+    "smartNameFmtToken": {
+        "message": "${smart_namn}"
+    },
+    "start": {
+        "message": "Start import"
+    },
+    "strip_eml_CR.label": {
+        "message": "Ta bort CR från radslut för eml-meddelandeexport"
+    },
+    "subject": {
+        "message": "Ämne"
+    },
+    "subjectFmtToken": {
+        "message": "${ämne}"
+    },
+    "suffixFmtToken": {
+        "message": "${suffix}"
+    },
+    "textCharset": {
+        "message": "Teckenuppsättning för export i text- och CSV-format:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Säkerhetskopiering"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fullständig profil"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Endast post"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Exportera profil"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Importera profil"
+    },
+    "useExtFilenameFormat": {
+        "message": "Använd Utökat format"
+    },
+    "useMboxExt.label": {
+        "message": "Använd tillägget .mbox för mbox-filer (icke-strukturerade)"
+    },
+    "CRconversion.statusMsg": {
+        "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
+    }
 }

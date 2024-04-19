@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<!DOCTYPE overlay SYSTEM "chrome://mboximport/locale/profilewizard.dtd">
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/skin/searchDialog.css" type="text/css"?>
 <!-- for the groupbox -->
@@ -14,11 +14,7 @@ width="550"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<!-- <?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/accountWizard.css"?>
-<?xml-stylesheet type="text/css" href="chrome://messenger/skin/input-fields.css"?> -->
-
+  <script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/profileImportWizard.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 
@@ -31,38 +27,38 @@ width="550"
 
 
 <wizardpage onpageshow="IETimportWizard.start()">
-	<description>&intro1;</description>
+	<description>__MSG_intro1__</description>
 	<html:div style="height: 20px"></html:div>
-	<label value="&profilePath;: "/>
+	<label value="__MSG_profilePath__: "/>
 	<hbox>
 		<html:input id="pathBox" flex="1" readonly="true" size="25"/>
-		<button label="&browse;" oncommand="IETimportWizard.pickFile(this, 'pathBox')" />
+		<button label="__MSG_browse__" oncommand="IETimportWizard.pickFile(this, 'pathBox')" />
 		</hbox>
 		<html:div style="height: 20px"></html:div>
 	<hbox align="center">
-		<label value="&profileName;: "/>
+		<label value="__MSG_profileName__: "/>
 		<html:input id="nameBox" flex="1" onkeyup="IETimportWizard.checkName(this)" size="30"/>
 		</hbox>
-	<label value="&changeProfileNameLabel;" />
+	<label value="__MSG_changeProfileNameLabel__" />
 </wizardpage>
 
 <wizardpage onpageshow="IETimportWizard.secondPage()">
-	<description>&intro2;</description>
+	<description>__MSG_intro2__</description>
 		<html:div style="height: 20px"></html:div>
-	<button label="&start;" oncommand="IETimportWizard.importProfile(this)" />
+	<button label="__MSG_start__" oncommand="IETimportWizard.importProfile(this)" />
 		<html:div style="height: 20px"></html:div>
-	<description id="importRunning" hidden="true">&importRunning;</description>
-	<description id="importEnd" hidden="true">&importEnd;</description>
-	<description id="error" hidden="true">&error;</description>
+	<description id="importRunning" hidden="true">__MSG_importRunning__</description>
+	<description id="importEnd" hidden="true">__MSG_importEnd__</description>
+	<description id="error" hidden="true">__MSG_error__</description>
 	<description id="errorDetails" hidden="true"></description>
 </wizardpage>
 
 <wizardpage onpageshow="IETimportWizard.thirdPage()">
 	<description id="newProfDetails" />
 		<html:div style="height: 20px"></html:div>
-	<description>&intro3;</description>
+	<description>__MSG_intro3__</description>
 		<html:div style="height: 30px"></html:div>
-	<button label="&runProfileManager;" oncommand="IETimportWizard.runPM()"/>
+	<button label="__MSG_runProfileManager__" oncommand="IETimportWizard.runPM()"/>
 </wizardpage>
 
 </wizard>

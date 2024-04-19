@@ -378,15 +378,25 @@ const folderCtxMenu_Exp_Help_Id = "folderCtxMenu_Exp_Help_Id";
 
 const folderCtxMenu_Exp_EMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_EMLFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_EMLFormatCreateIndex_Id = "folderCtxMenu_Exp_EMLFormatCreateIndex_Id";
+const folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id";
 
 const folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id = "folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_HTMLFormatSaveAtts_Id = "folderCtxMenu_Exp_HTMLFormatSaveAtts_Id";
 const folderCtxMenu_Exp_HTMLFormatCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id";
 const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id";
+const folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id";
+const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id";
+
+const folderCtxMenu_Exp_PDFFormatCreateIndex_Id = "folderCtxMenu_Exp_PDFFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id";
+
 
 const folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id = "folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id";
 const folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id";
 const folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id";
+const folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id";
+
 const folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id";
 const folderCtxMenu_Exp_PlainTextFormatSingleFile_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id";
 const folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id";
@@ -638,6 +648,13 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
+      parentId: folderCtxMenu_Exp_EMLFormat_Id,
+      id: folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title"),
+    },
+  },
+  {
+    menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
@@ -652,6 +669,35 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),
+
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PDFFormat_Id,
+      id: folderCtxMenu_Exp_PDFFormatCreateIndex_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PDFFormat_Id,
+      id: folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),
+    },
+  },
+  {
+    menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
@@ -662,6 +708,20 @@ var folderCtxMenuSet = [
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id,
+      title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),
     },
   },
   {
@@ -783,10 +843,11 @@ async function createtitles(name, menuArray, options) {
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {
-  //console.log(ctxEvent, tab);
+  // console.log(ctxEvent, tab);
 
   var params = {};
-  params.tab = tab;
+  params.targetWinId = tab.windowId;
+  params.tabType = tab.type;
 
 
   // we need the accountId and path of the folder to get 
@@ -861,8 +922,10 @@ async function wextctx_ExportAs(ctxEvent, tab) {
 }
 
 
-async function wextctx_toolsMenu(ctxEvent) {
+async function wextctx_toolsMenu(ctxEvent, tab) {
   var params = {};
+  params.targetWinId = tab.windowId;
+
   switch (ctxEvent.menuItemId) {
     case toolsCtxMenu_Exp_ProfileFull_Id:
       params.profileExportType = "full";
@@ -876,20 +939,30 @@ async function wextctx_toolsMenu(ctxEvent) {
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params });
       break;
     case toolsCtxMenu_Backup_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup" });
+      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: params });
       break;
     default:
       break;
   }
 }
 
-async function wextctx_folderMenu(ctxEvent) {
-  //console.log(ctxEvent);
+async function wextctx_folderMenu(ctxEvent, tab) {
+  // console.log(ctxEvent, tab);
   var params = {};
+  params.targetWinId = tab.windowId;
+
   // we need the accountId and path of the folder to get 
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
+  if (!params.selectedFolder) {
+    params.selectedFolder = {};
+    params.selectedFolder.path = "/";
+  }
   params.selectedAccount = ctxEvent.selectedAccount;
+  if (!params.selectedAccount) {
+    params.selectedAccount = {};
+    params.selectedAccount.id = params.selectedFolder.accountId;
+  }
 
   switch (ctxEvent.parentMenuItemId) {
     case folderCtxMenu_TopId:
@@ -953,9 +1026,6 @@ async function wextctx_folderMenu(ctxEvent) {
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
       return;
     case folderCtxMenu_Imp_MboxFiles_Id:
-      if (!params.selectedFolder) {
-        params.selectedFolder = "__rootFolder__";
-      }
       switch (ctxEvent.menuItemId) {
         case folderCtxMenu_Imp_MboxFilesIndv_Id:
           params.mboxImpType = "individual";
@@ -1009,25 +1079,34 @@ async function wextctx_folderMenu(ctxEvent) {
   if (ctxEvent.menuItemId.includes("SingleFile")) {
     params.singleFile = true;
   }
+  if (ctxEvent.menuItemId.includes("Recursive")) {
+    params.recursive = true;
+  }
 
   switch (ctxEvent.menuItemId) {
     case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
       break;
     case folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_HTMLFormatSaveAtts_Id:
     case folderCtxMenu_Exp_HTMLFormatCreateIndex_Id:
     case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
+    case folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id:
+    case folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_HTML_Format", params: params });
       break;
-    case folderCtxMenu_Exp_PDFFormat_Id:
+    case folderCtxMenu_Exp_PDFFormatCreateIndex_Id:
+    case folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PDF_Format", params: params });
       break;
     case folderCtxMenu_Exp_PlainTextFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_PlainTextFormatSaveAtts_Id:
     case folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
     case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
+    case folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id:
+    case folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id:
     case folderCtxMenu_Exp_PlainTextFormatSingleFile_Id:
     case folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id:
       messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_PlainText_Format", params: params });
@@ -1058,6 +1137,8 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
+  // console.log("menu update ",info)
+
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
@@ -1108,7 +1189,7 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
@@ -1127,9 +1208,12 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+
         await messenger.menus.refresh();
 
       } else {
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
 
         // we are a LF, check store type
         let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
@@ -1139,10 +1223,10 @@ async function menusUpdate(info, tab) {
           await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
-          
+
 
         } else {
-          
+
           await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
 
         }
@@ -1199,8 +1283,8 @@ async function menusUpdate(info, tab) {
       await messenger.menus.refresh();
       // 1 = maildir
     } else if (mailStoreType == 1) {
+      // remove disable of export mbox #525
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: true });
-      await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
       await messenger.menus.update("folderCtxMenu_Sep1", { visible: false });
@@ -1215,8 +1299,10 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
+      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     }
     await messenger.menus.refresh();
   }
@@ -1225,6 +1311,8 @@ async function menusUpdate(info, tab) {
 
 async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+
   params.accountId = accountId;
   params.folderPath = folderPath;
 
@@ -1234,6 +1322,8 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
 
 async function copyToClipboard(ctxEvent, tab) {
   let params = {};
+  params.targetWinId = tab.windowId;
+  params.tabType = tab.type;
 
   if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
@@ -1254,13 +1344,19 @@ async function copyToClipboard(ctxEvent, tab) {
 
 async function importMaildirFiles(ctxEvent) {
   let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+
   params.selectedFolder = ctxEvent.selectedFolder;
   params.selectedAccount = ctxEvent.selectedAccount;
   messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles", params: params });
 }
 
-async function openOptions() {
-  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions" });
+async function openOptions(event, tab) {
+  let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+  params.tabType = tab.type;
+
+  messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
 }
 
 // import eml/rfv822 msg attachment as new msg in current folder
@@ -1291,7 +1387,9 @@ async function importEmlAttToFolder(attCtx) {
 
 
 async function getBoolPref(boolPref) {
+
   let params = {};
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.boolPref = boolPref;
   let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
   return bp;

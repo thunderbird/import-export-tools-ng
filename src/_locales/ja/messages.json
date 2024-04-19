@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "メッセージとフォルダーのインポート・エクスポート機能を追加します (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "設定"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "ヘルプ"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "プロファイルのエクスポート"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "プロファイルのインポート"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "バックアップ"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "プロファイル"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "メッセージのみ"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "メッセージを次の形式でエクスポート…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML 形式"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML 形式"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF 形式"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "プレーンテキスト形式"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV 形式（スプレッドシート）"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox 形式"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "メッセージインデックス"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "クリップボードにコピー"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "メッセージ(インライン添付ファイル)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "メッセージのみ"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "メッセージと添付ファイル"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイル付きのメッセージとインデックス"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "メッセージのみ"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "メッセージと添付ファイル"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイル付きのメッセージとインデックス"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "新規 mbox ファイル"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "既存の mbox ファイルに追加"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML 形式"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV 形式"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "メッセージ"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "ヘッダー"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "フォルダーのエクスポート (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "mbox ファイル"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "単一の zip 形式の mbox ファイル"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "ツリー構造を維持したサブフォルダー"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "フラット構造に変換したサブフォルダー"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "リモートフォルダーのエクスポート"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "フォルダー内のすべてのメッセージをエクスポート"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML 形式"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML 形式"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF 形式"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "プレーンテキスト形式"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV 形式（スプレッドシート）"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "メッセージインデックス"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "メッセージの検索とエクスポート"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "mbox ファイルをインポート"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "個々の mbox ファイル"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "個々の mbox ファイル (sbd 有り)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "フォルダー内のすべての mbox ファイル"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "フォルダー内のすべての mbox ファイル (sbd 有り)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Maildir フォルダーのインポート"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "EML メッセージのインポート"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "個々の EML メッセージ"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "フォルダー内のすべての EML メッセージ"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "フォルダーとサブフォルダー内のすべての EML メッセージ"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "フォルダーのパスをコピー"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "フォルダーの場所を開く"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイルとインデックス付きのメッセージ"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "メッセージと HTML インデックス"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "添付ファイルとインデックス付きのメッセージ"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "単一ファイルのメッセージ"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "添付ファイル付きの単一ファイルのメッセージ"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML 形式"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV 形式"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "アカウントのエクスポート"
-	},
-
-	"subjectFmtToken": {
-		"message": "${件名}"
-	},
-
-	"senderFmtToken": {
-		"message": "${差出人}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${受信者}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${差出人アドレス}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${受信者アドレス}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${スマート名}"
-	},
-
-	"indexFmtToken": {
-		"message": "${インデックス}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${接頭文字}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${接尾文字}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${カスタム日時}"
-	},
-
-	"dateFmtToken": {
-		"message": "${日時}"
-	},
-	
-	"attCtxMenu_Top_Id.title": {
-		"message": "EML 添付ファイルをこのフォルダーに保存します"
-	}
+    "MACwarning": {
+        "message": "注意: 続行する前に、すべての他のウィンドウを閉じてください。"
+    },
+    "MBcaptionlabel1": {
+        "message": "設定"
+    },
+    "MBlabel1": {
+        "message": "出力先フォルダーにある同じ名前の mbox ファイルを上書きする"
+    },
+    "MBlabel2": {
+        "message": "単一ファイルのエクスポートに英数字のみを使用する"
+    },
+    "MBlabel3": {
+        "message": "フォルダーから mbox ファイルをインポートする前に確認する"
+    },
+    "MBlabel4": {
+        "message": "メッセージペインに表示されたとおりの HTML 形式を使用する"
+    },
+    "MBlabel5": {
+        "message": "テキスト形式でクリップボードにコピーする (互換性の問題があります)"
+    },
+    "MBlabel7a": {
+        "message": "件名の最大長:"
+    },
+    "MBlabel7b": {
+        "message": "文字"
+    },
+    "MBlabel7c": {
+        "message": "差出人名の最大長:"
+    },
+    "MBlabel7d": {
+        "message": "宛先名の最大長:"
+    },
+    "abortExport": {
+        "message": "現在のエクスポートを中止"
+    },
+    "addNumber.label": {
+        "message": "mbox ファイルをインポートするときは、常にランダムな番号を名前に追加する"
+    },
+    "addPrefix": {
+        "message": "接頭文字の追加："
+    },
+    "addSuffix": {
+        "message": "接尾文字の追加:"
+    },
+    "addTimestamp": {
+        "message": "ファイルのプロパティに追加する"
+    },
+    "addtime.label": {
+        "message": "データ日付に時間を追加"
+    },
+    "allFiles": {
+        "message": "プロファイル内のすべてのファイル"
+    },
+    "allFilesMode": {
+        "message": "常にすべてのファイル"
+    },
+    "allMsg": {
+        "message": "すべてのメッセージをエクスポート"
+    },
+    "asCSV": {
+        "message": "スプレッドシート (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "EML 添付ファイルをこのフォルダーに保存します"
+    },
+    "attachmentFolderNames": {
+        "message": "添付ファイルのフォルダー名"
+    },
+    "attachmentFolders": {
+        "message": "添付ファイルフォルダー名"
+    },
+    "autoName": {
+        "message": "自動作成（フォルダー名 + 日時）"
+    },
+    "backupDestination": {
+        "message": "バックアップ場所"
+    },
+    "backupFolderName": {
+        "message": "バックアップ用のフォルダー名"
+    },
+    "backupFreq": {
+        "message": "バックアップ間隔"
+    },
+    "backupOn": {
+        "message": "有効"
+    },
+    "backupOnExit": {
+        "message": "終了時のバックアップ"
+    },
+    "backupSettings": {
+        "message": "バックアップ設定"
+    },
+    "backupTab": {
+        "message": "バックアップ"
+    },
+    "backupType": {
+        "message": "バックアップ種別"
+    },
+    "browse": {
+        "message": "参照"
+    },
+    "buildMSF.label": {
+        "message": "インポートした mbox ファイルのインデックスを作成"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "バックアップ"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "プロファイル全体"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "メッセージのみ"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "プロファイルのエクスポート"
+    },
+    "buttonMenu_Help.title": {
+        "message": "ヘルプ"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "プロファイルのインポート"
+    },
+    "buttonMenu_Options.title": {
+        "message": "設定"
+    },
+    "captionCustomize": {
+        "message": "ファイル名のカスタマイズ"
+    },
+    "changeProfileNameLabel": {
+        "message": "プロファイルマネージャーでプロファイル名を変更することができます。"
+    },
+    "copyFolderPath": {
+        "message": "ディスク上のフォルダーパスをコピー"
+    },
+    "csvSep": {
+        "message": "CSV 形式でエクスポートするときのセパレーター:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "ヘルプ"
+    },
+    "ctxMenu_Options.title": {
+        "message": "設定"
+    },
+    "customDate": {
+        "message": "カスタマイズ日時形式："
+    },
+    "customName": {
+        "message": "カスタマイズ形式"
+    },
+    "customizeFilename": {
+        "message": "以下の形式を使用する："
+    },
+    "cutFN": {
+        "message": "ファイルパスを 256 文字でカットする"
+    },
+    "cutPathLen": {
+        "message": "ファイルパスの長さを 256 文字でカットする"
+    },
+    "cutSub": {
+        "message": "件名を 50 文字でカットする"
+    },
+    "date": {
+        "message": "日付"
+    },
+    "dateCustomFmtToken": {
+        "message": "${カスタム日時}"
+    },
+    "dateCustomOpt": {
+        "message": "日時（カスタム）"
+    },
+    "dateFmtToken": {
+        "message": "${日時}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "日時形式リファレンス"
+    },
+    "day1": {
+        "message": "1 日"
+    },
+    "day15": {
+        "message": "15 日"
+    },
+    "day3": {
+        "message": "3 日"
+    },
+    "day30": {
+        "message": "30 日"
+    },
+    "day7": {
+        "message": "7 日"
+    },
+    "description1": {
+        "message": "最終バックアップ日時： $t"
+    },
+    "description2": {
+        "message": "バックアップを作成するためには、予め設定が必要です。"
+    },
+    "description3": {
+        "message": "この操作中はプログラムは数分間応答しなくなります。"
+    },
+    "description4": {
+        "message": "このまま続行してもよろしいですか？"
+    },
+    "description5": {
+        "message": "バックアップ中です。しばらくお待ちください。"
+    },
+    "description6": {
+        "message": "バックアップ完了"
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG - バックアップ"
+    },
+    "emlExport": {
+        "message": "フォルダーを単一ファイルでエクスポートする場所："
+    },
+    "error": {
+        "message": "プロファイルのインポート中にエラーが発生しました。エラーの詳細は次のとおりです:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "ファイル名形式リファレンス"
+    },
+    "extFormat": {
+        "message": "カスタマイズ形式："
+    },
+    "extensionDescription": {
+        "message": "メッセージとフォルダーのインポート・エクスポート機能を追加します (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "ファイル名の長さ"
+    },
+    "filenameCharset": {
+        "message": "ファイル名用の文字コード: "
+    },
+    "filenameFormat": {
+        "message": "ファイル名"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "フォルダーのパスをコピー"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "アカウントのエクスポート"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "フォルダー内のすべてのメッセージをエクスポート"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV 形式（スプレッドシート）"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "メッセージとサブフォルダーのインデックス"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML 形式"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "フラット構造に変換したサブフォルダー"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "mbox ファイル"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "ツリー構造を維持したサブフォルダー"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "単一の zip 形式の mbox ファイル"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "フォルダーのエクスポート (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "メッセージとサブフォルダーのインデックス"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "サブフォルダーを含むメッセージ、インデックス、添付ファイル"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "添付ファイルとインデックス付きのメッセージ"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML 形式"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV 形式"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML 形式"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "メッセージインデックス"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "メッセージとサブフォルダーのインデックス"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "メッセージとHTMLインデックス"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF 形式"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "メッセージとサブフォルダーのインデックス"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "サブフォルダーを含むメッセージ、インデックス、添付ファイル"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "添付ファイルとインデックス付きのメッセージ"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "添付ファイル付きの単一ファイルのメッセージ"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "単一ファイルのメッセージ"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "プレーンテキスト形式"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "リモートフォルダーのエクスポート"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "メッセージの検索とエクスポート"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "フォルダーとサブフォルダー内のすべての EML メッセージ"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "フォルダー内のすべての EML メッセージ"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "個々の EML メッセージ"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "EML メッセージのインポート"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Maildir フォルダーのインポート"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "フォルダー内のすべての mbox ファイル (sbd 有り)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "フォルダー内のすべての mbox ファイル"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "個々の mbox ファイル (sbd 有り)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "個々の mbox ファイル"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "mbox ファイルをインポート"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "フォルダーの場所を開く"
+    },
+    "importEnd": {
+        "message": "インポート完了！"
+    },
+    "importRunning": {
+        "message": "インポート中..."
+    },
+    "indexCSVdateFormat": {
+        "message": "インデックス、CSV 日時形式："
+    },
+    "indexFmtToken": {
+        "message": "${インデックス}"
+    },
+    "indexOff": {
+        "message": "選択したインデックスなしのフォルダーを使用する"
+    },
+    "indexOn": {
+        "message": "メッセージの新しいフォルダーおよびインデックスを作成する"
+    },
+    "indexSettingLabel": {
+        "message": "メッセージフォルダーのすべてのメッセージをエクスポートするとき:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "インライン添付ファイルフォルダー名"
+    },
+    "intro1": {
+        "message": "これはプロファイルのインポートの実験的な機能です。データを失う危険はありません。しかしながら別のコンピューターからプロファイルをインポートする場合は、すべて想定どおりの動作を保証しません。ファイルを手動でコピーするよりは安全です。"
+    },
+    "intro2": {
+        "message": "フォルダーにはインポート可能なプロファイルがあります。実行には数分、あるいはそれ以上かかるかもしれません。あるいは他のプログラムの使用ができなくなるかもしれません。"
+    },
+    "intro3": {
+        "message": "インポートするプロファイルにアクセスするためにはボタンをクリックして、プロファイルマネージャーを起動してください。現在のプロファイルは自動的に閉じます。"
+    },
+    "justMailFiles": {
+        "message": "メッセージファイルのみ"
+    },
+    "key": {
+        "message": "インデックス"
+    },
+    "labelmenuMI": {
+        "message": "ImportExportTools NG"
+    },
+    "lastBackup": {
+        "message": "最終バックアップ日時"
+    },
+    "mboxExport": {
+        "message": "フォルダーを mbox ファイルでエクスポートする場所："
+    },
+    "misc": {
+        "message": "全般"
+    },
+    "modal": {
+        "message": "ダイアログウィンドウを開く"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "ヘッダー"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "メッセージ"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "クリップボードにコピー"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV 形式（スプレッドシート）"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "メッセージ(インライン添付ファイル)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML 形式"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "メッセージのみ"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "添付ファイル付きのメッセージとインデックス"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "メッセージと添付ファイル"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML 形式"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV 形式"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML 形式"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "メッセージインデックス"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "既存の mbox ファイルに追加"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "新規 mbox ファイル"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox 形式"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF 形式"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "メッセージと HTML インデックス"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "メッセージのみ"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "添付ファイル付きのメッセージとインデックス"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "メッセージと添付ファイル"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "プレーンテキスト形式"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "メッセージを次の形式でエクスポート…"
+    },
+    "name": {
+        "message": "名前"
+    },
+    "newFilesMode": {
+        "message": "最後のバックアップ以降に変更されたファイルのみ"
+    },
+    "openHelpInWindow.label": {
+        "message": "タブではなくウィンドウでヘルプを開く"
+    },
+    "prefixFmtToken": {
+        "message": "${接頭文字}"
+    },
+    "profileName": {
+        "message": "インポートするプロファイル名"
+    },
+    "profilePath": {
+        "message": "インポートするプロファイルの場所"
+    },
+    "recipient": {
+        "message": "受信者"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${受信者アドレス}"
+    },
+    "recipientFmtToken": {
+        "message": "${受信者}"
+    },
+    "runProfileManager": {
+        "message": "プロファイルマネージャーの起動"
+    },
+    "save": {
+        "message": "保存"
+    },
+    "savedirs": {
+        "message": "エクスポートフォルダー"
+    },
+    "sdAll": {
+        "message": "すべて"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "エクスポート"
+    },
+    "sdFormat": {
+        "message": "形式"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "mbox (新規)"
+    },
+    "sdMBOX2": {
+        "message": "mbox (追加)"
+    },
+    "sdMessages": {
+        "message": "メッセージ"
+    },
+    "sdSelected": {
+        "message": "選択されたもの"
+    },
+    "sdSingleFile": {
+        "message": "単一ファイル"
+    },
+    "sdText": {
+        "message": "プレーンテキスト"
+    },
+    "selExport": {
+        "message": "選択メッセージをエクスポートする場所："
+    },
+    "sender": {
+        "message": "差出人"
+    },
+    "senderEmailFmtToken": {
+        "message": "${差出人アドレス}"
+    },
+    "senderFmtToken": {
+        "message": "${差出人}"
+    },
+    "skipMsgLabel": {
+        "message": "送受信中（作成中）のファイルがあるときは保存しない"
+    },
+    "smartNameFmtToken": {
+        "message": "${スマート名}"
+    },
+    "start": {
+        "message": "インポート開始"
+    },
+    "strip_eml_CR.label": {
+        "message": "EML メッセージのエクスポートの行末から CR を削除する"
+    },
+    "subject": {
+        "message": "タイトル"
+    },
+    "subjectFmtToken": {
+        "message": "${件名}"
+    },
+    "suffixFmtToken": {
+        "message": "${接尾文字}"
+    },
+    "textCharset": {
+        "message": "テキストおよび CSV 形式でエクスポートするときの文字コード："
+    },
+    "title": {
+        "message": "ImportExportTools NG - プロファイルのインポート"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "バックアップ"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "プロファイル"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "メッセージのみ"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "プロファイルのエクスポート"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "プロファイルのインポート"
+    },
+    "useExtFilenameFormat": {
+        "message": "カスタム形式を使用する"
+    },
+    "useMboxExt.label": {
+        "message": "mbox ファイルには .mbox 拡張子を使用します (非構造化)"
+    },
+    "CRconversion.statusMsg": {
+        "message": "CR から CRLF へ改行コードを変換しました。"
+    }
 }

@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Tilføjer værktøjer til at importere/eksportere meddelelser og mapper (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Indstillinger"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Hjælp"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Eksporter profil"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Importer profil"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Sikkerhedskopier"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Fuld profil"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Kun mail"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Eksporter meddelelser som…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML-meddelelsesformat"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF-format"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Almindeligt tekstformat"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV-format (regneark)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox-format"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Meddelelsesindeks"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Kopier til udklipsholder"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Meddelelser (Indlejrede vedhæftede filer)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Kun meddelelser"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Meddelelser og vedhæftede filer"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelelser med vedhæftede filer og indeks"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Kun meddelelser"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Meddelelser og vedhæftede filer"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelelser med vedhæftede filer og indeks"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "Ny mbox-fil"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Føj til eksisterende mbox-fil"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-format"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Meddelelse"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Headers"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Mappeeksport (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "Som mbox-fil"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Enkelt zippet mbox-fil"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Struktureret med undermapper"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "Med fladtrykte undermapper"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Eksporter fjernmappe"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Eksporter alle meddelelser i mappe"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML-meddelelsesformat"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF-format"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Almindeligt tekstformat"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV-format (regneark)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Meddelelsesindeks"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Søg og eksporter meddelelser"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Importer mbox-filer"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Individuelle mbox-filer"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Individuelle mbox-filer (med sbd-struktur)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "Alle mbox-filer fra mappen"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "Alle mbox-filer fra mappe (med sbd-struktur)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Importer Maildir-mappe"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Importer EML-meddelelser"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Individuelle EML-meddelelser"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "Alle EML-meddelelser fra en mappe"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "Alle EML-meddelelser fra en mappe og undermapper"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Kopier mappesti"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Åbn mappens mappe"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelelser med vedhæftede filer og indeks"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Meddelelser og HTML-indeks"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Meddelelser med vedhæftede filer og indeks"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Meddelelser som enkelt fil"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Meddelelser som enkelt fil med vedhæftede filer"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML-format"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV-format"
-	},
-
-	"subjectFmtToken": {
-		"message": "${emne}"
-	},
-
-	"senderFmtToken": {
-		"message": "${afsender}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${modtager}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${afsender_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${modtager_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${smart_navn}"
-	},
-
-	"indexFmtToken": {
-		"message": "${indeks}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${præfiks}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${suffiks}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${dato_brugerdefineret}"
-	},
-
-	"dateFmtToken": {
-		"message": "${dato}"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Eksporter konto"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Gem EML-vedhæftet fil i denne mappe"
-	}
+    "MACwarning": {
+        "message": "N.B.: Luk alle andre vinduer før du fortsætter."
+    },
+    "MBcaptionlabel1": {
+        "message": "Generelle indstillinger"
+    },
+    "MBlabel1": {
+        "message": "Overskriv mbox-filer med det samme navn i destinationsmappen"
+    },
+    "MBlabel2": {
+        "message": "Brug kun alfanumeriske tegn ved eksport"
+    },
+    "MBlabel3": {
+        "message": "Bed om bekræftelse før import af mbox-filer fra en mappe"
+    },
+    "MBlabel4": {
+        "message": "HTML-format som vist i meddelelsesruden"
+    },
+    "MBlabel5": {
+        "message": "Kopier kun til udklipsholder i tekstformat (kan give kompatibilitetsproblemer)"
+    },
+    "MBlabel7a": {
+        "message": "Maksimum længde på emne:"
+    },
+    "MBlabel7b": {
+        "message": "tegn"
+    },
+    "MBlabel7c": {
+        "message": "Maksimum længde på afsenders navn:"
+    },
+    "MBlabel7d": {
+        "message": "Maksimum længde på modtagers navn:"
+    },
+    "abortExport": {
+        "message": "Stop den pågældende eksport"
+    },
+    "addNumber.label": {
+        "message": "Tilføj altid et tilfældigt tal til filen når mbox-filer importeres"
+    },
+    "addPrefix": {
+        "message": "Tilføj præfiks"
+    },
+    "addSuffix": {
+        "message": "Tilføj suffiks"
+    },
+    "addTimestamp": {
+        "message": "Tilføj dato til filegenskaber"
+    },
+    "addtime.label": {
+        "message": "Tilføj klokkeslæt til dato"
+    },
+    "allFiles": {
+        "message": "Alle profilfiler"
+    },
+    "allFilesMode": {
+        "message": "Altid alle filer"
+    },
+    "allMsg": {
+        "message": "Eksport af alle meddelelser"
+    },
+    "asCSV": {
+        "message": "Regneark (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Gem EML-vedhæftet fil i denne mappe"
+    },
+    "attachmentFolderNames": {
+        "message": "Navne på mapper med vedhæftede filer"
+    },
+    "attachmentFolders": {
+        "message": "Mapper med vedhæftede filer"
+    },
+    "autoName": {
+        "message": "Automatisk (mappe + dato)"
+    },
+    "backupDestination": {
+        "message": "Destination"
+    },
+    "backupFolderName": {
+        "message": "Mappenavn til sikkerhedskopi"
+    },
+    "backupFreq": {
+        "message": "Hyppighed"
+    },
+    "backupOn": {
+        "message": "Aktiver"
+    },
+    "backupOnExit": {
+        "message": "Sikkerhedskopier ved afslutning"
+    },
+    "backupSettings": {
+        "message": "Indstillinger for sikkerhedskopiering"
+    },
+    "backupTab": {
+        "message": "Planlægning af sikkerhedskopiering"
+    },
+    "backupType": {
+        "message": "Indhold af sikkerhedskopi"
+    },
+    "browse": {
+        "message": "Gennemse…"
+    },
+    "buildMSF.label": {
+        "message": "Opbyg indeks for importerede mbox-filer"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Sikkerhedskopier"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fuld profil"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Kun mail"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Eksporter profil"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Hjælp"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Importer profil"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Indstillinger"
+    },
+    "captionCustomize": {
+        "message": "Tilpas filnavnes format"
+    },
+    "changeProfileNameLabel": {
+        "message": "Du kan altid ændre profilnavnet i profilmanageren"
+    },
+    "copyFolderPath": {
+        "message": "Kopier mappens sti på disken"
+    },
+    "csvSep": {
+        "message": "Separator til eksport i CSV-format:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Hjælp"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Indstillinger"
+    },
+    "customDate": {
+        "message": "Brugerdefineret dato:"
+    },
+    "customName": {
+        "message": "Tilpasset"
+    },
+    "customizeFilename": {
+        "message": "Anvend følgende format:"
+    },
+    "cutFN": {
+        "message": "Klip den fulde filsti ved længde på 256 tegn"
+    },
+    "cutPathLen": {
+        "message": "Klip filstilængden til 256 tegn"
+    },
+    "cutSub": {
+        "message": "Klip emne ved 50 tegn"
+    },
+    "date": {
+        "message": "Dato"
+    },
+    "dateCustomFmtToken": {
+        "message": "${dato_brugerdefineret}"
+    },
+    "dateCustomOpt": {
+        "message": "Dato (brugerdefineret)"
+    },
+    "dateFmtToken": {
+        "message": "${dato}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Henvisning til datoformat"
+    },
+    "day1": {
+        "message": "1 dag"
+    },
+    "day15": {
+        "message": "15 dage"
+    },
+    "day3": {
+        "message": "3 dage"
+    },
+    "day30": {
+        "message": "30 dage"
+    },
+    "day7": {
+        "message": "7 dage"
+    },
+    "description1": {
+        "message": "Dato for seneste sikkerhedskopi: $t"
+    },
+    "description2": {
+        "message": "På baggrund af dine indstillinger, er det nu nødvendigt at tage en sikkerhedskopi."
+    },
+    "description3": {
+        "message": "Under denne operation, vil programmet ikke reagerer i nogle minutter."
+    },
+    "description4": {
+        "message": "Vil du fortsætte?"
+    },
+    "description5": {
+        "message": "Sikkerhedskopiering i gang… vent."
+    },
+    "description6": {
+        "message": "Sikkerhedskopi færdig."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG - Sikkerhedskopier"
+    },
+    "emlExport": {
+        "message": "Eksporter mapper som enkelte filer:"
+    },
+    "error": {
+        "message": "Der opstod en fejl under import af profilen. Fejldetaljer:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Henvisning til udvidet filnavnsformat"
+    },
+    "extFormat": {
+        "message": "Format:"
+    },
+    "extensionDescription": {
+        "message": "Tilføjer værktøjer til at importere/eksportere meddelelser og mapper (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Filnavnes længde"
+    },
+    "filenameCharset": {
+        "message": "Tegnkodning af filnavne:"
+    },
+    "filenameFormat": {
+        "message": "Filnavne"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Kopier mappesti"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Eksporter konto"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Eksporter alle meddelelser i mappe"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV-format (regneark)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Beskeder og indeks med undermapper"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML-meddelelsesformat"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "Med fladtrykte undermapper"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "Som mbox-fil"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Struktureret med undermapper"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Enkelt zippet mbox-fil"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Mappeeksport (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Beskeder og indeks med undermapper"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Meddelelser, indeks og vedhæftede filer med undermapper"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelelser med vedhæftede filer og indeks"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-format"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-format"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-format"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Meddelelsesindeks"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Beskeder og indeks med undermapper"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Beskeder og HTML-indeks"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF-format"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Beskeder og indeks med undermapper"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Meddelelser, indeks og vedhæftede filer med undermapper"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelelser med vedhæftede filer og indeks"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Meddelelser som enkelt fil med vedhæftede filer"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Meddelelser som enkelt fil"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Almindeligt tekstformat"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Eksporter fjernmappe"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Søg og eksporter meddelelser"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "Alle EML-meddelelser fra en mappe og undermapper"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "Alle EML-meddelelser fra en mappe"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Individuelle EML-meddelelser"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Importer EML-meddelelser"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Importer Maildir-mappe"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "Alle mbox-filer fra mappe (med sbd-struktur)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "Alle mbox-filer fra mappen"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Individuelle mbox-filer (med sbd-struktur)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Individuelle mbox-filer"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Importer mbox-filer"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Åbn mappens mappe"
+    },
+    "importEnd": {
+        "message": "Importen lykkedes!"
+    },
+    "importRunning": {
+        "message": "Import kører…"
+    },
+    "indexCSVdateFormat": {
+        "message": "Indeks, CSV-datoformat:"
+    },
+    "indexFmtToken": {
+        "message": "${indeks}"
+    },
+    "indexOff": {
+        "message": "Brug valgte mappe uden indeks"
+    },
+    "indexOn": {
+        "message": "Opret en ny mappe og indekset over meddelelserne"
+    },
+    "indexSettingLabel": {
+        "message": "Når alle meddelelser i en mailmappe eksporteres:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Mapper med indlejrede vedhæftede filer"
+    },
+    "intro1": {
+        "message": "Dette er en eksperimentel procedure til import af en profil. Der er ingen fare for tab af data, men der er ingen garanti for, at alt vil fungere som ventet, specielt ikke, hvis du importere en profil fra en anden computer. Det er dog sikrere end at kopiere filerne manuelt."
+    },
+    "intro2": {
+        "message": "Mappen indeholder en gyldig profil, der kan importeres. Under denne procedure, som kan tage flere minutter eller mere, kan du ikke bruge programmet."
+    },
+    "intro3": {
+        "message": "For at tilgå den importerede profil, kør profilmanageren ved at klikke på knappen nedenunder. Den nuværende profil vil automatisk blive lukket"
+    },
+    "justMailFiles": {
+        "message": "Kun mailfiler"
+    },
+    "key": {
+        "message": "Indeks"
+    },
+    "labelmenuMI": {
+        "message": "ImportEksportTools"
+    },
+    "lastBackup": {
+        "message": "Seneste sikkerhedskopi"
+    },
+    "mboxExport": {
+        "message": "Eksporter mapper som MBOX-fil:"
+    },
+    "misc": {
+        "message": "Diverse"
+    },
+    "modal": {
+        "message": "Brug et 'modalt' vindue"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Headers"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Meddelelse"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Kopier til udklipsholder"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV-format (regneark)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Meddelelser (Indlejrede vedhæftede filer)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML-meddelelsesformat"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Kun meddelelser"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelelser med vedhæftede filer og indeks"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Meddelelser og vedhæftede filer"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML-format"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV-format"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML-format"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Meddelelsesindeks"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Føj til eksisterende mbox-fil"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "Ny mbox-fil"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox-format"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF-format"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Meddelelser og HTML-indeks"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Kun meddelelser"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Meddelelser med vedhæftede filer og indeks"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Meddelelser og vedhæftede filer"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Almindeligt tekstformat"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Eksporter meddelelser som…"
+    },
+    "name": {
+        "message": "Navn"
+    },
+    "newFilesMode": {
+        "message": "Kun filer der er ændret siden seneste sikkerhedskopi"
+    },
+    "openHelpInWindow.label": {
+        "message": "Åbn hjælp i et vindue i stedet for i et faneblad"
+    },
+    "prefixFmtToken": {
+        "message": "${præfiks}"
+    },
+    "profileName": {
+        "message": "Navnet på profilen der skal importeres"
+    },
+    "profilePath": {
+        "message": "Stien til profilen der skal importeres"
+    },
+    "recipient": {
+        "message": "Modtager"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${modtager_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${modtager}"
+    },
+    "runProfileManager": {
+        "message": "Kør profilmanageren"
+    },
+    "save": {
+        "message": "Gem"
+    },
+    "savedirs": {
+        "message": "Eksporter mapper"
+    },
+    "sdAll": {
+        "message": "Alle"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Eksporter"
+    },
+    "sdFormat": {
+        "message": "Format"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (ny)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (tilføj)"
+    },
+    "sdMessages": {
+        "message": "Meddelelser"
+    },
+    "sdSelected": {
+        "message": "Valgte"
+    },
+    "sdSingleFile": {
+        "message": "Som enkelt tekstfil"
+    },
+    "sdText": {
+        "message": "Ren tekst"
+    },
+    "selExport": {
+        "message": "Eksporter valgte meddelelser:"
+    },
+    "sender": {
+        "message": "Afsender"
+    },
+    "senderEmailFmtToken": {
+        "message": "${afsender_email}"
+    },
+    "senderFmtToken": {
+        "message": "${afsender}"
+    },
+    "skipMsgLabel": {
+        "message": "Gem ikke meddelelser når den tilsvarende fil findes"
+    },
+    "smartNameFmtToken": {
+        "message": "${smart_navn}"
+    },
+    "start": {
+        "message": "Start import"
+    },
+    "strip_eml_CR.label": {
+        "message": "Fjern CR fra linjeafslutninger for eml-meddelelseseksport"
+    },
+    "subject": {
+        "message": "Emne"
+    },
+    "subjectFmtToken": {
+        "message": "${emne}"
+    },
+    "suffixFmtToken": {
+        "message": "${suffiks}"
+    },
+    "textCharset": {
+        "message": "Tegnkodning til eksport i tekst- og CSV-format:"
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profilimport"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Sikkerhedskopier"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Fuld profil"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Kun mail"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Eksporter profil"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Importer profil"
+    },
+    "useExtFilenameFormat": {
+        "message": "Brug udvidet format"
+    },
+    "useMboxExt.label": {
+        "message": "Brug filendelsen .mbox til mbox-filer (ikke-struktureret)"
+    },
+    "CRconversion.statusMsg": {
+        "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
+    }
 }

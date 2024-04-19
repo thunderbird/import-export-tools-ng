@@ -136,7 +136,8 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "openHelpInWindow.label", text: "Open help in a window instead of a tab"},
+  { key: "CRconversion.statusMsg", text: "Converting CR => CRLF line terminations"},
+	
 
 	
 
@@ -514,9 +515,10 @@ function loadTranslationArray(inputFiles, options) {
 				translateAll(iFile, strings, options);
 				break;
 			case '.json':
-				strings = loadMessageStrings(iFile, options);
+				translationArray = loadMessageStrings(iFile, options);
 				options.propertiesType = false;
-				translateAll(iFile, strings, options);
+				//translateAll(iFile, strings, options);
+				console.log(translationArray)
 				break;
 	
 			default:
@@ -564,6 +566,18 @@ function convert(iFile, options) {
 	});
 }
 
+var cs = "python locale-converter.py ..\\src\\chrome\\locale\\${l1}\\mboximport ..\\src\\_locales\\${l2}"
+
+function locs() {
+	localeFolders.forEach(loc => {
+		let s = cs
+		s = s.replace("${l1}",loc)
+		s = s.replace("${l2}",loc)
+
+		console.log(s)
+	});
+
+}
 
 var options3 = {
 	inputLocaleDir: `./src/_locales/en-US`,
@@ -575,7 +589,7 @@ var options3 = {
 };
 
 // dtd=2
-var options = {
+var options0 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
@@ -585,20 +599,24 @@ var options = {
 };
 
 // properties=1
-var options1 = {
+var options2 = {
 	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
 	outputLocaleDir: "./src/chrome/locale",
 	outputLocaleDirSuffix: "mboximport/",
-	append: true,
+	append: false,
 	skipEN: true,
 	outputFormat: 1,
 };
 
-var options4 = {
-	inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+	//inputLocaleDir: `./src/chrome/locale/en-US/mboximport`,
+
+var options = {
+	inputLocaleDir: `./src/_locales/en-US`,
+
 	outputLocaleDir: "./src/_locales",
 	outputLocaleDirSuffix: "",
-	append: false,
+	skipEN: false,
+	append: true,
 	outputFormat: 3,
 };
 
@@ -610,8 +628,8 @@ let inputFiles;
 // let inputFiles = ["settings.dtd", "overlay.dtd", "overlay.properties"];
 
 
-//let inputFiles = ["messages.json"];
-inputFiles = ["mboximport.dtd"];
+inputFiles = ["messages.json"];
+//inputFiles = ["mboximport.dtd"];
 // let inputFiles = ["autobackup.dtd", "autobackup.properties", "mboximport.dtd", "mboximport.properties", "profilewizard.dtd", "profilewizard.properties"];
 //inputFiles = ["mboximport.properties"];
 // var supportedLocales = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 'hu-HU', 'hy-AM', 'ko-KR',
@@ -621,30 +639,31 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 'el', 'pl', 'da', 'pt-PT', 'ca', 'gl-ES', 'sk-SK', 'sl-SI', 'sv-SE'];
 
 // full locale set
-localeFolders = ['en-US', 'de', 'ca', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
+localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 // unmanaged help locales
-//localeFolders = ['en-US', 'ca', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
-//	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
+	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 
 // managed help locales
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-//localeFolders = ['en-US', 'de'];
-
 // localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
 //localeFile = "settings.json";
 // t();
-//translateHelpPage();
+translateHelpPage();
 //translatePage();
-// translateAll("mboximport.properties", translationArray, options);
-translateAll(inputFiles, translationArray, options);
+//loadTranslationArray(inputFiles, options);
+//console.log(translationArray.length)
+//translationArray = translationArray.slice(101)
+//translateAll("messages.json", translationArray, options);
+//translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
-
+//locs()
 // let inputFiles = ["settings.dtd"];
 /*
 node .\scripts\translate-gc.js

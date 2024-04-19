@@ -1,333 +1,635 @@
 {
-	"extensionName": {
-		"message": "ImportExportTools NG"
-	},
-
-	"extensionDescription": {
-		"message": "Adds tools to import/export messages and folders (NextGen)"
-	},
-
-	"ctxMenu_ExtensionName.title": {
-		"message": "ImportExportTools NG"
-	},
-
-	"ctxMenu_Options.title": {
-		"message": "Options"
-	},
-
-	"ctxMenu_Help.title": {
-		"message": "Help"
-	},
-
-	"toolsCtxMenu_Exp_Profile_Id.title": {
-		"message": "Export Profile"
-	},
-
-	"toolsCtxMenu_Imp_Profile_Id.title": {
-		"message": "Import Profile"
-	},
-
-	"toolsCtxMenu_Backup_Id.title": {
-		"message": "Backup"
-	},
-
-	"toolsCtxMenu_Exp_ProfileFull_Id.title": {
-		"message": "Full Profile"
-	},
-
-	"toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-		"message": "Mail Only"
-	},
-
-	"msgCtxMenu_TopId.title": {
-		"message": "Export Messages As…"
-	},
-
-	"msgCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML Message Format"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML Format"
-	},
-
-	"msgCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF Format"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Plain Text Format"
-	},
-
-	"msgCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV Format (Spreadsheet)"
-	},
-
-	"msgCtxMenu_Exp_MboxFormat_Id.title": {
-		"message": "mbox Format"
-	},
-
-	"msgCtxMenu_Exp_Index_Id.title": {
-		"message": "Message Index"
-	},
-
-	"msgCtxMenu_CopyToClipboard_Id.title": {
-		"message": "Copy To Clipboard"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
-		"message": "Messages (Attachments Embedded)"
-	},
-
-	"msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
-		"message": "Messages Only"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
-		"message": "Messages And Attachments"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Messages With Attachments And Index"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
-		"message": "Messages Only"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
-		"message": "Messages And Attachments"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Messages With Attachments And Index"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
-		"message": "New mbox File"
-	},
-
-	"msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
-		"message": "Append To Existing mbox File"
-	},
-
-	"msgCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML Format"
-	},
-
-	"msgCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV Format"
-	},
-
-	"msgCtxMenu_CopyToClipboardMessage_Id.title": {
-		"message": "Message"
-	},
-
-	"msgCtxMenu_CopyToClipboardHeaders_Id.title": {
-		"message": "Headers"
-	},
-
-	"folderCtxMenu_Exp_FolderMbox_Id.title": {
-		"message": "Folder Export (mbox)"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
-		"message": "As mbox File"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
-		"message": "Single Zipped mbox File"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
-		"message": "Structured With Subfolders"
-	},
-
-	"folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
-		"message": "With Flattened Subfolders"
-	},
-
-	"folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
-		"message": "Export Remote Folder"
-	},
-
-	"folderCtxMenu_Exp_AllMessages_Id.title": {
-		"message": "Export All Messages In Folder"
-	},
-
-	"folderCtxMenu_Exp_EMLFormat_Id.title": {
-		"message": "EML Message Format"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormat_Id.title": {
-		"message": "HTML Format"
-	},
-
-	"folderCtxMenu_Exp_PDFFormat_Id.title": {
-		"message": "PDF Format"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormat_Id.title": {
-		"message": "Plain Text Format"
-	},
-
-	"folderCtxMenu_Exp_CSVFormat_Id.title": {
-		"message": "CSV Format (Spreadsheet)"
-	},
-
-	"folderCtxMenu_Exp_Index_Id.title": {
-		"message": "Message Index"
-	},
-
-	"folderCtxMenu_Exp_SearchExport_Id.title": {
-		"message": "Search And Export Messages"
-	},
-
-	"folderCtxMenu_Imp_MboxFiles_Id.title": {
-		"message": "Import mbox Files"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
-		"message": "Individual mbox Files"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
-		"message": "Individual mbox Files (with sbd structure)"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDir_Id.title": {
-		"message": "All mbox Files from directory"
-	},
-
-	"folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
-		"message": "All mbox Files from directory (with sbd structure)"
-	},
-
-	"folderCtxMenu_Imp_MaildirFiles_Id.title": {
-		"message": "Import Maildir Folder"
-	},
-
-	"folderCtxMenu_Imp_EMLFormat_Id.title": {
-		"message": "Import EML Messages"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
-		"message": "Individual EML Messages"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDir_Id.title": {
-		"message": "All EML Messages From A Directory"
-	},
-
-	"folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-		"message": "All EML Messages From A Directory And Subdirectories"
-	},
-
-	"folderCtxMenu_CopyFolderPath_Id.title": {
-		"message": "Copy Folder Path"
-	},
-
-	"folderCtxMenu_OpenFolderDir_Id.title": {
-		"message": "Open Folder Directory"
-	},
-
-	"folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Messages With Attachments And Index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
-		"message": "Messages And HTML Index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
-		"message": "Messages With Attachments And Index"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
-		"message": "Messages As Single File"
-	},
-
-	"folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
-		"message": "Messages As Single File With Attachments"
-	},
-
-	"folderCtxMenu_Exp_IndexHTML_Id.title": {
-		"message": "HTML Format"
-	},
-
-	"folderCtxMenu_Exp_IndexCSV_Id.title": {
-		"message": "CSV Format"
-	},
-
-	"folderCtxMenu_Exp_Account_Id.title": {
-		"message": "Export Account"
-	},
-	
-	"subjectFmtToken": {
-		"message": "${subject}"
-	},
-
-	"senderFmtToken": {
-		"message": "${sender}"
-	},
-
-	"recipientFmtToken": {
-		"message": "${recipient}"
-	},
-
-	"senderEmailFmtToken": {
-		"message": "${sender_email}"
-	},
-
-	"recipientEmailFmtToken": {
-		"message": "${recipient_email}"
-	},
-
-	"smartNameFmtToken": {
-		"message": "${smart_name}"
-	},
-
-	"indexFmtToken": {
-		"message": "${index}"
-	},
-
-	"prefixFmtToken": {
-		"message": "${prefix}"
-	},
-
-	"suffixFmtToken": {
-		"message": "${suffix}"
-	},
-
-	"dateCustomFmtToken": {
-		"message": "${date_custom}"
-	},
-
-	"dateFmtToken": {
-		"message": "${date}"
-	},
-
-	"attCtxMenu_Top_Id.title": {
-		"message": "Save EML attachment to this folder"
-	}
+    "MACwarning": {
+        "message": "N.B: Please close every other window before continuing."
+    },
+    "MBcaptionlabel1": {
+        "message": "General settings"
+    },
+    "MBlabel1": {
+        "message": "Overwrite the mbox files with the same name in the destination directory"
+    },
+    "MBlabel2": {
+        "message": "Use just alphanumeric characters in export"
+    },
+    "MBlabel3": {
+        "message": "Ask confirm before importing mbox files from a directory"
+    },
+    "MBlabel4": {
+        "message": "HTML format as displayed in messages panel"
+    },
+    "MBlabel5": {
+        "message": "Copy to clipboard just in text format (can cause compatibility problems)"
+    },
+    "MBlabel7a": {
+        "message": "Subject max length: "
+    },
+    "MBlabel7b": {
+        "message": "characters"
+    },
+    "MBlabel7c": {
+        "message": "Sender name max length: "
+    },
+    "MBlabel7d": {
+        "message": "Recipients name max length: "
+    },
+    "abortExport": {
+        "message": "Stop the current export"
+    },
+    "addNumber.label": {
+        "message": "Add always to the name a random number when importing mbox files"
+    },
+    "addPrefix": {
+        "message": "Add prefix"
+    },
+    "addSuffix": {
+        "message": "Add suffix"
+    },
+    "addTimestamp": {
+        "message": "Add date to the file properties"
+    },
+    "addtime.label": {
+        "message": "Add time to date"
+    },
+    "allFiles": {
+        "message": "All profile files"
+    },
+    "allFilesMode": {
+        "message": "Always all files"
+    },
+    "allMsg": {
+        "message": "Export of all messages"
+    },
+    "asCSV": {
+        "message": "Spreadsheet (CSV)"
+    },
+    "attCtxMenu_Top_Id.title": {
+        "message": "Save EML attachment to this folder"
+    },
+    "attachmentFolderNames": {
+        "message": "Attachment Folder Names"
+    },
+    "attachmentFolders": {
+        "message": "Attachment Folders"
+    },
+    "autoName": {
+        "message": "Automatic (folder name + date)"
+    },
+    "backupDestination": {
+        "message": "Destination"
+    },
+    "backupFolderName": {
+        "message": "Folder name for backup"
+    },
+    "backupFreq": {
+        "message": "Frequency"
+    },
+    "backupOn": {
+        "message": "Enable"
+    },
+    "backupOnExit": {
+        "message": "Backup On Exit"
+    },
+    "backupSettings": {
+        "message": "Backup settings"
+    },
+    "backupTab": {
+        "message": "Backup scheduling"
+    },
+    "backupType": {
+        "message": "Backup content"
+    },
+    "browse": {
+        "message": "Browse…"
+    },
+    "buildMSF.label": {
+        "message": "Build index for imported mbox files"
+    },
+    "buttonMenu_Backup_Id.title": {
+        "message": "Backup"
+    },
+    "buttonMenu_Exp_ProfileFull_Id.title": {
+        "message": "Full Profile"
+    },
+    "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Mail Only"
+    },
+    "buttonMenu_Exp_Profile_Id.title": {
+        "message": "Export Profile"
+    },
+    "buttonMenu_Help.title": {
+        "message": "Help"
+    },
+    "buttonMenu_Imp_Profile_Id.title": {
+        "message": "Import Profile"
+    },
+    "buttonMenu_Options.title": {
+        "message": "Options"
+    },
+    "captionCustomize": {
+        "message": "Customized format for filenames"
+    },
+    "changeProfileNameLabel": {
+        "message": "You can anyway change the profile name in the Profile Manager"
+    },
+    "copyFolderPath": {
+        "message": "Copy folder path on disk"
+    },
+    "csvSep": {
+        "message": "Separator for export in CSV format:"
+    },
+    "ctxMenu_ExtensionName.title": {
+        "message": "ImportExportTools NG"
+    },
+    "ctxMenu_Help.title": {
+        "message": "Help"
+    },
+    "ctxMenu_Options.title": {
+        "message": "Options"
+    },
+    "customDate": {
+        "message": "Custom Date:"
+    },
+    "customName": {
+        "message": "Customized"
+    },
+    "customizeFilename": {
+        "message": "Use following format:"
+    },
+    "cutFN": {
+        "message": "Cut complete file path length at 256 characters"
+    },
+    "cutPathLen": {
+        "message": "Cut file path length to 256 characters"
+    },
+    "cutSub": {
+        "message": "Cut subject at 50 characters"
+    },
+    "date": {
+        "message": "Date"
+    },
+    "dateCustomFmtToken": {
+        "message": "${date_custom}"
+    },
+    "dateCustomOpt": {
+        "message": "Date (Custom)"
+    },
+    "dateFmtToken": {
+        "message": "${date}"
+    },
+    "dateFormatRefTooltipText": {
+        "message": "Date Format Reference"
+    },
+    "day1": {
+        "message": "1 day"
+    },
+    "day15": {
+        "message": "15 days"
+    },
+    "day3": {
+        "message": "3 days"
+    },
+    "day30": {
+        "message": "30 days"
+    },
+    "day7": {
+        "message": "7 days"
+    },
+    "description1": {
+        "message": "Date of last backup: $t"
+    },
+    "description2": {
+        "message": "On the basis of the settings, it's necessary now to make the backup."
+    },
+    "description3": {
+        "message": "During this operation, the program will be unresponsive for some minutes."
+    },
+    "description4": {
+        "message": "Do you want to continue?"
+    },
+    "description5": {
+        "message": "Backup in progress, please wait…"
+    },
+    "description6": {
+        "message": "Backup done."
+    },
+    "dialog.title": {
+        "message": "ImportExportTools NG- Backup"
+    },
+    "emlExport": {
+        "message": "Export folders as single files:"
+    },
+    "error": {
+        "message": "An error occurred during profile import. Error details are:"
+    },
+    "extFilenameFormatRefTooltipText": {
+        "message": "Extended Filename Format Reference"
+    },
+    "extFormat": {
+        "message": "Format:"
+    },
+    "extensionDescription": {
+        "message": "Adds tools to import/export messages and folders (NextGen)"
+    },
+    "extensionName": {
+        "message": "ImportExportTools NG"
+    },
+    "fileLenCaption": {
+        "message": "Filenames length"
+    },
+    "filenameCharset": {
+        "message": "Charset for filenames: "
+    },
+    "filenameFormat": {
+        "message": "Filenames"
+    },
+    "folderCtxMenu_CopyFolderPath_Id.title": {
+        "message": "Copy Folder Path"
+    },
+    "folderCtxMenu_Exp_Account_Id.title": {
+        "message": "Export Account"
+    },
+    "folderCtxMenu_Exp_AllMessages_Id.title": {
+        "message": "Export All Messages In Folder"
+    },
+    "folderCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV Format (Spreadsheet)"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Messages and Index with Subfolders"
+    },
+    "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "folderCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML Message Format"
+    },
+    "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+        "message": "With Flattened Subfolders"
+    },
+    "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+        "message": "As mbox File"
+    },
+    "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+        "message": "Structured With Subfolders"
+    },
+    "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+        "message": "Single Zipped mbox File"
+    },
+    "folderCtxMenu_Exp_FolderMbox_Id.title": {
+        "message": "Folder Export (mbox)"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+        "message": "Messages and Index with Subfolders"
+    },
+    "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Messages, Index and Attachments with Subfolders"
+    },
+    "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Messages With Attachments And Index"
+    },
+    "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML Format"
+    },
+    "folderCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV Format"
+    },
+    "folderCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML Format"
+    },
+    "folderCtxMenu_Exp_Index_Id.title": {
+        "message": "Message Index"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+        "message": "Messages and Index with Subfolders"
+    },
+    "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+        "message": "Messages and HTML Index"
+    },
+    "folderCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF Format"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+        "message": "Messages and Index with Subfolders"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+        "message": "Messages, Index and Attachments with Subfolders"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Messages With Attachments And Index"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+        "message": "Messages As Single File With Attachments"
+    },
+    "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+        "message": "Messages As Single File"
+    },
+    "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Plain Text Format"
+    },
+    "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+        "message": "Export Remote Folder"
+    },
+    "folderCtxMenu_Exp_SearchExport_Id.title": {
+        "message": "Search And Export Messages"
+    },
+    "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+        "message": "All EML Messages From A Directory And Subdirectories"
+    },
+    "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+        "message": "All EML Messages From A Directory"
+    },
+    "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+        "message": "Individual EML Messages"
+    },
+    "folderCtxMenu_Imp_EMLFormat_Id.title": {
+        "message": "Import EML Messages"
+    },
+    "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+        "message": "Import Maildir Folder"
+    },
+    "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+        "message": "All mbox Files from directory (with sbd structure)"
+    },
+    "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+        "message": "All mbox Files from directory"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+        "message": "Individual mbox Files (with sbd structure)"
+    },
+    "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+        "message": "Individual mbox Files"
+    },
+    "folderCtxMenu_Imp_MboxFiles_Id.title": {
+        "message": "Import mbox Files"
+    },
+    "folderCtxMenu_OpenFolderDir_Id.title": {
+        "message": "Open Folder Directory"
+    },
+    "importEnd": {
+        "message": "The import was successful!"
+    },
+    "importRunning": {
+        "message": "Import running…"
+    },
+    "indexCSVdateFormat": {
+        "message": "Index, CSV Date Format:"
+    },
+    "indexFmtToken": {
+        "message": "${index}"
+    },
+    "indexOff": {
+        "message": "use selected directory without index"
+    },
+    "indexOn": {
+        "message": "create a new directory and the index of messages"
+    },
+    "indexSettingLabel": {
+        "message": "When exporting all messages of a mail folder:"
+    },
+    "inlineAttachmentsFolders": {
+        "message": "Inline Attachments Folders"
+    },
+    "intro1": {
+        "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it’s not guaranteed that everything will work as expected, especially if you’re importing a profile from another computer. It’s anyway safer than copying the files manually."
+    },
+    "intro2": {
+        "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+    },
+    "intro3": {
+        "message": "To access the imported profile, run the Profile Manager clicking on the button below. The current profile will be automatically closed"
+    },
+    "justMailFiles": {
+        "message": "Just mail files"
+    },
+    "key": {
+        "message": "Index"
+    },
+    "labelmenuMI": {
+        "message": "ImportExportTools NG"
+    },
+    "lastBackup": {
+        "message": "Last backup"
+    },
+    "mboxExport": {
+        "message": "Export folders as MBOX file:"
+    },
+    "misc": {
+        "message": "Misc"
+    },
+    "modal": {
+        "message": "Use a “modal” window"
+    },
+    "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+        "message": "Headers"
+    },
+    "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+        "message": "Message"
+    },
+    "msgCtxMenu_CopyToClipboard_Id.title": {
+        "message": "Copy To Clipboard"
+    },
+    "msgCtxMenu_Exp_CSVFormat_Id.title": {
+        "message": "CSV Format (Spreadsheet)"
+    },
+    "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+        "message": "Messages (Attachments Embedded)"
+    },
+    "msgCtxMenu_Exp_EMLFormat_Id.title": {
+        "message": "EML Message Format"
+    },
+    "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+        "message": "Messages Only"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Messages With Attachments And Index"
+    },
+    "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+        "message": "Messages And Attachments"
+    },
+    "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+        "message": "HTML Format"
+    },
+    "msgCtxMenu_Exp_IndexCSV_Id.title": {
+        "message": "CSV Format"
+    },
+    "msgCtxMenu_Exp_IndexHTML_Id.title": {
+        "message": "HTML Format"
+    },
+    "msgCtxMenu_Exp_Index_Id.title": {
+        "message": "Message Index"
+    },
+    "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+        "message": "Append To Existing mbox File"
+    },
+    "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+        "message": "New mbox File"
+    },
+    "msgCtxMenu_Exp_MboxFormat_Id.title": {
+        "message": "mbox Format"
+    },
+    "msgCtxMenu_Exp_PDFFormat_Id.title": {
+        "message": "PDF Format"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+        "message": "Messages And HTML Index"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+        "message": "Messages Only"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+        "message": "Messages With Attachments And Index"
+    },
+    "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+        "message": "Messages And Attachments"
+    },
+    "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+        "message": "Plain Text Format"
+    },
+    "msgCtxMenu_TopId.title": {
+        "message": "Export Messages As…"
+    },
+    "name": {
+        "message": "Name"
+    },
+    "newFilesMode": {
+        "message": "Just files modified after last backup"
+    },
+    "openHelpInWindow.label": {
+        "message": "Open help in a window instead of a tab"
+    },
+    "prefixFmtToken": {
+        "message": "${prefix}"
+    },
+    "profileName": {
+        "message": "Name of the profile to import"
+    },
+    "profilePath": {
+        "message": "Path of the profile to import"
+    },
+    "recipient": {
+        "message": "Recipient"
+    },
+    "recipientEmailFmtToken": {
+        "message": "${recipient_email}"
+    },
+    "recipientFmtToken": {
+        "message": "${recipient}"
+    },
+    "runProfileManager": {
+        "message": "Run the Profile Manager"
+    },
+    "save": {
+        "message": "Save"
+    },
+    "savedirs": {
+        "message": "Export directories"
+    },
+    "sdAll": {
+        "message": "All"
+    },
+    "sdEML": {
+        "message": "EML"
+    },
+    "sdExportButton": {
+        "message": "Export"
+    },
+    "sdFormat": {
+        "message": "Format"
+    },
+    "sdHTML": {
+        "message": "HTML"
+    },
+    "sdMBOX": {
+        "message": "Mbox (new)"
+    },
+    "sdMBOX2": {
+        "message": "Mbox (append)"
+    },
+    "sdMessages": {
+        "message": "Messages"
+    },
+    "sdSelected": {
+        "message": "Selected"
+    },
+    "sdSingleFile": {
+        "message": "as single text file"
+    },
+    "sdText": {
+        "message": "Plain text"
+    },
+    "selExport": {
+        "message": "Export selected messages:"
+    },
+    "sender": {
+        "message": "Sender"
+    },
+    "senderEmailFmtToken": {
+        "message": "${sender_email}"
+    },
+    "senderFmtToken": {
+        "message": "${sender}"
+    },
+    "skipMsgLabel": {
+        "message": "don’t save messages when the file already exists"
+    },
+    "smartNameFmtToken": {
+        "message": "${smart_name}"
+    },
+    "start": {
+        "message": "Start import"
+    },
+    "strip_eml_CR.label": {
+        "message": "Strip CR from line endings for eml message exports"
+    },
+    "subject": {
+        "message": "Subject"
+    },
+    "subjectFmtToken": {
+        "message": "${subject}"
+    },
+    "suffixFmtToken": {
+        "message": "${suffix}"
+    },
+    "textCharset": {
+        "message": "Charset for export in text and CSV format: "
+    },
+    "title": {
+        "message": "ImportExportTools NG - Profile import"
+    },
+    "toolsCtxMenu_Backup_Id.title": {
+        "message": "Backup"
+    },
+    "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+        "message": "Full Profile"
+    },
+    "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+        "message": "Mail Only"
+    },
+    "toolsCtxMenu_Exp_Profile_Id.title": {
+        "message": "Export Profile"
+    },
+    "toolsCtxMenu_Imp_Profile_Id.title": {
+        "message": "Import Profile"
+    },
+    "useExtFilenameFormat": {
+        "message": "Use Extended Format"
+    },
+    "useMboxExt.label": {
+        "message": "Use .mbox extension for mbox files (non-structured)"
+    },
+    "CRconversion.statusMsg": {
+        "message": "Converting CR => CRLF line terminations"
+    }
 }

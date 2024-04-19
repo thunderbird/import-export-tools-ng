@@ -40,6 +40,8 @@
 		"gFolderDisplay": "readonly",
 		"IOUtils": "readonly",
 		"PathUtils": "readonly",
+ 		"globalThis": "readonly",
+
 		"BatchMessageMover": "readonly"
 		
 	},

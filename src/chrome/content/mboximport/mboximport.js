@@ -61,7 +61,6 @@ var Services = globalThis.Services || ChromeUtils.import(
 	'resource://gre/modules/Services.jsm'
 ).Services;
 
-// var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
@@ -71,7 +70,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 
 // sometimes we want straight module for testing
 // var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-3.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-4.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
@@ -116,7 +115,13 @@ var IETprintPDFmain = {
 				return;
 			}
 		} catch (e) { }
-		let msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+
+		var msgFolders;
+		try {
+			msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		} catch (e) {
+			msgFolders = [GetFirstSelectedMsgFolder()];
+		}
 
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
@@ -205,6 +210,10 @@ var IETprintPDFmain = {
 			printSettings = psService.createNewPrintSettings();
 		}
 
+		printSettings.printerName = "Mozilla_Save_to_PDF";
+		psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+
+
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 
@@ -228,10 +237,13 @@ var IETprintPDFmain = {
 
 		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+
 		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
+
 		if (pageSettings.paperHeight)
 			printSettings.paperHeight = pageSettings.paperHeight;
+
 		if (pageSettings.orientation)
 			printSettings.orientation = pageSettings.orientation;
 		if (pageSettings.scaling)
@@ -288,11 +300,13 @@ var IETprintPDFmain = {
 		// the fakeBrowser NB: if the printBrowser does not exist we
 		// can create with PrintUtils as well
 
+
 		var errCounter = 0;
 		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
 		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
 			let uri = IETprintPDFmain.uris[msgIdx];
+
 			try {
 				var messageService = MailServices.messageServiceFromURI(uri);
 				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
@@ -300,15 +314,12 @@ var IETprintPDFmain = {
 				let fileName = fileFormat === 2
 					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
 					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-				printSettings.toFileName = PathUtils.join(filePath, fileName);
+				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
+				printSettings.toFileName = uniqueFileName;
 
-				// console.log("IETNG: Start: ", msgIdx + 1, fileName, new Date());
-				// console.log(messageService.getUrlForUri(uri).spec)
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-				// console.log("IETNG: End: ", msgIdx + 1, fileName, new Date());
 
-				// try {
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;
@@ -327,9 +338,13 @@ var IETprintPDFmain = {
 				await new Promise(r => mainWindow.setTimeout(r, 150));
 			}
 		}
+	},
 
-
-		// console.log("IETNG: Save as PDF end: ", msgIdx + 1, new Date());
+	async setupPDF(msgUris, outputPath) {
+		IETprintPDFmain.file = {};
+		IETprintPDFmain.file.path = outputPath;
+		IETprintPDFmain.uris = msgUris;
+		await IETprintPDFmain.saveAsPDF();
 	},
 };
 
@@ -742,17 +757,21 @@ async function exportfolder(params) {
 	var folders = [];
 	var account;
 
-	if (params.selectedAccount && !params.selectedFolder) {
-		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
-			.getService(Components.interfaces.nsIMsgAccountManager);
-		account = accountManager.accounts.find(account => {
-			if (account.key == params.selectedAccount.id) {
-				return true;
-			}
-		});
-		folders[0] = account.incomingServer.rootMsgFolder;
+	if (params.selectedFolder == "//currentFolder") {
+		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
-		folders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		if (params.selectedAccount && !params.selectedFolder) {
+			var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+				.getService(Components.interfaces.nsIMsgAccountManager);
+			account = accountManager.accounts.find(account => {
+				if (account.key == params.selectedAccount.id) {
+					return true;
+				}
+			});
+			folders[0] = account.incomingServer.rootMsgFolder;
+		} else {
+			folders = [getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path)];
+		}
 	}
 
 	/*
@@ -1197,12 +1216,27 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(params) {
-	//	console.debug('Start eml import');
+	console.debug('Start eml import', params);
 
 	var recursive = params.emlImpRecursive;
-	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	var msgFolder;
+	if (params.selectedFolder.path == "/") {
+		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+			.getService(Components.interfaces.nsIMsgAccountManager);
+		account = accountManager.accounts.find(account => {
+			if (account.key == params.selectedAccount.id) {
+				return true;
+			}
+		});
+		msgFolder = account.incomingServer.rootMsgFolder;
+	} else {
+		msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+		console.log(msgFolder)
+	}
 
-	if (!msgFolder || !msgFolder.parent) {
+	console.log(msgFolder.parent)
+
+	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}

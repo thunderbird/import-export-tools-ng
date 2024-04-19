@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE dialog [
-<!ENTITY % mainDTD SYSTEM "chrome://mboximport/locale/mboximport.dtd">
-%mainDTD;
-<!ENTITY % backupDTD SYSTEM "chrome://mboximport/locale/autobackup.dtd">
-	%backupDTD;
-
-]>
+<!DOCTYPE dialog []>
 
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/icons.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/colors.css"?>
@@ -20,53 +14,53 @@
 		windowtype="ietng:options">
 	<tabbox>
 		<tabs>
-			<tab label=" &misc; " selected="true" />
-			<tab label=" &filenameFormat; " />
-			<tab label=" &savedirs; " />
-			<tab label=" &backupTab; " />
+			<tab label="__MSG_misc__" selected="true" />
+			<tab label=" __MSG_filenameFormat__ " />
+			<tab label=" __MSG_savedirs__ " />
+			<tab label=" __MSG_backupTab__ " />
 		</tabs>
 		<tabpanels>
 			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
-				<label class="top-header" >&MBcaptionlabel1;</label>
+				<label class="top-header" >__MSG_MBcaptionlabel1__</label>
 				<html:div style="min-width: 550px">
 					<html:div style="padding-left: 10px; float: left">
 						<html:div style="width: 10px; height: 10px; background-color2: yellow" ></html:div>
 						<hbox align="center">
-							<checkbox id="useMboxExt" label="&useMboxExt.label;" />
+							<checkbox id="useMboxExt" label="__MSG_useMboxExt.label__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="MBoverwrite" label="&MBlabel1;" />
+							<checkbox id="MBoverwrite" label="__MSG_MBlabel1__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="MBconfrimimport" label="&MBlabel3;" />
+							<checkbox id="MBconfrimimport" label="__MSG_MBlabel3__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="MBhtmlasdisplayed" label="&MBlabel4;" />
+							<checkbox id="MBhtmlasdisplayed" label="__MSG_MBlabel4__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="MBcliptextplain" label="&MBlabel5;" />
+							<checkbox id="MBcliptextplain" label="__MSG_MBlabel5__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="setTimestamp" label="&addTimestamp;" />
+							<checkbox id="setTimestamp" label="__MSG_addTimestamp__" />
 						</hbox>
 						<hbox align="center" style="display: none">
-							<checkbox id="buildMSF" label="&buildMSF.label;" />
+							<checkbox id="buildMSF" label="__MSG_buildMSF.label__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="addNumber" label="&addNumber.label;" />
+							<checkbox id="addNumber" label="__MSG_addNumber.label__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="stripEML_CR" label="&strip_eml_CR.label;" />
+							<checkbox id="stripEML_CR" label="__MSG_strip_eml_CR.label__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="openHelpInWin" label="&openHelpInWindow.label;" />
+							<checkbox id="openHelpInWin" label="__MSG_openHelpInWindow.label__" />
 						</hbox>
 						<hbox align="center" style="padding-left: 4px">
-							<label value="&csvSep;" />
+							<label value="__MSG_csvSep__" />
 							<html:input id="csvSep" size="1" maxlength="1" />
 						</hbox>
 						<hbox align="center" style="padding-left: 4px">
-							<label value="&textCharset;" />
+							<label value="__MSG_textCharset__" />
 							<menulist id="charset-list" style="width: 145px">
 								<menupopup id="charset-list-popup" />
 							</menulist>
@@ -75,41 +69,41 @@
 						<html:table>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
-									<label value="&MBlabel7a;" />
+									<label value="__MSG_MBlabel7a__" />
 								</html:td>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
-									<label value="&MBlabel7b;" />
+									<label value="__MSG_MBlabel7b__" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left"  style="margin-bottom: 4px;">
-									<label value="&MBlabel7c;" />
+									<label value="__MSG_MBlabel7c__" />
 								</html:td>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBauthmaxlen" maxlength="3" size="3" />
-									<label value="&MBlabel7b;" />
+									<label value="__MSG_MBlabel7b__" />
 								</html:td>
 							</html:tr>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
-									<label value="&MBlabel7d;" />
+									<label value="__MSG_MBlabel7d__" />
 								</html:td>
 								<html:td align="left" style="margin-bottom: 4px;">
 									<html:input id="MBrecmaxlen" maxlength="3" size="3" />
-									<label value="&MBlabel7b;" />
+									<label value="__MSG_MBlabel7b__" />
 								</html:td>
 							</html:tr>
 						</html:table>
 						<html:div style="height: 6px"></html:div>
 						<hbox style="height: ;" >
-							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 3px;" >&indexCSVdateFormat;</label>
+							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 3px;" >__MSG_indexCSVdateFormat__</label>
 							<hbox align="center"  style="padding-left: 0px; height: ;">
 								<html:input id="indexDateFormat" class="adjusted-image-height2"  style=" background-color: ;" />
 							</hbox>
 							<hbox class="adjusted-image-height2" align="center"  style=" background-color: ;">
 								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="padding-left: 3px; padding-top: 0px;  margin-bottom: 0px; background-color: ;"
-            					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
+            					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="__MSG_dateFormatRefTooltipText__" />
 							</hbox>
 						</hbox>
 					</html:div>
@@ -123,77 +117,81 @@
 			</tabpanel>
 			<tabpanel style="margin-left: 10px;">
 				<vbox>
-					<label class="top-header" style="padding-left: 0px;">&captionCustomize;</label>
+					<label class="top-header" style="padding-left: 0px;">__MSG_captionCustomize__</label>
 					<vbox style="padding-left: 10px;">
 						<html:div style="height: 0px"></html:div>
 						<html:div style="height: 6px"></html:div>
 						<hbox align="center">
-							<checkbox id="customizeFilenames" label="&customizeFilename;" 
+							<checkbox id="customizeFilenames" label="__MSG_customizeFilename__" 
 									oncommand="setTimeout(customNamesCheck,200,this);" />
 						</hbox>
 						<html:div style="height: 10px"></html:div>
 						<hbox align="center">
 							<menulist id="part1" style="width: 30%">
 								<menupopup id="part1-popup-list" style="min-width: 24px">
-									<menuitem id="m0" label="&subject;" value="%s" />
-									<menuitem label="&date;" value="%d" />
-									<menuitem label="&dateCustomOpt;" value="%D" />
-									<menuitem label="&key;" value="%k" />
-									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
-									<menuitem label="&name; (&sender;)" value="%a" />
-									<menuitem label="&name; (&recipient;)" value="%r" />
+									<menuitem id="m0" label="__MSG_subject__" value="%s" />
+									<menuitem label="__MSG_date__" value="%d" />
+									<menuitem label="__MSG_dateCustomOpt__" value="%D" />
+									<menuitem label="__MSG_key__" value="%k" />
+									<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
+									<menuitem label="__MSG_name__ (__MSG_sender__)" value="%a" />
+									<menuitem label="__MSG_name__ (__MSG_recipient__)" value="%r" />
 								</menupopup>
 							</menulist>
 							<label value="-" />
 							<menulist id="part2" style="width: 30%">
 								<menupopup id="part2-popup-list">
-									<menuitem label="&subject;" value="%s" />
-									<menuitem label="&date;" value="%d" selected="true" />
-									<menuitem label="&dateCustomOpt;" value="%D" />
-									<menuitem label="&key;" value="%k" />
-									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
-									<menuitem label="&name; (&sender;)" value="%a" />
-									<menuitem label="&name; (&recipient;)" value="%r" />
+									<menuitem label="__MSG_subject__" value="%s" />
+									<menuitem label="__MSG_date__" value="%d" selected="true" />
+									<menuitem label="__MSG_dateCustomOpt__" value="%D" />
+									<menuitem label="__MSG_key__" value="%k" />
+<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
+									<menuitem label="__MSG_name__ (__MSG_sender__)" value="%a" />
+									<menuitem label="__MSG_name__ (__MSG_recipient__)" value="%r" />
+
+
 									<menuitem label=" " value="%e" />
 								</menupopup>
 							</menulist>
 							<label value="-" />
 							<menulist id="part3" style="width: 30%">
 								<menupopup id="part3-popup-list">
-									<menuitem label="&subject;" value="%s" />
-									<menuitem label="&date;" value="%d" />
-									<menuitem label="&dateCustomOpt;" value="%D" />
-									<menuitem label="&key;" value="%k" selected="true" />
-									<menuitem label="&name; (&sender;/&recipient;)" value="%n" />
-									<menuitem label="&name; (&sender;)" value="%a" />
-									<menuitem label="&name; (&recipient;)" value="%r" />
+									<menuitem label="__MSG_subject__" value="%s" />
+									<menuitem label="__MSG_date__" value="%d" />
+									<menuitem label="__MSG_dateCustomOpt__" value="%D" />
+									<menuitem label="__MSG_key__" value="%k" selected="true" />
+									<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
+									<menuitem label="__MSG_name__ (__MSG_sender__)" value="%a" />
+									<menuitem label="__MSG_name__ (__MSG_recipient__)" value="%r" />
+									
+
 									<menuitem label=" " value="%e" />
 								</menupopup>
 							</menulist>
 						</hbox>
 						<html:div style="height: 8px"></html:div>
 						<hbox align="center" style="display: none;">
-							<checkbox id="addtimeCheckbox" label="&addtime.label;" checked="false" />
+							<checkbox id="addtimeCheckbox" label="__MSG_addtime.label__" checked="false" />
 						</hbox>
 						<hbox align="center" width="100%" >
 							<hbox>
-								<checkbox id="addPrefix" label="&addPrefix;" checked="false" />
+								<checkbox id="addPrefix" label="__MSG_addPrefix__" checked="false" />
 								<html:input id="prefixText" />
 							</hbox>
 							<hbox flex="1" style="padding-right: 2px;" pack="end" >
-								<checkbox id="addSuffix" label="&addSuffix;" checked="false"  style="padding-left: 12px;" />
+								<checkbox id="addSuffix" label="__MSG_addSuffix__" checked="false"  style="padding-left: 12px" />
 								<html:input id="suffixText" size="22"/>
 							</hbox>
 						</hbox>
 						<html:div style="height: 10px"></html:div>
 						<hbox style="height: ;" >
-							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >&customDate;</label>
+							<label id="customDateLabel" style="padding-top: 3px; padding-left: 3px;" >__MSG_customDate__</label>
 							<hbox align="center" class="input-container2" style="padding-left: -3px; height: ;">
 								<html:input id="customDateFormat" class="adjusted-image-height2"  style=" background-color: ;" size="21"/>
 							</hbox>
 							<hbox class="adjusted-image-height" align="center"  style=" background-color: ;">
 								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="margin-left: 5px; padding-top: 4px;  margin-bottom2: 2px; background-color: ;"
-            					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="&dateFormatRefTooltipText;" />
+            					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="__MSG_dateFormatRefTooltipText__" />
 							</hbox>
 						</hbox>
 						<html:div style="height: 4px"></html:div>
@@ -202,14 +200,14 @@
 						<hbox pack="start"  style="padding-left: 0px;" align="center">
 							<checkbox id="useExtendedFormat" 
 									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>
-							<label style="padding-left: -12px;">&useExtFilenameFormat;</label>
+							<label style="padding-left: -12px;">__MSG_useExtFilenameFormat__</label>
 							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
-            					maxwidth="18px" maxheightx="16px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
+            					maxwidth="18px" maxheightx="16px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="__MSG_extFilenameFormatRefTooltipText__" />
 						</hbox>
 						<html:div style="height: 6px"></html:div>
 						<hbox valign="center" >
 							<hbox flex="0">
-								<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">&extFormat;</label>
+								<label id="extendedFormatLabel"  style="padding-top: 3px; padding-left: 0px;">__MSG_extFormat__</label>
 							</hbox>
 							<hbox flex="1">
 								<html:input id="extendedFormat" style="width: 100%" />
@@ -217,25 +215,25 @@
 						</hbox>
 					</vbox>
 					<html:div style="height: 15px"></html:div>
-					<label class="section-header">&attachmentFolderNames;</label>
+					<label class="section-header">__MSG_attachmentFolderNames__</label>
 					<vbox style="padding-left: 10px;">
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<hbox flex="0">
-							<label style="padding-left: -4px;">&attachmentFolders;:</label>
+							<label style="padding-left: -4px;">__MSG_attachmentFolders__:</label>
 							</hbox>
 
 								<html:input id="attFolderFormat" style="width: 100%;"/>
 							<hbox flex="0">
 
 							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
-            					maxwidth="18px" maxheightx="20px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="&extFilenameFormatRefTooltipText;" />
+            					maxwidth="18px" maxheightx="20px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="__MSG_extFilenameFormatRefTooltipText__" />
 						</hbox>
 						</hbox>
 
 						<html:div style="height: 8px"></html:div>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<hbox flex="0">
-							<label style="padding-left: -4px;">&inlineAttachmentsFolders;:</label>
+							<label style="padding-left: -4px;">__MSG_inlineAttachmentsFolders__:</label>
 							</hbox>
 
 								<html:input id="inlineAttFolderFormat" style="width: 100%"/>
@@ -247,130 +245,130 @@
 
 						<html:div style="height: 8px"></html:div>
 					</vbox>
-					<label class="section-header">&misc;</label>
+					<label class="section-header">__MSG_misc__</label>
 					<vbox style="padding-left: 10px;">
 					<hbox align="center" >
-							<checkbox id="MBasciiname" label="&MBlabel2;" />
+							<checkbox id="MBasciiname" label="__MSG_MBlabel2__" />
 						</hbox>
 						<hbox align="center" flex="1">
-							<checkbox id="cutSub" label="&cutSub;" />
+							<checkbox id="cutSub" label="__MSG_cutSub__" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
-							<checkbox id="cutFN" label="&cutPathLen;" />
+							<checkbox id="cutFN" label="__MSG_cutPathLen__" />
 						</hbox>
 						<html:div style="height: 3px"></html:div>
 
 						<hbox flex="1">
-							<label value="&filenameCharset;" style="padding-left: 4px;"/>
+							<label value="__MSG_filenameCharset__" style="padding-left: 4px"/>
 							<html:input id="filenameCharset" />
 						</hbox>
 					</vbox>
 				</vbox>
 			</tabpanel>
 			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
-				<label class="section-header">&savedirs;</label>
+				<label class="section-header">__MSG_savedirs__</label>
 				<html:div style="padding-left: 10px; background-color2: green">
 					<html:div style="height: 8px"></html:div>
 					<html:table>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
-								<checkbox id="use_export_mbox_dir" label="&mboxExport;"
+								<checkbox id="use_export_mbox_dir" label="__MSG_mboxExport__"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_mbox_dir" value="" size="60" />
-								<button id="export_mbox_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_mbox_dir')" />
+								<button id="export_mbox_dir_browse" label="__MSG_browse__" oncommand="pickFile(this, 'export_mbox_dir')" />
 							</html:td>
 						</html:tr>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
-								<checkbox id="use_export_eml_dir" label="&emlExport;"
+								<checkbox id="use_export_eml_dir" label="__MSG_emlExport__"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_eml_dir" value="" size="60" />
-								<button  id="export_eml_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_eml_dir')" />
+								<button  id="export_eml_dir_browse" label="__MSG_browse__" oncommand="pickFile(this, 'export_eml_dir')" />
 							</html:td>
 						</html:tr>
 						<html:tr>
 							<html:td style="margin-bottom: 4px;">
-								<checkbox id="use_export_msgs_dir" label="&selExport;"
+								<checkbox id="use_export_msgs_dir" label="__MSG_selExport__"
 										oncommand="setTimeout(toggleDirCheck,200,this);" />
 								<html:input id="export_msgs_dir" value="" size="60" />
-								<button id="export_msgs_dir_browse" label="&browse;" oncommand="pickFile(this, 'export_msgs_dir')" />
+								<button id="export_msgs_dir_browse" label="__MSG_browse__" oncommand="pickFile(this, 'export_msgs_dir')" />
 							</html:td>
 						</html:tr>
 					</html:table>
 					<html:div style="height: 20px"></html:div>
 				</html:div>
-				<label class="section-header">&allMsg;</label>
+				<label class="section-header">__MSG_allMsg__</label>
 				<html:div style="padding-left: 10px; background-color2: green">
-					<label value="&indexSettingLabel;" />
+					<label value="__MSG_indexSettingLabel__" />
 					<hbox align="center">
 						<radiogroup id="indexSetting" oncommand="toggleSkipMsg(this)">
-							<radio label="&indexOn;" />
-							<radio label="&indexOff;" />
+							<radio label="__MSG_indexOn__" />
+							<radio label="__MSG_indexOff__" />
 						</radiogroup>
 					</hbox>
 					<hbox>
 						<html:div style="width: 20px; height: 20px;" ></html:div>
-						<checkbox id="skipMsg" label="&skipMsgLabel;" />
+						<checkbox id="skipMsg" label="__MSG_skipMsgLabel__" />
 					</hbox>
 				</html:div>
 			</tabpanel>
 			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
-				<label class="top-header">&backupSettings;</label>
+				<label class="top-header">__MSG_backupSettings__</label>
 				<html:div style="padding-left: 10px;">
 					<html:div style="height: 8px"></html:div>
 					<vbox>
 						<hbox align="center">
-							<checkbox id="backupEnable" label="&backupOn;" oncommand="toggleBackup(this)" />
-							<label value="&backupFreq;: " />
+							<checkbox id="backupEnable" label="__MSG_backupOn__" oncommand="toggleBackup(this)" />
+							<label value="__MSG_backupFreq__: " />
 							<menulist id="frequencyList">
 								<menupopup>
-									<menuitem label="&day1;" value="1" />
-									<menuitem label="&day3;" value="3" />
-									<menuitem label="&day7;" value="7" />
-									<menuitem label="&day15;" value="15" />
-									<menuitem label="&day30;" value="30" />
-									<menuitem label="&backupOnExit;" value="99" />
+									<menuitem label="__MSG_day1__" value="1" />
+									<menuitem label="__MSG_day3__" value="3" />
+									<menuitem label="__MSG_day7__" value="7" />
+									<menuitem label="__MSG_day15__" value="15" />
+									<menuitem label="__MSG_day30__" value="30" />
+									<menuitem label="__MSG_backupOnExit__" value="99" />
 								</menupopup>
 							</menulist>
 						</hbox>
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center" style="margin-bottom: 4px;">
-							<label value="&backupDestination;: " />
+							<label value="__MSG_backupDestination__: " />
 							<html:input id="backupDir" value="" size="50" />
-							<button label="&browse;" oncommand="pickFile(this, 'backupDir')" />
+							<button label="__MSG_browse__" oncommand="pickFile(this, 'backupDir')" />
 						</hbox>
 						<spacer height="10" />
 						<html:div style="width: 10px; height: 10px;" ></html:div>
-						<label value="&backupFolderName;: " />
+						<label value="__MSG_backupFolderName__: " />
 						<hbox align="center" style="margin-bottom: 4px;">
 							<radiogroup orient="vertical" id="backupDirName">
-								<radio label="&autoName;" />
+								<radio label="__MSG_autoName__" />
 								<hbox>
-									<radio label="&customName;:" />
+									<radio label="__MSG_customName__:" />
 									<html:input id="backupCustomName" value="" size="35" />
 								</hbox>
 							</radiogroup>
 						</hbox>
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center">
-							<label value="&save;: " />
+							<label value="__MSG_save__: " />
 							<radiogroup orient="horizontal" id="saveMode">
-								<radio label="&allFilesMode;" />
-								<radio label="&newFilesMode;" />
+								<radio label="__MSG_allFilesMode__" />
+								<radio label="__MSG_newFilesMode__" />
 							</radiogroup>
 						</hbox>
 						<hbox align="center">
-							<label value="&backupType;: " />
+							<label value="__MSG_backupType__: " />
 							<radiogroup orient="horizontal" id="backupType">
-								<radio label="&allFiles;" />
-								<radio label="&justMailFiles;" />
+								<radio label="__MSG_allFiles__" />
+								<radio label="__MSG_justMailFiles__" />
 							</radiogroup>
 						</hbox>
 						<html:div style="width: 10px; height: 10px;" ></html:div>
 						<hbox align="center">
-							<checkbox id="modalWin" label="&modal;" />
+							<checkbox id="modalWin" label="__MSG_modal__" />
 						</hbox>
 						<hbox align="center">
-							<label value="&lastBackup;: " />
+							<label value="__MSG_lastBackup__: " />
 							<html:input id="backupLast" readonly="true" value="" size="35" />
 						</hbox>
 					</vbox>
@@ -378,6 +376,7 @@
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
+  <script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/wextAPIcmds.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />

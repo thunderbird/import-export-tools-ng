@@ -20,17 +20,17 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
     <p>
-      - 新增：添加帐户级别 mbox 导入<br />- 新增功能：添加帐户级别 mbox 扁平化导出<br />- 新功能：支持 mbox
-      导入和导出到文件系统级别<br />- 修复 CSV 导出到文本 #451、#463<br />
-      - 修复导出文件夹为 ZIP<br />
-      - 修复了仅在 IETNG 更新时加载帮助的问题<br />- 添加偏好设置以从不加载更新帮助#458<br />扩展.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - 修复子区域设置和不受支持的区域设置的帮助<br />- 修复 mbox From_ 分隔符以遵守 RFC 4155 #455<br />
-      - 在消息显示窗口中重新添加导出消息#459<br />
-      - 修复 pop3 的帐户导出<br />- 修复缓冲区边界From_转义<br />- 修复选定消息的处理#485<br />
-      - 完成区域设置更新@Mr-Update<br />
-      - 完成 fr 语言环境更新@DenB10<br />
-      - 完成区域设置更新@Joergen<br />
-      - 更新了 ja 语言环境@kiki-ja<br />
+      - 新功能：EML、HTML、PDF 和纯文本的递归子文件夹导出 #538<br />
+      - 新：索引 #508 中的大小列<br />- 新功能：导入 OSX 9 - CR 终止 mbox 文件 #540<br />
+      - 新功能：支持 ExportSelectedMessages 的快捷方式 #519<br />
+      - 新：捷克语 (cs) 语言环境 - @cewbdex<br />
+      - 修复 mbox From_ 分隔符以使用 asctime() 日期格式 #537<br />
+      - 修复 PDF 导出不使用 Mozilla Save toPDF 设置 #528<br />
+      - 修复右键单击文件夹不显示 Maildir 的导出 mbox 选项 #525<br />
+      - 修复无法导入返回路径标头中带有换行符的电子邮件 #516<br />
+      - 修复将虚拟文件夹的所有消息导出为带有附件和索引的 html - 丢失消息文件夹 #509<br />
+      - 修复消息窗口的上下文菜单#505<br />
+      - 将 dtd 文件转换为 messages.json<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
@@ -475,7 +475,9 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 基于周的年份，世纪为十进制数。 4 位年份对应于 ISO 周数（参见<code class="code1">%V</code>
+            ISO 8601 基于周的年份，世纪为十进制数。 4 位年份对应于 ISO 周数（请参阅<code class="code1"
+              >%V</code
+            >
             ）。它与<code class="code1">%Y</code>具有相同的格式和值，但如果 ISO
             周数属于上一年或下一年，则使用该年。
           </td>
@@ -553,7 +555,7 @@
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
-          <td>小数表示的星期几（范围 0 到 6），星期日为 0。另请参见<code class="code1">%u</code> 。</td>
+          <td>以十进制表示的星期几（范围 0 到 6），星期日为 0。另请参见<code class="code1">%u</code> 。</td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
@@ -586,7 +588,7 @@
     </table>
     <h3>兼容性注意事项：</h3>
     <ul>
-      <li><code class="code1">%c</code> - 格式化字符串略有不同</li>
+      <li><code class="code1">%c</code> - 格式字符串略有不同</li>
       <li>
         <code class="code1">%D</code> - 未实现（使用<code class="code1">%m/%d/%y</code>或<code class="code1"
           >%d/%m/%y</code
@@ -598,10 +600,10 @@
       <li><code class="code1">%h</code> - 未实现（使用<code class="code1">%b</code> ）</li>
       <li><code class="code1">%k</code> - 未添加空格</li>
       <li>
-        <code class="code1">%n</code> - 与<code class="code1">%m</code>类似，但没有前导零（使用<code
+        <code class="code1">%n</code> - 类似于<code class="code1">%m</code> ，但没有前导零（使用<code
           class="code1"
           >\n</code
-        >表示换行符）
+        >换行）
       </li>
       <li><code class="code1">%O</code> - 未实施</li>
       <li><code class="code1">%r</code> - 未实现（使用<code class="code1">%I:%M:%S %p</code> ）</li>
@@ -623,7 +625,7 @@
     <p>
       扩展文件名格式使用标记。可以使用标记以及任何文本或有效文件名字符来构建确切的文件名。无效字符有：
       <code>| * : &lt; &gt; ? \ / &quot;</code>英语 (en-US)
-      标记在任何区域设置中都可用。区域设置特定的标记也可用并在英语表下方列出。<br /><br />例子：<br /><br />
+      标记在任何区域设置中都可用。还可以使用区域设置特定的标记，并在英语表下方列出。<br /><br />例子：<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - 默认格式<br /><span
         class="notranslate"
         ><code>${prefix}_${date_custom}_${sender}</code></span
@@ -824,7 +826,7 @@
       特点和解决的问题：<br />
       <p>
         - 支持 Thunderbird 115 Supernova<br />
-        - 重新设计和现代化选项用户界面<br />- 完整的黑暗模式支持<br />- 新的、一致的菜单系统<br />-
+        - 重新设计和现代化选项用户界面<br />- 完整的深色模式支持<br />- 新的、一致的菜单系统<br />-
         新的工具栏按钮<br />- 改进了帮助，安装时打开<br />- 更新出口账户<br /><br />感谢以下用户提供的增强建议和测试帮助：<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />

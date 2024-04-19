@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">릴리즈 노트:</h3>
     <p>
-      - 새로운 기능: 계정 수준 mbox 가져오기 추가<br />
-      - 새로운 기능: 계정 수준 mbox 평면화된 내보내기 추가<br />
-      - 새로운 기능: mbox 가져오기 및 filesys 수준으로 내보내기 지원<br />
-      - CSV 내보내기를 텍스트 #451, #463으로 수정<br />
-      - 내보내기 폴더를 ZIP으로 수정<br />
-      - IETNG 업데이트에서만 도움말 로드 수정<br />
-      - 업데이트 #458에서 도움말을 로드하지 않도록 환경 설정 추가<br />
-      Extensions.importexporttoolsng.help.showOnInstallAndUpdate<br />
-      - 하위 로케일 및 지원되지 않는 로케일에 대한 도움말 수정<br />
-      - RFC 4155 #455를 준수하도록 mbox From_ 구분 기호 수정<br />
-      - 메시지 표시 창 #459에 메시지 내보내기 다시 추가<br />
-      - pop3에 대한 계정 내보내기 수정<br />
-      - 버퍼 경계 From_ 이스케이프 수정<br />
-      - 선택한 메시지 처리 수정 #485<br />
-      - 로케일 업데이트 완료 @Mr-Update<br />
-      - @DenB10 프랑스어 로케일 업데이트 완료<br />
-      - @Joergen의 로케일 업데이트 완료<br />
-      - ja 로케일 @kiki-ja 업데이트됨<br />
+      - 새로운 기능: EML, HTML, PDF 및 일반 텍스트 #538에 대한 재귀 하위 폴더 내보내기<br />
+      - 신규: 인덱스 #508의 크기 열<br />
+      - 새로운 기능: OSX 9 가져오기 - CR 종료 mbox 파일 #540<br />
+      - 신규: ImportSelectedMessages #519에 대한 단축키 지원<br />
+      - 새로운 기능: 체코어(cs) 로케일 - @cewbdex<br />
+      - asctime() 날짜 형식 #537을 사용하도록 mbox From_ 구분 기호 수정<br />
+      - PDF 내보내기에서 Mozilla Save toPDF 설정을 사용하지 않는 문제 수정 #528<br />
+      - 폴더를 마우스 오른쪽 버튼으로 클릭하면 Maildir #525에 대한 mbox 내보내기 옵션이 표시되지 않는 문제
+      수정<br />
+      - Return-Path 헤더 #516에 줄 바꿈이 있는 이메일을 가져올 수 없는 문제 수정<br />
+      - 가상 폴더의 모든 메시지를 첨부 파일 및 색인과 함께 html로 내보내기 수정 - 메시지 폴더 누락 #509<br />
+      - 메시지 창 #505의 컨텍스트 메뉴 수정<br />
+      - dtd 파일을 message.json으로 변환<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 개요 및 메뉴</h2>
     <p>
@@ -45,7 +40,7 @@
       포함하여 다양한 파일 형식을 지원하는 여러 가져오기 및 내보내기 기능을 제공합니다. 참고: 일부 형식은 모든
       기능에서 지원되지 않습니다.<br />
       - m박스<br />
-      - EML<br />
+      -EML<br />
       - 메일 디렉토리<br />
       - HTML<br />
       - 일반 텍스트<br />
@@ -521,9 +516,7 @@
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>
-            <code class="code1">%G</code> 와 비슷하지만 세기가 없습니다. 즉, 2자리 연도(00-99)가 있습니다.
-          </td>
+          <td><code class="code1">%G</code> 비슷하지만 세기가 없습니다. 즉, 2자리 연도(00-99)가 있습니다.</td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
@@ -599,7 +592,7 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601 현재 연도의 주 번호를 십진수(01~53 범위)로 표시합니다. 여기서 1주는 새해에 최소 4일이
+            ISO 8601 현재 연도의 주 번호를 십진수(범위 01~53)로 표시합니다. 여기서 1주는 새해에 최소 4일이
             있는 첫 번째 주(즉, 첫 번째 목요일)입니다.
           </td>
         </tr>

@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.0.1%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.0.2%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -16,6 +16,21 @@ export functions for messages, folders and profiles.
 - [Apple mail conversion help](https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
 
 ## Import Export Tools NG Add-On Features
+
+Version 14.0.2 : Subfolders Release - April 10, 2024
+
+- New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538
+- New: Size column in index #508
+- New: Import OSX 9- CR terminations mbox files #540
+- New: Support shortcuts for ExportSelectedMessages #519
+- New: Czech (cs) locale - @cewbdex
+- Fix mbox From_ separator to use asctime() date format #537
+- Fix PDF exports do not use Mozilla Save toPDF settings #528
+- Fix Right-clicking folder doesn't show export mbox option for Maildir #525
+- Fix Cannot import emails with linebreaks in Return-Path header #516
+- Fix Export all messages of a virtual folder to html with attachments and index - missing messages folder #509
+- Fix context menu for message window #505
+- Convert dtd files to messages.json
 
 Version 14.0.1 : Maintenance Release - November 10, 2023
 

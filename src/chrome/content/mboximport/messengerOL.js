@@ -72,6 +72,7 @@ function onLoad() {
 
 	window.ietng.OpenBackupDialog = function (mode = "auto") {
 		Services.console.logStringMessage("Start backup check");
+		console.log("IETNG: OpenBackupDialog start");
 		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 	
@@ -95,6 +96,7 @@ function onLoad() {
 				return;
 		}
 	
+		
 		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		} else {

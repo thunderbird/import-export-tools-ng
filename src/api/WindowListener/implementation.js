@@ -2053,6 +2053,8 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
       return; // the application gets unloaded anyway
     }
 
+	console.log("start WL shutdown ", new Date());
+
     // Unload from all still open windows
     let urls = Object.keys(this.registeredWindows);
     if (urls.length > 0) {
@@ -2157,6 +2159,8 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
         resProto.setSubstitution(res[1], null);
       }
     }
+
+	console.log("start chrome unload", new Date());
 
     if (this.chromeHandle) {
       this.chromeHandle.destruct();

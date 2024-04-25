@@ -96,12 +96,18 @@ function onLoad() {
 				return;
 		}
 	
-		
+
 		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
+			console.log("start MODAL backup dialog ", new Date());
+
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		} else {
+			console.log("start NON MODAL backup dialog ", new Date());
+
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
 		}
+	console.log("after open ", new Date());
+
 	}
 	
 
@@ -243,4 +249,6 @@ function onUnload() {
 	window.removeHotKeysObserver();
 	window.ietng.OpenBackupDialog();
 	window.ietngAddon.notifyTools.removeAllListeners();
+	console.log("end of onunload  ", new Date());
+
 }

@@ -1215,6 +1215,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 		scriptStream: null,
 		emailtext: "",
+		nextUri: null,
+		nextFile: null,
+		runAgain: false,
 
 		QueryInterface: function (iid) {
 			if (iid.equals(Ci.nsIStreamListener) ||
@@ -1318,22 +1321,22 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 				return;
 			}
 
-			var nextUri;
-			var nextFile;
 			if (IETexported < IETtotal) {
 				if (fileArray) {
-					nextUri = uriArray[IETexported];
-					nextFile = fileArray[IETexported];
+					this.nextUri = uriArray[IETexported];
+					this.nextFile = fileArray[IETexported];
 				} else if (!hdrArray) {
-					nextUri = uriArray[IETexported];
-					nextFile = file;
+					this.nextUri = uriArray[IETexported];
+					this.nextFile = file;
 				} else {
 					parts = hdrArray[IETexported].split("§][§^^§");
-					nextUri = parts[5];
-					nextFile = file;
+					this.nextUri = parts[5];
+					this.nextFile = file;
 				}
+				this.runAgain = true;
+				return;
 				((async () => {
-					await saveMsgAsEML(nextUri, nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+					await saveMsgAsEML(this.nextUri, this.nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
 				})());
 
 			} else {
@@ -1376,15 +1379,23 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	}
 	myEMLlistner.file2 = file2;
 	myEMLlistner.msgFolder = msgFolder;
+	console.log("start ", msgFolder.name, new Date())
 	mms.streamMessage(msguri, myEMLlistner, msgWindow, null, false, null);
 
 	// yes this is a horrible way to do this 
 	for (let index = 0; index < 1000; index++) {
 		if (saveAsEmlDone) {
+		
 			break;
 		}
-		await new Promise(resolve => setTimeout(resolve, 200));
+		if (myEMLlistner.runAgain) {
+			myEMLlistner.runAgain = false;
+			await saveMsgAsEML(myEMLlistner.nextUri, myEMLlistner.nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
+
+		}
+		await new Promise(resolve => setTimeout(resolve, 5));
 	}
+	console.log("done ", msgFolder.name, new Date())
 
 }
 

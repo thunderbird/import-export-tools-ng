@@ -420,9 +420,14 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 500));
 
+		console.log("bef exd ", params)
+
 		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
+		console.log("af exd ", msgFolder.hasSubFolders)
 
 		if (params.recursive && msgFolder.hasSubFolders) {
+		console.log("has subf")
+
 			await exportSubFolders(type, file, msgFolder, newTopDir, params);
 		}
 	}
@@ -432,6 +437,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
 
+		console.log("subf")
 		let folderDirName = subFolder.name;
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
@@ -442,7 +448,11 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		if (isVirtFol) {
 			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
 		} else {
+			console.log("bef exd ")
+
 			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
+			console.log("af exd ")
+
 		}
 		if (subFolder.hasSubFolders) {
 			await exportSubFolders(type, file, subFolder, newTopDir2, params);
@@ -590,7 +600,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		// console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 
 		if (IETtotal === 0) {
@@ -1212,8 +1222,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 	var start = true;
 	var saveAsEmlDone = false;
-	var nextUri;
-	var nextFile;
+	var nextUri = msguri;
+	var nextFile = file;
 
 	while (!saveAsEmlDone) {
 		await new Promise((resolve, reject) => {
@@ -1337,8 +1347,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							this.nextFile = file;
 						} else {
 							parts = hdrArray[IETexported].split("§][§^^§");
-							this.nextUri = parts[5];
-							this.nextFile = file;
+							nextUri = parts[5];
+							nextFile = file;
+							//console.log(nextUri)
 						}
 						resolve();
 						return;
@@ -1364,7 +1375,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							document.getElementById("IETabortIcon").collapsed = true;
 					}
 					saveAsEmlDone = true;
-
+					resolve();
 				},
 
 				onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1383,20 +1394,22 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 			}
 
 			if (start) {
-				myEMLlistner.nextUri = msguri;
+				//myEMLlistner.nextUri = msguri;
 				start = false;
 			} else {
-				myEMLlistner.nextUri =nextUri;
+				// myEMLlistner.nextUri =nextUri;
 				file = nextFile;
 			}
+			//console.log(nextUri, nextFile)
+
 			myEMLlistner.file2 = file2;
 			myEMLlistner.msgFolder = msgFolder;
-			console.log("start ", myEMLlistner.nextUri, file)
-			mms.streamMessage(myEMLlistner.nextUri, myEMLlistner, msgWindow, null, false, null);
+			console.log("start ", nextUri)
+			mms.streamMessage(nextUri, myEMLlistner, msgWindow, null, false, null);
 
-			nextUri = myEMLlistner.nextUri;
-			nextFile = myEMLlistner.nextFile;
-			console.log(nextUri, nextFile)
+			//nextUri = myEMLlistner.nextUri;
+			//nextFile = myEMLlistner.nextFile;
+			//console.log(nextUri, nextFile)
 			/*
 			// yes this is a horrible way to do this 
 			for (let index = 0; index < 1000; index++) {
@@ -1413,13 +1426,14 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 			}
 			*/
 
-			console.log("done ", msgFolder.name, new Date())
 
 		});
 		if (saveAsEmlDone) {
 			break;
 		}
 	}
+	console.log("done ", msgFolder.name, new Date())
+
 }
 
 var exportAsHtmlDone = false;

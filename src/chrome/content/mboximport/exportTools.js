@@ -409,7 +409,7 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
-			await new Promise(resolve => setTimeout(resolve, 500));
+			await new Promise(resolve => setTimeout(resolve, 50));
 			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false, false);
 
 
@@ -418,16 +418,11 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
 		}
 	} else {
-		await new Promise(resolve => setTimeout(resolve, 500));
-
-		console.log("bef exd ", params)
+		await new Promise(resolve => setTimeout(resolve, 50));
 
 		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
-		console.log("af exd ", msgFolder.hasSubFolders)
 
 		if (params.recursive && msgFolder.hasSubFolders) {
-		console.log("has subf")
-
 			await exportSubFolders(type, file, msgFolder, newTopDir, params);
 		}
 	}
@@ -437,7 +432,6 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
 
-		console.log("subf")
 		let folderDirName = subFolder.name;
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
@@ -448,11 +442,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		if (isVirtFol) {
 			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
 		} else {
-			console.log("bef exd ")
-
 			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
-			console.log("af exd ")
-
 		}
 		if (subFolder.hasSubFolders) {
 			await exportSubFolders(type, file, subFolder, newTopDir2, params);
@@ -1220,7 +1210,6 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
 
-	var start = true;
 	var saveAsEmlDone = false;
 	var nextUri = msguri;
 	var nextFile = file;
@@ -1232,9 +1221,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 				scriptStream: null,
 				emailtext: "",
-				nextUri: null,
-				nextFile: null,
-				runAgain: false,
 
 				QueryInterface: function (iid) {
 					if (iid.equals(Ci.nsIStreamListener) ||
@@ -1340,11 +1326,11 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 					if (IETexported < IETtotal) {
 						if (fileArray) {
-							this.nextUri = uriArray[IETexported];
-							this.nextFile = fileArray[IETexported];
+							nextUri = uriArray[IETexported];
+							nextFile = fileArray[IETexported];
 						} else if (!hdrArray) {
-							this.nextUri = uriArray[IETexported];
-							this.nextFile = file;
+							nextUri = uriArray[IETexported];
+							nextFile = file;
 						} else {
 							parts = hdrArray[IETexported].split("§][§^^§");
 							nextUri = parts[5];
@@ -1393,40 +1379,10 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 				IETlogger.write("call to saveMsgAsEML - error = " + e);
 			}
 
-			if (start) {
-				//myEMLlistner.nextUri = msguri;
-				start = false;
-			} else {
-				// myEMLlistner.nextUri =nextUri;
-				file = nextFile;
-			}
-			//console.log(nextUri, nextFile)
-
+			file = nextFile;
 			myEMLlistner.file2 = file2;
 			myEMLlistner.msgFolder = msgFolder;
-			console.log("start ", nextUri)
 			mms.streamMessage(nextUri, myEMLlistner, msgWindow, null, false, null);
-
-			//nextUri = myEMLlistner.nextUri;
-			//nextFile = myEMLlistner.nextFile;
-			//console.log(nextUri, nextFile)
-			/*
-			// yes this is a horrible way to do this 
-			for (let index = 0; index < 1000; index++) {
-				if (saveAsEmlDone) {
-
-					break;
-				}
-				if (myEMLlistner.runAgain) {
-					myEMLlistner.runAgain = false;
-					await saveMsgAsEML(myEMLlistner.nextUri, myEMLlistner.nextFile, append, uriArray, hdrArray, fileArray, imapFolder, false, file2, msgFolder);
-
-				}
-				await new Promise(resolve => setTimeout(resolve, 5));
-			}
-			*/
-
-
 		});
 		if (saveAsEmlDone) {
 			break;

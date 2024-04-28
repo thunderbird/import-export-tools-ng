@@ -590,7 +590,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		console.log("exportAllMsgsDelayed")
+		// console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 
 		if (IETtotal === 0) {
@@ -1335,11 +1335,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							parts = hdrArray[IETexported].split("§][§^^§");
 							nextUri = parts[5];
 							nextFile = file;
-							//console.log(nextUri)
 						}
 						resolve();
 						return;
-
 					} else {
 						if (myEMLlistner.file2)
 							createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
@@ -1388,8 +1386,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 			break;
 		}
 	}
-	console.log("done ", msgFolder.name, new Date())
-
 }
 
 var exportAsHtmlDone = false;

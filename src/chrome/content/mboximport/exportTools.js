@@ -1398,11 +1398,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	var nextUri = uri;
 
 	while (!exportAsHtmlDone) {
-		await new Promise((resolve, reject) => {
+		var result = await new Promise((resolve, reject) => {
 
 			var myTxtListener = {
 				scriptStream: null,
 				emailtext: "",
+				data: null,
 
 				QueryInterface: function (iid) {
 					if (iid.equals(Ci.nsIStreamListener) ||
@@ -1630,10 +1631,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					var time = (hdr.dateInSeconds) * 1000;
 					if (convertToText) {
 						console.log("bef cvt")
-						data = IEThtmlToText(data);
+						//data = IEThtmlToText(data);
+						//data = myTxtListener.msgFolder.convertMsgSnippetToPlainText(data)
+						this.data = data;
 						console.log("aft cvt")
 
-						IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
+						//IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
 					} else {
 						if (saveAttachments) {
 							// Save embedded images
@@ -1767,7 +1770,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							parts = hdrArray[IETexported].split("§][§^^§");
 							nextUri = parts[5];
 						}
-						resolve();
+						console.log("resolve", convertToText)
+						resolve(convertToText);
 						return;
 
 					} else {
@@ -1785,7 +1789,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						else if (document.getElementById("IETabortIcon"))
 							document.getElementById("IETabortIcon").collapsed = true;
 						exportAsHtmlDone = true;
-						resolve();
+						console.log("resolve done", convertToText)
+
+						resolve(convertToText);
 					}
 				},
 			};
@@ -1841,6 +1847,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			}
 
 		});
+		console.log(result)
+		uri = nextUri;
 	}
 
 	return;
@@ -1907,22 +1915,36 @@ function IEThtmlToText(data) {
 	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
 
+	
 	var toStr = {};
 	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
 	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var dataUTF8 = IETconvertToUTF8(data);
+	var dataUTF8 = data;;
+
+	fromStr = fromStr.QueryInterface(Ci.nsISupportsString);
 	fromStr.data = dataUTF8;
+
 	try {
 		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
+
 	} catch (e) {
 		console.log("cnv to text ex", e)
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
 	}
+	console.log("cnv to text toStr", toStr)
+
 	if (toStr.value) {
+	console.log("cnv to text bef q")
+		//toStr = toStr.value.data;
 		toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
+	console.log("cnv to text aft q", toStr)
+
 		var os = navigator.platform.toLowerCase();
-		var strValue = toStr.toString();
+		//var strValue = toStr.toString();
+		var strValue = toStr.data;
+
 		// Fix for TB13 empty line at the beginning
 		strValue = strValue.replace(/^\r*\n/, "");
 		// Correct the headers format in plain text

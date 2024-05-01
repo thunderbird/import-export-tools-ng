@@ -1404,6 +1404,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				scriptStream: null,
 				emailtext: "",
 				data: null,
+				clone: null,
 
 				QueryInterface: function (iid) {
 					if (iid.equals(Ci.nsIStreamListener) ||
@@ -1632,11 +1633,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					if (convertToText) {
 						console.log("bef cvt")
 						//data = IEThtmlToText(data);
-						//data = myTxtListener.msgFolder.convertMsgSnippetToPlainText(data)
+						data = myTxtListener.msgFolder.convertMsgSnippetToPlainText(data)
 						this.data = data;
+						this.clone = clone;
 						console.log("aft cvt")
 
-						//IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
+						IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
 					} else {
 						if (saveAttachments) {
 							// Save embedded images
@@ -1791,7 +1793,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						exportAsHtmlDone = true;
 						console.log("resolve done", convertToText)
 
-						resolve(convertToText);
+						resolve({cv: convertToText, data: data, clone: clone});
 					}
 				},
 			};
@@ -1848,6 +1850,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 		});
 		console.log(result)
+		if (result.cv && 0) {
+			var data = msgFolder.convertMsgSnippetToPlainText(result.data)
+		console.log(data)
+			
+		}
 		uri = nextUri;
 	}
 

@@ -1406,13 +1406,17 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				data: null,
 				clone: null,
 
+
 				QueryInterface: function (iid) {
+					console.log("qi", iid)
 					if (iid.equals(Ci.nsIStreamListener) ||
 						iid.equals(Ci.nsISupports))
 						return this;
+					console.log("throw qi", iid)
 
 					throw Cr.NS_NOINTERFACE;
 				},
+
 
 				onStartRequest: function (request) { },
 
@@ -1571,7 +1575,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data.replace("</table><br>", rt + "</table><br>");
 					}
 
+					var appendClone;
 					if (this.append && convertToText) {
+						appendClone = clone.clone();
+						console.log(clone.path)
+					}
+
+					if (this.append && convertToText && 0) {
 						data = IEThtmlToText(data);
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 						var nfile = clone.leafName + ".txt";
@@ -1591,7 +1601,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 						console.log("res")
 						resolve();
-						
+
 						return;
 					}
 
@@ -1630,15 +1640,14 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 					}
 					var time = (hdr.dateInSeconds) * 1000;
-					if (convertToText) {
+					if (convertToText && 0) {
 						console.log("bef cvt")
 						//data = IEThtmlToText(data);
-						data = myTxtListener.msgFolder.convertMsgSnippetToPlainText(data)
 						this.data = data;
 						this.clone = clone;
 						console.log("aft cvt")
 
-						IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
+						//IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
 					} else {
 						if (saveAttachments) {
 							// Save embedded images
@@ -1755,7 +1764,22 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
 						else
 							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
-						IETwriteDataOnDisk(clone, data, false, null, time);
+
+						//data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(data)
+
+						if (convertToText) {
+							data = IEThtmlToText(data);
+
+						}
+						if (convertToText && append) {
+							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
+						console.log(appendClone.path)
+
+							var nfile = appendClone.leafName + ".txt";
+							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
+						} else {
+							IETwriteDataOnDisk(clone, data, false, null, time);
+						}
 					}
 					IETexported = IETexported + 1;
 					IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
@@ -1773,13 +1797,16 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							nextUri = parts[5];
 						}
 						console.log("resolve", convertToText)
-						resolve(convertToText);
+						resolve({ cv: convertToText, data: data, clone: clone });
+
+						//resolve(convertToText);
 						return;
 
 					} else {
 						var type = convertToText ? 2 : 1;
-						if (myTxtListener.file2)
+						if (myTxtListener.file2) {
 							createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
+						}
 						if (saveAttachments)
 							type += 7;
 						IETexported = 0;
@@ -1793,7 +1820,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						exportAsHtmlDone = true;
 						console.log("resolve done", convertToText)
 
-						resolve({cv: convertToText, data: data, clone: clone});
+						resolve({ cv: convertToText, data: data, clone: clone });
 					}
 				},
 			};
@@ -1847,13 +1874,18 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				myTxtListener.chrset = hdr.Charset;
 				messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
 			}
+			console.log("af str")
 
 		});
 		console.log(result)
-		if (result.cv && 0) {
-			var data = msgFolder.convertMsgSnippetToPlainText(result.data)
-		console.log(data)
-			
+		if (result.cv || 1) {
+			result.data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(result.data)
+
+			//result.data = IEThtmlToText(result.data);
+			//IETwriteDataOnDiskWithCharset(result.clone, result.data, false, null, time);
+
+			//console.log(data)
+
 		}
 		uri = nextUri;
 	}
@@ -1921,59 +1953,59 @@ function IEThtmlToText(data) {
 
 	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
+	data = IETconvertToUTF8(data);
+	data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(data)
 
+	/*	
+		var toStr = {};
+		var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
+		var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
+		var dataUTF8 = IETconvertToUTF8(data);
+		var dataUTF8 = data;;
 	
-	var toStr = {};
-	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
-	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	var dataUTF8 = IETconvertToUTF8(data);
-	var dataUTF8 = data;;
-
-	fromStr = fromStr.QueryInterface(Ci.nsISupportsString);
-	fromStr.data = dataUTF8;
-
-	try {
-		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
-
-	} catch (e) {
-		console.log("cnv to text ex", e)
-		dataUTF8 = dataUTF8.replace("$%$%$", ":");
-		return dataUTF8;
-	}
-	console.log("cnv to text toStr", toStr)
-
-	if (toStr.value) {
-	console.log("cnv to text bef q")
-		//toStr = toStr.value.data;
-		toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
-	console.log("cnv to text aft q", toStr)
-
-		var os = navigator.platform.toLowerCase();
-		//var strValue = toStr.toString();
-		var strValue = toStr.data;
-
-		// Fix for TB13 empty line at the beginning
-		strValue = strValue.replace(/^\r*\n/, "");
-		// Correct the headers format in plain text
-		var head;
-		var text;
-		var headcorrect;
-
-		if (os.indexOf("win") > -1) {
-			head = strValue.match(/(.+\r\n?)*/)[0];
-			text = strValue.replace(/(.+\r\n?)*/, "");
-			headcorrect = head.replace(/:\r\n/g, ": ");
-		} else {
-			head = strValue.match(/(.+\n?)*/)[0];
-			text = strValue.replace(/(.+\n?)*/, "");
-			headcorrect = head.replace(/:\n/g, ": ");
+		fromStr = fromStr.QueryInterface(Ci.nsISupportsString);
+		fromStr.data = dataUTF8;
+	
+		try {
+			formatConverter.convert("text/html", fromStr, "text/plain", toStr);
+	
+		} catch (e) {
+			console.log("cnv to text ex", e)
+			dataUTF8 = dataUTF8.replace("$%$%$", ":");
+			return dataUTF8;
 		}
-		var retValue = headcorrect + text;
-		retValue = retValue.replace("$%$%$", ":");
-		return retValue;
+		console.log("cnv to text toStr", toStr)
+	
+		if (toStr.value) {
+		console.log("cnv to text bef q")
+			//toStr = toStr.value.data;
+			toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
+		console.log("cnv to text aft q", toStr)
+	*/
+	var os = navigator.platform.toLowerCase();
+
+
+	var strValue = data;
+
+	// Fix for TB13 empty line at the beginning
+	strValue = strValue.replace(/^\r*\n/, "");
+	// Correct the headers format in plain text
+	var head;
+	var text;
+	var headcorrect;
+
+	if (os.indexOf("win") > -1) {
+		head = strValue.match(/(.+\r\n?)*/)[0];
+		text = strValue.replace(/(.+\r\n?)*/, "");
+		headcorrect = head.replace(/:\r\n/g, ": ");
+	} else {
+		head = strValue.match(/(.+\n?)*/)[0];
+		text = strValue.replace(/(.+\n?)*/, "");
+		headcorrect = head.replace(/:\n/g, ": ");
 	}
-	dataUTF8 = dataUTF8.replace("$%$%$", ":");
-	return dataUTF8;
+	var retValue = headcorrect + text;
+	retValue = retValue.replace("$%$%$", ":");
+	return retValue;
 }
 
 function exportVirtualFolder(msgFolder, destDir) {

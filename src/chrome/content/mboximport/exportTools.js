@@ -503,6 +503,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
+	console.log("folder", msgFolder.name,"total", IETtotal)
 	IETexported = 0;
 	IETskipped = 0;
 
@@ -569,6 +570,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
+	console.log("folder", msgFolder.name,"total skip", IETtotal)
+
 			continue;
 		}
 		// cleidigh
@@ -577,6 +580,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 		hdrArray.push(hdrStr);
 	}
+	console.log("folder", msgFolder.name,"total", IETtotal,"hdrarray",hdrArray.length)
+
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
@@ -590,8 +595,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		// console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
+		console.log("folder", msgFolder.name,"total", IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -1392,7 +1398,8 @@ var exportAsHtmlDone = false;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	//console.log("html hdrs", msgFolder.name, hdrArray.length)
+	console.log("html hdrs", msgFolder.name, hdrArray.length)
+	console.log("folder", msgFolder.name,"total", IETtotal,"hdrarray",hdrArray.length)
 
 	var exportAsHtmlDone = false;
 	var nextUri = uri;

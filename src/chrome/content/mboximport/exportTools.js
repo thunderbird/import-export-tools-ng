@@ -679,6 +679,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var file2 = file.clone();
 	IETgetSortType();
+	var cnt = 0;
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {
 
@@ -688,6 +689,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		var tempExists = false;
 		var tempFile;
 
+		cnt++;
+		console.log(cnt)
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
@@ -705,8 +708,19 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			}
 			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
+		console.log("push",cnt)
+
 		}
+		
 	}
+	if (IETtotal != hdrArray.length) {
+		console.log("len not eq")
+		alert("Iterated not equal to total messages : Please report");
+		
+	}
+	IETtotal = hdrArray.length;
+
+	console.log("folder", msgFolder.name,"total", IETtotal, "hdrarray", hdrArray.length)
 
 	/*
 	if (msgFolder.getTotalMessages(false) != hdrArray.length) {

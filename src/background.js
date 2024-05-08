@@ -86,7 +86,7 @@ function main() {
 		["locale", "mboximport", "en-US", "chrome/locale/en-US/mboximport/"],
 
 		["locale", "mboximport", "ca", "chrome/locale/ca/mboximport/"],
-		["locale", "mboximport", "cs", "chrome/locale/ca/mboximport/"],
+		["locale", "mboximport", "cs", "chrome/locale/cs/mboximport/"],
 		["locale", "mboximport", "da", "chrome/locale/da/mboximport/"],
 		["locale", "mboximport", "de", "chrome/locale/de/mboximport/"],
 		["locale", "mboximport", "es-ES", "chrome/locale/es-ES/mboximport/"],

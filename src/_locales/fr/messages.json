@@ -630,6 +630,6 @@
         "message": "Utiliser l’extension .mbox pour les fichiers mbox (non structurés)"
     },
     "CRconversion.statusMsg": {
-        "message": "Conversion CR =&gt; terminaisons de ligne CRLF"
+        "message": "Conversion des fins de ligne CR ⇒ CRLF"
     }
 }

@@ -92,10 +92,13 @@ function onLoad() {
 			console.debug(time-last);
 			console.debug(days);
 		
-			if ((time - last) < (days - (60 * 5)))
+			if ((time - last) < (days - (60 * 5))) {
+				console.log("Backup not ready");
 				return;
+			}
 		}
 	
+		console.log("Open Backup dialog");
 
 		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
 			console.log("start MODAL backup dialog ", new Date());
@@ -183,7 +186,7 @@ function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttC
 		}
 
 		if (!tbExtButton) {
-			console("Exception: Extension button not found on toolbar")
+			console.log("Exception: Extension button not found on toolbar")
 			return;
 		}
 		// get parent div for listener

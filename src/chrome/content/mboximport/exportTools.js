@@ -682,7 +682,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var msgList = [...msgFolder.messages];
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
-		alert("msglist noteq to total msgs")
+		console.log("msglist noteq to total msgs")
 	}
 
 	var cnt = 0;
@@ -696,7 +696,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		var tempFile;
 
 		cnt++;
-		console.log(cnt)
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
@@ -714,13 +713,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			}
 			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
-		console.log("push",cnt)
-
 		}
 		
 	}
 	if (IETtotal != hdrArray.length) {
-		console.log("len not eq")
+		console.log("len not eq", IETtotal, hdrArray.length)
 		alert("Iterated not equal to total messages : Please report");
 		
 	}

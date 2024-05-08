@@ -679,6 +679,12 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var file2 = file.clone();
 	IETgetSortType();
+
+	var msgList = [...msgFolder.messages];
+	if (msgFolder.getTotalMessages(false) != msgList.length) {
+		alert("msglist noteq to total msgs")
+	}
+	
 	var cnt = 0;
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {

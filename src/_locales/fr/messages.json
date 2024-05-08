@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Conversion des fins de ligne CR ⇒ CRLF"
-    }
+    },
+
+	"Size": {
+		"message": "Taille"
+	}
 }

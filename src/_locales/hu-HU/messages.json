@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "CR =&gt; CRLF vonalvégződések konvertálása"
-    }
+    },
+
+	"Size": {
+		"message": "Méret"
+	}
 }

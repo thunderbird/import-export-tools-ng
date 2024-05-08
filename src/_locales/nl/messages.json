@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
-    }
+    },
+
+	"Size": {
+		"message": "Maat"
+	}
 }

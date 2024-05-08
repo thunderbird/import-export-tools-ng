@@ -136,7 +136,7 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "CRconversion.statusMsg", text: "Converting CR => CRLF line terminations"},
+  { key: "Size", text: "Size"},
 	
 
 	
@@ -643,24 +643,21 @@ localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 // unmanaged help locales
-localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
-	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+//localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
+//	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 
 // managed help locales
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-// localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
-//localeFile = "settings.json";
-// t();
-translateHelpPage();
+//translateHelpPage();
 //translatePage();
 //loadTranslationArray(inputFiles, options);
 //console.log(translationArray.length)
 //translationArray = translationArray.slice(101)
 //translateAll("messages.json", translationArray, options);
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 //locs()

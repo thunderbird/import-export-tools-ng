@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
-    }
+    },
+
+	"Size": {
+		"message": "Μέγεθος"
+	}
 }

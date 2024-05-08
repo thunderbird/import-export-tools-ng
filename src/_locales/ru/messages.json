@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Преобразование CR =&gt; окончания строки CRLF"
-    }
+    },
+
+	"Size": {
+		"message": "Размер"
+	}
 }

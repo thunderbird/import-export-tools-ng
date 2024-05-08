@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "CR から CRLF へ改行コードを変換しました。"
-    }
+    },
+
+	"Size": {
+		"message": "サイズ"
+	}
 }

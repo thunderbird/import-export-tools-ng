@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Converting CR => CRLF line terminations"
-    }
+    },
+
+	"Size": {
+		"message": "Size"
+	}
 }

@@ -684,7 +684,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
 		alert("msglist noteq to total msgs")
 	}
-	
+
 	var cnt = 0;
 	// Export the messages one by one
 	while (msgArray.hasMoreElements()) {
@@ -861,8 +861,8 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
-	//data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1028) + "</b></th>"; // Attachment
-	data = data + "<th><b>" + "Size" + "</b></th>"; // Attachment
+	const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
+	data = data + "<th><b>" + sizeStr + "</b></th>"; // Attachment
 
 	data = data + "</tr>";
 

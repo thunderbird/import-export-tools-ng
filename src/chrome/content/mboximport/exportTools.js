@@ -837,6 +837,17 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
 	}
 
+	var hdrsBundle;
+	if (Services.locale.appLocaleAsBCP47 === "ja") {
+		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
+	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
+		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
+	//} else if (Services.locale.appLocaleAsBCP47 === "zh-TW") {
+		//hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh-tw.properties");
+	} else {
+		hdrsBundle = printingtools.strBundleService.createBundle("chrome://messenger/locale/mime.properties");
+	}
+
 	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
@@ -854,10 +865,10 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
-	data = data + "<tr><th><b>" + mboximportbundle2.GetStringFromID(1000) + "</b></th>"; // Subject
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1009) + "</b></th>"; // From
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1012) + "</b></th>"; // To
-	data = data + "<th><b>" + mboximportbundle2.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<tr><th><b>" + hdrsBundle.GetStringFromID(1000) + "</b></th>"; // Subject
+	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1009) + "</b></th>"; // From
+	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1012) + "</b></th>"; // To
+	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
 
 	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 

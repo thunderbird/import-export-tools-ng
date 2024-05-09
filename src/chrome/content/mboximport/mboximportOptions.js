@@ -251,7 +251,6 @@ function initMboxImportPanel() {
         var localTime = time.toLocaleString();
         document.getElementById("backupLast").value = localTime;
     }
-    document.getElementById("modalWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog");
 
 }
 
@@ -348,7 +347,6 @@ function saveMboxImportPrefs() {
         IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir_custom_name");
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
-    IETprefs.setBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog", document.getElementById("modalWin").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
 }

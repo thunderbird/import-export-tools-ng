@@ -98,19 +98,8 @@ function onLoad() {
 			}
 		}
 	
-		console.log("Open Backup dialog");
-
-		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
 			console.log("start MODAL backup dialog ", new Date());
-
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
-		} else {
-			console.log("start NON MODAL backup dialog ", new Date());
-
-			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
-		}
-	console.log("after open ", new Date());
-
 	}
 	
 

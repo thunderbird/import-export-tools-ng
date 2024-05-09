@@ -298,12 +298,6 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
-
-	if (window.opener) {
-		if (this.window.opener.ietngAddon) {
-			
-		}
-	}
 	i18n.updateDocument({extension: window.opener.ietngAddon.extension});
 	autoBackup.load();
 });

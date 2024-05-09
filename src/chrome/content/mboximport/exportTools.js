@@ -764,7 +764,7 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
 		case 4: // Plain text, single file, no index
-			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder);
 			break;
 		case 5: // Just CSV index
 			createIndexCSV(type, file2, hdrArray, msgFolder, false);
@@ -773,7 +773,7 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
-			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, null, true);
+			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder, true);
 			break;
 		case 8: // HTML format, with index and attachments
 			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);

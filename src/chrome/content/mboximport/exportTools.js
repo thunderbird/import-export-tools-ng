@@ -503,7 +503,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
-	console.log("folder", msgFolder.name,"total", IETtotal)
+	console.log("folder", msgFolder.name, "total", IETtotal)
 	IETexported = 0;
 	IETskipped = 0;
 
@@ -570,7 +570,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
-	console.log("folder", msgFolder.name,"total skip", IETtotal)
+			console.log("folder", msgFolder.name, "total skip", IETtotal)
 
 			continue;
 		}
@@ -580,7 +580,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 		hdrArray.push(hdrStr);
 	}
-	console.log("folder", msgFolder.name,"total", IETtotal,"hdrarray",hdrArray.length)
+	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
@@ -597,7 +597,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	try {
 		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
-		console.log("folder", msgFolder.name,"total", IETtotal)
+		console.log("folder", msgFolder.name, "total", IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -682,7 +682,23 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var msgList = [...msgFolder.messages];
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
-		console.log("msglist noteq to total msgs")
+		console.log("msglist noteq to total msgs");
+		alert("msglist noteq to total msgs", msgFolder.name, IETtotal, [...msgFolder.messages].length);
+
+		let curMsgFolder = window.gTabmail.currentTabInfo.folder;
+		window.gTabmail.currentTabInfo.folder = msgFolder;
+		var gDBView = gTabmail.currentAbout3Pane.gDBView;
+		var waitCnt = 10;
+		while (waitCnt--) {
+			if (IETtotal = [...msgFolder.messages].length) {
+				break;
+			}
+			await new Promise(r => window.setTimeout(r, 50));
+		}
+		// jump back to top folder
+		window.gTabmail.currentTabInfo.folder = curMsgFolder;
+
+
 	}
 
 	var cnt = 0;
@@ -714,16 +730,16 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
 		}
-		
+
 	}
 	if (IETtotal != hdrArray.length) {
 		console.log("len not eq", IETtotal, hdrArray.length)
 		alert("Iterated not equal to total messages : Please report");
-		
+
 	}
 	IETtotal = hdrArray.length;
 
-	console.log("folder", msgFolder.name,"total", IETtotal, "hdrarray", hdrArray.length)
+	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	/*
 	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
@@ -839,7 +855,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
 	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
 		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
-	//} else if (Services.locale.appLocaleAsBCP47 === "zh-TW") {
+		//} else if (Services.locale.appLocaleAsBCP47 === "zh-TW") {
 		//hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh-tw.properties");
 	} else {
 		hdrsBundle = printingtools.strBundleService.createBundle("chrome://messenger/locale/mime.properties");
@@ -1427,7 +1443,7 @@ var exportAsHtmlDone = false;
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
 	console.log("html hdrs", msgFolder.name, hdrArray.length)
-	console.log("folder", msgFolder.name,"total", IETtotal,"hdrarray",hdrArray.length)
+	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	var exportAsHtmlDone = false;
 	var nextUri = uri;
@@ -1435,7 +1451,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	while (!exportAsHtmlDone) {
 		var result = await new Promise((resolve, reject) => {
 
-	console.log(msgFolder.name, hdrArray.length, IETexported)
+			console.log(msgFolder.name, hdrArray.length, IETexported)
 
 			var myTxtListener = {
 				scriptStream: null,
@@ -1809,7 +1825,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 						if (convertToText && append) {
 							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
-						console.log(appendClone.path)
+							console.log(appendClone.path)
 
 							var nfile = appendClone.leafName + ".txt";
 							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);

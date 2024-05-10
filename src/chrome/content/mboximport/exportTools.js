@@ -686,7 +686,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		alert("msglist noteq to total msgs", msgFolder.name, IETtotal, [...msgFolder.messages].length);
 
 		let curMsgFolder = window.gTabmail.currentTabInfo.folder;
-		window.gTabmail.currentTabInfo.folder = msgFolder;
+		//window.gTabmail.currentTabInfo.folder = msgFolder;
 		var gDBView = gTabmail.currentAbout3Pane.gDBView;
 		var waitCnt = 10;
 		while (waitCnt--) {

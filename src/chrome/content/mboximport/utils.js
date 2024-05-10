@@ -37,7 +37,7 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
@@ -282,12 +282,23 @@ function getSubjectForHdr(hdr, dirPath) {
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 
+
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16_7bitASCII")) {
+		fname = filterNonASCIICharacters(fname);
+	}
+
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
 		if (fname.length > maxFN)
 			fname = fname.substring(0, maxFN);
 	}
 	return fname;
+}
+
+function filterNonASCIICharacters(str) {
+	str = str.replace(/[\u{0080}-\u{FFFF}]/gu, "");
+	str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
+	return str;
 }
 
 function formatNameForSubject(str, recipients) {
@@ -573,9 +584,9 @@ function IETcleanName(str) {
 function IETgetExt(type) {
 	if (type === 1 || type === 8) {
 		return ".html";
-	}	else if (type === 10) {
+	} else if (type === 10) {
 		return ".pdf";
-	}	else if (type === 0) {
+	} else if (type === 0) {
 		return ".eml";
 	}
 

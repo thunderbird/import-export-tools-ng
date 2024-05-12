@@ -34,6 +34,7 @@ pref("extensions.importexporttoolsng.export.filename_use_extended_format", "fals
 pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date_custom}-${index}");
 pref("extensions.importexporttoolsng.export.attachments.filename_extended_format", "Attachments");
 pref("extensions.importexporttoolsng.export.filename_filterUTF16_7bitASCII", false);
+pref("extensions.importexporttoolsng.export.filename_latinize", false);
 pref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", "EmbeddedImages");
 pref("extensions.importexporttoolsng.export.use_container_folder", true);
 pref("extensions.importexporttoolsng.sms.add_subject", true);

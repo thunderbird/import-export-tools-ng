@@ -41,6 +41,7 @@ var Services = globalThis.Services || ChromeUtils.import(
 ).Services;
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -282,6 +283,9 @@ function getSubjectForHdr(hdr, dirPath) {
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {
+		fname = latinizeString(fname);
+	}
 
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16_7bitASCII")) {
 		fname = filterNonASCIICharacters(fname);

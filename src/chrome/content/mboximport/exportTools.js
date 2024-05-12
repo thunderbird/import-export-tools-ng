@@ -1442,8 +1442,8 @@ var exportAsHtmlDone = false;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	console.log("html hdrs", msgFolder.name, hdrArray.length)
-	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
+	//console.log("html hdrs", msgFolder.name, hdrArray.length)
+	//console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	var exportAsHtmlDone = false;
 	var nextUri = uri;
@@ -1451,7 +1451,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	while (!exportAsHtmlDone) {
 		var result = await new Promise((resolve, reject) => {
 
-			console.log(msgFolder.name, hdrArray.length, IETexported)
+			//console.log(msgFolder.name, hdrArray.length, IETexported)
 
 			var myTxtListener = {
 				scriptStream: null,

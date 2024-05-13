@@ -1479,9 +1479,16 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 				onStopRequest: function (request, statusCode) {
 
+					console.log("stopreq", statusCode)
 					var data = this.emailtext;
+					console.log(data)
+
 					if (copyToClip) {
-						IETcopyToClip(data);
+						//convertToText = true;
+						console.log(msgFolder.name)
+						IETcopyToClip(data, msgFolder);
+						exportAsHtmlDone = true;
+						resolve({result: 1, data: data});
 						return;
 					}
 
@@ -1633,7 +1640,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					}
 
 					if (this.append && convertToText && 0) {
-						data = IEThtmlToText(data);
+						data = IEThtmlToText(data, msgFolder);
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 						var nfile = clone.leafName + ".txt";
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
@@ -1820,7 +1827,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						if (convertToText) {
 							console.log("cvt", IETexported)
-							data = IEThtmlToText(data);
+							data = IEThtmlToText(data, msgFolder);
 
 						}
 						if (convertToText && append) {
@@ -1829,7 +1836,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 							var nfile = appendClone.leafName + ".txt";
 							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
+						} else if (convertToText && copyToClip) {
+							console.log(data)
+
 						} else {
+						
 							IETwriteDataOnDisk(clone, data, false, null, time);
 						}
 					}
@@ -1944,6 +1955,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 		uri = nextUri;
 	}
 
+	//let d  = msgFolder.convertMsgSnippetToPlainText(result.data)
+
+	//console.log(d)
 	return;
 }
 
@@ -1977,16 +1991,18 @@ function getLoadContext() {
 }
 
 
-function IETcopyToClip(data) {
+function IETcopyToClip(data, msgFolder) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
-	str.data = IEThtmlToText(data);
+	str.data = IEThtmlToText(data, msgFolder);
 
 	console.log(str.data)
+	return;
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
+					this.scriptStream = null;
 	var dataUTF8 = IETconvertToUTF8(data);
 	str2.data = dataUTF8;
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
@@ -2003,12 +2019,13 @@ function IETcopyToClip(data) {
 	return true;
 }
 
-function IEThtmlToText(data) {
+function IEThtmlToText(data, msgFolder) {
 
 	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
 	data = IETconvertToUTF8(data);
-	data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(data)
+	data = msgFolder.convertMsgSnippetToPlainText(data)
+	return data;
 
 
 	/*	
@@ -2253,10 +2270,18 @@ async function copyMSGtoClip(selectedMsgs) {
 		let realMessage = window.ietngAddon.extension
 			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
-
+		console.log(realMessage.folder)
 		if (!msguri)
 			return;
-		await exportAsHtml(msguri, null, null, null, null, true, null, null, null, null);
+
+    let rawBytes = await mboxImportExport.getRawMessage(msguri);
+		console.log(rawBytes)
+		let data = rawBytes;
+		data = IETconvertToUTF8(data);
+	let data2 = realMessage.folder.convertMsgSnippetToPlainText(data)
+		//IETcopyToClip(rawBytes, realMessage.folder);
+
+		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
 	}
 }
 

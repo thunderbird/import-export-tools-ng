@@ -2277,9 +2277,21 @@ async function copyMSGtoClip(selectedMsgs) {
     let rawBytes = await mboxImportExport.getRawMessage(msguri);
 		console.log(rawBytes)
 		let data = rawBytes;
-		data = IETconvertToUTF8(data);
-	let data2 = realMessage.folder.convertMsgSnippetToPlainText(data)
+
+		let convert = {
+			convert() {
+				data = IETconvertToUTF8(data);
+				data = realMessage.folder.convertMsgSnippetToPlainText(data)
+			},
+			QueryInterface: ChromeUtils.generateQI([
+				"nsIStreamListener",
+				"nsISupports",
+			]),
+		}
+		
+		convert.convert();
 		//IETcopyToClip(rawBytes, realMessage.folder);
+		console.log(data)
 
 		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
 	}

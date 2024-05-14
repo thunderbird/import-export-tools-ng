@@ -850,15 +850,15 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
 	}
 
+	let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
+
 	var hdrsBundle;
 	if (Services.locale.appLocaleAsBCP47 === "ja") {
-		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
 	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
-		hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
-		//} else if (Services.locale.appLocaleAsBCP47 === "zh-TW") {
-		//hdrsBundle = printingtools.strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh-tw.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
 	} else {
-		hdrsBundle = printingtools.strBundleService.createBundle("chrome://messenger/locale/mime.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}
 
 	// Improve index table formatting
@@ -2288,8 +2288,9 @@ async function copyMSGtoClip(selectedMsgs) {
 				"nsISupports",
 			]),
 		}
+		data = IEThtmlToText(data, realMessage.folder);
 		
-		convert.convert();
+		//convert.convert();
 		//IETcopyToClip(rawBytes, realMessage.folder);
 		console.log(data)
 

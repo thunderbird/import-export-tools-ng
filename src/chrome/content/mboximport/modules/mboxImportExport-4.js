@@ -697,7 +697,7 @@ export var mboxImportExport = {
         streamlistener,
         null, // aMsgWindow
         null, // aUrlListener
-        true, // aConvertData
+        false, // aConvertData
         "" //aAdditionalHeader
       );
     });

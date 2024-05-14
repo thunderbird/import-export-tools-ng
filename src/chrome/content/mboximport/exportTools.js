@@ -1996,9 +1996,8 @@ function IETcopyToClip(data, msgFolder) {
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data, msgFolder);
-
+	str.data = data;
 	console.log(str.data)
-	return;
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
@@ -2277,22 +2276,36 @@ async function copyMSGtoClip(selectedMsgs) {
     let rawBytes = await mboxImportExport.getRawMessage(msguri);
 		console.log(rawBytes)
 		let data = rawBytes;
+		data = data.replace(/\:\s*<\/td>/, "$%$%$");
 
 		let convert = {
+
 			convert() {
+		  //data = IEThtmlToText(data, realMessage.folder);
+
 				data = IETconvertToUTF8(data);
-				data = realMessage.folder.convertMsgSnippetToPlainText(data)
+				return realMessage.folder.convertMsgSnippetToPlainText(data)
 			},
-			QueryInterface: ChromeUtils.generateQI([
-				"nsIStreamListener",
-				"nsISupports",
-			]),
+			
+			
+			QueryInterface: function (iid) {
+				console.log("qi",iid)
+				if (iid.equals(Ci.nsIStreamListener) ||
+					iid.equals(Ci.nsISupports))
+					return this;
+					console.log("throw qi",iid)
+
+				throw Cr.NS_NOINTERFACE;
+			},
+
 		}
-		data = IEThtmlToText(data, realMessage.folder);
+		//data = IEThtmlToText(data, realMessage.folder);
 		
-		//convert.convert();
-		//IETcopyToClip(rawBytes, realMessage.folder);
-		console.log(data)
+		let data2 = convert.convert();
+		//fixUpHdrs(data)
+		IETcopyToClip(data2, realMessage.folder);
+
+		console.log(data2)
 
 		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
 	}

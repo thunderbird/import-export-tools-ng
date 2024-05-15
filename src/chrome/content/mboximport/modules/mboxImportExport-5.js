@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v4");
+console.log("IETNG: mboximportExport.js -v5");
 
 export var mboxImportExport = {
 
@@ -590,7 +590,7 @@ export var mboxImportExport = {
       let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
       
       // get message as 8b string
-      let rawBytes = await this.getRawMessage(msgUri);
+      let rawBytes = await this.getRawMessage(msgUri, false);
 
       if (index) {
         sep = "\n";
@@ -657,7 +657,7 @@ export var mboxImportExport = {
     //console.log("End: ", end, (end - st) / 1000);
   },
 
-  getRawMessage: async function (msgUri) {
+  getRawMessage: async function (msgUri, aConvertData) {
 
     let service = MailServices.messageServiceFromURI(msgUri);
     return new Promise((resolve, reject) => {
@@ -697,7 +697,7 @@ export var mboxImportExport = {
         streamlistener,
         null, // aMsgWindow
         null, // aUrlListener
-        true, // aConvertData
+        aConvertData, // aConvertData
         "" //aAdditionalHeader
       );
     });

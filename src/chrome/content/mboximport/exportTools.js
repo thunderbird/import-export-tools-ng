@@ -2272,7 +2272,7 @@ async function copyMSGtoClip(selectedMsgs) {
 		if (!msguri)
 			return;
 
-    let rawBytes = await mboxImportExport.getRawMessage(msguri);
+    let rawBytes = await mboxImportExport.getRawMessage(msguri, true);
 		console.log(rawBytes)
 		let data = rawBytes;
 		data = data.replace(/\:\s*<\/td>/, "$%$%$");

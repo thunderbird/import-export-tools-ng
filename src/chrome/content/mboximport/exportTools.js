@@ -1997,7 +1997,6 @@ function IETcopyToClip(data, msgFolder) {
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
 	str.data = IEThtmlToText(data, msgFolder);
 	str.data = data;
-	console.log(str.data)
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
@@ -2302,13 +2301,41 @@ async function copyMSGtoClip(selectedMsgs) {
 		//data = IEThtmlToText(data, realMessage.folder);
 		
 		let data2 = convert.convert();
-		//fixUpHdrs(data)
+		data2 = fixClipHdrs(data2);
 		IETcopyToClip(data2, realMessage.folder);
 
 		console.log(data2)
 
 		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
 	}
+}
+
+function fixClipHdrs(strValue) {
+	var os = navigator.platform.toLowerCase();
+
+
+
+	// Fix for TB13 empty line at the beginning
+	strValue = strValue.replace(/^\r*\n/, "");
+	// Correct the headers format in plain text
+	var head;
+	var text;
+	var headcorrect;
+
+	if (os.indexOf("win") > -1) {
+		head = strValue.match(/(.+\r?\n)*/)[0];
+		text = strValue.replace(/(.+\r?\n)*/, "");
+		headcorrect = head.replace(/:\r?\n/g, ": ");
+
+	} else {
+		head = strValue.match(/(.+\n?)*/)[0];
+		text = strValue.replace(/(.+\n?)*/, "");
+		headcorrect = head.replace(/:\n/g, ": ");
+	}
+	var retValue = headcorrect + text;
+	retValue = retValue.replace("$%$%$", ":");
+
+	return retValue;
 }
 
 var copyHeaders = {

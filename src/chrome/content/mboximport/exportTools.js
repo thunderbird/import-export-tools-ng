@@ -274,15 +274,18 @@ async function exportSelectedMsgs(type, params) {
 
 	var hdrArray;
 
+	console.log("exp sel msgs", type)
+	console.log(msgFolder.name)
+
 	switch (type) {
 		case 1:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
 			break;
 		case 2:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder);
 			break;
 		case 3:
-			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
+			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, msgFolder);
 			break;
 		case 4:
 			if (isMbox(file) !== 1) {
@@ -305,10 +308,10 @@ async function exportSelectedMsgs(type, params) {
 			createIndexCSV(type, file, hdrArray, msgFolder, true);
 			break;
 		case 8:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
 			break;
 		case 9:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, null, true);
+			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder, true);
 			break;
 		default:
 			await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
@@ -1321,9 +1324,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						IETwriteDataOnDisk(fileClone, data, true, null, null);
 						sub = true;
 					} else {
-						if (!hdrArray)
+						if (!hdrArray) {
 							sub = getSubjectForHdr(hdr, file.path);
-						else {
+						} else {
 							var parts = hdrArray[IETexported].split("§][§^^§");
 							sub = parts[4];
 							sub = sub.replace(/[\x00-\x1F]/g, "_");
@@ -1419,8 +1422,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 				},
 			};
 
-			var mms = MailServices.messageServiceFromURI(msguri);
-			var hdr = mms.messageURIToMsgHdr(msguri);
+			var mms = MailServices.messageServiceFromURI(nextUri);
+			var hdr = mms.messageURIToMsgHdr(nextUri);
+
 			try {
 				IETlogger.write("call to saveMsgAsEML - subject = " + hdr.mime2DecodedSubject + " - messageKey = " + hdr.messageKey);
 			} catch (e) {
@@ -1521,7 +1525,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									} else {
 										let afname = constructAttachmentsFilename(1, hdr);
 										attDirContainer.append(afname);
-
 									}
 									attDirContainer.createUnique(1, 0775);
 									footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
@@ -1853,7 +1856,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					}
 
 					if (IETexported < IETtotal) {
-						console.log(IETtotal, IETexported, hdrArray.length)
 						if (!hdrArray)
 							nextUri = uriArray[IETexported];
 						else {
@@ -2023,7 +2025,6 @@ function IEThtmlToText(data, msgFolder) {
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
 	data = IETconvertToUTF8(data);
 	data = msgFolder.convertMsgSnippetToPlainText(data)
-	return data;
 
 
 	/*	

@@ -2302,9 +2302,10 @@ async function copyMSGtoClip(selectedMsgs) {
 		
 		let data2 = convert.convert();
 		data2 = fixClipHdrs(data2);
+		console.log(data2)
+
 		IETcopyToClip(data2, realMessage.folder);
 
-		console.log(data2)
 
 		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
 	}

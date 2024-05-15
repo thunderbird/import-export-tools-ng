@@ -287,8 +287,16 @@ function getSubjectForHdr(hdr, dirPath) {
 		fname = latinizeString(fname);
 	}
 
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16_7bitASCII")) {
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16")) {
 		fname = filterNonASCIICharacters(fname);
+	}
+
+	// User defined character filter
+	var filterCharacters = IETprefs.getStringPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+	if (filterCharacters !== "") {
+		let filter = new RegExp(`[${filterCharacters}]`, "g");
+		fname = fname.replace(filter, "");
 	}
 
 	if (cutFileName) {
@@ -300,7 +308,7 @@ function getSubjectForHdr(hdr, dirPath) {
 }
 
 function filterNonASCIICharacters(str) {
-	str = str.replace(/[\u{0080}-\u{FFFF}]/gu, "");
+	str = str.replace(/[\u{0100}-\u{FFFF}]/gu, "");
 	str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
 	return str;
 }

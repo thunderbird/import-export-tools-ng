@@ -71,8 +71,7 @@ function onLoad() {
 	window.ietng.extension = WL.extension;
 
 	window.ietng.OpenBackupDialog = function (mode = "auto") {
-		Services.console.logStringMessage("Start backup check");
-		console.log("IETNG: OpenBackupDialog start");
+		Services.console.logStringMessage("IETNG: Start backup check");
 		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 	
@@ -87,18 +86,12 @@ function onLoad() {
 		
 			let time = now.getTime() / 1000;
 			let days = 24 * 60 * 60 * frequency;
-			// let days = 0.005;
-			console.debug('OverlayBackup');
-			console.debug(time-last);
-			console.debug(days);
 		
 			if ((time - last) < (days - (60 * 5))) {
-				console.log("Backup not ready");
 				return;
 			}
 		}
 	
-			console.log("start MODAL backup dialog ", new Date());
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 	}
 	
@@ -241,6 +234,4 @@ function onUnload() {
 	window.removeHotKeysObserver();
 	window.ietng.OpenBackupDialog();
 	window.ietngAddon.notifyTools.removeAllListeners();
-	console.log("end of onunload  ", new Date());
-
 }

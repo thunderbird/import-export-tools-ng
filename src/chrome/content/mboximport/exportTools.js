@@ -506,7 +506,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 
 	var folderType = msgFolder.server.type;
 	IETtotal = msgUriArray.length;
-	console.log("folder", msgFolder.name, "total", IETtotal)
 	IETexported = 0;
 	IETskipped = 0;
 
@@ -573,7 +572,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			!(msg.flags & 0x00000080)) {
 			IETskipped = IETskipped + 1;
 			IETtotal = IETtotal - 1;
-			console.log("folder", msgFolder.name, "total skip", IETtotal)
 
 			continue;
 		}
@@ -583,7 +581,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
 		hdrArray.push(hdrStr);
 	}
-	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
@@ -598,9 +595,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		console.log("exportAllMsgsDelayed")
+		//console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
-		console.log("folder", msgFolder.name, "total", IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -700,8 +696,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 		// jump back to top folder
 		window.gTabmail.currentTabInfo.folder = curMsgFolder;
-
-
 	}
 
 	var cnt = 0;
@@ -741,15 +735,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	}
 	IETtotal = hdrArray.length;
-
-	console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
-
-	/*
-	if (msgFolder.getTotalMessages(false) != hdrArray.length) {
-		alert("Iterated not equal to total messages : Please report");
-		return;
-	}
-*/
 
 	hdrArray.sort();
 	// nsMsgViewSortOrderValue none = 0;
@@ -1442,12 +1427,11 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	}
 }
 
-var exportAsHtmlDone = false;
+const kStatusOK = 1;
+const kStatusDone = 2;
+const kStatusAbort = 3;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
-
-	//console.log("html hdrs", msgFolder.name, hdrArray.length)
-	//console.log("folder", msgFolder.name, "total", IETtotal, "hdrarray", hdrArray.length)
 
 	var exportAsHtmlDone = false;
 	var nextUri = uri;
@@ -1455,14 +1439,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	while (!exportAsHtmlDone) {
 		var result = await new Promise((resolve, reject) => {
 
-			//console.log(msgFolder.name, hdrArray.length, IETexported)
-
 			var myTxtListener = {
 				scriptStream: null,
 				emailtext: "",
-				data: null,
-				clone: null,
-
 
 				QueryInterface: function (iid) {
 					if (iid.equals(Ci.nsIStreamListener) ||
@@ -1483,18 +1462,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 				onStopRequest: function (request, statusCode) {
 
-					console.log("stopreq", statusCode)
 					var data = this.emailtext;
-					console.log(data)
-
-					if (copyToClip) {
-						//convertToText = true;
-						console.log(msgFolder.name)
-						IETcopyToClip(data, msgFolder);
-						exportAsHtmlDone = true;
-						resolve({result: 1, data: data});
-						return;
-					}
 
 					this.scriptStream = null;
 					var clone = file.clone();
@@ -1513,13 +1481,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 							for (var i = 0; i < attachments.length; i++) {
 								var att = attachments[i];
-								// if (att.contentType.indexOf("text/plain") === 0 )
-								//	continue;
 								if (noDir) {
 									var attDirContainer = file.clone();
 									var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
 
-									// attachmentsExtendedFilenameFormat = "1";
 									if (attachmentsExtendedFilenameFormat === "") {
 										attDirContainer.append("Attachments");
 									} else {
@@ -1553,7 +1518,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										attDirContainerName = converter.ConvertFromUnicode(attDirContainer.leafName);
 
 										var attDirContainerClone = attDirContainer.clone();
-										// var attNameAscii = attName.replace(/[^a-zA-Z0-9\-\.]/g,"_");
 										attNameAscii = encodeURIComponent(att.name);
 										attDirContainerClone.append(att.name);
 										attachments[i].file = attDirContainerClone;
@@ -1639,7 +1603,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					var appendClone;
 					if (this.append && convertToText) {
 						appendClone = clone.clone();
-						console.log(clone.path)
 					}
 
 					if (this.append && convertToText && 0) {
@@ -1701,152 +1664,135 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 					}
 					var time = (hdr.dateInSeconds) * 1000;
-					if (convertToText && 0) {
-						console.log("bef cvt")
-						//data = IEThtmlToText(data);
-						this.data = data;
-						this.clone = clone;
-						console.log("aft cvt")
 
-						//IETwriteDataOnDiskWithCharset(clone, data, false, null, time);
-					} else {
-						if (saveAttachments) {
-							// Save embedded images
-							try {
-								var embImgContainer = null;
-								var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
+					if (saveAttachments) {
+						// Save embedded images
+						try {
+							var embImgContainer = null;
+							var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
 
-								// Embedded in-line images can be either 'mailbox' for POP accounts
-								// or 'imap' for IMAP
-								// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
+							// Embedded in-line images can be either 'mailbox' for POP accounts
+							// or 'imap' for IMAP
+							// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
 
-								var imgs;
-								imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
-								if (imgs === null) {
-									imgs = [];
-								}
-
-								var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
-								if (imgsImap !== null) {
-									imgs = imgs.concat(imgsImap);
-								}
-
-								let imgAtts = imgs.map(img => {
-									return { imgLink: img }
-								});
-
-								// Update for extended naming
-								for (var i = 0; i < imgs.length; i++) {
-									if (!embImgContainer) {
-										embImgContainer = file.clone();
-										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
-
-										if (attachmentsExtendedFilenameFormat === "") {
-											embImgContainer.append("EmbeddedImages");
-										} else {
-											let afname = constructAttachmentsFilename(2, hdr);
-											embImgContainer.append(afname);
-										}
-										embImgContainer.createUnique(1, 0775);
-									}
-
-									var aUrl;
-
-									aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
-									if (aUrl === null) {
-										aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
-									}
-
-									if (aUrl === null) {
-										continue;
-									}
-
-									// The urlListener.OnStopRunningUrl fires before the 
-									// file is truly closed. An attempt to change lastModifiedTime
-									// here gets superceded with the current date. This is likely 
-									// a file descriptor being closed after the event.
-									// A setTimeout delayed action is required. 
-									// Setting the attachment date to match the message date #549
-
-									// @implements {nsIUrlListener}
-									const embImgsUrlListener = {
-										OnStartRunningUrl(url) { },
-										OnStopRunningUrl(url, status) {
-											if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-												return;
-											}
-											let curAtt = imgAtts.find((att) => {
-												if (att.url == url.spec) {
-													return true;
-												}
-											})
-											setTimeout(this.setFileTime, 50, curAtt);
-										},
-										setFileTime(curAtt) {
-											curAtt.file.lastModifiedTime = time;
-										}
-									}
-
-									var embImg = embImgContainer.clone();
-
-									embImg.append(i + ".jpg");
-									imgAtts[i].file = embImg;
-									imgAtts[i].url = aUrl;
-
-									messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
-									// var sep = isWin ? "\\" : "/";
-									// Encode for UTF-8 - Fixes #355
-									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
-								}
-							} catch (e) {
-								IETlogger.write("save embedded images - error = " + e);
+							var imgs;
+							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+							if (imgs === null) {
+								imgs = [];
 							}
-						}
-						/* Clean HTML code generated by streamMessage and "header=filter":
-						- Replace author/recipients/subject with mimeDecoded values
-						- Strip off the reference to messageBody.css
-						- Add a style rule to make headers name in bold
-						*/
-						var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-						data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
-						tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-						data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
-						tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
-						data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
-						data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-						// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
-						const r1 = "div.headerdisplayname {font-weight:bold;}\n";
-						// const rh = ".tb { display: none;}\n";
-						// const r2 = ".moz-text-html .tb { display: block;}\n";
-						data = data.replace("<\/head>", `<style>${r1}<\/style><\/head>`);
+							var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+							if (imgsImap !== null) {
+								imgs = imgs.concat(imgsImap);
+							}
 
-						if (!HTMLasView && this.chrset)
-							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
-						else
-							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
+							let imgAtts = imgs.map(img => {
+								return { imgLink: img }
+							});
 
-						//data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(data)
+							// Update for extended naming
+							for (var i = 0; i < imgs.length; i++) {
+								if (!embImgContainer) {
+									embImgContainer = file.clone();
+									var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
-						if (convertToText) {
-							console.log("cvt", IETexported)
-							data = IEThtmlToText(data, msgFolder);
+									if (attachmentsExtendedFilenameFormat === "") {
+										embImgContainer.append("EmbeddedImages");
+									} else {
+										let afname = constructAttachmentsFilename(2, hdr);
+										embImgContainer.append(afname);
+									}
+									embImgContainer.createUnique(1, 0775);
+								}
 
-						}
-						if (convertToText && append) {
-							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
-							console.log(appendClone.path)
+								var aUrl;
 
-							var nfile = appendClone.leafName + ".txt";
-							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
-						} else if (convertToText && copyToClip) {
-							console.log(data)
+								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+								if (aUrl === null) {
+									aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+								}
 
-						} else {
-						
-							IETwriteDataOnDisk(clone, data, false, null, time);
+								if (aUrl === null) {
+									continue;
+								}
+
+								// The urlListener.OnStopRunningUrl fires before the 
+								// file is truly closed. An attempt to change lastModifiedTime
+								// here gets superceded with the current date. This is likely 
+								// a file descriptor being closed after the event.
+								// A setTimeout delayed action is required. 
+								// Setting the attachment date to match the message date #549
+
+								// @implements {nsIUrlListener}
+								const embImgsUrlListener = {
+									OnStartRunningUrl(url) { },
+									OnStopRunningUrl(url, status) {
+										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+											return;
+										}
+										let curAtt = imgAtts.find((att) => {
+											if (att.url == url.spec) {
+												return true;
+											}
+										})
+										setTimeout(this.setFileTime, 50, curAtt);
+									},
+									setFileTime(curAtt) {
+										curAtt.file.lastModifiedTime = time;
+									}
+								}
+
+								var embImg = embImgContainer.clone();
+
+								embImg.append(i + ".jpg");
+								imgAtts[i].file = embImg;
+								imgAtts[i].url = aUrl;
+
+								messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
+								// var sep = isWin ? "\\" : "/";
+								// Encode for UTF-8 - Fixes #355
+								data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
+							}
+						} catch (e) {
+							IETlogger.write("save embedded images - error = " + e);
 						}
 					}
+					/* Clean HTML code generated by streamMessage and "header=filter":
+					- Replace author/recipients/subject with mimeDecoded values
+					- Strip off the reference to messageBody.css
+					- Add a style rule to make headers name in bold
+					*/
+					var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
+					data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
+					data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
+					tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
+					data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
+					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
+					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
+
+					const r1 = "div.headerdisplayname {font-weight:bold;}\n";
+					// const rh = ".tb { display: none;}\n";
+					// const r2 = ".moz-text-html .tb { display: block;}\n";
+					data = data.replace("<\/head>", `<style>${r1}<\/style><\/head>`);
+
+					if (!HTMLasView && this.chrset)
+						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
+					else
+						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
+
+					if (convertToText) {
+						data = IEThtmlToText(data, msgFolder);
+					}
+					if (convertToText && append) {
+						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
+
+						var nfile = appendClone.leafName + ".txt";
+						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
+					} else {
+						IETwriteDataOnDisk(clone, data, false, null, time);
+					}
+
 					IETexported = IETexported + 1;
 					IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
@@ -1861,13 +1807,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						else {
 							parts = hdrArray[IETexported].split("§][§^^§");
 							nextUri = parts[5];
-							console.log(nextUri)
-
 						}
-						console.log("resolve", convertToText)
-						resolve({ cv: convertToText, data: data, clone: clone });
-
-						//resolve(convertToText);
+						resolve(kStatusOK);
 						return;
 
 					} else {
@@ -1886,9 +1827,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						else if (document.getElementById("IETabortIcon"))
 							document.getElementById("IETabortIcon").collapsed = true;
 						exportAsHtmlDone = true;
-						console.log("resolve done", convertToText)
-
-						resolve({ cv: convertToText, data: data, clone: clone });
+						resolve(kStatusDone);
 					}
 				},
 			};
@@ -1944,22 +1883,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			}
 
 		});
-		//console.log(result)
-		if (result.cv || 1) {
-			//result.data = IETglobalMsgFolders[0].convertMsgSnippetToPlainText(result.data)
-
-			//result.data = IEThtmlToText(result.data);
-			//IETwriteDataOnDiskWithCharset(result.clone, result.data, false, null, time);
-
-			//console.log(data)
-
-		}
+		
 		uri = nextUri;
 	}
 
-	//let d  = msgFolder.convertMsgSnippetToPlainText(result.data)
 
-	//console.log(d)
 	return;
 }
 
@@ -2002,7 +1930,7 @@ function IETcopyToClip(data, msgFolder) {
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
 
-					this.scriptStream = null;
+	this.scriptStream = null;
 	var dataUTF8 = IETconvertToUTF8(data);
 	str2.data = dataUTF8;
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
@@ -2026,36 +1954,7 @@ function IEThtmlToText(data, msgFolder) {
 	data = IETconvertToUTF8(data);
 	data = msgFolder.convertMsgSnippetToPlainText(data)
 
-
-	/*	
-		var toStr = {};
-		var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
-		var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-		var dataUTF8 = IETconvertToUTF8(data);
-		var dataUTF8 = data;;
-	
-		fromStr = fromStr.QueryInterface(Ci.nsISupportsString);
-		fromStr.data = dataUTF8;
-	
-		try {
-			formatConverter.convert("text/html", fromStr, "text/plain", toStr);
-	
-		} catch (e) {
-			console.log("cnv to text ex", e)
-			dataUTF8 = dataUTF8.replace("$%$%$", ":");
-			return dataUTF8;
-		}
-		console.log("cnv to text toStr", toStr)
-	
-		if (toStr.value) {
-		console.log("cnv to text bef q")
-			//toStr = toStr.value.data;
-			toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
-		console.log("cnv to text aft q", toStr)
-	*/
 	var os = navigator.platform.toLowerCase();
-
-
 	var strValue = data;
 
 	// Fix for TB13 empty line at the beginning
@@ -2249,6 +2148,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 }
 
 async function copyMSGtoClip(selectedMsgs) {
+
 	var msguri;
 
 	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
@@ -2269,53 +2169,23 @@ async function copyMSGtoClip(selectedMsgs) {
 		let realMessage = window.ietngAddon.extension
 			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
-		console.log(realMessage.folder)
 		if (!msguri)
 			return;
 
-    let rawBytes = await mboxImportExport.getRawMessage(msguri, true);
-		console.log(rawBytes)
+		let rawBytes = await mboxImportExport.getRawMessage(msguri, true);
+
 		let data = rawBytes;
 		data = data.replace(/\:\s*<\/td>/, "$%$%$");
+		data = IETconvertToUTF8(data);
+		data = realMessage.folder.convertMsgSnippetToPlainText(data);
+		data = fixClipHdrs(data);
 
-		let convert = {
-
-			convert() {
-		  //data = IEThtmlToText(data, realMessage.folder);
-
-				data = IETconvertToUTF8(data);
-				return realMessage.folder.convertMsgSnippetToPlainText(data)
-			},
-			
-			
-			QueryInterface: function (iid) {
-				console.log("qi",iid)
-				if (iid.equals(Ci.nsIStreamListener) ||
-					iid.equals(Ci.nsISupports))
-					return this;
-					console.log("throw qi",iid)
-
-				throw Cr.NS_NOINTERFACE;
-			},
-
-		}
-		//data = IEThtmlToText(data, realMessage.folder);
-		
-		let data2 = convert.convert();
-		data2 = fixClipHdrs(data2);
-		console.log(data2)
-
-		IETcopyToClip(data2, realMessage.folder);
-
-
-		//await exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
+		IETcopyToClip(data, realMessage.folder);
 	}
 }
 
 function fixClipHdrs(strValue) {
 	var os = navigator.platform.toLowerCase();
-
-
 
 	// Fix for TB13 empty line at the beginning
 	strValue = strValue.replace(/^\r*\n/, "");

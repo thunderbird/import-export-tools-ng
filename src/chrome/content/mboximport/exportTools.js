@@ -1427,9 +1427,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	}
 }
 
-const kStatusOK = 1;
-const kStatusDone = 2;
-const kStatusAbort = 3;
+let kStatusOK = 1;
+let kStatusDone = 2;
+let kStatusAbort = 3;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
@@ -2180,8 +2180,57 @@ async function copyMSGtoClip(selectedMsgs) {
 		data = realMessage.folder.convertMsgSnippetToPlainText(data);
 		data = fixClipHdrs(data);
 
+		console.log("new convertMsgSnippetToPlainText:\n\n", data);
+		data = IEThtmlToTextOld(rawBytes)
+		console.log("old converter service:\n\n", data);
+
 		IETcopyToClip(data, realMessage.folder);
 	}
+}
+
+function IEThtmlToTextOld(data) {
+
+	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
+	data = data.replace(/\:\s*<\/td>/, "$%$%$");
+
+	var toStr = {};
+	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
+	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
+	var dataUTF8 = IETconvertToUTF8(data);
+	fromStr.data = dataUTF8;
+	try {
+		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
+	} catch (e) {
+		console.log("cnv to text ex", e)
+		dataUTF8 = dataUTF8.replace("$%$%$", ":");
+		return dataUTF8;
+	}
+	if (toStr.value) {
+		toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
+		var os = navigator.platform.toLowerCase();
+		var strValue = toStr.toString();
+		// Fix for TB13 empty line at the beginning
+		strValue = strValue.replace(/^\r*\n/, "");
+		// Correct the headers format in plain text
+		var head;
+		var text;
+		var headcorrect;
+
+		if (os.indexOf("win") > -1) {
+			head = strValue.match(/(.+\r\n?)*/)[0];
+			text = strValue.replace(/(.+\r\n?)*/, "");
+			headcorrect = head.replace(/:\r\n/g, ": ");
+		} else {
+			head = strValue.match(/(.+\n?)*/)[0];
+			text = strValue.replace(/(.+\n?)*/, "");
+			headcorrect = head.replace(/:\n/g, ": ");
+		}
+		var retValue = headcorrect + text;
+		retValue = retValue.replace("$%$%$", ":");
+		return retValue;
+	}
+	dataUTF8 = dataUTF8.replace("$%$%$", ":");
+	return dataUTF8;
 }
 
 function fixClipHdrs(strValue) {

@@ -85,11 +85,13 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
+let kStatusOK = 1;
+let kStatusDone = 2;
+let kStatusAbort = 3;
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-
 
 function searchANDsave(params) {
 	let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
@@ -408,14 +410,16 @@ async function exportAllMsgs(type, params) {
 
 async function exportAllMsgsStart(type, file, msgFolder, params) {
 	var newTopDir;
+	var result;
+	IETabort = false;
+
 	// 0x0020 is MSG_FOLDER_FLAG_expVIRTUAL
 	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 	if (isVirtFol) {
 		if (IETglobalMsgFolders.length === 1) {
 			await new Promise(resolve => setTimeout(resolve, 50));
-			newTopDir = await exportAllMsgsDelayedVF(type, file, msgFolder, false, false);
-
-
+			result = await exportAllMsgsDelayedVF(type, file, msgFolder, false, false);
+			newTopDir = result.nextfile2;
 		} else {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
@@ -423,10 +427,20 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 50));
 
-		newTopDir = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
+		result = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
+		newTopDir = result.nextfile2;
 
+		if (result.status == kStatusAbort) {
+			//IETabortExport();
+			return;
+		}
 		if (params.recursive && msgFolder.hasSubFolders) {
-			await exportSubFolders(type, file, msgFolder, newTopDir, params);
+			result = await exportSubFolders(type, file, msgFolder, newTopDir, params);
+			console.log("exall", result)
+			if (result.status == kStatusAbort) {
+				IETabortExport();
+				return;
+			}
 		}
 	}
 }
@@ -434,7 +448,7 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
-
+		console.log(subFolder.name)
 		let folderDirName = subFolder.name;
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
@@ -443,14 +457,28 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		var newTopDir2;
 		var isVirtFol = subFolder ? subFolder.flags & 0x0020 : false;
 		if (isVirtFol) {
-			newTopDir2 = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
+			result = await exportAllMsgsDelayedVF(type, file, subFolder, true, params);
+			newTopDir2 = result.nextfile2;
 		} else {
-			newTopDir2 = await exportAllMsgsDelayed(type, file, subFolder, true, params);
+			result = await exportAllMsgsDelayed(type, file, subFolder, true, params);
+			newTopDir2 = result.nextfile2;
 		}
+		if (result.status == kStatusAbort) {
+			console.log("got abort", subFolder.name)
+			break;
+		}
+
+		console.log(result)
+
 		if (subFolder.hasSubFolders) {
-			await exportSubFolders(type, file, subFolder, newTopDir2, params);
+			console.log("hassubs")
+			result = await exportSubFolders(type, file, subFolder, newTopDir2, params);
+			console.log(result)
 		}
 	}
+	console.log("sf result", result)
+	return result;
+
 }
 
 // 3a) exportAllMsgsDelayedVF
@@ -585,7 +613,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	hdrArray.sort();
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
-	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	return { status: result, nextfile2: file2 };
+
 }
 
 // 3b) exportAllMsgsDelayed
@@ -595,7 +625,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		//console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 
 		if (IETtotal === 0) {
@@ -744,8 +774,9 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
 	}
-	await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
-	return file2;
+	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	console.log("expdelayed", msgFolder.name, result)
+	return { status: result.status, nextfile2: file2 };
 }
 
 // 4) IETrunExport
@@ -754,47 +785,47 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
-	exportAsHtmlDone = false;
-	saveAsEmlDone = false;
 
 	switch (type) {
 		case 1: // HTML format, with index
-			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
+			result = await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 2: // Plain text format, with index
-			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
+			result = await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 3: // Just HTML index
-			createIndex(type, file2, hdrArray, msgFolder, true, true);
+			result = createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
 		case 4: // Plain text, single file, no index
-			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder);
+			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder);
 			break;
 		case 5: // Just CSV index
-			createIndexCSV(type, file2, hdrArray, msgFolder, false);
+			result = createIndexCSV(type, file2, hdrArray, msgFolder, false);
 			break;
 		case 6: // CSV format, with body too
-			createIndexCSV(type, file2, hdrArray, msgFolder, true);
+			result = createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
-			await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder, true);
+			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder, true);
 			break;
 		case 8: // HTML format, with index and attachments
-			await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
+			result = await exportAsHtml(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 9: // Plain text format, with index and attachments
-			await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
+			result = await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		case 10: // PDF format, with index
-			await exportAsPDF(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
+			result = await exportAsPDF(firstUri, null, subfile, false, true, false, false, hdrArray, file2, msgFolder, true);
 			break;
 		default: // EML format, with index
-			await saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
+			result = await saveMsgAsEML(firstUri, subfile, false, null, hdrArray, null, false, false, file2, msgFolder);
 	}
+
 	if (type !== 3 && type !== 5 && type !== 6) {
 		IETabort = false;
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
+	return result;
 }
 
 var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
@@ -1251,9 +1282,10 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	var saveAsEmlDone = false;
 	var nextUri = msguri;
 	var nextFile = file;
+	var result;
 
 	while (!saveAsEmlDone) {
-		await new Promise((resolve, reject) => {
+		result = await new Promise((resolve, reject) => {
 
 			var myEMLlistner = {
 
@@ -1359,6 +1391,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 					if (IETabort) {
 						IETabort = false;
+						resolve(kStatusAbort)
 						return;
 					}
 
@@ -1374,7 +1407,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							nextUri = parts[5];
 							nextFile = file;
 						}
-						resolve();
+						resolve(kStatusOK);
 						return;
 					} else {
 						if (myEMLlistner.file2)
@@ -1397,7 +1430,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							document.getElementById("IETabortIcon").collapsed = true;
 					}
 					saveAsEmlDone = true;
-					resolve();
+					resolve(kStatusDone);
 				},
 
 				onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1421,15 +1454,16 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 			myEMLlistner.msgFolder = msgFolder;
 			mms.streamMessage(nextUri, myEMLlistner, msgWindow, null, false, null);
 		});
-		if (saveAsEmlDone) {
+		if (saveAsEmlDone || result == kStatusAbort) {
 			break;
 		}
 	}
+	if (result == kStatusDone) {
+		return { status: kStatusOK };
+	} else {
+		return { status: result };
+	}
 }
-
-let kStatusOK = 1;
-let kStatusDone = 2;
-let kStatusAbort = 3;
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
@@ -1541,10 +1575,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 														return true;
 													}
 												})
-												setTimeout(this.setFileTime, 50, curAtt);
+												setTimeout(this.setFileTime, 50, curAtt.file.clone());
 											},
-											setFileTime(curAtt) {
-												curAtt.file.lastModifiedTime = time;
+											setFileTime(curAttFile) {
+												//console.log(curAttFile.path)
+												if (!IETabort)
+													curAttFile.lastModifiedTime = time;
 											}
 										}
 
@@ -1624,7 +1660,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							nextUri = parts[5];
 						}
 						console.log("res")
-						resolve();
+						resolve(kStatusOK);
 
 						return;
 					}
@@ -1798,6 +1834,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 					if (IETabort) {
 						IETabort = false;
+						console.log("abort", msgFolder.name)
+						resolve(kStatusAbort)
 						return;
 					}
 
@@ -1883,12 +1921,18 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			}
 
 		});
-		
+
 		uri = nextUri;
+		if (result == kStatusAbort) {
+			break;
+		}
 	}
 
-
-	return;
+	if (result == kStatusDone) {
+		return { status: kStatusOK };
+	} else {
+		return { status: result };
+	}
 }
 
 async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
@@ -2172,17 +2216,18 @@ async function copyMSGtoClip(selectedMsgs) {
 		if (!msguri)
 			return;
 
-		let rawBytes = await mboxImportExport.getRawMessage(msguri, true);
+		let data = await mboxImportExport.getRawMessage(msguri, true);
 
-		let data = rawBytes;
-		data = data.replace(/\:\s*<\/td>/, "$%$%$");
-		data = IETconvertToUTF8(data);
-		data = realMessage.folder.convertMsgSnippetToPlainText(data);
-		data = fixClipHdrs(data);
-
-		console.log("new convertMsgSnippetToPlainText:\n\n", data);
-		data = IEThtmlToTextOld(rawBytes)
-		console.log("old converter service:\n\n", data);
+		if (navigator.userAgent.includes("Windows NT 6.1")) {
+			data = IEThtmlToTextOld(data)
+			console.log("old converter service:\n\n", data);
+		} else {
+			data = data.replace(/\:\s*<\/td>/, "$%$%$");
+			data = IETconvertToUTF8(data);
+			data = realMessage.folder.convertMsgSnippetToPlainText(data);
+			data = fixClipHdrs(data);
+			console.log("new convertMsgSnippetToPlainText:\n\n", data);
+		}
 
 		IETcopyToClip(data, realMessage.folder);
 	}

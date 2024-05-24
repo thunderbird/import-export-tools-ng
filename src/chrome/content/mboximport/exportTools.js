@@ -1965,11 +1965,10 @@ function getLoadContext() {
 }
 
 
-function IETcopyToClip(data, msgFolder) {
+function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
-	str.data = IEThtmlToText(data, msgFolder);
 	str.data = data;
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
@@ -1989,39 +1988,6 @@ function IETcopyToClip(data, msgFolder) {
 
 	Services.clipboard.setData(trans, null, Services.clipboard.kGlobalClipboard);
 	return true;
-}
-
-function IEThtmlToText(data, msgFolder) {
-
-	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
-	data = data.replace(/\:\s*<\/td>/, "$%$%$");
-	data = IETconvertToUTF8(data);
-	data = msgFolder.convertMsgSnippetToPlainText(data)
-
-	var os = navigator.platform.toLowerCase();
-	var strValue = data;
-
-	// Fix for TB13 empty line at the beginning
-	strValue = strValue.replace(/^\r*\n/, "");
-	// Correct the headers format in plain text
-	var head;
-	var text;
-	var headcorrect;
-
-	if (os.indexOf("win") > -1) {
-		head = strValue.match(/(.+\r?\n)*/)[0];
-		text = strValue.replace(/(.+\r?\n)*/, "");
-		headcorrect = head.replace(/:\r?\n/g, ": ");
-
-	} else {
-		head = strValue.match(/(.+\n?)*/)[0];
-		text = strValue.replace(/(.+\n?)*/, "");
-		headcorrect = head.replace(/:\n/g, ": ");
-	}
-	var retValue = headcorrect + text;
-	retValue = retValue.replace("$%$%$", ":");
-
-	return retValue;
 }
 
 function exportVirtualFolder(msgFolder, destDir) {
@@ -2217,64 +2183,65 @@ async function copyMSGtoClip(selectedMsgs) {
 			return;
 
 		let data = await mboxImportExport.getRawMessage(msguri, true);
-
-		if (navigator.userAgent.includes("Windows NT 6.1")) {
-			data = IEThtmlToTextOld(data)
-			console.log("old converter service:\n\n", data);
-		} else {
-			data = data.replace(/\:\s*<\/td>/, "$%$%$");
-			data = IETconvertToUTF8(data);
-			data = realMessage.folder.convertMsgSnippetToPlainText(data);
-			data = fixClipHdrs(data);
-			console.log("new convertMsgSnippetToPlainText:\n\n", data);
-		}
-
-		IETcopyToClip(data, realMessage.folder);
+		data = IEThtmlToText(data, realMessage.folder);
+		IETcopyToClip(data);
 	}
 }
 
-function IEThtmlToTextOld(data) {
+
+function IEThtmlToText(data, msgFolder) {
 
 	// This is necessary to avoid the subject ending with ":" can cause wrong parsing
 	data = data.replace(/\:\s*<\/td>/, "$%$%$");
-
-	var toStr = {};
-	var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
-	var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var dataUTF8 = IETconvertToUTF8(data);
-	fromStr.data = dataUTF8;
-	try {
-		formatConverter.convert("text/html", fromStr, "text/plain", toStr);
-	} catch (e) {
-		console.log("cnv to text ex", e)
+
+	// Windows 7 somehow eats CRLFs with convertMsgSnippetToPlainText
+	// Not worth figuring out why, we'll use old
+
+	// For Windows 7
+	if (navigator.userAgent.includes("Windows NT 6.1")) {
+
+		var toStr = {};
+		var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
+		var fromStr = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
+		fromStr.data = dataUTF8;
+		try {
+			formatConverter.convert("text/html", fromStr, "text/plain", toStr);
+		} catch (e) {
+			console.log("cnv to text ex", e)
+			dataUTF8 = dataUTF8.replace("$%$%$", ":");
+			return dataUTF8;
+		}
+		if (toStr.value) {
+			toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
+			var os = navigator.platform.toLowerCase();
+			var strValue = toStr.toString();
+			// Fix for TB13 empty line at the beginning
+			strValue = strValue.replace(/^\r*\n/, "");
+			// Correct the headers format in plain text
+			var head;
+			var text;
+			var headcorrect;
+
+			if (os.indexOf("win") > -1) {
+				head = strValue.match(/(.+\r\n?)*/)[0];
+				text = strValue.replace(/(.+\r\n?)*/, "");
+				headcorrect = head.replace(/:\r\n/g, ": ");
+			} else {
+				head = strValue.match(/(.+\n?)*/)[0];
+				text = strValue.replace(/(.+\n?)*/, "");
+				headcorrect = head.replace(/:\n/g, ": ");
+			}
+			var retValue = headcorrect + text;
+			retValue = retValue.replace("$%$%$", ":");
+			return retValue;
+		}
 		dataUTF8 = dataUTF8.replace("$%$%$", ":");
 		return dataUTF8;
+	} else {
+		dataUTF8 = msgFolder.convertMsgSnippetToPlainText(dataUTF8);
+		dataUTF8 = fixClipHdrs(dataUTF8);
 	}
-	if (toStr.value) {
-		toStr = toStr.value.QueryInterface(Ci.nsISupportsString);
-		var os = navigator.platform.toLowerCase();
-		var strValue = toStr.toString();
-		// Fix for TB13 empty line at the beginning
-		strValue = strValue.replace(/^\r*\n/, "");
-		// Correct the headers format in plain text
-		var head;
-		var text;
-		var headcorrect;
-
-		if (os.indexOf("win") > -1) {
-			head = strValue.match(/(.+\r\n?)*/)[0];
-			text = strValue.replace(/(.+\r\n?)*/, "");
-			headcorrect = head.replace(/:\r\n/g, ": ");
-		} else {
-			head = strValue.match(/(.+\n?)*/)[0];
-			text = strValue.replace(/(.+\n?)*/, "");
-			headcorrect = head.replace(/:\n/g, ": ");
-		}
-		var retValue = headcorrect + text;
-		retValue = retValue.replace("$%$%$", ":");
-		return retValue;
-	}
-	dataUTF8 = dataUTF8.replace("$%$%$", ":");
 	return dataUTF8;
 }
 

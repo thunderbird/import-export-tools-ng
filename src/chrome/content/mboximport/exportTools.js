@@ -1818,7 +1818,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
 					if (convertToText) {
+						console.log(data)
 						data = IEThtmlToText(data, msgFolder);
+						console.log(data)
+
 					}
 					if (convertToText && append) {
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
@@ -1826,7 +1829,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						var nfile = appendClone.leafName + ".txt";
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
 					} else {
-						IETwriteDataOnDisk(clone, data, false, null, time);
+						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
+
+						//IETwriteDataOnDisk(clone, data, false, null, time);
 					}
 
 					IETexported = IETexported + 1;
@@ -2183,7 +2188,13 @@ async function copyMSGtoClip(selectedMsgs) {
 			return;
 
 		let data = await mboxImportExport.getRawMessage(msguri, true);
+		console.log(data)
+		//data = await mboxImportExport.getRawMessage(msguri, false);
+	 //console.log(data)
+
 		data = IEThtmlToText(data, realMessage.folder);
+		console.log(data)
+
 		IETcopyToClip(data);
 	}
 }

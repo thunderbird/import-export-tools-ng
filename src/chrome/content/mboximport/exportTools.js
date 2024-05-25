@@ -2164,6 +2164,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 
 async function copyMSGtoClip(selectedMsgs) {
 
+	const kConvertData = true;
 	var msguri;
 
 	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
@@ -2187,14 +2188,10 @@ async function copyMSGtoClip(selectedMsgs) {
 		if (!msguri)
 			return;
 
-		let data = await mboxImportExport.getRawMessage(msguri, true);
-		console.log(data)
-		//data = await mboxImportExport.getRawMessage(msguri, false);
-	 //console.log(data)
-
+		// We use converData to get the HTML body only
+		let data = await mboxImportExport.getRawMessage(msguri, kConvertData);
+		// Convert to plaintext and UTF8 encoding
 		data = IEThtmlToText(data, realMessage.folder);
-		console.log(data)
-
 		IETcopyToClip(data);
 	}
 }
@@ -2207,7 +2204,7 @@ function IEThtmlToText(data, msgFolder) {
 	var dataUTF8 = IETconvertToUTF8(data);
 
 	// Windows 7 somehow eats CRLFs with convertMsgSnippetToPlainText
-	// Not worth figuring out why, we'll use old
+	// Not worth figuring out why, we'll use old htmlformatconverter
 
 	// For Windows 7
 	if (navigator.userAgent.includes("Windows NT 6.1")) {

@@ -276,9 +276,6 @@ async function exportSelectedMsgs(type, params) {
 
 	var hdrArray;
 
-	console.log("exp sel msgs", type)
-	console.log(msgFolder.name)
-
 	switch (type) {
 		case 1:
 			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
@@ -1941,7 +1938,7 @@ async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToCl
 
 	await IETprintPDFmain.setupPDF(msgUris, file.path);
 	createIndex(10, file2, hdrArray, msgFolder, false, true);
-
+	return {status: kStatusOK}
 }
 
 
@@ -2207,7 +2204,7 @@ function IEThtmlToText(data, msgFolder) {
 		try {
 			formatConverter.convert("text/html", fromStr, "text/plain", toStr);
 		} catch (e) {
-			console.log("cnv to text ex", e)
+			console.log("IETNG: Text converter exception", e)
 			dataUTF8 = dataUTF8.replace("$%$%$", ":");
 			return dataUTF8;
 		}

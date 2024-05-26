@@ -431,12 +431,10 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 		newTopDir = result.nextfile2;
 
 		if (result.status == kStatusAbort) {
-			//IETabortExport();
 			return;
 		}
 		if (params.recursive && msgFolder.hasSubFolders) {
 			result = await exportSubFolders(type, file, msgFolder, newTopDir, params);
-			console.log("exall", result)
 			if (result.status == kStatusAbort) {
 				IETabortExport();
 				return;
@@ -448,7 +446,6 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
-		console.log(subFolder.name)
 		let folderDirName = subFolder.name;
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
@@ -464,19 +461,13 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 			newTopDir2 = result.nextfile2;
 		}
 		if (result.status == kStatusAbort) {
-			console.log("got abort", subFolder.name)
 			break;
 		}
 
-		console.log(result)
-
 		if (subFolder.hasSubFolders) {
-			console.log("hassubs")
 			result = await exportSubFolders(type, file, subFolder, newTopDir2, params);
-			console.log(result)
 		}
 	}
-	console.log("sf result", result)
 	return result;
 
 }
@@ -625,7 +616,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		console.log("exportAllMsgsDelayed")
+		//console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 
 		if (IETtotal === 0) {
@@ -711,19 +702,18 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var msgList = [...msgFolder.messages];
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
-		console.log("msglist noteq to total msgs");
-		alert("msglist noteq to total msgs", msgFolder.name, IETtotal, [...msgFolder.messages].length);
+		console.log("IETNG: Thunderbird Msg count error, : getTotalMessages:", IETtotal, "Iterator:", msgList.length)
 
 		let curMsgFolder = window.gTabmail.currentTabInfo.folder;
-		//window.gTabmail.currentTabInfo.folder = msgFolder;
 		var gDBView = gTabmail.currentAbout3Pane.gDBView;
-		var waitCnt = 10;
+		var waitCnt = 100;
 		while (waitCnt--) {
 			if (IETtotal = [...msgFolder.messages].length) {
 				break;
 			}
 			await new Promise(r => window.setTimeout(r, 50));
 		}
+		IETtotal = msgList.length;
 		// jump back to top folder
 		window.gTabmail.currentTabInfo.folder = curMsgFolder;
 	}
@@ -760,12 +750,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	}
 	if (IETtotal != hdrArray.length) {
-		console.log("len not eq", IETtotal, hdrArray.length)
-		alert("Iterated not equal to total messages : Please report");
+		console.log("IETNG: Thunderbird Msg count error, : getTotalMessages:", IETtotal, "Iterator:", hdrArray.length)
+		//alert("Iterated not equal to total messages : Please report");
 
 	}
 	IETtotal = hdrArray.length;
-
 	hdrArray.sort();
 	// nsMsgViewSortOrderValue none = 0;
 	// nsMsgViewSortOrderValue ascending = 1;
@@ -774,8 +763,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	if (gDBView && gDBView.sortOrder === 2) {
 		hdrArray.reverse();
 	}
+	if (IETtotal == 0) {
+	return { status: kStatusOK, nextfile2: file2 };
+
+	}
 	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
-	console.log("expdelayed", msgFolder.name, result)
 	return { status: result.status, nextfile2: file2 };
 }
 
@@ -1641,6 +1633,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						appendClone = clone.clone();
 					}
 
+					/*
 					if (this.append && convertToText && 0) {
 						data = IEThtmlToText(data, msgFolder);
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
@@ -1664,6 +1657,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						return;
 					}
+*/
 
 					var sub;
 					if (!hdrArray)
@@ -1818,10 +1812,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
 					if (convertToText) {
-						console.log(data)
 						data = IEThtmlToText(data, msgFolder);
-						console.log(data)
-
 					}
 					if (convertToText && append) {
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";

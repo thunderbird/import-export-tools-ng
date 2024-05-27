@@ -423,7 +423,7 @@ function toggleSkipMsg(el) {
 async function pickFile(target, inputFieldId) {
     var box = target.ownerDocument.getElementById(inputFieldId);
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-    fp.init(window, "", Ci.nsIFilePicker.modeGetFolder);
+    fp.init(window.browsingContext, "", Ci.nsIFilePicker.modeGetFolder);
     let res = await new Promise(resolve => {
         fp.open(resolve);
     });

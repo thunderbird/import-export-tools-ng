@@ -353,10 +353,16 @@ async function exportAllMsgs(type, params) {
 
 	var file = getPredefinedFolder(1);
 	if (!file) {
+		let winCtx = window;
+		const tbVersion = ietngUtils.getThunderbirdVersion();
+		if (tbVersion.major >= 120) {
+			winCtx = window.browsingContext;
+		}
+
 		var nsIFilePicker = Ci.nsIFilePicker;
 		var res;
 		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
 			res = fp.show();
 		else
@@ -445,6 +451,7 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 }
 
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
+	console.log("expsub newtopdir", newTopDir)
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
 		let folderDirName = subFolder.name;
@@ -460,6 +467,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		} else {
 			result = await exportAllMsgsDelayed(type, file, subFolder, true, params);
 			newTopDir2 = result.nextfile2;
+			console.log(newTopDir2.path)
 		}
 		if (result.status == kStatusAbort) {
 			break;
@@ -470,7 +478,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		}
 	}
 	console.log(result)
-	
+
 	return result;
 
 }
@@ -619,14 +627,16 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
+
+		console.log("exportAllMsgsDelayed", msgFolder.name, IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-				await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-			return file;
+			//if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
+			//await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+			console.log("total z")
+			return { status: kStatusOK, nextfile2: file };
 		}
 		IETexported = 0;
 		IETskipped = 0;
@@ -768,7 +778,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		hdrArray.reverse();
 	}
 	if (IETtotal == 0) {
-	return { status: kStatusOK, nextfile2: file2 };
+		return { status: kStatusOK, nextfile2: file2 };
 
 	}
 	console.log(file2.path)
@@ -1641,32 +1651,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						appendClone = clone.clone();
 					}
 
-					/*
-					if (this.append && convertToText && 0) {
-						data = IEThtmlToText(data, msgFolder);
-						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
-						var nfile = clone.leafName + ".txt";
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
-						IETexported = IETexported + 1;
-						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
-						if (IETexported === IETtotal) {
-							if (document.getElementById("IETabortIcon"))
-								document.getElementById("IETabortIcon").collapsed = true;
-							return;
-						}
-						if (!hdrArray)
-							nextUri = uriArray[IETexported];
-						else {
-							parts = hdrArray[IETexported].split("§][§^^§");
-							nextUri = parts[5];
-						}
-						console.log("res")
-						resolve(kStatusOK);
-
-						return;
-					}
-*/
-
 					var sub;
 					if (!hdrArray)
 						sub = getSubjectForHdr(hdr, file.path);
@@ -1949,7 +1933,7 @@ async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToCl
 
 	await IETprintPDFmain.setupPDF(msgUris, file.path);
 	createIndex(10, file2, hdrArray, msgFolder, false, true);
-	return {status: kStatusOK}
+	return { status: kStatusOK }
 }
 
 

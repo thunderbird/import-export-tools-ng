@@ -424,8 +424,12 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 	} else {
 		await new Promise(resolve => setTimeout(resolve, 50));
 
+		console.log("first exp folder")
+
 		result = await exportAllMsgsDelayed(type, file, msgFolder, false, params);
 		newTopDir = result.nextfile2;
+		console.log(newTopDir.path)
+		console.log(result.status)
 
 		if (result.status == kStatusAbort) {
 			return;
@@ -465,6 +469,8 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 			result = await exportSubFolders(type, file, subFolder, newTopDir2, params);
 		}
 	}
+	console.log(result)
+	
 	return result;
 
 }
@@ -613,7 +619,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		//console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
 
 		if (IETtotal === 0) {
@@ -679,6 +685,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);
 		file = await IOUtils.getDirectory(fullFolderPath);
+		console.log(file.path)
 		subfile = file.clone();
 
 		// no message directory for eml exports
@@ -764,7 +771,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	return { status: kStatusOK, nextfile2: file2 };
 
 	}
+	console.log(file2.path)
+
 	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+	console.log(file.path)
+
 	return { status: result.status, nextfile2: file2 };
 }
 

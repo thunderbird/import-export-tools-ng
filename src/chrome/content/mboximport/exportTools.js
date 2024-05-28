@@ -333,7 +333,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	// console.log("exportAllMsgs", type, params);
+	console.log("exportAllMsgs", type, params);
 
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
@@ -356,7 +356,7 @@ async function exportAllMsgs(type, params) {
 		var nsIFilePicker = Ci.nsIFilePicker;
 		var res;
 		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+		fp.init(window.browsingContext, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
 			res = fp.show();
 		else
@@ -374,7 +374,7 @@ async function exportAllMsgs(type, params) {
 	} catch (e) { }
 
 	IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
-
+	console.log(IETglobalMsgFolders[0].name)
 	IETglobalMsgFoldersExported = 0;
 	for (var i = 0; i < IETglobalMsgFolders.length; i++) {
 		// Check if there is a multiple selection and one of the folders is a virtual one.
@@ -613,9 +613,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, params) {
 
 	try {
-		//console.log("exportAllMsgsDelayed")
+		console.log("exportAllMsgsDelayed")
 		IETtotal = msgFolder.getTotalMessages(false);
-
+		console.log(IETtotal)
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 			if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)

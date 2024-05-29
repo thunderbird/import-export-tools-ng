@@ -20,19 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">リリースノート：</h3>
     <p>
-      - 新規： EML、HTML、PDF、プレーンテキストの再帰的サブフォルダーエクスポート #538<br>
-      - 新規： インデックスにサイズカラムを追加 #508<br>
-      - 新規： OSX 9- CR の終端記号付き mbox ファイルのインポート #540<br>
-      - 新規： ExportSelectedMessages のショートカットをサポート #519<br>
-      - 新規： チェコ語 (cs) ロケール - @cewbdex<br>
-      - mbox の From_ 区切り文字で asctime() の日付形式を使うように修正 #537<br>
-      - PDF エクスポートで Mozilla の Save toPDF 設定が使用されない問題を修正 #528<br>
-      - フォルダーを右クリックしても Maildir の mbox エクスポートオプションが表示されない問題を修正 #525<br>
-      - Return-Path ヘッダーに改行が含まれるメールをインポートできない問題を修正 #516<br>
-      - 仮想フォルダーの全メッセージを添付ファイルとインデックス付きで html にエクスポートできない問題を修正 #509<br>
-      - メッセージウィンドウのコンテキストメニューを修正 #505<br>
-      - dtd ファイルを messages.json に変換<br>
-
+      - エクスポートメッセージのタイミングに関する問題 #568 を修正し、プロミス処理化<br>
+      - 新機能： ラテン語のファイル名の変換を追加。真偽値設定を使用：<br>
+        extensions.importexporttoolsng.export.filename_latinize<br>
+      - 新機能: UTF-16 ファイル名フィルター(絵文字、記号...)を追加。真偽値設定を使用：<br>
+        extensions.importexporttoolsng.export.filename_filterUTF16<br>
+      - 新機能： ファイル名の文字フィルターを追加。UTF-16 文字列の優先設定を使用：<br>
+        extensions.importexporttoolsng.export.filename_filter_characters<br>
+        セパレータなしで文字を入力してください。<br>
     </p>
     <h2 id="main_help">ImportExportTools NG の概要とメニュー</h2>
     <p>

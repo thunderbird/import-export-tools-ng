@@ -20,18 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Udgivelses noter:</h3>
     <p>
-      - Nyt: Rekursiv undermappeeksport til EML, HTML, PDF og almindelig tekst #538<br>
-      - Nyt: Størrelseskolonne i indeks #508<br>
-      - Nyt: Importer OSX 9- CR-termineringer mbox-filer #540<br>
-      - Nyt: Support genveje til ExportSelectedMessages #519<br>
-      - Nyt: Tjekkisk (cs) landestandard - @cewbdex<br>
-      - Ret mbox From_ separator for at bruge asctime() datoformat #537<br>
-      - Ret PDF-eksporter, brug ikke Mozilla Gem i PDF-indstillinger #528<br>
-      - Fix Højreklik på mappen viser ikke eksport mbox-indstillingen for Maildir #525<br>
-      - Fix Kan ikke importere e-mails med linjeskift i Return-Path header #516<br>
-      - Fix Eksporter alle meddelelser i en virtuel mappe til html med vedhæftede filer og indeks - manglende meddelelsesmappe #509<br>
-      - Fix kontekstmenu for beskedvindue #505<br>
-      - Konverter dtd-filer til messages.json<br>
+      - Promisify og ret eksportmeddelelser timing problem #568<br>
+      - Nyt: Latinisere filnavne transformere. Brug boolesk præference:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_latinize<br>
+      - Nyt: UTF-16 filnavne filter (emojis, symboler…). Brug boolesk præference:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filterUTF16<br>
+      - Nyt: Tegnfilter til filnavne. Brug UTF-16 strengpræference:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filter_characters<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indtast tegnene uden separatorer<br>
     </p>
 
     <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>

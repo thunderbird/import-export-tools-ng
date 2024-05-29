@@ -20,18 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Versionshinweise:</h3>
     <p>
-      - Neu: Rekursiver Unterordnerexport für EML, HTML, PDF und Klartext #538<br>
-      - Neu: Größenspalte in Index #508<br>
-      - Neu: OSX 9-CR-Beendigungs-Mbox-Dateien importieren #540<br>
-      - Neu: Unterstützt Verknüpfungen für ExportSelectedMessages #519<br>
-      - Neu: Tschechisches (cs) Gebietsschema - @cewbdex<br>
-      - Korrigieren Sie das Mbox-From_-Trennzeichen, um das asctime()-Datumsformat zu verwenden #537<br>
-      - Korrektur: PDF-Exporte verwenden nicht die Mozilla Save toPDF-Einstellungen #528<br>
-      - Fix: Wenn Sie mit der rechten Maustaste auf den Ordner klicken, wird die Export-Mbox-Option für Maildir nicht angezeigt #525<br>
-      - Fix Der Import von E-Mails mit Zeilenumbrüchen im Return-Path-Header #516<br>
-      - Fix Alle Nachrichten eines virtuellen Ordners mit Anhängen und Index nach HTML exportieren - fehlender Nachrichtenordner #509<br>
-      - Kontextmenü für Nachrichtenfenster #505 korrigiert<br>
-      - Konvertieren Sie dtd-Dateien in „messages.json“<br>
+    - Verspreche und behebe das Timing-Problem Nr. 568 für den Export von Nachrichten<br>
+		- Neu: Dateinamentransformation lateinisieren. Boolesche Präferenz verwenden:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_latinize<br>
+		- Neu: UTF-16-Dateinamenfilter (Emojis, Symbole…). Boolesche Präferenz verwenden:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filterUTF16<br>
+		- Neu: Zeichenfilter für Dateinamen. Verwenden Sie die UTF-16-Zeichenfolgepräferenz:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filter_characters<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Geben Sie die Zeichen ohne Trennzeichen ein<br>
     </p>
 
     <h2 id="main_help">Übersicht und Menüs</h2>

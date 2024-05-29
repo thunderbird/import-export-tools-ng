@@ -20,20 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
     <p>
-      - Novinka: Rekurzívny export podpriečinkov pre EML, HTML, PDF a obyčajný text #538<br />
-      - Novinka: Stĺpec veľkosti v indexe #508<br />
-      - Novinka: Import OSX 9- CR ukončenia súborov mbox #540<br />
-      - Novinka: Podpora skratiek pre ExportSelectedMessages #519<br />
-      - Nové: české (cs) miestne nastavenie - @cewbdex<br />
-      - Opravte oddeľovač mbox From_, aby používal formát dátumu asctime() #537<br />
-      - Opravte exporty PDF, nepoužívajte nastavenia Mozilla Save toPDF #528<br />
-      - Opraviť priečinok po kliknutí pravým tlačidlom myši nezobrazuje možnosť exportu mbox pre Maildir
-      #525<br />
-      - Oprava Nemožno importovať e-maily so zalomením riadkov v hlavičke Return-Path #516<br />
-      - Oprava Export všetkých správ virtuálneho priečinka do html s prílohami a indexom - chýbajúci priečinok
-      správ #509<br />
-      - Oprava kontextového menu pre okno správy č. 505<br />
-      - Previesť súbory dtd na messages.json<br />
+      - Prisľúbite a opravte problém s načasovaním správ exportu č. 568<br />
+      - Nové: Latinizácia transformácie názvov súborov. Použiť boolovské preferencie:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Novinka: filter názvov súborov UTF-16 (emodži, symboly...). Použiť boolovské preferencie:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Novinka: Filter znakov pre názvy súborov. Použiť preferenciu reťazca UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Zadajte znaky bez oddeľovačov<br />
     </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
@@ -213,7 +207,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvorí indexový súbor CSV so správami v priečinku (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor CSV správ priečinka (bez exportu správ)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -316,7 +310,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportujte vybraté správy do súborov vo formáte HTML</td>
+          <td>Exportujte vybrané správy do súborov vo formáte HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
@@ -458,8 +452,8 @@
       zoznamoch názvu súboru. Vlastný dátum možno použiť aj s tokenom ${date_custom} použitým v rozšírených
       vlastných názvoch súborov. Pôvodný (predvolený) formát dátumu je:<br />
       RRRRMMDDHHmm: 202011060808<br /><br />
-      Vlastný formát dátumu využíva % sekvencie zodpovedajúce funkcii <code>strftime()</code> typu Unix. Je
-      založený na JavaScriptovom porte
+      Vlastný formát dátumu využíva % sekvencie zodpovedajúce funkcii <code>strftime()</code> podobnej Unixu.
+      Je založený na JavaScriptovom porte
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , funkcii na formátovanie dátumu a času.<br />
       Port of strftime() od TH Doana (https://thdoan.github.io/strftime/)<br />
@@ -671,8 +665,8 @@
     <h2 id="ext_filename_format_help">Rozšírený formát názvu súboru:</h2>
     <br />
     <p>
-      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
-      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru možno vytvoriť pomocou tokenov,
+      ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú dostupné vo všetkých miestnych
       nastaveniach. Dostupné sú aj tokeny špecifické pre miestne nastavenia a sú uvedené pod anglickou
       tabuľkou.<br /><br />
@@ -789,7 +783,7 @@
     <p>
       Existuje niekoľko nových funkcií a možností, ktoré ešte nie je možné konfigurovať v dialógovom okne
       možností. Keď budú tieto funkcie stabilizované, pridajú sa do používateľského rozhrania.<br />
-      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácie. Na prístup k editoru použite
+      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácií. Na prístup k editoru použite
       ponuku Nástroje/Možnosti, potom vyberte časť Rozšírené a v spodnej časti sa zobrazí tlačidlo „Editor
       konfigurácie“. Ak do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby
       rozšírenia. Potom môžete podľa potreby upraviť rôzne predvoľby uvedené nižšie.

@@ -20,26 +20,20 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Novetat: exportació recursiva de subcarpetes per a EML, HTML, PDF i text pla #538<br />
-      - Nou: columna de mida a l&#39;índex #508<br />
-      - Novetat: importació d&#39;arxius mbox de terminacions de CR OSX 9 #540<br />
-      - Nou: admeten dreceres per a ExportSelectedMessages #519<br />
-      - Nou: local txec (cs) - @cewbdex<br />
-      - Arregla el separador mbox From_ per utilitzar el format de data asctime() #537<br />
-      - Corregiu les exportacions de PDF no utilitzeu la configuració de Mozilla Save toPDF #528<br />
-      - Arreglar el clic dret a la carpeta no mostra l&#39;opció d&#39;exportació mbox per a Maildir #525<br />
-      - Solucionar No es poden importar correus electrònics amb salts de línia a la capçalera Return-Path
-      #516<br />
-      - Arreglar Exporta tots els missatges d&#39;una carpeta virtual a html amb fitxers adjunts i índex:
-      falta la carpeta de missatges #509<br />
-      - Corregiu el menú contextual per a la finestra de missatges #505<br />
-      - Converteix fitxers dtd a messages.json<br />
+      - Prometeu i solucioneu el problema de temporització dels missatges d&#39;exportació #568<br />
+      - Nou: llatinitzar els noms de fitxers transformats. Utilitzeu la preferència booleana:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Nou: filtre de noms de fitxer UTF-16 (emojis, símbols...). Utilitzeu la preferència booleana:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Nou: filtre de caràcters per als noms de fitxers. Utilitzeu la preferència de cadena UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Introduïu els caràcters sense separadors<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
       ImportExportTools NG és una extensió de seguiment basada en el treball original de Paolo
       &quot;Kaosmos&quot;. L&#39;extensió ofereix múltiples funcions d&#39;importació i exportació que admeten
-      diversos formats de fitxer diferents, com ara: Nota: Alguns formats no són compatibles amb totes les
+      diversos formats de fitxer diferents, com ara: Nota: alguns formats no són compatibles amb totes les
       funcions.<br />
       - mbox<br />
       - EML<br />
@@ -120,8 +114,8 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Exporteu una carpeta que inclou totes les seves subcarpetes a un conjunt de fitxers en format
-            mbox, un per a cada subcarpeta, exportats a una única carpeta.
+            Exporta una carpeta que inclou totes les seves subcarpetes a un conjunt de fitxers en format mbox,
+            un per a cada subcarpeta, exportats a una única carpeta.
           </td>
         </tr>
         <tr>
@@ -362,7 +356,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exporteu els missatges seleccionats a fitxers de format de text sense format</td>
+          <td>Exporteu els missatges seleccionats a fitxers en format de text sense format</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
@@ -555,8 +549,8 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            L&#39;hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu
-            també <code class="code1">%l</code> .
+            Hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu també
+            <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
@@ -566,8 +560,8 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu també
-            <code class="code1">%H</code> .
+            L&#39;hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu
+            també <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
@@ -844,9 +838,9 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
-      correu del remitent. Establir aquesta opció a &quot;true&quot; utilitza la data de recepció al client de
-      correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la data dels
-      fitxers d&#39;índex.
+      correu del remitent. Establir aquesta opció com a &quot;true&quot; utilitza la data de recepció al
+      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la
+      data dels fitxers d&#39;índex.
     </p>
     <h2>Funció bàsica i global de tecles de drecera (dreceres).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -858,10 +852,10 @@
     </p>
     <p>
       Exemples d&#39;entrades de tecles d&#39;accés ràpid (matriu d&#39;objectes JSON)<br /><br />
-      <code class="notranslate">id</code> : l&#39;índex clau (1-10)<br />
+      <code class="notranslate">id</code> - l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
       <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
-      Es pot incloure qualsevol clau o codi de clau, però no tots dos<br />
+      Es poden incloure qualsevol clau o codi de clau, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directes<br />

@@ -20,20 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release-opmerkingen:</h3>
     <p>
-      - Nieuw: recursieve submapexport voor EML, HTML, PDF en platte tekst #538<br />
-      - Nieuw: kolom Grootte in index #508<br />
-      - Nieuw: importeer OSX 9- CR-beëindiging mbox-bestanden #540<br />
-      - Nieuw: ondersteuning voor snelkoppelingen voor ExportSelectedMessages #519<br />
-      - Nieuw: Tsjechische (cs) locale - @cewbdex<br />
-      - Fix mbox From_ separator om asctime() datumformaat #537 te gebruiken<br />
-      - Fix PDF-exporten gebruiken Mozilla Save toPDF-instellingen #528 niet<br />
-      - Fix Als je met de rechtermuisknop op een map klikt, wordt de export-mbox-optie voor Maildir #525 niet
-      weergegeven<br />
-      - Fix Kan geen e-mails importeren met regeleinden in Return-Path-header #516<br />
-      - Fix Exporteer alle berichten van een virtuele map naar html met bijlagen en index - ontbrekende
-      berichtenmap #509<br />
-      - Contextmenu voor berichtvenster #505 repareren<br />
-      - Converteer dtd-bestanden naar messages.json<br />
+      - Beloof en repareer timingprobleem #568 van exportberichten<br />
+      - Nieuw: transformatie van bestandsnamen in Latinisering. Gebruik booleaanse voorkeur:<br />
+      extensies.importexporttoolsng.export.bestandsnaam_latinize<br />
+      - Nieuw: UTF-16 bestandsnamenfilter (emoji&#39;s, symbolen ...). Gebruik booleaanse voorkeur:<br />
+      extensies.importexporttoolsng.export.bestandsnaam_filterUTF16<br />
+      - Nieuw: tekenfilter voor bestandsnamen. Gebruik UTF-16-tekenreeksvoorkeur:<br />
+      extensions.importexporttoolsng.export.bestandsnaam_filter_tekens<br />
+      Voer de tekens in zonder scheidingstekens<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Overzicht en menu&#39;s</h2>
     <p>
@@ -307,7 +301,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exporteer de geselecteerde berichten naar bestanden in EML-indeling<br />
+            Exporteer de geselecteerde berichten naar EML-formaatbestanden<br />
             Hierdoor wordt ook een HTML-indexbestand gemaakt waarin elk bericht wordt vermeld.
           </td>
         </tr>
@@ -852,7 +846,7 @@
       <code class="notranslate">oncommand</code> - een directe opdrachtreeks<br />
       <code class="notranslate">contexts</code> - de venstercontext waarin de sleutel actief is<br />
       <code class="notranslate">&#39;all&#39;</code> - alle vensters onder Messenger, opstellen, zoeken<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - het hoofdvenster van de messenger en zijn
+      <code class="notranslate">&#39;messenger&#39;</code> - het hoofdberichtenvenster en zijn
       afstammelingen<br />
       <code class="notranslate">&#39;compose&#39;</code> - het berichtopstelvenster<br />
       <code class="notranslate">&#39;search&#39;</code> - het zoekdialoogvenster<br /><br />

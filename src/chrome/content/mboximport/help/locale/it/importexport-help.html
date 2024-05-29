@@ -20,22 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Note di rilascio:</h3>
     <p>
-      - Novità: esportazione ricorsiva di sottocartelle per EML, HTML, PDF e testo normale n. 538<br />
-      - Novità: colonna Dimensioni nell&#39;indice n. 508<br />
-      - Novità: importa i file mbox delle terminazioni OSX 9-CR n. 540<br />
-      - Novità: supporto delle scorciatoie per ExportSelectedMessages #519<br />
-      - Novità: locale ceco (cs) - @cewbdex<br />
-      - Risolto il problema con mbox From_ separator per utilizzare il formato data asctime() #537<br />
-      - Risolto il problema per cui le esportazioni PDF non utilizzano le impostazioni #528 di Mozilla Save
-      toPDF<br />
-      - Risolto il problema facendo clic con il pulsante destro del mouse sulla cartella che non mostra
-      l&#39;opzione di esportazione mbox per Maildir #525<br />
-      - Correzione Impossibile importare e-mail con interruzioni di riga nell&#39;intestazione Return-Path n.
-      516<br />
-      - Risolto il problema con l&#39;esportazione di tutti i messaggi di una cartella virtuale in html con
-      allegati e indice - cartella dei messaggi mancanti n. 509<br />
-      - Risolto il problema con il menu contestuale per la finestra del messaggio #505<br />
-      - Converti file DTD in message.json<br />
+      - Prometti e risolvi il problema di temporizzazione dei messaggi di esportazione n. 568<br />
+      - Novità: latinizzazione della trasformazione dei nomi dei file. Utilizza la preferenza booleana:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Novità: filtro nomi file UTF-16 (emoji, simboli...). Utilizza la preferenza booleana:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Novità: filtro dei caratteri per i nomi dei file. Utilizza la preferenza di stringa UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Inserisci i caratteri senza separatori<br />
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -283,7 +275,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Aprire la finestra di dialogo delle opzioni di ImportExportTools NG</td>
+          <td>Apri la finestra di dialogo delle opzioni di ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -413,7 +405,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Aprire la finestra di dialogo delle opzioni di ImportExportTools NG</td>
+          <td>Apri la finestra di dialogo delle opzioni di ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -453,7 +445,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Aprire la finestra di dialogo delle opzioni di ImportExportTools NG</td>
+          <td>Apri la finestra di dialogo delle opzioni di ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -469,8 +461,8 @@
       file. La data personalizzata può essere utilizzata anche con il token ${date_custom} utilizzato nei nomi
       file personalizzati estesi. Il formato della data originale (predefinito) è:<br />
       AAAAMMGGGHHmm: 202011060808<br /><br />
-      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità Unix simile
-      a <code>strftime()</code> . Si basa su una porta JavaScript di
+      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità simile a
+      Unix <code>strftime()</code> . Si basa su una porta JavaScript di
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funzione per formattare la data e l&#39;ora.<br />
       Porto di strftime() di TH Doan (https://thdoan.github.io/strftime/)<br />

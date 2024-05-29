@@ -20,25 +20,20 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydání:</h3>
     <p>
-      - Novinka: Rekurzivní export podsložek pro EML, HTML, PDF a prostý text #538<br />
-      - Novinka: Sloupec velikosti v indexu #508<br />
-      - Novinka: Import OSX 9- CR ukončení souborů mbox #540<br />
-      - Novinka: Podpora zkratek pro ExportSelectedMessages #519<br />
-      - Novinka: české (cs) národní prostředí - @cewbdex<br />
-      - Opravte oddělovač mbox From_, aby používal formát data asctime() #537<br />
-      - Opravit exporty PDF nepoužívat nastavení Mozilla Save toPDF #528<br />
-      - Opravit složku po kliknutí pravým tlačítkem nezobrazuje možnost exportu mbox pro Maildir #525<br />
-      - Oprava Nelze importovat e-maily se zalomením řádků v záhlaví Return-Path #516<br />
-      - Oprava Export všech zpráv z virtuální složky do html s přílohami a indexem - chybějící složka zpráv
-      #509<br />
-      - Oprava kontextové nabídky pro okno zprávy #505<br />
-      - Převeďte soubory dtd na messages.json<br />
+      - Slibte a opravte problém s načasováním exportních zpráv č. 568<br />
+      - Novinka: Latinize transformace názvů souborů. Použít booleovskou předvolbu:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Novinka: Filtr názvů souborů UTF-16 (emodži, symboly…). Použít booleovskou předvolbu:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Novinka: Filtr znaků pro názvy souborů. Použít předvolbu řetězce UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Zadejte znaky bez oddělovačů<br />
     </p>
     <h2 id="main_help">ImportExportTools Přehled a nabídky NG</h2>
     <p>
       ImportExportTools NG je navazující rozšíření založené na původní práci Paola „Kaosmos“. Rozšíření nabízí
-      více funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka: Některé
-      formáty nejsou podporovány ve všech funkcích.<br />
+      několik funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka:
+      Některé formáty nejsou podporovány ve všech funkcích.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -208,11 +203,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Vytvoří indexový soubor HTML se zprávami ve složce (žádný export zpráv)</td>
+          <td>Vytvoří soubor indexu HTML se zprávami ve složce (žádný export zpráv)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvoří indexový soubor CSV se zprávami ve složce (žádný export zpráv)</td>
+          <td>Vytvoří soubor indexu CSV se zprávami ve složce (žádný export zpráv)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -674,9 +669,9 @@
     <p>
       Rozšířené formátování názvu souboru využívá tokeny. Přesný název souboru lze sestavit pomocí tokenů a
       také libovolného textu nebo platných znaků názvu souboru. Neplatné znaky jsou:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny jsou dostupné v jakémkoli národním
-      prostředí. K dispozici jsou také tokeny specifické pro národní prostředí a jsou uvedeny pod tabulkou v
-      angličtině.<br /><br />
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny jsou k dispozici v jakémkoli národním
+      prostředí. K dispozici jsou také tokeny specifické pro národní prostředí a jsou uvedeny pod anglickou
+      tabulkou.<br /><br />
       Příklady:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Výchozí formát<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Použijte vlastní

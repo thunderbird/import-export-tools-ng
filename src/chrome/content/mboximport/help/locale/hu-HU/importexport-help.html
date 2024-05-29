@@ -20,24 +20,19 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
     <p>
-      - Új: Rekurzív almappa-exportálás EML-hez, HTML-hez, PDF-hez és egyszerű szöveghez #538<br />
-      - Új: Méret oszlop az 508-as indexben<br />
-      - Új: OSX 9- CR terminations mbox fájlok importálása #540<br />
-      - Új: Az ExportSelectedMessages #519 támogatási parancsikonjai<br />
-      - Új: cseh (cs) nyelv - @cewbdex<br />
-      - Javítsa ki az mbox From_ elválasztót az asctime() dátumformátum #537 használatához<br />
-      - A PDF-exportálás javítása nem használja a Mozilla Mentés PDF-be beállításait #528<br />
-      - Javítás A jobb gombbal kattintva a mappa nem mutatja az export mbox opciót a Maildir #525-höz<br />
-      - Javítás Nem lehet importálni az 516-os Return-Path fejlécben sortörést tartalmazó e-maileket<br />
-      - Javítás: Egy virtuális mappa összes üzenetének exportálása html-be mellékletekkel és indexszel -
-      Hiányzó üzenetek mappa #509<br />
-      - Javítsa ki az 505-ös üzenetablak helyi menüjét<br />
-      - A dtd-fájlok konvertálása messages.json formátumba<br />
+      - Az 568. számú exportüzenetek időzítési problémájának ígérete és javítása<br />
+      - Új: A fájlnevek latinosítása, átalakítása. Logikai preferencia használata:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Új: UTF-16 fájlnévszűrő (emojik, szimbólumok…). Logikai preferencia használata:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Új: Karakterszűrő a fájlnevekhez. UTF-16 karakterlánc-beállítás használata:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Írja be a karaktereket elválasztó nélkül<br />
     </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
       Az ImportExportTools NG egy további bővítmény, amely Paolo &quot;Kaosmos&quot; eredeti munkáján alapul.
-      A kiterjesztés több importálási és exportálási funkciót kínál, amelyek számos különböző fájlformátumot
+      A kiterjesztés több importálási és exportálási funkciót kínál, amelyek több különböző fájlformátumot
       támogatnak, többek között: Megjegyzés: Egyes formátumokat nem minden funkció támogat.<br />
       - mbox<br />
       - EML<br />
@@ -55,9 +50,9 @@
         - A mappapanel kontextusa (mappaművelet)<br />
         - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
         - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
-        Az &quot;Eszközök menü&quot; alatt elérhető opciók nincsenek a &quot;Hamburger&quot; menüben, hanem
-        egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és gombok
-        mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
+        Az &quot;Eszközök menü&quot; alatt elérhető opciók nem a &quot;Hamburger&quot; menüben találhatók,
+        hanem egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és
+        gombok mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
         párbeszédpanelt.<br />
       </p>
     </p>
@@ -184,7 +179,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exportálja a mappaüzeneteket egyetlen egyszerű szöveges formátumú fájlként, a mellékleteket nem
+            Exportálja a mappa üzeneteit egyetlen egyszerű szöveges formátumú fájlként, a mellékleteket nem
             tartalmazza.<br />
             Ezzel létrehoz egy HTML indexfájlt is, amely felsorolja az egyes üzeneteket.
           </td>
@@ -463,8 +458,8 @@
       Az egyéni dátum beállítás lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes
       körű szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
       (egyéni)&quot; formátum elérhető a fájlnév legördülő menüjében. Az egyéni dátum a kiterjesztett egyéni
-      fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett)
-      dátumformátum:<br />
+      fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum
+      a következő:<br />
       ÉÉÉÉHHNNÓÓPP : 202011060808<br /><br />
       Az egyéni dátumformátum % sorozatokat használ, amelyek megfelelnek az <code>strftime()</code> Unix-szerű
       funkciónak. Az
@@ -599,8 +594,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Az aktuális év ISO 8601 szerinti hétszáma decimális számként (01-53 tartomány), ahol az 1. hét az
-            első hét, amelyen legalább 4 nap van az új évben (azaz az első csütörtök).
+            Az aktuális év ISO 8601 szerinti hétszáma decimális számként (01-től 53-ig terjedő tartomány),
+            ahol az 1. hét az első hét, amelyen legalább 4 nap van az új évben (azaz az első csütörtök).
           </td>
         </tr>
         <tr>
@@ -612,7 +607,7 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Előnyben részesített dátummegjelenítés az aktuális nyelvi beállításhoz idő nélkül.</td>
+          <td>Előnyben részesített dátummegjelenítés az aktuális területi beállításhoz idő nélkül.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
@@ -620,7 +615,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Az év decimális számként, század nélkül (00 és 99 között).</td>
+          <td>Az év decimális számként, évszázad nélkül (00 és 99 között).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -651,8 +646,8 @@
       <li><code class="code1">%h</code> – nincs implementálva (használd: <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - szóköz nincs hozzáadva</li>
       <li>
-        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (az újsorhoz
-        használja <code class="code1">\n</code> karaktert)
+        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (használja
+        <code class="code1">\n</code> karaktert az újsorhoz)
       </li>
       <li><code class="code1">%O</code> – nincs implementálva</li>
       <li>
@@ -836,15 +831,15 @@
     </p>
     <p>
       Példa gyorsbillentyű-bejegyzésekre (JSON-objektumok tömbje)<br /><br />
-      <code class="notranslate">id</code> – a kulcsindex (1-10)<br />
+      <code class="notranslate">id</code> - a kulcsindex (1-10)<br />
       <code class="notranslate">key</code> - a kulcs (egy karakter)<br />
       <code class="notranslate">keycode</code> – a &#39;VK_*&#39; meghatározott kulcskód<br />
       Bármelyik kulcs vagy kulcskód szerepelhet, de mindkettő nem<br />
-      <code class="notranslate">modifiers</code> – a billentyűmódosítók, szóközzel elválasztott lista
+      <code class="notranslate">modifiers</code> - a kulcs módosítók, szóközzel elválasztott lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> - egy közvetlen parancssor<br />
+      <code class="notranslate">oncommand</code> - közvetlen parancssor<br />
       <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
-      <code class="notranslate">&#39;all&#39;</code> – az összes ablak a messenger alatt, írás, keresés<br />
+      <code class="notranslate">&#39;all&#39;</code> – minden ablak a messenger alatt, írás, keresés<br />
       <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és leszármazottai<br />
       <code class="notranslate">&#39;compose&#39;</code> – az üzenetírási ablak<br />
       <code class="notranslate">&#39;search&#39;</code> – a keresési párbeszédpanel<br /><br />

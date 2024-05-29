@@ -20,19 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">릴리즈 노트:</h3>
     <p>
-      - 새로운 기능: EML, HTML, PDF 및 일반 텍스트 #538에 대한 재귀 하위 폴더 내보내기<br />
-      - 신규: 인덱스 #508의 크기 열<br />
-      - 새로운 기능: OSX 9 가져오기 - CR 종료 mbox 파일 #540<br />
-      - 신규: ImportSelectedMessages #519에 대한 단축키 지원<br />
-      - 새로운 기능: 체코어(cs) 로케일 - @cewbdex<br />
-      - asctime() 날짜 형식 #537을 사용하도록 mbox From_ 구분 기호 수정<br />
-      - PDF 내보내기에서 Mozilla Save toPDF 설정을 사용하지 않는 문제 수정 #528<br />
-      - 폴더를 마우스 오른쪽 버튼으로 클릭하면 Maildir #525에 대한 mbox 내보내기 옵션이 표시되지 않는 문제
-      수정<br />
-      - Return-Path 헤더 #516에 줄 바꿈이 있는 이메일을 가져올 수 없는 문제 수정<br />
-      - 가상 폴더의 모든 메시지를 첨부 파일 및 색인과 함께 html로 내보내기 수정 - 메시지 폴더 누락 #509<br />
-      - 메시지 창 #505의 컨텍스트 메뉴 수정<br />
-      - dtd 파일을 message.json으로 변환<br />
+      - 메시지 내보내기 타이밍 문제 약속 및 수정 #568<br />
+      - 새로운 기능: 파일 이름을 라틴화하여 변환합니다. 부울 기본 설정 사용:<br />
+      Extensions.importexporttoolsng.export.filename_latinize<br />
+      - 새로운 기능: UTF-16 파일 이름 필터(이모지, 기호…). 부울 기본 설정 사용:<br />
+      Extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - 새로운 기능: 파일 이름에 대한 문자 필터. UTF-16 문자열 기본 설정 사용:<br />
+      확장명.importexporttoolsng.export.filename_filter_characters<br />
+      구분 기호 없이 문자를 입력하세요.<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 개요 및 메뉴</h2>
     <p>
@@ -40,7 +35,7 @@
       포함하여 다양한 파일 형식을 지원하는 여러 가져오기 및 내보내기 기능을 제공합니다. 참고: 일부 형식은 모든
       기능에서 지원되지 않습니다.<br />
       - m박스<br />
-      -EML<br />
+      - EML<br />
       - 메일 디렉토리<br />
       - HTML<br />
       - 일반 텍스트<br />
@@ -62,7 +57,7 @@
     </p>
     <h3>지원하다:</h3>
     <p>
-      확장 GitHub 저장소에 문제나 기능 요청을 게시하세요.
+      확장 GitHub 저장소에 문제 또는 기능 요청을 게시하십시오:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG 문제</a
       ><br /><br />
@@ -581,7 +576,7 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>초를 십진수로 표시합니다(범위 00~59).</td>
+          <td>10진수로 표현된 초(범위 00~59)</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
@@ -592,8 +587,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601 현재 연도의 주 번호를 십진수(범위 01~53)로 표시합니다. 여기서 1주는 새해에 최소 4일이
-            있는 첫 번째 주(즉, 첫 번째 목요일)입니다.
+            ISO 8601 현재 연도의 주 번호(범위 01~53). 여기서 1주는 새해에 최소 4일이 있는 첫 번째 주(즉, 첫
+            번째 목요일)입니다.
           </td>
         </tr>
         <tr>
@@ -631,7 +626,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>호환성 참고 사항:</h3>
+    <h3>호환성 참고사항:</h3>
     <ul>
       <li><code class="code1">%c</code> - 형식화된 문자열이 약간 다릅니다.</li>
       <li>
@@ -788,8 +783,8 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      이 기본 설정은 색인 파일에 사용되는 것과 동일한 전체 형식을 따릅니다. 기본적으로 빈 문자열입니다. 형식이
-      지정된 날짜/시간 문자열이 있으면 인덱스 날짜 형식이 변경됩니다.
+      이 기본 설정은 인덱스 파일에 사용되는 것과 동일한 전체 형식을 따릅니다. 기본적으로 빈 문자열입니다.
+      형식이 지정된 날짜/시간 문자열이 있으면 인덱스 날짜 형식이 변경됩니다.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />

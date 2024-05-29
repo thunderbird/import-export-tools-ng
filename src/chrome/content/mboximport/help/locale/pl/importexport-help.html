@@ -20,19 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Nowość: Rekurencyjny eksport podfolderów do formatów EML, HTML, PDF i zwykłego tekstu #538<br />
-      - Nowość: Kolumna Rozmiar w indeksie #508<br />
-      - Nowość: Importuj pliki mbox z zakończeniami OSX 9-CR #540<br />
-      - Nowość: Obsługa skrótów dla ExportSelectedMessages #519<br />
-      - Nowość: ustawienia regionalne czeskie (cs) - @cewbdex<br />
-      - Naprawiono separator mbox From_, aby używać formatu daty asctime() #537<br />
-      - Naprawiono eksport PDF, który nie korzystał z ustawień Mozilla Save toPDF #528<br />
-      - Napraw folder kliknięty prawym przyciskiem myszy nie wyświetla opcji eksportu mbox dla Maildir #525<br />
-      - Naprawiono Nie można importować wiadomości e-mail z podziałami wierszy w nagłówku Return-Path #516<br />
-      - Naprawiono Eksportuj wszystkie wiadomości z folderu wirtualnego do formatu HTML z załącznikami i
-      indeksem - brakujący folder wiadomości nr 509<br />
-      - Naprawiono menu kontekstowe okna wiadomości nr 505<br />
-      - Konwertuj pliki dtd na Messages.json<br />
+      — Obiecaj i napraw problem z synchronizacją wiadomości eksportowych nr 568<br />
+      - Nowość: transformacja nazw plików w języku łacińskim. Użyj preferencji boolowskich:<br />
+      rozszerzenia.importexporttoolsng.export.nazwa_pliku_latinize<br />
+      - Nowość: filtr nazw plików UTF-16 (emoji, symbole…). Użyj preferencji boolowskich:<br />
+      rozszerzenia.importexporttoolsng.export.nazwa_pliku_filterUTF16<br />
+      - Nowość: Filtr znaków dla nazw plików. Użyj preferencji ciągu UTF-16:<br />
+      rozszerzenia.importexporttoolsng.export.nazwa_pliku_filter_znaków<br />
+      Wprowadź znaki bez separatorów<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Przegląd i menu</h2>
     <p>
@@ -47,8 +42,8 @@
       - CSV (wartości oddzielone przecinkami)<br />
       -PDF<br /><br />
       Chociaż większość funkcji koncentruje się wokół wiadomości, istnieje również obsługa importu i eksportu
-      profili Thunderbirda. Dodatkowo eksport może również obejmować plik indeksu HTML lub CSV. Kolejną
-      funkcją jest tworzenie kopii zapasowych profilu Thunderbirda.<br />
+      profili Thunderbirda. Dodatkowo eksport może również zawierać plik indeksu HTML lub CSV. Kolejną funkcją
+      jest tworzenie kopii zapasowych profilu Thunderbirda.<br />
       <p>
         Dostęp do funkcjonalności IETng odbywa się poprzez kilka różnych menu zainstalowanych przez
         rozszerzenie. Funkcje są zależne od kontekstu. Dodano menu dla:<br />
@@ -732,7 +727,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardowy format daty. Domyślny format to: RRRRMMDDHHmm</td>
+        <td>Standardowy format daty. Domyślny format to: RRRRMMDDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>

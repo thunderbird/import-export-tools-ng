@@ -1214,7 +1214,7 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(params) {
-	console.debug('Start eml import', params);
+	//console.debug('Start eml import', params);
 
 	var recursive = params.emlImpRecursive;
 	var msgFolder;
@@ -1229,10 +1229,8 @@ async function importALLasEML(params) {
 		msgFolder = account.incomingServer.rootMsgFolder;
 	} else {
 		msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
-		console.log(msgFolder)
 	}
 
-	console.log(msgFolder.parent)
 
 	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
@@ -1326,7 +1324,6 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 				// https://github.com/thundernest/import-export-tools-ng/issues/57
 				if (folderCount++ % 400 === 0) {
 					rootFolder.ForceDBClosed();
-					console.debug('ForceDBClosed');
 				}
 			});
 			await buildEMLarray(afile, newFolder, true, rootFolder);
@@ -1336,7 +1333,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);
 			// fix #241 - also import .emlx
-			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== ".nws"))
+			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== "._eml" && afilenameext !== ".nws"))
 				continue;
 			emlObj.file = afile;
 			emlObj.msgFolder = msgFolder;
@@ -1361,7 +1358,7 @@ async function importEMLs(params) {
 	// Set the filepicker to open the last opened directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 	fp.init(window, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
-	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws");
+	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws; *._eml");
 	fp.appendFilter("All files", "*.*");
 	let res = await new Promise(resolve => {
 		fp.open(resolve);

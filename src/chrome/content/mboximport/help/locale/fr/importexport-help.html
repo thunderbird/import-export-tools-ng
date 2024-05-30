@@ -25,18 +25,13 @@
     </table>
     <h3 id="release_notes">Notes de version</h3>
     <p>
-      - Nouveau : exportation récursive des sous-dossiers pour les formats EML, HTML, PDF et texte brut (#538)<br>
-      - Nouveau : colonne « Taille » dans l’index (#508)<br>
-      - Nouveau : importation des fichiers mbox avec fin de ligne CR sous OSX 9 (#540)<br>
-      - Nouveau : possibilité d’utiliser des raccourcis pour l’exportation des messages sélectionnés (#519)<br>
-      - Nouveau : locale tchèque « cs » (@cewbdex)<br>
-      - Corrigé : séparateur mbox « From_ » pour utiliser le format de date asctime() (#537)<br>
-      - Corrigé : non-utilisation des paramètres d’enregistrement en PDF de Mozilla lors de l’exportation en PDF (#528)<br>
-      - Corrigé : absence de l’option d’exportation d’un dossier mbox avec Maildir (#525)<br>
-      - Corrigé : impossibilité d’importer des messages comportant des sauts de ligne dans l’en-tête « Return-Path » (#516)<br>
-      - Corrigé : dossier des messages manquant lors de l’exportation de tous les messages d’un dossier virtuel en HTML avec pièces jointes et index (#509)<br>
-      - Corrigé : menu contextuel dans les fenêtres de message (#505)<br>
-      - Conversion des fichiers dtd en messages.json<br>
+      - Promisification et correction du problème de timing dans l’exportation des messages (#568)<br>
+      - Nouveau : latinisation des noms de fichiers avec la préférence booléenne<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;« extensions.importexporttoolsng.export.filename_latinize »<br>
+      - Nouveau : filtre des noms de fichiers en UTF-16 (emojis, symboles…) avec la préférence booléenne<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;« extensions.importexporttoolsng.export.filename_filterUTF16 »<br>
+      - Nouveau : filtre des caractères pour les noms de fichiers avec la préférence pour les chaînes UTF-16<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;« extensions.importexporttoolsng.export.filename_filter_characters » (saisir les caractères sans séparateur) <br>
     </p>
     <h2 id="main_help">Présentation</h2>
     <p><i>ImportExportTools NG</i> est une extension basée sur le travail original de Paolo "Kaosmos". Elle fournit de multiples fonctions d’importation et d’exportation acceptant plusieurs formats de fichiers (certains n’étant pas supportés par toutes les fonctions) :<br>

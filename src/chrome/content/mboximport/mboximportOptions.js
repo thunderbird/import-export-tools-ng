@@ -17,7 +17,8 @@
 
 var Services = globalThis.Services || ChromeUtils.import(
     'resource://gre/modules/Services.jsm'
-  ).Services;
+).Services;
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
@@ -422,8 +423,13 @@ function toggleSkipMsg(el) {
 
 async function pickFile(target, inputFieldId) {
     var box = target.ownerDocument.getElementById(inputFieldId);
+    let winCtx = window;
+    const tbVersion = ietngUtils.getThunderbirdVersion();
+    if (tbVersion.major >= 120) {
+        winCtx = window.browsingContext;
+    }
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-    fp.init(window, "", Ci.nsIFilePicker.modeGetFolder);
+    fp.init(winCtx, "", Ci.nsIFilePicker.modeGetFolder);
     let res = await new Promise(resolve => {
         fp.open(resolve);
     });

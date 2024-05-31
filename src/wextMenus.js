@@ -1189,7 +1189,7 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
     await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
@@ -1208,7 +1208,7 @@ async function menusUpdate(info, tab) {
         (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+        //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
 
         await messenger.menus.refresh();
 
@@ -1299,10 +1299,10 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+      //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
-      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+      //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     }
     await messenger.menus.refresh();
   }

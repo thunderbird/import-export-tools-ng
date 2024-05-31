@@ -28,71 +28,76 @@ var ietngUtils = {
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),
 
-    top: Cc["@mozilla.org/appshell/window-mediator;1"]
-		.getService(Ci.nsIWindowMediator)
-		.getMostRecentWindow("mail:3pane"),
+  top: Cc["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Ci.nsIWindowMediator)
+    .getMostRecentWindow("mail:3pane"),
 
   getNativeSelectedMessages: async function (wextSelectedMessages) {
 
-	// This should be changed to use pure wext selected message list
-	// Have to determine most efficient way for large message sets
+    // This should be changed to use pure wext selected message list
+    // Have to determine most efficient way for large message sets
 
-	// we have three scenarios wextSelectedMessages exists,
-	// there is a null id therefore fewer than 100 msgs, or
-	// a valid id indicating more than 100 msgs, if no
-	// wextSelectedMessages we are coming from a shortcut and have to request
-	// the selected msgs
+    // we have three scenarios wextSelectedMessages exists,
+    // there is a null id therefore fewer than 100 msgs, or
+    // a valid id indicating more than 100 msgs, if no
+    // wextSelectedMessages we are coming from a shortcut and have to request
+    // the selected msgs
 
-  var msgUris = [];
+    var msgUris = [];
 
-  var curDBView;
-  var gTabmail = this.top.gTabmail;
-	// Lets see where we are
-	if (gTabmail.currentAbout3Pane) {
-		// On 3p
-		curDBView = gTabmail.currentAbout3Pane.gDBView;
-	} else if (gTabmail.currentAboutMessage) {
-		curDBView = gTabmail.currentAboutMessage.gDBView;
-	}
+    var curDBView;
+    var gTabmail = this.top.gTabmail;
+    // Lets see where we are
+    if (gTabmail.currentAbout3Pane) {
+      // On 3p
+      curDBView = gTabmail.currentAbout3Pane.gDBView;
+    } else if (gTabmail.currentAboutMessage) {
+      curDBView = gTabmail.currentAboutMessage.gDBView;
+    }
 
-	if (wextSelectedMessages) {
-		// check if we have a valid id (over 100)
-		if (wextSelectedMessages.id) {
-			// over 100, use the dbview
-			msgUris = curDBView.getURIsForSelection();
-		} else {
-			// under, use params.selectedMessages
-			wextSelectedMessages.messages.forEach(msg => {
-				let realMessage = window.ietngAddon.extension
-					.messageManager.get(msg.id);
+    if (wextSelectedMessages) {
+      // check if we have a valid id (over 100)
+      if (wextSelectedMessages.id) {
+        // over 100, use the dbview
+        msgUris = curDBView.getURIsForSelection();
+      } else {
+        // under, use params.selectedMessages
+        wextSelectedMessages.messages.forEach(msg => {
+          let realMessage = window.ietngAddon.extension
+            .messageManager.get(msg.id);
 
-				let uri = realMessage.folder.getUriForMsg(realMessage);
-				msgUris.push(uri);
-			});
-		}
-	} else {
-		// no params
-		var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
-		if (msgIdList.id) {
-			msgUris = curDBView.getURIsForSelection();
-		} else {
-			msgIdList.messages.forEach(msg => {
-				let realMessage = window.ietngAddon.extension
-					.messageManager.get(msg.id);
+          let uri = realMessage.folder.getUriForMsg(realMessage);
+          msgUris.push(uri);
+        });
+      }
+    } else {
+      // no params
+      var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
+      if (msgIdList.id) {
+        msgUris = curDBView.getURIsForSelection();
+      } else {
+        msgIdList.messages.forEach(msg => {
+          let realMessage = window.ietngAddon.extension
+            .messageManager.get(msg.id);
 
-				let uri = realMessage.folder.getUriForMsg(realMessage);
-				msgUris.push(uri);
-			});
-		}
-	}
-  return msgUris;
+          let uri = realMessage.folder.getUriForMsg(realMessage);
+          msgUris.push(uri);
+        });
+      }
+    }
+    return msgUris;
   },
 
   openFileDialog: async function (window, mode, title, initialDir, filter) {
 
+    let winCtx = window;
+    const tbVersion = ietngUtils.getThunderbirdVersion();
+    if (tbVersion.major >= 120) {
+      winCtx = window.browsingContext;
+    }
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};
-    fp.init(window, title, mode);
+    fp.init(winCtx, title, mode);
     fp.appendFilters(filter);
     if (initialDir) {
       fp.displayDirectory = nsiFileFromPath(initialDir);
@@ -266,7 +271,7 @@ var ietngUtils = {
         ext = comp[comp.length - 1];
         nameIndex = foldername.split(`.${ext}`)[0] + "-" + index.toString() + `.${ext}`;
       } else if (!useMboxExt) {
-      nameIndex = foldername + "-" + index.toString();
+        nameIndex = foldername + "-" + index.toString();
 
       } else {
         nameIndex = foldername.split(".mbox")[0] + "-" + index.toString() + ".mbox";
@@ -289,13 +294,13 @@ var ietngUtils = {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   },
 
-getThunderbirdVersion: function () {
+  getThunderbirdVersion: function () {
     let parts = this.Services.appinfo.version.split(".");
     return {
-        major: parseInt(parts[0]),
-        minor: parseInt(parts[1]),
-        revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+      major: parseInt(parts[0]),
+      minor: parseInt(parts[1]),
+      revision: parts.length > 2 ? parseInt(parts[2]) : 0,
     };
-},
+  },
 
 };

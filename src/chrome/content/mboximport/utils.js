@@ -42,11 +42,12 @@ var Services = globalThis.Services || ChromeUtils.import(
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
-var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
 	'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 function IETrunTimeDisable() {
@@ -376,10 +377,15 @@ function IETexport_all(params) {
 			return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	// Open the filepicker to choose the directory
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -625,9 +631,14 @@ function IETopenFPsync(fp) {
 
 function IETgetPickerModeFolder() {
 	var dir = null;
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)

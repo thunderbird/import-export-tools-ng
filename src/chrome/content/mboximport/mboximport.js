@@ -173,8 +173,13 @@ var IETprintPDFmain = {
 		IETprintPDFmain.total = IETprintPDFmain.uris.length;
 		let dir = getPredefinedFolder(2);
 		if (!dir) {
+			let winCtx = window;
+			const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major >= 120) {
+				winCtx = window.browsingContext;
+			}
 			let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-			fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
+			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
 			let res = await new Promise(resolve => {
 				fp.open(resolve);
 			});
@@ -388,8 +393,13 @@ async function trytocopyMAILDIR(params) {
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
 	fp.appendFilters(Ci.nsIFilePicker.filterAll);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
@@ -1237,9 +1247,15 @@ async function importALLasEML(params) {
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
+
 	// Open the filepicker to choose the directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
 	});
@@ -1355,9 +1371,14 @@ async function importEMLs(params) {
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	// Set the filepicker to open the last opened directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
 	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws; *._eml");
 	fp.appendFilter("All files", "*.*");
 	let res = await new Promise(resolve => {

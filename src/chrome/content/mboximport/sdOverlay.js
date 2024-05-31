@@ -54,6 +54,8 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+
 var searchFolder = null;
 
 function SDexportMsg() {
@@ -83,6 +85,11 @@ function SDexportMsg() {
 		all = (document.getElementById("IETall").selectedIndex === 0);
 	else
 		all = (rg[rg.length - 2].selectedIndex === 0);
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -91,7 +98,7 @@ function SDexportMsg() {
 	if (type === 4 || type === 6)
 		file = getPredefinedFolder(0);
 	else if (type === 5) {
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
 		fp.appendFilters(nsIFilePicker.filterAll);
 		if (fp.show)
 			res = fp.show();

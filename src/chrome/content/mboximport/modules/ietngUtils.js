@@ -91,7 +91,7 @@ var ietngUtils = {
   openFileDialog: async function (window, mode, title, initialDir, filter) {
 
     let winCtx = window;
-    const tbVersion = ietngUtils.getThunderbirdVersion();
+    const tbVersion = this.getThunderbirdVersion();
     if (tbVersion.major >= 120) {
       winCtx = window.browsingContext;
     }

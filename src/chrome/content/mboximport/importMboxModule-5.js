@@ -29,17 +29,18 @@ var window = Services.wm.getMostRecentWindow("mail:3pane");
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // as a module loaded by an ES6 module we bump name version so we avoid cache
-console.log("IETNG: mboxImportModule.js -v4");
+console.log("IETNG: importMboxModule.js -v5");
 
+// if these are const or let they produce redeclaration error5
 // Common RFC822 header field-names for From_ exception analysis
-var rfc822FieldNames = [
+var rfc822CommonFieldNames = [
   "to", "from", "subject", "cc", "bcc", "reply-to", "date", "date-received", "received",
   "delivered-to", "return-path", "dkim-signature", "deferred-delivery", "envelope-to",
   "message-id", "user-agent", "mime-version", "content-type", "content-transfer-encoding",
   "content-language", "autocrypt",
 ];
 
-var commonX_FieldNames = [
+var CommonX_FieldNames = [
   "x-spam…", "x-ham…", "x-mozilla…",
   "x-google…", "x-gm…",
 ];
@@ -240,19 +241,19 @@ function _exceptionHas2Hdrs(exceptionBuf) {
 }
 
 function _isRFC822FieldName(fieldName) {
-  if (rfc822FieldNames.includes(fieldName.toLowerCase())) {
+  if (rfc822CommonFieldNames.includes(fieldName.toLowerCase())) {
     return true;
   }
   return false;
 }
 
 function _isCommonX_FieldName(fieldName) {
-  if (commonX_FieldNames.includes(fieldName.toLowerCase())) {
+  if (CommonX_FieldNames.includes(fieldName.toLowerCase())) {
     return true;
   }
   // check for common X- roots
   if (fieldName.toLowerCase().startsWith("x-")) {
-    return commonX_FieldNames.find(xFieldName => {
+    return CommonX_FieldNames.find(xFieldName => {
       return (xFieldName.endsWith("…") && fieldName.toLowerCase().startsWith(xFieldName.slice(0, -1)));
     });
   }

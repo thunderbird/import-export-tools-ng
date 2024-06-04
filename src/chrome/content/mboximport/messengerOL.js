@@ -231,6 +231,7 @@ function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttC
 }
 
 function onUnload() {
+	window.onIetngShutdown();
 	window.removeHotKeysObserver();
 	window.ietng.OpenBackupDialog();
 	window.ietngAddon.notifyTools.removeAllListeners();

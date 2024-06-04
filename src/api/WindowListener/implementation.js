@@ -280,11 +280,11 @@ var WindowListener_102 = class extends ExtensionCommon.ExtensionAPI {
     for (let api of apis) {
       switch (api) {
         case "storage":
-          XPCOMUtils.defineLazyGetter(messenger, "storage", () => getStorage());
+          ChromeUtils.defineLazyGetter(messenger, "storage", () => getStorage());
           break;
 
         default:
-          XPCOMUtils.defineLazyGetter(messenger, api, () =>
+          ChromeUtils.defineLazyGetter(messenger, api, () =>
             context.apiCan.findAPIPath(api)
           );
       }
@@ -1322,11 +1322,11 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
     for (let api of apis) {
       switch (api) {
         case "storage":
-          XPCOMUtils.defineLazyGetter(messenger, "storage", () => getStorage());
+          ChromeUtils.defineLazyGetter(messenger, "storage", () => getStorage());
           break;
 
         default:
-          XPCOMUtils.defineLazyGetter(messenger, api, () =>
+          ChromeUtils.defineLazyGetter(messenger, api, () =>
             context.apiCan.findAPIPath(api)
           );
       }

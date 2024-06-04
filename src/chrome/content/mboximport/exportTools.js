@@ -85,9 +85,9 @@ var IETglobalMsgFoldersExported;
 var IETglobalFile;
 var IETabort;
 
-let kStatusOK = 1;
-let kStatusDone = 2;
-let kStatusAbort = 3;
+var kStatusOK = 1;
+var kStatusDone = 2;
+var kStatusAbort = 3;
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");

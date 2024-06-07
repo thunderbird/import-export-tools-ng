@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.0.2%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.0.3%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -16,6 +16,17 @@ export functions for messages, folders and profiles.
 - [Apple mail conversion help](https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
 
 ## Import Export Tools NG Add-On Features
+
+Version 14.0.3 : Maintenance Release - June,6 2024
+
+- Promisify and fix export messages timing issue #568
+- New: Latinize filenames transform. Use boolean preference:
+  extensions.importexporttoolsng.export.filename_latinize
+- New: UTF-16 filenames filter (emojis, symbols…). Use boolean preference:
+  extensions.importexporttoolsng.export.filename_filterUTF16
+- New: Character filter for filenames. Use UTF-16 string preference:
+  extensions.importexporttoolsng.export.filename_filter_characters
+  Enter the characters with no separators
 
 Version 14.0.2 : Subfolders Release - April 10, 2024
 

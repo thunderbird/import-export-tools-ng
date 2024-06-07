@@ -281,7 +281,6 @@ function getSubjectForHdr(hdr, dirPath) {
 	else {
 		// Allow ',' and single quote character which is valid
 		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
-		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {

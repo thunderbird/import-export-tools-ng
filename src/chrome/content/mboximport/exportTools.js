@@ -554,7 +554,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			direname = nametoascii(msgFolder.name) + "_" + datedir;
 		else {
 			direname = msgFolder.name + "_" + datedir;
-			direname = direname.replace(/[\\:?"\*\/<>#]/g, "_");
+			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
 		var index1 = 0;
@@ -666,7 +666,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			direname = nametoascii(msgFolder.name) + "_" + datedir;
 		else {
 			direname = msgFolder.name + "_" + datedir;
-			direname = direname.replace(/[\\:?"\*\/<>#]/g, "_");
+			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
 		var index1 = 0;
@@ -676,7 +676,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			if (mustcorrectname)
 				direname = nametoascii(msgFolder.name) + "_" + datedir + "-" + index1.toString();
 			else
-				direname = msgFolder.name + "_" + datedir + "-" + index1.toString();
+				direname = msgFolder.name.replace(/[\\:?"\*\/<>|]/g, "_") + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
 		}
 		file = filetemp.clone();
@@ -685,7 +685,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		let folderDirName = msgFolder.name;
+		let folderDirName = nametoascii(msgFolder.name);
 		let folderDirNamePath = file.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);

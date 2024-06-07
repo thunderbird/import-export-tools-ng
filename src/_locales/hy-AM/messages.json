@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
-    }
+    },
+
+	"Size": {
+		"message": "Չափը"
+	}
 }

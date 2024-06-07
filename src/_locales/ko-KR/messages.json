@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "CR 변환 =&gt; CRLF 라인 종료"
-    }
+    },
+
+	"Size": {
+		"message": "크기"
+	}
 }

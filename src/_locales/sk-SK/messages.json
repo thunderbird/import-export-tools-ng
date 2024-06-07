@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Konverzia zakončení CR =&gt; CRLF"
-    }
+    },
+
+	"Size": {
+		"message": "Veľkosť"
+	}
 }

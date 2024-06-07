@@ -136,7 +136,7 @@ var translationArray5 = [
 
 var translationArray = [
  
-  { key: "CRconversion.statusMsg", text: "Converting CR => CRLF line terminations"},
+  { key: "Size", text: "Size"},
 	
 
 	
@@ -651,9 +651,6 @@ localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-// localeFolders = ['ru', 'hu-HU', 'hy-AM', 'ko-KR', 'pl', 'da', 'pt-PT'];
-//localeFile = "settings.json";
-// t();
 translateHelpPage();
 //translatePage();
 //loadTranslationArray(inputFiles, options);

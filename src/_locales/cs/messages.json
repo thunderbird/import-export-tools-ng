@@ -837,5 +837,9 @@
 
 	"CRconversion.statusMsg": {
 		"message": "Převod CR =&gt; CRLF zakončení linek"
+	},
+
+	"Size": {
+		"message": "Velikost"
 	}
 }

@@ -20,21 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
     <p>
-      - Novo: Exportación recursiva de subcarpeta para EML, HTML, PDF e texto plano #538<br />
-      - Novo: columna de tamaño no índice #508<br />
-      - Novo: importar ficheiros mbox de terminacións CR de OSX 9 #540<br />
-      - Novo: admite atallos para ExportSelectedMessages #519<br />
-      - Novo: checo (cs) local - @cewbdex<br />
-      - Corrixe o separador mbox From_ para usar o formato de data asctime() #537<br />
-      - Corrixir as exportacións PDF non use Mozilla Save toPDF configuración #528<br />
-      - Corrixir ao facer clic co botón dereito no cartafol non se mostra a opción de exportación mbox para
-      Maildir #525<br />
-      - Solución Non se poden importar correos electrónicos con saltos de liña na cabeceira Return-Path
-      #516<br />
-      - Fixar Exportar todas as mensaxes dun cartafol virtual a html con anexos e índice: falta o cartafol de
-      mensaxes #509<br />
-      - Corrixir o menú contextual para a xanela de mensaxes #505<br />
-      - Converte ficheiros dtd a messages.json<br />
+      - Promete e corrixa o problema de temporización das mensaxes de exportación #568<br />
+      - Novo: latinizar os nomes de ficheiros transformados. Use a preferencia booleana:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Novo: filtro de nomes de ficheiros UTF-16 (emojis, símbolos...). Use a preferencia booleana:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Novo: filtro de caracteres para nomes de ficheiros. Usa a preferencia de cadea UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Introduza os caracteres sen separadores<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
     <p>
@@ -269,7 +262,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importa todas as mensaxes EML dun só cartafol, incluíndo estrutura/subcartafoles</td>
+          <td>Importa todas as mensaxes EML dun único cartafol, incluíndo estrutura/subcartafoles</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
@@ -340,7 +333,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Exporta as mensaxes como ficheiros de formato HTML, incluíndo anexos.<br />
+            Exporta as mensaxes como ficheiros en formato HTML, incluíndo anexos.<br />
             Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
@@ -468,8 +461,8 @@
       &quot;Data (personalizado)&quot; están dispoñibles nos menús despregables de nomes de ficheiro. A data
       personalizada tamén se pode usar co token ${date_custom} usado nos nomes de ficheiro personalizados
       estendidos. O formato de data orixinal (predeterminado) é:<br />
-      AAAAMMDDHHmm: 202011060808<br /><br />
-      O formato de data personalizado utiliza secuencias % que coinciden coa funcionalidade
+      AAAMMDDDHHmm: 202011060808<br /><br />
+      O formato de data personalizado utiliza secuencias % que coinciden coa función
       <code>strftime()</code> similar a Unix. Está baseado nun porto JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , unha función para formatar a data e a hora.<br />
@@ -639,7 +632,7 @@
           <td><code class="code1">%z</code></td>
           <td>
             O fuso horario numérico <code class="code1">+hhmm</code> ou <code class="code1">-hhmm</code> (é
-            dicir, a desfase de hora e minuto respecto da UTC).
+            dicir, o desfase de hora e minuto con respecto ao UTC).
           </td>
         </tr>
         <tr>
@@ -661,7 +654,7 @@
       <li><code class="code1">%k</code> - non se engade espazo</li>
       <li>
         <code class="code1">%n</code> - como <code class="code1">%m</code> , pero sen cero inicial (use
-        <code class="code1">\n</code> para a nova liña)
+        <code class="code1">\n</code> para nova liña)
       </li>
       <li><code class="code1">%O</code> - non implementado</li>
       <li><code class="code1">%r</code> - non implementado (use <code class="code1">%I:%M:%S %p</code> )</li>
@@ -684,8 +677,8 @@
       O formato de nome de ficheiro estendido utiliza tokens. O nome de ficheiro exacto pódese construír
       utilizando as fichas, así como calquera texto ou caracteres de nome de ficheiro válidos. Os caracteres
       non válidos son: <code>| * : &lt; &gt; ? \ / &quot;</code> Os tokens en inglés (en-US) están dispoñibles
-      en calquera lugar. Tamén están dispoñibles os tokens específicos da rexión e aparecen debaixo da táboa
-      en inglés.<br /><br />
+      en calquera lugar. Tamén están dispoñibles os tokens específicos de localidades que aparecen debaixo da
+      táboa en inglés.<br /><br />
       Exemplos:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - O formato predeterminado<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : use o formato de data
@@ -801,7 +794,7 @@
       que estas funcións estean estabilizadas, engadiranse á IU.<br />
       Para usalos deben estar configurados no Editor de configuración. Para acceder ao editor use o menú
       Ferramentas/Opcións, seleccione a sección Avanzado e haberá un botón &quot;Editor de configuración&quot;
-      na parte inferior. Se escribe &#39;importexporttoolsng&#39; na barra de busca, obterá todas as
+      na parte inferior. Se escribe &quot;importexporttoolsng&quot; na barra de busca, obterá todas as
       preferencias de extensión. A continuación, pode editar as distintas preferencias a continuación segundo
       sexa necesario.
     </p>
@@ -835,14 +828,14 @@
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Esta nova preferencia permite ao usuario configurar ata 10 atallos de teclado. Os atallos poden realizar
-      a maioría das funcións de ImportExportTools NG, así como outras funcións de Thunderbird. A cadea de
-      preferencias está formatada como un obxecto con formato JSON. O formato e as claves son os seguintes:
+      a maioría das funcións ImportExportTools NG, así como outras funcións de Thunderbird. A cadea de
+      preferencia está formatada como un obxecto con formato JSON. O formato e as claves son os seguintes:
     </p>
     <p>
       Exemplos de entradas de teclas rápidas (matriz de obxectos JSON)<br /><br />
       <code class="notranslate">id</code> - o índice clave (1-10)<br />
       <code class="notranslate">key</code> - a tecla (un só carácter)<br />
-      <code class="notranslate">keycode</code> : o &quot;VK_*&quot; define o código clave<br />
+      <code class="notranslate">keycode</code> : o código &quot;VK_*&quot; define o código clave<br />
       Pódense incluír calquera chave ou código, pero non ambos<br />
       <code class="notranslate">modifiers</code> : os modificadores de teclas, lista separada por espazos
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

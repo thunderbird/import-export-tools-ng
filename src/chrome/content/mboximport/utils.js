@@ -37,15 +37,17 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
-var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
 	'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 function IETrunTimeDisable() {
@@ -282,12 +284,34 @@ function getSubjectForHdr(hdr, dirPath) {
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {
+		fname = latinizeString(fname);
+	}
+
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16")) {
+		fname = filterNonASCIICharacters(fname);
+	}
+
+	// User defined character filter
+	var filterCharacters = IETprefs.getStringPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+	if (filterCharacters !== "") {
+		let filter = new RegExp(`[${filterCharacters}]`, "g");
+		fname = fname.replace(filter, "");
+	}
+
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
 		if (fname.length > maxFN)
 			fname = fname.substring(0, maxFN);
 	}
 	return fname;
+}
+
+function filterNonASCIICharacters(str) {
+	str = str.replace(/[\u{0100}-\u{FFFF}]/gu, "");
+	str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
+	return str;
 }
 
 function formatNameForSubject(str, recipients) {
@@ -353,10 +377,15 @@ function IETexport_all(params) {
 			return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	// Open the filepicker to choose the directory
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -573,9 +602,9 @@ function IETcleanName(str) {
 function IETgetExt(type) {
 	if (type === 1 || type === 8) {
 		return ".html";
-	}	else if (type === 10) {
+	} else if (type === 10) {
 		return ".pdf";
-	}	else if (type === 0) {
+	} else if (type === 0) {
 		return ".eml";
 	}
 
@@ -602,9 +631,14 @@ function IETopenFPsync(fp) {
 
 function IETgetPickerModeFolder() {
 	var dir = null;
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)

@@ -20,20 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lançamento:</h3>
     <p>
-      - Novo: Exportação recursiva de subpastas para EML, HTML, PDF e texto simples #538<br />
-      - Novo: coluna Tamanho no índice #508<br />
-      - Novo: Importar arquivos mbox de terminações OSX 9-CR #540<br />
-      - Novo: Atalhos de suporte para ExportSelectedMessages #519<br />
-      - Novo: localidade tcheca (cs) - @cewbdex<br />
-      - Corrigido o separador mbox From_ para usar o formato de data asctime() #537<br />
-      - Corrigir exportações de PDF, não use as configurações do Mozilla Save toPDF #528<br />
-      - Correção da pasta ao clicar com o botão direito do mouse que não mostra a opção de exportação mbox
-      para Maildir #525<br />
-      - Correção: Não é possível importar e-mails com quebras de linha no cabeçalho Return-Path #516<br />
-      - Correção Exportar todas as mensagens de uma pasta virtual para html com anexos e índice - pasta de
-      mensagens ausentes #509<br />
-      - Correção do menu de contexto da janela de mensagem #505<br />
-      - Converter arquivos dtd em messages.json<br />
+      - Prometa e corrija o problema de temporização de mensagens de exportação nº 568<br />
+      - Novo: transformação de nomes de arquivos latinizados. Use preferência booleana:<br />
+      extensions.importexporttoolsng.export.filename_latinize<br />
+      - Novo: filtro de nomes de arquivos UTF-16 (emojis, símbolos…). Use preferência booleana:<br />
+      extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Novo: Filtro de caracteres para nomes de arquivos. Use a preferência de string UTF-16:<br />
+      extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Insira os caracteres sem separadores<br />
     </p>
     <h2 id="main_help">Visão geral e menus do ImportExportTools NG</h2>
     <p>
@@ -73,7 +67,7 @@
       - Versão ImportExportTools NG<br />
       - Versão Thunderbird<br />
       - Sistema operacional e versão<br />
-      - Saída de depuração (copiar do console de depuração - acesso com Control-Shift-J)<br />
+      - Saída de depuração (copiar do Debug Console - acesso com Control-Shift-J)<br />
       - Uma descrição das etapas que levaram ao problema<br />
     </p>
     <h2 id="main_menu_help">Funções do menu de contexto de pasta</h2>
@@ -204,8 +198,8 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Exporte as mensagens da pasta como um único arquivo de formato de texto CSV (valores separados por
-            vírgula), os anexos não são incluídos.<br />
+            Exporte as mensagens da pasta como um único arquivo de formato de texto CSV (Valores Separados por
+            Vírgula), os anexos não são incluídos.<br />
             Isso também cria um arquivo de índice HTML listando cada mensagem.
           </td>
         </tr>
@@ -338,7 +332,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Exporte as mensagens como arquivos no formato HTML, incluindo anexos.<br />
+            Exporte as mensagens como arquivos em formato HTML, incluindo anexos.<br />
             Isso também cria um arquivo de índice HTML listando cada mensagem.
           </td>
         </tr>

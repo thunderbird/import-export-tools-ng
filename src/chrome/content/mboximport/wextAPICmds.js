@@ -33,6 +33,10 @@ async function getSelectedMsgs() {
 async function openHelp(bookmark) {
 	let win = getMail3Pane();
 	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
+}
 
-	
+async function onIetngShutdown() {
+	let win = getMail3Pane();
+	console.log("ieshut")
+	await win.ietngAddon.notifyTools.notifyBackground({ command: "shutdown" });
 }

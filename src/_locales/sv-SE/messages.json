@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
-    }
+    },
+
+	"Size": {
+		"message": "Storlek"
+	}
 }

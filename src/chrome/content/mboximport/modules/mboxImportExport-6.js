@@ -32,11 +32,11 @@ var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/mo
 
 var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-4.js", window, "UTF-8");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v4");
+console.log("IETNG: mboximportExport.js -v6");
 
 export var mboxImportExport = {
 
@@ -590,7 +590,7 @@ export var mboxImportExport = {
       let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
       
       // get message as 8b string
-      let rawBytes = await this.getRawMessage(msgUri);
+      let rawBytes = await this.getRawMessage(msgUri, false);
 
       if (index) {
         sep = "\n";
@@ -657,7 +657,7 @@ export var mboxImportExport = {
     //console.log("End: ", end, (end - st) / 1000);
   },
 
-  getRawMessage: async function (msgUri) {
+  getRawMessage: async function (msgUri, aConvertData) {
 
     let service = MailServices.messageServiceFromURI(msgUri);
     return new Promise((resolve, reject) => {
@@ -697,7 +697,7 @@ export var mboxImportExport = {
         streamlistener,
         null, // aMsgWindow
         null, // aUrlListener
-        false, // aConvertData
+        aConvertData, // aConvertData
         "" //aAdditionalHeader
       );
     });

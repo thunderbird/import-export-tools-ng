@@ -17,7 +17,8 @@
 
 var Services = globalThis.Services || ChromeUtils.import(
     'resource://gre/modules/Services.jsm'
-  ).Services;
+).Services;
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
@@ -251,7 +252,6 @@ function initMboxImportPanel() {
         var localTime = time.toLocaleString();
         document.getElementById("backupLast").value = localTime;
     }
-    document.getElementById("modalWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog");
 
 }
 
@@ -348,7 +348,6 @@ function saveMboxImportPrefs() {
         IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir_custom_name");
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
-    IETprefs.setBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog", document.getElementById("modalWin").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
 }
@@ -424,8 +423,13 @@ function toggleSkipMsg(el) {
 
 async function pickFile(target, inputFieldId) {
     var box = target.ownerDocument.getElementById(inputFieldId);
+    let winCtx = window;
+    const tbVersion = ietngUtils.getThunderbirdVersion();
+    if (tbVersion.major >= 120) {
+        winCtx = window.browsingContext;
+    }
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-    fp.init(window, "", Ci.nsIFilePicker.modeGetFolder);
+    fp.init(winCtx, "", Ci.nsIFilePicker.modeGetFolder);
     let res = await new Promise(resolve => {
         fp.open(resolve);
     });

@@ -2,6 +2,17 @@
 
 ## Versions
 
+Version 14.0.3 : Maintenance Release - June,6 2024
+
+- Promisify and fix export messages timing issue #568
+- New: Latinize filenames transform. Use boolean preference:
+  extensions.importexporttoolsng.export.filename_latinize
+- New: UTF-16 filenames filter (emojis, symbols…). Use boolean preference:
+  extensions.importexporttoolsng.export.filename_filterUTF16
+- New: Character filter for filenames. Use UTF-16 string preference:
+  extensions.importexporttoolsng.export.filename_filter_characters
+  Enter the characters with no separators
+
 Version 14.0.2 : Subfolders Release - April 10, 2024
 
 - New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538

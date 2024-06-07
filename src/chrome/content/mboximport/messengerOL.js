@@ -71,7 +71,7 @@ function onLoad() {
 	window.ietng.extension = WL.extension;
 
 	window.ietng.OpenBackupDialog = function (mode = "auto") {
-		Services.console.logStringMessage("Start backup check");
+		Services.console.logStringMessage("IETNG: Start backup check");
 		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 	
@@ -86,20 +86,13 @@ function onLoad() {
 		
 			let time = now.getTime() / 1000;
 			let days = 24 * 60 * 60 * frequency;
-			// let days = 0.005;
-			console.debug('OverlayBackup');
-			console.debug(time-last);
-			console.debug(days);
 		
-			if ((time - last) < (days - (60 * 5)))
+			if ((time - last) < (days - (60 * 5))) {
 				return;
+			}
 		}
 	
-		if (Services.prefs.getBoolPref("extensions.importexporttoolsng.autobackup.use_modal_dialog")) {
 			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
-		} else {
-			window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen", last, now, mode);
-		}
 	}
 	
 
@@ -175,7 +168,7 @@ function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttC
 		}
 
 		if (!tbExtButton) {
-			console("Exception: Extension button not found on toolbar")
+			console.log("Exception: Extension button not found on toolbar")
 			return;
 		}
 		// get parent div for listener

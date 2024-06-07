@@ -54,6 +54,12 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 		case "openHelp":
 			window.wextOpenHelp({bmark: info.bmark});
 			break;
+		case "shutdown":
+			console.log("shut")
+			await messenger.menus.refresh();
+			await messenger.menus.removeAll();
+			break;
+
     }
     return false;
   }

@@ -26,19 +26,15 @@
 
 	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
 	<p>
-- New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538<br>
-- New: Size column in index #508<br>
-- New: Import OSX 9- CR terminations mbox files #540<br>
-- New: Support shortcuts for ExportSelectedMessages #519<br>
-- New: Czech (cs) locale - @cewbdex<br>
-- Fix mbox From_ separator to use asctime() date format #537<br>
-- Fix PDF exports do not use Mozilla Save toPDF settings #528<br>
-- Fix Right-clicking folder doesn't show export mbox option for Maildir #525<br>
-- Fix Cannot import emails with linebreaks in Return-Path header #516<br>
-- Fix Export all messages of a virtual folder to html with attachments and index - missing messages folder #509<br>
-- Fix context menu for message window #505<br>
-- Convert dtd files to messages.json<br>
-
+		- Promisify and fix export messages timing issue #568<br>
+		- New: Latinize filenames transform. Use boolean preference:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_latinize<br>
+		- New: UTF-16 filenames filter (emojis, symbols…). Use boolean preference:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filterUTF16<br>
+		- New: Character filter for filenames. Use UTF-16 string preference:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extensions.importexporttoolsng.export.filename_filter_characters<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter the characters with no separators<br>
+		
 </p>
 	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
 	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".

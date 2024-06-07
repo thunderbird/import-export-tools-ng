@@ -631,5 +631,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Konvertieren von CR =&gt; CRLF-Leitungsabschlüssen"
-    }
+    },
+
+	"Size": {
+		"message": "Größe"
+	}
 }

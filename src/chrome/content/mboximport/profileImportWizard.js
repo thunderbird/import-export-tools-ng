@@ -32,6 +32,7 @@ IETopenFPsync
 var Services = globalThis.Services || ChromeUtils.import(
   'resource://gre/modules/Services.jsm'
 ).Services;
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETimportWizard = {
 
@@ -68,9 +69,14 @@ var IETimportWizard = {
 
 	pickFile: async function (target, inputFieldId) {
 		let box = target.ownerDocument.getElementById(inputFieldId);
+		let winCtx = window;
+		const tbVersion = ietngUtils.getThunderbirdVersion();
+		if (tbVersion.major >= 120) {
+			winCtx = window.browsingContext;
+		}
 		let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 
-		fp.init(window, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
 		let res = await new Promise(resolve => {
 			fp.open(resolve);
 		});

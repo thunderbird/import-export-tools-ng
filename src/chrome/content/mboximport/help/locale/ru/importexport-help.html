@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>Справка ImportExportTools NG</title>
+    <title>Справка по ImportExportTools NG</title>
   </head>
   <body>
     <table style="width: 100%;" id="main-help">
       <tr>
         <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">Справка ImportExportTools NG</div>
+          <div style="font-size: 1.8em; font-weight: bold;">Справка по ImportExportTools NG</div>
           <div id="extVersion" style="padding-left: 4px;">версия</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
@@ -20,21 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Примечания к выпуску:</h3>
     <p>
-      - Новое: рекурсивный экспорт подпапок для EML, HTML, PDF и обычного текста #538.<br />
-      - Новое: столбец размера в индексе № 508.<br />
-      - Новое: импорт файлов mbox завершения CR OSX 9-#540.<br />
-      - Новое: поддержка ярлыков для ExportSelectedMessages #519.<br />
-      - Новое: чешский язык (cs) - @cewbdex<br />
-      — Исправлен разделитель mbox From_ для использования формата даты asctime() #537.<br />
-      - Исправлен экспорт PDF, не использующий настройки Mozilla Save toPDF #528.<br />
-      - Исправлено: при щелчке правой кнопкой мыши по папке не отображается опция экспорта mbox для Maildir #
-      525.<br />
-      - Исправлена ошибка «Невозможно импортировать электронные письма с разрывами строк в заголовке
-      Return-Path № 516».<br />
-      - Исправлен экспорт всех сообщений виртуальной папки в html с вложениями и индексом - отсутствует папка
-      сообщений № 509.<br />
-      - Исправлено контекстное меню для окна сообщения #505.<br />
-      - Преобразование файлов dtd в messages.json.<br />
+      - Обещание и исправление проблемы синхронизации экспортных сообщений № 568.<br />
+      - Новое: преобразование латинизированных имен файлов. Используйте логические предпочтения:<br />
+      Extensions.importexporttoolsng.export.filename_latinize<br />
+      - Новое: фильтр имен файлов UTF-16 (смайлики, символы…). Используйте логические предпочтения:<br />
+      Extensions.importexporttoolsng.export.filename_filterUTF16<br />
+      - Новое: фильтр символов для имен файлов. Используйте настройку строки UTF-16:<br />
+      Extensions.importexporttoolsng.export.filename_filter_characters<br />
+      Введите символы без разделителей<br />
     </p>
     <h2 id="main_help">Обзор и меню ImportExportTools NG</h2>
     <p>
@@ -103,7 +96,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
-          <td>Экспорт одной папки в сжатый файл формата mbox.</td>
+          <td>Экспортируйте одну папку в сжатый файл формата mbox.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
@@ -497,7 +490,7 @@
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Номер века (год/100) в виде двузначного целого числа.</td>
+          <td>Номер столетия (год/100) в виде двузначного целого числа.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -571,13 +564,13 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Либо «AM», либо «PM» в соответствии с заданным значением времени. Полдень рассматривается как
-            «PM», а полночь — как «AM».
+            Либо «AM», либо «PM» в соответствии с заданным значением времени. Полдень считается «PM», а
+            полночь — «AM».
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>Как <code class="code1">%p</code> , но в нижнем регистре («утра» или «после полудня»).</td>
+          <td>Как <code class="code1">%p</code> , но в нижнем регистре («am» или «pm»).</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
@@ -614,7 +607,7 @@
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Предпочтительное представление времени для текущей локали без даты.</td>
+          <td>Предпочтительное представление времени для текущего языкового стандарта без даты.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
@@ -639,7 +632,7 @@
     </table>
     <h3>Примечания по совместимости:</h3>
     <ul>
-      <li><code class="code1">%c</code> — отформатированная строка немного отличается</li>
+      <li><code class="code1">%c</code> — форматированная строка немного отличается</li>
       <li>
         <code class="code1">%D</code> — не реализовано (используйте <code class="code1">%m/%d/%y</code> или
         <code class="code1">%d/%m/%y</code> )
@@ -647,7 +640,7 @@
       <li><code class="code1">%e</code> — пробел не добавляется</li>
       <li><code class="code1">%E</code> – не реализовано</li>
       <li><code class="code1">%h</code> — не реализовано (используйте <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> — пространство не добавляется</li>
+      <li><code class="code1">%k</code> — место не добавляется</li>
       <li>
         <code class="code1">%n</code> — аналогично <code class="code1">%m</code> , но без начального нуля
         (используйте <code class="code1">\n</code> для новой строки)
@@ -666,7 +659,7 @@
         <code class="code1">%T</code> — не реализовано (используйте <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> – не реализовано</li>
-      <li><code class="code1">%W</code> — не реализовано</li>
+      <li><code class="code1">%W</code> - не реализовано</li>
       <li><code class="code1">%+</code> - не реализовано</li>
       <li><code class="code1">%%</code> — не реализовано (используйте <code class="code1">%</code> )</li>
     </ul>

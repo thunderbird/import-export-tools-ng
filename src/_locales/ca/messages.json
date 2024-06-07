@@ -628,5 +628,9 @@
     },
     "CRconversion.statusMsg": {
         "message": "Convertint CR =&gt; CRLF terminacions de línia"
-    }
+    },
+
+	"Size": {
+		"message": "Mida"
+	}
 }

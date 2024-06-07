@@ -10,17 +10,17 @@
 		Copyright (C) 2007 : Paolo "Kaosmos"
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+		it under the terms of the GNU General Public License as published by
+		the Free Software Foundation, either version 3 of the License, or
+		(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+		This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // cleidigh - reformat, globals, services
@@ -54,9 +54,15 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+
+var searchFolder = null;
+
 function SDexportMsg() {
 	var view;
 	var all;
+
+	let msgFolder = searchFolder;
 
 	if (typeof gSearchView === "undefined")
 		view = gDBView;
@@ -79,6 +85,11 @@ function SDexportMsg() {
 		all = (document.getElementById("IETall").selectedIndex === 0);
 	else
 		all = (rg[rg.length - 2].selectedIndex === 0);
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
@@ -87,7 +98,7 @@ function SDexportMsg() {
 	if (type === 4 || type === 6)
 		file = getPredefinedFolder(0);
 	else if (type === 5) {
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
 		fp.appendFilters(nsIFilePicker.filterAll);
 		if (fp.show)
 			res = fp.show();
@@ -105,6 +116,7 @@ function SDexportMsg() {
 	} else
 		file = getPredefinedFolder(2);
 
+
 	if (!file) {
 		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
@@ -113,19 +125,22 @@ function SDexportMsg() {
 			res = IETopenFPsync(fp);
 		if (res === nsIFilePicker.returnOK)
 			file = fp.file;
-		else
+		else {
 			return;
+		}
 	}
-	
+
 	let emlsArray = [];
 	if (all) {
-		let i = 0;
-		while (true) {
+
+		var total = gDBView.rowCount;
+		for (let i = 0; i < total; i++) {
+			// check for  #359
 			try {
 				emlsArray.push(view.getURIForViewIndex(i));
-				i++;
+
 			} catch (e) {
-				break;
+				continue; // ignore errors for dummy rows
 			}
 		}
 	} else {
@@ -153,7 +168,7 @@ function SDexportMsg() {
 		var hdrArray = [];
 		for (var k = 0; k < emlsArray.length; k++) {
 			msguri = emlsArray[k];
-			var msserv = messenger.messageServiceFromURI(msguri);
+			var msserv = MailServices.messageServiceFromURI(msguri);
 			var msg = msserv.messageURIToMsgHdr(msguri);
 			var hdrStr = IETstoreHeaders(msg, msguri, file, true);
 			hdrArray.push(hdrStr);
@@ -165,16 +180,16 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	console.debug('SD for the initialize ');
 	if (window.arguments && window.arguments[1]) {
-		// var sb = document.getElementById("status-bar");
 		var sf = document.getElementById("IETSearchFrame");
-		
+		var sw = document.getElementById("searchMailWindow");
+		sw.setAttribute("height", "520");
+		sw.setAttribute("screenY", "50");
+
 		sf.removeAttribute("collapsed");
-		// sb.previousSibling.previousSibling.childNodes[1].setAttribute("collapsed", "true");
-		window.sizeToContent();
+		searchFolder = window.arguments[0];
 	}
+
 }
 
-// setupHotKeys('search');
 // window.addEventListener("load", SDinit, false);

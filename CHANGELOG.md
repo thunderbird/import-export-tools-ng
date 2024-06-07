@@ -2,6 +2,81 @@
 
 ## Versions
 
+Version 14.0.3 : Maintenance Release - June,6 2024
+
+- Promisify and fix export messages timing issue #568
+- New: Latinize filenames transform. Use boolean preference:
+  extensions.importexporttoolsng.export.filename_latinize
+- New: UTF-16 filenames filter (emojis, symbols…). Use boolean preference:
+  extensions.importexporttoolsng.export.filename_filterUTF16
+- New: Character filter for filenames. Use UTF-16 string preference:
+  extensions.importexporttoolsng.export.filename_filter_characters
+  Enter the characters with no separators
+
+Version 14.0.2 : Subfolders Release - April 10, 2024
+
+- New: Recursive Subfolder Export for EML, HTML, PDF and Plaintext #538
+- New: Size column in index #508
+- New: Import OSX 9- CR terminations mbox files #540
+- New: Support shortcuts for ExportSelectedMessages #519
+- New: Czech (cs) locale - @cewbdex
+- Fix mbox From_ separator to use asctime() date format #537
+- Fix PDF exports do not use Mozilla Save toPDF settings #528
+- Fix Right-clicking folder doesn't show export mbox option for Maildir #525
+- Fix Cannot import emails with linebreaks in Return-Path header #516
+- Fix Export all messages of a virtual folder to html with attachments and index - missing messages folder #509
+- Fix context menu for message window #505
+- Convert dtd files to messages.json
+
+
+
+Version 14.0.1 : Maintenance Release - November 10, 2023
+
+- New: Add Account level mbox import
+- New: Add Account level mbox flattened export
+- New: Support for mbox import and export to filesys levels
+- Fix CSV export to text #451, #463
+- Fix export folder to ZIP
+- Fix help load only on IETNG updates
+- Add preference to never load help on updates #458
+  extensions.importexporttoolsng.export.help.showOnInstallAndUpdate
+- Fix help for sublocales and unsupported locales
+- Fix mbox From_ separators to adhere to RFC 4155 #455
+- Add back Export Messages in message display windows #459
+- Fix Account export for pop3
+- Fix buffer boundary From_ escaping
+- Fix selected messages handling #485
+- Complete de locale update @Mr-Update
+- Complete fr locale update @DenB10
+- Complete da locale update @Joergen
+- Updated ja locale @kiki-ja
+
+
+Version 14.0.0 : Thunderbird v115 Support - September 26, 2023
+
+- Thunderbird v115 ESR support
+- New UI refresh
+- New Dark mode support
+- New clean, consistent and logical menus
+- New toolbar button for profile, backup and options support
+- New .mbox extension option for non-structured exports
+- New strip CR from eml exports
+- Improved mbox From_ escaping
+
+Version 12.0.4 : Maintenance Release - June 24, 2023
+
+- Fix search and export failure #412, #414, #418
+
+Version 12.0.3 : Maintenance Release - June 1, 2023
+
+- Fix virtual folder exports #359
+- Fix encoding for attachment names #355
+- Fix bad filename token in pl locale #366
+- Fix PDF exception #369
+- Fix bad filename token in pt-PT locale #398
+- Improved ja locale additions #281
+- Improved ru locale additions PR #401
+
 Version 12.0.2 : Maintenance Release - October 24, 2022
 
 - Fix PDF export on OSX! #353

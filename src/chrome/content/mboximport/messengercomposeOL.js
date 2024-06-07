@@ -3,15 +3,18 @@
 // Menus - Folder, messages, Tools
 
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/composeOverlay.js", window, "UTF-8");
 
 function onLoad() {
-	// console.debug('Load messengercompose OL');
+	//console.debug('Load messengercompose OL');
 
+	/*
 	WL.injectElements(`
 <overlay id="composeOverlay"
 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -33,4 +36,6 @@ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 `);
 
 	window.setupHotKeys('compose');
+*/
+
 }

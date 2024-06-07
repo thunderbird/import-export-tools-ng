@@ -3,7 +3,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -29,17 +29,24 @@
 IETopenFPsync
 */
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-Services.console.logStringMessage("profile start");
-console.debug('profile import');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETimportWizard = {
 
 	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
 
 	start: function () {
-		Services.console.logStringMessage("profile start 2");
-		// Services.console.logStringMessage(document.documentElement.outerHTML);
+		i18n.updateDocument({extension: window.opener.ietngAddon.extension});
+
+		let wiz = document.getElementById("profileImportWizard");
+		let shadowWiz = wiz && wiz.shadowRoot;
+		let hdr = shadowWiz.querySelector(".wizard-header-label");
+		// we should use innerText, however, this fails on the xul label
+		hdr.innerHTML = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
+
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
 	},
@@ -62,9 +69,14 @@ var IETimportWizard = {
 
 	pickFile: async function (target, inputFieldId) {
 		let box = target.ownerDocument.getElementById(inputFieldId);
+		let winCtx = window;
+		const tbVersion = ietngUtils.getThunderbirdVersion();
+		if (tbVersion.major >= 120) {
+			winCtx = window.browsingContext;
+		}
 		let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 
-		fp.init(window, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
 		let res = await new Promise(resolve => {
 			fp.open(resolve);
 		});

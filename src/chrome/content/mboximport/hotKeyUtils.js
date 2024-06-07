@@ -32,7 +32,9 @@ IETgetComplexPref,
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 function normalizeModifiers(modifiers) {
 	// make everything lowercase
@@ -120,7 +122,7 @@ function compareKeyDefinition(hotKey, keyElement) {
 }
 
 function setupHotKeys(contexts) {
-	// console.debug('setupHotKs ' + contexts);
+	//console.debug('setupHotKs ' + contexts);
 	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
 	IETlogger.write('Setup hot-keys: ' + contexts);
@@ -128,16 +130,16 @@ function setupHotKeys(contexts) {
 
 	IETlogger.write(hotKeysStr);
 
-	// console.debug('HotK ' + hotKeysStr);
+	//console.debug('HotK ' + hotKeysStr);
 
 	if (hotKeysStr !== "") {
 		try {
 			var hotKeysArray = JSON.parse(hotKeysStr);
-			// console.debug(hotKeysArray);
+			//console.debug(hotKeysArray);
 			for (let index = 0; (index < hotKeysArray.length && index < 10); index++) {
 				var hotKey = hotKeysArray[index];
 				if (hotKey) {
-					// console.debug(hotKey);
+					//console.debug(hotKey);
 					// check that we have either 'key' or 'keycode' not both
 					if (!!hotKey.key && !!hotKey.keycode) {
 						console.debug('HotKey with both key and keycode');
@@ -153,7 +155,7 @@ function setupHotKeys(contexts) {
 						}
 
 						let hkeyElement = document.getElementById(`hot-key${id}`);
-						// console.debug(`hot-key${id} ${hkeyElement.outerHTML}`);
+						//console.debug(`hot-key${id} ${hkeyElement.outerHTML}`);
 
 						let key = hotKey.key || null;
 						let keycode = hotKey.keycode || null;
@@ -178,7 +180,7 @@ function setupHotKeys(contexts) {
 						}
 						hkeyElement.setAttribute("modifiers", modifiers);
 						hkeyElement.setAttribute("oncommand", oncommand);
-						// console.debug(hkeyElement.outerHTML);
+						//console.debug(hkeyElement.outerHTML);
 						IETlogger.write('Add key: ');
 						IETlogger.write(hotKey);
 						for (let i = 0; i < existingKeys.length; i++) {
@@ -218,7 +220,7 @@ function setupHotKeys(contexts) {
 			keyset = document.getElementById("IETNGKeys");
 			if (keyset) {
 				keyset.parentNode.appendChild(keyset);
-				console.debug('updated iet keys ');
+				//console.debug('updated iet keys ');
 			}
 
 		} catch (error) {
@@ -248,7 +250,7 @@ function updateHotKeys() {
 
 var hkObserver = {
 	observe: function (aSubject, aTopic, aData) {
-		console.debug('IET: Hot key change');
+		//console.debug('IET: Hot key change');
 		updateHotKeys();
 	},
 };

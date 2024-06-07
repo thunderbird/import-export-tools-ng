@@ -33,8 +33,6 @@
 /* global IETformatWarning,
 getPredefinedFolder,
 IETwritestatus,
-IETstoreFormat,
-GetSelectedMsgFolders,
 IETgetSelectedMessages,
 isMbox,
 IETprefs,
@@ -55,12 +53,24 @@ IOUtils,
 PathUtils,
 PrintUtils,
 strftime,
+getMsgFolderFromAccountAndPath,
+globalThis,
 */
 
-var { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm");
+var Services = globalThis.Services || ChromeUtils.import(
+	'resource://gre/modules/Services.jsm'
+).Services;
+
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
+
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
+
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-6.js");
+
+var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -85,10 +95,15 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 
+// make sure there is no lingering ietngStatusText
+if (window.document.getElementById("ietngStatusText")) {
+	window.document.getElementById("ietngStatusText").remove();
+}
+
 var IETprintPDFmain = {
 
-	print: async function (allMessages) {
-		// New built in Mozilla PDF driver finally works on OSX - enable for Mac 
+	print: async function (allMessages, params) {
+		// New built in Mozilla PDF driver finally works on OSX - enable for Mac
 		// Addresses #353
 
 		try {
@@ -99,7 +114,13 @@ var IETprintPDFmain = {
 			}
 		} catch (e) { }
 
-		let msgFolders = GetSelectedMsgFolders();
+		var msgFolders;
+		try {
+			msgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		} catch (e) {
+			msgFolders = [GetFirstSelectedMsgFolder()];
+		}
+
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
 			return;
@@ -112,15 +133,30 @@ var IETprintPDFmain = {
 			return;
 
 		if (!allMessages) {
-			IETprintPDFmain.uris = IETgetSelectedMessages();
+
+			IETprintPDFmain.uris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+
 		} else {
 			IETprintPDFmain.uris = [];
 			let msgFolder = msgFolders[0];
 			let isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
 			if (isVirtFol) {
+				var gDBView = gTabmail.currentAbout3Pane.gDBView;
 				var total = msgFolder.getTotalMessages(false);
+				// We need to expand all-iterate-collapse all to get all msgs
+				gDBView.doCommand(Ci.nsMsgViewCommandType.expandAll);
 				for (let i = 0; i < total; i++)
-					IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
+					// error handling changed in 102
+					// https://searchfox.org/comm-central/source/mailnews/base/content/junkCommands.js#428
+					// Resolves #359
+					try {
+						IETprintPDFmain.uris.push(gDBView.getURIForViewIndex(i));
+					} catch (ex) {
+						continue; // ignore errors for dummy rows
+					}
+				// collapse back view
+				gDBView.doCommand(Ci.nsMsgViewCommandType.collapseAll);
+
 			} else {
 				let msgs = msgFolder.messages;
 				while (msgs.hasMoreElements()) {
@@ -137,8 +173,13 @@ var IETprintPDFmain = {
 		IETprintPDFmain.total = IETprintPDFmain.uris.length;
 		let dir = getPredefinedFolder(2);
 		if (!dir) {
+			let winCtx = window;
+			const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major >= 120) {
+				winCtx = window.browsingContext;
+			}
 			let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-			fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
+			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
 			let res = await new Promise(resolve => {
 				fp.open(resolve);
 			});
@@ -172,11 +213,15 @@ var IETprintPDFmain = {
 			printSettings = psService.createNewPrintSettings();
 		}
 
+		printSettings.printerName = "Mozilla_Save_to_PDF";
+		psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+
+
 		printSettings.isInitializedFromPrinter = true;
 		printSettings.isInitializedFromPrefs = true;
 
 		printSettings.printSilent = true;
-        printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
 
 		// print setup for PDF printing changed somewhere around 102.3
 		// also on 91.x The change first appeared in Linux
@@ -195,10 +240,13 @@ var IETprintPDFmain = {
 
 		if (pageSettings.paperSizeUnit)
 			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+
 		if (pageSettings.paperWidth)
 			printSettings.paperWidth = pageSettings.paperWidth;
+
 		if (pageSettings.paperHeight)
 			printSettings.paperHeight = pageSettings.paperHeight;
+
 		if (pageSettings.orientation)
 			printSettings.orientation = pageSettings.orientation;
 		if (pageSettings.scaling)
@@ -249,23 +297,57 @@ var IETprintPDFmain = {
 			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
 		}
 
-		// We can simply by using PrintUtils.loadPrintBrowser eliminating 
+		// console.log("IETNG: Save as PDF: ", new Date());
+		// console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
+		// We can simply by using PrintUtils.loadPrintBrowser eliminating
 		// the fakeBrowser NB: if the printBrowser does not exist we
-		// can create with PrintUtils as well 
+		// can create with PrintUtils as well
 
-		for (let uri of IETprintPDFmain.uris) {
-			let messageService = messenger.messageServiceFromURI(uri);
-			let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
-			let fileName = fileFormat === 2
-				? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
-				: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
-			printSettings.toFileName = PathUtils.join(filePath, fileName);
+		var errCounter = 0;
+		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-			await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
-			await PrintUtils.printBrowser.browsingContext.print(printSettings);
-			IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+		for (var msgIdx = 0; msgIdx < IETprintPDFmain.uris.length; msgIdx++) {
+			let uri = IETprintPDFmain.uris[msgIdx];
+
+			try {
+				var messageService = MailServices.messageServiceFromURI(uri);
+				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+
+				let fileName = fileFormat === 2
+					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
+				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
+				printSettings.toFileName = uniqueFileName;
+
+				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+				await PrintUtils.printBrowser.browsingContext.print(printSettings);
+
+				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+				// When we got here, everything worked, and reset error counter.
+				errCounter = 0;
+			} catch (ex) {
+				// Something went wrong, wait a bit and try again.
+				// We did not inc i, so we will retry the same file.
+				//
+				errCounter++;
+				console.log(`Re-trying to print message ${msgIdx + 1} (${uri}).`, ex);
+				if (errCounter > 3) {
+					console.log(`We retried ${errCounter} times to print message ${msgIdx + 1} and abort.`);
+				} else {
+					// dec idx so next loop repeats msg that erred
+					msgIdx--;
+				}
+				await new Promise(r => mainWindow.setTimeout(r, 150));
+			}
 		}
+	},
+
+	async setupPDF(msgUris, outputPath) {
+		IETprintPDFmain.file = {};
+		IETprintPDFmain.file.path = outputPath;
+		IETprintPDFmain.uris = msgUris;
+		await IETprintPDFmain.saveAsPDF();
 	},
 };
 
@@ -279,33 +361,7 @@ function openProfileImportWizard() {
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
-
-
 }
-
-async function openMboxDialog() {
-	if (IETstoreFormat() !== 0) {
-		alert(mboximportbundle.GetStringFromName("noMboxStorage"));
-		return;
-	}
-	let msgFolder = GetSelectedMsgFolders()[0];
-	// we don't import the file in imap or nntp accounts
-	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
-		alert(mboximportbundle.GetStringFromName("badfolder"));
-		return;
-	}
-	var params = { scandir: false, keepstructure: false, openProfDir: false, recursiveMode: false };
-	window.openDialog("chrome://mboximport/content/mboximport/mboxdialog.xhtml", "", "chrome,modal,centerscreen", params);
-	if (params.cancel) {
-		return;
-	}
-	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
-	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
-	// using async/await.
-	await new Promise(resolve => setTimeout(resolve, 800));
-	await importmbox(params.scandir, params.keepstructure, params.openProfDir, params.recursiveMode, msgFolder);
-}
-
 
 function msgFolder2LocalFile(msgFolder) {
 	if (msgFolder.filePath)
@@ -320,14 +376,16 @@ function IETupdateFolder(folder) {
 	folder.updateFolder(msgWindow);
 }
 
-async function trytocopyMAILDIR() {
-	if (IETstoreFormat() !== 1) {
+async function trytocopyMAILDIR(params) {
+	let storeType = getMailStoreFromFolderPath(params.selectedFolder.accountId, params.selectedFolder.path);
+
+	if (storeType !== 1) {
 		alert(mboximportbundle.GetStringFromName("noMaildirStorage"));
 		return;
 	}
 
 	// initialize variables
-	let msgFolder = GetSelectedMsgFolders()[0];
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
@@ -335,8 +393,13 @@ async function trytocopyMAILDIR() {
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
 	fp.appendFilters(Ci.nsIFilePicker.filterAll);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
@@ -348,6 +411,7 @@ async function trytocopyMAILDIR() {
 	var destFile = fp.file;
 	var filename = destFile.leafName;
 	var newfilename = filename;
+
 
 	var folderFile = msgFolder2LocalFile(msgFolder);
 	var clonex = folderFile.clone();
@@ -376,7 +440,9 @@ async function trytocopyMAILDIR() {
 	}
 
 	// 1. add a subfolder with the name of the folder to import
-	var newFolder = msgFolder.addSubfolder(newfilename);
+	// cdl - convert addSubfolder => createSubfolder
+	msgFolder.createSubfolder(newfilename, top.msgWindow);
+	var newFolder = msgFolder.getChildNamed(newfilename);
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
 		newFolder.name = newfilename.replace(reg, "#");
@@ -408,12 +474,12 @@ async function trytocopyMAILDIR() {
 		return false;
 	}
 
-	// 3. update the database by selecting the folder and rebuilding the index
+	// 3. update the database by using our fancy new reindexDBandRebuildSummary
 	try {
-		msgFolder.NotifyItemAdded(newFolder);
-		SelectFolder(newFolder.URI);
-		IETupdateFolder(newFolder);
-	} catch (e) { }
+		mboxImportExport.reindexDBandRebuildSummary(newFolder);
+	} catch (e) {
+		console.log(e);
+	}
 }
 
 // The arguments of trytocopy are
@@ -422,6 +488,9 @@ async function trytocopyMAILDIR() {
 // msgFolder = the folder as nsImsgFolder
 
 async function trytocopy(file, filename, msgFolder, keepstructure) {
+
+	console.log("IETNG: trytocopy start");
+
 	// If the file isn't mbox format, alert, but doesn't exit (it did in pre 0.5.8 version and lower)
 	// In fact sometimes TB can import also corrupted mbox files
 	var isMbx = isMbox(file);
@@ -487,6 +556,8 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// console.debug(tempfolder);
 	// tempfolder = tempfolder.QueryInterface(Ci.nsIMsgLocalMailFolder);
 
+	console.log("IETNG: add subfolder");
+
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
 		tempfolder.name = newfilename.replace(reg, "#");
@@ -508,8 +579,14 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		// Finally copy the mbox file in the "msgfoldername.sbd" directory
 		// file.copyTo(filex, newfilename);
 		// cleidigh - have to use leafname for truncated internal names
-		file.copyTo(filex, tempfolder.filePath.leafName);
+		console.log("IETNG: start copy: ", new Date());
+		let src = file.path;
+		let dst = PathUtils.join(filex.path, tempfolder.filePath.leafName);
+		console.log(src, dst);
+		let r = await IOUtils.copy(src, dst);
+		// file.copyTo(filex, tempfolder.filePath.leafName);
 
+		console.log("IETNG: end copy: ", new Date());
 		// If this is an export with structure, we try also to export the directory mbox-filename.sbd
 		if (keepstructure) {
 			var sbd = file.parent;
@@ -534,7 +611,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	// At this location was a call to msgFolder.NotifyItemAdded inside a try catch wich was not doing
 	// anything for ages. The correct call would be msgFolder.notifyFolderAdded(newFolder);
 	// BUT I think this is too early as the folder is not actually created
-	//msgFolder.notifyFolderAdded(newFolder);
+	// msgFolder.notifyFolderAdded(newFolder);
 
 	var forceCompact = addEmptyMessageToForceCompact(newFolder);
 	if (forceCompact && !gNeedCompact)
@@ -544,6 +621,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	obj.msgFolder = newFolder;
 	obj.forceCompact = forceCompact;
 
+	console.log("IETNG: compacted");
 	if (keepstructure) {
 		gMsgFolderImported.push(obj);
 		if (newFolder.hasSubFolders) {
@@ -557,7 +635,43 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 		gMsgFolderImported.push(obj);
 	}
 
-	gFolderTreeView._rebuild();
+	console.log("IETNG: rebuild foldertree");
+	// 115 need replacement
+	// gFolderTreeView._rebuild();
+	console.log(newFolder);
+	// IETupdateFolder(newFolder);
+	var folder = newFolder.parent;
+
+	if (folder.locked) {
+		folder.throwAlertMsg("operationFailedFolderBusy", top.msgWindow);
+		return;
+	}
+	if (folder.supportsOffline) {
+		// Remove the offline store, if any.
+		await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+			console.error
+		);
+	}
+
+	// Send a notification that we are triggering a database rebuild.
+	MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+	folder.msgDatabase.summaryValid = false;
+
+	const msgDB = folder.msgDatabase;
+	msgDB.summaryValid = false;
+	try {
+		folder.closeAndBackupFolderDB("");
+	} catch (e) {
+		// In a failure, proceed anyway since we're dealing with problems
+		folder.ForceDBClosed();
+	}
+	folder.updateFolder(top.msgWindow);
+	// TODO: Reopen closed views.
+
+
+
+	console.log("IETNG: end trytocopy: ", new Date());
 	return newfilename;
 }
 
@@ -636,139 +750,55 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 		msgFolder.compact(null, msgWindow);
 }
 
-// scandir flag is to know if the function must scan a directory or just import mbox file(s)
-async function importmbox(scandir, keepstructure, openProfDir, recursiveMode, msgFolder) {
-	// initialize variables
-	gMsgFolderImported = [];
-	gNeedCompact = false;
-	var buildMSF = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
-	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	var profDir;
-	var filesArray;
-	var mboxname;
 
-	if (!scandir) {
-		// open the filepicker
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeOpenMultiple);
-		fp.appendFilters(Ci.nsIFilePicker.filterAll);
 
-		if (openProfDir) {
-			profDir = Cc["@mozilla.org/file/directory_service;1"]
-				.getService(Ci.nsIProperties)
-				.get("ProfD", Ci.nsIFile);
-			fp.displayDirectory = profDir.parent;
-		}
-		let res = await new Promise(resolve => {
-			fp.open(resolve);
-		});
-		if (res !== Ci.nsIFilePicker.returnOK) {
-			return;
-		}
 
-		// thefiles is the nsiSimpleEnumerator with the files selected from the filepicker
-		var thefiles = fp.files;
-		while (thefiles.hasMoreElements()) {
-			var onefile = thefiles.getNext();
-			onefile = onefile.QueryInterface(Ci.nsIFile);
-			mboxname = onefile.leafName;
-			await trytocopy(onefile, mboxname, msgFolder, keepstructure);
-		}
+async function exportfolder(params) {
+
+	var localfolder = params.localFolder;
+	var zip = params.zipped;
+	var subfolders = params.includeSubfolders;
+	var keepstructure = !params.flattenSubfolders;
+
+	// console.log("Start: ExportFolders (mbox)");
+
+	var folders = [];
+	var account;
+
+	if (params.selectedFolder == "//currentFolder") {
+		folders[0] = GetFirstSelectedMsgFolder();
 	} else {
-		// Open the filepicker to choose the directory
-		fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
-
-		if (openProfDir) {
-			profDir = Cc["@mozilla.org/file/directory_service;1"]
-				.getService(Ci.nsIProperties)
-				.get("ProfD", Ci.nsIFile);
-			fp.displayDirectory = profDir.parent;
-		}
-		let res = await new Promise(resolve => {
-			fp.open(resolve);
-		});
-		if (res !== Ci.nsIFilePicker.returnOK) {
-			return;
-		}
-
-		if (!recursiveMode) {
-			// allfiles is the nsiSimpleEnumerator with the files in the directory selected from the filepicker
-			var allfiles = fp.file.directoryEntries;
-			filesArray = [];
-			while (allfiles.hasMoreElements()) {
-				var singlefile = allfiles.getNext();
-				singlefile = singlefile.QueryInterface(Ci.nsIFile);
-				filesArray.push(singlefile);
-			}
-		} else {
-			filesArray = MBOXIMPORTscandir.find(fp.file);
-		}
-
-		var importThis;
-		// scanning the directory to search files that could be mbox files
-		for (var i = 0; i < filesArray.length; i++) {
-			var afile = filesArray[i];
-			mboxname = afile.leafName;
-			var mboxpath = afile.path;
-			if (isMbox(afile) === 1) {
-				var ask = IETprefs.getBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import");
-				if (ask) {
-					var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-						.getService(Ci.nsIPromptService);
-					var checkObj = {};
-					checkObj.value = false;
-					var flags = prompts.BUTTON_TITLE_YES * prompts.BUTTON_POS_0 +
-						prompts.BUTTON_TITLE_NO * prompts.BUTTON_POS_2 +
-						prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_1 +
-						prompts.BUTTON_POS_0_DEFAULT;
-					var string = mboximportbundle.GetStringFromName("confirmimport") + ' "' + mboxpath + '" ?';
-					var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "", "", "", mboximportbundle.GetStringFromName("noWaring"), checkObj);
-					IETprefs.setBoolPref("extensions.importexporttoolsng.confirm.before_mbox_import", !checkObj.value);
-
-					if (button === 0)
-						importThis = true;
-					else if (button === 2)
-						importThis = false;
-					else
-						break;
-				} else {
-					importThis = true;
+		if (params.selectedAccount && !params.selectedFolder) {
+			var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+				.getService(Components.interfaces.nsIMsgAccountManager);
+			account = accountManager.accounts.find(account => {
+				if (account.key == params.selectedAccount.id) {
+					return true;
 				}
-				if (importThis && afile.isFile())
-					await trytocopy(afile, mboxname, msgFolder);
-			}
+			});
+			folders[0] = account.incomingServer.rootMsgFolder;
+		} else {
+			folders = [getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path)];
 		}
 	}
 
-	if (buildMSF || gNeedCompact) {
-		// I have no idea why so many setTimeout are in here, but each spins out
-		// of the main thread and it is hard to keep track of the actual execution
-		// flow. Let us return to sequential coding.
-		let timeout = keepstructure ? 2000 : 1000;
-		await new Promise(resolve => setTimeout(resolve, timeout));
-		await buildMSGfile();
-	}
-}
-
-async function exportfolder(subfolder, keepstructure, locale, zip) {
-
-	console.log("Start: ExportFolders (mbox)");
-	var folders = GetSelectedMsgFolders();
-
-	console.log("   Subfolders:", subfolder);
+	/*
+	console.log("   Subfolders:", subfolders);
 	console.log("   Structured: ", keepstructure);
-	console.log("   Local: ", locale);
-	console.log("   Zip: ", zip);
-	console.log(folders);
+	console.log("   Local: ", localfolder);
+	console.log("   Zipper: ", zip);
+*/
 
+	var isVirtualFolder = false;
 	for (var i = 0; i < folders.length; i++) {
-		var isVirtualFolder = folders[i] ? folders[i].flags & 0x0020 : false;
+		isVirtualFolder = folders[i] ? folders[i].flags & Ci.nsMsgFolderFlags.Virtual : false;
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
 			alert(mboximportbundle.GetStringFromName("noFolderExport"));
 			return;
 		}
 		var lastType = folders[i].server.type;
 	}
-	if (locale && (lastType === "imap" || lastType === "nntp")) {
+	if (localfolder && (lastType === "imap" || lastType === "nntp")) {
 		var go = IETremoteWarning();
 		if (!go)
 			return;
@@ -784,40 +814,95 @@ async function exportfolder(subfolder, keepstructure, locale, zip) {
 		if (!String.prototype.trim)
 			alert(mboximportbundle.GetStringFromName("needTB3"));
 		else
-			IETexportZip(destdirNSIFILE, folders);
+			await IETexportZip(destdirNSIFILE, folders);
 		return;
 	}
 
-	if (locale) {
-		console.log("Using exportSingleLocaleFolder");
-		for (let i = 0; i < folders.length; i++)
-			await exportSingleLocaleFolder(folders[i], subfolder, keepstructure, destdirNSIFILE);
-	} else if (folders.length === 1 && isVirtualFolder) {
-		exportVirtualFolder(msgFolder); //msgFolder?
-	} else {
-		exportRemoteFolders(destdirNSIFILE);
+	if (folders[0].isServer && keepstructure) {
+		let destPath = destdirNSIFILE.path;
+		let msgFolder = folders[0];
+		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
+		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		return;
 	}
+
+	if (localfolder && !subfolders && isVirtualFolder) {
+		exportVirtualFolder(folders[0], destdirNSIFILE);
+		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		return;
+	}
+
+	if (!localfolder && !subfolders) {
+		exportRemoteFolders(destdirNSIFILE, folders);
+		return;
+	}
+
+	// new export
+	let rootFolder = folders[0];
+	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);
+
+	let flatten = !keepstructure;
+	let destPath = destdirNSIFILE.path;
+
+	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+
+	if (folders[0].isServer) {
+		let accountName = rootFolder.prettyName;
+		if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+			accountName += ".mbox";
+		}
+		await IOUtils.remove(PathUtils.join(destPath, accountName));
+	}
+	return;
+
+
 }
 
-function IETexportZip(destdirNSIFILE, folders) {
+async function IETexportZip(destdirNSIFILE, folders) {
 	for (var i = 0; i < folders.length; i++) {
 		var zipFile = destdirNSIFILE.clone();
+		// export folder before zip
+
 		var file = msgFolder2LocalFile(folders[i]);
 		if (file.exists()) {
-			var path = file.leafName;
-			// see https://bugzilla.mozilla.org/show_bug.cgi?id=445065
-			// and http://ant.apache.org/manual/Tasks/zip.html#encoding
-			path = path.replace(/[^a-zA-Z0-9\-]/g, "_");
-			var zipName = folders[i].name;
-			zipFile.append(zipName + ".zip");
+
+			var path = folders[i].name;
+			var zipDestPath = destdirNSIFILE.path;
+			var destPath = destdirNSIFILE.path + "\\ztmp";
+
+			let useMboxExt = false;
+			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+				useMboxExt = true;
+			}
+			let newname = ietngUtils.createUniqueFolderName(folders[i].prettyName, destPath, false, useMboxExt);
+
+			path = newname;
+
+			await mboxImportExport.exportFoldersToMbox(folders[i], destPath, false, false);
+			let newDestPath = PathUtils.join(destPath, newname);
+
+			file.initWithPath(newDestPath);
+
+			var zipName = path + ".zip";
+			zipName = ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
+			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
+			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+			await new Promise(resolve => window.setTimeout(resolve, 100));
+
 			zipW.open(zipFile, 0x04 | 0x08 | 0x20);
 			if (file.isDirectory())
 				IETaddFolderContentsToZip(zipW, file, "");
 			else
 				zipW.addEntryFile(path, Ci.nsIZipWriter.COMPRESSION_DEFAULT, file, false);
 			zipW.close();
+			await new Promise(resolve => window.setTimeout(resolve, 500));
+			IOUtils.remove(newDestPath);
+			IOUtils.remove(destPath);
+
+			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+
 		}
 	}
 }
@@ -833,8 +918,9 @@ function IETaddFolderContentsToZip(zipW, folder, root) {
 	}
 }
 
-function exportRemoteFolders(destdirNSIFILE) {
-	let IETglobalMsgFolders = GetSelectedMsgFolders();
+// To be deprecated
+function exportRemoteFolders(destdirNSIFILE, folders) {
+	let IETglobalMsgFolders = folders;
 	if (IETglobalMsgFolders[0].isServer)
 		return;
 	// cleidigh ?
@@ -842,6 +928,7 @@ function exportRemoteFolders(destdirNSIFILE) {
 	exportIMAPfolder(IETglobalMsgFolders[0], destdirNSIFILE);
 }
 
+// To be deprecated
 // The subfolder argument is true if we have to export also the subfolders
 async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, destdirNSIFILE) {
 
@@ -850,36 +937,46 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	var thefoldername = IETcleanName(msgFolder.name);
 	var newname;
 
-	console.log("Start: exportSingleLocaleFolder");
-	console.log("   SrcPath: ", filex.path);
-	console.log("   Folder: ", thefoldername);
-	//console.log("")
+	//console.log("Start: exportSingleLocaleFolder");
+	// console.log("   SrcPath: ", filex.path);
+	// console.log("   Folder: ", thefoldername);
 
 	// Check if we're exporting a simple mail folder, a folder with its subfolders or all the folders of the account
 	if (msgFolder.isServer) {
-		console.log("Exporting server");
-		console.log(msgFolder.filePath.path);
-		console.log(msgFolder.prettyName);
+		// console.log("Exporting server");
+		// console.log(msgFolder.filePath.path);
+		// console.log(msgFolder.prettyName);
 		let destPath = destdirNSIFILE.path;
 		await exportAccount(msgFolder.prettyName, msgFolder.filePath.path, destPath);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && !keepstructure) {
 		// export the folder with the subfolders
 		// first we copy the folder, finding a good name from its displayed name
+		console.log("flat");
+
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
-		if (filex.exists())
-			filex.copyTo(destdirNSIFILE, newname);
+		if (filex.exists()) {
+			console.log("copy ", newname);
+
+			// filex.copyTo(destdirNSIFILE, newname);
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
+			// mboxImportExport.copyAndFixMboxFile(filex.path, dest);
+			await buildAndExportMbox(msgFolder, dest);
+		}
 		// then we export the subfolders
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
 		console.log("Exporting with subfolders");
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
-		console.log(newname);
 		if (filex.exists()) {
-			console.log("Copy ", newname);
-			filex.copyTo(destdirNSIFILE, newname);
+			// filex.copyTo(destdirNSIFILE, newname);
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
+			mboxImportExport.copyAndFixMboxFile(filex.path, dest);
 		} else {
+			console.log("create ", newname);
 			// This fixes #320
 			// imap profile folders do not have empty
 			// mbox files. We create one if we encounter
@@ -888,20 +985,15 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			var topdestdirNSI = destdirNSIFILE.clone();
 			topdestdirNSI.append(newname);
 			topdestdirNSI.create(0, 0644);
-			console.log("Created: ", topdestdirNSI.leafName);
 		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
 		if (sbd) {
 			sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-			console.log("Copied: ", sbd.path);
 			var destdirNsFile = destdirNSIFILE.clone();
 			destdirNsFile.append(newname + ".sbd");
 			var listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-			console.log("Msf scan");
-			console.log(listMSF);
 			for (let i = 0; i < listMSF.length; ++i) {
-				console.log("Scan: ", listMSF[i].leafName);
 				if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 					try {
 						listMSF[i].remove(false);
@@ -910,7 +1002,6 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 						if (!nsifile.exists()) {
 							nsifile.create(0, 0644);
 						}
-						console.log("Create: ", listMSF[i].leafName);
 					} catch (e) {
 						console.log(e);
 					}
@@ -921,40 +1012,38 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 	} else {
 		// export just the folder
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
-		if (filex.exists())
-			filex.copyTo(destdirNSIFILE, newname);
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		if (filex.exists()) {
+			let dest = PathUtils.join(destdirNSIFILE.path, newname);
+			console.log("copyfix");
+			// mboxImportExport.copyAndFixMboxFile(filex.path, dest);
+			await buildAndExportMbox(msgFolder, dest);
+
+			// await IOUtils.copy(filex.path, dest);
+		}
+		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	}
 }
 
 // Rewrite / fix account level export - use IOUtils #296
-async function exportAccount(accountName, accountFolderPath, destPath) {
+async function exportAccount(rootFolder, accountFolderPath, destPath) {
 
-	console.log("Start: exportAccount");
-	console.log("   SrcPath: ", accountFolderPath);
-	console.log("   srcFolder: ", accountName);
-	console.log("   destPath: ", destPath);
+	//console.log("Start: exportAccount");
+	// console.log("   SrcPath: ", accountFolderPath);
+	// console.log("   srcFolder: ", accountName);
+	// console.log("   destPath: ", destPath);
 
+	let accountName = rootFolder.prettyName;
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath;
 	if (IOUtils.createUniqueDirectory) {
 		finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName);
 	} else {
 		finalExportFolderPath = await createUniqueDirectory(destPath, tmpAccountFolderName);
-		console.log(finalExportFolderPath);
 	}
-	await IOUtils.remove(finalExportFolderPath, { ignoreAbsent: true });
 
-	// copy account tree
-	await IOUtils.copy(accountFolderPath, finalExportFolderPath, { recursive: true });
+	await mboxImportExport.exportFoldersToMbox(rootFolder, finalExportFolderPath, true, false);
 
-	// Get all msf files and zero out
-	let msfFiles = await getDirectoryChildren(finalExportFolderPath, { recursive: true, fileFilter: ".msf" });
 
-	for (let msfFile of msfFiles) {
-		await IOUtils.remove(msfFile, { ignoreAbsent: true });
-		await IOUtils.write(msfFile, new Uint8Array(), { mode: "create" });
-	}
 }
 
 async function createUniqueDirectory(parent, prefix) {
@@ -995,9 +1084,9 @@ async function getDirectoryChildren(rootPath, options) {
 	if (options && options.recursive) {
 		for (item of items) {
 			let stat = await IOUtils.stat(item);
-			//console.log(stat)
+			// console.log(stat)
 			if (stat.type == "directory") {
-				//console.log(item)
+				// console.log(item)
 				list = list.concat(await getDirectoryChildren(item, options));
 			}
 		}
@@ -1043,24 +1132,34 @@ var MBOXIMPORTscandir = {
 
 function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 	if (msgFolder.subFolders) {
-		console.log(msgFolder.subFolders);
+		console.log("copy Subfolders ");
+
 		for (let subfolder of msgFolder.subFolders) {
 			// Search for a good name
+			console.log(subfolder);
+			console.log(subfolder.filePath);
 			console.log(subfolder.name);
+
+
 			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
 			let subfolderNS = msgFolder2LocalFile(subfolder);
+			console.log(subfolderNS);
+
+			console.log(subfolderNS.exists());
+			console.log(subfolderNS.path);
+
 			if (subfolderNS.exists()) {
-				subfolderNS.copyTo(destdirNSIFILE, newname);
-				console.log("Copy:", newname);
-			}
-			else {
+				// subfolderNS.copyTo(destdirNSIFILE, newname);
+				let dest = PathUtils.join(destdirNSIFILE.path, newname);
+				console.log("copyfix");
+				mboxImportExport.copyAndFixMboxFile(subfolderNS.path, dest);
+			} else {
 				newname = IETcleanName(newname);
 				let destdirNSIFILEclone = destdirNSIFILE.clone();
 				destdirNSIFILEclone.append(newname);
 				destdirNSIFILEclone.create(0, 0644);
 			}
 			if (keepstructure) {
-				console.log("structure");
 				let sbd = subfolderNS.parent;
 				sbd.append(subfolderNS.leafName + ".sbd");
 				if (sbd.exists() && sbd.directoryEntries.length > 0) {
@@ -1068,7 +1167,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 					let destdirNsFile = destdirNSIFILE.clone();
 					destdirNsFile.append(newname + ".sbd");
 					let listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (i = 0; i < listMSF.length; ++i) {
+					for (let i = 0; i < listMSF.length; ++i) {
 						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
 							try {
 								listMSF[i].remove(false);
@@ -1124,18 +1223,39 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 	return foldername;
 }
 
-async function importALLasEML(recursive) {
-	console.debug('Start eml import');
+async function importALLasEML(params) {
+	//console.debug('Start eml import', params);
 
-	let msgFolder = GetSelectedMsgFolders()[0];
-	if (!msgFolder || !msgFolder.parent) {
+	var recursive = params.emlImpRecursive;
+	var msgFolder;
+	if (params.selectedFolder.path == "/") {
+		var accountManager = Cc["@mozilla.org/messenger/account-manager;1"]
+			.getService(Components.interfaces.nsIMsgAccountManager);
+		account = accountManager.accounts.find(account => {
+			if (account.key == params.selectedAccount.id) {
+				return true;
+			}
+		});
+		msgFolder = account.incomingServer.rootMsgFolder;
+	} else {
+		msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+	}
+
+
+	if (!msgFolder) {
 		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
+
 	// Open the filepicker to choose the directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
 	});
@@ -1212,7 +1332,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 							MailServices.mfn.removeListener(folderListener);
 							resolve(aFolder);
 						}
-					}
+					},
 				};
 				MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
 				msgFolder.createSubfolder(folderName, msgWindow);
@@ -1220,7 +1340,6 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 				// https://github.com/thundernest/import-export-tools-ng/issues/57
 				if (folderCount++ % 400 === 0) {
 					rootFolder.ForceDBClosed();
-					console.debug('ForceDBClosed');
 				}
 			});
 			await buildEMLarray(afile, newFolder, true, rootFolder);
@@ -1230,7 +1349,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			afilename = afilename.toLowerCase();
 			var afilenameext = afilename.substring(afilename.lastIndexOf("."), afilename.length);
 			// fix #241 - also import .emlx
-			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== ".nws"))
+			if (!afile.isFile() || (afilenameext !== ".eml" && afilenameext !== ".emlx" && afilenameext !== "._eml" && afilenameext !== ".nws"))
 				continue;
 			emlObj.file = afile;
 			emlObj.msgFolder = msgFolder;
@@ -1243,18 +1362,24 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 	return true;
 }
 
-async function importEMLs() {
-	let msgFolder = GetSelectedMsgFolders()[0];
+async function importEMLs(params) {
+
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	// No import for imap and news account, sorry...
 	if ((!String.prototype.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
 		alert(mboximportbundle.GetStringFromName("badfolder"));
 		return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	// Set the filepicker to open the last opened directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
-	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws");
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
+	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws; *._eml");
 	fp.appendFilter("All files", "*.*");
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
@@ -1513,76 +1638,38 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	return 0;
 }
 
-function importEmlToFolder() {
-	// To import an eml attachment in folder, as a real message, it's necessary to save it
-	// in a temporary file in temp directory
-	var restoreDownloadWindowPref = false;
-	let msgFolder = GetSelectedMsgFolders()[0];
-	// 0x0020 is MSG_FOLDER_FLAG_VIRTUAL
-	var isVirtFol = msgFolder ? msgFolder.flags & 0x0020 : false;
-	if (!String.prototype.trim && ((msgFolder.server.type !== "pop3" && msgFolder.server.type !== "none") || isVirtFol)) {
-		alert(mboximportbundle.GetStringFromName("badfolder2"));
-		return;
-	}
-	var item = document.getElementById("attachmentList").selectedItem;
-	var attachment = item.attachment;
-	var tempdir = Cc["@mozilla.org/file/directory_service;1"]
-		.getService(Ci.nsIProperties)
-		.get("TmpD", Ci.nsIFile);
-
-	// Hide download window, if necessary (TB2 only)
-	try {
-		var downloadWindowPref = IETprefs.getBoolPref("browser.download.manager.useWindow");
-		if (downloadWindowPref) {
-			IETprefs.setBoolPref("browser.download.manager.useWindow", false);
-			restoreDownloadWindowPref = true;
-		}
-	} catch (e) { }
-
-	IETtempfilesize = -1;
-	IETcount = 0;
-	try {
-		var uri = attachment.uri ? attachment.uri : attachment.messageUri;
-		var tempfile = messenger.saveAttachmentToFolder(attachment.contentType, attachment.url, encodeURIComponent(attachment.displayName), uri, tempdir);
-		window.setTimeout(checkToImportEMLattach, 1000, tempfile, msgFolder);
-	} catch (e) {
-		alert(mboximportbundle.GetStringFromName("temp_error"));
-	}
-	if (restoreDownloadWindowPref)
-		window.setTimeout(function () { IETprefs.setBoolPref("browser.download.manager.useWindow", true); }, 500);
-}
-
-function checkToImportEMLattach(file, msgFolder) {
-	// To see if the download is finished, the extension checks the filesize
-	// every second, for 20 times (20 sec. are enough for every attachment)
-	if (!file.exists())
-		return;
-	if (file.fileSize !== IETtempfilesize) {
-		IETtempfilesize = file.fileSize;
-		if (IETcount < 20) {
-			IETcount++;
-			window.setTimeout(checkToImportEMLattach, 1000, file, msgFolder);
-		} else {
-			file.remove(false);
-		}
-		return;
-	}
-	// The download is finished, call the eml import function, with the "delete-file" option
-	trytoimportEML(file, msgFolder, true, null, false);
-}
 
 function openIEToptions() {
-	window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,modal,centerscreen");
+	let optionsWin = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("ietng:options");
+	if (!optionsWin) {
+		window.openDialog("chrome://mboximport/content/mboximport/mboximportOptions.xhtml", "", "chrome,centerscreen");
+	} else {
+		optionsWin.focus();
+	}
 }
 
-function IETcopyFolderPath() {
-	let msgFolder = GetSelectedMsgFolders()[0];
+function IETcopyFolderPath(params) {
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+
 	var file = msgFolder2LocalFile(msgFolder);
 	IETcopyStrToClip(file.path);
 }
 
-function IETopenFolderPath() {
-	let msgFolder = GetSelectedMsgFolders()[0];
+function IETopenFolderPath(params) {
+	if (!params.selectedFolder) {
+		params.selectedFolder = {};
+		params.selectedFolder.path = "/";
+
+	}
+	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+
 	var file = msgFolder2LocalFile(msgFolder);
 	var parent;
 
@@ -1613,11 +1700,3 @@ function IETopenFolderPath() {
 	}
 }
 
-
-function openIEThelp(localize) {
-	// loadTabPage('chrome://mboximport/content/importexport-help.html#main_help', true);
-	loadTabPage('importexport-help.html#main_help', true);
-}
-
-// window.addEventListener("load", this.init, false);
-// window.addEventListener("unload", this.shutdown, false);

@@ -2,52 +2,48 @@
 // onLoad() installs each overlay xul fragment
 // Menus - Folder, messages, Tools
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/menufunctions.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOverlay.js", window, "UTF-8");
 
 
 function onLoad() {
-	// Services.console.logStringMessage("SearchDialogue OL");
 
 	WL.injectElements(`
-	<overlay id="sdOverlay"
-		 xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-		 xmlns:html="http://www.w3.org/1999/xhtml">
-		 
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true" style="padding-left: 6px">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
-		<button label="&sdExportButton;" oncommand="SDexportMsg()"   />
+		<button label="__MSG_sdExportButton__" oncommand="SDexportMsg()"   />
 		<spacer flex="1" />
 	</vbox>
-	<groupbox>
+	
 	<radiogroup id="IETall" orient="horizontal">
-		<radio label="&sdAll;" selected="true"/>
-		<radio label="&sdSelected;"/>
+		<radio label="__MSG_sdAll__" selected="true"/>
+		<radio label="__MSG_sdSelected__"/>
 	</radiogroup>
-	</groupbox>
-	</hbox>
-	<hbox>
-	<groupbox>
+	
+	
+	
+	<groupbox style="padding-left: 30px">
 	<hbox align="center">
-	<label value="&sdFormat;:" />
-	<menulist style="min-width:240px">
+	<label value="__MSG_sdFormat__:" />
+	<menulist style="min-width:120px">
 		<menupopup>
-			<menuitem label="&sdEML;"/>
-			<menuitem label="&sdHTML;"/>
-			<menuitem label="&sdText;"/>
-			<menuitem label="&oneFile;"/>
-			<menuitem id="mbox" label="&sdMBOX;" />
-			<menuitem id="mbox2" label="&sdMBOX2;" />
-			<menuitem id="csv" label="&asCSV;" />
+			<menuitem label="__MSG_sdEML__"/>
+			<menuitem label="__MSG_sdHTML__"/>
+			<menuitem label="__MSG_sdText__"/>
+			<menuitem label="__MSG_sdSingleFile__"/>
+			<menuitem id="mbox" label="__MSG_sdMBOX__" />
+			<menuitem id="mbox2" label="__MSG_sdMBOX2__" />
+			<menuitem id="csv" label="__MSG_asCSV__" />
 		</menupopup>
 	</menulist>
 	</hbox>
@@ -69,9 +65,7 @@ function onLoad() {
 
 </keyset>
 
-</overlay>
-
-`, ["chrome://mboximport/locale/mboximport.dtd"]);
+`, []);
 
 	window.setupHotKeys('search');
 	window.SDinit();

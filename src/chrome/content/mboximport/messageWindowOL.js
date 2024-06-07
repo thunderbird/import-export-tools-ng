@@ -2,7 +2,9 @@
 // onLoad() installs each overlay xul fragment
 // Menus - Folder, messages, Tools
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+  'resource://gre/modules/Services.jsm'
+).Services;
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotKeyUtils.js", window, "UTF-8");
@@ -10,14 +12,15 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mess
 
 // May need for hotkeys
 function onLoad() {
-	// console.debug('messageWindow OL');
-/* 
+	console.debug('messageWindow OL');
+
+
 WL.injectElements(`
 	<overlay id="messageWindowOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<keyset id="tasksKeys2">
-  <key id="hot-key1" key="D" modifiers="shift control" oncommand="alert('hello')"  contexts="all"/>
+<keyset id="IETNGKeys">
+  <key id="hot-key1" key="D" modifiers="shift control" oncommand="alert('hello')"  contexts="messagewin"/>
   <key id="hot-key2" modifiers="" oncommand=""/>
   <key id="hot-key3" modifiers="" oncommand=""/>
   <key id="hot-key4" modifiers="" oncommand=""/>
@@ -30,5 +33,8 @@ WL.injectElements(`
 </keyset>
 
 </overlay>
-`); */
+`);
 }
+
+window.setupHotKeys('messagewin');
+

@@ -36,13 +36,18 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
+var Services = globalThis.Services || ChromeUtils.import(
+	'resource://gre/modules/Services.jsm'
+).Services;
+
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
+var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
-var supportedLocales = ['ca', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
+var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
 	'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
 
 function IETrunTimeDisable() {
@@ -278,13 +283,35 @@ function getSubjectForHdr(hdr, dirPath) {
 		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
-	
+
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {
+		fname = latinizeString(fname);
+	}
+
+	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16")) {
+		fname = filterNonASCIICharacters(fname);
+	}
+
+	// User defined character filter
+	var filterCharacters = IETprefs.getStringPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+	if (filterCharacters !== "") {
+		let filter = new RegExp(`[${filterCharacters}]`, "g");
+		fname = fname.replace(filter, "");
+	}
+
 	if (cutFileName) {
 		var maxFN = 249 - dirPath.length;
 		if (fname.length > maxFN)
 			fname = fname.substring(0, maxFN);
 	}
 	return fname;
+}
+
+function filterNonASCIICharacters(str) {
+	str = str.replace(/[\u{0100}-\u{FFFF}]/gu, "");
+	str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
+	return str;
 }
 
 function formatNameForSubject(str, recipients) {
@@ -331,12 +358,17 @@ function dateInSecondsTo8601(secs) {
 	return msgDate8601string;
 }
 
-function IETexport_all(just_mail) {
+function IETexport_all(params) {
+	var just_mail = false;
+	if (params.profileExportType == "mailOnly") {
+		just_mail = true;
+	}
+
 	if ((IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning1") && !just_mail) || (IETprefs.getBoolPref("extensions.importexporttoolsng.export_all.warning2") && just_mail)) {
-		var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-			.getService(Ci.nsIPromptService);
+		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+		//.getService(Ci.nsIPromptService);
 		var check = { value: false };
-		var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else
@@ -345,10 +377,15 @@ function IETexport_all(just_mail) {
 			return;
 	}
 
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	// Open the filepicker to choose the directory
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -413,12 +450,12 @@ function saveExternalMailFolders(file) {
 	// Scan servers storage path on disk
 	for (let server of MailServices.accounts.allServers) {
 		let serverFile = server.localPath;
-		
+
 		// Exclude all folders which are located inside the profile folder.
 		if (serverFile.path.startsWith(profDir.path)) {
 			continue;
 		}
-		
+
 		// The server storage path on disk is outside the profile, so copy it.
 		try {
 			serverFile.copyTo(file, "");
@@ -433,8 +470,8 @@ function IETformatWarning(warning_type) {
 		return true;
 	if (warning_type === 1 && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.import_warning"))
 		return true;
-	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Ci.nsIPromptService);
+	// var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
+	// .getService(Ci.nsIPromptService);
 	var check = { value: false };
 
 	var text;
@@ -447,7 +484,7 @@ function IETformatWarning(warning_type) {
 		text = mboximportbundle.GetStringFromName("formatWarningImport");
 		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
-	var result = prompts.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWarning"), check);
 	IETprefs.setBoolPref(pref, !check.value);
 	return result;
 }
@@ -455,10 +492,9 @@ function IETformatWarning(warning_type) {
 function IETremoteWarning() {
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.remote_warning"))
 		return true;
-	var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
-		.getService(Ci.nsIPromptService);
+
 	var check = { value: false };
-	var result = prompts.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWaring"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
 	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }
@@ -558,16 +594,21 @@ function IETcopyStrToClip(str) {
 }
 
 function IETcleanName(str) {
-	str = str.replace(/[\\:?"\*\/<>#]/g, "_");
+	str = str.replace(/[\\:?"\*\/<>|]/g, "_");
 	str = str.replace(/[\x00-\x19]/g, "_");
 	return str;
 }
 
 function IETgetExt(type) {
-	if (type === 1 || type === 8)
+	if (type === 1 || type === 8) {
 		return ".html";
-	else if (type === 0)
+	} else if (type === 10) {
+		return ".pdf";
+	} else if (type === 0) {
 		return ".eml";
+	}
+
+
 
 	return ".txt";
 }
@@ -590,9 +631,14 @@ function IETopenFPsync(fp) {
 
 function IETgetPickerModeFolder() {
 	var dir = null;
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -648,9 +694,11 @@ function IETemlx2eml(file) {
 	return tempFile;
 }
 
-function IETstoreFormat() {
-	// it will return 0 for Mbox format, 1 for Maildir format, 2 for unknown format
-	var msgFolder = GetSelectedMsgFolders()[0];
+function getMailStoreFromFolderPath(accountId, folderPath) {
+	if (!folderPath) {
+		folderPath = "/";
+	}
+	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
 	var storeFormat = 0;
 	try {
 		var store = msgFolder.server.getCharValue("storeContractID");
@@ -659,19 +707,31 @@ function IETstoreFormat() {
 		else if (store && !store.includes("berkeleystore")) {
 			storeFormat = 2;
 		}
-	} catch (e) { }
+	} catch (e) {
+		console.log(e)
+	}
 
 	return storeFormat;
 }
 
-function IETgetSelectedMessages() {
+function getMsgFolderFromAccountAndPath(accountId, folderPath) {
+
+	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
+	return msgFolder;
+}
+
+async function IETgetSelectedMessages() {
 	// TB3 has not GetSelectedMessages function
 	var msgs;
 
-	if (typeof GetSelectedMessages === "undefined")
-		msgs = gFolderDisplay.selectedMessageUris;
-	else
+	if (typeof GetSelectedMessages === "undefined") {
+		//msgs = gFolderDisplay.selectedMessageUris;
+		msgs = await getSelectedMsgs();
+		// console.log(msgs)
+	}
+	else {
 		msgs = GetSelectedMessages();
+	}
 	// console.debug(' constantly selected messages');
 	// console.debug(msgs);
 	return msgs;
@@ -707,7 +767,7 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 	var hdrArray = [];
 	for (var k = 0; k < emlsArray.length; k++) {
 		var msguri = emlsArray[k];
-		var msserv = messenger.messageServiceFromURI(msguri);
+		var msserv = MailServices.messageServiceFromURI(msguri);
 		var msg = msserv.messageURIToMsgHdr(msguri);
 		var hdrStr = IETstoreHeaders(msg, msguri, file, needBody);
 		hdrArray.push(hdrStr);
@@ -821,75 +881,10 @@ function constructAttachmentsFilename(type, hdr) {
 	// Addresses escaping #339
 	// Allow ',' and single quote character which is valid
 	fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
-	
+
 	return fname;
 }
-/* 
-function fixIDReferenceLabels() {
-	console.debug('fixIDReferenceLabels:');
-	var ids = document.querySelectorAll("[dtd-text-id-ref]");
 
-	var w = getMail3Pane();
-	var sourceDocument = w.document;
-
-	for (let element of ids) {
-		let sourceElement = sourceDocument.getElementById(element.getAttribute("dtd-text-id-ref"));
-		let label = sourceElement.getAttribute("label");
-		element.textContent = label;
-	}
-}
-
-function fixPropertyReferenceLabels() {
-	var MBstrBundleService = Services.strings;
-	var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
-	var ids = document.querySelectorAll("[property-text-ref]");
-
-	for (let element of ids) {
-		let sourceProperty = element.getAttribute("property-text-ref");
-		let text = mboximportbundle.GetStringFromName(sourceProperty);
-		element.textContent = text;
-	}
-}
- */
-function loadTabPage(url, load_localized_page) {
-	if (load_localized_page) {
-
-		var tb_locale = null;
-		try {
-			tb_locale = Services.locale.appLocaleAsBCP47;			
-		} catch (e) {
-			tb_locale = 'en-US';
-		}
-
-		// console.debug("locale   " + tb_locale);
-		// console.debug(supportedLocales);
-
-		var supportedLocaleRegions = supportedLocales.filter(l => {
-			if (l === tb_locale || l.split('-')[0] === tb_locale.split('-')[0]) {
-				return true;
-			}
-			return false;
-		});
-
-		// console.debug(supportedLocaleRegions);
-		if (!tb_locale || supportedLocaleRegions.length === 0) {
-			tb_locale = "en-US";
-		} else if (!supportedLocaleRegions.includes(tb_locale)) {
-			tb_locale = supportedLocaleRegions[0];
-		}
-
-		// console.debug(' locale subset');
-		// console.debug(supportedLocaleRegions);
-
-		var urlparts = url.split('.');
-		// url = `chrome://mboximport/locale/${urlparts[0]}.${urlparts[1]}`;
-		url = `chrome://mboximport/content/mboximport/help/locale/${tb_locale}/${urlparts[0]}.${urlparts[1]}`;
-	}
-	let tabmail = getMail3Pane();
-
-	tabmail.openTab("contentTab", { url });
-
-}
 
 function getMail3Pane() {
 	var w = Cc["@mozilla.org/appshell/window-mediator;1"]

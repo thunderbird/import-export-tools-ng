@@ -22,6 +22,7 @@ pref("extensions.importexporttoolsng.import.build_mbox_index", true);
 pref("extensions.importexporttoolsng.export.format_warning", true);
 pref("extensions.importexporttoolsng.export.cut_subject", false);
 pref("extensions.importexporttoolsng.export.cut_filename", true);
+pref("extensions.importexporttoolsng.export.mbox.use_mboxext", false);
 pref("extensions.importexporttoolsng.export.filename_add_prefix", false);
 pref("extensions.importexporttoolsng.export.filename_prefix", "");
 pref("extensions.importexporttoolsng.export.filename_add_suffix", false);
@@ -32,6 +33,9 @@ pref("extensions.importexporttoolsng.export.index_date_custom_format", "%n/%d/%Y
 pref("extensions.importexporttoolsng.export.filename_use_extended_format", "false");
 pref("extensions.importexporttoolsng.export.filename_extended_format", "${subject}-${date_custom}-${index}");
 pref("extensions.importexporttoolsng.export.attachments.filename_extended_format", "Attachments");
+pref("extensions.importexporttoolsng.export.filename_filterUTF16", false);
+pref("extensions.importexporttoolsng.export.filename_filter_characters", "");
+pref("extensions.importexporttoolsng.export.filename_latinize", false);
 pref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", "EmbeddedImages");
 pref("extensions.importexporttoolsng.export.use_container_folder", true);
 pref("extensions.importexporttoolsng.sms.add_subject", true);
@@ -60,3 +64,7 @@ pref("extensions.importexporttoolsng.experimental.hot_keys", "");
 pref("extensions.importexporttoolsng.experimental.index_short1", false);
 pref("extensions.importexporttoolsng.experimental.printPDF.use_global_preferences", true);
 pref("extensions.importexporttoolsng.experimental.csv.account_folder_col", false);
+pref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports", false);
+pref("extensions.importexporttoolsng.help.showOnInstallAndUpdate", true);
+pref("extensions.importexporttoolsng.help.openInWindow", false);
+

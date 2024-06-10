@@ -1803,6 +1803,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						var nfile = appendClone.leafName + ".txt";
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
 					} else {
+						data = IETconvertToUTF8(data);
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
 
 						//IETwriteDataOnDisk(clone, data, false, null, time);

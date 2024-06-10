@@ -454,7 +454,7 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
-		let folderDirName = subFolder.name;
+		let folderDirName = nametoascii(subFolder.name);
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		file = await IOUtils.getDirectory(fullFolderPath);

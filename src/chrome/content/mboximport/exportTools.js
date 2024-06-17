@@ -1802,11 +1802,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						var nfile = appendClone.leafName + ".txt";
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time);
-					} else {
+					} else if (convertToText) {
 						data = IETconvertToUTF8(data);
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
-
-						//IETwriteDataOnDisk(clone, data, false, null, time);
+					} else {
+						IETwriteDataOnDisk(clone, data, false, null, time);
 					}
 
 					IETexported = IETexported + 1;

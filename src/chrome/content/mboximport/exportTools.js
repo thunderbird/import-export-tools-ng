@@ -1801,10 +1801,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 
 						var nfile = appendClone.leafName + ".txt";
-						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
+						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time);
 					} else {
 						data = IETconvertToUTF8(data);
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
+						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
 
 						//IETwriteDataOnDisk(clone, data, false, null, time);
 					}
@@ -2133,8 +2133,10 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 		file.lastModifiedTime = time;
+		console.log("set time")
+	}
 }
 
 async function copyMSGtoClip(selectedMsgs) {
@@ -2242,7 +2244,8 @@ function fixClipHdrs(strValue) {
 		head = strValue.match(/(.+\r?\n)*/)[0];
 		text = strValue.replace(/(.+\r?\n)*/, "");
 		headcorrect = head.replace(/:\r?\n/g, ": ");
-
+		text = text.replaceAll(/(?<!\r)\n/g,"\r\n");
+		headcorrect = headcorrect.replaceAll(/(?<!\r)\n/g,"\r\n");
 	} else {
 		head = strValue.match(/(.+\n?)*/)[0];
 		text = strValue.replace(/(.+\n?)*/, "");

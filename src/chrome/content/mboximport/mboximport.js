@@ -322,7 +322,10 @@ var IETprintPDFmain = {
 
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-
+				var time = (aMsgHdr.dateInSeconds) * 1000;
+				if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+					await IOUtils.setModificationTime(uniqueFileName, time);
+				}
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;

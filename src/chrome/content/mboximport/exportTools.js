@@ -2135,7 +2135,6 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 	foStream.close();
 	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 		file.lastModifiedTime = time;
-		console.log("set time")
 	}
 }
 

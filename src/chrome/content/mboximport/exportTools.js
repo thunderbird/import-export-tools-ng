@@ -383,6 +383,7 @@ async function exportAllMsgs(type, params) {
 			return;
 		}
 	} catch (e) { }
+	console.log(params)
 
 	IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 

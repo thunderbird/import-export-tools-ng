@@ -1632,10 +1632,25 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
+					
+					console.log(data)
+					let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
+					let hdrsBundle = Services.strings.createBundle("chrome://mboximport/locale/headerFields.ftl");
+
+					//var hdrsBundle = strBundleService.createBundle("chrome://messenger/locales/messageheaders/headerFields.ftl");
+					//var hdrsBundle = strBundleService.createBundle("chrome://messenger/locales/messageheaders/headerFields.ftl");
+
+					console.log(hdrsBundle)
+					console.log(hdrsBundle.GetStringFromName("message-header-to-list-name"))
 					var replyTo = hdr.getStringProperty("replyTo");
+					console.log(replyTo)
 					if (replyTo.length > 1) {
-						var rt = '<tr><td><div class="headerdisplayname" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
+						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
+
+						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
 						data = data.replace("</table><br>", rt + "</table><br>");
+						console.log(data)
+					
 					}
 
 					var appendClone;
@@ -1776,12 +1791,18 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					- Strip off the reference to messageBody.css
 					- Add a style rule to make headers name in bold
 					*/
+
+					console.log(data)
 					var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+					//data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+					console.log(this.hdr.author)
+					console.log(this.hdr.mime2DecodedAuthor)
+
+
 					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
+					//data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
 					tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
+					//data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
 					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
 					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
@@ -1795,8 +1816,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					else
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
+					console.log(data)
+
 					if (convertToText) {
 						data = IEThtmlToText(data, msgFolder);
+					console.log(data)
+
 					}
 					if (convertToText && append) {
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
@@ -1807,6 +1832,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = IETconvertToUTF8(data);
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
 					} else {
+					console.log(data)
+
 						IETwriteDataOnDisk(clone, data, false, null, time);
 					}
 

@@ -875,9 +875,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	var hdrsBundle;
 	if (Services.locale.appLocaleAsBCP47 === "ja") {
-		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-ja.properties");
 	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
-		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-zh.properties");
 	} else {
 		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}

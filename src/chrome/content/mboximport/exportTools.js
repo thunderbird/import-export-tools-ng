@@ -838,6 +838,26 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		return;
 	}
 
+	var css = '.reddiv { background: rgba(0, 0, 0, 0.35); height: 100%; width:100%; opacity: 0.2; z-index: 1000; position: fixed; top: 0px; left: 0px;}',
+    head = top.document.head || top.document.getElementsByTagName('head')[0],
+    style = top.document.createElement('style');
+
+head.appendChild(style);
+
+style.type = 'text/css';
+if (style.styleSheet){
+  // This is required for IE8 and below.
+  style.styleSheet.cssText = css;
+} else {
+  style.appendChild(top.document.createTextNode(css));
+}
+
+console.log(style.outerHTML)
+var body = top.document.getElementsByTagName('body')[0];
+var div = top.document.createElement('html:div');
+div.classList.add("reddiv")
+top.document.body.appendChild(div)
+
 
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return;
@@ -1001,6 +1021,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+	return {status: kStatusOK}
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {

@@ -56,6 +56,20 @@
         "script": "api/NotifyTools/implementation.js",
         "events": ["startup"]
       }
+    },
+    "AsyncPrompts": {
+      "schema": "api/AsyncPrompts/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "AsyncPrompts"
+          ]
+        ],
+        "script": "api/AsyncPrompts/implementation.js"
+      }
     }
   },
   "permissions" : [

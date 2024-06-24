@@ -958,6 +958,10 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     params.selectedFolder = {};
     params.selectedFolder.path = "/";
   }
+
+  if (ctxEvent.selectedFolders.length > 1) {
+    let rv = await browser.AsyncPrompts.asyncAlert("testing");
+  }
   params.selectedAccount = ctxEvent.selectedAccount;
   if (!params.selectedAccount) {
     params.selectedAccount = {};

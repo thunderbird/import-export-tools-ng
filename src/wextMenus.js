@@ -960,8 +960,12 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   }
 
   if (ctxEvent.selectedFolders.length > 1) {
-    let rv = await browser.AsyncPrompts.asyncAlert("testing");
+    let rv = await browser.AsyncPrompts.asyncAlert("Multiple Folders", "Multiple folders are not currently supprted");
+    if (!rv) {
+      return;
+    }
   }
+  
   params.selectedAccount = ctxEvent.selectedAccount;
   if (!params.selectedAccount) {
     params.selectedAccount = {};
@@ -1348,6 +1352,13 @@ async function importMaildirFiles(ctxEvent) {
 }
 
 async function openOptions(event, tab) {
+  
+  if (event.selectedFolders.length > 1) {
+    let rv = await browser.AsyncPrompts.asyncAlert("Multiple Folders", "Multiple folders are not currently supprted");
+    if (!rv) {
+      return;
+    }
+  }
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.tabType = tab.type;

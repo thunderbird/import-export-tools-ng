@@ -12,6 +12,11 @@
             "name": "title",
             "type": "string",
             "description": "Prompt title."
+          },
+          {
+            "name": "text",
+            "type": "string",
+            "description": "Prompt text."
           }
         ]
       }

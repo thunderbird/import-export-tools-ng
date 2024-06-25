@@ -46,7 +46,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
   _createOverlay() {
     var css1 = '.ietng-divOverlay { background: rgba(0, 0, 0, 0.35); height: 100%; width:100%; opacity: 0.2; z-index: 1000; position: fixed; top: 0px; left: 0px;}\n';
-    var css2 = '.ietng-divPrompt { background: rgb(255, 255, 255); height: 140px; width:350px; z-index: 1010; position: absolute; display: flex; flex-direction: column;}\n';
+    var css2 = '.ietng-divPrompt { background: #e0e0e0; height: 160px; width:360px; z-index: 1010; position: absolute; display: flex; flex-direction: column;}\n';
 
     //let top = Services.wm.getMostRecentWindow("mail:3pane").top;
 
@@ -82,10 +82,11 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     div.setAttribute("id", "ietng-prompt-div");
     top.document.body.appendChild(div);
 
-    this._addElementChild("html:div", "ietng-subdiv1", div, [], {style: `width: 100%; height: 25px; background: blue; `});
-    let mc = this._addElementChild("html:div", "ietng-maindiv", div, [], {style: `width: 100%; height: 90px;  background: yellow; display: flex; flex-direction: row; `});
-    this._addElementChild("html:div", "ietng-textdiv", mc, [], {style: `width: 80px; height: 90px;  background: green; `});
-    this._addElementChild("html:div", "ietng-textdiv", mc, [], {style: `width: 80px; height: 90px;  background: red; flex-grow: 1`});
+    this._addElementChild("html:div", "ietng-subdiv1", div, [], {style: `width: 100%; height: 25px; background: var(--color-blue-60); `, innerText: `${title}`});
+    let mc = this._addElementChild("html:div", "ietng-maindiv", div, [], {style: `width: 100%; height: 90px;  background: #202020; display: flex; flex-direction: row; `});
+    this._addElementChild("html:div", "ietng-textdiv", mc, [], {style: `width: 80px; height: 90px;  background: #d5d5d5; `});
+    this._addElementChild("html:div", "ietng-textdiv", mc, [], {style: `width: 80px; height: 90px;  background: #e0e0e0; flex-grow: 1`});
+    let buttonsDiv = this._addElementChild("html:div", "ietng-buttonsdiv", div, [], {style: `height: 40px; padding: 4px; margin-left: auto; background: #e0e0e0; `});
 
     let okButton = top.document.createElement('button');
     okButton.setAttribute("is", "highlightable-button");
@@ -93,7 +94,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
     okButton.textContent = " OK";
     AsyncPrompts.button = okButton;
-    div.appendChild(okButton);
+    buttonsDiv.appendChild(okButton);
     div.style.top = ((top.outerHeight / 2) - 90) + "px";
     div.style.left = ((top.outerWidth / 2) - 100) + "px";
   }
@@ -104,6 +105,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
     for (const [key, value] of Object.entries(attributes)) {
       console.log(`${key}: ${value}`);
+      key.replace("_","-");
       element.setAttribute(key, value);
     }
 

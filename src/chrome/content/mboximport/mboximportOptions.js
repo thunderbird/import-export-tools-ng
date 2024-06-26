@@ -166,6 +166,11 @@ function initMboxImportPanel() {
     document.getElementById("attFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
     document.getElementById("inlineAttFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
+    document.getElementById("utf16-filter").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16");
+    document.getElementById("latinize-transform").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize");
+    document.getElementById("character-filter").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+
     document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
@@ -319,6 +324,10 @@ function saveMboxImportPrefs() {
 
     IETsetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
+
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);

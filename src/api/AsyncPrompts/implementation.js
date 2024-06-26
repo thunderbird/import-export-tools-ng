@@ -27,6 +27,9 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
           self._createOverlay();
 
+          top.openDialog("chrome://mboximport/content/mboximport/test.html", "test")
+          return 0;
+
           self._createPrompt(title, text);
           let bv = await new Promise((resolve, reject) => {
             AsyncPrompts.button.onclick = () => { resolve(1); };
@@ -76,6 +79,11 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     div.classList.add("ietng-divOverlay");
     div.setAttribute("id", "ietng-overlay-div");
     top.document.body.appendChild(div);
+    div.addEventListener('mousedown', function(event) {
+      // do your magic
+      event.preventDefault();
+      });
+      
 
   }
 
@@ -104,7 +112,9 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     phdr.innerText = title;
     textdiv.innerText = text;
     var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
-    let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `${attIcon}`, height: "40px", width: "40px"});
+    //let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `${attIcon}`, height: "40px", width: "40px"});
+    let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `chrome://mboximport/content/mboximport/icons/stop.gif`, height: "40px", width: "40px"});
+
     img.style.height = "40px";
     img.style.width = "40px";
 

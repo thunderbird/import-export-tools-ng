@@ -532,6 +532,10 @@ function emailIsValid(email) {
 }
 
 function IETstr_converter(str) {
+	// null out function as this really isn't necessary 
+	return str;
+
+	/*
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
@@ -546,6 +550,7 @@ function IETstr_converter(str) {
 		return str;
 	}
 	return convStr;
+	*/
 }
 
 function nametoascii(str) {

@@ -178,12 +178,11 @@ function initMboxImportPanel() {
     var csvSep = "";
 
     try {
-        charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
+        //charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
         textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
         csvSep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
     } catch (e) {
-        console.log(e)
-        charset = "";
+        //charset = "";
         textCharset = "";
         csvSep = "";
     }
@@ -323,7 +322,7 @@ function saveMboxImportPrefs() {
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
-    IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
+    //IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
     IETprefs.setCharPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
 

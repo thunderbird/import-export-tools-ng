@@ -31,8 +31,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
           //return 0;
 
           self._createPrompt(title, text);
-          return 0;
-          
+
           let bv = await new Promise((resolve, reject) => {
             AsyncPrompts.button.onclick = () => { resolve(1); };
             AsyncPrompts.cancelButton.onclick = () => { resolve(0); };
@@ -56,7 +55,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
   _createOverlay() {
     var css1 = '.ietng-divOverlay { background: rgba(0, 0, 0, 0.35); height: 100%; width:100%; opacity: 0.2; z-index: 1000; position: fixed; top: 0px; left: 0px;}\n';
-    var css2 = '.ietng-divPrompt {  background: #e0e0e0; height: 160px; width:360px; z-index: 1010; position: absolute; display: block; flex-direction: column; box-shadow: 0.6px 0.6px 0.6px; border-top: 0.4px solid black; border-left: 0.4px solid black;}\n';
+    var css2 = '.ietng-divPrompt {  background: #e0e0e0; height: 160px; width:360px; z-index: 1010; position: absolute; display: flex; flex-direction: column; box-shadow: 0.6px 0.6px 0.6px; border-top: 0.4px solid black; border-left: 0.4px solid black;}\n';
 
     //let top = Services.wm.getMostRecentWindow("mail:3pane").top;
 
@@ -76,7 +75,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
       style.appendChild(top.document.createTextNode(css1 + css2));
     }
-
+/*
     var div = top.document.createElement('html:div');
     div.classList.add("ietng-divOverlay");
     div.setAttribute("id", "ietng-overlay-div");
@@ -86,6 +85,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
       event.preventDefault();
       });
       
+*/
 
   }
 
@@ -97,8 +97,8 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     div.classList.add("ietng-divPrompt");
     div.setAttribute("id", "ietng-prompt-div");
     top.document.body.appendChild(div);
-    let imgt = this._addElementChild("html:img", "ietng-img", div, [], {src: `chrome://mboximport/content/mboximport/icons/stop.gif`, height: "40px", width: "40px"});
-    return
+    //let imgt = this._addElementChild("html:img", "ietng-img", div, [], {src: `chrome://mboximport/content/mboximport/icons/stop.gif`, height: "40px", width: "40px"});
+    //return;
     //var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
     //let imgt = this._addElementChild("html:img", "ietng-img", div, [], {src: `${attIcon}`, height: "40px", width: "40px", all: "unset"});
     //let imgt = this._addElementChild("html:img", "ietng-img", div, [], {src: ``, height: "40px", width: "40px"});

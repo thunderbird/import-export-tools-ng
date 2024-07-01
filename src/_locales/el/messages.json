@@ -631,49 +631,8 @@
     },
     "CRconversion.statusMsg": {
         "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
-    },
-
-	"Size": {
-		"message": "Μέγεθος"
-	},
-
-	"latinizeTransform": {
-		"message": "Λατινοποίηση μετασχηματισμού"
-	},
-
-	"characteFilter": {
-		"message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
-	},
-
-	"multipleFolders.title": {
-		"message": "Πολλαπλοί φάκελοι"
-	},
-
-	"latinizeTransform": {
-		"message": "Λατινοποίηση μετασχηματισμού"
-	},
-
-	"characterFilter": {
-		"message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
-	},
-
-	"multipleFolders.title": {
-		"message": "Πολλαπλοί φάκελοι"
-	}
+    },
+    "Size": {
+        "message": "Μέγεθος"
+    }
 }

@@ -628,49 +628,8 @@
     },
     "CRconversion.statusMsg": {
         "message": "Convertint CR =&gt; CRLF terminacions de línia"
-    },
-
-	"Size": {
-		"message": "Mida"
-	},
-
-	"latinizeTransform": {
-		"message": "llatinitzar transformar"
-	},
-
-	"characteFilter": {
-		"message": "Filtre de caràcters (UTF-8 o UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtra caràcters UTF-16 (símbols i emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtreu caràcters no alfanumèrics"
-	},
-
-	"multipleFolders.title": {
-		"message": "Múltiples carpetes"
-	},
-
-	"latinizeTransform": {
-		"message": "llatinitzar transformar"
-	},
-
-	"characterFilter": {
-		"message": "Filtre de caràcters (UTF-8 o UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtra caràcters UTF-16 (símbols i emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtreu caràcters no alfanumèrics"
-	},
-
-	"multipleFolders.title": {
-		"message": "Múltiples carpetes"
-	}
+    },
+    "Size": {
+        "message": "Mida"
+    }
 }

@@ -631,49 +631,8 @@
     },
     "CRconversion.statusMsg": {
         "message": "Преобразование CR =&gt; окончания строки CRLF"
-    },
-
-	"Size": {
-		"message": "Размер"
-	},
-
-	"latinizeTransform": {
-		"message": "Латинизировать преобразование"
-	},
-
-	"characteFilter": {
-		"message": "Фильтр символов (UTF-8 или UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Фильтрация символов UTF-16 (символы и смайлы)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Фильтровать небуквенно-цифровые символы"
-	},
-
-	"multipleFolders.title": {
-		"message": "Несколько папок"
-	},
-
-	"latinizeTransform": {
-		"message": "Латинизировать преобразование"
-	},
-
-	"characterFilter": {
-		"message": "Фильтр символов (UTF-8 или UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Фильтрация символов UTF-16 (символы и смайлы)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Фильтровать небуквенно-цифровые символы"
-	},
-
-	"multipleFolders.title": {
-		"message": "Несколько папок"
-	}
+    },
+    "Size": {
+        "message": "Размер"
+    }
 }

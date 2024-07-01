@@ -631,49 +631,8 @@
     },
     "CRconversion.statusMsg": {
         "message": "Convertendo CR =&gt; terminações de linha CRLF"
-    },
-
-	"Size": {
-		"message": "Tamanho"
-	},
-
-	"latinizeTransform": {
-		"message": "Latinizar transformar"
-	},
-
-	"characteFilter": {
-		"message": "Filtro de caracteres (UTF-8 ou UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrar caracteres não alfanuméricos"
-	},
-
-	"multipleFolders.title": {
-		"message": "Várias pastas"
-	},
-
-	"latinizeTransform": {
-		"message": "Latinizar transformar"
-	},
-
-	"characterFilter": {
-		"message": "Filtro de caracteres (UTF-8 ou UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrar caracteres não alfanuméricos"
-	},
-
-	"multipleFolders.title": {
-		"message": "Várias pastas"
-	}
+    },
+    "Size": {
+        "message": "Tamanho"
+    }
 }

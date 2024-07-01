@@ -17,11 +17,11 @@ const translate = new Translate({ projectId, key });
 
 var translationArray = [
  
-  { key: "latinize-transform", text: "Latinize transform"},
-  { key: "character-filter", text: "Character Filter (UTF-8 or UTF-16)"},
-  { key: "utf16-filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
-  { key: "non-alphanumeric-filter", text: "Filter non-alphanumeric characters"},
-  { key: "multiple-folders.title", text: "Multiple Folders"},
+  { key: "latinizeTransform", text: "Latinize transform"},
+  { key: "characteFilter", text: "Character Filter (UTF-8 or UTF-16)"},
+  { key: "utf16Filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
+  { key: "nonAlphanumericFilter", text: "Filter non-alphanumeric characters"},
+  { key: "multipleFolders.title", text: "Multiple Folders"},
 	
 ];
 

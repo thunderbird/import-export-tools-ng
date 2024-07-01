@@ -635,5 +635,45 @@
 
 	"Size": {
 		"message": "サイズ"
+	},
+
+	"latinizeTransform": {
+		"message": "ラテン語化変換"
+	},
+
+	"characteFilter": {
+		"message": "文字フィルター (UTF-8 または UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16 文字 (記号と絵文字) をフィルターする"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "英数字以外の文字をフィルタリングする"
+	},
+
+	"multipleFolders.title": {
+		"message": "複数のフォルダ"
+	},
+
+	"latinizeTransform": {
+		"message": "ラテン語化変換"
+	},
+
+	"characterFilter": {
+		"message": "文字フィルター (UTF-8 または UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16 文字 (記号と絵文字) をフィルターする"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "英数字以外の文字をフィルタリングする"
+	},
+
+	"multipleFolders.title": {
+		"message": "複数のフォルダ"
 	}
 }

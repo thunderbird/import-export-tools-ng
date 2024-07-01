@@ -635,5 +635,45 @@
 
 	"Size": {
 		"message": "Größe"
+	},
+
+	"latinizeTransform": {
+		"message": "Transformieren latinisieren"
+	},
+
+	"characteFilter": {
+		"message": "Zeichenfilter (UTF-8 oder UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16-Zeichen filtern (Symbole und Emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Nicht alphanumerische Zeichen filtern"
+	},
+
+	"multipleFolders.title": {
+		"message": "Mehrere Ordner"
+	},
+
+	"latinizeTransform": {
+		"message": "Transformieren latinisieren"
+	},
+
+	"characterFilter": {
+		"message": "Zeichenfilter (UTF-8 oder UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16-Zeichen filtern (Symbole und Emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Nicht alphanumerische Zeichen filtern"
+	},
+
+	"multipleFolders.title": {
+		"message": "Mehrere Ordner"
 	}
 }

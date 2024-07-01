@@ -635,5 +635,45 @@
 
 	"Size": {
 		"message": "크기"
+	},
+
+	"latinizeTransform": {
+		"message": "라틴화 변환"
+	},
+
+	"characteFilter": {
+		"message": "문자 필터(UTF-8 또는 UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16 문자 필터링(기호 및 이모티콘)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "영숫자가 아닌 문자 필터링"
+	},
+
+	"multipleFolders.title": {
+		"message": "여러 폴더"
+	},
+
+	"latinizeTransform": {
+		"message": "라틴화 변환"
+	},
+
+	"characterFilter": {
+		"message": "문자 필터(UTF-8 또는 UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16 문자 필터링(기호 및 이모티콘)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "영숫자가 아닌 문자 필터링"
+	},
+
+	"multipleFolders.title": {
+		"message": "여러 폴더"
 	}
 }

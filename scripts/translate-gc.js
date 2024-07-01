@@ -18,7 +18,7 @@ const translate = new Translate({ projectId, key });
 var translationArray = [
  
   { key: "latinizeTransform", text: "Latinize transform"},
-  { key: "characteFilter", text: "Character Filter (UTF-8 or UTF-16)"},
+  { key: "characterFilter", text: "Character Filter (UTF-8 or UTF-16)"},
   { key: "utf16Filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
   { key: "nonAlphanumericFilter", text: "Filter non-alphanumeric characters"},
   { key: "multipleFolders.title", text: "Multiple Folders"},

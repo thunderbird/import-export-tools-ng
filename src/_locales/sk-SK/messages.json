@@ -635,5 +635,45 @@
 
 	"Size": {
 		"message": "Veľkosť"
+	},
+
+	"latinizeTransform": {
+		"message": "Latinizovať transformovať"
+	},
+
+	"characteFilter": {
+		"message": "Filter znakov (UTF-8 alebo UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrovanie znakov UTF-16 (symboly a emotikony)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrujte nealfanumerické znaky"
+	},
+
+	"multipleFolders.title": {
+		"message": "Viaceré priečinky"
+	},
+
+	"latinizeTransform": {
+		"message": "Latinizovať transformovať"
+	},
+
+	"characterFilter": {
+		"message": "Filter znakov (UTF-8 alebo UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrovanie znakov UTF-16 (symboly a emotikony)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrujte nealfanumerické znaky"
+	},
+
+	"multipleFolders.title": {
+		"message": "Viaceré priečinky"
 	}
 }

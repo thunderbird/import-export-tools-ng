@@ -635,5 +635,45 @@
 
 	"Size": {
 		"message": "Størrelse"
+	},
+
+	"latinizeTransform": {
+		"message": "Latinisere transformation"
+	},
+
+	"characteFilter": {
+		"message": "Tegnfilter (UTF-8 eller UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrer UTF-16-tegn (symboler og emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrer ikke-alfanumeriske tegn"
+	},
+
+	"multipleFolders.title": {
+		"message": "Flere mapper"
+	},
+
+	"latinizeTransform": {
+		"message": "Latinisere transformation"
+	},
+
+	"characterFilter": {
+		"message": "Tegnfilter (UTF-8 eller UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrer UTF-16-tegn (symboler og emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrer ikke-alfanumeriske tegn"
+	},
+
+	"multipleFolders.title": {
+		"message": "Flere mapper"
 	}
 }

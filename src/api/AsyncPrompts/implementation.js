@@ -25,6 +25,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
           //Services.wm.getMostRecentWindow("mail:3pane").alert("Title " + title + "!");
           //let top = Services.wm.getMostRecentWindow("mail:3pane").top;
 
+          
           self._createOverlay();
 
           //top.openDialog("chrome://mboximport/content/mboximport/test.html", "test")
@@ -41,7 +42,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
           //await new Promise(resolve => top.setTimeout(resolve, 6000));
           let promptDiv = top.document.getElementById("ietng-prompt-div");
           promptDiv.remove();
-          let overlayDiv = top.document.getElementById("ietng-overlay-div");
+          let overlayDiv = top.document.getElementById("ietng-overlay");
           overlayDiv.remove();
           console.log("after remove  ");
           return bv;
@@ -60,10 +61,12 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     //let top = Services.wm.getMostRecentWindow("mail:3pane").top;
 
     let head = top.document.head || top.document.getElementsByTagName('head')[0];
-    let style = top.document.createElement('style');
+    //let style = top.document.createElement('style');
 
+    let style = this._addElementChild("link", "iestyles", head, [], {rel:"stylesheet", type: "text/css", href: "chrome://mboximport/content/mboximport/mboxmsg.css"});
     head.appendChild(style);
 
+    /*
     style.type = 'text/css';
     if (style.styleSheet) {
       // This is required for IE8 and below.
@@ -75,25 +78,28 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
       style.appendChild(top.document.createTextNode(css1 + css2));
     }
-/*
+*/
     var div = top.document.createElement('html:div');
-    div.classList.add("ietng-divOverlay");
-    div.setAttribute("id", "ietng-overlay-div");
+    div.setAttribute("id", "ietng-overlay");
     top.document.body.appendChild(div);
     div.addEventListener('mousedown', function(event) {
       // do your magic
       event.preventDefault();
       });
       
-*/
+
 
   }
 
   _createPrompt(title, text) {
     //let top = Services.wm.getMostRecentWindow("mail:3pane").top;
     
+    //var cdiv = top.document.createElement('html:div');
+    //cdiv.setAttribute("id", "ietng-prompt-container");
+    //top.document.body.appendChild(cdiv);
 
-    var div = top.document.createElement('html:div');
+
+    var div = top.document.createElement('div');
     div.classList.add("ietng-divPrompt");
     div.setAttribute("id", "ietng-prompt-div");
     top.document.body.appendChild(div);
@@ -108,19 +114,19 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
     //return
 
-    let phdr = this._addElementChild("html:div", "ietng-prompt-divheader", div, [], { style: `width: calc(100% - 6px); height: 26.5px; background: var(--color-blue-40); padding-top: 4px; padding-left: 6px; font-size: 12.8px; cursor: "move"` });
-    let mc = this._addElementChild("html:div", "ietng-maindiv", div, [], { style: `width: 100%; height: 90px; overfow: hidden; background: #202020; display: flex; flex-direction: row; ` });
-    let imgdiv = this._addElementChild("html:div", "ietng-imgdiv", mc, [], { style: `width: 80px; height: 90px;  z-index: 1040; background: #f0f0f0; align-items: center;` });
-    let textdiv = this._addElementChild("html:div", "ietng-textdiv", mc, [], { style: `width: 80px; height: 90px;  background: #e0e0e0; flex-grow: 1; align-items: center; font-size: 12.5px; padding-top: 25px; padding-left: 10px;` });
-    let buttonsDiv = this._addElementChild("html:div", "ietng-buttonsdiv", div, [], { style: `height: 40px; padding: 4px; margin-left: auto; background: #e0e0e0; ` });
+    let phdr = this._addElementChild("html:div", "ietng-prompt-divheader", div, [],{});
+    let mc = this._addElementChild("html:div", "ietng-maindiv", div, [], { });
+    let imgdiv = this._addElementChild("html:div", "ietng-imgdiv", mc, [], { });
+    let textdiv = this._addElementChild("html:div", "ietng-textdiv", mc, [], { });
+    let buttonsDiv = this._addElementChild("html:div", "ietng-buttonsdiv", div, [], { });
     phdr.innerText = title;
     textdiv.innerText = text;
     var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
     //let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `${attIcon}`, height: "40px", width: "40px"});
-    let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `chrome://mboximport/content/mboximport/icons/stop.gif`, height: "40px", width: "40px"});
+    //let img = this._addElementChild("html:img", "ietng-img", imgdiv, [], {src: `chrome://mboximport/content/mboximport/icons/stop.gif`, height: "40px", width: "40px"});
 
-    img.style.height = "40px";
-    img.style.width = "40px";
+    //img.style.height = "40px";
+    //img.style.width = "40px";
 
     let okButton = top.document.createElement('button');
     okButton.setAttribute("is", "highlightable-button");

@@ -634,5 +634,25 @@
     },
     "Size": {
         "message": "Méret"
-    }
+    },
+
+	"latinizeTransform": {
+		"message": "Transzformáció latinosítása"
+	},
+
+	"characterFilter": {
+		"message": "Karakterszűrő (UTF-8 vagy UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "UTF-16 karakterek szűrése (szimbólumok és hangulatjelek)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "A nem alfanumerikus karakterek szűrése"
+	},
+
+	"multipleFolders.title": {
+		"message": "Több mappa"
+	}
 }

@@ -634,5 +634,25 @@
     },
     "Size": {
         "message": "Rozmiar"
-    }
+    },
+
+	"latinizeTransform": {
+		"message": "Transformacja latynoska"
+	},
+
+	"characterFilter": {
+		"message": "Filtr znaków (UTF-8 lub UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtruj znaki UTF-16 (symbole i emotikony)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtruj znaki inne niż alfanumeryczne"
+	},
+
+	"multipleFolders.title": {
+		"message": "Wiele folderów"
+	}
 }

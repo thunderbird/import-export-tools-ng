@@ -634,5 +634,25 @@
     },
     "Size": {
         "message": "Size"
-    }
+    },
+
+	"latinizeTransform": {
+		"message": "Latinize transform"
+	},
+
+	"characterFilter": {
+		"message": "Character Filter (UTF-8 or UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filter UTF-16 characters (Symbols and Emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filter non-alphanumeric characters"
+	},
+
+	"multipleFolders.title": {
+		"message": "Multiple Folders"
+	}
 }

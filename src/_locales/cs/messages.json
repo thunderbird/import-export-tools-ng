@@ -631,5 +631,25 @@
 	},
 	"Size": {
 		"message": "Velikost"
+	},
+
+	"latinizeTransform": {
+		"message": "Latinizovat transformovat"
+	},
+
+	"characterFilter": {
+		"message": "Filtr znaků (UTF-8 nebo UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrování znaků UTF-16 (symboly a emotikony)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrujte nealfanumerické znaky"
+	},
+
+	"multipleFolders.title": {
+		"message": "Více složek"
 	}
 }

@@ -634,5 +634,25 @@
     },
     "Size": {
         "message": "Misurare"
-    }
+    },
+
+	"latinizeTransform": {
+		"message": "Trasformazione latinizzata"
+	},
+
+	"characterFilter": {
+		"message": "Filtro caratteri (UTF-8 o UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtra caratteri UTF-16 (Simboli ed Emoji)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtra i caratteri non alfanumerici"
+	},
+
+	"multipleFolders.title": {
+		"message": "Cartelle multiple"
+	}
 }

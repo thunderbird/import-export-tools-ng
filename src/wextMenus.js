@@ -960,7 +960,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   }
 
   if (ctxEvent.selectedFolders.length > 1) {
-    let rv = await browser.AsyncPrompts.asyncAlert("Multiple Folders", "Multiple folders are not currently supprted");
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Multiple folders are not currently supprted");
+
     if (!rv) {
       return;
     }
@@ -1354,7 +1355,7 @@ async function importMaildirFiles(ctxEvent) {
 async function openOptions(event, tab) {
   
   if (event.selectedFolders.length > 1) {
-    let rv = await browser.AsyncPrompts.asyncAlert("Multiple Folders", "Multiple folders are not currently supprted");
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Multiple folders are not currently supprted");
     if (!rv) {
       return;
     }

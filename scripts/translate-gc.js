@@ -15,16 +15,17 @@ const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
 
-var translationArray = [
- 
+var translationArray1 = [
   { key: "latinizeTransform", text: "Latinize transform"},
   { key: "characterFilter", text: "Character Filter (UTF-8 or UTF-16)"},
   { key: "utf16Filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
   { key: "nonAlphanumericFilter", text: "Filter non-alphanumeric characters"},
   { key: "multipleFolders.title", text: "Multiple Folders"},
-	
 ];
 
+var translationArray = [
+  { key: "multipleFolders.alertMsg", text: "Multiple folders are not supported.\\n\\nClick OK to export just the first folder."},
+];
 //{ key: "multiple-folders-warning", text: "Multiple folders are not supported.\n\nClick OK to export just the first folder."},
 
 // const localeDir = "../src/chrome/locale";

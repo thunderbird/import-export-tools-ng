@@ -634,25 +634,20 @@
     },
     "Size": {
         "message": "Maat"
-   ,
-
-	"latinizeTransform": {
-		"message": "Latiniseer transformatie"
-	},
-
-	"characterFilter": {
-		"message": "Tekenfilter (UTF-8 of UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filter UTF-16-tekens (symbolen en emoji&#39;s)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filter niet-alfanumerieke tekens"
-	},
-
-	"multipleFolders.title": {
-		"message": "Meerdere mappen"
-	}
+    },
+    "latinizeTransform": {
+        "message": "Latiniseer transformatie"
+    },
+    "characterFilter": {
+        "message": "Tekenfilter (UTF-8 of UTF-16)"
+    },
+    "utf16Filter": {
+        "message": "Filter UTF-16-tekens (symbolen en emoji&#39;s)"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filter niet-alfanumerieke tekens"
+    },
+    "multipleFolders.title": {
+        "message": "Meerdere mappen"
+    }
 }

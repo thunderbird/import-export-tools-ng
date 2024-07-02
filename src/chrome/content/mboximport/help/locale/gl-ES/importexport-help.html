@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
     <p>
-      - Promete e corrixa o problema de temporización das mensaxes de exportación #568<br />
-      - Novo: latinizar os nomes de ficheiros transformados. Use a preferencia booleana:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Novo: filtro de nomes de ficheiros UTF-16 (emojis, símbolos...). Use a preferencia booleana:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Novo: filtro de caracteres para nomes de ficheiros. Usa a preferencia de cadea UTF-16:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Introduza os caracteres sen separadores<br />
+      - Novo: compatibilidade con Thunderbird v128 e v115<br />
+      - Novo: filtros e transformacións para nomes de ficheiros na IU<br />
+      - Corrixiu a conversión UTF-8 que faltaba para as exportacións de HTML e texto plano #581<br />
+      - Corrixir os índices ja e zn-CH #588<br />
+      - Corrixir os campos Para, De e Responder a en HTML e exportacións de texto plano #586<br />
+      - Corrixir a opción de data de exportación da mensaxe #585<br />
+      - Corrixiu a conversión LF para o texto plano de Windows #584<br />
+      - Corrixir o filtro de caracteres de nome de ficheiro ilegal #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
     <p>
@@ -333,7 +333,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Exporta as mensaxes como ficheiros en formato HTML, incluíndo anexos.<br />
+            Exporta as mensaxes como ficheiros de formato HTML, incluíndo anexos.<br />
             Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
@@ -518,8 +518,8 @@
           <td>
             ISO 8601 ano baseado nunha semana co século como número decimal. O ano de 4 díxitos corresponde ao
             número da semana ISO (ver <code class="code1">%V</code> ). Este ten o mesmo formato e valor que
-            <code class="code1">%Y</code> , excepto que se o número da semana ISO pertence ao ano anterior ou
-            ao seguinte, úsase ese ano no seu lugar.
+            <code class="code1">%Y</code> , agás que se o número de semana ISO pertence ao ano anterior ou ao
+            seguinte, utilízase ese ano.
           </td>
         </tr>
         <tr>
@@ -654,7 +654,7 @@
       <li><code class="code1">%k</code> - non se engade espazo</li>
       <li>
         <code class="code1">%n</code> - como <code class="code1">%m</code> , pero sen cero inicial (use
-        <code class="code1">\n</code> para nova liña)
+        <code class="code1">\n</code> para a nova liña)
       </li>
       <li><code class="code1">%O</code> - non implementado</li>
       <li><code class="code1">%r</code> - non implementado (use <code class="code1">%I:%M:%S %p</code> )</li>
@@ -800,8 +800,8 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Esta preferencia segue o mesmo formato completo que se utilizará para os ficheiros índice. É unha cadea
-      baleira por defecto, se ten unha cadea de data/hora formateada, isto cambiará o formato de data do
+      Esta preferencia segue o mesmo formato completo que se utilizará para os ficheiros de índice. É unha
+      cadea baleira por defecto, se ten unha cadea de data/hora formateada, isto cambiará o formato de data do
       índice.
     </p>
     <p>
@@ -835,7 +835,7 @@
       Exemplos de entradas de teclas rápidas (matriz de obxectos JSON)<br /><br />
       <code class="notranslate">id</code> - o índice clave (1-10)<br />
       <code class="notranslate">key</code> - a tecla (un só carácter)<br />
-      <code class="notranslate">keycode</code> : o código &quot;VK_*&quot; define o código clave<br />
+      <code class="notranslate">keycode</code> : o &quot;VK_*&quot; define o código clave<br />
       Pódense incluír calquera chave ou código, pero non ambos<br />
       <code class="notranslate">modifiers</code> : os modificadores de teclas, lista separada por espazos
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

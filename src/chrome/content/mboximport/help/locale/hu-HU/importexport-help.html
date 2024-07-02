@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
     <p>
-      - Az 568. számú exportüzenetek időzítési problémájának ígérete és javítása<br />
-      - Új: A fájlnevek latinosítása, átalakítása. Logikai preferencia használata:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Új: UTF-16 fájlnévszűrő (emojik, szimbólumok…). Logikai preferencia használata:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Új: Karakterszűrő a fájlnevekhez. UTF-16 karakterlánc-beállítás használata:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Írja be a karaktereket elválasztó nélkül<br />
+      - Új: Thunderbird v128 és v115 támogatás<br />
+      - Új: Szűri és átalakítja a fájlneveket a felhasználói felületen<br />
+      - Javítsa ki a hiányzó UTF-8 konverziót HTML és egyszerű szöveges exportáláshoz #581<br />
+      - Ja és zn-CH indexek javítása #588<br />
+      - Fix To, From és ReplyTo mezők HTML és Plaintext exportálásban #586<br />
+      - Javítsa ki az 585-ös üzenetexportálási dátum opciót<br />
+      - Javítsa ki az LF konverziót a Windows egyszerű szöveghez #584<br />
+      - Javítsa ki az illegális fájlnév-karakterszűrőt #576<br />
     </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
@@ -41,24 +41,24 @@
       - egyszerű szöveg<br />
       - CSV (vesszővel tagolt értékek)<br />
       - PDF<br /><br />
-      Míg a legtöbb funkció az üzenetek körül forog, a Thunderbird profilok importálása és exportálása is
+      Míg a legtöbb funkció az üzenetek körül forog, a Thunderbird-profilok importálása és exportálása is
       támogatott. Ezenkívül az exportálás HTML- vagy CSV-indexfájlt is tartalmazhat. A Thunderbird profil
       biztonsági mentése egy másik funkció.<br />
       <p>
         Az IETng funkciók elérése a bővítmény által telepített több különböző menün keresztül történik. A
-        függvények környezetérzékenyek. A menük hozzáadva:<br />
+        függvények környezetérzékenyek. A menük a következőkhöz kerülnek hozzáadásra:<br />
         - A mappapanel kontextusa (mappaművelet)<br />
         - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
         - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
         Az &quot;Eszközök menü&quot; alatt elérhető opciók nem a &quot;Hamburger&quot; menüben találhatók,
         hanem egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és
-        gombok mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
-        párbeszédpanelt.<br />
+        gombok mindegyike rendelkezik egy Súgó és Beállítások menüelemekkel is, amelyekkel elérheti a
+        beállítások párbeszédpanelt.<br />
       </p>
     </p>
     <h3>Támogatás:</h3>
     <p>
-      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a GitHub bővítménytárában:
+      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a bővítmények GitHub-tárházában:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -110,8 +110,8 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Exportáljon egy mappát az összes almappájával együtt mbox formátumú fájlkészletbe, minden
-            almappához egyet, amelyet egyetlen mappába exportál.
+            Exportáljon egy mappát az összes almappájával egy mbox formátumú fájlkészletbe, minden almappához
+            egyet, amelyet egyetlen mappába exportál.
           </td>
         </tr>
         <tr>
@@ -125,7 +125,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportálja a mappaüzeneteket EML formátumú fájlként (nincs szerkezet/almappák).<br />
+            Exportálja a mappaüzeneteket EML formátumú fájlként (nincs struktúra/almappák).<br />
             Ezzel létrehoz egy HTML indexfájlt is, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -260,7 +260,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a szerkezetet/almappákat is</td>
+          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a struktúrát/almappákat is</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
@@ -401,7 +401,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Egyetlen kiválasztott üzenet fejlécének másolása a vágólapra</td>
+          <td>Egyetlen kiválasztott üzenet fejléceinek másolása a vágólapra</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -455,8 +455,8 @@
     </table>
     <h2 id="customdate_format_help">Egyéni dátumformátum</h2>
     <p>
-      Az egyéni dátum beállítás lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes
-      körű szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
+      Az egyéni dátum opció lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes körű
+      szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
       (egyéni)&quot; formátum elérhető a fájlnév legördülő menüjében. Az egyéni dátum a kiterjesztett egyéni
       fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum
       a következő:<br />
@@ -515,8 +515,8 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hétszámnak felel meg
-            (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
+            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hét számának felel
+            meg (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
             <code class="code1">%Y</code> , kivéve, hogy ha az ISO hét száma az előző vagy a következő évhez
             tartozik, akkor a rendszer azt az évet használja helyette.
           </td>
@@ -534,7 +534,7 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Óra decimális számként 12 órás órával (01-12 tartomány). Lásd még <code class="code1">%l</code> .
+            Óra decimális számként 12 órás órával (01 és 12 között). Lásd még <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
@@ -724,7 +724,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Az utótag szövege beállítás értéke.</td>
+        <td>Az utótag szöveg opció értéke.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
@@ -738,7 +738,7 @@
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Token (en-USA)</td>
+        <td>Token (en-US)</td>
         <td>Lokalizált (<span id="locale1"></span> ) Token</td>
       </tr>
       <tr>
@@ -794,8 +794,8 @@
       felülethez.<br />
       Használatukhoz be kell állítani őket a Config Editorban. A szerkesztő eléréséhez használja az
       Eszközök/Opciók menüt, majd válassza a Speciális részt, és alul megjelenik a „Konfigurációszerkesztő”
-      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes kiterjesztési
-      beállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
+      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes
+      bővítménybeállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>

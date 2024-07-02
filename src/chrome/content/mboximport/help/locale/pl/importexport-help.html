@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      — Obiecaj i napraw problem z synchronizacją wiadomości eksportowych nr 568<br />
-      - Nowość: transformacja nazw plików w języku łacińskim. Użyj preferencji boolowskich:<br />
-      rozszerzenia.importexporttoolsng.export.nazwa_pliku_latinize<br />
-      - Nowość: filtr nazw plików UTF-16 (emoji, symbole…). Użyj preferencji boolowskich:<br />
-      rozszerzenia.importexporttoolsng.export.nazwa_pliku_filterUTF16<br />
-      - Nowość: Filtr znaków dla nazw plików. Użyj preferencji ciągu UTF-16:<br />
-      rozszerzenia.importexporttoolsng.export.nazwa_pliku_filter_znaków<br />
-      Wprowadź znaki bez separatorów<br />
+      - Nowość: obsługa Thunderbirda v128 i v115<br />
+      - Nowość: Filtruje i przekształca nazwy plików w interfejsie użytkownika<br />
+      — Naprawiono brakującą konwersję UTF-8 dla eksportu HTML i zwykłego tekstu #581<br />
+      - Naprawiono indeksy ja i zn-CH #588<br />
+      - Napraw pola Do, Od i ReplyTo w eksporcie HTML i zwykłego tekstu #586<br />
+      - Naprawiono opcję daty eksportu wiadomości #585<br />
+      — Naprawiono konwersję LF dla zwykłego tekstu systemu Windows nr 584<br />
+      - Naprawiono nielegalny filtr znaków nazwy pliku #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Przegląd i menu</h2>
     <p>
@@ -80,8 +80,8 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Eksportuj całe konto ze strukturą i podfolderami w formacie mbox. Eksport odbywa się za pomocą
-            kontenera z nazwą konta.<br />
+            Eksportuj całe konto wraz ze strukturą i podfolderami w formacie mbox. Eksport odbywa się za
+            pomocą kontenera z nazwą konta.<br />
             Uwaga: ta pozycja menu pojawia się tylko po kliknięciu wpisu konta prawym przyciskiem myszy.
           </td>
         </tr>
@@ -799,8 +799,8 @@
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
       Ta preferencja jest zgodna z tym samym pełnym formatowaniem, które jest stosowane w przypadku plików
-      indeksu. Domyślnie jest to pusty ciąg znaków. Jeśli zawiera sformatowany ciąg daty/godziny, spowoduje to
-      zmianę formatu daty indeksowanej.
+      indeksu. Domyślnie jest to pusty ciąg znaków. Jeśli zawiera on sformatowany ciąg daty/godziny, spowoduje
+      to zmianę formatu daty indeksowanej.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -817,9 +817,9 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Zazwyczaj „Data” wiadomości w Thunderbirdzie to data ustawiona przez klienta pocztowego nadawcy.
-      Ustawienie tej opcji na „true” wykorzystuje datę otrzymania w kliencie pocztowym odbiorcy. Data ta
-      będzie używana zarówno w nazwach plików, jak i dacie w plikach indeksowych.
+      Zwykle „Data” wiadomości w Thunderbirdzie to data ustawiona przez klienta pocztowego nadawcy. Ustawienie
+      tej opcji na „true” wykorzystuje datę otrzymania w kliencie pocztowym odbiorcy. Data ta będzie używana
+      zarówno w nazwach plików, jak i dacie w plikach indeksowych.
     </p>
     <h2>Podstawowa, globalna funkcja skrótu (skrótów).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

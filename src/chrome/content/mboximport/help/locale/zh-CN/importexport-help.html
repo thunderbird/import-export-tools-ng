@@ -20,12 +20,13 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
     <p>
-      - 承诺并修复导出消息的时间问题 #568<br />
-      - 新功能：拉丁化文件名转换。使用布尔首选项：<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - 新功能：UTF-16 文件名过滤器（表情符号、符号……）。使用布尔首选项：<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - 新功能：文件名字符过滤器。使用 UTF-16 字符串首选项：<br />扩展.importexporttoolsng.export.filename_filter_characters<br />输入不带分隔符的字符<br />
+      - 新功能：支持 Thunderbird v128 和 v115<br />
+      - 新功能：用户界面中的文件名过滤器和转换<br />- 修复 HTML 和纯文本导出时缺少的 UTF-8 转换问题 #581<br />
+      - 修复 ja 和 zn-CH 索引 #588<br />
+      - 修复 HTML 和纯文本导出中的收件人、发件人及回复字段 #586<br />
+      - 修复消息导出日期选项#585<br />
+      - 修复 Windows 纯文本的 LF 转换 #584<br />
+      - 修复非法文件名字符过滤器 #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
@@ -65,7 +66,7 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            以 mbox 格式导出整个帐户及其结构和子文件夹。导出使用带有帐户名称的容器完成。<br />注意：仅当右键单击帐户条目时才会出现此菜单项。
+            以 mbox 格式导出整个帐户及其结构和子文件夹。导出使用带有帐户名称的容器完成。<br />注意：仅右键单击帐户条目时才会出现此菜单项。
           </td>
         </tr>
         <tr>
@@ -438,7 +439,7 @@
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
-          <td>缩写的月份名称。</td>
+          <td>月份名称的缩写。</td>
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
@@ -521,7 +522,7 @@
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
-          <td>根据给定的时间值，可以是“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
+          <td>根据给定的时间值，结果为“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>

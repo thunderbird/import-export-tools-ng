@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
     <p>
-      - Lova och fixa timingproblem för exportmeddelanden #568<br />
-      - Nytt: Latinisera filnamn transformera. Använd boolesk preferens:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Nytt: UTF-16 filnamnsfilter (emojis, symboler...). Använd boolesk preferens:<br />
-      extensions.importexporttoolsng.export.filnamn_filterUTF16<br />
-      - Nytt: Teckenfilter för filnamn. Använd UTF-16 stränginställning:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Ange tecknen utan avgränsare<br />
+      - Nytt: stöd för Thunderbird v128 och v115<br />
+      - Nytt: Filtrerar och transformerar för filnamn i användargränssnittet<br />
+      - Åtgärda saknad UTF-8-konvertering för HTML- och klartextexport #581<br />
+      - Fixa ja- och zn-CH-index #588<br />
+      - Fixa till, från och Svara till-fält i HTML- och klartextexport #586<br />
+      - Fixa meddelandeexportdatumalternativ #585<br />
+      - Fixa LF-konvertering för Windows klartext #584<br />
+      - Åtgärda olagligt filnamnsteckenfilter #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
@@ -81,8 +81,8 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med hjälp av en
-            behållare med kontonamnet.<br />
+            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med en container
+            med kontonamnet.<br />
             Obs: Detta menyalternativ visas endast när du högerklickar på en kontopost.
           </td>
         </tr>
@@ -192,7 +192,7 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Exportera mappmeddelanden som en enda CSV-fil (Comma Separated Values) textformat, bilagor ingår
+            Exportera mappmeddelandena som en enda CSV-fil (kommaseparerade värden) textformat, bilagor ingår
             inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
@@ -721,7 +721,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standard datumformat. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
+        <td>Standardformatet för datum. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -816,9 +816,9 @@
     <h2>Grundläggande, global snabbknappsfunktion (genvägar).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Denna nya inställning tillåter användaren att ställa in upp till 10 kortkommandon. Genvägarna kan utföra
-      de flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner.
-      Inställningssträngen är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
+      Denna nya inställning låter användaren ställa in upp till 10 kortkommandon. Genvägarna kan utföra de
+      flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner. Inställningssträngen
+      är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
     </p>
     <p>
       Exempel på kortkommandon (array av JSON-objekt)<br /><br />

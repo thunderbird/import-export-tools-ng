@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Várias pastas"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Várias pastas não são suportadas:\nClique em OK para exportar apenas a primeira pasta."
 	}
 }

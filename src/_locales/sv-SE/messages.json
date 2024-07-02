@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Flera mappar"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Flera mappar stöds inte:\nKlicka på OK för att exportera bara den första mappen."
 	}
 }

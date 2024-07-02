@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Πολλαπλοί φάκελοι"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Δεν υποστηρίζονται πολλοί φάκελοι:\nΚάντε κλικ στο OK για να εξαγάγετε μόνο τον πρώτο φάκελο."
 	}
 }

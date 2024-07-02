@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "複数のフォルダ"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "複数のフォルダーはサポートされていません:\n最初のフォルダーのみをエクスポートするには、[OK] をクリックします。"
 	}
 }

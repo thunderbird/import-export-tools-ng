@@ -649,5 +649,9 @@
     },
     "multipleFolders.title": {
         "message": "Meerdere mappen"
-    }
+    },
+
+	"multipleFolders.alertMsg": {
+		"message": "Meerdere mappen worden niet ondersteund:\nKlik op OK om alleen de eerste map te exporteren."
+	}
 }

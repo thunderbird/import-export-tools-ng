@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Mehrere Ordner"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Mehrere Ordner werden nicht unterstützt:\nKlicken Sie auf „OK“, um nur den ersten Ordner zu exportieren."
 	}
 }

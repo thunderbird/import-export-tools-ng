@@ -24,7 +24,7 @@ var translationArray1 = [
 ];
 
 var translationArray = [
-  { key: "multipleFolders.alertMsg", text: "Multiple folders are not supported:\n&nbsp;Click OK to export just the first folder."},
+  { key: "multipleFolders.alertMsg", text: "Multiple folders are not supported:\\nClick OK to export just the first folder."},
 ];
 //{ key: "multiple-folders-warning", text: "Multiple folders are not supported.\n\nClick OK to export just the first folder."},
 

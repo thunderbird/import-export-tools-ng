@@ -651,5 +651,9 @@
 
 	"multipleFolders.title": {
 		"message": "Múltiples carpetes"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "No s&#39;admeten diverses carpetes:\nFeu clic a D&#39;acord per exportar només la primera carpeta."
 	}
 }

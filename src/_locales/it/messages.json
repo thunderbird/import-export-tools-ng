@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Cartelle multiple"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Non sono supportate più cartelle:\nFare clic su OK per esportare solo la prima cartella."
 	}
 }

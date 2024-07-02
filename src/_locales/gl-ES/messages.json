@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Múltiples cartafoles"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Non se admiten varios cartafoles:\nFai clic en Aceptar para exportar só o primeiro cartafol."
 	}
 }

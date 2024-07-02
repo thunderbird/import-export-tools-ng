@@ -654,5 +654,9 @@
 
 	"multipleFolders.title": {
 		"message": "Plusieurs dossiers"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Plusieurs dossiers ne sont pas pris en charge :\nCliquez sur OK pour exporter uniquement le premier dossier."
 	}
 }

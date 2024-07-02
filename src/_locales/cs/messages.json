@@ -651,5 +651,9 @@
 
 	"multipleFolders.title": {
 		"message": "Více složek"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Více složek není podporováno:\nKliknutím na OK exportujete pouze první složku."
 	}
 }

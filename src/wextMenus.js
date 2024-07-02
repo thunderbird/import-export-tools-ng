@@ -1353,13 +1353,7 @@ async function importMaildirFiles(ctxEvent) {
 }
 
 async function openOptions(event, tab) {
-  
-  if (event.selectedFolders.length > 1) {
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg"));
-    if (!rv) {
-      return;
-    }
-  }
+
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.tabType = tab.type;

@@ -947,7 +947,7 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  console.log(ctxEvent, tab);
+  // console.log(ctxEvent, tab);
   var params = {};
   params.targetWinId = tab.windowId;
 

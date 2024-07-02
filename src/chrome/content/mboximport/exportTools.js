@@ -383,7 +383,6 @@ async function exportAllMsgs(type, params) {
 			return;
 		}
 	} catch (e) { }
-	console.log(params)
 
 	IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
@@ -972,7 +971,16 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			objMin = "0" + objMin;
 		if (!justIndex) {
 			var urlname = IETstr_converter(hdrs[4]);
+			urlname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+			console.log(urlname)
+			try {
 			var url = subdirname + encodeURIComponent(urlname) + ext;
+			} catch (ex) {
+			console.log("fix",urlname)
+
+				urlname = filterNonASCIICharacters(urlname);
+				url = subdirname + encodeURIComponent(urlname) + ext;
+			}
 			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
 		} else {
 			data = data + "\r\n<tr><td>" + subj + "</td>";

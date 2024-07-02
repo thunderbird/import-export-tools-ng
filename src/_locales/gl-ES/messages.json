@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Non se admiten varios cartafoles:\nFai clic en Aceptar para exportar só o primeiro cartafol."
+	},
+
+	"cancel.msg": {
+		"message": "Cancelar"
 	}
 }

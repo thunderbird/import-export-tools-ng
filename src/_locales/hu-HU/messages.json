@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Több mappa nem támogatott:\nKattintson az OK gombra, ha csak az első mappát szeretné exportálni."
+	},
+
+	"cancel.msg": {
+		"message": "Megszünteti"
 	}
 }

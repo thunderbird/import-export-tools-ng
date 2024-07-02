@@ -653,5 +653,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Več map ni podprtih:\nKliknite V redu, da izvozite samo prvo mapo."
+	},
+
+	"cancel.msg": {
+		"message": "Prekliči"
 	}
 }

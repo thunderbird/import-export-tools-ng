@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "複数のフォルダーはサポートされていません:\n最初のフォルダーのみをエクスポートするには、[OK] をクリックします。"
+	},
+
+	"cancel.msg": {
+		"message": "キャンセル"
 	}
 }

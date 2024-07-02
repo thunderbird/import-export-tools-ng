@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Viaceré priečinky nie sú podporované:\nKliknutím na tlačidlo OK exportujete iba prvý priečinok."
+	},
+
+	"cancel.msg": {
+		"message": "Zrušiť"
 	}
 }

@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "No se admiten varias carpetas:\nHaga clic en Aceptar para exportar solo la primera carpeta."
+	},
+
+	"cancel.msg": {
+		"message": "Cancelar"
 	}
 }

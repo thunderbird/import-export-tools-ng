@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Non sono supportate più cartelle:\nFare clic su OK per esportare solo la prima cartella."
+	},
+
+	"cancel.msg": {
+		"message": "Annulla"
 	}
 }

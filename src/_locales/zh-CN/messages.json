@@ -661,5 +661,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
+	},
+
+	"cancel.msg": {
+		"message": "取消"
 	}
 }

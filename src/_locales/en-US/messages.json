@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Multiple folders are not supported:\nClick OK to export just the first folder."
+	},
+
+	"cancel.msg": {
+		"message": "Cancel"
 	}
 }

@@ -634,7 +634,8 @@
     },
     "Size": {
         "message": "Größe"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Transformieren latinisieren"
@@ -658,5 +659,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Mehrere Ordner werden nicht unterstützt:\nKlicken Sie auf „OK“, um nur den ersten Ordner zu exportieren."
+	},
+
+	"cancel.msg": {
+		"message": "Abbrechen"
 	}
 }

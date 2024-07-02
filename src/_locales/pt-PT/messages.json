@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Várias pastas não são suportadas:\nClique em OK para exportar apenas a primeira pasta."
+	},
+
+	"cancel.msg": {
+		"message": "Cancelar"
 	}
 }

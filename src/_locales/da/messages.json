@@ -658,5 +658,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "Flere mapper understøttes ikke:\nKlik OK for kun at eksportere den første mappe."
+	},
+
+	"cancel.msg": {
+		"message": "Afbestille"
 	}
 }

@@ -653,5 +653,9 @@
 
 	"multipleFolders.alertMsg": {
 		"message": "여러 폴더는 지원되지 않습니다.\n첫 번째 폴더만 내보내려면 확인을 클릭하세요."
+	},
+
+	"cancel.msg": {
+		"message": "취소"
 	}
 }

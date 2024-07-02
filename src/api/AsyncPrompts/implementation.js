@@ -31,7 +31,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
             // Create the blocking overlay div
             self._createOverlay();
             // Create the prompt div, absolute positioning to not disturb layout
-            self._createPrompt(title, text);
+            self._createPrompt(context, title, text);
 
             // await buttons or timeout
             let bv = await new Promise((resolve, reject) => {
@@ -66,7 +66,7 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     top.document.body.appendChild(div);
   }
 
-  _createPrompt(title, text) {
+  _createPrompt(context, title, text) {
     // Create absolutely positioned, dragable div
     var div = top.document.createElement('div');
     div.classList.add("ietng-divPrompt");
@@ -85,13 +85,13 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     // Add ok, cancel buttons
     let okButton = top.document.createElement('button');
     okButton.setAttribute("is", "highlightable-button");
-    okButton.textContent = " OK";
+    okButton.textContent = "OK";
     AsyncPrompts.button = okButton;
     buttonsDiv.appendChild(okButton);
 
     let cancelButton = top.document.createElement('button');
     cancelButton.setAttribute("is", "highlightable-button");
-    cancelButton.textContent = " Cancel";
+    cancelButton.textContent = context.extension.localeData.localizeMessage("cancel.msg");
     AsyncPrompts.cancelButton = cancelButton;
     buttonsDiv.appendChild(cancelButton);
 

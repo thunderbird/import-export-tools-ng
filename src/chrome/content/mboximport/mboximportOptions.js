@@ -26,7 +26,6 @@ function IETsetCharsetPopup(charsetPref) {
     var charsetItems = charsetList.split(",");
     var menuitem;
 
-    console.log(charsetItems, charsetItems.length)
     for (var i = 0; i < charsetItems.length; i++) {
         menuitem = document.createXULElement("menuitem");
         menuitem.setAttribute("label", charsetItems[i]);

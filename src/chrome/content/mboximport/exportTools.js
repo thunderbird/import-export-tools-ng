@@ -973,9 +973,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			var urlname = IETstr_converter(hdrs[4]);
 			urlname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 			try {
-			var url = subdirname + encodeURIComponent(urlname) + ext;
+				var url = subdirname + encodeURIComponent(urlname) + ext;
 			} catch (ex) {
-			console.log("IETNG: Fix Illegal url: ",urlname)
+				console.log("IETNG: Fix Illegal url: ", urlname)
 
 				urlname = filterNonASCIICharacters(urlname);
 				url = subdirname + encodeURIComponent(urlname) + ext;

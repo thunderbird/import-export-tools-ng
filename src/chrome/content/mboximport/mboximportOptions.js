@@ -195,7 +195,7 @@ function initMboxImportPanel() {
 
 
     IETsetCharsetPopup(textCharset);
-    document.getElementById("filenameCharset").value = charset;
+    //document.getElementById("filenameCharset").value = charset;
     document.getElementById("csvSep").value = csvSep;
 
     document.getElementById("skipMsg").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");

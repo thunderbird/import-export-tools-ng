@@ -26,6 +26,7 @@ function IETsetCharsetPopup(charsetPref) {
     var charsetItems = charsetList.split(",");
     var menuitem;
 
+    console.log(charsetItems, charsetItems.length)
     for (var i = 0; i < charsetItems.length; i++) {
         menuitem = document.createXULElement("menuitem");
         menuitem.setAttribute("label", charsetItems[i]);
@@ -46,7 +47,7 @@ function initMboxImportPanel() {
         document.documentElement.style.setProperty("--question-height", "28px");
     }
 
-    IETsetCharsetPopup("");
+    //IETsetCharsetPopup("");
 
     document.getElementById("useMboxExt").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
     document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");

@@ -44,8 +44,7 @@ var IETimportWizard = {
 		let wiz = document.getElementById("profileImportWizard");
 		let shadowWiz = wiz && wiz.shadowRoot;
 		let hdr = shadowWiz.querySelector(".wizard-header-label");
-		// we should use innerText, however, this fails on the xul label
-		hdr.innerHTML = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
+		hdr.textContent = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
 
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;

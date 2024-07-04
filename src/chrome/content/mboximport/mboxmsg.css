@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   /* may not work because html:div ?? */
-  box-shadow: 2px 1px 1px;
+  box-shadow: 2px 2px 2px;
   border-top: 0.4px solid black;
   border-left: 0.4px solid black;
   max-width: calc(100vw/2); /* flexible */
@@ -43,7 +43,7 @@
 #ietng-maindiv {
   display: flex;
   flex-direction: row;
-  padding-block: 1.5em;
+  padding-block: 1em;
   gap: 0.4em;
   flex: 1 0; 
 }
@@ -71,7 +71,7 @@
 #ietng-buttonsdiv {
   align-content: center;
   background: #e0e0e0;
-  height: 3.5em;
+  height: 3em;
   margin-left: auto;
   padding: 4px;
 }

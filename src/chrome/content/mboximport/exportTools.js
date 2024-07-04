@@ -615,7 +615,6 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		hdrArray.reverse();
 	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
 	return { status: result, nextfile2: file2 };
-
 }
 
 // 3b) exportAllMsgsDelayed

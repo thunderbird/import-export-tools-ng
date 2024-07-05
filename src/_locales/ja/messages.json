@@ -634,18 +634,19 @@
     },
     "Size": {
         "message": "サイズ"
-    },
+    }
+,
 
 	"latinizeTransform": {
-		"message": "ラテン語化変換"
+		"message": "ラテン語に変換する"
 	},
 
 	"characterFilter": {
-		"message": "文字フィルター (UTF-8 または UTF-16)"
+		"message": "文字フィルター(UTF-8 または UTF-16)"
 	},
 
 	"utf16Filter": {
-		"message": "UTF-16 文字 (記号と絵文字) をフィルターする"
+		"message": "UTF-16 文字(記号と絵文字)をフィルタリングする"
 	},
 
 	"nonAlphanumericFilter": {
@@ -653,7 +654,7 @@
 	},
 
 	"multipleFolders.title": {
-		"message": "複数のフォルダ"
+		"message": "複数のフォルダー"
 	},
 
 	"multipleFolders.alertMsg": {

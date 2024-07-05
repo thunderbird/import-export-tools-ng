@@ -959,7 +959,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     params.selectedFolder.path = "/";
   }
 
-  if (ctxEvent.selectedFolders.length > 1) {
+  if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg"));
 
     if (!rv) {

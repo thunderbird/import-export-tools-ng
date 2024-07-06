@@ -1965,6 +1965,8 @@ function IETcopyToClip(data) {
 
 	this.scriptStream = null;
 	var dataUTF8 = IETconvertToUTF8(data);
+	console.log("utf8 msg",dataUTF8)
+
 	str2.data = dataUTF8;
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
 	if (!trans)
@@ -1972,8 +1974,11 @@ function IETcopyToClip(data) {
 	trans.init(getLoadContext())
 	trans.addDataFlavor("text/html");
 	trans.addDataFlavor("text/plain");
-	if (!justText)
+	if (!justText) {
 		trans.setTransferData("text/html", str2, data.length * 2);
+		console.log("transfer msg",str2)
+	}
+	
 	trans.setTransferData("text/plain", str, data.length * 2);
 
 	Services.clipboard.setData(trans, null, Services.clipboard.kGlobalClipboard);
@@ -2176,8 +2181,11 @@ async function copyMSGtoClip(selectedMsgs) {
 
 		// We use converData to get the HTML body only
 		let data = await mboxImportExport.getRawMessage(msguri, kConvertData);
+		console.log("raw msg",data)
 		// Convert to plaintext and UTF8 encoding
 		data = IEThtmlToText(data, realMessage.folder);
+		console.log("after htmltotext msg",data)
+
 		IETcopyToClip(data);
 	}
 }

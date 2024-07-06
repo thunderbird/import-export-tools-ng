@@ -487,17 +487,10 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 // So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
-	// console.log("exportAllMsgsDelayedVF")
+	//console.log("exportAllMsgsDelayedVF")
 
 	var msgUriArray = [];
-	var total = msgFolder.getTotalMessages(false);
-	if (total === 0) {
-		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-		if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-		return;
-	}
-
+	
 	// temporarily select virtual folder so we can expand and iterate
 	let curMsgFolder = window.gTabmail.currentTabInfo.folder;
 	window.gTabmail.currentTabInfo.folder = msgFolder;
@@ -614,6 +607,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
 	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
+
 	return { status: result, nextfile2: file2 };
 }
 

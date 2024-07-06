@@ -1602,7 +1602,12 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	if (data.includes("X-Account-Key")) {
 		var myAccountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager);
-		var myAccount = myAccountManager.FindAccountForServer(msgFolder.server);
+		var myAccount;
+		try {
+			myAccount = myAccountManager.FindAccountForServer(msgFolder.server);
+		} catch (ex) {
+			myAccount = myAccountManager.findAccountForServer(msgFolder.server);
+		}
 		prologue = prologue + "X-Account-Key: " + myAccount.key + "\n";
 	}
 	data = IETescapeBeginningFrom(data);

@@ -1499,6 +1499,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				onStopRequest: function (request, statusCode) {
 
 					var data = this.emailtext;
+					if (copyToClip) {
+						data = msgFolder.convertMsgSnippetToPlainText(data)
+		console.log("raw msg",data)
+		
+						IETcopyToClip(data);
+						return;
+					}
 
 					this.scriptStream = null;
 					var clone = file.clone();
@@ -1978,7 +1985,7 @@ function IETcopyToClip(data) {
 		trans.setTransferData("text/html", str2, data.length * 2);
 		console.log("transfer msg",str2)
 	}
-	
+
 	trans.setTransferData("text/plain", str, data.length * 2);
 
 	Services.clipboard.setData(trans, null, Services.clipboard.kGlobalClipboard);
@@ -2179,8 +2186,14 @@ async function copyMSGtoClip(selectedMsgs) {
 		if (!msguri)
 			return;
 
+		console.log("exp")
+
+		exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
+		return;
+
 		// We use converData to get the HTML body only
-		let data = await mboxImportExport.getRawMessage(msguri, kConvertData);
+		let data = await mboxImportExport.getRawMessage(msguri, false);
+		data = realMessage.folder.convertMsgSnippetToPlainText(data)
 		console.log("raw msg",data)
 		// Convert to plaintext and UTF8 encoding
 		data = IEThtmlToText(data, realMessage.folder);

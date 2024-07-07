@@ -1334,7 +1334,7 @@ async function copyToClipboard(ctxEvent, tab) {
     params.selectedMsgs = [msg];
   }
 
-
+/*
   // test
   let t = await messenger.messages.getRaw(params.selectedMsgs[0].id);
   let text2 = await messenger.messengerUtilities.convertToPlainText(t)
@@ -1354,6 +1354,8 @@ async function copyToClipboard(ctxEvent, tab) {
     }
   }
   console.log(text)
+  */
+ 
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
     ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";

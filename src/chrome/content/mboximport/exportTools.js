@@ -490,7 +490,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	//console.log("exportAllMsgsDelayedVF")
 
 	var msgUriArray = [];
-	
+
 	// temporarily select virtual folder so we can expand and iterate
 	let curMsgFolder = window.gTabmail.currentTabInfo.folder;
 	window.gTabmail.currentTabInfo.folder = msgFolder;
@@ -1499,10 +1499,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				onStopRequest: function (request, statusCode) {
 
 					var data = this.emailtext;
+
 					if (copyToClip) {
-						data = msgFolder.convertMsgSnippetToPlainText(data)
-		console.log("raw msg",data)
-		
+						//data = msgFolder.convertMsgSnippetToPlainText(data)
+						console.log("raw msg\n", data)
+						data = IEThtmlToText(data, msgFolder);
 						IETcopyToClip(data);
 						return;
 					}
@@ -1811,6 +1812,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					else
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
+					
+
 					if (convertToText) {
 						data = IEThtmlToText(data, msgFolder);
 					}
@@ -1972,7 +1975,7 @@ function IETcopyToClip(data) {
 
 	this.scriptStream = null;
 	var dataUTF8 = IETconvertToUTF8(data);
-	console.log("utf8 msg",dataUTF8)
+	console.log("utf8 msg\n", dataUTF8)
 
 	str2.data = dataUTF8;
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
@@ -1983,7 +1986,7 @@ function IETcopyToClip(data) {
 	trans.addDataFlavor("text/plain");
 	if (!justText) {
 		trans.setTransferData("text/html", str2, data.length * 2);
-		console.log("transfer msg",str2)
+		console.log("transfer msg", str2)
 	}
 
 	trans.setTransferData("text/plain", str, data.length * 2);
@@ -2194,10 +2197,10 @@ async function copyMSGtoClip(selectedMsgs) {
 		// We use converData to get the HTML body only
 		let data = await mboxImportExport.getRawMessage(msguri, false);
 		data = realMessage.folder.convertMsgSnippetToPlainText(data)
-		console.log("raw msg",data)
+		console.log("raw msg", data)
 		// Convert to plaintext and UTF8 encoding
 		data = IEThtmlToText(data, realMessage.folder);
-		console.log("after htmltotext msg",data)
+		console.log("after htmltotext msg", data)
 
 		IETcopyToClip(data);
 	}

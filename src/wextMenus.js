@@ -1334,28 +1334,6 @@ async function copyToClipboard(ctxEvent, tab) {
     params.selectedMsgs = [msg];
   }
 
-/*
-  // test
-  let t = await messenger.messages.getRaw(params.selectedMsgs[0].id);
-  let text2 = await messenger.messengerUtilities.convertToPlainText(t)
-  console.log(text2)
-
-
-
-  let parts = await messenger.messages.listInlineTextParts(params.selectedMsgs[0].id);
-
-  var text;
-  for (const part of parts) {
-    if (part.contentType == "text/plain") {
-      text = part.content;
-      //break;
-    } else {
-      text = await messenger.messengerUtilities.convertToPlainText(part.content)
-    }
-  }
-  console.log(text)
-  */
- 
   if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
     ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
     params.clipboardType = "Message";

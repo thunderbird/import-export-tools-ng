@@ -1212,7 +1212,6 @@ async function menusUpdate(info, tab) {
     if (info.menuIds[0] == folderCtxMenu_TopId) {
       if (
         (await messenger.accounts.get(accountId)).type == "imap" ||
-        (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
 
@@ -1295,9 +1294,9 @@ async function menusUpdate(info, tab) {
 
   // disable for importing mbox to imaap or nntp
   if (info.menuIds[0] == folderCtxMenu_TopId) {
+    console.log((await messenger.accounts.get(accountId)).type)
     if (info.selectedFolder &&
       (await messenger.accounts.get(accountId)).type == "imap" ||
-      (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
       //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });

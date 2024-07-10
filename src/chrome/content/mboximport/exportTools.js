@@ -234,16 +234,16 @@ async function exportSelectedMsgs(type, params) {
 	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
 	if (curMsgFolder)
-  	console.log(curMsgFolder.name)
+		console.log(curMsgFolder.name)
 
 	// support shortcuts (no params)
 	try {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	if (msgFolder) {
-		console.log(msgFolder.name)
-	} else {
-		console.log("msgfolder null from getFromAccPath")
-	}
+		if (msgFolder) {
+			console.log(msgFolder.name)
+		} else {
+			console.log("msgfolder null from getFromAccPath")
+		}
 
 	} catch (ex) {
 		msgFolder = GetFirstSelectedMsgFolder();
@@ -303,7 +303,7 @@ async function exportSelectedMsgs(type, params) {
 
 	var hdrArray;
 
-	
+
 	if (msgFolder) {
 		console.log(msgFolder.name, type)
 	} else {
@@ -414,6 +414,8 @@ async function exportAllMsgs(type, params) {
 
 	IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
+	console.log("export all gf", IETglobalMsgFolders[0])
+
 	IETglobalMsgFoldersExported = 0;
 	for (var i = 0; i < IETglobalMsgFolders.length; i++) {
 		// Check if there is a multiple selection and one of the folders is a virtual one.
@@ -434,6 +436,8 @@ async function exportAllMsgs(type, params) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
+	console.log("export all st", IETglobalMsgFolders[0])
+
 	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
 	if (document.getElementById("IETabortIcon"))
 		document.getElementById("IETabortIcon").collapsed = true;
@@ -470,6 +474,8 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 			return;
 		}
 		if (params.recursive && msgFolder.hasSubFolders) {
+			console.log("export all sf", msgFolder)
+
 			result = await exportSubFolders(type, file, msgFolder, newTopDir, params);
 			if (result.status == kStatusAbort) {
 				IETabortExport();
@@ -515,7 +521,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 // So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
-	//console.log("exportAllMsgsDelayedVF")
+	console.log("exportAllMsgsDelayedVF", msgFolder)
 
 	var msgUriArray = [];
 
@@ -648,7 +654,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	try {
 		IETtotal = msgFolder.getTotalMessages(false);
 
-		//console.log("exportAllMsgsDelayed", msgFolder.name, IETtotal)
+		console.log("exportAllMsgsDelayed", msgFolder.name, IETtotal)
 
 		if (IETtotal === 0) {
 			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -807,6 +813,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
+
+	console.log("runexport", msgFolder)
 
 	switch (type) {
 		case 1: // HTML format, with index
@@ -1497,6 +1505,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
+	console.log("exportashtml", msgFolder)
 	var exportAsHtmlDone = false;
 	var nextUri = uri;
 
@@ -1838,7 +1847,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					else
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
-					
+
+					console.log("exportashtml Before cvt", msgFolder)
 
 					if (convertToText) {
 						data = IEThtmlToText(data, msgFolder);

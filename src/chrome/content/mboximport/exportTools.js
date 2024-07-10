@@ -366,7 +366,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	// console.log("exportAllMsgs", type, params);
+	console.log("exportAllMsgs", type, params);
 
 	var question;
 	if (type === 1 || type === 2 || type === 4) {

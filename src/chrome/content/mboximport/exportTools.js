@@ -153,6 +153,9 @@ async function exportSelectedMsgs(type, params) {
 	9 = Plain Text with attachments
 	*/
 
+	console.log("export selected messages ")
+	console.log(params)
+
 	var needIndex = false;
 	if (type > 99) {
 		type = type - 100;
@@ -230,15 +233,34 @@ async function exportSelectedMsgs(type, params) {
 	var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
 	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 	var curMsgFolder = hdr1.folder;
+	if (curMsgFolder)
+  	console.log(curMsgFolder.name)
 
 	// support shortcuts (no params)
 	try {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+	if (msgFolder) {
+		console.log(msgFolder.name)
+	} else {
+		console.log("msgfolder null from getFromAccPath")
+	}
+
 	} catch (ex) {
 		msgFolder = GetFirstSelectedMsgFolder();
+		if (msgFolder) {
+			console.log(msgFolder.name)
+		} else {
+			console.log("msgfolder null from GetFirst")
+		}
 		if (!msgFolder) {
 			msgFolder = curMsgFolder;
 		}
+	}
+
+	if (msgFolder) {
+		console.log(msgFolder.name)
+	} else {
+		console.log("msgfolder null after all")
 	}
 
 	var isOffLineImap;
@@ -281,6 +303,12 @@ async function exportSelectedMsgs(type, params) {
 
 	var hdrArray;
 
+	
+	if (msgFolder) {
+		console.log(msgFolder.name, type)
+	} else {
+		console.log("msgfolder null before exports", type)
+	}
 	switch (type) {
 		case 1:
 			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);

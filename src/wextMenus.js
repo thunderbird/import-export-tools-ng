@@ -855,7 +855,6 @@ async function wextctx_ExportAs(ctxEvent, tab) {
   // we don't get these in the messageDisplay so have to 
   // get indirectly from messageDisplay 
 
-  console.log(ctxEvent)
   if (!ctxEvent.pageUrl) {
 
     params.selectedFolder = ctxEvent.displayedFolder;
@@ -863,8 +862,6 @@ async function wextctx_ExportAs(ctxEvent, tab) {
     params.selectedMessages = ctxEvent.selectedMessages;
 
   } else {
-    console.log(ctxEvent.pageUrl)
-
     let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
     params.selectedMessages = { id: 0, messages: [msg] };
     params.selectedFolder = msg.folder;

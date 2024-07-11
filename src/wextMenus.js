@@ -861,7 +861,6 @@ async function wextctx_ExportAs(ctxEvent, tab) {
     params.selectedFolder = ctxEvent.displayedFolder;
     params.selectedAccount = ctxEvent.selectedAccount;
     params.selectedMessages = ctxEvent.selectedMessages;
-    console.log(params)
 
   } else {
     console.log(ctxEvent.pageUrl)
@@ -869,8 +868,6 @@ async function wextctx_ExportAs(ctxEvent, tab) {
     let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
     params.selectedMessages = { id: 0, messages: [msg] };
     params.selectedFolder = msg.folder;
-    console.log(params)
-
   }
 
   if (ctxEvent.menuItemId.includes("MsgsOnly")) {
@@ -969,7 +966,6 @@ async function wextctx_folderMenu(ctxEvent, tab) {
 
   if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg"));
-
     if (!rv) {
       return;
     }

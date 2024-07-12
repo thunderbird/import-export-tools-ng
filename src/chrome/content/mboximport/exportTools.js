@@ -717,7 +717,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var msgList = [...msgFolder.messages];
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
-		console.log("IETNG: Thunderbird Msg count error, : getTotalMessages:", IETtotal, "Iterator:", msgList.length)
+		console.log(`IETNG: Thunderbird Msg count error: ${msgFolder.name}: getTotalMessages: ${IETtotal} Iterator: ${msgList.length}`)
 
 		let curMsgFolder = window.gTabmail.currentTabInfo.folder;
 		var gDBView = gTabmail.currentAbout3Pane.gDBView;
@@ -1361,6 +1361,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					} else {
 						if (!hdrArray) {
 							sub = getSubjectForHdr(hdr, file.path);
+							console.log("get eml name ", sub)
+
 						} else {
 							var parts = hdrArray[IETexported].split("§][§^^§");
 							sub = parts[4];

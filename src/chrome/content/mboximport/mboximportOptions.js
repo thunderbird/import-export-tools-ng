@@ -46,8 +46,6 @@ function initMboxImportPanel() {
         document.documentElement.style.setProperty("--question-height", "28px");
     }
 
-    //IETsetCharsetPopup("");
-
     document.getElementById("useMboxExt").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
     document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
     document.getElementById("MBasciiname").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");

@@ -140,9 +140,9 @@ function stripDisplayName(addresses) {
 function getSubjectForHdr(hdr, dirPath) {
 	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
 	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
-	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
 	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
-	var subMaxLen = cutSubject ? 50 : -1;
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length") - 1;
+
 
 	// Subject
 	var subj;
@@ -155,7 +155,7 @@ function getSubjectForHdr(hdr, dirPath) {
 	}
 
 	if (subMaxLen > 0)
-		subj = subj.substring(0, subMaxLen);
+		subj = subj.substring(0, subMaxLen + 1);
 	subj = nametoascii(subj);
 
 	// Date - Key

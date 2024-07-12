@@ -76,6 +76,8 @@ async function getThunderbirdVersion() {
 	};
 }
 function main() {
+	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
+
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	// Register all necessary content, Resources, and locales

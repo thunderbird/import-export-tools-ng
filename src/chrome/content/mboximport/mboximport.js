@@ -57,8 +57,7 @@ getMsgFolderFromAccountAndPath,
 globalThis,
 */
 
-//var IETngVersion = window.opener.ietng.extension.addonData.version;
-//console.log("ImportExportTools NG - v" + IETngVersion);
+
 
 var Services = globalThis.Services || ChromeUtils.import(
 	'resource://gre/modules/Services.jsm'

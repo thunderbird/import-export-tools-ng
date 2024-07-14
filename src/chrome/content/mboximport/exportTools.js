@@ -1664,10 +1664,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
 
-					//let hdrsBundle = Services.strings.createBundle("chrome://mboximport/locale/headerFields.ftl");
-					//var hdrsBundle = strBundleService.createBundle("chrome://messenger/locales/messageheaders/headerFields.ftl");
-
-					//console.log(hdrsBundle.GetStringFromName("message-header-to-list-name"))
 					var replyTo = hdr.getStringProperty("replyTo");
 					if (replyTo.length > 1) {
 						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
@@ -1815,13 +1811,54 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					- Add a style rule to make headers name in bold
 					*/
 
-					//var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-					//data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+					console.log(data)
+					console.log(hdr.recipients)
+					console.log(hdr.ccList)
+					console.log(hdr.bccList)
+					let rex = data.match(/(<table(?:[\s\S]*)<\/table><br>)/)
 
-					//tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-					//data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
-					//tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
-					//data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
+					let rb = ietngUtils.bytesToString(new TextEncoder().encode(rex));
+
+					let r = MailServices.mimeConverter.decodeMimeHeader(
+						rb,
+						null,
+						false /* override_charset */,
+						true /* eatContinuations */
+					);
+
+					data = data.replace(/(<table(?:[\s\S]*)<\/table><br>)/, r)
+					console.log(rex)
+					console.log(r)
+					console.log(data)
+
+				
+					/*
+					let re = hdr.ccList.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+					let r2 = r.replace("<", "&lt;").replace(">", "&gt;")
+					console.log(rex)
+					console.log(r)
+
+
+					console.log(data.search(re.substring(0, 120)))
+					data.replace(hdr.ccList.replace("<", "&lt;").replace(">", "&gt;"),r)
+					// we have to create utf-8 substitutions. The mimeDecoders seems to
+					// return ascii if it can, then have to convert to utf-8 array to string.
+
+					let tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
+					let decodedAuthStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
+					const encoder = new TextEncoder();
+					let encodedAuthArr = encoder.encode(decodedAuthStr);
+					let utf8AuthStr = ietngUtils.bytesToString(encodedAuthArr);
+					data = data.replace(tempStr, utf8AuthStr);
+
+
+					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
+					let decodedRecStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
+					let encodedRecArr = encoder.encode(decodedRecStr);
+					let utf8RecStr = ietngUtils.bytesToString(encodedRecArr);
+					data = data.replace(tempStr, utf8RecStr);
+					*/
+
 					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
 					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
@@ -1853,7 +1890,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = IETconvertToUTF8(data);
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
 					} else {
-						IETwriteDataOnDisk(clone, data, false, null, time);
+						data = IETconvertToUTF8(data);
+					console.log(data)
+
+						IOUtils.writeUTF8(clone.path ,data)
 					}
 
 					IETexported = IETexported + 1;

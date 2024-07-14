@@ -169,7 +169,6 @@ function initMboxImportPanel() {
     document.getElementById("character-filter").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters");
 
 
-    document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
     extendedFormatCheck(document.getElementById("useExtendedFormat"));
@@ -327,9 +326,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
 
-    IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
-    //IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
     IETprefs.setCharPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
 

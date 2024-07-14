@@ -1811,47 +1811,25 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					- Add a style rule to make headers name in bold
 					*/
 
-					console.log(data)
-					console.log(hdr.recipients)
-					console.log(hdr.ccList)
-					console.log(hdr.bccList)
-					let rex = data.match(/(<table(?:[\s\S]*)<\/table><br>)/)
-
-					let rb = ietngUtils.bytesToString(new TextEncoder().encode(rex));
-
-					let r = MailServices.mimeConverter.decodeMimeHeader(
-						rb,
-						null,
-						false /* override_charset */,
-						true /* eatContinuations */
-					);
-
-					data = data.replace(/(<table(?:[\s\S]*)<\/table><br>)/, r)
-					console.log(rex)
-					console.log(r)
-					console.log(data)
-
-				
-					/*
-					let re = hdr.ccList.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
-					let r2 = r.replace("<", "&lt;").replace(">", "&gt;")
-					console.log(rex)
-					console.log(r)
-
-
-					console.log(data.search(re.substring(0, 120)))
-					data.replace(hdr.ccList.replace("<", "&lt;").replace(">", "&gt;"),r)
-					// we have to create utf-8 substitutions. The mimeDecoders seems to
-					// return ascii if it can, then have to convert to utf-8 array to string.
-
-					let tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-					let decodedAuthStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
+					let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
 					const encoder = new TextEncoder();
-					let encodedAuthArr = encoder.encode(decodedAuthStr);
-					let utf8AuthStr = ietngUtils.bytesToString(encodedAuthArr);
-					data = data.replace(tempStr, utf8AuthStr);
 
+					if (mimePartsArray) {
+						for (const mimePart of mimePartsArray) {
+							let mimePartStr = ietngUtils.bytesToString(encoder.encode(mimePart));
+							let decodedMimePartStr = MailServices.mimeConverter.decodeMimeHeader(
+								mimePartStr,
+								null,
+								false /* override_charset */,
+								true /* eatContinuations */
+							);
+							let encodedMimePartArr = encoder.encode(decodedMimePartStr);
+							let mimeStr = ietngUtils.bytesToString(encodedMimePartArr);
+							data = data.replace(mimePart, mimeStr);
+						}
+					}
 
+					/* example insertion of mime element
 					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
 					let decodedRecStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
 					let encodedRecArr = encoder.encode(decodedRecStr);
@@ -1860,7 +1838,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					*/
 
 					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
 					const r1 = "div.headerdisplayname {font-weight:bold;}\n";
 					// const rh = ".tb { display: none;}\n";
@@ -1891,9 +1868,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
 					} else {
 						data = IETconvertToUTF8(data);
-					console.log(data)
-
-						IOUtils.writeUTF8(clone.path ,data)
+						IOUtils.writeUTF8(clone.path, data)
 					}
 
 					IETexported = IETexported + 1;

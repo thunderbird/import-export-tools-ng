@@ -2,7 +2,7 @@
 
 ## Versions
 
-Version 14.1.0 : Thunderbird v128 Support - July,9 2024
+Version 14.1.0 : Thunderbird v128 Support - July,15 2024
 
 - New: Thunderbird v128 and v115 support
 - New: Filters and transforms for filenames in UI

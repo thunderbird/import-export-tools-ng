@@ -631,9 +631,36 @@
     },
     "CRconversion.statusMsg": {
         "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+    },
+    "Size": {
+        "message": "Չափը"
     },
 
-	"Size": {
-		"message": "Չափը"
+	"latinizeTransform": {
+		"message": "Լատինականացնել փոխակերպումը"
+	},
+
+	"characterFilter": {
+		"message": "Նիշերի զտիչ (UTF-8 կամ UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Զտել ոչ այբբենական նիշերը"
+	},
+
+	"multipleFolders.title": {
+		"message": "Բազմաթիվ Թղթապանակներ"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Բազմաթիվ թղթապանակներ չեն աջակցվում.\nՍեղմեք OK՝ միայն առաջին թղթապանակը արտահանելու համար:"
+	},
+
+	"cancel.msg": {
+		"message": "Չեղարկել"
 	}
 }

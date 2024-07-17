@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.0.3",
+  "version": "14.1.0",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
       "strict_min_version": "115.0",
-      "strict_max_version": "115.*"
+      "strict_max_version": "128.*"
     }
   },
   "browser_action": {
@@ -55,6 +55,20 @@
         "paths": [["NotifyTools"]],
         "script": "api/NotifyTools/implementation.js",
         "events": ["startup"]
+      }
+    },
+    "AsyncPrompts": {
+      "schema": "api/AsyncPrompts/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "AsyncPrompts"
+          ]
+        ],
+        "script": "api/AsyncPrompts/implementation.js"
       }
     }
   },

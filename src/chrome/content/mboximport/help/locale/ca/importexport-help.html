@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Prometeu i solucioneu el problema de temporització dels missatges d&#39;exportació #568<br />
-      - Nou: llatinitzar els noms de fitxers transformats. Utilitzeu la preferència booleana:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Nou: filtre de noms de fitxer UTF-16 (emojis, símbols...). Utilitzeu la preferència booleana:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Nou: filtre de caràcters per als noms de fitxers. Utilitzeu la preferència de cadena UTF-16:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Introduïu els caràcters sense separadors<br />
+      - Nou: suport Thunderbird v128 i v115<br />
+      - Nou: filtres i transformacions per als noms de fitxers a la interfície d&#39;usuari<br />
+      - Corregiu la conversió UTF-8 que faltava per a les exportacions HTML i Text pla #581<br />
+      - Corregiu els índexs ja i zn-CH #588<br />
+      - Corregiu els camps A, De i Respon a a les exportacions HTML i Text pla #586<br />
+      - Corregiu l&#39;opció de data d&#39;exportació del missatge #585<br />
+      - Corregiu la conversió LF per a Windows text sense format #584<br />
+      - Corregiu el filtre de caràcters de nom de fitxer il·legal #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
@@ -449,7 +449,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importa un perfil complet (correu, extensions, opcions)</td>
+          <td>Importa un perfil complet (correu electrònic, extensions, opcions)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -473,8 +473,8 @@
       fitxer. La data personalitzada també es pot utilitzar amb el testimoni ${date_custom} utilitzat als noms
       de fitxer personalitzats ampliats. El format de data original (predeterminat) és:<br />
       AAAAMMDDDHHmm: 202011060808<br /><br />
-      El format de data personalitzat utilitza % de seqüències que coincideixen amb la funcionalitat semblant
-      a Unix <code>strftime()</code> . Es basa en un port JavaScript de
+      El format de data personalitzat utilitza % seqüències que coincideixen amb la funcionalitat semblant a
+      <code>strftime()</code> Unix. Es basa en un port JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funció per formatar la data i l&#39;hora.<br />
       Port de strftime() per TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -542,8 +542,8 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            L&#39;hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 00 a 23). Vegeu
-            també <code class="code1">%k</code> .
+            Hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 00 a 23). Vegeu també
+            <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
@@ -838,15 +838,15 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
-      correu del remitent. Establir aquesta opció com a &quot;true&quot; utilitza la data de recepció al
-      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la
-      data dels fitxers d&#39;índex.
+      correu del remitent. Establir aquesta opció a &quot;true&quot; utilitza la data de recepció al client de
+      correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la data dels
+      fitxers d&#39;índex.
     </p>
     <h2>Funció bàsica i global de tecles de drecera (dreceres).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Aquesta nova preferència permet a l&#39;usuari configurar fins a 10 dreceres de teclat. Les dreceres
-      poden realitzar la majoria de les funcions ImportExportTools NG, així com altres funcions del
+      poden realitzar la majoria de les funcions ImportExportTools NG així com altres funcions del
       Thunderbird. La cadena de preferències té el format d&#39;un objecte amb format JSON. El format i les
       claus són els següents:
     </p>
@@ -855,10 +855,10 @@
       <code class="notranslate">id</code> - l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
       <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
-      Es poden incloure qualsevol clau o codi de clau, però no tots dos<br />
+      Es pot incloure qualsevol clau o codi de clau, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directes<br />
+      <code class="notranslate">oncommand</code> - una cadena d&#39;ordres directes<br />
       <code class="notranslate">contexts</code> : el context de la finestra on la clau està activa<br />
       <code class="notranslate">&#39;all&#39;</code> : totes les finestres a messenger, redactar, cercar<br />
       <code class="notranslate">&#39;messenger&#39;</code> : la finestra principal de missatgeria i els seus

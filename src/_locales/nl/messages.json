@@ -631,9 +631,31 @@
     },
     "CRconversion.statusMsg": {
         "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
+    },
+    "Size": {
+        "message": "Maat"
+    },
+    "latinizeTransform": {
+        "message": "Latiniseer transformatie"
+    },
+    "characterFilter": {
+        "message": "Tekenfilter (UTF-8 of UTF-16)"
+    },
+    "utf16Filter": {
+        "message": "Filter UTF-16-tekens (symbolen en emoji&#39;s)"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filter niet-alfanumerieke tekens"
+    },
+    "multipleFolders.title": {
+        "message": "Meerdere mappen"
     },
 
-	"Size": {
-		"message": "Maat"
+	"multipleFolders.alertMsg": {
+		"message": "Meerdere mappen worden niet ondersteund:\nKlik op OK om alleen de eerste map te exporteren."
+	},
+
+	"cancel.msg": {
+		"message": "Annuleren"
 	}
 }

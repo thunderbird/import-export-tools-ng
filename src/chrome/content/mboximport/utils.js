@@ -140,9 +140,10 @@ function stripDisplayName(addresses) {
 function getSubjectForHdr(hdr, dirPath) {
 	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
 	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
-	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
 	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
-	var subMaxLen = cutSubject ? 50 : -1;
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
+	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
+	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
 
 	// Subject
 	var subj;
@@ -154,8 +155,9 @@ function getSubjectForHdr(hdr, dirPath) {
 		subj = IETnosub;
 	}
 
-	if (subMaxLen > 0)
+	if (subMaxLen > 0) {
 		subj = subj.substring(0, subMaxLen);
+	}
 	subj = nametoascii(subj);
 
 	// Date - Key
@@ -184,7 +186,15 @@ function getSubjectForHdr(hdr, dirPath) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
 		var authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		if (authMaxLen > 0) {
+			authName = authName.substring(0, authMaxLen);
+		}
+
 		var recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		if (recMaxLen > 0) {
+			recName = recName.substring(0, recMaxLen);
+		}
+
 		// Sent of Drafts folder
 		var isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
 		var isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
@@ -223,12 +233,19 @@ function getSubjectForHdr(hdr, dirPath) {
 		// extended filename format
 		var extendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
-		let subject = subj;
 		let index = key;
 
 		// Name
 		let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		if (authMaxLen > 0) {
+			authName = authName.substring(0, authMaxLen);
+		}
+
 		let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		if (recMaxLen > 0) {
+			recName = recName.substring(0, recMaxLen);
+		}
+
 		// Sent of Drafts folder
 		let isSentFolder = hdr.folder.flags & 0x0200 || hdr.folder.flags & 0x0400;
 		let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
@@ -281,7 +298,6 @@ function getSubjectForHdr(hdr, dirPath) {
 	else {
 		// Allow ',' and single quote character which is valid
 		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
-		// fname = fname.replace(/[\/\\:,<>*\"\|\']/g, "_");
 	}
 
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {
@@ -533,6 +549,10 @@ function emailIsValid(email) {
 }
 
 function IETstr_converter(str) {
+	// null out function as this really isn't necessary 
+	//return str;
+
+	
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
@@ -547,6 +567,7 @@ function IETstr_converter(str) {
 		return str;
 	}
 	return convStr;
+	
 }
 
 function nametoascii(str) {

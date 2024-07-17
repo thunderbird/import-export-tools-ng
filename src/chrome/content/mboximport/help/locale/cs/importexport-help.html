@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydání:</h3>
     <p>
-      - Slibte a opravte problém s načasováním exportních zpráv č. 568<br />
-      - Novinka: Latinize transformace názvů souborů. Použít booleovskou předvolbu:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Novinka: Filtr názvů souborů UTF-16 (emodži, symboly…). Použít booleovskou předvolbu:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Novinka: Filtr znaků pro názvy souborů. Použít předvolbu řetězce UTF-16:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Zadejte znaky bez oddělovačů<br />
+      - Novinka: Podpora Thunderbird v128 a v115<br />
+      - Novinka: Filtry a transformace názvů souborů v uživatelském rozhraní<br />
+      - Oprava chybějící konverze UTF-8 pro exporty HTML a prostého textu #581<br />
+      - Opravte ja a zn-CH indexy #588<br />
+      - Opravit pole Komu, Od a Odpovědět v exportech HTML a prostého textu #586<br />
+      - Opravte možnost data exportu zprávy #585<br />
+      - Oprava převodu LF pro prostý text Windows #584<br />
+      - Opravte nelegální filtr znaků názvu souboru #576<br />
     </p>
     <h2 id="main_help">ImportExportTools Přehled a nabídky NG</h2>
     <p>
@@ -452,8 +452,8 @@
       &quot;Datum (vlastní)&quot;. Vlastní datum lze také použít s tokenem ${date_custom} použitým v
       rozšířených vlastních názvech souborů. Původní (výchozí) formát data je:<br />
       RRRRMMDDHHmm: 202011060808<br /><br />
-      Vlastní formát data využívá % sekvencí, které odpovídají funkcionalitě <code>strftime()</code> podobné
-      Unixu. Je založen na JavaScriptovém portu
+      Vlastní formát data využívá % sekvencí odpovídajících funkcím typu <code>strftime()</code> Unix. Je
+      založen na JavaScriptovém portu
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , což je funkce pro formátování data a času.<br />
       Port of strftime() od TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -508,8 +508,8 @@
           <td>
             ISO 8601 týdenní rok se stoletím jako desetinným číslem. Čtyřmístný rok odpovídá číslu týdne ISO
             (viz <code class="code1">%V</code> ). Toto má stejný formát a hodnotu jako
-            <code class="code1">%Y</code> s tím rozdílem, že pokud číslo týdne ISO patří předchozímu nebo
-            příštímu roku, použije se místo něj tento rok.
+            <code class="code1">%Y</code> s tím rozdílem, že pokud číslo týdne ISO patří k předchozímu nebo
+            následujícímu roku, použije se místo něj tento rok.
           </td>
         </tr>
         <tr>
@@ -519,14 +519,14 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Hodina jako desetinné číslo s použitím 24hodinového času (rozsah 00 až 23). Viz také
+            Hodina jako desetinné číslo pomocí 24hodinového času (rozsah 00 až 23). Viz také
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Hodina jako desetinné číslo s použitím 12hodinových hodin (rozsah 01 až 12). Viz také
+            Hodina jako desetinné číslo s použitím 12hodinového času (rozsah 01 až 12). Viz také
             <code class="code1">%l</code> .
           </td>
         </tr>
@@ -544,7 +544,7 @@
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hodina jako desetinné číslo pomocí 12hodinových hodin (rozsah 1 až 12). Viz také
+            Hodina jako desetinné číslo s použitím 12hodinových hodin (rozsah 1 až 12). Viz také
             <code class="code1">%I</code> .
           </td>
         </tr>
@@ -714,7 +714,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Hodnota volby textu předpony.</td>
+        <td>Hodnota možnosti textu předpony.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
@@ -786,9 +786,9 @@
       Existuje několik nových funkcí a možností, které ještě nelze konfigurovat v dialogovém okně možností.
       Jakmile budou tyto funkce stabilizovány, budou přidány do uživatelského rozhraní.<br />
       Aby bylo možné je používat, musí být nastaveny v editoru konfigurace. Pro přístup k editoru použijte
-      nabídku Nástroje/Možnosti, poté vyberte sekci Pokročilé a ve spodní části se zobrazí tlačítko „Editor
-      konfigurace“. Pokud do vyhledávacího pole zadáte „importexporttoolsng“, zobrazí se všechny předvolby
-      rozšíření. Podle potřeby pak můžete upravit různé předvolby níže.
+      nabídku Nástroje/Možnosti, poté vyberte sekci Pokročilé a ve spodní části bude tlačítko &#39;Editor
+      konfigurace&#39;. Pokud do vyhledávacího pole zadáte „importexporttoolsng“, zobrazí se všechny předvolby
+      rozšíření. Podle potřeby pak můžete upravit různé níže uvedené předvolby.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
@@ -824,7 +824,7 @@
       Příklady položek klávesových zkratek (pole objektů JSON)<br /><br />
       <code class="notranslate">id</code> – index klíče (1-10)<br />
       <code class="notranslate">key</code> - klíč (jeden znak)<br />
-      <code class="notranslate">keycode</code> – &#39;VK_*&#39; definovaný kód klíče<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definovaný kód klíče<br />
       Může být zahrnut buď klíč nebo kód klíče, ale ne obojí<br />
       <code class="notranslate">modifiers</code> - modifikátory kláves, seznam oddělený mezerami
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

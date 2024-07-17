@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
-      - Promisify in popravite težavo s časovnim razporedom izvoznih sporočil #568<br />
-      - Novo: latinizirana pretvorba imen datotek. Uporabi logično nastavitev:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Novo: filter imen datotek UTF-16 (emoji, simboli ...). Uporabi logično nastavitev:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Novo: Filter znakov za imena datotek. Uporabi nastavitev niza UTF-16:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Vnesite znake brez ločil<br />
+      - Novo: podpora za Thunderbird v128 in v115<br />
+      - Novo: Filtri in transformacije za imena datotek v uporabniškem vmesniku<br />
+      - Popravite manjkajočo pretvorbo UTF-8 za izvoze HTML in navadnega besedila #581<br />
+      - Popravite ja in zn-CH indeksa #588<br />
+      - Popravek polj Za, Od in Odgovori na v izvozih HTML in navadnega besedila #586<br />
+      - Popravljena možnost datuma izvoza sporočila #585<br />
+      - Popravek pretvorbe LF za golo besedilo Windows #584<br />
+      - Popravite nezakoniti filter znakov v imenu datoteke #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
@@ -135,7 +135,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -144,7 +144,7 @@
             __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
+            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
             Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
             vsakega sporočila.
           </td>

@@ -2,6 +2,18 @@
 
 ## Versions
 
+Version 14.1.0 : Thunderbird v128 Support - July,15 2024
+
+- New: Thunderbird v128 and v115 support
+- New: Filters and transforms for filenames in UI
+- Fix missing UTF-8 conversion for HTML and Plaintext exports #581
+- Fix ja and zn-CH indexes #588
+- Fix To, From and ReplyTo fields in HTML and Plaintext exports #586
+- Fix message export date option #585
+- Fix LF conversion for Windows plaintext #584
+- Fix illegal filename character filter #576
+
+
 Version 14.0.3 : Maintenance Release - June,6 2024
 
 - Promisify and fix export messages timing issue #568

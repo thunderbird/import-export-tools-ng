@@ -31,7 +31,9 @@
 		"Ci": "readonly",
 		"Cr": "readonly",
 
+		"browser":"readonly",
 		"messenger": "readonly",
+		"ExtensionCommon":"readonly",
 		"MailServices": "readonly",
 		"gTabmail": "readonly",
 		"OS": "readonly",

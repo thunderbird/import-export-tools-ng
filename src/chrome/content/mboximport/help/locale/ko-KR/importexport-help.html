@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">릴리즈 노트:</h3>
     <p>
-      - 메시지 내보내기 타이밍 문제 약속 및 수정 #568<br />
-      - 새로운 기능: 파일 이름을 라틴화하여 변환합니다. 부울 기본 설정 사용:<br />
-      Extensions.importexporttoolsng.export.filename_latinize<br />
-      - 새로운 기능: UTF-16 파일 이름 필터(이모지, 기호…). 부울 기본 설정 사용:<br />
-      Extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - 새로운 기능: 파일 이름에 대한 문자 필터. UTF-16 문자열 기본 설정 사용:<br />
-      확장명.importexporttoolsng.export.filename_filter_characters<br />
-      구분 기호 없이 문자를 입력하세요.<br />
+      - 새로운 기능: Thunderbird v128 및 v115 지원<br />
+      - 새로운 기능: UI에서 파일 이름을 필터링하고 변환합니다.<br />
+      - HTML 및 일반 텍스트 내보내기에 대한 누락된 UTF-8 변환 수정 #581<br />
+      - ja 및 zn-CH 인덱스 #588 수정<br />
+      - HTML 및 일반 텍스트 내보내기의 받는 사람, 보낸 사람 및 회신 필드 수정 #586<br />
+      - 메시지 내보내기 날짜 옵션 #585 수정<br />
+      - Windows 일반 텍스트 #584에 대한 LF 변환 수정<br />
+      - 잘못된 파일 이름 문자 필터 수정 #576<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 개요 및 메뉴</h2>
     <p>
@@ -35,7 +35,7 @@
       포함하여 다양한 파일 형식을 지원하는 여러 가져오기 및 내보내기 기능을 제공합니다. 참고: 일부 형식은 모든
       기능에서 지원되지 않습니다.<br />
       - m박스<br />
-      - EML<br />
+      -EML<br />
       - 메일 디렉토리<br />
       - HTML<br />
       - 일반 텍스트<br />
@@ -299,7 +299,7 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             선택한 메시지를 EML 형식 파일로 내보내기<br />
-            그러면 각 메시지를 나열하는 HTML 색인 파일도 생성됩니다.
+            또한 각 메시지를 나열하는 HTML 색인 파일도 생성됩니다.
           </td>
         </tr>
         <tr>
@@ -516,14 +516,14 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            24시간제(범위 00~23)를 사용하여 십진수로 시간을 표시합니다. <code class="code1">%k</code> 도
+            24시간제(범위 00~23)를 사용하여 십진수로 표시되는 시간입니다. <code class="code1">%k</code> 도
             참조하세요.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            12시간제를 사용하여 10진수로 시간을 표시합니다(범위 01~12). <code class="code1">%l</code> 도
+            12시간제(범위 01~12)를 사용하여 십진수로 시간을 표시합니다. <code class="code1">%l</code> 도
             참조하세요.
           </td>
         </tr>
@@ -659,7 +659,7 @@
     <h2 id="ext_filename_format_help">확장된 파일 이름 형식:</h2>
     <br />
     <p>
-      확장된 파일 이름 형식은 토큰을 활용합니다. 토큰과 텍스트 또는 유효한 파일 이름 문자를 활용하여 정확한
+      확장된 파일 이름 형식은 토큰을 사용합니다. 토큰과 텍스트 또는 유효한 파일 이름 문자를 활용하여 정확한
       파일 이름을 구성할 수 있습니다. 잘못된 문자는 다음과 같습니다.
       <code>| * : &lt; &gt; ? \ / &quot;</code> 영어(en-US) 토큰은 모든 로캘에서 사용할 수 있습니다. 로캘별
       토큰도 사용할 수 있으며 영어 표 아래에 나열됩니다.<br /><br />

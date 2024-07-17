@@ -634,9 +634,36 @@
     },
     "CRconversion.statusMsg": {
         "message": "转换 CR =&gt; CRLF 线路终止"
+    },
+    "Size": {
+        "message": "尺寸"
     },
 
-	"Size": {
-		"message": "尺寸"
+	"latinizeTransform": {
+		"message": "拉丁化变换"
+	},
+
+	"characterFilter": {
+		"message": "字符过滤器（UTF-8 或 UTF-16）"
+	},
+
+	"utf16Filter": {
+		"message": "过滤 UTF-16 字符（符号和表情符号）"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "过滤非字母数字字符"
+	},
+
+	"multipleFolders.title": {
+		"message": "多个文件夹"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
+	},
+
+	"cancel.msg": {
+		"message": "取消"
 	}
 }

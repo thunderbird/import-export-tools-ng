@@ -57,6 +57,8 @@ getMsgFolderFromAccountAndPath,
 globalThis,
 */
 
+
+
 var Services = globalThis.Services || ChromeUtils.import(
 	'resource://gre/modules/Services.jsm'
 ).Services;
@@ -68,7 +70,7 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-6.js");
+var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-7.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
@@ -322,7 +324,10 @@ var IETprintPDFmain = {
 
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-
+				var time = (aMsgHdr.dateInSeconds) * 1000;
+				if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+					await IOUtils.setModificationTime(uniqueFileName, time);
+				}
 				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;
@@ -1599,7 +1604,12 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	if (data.includes("X-Account-Key")) {
 		var myAccountManager = Cc["@mozilla.org/messenger/account-manager;1"]
 			.getService(Ci.nsIMsgAccountManager);
-		var myAccount = myAccountManager.FindAccountForServer(msgFolder.server);
+		var myAccount;
+		try {
+			myAccount = myAccountManager.FindAccountForServer(msgFolder.server);
+		} catch (ex) {
+			myAccount = myAccountManager.findAccountForServer(msgFolder.server);
+		}
 		prologue = prologue + "X-Account-Key: " + myAccount.key + "\n";
 	}
 	data = IETescapeBeginningFrom(data);

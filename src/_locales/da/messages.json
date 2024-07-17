@@ -631,9 +631,36 @@
     },
     "CRconversion.statusMsg": {
         "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
+    },
+    "Size": {
+        "message": "Størrelse"
     },
 
-	"Size": {
-		"message": "Størrelse"
+	"latinizeTransform": {
+		"message": "Latinisere transformation"
+	},
+
+	"characterFilter": {
+		"message": "Tegnfilter (UTF-8 eller UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrer UTF-16-tegn (symboler og emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrer ikke-alfanumeriske tegn"
+	},
+
+	"multipleFolders.title": {
+		"message": "Flere mapper"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Flere mapper understøttes ikke:\nKlik OK for kun at eksportere den første mappe."
+	},
+
+	"cancel.msg": {
+		"message": "Afbestille"
 	}
 }

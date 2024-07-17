@@ -1487,11 +1487,21 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	//console.log("exportashtml", msgFolder)
+	console.log("exportashtml", msgFolder)
+
+
 	if (!msgFolder) {
-		console.log("exportashtml null msgFolder on entry", convertToText);
-		Services.prompt.alert(window, "Error", "msgFolder null on export ashtml.\nPlease report!")
-		return { status: kStatusOK };
+	console.log("no msgFolder ", msgFolder)
+
+		var messageService = MailServices.messageServiceFromURI(uri);
+		var hdr = messageService.messageURIToMsgHdr(uri);
+		msgFolder = hdr.folder;
+
+		if (!msgFolder) {
+			console.log("exportashtml null msgFolder on entry", convertToText);
+			Services.prompt.alert(window, "Error", "msgFolder null on export ashtml.\nPlease report!")
+			return { status: kStatusOK };
+		}
 	}
 
 	var exportAsHtmlDone = false;

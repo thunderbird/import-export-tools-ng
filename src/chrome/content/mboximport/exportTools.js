@@ -1673,12 +1673,20 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
+					let encoder = new TextEncoder(); 
+
+					let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
+					hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
+
+					let replyToStr = hdrsBundle.GetStringFromName("REPLY-TO");
+					replyToStr = encoder.encode(replyToStr);
+					replyToStr = ietngUtils.bytesToString(replyToStr);
 
 					var replyTo = hdr.getStringProperty("replyTo");
 					if (replyTo.length > 1) {
 						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
 
-						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
+						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">' + replyToStr + ': </div> ' + replyTo + '</td></tr>';
 						data = data.replace("</table><br>", rt + "</table><br>");
 					}
 
@@ -1822,7 +1830,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					*/
 
 					let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
-					const encoder = new TextEncoder();
 
 					if (mimePartsArray) {
 						for (const mimePart of mimePartsArray) {

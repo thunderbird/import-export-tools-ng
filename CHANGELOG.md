@@ -2,6 +2,12 @@
 
 ## Versions
 
+Version 14.1.1 : Maintenance Release - July,21 2024
+
+- Fix search-export for HTML and Plaintext 
+- Add reply-to translations
+- fix Thunderbird headers for ja locale
+
 Version 14.1.0 : Thunderbird v128 Support - July,15 2024
 
 - New: Thunderbird v128 and v115 support

@@ -1487,12 +1487,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
-	console.log("exportashtml", msgFolder)
-
+	//console.log("exportashtml", msgFolder)
 
 	if (!msgFolder) {
-	console.log("no msgFolder ", msgFolder)
-
 		var messageService = MailServices.messageServiceFromURI(uri);
 		var hdr = messageService.messageURIToMsgHdr(uri);
 		msgFolder = hdr.folder;
@@ -1673,7 +1670,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
-					let encoder = new TextEncoder(); 
+					let encoder = new TextEncoder();
 
 					let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
 					hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
@@ -1682,8 +1679,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 					let cvtToUTF16 = function (s) {
 						s = encoder.encode(s);
-					s = ietngUtils.bytesToString(s);
-					return s;
+						s = ietngUtils.bytesToString(s);
+						return s;
 					}
 
 					// This is a ridiculous set of transforms we have to do because
@@ -1695,11 +1692,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						let jaTo = "宛先";
 						let jaFrom = "差出人";
 						let jaDate = "送信日時";
-						jaSubject  = cvtToUTF16(jaSubject);
+						jaSubject = cvtToUTF16(jaSubject);
 						data = data.replace(">Subject: </", `>${jaSubject}: </`);
-						jaTo  = cvtToUTF16(jaTo);
+						jaTo = cvtToUTF16(jaTo);
 						data = data.replace(">To: </", `>${jaTo}: </`);
-						jaFrom  = cvtToUTF16(jaFrom);
+						jaFrom = cvtToUTF16(jaFrom);
 						data = data.replace(">From: </", `>${jaFrom}: </`);
 						jaDate = cvtToUTF16(jaDate);
 						data = data.replace(">Date: </", `>${jaDate}: </`);

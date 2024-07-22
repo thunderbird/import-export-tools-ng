@@ -2,7 +2,7 @@
 
 ## Versions
 
-Version 14.1.1 : Maintenance Release - July,21 2024
+Version 14.1.2 : Maintenance Release - July,22 2024
 
 - Fix search-export for HTML and Plaintext 
 - Add reply-to translations

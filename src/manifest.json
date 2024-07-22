@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.1.1",
+  "version": "14.1.2",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
@@ -29,23 +29,6 @@
           ]
         ],
         "script": "api/WindowListener/implementation.js"
-      }
-    },
-    "SessionRestore": {
-      "schema": "api/SessionRestore/schema.json",
-      "parent": {
-        "scopes": [
-          "addon_parent"
-        ],
-        "paths": [
-          [
-            "SessionRestore"
-          ]
-        ],
-        "script": "api/SessionRestore/implementation.js",
-        "events": [
-          "startup"
-        ]
       }
     },
     "NotifyTools": {

@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.0.3%20(released%20version)-C70039.png?label=Thunderbird%20115)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.1.0%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -15,7 +15,19 @@ export functions for messages, folders and profiles.
 - Notes, help and utility scripts (WIP)
 - [Apple mail conversion help](https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
 
-## Import Export Tools NG Add-On Features
+## Import Export Tools NG Add-On Features - Version Notes
+
+
+Version 14.1.0 : Thunderbird v128 Support - July,15 2024
+
+- New: Thunderbird v128 and v115 support
+- New: Filters and transforms for filenames in UI
+- Fix missing UTF-8 conversion for HTML and Plaintext exports #581
+- Fix ja and zn-CH indexes #588
+- Fix To, From and ReplyTo fields in HTML and Plaintext exports #586
+- Fix message export date option #585
+- Fix LF conversion for Windows plaintext #584
+- Fix illegal filename character filter #576
 
 Version 14.0.3 : Maintenance Release - June,6 2024
 

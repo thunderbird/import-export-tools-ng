@@ -334,7 +334,7 @@ var toolsCtxMenuSet = [
   },
 ];
 
-// Folder context menu 
+// Folder context menu
 
 const folderCtxMenu_TopId = "folderCtxMenu_TopId";
 
@@ -850,15 +850,17 @@ async function wextctx_ExportAs(ctxEvent, tab) {
   params.tabType = tab.type;
 
 
-  // we need the accountId and path of the folder to get 
+  // we need the accountId and path of the folder to get
   // the actual selected folder in legacy side
-  // we don't get these in the messageDisplay so have to 
-  // get indirectly from messageDisplay 
+  // we don't get these in the messageDisplay so have to
+  // get indirectly from messageDisplay
 
   if (!ctxEvent.pageUrl) {
+
     params.selectedFolder = ctxEvent.displayedFolder;
     params.selectedAccount = ctxEvent.selectedAccount;
     params.selectedMessages = ctxEvent.selectedMessages;
+
   } else {
     let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
     params.selectedMessages = { id: 0, messages: [msg] };
@@ -951,13 +953,21 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   var params = {};
   params.targetWinId = tab.windowId;
 
-  // we need the accountId and path of the folder to get 
+  // we need the accountId and path of the folder to get
   // the actual selected folder in legacy side
   params.selectedFolder = ctxEvent.selectedFolder;
   if (!params.selectedFolder) {
     params.selectedFolder = {};
     params.selectedFolder.path = "/";
   }
+
+  if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg"));
+    if (!rv) {
+      return;
+    }
+  }
+
   params.selectedAccount = ctxEvent.selectedAccount;
   if (!params.selectedAccount) {
     params.selectedAccount = {};
@@ -1203,7 +1213,6 @@ async function menusUpdate(info, tab) {
     if (info.menuIds[0] == folderCtxMenu_TopId) {
       if (
         (await messenger.accounts.get(accountId)).type == "imap" ||
-        (await messenger.accounts.get(accountId)).type == "rss" ||
         (await messenger.accounts.get(accountId)).type == "nntp") {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
 
@@ -1288,13 +1297,10 @@ async function menusUpdate(info, tab) {
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     if (info.selectedFolder &&
       (await messenger.accounts.get(accountId)).type == "imap" ||
-      (await messenger.accounts.get(accountId)).type == "rss" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-      //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
-      //await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
     }
     await messenger.menus.refresh();
   }
@@ -1344,6 +1350,7 @@ async function importMaildirFiles(ctxEvent) {
 }
 
 async function openOptions(event, tab) {
+
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.tabType = tab.type;
@@ -1355,7 +1362,7 @@ async function openOptions(event, tab) {
 async function importEmlAttToFolder(attCtx) {
 
   let windows = await messenger.windows.getAll({ populate: true });
-  let currentWin = windows.find(fw => fw.focused)
+  let currentWin = windows.find(fw => fw.focused);
   let currentTab = currentWin.tabs.find(t => t.active);
 
   let msgDisplayed = await messenger.messageDisplay.getDisplayedMessage(currentTab.id);

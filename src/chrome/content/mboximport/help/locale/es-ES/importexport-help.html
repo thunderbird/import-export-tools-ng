@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamiento:</h3>
     <p>
-      - Promisificar y solucionar el problema de sincronización de mensajes de exportación #568<br />
-      - Nuevo: transformación latinizada de nombres de archivos. Utilice preferencia booleana:<br />
-      extensiones.importexporttoolsng.export.filename_latinize<br />
-      - Nuevo: filtro de nombres de archivos UTF-16 (emojis, símbolos…). Utilice preferencia booleana:<br />
-      extensiones.importexporttoolsng.export.filename_filterUTF16<br />
-      - Nuevo: filtro de caracteres para nombres de archivos. Utilice la preferencia de cadena UTF-16:<br />
-      extensiones.importexporttoolsng.export.filename_filter_characters<br />
-      Introduce los caracteres sin separadores.<br />
+      - Nuevo: compatibilidad con Thunderbird v128 y v115<br />
+      - Nuevo: filtros y transformaciones para nombres de archivos en la interfaz de usuario<br />
+      - Se corrigió la conversión UTF-8 faltante para exportaciones de HTML y texto sin formato #581<br />
+      - Se corrigieron los índices ja y zn-CH #588<br />
+      - Corregir los campos Para, Desde y Responder a en exportaciones HTML y texto sin formato #586<br />
+      - Corregir la opción de fecha de exportación del mensaje #585<br />
+      - Se corrigió la conversión de LF para texto sin formato de Windows #584<br />
+      - Se corrigió el filtro de caracteres de nombre de archivo ilegal #576<br />
     </p>
     <h2 id="main_help">Menús y descripción general de ImportExportTools NG</h2>
     <p>
@@ -40,7 +40,7 @@
       -HTML<br />
       - Texto sin formato<br />
       - CSV (valores separados por comas)<br />
-      -PDF<br /><br />
+      - PDF<br /><br />
       Si bien la mayor parte de la funcionalidad gira en torno a los mensajes, también es compatible con la
       importación y exportación de perfiles de Thunderbird. Además, las exportaciones también pueden incluir
       un archivo de índice HTML o CSV. La copia de seguridad del perfil de Thunderbird es otra
@@ -317,7 +317,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportar los mensajes seleccionados a archivos en formato HTML</td>
+          <td>Exportar los mensajes seleccionados a archivos de formato HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
@@ -520,7 +520,7 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Año basado en semanas ISO 8601 con siglo como número decimal. El año de 4 dígitos corresponde al
+            Año ISO 8601 basado en semanas con siglo como número decimal. El año de 4 dígitos corresponde al
             número de semana ISO (ver <code class="code1">%V</code> ). Tiene el mismo formato y valor que
             <code class="code1">%Y</code> , excepto que si el número de semana ISO pertenece al año anterior o
             siguiente, se utiliza ese año.
@@ -799,7 +799,7 @@
     <p>
       Hay varias características y opciones nuevas que aún no se pueden configurar en el cuadro de diálogo de
       opciones. Una vez que estas funciones se estabilicen, se agregarán a la interfaz de usuario.<br />
-      Para poder usarlos, deben configurarse en el Editor de configuración. Para acceder al editor, use el
+      Para poder usarlos, deben configurarse en el Editor de configuración. Para acceder al editor, utilice el
       menú Herramientas/Opciones, luego seleccione la sección Avanzado y habrá un botón &#39;Editor de
       configuración&#39; en la parte inferior. Si escribe &#39;importexporttoolsng&#39; en la barra de
       búsqueda obtendrá todas las preferencias de extensión. Luego puede editar las distintas preferencias a
@@ -834,10 +834,10 @@
     <h2>Función básica y global de teclas de acceso rápido (atajos)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Esta nueva preferencia permite al usuario configurar hasta 10 atajos de teclado. Los accesos directos
-      pueden realizar la mayoría de las funciones de ImportExportTools NG, así como otras funciones de
-      Thunderbird. La cadena de preferencias tiene el formato de un objeto con formato JSON. El formato y las
-      claves son los siguientes:
+      Esta nueva preferencia permite al usuario configurar hasta 10 atajos de teclado. Los atajos pueden
+      realizar la mayoría de las funciones de ImportExportTools NG, así como otras funciones de Thunderbird.
+      La cadena de preferencias tiene el formato de un objeto con formato JSON. El formato y las claves son
+      las siguientes:
     </p>
     <p>
       Ejemplos de entradas de teclas de acceso rápido (matriz de objetos JSON)<br /><br />

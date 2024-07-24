@@ -46,8 +46,6 @@ function initMboxImportPanel() {
         document.documentElement.style.setProperty("--question-height", "28px");
     }
 
-    IETsetCharsetPopup("");
-
     document.getElementById("useMboxExt").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
     document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
     document.getElementById("MBasciiname").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
@@ -166,7 +164,11 @@ function initMboxImportPanel() {
     document.getElementById("attFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
     document.getElementById("inlineAttFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
-    document.getElementById("cutSub").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
+    document.getElementById("utf16-filter").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16");
+    document.getElementById("latinize-transform").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize");
+    document.getElementById("character-filter").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+
     document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
     extendedFormatCheck(document.getElementById("useExtendedFormat"));
@@ -178,19 +180,18 @@ function initMboxImportPanel() {
     var csvSep = "";
 
     try {
-        charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
+        //charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
         textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
         csvSep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
     } catch (e) {
-        console.log(e)
-        charset = "";
+        //charset = "";
         textCharset = "";
         csvSep = "";
     }
 
 
     IETsetCharsetPopup(textCharset);
-    document.getElementById("filenameCharset").value = charset;
+    //document.getElementById("filenameCharset").value = charset;
     document.getElementById("csvSep").value = csvSep;
 
     document.getElementById("skipMsg").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
@@ -321,9 +322,11 @@ function saveMboxImportPrefs() {
     IETsetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
 
-    IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_subject", document.getElementById("cutSub").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
+    IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
+    IETsetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
+
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
-    IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_charset", document.getElementById("filenameCharset").value);
     IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
     IETprefs.setCharPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
 

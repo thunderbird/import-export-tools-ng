@@ -631,9 +631,36 @@
     },
     "CRconversion.statusMsg": {
         "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
+    },
+    "Size": {
+        "message": "Storlek"
     },
 
-	"Size": {
-		"message": "Storlek"
+	"latinizeTransform": {
+		"message": "Latinisera transformera"
+	},
+
+	"characterFilter": {
+		"message": "Teckenfilter (UTF-8 eller UTF-16)"
+	},
+
+	"utf16Filter": {
+		"message": "Filtrera UTF-16-tecken (symboler och emojis)"
+	},
+
+	"nonAlphanumericFilter": {
+		"message": "Filtrera icke-alfanumeriska tecken"
+	},
+
+	"multipleFolders.title": {
+		"message": "Flera mappar"
+	},
+
+	"multipleFolders.alertMsg": {
+		"message": "Flera mappar stöds inte:\nKlicka på OK för att exportera bara den första mappen."
+	},
+
+	"cancel.msg": {
+		"message": "Annullera"
 	}
 }

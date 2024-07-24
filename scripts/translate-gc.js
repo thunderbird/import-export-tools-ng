@@ -14,135 +14,20 @@ const { Translate } = require('@google-cloud/translate').v2;
 const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
-var translationArray3 = [
-	// common titles
-	{"key":"extensionName", "text":"ImportExportTools NG"},
-	{"key":"extensionDescription", "text":"Adds tools to import/export messages and folders (NextGen)"},
 
-	{"key": "ctxMenu_ExtensionName.title", "text": "ImportExportTools NG"},
-	{"key": "ctxMenu_Options.title", "text": "Options"},
-	{"key": "ctxMenu_Help.title", "text": "Help"},
-
-
-	
-	{"key": "toolsCtxMenu_Exp_Profile_Id.title", "text": "Export Profile"},
-	{"key": "toolsCtxMenu_Imp_Profile_Id.title", "text": "Import Profile"},
-	{"key": "toolsCtxMenu_Backup_Id.title", "text": "Backup"},
-	
-	{"key": "toolsCtxMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
-	{"key": "toolsCtxMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
-
-	{"key": "msgCtxMenu_TopId.title", "text": "Export Messages As…"},
-{"key": "msgCtxMenu_Exp_EMLFormat_Id.title", "text": "EML Message Format"},
-{"key": "msgCtxMenu_Exp_HTMLFormat_Id.title", "text": "HTML Format"},
-{"key": "msgCtxMenu_Exp_PDFFormat_Id.title", "text": "PDF Format"},
-{"key": "msgCtxMenu_Exp_PlainTextFormat_Id.title", "text": "Plain Text Format"},
-{"key": "msgCtxMenu_Exp_CSVFormat_Id.title", "text": "CSV Format (Spreadsheet)"},
-{"key": "msgCtxMenu_Exp_MboxFormat_Id.title", "text": "mbox Format"},
-{"key": "msgCtxMenu_Exp_Index_Id.title", "text": "Message Index"},
-{"key": "msgCtxMenu_CopyToClipboard_Id.title", "text": "Copy To Clipboard"},
-
-{"key": "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title", "text": "Messages (Attachments Embedded)"},
-{"key": "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title", "text": "Messages Only"},
-{"key": "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title", "text": "Messages And Attachments"},
-{"key": "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
-{"key": "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title", "text": "Messages Only"},
-{"key": "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title", "text": "Messages And Attachments"},
-{"key": "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
-{"key": "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title", "text": "New mbox File"},
-{"key": "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title", "text": "Append To Existing mbox File"},
-{"key": "msgCtxMenu_Exp_IndexHTML_Id.title", "text": "HTML Format"},
-{"key": "msgCtxMenu_Exp_IndexCSV_Id.title", "text": "CSV Format"},
-{"key": "msgCtxMenu_CopyToClipboardMessage_Id.title", "text": "Message"},
-{"key": "msgCtxMenu_CopyToClipboardHeaders_Id.title", "text": "Headers"},
-
-
-{"key": "folderCtxMenu_Exp_FolderMbox_Id.title", "text": "Folder Export (mbox)"},
-{"key": "folderCtxMenu_Exp_FolderMboxOnly_Id.title", "text": "As mbox File"},
-{"key": "folderCtxMenu_Exp_FolderMboxZipped_Id.title", "text": "Single Zipped mbox File"},
-{"key": "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title", "text": "Structured With Subfolders"},
-{"key": "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title", "text": "With Flattened Subfolders"},
-{"key": "folderCtxMenu_Exp_RemoteFolderMbox_Id.title", "text": "Export Remote Folder"},
-{"key": "folderCtxMenu_Exp_AllMessages_Id.title", "text": "Export All Messages In Folder"},
-{"key": "folderCtxMenu_Exp_EMLFormat_Id.title", "text": "EML Message Format"},
-{"key": "folderCtxMenu_Exp_HTMLFormat_Id.title", "text": "HTML Format"},
-{"key": "folderCtxMenu_Exp_PDFFormat_Id.title", "text": "PDF Format"},
-{"key": "folderCtxMenu_Exp_PlainTextFormat_Id.title", "text": "Plain Text Format"},
-{"key": "folderCtxMenu_Exp_CSVFormat_Id.title", "text": "CSV Format (Spreadsheet)"},
-{"key": "folderCtxMenu_Exp_Index_Id.title", "text": "Message Index"},
-{"key": "folderCtxMenu_Exp_SearchExport_Id.title", "text": "Search And Export Messages"},
-{"key": "folderCtxMenu_Imp_MboxFiles_Id.title", "text": "Import mbox Files"},
-{"key": "folderCtxMenu_Imp_MboxFilesIndv_Id.title", "text": "Individual mbox Files"},
-{"key": "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title", "text": "Individual mbox Files (with sbd structure)"},
-{"key": "folderCtxMenu_Imp_MboxFilesDir_Id.title", "text": "All mbox Files from directory"},
-{"key": "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title", "text": "All mbox Files from directory (with sbd structure)"},
-{"key": "folderCtxMenu_Imp_MaildirFiles_Id.title", "text": "Import Maildir Folder"},
-{"key": "folderCtxMenu_Imp_EMLFormat_Id.title", "text": "Import EML Messages"},
-{"key": "folderCtxMenu_Imp_EMLFormatMsgs_Id.title", "text": "Individual EML Messages"},
-{"key": "folderCtxMenu_Imp_EMLFormatDir_Id.title", "text": "All EML Messages From A Directory"},
-{"key": "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title", "text": "All EML Messages From A Directory And Subdirectories"},
-{"key": "folderCtxMenu_CopyFolderPath_Id.title", "text": "Copy Folder Path"},
-{"key": "folderCtxMenu_OpenFolderDir_Id.title", "text": "Open Folder Directory"},
-
-{"key": "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
-{"key": "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title", "text": "Messages And HTML Index"},
-{"key": "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title", "text": "Messages With Attachments And Index"},
-{"key": "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title", "text": "Messages As Single File"},
-{"key": "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title", "text": "Messages As Single File With Attachments"},
-{"key": "folderCtxMenu_Exp_IndexHTML_Id.title", "text": "HTML Format"},
-{"key": "folderCtxMenu_Exp_IndexCSV_Id.title", "text": "CSV Format"}
-];
-
-	// { key: "", text: "" },
-
-	var translationArray2 = [
-
-		{"key": "buttonMenu_Exp_Profile_Id.title", "text": "Export Profile"},
-	{"key": "buttonMenu_Imp_Profile_Id.title", "text": "Import Profile"},
-	{"key": "buttonMenu_Backup_Id.title", "text": "Backup"},
-	
-	{"key": "buttonMenu_Exp_ProfileFull_Id.title", "text": "Full Profile"},
-	{"key": "buttonMenu_Exp_ProfileMailOnly_Id.title", "text": "Mail Only"},
-	{"key": "buttonMenu_Options.title", "text": "Options"},
-	{"key": "buttonMenu_Help.title", "text": "Help"},
-	];
-
-	var translationArray4 = [
-
-  { key: "subjectFmtToken", text: "${subject}"},
-  { key: "senderFmtToken", text: "${sender}"},
-  { key: "recipientFmtToken", text: "${recipient}"},
-  { key: "senderEmailFmtToken", text: "${sender_email}"},
-  { key: "recipientEmailFmtToken", text: "${recipient_email}"},
-  { key: "smartNameFmtToken", text: "${smart_name}"},
-  { key: "indexFmtToken", text: "${index}"},
-  { key: "prefixFmtToken", text: "${prefix}"},
-  { key: "suffixFmtToken", text: "${suffix}"},
-  { key: "dateCustomFmtToken", text: "${date_custom}"},
-  { key: "dateFmtToken", text: "${date}"},
-];
-
-var translationArray5 = [
-  { key: "attachmentFolderNames", text: "Attachment Folder Names"},
-  { key: "attachmentFolders", text: "Attachment Folders"},
-  { key: "inlineAttachmentsFolders", text: "Inline Attachments Folders"},
-  { key: "cutPathLen", text: "Cut file path length to 256 characters"},
+var translationArray1 = [
+  { key: "latinizeTransform", text: "Latinize transform"},
+  { key: "characterFilter", text: "Character Filter (UTF-8 or UTF-16)"},
+  { key: "utf16Filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
+  { key: "nonAlphanumericFilter", text: "Filter non-alphanumeric characters"},
+  { key: "multipleFolders.title", text: "Multiple Folders"},
 ];
 
 var translationArray = [
- 
-  { key: "Size", text: "Size"},
-	
-
-	
-
-	
+  { key: "cancel.msg", text: "Cancel"},
 ];
+//{ key: "multiple-folders-warning", text: "Multiple folders are not supported.\n\nClick OK to export just the first folder."},
+
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
 // const outputLocaleDir = "./src/_locales";

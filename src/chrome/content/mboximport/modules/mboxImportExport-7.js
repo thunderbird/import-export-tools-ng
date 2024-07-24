@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v6");
+console.log("IETNG: mboximportExport.js -v7");
 
 export var mboxImportExport = {
 
@@ -731,23 +731,7 @@ export var mboxImportExport = {
       folder.ForceDBClosed();
     }
 
-    // we can use this for parseFolder
-    var dbDone;
-    // @implements {nsIUrlListener}
-    let urlListener = {
-      OnStartRunningUrl(url) {
-        dbDone = false;
-      },
-      OnStopRunningUrl(url, status) {
-        dbDone = true;
-      }
-    };
-
-    var msgLocalFolder = folder.QueryInterface(Ci.nsIMsgLocalMailFolder);
-    msgLocalFolder.parseFolder(window.msgWindow, urlListener);
-    while (!dbDone) {
-      await new Promise(r => window.setTimeout(r, 100));
-    }
+    folder.updateFolder(window.msgWindow);
 
     // things we do to get folder to be included in global  search
     // toggling global search inclusion works, but throws

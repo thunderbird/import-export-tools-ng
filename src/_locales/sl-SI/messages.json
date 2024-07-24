@@ -631,9 +631,31 @@
     },
     "CRconversion.statusMsg": {
         "message": "Pretvarjanje zaključkov vrstic CR =&gt; CRLF"
+    },
+    "Size": {
+        "message": "Velikost"
+    },
+    "latinizeTransform": {
+        "message": "Latiniziraj transformacijo"
+    },
+    "characterFilter": {
+        "message": "Filter znakov (UTF-8 ali UTF-16)"
+    },
+    "utf16Filter": {
+        "message": "Filtrirajte znake UTF-16 (simboli in emojiji)"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrirajte nealfanumerične znake"
+    },
+    "multipleFolders.title": {
+        "message": "Več map"
     },
 
-	"Size": {
-		"message": "Velikost"
+	"multipleFolders.alertMsg": {
+		"message": "Več map ni podprtih:\nKliknite V redu, da izvozite samo prvo mapo."
+	},
+
+	"cancel.msg": {
+		"message": "Prekliči"
 	}
 }

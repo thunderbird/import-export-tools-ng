@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Note di rilascio:</h3>
     <p>
-      - Prometti e risolvi il problema di temporizzazione dei messaggi di esportazione n. 568<br />
-      - Novità: latinizzazione della trasformazione dei nomi dei file. Utilizza la preferenza booleana:<br />
-      extensions.importexporttoolsng.export.filename_latinize<br />
-      - Novità: filtro nomi file UTF-16 (emoji, simboli...). Utilizza la preferenza booleana:<br />
-      extensions.importexporttoolsng.export.filename_filterUTF16<br />
-      - Novità: filtro dei caratteri per i nomi dei file. Utilizza la preferenza di stringa UTF-16:<br />
-      extensions.importexporttoolsng.export.filename_filter_characters<br />
-      Inserisci i caratteri senza separatori<br />
+      - Novità: supporto Thunderbird v128 e v115<br />
+      - Novità: filtra e trasforma i nomi dei file nell&#39;interfaccia utente<br />
+      - Corretta la conversione UTF-8 mancante per le esportazioni HTML e testo normale #581<br />
+      - Correggi gli indici ja e zn-CH #588<br />
+      - Correggi i campi A, Da e Rispondi a nelle esportazioni HTML e testo normale #586<br />
+      - Corretta l&#39;opzione n. 585 della data di esportazione del messaggio<br />
+      - Corretta la conversione LF per il testo non crittografato di Windows n. 584<br />
+      - Correzione del filtro dei caratteri dei nomi file illegali n. 576<br />
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -114,7 +114,7 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Esporta una cartella comprese tutte le sue sottocartelle in una serie di file in formato mbox, uno
+            Esporta una cartella incluse tutte le sue sottocartelle in una serie di file in formato mbox, uno
             per ciascuna sottocartella, esportati in una singola cartella.
           </td>
         </tr>
@@ -461,8 +461,8 @@
       file. La data personalizzata può essere utilizzata anche con il token ${date_custom} utilizzato nei nomi
       file personalizzati estesi. Il formato della data originale (predefinito) è:<br />
       AAAAMMGGGHHmm: 202011060808<br /><br />
-      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità simile a
-      Unix <code>strftime()</code> . Si basa su una porta JavaScript di
+      Il formato della data personalizzato utilizza sequenze % che corrispondono alla funzionalità Unix simile
+      a <code>strftime()</code> . Si basa su una porta JavaScript di
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funzione per formattare la data e l&#39;ora.<br />
       Porto di strftime() di TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -612,7 +612,9 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Rappresentazione della data preferita per le impostazioni locali correnti senza l&#39;ora.</td>
+          <td>
+            Rappresentazione della data preferita per le impostazioni internazionali correnti senza l&#39;ora.
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>

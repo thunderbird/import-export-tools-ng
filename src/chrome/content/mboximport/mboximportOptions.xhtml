@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <!DOCTYPE dialog []>
-
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/icons.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/colors.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
@@ -145,11 +144,9 @@
 									<menuitem label="__MSG_date__" value="%d" selected="true" />
 									<menuitem label="__MSG_dateCustomOpt__" value="%D" />
 									<menuitem label="__MSG_key__" value="%k" />
-<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
+									<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
 									<menuitem label="__MSG_name__ (__MSG_sender__)" value="%a" />
 									<menuitem label="__MSG_name__ (__MSG_recipient__)" value="%r" />
-
-
 									<menuitem label=" " value="%e" />
 								</menupopup>
 							</menulist>
@@ -163,8 +160,6 @@
 									<menuitem label="__MSG_name__ (__MSG_sender__/__MSG_recipient__)" value="%n" />
 									<menuitem label="__MSG_name__ (__MSG_sender__)" value="%a" />
 									<menuitem label="__MSG_name__ (__MSG_recipient__)" value="%r" />
-									
-
 									<menuitem label=" " value="%e" />
 								</menupopup>
 							</menulist>
@@ -199,8 +194,7 @@
 						<html:div style="height: 6px"></html:div>
 						<hbox pack="start"  style="padding-left: 0px;" align="center">
 							<checkbox id="useExtendedFormat" 
-									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 0px;"/>
-							<label style="padding-left: -12px;">__MSG_useExtFilenameFormat__</label>
+									onclick="setTimeout(extendedFormatCheck,200,this);" style="padding-left: 4px;" label="__MSG_useExtFilenameFormat__" />
 							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="18px" maxheightx="16px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="__MSG_extFilenameFormatRefTooltipText__" />
 						</hbox>
@@ -219,48 +213,49 @@
 					<vbox style="padding-left: 10px;">
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<hbox flex="0">
-							<label style="padding-left: -4px;">__MSG_attachmentFolders__:</label>
+								<label style="padding-left: -4px;">__MSG_attachmentFolders__:</label>
 							</hbox>
-
-								<html:input id="attFolderFormat" style="width: 100%;"/>
+							<html:input id="attFolderFormat" style="width: 100%;"/>
 							<hbox flex="0">
-
-							<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="18px" height="18px"  style="margin-left: 2px; margin-top: 0px;"
             					maxwidth="18px" maxheightx="20px" onclick="openHelpBM('#ext_filename_format_help')" tooltiptext="__MSG_extFilenameFormatRefTooltipText__" />
+							</hbox>
 						</hbox>
-						</hbox>
-
 						<html:div style="height: 8px"></html:div>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
 							<hbox flex="0">
-							<label style="padding-left: -4px;">__MSG_inlineAttachmentsFolders__:</label>
+								<label style="padding-left: -4px;">__MSG_inlineAttachmentsFolders__:</label>
 							</hbox>
-
-								<html:input id="inlineAttFolderFormat" style="width: 100%"/>
+							<html:input id="inlineAttFolderFormat" style="width: 100%"/>
 							<hbox flex="0" width="21px">
-						<html:div style="width: 21px"></html:div>
-
+								<html:div style="width: 21px"></html:div>
+							</hbox>
 						</hbox>
-						</hbox>
-
 						<html:div style="height: 8px"></html:div>
 					</vbox>
 					<label class="section-header">__MSG_misc__</label>
 					<vbox style="padding-left: 10px;">
-					<hbox align="center" >
-							<checkbox id="MBasciiname" label="__MSG_MBlabel2__" />
+						<hbox align="center" >
+							<checkbox id="MBasciiname" label="__MSG_nonAlphanumericFilter__" />
+							<html:div style="width: 15px; height: 10px;" ></html:div>
+							<checkbox id="utf16-filter" label="__MSG_utf16Filter__" />
 						</hbox>
 						<hbox align="center" flex="1">
-							<checkbox id="cutSub" label="__MSG_cutSub__" />
+							<checkbox id="latinize-transform" label="__MSG_latinizeTransform__" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
+							<label value="__MSG_characterFilter__" style="padding-left: 4px"/>
+							<html:input id="character-filter" />
+						</hbox>
+						<hbox align="center" flex="1">
 							<checkbox id="cutFN" label="__MSG_cutPathLen__" />
 						</hbox>
+						<!--
 						<html:div style="height: 3px"></html:div>
-
 						<hbox flex="1">
 							<label value="__MSG_filenameCharset__" style="padding-left: 4px"/>
 							<html:input id="filenameCharset" />
 						</hbox>
+-->
 					</vbox>
 				</vbox>
 			</tabpanel>
@@ -373,7 +368,7 @@
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
-  <script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
+	<script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/wextAPIcmds.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />

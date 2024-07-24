@@ -153,6 +153,9 @@ async function exportSelectedMsgs(type, params) {
 	9 = Plain Text with attachments
 	*/
 
+	//console.log("export selected messages ")
+	//console.log(params)
+
 	var needIndex = false;
 	if (type > 99) {
 		type = type - 100;
@@ -236,9 +239,17 @@ async function exportSelectedMsgs(type, params) {
 		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	} catch (ex) {
 		msgFolder = GetFirstSelectedMsgFolder();
+
 		if (!msgFolder) {
 			msgFolder = curMsgFolder;
 		}
+	}
+
+	if (!msgFolder) {
+		console.log("exp selected msgs - null msgFolder after folder check");
+		console.log(params);
+		Services.prompt.alert(window, "Error", "msgFolder null after check - exp selected msgs.\nPlease report!")
+		return;
 	}
 
 	var isOffLineImap;
@@ -338,7 +349,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	// console.log("exportAllMsgs", type, params);
+	//console.log("exportAllMsgs", type, params);
 
 	var question;
 	if (type === 1 || type === 2 || type === 4) {
@@ -406,6 +417,7 @@ async function exportAllMsgs(type, params) {
 		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
+
 	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
 	if (document.getElementById("IETabortIcon"))
 		document.getElementById("IETabortIcon").collapsed = true;
@@ -442,6 +454,8 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 			return;
 		}
 		if (params.recursive && msgFolder.hasSubFolders) {
+			//console.log("export all sf", msgFolder)
+
 			result = await exportSubFolders(type, file, msgFolder, newTopDir, params);
 			if (result.status == kStatusAbort) {
 				IETabortExport();
@@ -454,7 +468,7 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
-		let folderDirName = subFolder.name;
+		let folderDirName = nametoascii(subFolder.name);
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		file = await IOUtils.getDirectory(fullFolderPath);
@@ -487,16 +501,9 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 // So we must select the folder, do some pre-export stuff and call the export routine
 
 async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, useMsgsDir) {
-	// console.log("exportAllMsgsDelayedVF")
+	//console.log("exportAllMsgsDelayedVF", msgFolder)
 
 	var msgUriArray = [];
-	var total = msgFolder.getTotalMessages(false);
-	if (total === 0) {
-		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-		if (IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-			await exportAllMsgsStart(type, file, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-		return;
-	}
 
 	// temporarily select virtual folder so we can expand and iterate
 	let curMsgFolder = window.gTabmail.currentTabInfo.folder;
@@ -554,7 +561,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			direname = nametoascii(msgFolder.name) + "_" + datedir;
 		else {
 			direname = msgFolder.name + "_" + datedir;
-			direname = direname.replace(/[\\:?"\*\/<>#]/g, "_");
+			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
 		var index1 = 0;
@@ -614,8 +621,8 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	if (gDBView && gDBView.sortOrder === 2)
 		hdrArray.reverse();
 	result = await IETrunExport(type, subfile, hdrArray, file2, msgFolder);
-	return { status: result, nextfile2: file2 };
 
+	return { status: result, nextfile2: file2 };
 }
 
 // 3b) exportAllMsgsDelayed
@@ -666,7 +673,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			direname = nametoascii(msgFolder.name) + "_" + datedir;
 		else {
 			direname = msgFolder.name + "_" + datedir;
-			direname = direname.replace(/[\\:?"\*\/<>#]/g, "_");
+			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
 		var index1 = 0;
@@ -676,7 +683,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			if (mustcorrectname)
 				direname = nametoascii(msgFolder.name) + "_" + datedir + "-" + index1.toString();
 			else
-				direname = msgFolder.name + "_" + datedir + "-" + index1.toString();
+				direname = msgFolder.name.replace(/[\\:?"\*\/<>|]/g, "_") + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
 		}
 		file = filetemp.clone();
@@ -685,7 +692,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		let folderDirName = msgFolder.name;
+		let folderDirName = nametoascii(msgFolder.name);
 		let folderDirNamePath = file.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);
@@ -710,7 +717,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 	var msgList = [...msgFolder.messages];
 	if (msgFolder.getTotalMessages(false) != msgList.length) {
-		console.log("IETNG: Thunderbird Msg count error, : getTotalMessages:", IETtotal, "Iterator:", msgList.length)
+		console.log(`IETNG: Thunderbird Msg count error: ${msgFolder.name}: getTotalMessages: ${IETtotal} Iterator: ${msgList.length}`)
 
 		let curMsgFolder = window.gTabmail.currentTabInfo.folder;
 		var gDBView = gTabmail.currentAbout3Pane.gDBView;
@@ -786,6 +793,8 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 	var firstUri = hdrArray[0].split("§][§^^§")[5];
+
+	//console.log("runexport", msgFolder)
 
 	switch (type) {
 		case 1: // HTML format, with index
@@ -874,9 +883,9 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	var hdrsBundle;
 	if (Services.locale.appLocaleAsBCP47 === "ja") {
-		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-ja.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-ja.properties");
 	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
-		hdrsBundle = strBundleService.createBundle("chrome://printingtoolsng/locale/headers-zh.properties");
+		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-zh.properties");
 	} else {
 		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}
@@ -971,7 +980,15 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 			objMin = "0" + objMin;
 		if (!justIndex) {
 			var urlname = IETstr_converter(hdrs[4]);
-			var url = subdirname + encodeURIComponent(urlname) + ext;
+			urlname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+			try {
+				var url = subdirname + encodeURIComponent(urlname) + ext;
+			} catch (ex) {
+				console.log("IETNG: Fix Illegal url: ", urlname)
+
+				urlname = filterNonASCIICharacters(urlname);
+				url = subdirname + encodeURIComponent(urlname) + ext;
+			}
 			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
 		} else {
 			data = data + "\r\n<tr><td>" + subj + "</td>";
@@ -1350,6 +1367,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					} else {
 						if (!hdrArray) {
 							sub = getSubjectForHdr(hdr, file.path);
+							console.log("get eml name ", sub)
+
 						} else {
 							var parts = hdrArray[IETexported].split("§][§^^§");
 							sub = parts[4];
@@ -1474,6 +1493,13 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
+	//console.log("exportashtml", msgFolder)
+	if (!msgFolder) {
+		console.log("exportashtml null msgFolder on entry", convertToText);
+		Services.prompt.alert(window, "Error", "msgFolder null on export ashtml.\nPlease report!")
+		return { status: kStatusOK };
+	}
+
 	var exportAsHtmlDone = false;
 	var nextUri = uri;
 
@@ -1504,6 +1530,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				onStopRequest: function (request, statusCode) {
 
 					var data = this.emailtext;
+
+					if (copyToClip) {
+						data = IEThtmlToText(data, msgFolder);
+						IETcopyToClip(data);
+						return;
+					}
 
 					this.scriptStream = null;
 					var clone = file.clone();
@@ -1637,9 +1669,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
+
 					var replyTo = hdr.getStringProperty("replyTo");
 					if (replyTo.length > 1) {
-						var rt = '<tr><td><div class="headerdisplayname" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
+						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
+
+						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
 						data = data.replace("</table><br>", rt + "</table><br>");
 					}
 
@@ -1781,14 +1816,34 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					- Strip off the reference to messageBody.css
 					- Add a style rule to make headers name in bold
 					*/
-					var tempStr = this.hdr.author.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedAuthor);
+
+					let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
+					const encoder = new TextEncoder();
+
+					if (mimePartsArray) {
+						for (const mimePart of mimePartsArray) {
+							let mimePartStr = ietngUtils.bytesToString(encoder.encode(mimePart));
+							let decodedMimePartStr = MailServices.mimeConverter.decodeMimeHeader(
+								mimePartStr,
+								null,
+								false /* override_charset */,
+								true /* eatContinuations */
+							);
+							let encodedMimePartArr = encoder.encode(decodedMimePartStr);
+							let mimeStr = ietngUtils.bytesToString(encodedMimePartArr);
+							data = data.replace(mimePart, mimeStr);
+						}
+					}
+
+					/* example insertion of mime element
 					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedRecipients);
-					tempStr = this.hdr.subject.replace("<", "&lt;").replace(">", "&gt;");
-					data = data.replace(tempStr, this.hdr.mime2DecodedSubject);
+					let decodedRecStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
+					let encodedRecArr = encoder.encode(decodedRecStr);
+					let utf8RecStr = ietngUtils.bytesToString(encodedRecArr);
+					data = data.replace(tempStr, utf8RecStr);
+					*/
+
 					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
-					// data = data.replace("<\/head>", "<style>div.headerdisplayname {font-weight:bold;}<\/style><\/head>");
 
 					const r1 = "div.headerdisplayname {font-weight:bold;}\n";
 					// const rh = ".tb { display: none;}\n";
@@ -1800,6 +1855,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					else
 						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
+					if (!msgFolder) {
+						console.log("exportashtml Before cvt", msgFolder)
+						Services.prompt.alert(window, "Error", "msgFolder null before text converter.\nPlease report!")
+						resolve(kStatusOK);
+					}
+
 					if (convertToText) {
 						data = IEThtmlToText(data, msgFolder);
 					}
@@ -1807,11 +1868,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 
 						var nfile = appendClone.leafName + ".txt";
-						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, null);
+						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time);
+					} else if (convertToText) {
+						data = IETconvertToUTF8(data);
+						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
 					} else {
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, null);
-
-						//IETwriteDataOnDisk(clone, data, false, null, time);
+						data = IETconvertToUTF8(data);
+						IOUtils.writeUTF8(clone.path, data)
 					}
 
 					IETexported = IETexported + 1;
@@ -1960,6 +2023,7 @@ function IETcopyToClip(data) {
 
 	this.scriptStream = null;
 	var dataUTF8 = IETconvertToUTF8(data);
+
 	str2.data = dataUTF8;
 	var trans = Cc["@mozilla.org/widget/transferable;1"].createInstance(Ci.nsITransferable);
 	if (!trans)
@@ -1967,8 +2031,10 @@ function IETcopyToClip(data) {
 	trans.init(getLoadContext())
 	trans.addDataFlavor("text/html");
 	trans.addDataFlavor("text/plain");
-	if (!justText)
+	if (!justText) {
 		trans.setTransferData("text/html", str2, data.length * 2);
+	}
+
 	trans.setTransferData("text/plain", str, data.length * 2);
 
 	Services.clipboard.setData(trans, null, Services.clipboard.kGlobalClipboard);
@@ -2138,8 +2204,9 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
+	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 		file.lastModifiedTime = time;
+	}
 }
 
 async function copyMSGtoClip(selectedMsgs) {
@@ -2168,11 +2235,9 @@ async function copyMSGtoClip(selectedMsgs) {
 		if (!msguri)
 			return;
 
-		// We use converData to get the HTML body only
-		let data = await mboxImportExport.getRawMessage(msguri, kConvertData);
-		// Convert to plaintext and UTF8 encoding
-		data = IEThtmlToText(data, realMessage.folder);
-		IETcopyToClip(data);
+		exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
+		return;
+
 	}
 }
 
@@ -2247,7 +2312,8 @@ function fixClipHdrs(strValue) {
 		head = strValue.match(/(.+\r?\n)*/)[0];
 		text = strValue.replace(/(.+\r?\n)*/, "");
 		headcorrect = head.replace(/:\r?\n/g, ": ");
-
+		text = text.replaceAll(/(?<!\r)\n/g, "\r\n");
+		headcorrect = headcorrect.replaceAll(/(?<!\r)\n/g, "\r\n");
 	} else {
 		head = strValue.match(/(.+\n?)*/)[0];
 		text = strValue.replace(/(.+\n?)*/, "");
@@ -2345,9 +2411,9 @@ function IETescapeBeginningFrom(data) {
 }
 
 function IETstoreHeaders(msg, msguri, subfile, addBody) {
-	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length") - 1;
-	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length") - 1;
-	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length") - 1;
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
+	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
+	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
 	var realsubject;
 	var author;
 	var recipients;

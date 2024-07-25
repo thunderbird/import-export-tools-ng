@@ -1,1 +1,0 @@
-console.log("IETNG: Script load test")

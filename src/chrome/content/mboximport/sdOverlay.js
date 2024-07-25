@@ -77,7 +77,7 @@ function SDexportMsg() {
 	var ml = document.getElementsByTagName("menulist");
 	var type = ml[ml.length - 1].selectedIndex;
 	if (type === 1 || type === 2) {
-		var question = IETformatWarning();
+		var question = IETformatWarning(1);
 		if (!question)
 			return;
 	}
@@ -152,11 +152,11 @@ function SDexportMsg() {
 	IETexported = 0;
 	IETskipped = 0;
 	if (type === 1)
-		exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null);
+		exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, false);
 	else if (type === 2)
-		exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null);
+		exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, null, false);
 	else if (type === 3)
-		exportAsHtml(msguri, emlsArray, file, true, false, false, true, null, null, null);
+		exportAsHtml(msguri, emlsArray, file, true, false, false, true, null, null, null, null, false);
 	else if (type === 4) {
 		var now = new Date;
 		var filename = now.getFullYear().toString() + (now.getMonth() + 1).toString() + now.getDate().toString() + "_mbox";

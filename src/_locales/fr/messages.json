@@ -651,7 +651,7 @@
 	"message": "Plusieurs dossiers"
     },	
     "multipleFolders.alertMsg": {
-	"message": "L’exportation de plusieurs dossiers n’est possible.\nEn cliquant sur OK, seul le premier dossier sera exporté."
+	"message": "L’exportation de plusieurs dossiers n’est pas possible.\nEn cliquant sur OK, seul le premier dossier sera exporté."
     },	
     "cancel.msg": {
 	"message": "Annuler"

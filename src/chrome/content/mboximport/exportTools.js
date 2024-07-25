@@ -1488,10 +1488,17 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
 	//console.log("exportashtml", msgFolder)
+
 	if (!msgFolder) {
-		console.log("exportashtml null msgFolder on entry", convertToText);
-		Services.prompt.alert(window, "Error", "msgFolder null on export ashtml.\nPlease report!")
-		return { status: kStatusOK };
+		var messageService = MailServices.messageServiceFromURI(uri);
+		var hdr = messageService.messageURIToMsgHdr(uri);
+		msgFolder = hdr.folder;
+
+		if (!msgFolder) {
+			console.log("exportashtml null msgFolder on entry", convertToText);
+			Services.prompt.alert(window, "Error", "msgFolder null on export ashtml.\nPlease report!")
+			return { status: kStatusOK };
+		}
 	}
 
 	var exportAsHtmlDone = false;
@@ -1663,12 +1670,46 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: function (clone, data, saveAttachments) {
+					let encoder = new TextEncoder();
+
+					let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
+					hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
+
+					let replyToStr = hdrsBundle.GetStringFromName("REPLY-TO");
+
+					let cvtToUTF16 = function (s) {
+						s = encoder.encode(s);
+						s = ietngUtils.bytesToString(s);
+						return s;
+					}
+
+					// This is a ridiculous set of transforms we have to do because
+					// streammessage with aConvert == true does not translate headers
+					// in the ja locale even in v128, just ty a Print!
+					if (Services.locale.appLocaleAsBCP47 === "ja") {
+						replyToStr = "返信先";
+						let jaSubject = "件名";
+						let jaTo = "宛先";
+						let jaFrom = "差出人";
+						let jaDate = "送信日時";
+						jaSubject = cvtToUTF16(jaSubject);
+						data = data.replace(">Subject: </", `>${jaSubject}: </`);
+						jaTo = cvtToUTF16(jaTo);
+						data = data.replace(">To: </", `>${jaTo}: </`);
+						jaFrom = cvtToUTF16(jaFrom);
+						data = data.replace(">From: </", `>${jaFrom}: </`);
+						jaDate = cvtToUTF16(jaDate);
+						data = data.replace(">Date: </", `>${jaDate}: </`);
+					}
+
+					replyToStr = encoder.encode(replyToStr);
+					replyToStr = ietngUtils.bytesToString(replyToStr);
 
 					var replyTo = hdr.getStringProperty("replyTo");
 					if (replyTo.length > 1) {
 						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
 
-						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">Reply-to: </div> ' + replyTo + '</td></tr>';
+						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">' + replyToStr + ': </div> ' + replyTo + '</td></tr>';
 						data = data.replace("</table><br>", rt + "</table><br>");
 					}
 
@@ -1812,7 +1853,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					*/
 
 					let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
-					const encoder = new TextEncoder();
 
 					if (mimePartsArray) {
 						for (const mimePart of mimePartsArray) {

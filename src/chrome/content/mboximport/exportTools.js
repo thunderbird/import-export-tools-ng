@@ -1257,7 +1257,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			hasAtt = " ";
 		}
 
-		var body = addBody ? hdrs[8] : "";
+		var body = addBody ? hdrs[9] : "";
 
 		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
@@ -1282,7 +1282,13 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 			accountFolderCol = '"' + hdrs[5] + '"' + sep;
 		}
 
-		var record = accountFolderCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
+		// Add experimental message ID
+		let messageIdCol = "";
+		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.message_id_col")) {
+			messageIdCol = '"' + hdrs[8].replace(/\"/g, '""') + '"' + sep;
+		}
+
+		var record = accountFolderCol + messageIdCol + '"' + subj.replace(/\"/g, '""') + '"' + sep + '"'
 			+ auth.replace(/\"/g, '""') + '"' + sep + '"' + recc.replace(/\"/g, '""') +
 			'"' + sep + csvDate + sep + hasAtt + sep + size + sep + body + "\r\n";
 
@@ -2480,6 +2486,7 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	} catch (e) {
 		recipients = "***";
 	}
+	var msgid = msg.messageId;
 	author = author.replace("<", "&lt;");
 	author = author.replace(">", "&gt;");
 	author = author.replace(/\"/, "");
@@ -2513,19 +2520,19 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// will insert §][§^^§ in subject....but why should (s)he write it???
 	switch (IETsortType) {
 		case 1:
-			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
+			hdrStr = realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + msgid + "§][§^^§" + body;
 			break;
 
 		case 2:
-			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
+			hdrStr = author + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + msgid + "§][§^^§" + body;
 			break;
 
 		case 3:
-			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
+			hdrStr = recipients + "§][§^^§" + realsubject + "§][§^^§" + author + "§][§^^§" + time + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + msgid + "§][§^^§" + body;
 			break;
 
 		default:
-			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + body;
+			hdrStr = time + "§][§^^§" + realsubject + "§][§^^§" + recipients + "§][§^^§" + author + "§][§^^§" + subject + "§][§^^§" + msguri + "§][§^^§" + hasAtt + "§][§^^§" + size + "§][§^^§" + msgid + "§][§^^§" + body;
 	}
 	// If the subject begins with a lowercase letter, the sorting will be wrong
 	// so it is changed in uppercase. To track this and restore the original

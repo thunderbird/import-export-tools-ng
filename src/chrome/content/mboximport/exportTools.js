@@ -1016,7 +1016,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	}
 	data = data + "</table></body></html>";
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
@@ -1160,7 +1160,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 		data = data + "</tr>";
 	}
 	data = data + "</table></body></html>";
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
 }
 
 
@@ -1291,7 +1291,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null);
+	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
 }
 
 
@@ -1902,13 +1902,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
 
 						var nfile = appendClone.leafName + ".txt";
-						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time);
+						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 					} else if (convertToText) {
 						data = IETconvertToUTF8(data);
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time);
+						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 					} else {
 						data = IETconvertToUTF8(data);
-						IOUtils.writeUTF8(clone.path, data)
+						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
 					}
 
 					IETexported = IETexported + 1;
@@ -2208,9 +2208,13 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-function IETwriteDataOnDiskWithCharset(file, data, append, fname, time) {
+function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
 	var os;
 	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
+	if (charsetOverride) {
+		charset = charsetOverride;
+	}
+
 	if (charset.indexOf("(BOM)") > -1) {
 		charset = "UTF-8";
 		data = "\ufeff" + data;

@@ -1590,9 +1590,14 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// so in this case the first line is deleted
 	data = data.replace(/^From\s+.+\r?\n/, "");
 
+	var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
+
 	// Prologue needed to add the message to the folder
-	//var prologue = "From - " + nowString + "\n"; // The first line must begin with "From -", the following is not important
-	var prologue = "";
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major > 115) {
+				prologue = "";
+			}
+
 	// If the message has no X-Mozilla-Status, we add them to it
 	if (!data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";

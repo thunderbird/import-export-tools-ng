@@ -1411,7 +1411,18 @@ async function importEMLs(params) {
 
 var importEMLlistener = {
 
-	OnStartCopy: function () { },
+	onStartCopy: function () { 
+		console.log("start")
+	},
+
+	OnStartCopy: function () { 
+		console.log("start")
+	},
+
+	onStopCopy: function () { 
+		console.log("stop")
+		importEMLlistener.next();
+	},
 
 	OnStopCopy: function () {
 		if (this.removeFile)
@@ -1461,6 +1472,7 @@ var importEMLlistener = {
 
 	next: function () {
 		var nextFile;
+		console.log("next")
 
 		if (this.allEML && gEMLimported < gFileEMLarray.length) {
 			nextFile = gFileEMLarray[gEMLimported].file;
@@ -1497,14 +1509,19 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		file = IETemlx2eml(file);
 	}
 
+	console.log("try imp")
 	importEMLlistener.msgFolder = msgFolder;
 	importEMLlistener.removeFile = removeFile;
 	importEMLlistener.file = file;
 	importEMLlistener.fileArray = fileArray;
 	importEMLlistener.allEML = allEML;
 	if (String.prototype.trim && msgFolder.server.type === "imap") {
+		console.log("start copyf")
+
 		importEMLlistener.imap = true;
-		MailServices.copy.copyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
+		let rv = MailServices.copy.copyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
+	console.log(rv)
+
 		if (!removeFile) {
 			gEMLimported = gEMLimported + 1;
 			let errs = "";

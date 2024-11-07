@@ -15,6 +15,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOv
 
 function onLoad() {
 
+	console.log("search")
 	WL.injectElements(`
 
 <vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true" style="padding-left: 6px">

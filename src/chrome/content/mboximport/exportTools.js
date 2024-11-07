@@ -1905,6 +1905,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 					} else if (convertToText) {
 						data = IETconvertToUTF8(data);
+						console.log("top")
+						data = data.replace(/\r\n/,"");
+						console.log(data)
+
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 					} else {
 						data = IETconvertToUTF8(data);
@@ -2289,8 +2293,46 @@ function IEThtmlToText(data, msgFolder) {
 	// Windows 7 somehow eats CRLFs with convertMsgSnippetToPlainText
 	// Not worth figuring out why, we'll use old htmlformatconverter
 
-	// For Windows 7
-	if (navigator.userAgent.includes("Windows NT 6.1")) {
+	console.log(data)
+
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	console.log(tbVersion)
+
+	if (tbVersion.major == 128) {
+		console.log("v128")
+		data = data.replace(/<title>.*<\/title>\r/,"");
+
+	console.log(data)
+
+		const ParserUtils = Cc["@mozilla.org/parserutils;1"].getService(
+			Ci.nsIParserUtils
+		);
+
+		let options = {};
+		options.flowed = true;
+		let wrapWidth = 0;
+		let flags =
+			Ci.nsIDocumentEncoder.OutputLFLineBreak |
+			Ci.nsIDocumentEncoder.OutputDisallowLineBreaking;
+
+		if (options?.flowed) {
+			wrapWidth = 72;
+			flags |=
+				Ci.nsIDocumentEncoder.OutputFormatted |
+				Ci.nsIDocumentEncoder.OutputFormatFlowed;
+		}
+
+		let res = ParserUtils.convertToPlainText(data, flags, wrapWidth).trim();
+	console.log(res)
+
+		res = fixClipHdrs(res);
+		res = res.replace(/^\r\n/,"");
+
+	console.log(res)
+
+		return res;
+	} else if (navigator.userAgent.includes("Windows NT 6.1")) {
+		// For Windows 7
 
 		var toStr = {};
 		var formatConverter = Cc["@mozilla.org/widget/htmlformatconverter;1"].createInstance(Ci.nsIFormatConverter);
@@ -2349,7 +2391,12 @@ function fixClipHdrs(strValue) {
 	if (os.indexOf("win") > -1) {
 		head = strValue.match(/(.+\r?\n)*/)[0];
 		text = strValue.replace(/(.+\r?\n)*/, "");
-		headcorrect = head.replace(/:\r?\n/g, ": ");
+		console.log("head")
+
+		console.log(head)
+		headcorrect = head.replaceAll(/:\r?\n/g, ": ");
+		console.log(headcorrect)
+
 		text = text.replaceAll(/(?<!\r)\n/g, "\r\n");
 		headcorrect = headcorrect.replaceAll(/(?<!\r)\n/g, "\r\n");
 	} else {

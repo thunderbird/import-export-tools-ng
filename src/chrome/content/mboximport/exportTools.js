@@ -1905,9 +1905,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 					} else if (convertToText) {
 						data = IETconvertToUTF8(data);
-						console.log("top")
 						data = data.replace(/\r\n/,"");
-						console.log(data)
 
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 					} else {
@@ -2293,16 +2291,15 @@ function IEThtmlToText(data, msgFolder) {
 	// Windows 7 somehow eats CRLFs with convertMsgSnippetToPlainText
 	// Not worth figuring out why, we'll use old htmlformatconverter
 
-	console.log(data)
-
 	const tbVersion = ietngUtils.getThunderbirdVersion();
-	console.log(tbVersion)
 
 	if (tbVersion.major == 128) {
-		console.log("v128")
+		// These mods are required for the new converter
+		// Combining the three header tables removes the line breaks 
+		// between tables
 		data = data.replace(/<title>.*<\/title>\r/,"");
-
-	console.log(data)
+		data = data.replace(/<\/table><table.*moz-header-part2 moz-main-header">/,"");
+		data = data.replace(/<\/table><table.*moz-header-part3 moz-main-header">/,"");
 
 		const ParserUtils = Cc["@mozilla.org/parserutils;1"].getService(
 			Ci.nsIParserUtils
@@ -2323,12 +2320,9 @@ function IEThtmlToText(data, msgFolder) {
 		}
 
 		let res = ParserUtils.convertToPlainText(data, flags, wrapWidth).trim();
-	console.log(res)
 
 		res = fixClipHdrs(res);
 		res = res.replace(/^\r\n/,"");
-
-	console.log(res)
 
 		return res;
 	} else if (navigator.userAgent.includes("Windows NT 6.1")) {
@@ -2391,11 +2385,7 @@ function fixClipHdrs(strValue) {
 	if (os.indexOf("win") > -1) {
 		head = strValue.match(/(.+\r?\n)*/)[0];
 		text = strValue.replace(/(.+\r?\n)*/, "");
-		console.log("head")
-
-		console.log(head)
 		headcorrect = head.replaceAll(/:\r?\n/g, ": ");
-		console.log(headcorrect)
 
 		text = text.replaceAll(/(?<!\r)\n/g, "\r\n");
 		headcorrect = headcorrect.replaceAll(/(?<!\r)\n/g, "\r\n");

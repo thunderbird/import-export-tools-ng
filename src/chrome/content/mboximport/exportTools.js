@@ -2293,7 +2293,7 @@ function IEThtmlToText(data, msgFolder) {
 
 	const tbVersion = ietngUtils.getThunderbirdVersion();
 
-	if (tbVersion.major == 128) {
+	if (tbVersion.major >= 128) {
 		// These mods are required for the new converter
 		// Combining the three header tables removes the line breaks 
 		// between tables

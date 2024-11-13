@@ -630,6 +630,9 @@ export var mboxImportExport = {
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 
+      // make line endings uniformly LF per RFC #607
+      msgsBuffer = msgsBuffer.replace(/\r\n/g, "\n");
+
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
         ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);

@@ -631,7 +631,29 @@ export var mboxImportExport = {
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 
       // make line endings uniformly LF per RFC #607
-      msgsBuffer = msgsBuffer.replace(/\r\n/g, "\n");
+
+      let mle = msgsBuffer.matchAll(/\r\n/g);
+      console.log("Total \\r\\n",[...mle]?.length)
+      msgsBuffer = msgsBuffer.replaceAll(/\r\n/g, "\n");
+
+      console.log(msgsBuffer)
+      mle = msgsBuffer.matchAll(/\r\n/g);
+      console.log("Total \\r\\n",[...mle]?.length);
+      mle = msgsBuffer.matchAll(/\n/g);
+      console.log("Total \\n",[...mle]?.length);
+      
+      mle = msgsBuffer.matchAll(/\r/g);
+      let mlecr = [...mle]
+      console.log("Total \\r",[...mle]?.length);
+      if (mlecr.length) {
+        console.log("Remove CRs")
+        msgsBuffer = msgsBuffer.replaceAll(/\r/g, "");
+
+      }
+      mle = msgsBuffer.matchAll(/\n/g);
+
+      let mlearr = [...mle]
+      console.log(mlearr[0]?.input)
 
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {

@@ -68,42 +68,56 @@ export var mboxImportExport = {
     let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
     let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
 
+    try {
+      if (params.mboxImpType == "individual") {
+        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
+        if (fpRes.result == -1) {
+          return;
+        }
+        mboxFiles = fpRes.filesArray;
+      } else {
+        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
+        if (fpRes.result == -1) {
+          return;
+        }
+        console.log("imp mbox setup - scan files")
 
-    if (params.mboxImpType == "individual") {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
-      if (fpRes.result == -1) {
-        return;
+        mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
       }
-      mboxFiles = fpRes.filesArray;
-    } else {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
-      if (fpRes.result == -1) {
-        return;
-      }
-    console.log("imp mbox setup - scan files")
 
-      mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
+
+      var msgFolder;
+
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+
+      console.log("imp mbox setup - call imp")
+
+      await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+
+      let total = this.totalImported + this.totalSkipped;
+      let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
+      let result = `${doneMsg}: ${this.totalImported}/${total}`;
+
+      await new Promise(r => window.setTimeout(r, 2500));
+
+      ietngUtils.writeStatusLine(window, result, 8000);
+      // wait for status done, remove our status element
+      await new Promise(r => window.setTimeout(r, 8000));
+      window.document.getElementById("ietngStatusText").remove();
+    } catch (ex) {
+      console.log(ex.extendedMsg)
+      let errMsg = ex;
+      if (ex.extendedMsg) {
+        errMsg += `\n\n${ex.extendedMsg}`;
+      }
+      console.log(errMsg)
+
+      Services.prompt.alert(window, "Error", errMsg);
+
     }
-
-
-    var msgFolder;
-
-    msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
-
-    console.log("imp mbox setup - call imp")
-
-    await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
-
-    let total = this.totalImported + this.totalSkipped;
-    let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
-    let result = `${doneMsg}: ${this.totalImported}/${total}`;
-
-    await new Promise(r => window.setTimeout(r, 2500));
-
-    ietngUtils.writeStatusLine(window, result, 8000);
-    // wait for status done, remove our status element
-    await new Promise(r => window.setTimeout(r, 8000));
-    window.document.getElementById("ietngStatusText").remove();
+    if (this.totalImported > 200) {
+      Services.prompt.alert(window, "Warning", "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database." );
+    }
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
@@ -111,81 +125,81 @@ export var mboxImportExport = {
     var useCopyImport;
     var skipMbox;
 
-    //try {
-      console.log("start")
-      for (let i = 0; i < files.length; i++) {
-        useCopyImport = false;
-        skipMbox = false;
+    for (let i = 0; i < files.length; i++) {
+      useCopyImport = false;
+      skipMbox = false;
 
-        const mboxFilePath = files[i];
+      const mboxFilePath = files[i];
 
-        let stat = await IOUtils.stat(mboxFilePath);
-        let fname = PathUtils.filename(mboxFilePath);
+      let stat = await IOUtils.stat(mboxFilePath);
+      let fname = PathUtils.filename(mboxFilePath);
 
-        let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
+      let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
 
-        if (stat.size > 30000000000) {
-          console.log(`Mbox ${fname} larger than 4GB, skipping`);
-          //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
+      if (stat.size > 30000000000) {
+        console.log(`Mbox ${fname} larger than 4GB, skipping`);
+        //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
 
-          let prompt = Services.prompt;
-          let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
-          let buttonReturn = Services.prompt.confirmEx(window, "Mbox over 4GB",
-            "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
+        let prompt = Services.prompt;
+        let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
+        let buttonReturn = Services.prompt.confirmEx(window, "Mbox over 4GB",
+          "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
 
-            buttonFlags,
-            "Use Copy Import",
-            "Skip mbox import",
-            "",
-            null, {});
+          buttonFlags,
+          "Use Copy Import",
+          "Skip mbox import",
+          "",
+          null, {});
 
-          console.log(buttonReturn)
-          if (buttonReturn == 0) {
-            useCopyImport = true;
-          } else {
-            skipMbox = true;
-          }
-        }
-
-        let impMsg = this.mboximportbundle.GetStringFromName("importing");
-
-        ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
-
-        let rv = await this._isMboxFile(mboxFilePath);
-        if (!(await this._isMboxFile(mboxFilePath))) {
-          let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
-
-          console.log("IETNG: " + skipNonMboxMsg + ": " + mboxFilePath);
-          ietngUtils.writeStatusLine(window, skipNonMboxMsg + ": " + PathUtils.filename(mboxFilePath), 3000);
-          this.totalSkipped++;
-          continue;
-        }
-
-        var subMsgFolder;
-        if (useCopyImport) {
-          console.log("usecopy")
-          subMsgFolder = await this._copyImportMboxFile(mboxFilePath, msgFolder);
-
-        } else if (!skipMbox) {
-          subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
+        console.log(buttonReturn)
+        if (buttonReturn == 0) {
+          useCopyImport = true;
         } else {
-          subMsgFolder = await this._createEmptyMboxFile(mboxFilePath, msgFolder);
-
-        }
-        if (subMsgFolder) {
-          this.totalImported++;
-        }
-
-        if (recursive && await this._ifSbdExists(mboxFilePath)) {
-          var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
-          await this.importMboxFiles(subFiles, subMsgFolder, recursive);
+          skipMbox = true;
         }
       }
-    /*
-    } catch (ex) {
-      console.log(ex);
+
+      let impMsg = this.mboximportbundle.GetStringFromName("importing");
+
+      ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
+
+      let rv = await this._isMboxFile(mboxFilePath);
+      if (!(await this._isMboxFile(mboxFilePath))) {
+        let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
+
+        console.log("IETNG: " + skipNonMboxMsg + ": " + mboxFilePath);
+        ietngUtils.writeStatusLine(window, skipNonMboxMsg + ": " + PathUtils.filename(mboxFilePath), 3000);
+        this.totalSkipped++;
+        continue;
+      }
+
+      var subMsgFolder;
+      if (useCopyImport) {
+        console.log("usecopy")
+        subMsgFolder = await this._copyImportMboxFile(mboxFilePath, msgFolder);
+
+      } else if (!skipMbox) {
+        subMsgFolder = await this._importMboxFile(mboxFilePath, msgFolder);
+      } else {
+        subMsgFolder = await this._createEmptyMboxFile(mboxFilePath, msgFolder);
+
+      }
+      if (subMsgFolder) {
+        this.totalImported++;
+      }
+
+      if (recursive && await this._ifSbdExists(mboxFilePath)) {
+        var subFiles = await this._scanSbdDirForFiles(mboxFilePath);
+        await this.importMboxFiles(subFiles, subMsgFolder, recursive);
+      }
     }
-      */
+
+    await new Promise(r => window.setTimeout(r, 100));
+    await this.rebuildSummary(msgFolder);
+    await new Promise(r => window.setTimeout(r, 1000));
+
+    console.log("Final msgFolder rebuild done")
+
   },
 
 
@@ -288,7 +302,7 @@ export var mboxImportExport = {
           continue;
         }
         if (await this._isMboxFile(f)) {
-          console.log("mfile",f)
+          console.log("mfile", f)
           mboxFiles.push(f);
         }
       }
@@ -424,52 +438,73 @@ export var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    await new Promise(async (resolve, reject) => {
+    try {
+      let res = await new Promise(async (resolve, reject) => {
 
-      msgFolder.AddFolderListener(
-        {
-          onFolderAdded(parentFolder, childFolder) {
-            resolve();
-          },
-          onMessageAdded() { },
-          onFolderRemoved() { },
-          onMessageRemoved() { },
-          onFolderPropertyChanged() { },
-          onFolderIntPropertyChanged() { },
-          onFolderBoolPropertyChanged() { },
-          onFolderUnicharPropertyChanged() { },
-          onFolderPropertyFlagChanged() { },
-          onFolderEvent() { },
-        });
+        msgFolder.AddFolderListener(
+          {
+            onFolderAdded(parentFolder, childFolder) {
+              resolve(childFolder);
+            },
+            onMessageAdded() { },
+            onFolderRemoved() { },
+            onMessageRemoved() { },
+            onFolderPropertyChanged() { },
+            onFolderIntPropertyChanged() { },
+            onFolderBoolPropertyChanged() { },
+            onFolderUnicharPropertyChanged() { },
+            onFolderPropertyFlagChanged() { },
+            onFolderEvent() { },
+          });
 
-      try {
-    console.log("create fol", subFolderName, this.totalFoldersCreated)
+        try {
+          console.log("create fol", subFolderName, this.totalFoldersCreated)
 
-        msgFolder.createSubfolder(subFolderName, window.msgWindow);
-        this.totalFoldersCreated++;
-    console.log("create fol done", subFolderName, this.totalFoldersCreated)
+          msgFolder.createSubfolder(subFolderName, window.msgWindow);
+          this.totalFoldersCreated++;
+          console.log("create fol done", subFolderName, this.totalFoldersCreated)
 
-      } catch (ex) {
-        console.log("cfol err retry")
-        await new Promise(r => window.setTimeout(r, 100));
-        await this.rebuildSummary(msgFolder);
-        await new Promise(r => window.setTimeout(r, 1000));
+        } catch (ex) {
 
-        console.log("rebuild done")
+          try {
+            console.log("cfol err retry")
+            await new Promise(r => window.setTimeout(r, 100));
+            await this.rebuildSummary(msgFolder);
+            await new Promise(r => window.setTimeout(r, 1000));
 
-        msgFolder.createSubfolder(subFolderName, window.msgWindow);
-        this.totalFoldersCreated++;
-       
-        console.log("retry ok")
+            console.log("rebuild done")
 
-      }
+            msgFolder.createSubfolder(subFolderName, window.msgWindow);
+            this.totalFoldersCreated++;
+
+            console.log("retry ok")
+          } catch (ex) {
+            ex.extendedMsg = `Error creating subfolder: ${subFolderName}`
+            reject(ex);
+          }
+
+
+        }
+      });
+    } catch (ex) {
+
+      console.log(" exc ", ex)
+      throw (ex)
+    }
+
+    /*
+    res.then( (ex) =>{
+      console.log("created")
+    }).catch( (ex) =>{
+      console.log(ex)
     });
+*/
 
     if ((this.totalFoldersCreated % 100) == 1000) {
       console.log(`CreatedFolders: ${this.totalFoldersCreated}`)
       await new Promise(r => window.setTimeout(r, 200));
-        await this.rebuildSummary(msgFolder);
-        console.log("rebuild done")
+      await this.rebuildSummary(msgFolder);
+      console.log("rebuild done")
     }
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;

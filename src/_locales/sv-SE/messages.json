@@ -123,7 +123,7 @@
         "message": "Importera profil"
     },
     "buttonMenu_Options.title": {
-        "message": "alternativ"
+        "message": "Alternativ"
     },
     "captionCustomize": {
         "message": "Anpassat format för filnamn"
@@ -144,7 +144,7 @@
         "message": "Hjälp"
     },
     "ctxMenu_Options.title": {
-        "message": "alternativ"
+        "message": "Alternativ"
     },
     "customDate": {
         "message": "Anpassad datum:"
@@ -634,7 +634,8 @@
     },
     "Size": {
         "message": "Storlek"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Latinisera transformera"

@@ -1904,9 +1904,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						var nfile = appendClone.leafName + ".txt";
 						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 					} else if (convertToText) {
-						data = IETconvertToUTF8(data);
-						data = data.replace(/\r\n/,"");
-
 						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 					} else {
 						data = IETconvertToUTF8(data);
@@ -2297,9 +2294,9 @@ function IEThtmlToText(data, msgFolder) {
 		// These mods are required for the new converter
 		// Combining the three header tables removes the line breaks 
 		// between tables
-		data = data.replace(/<title>.*<\/title>\r/,"");
-		data = data.replace(/<\/table><table.*moz-header-part2 moz-main-header">/,"");
-		data = data.replace(/<\/table><table.*moz-header-part3 moz-main-header">/,"");
+		dataUTF8 = dataUTF8.replace(/<title>.*<\/title>\r/,"");
+		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part2 moz-main-header">/,"");
+		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part3 moz-main-header">/,"");
 
 		const ParserUtils = Cc["@mozilla.org/parserutils;1"].getService(
 			Ci.nsIParserUtils
@@ -2319,7 +2316,7 @@ function IEThtmlToText(data, msgFolder) {
 				Ci.nsIDocumentEncoder.OutputFormatFlowed;
 		}
 
-		let res = ParserUtils.convertToPlainText(data, flags, wrapWidth).trim();
+		let res = ParserUtils.convertToPlainText(dataUTF8, flags, wrapWidth).trim();
 
 		res = fixClipHdrs(res);
 		res = res.replace(/^\r\n/,"");

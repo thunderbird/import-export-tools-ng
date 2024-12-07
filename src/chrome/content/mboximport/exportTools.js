@@ -1356,6 +1356,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							data = IETescapeBeginningFrom(data);
 						}
 						var fileClone = file.clone();
+						data = data.replace(/\r\n/g, "\n");
+
 						IETwriteDataOnDisk(fileClone, data, true, null, null);
 						sub = true;
 					} else {

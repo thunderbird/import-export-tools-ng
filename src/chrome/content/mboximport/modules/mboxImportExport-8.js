@@ -80,8 +80,6 @@ export var mboxImportExport = {
         if (fpRes.result == -1) {
           return;
         }
-        console.log("imp mbox setup - scan files")
-
         mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
       }
 
@@ -89,8 +87,6 @@ export var mboxImportExport = {
       var msgFolder;
 
       msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
-
-      console.log("imp mbox setup - call imp")
 
       await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
 
@@ -105,18 +101,16 @@ export var mboxImportExport = {
       await new Promise(r => window.setTimeout(r, 8000));
       window.document.getElementById("ietngStatusText").remove();
     } catch (ex) {
-      console.log(ex.extendedMsg)
       let errMsg = ex;
       if (ex.extendedMsg) {
         errMsg += `\n\n${ex.extendedMsg}`;
       }
-      console.log(errMsg)
 
       Services.prompt.alert(window, "Error", errMsg);
-
     }
+
     if (this.totalImported > 200) {
-      Services.prompt.alert(window, "Warning", "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database." );
+      Services.prompt.alert(window, "Warning", "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database.");
     }
   },
 
@@ -302,7 +296,6 @@ export var mboxImportExport = {
           continue;
         }
         if (await this._isMboxFile(f)) {
-          console.log("mfile", f)
           mboxFiles.push(f);
         }
       }
@@ -457,55 +450,42 @@ export var mboxImportExport = {
             onFolderEvent() { },
           });
 
-        try {
-          console.log("create fol", subFolderName, this.totalFoldersCreated)
+        // createSubfolder will fail under some circumstances when
+        // doing large imports. Failures start around 250+ and become 
+        // persistent around 500+. The failures above 500 are likely 
+        // do to Windows file descriptor limits.
+        // A rebuildSummary followed by a createSubfolder retry
+        // recovers the operation in most circumstances.
+        // Odd database behaviors have sometimes been observed 
+        // even if recovery succeeded 
 
+        try {
           msgFolder.createSubfolder(subFolderName, window.msgWindow);
           this.totalFoldersCreated++;
-          console.log("create fol done", subFolderName, this.totalFoldersCreated)
-
         } catch (ex) {
 
           try {
-            console.log("cfol err retry")
+            console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
             await new Promise(r => window.setTimeout(r, 100));
             await this.rebuildSummary(msgFolder);
             await new Promise(r => window.setTimeout(r, 1000));
 
-            console.log("rebuild done")
-
             msgFolder.createSubfolder(subFolderName, window.msgWindow);
+            console.log("IETNG: Recovery succeeded");
             this.totalFoldersCreated++;
-
-            console.log("retry ok")
           } catch (ex) {
-            ex.extendedMsg = `Error creating subfolder: ${subFolderName}`
+            console.log("IETNG: Recovery failed");
+            // extend exception to include msg with subfolder name
+            ex.extendedMsg = `Error creating subfolder: ${subFolderName}`;
             reject(ex);
           }
-
-
         }
       });
     } catch (ex) {
-
-      console.log(" exc ", ex)
-      throw (ex)
+      // Throw error to allow termination
+      throw (ex);
     }
 
-    /*
-    res.then( (ex) =>{
-      console.log("created")
-    }).catch( (ex) =>{
-      console.log(ex)
-    });
-*/
-
-    if ((this.totalFoldersCreated % 100) == 1000) {
-      console.log(`CreatedFolders: ${this.totalFoldersCreated}`)
-      await new Promise(r => window.setTimeout(r, 200));
-      await this.rebuildSummary(msgFolder);
-      console.log("rebuild done")
-    }
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;

@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v8 -2");
+console.log("IETNG: mboximportExport.js -v8");
 
 export var mboxImportExport = {
 
@@ -52,7 +52,6 @@ export var mboxImportExport = {
   },
 
   importMboxSetup: async function (params) {
-    console.log("imp mbox setup")
     // create our ietng status line
     ietngUtils.createStatusLine(window);
 
@@ -191,8 +190,6 @@ export var mboxImportExport = {
     await new Promise(r => window.setTimeout(r, 100));
     await this.rebuildSummary(msgFolder);
     await new Promise(r => window.setTimeout(r, 1000));
-
-    console.log("Final msgFolder rebuild done")
 
   },
 
@@ -568,7 +565,6 @@ export var mboxImportExport = {
 
 
     let st = new Date();
-    //console.log("Start: ", st, msgFolder.prettyName);
 
     var mboxDestPath = dest;
     var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
@@ -669,47 +665,21 @@ export var mboxImportExport = {
       let m = rawBytes.matchAll(/(^X-Mozilla-Status: [0-9A-Fa-f]{3})([0-9A-Fa-f])/gm)
       m = [...m];
       if (m[0]) {
-        let b = (parseInt(m[0][2], 16))
+        let b = (parseInt(m[0][2], 16));
         const kExpungeBit = 0x8;
         let mask = ~kExpungeBit;
         b &= mask;
-        b = b.toString(16)
+        b = b.toString(16);
         rawBytes = rawBytes.replace(m[0][0], m[0][1] + b);
       }
-      //rawBytes = rawBytes.replace( /^X-Mozilla-Status: [0-9A-Fa-f]{4}/gm, "X-Mozilla-Status: 0000");
-      //rawBytes = rawBytes.replace( /^X-Mozilla-Status2: [0-9A-Fa-f]{8}/gm, "X-Mozilla-Status2: 00000000");
-
 
       // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");
+      // make line endings uniformly LF per RFC #607
+      rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-
-      // make line endings uniformly LF per RFC #607
-
-      let mle = msgsBuffer.matchAll(/\r\n/g);
-      console.log("Total \\r\\n", [...mle]?.length)
-      msgsBuffer = msgsBuffer.replaceAll(/\r\n/g, "\n");
-
-      console.log(msgsBuffer)
-      mle = msgsBuffer.matchAll(/\r\n/g);
-      console.log("Total \\r\\n", [...mle]?.length);
-      mle = msgsBuffer.matchAll(/\n/g);
-      console.log("Total \\n", [...mle]?.length);
-
-      mle = msgsBuffer.matchAll(/\r/g);
-      let mlecr = [...mle]
-      console.log("Total \\r", [...mle]?.length);
-      if (mlecr.length) {
-        console.log("Remove CRs")
-        msgsBuffer = msgsBuffer.replaceAll(/\r/g, "");
-
-      }
-      mle = msgsBuffer.matchAll(/\n/g);
-
-      let mlearr = [...mle]
-      console.log(mlearr[0]?.input)
-
+  
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
         ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);

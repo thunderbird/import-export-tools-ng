@@ -143,12 +143,18 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-		if (dirName && !autoBackup.filePicker) {
-			clone.append(dirName);
-			if (!clone.exists())
-				clone.create(1, 0755);
+		// add date and unique suffix for custom name
+		var date;
+		if (dirName) {
+			date = buildContainerDirName();
+			clone.append(dirName + "-" + date);
+			clone.createUnique(1, 0755);
+			autoBackup.unique = true;
+			autoBackup.baseContainerName = dirName;
+			autoBackup.fullContainerName = clone.path;
+			console.log(autoBackup.fullContainerName)
 		} else {
-			var date = buildContainerDirName();
+			date = buildContainerDirName();
 			clone.append(autoBackup.profDir.leafName + "-" + date);
 			clone.createUnique(1, 0755);
 			autoBackup.unique = true;
@@ -200,6 +206,7 @@ var autoBackup = {
 			force = true;
 
 		var lmt = entry.lastModifiedTime / 1000;
+		console.log(entry.path)
 		// Check if exists a older file to replace in the backup directory
 		if (force || lmt > autoBackup.last) {
 			var entrypath = entry.parent.path;
@@ -210,8 +217,10 @@ var autoBackup = {
 			LF.initWithPath(newpath);
 			var LFclone = LF.clone();
 			LFclone.append(entry.leafName);
-			if (LFclone.exists())
+			if (LFclone.exists()) {
 				LFclone.remove(false);
+			console.log("old", LFclone.path)
+			}
 			try {
 				autoBackup.array1.push(entry);
 				autoBackup.array2.push(LF);

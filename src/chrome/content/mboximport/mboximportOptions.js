@@ -37,6 +37,7 @@ function IETsetCharsetPopup(charsetPref) {
 }
 
 function initMboxImportPanel() {
+
     var IETngVersion = window.opener.ietng.extension.addonData.version;
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
@@ -236,10 +237,12 @@ function initMboxImportPanel() {
             document.getElementById("frequencyList").disabled = true;
     }
 
+
     try {
         document.getElementById("backupDir").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir");
-        document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
     } catch (e) { }
+
+    document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
 
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     var dir = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");

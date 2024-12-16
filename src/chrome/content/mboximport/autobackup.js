@@ -146,24 +146,28 @@ var autoBackup = {
 		// add date and unique suffix for custom name
 		var date;
 		if (dirName) {
+			autoBackup.backupDirPath = clone.path;
 			date = buildContainerDirName();
 			clone.append(dirName + "-" + date);
 			clone.createUnique(1, 0755);
 			autoBackup.unique = true;
-			autoBackup.baseContainerName = dirName;
-			autoBackup.fullContainerName = clone.path;
-			console.log(autoBackup.fullContainerName)
+			autoBackup.backupContainerBaseName = dirName;
+			autoBackup.backupContainerPath = clone.path;
+			console.log(autoBackup.backupDirPath)
+			console.log(autoBackup.backupContainerBaseName)
+			console.log(autoBackup.backupContainerPath)
+
 		} else {
 			autoBackup.backupDirPath = clone.path;
 			date = buildContainerDirName();
 			clone.append(autoBackup.profDir.leafName + "-" + date);
 			clone.createUnique(1, 0755);
-			autoBackup.backupContainerName = clone.leafName;
+			autoBackup.backupContainer = clone.path;
 			autoBackup.backupContainerBaseName = autoBackup.profDir.leafName;
 			autoBackup.unique = true;
 			console.log(autoBackup.backupDirPath)
 			console.log(autoBackup.backupContainerBaseName)
-
+			console.log(autoBackup.backupContainerPath)
 
 		}
 
@@ -213,7 +217,6 @@ var autoBackup = {
 			force = true;
 
 		var lmt = entry.lastModifiedTime / 1000;
-		console.log(entry.path)
 		// Check if exists a older file to replace in the backup directory
 		if (force || lmt > autoBackup.last) {
 			var entrypath = entry.parent.path;
@@ -295,9 +298,21 @@ var autoBackup = {
 		console.log("remove oldBackups")
 
 		let oldBackups = (await IOUtils.getChildren(autoBackup.backupDirPath))
-			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName));
+			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
+				&& fn != autoBackup.backupContainerPath);
 
-		console.log(oldBackups)
+			oldBackups = await Promise.all(oldBackups.map(async fn => {
+				return {fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified};
+				}));
+
+				oldBackups.sort((a, b) => a.lastModified - b.lastModified);
+		console.log(oldBackups.map(fn => fn.lastModified))
+		let rn = Math.max(0, oldBackups.length - 8 + 1)
+		oldBackups = oldBackups.slice(0, rn);
+		for (const fo of oldBackups) {
+			await IOUtils.remove(fo.fn, {recursive: true});
+		}
+		
 	},
 
 	scanExternal: function (destDir) {

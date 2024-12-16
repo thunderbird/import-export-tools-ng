@@ -154,10 +154,17 @@ var autoBackup = {
 			autoBackup.fullContainerName = clone.path;
 			console.log(autoBackup.fullContainerName)
 		} else {
+			autoBackup.backupDirPath = clone.path;
 			date = buildContainerDirName();
 			clone.append(autoBackup.profDir.leafName + "-" + date);
 			clone.createUnique(1, 0755);
+			autoBackup.backupContainerName = clone.leafName;
+			autoBackup.backupContainerBaseName = autoBackup.profDir.leafName;
 			autoBackup.unique = true;
+			console.log(autoBackup.backupDirPath)
+			console.log(autoBackup.backupContainerBaseName)
+
+
 		}
 
 		// Here "clone" is the container directory for the backup
@@ -252,7 +259,7 @@ var autoBackup = {
 		}
 	},
 
-	write: function (index) {
+	write: async function (index) {
 		try {
 			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -276,8 +283,21 @@ var autoBackup = {
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
+			// new remove old backups
+		console.log("call oldBackups")
+
+			await autoBackup.removeOldBackups();
 			autoBackup.end(2);
 		}
+	},
+
+	removeOldBackups: async function () {
+		console.log("remove oldBackups")
+
+		let oldBackups = (await IOUtils.getChildren(autoBackup.backupDirPath))
+			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName));
+
+		console.log(oldBackups)
 	},
 
 	scanExternal: function (destDir) {

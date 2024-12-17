@@ -250,6 +250,9 @@ function initMboxImportPanel() {
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     document.getElementById("saveMode").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
 
+    var retainNumBackups = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+    document.getElementById("numBackupsList").selectedIndex = retainNumBackups;
+
     var last = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.last") * 1000;
     if (last > 0) {
         var time = new Date(last);
@@ -356,6 +359,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
+    IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
 }
 
 function customNamesCheck(el) {

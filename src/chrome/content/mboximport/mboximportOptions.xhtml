@@ -358,7 +358,22 @@
 								<radio label="__MSG_justMailFiles__" />
 							</radiogroup>
 						</hbox>
-						<html:div style="width: 10px; height: 10px;" ></html:div>
+						<html:div style="width: 10px; height: 14px;" ></html:div>
+						<hbox align="center">
+							<label value="Number of backups to retain: " />
+							<menulist id="numBackupsList">
+								<menupopup>
+									<menuitem label="__MSG_sdAll__" value="0" />
+									<menuitem label="1" value="1" />
+									<menuitem label="2" value="2" />
+									<menuitem label="3" value="3" />
+									<menuitem label="4" value="4" />
+									<menuitem label="5" value="5" />
+									<menuitem label="6" value="6" />
+								</menupopup>
+							</menulist>
+						</hbox>
+						<html:div style="width: 10px; height: 18px;" ></html:div>
 						<hbox align="center">
 							<label value="__MSG_lastBackup__: " />
 							<html:input id="backupLast" readonly="true" value="" size="35" />

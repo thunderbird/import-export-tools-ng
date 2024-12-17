@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -148,27 +148,23 @@ var autoBackup = {
 		if (dirName) {
 			autoBackup.backupDirPath = clone.path;
 			date = buildContainerDirName();
+			// replace illegal characters and '.' because it interferes with 
+			// createUnique
+			dirName = dirName.replace(/[\/\\:<>*\?\"\|\.]/g, "_");
 			clone.append(dirName + "-" + date);
 			clone.createUnique(1, 0755);
 			autoBackup.unique = true;
 			autoBackup.backupContainerBaseName = dirName;
 			autoBackup.backupContainerPath = clone.path;
-			console.log(autoBackup.backupDirPath)
-			console.log(autoBackup.backupContainerBaseName)
-			console.log(autoBackup.backupContainerPath)
-
 		} else {
 			autoBackup.backupDirPath = clone.path;
 			date = buildContainerDirName();
-			clone.append(autoBackup.profDir.leafName + "-" + date);
+			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
+			clone.append(baseDirName + "-" + date);
 			clone.createUnique(1, 0755);
-			autoBackup.backupContainer = clone.path;
-			autoBackup.backupContainerBaseName = autoBackup.profDir.leafName;
+			autoBackup.backupContainerPath = clone.path;
+			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
-			console.log(autoBackup.backupDirPath)
-			console.log(autoBackup.backupContainerBaseName)
-			console.log(autoBackup.backupContainerPath)
-
 		}
 
 		// Here "clone" is the container directory for the backup
@@ -286,20 +282,18 @@ var autoBackup = {
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
-			// new remove old backups
-			console.log("call oldBackups")
-
+			// new remove old backups #663
 			await autoBackup.removeOldBackups();
-			autoBackup.end(2);
+			autoBackup.end(3);
 		}
 	},
 
 	removeOldBackups: async function () {
-		console.log("remove oldBackups")
 		let retainNumBackups = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
 		if (retainNumBackups == 0) {
 			return;
 		}
+
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
@@ -309,13 +303,11 @@ var autoBackup = {
 		}));
 
 		removeBackupsList.sort((a, b) => a.lastModified - b.lastModified);
-		console.log(removeBackupsList.map(fn => fn.lastModified));
 		let rn = Math.max(0, removeBackupsList.length - retainNumBackups + 1);
 		removeBackupsList = removeBackupsList.slice(0, rn);
 		for (const fo of removeBackupsList) {
 			await IOUtils.remove(fo.fn, { recursive: true });
 		}
-
 	},
 
 	scanExternal: function (destDir) {

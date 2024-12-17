@@ -44,6 +44,7 @@ pref("extensions.importexporttoolsng.autobackup.type", 0);
 pref("extensions.importexporttoolsng.autobackup.frequency", 0);
 pref("extensions.importexporttoolsng.autobackup.dir_name_type", 0);
 pref("extensions.importexporttoolsng.autobackup.save_mode", 2);
+pref("extensions.importexporttoolsng.autobackup.retainNumBackups", 0);
 pref("extensions.importexporttoolsng.export.remote_warning", true);
 pref("extensions.importexporttoolsng.export.skip_existing_msg", false);
 pref("extensions.importexporttoolsng.autobackup.use_modal_dialog", true);

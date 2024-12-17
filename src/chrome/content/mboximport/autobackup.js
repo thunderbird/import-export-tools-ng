@@ -27,7 +27,7 @@
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
@@ -229,7 +229,7 @@ var autoBackup = {
 			LFclone.append(entry.leafName);
 			if (LFclone.exists()) {
 				LFclone.remove(false);
-			console.log("old", LFclone.path)
+				console.log("old", LFclone.path)
 			}
 			try {
 				autoBackup.array1.push(entry);
@@ -287,7 +287,7 @@ var autoBackup = {
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
 			// new remove old backups
-		console.log("call oldBackups")
+			console.log("call oldBackups")
 
 			await autoBackup.removeOldBackups();
 			autoBackup.end(2);
@@ -296,23 +296,26 @@ var autoBackup = {
 
 	removeOldBackups: async function () {
 		console.log("remove oldBackups")
-
-		let oldBackups = (await IOUtils.getChildren(autoBackup.backupDirPath))
+		let retainNumBackups = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+		if (retainNumBackups == 0) {
+			return;
+		}
+		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
 
-			oldBackups = await Promise.all(oldBackups.map(async fn => {
-				return {fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified};
-				}));
+		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
+			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
+		}));
 
-				oldBackups.sort((a, b) => a.lastModified - b.lastModified);
-		console.log(oldBackups.map(fn => fn.lastModified))
-		let rn = Math.max(0, oldBackups.length - 8 + 1)
-		oldBackups = oldBackups.slice(0, rn);
-		for (const fo of oldBackups) {
-			await IOUtils.remove(fo.fn, {recursive: true});
+		removeBackupsList.sort((a, b) => a.lastModified - b.lastModified);
+		console.log(removeBackupsList.map(fn => fn.lastModified));
+		let rn = Math.max(0, removeBackupsList.length - retainNumBackups + 1);
+		removeBackupsList = removeBackupsList.slice(0, rn);
+		for (const fo of removeBackupsList) {
+			await IOUtils.remove(fo.fn, { recursive: true });
 		}
-		
+
 	},
 
 	scanExternal: function (destDir) {
@@ -342,6 +345,6 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
-	i18n.updateDocument({extension: window.opener.ietngAddon.extension});
+	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });
 	autoBackup.load();
 });

@@ -20,14 +20,12 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
     <p>
-      - Novinka: Podpora Thunderbird v128 a v115<br />
-      - Novinka: Filtre a transformácie názvov súborov v používateľskom rozhraní<br />
-      - Oprava chýbajúcej konverzie UTF-8 pre exporty HTML a obyčajného textu #581<br />
-      - Opravte ja a zn-CH indexy #588<br />
-      - Opraviť polia Komu, Od a Odpovedať v exportoch HTML a Plaintext #586<br />
-      - Opravte možnosť dátumu exportu správy č. 585<br />
-      - Opravte konverziu LF pre obyčajný text Windows #584<br />
-      - Opravte nelegálny filter znakov názvu súboru #576<br />
+      - Novinka: Možnosť zálohovania počtu záloh, ktoré sa majú zachovať<br />
+      - Novinka: Podpora znakov Unicode v exportoch otvoreného textu #639<br />
+      - Opravte export CSV v dialógovom okne vyhľadávania č. 646<br />
+      - Opravte problémy s importom/exportom EML #631<br />
+      - Pridať poznámku do pomocníka ponuky importu mbox, platí len pre miestne priečinky, nie IMAP<br />
+      - Opravte exporty súborov mbox tak, aby používali zakončenie riadkov LF #607<br />
     </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
@@ -215,7 +213,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>(Importovať iba do miestnych priečinkov, nie IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -665,8 +663,8 @@
     <h2 id="ext_filename_format_help">Rozšírený formát názvu súboru:</h2>
     <br />
     <p>
-      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru možno vytvoriť pomocou tokenov,
-      ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
+      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú dostupné vo všetkých miestnych
       nastaveniach. Dostupné sú aj tokeny špecifické pre miestne nastavenia a sú uvedené pod anglickou
       tabuľkou.<br /><br />
@@ -897,7 +895,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

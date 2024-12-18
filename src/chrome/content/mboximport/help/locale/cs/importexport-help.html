@@ -20,20 +20,18 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydání:</h3>
     <p>
-      - Novinka: Podpora Thunderbird v128 a v115<br />
-      - Novinka: Filtry a transformace názvů souborů v uživatelském rozhraní<br />
-      - Oprava chybějící konverze UTF-8 pro exporty HTML a prostého textu #581<br />
-      - Opravte ja a zn-CH indexy #588<br />
-      - Opravit pole Komu, Od a Odpovědět v exportech HTML a prostého textu #586<br />
-      - Opravte možnost data exportu zprávy #585<br />
-      - Oprava převodu LF pro prostý text Windows #584<br />
-      - Opravte nelegální filtr znaků názvu souboru #576<br />
+      - Novinka: Možnost zálohování pro počet záloh, které se mají zachovat<br />
+      - Novinka: Podpora znaků Unicode v exportech prostého textu #639<br />
+      - Opravte export CSV v dialogovém okně vyhledávání #646<br />
+      - Opravte problémy s importem/exportem EML #631<br />
+      - Přidat poznámku k nápovědě nabídky importu mbox, platí pouze pro místní složky, nikoli pro IMAP<br />
+      - Opravte exporty souborů mbox tak, aby používaly konce řádků LF #607<br />
     </p>
     <h2 id="main_help">ImportExportTools Přehled a nabídky NG</h2>
     <p>
       ImportExportTools NG je navazující rozšíření založené na původní práci Paola „Kaosmos“. Rozšíření nabízí
-      několik funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka:
-      Některé formáty nejsou podporovány ve všech funkcích.<br />
+      více funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka: Některé
+      formáty nejsou podporovány ve všech funkcích.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -55,7 +53,7 @@
         má také položky nabídky Nápověda a Možnosti pro přístup k dialogu možností.<br />
       </p>
     </p>
-    <h3>Podpěra, podpora:</h3>
+    <h3>Podpora:</h3>
     <p>
       Odešlete problémy nebo požadavky na funkce v úložišti rozšíření GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
@@ -123,7 +121,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportujte zprávy ve složce jako soubory formátu EML (bez struktury/podsložek).<br />
+            Exportujte zprávy ze složek jako soubory formátu EML (bez struktury/podsložek).<br />
             Tím se také vytvoří indexový soubor HTML se seznamem každé zprávy.
           </td>
         </tr>
@@ -215,7 +213,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>(Importovat pouze do místních složek, nikoli IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -381,7 +379,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvořte soubor indexu CSV pro vybrané zprávy</td>
+          <td>Vytvořte indexový soubor CSV pro vybrané zprávy</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -429,7 +427,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Import kompletního profilu (e-mail, rozšíření, možnosti)</td>
+          <td>Import kompletního profilu (pošta, rozšíření, možnosti)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -447,10 +445,10 @@
     </table>
     <h2 id="customdate_format_help">Vlastní formát data</h2>
     <p>
-      Volba vlastního data umožňuje úplnou kontrolu nad formátováním data použitým pro oba soubory v indexu. V
-      rozevíracím seznamu názvů souborů je k dispozici výchozí formát &quot;Datum&quot; i nový vlastní formát
-      &quot;Datum (vlastní)&quot;. Vlastní datum lze také použít s tokenem ${date_custom} použitým v
-      rozšířených vlastních názvech souborů. Původní (výchozí) formát data je:<br />
+      Volba vlastního data umožňuje úplnou kontrolu nad formátováním data použitým pro oba soubory v indexu.
+      Jak výchozí formát &quot;Datum&quot;, tak i nový vlastní formát &quot;Datum (vlastní)&quot; jsou k
+      dispozici v rozevírací nabídce názvu souboru. Vlastní datum lze také použít s tokenem ${date_custom}
+      použitým v rozšířených vlastních názvech souborů. Původní (výchozí) formát data je:<br />
       RRRRMMDDHHmm: 202011060808<br /><br />
       Vlastní formát data využívá % sekvencí odpovídajících funkcím typu <code>strftime()</code> Unix. Je
       založen na JavaScriptovém portu
@@ -786,8 +784,8 @@
       Existuje několik nových funkcí a možností, které ještě nelze konfigurovat v dialogovém okně možností.
       Jakmile budou tyto funkce stabilizovány, budou přidány do uživatelského rozhraní.<br />
       Aby bylo možné je používat, musí být nastaveny v editoru konfigurace. Pro přístup k editoru použijte
-      nabídku Nástroje/Možnosti, poté vyberte sekci Pokročilé a ve spodní části bude tlačítko &#39;Editor
-      konfigurace&#39;. Pokud do vyhledávacího pole zadáte „importexporttoolsng“, zobrazí se všechny předvolby
+      nabídku Nástroje/Možnosti, poté vyberte sekci Pokročilé a ve spodní části se zobrazí tlačítko „Editor
+      konfigurace“. Pokud do vyhledávacího pole zadáte „importexporttoolsng“, zobrazí se všechny předvolby
       rozšíření. Podle potřeby pak můžete upravit různé níže uvedené předvolby.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
@@ -897,7 +895,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

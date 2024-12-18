@@ -20,14 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Σημειώσεις έκδοσης:</h3>
     <p>
-      - Νέο: Υποστήριξη Thunderbird v128 και v115<br />
-      - Νέο: Φίλτρα και μετασχηματισμοί για ονόματα αρχείων στη διεπαφή χρήστη<br />
-      - Διορθώστε τη μετατροπή UTF-8 που λείπει για εξαγωγές HTML και απλού κειμένου #581<br />
-      - Διορθώστε τους δείκτες ja και zn-CH #588<br />
-      - Διορθώστε τα πεδία Προς, Από και Απάντηση σε εξαγωγές HTML και απλού κειμένου #586<br />
-      - Διορθώστε την επιλογή ημερομηνίας εξαγωγής μηνύματος #585<br />
-      - Διορθώστε τη μετατροπή LF για απλό κείμενο των Windows #584<br />
-      - Διορθώστε το παράνομο φίλτρο χαρακτήρων ονόματος αρχείου #576<br />
+      - Νέο: Επιλογή δημιουργίας αντιγράφων ασφαλείας για τον αριθμό των αντιγράφων ασφαλείας προς
+      διατήρηση<br />
+      - Νέο: Υποστήριξη χαρακτήρων Unicode στις εξαγωγές απλού κειμένου #639<br />
+      - Διορθώστε την εξαγωγή CSV στο πλαίσιο διαλόγου αναζήτησης #646<br />
+      - Διορθώστε προβλήματα εισαγωγής/εξαγωγής EML #631<br />
+      - Προσθήκη σημείωσης στη βοήθεια του μενού εισαγωγής mbox, που ισχύει μόνο για Τοπικούς φακέλους και όχι
+      για IMAP<br />
+      - Διορθώστε τις εξαγωγές αρχείων mbox για χρήση των καταλήξεων γραμμής LF #607<br />
     </p>
     <h2 id="main_help">Επισκόπηση και μενού ImportExportTools NG</h2>
     <p>
@@ -97,7 +97,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
-          <td>Εξαγωγή ενός φακέλου σε ένα αρχείο μορφής mbox</td>
+          <td>Εξαγωγή ενός φακέλου σε αρχείο μορφής mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
@@ -227,7 +227,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>(Εισαγωγή μόνο σε τοπικούς φακέλους και όχι σε IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -314,7 +314,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Εξάγετε τα επιλεγμένα μηνύματα σε αρχεία μορφής EML<br />
+            Εξαγωγή των επιλεγμένων μηνυμάτων σε αρχεία μορφής EML<br />
             Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
           </td>
         </tr>
@@ -340,7 +340,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Εξάγετε τα μηνύματα ως αρχεία μορφής HTML συμπεριλαμβανομένων των συνημμένων.<br />
+            Εξάγετε τα μηνύματα ως αρχεία μορφής HTML, συμπεριλαμβανομένων των συνημμένων.<br />
             Αυτό δημιουργεί επίσης ένα αρχείο ευρετηρίου HTML που περιλαμβάνει κάθε μήνυμα.
           </td>
         </tr>
@@ -470,7 +470,7 @@
       αναπτυσσόμενο μενού ονόματος αρχείου. Η προσαρμοσμένη ημερομηνία μπορεί επίσης να χρησιμοποιηθεί με το
       διακριτικό ${date_custom} που χρησιμοποιείται στα εκτεταμένα προσαρμοσμένα ονόματα αρχείων. Η αρχική
       (προεπιλεγμένη) μορφή ημερομηνίας είναι:<br />
-      ΕΕΕΕΜΜΗΗΗμμ : 202011060808<br /><br />
+      ΕΕΕΕΜΜΗΗΜΜ : 202011060808<br /><br />
       Η προσαρμοσμένη μορφή ημερομηνίας χρησιμοποιεί ακολουθίες % που ταιριάζουν με τη λειτουργικότητα τύπου
       <code>strftime()</code> Unix. Βασίζεται σε μια θύρα JavaScript της
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
@@ -757,7 +757,7 @@
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
-        <td>Τοπική (<span id="locale1"></span> ) Σύμβολο</td>
+        <td>Τοπικά (<span id="locale1"></span> ) Σύμβολο</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -928,7 +928,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

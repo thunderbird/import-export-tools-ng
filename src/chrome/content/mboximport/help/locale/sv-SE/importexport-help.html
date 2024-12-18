@@ -20,37 +20,36 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
     <p>
-      - Nytt: stöd för Thunderbird v128 och v115<br />
-      - Nytt: Filtrerar och transformerar för filnamn i användargränssnittet<br />
-      - Åtgärda saknad UTF-8-konvertering för HTML- och klartextexport #581<br />
-      - Fixa ja- och zn-CH-index #588<br />
-      - Fixa till, från och Svara till-fält i HTML- och klartextexport #586<br />
-      - Fixa meddelandeexportdatumalternativ #585<br />
-      - Fixa LF-konvertering för Windows klartext #584<br />
-      - Åtgärda olagligt filnamnsteckenfilter #576<br />
+      - Nytt: Säkerhetskopieringsalternativ för antal säkerhetskopior att behålla<br />
+      - Nytt: Stöd Unicode-tecken i klartextexport #639<br />
+      - Fixa CSV-export i sökdialog #646<br />
+      - Åtgärda EML-import/exportproblem #631<br />
+      - Lägg till en anteckning till hjälpen för mbox-importmenyn, endast giltig för lokala mappar, inte
+      IMAP<br />
+      - Fixa mbox-filexporter för att använda LF-radändelser #607<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
-      ImportExportTools NG är en uppföljningstillägg baserad på originalverket av Paolo &quot;Kaosmos&quot;.
+      ImportExportTools NG är en uppföljningstillägg baserat på originalverket av Paolo &quot;Kaosmos&quot;.
       Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat inklusive: Obs:
       Vissa format stöds inte i alla funktioner.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
       - HTML<br />
-      - oformatterad text<br />
+      - klartext<br />
       - CSV (kommaseparerade värden)<br />
       - PDF<br /><br />
       Även om det mesta av funktionaliteten för kretsar kring meddelanden, finns det också stöd för import och
-      export av Thunderbird-profiler. Exporter kan också innehålla en HTML- eller CSV-indexfil.
+      export av Thunderbird-profiler. Exporter kan dessutom innehålla en HTML- eller CSV-indexfil.
       Säkerhetskopiering av Thunderbird-profilen är en annan funktion.<br />
       <p>
-        Tillgång till IETng-funktionalitet görs genom flera olika menyer som installeras av tillägget.
+        Tillgång till IETng-funktioner görs genom flera olika menyer som installeras av tillägget.
         Funktionerna är kontextkänsliga. Menyer läggs till för:<br />
         - Mapprutans sammanhang (mappoperation)<br />
         - Meddelandelistans sammanhang (utvalda meddelanden)<br />
-        - Menyn Verktyg (profil och säkerhetskopiering)<br /><br />
-        Det finns alternativ som är tillgängliga under &quot;Verktygsmenyn&quot; inte i
+        - Verktyg-menyn (profil och säkerhetskopiering)<br /><br />
+        Det alternativ som är tillgängliga under &quot;Verktygsmenyn&quot; finns inte i
         &quot;Hamburger&quot;-menyn, de kommer att finnas i en framtida version. Dessa funktioner är också
         tillgängliga i den nya knappen i verktygsfältet. Var och en av menyerna och knapparna har också ett
         hjälp- och alternativmenyalternativ för att komma åt alternativdialogrutan.<br />
@@ -215,7 +214,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>(Importera endast till lokala mappar, inte IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -658,8 +657,8 @@
       <li>
         <code class="code1">%T</code> - inte implementerat (använd <code class="code1">%H:%M:%S</code> )
       </li>
-      <li><code class="code1">%U</code> - inte implementerad</li>
-      <li><code class="code1">%W</code> - inte implementerad</li>
+      <li><code class="code1">%U</code> - inte implementerat</li>
+      <li><code class="code1">%W</code> - inte implementerat</li>
       <li><code class="code1">%+</code> - inte implementerat</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>
@@ -721,7 +720,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardformatet för datum. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
+        <td>Standard datumformat. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -897,7 +896,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

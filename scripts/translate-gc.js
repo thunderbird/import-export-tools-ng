@@ -16,10 +16,11 @@ const translate = new Translate({ projectId, key });
 // console.debug( translate );
 
 var translationArray = [
-  { key: "Error", text: "Error"},
-  { key: "Warning", text: "Warning"},
-  { key: "numRetainBackups", text: "Number of backups to retain:"},
-  { key: "createSubfolderErr", text: "Error creating subfolder:"},
+  { key: "Error.msg", text: "Error"},
+  { key: "Warning.msg", text: "Warning"},
+  { key: "numRetainBackups.msg", text: "Number of backups to retain:"},
+  { key: "createSubfolderErr.msg", text: "Error creating subfolder:"},
+  { key: "largeFolderImport.msg", text: "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database."},
 
 ];
 

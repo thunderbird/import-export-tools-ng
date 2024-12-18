@@ -665,5 +665,25 @@
 
 	"cancel.msg": {
 		"message": "取消"
+	},
+
+	"Error.msg": {
+		"message": "错误"
+	},
+
+	"Warning.msg": {
+		"message": "警告"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "要保留的备份数量："
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "创建子文件夹时出错："
+	},
+
+	"largeFolderImport.msg": {
+		"message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
 	}
 }

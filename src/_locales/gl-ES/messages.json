@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Cancelar"
+	},
+
+	"Error.msg": {
+		"message": "Erro"
+	},
+
+	"Warning.msg": {
+		"message": "Aviso"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Número de copias de seguridade a conservar:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Erro ao crear o subcartafol:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Importáronse máis de 200 cartafoles mbox.\nThunderbird debería reiniciarse para restablecer a base de datos."
 	}
 }

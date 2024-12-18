@@ -20,7 +20,7 @@ var translationArray = [
   { key: "Warning.msg", text: "Warning"},
   { key: "numRetainBackups.msg", text: "Number of backups to retain:"},
   { key: "createSubfolderErr.msg", text: "Error creating subfolder:"},
-  { key: "largeFolderImport.msg", text: "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database."},
+  { key: "largeFolderImport.msg", text: "More than 200 mbox folders imported.\\nThunderbird should be restarted to reset database."},
 
 ];
 

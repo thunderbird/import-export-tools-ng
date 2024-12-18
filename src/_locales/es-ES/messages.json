@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Cancelar"
+	},
+
+	"Error.msg": {
+		"message": "Error"
+	},
+
+	"Warning.msg": {
+		"message": "Advertencia"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Número de copias de seguridad a conservar:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Error al crear subcarpeta:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Se importaron más de 200 carpetas mbox.\nSe debe reiniciar Thunderbird para restablecer la base de datos."
 	}
 }

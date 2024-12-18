@@ -52,6 +52,9 @@ export var mboxImportExport = {
   },
 
   importMboxSetup: async function (params) {
+    
+    let largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
+
     // create our ietng status line
     ietngUtils.createStatusLine(window);
 
@@ -109,7 +112,7 @@ export var mboxImportExport = {
     }
 
     if (this.totalImported > 200) {
-      Services.prompt.alert(window, "Warning", "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database.");
+      Services.prompt.alert(window, "Warning", largeFolderImportMsg);
     }
   },
 

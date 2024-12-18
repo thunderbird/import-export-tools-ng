@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Megszünteti"
+	},
+
+	"Error.msg": {
+		"message": "Hiba"
+	},
+
+	"Warning.msg": {
+		"message": "Figyelmeztetés"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "A megőrzendő biztonsági másolatok száma:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Hiba az almappa létrehozásakor:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Több mint 200 mbox mappa importálva.\nAz adatbázis visszaállításához újra kell indítani a Thunderbird programot."
 	}
 }

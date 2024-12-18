@@ -663,5 +663,25 @@
 
 	"cancel.msg": {
 		"message": "Annullera"
+	},
+
+	"Error.msg": {
+		"message": "Fel"
+	},
+
+	"Warning.msg": {
+		"message": "Varning"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Antal säkerhetskopior att behålla:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Det gick inte att skapa undermapp:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Mer än 200 mbox-mappar importerade.\nThunderbird bör startas om för att återställa databasen."
 	}
 }

@@ -663,5 +663,25 @@
 
 	"cancel.msg": {
 		"message": "Abbrechen"
+	},
+
+	"Error.msg": {
+		"message": "Fehler"
+	},
+
+	"Warning.msg": {
+		"message": "Warnung"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Anzahl der aufzubewahrenden Sicherungen:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Fehler beim Erstellen des Unterordners:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Mehr als 200 Mbox-Ordner wurden importiert.\nThunderbird sollte neu gestartet werden, um die Datenbank zurückzusetzen."
 	}
 }

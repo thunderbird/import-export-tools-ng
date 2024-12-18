@@ -534,7 +534,7 @@
         "message": "Salva"
     },
     "savedirs": {
-        "message": "Directory per l&apos;esportazione"
+        "message": "Directory per l'esportazione"
     },
     "sdAll": {
         "message": "Tutti"
@@ -627,14 +627,15 @@
         "message": "Usa formato esteso"
     },
     "useMboxExt.label": {
-        "message": "Utilizza l&#39;estensione .mbox per i file mbox (non strutturati)"
+        "message": "Utilizza l'estensione .mbox per i file mbox (non strutturati)"
     },
     "CRconversion.statusMsg": {
         "message": "Conversione delle terminazioni di linea CR =&gt; CRLF"
     },
     "Size": {
         "message": "Misurare"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Trasformazione latinizzata"

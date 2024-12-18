@@ -53,8 +53,6 @@ export var mboxImportExport = {
 
   importMboxSetup: async function (params) {
     
-    let largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
-
     // create our ietng status line
     ietngUtils.createStatusLine(window);
 
@@ -96,6 +94,10 @@ export var mboxImportExport = {
       let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
       let result = `${doneMsg}: ${this.totalImported}/${total}`;
 
+      var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
+      var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+      var largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
+
       await new Promise(r => window.setTimeout(r, 2500));
 
       ietngUtils.writeStatusLine(window, result, 8000);
@@ -108,11 +110,11 @@ export var mboxImportExport = {
         errMsg += `\n\n${ex.extendedMsg}`;
       }
 
-      Services.prompt.alert(window, "Error", errMsg);
+      Services.prompt.alert(window, errorMsg, errMsg);
     }
 
     if (this.totalImported > 200) {
-      Services.prompt.alert(window, "Warning", largeFolderImportMsg);
+      Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
     }
   },
 
@@ -476,7 +478,9 @@ export var mboxImportExport = {
           } catch (ex) {
             console.log("IETNG: Recovery failed");
             // extend exception to include msg with subfolder name
-            ex.extendedMsg = `Error creating subfolder: ${subFolderName}`;
+            var createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+
+            ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
             reject(ex);
           }
         }

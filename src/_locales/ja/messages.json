@@ -663,7 +663,7 @@
 
 	"cancel.msg": {
 		"message": "キャンセル"
-	},
+	},
 
 	"Error.msg": {
 		"message": "エラー"
@@ -674,11 +674,11 @@
 	},
 
 	"numRetainBackups.msg": {
-		"message": "保持するバックアップの数:"
+		"message": "バックアップの保存数:"
 	},
 
 	"createSubfolderErr.msg": {
-		"message": "サブフォルダの作成中にエラーが発生しました:"
+		"message": "サブフォルダーの作成中にエラーが発生しました:"
 	},
 
 	"largeFolderImport.msg": {

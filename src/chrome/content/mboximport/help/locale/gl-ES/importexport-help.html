@@ -20,7 +20,7 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
     <p>
-      - Novo: opción de copia de seguranza para o número de copias de seguranza a conservar<br />
+      - Novo: opción de copia de seguranza para o número de copias de seguridade a conservar #302, #663<br />
       - Novo: admite caracteres Unicode nas exportacións de texto plano #639<br />
       - Corrixir a exportación CSV no diálogo de busca #646<br />
       - Corrixir problemas de importación/exportación de EML #631<br />
@@ -46,7 +46,7 @@
       <p>
         O acceso á funcionalidade IETng faise a través de varios menús diferentes instalados pola extensión.
         As funcións son sensibles ao contexto. Engádense menús para:<br />
-        - O contexto do panel de cartafoles (operación do cartafol)<br />
+        - Contexto do panel de cartafoles (operación de cartafoles)<br />
         - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
         - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
         As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
@@ -460,7 +460,7 @@
       personalizada tamén se pode usar co token ${date_custom} usado nos nomes de ficheiro personalizados
       estendidos. O formato de data orixinal (predeterminado) é:<br />
       AAAMMDDDHHmm: 202011060808<br /><br />
-      O formato de data personalizado utiliza secuencias % que coinciden coa función
+      O formato de data personalizado utiliza secuencias % que coinciden coa funcionalidade
       <code>strftime()</code> similar a Unix. Está baseado nun porto JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , unha función para formatar a data e a hora.<br />
@@ -516,8 +516,8 @@
           <td>
             ISO 8601 ano baseado nunha semana co século como número decimal. O ano de 4 díxitos corresponde ao
             número da semana ISO (ver <code class="code1">%V</code> ). Este ten o mesmo formato e valor que
-            <code class="code1">%Y</code> , agás que se o número de semana ISO pertence ao ano anterior ou ao
-            seguinte, utilízase ese ano.
+            <code class="code1">%Y</code> , excepto que se o número da semana ISO pertence ao ano anterior ou
+            ao seguinte, úsase ese ano no seu lugar.
           </td>
         </tr>
         <tr>
@@ -573,7 +573,7 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            &quot;AM&quot; ou &quot;PM&quot; segundo o valor de hora indicado. O mediodía trátase como
+            Ou &quot;AM&quot; ou &quot;PM&quot; segundo o valor de hora indicado. O mediodía trátase como
             &quot;PM&quot; e a medianoite como &quot;AM&quot;.
           </td>
         </tr>
@@ -630,7 +630,7 @@
           <td><code class="code1">%z</code></td>
           <td>
             O fuso horario numérico <code class="code1">+hhmm</code> ou <code class="code1">-hhmm</code> (é
-            dicir, o desfase de hora e minuto con respecto ao UTC).
+            dicir, a desfase de hora e minuto respecto da UTC).
           </td>
         </tr>
         <tr>
@@ -792,7 +792,7 @@
       que estas funcións estean estabilizadas, engadiranse á IU.<br />
       Para usalos deben estar configurados no Editor de configuración. Para acceder ao editor use o menú
       Ferramentas/Opcións, seleccione a sección Avanzado e haberá un botón &quot;Editor de configuración&quot;
-      na parte inferior. Se escribe &quot;importexporttoolsng&quot; na barra de busca, obterá todas as
+      na parte inferior. Se escribe &#39;importexporttoolsng&#39; na barra de busca, obterá todas as
       preferencias de extensión. A continuación, pode editar as distintas preferencias a continuación segundo
       sexa necesario.
     </p>

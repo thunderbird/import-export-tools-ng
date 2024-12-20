@@ -20,17 +20,17 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
     <p>
-      - Nytt: Säkerhetskopieringsalternativ för antal säkerhetskopior att behålla<br />
+      - Nytt: Säkerhetskopieringsalternativ för antal säkerhetskopior att behålla #302, #663<br />
       - Nytt: Stöd Unicode-tecken i klartextexport #639<br />
       - Fixa CSV-export i sökdialog #646<br />
-      - Åtgärda EML-import/exportproblem #631<br />
+      - Åtgärda EML-import-/exportproblem #631<br />
       - Lägg till en anteckning till hjälpen för mbox-importmenyn, endast giltig för lokala mappar, inte
       IMAP<br />
       - Fixa mbox-filexporter för att använda LF-radändelser #607<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
-      ImportExportTools NG är en uppföljningstillägg baserat på originalverket av Paolo &quot;Kaosmos&quot;.
+      ImportExportTools NG är en uppföljningstillägg baserad på originalverket av Paolo &quot;Kaosmos&quot;.
       Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat inklusive: Obs:
       Vissa format stöds inte i alla funktioner.<br />
       - mbox<br />
@@ -41,7 +41,7 @@
       - CSV (kommaseparerade värden)<br />
       - PDF<br /><br />
       Även om det mesta av funktionaliteten för kretsar kring meddelanden, finns det också stöd för import och
-      export av Thunderbird-profiler. Exporter kan dessutom innehålla en HTML- eller CSV-indexfil.
+      export av Thunderbird-profiler. Exporter kan också innehålla en HTML- eller CSV-indexfil.
       Säkerhetskopiering av Thunderbird-profilen är en annan funktion.<br />
       <p>
         Tillgång till IETng-funktioner görs genom flera olika menyer som installeras av tillägget.
@@ -343,7 +343,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Exportera de markerade meddelandena till filer i klartextformat inklusive bilagor</td>
+          <td>Exportera de valda meddelandena till filer i klartextformat inklusive bilagor</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
@@ -489,7 +489,7 @@
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Århundrade (år/100) som ett tvåsiffrigt heltal.</td>
+          <td>Århundradetal (år/100) som ett tvåsiffrigt heltal.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -655,10 +655,10 @@
       <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code> )</li>
       <li>
-        <code class="code1">%T</code> - inte implementerat (använd <code class="code1">%H:%M:%S</code> )
+        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> - inte implementerat</li>
-      <li><code class="code1">%W</code> - inte implementerat</li>
+      <li><code class="code1">%W</code> - inte implementerad</li>
       <li><code class="code1">%+</code> - inte implementerat</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>
@@ -815,9 +815,9 @@
     <h2>Grundläggande, global snabbknappsfunktion (genvägar).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Denna nya inställning låter användaren ställa in upp till 10 kortkommandon. Genvägarna kan utföra de
-      flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner. Inställningssträngen
-      är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
+      Denna nya inställning tillåter användaren att ställa in upp till 10 kortkommandon. Genvägarna kan utföra
+      de flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner.
+      Inställningssträngen är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
     </p>
     <p>
       Exempel på kortkommandon (array av JSON-objekt)<br /><br />

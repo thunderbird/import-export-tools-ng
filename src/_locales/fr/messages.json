@@ -655,25 +655,20 @@
     },	
     "cancel.msg": {
 	"message": "Annuler"
-    },
-
-	"Error.msg": {
-		"message": "Erreur"
-	},
-
-	"Warning.msg": {
-		"message": "Avertissement"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Nombre de sauvegardes à conserver :"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Erreur lors de la création du sous-dossier :"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Plus de 200 dossiers mbox importés.\nThunderbird doit être redémarré pour réinitialiser la base de données."
-	}
+    },
+    "Error.msg": {
+	"message": "Erreur"
+    },
+    "Warning.msg": {
+	"message": "Avertissement"
+    },
+    "numRetainBackups.msg": {
+	"message": "Nombre de sauvegardes à conserver :"
+    },
+    "createSubfolderErr.msg": {
+	"message": "Erreur lors de la création du sous-dossier :"
+    },
+    "largeFolderImport.msg": {
+	"message": "Plus de 200 dossiers mbox ont été importés.\nThunderbird doit être redémarré pour réinitialiser la base de données."
+    }
 }

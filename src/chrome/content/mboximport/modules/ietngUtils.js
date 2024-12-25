@@ -303,7 +303,7 @@ var ietngUtils = {
     };
   },
 
-  
+
 
   rebuildSummary: async function (folder) {
 
@@ -346,5 +346,64 @@ var ietngUtils = {
     return;
   },
 
-  
+  createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
+
+    let res = await new Promise(async (resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve(childFolder);
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+
+      // createSubfolder will fail under some circumstances when
+      // doing large imports. Failures start around 250+ and become 
+      // persistent around 500+. The failures above 500 are likely 
+      // do to Windows file descriptor limits.
+      // A rebuildSummary followed by a createSubfolder retry
+      // recovers the operation in most circumstances.
+      // Odd database behaviors have sometimes been observed 
+      // even if recovery succeeded 
+
+
+
+      try {
+
+        let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+
+      } catch (ex) {
+
+        try {
+          console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
+          await new Promise(r => window.setTimeout(r, 100));
+          await this.rebuildSummary(msgFolder);
+          await new Promise(r => window.setTimeout(r, 1000));
+
+          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+
+          console.log("IETNG: Recovery succeeded");
+          this.totalFoldersCreated++;
+        } catch (ex) {
+          console.log("IETNG: Recovery failed");
+          // extend exception to include msg with subfolder name
+          var createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+
+          ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
+          reject(ex);
+        }
+      }
+    });
+
+
+  }
 };

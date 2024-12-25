@@ -193,7 +193,7 @@ export var mboxImportExport = {
     }
 
     await new Promise(r => window.setTimeout(r, 100));
-    await this.rebuildSummary(msgFolder);
+    //await this.rebuildSummary(msgFolder);
     await new Promise(r => window.setTimeout(r, 1000));
 
   },
@@ -434,6 +434,7 @@ export var mboxImportExport = {
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     try {
+      
       let res = await new Promise(async (resolve, reject) => {
 
         msgFolder.AddFolderListener(
@@ -461,8 +462,13 @@ export var mboxImportExport = {
         // Odd database behaviors have sometimes been observed 
         // even if recovery succeeded 
 
+        
+
         try {
-          msgFolder.createSubfolder(subFolderName, window.msgWindow);
+          //msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+
           this.totalFoldersCreated++;
         } catch (ex) {
 
@@ -489,6 +495,8 @@ export var mboxImportExport = {
       // Throw error to allow termination
       throw (ex);
     }
+
+    await new Promise(r => window.setTimeout(r, 500));
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;

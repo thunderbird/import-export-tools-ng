@@ -59,6 +59,17 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			await messenger.menus.refresh();
 			await messenger.menus.removeAll();
 			break;
+		case "createSubfolder":
+			try {
+			let res = await messenger.folders.create(info.folderId, info.childName);
+			console.log("created", info.childName, res);
+			return res;
+			} catch(ex) {
+			console.log("exception", info.childName);
+	console.log(ex.stack)
+
+				return ex;
+			}
 
     }
     return false;

@@ -40,3 +40,17 @@ async function onIetngShutdown() {
 	console.log("ieshut")
 	await win.ietngAddon.notifyTools.notifyBackground({ command: "shutdown" });
 }
+
+async function WEXTcreateSubfolder(msgFolder, childName) {
+	let win = getMail3Pane();
+	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
+	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folderId: folder.id, childName: childName });
+	console.log(res)
+	console.log(res.stack)
+
+	if (res.stack) {
+	console.log("err")
+
+		throw (res);
+	}
+}

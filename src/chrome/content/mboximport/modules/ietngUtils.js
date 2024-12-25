@@ -303,4 +303,48 @@ var ietngUtils = {
     };
   },
 
+  
+
+  rebuildSummary: async function (folder) {
+
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+        console.error
+      );
+    }
+
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+    //folder.msgDatabase.summaryValid = false;
+
+    try {
+      const msgDB = folder.msgDatabase;
+
+      msgDB.summaryValid = false;
+
+      folder.closeAndBackupFolderDB("");
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+    }
+
+    folder.updateFolder(window.msgWindow);
+
+    // things we do to get folder to be included in global  search
+    // toggling global search inclusion works, but throws
+    // async tracker errors
+    // we won't do these automatically for now
+
+    //this._toggleGlobalSearchEnable(folder);
+    //await this._touchCopyFolderMsg(folder);
+    return;
+  },
+
+  
 };

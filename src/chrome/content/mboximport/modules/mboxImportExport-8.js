@@ -67,6 +67,10 @@ export var mboxImportExport = {
 
     let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
     let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
+    
+    var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
+    var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+    var largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
 
     try {
       if (params.mboxImpType == "individual") {
@@ -94,9 +98,7 @@ export var mboxImportExport = {
       let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
       let result = `${doneMsg}: ${this.totalImported}/${total}`;
 
-      var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
-      var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
-      var largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
+      console.log("200m msg", this.totalImported, warningMsg, largeFolderImportMsg)
 
       await new Promise(r => window.setTimeout(r, 2500));
 
@@ -110,10 +112,13 @@ export var mboxImportExport = {
         errMsg += `\n\n${ex.extendedMsg}`;
       }
 
+      console.log("exc msg")
       Services.prompt.alert(window, errorMsg, errMsg);
     }
 
     if (this.totalImported > 200) {
+      console.log("200 msg", this.totalImported, warningMsg, largeFolderImportMsg)
+
       Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
     }
   },
@@ -435,62 +440,9 @@ export var mboxImportExport = {
 
     try {
       
-      let res = await new Promise(async (resolve, reject) => {
+      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
 
-        msgFolder.AddFolderListener(
-          {
-            onFolderAdded(parentFolder, childFolder) {
-              resolve(childFolder);
-            },
-            onMessageAdded() { },
-            onFolderRemoved() { },
-            onMessageRemoved() { },
-            onFolderPropertyChanged() { },
-            onFolderIntPropertyChanged() { },
-            onFolderBoolPropertyChanged() { },
-            onFolderUnicharPropertyChanged() { },
-            onFolderPropertyFlagChanged() { },
-            onFolderEvent() { },
-          });
-
-        // createSubfolder will fail under some circumstances when
-        // doing large imports. Failures start around 250+ and become 
-        // persistent around 500+. The failures above 500 are likely 
-        // do to Windows file descriptor limits.
-        // A rebuildSummary followed by a createSubfolder retry
-        // recovers the operation in most circumstances.
-        // Odd database behaviors have sometimes been observed 
-        // even if recovery succeeded 
-
-        
-
-        try {
-          //msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
-
-          this.totalFoldersCreated++;
-        } catch (ex) {
-
-          try {
-            console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
-            await new Promise(r => window.setTimeout(r, 100));
-            await this.rebuildSummary(msgFolder);
-            await new Promise(r => window.setTimeout(r, 1000));
-
-            msgFolder.createSubfolder(subFolderName, window.msgWindow);
-            console.log("IETNG: Recovery succeeded");
-            this.totalFoldersCreated++;
-          } catch (ex) {
-            console.log("IETNG: Recovery failed");
-            // extend exception to include msg with subfolder name
-            var createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
-
-            ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
-            reject(ex);
-          }
-        }
-      });
+      
     } catch (ex) {
       // Throw error to allow termination
       throw (ex);

@@ -22,8 +22,8 @@ async function getSelectedMsgs() {
 	var msgURIS = [];
 	msgIdList.messages.forEach(msg => {
 		let realMessage = window.ietngAddon.extension
-		.messageManager.get(msg.id);
-		
+			.messageManager.get(msg.id);
+
 		let uri = realMessage.folder.getUriForMsg(realMessage);
 		msgURIS.push(uri);
 	});
@@ -45,11 +45,9 @@ async function WEXTcreateSubfolder(msgFolder, childName) {
 	let win = getMail3Pane();
 	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
 	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folderId: folder.id, childName: childName });
-	console.log(res)
-	console.log(res.stack)
 
 	if (res.stack) {
-	console.log("err")
+		console.log("err")
 
 		throw (res);
 	}

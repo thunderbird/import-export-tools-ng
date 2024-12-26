@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,6 +18,9 @@
 
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
+
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+
 
 var ietngUtils = {
 
@@ -348,7 +351,7 @@ var ietngUtils = {
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
 
-    let res = await new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
 
       msgFolder.AddFolderListener(
         {
@@ -386,13 +389,12 @@ var ietngUtils = {
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
           await new Promise(r => window.setTimeout(r, 100));
-          await this.rebuildSummary(msgFolder);
+          //await this.rebuildSummary(msgFolder);
           await new Promise(r => window.setTimeout(r, 1000));
 
           let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
 
           console.log("IETNG: Recovery succeeded");
-          this.totalFoldersCreated++;
         } catch (ex) {
           console.log("IETNG: Recovery failed");
           // extend exception to include msg with subfolder name
@@ -405,5 +407,6 @@ var ietngUtils = {
     });
 
 
-  }
+  },
+
 };

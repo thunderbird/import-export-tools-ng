@@ -52,7 +52,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			console.log(window.folder)
 			break;
 		case "openHelp":
-			window.wextOpenHelp({bmark: info.bmark});
+			window.wextOpenHelp({ bmark: info.bmark });
 			break;
 		case "shutdown":
 			console.log("shut")
@@ -61,17 +61,12 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			break;
 		case "createSubfolder":
 			try {
-			let res = await messenger.folders.create(info.folderId, info.childName);
-			//console.log("created", info.childName, res);
-			return res;
-			} catch(ex) {
-				//console.log("exception", info.childName);
-
+				let res = await messenger.folders.create(info.folderId, info.childName);
+				return res;
+			} catch (ex) {
 				return ex;
 			}
-
-    }
-    return false;
-  }
-  
+	}
+	return false;
+}
 );

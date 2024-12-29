@@ -446,7 +446,15 @@ async function trytocopyMAILDIR(params) {
 
 	// 1. add a subfolder with the name of the folder to import
 	// cdl - convert addSubfolder => createSubfolder
-	msgFolder.createSubfolder(newfilename, top.msgWindow);
+
+	
+	try {
+		let res = await ietngUtils.createSubfolder(msgFolder, newfilename);
+	} catch (ex) {
+		// Throw error to allow termination
+		throw (ex);
+	}
+
 	var newFolder = msgFolder.getChildNamed(newfilename);
 	if (restoreChar) {
 		var reg = new RegExp(safeChar, "g");
@@ -1330,23 +1338,14 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			let folderName = afile.leafName;
 
 			// Wait for the folder being added.
-			let newFolder = await new Promise(resolve => {
-				let folderListener = {
-					folderAdded: function (aFolder) {
-						if (aFolder.name == folderName && aFolder.parent == msgFolder) {
-							MailServices.mfn.removeListener(folderListener);
-							resolve(aFolder);
-						}
-					},
-				};
-				MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
-				msgFolder.createSubfolder(folderName, msgWindow);
-				// open files bug
-				// https://github.com/thundernest/import-export-tools-ng/issues/57
-				if (folderCount++ % 400 === 0) {
-					rootFolder.ForceDBClosed();
-				}
-			});
+
+			var newFolder;
+			try {
+				newFolder = await ietngUtils.createSubfolder(msgFolder, folderName);
+			} catch (ex) {
+				// Throw error to allow termination
+				throw (ex);
+			}
 			await buildEMLarray(afile, newFolder, true, rootFolder);
 		} else {
 			var emlObj = {};
@@ -1472,7 +1471,7 @@ var importEMLlistener = {
 
 	next: function () {
 		var nextFile;
-		console.log("next")
+		//console.log("next")
 
 		if (this.allEML && gEMLimported < gFileEMLarray.length) {
 			nextFile = gFileEMLarray[gEMLimported].file;
@@ -1509,7 +1508,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 		file = IETemlx2eml(file);
 	}
 
-	console.log("try imp")
+	//console.log("try imp")
 	importEMLlistener.msgFolder = msgFolder;
 	importEMLlistener.removeFile = removeFile;
 	importEMLlistener.file = file;
@@ -1588,7 +1587,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	let lines = top.split('\n');
 	// Fix #214 - check for ':' does not require trailing space
 	if (!lines[0].includes(":") && !lines[0].includes("From: ") && !lines[0].includes("From ")) {
-		console.debug(`Msg #: ${++gEMLimported} Err #: ${++gEMLimportedErrs}\n Folder: ${msgFolder.name}\n Filename: ${file.path}\n FirstLine ${lines[0]}\n`);
+		console.debug(`Msg #: ${++gEMLimported} Err #: ${++gEMLimportedErrs}\n Folder: ${msgFolder.name}\n Filename: ${file.path}\n FirstLine: ${lines[0]}\n`);
 		return 0;
 	}
 

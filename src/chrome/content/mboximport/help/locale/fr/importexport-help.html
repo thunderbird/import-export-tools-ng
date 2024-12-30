@@ -25,12 +25,12 @@
     </table>
     <h3 id="release_notes">Notes de version</h3>
     <p>
-    - Nouveau : option de sauvegarde pour le nombre de sauvegardes à conserver<br>
-		- Nouveau : Prise en charge des caractères Unicode dans les exportations en texte brut #639<br>
-		- Correction de l'export CSV dans la boîte de dialogue de recherche #646<br>
-		- Correction des problèmes d'import/export EML #631<br>
-		- Ajouter une note à l'aide du menu d'importation mbox, valable uniquement pour les dossiers locaux, pas IMAP<br>
-		- Correction des exportations de fichiers mbox pour utiliser les fins de ligne LF #607<br>
+      - Nouveau : option pour le nombre de sauvegardes à conserver (#302, #663)<br>
+      - Nouveau : prise en charge des caractères Unicode pour les exportations en texte brut (#639)<br>
+      - Correction : exportation en CSV via le dialogue de recherche dans le courrier (#646)<br>
+      - Correction : problèmes d’importation/exportation en EML (#631)<br>
+      - Ajout dans l’aide (Menu contextuel des dossiers) d’une note concernant l’importation de mbox (uniquement possible dans les dossiers locaux, pas IMAP)<br>
+      - Correction : utilisation des fins de ligne LF pour les exportations de mbox (#607)<br>
     </p>
     <h2 id="main_help">Présentation</h2>
     <p><i>ImportExportTools NG</i> est une extension basée sur le travail original de Paolo "Kaosmos". Elle fournit de multiples fonctions d’importation et d’exportation acceptant plusieurs formats de fichiers (certains n’étant pas supportés par toutes les fonctions) :<br>
@@ -162,7 +162,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">(dans les dossiers locaux uniquement, pas IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -713,7 +713,9 @@
         - <code class="notranslate">@spd2000</code><br>
         - <code class="notranslate">@kanlukasz</code><br>
         - <code class="notranslate">@razzmatazzz</code><br>
-        - <code class="notranslate">@triplee</code></p><br>
+        - <code class="notranslate">@triplee</code><br>
+        - <code class="notranslate">@Sergio3N</code><br>
+        - <code class="notranslate">@NickWick13</code></p><br>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>
   </body>

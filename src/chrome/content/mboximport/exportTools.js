@@ -367,60 +367,69 @@ async function exportAllMsgs(type, params) {
 			return;
 	}
 
-	var file = getPredefinedFolder(1);
-	if (!file) {
-		let winCtx = window;
-		const tbVersion = ietngUtils.getThunderbirdVersion();
-		if (tbVersion.major >= 120) {
-			winCtx = window.browsingContext;
-		}
-
-		var nsIFilePicker = Ci.nsIFilePicker;
-		var res;
-		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK)
-			file = fp.file;
-		else
-			return;
-	}
 	try {
-		if (!file.isWritable()) {
-			alert(mboximportbundle.GetStringFromName("nowritable"));
-			return;
-		}
-	} catch (e) { }
 
-	IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+		var file = getPredefinedFolder(1);
+		if (!file) {
+			let winCtx = window;
+			const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major >= 120) {
+				winCtx = window.browsingContext;
+			}
 
-	IETglobalMsgFoldersExported = 0;
-	for (var i = 0; i < IETglobalMsgFolders.length; i++) {
-		// Check if there is a multiple selection and one of the folders is a virtual one.
-		// If so, exits, because the export function can't handle this
-		if (IETglobalMsgFolders.length > 1 && IETglobalMsgFolders[i].flags & 0x0020) {
-			alert(mboximportbundle.GetStringFromName("virtFolAlert"));
-			return;
-		}
-		if (type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
-			var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-			if (!go)
+			var nsIFilePicker = Ci.nsIFilePicker;
+			var res;
+			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+			if (fp.show)
+				res = fp.show();
+			else
+				res = IETopenFPsync(fp);
+			if (res === nsIFilePicker.returnOK)
+				file = fp.file;
+			else
 				return;
-			break;
 		}
-	}
-	IETglobalFile = file.clone();
-	if (type !== 3 && type !== 5) {
-		IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
-		document.getElementById("IETabortIcon").collapsed = false;
-	}
+		try {
+			if (!file.isWritable()) {
+				alert(mboximportbundle.GetStringFromName("nowritable"));
+				return;
+			}
+		} catch (e) { }
 
-	await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
-	if (document.getElementById("IETabortIcon"))
-		document.getElementById("IETabortIcon").collapsed = true;
+		IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
+
+		IETglobalMsgFoldersExported = 0;
+		for (var i = 0; i < IETglobalMsgFolders.length; i++) {
+			// Check if there is a multiple selection and one of the folders is a virtual one.
+			// If so, exits, because the export function can't handle this
+			if (IETglobalMsgFolders.length > 1 && IETglobalMsgFolders[i].flags & 0x0020) {
+				alert(mboximportbundle.GetStringFromName("virtFolAlert"));
+				return;
+			}
+			if (type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
+				var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
+				if (!go)
+					return;
+				break;
+			}
+		}
+		IETglobalFile = file.clone();
+		if (type !== 3 && type !== 5) {
+			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+			document.getElementById("IETabortIcon").collapsed = false;
+		}
+
+		await exportAllMsgsStart(type, file, IETglobalMsgFolders[0], params);
+		if (document.getElementById("IETabortIcon"))
+			document.getElementById("IETabortIcon").collapsed = true;
+
+	} catch (ex) {
+		if (document.getElementById("IETabortIcon"))
+			document.getElementById("IETabortIcon").collapsed = true;
+		let errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+		Services.prompt.alert(window, errorMsg, ex);
+	}
 }
 
 // 2) exportAllMsgsStart
@@ -634,12 +643,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	try {
 		IETtotal = msgFolder.getTotalMessages(false);
 
-		//console.log("exportAllMsgsDelayed", msgFolder.name, IETtotal)
-
-		if (IETtotal === 0) {
-			IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-			return { status: kStatusOK, nextfile2: file };
-		}
 		IETexported = 0;
 		IETskipped = 0;
 		var msgArray;
@@ -1650,7 +1653,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								// https://github.com/thundernest/import-export-tools-ng/issues/98
 
 								// Just remove outlines for now
-								data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
+								//data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
 
 								let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
 								rs = null;
@@ -2296,9 +2299,9 @@ function IEThtmlToText(data, msgFolder) {
 		// These mods are required for the new converter
 		// Combining the three header tables removes the line breaks 
 		// between tables
-		dataUTF8 = dataUTF8.replace(/<title>.*<\/title>\r/,"");
-		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part2 moz-main-header">/,"");
-		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part3 moz-main-header">/,"");
+		dataUTF8 = dataUTF8.replace(/<title>.*<\/title>\r/, "");
+		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part2 moz-main-header">/, "");
+		dataUTF8 = dataUTF8.replace(/<\/table><table.*moz-header-part3 moz-main-header">/, "");
 
 		const ParserUtils = Cc["@mozilla.org/parserutils;1"].getService(
 			Ci.nsIParserUtils
@@ -2321,7 +2324,7 @@ function IEThtmlToText(data, msgFolder) {
 		let res = ParserUtils.convertToPlainText(dataUTF8, flags, wrapWidth).trim();
 
 		res = fixClipHdrs(res);
-		res = res.replace(/^\r\n/,"");
+		res = res.replace(/^\r\n/, "");
 
 		return res;
 	} else if (navigator.userAgent.includes("Windows NT 6.1")) {

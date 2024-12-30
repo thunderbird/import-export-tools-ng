@@ -317,7 +317,6 @@ var ietngUtils = {
     if (folder.supportsOffline) {
       // Remove the offline store, if any.
       await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
-        console.error
       );
     }
 
@@ -341,21 +340,16 @@ var ietngUtils = {
 
     return new Promise(async (resolve, reject) => {
 
-      msgFolder.AddFolderListener(
-        {
-          onFolderAdded(parentFolder, childFolder) {
-            resolve(childFolder);
-          },
-          onMessageAdded() { },
-          onFolderRemoved() { },
-          onMessageRemoved() { },
-          onFolderPropertyChanged() { },
-          onFolderIntPropertyChanged() { },
-          onFolderBoolPropertyChanged() { },
-          onFolderUnicharPropertyChanged() { },
-          onFolderPropertyFlagChanged() { },
-          onFolderEvent() { },
-        });
+      let folderListener = {
+        folderAdded: function (aFolder) {
+          if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
+            MailServices.mfn.removeListener(folderListener);
+            resolve(aFolder);
+          }
+        },
+      };
+      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become

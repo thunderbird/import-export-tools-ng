@@ -60,7 +60,15 @@ var msgCtxMenuSet = [
       id: msgCtxMenu_TopId,
       title: localizeMenuTitle("msgCtxMenu_TopId.title"),
     },
-  }, {
+  }, 
+  {
+    menuDef: {
+      id: "test1_Id",
+      title: "Msg exp test",
+      onclick: testexp
+    },
+  },
+  {
     menuDef: {
       id: msgCtxMenu_Exp_EMLFormat_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormat_Id.title"),
@@ -1392,6 +1400,44 @@ async function getBoolPref(boolPref) {
   params.boolPref = boolPref;
   let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
   return bp;
+}
+
+
+// testing 
+
+async function testexp() {
+  
+
+let params = {};
+var msgList = [];
+
+var selectedMsgs2 = (await messenger.mailTabs.getSelectedMessages());
+var msgList2 = selectedMsgs2.messages;
+console.log(selectedMsgs2.id)
+
+while (selectedMsgs2.id) {
+  selectedMsgs2 = await messenger.messages.continueList(selectedMsgs2.id)
+console.log(selectedMsgs2)
+
+  msgList2 = msgList2.concat(selectedMsgs2.messages);
+}
+
+console.log(msgList2)
+
+
+let selectedMsgs = (await messenger.mailTabs.getSelectedMessages()).messages;
+for (const msg of selectedMsgs) {
+  let msgEntry = {};
+  msgEntry.id = msg.id;
+  let atts = await messenger.messages.listAttachments(msg.id);
+  msgEntry.atts = atts;
+  msgList.push(msgEntry);
+}
+
+console.log(selectedMsgs)
+console.log(msgList)
+
+//let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_testexp", params: params });
 }
 
 // listener to change any  menus

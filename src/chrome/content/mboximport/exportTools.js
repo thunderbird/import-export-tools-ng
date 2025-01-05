@@ -1558,6 +1558,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							var attDirContainerName;
 							var time = (hdr.dateInSeconds) * 1000;
 
+							var MailService = MailServices.messageServiceFromURI(uri);
+
+							console.log(decodeURIComponent(attachments[0].url))
+							console.log(uri)
+							console.log(MailService.getUrlForUri(uri).spec)
+
+
 							for (var i = 0; i < attachments.length; i++) {
 								var att = attachments[i];
 								if (noDir) {

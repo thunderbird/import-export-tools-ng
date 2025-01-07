@@ -1,0 +1,20 @@
+[
+  {
+    "namespace": "ExportMessages",
+    "functions": [
+      {
+        "name": "exportMessages",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "exportMsgsTask",
+            "type": "object",
+            "description": "Export messages task descriptor"
+          }   
+        ]
+      }
+    ]
+  }
+]

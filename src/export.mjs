@@ -1,6 +1,6 @@
 // export prototype
 
-async function exportfolder(ctxEvent, tab) {
+export async function exportfolder(ctxEvent, tab) {
 
   // for now only deal with a single folder for prototype
   if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
@@ -11,4 +11,8 @@ async function exportfolder(ctxEvent, tab) {
   }
 
   // we will use parametes in folder menu structure
+  console.log(ctxEvent.menuItemId)
+  let options = window.getMenuOptions(window.folderCtxMenuSet, "expFolderHTML-1");
+  console.log(options)
 }
+

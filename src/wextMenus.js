@@ -17,6 +17,8 @@
 // Installs wext context and main menus
 // Interface via notifytools to expMenuDispatcher
 
+//import * as export from "export.mjs";
+
 
 // Message context menu
 const msgCtxMenu_TopId = "msgCtxMenu_TopId";
@@ -1440,6 +1442,16 @@ console.log(msgList)
 //let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_testexp", params: params });
 }
 
+
+
+function getMenuOptions(menu, menuId) {
+  let menuItem = menu.find(menuObj => {
+    if (menuObj.menuDef.id == menuId) {
+      return true;
+    }
+  });
+  return menuItem.options;
+}
 // listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);
 // make openOptions window accessible

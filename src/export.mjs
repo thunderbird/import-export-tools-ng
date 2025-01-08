@@ -16,3 +16,6 @@ export async function exportfolder(ctxEvent, tab) {
   console.log(options)
 }
 
+export async function test(ctxInfo, params) {
+  console.log(ctxInfo, params)
+}

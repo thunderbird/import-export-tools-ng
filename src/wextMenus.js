@@ -17,7 +17,7 @@
 // Installs wext context and main menus
 // Interface via notifytools to expMenuDispatcher
 
-//import * as export from "export.mjs";
+import * as Export from "./export.mjs";
 
 
 // Message context menu
@@ -641,6 +641,17 @@ var folderCtxMenuSet = [
       title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: openOptions,
     },
+  },
+  {
+    menuDef: {
+      id: "folderCtxMenu_test1",
+      title: "options test",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: Export.test,
+      functionParams: {expType: "HTML", saveAttatchments: true, index: false}
+    }
   },
   {
     menuDef: {
@@ -1360,7 +1371,7 @@ async function importMaildirFiles(ctxEvent) {
 }
 
 async function openOptions(event, tab) {
-
+  console.log(event)
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.tabType = tab.type;
@@ -1442,15 +1453,23 @@ console.log(msgList)
 //let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_testexp", params: params });
 }
 
+async function menuFunctionDispatcher(ctxEvent) {
+  let menu;
+  if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
+    menu = folderCtxMenuSet;
+  }
+  let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
+  console.log(menuOptions)
+  menuOptions.dispatchFunction(ctxEvent, menuOptions.functionParams)
+}
 
-
-function getMenuOptions(menu, menuId) {
+function getMenuFunctionOptions(menu, menuId) {
   let menuItem = menu.find(menuObj => {
     if (menuObj.menuDef.id == menuId) {
       return true;
     }
   });
-  return menuItem.options;
+  return menuItem.dispatchOptions;
 }
 // listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);

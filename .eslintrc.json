@@ -1,92 +1,91 @@
 	{
-	"env": {
-		"browser": true,
-		"es6": true,
-		"mozilla/jsm": true,
-		"commonjs": true
-	},
-
-	"extends": [
-		"eslint:recommended",
-		"plugin:mozilla/recommended"
-	  ],
-	
-	"overrides": [
-		{
-			"files": "./src/chrome/content/*.js"
+		"parserOptions": {
+			"sourceType": "module"
+		},
+		"env": {
+			"browser": true,
+			"es6": true,
+			"mozilla/jsm": true,
+			"commonjs": true
+		},
+		"extends": [
+			"eslint:recommended",
+			"plugin:mozilla/recommended"
+		],
+		"overrides": [
+			{
+				"files": "./src/chrome/content/*.js"
+			}
+		],
+		"plugins": [
+			"deprecate",
+			"mozilla"
+		],
+		"globals": {
+			"EXPORTED_SYMBOLS": "readonly",
+			"ChromeUtils": "readonly",
+			"XPCOMUtils": "readonly",
+			"sizeToContent": "readonly",
+			"Cc": "readonly",
+			"Cu": "readonly",
+			"Ci": "readonly",
+			"Cr": "readonly",
+			"browser": "readonly",
+			"messenger": "readonly",
+			"ExtensionCommon": "readonly",
+			"MailServices": "readonly",
+			"gTabmail": "readonly",
+			"OS": "readonly",
+			"window": "readonly",
+			"msgWindow": "readonly",
+			"gFolderDisplay": "readonly",
+			"IOUtils": "readonly",
+			"PathUtils": "readonly",
+			"globalThis": "readonly",
+			"BatchMessageMover": "readonly"
+		},
+		"rules": {
+			"no-irregular-whitespace": "error",
+			"space-in-parens": "error",
+			"no-unused-vars": "off",
+			"space-before-function-paren": "off",
+			"no-array-constructor": "warn",
+			"no-octal": "off",
+			"mozilla/import-globals": "off",
+			"no-tabs": "off",
+			"no-useless-return": "off",
+			"object-shorthand": "off",
+			"padded-blocks": "off",
+			"mozilla/use-cc-etc": "error",
+			"mozilla/no-useless-parameters": "off",
+			"mozilla/use-services": "off",
+			"mozilla/use-includes-instead-of-indexOf": "warn",
+			"mozilla/avoid-removeChild": "warn",
+			"mozilla/use-chromeutils-generateqi": "off",
+			"quotes": "off",
+			"spaced-comment": [
+				2,
+				"always"
+			],
+			"semi": "error",
+			"complexity": [
+				"error",
+				{
+					"max": 80
+				}
+			],
+			"no-restricted-properties": [
+				1,
+				{
+					"property": "nsIStringBundleService"
+				}
+			],
+			"deprecate/function": [
+				"error",
+				{
+					"name": "createBundle",
+					"use": "Replace with Services.createBundle"
+				}
+			]
 		}
-	],
-	"plugins": [
-		"deprecate",
-		"mozilla"
-	],
-	
-	"globals": {
-		"EXPORTED_SYMBOLS": "readonly",
-		"ChromeUtils": "readonly",
-		"XPCOMUtils": "readonly",
-		"sizeToContent": "readonly",
-		"Cc": "readonly",
-		"Cu": "readonly",
-		"Ci": "readonly",
-		"Cr": "readonly",
-
-		"browser":"readonly",
-		"messenger": "readonly",
-		"ExtensionCommon":"readonly",
-		"MailServices": "readonly",
-		"gTabmail": "readonly",
-		"OS": "readonly",
-		"window": "readonly",
-		"msgWindow": "readonly",
-		"gFolderDisplay": "readonly",
-		"IOUtils": "readonly",
-		"PathUtils": "readonly",
- 		"globalThis": "readonly",
-
-		"BatchMessageMover": "readonly"
-		
-	},
-	"rules": {
-		"no-irregular-whitespace": "error",
-		"space-in-parens": "error",
-		"no-unused-vars":"off",
-		"space-before-function-paren":"off",
-		"no-array-constructor": "warn",
-		"no-octal":"off",
-
-		"mozilla/import-globals": "off",
-		"no-tabs":"off",
-		"no-useless-return":"off",
-		"object-shorthand":"off",
-		"padded-blocks":"off",
-		"mozilla/use-cc-etc": "error",
-		"mozilla/no-useless-parameters": "off",
-		"mozilla/use-services": "off",
-		"mozilla/use-includes-instead-of-indexOf": "warn",
-		"mozilla/avoid-removeChild": "warn",
-		"mozilla/use-chromeutils-generateqi": "off",
-
-		"quotes":"off",
-		"spaced-comment": [
-			2,
-			"always"
-		],
-		"semi": "error",
-		"complexity": ["error", { "max": 80 }],
-
-		"no-restricted-properties": [
-			1,
-			{
-				"property": "nsIStringBundleService"
-			}
-		],
-		"deprecate/function": [
-			"error",
-			{
-				"name": "createBundle",
-				"use": "Replace with Services.createBundle"
-			}
-		]
 	}
-}

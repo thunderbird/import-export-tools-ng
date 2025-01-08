@@ -18,7 +18,6 @@
 
 // need this for wextMenus
 window.wextOpenHelp = wextOpenHelp;
-import * as Export from "./export.mjs";
 
 // now start
 main();

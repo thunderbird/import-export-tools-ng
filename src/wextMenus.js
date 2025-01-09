@@ -649,7 +649,7 @@ var folderCtxMenuSet = [
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
-      dispatchFunction: Export.test,
+      dispatchFunction: Export.exportFolders,
       functionParams: {expType: "HTML", saveAttatchments: true, index: false}
     }
   },

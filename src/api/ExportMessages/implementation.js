@@ -22,6 +22,11 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         async ExportMessages(title, text) {
 
         },
+
+        async BuildExportContainer() {
+
+        },
+
       },
     };
   }

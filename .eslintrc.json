@@ -57,6 +57,7 @@
 			"object-shorthand": "off",
 			"padded-blocks": "off",
 			"mozilla/use-cc-etc": "error",
+			"mozilla/no-define-cc-etc": "off",
 			"mozilla/no-useless-parameters": "off",
 			"mozilla/use-services": "off",
 			"mozilla/use-includes-instead-of-indexOf": "warn",

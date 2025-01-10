@@ -40,6 +40,20 @@
         "events": ["startup"]
       }
     },
+    "ExportMessages": {
+      "schema": "api/ExportMessages/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "ExportMessages"
+          ]
+        ],
+        "script": "api/ExportMessages/implementation.js"
+      }
+    },
     "AsyncPrompts": {
       "schema": "api/AsyncPrompts/schema.json",
       "parent": {

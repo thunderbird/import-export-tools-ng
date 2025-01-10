@@ -423,6 +423,17 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
+      id: "folderCtxMenu_test1",
+      title: "Export EML",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: Export.exportFolders,
+      functionParams: {expType: "eml", saveAttatchments: true, index: false}
+    }
+  },
+  {
+    menuDef: {
       id: folderCtxMenu_Exp_Account_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title"),
       visible: false,
@@ -642,17 +653,7 @@ var folderCtxMenuSet = [
       onclick: openOptions,
     },
   },
-  {
-    menuDef: {
-      id: "folderCtxMenu_test1",
-      title: "options test",
-      onclick: menuFunctionDispatcher,
-    },
-    dispatchOptions: {
-      dispatchFunction: Export.exportFolders,
-      functionParams: {expType: "HTML", saveAttatchments: true, index: false}
-    }
-  },
+
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,

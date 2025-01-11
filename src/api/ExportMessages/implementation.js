@@ -22,13 +22,19 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     return {
       ExportMessages: {
 
-        async exportMessages(title, text) {
+        async exportMessages(expTask) {
+          // add msgHdrs
+          expTask.msgList.forEach((msgId, index) => {
+            let realMessage = context.extension
+              .messageManager.get(msgId);
+            console.log(realMessage)
+          });
 
         },
 
         async createExportContainer(expTask) {
           let dateStr = strftime.strftime("%Y", new Date());
-          let containerName = `${expTask.folders[0]}-${dateStr}`;
+          let containerName = `${expTask.folders[expTask.currentFolderIndex].name}-${dateStr}`;
           let uName = await IOUtils.createUniqueDirectory(expTask.generalConfig.exportDirectory, containerName);
 
           return uName;

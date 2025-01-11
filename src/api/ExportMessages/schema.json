@@ -10,7 +10,7 @@
         "parameters": [
           {
             "name": "expTask",
-            "type": "object",
+            "type": "any",
             "description": "Export messages task descriptor"
           }
         ]
@@ -23,7 +23,7 @@
         "parameters": [
           {
             "name": "expTask",
-            "type": "object",
+            "type": "any",
             "description": "Export messages task descriptor"
           }
         ]

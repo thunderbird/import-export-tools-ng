@@ -1,10 +1,11 @@
 // export prototype
 
-import {Ci}  from "./CiConstants.js";
+import { Ci } from "./CiConstants.js";
 
 var baseExpTask = {
   expType: null,
   folders: [],
+  currentFolderIndex: 0,
   recursive: false,
   expStatus: null,
   generalConfig: {
@@ -13,11 +14,12 @@ var baseExpTask = {
   },
   exportContainer: {
     create: false,
-    namePattern: "${folder}-$(date}-${index}",
+    namePattern: "${folder}-$(date}",
+    directory: "",
   },
   dateFormat: {
     type: 0,
-    custum: "%Y%m%d%H%M",
+    custom: "%Y%m%d%H%M",
   },
   msgNames: {
     namePatternType: "default",
@@ -55,49 +57,63 @@ var baseExpTask = {
 export async function exportFolders(ctxInfo, params) {
 
   try {
-  // for now only deal with a single folder for prototype
-  if (ctxInfo.selectedFolders && ctxInfo.selectedFolders.length > 1) {
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg") + params.toString());
-    if (!rv) {
+    // for now only deal with a single folder for prototype
+    if (ctxInfo.selectedFolders && ctxInfo.selectedFolders.length > 1) {
+      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg") + params.toString());
+      if (!rv) {
+        return;
+      }
+    }
+    console.log(ctxInfo, params)
+
+    // we do all main logic, folder and message iteration
+    // and UI interactions in wext side
+    // we avoid msg transfer for major performance issues
+
+    params.ctxInfo = ctxInfo;
+    var expTask = await _buildExportTask(params);
+
+    // warnings
+
+    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
+
+    // get export directory
+
+    let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
+
+    if (resultObj.result != Ci.nsIFilePicker.returnOK) {
       return;
     }
-  }
-  console.log(ctxInfo, params)
 
-  // we do all main logic, folder and message iteration
-  // and UI interactions in wext side
-  // we avoid msg transfer for major performance issues
+    expTask.generalConfig.exportDirectory = resultObj.folder;
 
-  params.ctxInfo = ctxInfo;
-  var expTask = await _buildExportTask(params);
+    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
-  // warnings
+    // create export container
+    expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+    console.log(expTask)
 
-  //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
+    // iterate msgs
 
-  // get export directory
+    let msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+    expTask.msgList = msgListPage.messages.map(msg => msg.id);
+    let expResult = await browser.ExportMessages.exportMessages(expTask);
+  
+    console.log(msgListPage)
+    console.log(expTask)
 
-  let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
+/*
+    while (page.id) {
+      page = await messenger.messages.continueList(page.id);
+      // Do something with page.messages.
+    }
+*/
 
-  if (resultObj.result != Ci.nsIFilePicker.returnOK) {
-    return;
-  }
-  console.log(expTask)
-
-  expTask.generalConfig.exportDirectory = resultObj.folder;
-  console.log(expTask)
-
-  let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
-
-  // create export container
-  rv = await browser.ExportMessages.createExportContainer(expTask);
-  console.log(rv)
-  // iterate msgs
   } catch (ex) {
-  let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-  console.log(ex)
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+    console.log(ex)
 
-  console.log(ex.stack)
+    console.log(ex.stack)
   }
 
 }
@@ -117,14 +133,14 @@ async function _buildExportTask(params) {
 async function _build_EML_expTask(expTask, params) {
   // hack setup
   expTask.expType = "eml";
-  expTask.folders = params.ctxInfo.selectedFolder;
+  expTask.folders = [params.ctxInfo.selectedFolder];
   expTask.generalConfig.exportDirectory = "C:\\Dev\\test";
   expTask.exportContainer.create = true;
   expTask.dateFormat.type = 1;
   expTask.msgNames.extension = "eml";
 
   return expTask;
-  
+
 }
 
 

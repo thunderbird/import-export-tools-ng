@@ -21,6 +21,12 @@ var baseExpTask = {
     type: 0,
     custom: "%Y%m%d%H%M",
   },
+  messages: {
+    messageContainer: true,
+    create: true,
+    messageContainerName: "messages",
+    messageContainerDirectory: "",
+  },
   msgNames: {
     namePatternType: "default",
     namePatternDefault: "${subject}-${date}-${index}",
@@ -41,8 +47,8 @@ var baseExpTask = {
     containerNamePattern: "$subject}-Atts",
   },
   getMsg: {
-    method: "getRawMessage",
-    decode: false,
+    method: "self._getRawMessage",
+    convertData: false,
   },
   postProcessing: [],
   msgSave: {
@@ -85,6 +91,9 @@ export async function exportFolders(ctxInfo, params) {
       return;
     }
 
+    let st = new Date();
+    console.log(new Date())
+
     expTask.generalConfig.exportDirectory = resultObj.folder;
 
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
@@ -99,15 +108,15 @@ export async function exportFolders(ctxInfo, params) {
     expTask.msgList = msgListPage.messages.map(msg => msg.id);
     let expResult = await browser.ExportMessages.exportMessages(expTask);
   
-    console.log(msgListPage)
-    console.log(expTask)
 
-/*
-    while (page.id) {
-      page = await messenger.messages.continueList(page.id);
-      // Do something with page.messages.
+    while (msgListPage.id) {
+      msgListPage = await messenger.messages.continueList(msgListPage.id);
+      expTask.msgList = msgListPage.messages.map(msg => msg.id);
+      let expResult = await browser.ExportMessages.exportMessages(expTask);
     }
-*/
+
+    console.log(new Date() - st)
+
 
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);

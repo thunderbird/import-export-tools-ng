@@ -23,13 +23,27 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
-          // add msgHdrs
-          expTask.msgList.forEach((msgId, index) => {
-            let realMessage = context.extension
-              .messageManager.get(msgId);
-            console.log(realMessage)
-          });
+          // iterate msgList and create new hdr array
 
+          console.log(new Date())
+
+          let msgHdrList = [];
+          for (let index = 0; index < expTask.msgList.length; index++) {
+            let msgHdr = context.extension.messageManager.get(expTask.msgList[index]);
+            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+            msgHdrList.push({ msgId: expTask.msgList[index], msgHdr: msgHdr, msgUri: msgUri });
+
+            // operate on each message inline
+            let msgData = await self._readMsg(expTask, msgHdrList[index]);
+            let name = `${msgHdr.mime2DecodedSubject}.eml`
+            name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+            let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
+            //console.log(index, uname)
+
+            await IOUtils.writeUTF8(uname, msgData);
+          };
+
+          console.log(new Date())
         },
 
         async createExportContainer(expTask) {
@@ -61,7 +75,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             resultObj.result = res;
             return resultObj;
           }
-      
+
           // no fp.files on Linux if not modeOpenMultiple
           if (mode == Ci.nsIFilePicker.modeOpenMultiple) {
             var files = fp.files;
@@ -74,9 +88,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           } else if (mode == Ci.nsIFilePicker.modeOpen) {
             resultObj.file = fp.file.path;
           }
-      
+
           resultObj.result = 0;
-      
+
           if (mode === Ci.nsIFilePicker.modeGetFolder) {
             resultObj.folder = fp.file.path;
             console.log(resultObj)
@@ -90,6 +104,60 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
     };
   }
+
+  // private msg processing functions
+
+  async _readMsg(expTask, msgEntry) {
+
+    return await this._getRawMessage(msgEntry.msgUri, expTask.getMsg.convertData);
+  }
+
+  async _getRawMessage(msgUri, aConvertData) {
+
+    let service = MailServices.messageServiceFromURI(msgUri);
+    return new Promise((resolve, reject) => {
+      let streamlistener = {
+        _data: [],
+        _stream: null,
+        onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+          if (!this._stream) {
+            this._stream = Cc[
+              "@mozilla.org/scriptableinputstream;1"
+            ].createInstance(Ci.nsIScriptableInputStream);
+            this._stream.init(aInputStream);
+          }
+          this._data.push(this._stream.read(aCount));
+        },
+        onStartRequest() { },
+        onStopRequest(request, status) {
+          if (Components.isSuccessCode(status)) {
+            resolve(this._data.join(""));
+          } else {
+            reject(
+              new ExtensionError(
+                `Error while streaming message <${msgUri}>: ${status}`
+              )
+            );
+          }
+        },
+        QueryInterface: ChromeUtils.generateQI([
+          "nsIStreamListener",
+          "nsIRequestObserver",
+        ]),
+      };
+
+      // This is not using aConvertData and therefore works for news:// messages.
+      service.streamMessage(
+        msgUri,
+        streamlistener,
+        null, // aMsgWindow
+        null, // aUrlListener
+        aConvertData, // aConvertData
+        "" //aAdditionalHeader
+      );
+    });
+  }
+  
   // private support functions
 
   _getNsIFileFromPath(path) {
@@ -97,5 +165,5 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     file.initWithPath(path);
     return file;
   }
-  
+
 };

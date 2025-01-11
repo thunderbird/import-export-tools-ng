@@ -397,6 +397,8 @@ async function exportAllMsgs(type, params) {
 			}
 		} catch (e) { }
 
+		var st = new Date();
+
 		IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
 		IETglobalMsgFoldersExported = 0;
@@ -429,7 +431,11 @@ async function exportAllMsgs(type, params) {
 			document.getElementById("IETabortIcon").collapsed = true;
 		let errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
 		Services.prompt.alert(window, errorMsg, ex);
+
+
 	}
+	console.log(new Date() - st)
+
 }
 
 // 2) exportAllMsgsStart
@@ -1411,7 +1417,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						}
 					}
 					IETexported = IETexported + 1;
-					if (sub)
+					if (sub && 0)
 						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
 					if (IETabort) {
@@ -1435,8 +1441,9 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						resolve(kStatusOK);
 						return;
 					} else {
-						if (myEMLlistner.file2)
-							createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
+						if (myEMLlistner.file2) {
+							//createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
+						}
 						IETexported = 0;
 						IETtotal = 0;
 						IETskipped = 0;

@@ -64,10 +64,7 @@
 			"mozilla/avoid-removeChild": "warn",
 			"mozilla/use-chromeutils-generateqi": "off",
 			"quotes": "off",
-			"spaced-comment": [
-				2,
-				"always"
-			],
+			"spaced-comment":"off",
 			"semi": "error",
 			"complexity": [
 				"error",

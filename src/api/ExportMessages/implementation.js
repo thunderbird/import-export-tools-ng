@@ -25,13 +25,15 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         async exportMessages(expTask) {
           // iterate msgList and create new hdr array
 
-          console.log(new Date())
+          //console.log(new Date())
+          console.log(expTask)
+
 
           let msgHdrList = [];
           for (let index = 0; index < expTask.msgList.length; index++) {
-            let msgHdr = context.extension.messageManager.get(expTask.msgList[index]);
+            let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            msgHdrList.push({ msgId: expTask.msgList[index], msgHdr: msgHdr, msgUri: msgUri });
+            msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri });
 
             // operate on each message inline
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
@@ -41,9 +43,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             //console.log(index, uname)
 
             await IOUtils.writeUTF8(uname, msgData);
-          };
+          }
 
-          console.log(new Date())
+          //console.log(new Date())
         },
 
         async createExportContainer(expTask) {

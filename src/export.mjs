@@ -70,7 +70,7 @@ export async function exportFolders(ctxInfo, params) {
         return;
       }
     }
-    console.log(ctxInfo, params)
+    console.log(ctxInfo, params);
 
     // we do all main logic, folder and message iteration
     // and UI interactions in wext side
@@ -91,38 +91,78 @@ export async function exportFolders(ctxInfo, params) {
       return;
     }
 
-    let st = new Date();
-    console.log(new Date())
+    var runs = 20;
+    var total = 0;
+    var times = [];
 
-    expTask.generalConfig.exportDirectory = resultObj.folder;
+    for (let index = 0; index < runs; index++) {
 
-    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
+      let st = new Date();
+      console.log(new Date());
 
-    // create export container
-    expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
-    console.log(expTask)
+      expTask.generalConfig.exportDirectory = resultObj.folder;
 
-    // iterate msgs
+      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
-    let msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-    expTask.msgList = msgListPage.messages.map(msg => msg.id);
-    let expResult = await browser.ExportMessages.exportMessages(expTask);
-  
+      // create export container
+      expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+      console.log(expTask);
+      runs = 1;
+      // iterate msgs
 
-    while (msgListPage.id) {
-      msgListPage = await messenger.messages.continueList(msgListPage.id);
-      expTask.msgList = msgListPage.messages.map(msg => msg.id);
+      var msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+      const messagesLen = msgListPage.messages.length;
+      expTask.msgList = new Array(messagesLen);
+      for (let index = 0; index < messagesLen; index++) {
+        let msgId = msgListPage.messages[index].id;
+        if (expTask.attachments.save != "none") {
+          try {
+            expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
+          } catch (ex) {
+            expTask.msgList[index] = { id: msgId, attachments: [] };
+          }
+        } else {
+          expTask.msgList[index] = { id: msgId, attachments: [] };
+        }
+      }
       let expResult = await browser.ExportMessages.exportMessages(expTask);
+
+
+      while (msgListPage.id) {
+        msgListPage = await messenger.messages.continueList(msgListPage.id);
+        const messagesLen = msgListPage.messages.length;
+        expTask.msgList = new Array(messagesLen);
+        for (let index = 0; index < messagesLen; index++) {
+          let msgId = msgListPage.messages[index].id;
+          if (expTask.attachments.save != "none") {
+            try {
+              expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
+            } catch (ex) {
+              expTask.msgList[index] = { id: msgId, attachments: [] };
+              console.log(msgListPage.messages[index]);
+            }
+          } else {
+            expTask.msgList[index] = { id: msgId, attachments: [] };
+            console.log(expTask.msgList[index]);
+          }
+        }
+
+        let expResult = await browser.ExportMessages.exportMessages(expTask);
+      }
+
+      times[index] = new Date() - st;
+      total += times[index];
+      console.log(new Date() - st);
+
     }
 
-    console.log(new Date() - st)
-
+    console.log("avg", total / runs)
 
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-    console.log(ex)
+    console.log(ex);
 
-    console.log(ex.stack)
+    console.log(ex.stack);
   }
 
 }
@@ -147,6 +187,7 @@ async function _build_EML_expTask(expTask, params) {
   expTask.exportContainer.create = true;
   expTask.dateFormat.type = 1;
   expTask.msgNames.extension = "eml";
+  expTask.attachments.save = "all";
 
   return expTask;
 
@@ -154,5 +195,5 @@ async function _build_EML_expTask(expTask, params) {
 
 
 export async function test(ctxInfo, params) {
-  console.log(ctxInfo, params)
+  console.log(ctxInfo, params);
 }

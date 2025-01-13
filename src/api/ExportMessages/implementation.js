@@ -33,16 +33,17 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           for (let index = 0; index < expTask.msgList.length; index++) {
             let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri });
+            msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
 
             // operate on each message inline
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
             let name = `${msgHdr.mime2DecodedSubject}.eml`
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
-            //console.log(index, uname)
-
             await IOUtils.writeUTF8(uname, msgData);
+            if (expTask.msgList[index].attachments.length) {
+              await self._saveMsgAttachments(expTask, msgHdrList[index]);
+            }
           }
 
           //console.log(new Date())
@@ -113,6 +114,36 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
     return await this._getRawMessage(msgEntry.msgUri, expTask.getMsg.convertData);
   }
+
+  async _saveMsgAttachments(expTask, msgEntry) {
+    //console.log(msgEntry)
+    //console.log(msgEntry.msgHdr)
+    //console.log(msgEntry.msgHdr.subject)
+
+
+    let containerName = `${msgEntry.msgHdr.mime2DecodedSubject}-Atts`;
+    containerName = containerName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+
+    let uName = await IOUtils.createUniqueDirectory(expTask.exportContainer.directory, containerName);
+    var MailService = MailServices.messageServiceFromURI(msgEntry.msgUri);
+
+    //console.log(decodeURIComponent(attachments[0].url))
+    let msgUri = msgEntry.msgUri;
+    console.log(msgUri)
+    console.log(MailService.getUrlForUri(msgUri).spec)
+    
+    let msgAttPartName = msgEntry.attachments[0].partName;
+    let msgAttName = msgEntry.attachments[0].name;
+
+    let msgAttUrl = `${decodeURIComponent(MailService.getUrlForUri(msgUri).spec)}?part=${msgAttPartName}&filename=${msgAttName}`
+    console.log(msgAttUrl)
+    var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+    attFile.initWithPath(PathUtils.join(uName, msgAttName));
+
+    msgWindow.messenger.saveAttachmentToFile(attFile, msgAttUrl, msgUri, msgEntry.attachments[0].contentType, null);
+
+  }
+
 
   async _getRawMessage(msgUri, aConvertData) {
 

@@ -409,12 +409,14 @@ async function exportAllMsgs(type, params) {
 				alert(mboximportbundle.GetStringFromName("virtFolAlert"));
 				return;
 			}
+		/*
 			if (type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
 				var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
 				if (!go)
 					return;
 				break;
 			}
+				*/
 		}
 		IETglobalFile = file.clone();
 		if (type !== 3 && type !== 5) {

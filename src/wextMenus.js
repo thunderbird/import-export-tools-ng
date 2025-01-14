@@ -62,7 +62,7 @@ var msgCtxMenuSet = [
       id: msgCtxMenu_TopId,
       title: localizeMenuTitle("msgCtxMenu_TopId.title"),
     },
-  }, 
+  },
   {
     menuDef: {
       id: "test1_Id",
@@ -429,7 +429,7 @@ var folderCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: Export.exportFolders,
-      functionParams: {expType: "eml", saveAttatchments: true, index: false}
+      functionParams: { expType: "eml", saveAttatchments: true, index: false }
     }
   },
   {
@@ -812,7 +812,7 @@ var msgDisplayCtxMenuSet = [
 
 // Create all menus
 // Use anon async to pass ATN
-await((async () => {
+await ((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
@@ -1090,7 +1090,10 @@ async function wextctx_folderMenu(ctxEvent, tab) {
         case folderCtxMenu_Imp_EMLFormatDir_Id:
           params.emlImpType = "directory";
           params.emlImpRecursive = false;
-          messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpEMLAll", params: params });
+
+          await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpEMLAll", params: params });
+
+
           break;
         case folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id:
           params.emlImpType = "directory";
@@ -1119,7 +1122,26 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     case folderCtxMenu_Exp_EMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id:
-      messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
+
+      var runs = 10;
+      var total = 0;
+      var times = [];
+
+      for (let index = 0; index < runs; index++) {
+
+        let st = new Date();
+        console.log(new Date());
+
+        await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_FolderExp_EML_Format", params: params });
+
+        times[index] = new Date() - st;
+        total += times[index];
+        console.log(new Date() - st);
+
+      }
+
+      console.log("Old EML export avg", total / runs, runs)
+
       break;
     case folderCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
     case folderCtxMenu_Exp_HTMLFormatSaveAtts_Id:
@@ -1420,38 +1442,38 @@ async function getBoolPref(boolPref) {
 // testing 
 
 async function testexp() {
-  
-
-let params = {};
-var msgList = [];
-
-var selectedMsgs2 = (await messenger.mailTabs.getSelectedMessages());
-var msgList2 = selectedMsgs2.messages;
-console.log(selectedMsgs2.id)
-
-while (selectedMsgs2.id) {
-  selectedMsgs2 = await messenger.messages.continueList(selectedMsgs2.id)
-console.log(selectedMsgs2)
-
-  msgList2 = msgList2.concat(selectedMsgs2.messages);
-}
-
-console.log(msgList2)
 
 
-let selectedMsgs = (await messenger.mailTabs.getSelectedMessages()).messages;
-for (const msg of selectedMsgs) {
-  let msgEntry = {};
-  msgEntry.id = msg.id;
-  let atts = await messenger.messages.listAttachments(msg.id);
-  msgEntry.atts = atts;
-  msgList.push(msgEntry);
-}
+  let params = {};
+  var msgList = [];
 
-console.log(selectedMsgs)
-console.log(msgList)
+  var selectedMsgs2 = (await messenger.mailTabs.getSelectedMessages());
+  var msgList2 = selectedMsgs2.messages;
+  console.log(selectedMsgs2.id)
 
-//let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_testexp", params: params });
+  while (selectedMsgs2.id) {
+    selectedMsgs2 = await messenger.messages.continueList(selectedMsgs2.id)
+    console.log(selectedMsgs2)
+
+    msgList2 = msgList2.concat(selectedMsgs2.messages);
+  }
+
+  console.log(msgList2)
+
+
+  let selectedMsgs = (await messenger.mailTabs.getSelectedMessages()).messages;
+  for (const msg of selectedMsgs) {
+    let msgEntry = {};
+    msgEntry.id = msg.id;
+    let atts = await messenger.messages.listAttachments(msg.id);
+    msgEntry.atts = atts;
+    msgList.push(msgEntry);
+  }
+
+  console.log(selectedMsgs)
+  console.log(msgList)
+
+  //let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_testexp", params: params });
 }
 
 async function menuFunctionDispatcher(ctxEvent) {

@@ -91,14 +91,15 @@ export async function exportFolders(ctxInfo, params) {
       return;
     }
 
-    var runs = 20;
+    var runs = 5;
     var total = 0;
     var times = [];
 
     for (let index = 0; index < runs; index++) {
 
       let st = new Date();
-      console.log(new Date());
+
+      //console.log(new Date());
 
       expTask.generalConfig.exportDirectory = resultObj.folder;
 
@@ -106,8 +107,7 @@ export async function exportFolders(ctxInfo, params) {
 
       // create export container
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
-      console.log(expTask);
-      runs = 1;
+      //console.log(expTask);
       // iterate msgs
 
       var msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
@@ -125,6 +125,8 @@ export async function exportFolders(ctxInfo, params) {
           expTask.msgList[index] = { id: msgId, attachments: [] };
         }
       }
+
+      expTask.st0 = st;
       let expResult = await browser.ExportMessages.exportMessages(expTask);
 
 
@@ -143,10 +145,12 @@ export async function exportFolders(ctxInfo, params) {
             }
           } else {
             expTask.msgList[index] = { id: msgId, attachments: [] };
-            console.log(expTask.msgList[index]);
+            //console.log(expTask.msgList[index]);
           }
         }
 
+
+        expTask.st0 = st;
         let expResult = await browser.ExportMessages.exportMessages(expTask);
       }
 
@@ -187,7 +191,7 @@ async function _build_EML_expTask(expTask, params) {
   expTask.exportContainer.create = true;
   expTask.dateFormat.type = 1;
   expTask.msgNames.extension = "eml";
-  expTask.attachments.save = "all";
+  expTask.attachments.save = "none";
 
   return expTask;
 

@@ -26,8 +26,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           // iterate msgList and create new hdr array
 
           //console.log(new Date())
-          console.log(expTask)
+          //console.log(new Date() - expTask.st0)
 
+          var st1 = new Date();
 
           let msgHdrList = [];
           for (let index = 0; index < expTask.msgList.length; index++) {
@@ -37,23 +38,26 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
             // operate on each message inline
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
-            let name = `${msgHdr.mime2DecodedSubject}.eml`
+            let subject = msgHdr.mime2DecodedSubject.slice(0, 150)
+            let name = `${subject}.eml`
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+            //name = PathUtils.join(expTask.exportContainer.directory, name)
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
-            await IOUtils.writeUTF8(uname, msgData);
-            if (expTask.msgList[index].attachments.length) {
-              await self._saveMsgAttachments(expTask, msgHdrList[index]);
-            }
+            IOUtils.writeUTF8(uname, msgData);
+            
+
+            // if (expTask.msgList[index].attachments.length) {
+            //   await self._saveMsgAttachments(expTask, msgHdrList[index]);
+            // }
           }
 
-          //console.log(new Date())
+          console.log(new Date() - st1)
         },
 
         async createExportContainer(expTask) {
           let dateStr = strftime.strftime("%Y", new Date());
           let containerName = `${expTask.folders[expTask.currentFolderIndex].name}-${dateStr}`;
           let uName = await IOUtils.createUniqueDirectory(expTask.generalConfig.exportDirectory, containerName);
-
           return uName;
         },
 
@@ -112,7 +116,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
   async _readMsg(expTask, msgEntry) {
 
-    return await this._getRawMessage(msgEntry.msgUri, expTask.getMsg.convertData);
+    return this._getRawMessage(msgEntry.msgUri, expTask.getMsg.convertData);
   }
 
   async _saveMsgAttachments(expTask, msgEntry) {

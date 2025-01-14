@@ -91,7 +91,7 @@ export async function exportFolders(ctxInfo, params) {
       return;
     }
 
-    var runs = 5;
+    var runs = 1;
     var total = 0;
     var times = [];
 

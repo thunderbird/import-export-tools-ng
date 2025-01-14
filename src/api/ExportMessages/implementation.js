@@ -3,6 +3,7 @@ var Services = globalThis.Services ||
 
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+var { testexp } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/testexp.js");
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -23,18 +24,33 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
+          await testexp(context, expTask)
+          return
+
           let bname = "testmsg";
           let msgdata = "z".repeat(50000);
           var fname;
+          var tempNsIFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
           
+          //console.log(expTask)
           let st = new Date();
-          for (let index = 0; index < 1000; index++) {
-            fname = `${bname}-${index}`;
+          for (let index = 0; index < expTask.msgList.length; index++) {
+            
+            let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
+            let key = msgHdr.messageKey;
+            let subject = msgHdr.mime2DecodedSubject.slice(0, 150)
+            fname = `${subject}.eml`;
+            fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+
+            //console.log(fname)
             let fpath = PathUtils.join("C:\\Dev\\ptest", fname)
-            let msgHdr = context.extension.messageManager.get(expTask.msgList[87].id);
+            //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, fname)
+            tempNsIFile.initWithPath(fpath)
+						tempNsIFile.createUnique(0, 0o0644);
+            let uname = tempNsIFile.path;
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            let msgdata = self._getRawMessage(msgUri, false)
-            await IOUtils.writeUTF8(fpath, msgdata);
+            let msgdata = await self._getRawMessage(msgUri, false)
+            await IOUtils.writeUTF8(uname, msgdata);
           }
 
           console.log(new Date() - st);

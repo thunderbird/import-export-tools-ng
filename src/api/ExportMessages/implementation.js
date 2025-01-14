@@ -23,6 +23,25 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
+          let bname = "testmsg";
+          let msgdata = "z".repeat(50000);
+          var fname;
+          
+          let st = new Date();
+          for (let index = 0; index < 1000; index++) {
+            fname = `${bname}-${index}`;
+            let fpath = PathUtils.join("C:\\Dev\\ptest", fname)
+            let msgHdr = context.extension.messageManager.get(expTask.msgList[87].id);
+            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+            let msgdata = self._getRawMessage(msgUri, false)
+            await IOUtils.writeUTF8(fpath, msgdata);
+          }
+
+          console.log(new Date() - st);
+          
+          return;
+
+
           // iterate msgList and create new hdr array
 
           //console.log(new Date())

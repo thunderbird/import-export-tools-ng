@@ -1313,8 +1313,11 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 	var nextFile = file;
 	var result;
 
+	var wrt_total = 0;
+
 	while (!saveAsEmlDone) {
 		result = await new Promise((resolve, reject) => {
+
 
 			var myEMLlistner = {
 
@@ -1404,7 +1407,14 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							clone.append(sub + ".eml");
 							clone.createUnique(0, 0644);
 							var time = (hdr.dateInSeconds) * 1000;
+
+							let stwr = new Date();
+
 							IETwriteDataOnDisk(clone, data, false, null, time);
+
+							let wrt = new Date() - stwr;
+            wrt_total += wrt;
+
 							// myEMLlistener.file2 exists just if we need the index
 							if (myEMLlistner.file2) {
 								var nameNoExt = clone.leafName.replace(/\.eml$/, "");
@@ -1464,6 +1474,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							document.getElementById("IETabortIcon").collapsed = true;
 					}
 					saveAsEmlDone = true;
+          console.log("writet", wrt_total)
+					
 					resolve(kStatusDone);
 				},
 

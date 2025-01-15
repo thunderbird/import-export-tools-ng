@@ -91,7 +91,7 @@ export async function exportFolders(ctxInfo, params) {
       return;
     }
 
-    var runs = 1;
+    var runs = 10;
     var total = 0;
     var times = [];
 
@@ -110,6 +110,8 @@ export async function exportFolders(ctxInfo, params) {
       //console.log(expTask);
       // iterate msgs
 
+      var wrtotal = 0;
+
       var msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
       const messagesLen = msgListPage.messages.length;
       expTask.msgList = new Array(messagesLen);
@@ -126,9 +128,11 @@ export async function exportFolders(ctxInfo, params) {
         }
       }
 
-      expTask.st0 = st;
-      let expResult = await browser.ExportMessages.exportMessages(expTask);
+      var expResult;
 
+      expTask.st0 = st;
+      expResult = await browser.ExportMessages.exportMessages(expTask);
+      wrtotal += expResult;
 
       while (msgListPage.id) {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
@@ -151,8 +155,11 @@ export async function exportFolders(ctxInfo, params) {
 
 
         expTask.st0 = st;
-        let expResult = await browser.ExportMessages.exportMessages(expTask);
+        expResult = await browser.ExportMessages.exportMessages(expTask);
+        wrtotal += expResult;
+
       }
+
 
       times[index] = new Date() - st;
       total += times[index];
@@ -160,6 +167,7 @@ export async function exportFolders(ctxInfo, params) {
 
     }
 
+    console.log("wrt avg", wrtotal / runs)
     console.log("avg", total / runs)
 
   } catch (ex) {

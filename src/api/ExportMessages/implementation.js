@@ -24,40 +24,76 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
-          await testexp(context, expTask)
-          return
+          //await testexp(context, expTask)
 
-          let bname = "testmsg";
-          let msgdata = "z".repeat(50000);
+          /*
           var fname;
-          var tempNsIFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-          
+          //var tempNsIFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+          var wrt_total = 0;
           //console.log(expTask)
           let st = new Date();
           for (let index = 0; index < expTask.msgList.length; index++) {
-            
+
             let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
             let key = msgHdr.messageKey;
             let subject = msgHdr.mime2DecodedSubject.slice(0, 150)
+            //fname = `${subject}-${key}.eml`;
             fname = `${subject}.eml`;
+
             fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
             //console.log(fname)
-            let fpath = PathUtils.join("C:\\Dev\\ptest", fname)
-            //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, fname)
-            tempNsIFile.initWithPath(fpath)
-						tempNsIFile.createUnique(0, 0o0644);
-            let uname = tempNsIFile.path;
+            let uname = PathUtils.join("C:\\Dev\\ptest", fname)
+            //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, fpath)
+            //let uname = await IOUtils.createUniqueFile("C:\\Dev\\ptest", fname)
+
+            //tempNsIFile.initWithPath(fpath)
+            //tempNsIFile.createUnique(0, 0o0644);
+            //let uname = tempNsIFile.path;
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
             let msgdata = await self._getRawMessage(msgUri, false)
-            await IOUtils.writeUTF8(uname, msgdata);
+            let stwr = new Date();
+
+            var ok = false;
+
+            try {
+              await IOUtils.writeUTF8(uname, msgdata, { mode: "create" });
+              ok = true;
+            } catch (ex) {
+              console.log(ex)
+              console.log(ex.message)
+              if (ex.message.includes("NS_ERROR_FILE_ALREADY_EXISTS")) {
+                var bname = uname.slice(0, -4);
+                for (let index = 0; index < 1000; index++) {
+                  let newname = `${bname}-${index + 1}.eml`;
+                  try {
+                    await IOUtils.writeUTF8(newname, msgdata, { mode: "create" });
+                    ok = true;
+                    break;
+                  } catch (ex) {
+                    if (ex.message.includes("NS_ERROR_FILE_ALREADY_EXISTS")) {
+                      continue;
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                if (!ok) {
+                  throw (ex)
+                }
+              }
+            }
+            let wrt = new Date() - stwr;
+            wrt_total += wrt;
           }
 
-          console.log(new Date() - st);
-          
-          return;
+          console.log("writet", wrt_total)
+          console.log("runt", new Date() - st);
 
+          return wrt_total;
+        },
 
+        */
           // iterate msgList and create new hdr array
 
           //console.log(new Date())
@@ -73,21 +109,23 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
             // operate on each message inline
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
-            let subject = msgHdr.mime2DecodedSubject.slice(0, 150)
-            let name = `${subject}.eml`
+            let subject = msgHdr.mime2DecodedSubject.slice(0, 150);
+            let name = `${subject}.eml`;
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
             //name = PathUtils.join(expTask.exportContainer.directory, name)
-            let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
+            let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
             IOUtils.writeUTF8(uname, msgData);
-            
+
 
             // if (expTask.msgList[index].attachments.length) {
             //   await self._saveMsgAttachments(expTask, msgHdrList[index]);
             // }
           }
 
-          console.log(new Date() - st1)
+          console.log(new Date() - st1);
         },
+
+
 
         async createExportContainer(expTask) {
           let dateStr = strftime.strftime("%Y", new Date());
@@ -135,7 +173,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
           if (mode === Ci.nsIFilePicker.modeGetFolder) {
             resultObj.folder = fp.file.path;
-            console.log(resultObj)
+            console.log(resultObj);
 
           }
           return resultObj;
@@ -168,14 +206,14 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
     //console.log(decodeURIComponent(attachments[0].url))
     let msgUri = msgEntry.msgUri;
-    console.log(msgUri)
-    console.log(MailService.getUrlForUri(msgUri).spec)
-    
+    console.log(msgUri);
+    console.log(MailService.getUrlForUri(msgUri).spec);
+
     let msgAttPartName = msgEntry.attachments[0].partName;
     let msgAttName = msgEntry.attachments[0].name;
 
-    let msgAttUrl = `${decodeURIComponent(MailService.getUrlForUri(msgUri).spec)}?part=${msgAttPartName}&filename=${msgAttName}`
-    console.log(msgAttUrl)
+    let msgAttUrl = `${decodeURIComponent(MailService.getUrlForUri(msgUri).spec)}?part=${msgAttPartName}&filename=${msgAttName}`;
+    console.log(msgAttUrl);
     var attFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
     attFile.initWithPath(PathUtils.join(uName, msgAttName));
 
@@ -229,7 +267,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       );
     });
   }
-  
+
   // private support functions
 
   _getNsIFileFromPath(path) {

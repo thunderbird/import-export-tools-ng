@@ -114,7 +114,8 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
             //name = PathUtils.join(expTask.exportContainer.directory, name)
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
-            IOUtils.writeUTF8(uname, msgData);
+            //console.log(uname);
+            IOUtils.writeUTF8(uname, msgData, {mode2: "append"});
 
 
             // if (expTask.msgList[index].attachments.length) {
@@ -122,7 +123,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             // }
           }
 
-          console.log(new Date() - st1);
+          //console.log(new Date() - st1);
         },
 
 

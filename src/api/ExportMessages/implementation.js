@@ -24,84 +24,22 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
-          //await testexp(context, expTask)
-
-          /*
-          var fname;
-          //var tempNsIFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-          var wrt_total = 0;
-          //console.log(expTask)
-          let st = new Date();
-          for (let index = 0; index < expTask.msgList.length; index++) {
-
-            let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
-            let key = msgHdr.messageKey;
-            let subject = msgHdr.mime2DecodedSubject.slice(0, 150)
-            //fname = `${subject}-${key}.eml`;
-            fname = `${subject}.eml`;
-
-            fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
-
-            //console.log(fname)
-            let uname = PathUtils.join("C:\\Dev\\ptest", fname)
-            //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, fpath)
-            //let uname = await IOUtils.createUniqueFile("C:\\Dev\\ptest", fname)
-
-            //tempNsIFile.initWithPath(fpath)
-            //tempNsIFile.createUnique(0, 0o0644);
-            //let uname = tempNsIFile.path;
-            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            let msgdata = await self._getRawMessage(msgUri, false)
-            let stwr = new Date();
-
-            var ok = false;
-
-            try {
-              await IOUtils.writeUTF8(uname, msgdata, { mode: "create" });
-              ok = true;
-            } catch (ex) {
-              console.log(ex)
-              console.log(ex.message)
-              if (ex.message.includes("NS_ERROR_FILE_ALREADY_EXISTS")) {
-                var bname = uname.slice(0, -4);
-                for (let index = 0; index < 1000; index++) {
-                  let newname = `${bname}-${index + 1}.eml`;
-                  try {
-                    await IOUtils.writeUTF8(newname, msgdata, { mode: "create" });
-                    ok = true;
-                    break;
-                  } catch (ex) {
-                    if (ex.message.includes("NS_ERROR_FILE_ALREADY_EXISTS")) {
-                      continue;
-                    } else {
-                      break;
-                    }
-                  }
-                }
-                if (!ok) {
-                  throw (ex)
-                }
-              }
-            }
-            let wrt = new Date() - stwr;
-            wrt_total += wrt;
-          }
-
-          console.log("writet", wrt_total)
-          console.log("runt", new Date() - st);
-
-          return wrt_total;
-        },
-
-        */
+          
           // iterate msgList and create new hdr array
+          // can't pass that back
 
           //console.log(new Date())
           //console.log(new Date() - expTask.st0)
 
           var st1 = new Date();
 
-          var promises = [];
+          // collecting promises and running the writeUTF8 calls
+          // concurrently and using Promise.allSettled makes
+          // a big improvement. This is possible because the prior
+          // awaited createUniqueFile guarantees the independent 
+          // write to file
+
+          var writePromises = [];
 
           let msgHdrList = [];
           for (let index = 0; index < expTask.msgList.length; index++) {
@@ -109,7 +47,8 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
             msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
 
-            // operate on each message inline
+            // operate on each message inline for skeleton experiments
+            
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
             let subject = msgHdr.mime2DecodedSubject.slice(0, 150);
             let name = `${subject}.eml`;
@@ -117,19 +56,16 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             //name = PathUtils.join(expTask.exportContainer.directory, name)
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
             //console.log(uname);
-            promises.push(IOUtils.writeUTF8(uname, msgData));
+            writePromises.push(IOUtils.writeUTF8(uname, msgData));
 
 
             // if (expTask.msgList[index].attachments.length) {
             //   await self._saveMsgAttachments(expTask, msgHdrList[index]);
             // }
           }
-          await Promise.allSettled(promises);
-          return;
-          //console.log(new Date() - st1);
+          return Promise.allSettled(writePromises);
+
         },
-
-
 
         async createExportContainer(expTask) {
           let dateStr = strftime.strftime("%Y", new Date());

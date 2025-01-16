@@ -101,6 +101,8 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
           var st1 = new Date();
 
+          var promises = [];
+
           let msgHdrList = [];
           for (let index = 0; index < expTask.msgList.length; index++) {
             let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
@@ -115,14 +117,15 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             //name = PathUtils.join(expTask.exportContainer.directory, name)
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
             //console.log(uname);
-            IOUtils.writeUTF8(uname, msgData, {mode2: "append"});
+            promises.push(IOUtils.writeUTF8(uname, msgData));
 
 
             // if (expTask.msgList[index].attachments.length) {
             //   await self._saveMsgAttachments(expTask, msgHdrList[index]);
             // }
           }
-
+          await Promise.allSettled(promises);
+          return;
           //console.log(new Date() - st1);
         },
 

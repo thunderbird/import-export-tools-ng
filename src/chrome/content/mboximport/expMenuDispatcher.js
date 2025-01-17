@@ -33,6 +33,8 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
+var { exportTests } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/exportTests.js");
+
 var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-8.js");
 
 var gVars = {
@@ -201,6 +203,9 @@ async function expMenuDispatcher(data) {
 		case "WXMCMD_getBoolPref":
 			let bp = IETprefs.getBoolPref(data.params.boolPref);
 			return bp;
+		case "WXMCMD_exportFolderEML_WL":
+			exportTests.exportFolderEML_WL(data.params);
+			break;
 		default:
 			break;
 	}

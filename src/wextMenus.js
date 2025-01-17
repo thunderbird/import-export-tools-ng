@@ -434,6 +434,17 @@ var folderCtxMenuSet = [
   },
   {
     menuDef: {
+      id: "folderCtxMenu_test2",
+      title: "Export EML WL nsIFile ",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportFoldersWL,
+      functionParams: { expType: "eml", saveAttatchments: true, index: false }
+    }
+  },
+  {
+    menuDef: {
       id: folderCtxMenu_Exp_Account_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title"),
       visible: false,
@@ -1440,6 +1451,15 @@ async function getBoolPref(boolPref) {
 
 
 // testing 
+
+async function exportFoldersWL(ctxEvent, options) {
+  console.log(ctxEvent)
+  let params = {};
+  params.selectedFolder = ctxEvent.selectedFolder;
+  params.selectedAccount = ctxEvent.selectedAccount;
+  params.targetWinId = (await messenger.windows.getCurrent()).id;
+  let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_exportFolderEML_WL", params: params });
+}
 
 async function testexp() {
 

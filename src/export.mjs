@@ -113,6 +113,9 @@ export async function exportFolders(ctxInfo, params) {
       var wrtotal = 0;
       var msgListPage = null;
       var readRawInWext = true;
+      const targetMaxMsgData = 25 * 1000 * 1000;
+      var totalMsgsData = 0;
+      var expResult;
 
       do {
         if (!msgListPage) {
@@ -122,11 +125,14 @@ export async function exportFolders(ctxInfo, params) {
         }
         const messagesLen = msgListPage.messages.length;
         //expTask.msgList = new Array(messagesLen);
-        expTask.msgList = msgListPage.messages;
+        console.log(expTask.msgList)
+        expTask.msgList = [];
         for (let index = 0; index < messagesLen; index++) {
-          let msgId = expTask.msgList[index].id;
+          expTask.msgList.push(msgListPage.messages[index])
+          let msgId = msgListPage.messages[index].id;
           if (readRawInWext) {
-            expTask.msgList[index].msgData = await messenger.messages.getRaw(msgId);
+            expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
+            totalMsgsData += msgListPage.messages[index].size;
             //console.log(expTask.msgList[index].msgRawData)
           }
           if (expTask.attachments.save != "none") {
@@ -136,33 +142,38 @@ export async function exportFolders(ctxInfo, params) {
               expTask.msgList[index].attachments = [];
             }
           }
+          if (totalMsgsData >= targetMaxMsgData) {
+            expResult = await browser.ExportMessages.exportMessages(expTask);
+            totalMsgsData = 0;
+            expTask.msgList = [];
 
+          }
         }
-      
 
-        var expResult;
+        expTask.st0 = st;
+        if (expTask.msgList) {
+          expResult = await browser.ExportMessages.exportMessages(expTask);
+        }
 
-      expTask.st0 = st;
-      expResult = await browser.ExportMessages.exportMessages(expTask);
-      wrtotal += expResult;
+        wrtotal += expResult;
 
-    } while (msgListPage.id);
+      } while (msgListPage.id);
 
-    times[index] = new Date() - st;
-    total += times[index];
-    console.log(new Date() - st);
+      times[index] = new Date() - st;
+      total += times[index];
+      console.log(new Date() - st);
 
-  }
+    }
 
     console.log("wrt avg", wrtotal / runs)
-  console.log("avg", total / runs)
+    console.log("avg", total / runs)
 
-} catch (ex) {
-  let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-  console.log(ex);
+  } catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+    console.log(ex);
 
-  console.log(ex.stack);
-}
+    console.log(ex.stack);
+  }
 
 }
 

@@ -48,18 +48,17 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
 
             // operate on each message inline for skeleton experiments
-            
-            if (expTask.msgList[index].msgData) {
-              
+
+            if (!expTask.msgList[index].msgData) {
+              expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
             }
-            let msgData = await self._readMsg(expTask, msgHdrList[index]);
             let subject = msgHdr.mime2DecodedSubject.slice(0, 150);
             let name = `${subject}.eml`;
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
             //name = PathUtils.join(expTask.exportContainer.directory, name)
             let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
             //console.log(uname);
-            writePromises.push(IOUtils.writeUTF8(uname, msgData));
+            writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
 
 
             // if (expTask.msgList[index].attachments.length) {

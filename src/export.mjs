@@ -113,7 +113,7 @@ export async function exportFolders(ctxInfo, params) {
       var wrtotal = 0;
       var msgListPage = null;
       do {
-        console.log(msgListPage)
+        console.log(msgListPage);
 
         if (!msgListPage) {
           console.log("list")

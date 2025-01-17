@@ -112,84 +112,57 @@ export async function exportFolders(ctxInfo, params) {
 
       var wrtotal = 0;
       var msgListPage = null;
-      do {
-        console.log(msgListPage);
+      var readRawInWext = true;
 
+      do {
         if (!msgListPage) {
-          console.log("list")
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
         } else {
-          console.log("cont list")
-
           msgListPage = await messenger.messages.continueList(msgListPage.id);
         }
         const messagesLen = msgListPage.messages.length;
-        expTask.msgList = new Array(messagesLen);
+        //expTask.msgList = new Array(messagesLen);
+        expTask.msgList = msgListPage.messages;
         for (let index = 0; index < messagesLen; index++) {
-          let msgId = msgListPage.messages[index].id;
+          let msgId = expTask.msgList[index].id;
+          if (readRawInWext) {
+            expTask.msgList[index].msgData = await messenger.messages.getRaw(msgId);
+            //console.log(expTask.msgList[index].msgRawData)
+          }
           if (expTask.attachments.save != "none") {
             try {
-              expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
+              expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
             } catch (ex) {
-              expTask.msgList[index] = { id: msgId, attachments: [] };
+              expTask.msgList[index].attachments = [];
             }
-          } else {
-            expTask.msgList[index] = { id: msgId, attachments: [] };
           }
+
         }
+      
 
         var expResult;
 
-        expTask.st0 = st;
-        expResult = await browser.ExportMessages.exportMessages(expTask);
-        wrtotal += expResult;
+      expTask.st0 = st;
+      expResult = await browser.ExportMessages.exportMessages(expTask);
+      wrtotal += expResult;
 
-        console.log(msgListPage.id)
-      } while (msgListPage.id);
-      /*
-        while (msgListPage.id) {
-          msgListPage = await messenger.messages.continueList(msgListPage.id);
-          const messagesLen = msgListPage.messages.length;
-          expTask.msgList = new Array(messagesLen);
-          for (let index = 0; index < messagesLen; index++) {
-            let msgId = msgListPage.messages[index].id;
-            if (expTask.attachments.save != "none") {
-              try {
-                expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
-              } catch (ex) {
-                expTask.msgList[index] = { id: msgId, attachments: [] };
-                console.log(msgListPage.messages[index]);
-              }
-            } else {
-              expTask.msgList[index] = { id: msgId, attachments: [] };
-              //console.log(expTask.msgList[index]);
-            }
-          }
-  
-  
-  
-          expTask.st0 = st;
-          expResult = await browser.ExportMessages.exportMessages(expTask);
-          wrtotal += expResult;
-  
-        }
-  
-  */
-      times[index] = new Date() - st;
-      total += times[index];
-      console.log(new Date() - st);
+    } while (msgListPage.id);
 
-    }
+    times[index] = new Date() - st;
+    total += times[index];
+    console.log(new Date() - st);
+
+  }
 
     console.log("wrt avg", wrtotal / runs)
-    console.log("avg", total / runs)
+  console.log("avg", total / runs)
 
-  } catch (ex) {
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-    console.log(ex);
+} catch (ex) {
+  let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+  console.log(ex);
 
-    console.log(ex.stack);
-  }
+  console.log(ex.stack);
+}
 
 }
 

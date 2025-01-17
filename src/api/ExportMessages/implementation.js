@@ -49,6 +49,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
             // operate on each message inline for skeleton experiments
             
+            if (expTask.msgList[index].msgData) {
+              
+            }
             let msgData = await self._readMsg(expTask, msgHdrList[index]);
             let subject = msgHdr.mime2DecodedSubject.slice(0, 150);
             let name = `${subject}.eml`;

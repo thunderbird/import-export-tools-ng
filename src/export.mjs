@@ -111,31 +111,16 @@ export async function exportFolders(ctxInfo, params) {
       // iterate msgs
 
       var wrtotal = 0;
-
-      var msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-      const messagesLen = msgListPage.messages.length;
-      expTask.msgList = new Array(messagesLen);
-      for (let index = 0; index < messagesLen; index++) {
-        let msgId = msgListPage.messages[index].id;
-        if (expTask.attachments.save != "none") {
-          try {
-            expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
-          } catch (ex) {
-            expTask.msgList[index] = { id: msgId, attachments: [] };
-          }
+      var msgListPage = [];
+      do {
+        if (!msgListPage.length) {
+          console.log("list")
+          msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
         } else {
-          expTask.msgList[index] = { id: msgId, attachments: [] };
+          console.log("cont list")
+
+          msgListPage = await messenger.messages.continueList(msgListPage.id);
         }
-      }
-
-      var expResult;
-
-      expTask.st0 = st;
-      expResult = await browser.ExportMessages.exportMessages(expTask);
-      wrtotal += expResult;
-
-      while (msgListPage.id) {
-        msgListPage = await messenger.messages.continueList(msgListPage.id);
         const messagesLen = msgListPage.messages.length;
         expTask.msgList = new Array(messagesLen);
         for (let index = 0; index < messagesLen; index++) {
@@ -145,22 +130,49 @@ export async function exportFolders(ctxInfo, params) {
               expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
             } catch (ex) {
               expTask.msgList[index] = { id: msgId, attachments: [] };
-              console.log(msgListPage.messages[index]);
             }
           } else {
             expTask.msgList[index] = { id: msgId, attachments: [] };
-            //console.log(expTask.msgList[index]);
           }
         }
 
+        var expResult;
 
         expTask.st0 = st;
         expResult = await browser.ExportMessages.exportMessages(expTask);
         wrtotal += expResult;
 
-      }
-
-
+        console.log(msgListPage.id)
+      } while (msgListPage.id);
+      /*
+        while (msgListPage.id) {
+          msgListPage = await messenger.messages.continueList(msgListPage.id);
+          const messagesLen = msgListPage.messages.length;
+          expTask.msgList = new Array(messagesLen);
+          for (let index = 0; index < messagesLen; index++) {
+            let msgId = msgListPage.messages[index].id;
+            if (expTask.attachments.save != "none") {
+              try {
+                expTask.msgList[index] = { id: msgId, attachments: await messenger.messages.listAttachments(msgId) };
+              } catch (ex) {
+                expTask.msgList[index] = { id: msgId, attachments: [] };
+                console.log(msgListPage.messages[index]);
+              }
+            } else {
+              expTask.msgList[index] = { id: msgId, attachments: [] };
+              //console.log(expTask.msgList[index]);
+            }
+          }
+  
+  
+  
+          expTask.st0 = st;
+          expResult = await browser.ExportMessages.exportMessages(expTask);
+          wrtotal += expResult;
+  
+        }
+  
+  */
       times[index] = new Date() - st;
       total += times[index];
       console.log(new Date() - st);

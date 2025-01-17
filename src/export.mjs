@@ -111,9 +111,11 @@ export async function exportFolders(ctxInfo, params) {
       // iterate msgs
 
       var wrtotal = 0;
-      var msgListPage = [];
+      var msgListPage = null;
       do {
-        if (!msgListPage.length) {
+        console.log(msgListPage)
+
+        if (!msgListPage) {
           console.log("list")
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
         } else {

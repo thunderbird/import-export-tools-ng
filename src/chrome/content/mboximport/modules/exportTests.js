@@ -9,11 +9,13 @@ var exportTests = {
   expDirFile: window.getPredefinedFolder(1),
 
   exportFolderEML_WL: async function (params) {
-    var st1 = new Date();
 
     //console.log(params);
-    //console.log(this.expDirFile.path);
+    console.log(this.expDirFile.path);
+
     this.folder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+    var st1 = new Date();
+
     //console.log(this.folder);
     let folderDir = `${this.folder.name}-WL1-2025`;
     folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
@@ -22,6 +24,11 @@ var exportTests = {
     folderDirFile.createUnique(1, 0o0755);
 
     var msgArray = [...this.folder.messages];
+
+    this.saveMessages(msgArray, false, folderDirFile);
+    console.log(new Date() - st1)
+
+    return;
 
     //console.log(msgArray);
 
@@ -34,10 +41,7 @@ var exportTests = {
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
       let msgFile = folderDirFile.clone();
       msgFile.append(name);
-      //console.log(msgFile.path);
       msgFile.createUnique(0, 0o0755);
-
-
       this.IETwriteDataOnDisk(msgFile, msgData, false, null, null);
 
     }
@@ -50,6 +54,7 @@ var exportTests = {
     return new Promise((resolve, reject) => {
       let streamlistener = {
         _data: [],
+        _data2: "",
         _stream: null,
         onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
           if (!this._stream) {
@@ -58,12 +63,15 @@ var exportTests = {
             ].createInstance(Ci.nsIScriptableInputStream);
             this._stream.init(aInputStream);
           }
-          this._data.push(this._stream.read(aCount));
+          //this._data.push(this._stream.read(aCount));
+          this._data2 += this._stream.read(aCount);
+
         },
         onStartRequest() { },
         onStopRequest(request, status) {
           if (Components.isSuccessCode(status)) {
-            resolve(this._data.join(""));
+            //resolve(this._data.join(""));
+            resolve(this._data2);
           } else {
             reject(
               new ExtensionError(
@@ -90,8 +98,73 @@ var exportTests = {
     });
   },
 
+  saveMessages: async function (msgUriArray, aConvertData, folderDirFile) {
+
+    let msgArrayLen = msgUriArray.length;
+    let idx = 0;
+
+    do {
+      let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
+
+      let service = MailServices.messageServiceFromURI(msguri);
+      console.log("af s")
+      let pr = await new Promise((resolve, reject) => {
+        let streamlistener = {
+          _data: "",
+          _stream: null,
+          onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+            if (!this._stream) {
+              this._stream = Cc[
+                "@mozilla.org/scriptableinputstream;1"
+              ].createInstance(Ci.nsIScriptableInputStream);
+              this._stream.init(aInputStream);
+            }
+            //this._data.push(this._stream.read(aCount));
+            this._data += this._stream.read(aCount);
+
+          },
+          onStartRequest() { },
+          onStopRequest(request, status) {
+            if (Components.isSuccessCode(status)) {
+
+              let subject = msgUriArray[idx].mime2DecodedSubject.slice(0, 100);
+              let name = `${subject}.eml`;
+              name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+              let msgFile = folderDirFile.clone();
+              msgFile.append(name);
+              msgFile.createUnique(0, 0o0755);
+              this.IETwriteDataOnDisk(msgFile, this._data, false, null, null);
+
+              resolve(1);
+            } else {
+              reject(
+                new ExtensionError(
+                  `Error while streaming message <${msgUriArray[idx]}>: ${status}`
+                )
+              );
+            }
+          },
+          QueryInterface: ChromeUtils.generateQI([
+            "nsIStreamListener",
+            "nsIRequestObserver",
+          ]),
+        };
+
+        // This is not using aConvertData and therefore works for news:// messages.
+        service.streamMessage(
+          msguri,
+          streamlistener,
+          null, // aMsgWindow
+          null, // aUrlListener
+          aConvertData, // aConvertData
+          "" //aAdditionalHeader
+        );
+      });
+    } while (idx++ < msgArrayLen);
+  },
+
   IETwriteDataOnDisk: function (file, data, append, fname, time) {
-    
+
     var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
       .createInstance(Ci.nsIFileOutputStream);
     if (append) {
@@ -104,6 +177,6 @@ var exportTests = {
       foStream.write(data, data.length);
     foStream.close();
   },
-  
+
 };
 

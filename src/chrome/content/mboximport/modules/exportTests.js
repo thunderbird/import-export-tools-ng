@@ -9,10 +9,12 @@ var exportTests = {
   expDirFile: window.getPredefinedFolder(1),
 
   exportFolderEML_WL: async function (params) {
-    console.log(params);
-    console.log(this.expDirFile.path);
+    var st1 = new Date();
+
+    //console.log(params);
+    //console.log(this.expDirFile.path);
     this.folder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-    console.log(this.folder);
+    //console.log(this.folder);
     let folderDir = `${this.folder.name}-WL1-2025`;
     folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
     let folderDirFile = this.expDirFile.clone();
@@ -21,25 +23,26 @@ var exportTests = {
 
     var msgArray = [...this.folder.messages];
 
-    console.log(msgArray);
+    //console.log(msgArray);
 
     for (let index = 0; index < msgArray.length; index++) {
       let msguri = msgArray[index].folder.getUriForMsg(msgArray[index]);
 
-      let mxgData = await this.getRawMessage(msguri, false);
+      let msgData = await this.getRawMessage(msguri, false);
       let subject = msgArray[index].mime2DecodedSubject.slice(0, 100);
       let name = `${subject}.eml`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
       let msgFile = folderDirFile.clone();
       msgFile.append(name);
-      console.log(msgFile.path);
-      msgFile.createUnique(1, 0o0755);
+      //console.log(msgFile.path);
+      msgFile.createUnique(0, 0o0755);
 
 
-      this.IETwriteDataOnDisk(msgFile, window, false, null, null);
+      this.IETwriteDataOnDisk(msgFile, msgData, false, null, null);
 
     }
 
+    console.log(new Date() - st1)
   },
   getRawMessage: async function (msgUri, aConvertData) {
 

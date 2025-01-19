@@ -11,7 +11,7 @@ var exportTests = {
   exportFolderEML_WL: async function (params) {
 
     //console.log(params);
-    let runs = 2;
+    let runs = 1;
     //console.log(this.expDirFile.path);
 
     this.folder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
@@ -20,14 +20,16 @@ var exportTests = {
 
       var st1 = new Date();
 
+      /*
       //console.log(this.folder);
       let folderDir = `${this.folder.name}-WL1-2025`;
       folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
       let folderDirFile = this.expDirFile.clone();
       folderDirFile.append(folderDir);
       folderDirFile.createUnique(1, 0o0755);
-
-
+*/
+      let folderDirFile = {};
+      folderDirFile.path = params.exportContainer.directory;
       var msgArray = [...this.folder.messages];
 
       var st2 = new Date();
@@ -35,36 +37,26 @@ var exportTests = {
       let nameArray;
       //nameArray = this.createUniqueNameArray(msgArray);
 
-      console.log(new Date() - st2)
-      
-      
+      //console.log(new Date() - st2)
+
+
       //await this.saveMessages_NsIFile(msgArray, false, folderDirFile);
       await this.saveMessages_IOUtils(msgArray, false, folderDirFile.path, nameArray);
 
-      console.log(new Date() - st1)
+      //console.log(new Date() - st1)
 
     }
 
     return;
-
-    //console.log(msgArray);
-
-    for (let index = 0; index < msgArray.length; index++) {
-      let msguri = msgArray[index].folder.getUriForMsg(msgArray[index]);
-
-      let msgData = await this.getRawMessage(msguri, false);
-      let subject = msgArray[index].mime2DecodedSubject.slice(0, 100);
-      let name = `${subject}.eml`;
-      name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-      let msgFile = folderDirFile.clone();
-      msgFile.append(name);
-      msgFile.createUnique(0, 0o0755);
-      this.IETwriteDataOnDisk(msgFile, msgData, false, null, null);
-
-    }
-
-    console.log(new Date() - st1)
   },
+
+  exportFolderEML_Exp_MsgList: async function (expTask) {
+
+    await this.saveMessages_IOUtils(msgArray, false, folderDirFile.path, nameArray);
+
+  },
+
+
   getRawMessage: async function (msgUri, aConvertData) {
 
     let service = MailServices.messageServiceFromURI(msgUri);
@@ -213,10 +205,11 @@ var exportTests = {
               //console.log(name, msgUriArray[idx].messageKey)
               name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
               let uname = await IOUtils.createUniqueFile(folderDirPath, name);
-              await IOUtils.writeUTF8(uname, this._data);
+              //await IOUtils.writeUTF8(uname, this._data);
               //await IOUtils.writeUTF8(PathUtils.join(folderDirPath, name), this._data, {mode: "overwrite"});
+              writePromises.push(IOUtils.writeUTF8(uname, this._data));
 
-               //writePromises.push(IOUtils.writeUTF8(PathUtils.join(folderDirPath,nameArray[idx]), this._data));
+              //writePromises.push(IOUtils.writeUTF8(PathUtils.join(folderDirPath,nameArray[idx]), this._data));
               resolve(1);
             } else {
               reject(
@@ -246,6 +239,77 @@ var exportTests = {
     return Promise.allSettled(writePromises);
   },
 
+
+  saveMessages_IOUtilsMsgList: async function (context, expTask, nameArray) {
+    let aConvertData = false;
+    let msgArrayLen = expTask.msgList.length;
+    let idx = 0;
+    var _self = this;
+    var writePromises = [];
+
+    do {
+      let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
+      let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+      //let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
+
+      let service = MailServices.messageServiceFromURI(msgUri);
+      let pr = await new Promise((resolve, reject) => {
+        let streamlistener = {
+          _data: "",
+          _stream: null,
+          onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+            if (!this._stream) {
+              this._stream = Cc[
+                "@mozilla.org/scriptableinputstream;1"
+              ].createInstance(Ci.nsIScriptableInputStream);
+              this._stream.init(aInputStream);
+            }
+            //this._data.push(this._stream.read(aCount));
+            this._data += this._stream.read(aCount);
+
+          },
+          onStartRequest() { },
+          async onStopRequest(request, status) {
+            if (Components.isSuccessCode(status)) {
+
+              let subject = expTask.msgList[idx].subject.slice(0, 100);
+              let name = `${subject}-${msgHdr.messageKey}.eml`;
+              //console.log(name, msgUriArray[idx].messageKey)
+              name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+              let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
+              //await IOUtils.writeUTF8(uname, this._data);
+              //await IOUtils.writeUTF8(PathUtils.join(folderDirPath, name), this._data, {mode: "overwrite"});
+              writePromises.push(IOUtils.writeUTF8(uname, this._data));
+
+              //writePromises.push(IOUtils.writeUTF8(PathUtils.join(folderDirPath,nameArray[idx]), this._data));
+              resolve(1);
+            } else {
+              reject(
+                new Error(
+                  `Error while streaming message <${msgUri}>: ${status}`
+                )
+              );
+            }
+          },
+          QueryInterface: ChromeUtils.generateQI([
+            "nsIStreamListener",
+            "nsIRequestObserver",
+          ]),
+        };
+
+        // This is not using aConvertData and therefore works for news:// messages.
+        service.streamMessage(
+          msgUri,
+          streamlistener,
+          null, // aMsgWindow
+          null, // aUrlListener
+          aConvertData, // aConvertData
+          "" //aAdditionalHeader
+        );
+      });
+    } while (++idx < msgArrayLen);
+    return Promise.allSettled(writePromises);
+  },
 
   IETwriteDataOnDisk: function (file, data, append, fname, time) {
 

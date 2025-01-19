@@ -27,8 +27,10 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
         async exportMessages(expTask) {
           
-          exportTests.exportFolderEML_WL(expTask);
-          
+          await exportTests.exportFolderEML_WL(expTask);
+
+          //await exportTests.saveMessages_IOUtilsMsgList(context, expTask);
+          return
           
           // iterate msgList and create new hdr array
           // can't pass that back
@@ -57,7 +59,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             if (!expTask.msgList[index].msgData) {
               expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
             }
-            let subject = msgHdr.mime2DecodedSubject.slice(0, 150);
+            let subject = expTask.msgList[index].subject.slice(0, 150);
             let name = `${subject}.eml`;
             name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
             //name = PathUtils.join(expTask.exportContainer.directory, name)

@@ -3,7 +3,9 @@ var Services = globalThis.Services ||
 
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-var { testexp } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/testexp.js");
+
+var { exportTests } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/exportTests.js");
+//var { testexp } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/testexp.js");
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -24,6 +26,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
+          
+          exportTests.exportFolderEML_WL(expTask);
+          
           
           // iterate msgList and create new hdr array
           // can't pass that back

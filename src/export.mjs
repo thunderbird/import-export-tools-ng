@@ -106,13 +106,19 @@ export async function exportFolders(ctxInfo, params) {
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
-      expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+      //expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       //console.log(expTask);
+      expTask.selectedFolder = ctxInfo.selectedFolder;
+      //console.log(ctxInfo, expTask)
+      expResult = await browser.ExportMessages.exportMessages(expTask);
+
+      return
+
       // iterate msgs
 
       var wrtotal = 0;
       var msgListPage = null;
-      var readRawInWext = true;
+      var readRawInWext = false;
       const targetMaxMsgData = 25 * 1000 * 1000;
       var totalMsgsData = 0;
       var expResult;
@@ -125,7 +131,7 @@ export async function exportFolders(ctxInfo, params) {
         }
         const messagesLen = msgListPage.messages.length;
         //expTask.msgList = new Array(messagesLen);
-        console.log(expTask.msgList)
+        //console.log(expTask.msgList)
         expTask.msgList = [];
         for (let index = 0; index < messagesLen; index++) {
           expTask.msgList.push(msgListPage.messages[index])

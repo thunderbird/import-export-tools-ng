@@ -11,22 +11,39 @@ var exportTests = {
   exportFolderEML_WL: async function (params) {
 
     //console.log(params);
-    console.log(this.expDirFile.path);
+    let runs = 2;
+    //console.log(this.expDirFile.path);
 
     this.folder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-    var st1 = new Date();
 
-    //console.log(this.folder);
-    let folderDir = `${this.folder.name}-WL1-2025`;
-    folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
-    let folderDirFile = this.expDirFile.clone();
-    folderDirFile.append(folderDir);
-    folderDirFile.createUnique(1, 0o0755);
+    for (let index = 0; index < runs; index++) {
 
-    var msgArray = [...this.folder.messages];
+      var st1 = new Date();
 
-    this.saveMessages(msgArray, false, folderDirFile);
-    console.log(new Date() - st1)
+      //console.log(this.folder);
+      let folderDir = `${this.folder.name}-WL1-2025`;
+      folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
+      let folderDirFile = this.expDirFile.clone();
+      folderDirFile.append(folderDir);
+      folderDirFile.createUnique(1, 0o0755);
+
+
+      var msgArray = [...this.folder.messages];
+
+      var st2 = new Date();
+
+      let nameArray;
+      //nameArray = this.createUniqueNameArray(msgArray);
+
+      console.log(new Date() - st2)
+      
+      
+      //await this.saveMessages_NsIFile(msgArray, false, folderDirFile);
+      await this.saveMessages_IOUtils(msgArray, false, folderDirFile.path, nameArray);
+
+      console.log(new Date() - st1)
+
+    }
 
     return;
 
@@ -98,16 +115,15 @@ var exportTests = {
     });
   },
 
-  saveMessages: async function (msgUriArray, aConvertData, folderDirFile) {
-
+  saveMessages_NsIFile: async function (msgUriArray, aConvertData, folderDirFile) {
     let msgArrayLen = msgUriArray.length;
     let idx = 0;
+    var _self = this;
 
     do {
       let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
 
       let service = MailServices.messageServiceFromURI(msguri);
-      console.log("af s")
       let pr = await new Promise((resolve, reject) => {
         let streamlistener = {
           _data: "",
@@ -128,12 +144,12 @@ var exportTests = {
             if (Components.isSuccessCode(status)) {
 
               let subject = msgUriArray[idx].mime2DecodedSubject.slice(0, 100);
-              let name = `${subject}.eml`;
+              let name = `${subject}-${msgUriArray[idx].key}.eml`;
               name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
               let msgFile = folderDirFile.clone();
               msgFile.append(name);
               msgFile.createUnique(0, 0o0755);
-              this.IETwriteDataOnDisk(msgFile, this._data, false, null, null);
+              _self.IETwriteDataOnDisk(msgFile, this._data, false, null, null);
 
               resolve(1);
             } else {
@@ -160,8 +176,76 @@ var exportTests = {
           "" //aAdditionalHeader
         );
       });
-    } while (idx++ < msgArrayLen);
+    } while (++idx < msgArrayLen);
   },
+
+  saveMessages_IOUtils: async function (msgUriArray, aConvertData, folderDirPath, nameArray) {
+    let msgArrayLen = msgUriArray.length;
+    let idx = 0;
+    var _self = this;
+    var writePromises = [];
+
+    do {
+      let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
+
+      let service = MailServices.messageServiceFromURI(msguri);
+      let pr = await new Promise((resolve, reject) => {
+        let streamlistener = {
+          _data: "",
+          _stream: null,
+          onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+            if (!this._stream) {
+              this._stream = Cc[
+                "@mozilla.org/scriptableinputstream;1"
+              ].createInstance(Ci.nsIScriptableInputStream);
+              this._stream.init(aInputStream);
+            }
+            //this._data.push(this._stream.read(aCount));
+            this._data += this._stream.read(aCount);
+
+          },
+          onStartRequest() { },
+          async onStopRequest(request, status) {
+            if (Components.isSuccessCode(status)) {
+
+              let subject = msgUriArray[idx].mime2DecodedSubject.slice(0, 100);
+              let name = `${subject}-${msgUriArray[idx].messageKey}.eml`;
+              //console.log(name, msgUriArray[idx].messageKey)
+              name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+              let uname = await IOUtils.createUniqueFile(folderDirPath, name);
+              await IOUtils.writeUTF8(uname, this._data);
+              //await IOUtils.writeUTF8(PathUtils.join(folderDirPath, name), this._data, {mode: "overwrite"});
+
+               //writePromises.push(IOUtils.writeUTF8(PathUtils.join(folderDirPath,nameArray[idx]), this._data));
+              resolve(1);
+            } else {
+              reject(
+                new ExtensionError(
+                  `Error while streaming message <${msgUriArray[idx]}>: ${status}`
+                )
+              );
+            }
+          },
+          QueryInterface: ChromeUtils.generateQI([
+            "nsIStreamListener",
+            "nsIRequestObserver",
+          ]),
+        };
+
+        // This is not using aConvertData and therefore works for news:// messages.
+        service.streamMessage(
+          msguri,
+          streamlistener,
+          null, // aMsgWindow
+          null, // aUrlListener
+          aConvertData, // aConvertData
+          "" //aAdditionalHeader
+        );
+      });
+    } while (++idx < msgArrayLen);
+    return Promise.allSettled(writePromises);
+  },
+
 
   IETwriteDataOnDisk: function (file, data, append, fname, time) {
 
@@ -178,5 +262,29 @@ var exportTests = {
     foStream.close();
   },
 
+  createUniqueNameArray(hdrArray) {
+    let arrayLen = hdrArray.length;
+    let nameArray = new Array(arrayLen);
+
+    for (let index = 0; index < arrayLen; index++) {
+      let subject = hdrArray[index].mime2DecodedSubject.slice(0, 100);
+      var baseName = `${subject}.eml`;
+      baseName = baseName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+      var nidx = 1;
+      var name = baseName;
+      do {
+
+        var newName = nameArray.find(n => n == name);
+        if (!newName) {
+          nameArray[index] = name;
+        } else {
+          name = `${baseName}-${nidx}`;
+          nidx++;
+        }
+      } while (newName);
+    }
+    //console.log(nameArray)
+    return nameArray;
+  }
 };
 

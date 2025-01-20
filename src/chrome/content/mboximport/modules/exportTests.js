@@ -244,14 +244,11 @@ var exportTests = {
     let aConvertData = false;
     let msgArrayLen = expTask.msgList.length;
     let idx = 0;
-    var _self = this;
     var writePromises = [];
 
     do {
       let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-      //let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
-
       let service = MailServices.messageServiceFromURI(msgUri);
       let pr = await new Promise((resolve, reject) => {
         let streamlistener = {
@@ -264,9 +261,7 @@ var exportTests = {
               ].createInstance(Ci.nsIScriptableInputStream);
               this._stream.init(aInputStream);
             }
-            //this._data.push(this._stream.read(aCount));
             this._data += this._stream.read(aCount);
-
           },
           onStartRequest() { },
           async onStopRequest(request, status) {
@@ -277,11 +272,7 @@ var exportTests = {
               //console.log(name, msgUriArray[idx].messageKey)
               name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
               let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
-              //await IOUtils.writeUTF8(uname, this._data);
-              //await IOUtils.writeUTF8(PathUtils.join(folderDirPath, name), this._data, {mode: "overwrite"});
               writePromises.push(IOUtils.writeUTF8(uname, this._data));
-
-              //writePromises.push(IOUtils.writeUTF8(PathUtils.join(folderDirPath,nameArray[idx]), this._data));
               resolve(1);
             } else {
               reject(

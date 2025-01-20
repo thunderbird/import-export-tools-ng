@@ -27,10 +27,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
         async exportMessages(expTask) {
           
-          await exportTests.exportFolderEML_WL(expTask);
+          //await exportTests.exportFolderEML_WL(expTask);
 
           //await exportTests.saveMessages_IOUtilsMsgList(context, expTask);
-          return
           
           // iterate msgList and create new hdr array
           // can't pass that back
@@ -54,8 +53,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
             msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
 
-            // operate on each message inline for skeleton experiments
-
+            // check if we are getting msgData in msgList otherwise read data
             if (!expTask.msgList[index].msgData) {
               expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
             }
@@ -67,10 +65,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             //console.log(uname);
             writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
 
-
-            // if (expTask.msgList[index].attachments.length) {
-            //   await self._saveMsgAttachments(expTask, msgHdrList[index]);
-            // }
+            if (expTask.msgList[index].attachments.length) {
+               await self._saveMsgAttachments(expTask, msgHdrList[index]);
+            }
           }
           return Promise.allSettled(writePromises);
 

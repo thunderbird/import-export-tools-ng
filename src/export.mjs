@@ -121,9 +121,8 @@ export async function exportFolders(ctxInfo, params) {
   } catch (ex) {
     throw(ex)
   }
-      return
 
-      /*
+      
       // iterate msgs
 
       var wrtotal = 0;
@@ -140,8 +139,6 @@ export async function exportFolders(ctxInfo, params) {
           msgListPage = await messenger.messages.continueList(msgListPage.id);
         }
         const messagesLen = msgListPage.messages.length;
-        //expTask.msgList = new Array(messagesLen);
-        //console.log(expTask.msgList)
         expTask.msgList = [];
         for (let index = 0; index < messagesLen; index++) {
           expTask.msgList.push(msgListPage.messages[index])
@@ -159,12 +156,9 @@ export async function exportFolders(ctxInfo, params) {
             }
           }
           if (totalMsgsData >= targetMaxMsgData) {
-            //console.log(expTask.msgList)
-
             expResult = await browser.ExportMessages.exportMessages(expTask);
             totalMsgsData = 0;
             expTask.msgList = [];
-
           }
         }
 

@@ -338,8 +338,7 @@ var ietngUtils = {
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
 
-    return new Promise(async (resolve, reject) => {
-
+    const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {
           if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
@@ -349,7 +348,6 @@ var ietngUtils = {
         },
       };
       MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
-
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become
@@ -383,6 +381,7 @@ var ietngUtils = {
       }
     });
 
+    return folderAddedPromise;
 
   },
 

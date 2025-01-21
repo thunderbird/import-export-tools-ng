@@ -15,18 +15,15 @@ const translate = new Translate({ projectId, key });
 
 // console.debug( translate );
 
-var translationArray1 = [
-  { key: "latinizeTransform", text: "Latinize transform"},
-  { key: "characterFilter", text: "Character Filter (UTF-8 or UTF-16)"},
-  { key: "utf16Filter", text: "Filter UTF-16 characters (Symbols and Emojis)"},
-  { key: "nonAlphanumericFilter", text: "Filter non-alphanumeric characters"},
-  { key: "multipleFolders.title", text: "Multiple Folders"},
+var translationArray = [
+  { key: "Error.msg", text: "Error"},
+  { key: "Warning.msg", text: "Warning"},
+  { key: "numRetainBackups.msg", text: "Number of backups to retain:"},
+  { key: "createSubfolderErr.msg", text: "Error creating subfolder:"},
+  { key: "largeFolderImport.msg", text: "More than 200 mbox folders imported.\\nThunderbird should be restarted to reset database."},
+
 ];
 
-var translationArray = [
-  { key: "cancel.msg", text: "Cancel"},
-];
-//{ key: "multiple-folders-warning", text: "Multiple folders are not supported.\n\nClick OK to export just the first folder."},
 
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";
@@ -542,8 +539,10 @@ translateHelpPage();
 //console.log(translationArray.length)
 //translationArray = translationArray.slice(101)
 //translateAll("messages.json", translationArray, options);
+
 //translateAll(inputFiles, translationArray, options);
- //loadTranslationArray(inputFiles, options);
+ 
+//loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);
 //locs()
 // let inputFiles = ["settings.dtd"];

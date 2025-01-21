@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Ματαίωση"
+	},
+
+	"Error.msg": {
+		"message": "Σφάλμα"
+	},
+
+	"Warning.msg": {
+		"message": "Προειδοποίηση"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Σφάλμα δημιουργίας υποφακέλου:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
 	}
 }

@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -27,7 +27,7 @@
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
 var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
+	'resource://gre/modules/Services.jsm'
 ).Services;
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
@@ -143,14 +143,27 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-		if (dirName && !autoBackup.filePicker) {
-			clone.append(dirName);
-			if (!clone.exists())
-				clone.create(1, 0755);
-		} else {
-			var date = buildContainerDirName();
-			clone.append(autoBackup.profDir.leafName + "-" + date);
+		// add date and unique suffix for custom name
+		var date;
+		if (dirName) {
+			autoBackup.backupDirPath = clone.path;
+			date = buildContainerDirName();
+			// replace illegal characters and '.' because it interferes with 
+			// createUnique
+			dirName = dirName.replace(/[\/\\:<>*\?\"\|\.]/g, "_");
+			clone.append(dirName + "-" + date);
 			clone.createUnique(1, 0755);
+			autoBackup.unique = true;
+			autoBackup.backupContainerBaseName = dirName;
+			autoBackup.backupContainerPath = clone.path;
+		} else {
+			autoBackup.backupDirPath = clone.path;
+			date = buildContainerDirName();
+			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
+			clone.append(baseDirName + "-" + date);
+			clone.createUnique(1, 0755);
+			autoBackup.backupContainerPath = clone.path;
+			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
 
@@ -210,8 +223,10 @@ var autoBackup = {
 			LF.initWithPath(newpath);
 			var LFclone = LF.clone();
 			LFclone.append(entry.leafName);
-			if (LFclone.exists())
+			if (LFclone.exists()) {
 				LFclone.remove(false);
+				console.log("old", LFclone.path)
+			}
 			try {
 				autoBackup.array1.push(entry);
 				autoBackup.array2.push(LF);
@@ -243,7 +258,7 @@ var autoBackup = {
 		}
 	},
 
-	write: function (index) {
+	write: async function (index) {
 		try {
 			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -267,7 +282,31 @@ var autoBackup = {
 			IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
-			autoBackup.end(2);
+			// new remove old backups #663
+			await autoBackup.removeOldBackups();
+			autoBackup.end(3);
+		}
+	},
+
+	removeOldBackups: async function () {
+		let retainNumBackups = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+		if (retainNumBackups == 0) {
+			return;
+		}
+
+		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
+			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
+				&& fn != autoBackup.backupContainerPath);
+
+		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
+			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
+		}));
+
+		removeBackupsList.sort((a, b) => a.lastModified - b.lastModified);
+		let rn = Math.max(0, removeBackupsList.length - retainNumBackups + 1);
+		removeBackupsList = removeBackupsList.slice(0, rn);
+		for (const fo of removeBackupsList) {
+			await IOUtils.remove(fo.fn, { recursive: true });
 		}
 	},
 
@@ -298,6 +337,6 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
-	i18n.updateDocument({extension: window.opener.ietngAddon.extension});
+	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });
 	autoBackup.load();
 });

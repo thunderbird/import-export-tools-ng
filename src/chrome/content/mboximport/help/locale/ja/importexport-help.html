@@ -20,14 +20,12 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">リリースノート：</h3>
     <p>
-      - 新機能: Thunderbird v128 および v115 に対応しました。<br>
-      - 新機能: UI でのファイル名の変換とフィルタリングを追加しました。<br>
-      - HTML およびプレーンテキストのエクスポートで欠落していた UTF-8 変換を修正しました。 #581<br>
-      - ja および zn-CH ロケールのインデックスを修正しました。 #588<br>
-      - HTML およびプレーンテキストエクスポートの To、From、および ReplyTo フィールドを修正しました。 #586<br>
-      - メッセージエクスポートの日付オプションを修正しました。 #585<br>
-      - Windows プレーンテキストの LF 変換を修正しました。 #584<br>
-      - ファイル名の不正文字フィルターを修正しました。 #576<br>
+      - 新規: バックアップの保存数設定を追加しました。 #302 #663<br>
+      - 新規: プレーンテキストのエクスポートで Unicode 文字をサポートしました。 #639<br>
+      - 検索ダイアログの CSV エクスポートを修正しました。 #646<br>
+      - EML のインポート/エクスポートに関する問題を修正しました。 #631<br>
+      - ヘルプのフォルダーコンテキストメニューに mbox インポートでは IMAP ではなく、ローカルフォルダーに対してのみ有効である旨の注釈を追加しました。<br>
+      - mbox ファイルのエクスポートで改行コードが LF になるように修正しました。 #607<br>
     </p>
     <h2 id="main_help">ImportExportTools NG の概要とメニュー</h2>
     <p>
@@ -174,11 +172,11 @@
           <td>検索ダイアログを開き、必要な結果をエクスポートします。</td>
         </tr>
         <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__ </td>
+          <td>(ローカルフォルダーへのインポートのみ。IMAP は不可。)</td>
         </tr>
         <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__ </td>
           <td>フォルダーから 1 つ以上の mbox ファイルをインポートします。</td>
         </tr>
         <tr>

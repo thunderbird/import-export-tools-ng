@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,6 +18,9 @@
 
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
+
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+
 
 var ietngUtils = {
 
@@ -301,6 +304,86 @@ var ietngUtils = {
       minor: parseInt(parts[1]),
       revision: parts.length > 2 ? parseInt(parts[2]) : 0,
     };
+  },
+
+
+
+  rebuildSummary: async function (folder) {
+
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+      );
+    }
+
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+    try {
+      const msgDB = folder.msgDatabase;
+      msgDB.summaryValid = false;
+      folder.closeAndBackupFolderDB("");
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+    }
+
+    folder.updateFolder(window.msgWindow);
+    return;
+  },
+
+  createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
+
+    return new Promise(async (resolve, reject) => {
+
+      let folderListener = {
+        folderAdded: function (aFolder) {
+          if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
+            MailServices.mfn.removeListener(folderListener);
+            resolve(aFolder);
+          }
+        },
+      };
+      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+
+
+      // createSubfolder will fail under some circumstances when
+      // doing large imports. Failures start around 250+ and become
+      // persistent around 500+. The failures above 500 are likely
+      // do to Windows file descriptor limits.
+      // A rebuildSummary followed by a createSubfolder retry
+      // recovers the operation in most circumstances.
+      // Odd database behaviors have sometimes been observed
+      // even if recovery succeeded
+
+      try {
+        let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+      } catch (ex) {
+        try {
+          console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
+          await new Promise(r => window.setTimeout(r, 100));
+          await this.rebuildSummary(msgFolder);
+          await new Promise(r => window.setTimeout(r, 1000));
+
+          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+
+          console.log("IETNG: Recovery succeeded");
+        } catch (ex) {
+          console.log("IETNG: Recovery failed");
+          // extend exception to include msg with subfolder name
+          let createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+
+          ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
+          reject(ex);
+        }
+      }
+    });
+
+
   },
 
 };

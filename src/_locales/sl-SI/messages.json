@@ -657,5 +657,25 @@
 
 	"cancel.msg": {
 		"message": "Prekliči"
+	},
+
+	"Error.msg": {
+		"message": "Napaka"
+	},
+
+	"Warning.msg": {
+		"message": "Opozorilo"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Število varnostnih kopij, ki jih je treba obdržati:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Napaka pri ustvarjanju podmape:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Uvoženih je več kot 200 map mbox.\nZnova zaženite Thunderbird, da ponastavite bazo podatkov."
 	}
 }

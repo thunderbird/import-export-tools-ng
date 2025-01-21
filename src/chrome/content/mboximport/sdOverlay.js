@@ -118,7 +118,7 @@ function SDexportMsg() {
 
 
 	if (!file) {
-		fp.init(window, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
 			res = fp.show();
 		else
@@ -180,16 +180,6 @@ function SDexportMsg() {
 
 
 function SDinit() {
-	if (window.arguments && window.arguments[1]) {
-		var sf = document.getElementById("IETSearchFrame");
-		var sw = document.getElementById("searchMailWindow");
-		sw.setAttribute("height", "520");
-		sw.setAttribute("screenY", "50");
 
-		sf.removeAttribute("collapsed");
 		searchFolder = window.arguments[0];
-	}
-
 }
-
-// window.addEventListener("load", SDinit, false);

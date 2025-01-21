@@ -37,6 +37,7 @@ function IETsetCharsetPopup(charsetPref) {
 }
 
 function initMboxImportPanel() {
+
     var IETngVersion = window.opener.ietng.extension.addonData.version;
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
@@ -236,16 +237,21 @@ function initMboxImportPanel() {
             document.getElementById("frequencyList").disabled = true;
     }
 
+
     try {
         document.getElementById("backupDir").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir");
-        document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
     } catch (e) { }
+
+    document.getElementById("backupCustomName").value = IETgetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
 
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     var dir = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
     document.getElementById("backupDirName").selectedIndex = dir;
     document.getElementById("backupType").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     document.getElementById("saveMode").selectedIndex = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+
+    var retainNumBackups = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+    document.getElementById("numBackupsList").selectedIndex = retainNumBackups;
 
     var last = IETprefs.getIntPref("extensions.importexporttoolsng.autobackup.last") * 1000;
     if (last > 0) {
@@ -353,6 +359,7 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
+    IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
 }
 
 function customNamesCheck(el) {

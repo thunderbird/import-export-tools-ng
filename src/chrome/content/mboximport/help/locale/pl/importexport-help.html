@@ -20,59 +20,57 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Nowość: obsługa Thunderbirda v128 i v115<br />
-      - Nowość: Filtruje i przekształca nazwy plików w interfejsie użytkownika<br />
-      — Naprawiono brakującą konwersję UTF-8 dla eksportu HTML i zwykłego tekstu #581<br />
-      - Naprawiono indeksy ja i zn-CH #588<br />
-      - Napraw pola Do, Od i ReplyTo w eksporcie HTML i zwykłego tekstu #586<br />
-      - Naprawiono opcję daty eksportu wiadomości #585<br />
-      — Naprawiono konwersję LF dla zwykłego tekstu systemu Windows nr 584<br />
-      - Naprawiono nielegalny filtr znaków nazwy pliku #576<br />
+      - Nowość: Opcja tworzenia kopii zapasowej dla liczby kopii zapasowych do zachowania #302, #663<br />
+      - Nowość: Obsługa znaków Unicode w eksportach zwykłego tekstu #639<br />
+      - Napraw eksport CSV w oknie dialogowym wyszukiwania #646<br />
+      - Naprawiono problemy z importem/eksportem EML #631<br />
+      - Dodaj notatkę do pomocy menu importu mbox, dotyczy tylko folderów lokalnych, nie IMAP<br />
+      - Naprawiono eksportowanie plików mbox, aby używać zakończeń linii LF #607<br />
     </p>
-    <h2 id="main_help">ImportExportTools NG Przegląd i menu</h2>
+    <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
-      ImportExportTools NG to kolejne rozszerzenie oparte na oryginalnym dziele Paolo „Kaosmos”. Rozszerzenie
-      oferuje wiele funkcji importu i eksportu obsługujących kilka różnych formatów plików, w tym: Uwaga:
-      niektóre formaty nie są obsługiwane we wszystkich funkcjach.<br />
+      ImportExportTools NG to rozszerzenie bazujące na oryginalnej pracy Paolo „Kaosmos”. Rozszerzenie oferuje
+      wiele funkcji importu i eksportu obsługujących kilka różnych formatów plików, w tym: Uwaga: Niektóre
+      formaty nie są obsługiwane we wszystkich funkcjach.<br />
       -mbox<br />
-      - EML<br />
-      - katalog pocztowy<br />
-      -HTML<br />
-      - zwykły tekst<br />
-      - CSV (wartości oddzielone przecinkami)<br />
+      -EML<br />
+      - maildir<br />
+      - HTML<br />
+      - tekst jawny<br />
+      - CSV (wartości rozdzielone przecinkami)<br />
       -PDF<br /><br />
-      Chociaż większość funkcji koncentruje się wokół wiadomości, istnieje również obsługa importu i eksportu
-      profili Thunderbirda. Dodatkowo eksport może również zawierać plik indeksu HTML lub CSV. Kolejną funkcją
-      jest tworzenie kopii zapasowych profilu Thunderbirda.<br />
+      Podczas gdy większość funkcjonalności obraca się wokół wiadomości, istnieje również obsługa importu i
+      eksportu profili Thunderbird. Dodatkowo eksporty mogą również obejmować plik indeksu HTML lub CSV. Kopia
+      zapasowa profilu Thunderbird to kolejna funkcja.<br />
       <p>
         Dostęp do funkcjonalności IETng odbywa się poprzez kilka różnych menu zainstalowanych przez
-        rozszerzenie. Funkcje są zależne od kontekstu. Dodano menu dla:<br />
-        - Kontekst panelu folderów (obsługa folderów)<br />
+        rozszerzenie. Funkcje są zależne od kontekstu. Menu są dodawane dla:<br />
+        - Kontekst panelu folderów (operacje na folderach)<br />
         - Kontekst listy wiadomości (wybrane wiadomości)<br />
-        - Menu Narzędzia (operacje dotyczące profili i kopii zapasowych)<br /><br />
-        Opcje dostępne w „Menu narzędzi” nie są dostępne w menu „Hamburger”. Będą dostępne w przyszłej wersji.
-        Funkcje te są dostępne także w nowym przycisku na pasku narzędzi. Każde menu i przycisk mają także
-        element menu Pomoc i Opcje umożliwiający dostęp do okna dialogowego opcji.<br />
+        - Menu Narzędzia (operacje profilowe i kopii zapasowej)<br /><br />
+        Opcje dostępne w menu „Narzędzia” nie znajdują się w menu „Hamburger”, będą dostępne w przyszłej
+        wersji. Te funkcje są również dostępne w nowym przycisku paska narzędzi. Każde z menu i przycisk ma
+        również pozycję menu Pomoc i Opcje, aby uzyskać dostęp do okna dialogowego opcji.<br />
       </p>
     </p>
     <h3>Wsparcie:</h3>
     <p>
-      Proszę publikować problemy lub prośby o nowe funkcje w repozytorium rozszerzeń GitHub:
+      Prosimy o zgłaszanie problemów lub próśb o dodanie funkcji w repozytorium rozszerzeń GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      W przypadku problemów z błędami podaj następujące informacje, które pomogą w rozwiązaniu problemów:<br />
+      W zgłoszeniach błędów należy podać następujące informacje, aby ułatwić ich rozwiązanie:<br />
       - Wersja ImportExportTools NG<br />
       - Wersja Thunderbirda<br />
       - System operacyjny i wersja<br />
-      - Dane wyjściowe debugowania (kopia z konsoli debugowania - dostęp za pomocą Control-Shift-J)<br />
+      - Wyjście debugowania (skopiuj z konsoli debugowania - dostęp za pomocą Control-Shift-J)<br />
       - Opis kroków prowadzących do problemu<br />
     </p>
-    <h2 id="main_menu_help">Funkcje menu kontekstowego folderów</h2>
+    <h2 id="main_menu_help">Funkcje menu kontekstowego folderu</h2>
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Pozycja w menu</th>
+          <th>Element menu</th>
           <th>Opis funkcji</th>
         </tr>
       </thead>
@@ -80,9 +78,9 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Eksportuj całe konto wraz ze strukturą i podfolderami w formacie mbox. Eksport odbywa się za
-            pomocą kontenera z nazwą konta.<br />
-            Uwaga: ta pozycja menu pojawia się tylko po kliknięciu wpisu konta prawym przyciskiem myszy.
+            Eksportuj całe konto ze strukturą i podfolderami w formacie mbox. Eksport odbywa się przy użyciu
+            kontenera z nazwą konta.<br />
+            Uwaga: Ta pozycja menu pojawia się tylko po kliknięciu prawym przyciskiem myszy na wpisie konta.
           </td>
         </tr>
         <tr>
@@ -108,8 +106,8 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Eksportuj folder zawierający wszystkie jego podfoldery do zestawu plików w formacie mbox, po
-            jednym dla każdego podfolderu, eksportowanych do pojedynczego folderu.
+            Eksportuje folder wraz ze wszystkimi podfolderami do zestawu plików w formacie mbox, po jednym dla
+            każdego podfolderu, eksportowanych do pojedynczego folderu.
           </td>
         </tr>
         <tr>
@@ -124,7 +122,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksportuj wiadomości folderów jako pliki w formacie EML (bez struktury/podfolderów).<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -135,7 +133,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksportuj wiadomości folderów jako pliki w formacie HTML (bez struktury/podfolderów).<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -144,8 +142,8 @@
           </td>
           <td>
             Eksportuj wiadomości folderów jako pliki w formacie HTML (bez struktury/podfolderów).<br />
-            Załączniki są zapisywane jako osobne pliki. Spowoduje to również utworzenie pliku indeksu HTML
-            zawierającego listę każdej wiadomości.
+            Załączniki są zapisywane jako oddzielne pliki. Tworzy to również plik indeksu HTML zawierający
+            listę każdej wiadomości.
           </td>
         </tr>
         <tr>
@@ -159,9 +157,9 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
-            Eksportuj wiadomości folderu jako pliki w formacie zwykłego tekstu, załączniki nie są
+            Eksportuj wiadomości z folderu jako pliki w formacie zwykłego tekstu. Załączniki nie są
             uwzględniane.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -169,16 +167,16 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Eksportuj wiadomości folderu jako pliki w formacie zwykłego tekstu, łącznie z załącznikami.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Eksportuj wiadomości z folderu jako pliki w formacie zwykłego tekstu, łącznie z załącznikami.<br />
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Eksportuj wiadomości folderu jako pojedynczy plik w formacie zwykłego tekstu. Załączniki nie są
+            Eksportuj wiadomości z folderu jako pojedynczy plik w formacie zwykłego tekstu. Załączniki nie są
             uwzględniane.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -186,17 +184,17 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Eksportuj wiadomości folderu jako pojedynczy plik w formacie zwykłego tekstu, łącznie z
+            Eksportuj wiadomości z folderu jako pojedynczy plik w formacie zwykłego tekstu, łącznie z
             załącznikami.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Eksportuj wiadomości folderu jako pojedynczy plik tekstowy w formacie CSV (wartości rozdzielane
+            Eksportuj wiadomości z folderu jako pojedynczy plik tekstowy w formacie CSV (wartości rozdzielone
             przecinkami). Załączniki nie są uwzględniane.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -209,19 +207,19 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Tworzy plik indeksu CSV z folderem wiadomości (bez eksportu wiadomości)</td>
+          <td>Tworzy plik indeksu CSV folderu wiadomości (bez eksportu wiadomości)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
-          <td>Otwórz okno wyszukiwania i wyeksportuj żądane wyniki</td>
+          <td>Otwórz okno dialogowe wyszukiwania i wyeksportuj żądane wyniki</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>(Importuj tylko do folderów lokalnych, nie IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Zaimportuj jeden lub więcej plików mbox z katalogu.</td>
+          <td>Importuj jeden lub więcej plików mbox z katalogu.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
@@ -257,7 +255,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importuj wszystkie wiadomości EML z jednego folderu, łącznie ze strukturą/podfolderami</td>
+          <td>Importuj wszystkie wiadomości EML z jednego folderu, w tym strukturę/podfoldery</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
@@ -282,7 +280,7 @@
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Pozycja w menu</th>
+          <th>Element menu</th>
           <th>Opis funkcji</th>
         </tr>
       </thead>
@@ -297,13 +295,13 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-          <td>Eksportuj wybrane wiadomości do plików w formacie EML (osadzone załączniki)</td>
+          <td>Eksportuj wybrane wiadomości do plików w formacie EML (załączniki osadzone)</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksportuj wybrane wiadomości do plików w formacie EML<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -316,20 +314,20 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-          <td>Eksportuj wybrane wiadomości do plików w formacie HTML wraz z załącznikami</td>
+          <td>Eksportuj wybrane wiadomości do plików w formacie HTML, w tym załączników</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Eksportuj wiadomości jako pliki w formacie HTML.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Eksportuj wiadomości jako pliki w formacie HTML wraz z załącznikami.<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Eksportuj wiadomości jako pliki w formacie HTML, łącznie z załącznikami.<br />
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -346,15 +344,15 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Eksportuj wybrane wiadomości do plików w formacie zwykłego tekstu wraz z załącznikami</td>
+          <td>Eksportuj wybrane wiadomości do plików w formacie zwykłego tekstu, w tym załączników</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
             __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Eksportuj wiadomości jako pliki w formacie zwykłego tekstu wraz z załącznikami<br />
-            Spowoduje to również utworzenie pliku indeksu HTML zawierającego listę każdej wiadomości.
+            Eksportuj wiadomości jako pliki w formacie zwykłego tekstu, w tym załączniki<br />
+            Tworzy również plik indeksu HTML zawierający listę wszystkich wiadomości.
           </td>
         </tr>
         <tr>
@@ -391,11 +389,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
-          <td>Skopiuj pojedynczą wybraną wiadomość do schowka</td>
+          <td>Kopiuj pojedynczą wybraną wiadomość do schowka</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Skopiuj nagłówki pojedynczej wybranej wiadomości do schowka</td>
+          <td>Kopiuj nagłówki pojedynczej wybranej wiadomości do schowka</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -412,7 +410,7 @@
     <table class="menu-table">
       <thead>
         <tr>
-          <th>Pozycja w menu</th>
+          <th>Element menu</th>
           <th>Opis funkcji</th>
         </tr>
       </thead>
@@ -431,7 +429,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importuj cały profil (poczta, rozszerzenia, opcje)</td>
+          <td>Importuj kompletny profil (poczta, rozszerzenia, opcje)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -449,15 +447,16 @@
     </table>
     <h2 id="customdate_format_help">Niestandardowy format daty</h2>
     <p>
-      Opcja niestandardowej daty pozwala na pełną kontrolę nad formatowaniem daty używanym w obu plikach w
-      indeksie. Zarówno domyślny format „Data”, jak i nowy format niestandardowy „Data (niestandardowy)” są
-      dostępne w menu rozwijanym nazw plików. Niestandardowej daty można również użyć z tokenem ${date_custom}
-      używanym w rozszerzonych niestandardowych nazwach plików. Oryginalny (domyślny) format daty to:<br />
-      RRRRMMDDHHmm: 202011060808<br /><br />
-      Niestandardowy format daty wykorzystuje sekwencje % pasujące do funkcjonalności podobnej do uniksowej
-      <code>strftime()</code> . Opiera się na porcie JavaScript
+      Opcja niestandardowej daty pozwala na pełną kontrolę nad formatowaniem daty używanym dla obu plików w
+      indeksie. Zarówno domyślny format „Data”, jak i nowy niestandardowy format „Data (niestandardowy)” są
+      dostępne w rozwijanych menu nazw plików. Niestandardowa data może być również używana z tokenem
+      ${date_custom} używanym w rozszerzonych niestandardowych nazwach plików. Oryginalny (domyślny) format
+      daty to:<br />
+      RRRRMMDDGGmm : 202011060808<br /><br />
+      Niestandardowy format daty wykorzystuje sekwencje % pasujące do funkcji <code>strftime()</code> typu
+      Unix. Opiera się na porcie JavaScript funkcji
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , funkcji formatowania daty i godziny.<br />
+      , która formatuje datę i godzinę.<br />
       Port strftime() autorstwa TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Opisy sekwencji konwersji</h3>
@@ -487,38 +486,37 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Preferowana reprezentacja daty i godziny (UTC) dla bieżących ustawień regionalnych.</td>
+          <td>Preferowana forma podania daty i godziny (UTC) dla bieżącego ustawienia regionalnego.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Liczba wieku (rok/100) jako dwucyfrowa liczba całkowita.</td>
+          <td>Numer stulecia (rok/100) jako liczba całkowita 2-cyfrowa.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>Dzień miesiąca w postaci liczby dziesiętnej (zakres od 01 do 31).</td>
+          <td>Dzień miesiąca jako liczba dziesiętna (zakres od 01 do 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Dzień miesiąca w postaci liczby dziesiętnej (zakres od 1 do 31).</td>
+          <td>Dzień miesiąca jako liczba dziesiętna (zakres od 1 do 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>Format daty ISO 8601 (odpowiednik <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>Format daty ISO 8601 (równoważny <code class="code1">%Y-%m-%d</code> ).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Rok oparty na tygodniu według ISO 8601, ze stuleciem jako liczbą dziesiętną. 4-cyfrowy rok
-            odpowiada numerowi tygodnia ISO (patrz <code class="code1">%V</code> ). Ma ten sam format i
-            wartość co <code class="code1">%Y</code> , z tą różnicą, że jeśli numer tygodnia ISO należy do
-            poprzedniego lub następnego roku, zamiast tego używany jest ten rok.
+            Rok oparty na tygodniu ISO 8601 ze stuleciem jako liczbą dziesiętną. 4-cyfrowy rok odpowiada
+            numerowi tygodnia ISO (patrz <code class="code1">%V</code> ). Ma ten sam format i wartość co
+            <code class="code1">%Y</code> , z tą różnicą, że jeśli numer tygodnia ISO należy do poprzedniego
+            lub następnego roku, to ten rok jest używany zamiast niego.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            Podobnie jak <code class="code1">%G</code> , ale bez stulecia, to znaczy z 2-cyfrowym rokiem
-            (00-99).
+            Podobnie jak <code class="code1">%G</code> , ale bez stulecia, czyli z rokiem dwucyfrowym (00-99).
           </td>
         </tr>
         <tr>
@@ -537,7 +535,7 @@
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>Dzień roku w postaci liczby dziesiętnej (zakres od 001 do 366).</td>
+          <td>Dzień roku jako liczba dziesiętna (zakres od 001 do 366).</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
@@ -559,22 +557,22 @@
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Miesiąc jako liczba dziesiętna (zakres od 1 do 12).</td>
+          <td>Miesiąc jako liczba dziesiętna (w zakresie od 1 do 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minuta jako liczba dziesiętna (zakres od 00 do 59).</td>
+          <td>Minuta jako liczba dziesiętna (w zakresie od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Albo „AM”, albo „PM”, w zależności od podanej wartości czasu. Południe jest traktowane jako „PM”,
-            a północ jako „AM”.
+            Albo „AM” albo „PM” zgodnie z podaną wartością czasu. Południe jest traktowane jako „PM”, a północ
+            jako „AM”.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
-          <td>Podobnie jak <code class="code1">%p</code> , ale małymi literami („am” lub „pm”).</td>
+          <td>Podobnie jak <code class="code1">%p</code> , ale pisane małymi literami („am” lub „pm”).</td>
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
@@ -582,37 +580,37 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Druga jako liczba dziesiętna (zakres od 00 do 59).</td>
+          <td>Sekunda jako liczba dziesiętna (w zakresie od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dzień tygodnia w postaci dziesiętnej (zakres od 1 do 7), poniedziałek to 1. Zobacz także
-            <code class="code1">%w</code> .
+            Dzień tygodnia w formacie dziesiętnym (zakres od 1 do 7), gdzie poniedziałek ma wartość 1. Zobacz
+            także <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Numer tygodnia bieżącego roku według ISO 8601 w postaci liczby dziesiętnej (zakres od 01 do 53),
-            gdzie tydzień 1 to pierwszy tydzień nowego roku, który ma co najmniej 4 dni (czyli pierwszy
-            czwartek).
+            Numer tygodnia bieżącego roku w formacie ISO 8601 podany jako liczba dziesiętna (w zakresie od 01
+            do 53), gdzie tydzień 1 oznacza pierwszy tydzień, który ma co najmniej 4 dni w nowym roku (czyli
+            pierwszy czwartek).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Dzień tygodnia w postaci dziesiętnej (zakres od 0 do 6), niedziela to 0. Zobacz także
-            <code class="code1">%u</code> .
+            Dzień tygodnia w formacie dziesiętnym (w zakresie od 0 do 6), gdzie niedziela ma wartość 0. Zobacz
+            także <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Preferowana reprezentacja daty dla bieżących ustawień regionalnych bez czasu.</td>
+          <td>Preferowana reprezentacja daty dla bieżącej lokalizacji bez czasu.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Preferowana reprezentacja czasu dla bieżących ustawień regionalnych bez daty.</td>
+          <td>Preferowana reprezentacja czasu dla bieżącej lokalizacji bez daty.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
@@ -620,13 +618,13 @@
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>Rok jako liczba dziesiętna, łącznie ze stuleciem.</td>
+          <td>Rok jako liczba dziesiętna zawierająca stulecie.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            Numeryczna strefa czasowa <code class="code1">+hhmm</code> lub
-            <code class="code1">-hhmm</code> (tzn. przesunięcie godziny i minuty w stosunku do czasu UTC).
+            Strefa czasowa wyrażona numerycznie <code class="code1">+hhmm</code> lub
+            <code class="code1">-hhmm</code> (czyli przesunięcie godzinowe w stosunku do UTC).
           </td>
         </tr>
         <tr>
@@ -637,34 +635,34 @@
     </table>
     <h3>Uwagi dotyczące zgodności:</h3>
     <ul>
-      <li><code class="code1">%c</code> — sformatowany ciąg znaków jest nieco inny</li>
+      <li><code class="code1">%c</code> - sformatowany ciąg jest nieznacznie inny</li>
       <li>
-        <code class="code1">%D</code> — nie zaimplementowano (użyj <code class="code1">%m/%d/%y</code> lub
+        <code class="code1">%D</code> - nie zaimplementowano (użyj <code class="code1">%m/%d/%y</code> lub
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> — spacja nie jest dodawana</li>
-      <li><code class="code1">%E</code> — nie zaimplementowano</li>
-      <li><code class="code1">%h</code> — nie zaimplementowano (użyj <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> — spacja nie jest dodawana</li>
+      <li><code class="code1">%e</code> - spacja nie jest dodawana</li>
+      <li><code class="code1">%E</code> - nie zaimplementowano</li>
+      <li><code class="code1">%h</code> - nie zaimplementowano (użyj <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> – spacja nie jest dodawana</li>
       <li>
-        <code class="code1">%n</code> — jak <code class="code1">%m</code> , ale bez zera początkowego (użyj
-        <code class="code1">\n</code> dla nowej linii)
+        <code class="code1">%n</code> - podobnie jak <code class="code1">%m</code> , ale bez zera wiodącego
+        (użyj <code class="code1">\n</code> dla nowej linii)
       </li>
-      <li><code class="code1">%O</code> — nie zaimplementowano</li>
+      <li><code class="code1">%O</code> - nie zaimplementowano</li>
       <li>
-        <code class="code1">%r</code> — nie zaimplementowano (użyj <code class="code1">%I:%M:%S %p</code> )
+        <code class="code1">%r</code> - nie zaimplementowano (użyj <code class="code1">%I:%M:%S %p</code> )
       </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>Temat wiadomości</td>
       </tr>
-      <li><code class="code1">%R</code> — nie zaimplementowano (użyj <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> — nie zaimplementowano (użyj <code class="code1">\t</code> )</li>
+      <li><code class="code1">%R</code> - nie zaimplementowano (użyj <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - nie zaimplementowano (użyj <code class="code1">\t</code> )</li>
       <li>
-        <code class="code1">%T</code> — nie zaimplementowano (użyj <code class="code1">%H:%M:%S</code> )
+        <code class="code1">%T</code> - nie zaimplementowano (użyj <code class="code1">%H:%M:%S</code> )
       </li>
-      <li><code class="code1">%U</code> — nie zaimplementowano</li>
-      <li><code class="code1">%W</code> — nie zaimplementowano</li>
+      <li><code class="code1">%U</code> – nie zaimplementowano</li>
+      <li><code class="code1">%W</code> - nie zaimplementowano</li>
       <li><code class="code1">%+</code> - nie zaimplementowano</li>
       <li><code class="code1">%%</code> - nie zaimplementowano (użyj <code class="code1">%</code> )</li>
     </ul>
@@ -672,17 +670,16 @@
     <h2 id="ext_filename_format_help">Rozszerzony format nazwy pliku:</h2>
     <br />
     <p>
-      Rozszerzone formatowanie nazw plików wykorzystuje tokeny. Dokładną nazwę pliku można utworzyć przy
-      użyciu tokenów, a także dowolnego tekstu lub prawidłowych znaków nazwy pliku. Nieprawidłowe znaki to:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> Tokeny w języku angielskim (en-US) są dostępne w dowolnej
-      lokalizacji. Dostępne są również tokeny specyficzne dla ustawień regionalnych, wymienione poniżej tabeli
-      w języku angielskim.<br /><br />
+      Rozszerzone formatowanie nazw plików wykorzystuje tokeny. Dokładną nazwę pliku można utworzyć,
+      wykorzystując tokeny, a także dowolny tekst lub prawidłowe znaki nazwy pliku. Nieprawidłowe znaki to:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Tokeny angielskie (en-US) są dostępne w dowolnej lokalizacji.
+      Tokeny specyficzne dla lokalizacji są również dostępne i wymienione poniżej tabeli angielskiej.<br /><br />
       Przykłady:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> — format domyślny<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> — użyj niestandardowego
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Format domyślny<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Użyj niestandardowego
       formatu daty zamiast domyślnego<br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> — z niestandardowym
-      tekstem<br /><br /><br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Z pewnym
+      niestandardowym tekstem<br /><br /><br />
     </p>
     <table class="token-table">
       <tr>
@@ -719,26 +716,26 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Wartość opcji tekstu przedrostka.</td>
+        <td>Wartość opcji tekstu prefiksu.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Wartość opcji tekstu przyrostka.</td>
+        <td>Wartość opcji tekstu sufiksu.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardowy format daty. Domyślny format to: RRRRMMDDDHHmm</td>
+        <td>Standardowy format daty. Domyślny format to: YYYYMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Niestandardowy format daty. Zobacz sekcję dotyczącą niestandardowego formatowania daty.</td>
+        <td>Niestandardowy format daty. Zobacz sekcję niestandardowego formatowania daty.</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Token (en-US)</td>
-        <td>Zlokalizowane (<span id="locale1"></span> ) Żeton</td>
+        <td>Zlokalizowany (<span id="locale1"></span> ) Żeton</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -788,19 +785,17 @@
     <br />
     <h2>Nowe i eksperymentalne preferencje (opcje)</h2>
     <p>
-      Istnieje kilka nowych funkcji i opcji, których nie można jeszcze konfigurować w oknie dialogowym opcji.
-      Gdy te funkcje zostaną ustabilizowane, zostaną dodane do interfejsu użytkownika.<br />
-      Aby z nich skorzystać, należy je ustawić w Edytorze konfiguracji. Aby uzyskać dostęp do edytora, użyj
-      menu Narzędzia/Opcje, a następnie wybierz sekcję Zaawansowane, a na dole pojawi się przycisk „Edytor
-      konfiguracji”. Jeśli wpiszesz „importexporttoolsng” w pasku wyszukiwania, zobaczysz wszystkie
-      preferencje rozszerzeń. Następnie możesz edytować różne preferencje poniżej, jeśli zajdzie taka
-      potrzeba.
+      Istnieje kilka nowych funkcji i opcji, których jeszcze nie można skonfigurować w oknie dialogowym opcji.
+      Po ustabilizowaniu tych funkcji zostaną one dodane do interfejsu użytkownika.<br />
+      Aby ich użyć, należy je ustawić w Config Editor. Aby uzyskać dostęp do edytora, użyj menu
+      Narzędzia/Opcje, a następnie wybierz sekcję Zaawansowane, a na dole pojawi się przycisk „Config Editor”.
+      Jeśli wpiszesz „importexporttoolsng” w pasku wyszukiwania, otrzymasz wszystkie preferencje rozszerzeń.
+      Następnie możesz edytować różne preferencje poniżej według potrzeb.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ta preferencja jest zgodna z tym samym pełnym formatowaniem, które jest stosowane w przypadku plików
-      indeksu. Domyślnie jest to pusty ciąg znaków. Jeśli zawiera on sformatowany ciąg daty/godziny, spowoduje
-      to zmianę formatu daty indeksowanej.
+      Ta preferencja stosuje takie samo pełne formatowanie, które ma być używane dla plików indeksu. Domyślnie
+      jest to pusty ciąg, jeśli jest to sformatowany ciąg daty/czasu, to zmieni format daty indeksu.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -811,37 +806,38 @@
       </p>
     </p>
     <p>
-      Obie te preferencje wykorzystują ten sam typ rozszerzonych formatów nazewnictwa plików, którego używa
-      nazwa pliku wyeksportowanych wiadomości. Pierwsza dotyczy załączników zewnętrznych, druga dotyczy
-      załączników osadzonych (inline).
+      Obie te preferencje używają tego samego typu rozszerzonych formatów nazewnictwa plików, których używa
+      eksportowany plik wiadomości. Pierwsza jest dla załączników zewnętrznych, druga dla osadzonych (inline)
+      załączników.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Zwykle „Data” wiadomości w Thunderbirdzie to data ustawiona przez klienta pocztowego nadawcy. Ustawienie
-      tej opcji na „true” wykorzystuje datę otrzymania w kliencie pocztowym odbiorcy. Data ta będzie używana
-      zarówno w nazwach plików, jak i dacie w plikach indeksowych.
+      Zwykle &#39;Data&#39; wiadomości w Thunderbird to data ustawiona przez klienta poczty nadawcy.
+      Ustawienie tej opcji na &#39;true&#39; wykorzystuje datę otrzymania w kliencie poczty odbiorcy. Data ta
+      będzie używana zarówno dla nazw plików, jak i daty w plikach indeksu.
     </p>
-    <h2>Podstawowa, globalna funkcja skrótu (skrótów).</h2>
+    <h2>Podstawowa, globalna funkcja klawiszy skrótu</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Ta nowa preferencja pozwala użytkownikowi ustawić do 10 skrótów klawiaturowych. Skróty umożliwiają
-      wykonywanie większości funkcji ImportExportTools NG, a także innych funkcji Thunderbirda. Ciąg
-      preferencji jest sformatowany jako obiekt w formacie JSON. Format i klucze są następujące:
+      Ta nowa preferencja pozwala użytkownikowi ustawić do 10 skrótów klawiaturowych. Skróty mogą wykonywać
+      większość funkcji ImportExportTools NG, a także inne funkcje Thunderbirda. Ciąg preferencji jest
+      sformatowany jako obiekt w formacie JSON. Format i klucze są następujące:
     </p>
     <p>
       Przykładowe wpisy klawiszy skrótu (tablica obiektów JSON)<br /><br />
       <code class="notranslate">id</code> - indeks klucza (1-10)<br />
       <code class="notranslate">key</code> - klucz (pojedynczy znak)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definiuje kod-klucz<br />
-      Może zostać dołączony klucz lub kod dostępu, ale nie oba<br />
-      <code class="notranslate">modifiers</code> - kluczowe modyfikatory, lista oddzielona spacjami
-      („control”, „shift”, „alt”, „accel”)<br />
-      <code class="notranslate">oncommand</code> — bezpośredni ciąg poleceń<br />
+      <code class="notranslate">keycode</code> - kod klucza zdefiniowany przez &#39;VK_*&#39;<br />
+      Można dołączyć klucz lub kod klucza, ale nie oba naraz.<br />
+      <code class="notranslate">modifiers</code> – klawisze modyfikujące, lista rozdzielona spacją
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> - bezpośredni ciąg poleceń<br />
       <code class="notranslate">contexts</code> - kontekst okna, w którym klucz jest aktywny<br />
-      <code class="notranslate">&#39;all&#39;</code> - wszystkie okna pod komunikatorem, utwórz, wyszukaj<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - główne okno komunikatora i jego potomkowie<br />
-      <code class="notranslate">&#39;compose&#39;</code> - okno tworzenia wiadomości<br />
-      <code class="notranslate">&#39;search&#39;</code> – okno wyszukiwania<br /><br />
+      <code class="notranslate">&#39;all&#39;</code> - wszystkie okna w komunikatorze, komponowaniu,
+      wyszukiwaniu<br />
+      <code class="notranslate">&#39;messenger&#39;</code> – główne okno komunikatora i jego potomków<br />
+      <code class="notranslate">&#39;compose&#39;</code> – okno tworzenia wiadomości<br />
+      <code class="notranslate">&#39;search&#39;</code> – okno dialogowe wyszukiwania<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
@@ -871,25 +867,25 @@
     </p>
 
     <p>
-      Ponieważ skróty są nowe i eksperymentalne, dodam także więcej dokumentacji w repozytorium. Sprawdź
+      Ponieważ skróty są nowe i eksperymentalne, dodam również więcej dokumentacji w repozytorium. Sprawdź
       rozszerzenie
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       ><br />
     </p>
     <br />
-    <h3>Wersja 14.0.0: Obsługa Thunderbirda 115 – 10 lipca 2023 r</h3>
+    <h3>Wersja 14.0.0: Obsługa Thunderbird 115 — 10 lipca 2023 r.</h3>
     <p>
-      Funkcje i rozwiązane problemy:<br />
+      Funkcje i problemy, które zostały omówione:<br />
       <p>
-        - Wsparcie dla Thunderbirda 115 Supernova<br />
-        - Przerób i zmodernizuj interfejs opcji<br />
-        - Pełna obsługa trybu ciemnego<br />
+        - Wsparcie dla Thunderbird 115 Supernova<br />
+        - Przeprojektowanie i unowocześnienie interfejsu użytkownika opcji<br />
+        - Pełne wsparcie trybu ciemnego<br />
         - Nowy, spójny system menu<br />
-        - Nowy przycisk na pasku narzędzi<br />
+        - Nowy przycisk paska narzędzi<br />
         - Ulepszona pomoc, otwierana podczas instalacji<br />
-        - Zaktualizuj konto eksportowe<br /><br />
-        Dziękujemy następującym użytkownikom za sugestie ulepszeń i pomoc w testowaniu:<br /><br />
+        - Aktualizuj konto eksportowe<br /><br />
+        Dziękujemy następującym użytkownikom za sugestie ulepszeń i pomoc w testach:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />
@@ -905,7 +901,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

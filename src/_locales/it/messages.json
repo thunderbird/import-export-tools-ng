@@ -534,7 +534,7 @@
         "message": "Salva"
     },
     "savedirs": {
-        "message": "Directory per l&apos;esportazione"
+        "message": "Directory per l'esportazione"
     },
     "sdAll": {
         "message": "Tutti"
@@ -627,14 +627,15 @@
         "message": "Usa formato esteso"
     },
     "useMboxExt.label": {
-        "message": "Utilizza l&#39;estensione .mbox per i file mbox (non strutturati)"
+        "message": "Utilizza l'estensione .mbox per i file mbox (non strutturati)"
     },
     "CRconversion.statusMsg": {
         "message": "Conversione delle terminazioni di linea CR =&gt; CRLF"
     },
     "Size": {
         "message": "Misurare"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Trasformazione latinizzata"
@@ -662,5 +663,25 @@
 
 	"cancel.msg": {
 		"message": "Annulla"
+	},
+
+	"Error.msg": {
+		"message": "Errore"
+	},
+
+	"Warning.msg": {
+		"message": "Avvertimento"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Numero di backup da conservare:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Errore durante la creazione della sottocartella:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Sono state importate più di 200 cartelle mbox.\nThunderbird dovrebbe essere riavviato per reimpostare il database."
 	}
 }

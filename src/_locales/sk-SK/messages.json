@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Zrušiť"
+	},
+
+	"Error.msg": {
+		"message": "Chyba"
+	},
+
+	"Warning.msg": {
+		"message": "POZOR"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Počet záloh, ktoré sa majú zachovať:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Chyba pri vytváraní podpriečinku:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Importovalo sa viac ako 200 priečinkov mbox.\nThunderbird by sa mal reštartovať, aby sa obnovila databáza."
 	}
 }

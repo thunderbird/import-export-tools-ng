@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Отмена"
+	},
+
+	"Error.msg": {
+		"message": "Ошибка"
+	},
+
+	"Warning.msg": {
+		"message": "Предупреждение"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Количество сохраняемых резервных копий:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Ошибка создания подпапки:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Импортировано более 200 папок mbox.\nДля сброса базы данных необходимо перезапустить Thunderbird."
 	}
 }

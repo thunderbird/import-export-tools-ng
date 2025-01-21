@@ -17,7 +17,7 @@ function onLoad() {
 
 	WL.injectElements(`
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="true" style="padding-left: 6px">
+<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="false" style="padding-left: 6px">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />
@@ -29,8 +29,6 @@ function onLoad() {
 		<radio label="__MSG_sdAll__" selected="true"/>
 		<radio label="__MSG_sdSelected__"/>
 	</radiogroup>
-	
-	
 	
 	<groupbox style="padding-left: 30px">
 	<hbox align="center">

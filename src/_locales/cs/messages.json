@@ -659,5 +659,25 @@
 
 	"cancel.msg": {
 		"message": "zrušení"
+	},
+
+	"Error.msg": {
+		"message": "Chyba"
+	},
+
+	"Warning.msg": {
+		"message": "Varování"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Počet záloh k uchování:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Chyba při vytváření podsložky:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Bylo importováno více než 200 složek mbox.\nPro resetování databáze je třeba restartovat Thunderbird."
 	}
 }

@@ -22,8 +22,8 @@ async function getSelectedMsgs() {
 	var msgURIS = [];
 	msgIdList.messages.forEach(msg => {
 		let realMessage = window.ietngAddon.extension
-		.messageManager.get(msg.id);
-		
+			.messageManager.get(msg.id);
+
 		let uri = realMessage.folder.getUriForMsg(realMessage);
 		msgURIS.push(uri);
 	});
@@ -39,4 +39,18 @@ async function onIetngShutdown() {
 	let win = getMail3Pane();
 	console.log("ieshut")
 	await win.ietngAddon.notifyTools.notifyBackground({ command: "shutdown" });
+}
+
+async function WEXTcreateSubfolder(msgFolder, childName) {
+	let win = getMail3Pane();
+	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
+	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folderId: folder.id, childName: childName });
+
+	// we cannot use typeof or instanceof to check for an exception from
+	// another frame. checking for the two exception properties is not infallible
+	// but sufficient in our environment
+	if (res.stack && res.message) {
+		throw (res);
+	}
+	return res;
 }

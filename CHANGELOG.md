@@ -2,6 +2,15 @@
 
 ## Versions
 
+Version 14.1.4 : Maintenance Release - January 13 2025
+
+- New: Backup option for number of backups to retain #302, #663
+		- New: Support Unicode characters in plaintext exports #639
+		- Fix CSV export in search dialog #646
+		- Fix EML import/export issues #631
+		- Add note to mbox import menu help, only valid for Local Folders, not IMAP
+		- Fix mbox file exports to use LF line endings #607
+		
 Version 14.1.2 : Maintenance Release - July,22 2024
 
 - Fix search-export for HTML and Plaintext 

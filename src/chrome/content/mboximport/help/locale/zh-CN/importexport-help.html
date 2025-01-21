@@ -20,20 +20,18 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
     <p>
-      - 新功能：支持 Thunderbird v128 和 v115<br />
-      - 新功能：用户界面中的文件名过滤器和转换<br />- 修复 HTML 和纯文本导出时缺少的 UTF-8 转换问题 #581<br />
-      - 修复 ja 和 zn-CH 索引 #588<br />
-      - 修复 HTML 和纯文本导出中的收件人、发件人及回复字段 #586<br />
-      - 修复消息导出日期选项#585<br />
-      - 修复 Windows 纯文本的 LF 转换 #584<br />
-      - 修复非法文件名字符过滤器 #576<br />
+      - 新增：备份选项可保留 #302、#663 的备份数量<br />- 新增：支持纯文本导出的 Unicode 字符 #639<br />
+      - 修复搜索对话框中的 CSV 导出问题 #646<br />
+      - 修复 EML 导入/导出问题 #631<br />
+      - 在 mbox 导入菜单帮助中添加注释，仅适用于本地文件夹，不适用于 IMAP<br />
+      - 修复 mbox 文件导出以使用 LF 行尾 #607<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
       ImportExportTools NG 是基于
       Paolo“Kaosmos”原创作品的后续扩展。该扩展提供多种导入和导出功能，支持多种不同的文件格式，包括：注意：并非所有功能都支持某些格式。<br />
       - 盒子<br />- 电磁辐射<br />-邮件目录<br />- HTML<br />
-      - 纯文本<br />- CSV（逗号分隔值）<br />
+      - 明文<br />- CSV（逗号分隔值）<br />
       - PDF<br /><br />虽然大多数功能都围绕消息展开，但也支持导入和导出 Thunderbird
       配置文件。此外，导出还可以包含 HTML 或 CSV 索引文件。Thunderbird 配置文件的备份是另一项功能。<br />
       <p>
@@ -50,7 +48,7 @@
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG 问题</a
       ><br /><br />在错误问题中，请包含以下信息以帮助解决问题：<br />
-      - ImportExportTools NG 版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
+      - ImportExportTools NG版本<br />- 雷鸟版本<br />- 操作系统和版本<br />- 调试输出（从调试控制台复制 -
       使用 Control-Shift-J 访问）<br />
       - 导致问题的步骤描述<br />
     </p>
@@ -59,7 +57,7 @@
       <thead>
         <tr>
           <th>菜单项</th>
-          <th>功能说明</th>
+          <th>功能描述</th>
         </tr>
       </thead>
       <tbody>
@@ -192,7 +190,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td>（仅导入到本地文件夹，不支持 IMAP）</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -258,7 +256,7 @@
       <thead>
         <tr>
           <th>菜单项</th>
-          <th>功能说明</th>
+          <th>功能描述</th>
         </tr>
       </thead>
       <tbody>
@@ -376,7 +374,7 @@
       <thead>
         <tr>
           <th>菜单项</th>
-          <th>功能说明</th>
+          <th>功能描述</th>
         </tr>
       </thead>
       <tbody>
@@ -439,7 +437,7 @@
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
-          <td>月份名称的缩写。</td>
+          <td>缩写的月份名称。</td>
         </tr>
         <tr>
           <td><code class="code1">%B</code></td>
@@ -488,8 +486,7 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            使用 12 小时制时钟（范围为 01 到 12）以十进制数表示的小时数。另请参阅<code class="code1">%l</code>
-            。
+            使用 12 小时制的十进制数表示小时数（范围为 01 到 12）。另请参阅<code class="code1">%l</code> 。
           </td>
         </tr>
         <tr>
@@ -543,7 +540,7 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601 当前年份的周数，以十进制数表示（范围为 01 到 53），其中第 1 周是新年中至少有 4
+            ISO 8601 当前年份的周数，以十进制数表示（范围为 01 至 53），其中第 1 周是新年中至少有 4
             天的第一个周（即第一个星期四）。
           </td>
         </tr>
@@ -600,14 +597,14 @@
         >表示换行符）
       </li>
       <li><code class="code1">%O</code>未实现</li>
-      <li><code class="code1">%r</code>未实现（使用<code class="code1">%I:%M:%S %p</code> ）</li>
+      <li><code class="code1">%r</code> r-未实现（使用<code class="code1">%I:%M:%S %p</code> ）</li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>邮件主题</td>
       </tr>
       <li><code class="code1">%R</code>未实现（使用<code class="code1">%H:%M</code> ）</li>
       <li><code class="code1">%t</code> - 未实现（使用<code class="code1">\t</code> ）</li>
-      <li><code class="code1">%T</code>未实现（使用<code class="code1">%H:%M:%S</code> ）</li>
+      <li><code class="code1">%T</code> T-未实现（使用<code class="code1">%H:%M:%S</code> ）</li>
       <li><code class="code1">%U</code>未实现</li>
       <li><code class="code1">%W</code>未实现</li>
       <li><code class="code1">%+</code> - 未实现</li>
@@ -765,7 +762,7 @@
       热键条目示例（JSON 对象数组）<br /><br />
       <code class="notranslate">id</code> - 键索引（1-10）<br />
       <code class="notranslate">key</code> - 键（单个字符）<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包含密钥或密钥代码，但不能同时包含两者<br /><code
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义 keycode<br />可以包含密钥或密钥代码，但不能同时包含两者<br /><code
         class="notranslate"
         >modifiers</code
       >
@@ -838,7 +835,9 @@
         - <code class="notranslate">@spd2000</code><br />
         - <code class="notranslate">@kanlukasz</code><br />
         - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
       </p>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>

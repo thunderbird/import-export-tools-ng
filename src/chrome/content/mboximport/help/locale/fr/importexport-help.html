@@ -25,14 +25,12 @@
     </table>
     <h3 id="release_notes">Notes de version</h3>
     <p>
-      - Nouveau : prise en charge de Thunderbird v128 et v115<br>
-      - Nouveau : filtres et transformations pour les noms de fichiers dans l’interface utilisateur<br>
-      - Correction : conversion UTF-8 absente pour les exportations en HTML et texte brut (#581)<br>
-      - Correction : index ja et zn-CH (#588)<br>
-      - Correction : champs « De », « Pour » et « Réponse à » dans les exportations en HTML et texte brut (#586)<br>
-      - Correction : option de date d’exportation des messages (#585)<br>
-      - Correction : conversion LF pour les fins de ligne en texte brut sous Windows (#584)<br>
-      - Correction : filtre de caractères pour les noms de fichiers incorrect (#576)<br>
+      - Nouveau : option pour le nombre de sauvegardes à conserver (#302, #663)<br>
+      - Nouveau : prise en charge des caractères Unicode pour les exportations en texte brut (#639)<br>
+      - Correction : exportation en CSV via le dialogue de recherche dans le courrier (#646)<br>
+      - Correction : problèmes d’importation/exportation en EML (#631)<br>
+      - Ajout dans l’aide (Menu contextuel des dossiers) d’une note concernant l’importation de mbox (uniquement possible dans les dossiers locaux, pas IMAP)<br>
+      - Correction : utilisation des fins de ligne LF pour les exportations de mbox (#607)<br>
     </p>
     <h2 id="main_help">Présentation</h2>
     <p><i>ImportExportTools NG</i> est une extension basée sur le travail original de Paolo "Kaosmos". Elle fournit de multiples fonctions d’importation et d’exportation acceptant plusieurs formats de fichiers (certains n’étant pas supportés par toutes les fonctions) :<br>
@@ -164,7 +162,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
+          <td class="notranslate">(dans les dossiers locaux uniquement, pas IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -715,7 +713,9 @@
         - <code class="notranslate">@spd2000</code><br>
         - <code class="notranslate">@kanlukasz</code><br>
         - <code class="notranslate">@razzmatazzz</code><br>
-        - <code class="notranslate">@triplee</code></p><br>
+        - <code class="notranslate">@triplee</code><br>
+        - <code class="notranslate">@Sergio3N</code><br>
+        - <code class="notranslate">@NickWick13</code></p><br>
       <script type="application/javascript" src="../../../modules/i18n.js"></script>
       <script type="application/javascript" src="../../help.js"></script>
   </body>

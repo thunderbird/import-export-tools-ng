@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Cancelar"
+	},
+
+	"Error.msg": {
+		"message": "Erro"
+	},
+
+	"Warning.msg": {
+		"message": "Aviso"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Número de backups a serem mantidos:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Erro ao criar subpasta:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Mais de 200 pastas mbox importadas.\nO Thunderbird deve ser reiniciado para redefinir o banco de dados."
 	}
 }

@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Չեղարկել"
+	},
+
+	"Error.msg": {
+		"message": "Սխալ"
+	},
+
+	"Warning.msg": {
+		"message": "Զգուշացում"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Պահպանման պահուստների քանակը."
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Ենթաթղթապանակ ստեղծելու սխալ՝"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
 	}
 }

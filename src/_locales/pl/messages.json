@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Anulować"
+	},
+
+	"Error.msg": {
+		"message": "Błąd"
+	},
+
+	"Warning.msg": {
+		"message": "Ostrzeżenie"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Liczba kopii zapasowych do zachowania:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Błąd podczas tworzenia podfolderu:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Zaimportowano ponad 200 folderów mbox.\nNależy ponownie uruchomić Thunderbirda, aby zresetować bazę danych."
 	}
 }

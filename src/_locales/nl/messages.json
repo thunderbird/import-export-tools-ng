@@ -657,5 +657,25 @@
 
 	"cancel.msg": {
 		"message": "Annuleren"
+	},
+
+	"Error.msg": {
+		"message": "Fout"
+	},
+
+	"Warning.msg": {
+		"message": "Waarschuwing"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Aantal te bewaren back-ups:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Fout bij het aanmaken van submap:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Er zijn meer dan 200 mbox-mappen geïmporteerd.\nThunderbird moet opnieuw worden opgestart om de database opnieuw in te stellen."
 	}
 }

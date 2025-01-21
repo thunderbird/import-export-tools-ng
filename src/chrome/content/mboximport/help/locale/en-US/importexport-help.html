@@ -26,14 +26,13 @@
 
 	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
 	<p>
-		- New: Thunderbird v128 and v115 support<br>
-		- New: Filters and transforms for filenames in UI<br>
-		- Fix missing UTF-8 conversion for HTML and Plaintext exports #581<br>
-		- Fix ja and zn-CH indexes #588<br>
-		- Fix To, From and ReplyTo fields in HTML and Plaintext exports #586<br>
-		- Fix message export date option #585<br>
-		- Fix LF conversion for Windows plaintext #584<br>
-		- Fix illegal filename character filter #576<br>
+		- New: Backup option for number of backups to retain #302, #663<br>
+		- New: Support Unicode characters in plaintext exports #639<br>
+		- Fix CSV export in search dialog #646<br>
+		- Fix EML import/export issues #631<br>
+		- Add note to mbox import menu help, only valid for Local Folders, not IMAP<br>
+		- Fix mbox file exports to use LF line endings #607<br>
+		
 </p>
 	<h2 id="main_help">ImportExportTools NG Overview and Menus</h2>
 	<p>ImportExportTools NG is a follow-on extension based on the original work of Paolo "Kaosmos".
@@ -205,11 +204,11 @@
 				<td>Open search dialog and export desired results </td>
 			</tr>
 			<tr>
-				<td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-				<td class="notranslate"></td>
+				<td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__ </td>
+				<td>(Import to Local Folders only, not IMAP)</td>
 			</tr>
 			<tr>
-				<td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+				<td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__ </td>
 				<td>Import one or more mbox files from a directory. </td>
 			</tr>
 			<tr>
@@ -862,6 +861,8 @@
 	- <code class="notranslate">@kanlukasz </code><br>
 	- <code class="notranslate">@razzmatazzz </code><br>
 	- <code class="notranslate">@triplee</code><br>
+	- <code class="notranslate">@Sergio3N</code><br>
+	- <code class="notranslate">@NickWick13</code><br>
 
 	</p>
 

@@ -657,5 +657,25 @@
 
 	"cancel.msg": {
 		"message": "취소"
+	},
+
+	"Error.msg": {
+		"message": "오류"
+	},
+
+	"Warning.msg": {
+		"message": "경고"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "보관할 백업 수:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "하위 폴더 생성 오류:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
 	}
 }

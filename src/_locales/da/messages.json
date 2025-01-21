@@ -662,5 +662,25 @@
 
 	"cancel.msg": {
 		"message": "Afbestille"
+	},
+
+	"Error.msg": {
+		"message": "Fejl"
+	},
+
+	"Warning.msg": {
+		"message": "Advarsel"
+	},
+
+	"numRetainBackups.msg": {
+		"message": "Antal sikkerhedskopier, der skal beholdes:"
+	},
+
+	"createSubfolderErr.msg": {
+		"message": "Fejl ved oprettelse af undermappe:"
+	},
+
+	"largeFolderImport.msg": {
+		"message": "Mere end 200 mbox-mapper er importeret.\nThunderbird bør genstartes for at nulstille databasen."
 	}
 }

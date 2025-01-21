@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.1.2%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.1.4%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -17,6 +17,15 @@ export functions for messages, folders and profiles.
 
 ## Import Export Tools NG Add-On Features - Version Notes
 
+Version 14.1.4 : Maintenance Release - January 13 2025
+
+- New: Backup option for number of backups to retain #302, #663
+		- New: Support Unicode characters in plaintext exports #639
+		- Fix CSV export in search dialog #646
+		- Fix EML import/export issues #631
+		- Add note to mbox import menu help, only valid for Local Folders, not IMAP
+		- Fix mbox file exports to use LF line endings #607
+		
 Version 14.1.2 : Maintenance Release - July,22 2024
 
 - Fix search-export for HTML and Plaintext 

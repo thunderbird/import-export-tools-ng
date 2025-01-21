@@ -263,6 +263,7 @@ function initMboxImportPanel() {
 }
 
 function saveMboxImportPrefs() {
+    try {
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
@@ -360,6 +361,9 @@ function saveMboxImportPrefs() {
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
+} catch (ex) {
+    Services.prompt.alert(window, "Error", ex.message + "\n\n" + ex.stack);
+}
 }
 
 function customNamesCheck(el) {
@@ -389,6 +393,7 @@ function customNamesCheck(el) {
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
 
     }
+    
 }
 
 

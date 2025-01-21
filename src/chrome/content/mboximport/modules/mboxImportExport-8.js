@@ -656,7 +656,7 @@ export var mboxImportExport = {
             resolve(this._data.join(""));
           } else {
             reject(
-              new ExtensionError(
+              new Error(
                 `Error while streaming message <${msgUri}>: ${status}`
               )
             );

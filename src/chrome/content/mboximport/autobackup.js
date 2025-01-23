@@ -143,29 +143,17 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-		// add date and unique suffix for custom name
-		var date;
-		if (dirName) {
-			autoBackup.backupDirPath = clone.path;
-			date = buildContainerDirName();
-			// replace illegal characters and '.' because it interferes with 
-			// createUnique
-			dirName = dirName.replace(/[\/\\:<>*\?\"\|\.]/g, "_");
-			clone.append(dirName + "-" + date);
-			clone.createUnique(1, 0755);
-			autoBackup.unique = true;
-			autoBackup.backupContainerBaseName = dirName;
-			autoBackup.backupContainerPath = clone.path;
-		} else {
-			autoBackup.backupDirPath = clone.path;
-			date = buildContainerDirName();
-			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
-			clone.append(baseDirName + "-" + date);
-			clone.createUnique(1, 0755);
-			autoBackup.backupContainerPath = clone.path;
-			autoBackup.backupContainerBaseName = baseDirName;
-			autoBackup.unique = true;
-		}
+			if (dirName && !autoBackup.filePicker) {
+				clone.append(dirName);
+				if (!clone.exists())
+					clone.create(1, 0755);
+			} else {
+				var date = buildContainerDirName();
+				clone.append(autoBackup.profDir.leafName + "-" + date);
+				clone.createUnique(1, 0755);
+				autoBackup.unique = true;
+			}
+	
 
 		// Here "clone" is the container directory for the backup
 

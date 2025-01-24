@@ -95,9 +95,9 @@ var autoBackup = {
 		var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
 			.createInstance(Ci.nsIFileOutputStream);
 		if (append)
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0664, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0o0664, 0);
 		else
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0666, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o0666, 0);
 		foStream.write(data, data.length);
 		foStream.close();
 	},
@@ -146,14 +146,14 @@ var autoBackup = {
 			if (dirName && !autoBackup.filePicker) {
 				clone.append(dirName);
 				if (!clone.exists())
-					clone.create(1, 0755);
+					clone.create(1, 0o0755);
 			} else {
 				var date = buildContainerDirName();
 				clone.append(autoBackup.profDir.leafName + "-" + date);
-				clone.createUnique(1, 0755);
+				clone.createUnique(1, 0o0755);
 				autoBackup.unique = true;
 			}
-	
+
 
 		// Here "clone" is the container directory for the backup
 
@@ -213,7 +213,6 @@ var autoBackup = {
 			LFclone.append(entry.leafName);
 			if (LFclone.exists()) {
 				LFclone.remove(false);
-				console.log("old", LFclone.path)
 			}
 			try {
 				autoBackup.array1.push(entry);
@@ -302,7 +301,7 @@ var autoBackup = {
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())
-			file.create(1, 0775);
+			file.create(1, 0o0775);
 		for (let server of MailServices.accounts.allServers) {
 			var parentDir = null;
 			let serverFile = server.localPath;

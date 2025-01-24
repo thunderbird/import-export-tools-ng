@@ -43,12 +43,8 @@ async function onIetngShutdown() {
 
 async function WEXTcreateSubfolder(msgFolder, childName) {
 	let win = getMail3Pane();
-	console.log(`IETNG: Args in WEXTcreateSubfolder`);
-	console.log(`IETNG: msgFolder.name: ${msgFolder.name}`);
 
 	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
-	console.log(`IETNG: folder id, name: ${folder.id}  ${folder.name}`);
-
 	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folderId: folder, childName: childName });
 
 	// we cannot use typeof or instanceof to check for an exception from

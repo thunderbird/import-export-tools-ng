@@ -61,9 +61,6 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			break;
 		case "createSubfolder":
 			try {
-				console.log(`IETNG-wext: Args before calling folders.create`);
-				console.log(`IETNG-wext: folder id, name: ${info.folderId}  ${info.childName}`);
-
 				let res = await messenger.folders.create(info.folderId, info.childName);
 				return res;
 			} catch (ex) {

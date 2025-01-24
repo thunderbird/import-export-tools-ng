@@ -382,7 +382,6 @@ var ietngUtils = {
     });
 
     return folderAddedPromise;
-
   },
 
 };

@@ -47,6 +47,9 @@ async function getThunderbirdVersion() {
 		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
 	};
 }
+
+window.getThunderbirdVersion = getThunderbirdVersion;
+
 function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
 

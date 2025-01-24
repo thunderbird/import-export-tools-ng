@@ -61,7 +61,14 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			break;
 		case "createSubfolder":
 			try {
-				let res = await messenger.folders.create(info.folderId, info.childName);
+				let ver = await window.getThunderbirdVersion();
+				let res;
+				if (ver.major >= 121) {
+					res = await messenger.folders.create(info.folder.id, info.childName);
+				} else {
+					res = await messenger.folders.create(info.folder, info.childName);
+
+				}
 				return res;
 			} catch (ex) {
 				return ex;

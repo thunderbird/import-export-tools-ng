@@ -26,6 +26,69 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
       ExportMessages: {
 
         async exportMessages(expTask) {
+          let aConvertData = false;
+          let msgArrayLen = expTask.msgList.length;
+          let idx = 0;
+          var writePromises = [];
+      
+          do {
+            let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
+            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+            let service = MailServices.messageServiceFromURI(msgUri);
+            let pr = await new Promise((resolve, reject) => {
+              let streamlistener = {
+                _data: "",
+                _stream: null,
+                onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+                  if (!this._stream) {
+                    this._stream = Cc[
+                      "@mozilla.org/scriptableinputstream;1"
+                    ].createInstance(Ci.nsIScriptableInputStream);
+                    this._stream.init(aInputStream);
+                  }
+                  this._data += this._stream.read(aCount);
+                },
+                onStartRequest() { },
+                async onStopRequest(request, status) {
+                  if (Components.isSuccessCode(status)) {
+      
+                    let subject = expTask.msgList[idx].subject.slice(0, 100);
+                    let name = `${subject}-${msgHdr.messageKey}.eml`;
+                    //console.log(name, msgUriArray[idx].messageKey)
+                    name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+                    let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
+                    writePromises.push(IOUtils.writeUTF8(uname, this._data));
+                    resolve(1);
+                  } else {
+                    reject(
+                      new Error(
+                        `Error while streaming message <${msgUri}>: ${status}`
+                      )
+                    );
+                  }
+                },
+                QueryInterface: ChromeUtils.generateQI([
+                  "nsIStreamListener",
+                  "nsIRequestObserver",
+                ]),
+              };
+      
+              // This is not using aConvertData and therefore works for news:// messages.
+              service.streamMessage(
+                msgUri,
+                streamlistener,
+                null, // aMsgWindow
+                null, // aUrlListener
+                aConvertData, // aConvertData
+                "" //aAdditionalHeader
+              );
+            });
+          } while (++idx < msgArrayLen);
+          return Promise.allSettled(writePromises);
+
+        },
+
+        async exportMessages1(expTask) {
           
           //await exportTests.exportFolderEML_WL(expTask);
 
@@ -65,9 +128,10 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             //console.log(uname);
             writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
 
-            if (expTask.msgList[index].attachments.length) {
-               await self._saveMsgAttachments(expTask, msgHdrList[index]);
-            }
+            // ignore now
+            //if (expTask.msgList[index].attachments.length) {
+              // await self._saveMsgAttachments(expTask, msgHdrList[index]);
+            //}
           }
           return Promise.allSettled(writePromises);
 

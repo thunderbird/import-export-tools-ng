@@ -110,19 +110,7 @@ export async function exportFolders(ctxInfo, params) {
       //console.log(expTask);
       expTask.selectedFolder = ctxInfo.selectedFolder;
       //console.log(ctxInfo, expTask)
-      let expResult = await browser.ExportMessages.exportMessages(expTask);
-     
-      times[index] = new Date() - st;
-      total += times[index];
-      console.log(new Date() - st);
-    }
-    console.log("avg", total / runs, runs)
 
-  } catch (ex) {
-    throw(ex)
-  }
-
-      
       // iterate msgs
 
       var wrtotal = 0;
@@ -154,7 +142,10 @@ export async function exportFolders(ctxInfo, params) {
             } catch (ex) {
               expTask.msgList[index].attachments = [];
             }
+          } else {
+            expTask.msgList[index].attachments = [];
           }
+
           if (totalMsgsData >= targetMaxMsgData) {
             expResult = await browser.ExportMessages.exportMessages(expTask);
             totalMsgsData = 0;
@@ -187,8 +178,6 @@ export async function exportFolders(ctxInfo, params) {
 
     console.log(ex.stack);
   }
-
-  */
 }
 
 async function _buildExportTask(params) {

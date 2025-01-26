@@ -359,21 +359,21 @@ var ietngUtils = {
       // even if recovery succeeded
 
       try {
-        let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+        let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
       } catch (ex) {
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
-          await new Promise(r => window.setTimeout(r, 100));
+          await new Promise(r => this.top.setTimeout(r, 100));
           await this.rebuildSummary(msgFolder);
-          await new Promise(r => window.setTimeout(r, 1000));
+          await new Promise(r => this.top.setTimeout(r, 1000));
 
-          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+          let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
 
           console.log("IETNG: Recovery succeeded");
         } catch (ex) {
           console.log("IETNG: Recovery failed");
           // extend exception to include msg with subfolder name
-          let createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+          let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
 
           ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
           reject(ex);

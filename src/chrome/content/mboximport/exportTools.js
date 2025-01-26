@@ -844,14 +844,16 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
 		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
-		return;
+		return { status: kStatusOK };
 	}
 
 
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
-		return;
+		return { status: kStatusOK };
+		
 
 	// Custom date format
 	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
@@ -893,6 +895,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}
 
+	
 	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
@@ -1020,6 +1023,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	}
 	data = data + "</table></body></html>";
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
+	return { status: kStatusOK };
 }
 
 function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
@@ -1295,6 +1299,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
 	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
+	return { status: kStatusOK };
 }
 
 

@@ -19,6 +19,8 @@
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
+console.log("load MailServices 2")
+
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 
@@ -337,7 +339,7 @@ var ietngUtils = {
   },
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
-
+    console.log("createSubfolder")
     const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {

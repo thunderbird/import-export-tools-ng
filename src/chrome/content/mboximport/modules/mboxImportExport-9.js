@@ -192,7 +192,7 @@ export var mboxImportExport = {
     }
 
     await new Promise(r => window.setTimeout(r, 100));
-    await ietngUtils.rebuildSummary(msgFolder);
+    await rebuildSummary(msgFolder);
     await new Promise(r => window.setTimeout(r, 1000));
 
   },
@@ -361,7 +361,7 @@ export var mboxImportExport = {
     // copy our mbox in new subfolder
     await IOUtils.copy(src, dst, {})
     // this forces an mbox to be reindexed and build new msf
-    await ietngUtils.rebuildSummary(subMsgFolder);
+    await rebuildSummary(subMsgFolder);
     // give up some time to ui
     await new Promise(r => window.setTimeout(r, 200));
 
@@ -418,7 +418,7 @@ export var mboxImportExport = {
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
-    await ietngUtils.rebuildSummary(subMsgFolder);
+    await rebuildSummary(subMsgFolder);
     // give up some time to ui
     await new Promise(r => window.setTimeout(r, 500));
 
@@ -878,5 +878,82 @@ export var mboxImportExport = {
         msgFolder,
         Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
     }
-  }
+  },
+
+  rebuildSummary: async function (folder) {
+
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+      );
+    }
+
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+    try {
+      const msgDB = folder.msgDatabase;
+      msgDB.summaryValid = false;
+      folder.closeAndBackupFolderDB("");
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+    }
+
+    folder.updateFolder(window.msgWindow);
+    return;
+  },
+
+  createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
+    console.log("createSubfolder in module")
+    const folderAddedPromise = new Promise(async (resolve, reject) => {
+      let folderListener = {
+        folderAdded: function (aFolder) {
+          if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
+            MailServices.mfn.removeListener(folderListener);
+            resolve(aFolder);
+          }
+        },
+      };
+      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+
+      // createSubfolder will fail under some circumstances when
+      // doing large imports. Failures start around 250+ and become
+      // persistent around 500+. The failures above 500 are likely
+      // do to Windows file descriptor limits.
+      // A rebuildSummary followed by a createSubfolder retry
+      // recovers the operation in most circumstances.
+      // Odd database behaviors have sometimes been observed
+      // even if recovery succeeded
+
+      try {
+        let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+      } catch (ex) {
+        try {
+          console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
+          await new Promise(r => this.top.setTimeout(r, 100));
+          await rebuildSummary(msgFolder);
+          await new Promise(r => this.top.setTimeout(r, 1000));
+
+          let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+
+          console.log("IETNG: Recovery succeeded");
+        } catch (ex) {
+          console.log("IETNG: Recovery failed");
+          // extend exception to include msg with subfolder name
+          let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+
+          ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
+          reject(ex);
+        }
+      }
+    });
+
+    return folderAddedPromise;
+  },
+
 };

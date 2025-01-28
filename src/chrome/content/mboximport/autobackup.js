@@ -143,16 +143,18 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-			if (dirName && !autoBackup.filePicker) {
-				clone.append(dirName);
-				if (!clone.exists())
-					clone.create(1, 0o0755);
-			} else {
-				var date = buildContainerDirName();
-				clone.append(autoBackup.profDir.leafName + "-" + date);
-				clone.createUnique(1, 0o0755);
-				autoBackup.unique = true;
-			}
+		if (dirName && !autoBackup.filePicker) {
+			autoBackup.backupDirPath = clone.path;
+			clone.append(dirName);
+			if (!clone.exists())
+				clone.create(1, 0o0755);
+		} else {
+			autoBackup.backupDirPath = clone.path;
+			var date = buildContainerDirName();
+			clone.append(autoBackup.profDir.leafName + "-" + date);
+			clone.createUnique(1, 0o0755);
+			autoBackup.unique = true;
+		}
 
 
 		// Here "clone" is the container directory for the backup

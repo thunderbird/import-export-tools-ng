@@ -71,20 +71,20 @@ var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 
-//const { ExtensionParent2 } = ChromeUtils.importESModule(
-//	"resource://gre/modules/ExtensionParent.sys.mjs"
-//);
-const extension2 = ExtensionParent.GlobalManager.getExtension(
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
 
-console.log(extension2)
- let query1 = extension2.manifest.version;
+ietngExtension.query = ietngExtension.manifest.version;
 
 // Load TestModule.sys.mjs.
 var { mboxImportExport } = ChromeUtils.importESModule(
-"resource://mboximport/content/mboximport/modules/mboxImportExport-9.js?" + query1
+"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.query
 );
 
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
@@ -1749,4 +1749,3 @@ function IETopenFolderPath(params) {
 		}
 	}
 }
-

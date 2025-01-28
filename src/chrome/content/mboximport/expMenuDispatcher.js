@@ -44,11 +44,11 @@ let extension2 = ExtensionParent.GlobalManager.getExtension(
 */
 
 
-let query2 = extension2.manifest.version;
+//const query2 = ietngExtension.manifest.version;
 
 // Load TestModule.sys.mjs.
 var { mboxImportExport } = ChromeUtils.importESModule(
-  "resource://mboximport/content/mboximport/modules/mboxImportExport-9.js?" + query2
+  "resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.query
 );
 
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");

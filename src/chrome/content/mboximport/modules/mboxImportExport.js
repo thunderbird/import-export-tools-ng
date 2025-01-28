@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 // mboxImportExport.js
 
 // sometimes we may want to be a regular module
- var EXPORTED_SYMBOLS = ["mboxImportExport"];
+// var EXPORTED_SYMBOLS = ["mboxImportExport"];
 
 var Services = globalThis.Services || ChromeUtils.import(
   'resource://gre/modules/Services.jsm'
@@ -36,9 +36,9 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js");
+console.log("IETNG: mboximportExport.js -v7 A");
 
-var mboxImportExport = {
+export var mboxImportExport = {
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
   mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
@@ -52,7 +52,6 @@ var mboxImportExport = {
   },
 
   importMboxSetup: async function (params) {
-
     // create our ietng status line
     ietngUtils.createStatusLine(window);
 
@@ -60,7 +59,6 @@ var mboxImportExport = {
     var fpRes;
     var mboxFiles;
 
-    this.totalFoldersCreated = 0;
     this.totalImported = 0;
     this.totalSkipped = 0;
     this.toCompactFolderList = [];
@@ -68,53 +66,38 @@ var mboxImportExport = {
     let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
     let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
 
-    var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
-    var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
-    var largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
 
-    try {
-      if (params.mboxImpType == "individual") {
-        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
-        if (fpRes.result == -1) {
-          return;
-        }
-        mboxFiles = fpRes.filesArray;
-      } else {
-        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
-        if (fpRes.result == -1) {
-          return;
-        }
-        mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
+    if (params.mboxImpType == "individual") {
+      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
+      if (fpRes.result == -1) {
+        return;
       }
-
-
-      var msgFolder;
-
-      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
-
-      await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
-
-      let total = this.totalImported + this.totalSkipped;
-      let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
-      let result = `${doneMsg}: ${this.totalImported}/${total}`;
-
-      await new Promise(r => window.setTimeout(r, 2500));
-
-      ietngUtils.writeStatusLine(window, result, 8000);
-      // wait for status done, remove our status element
-      await new Promise(r => window.setTimeout(r, 8000));
-      window.document.getElementById("ietngStatusText").remove();
-    } catch (ex) {
-      let errMsg = ex;
-      if (ex.extendedMsg) {
-        errMsg += `\n\n${ex.extendedMsg}`;
+      mboxFiles = fpRes.filesArray;
+    } else {
+      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
+      if (fpRes.result == -1) {
+        return;
       }
-      Services.prompt.alert(window, errorMsg, errMsg);
+      mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
     }
 
-    if (this.totalImported > 200) {
-      Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
-    }
+
+    var msgFolder;
+
+    msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+
+    await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+
+    let total = this.totalImported + this.totalSkipped;
+    let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
+    let result = `${doneMsg}: ${this.totalImported}/${total}`;
+
+    await new Promise(r => window.setTimeout(r, 2500));
+
+    ietngUtils.writeStatusLine(window, result, 8000);
+    // wait for status done, remove our status element
+    await new Promise(r => window.setTimeout(r, 8000));
+    window.document.getElementById("ietngStatusText").remove();
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
@@ -190,11 +173,6 @@ var mboxImportExport = {
         await this.importMboxFiles(subFiles, subMsgFolder, recursive);
       }
     }
-
-    await new Promise(r => window.setTimeout(r, 100));
-    await ietngUtils.rebuildSummary(msgFolder);
-    await new Promise(r => window.setTimeout(r, 1000));
-
   },
 
 
@@ -347,25 +325,42 @@ var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
-    } catch (ex) {
-      // Throw error to allow termination
-      throw (ex);
-    }
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
     var dst = subFolderPath;
 
-    // copy our mbox in new subfolder
+    // build our mbox in new subfolder
+    //await mboxCopyImport({ srcPath: src, destPath: dst });
+    console.log(src)
     await IOUtils.copy(src, dst, {})
     // this forces an mbox to be reindexed and build new msf
-    await ietngUtils.rebuildSummary(subMsgFolder);
+    await this.rebuildSummary(subMsgFolder);
     // give up some time to ui
     await new Promise(r => window.setTimeout(r, 200));
 
     return subMsgFolder;
+
   },
 
   _createEmptyMboxFile: async function (filePath, msgFolder) {
@@ -379,12 +374,26 @@ var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
-    } catch (ex) {
-      // Throw error to allow termination
-      throw (ex);
-    }
+    await new Promise((resolve, reject) => {
+
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     return subMsgFolder;
@@ -401,14 +410,26 @@ var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
-    } catch (ex) {
-      // Throw error to allow termination
-      throw (ex);
-    }
+    await new Promise((resolve, reject) => {
 
-    await new Promise(r => window.setTimeout(r, 500));
+      msgFolder.AddFolderListener(
+        {
+          onFolderAdded(parentFolder, childFolder) {
+            resolve();
+          },
+          onMessageAdded() { },
+          onFolderRemoved() { },
+          onMessageRemoved() { },
+          onFolderPropertyChanged() { },
+          onFolderIntPropertyChanged() { },
+          onFolderBoolPropertyChanged() { },
+          onFolderUnicharPropertyChanged() { },
+          onFolderPropertyFlagChanged() { },
+          onFolderEvent() { },
+        });
+      msgFolder.createSubfolder(subFolderName, window.msgWindow);
+
+    });
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
@@ -418,9 +439,9 @@ var mboxImportExport = {
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
-    await ietngUtils.rebuildSummary(subMsgFolder);
+    await this.rebuildSummary(subMsgFolder);
     // give up some time to ui
-    await new Promise(r => window.setTimeout(r, 500));
+    await new Promise(r => window.setTimeout(r, 200));
 
     return subMsgFolder;
   },
@@ -492,6 +513,7 @@ var mboxImportExport = {
 
 
     let st = new Date();
+    //console.log("Start: ", st, msgFolder.prettyName);
 
     var mboxDestPath = dest;
     var isVirtualFolder = msgFolder.flags & Ci.nsMsgFolderFlags.Virtual;
@@ -566,7 +588,7 @@ var mboxImportExport = {
       let msgDate = (new Date(msgHdr.dateInSeconds * 1000));
       msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
       let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
-
+      
       // get message as 8b string
       let rawBytes = await this.getRawMessage(msgUri, false);
 
@@ -592,18 +614,19 @@ var mboxImportExport = {
       let m = rawBytes.matchAll(/(^X-Mozilla-Status: [0-9A-Fa-f]{3})([0-9A-Fa-f])/gm)
       m = [...m];
       if (m[0]) {
-        let b = (parseInt(m[0][2], 16));
+        let b = (parseInt(m[0][2], 16))
         const kExpungeBit = 0x8;
         let mask = ~kExpungeBit;
         b &= mask;
-        b = b.toString(16);
+        b = b.toString(16)
         rawBytes = rawBytes.replace(m[0][0], m[0][1] + b);
       }
+      //rawBytes = rawBytes.replace( /^X-Mozilla-Status: [0-9A-Fa-f]{4}/gm, "X-Mozilla-Status: 0000");
+      //rawBytes = rawBytes.replace( /^X-Mozilla-Status2: [0-9A-Fa-f]{8}/gm, "X-Mozilla-Status2: 00000000");
+
 
       // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");
-      // make line endings uniformly LF per RFC #607
-      rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 
@@ -656,7 +679,7 @@ var mboxImportExport = {
             resolve(this._data.join(""));
           } else {
             reject(
-              new Error(
+              new ExtensionError(
                 `Error while streaming message <${msgUri}>: ${status}`
               )
             );
@@ -678,6 +701,46 @@ var mboxImportExport = {
         "" //aAdditionalHeader
       );
     });
+  },
+
+
+  rebuildSummary: async function (folder) {
+
+    if (folder.locked) {
+      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      return;
+    }
+    if (folder.supportsOffline) {
+      // Remove the offline store, if any.
+      await IOUtils.remove(folder.filePath.path, { recursive: true }).catch(
+        console.error
+      );
+    }
+
+    // Send a notification that we are triggering a database rebuild.
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
+
+    folder.msgDatabase.summaryValid = false;
+
+    const msgDB = folder.msgDatabase;
+    msgDB.summaryValid = false;
+    try {
+      folder.closeAndBackupFolderDB("");
+    } catch (e) {
+      // In a failure, proceed anyway since we're dealing with problems
+      folder.ForceDBClosed();
+    }
+
+    folder.updateFolder(window.msgWindow);
+
+    // things we do to get folder to be included in global  search
+    // toggling global search inclusion works, but throws
+    // async tracker errors
+    // we won't do these automatically for now
+
+    //this._toggleGlobalSearchEnable(folder);
+    //await this._touchCopyFolderMsg(folder);
+    return;
   },
 
   compactAllFolders: async function () {

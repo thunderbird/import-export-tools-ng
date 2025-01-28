@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v9");
+console.log("IETNG: mboximportExport.js -v9 A");
 
 export var mboxImportExport = {
 

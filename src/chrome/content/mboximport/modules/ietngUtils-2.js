@@ -17,9 +17,9 @@
 // ietngUtils.js
 
 
-var EXPORTED_SYMBOLS = ["ietngUtils"];
+var EXPORTED_SYMBOLS = ["ietngUtils2"];
 
-console.log(" ietng 1")
+console.log(" ietng 2")
 
 
 var ietngUtils = {

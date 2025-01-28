@@ -192,7 +192,7 @@ export var mboxImportExport = {
     }
 
     await new Promise(r => window.setTimeout(r, 100));
-    await rebuildSummary(msgFolder);
+    await this.rebuildSummary(msgFolder);
     await new Promise(r => window.setTimeout(r, 1000));
 
   },
@@ -348,7 +348,7 @@ export var mboxImportExport = {
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
+      let res = await this.createSubfolder(msgFolder, subFolderName);
     } catch (ex) {
       // Throw error to allow termination
       throw (ex);
@@ -361,7 +361,7 @@ export var mboxImportExport = {
     // copy our mbox in new subfolder
     await IOUtils.copy(src, dst, {})
     // this forces an mbox to be reindexed and build new msf
-    await rebuildSummary(subMsgFolder);
+    await this.rebuildSummary(subMsgFolder);
     // give up some time to ui
     await new Promise(r => window.setTimeout(r, 200));
 
@@ -380,7 +380,7 @@ export var mboxImportExport = {
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
+      let res = await this.createSubfolder(msgFolder, subFolderName);
     } catch (ex) {
       // Throw error to allow termination
       throw (ex);
@@ -402,7 +402,7 @@ export var mboxImportExport = {
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     try {
-      let res = await ietngUtils.createSubfolder(msgFolder, subFolderName);
+      let res = await this.createSubfolder(msgFolder, subFolderName);
     } catch (ex) {
       // Throw error to allow termination
       throw (ex);
@@ -418,7 +418,7 @@ export var mboxImportExport = {
     await mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
-    await rebuildSummary(subMsgFolder);
+    await this.rebuildSummary(subMsgFolder);
     // give up some time to ui
     await new Promise(r => window.setTimeout(r, 500));
 
@@ -931,21 +931,21 @@ export var mboxImportExport = {
       // even if recovery succeeded
 
       try {
-        let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+        let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
       } catch (ex) {
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
-          await new Promise(r => this.top.setTimeout(r, 100));
-          await rebuildSummary(msgFolder);
-          await new Promise(r => this.top.setTimeout(r, 1000));
+          await new Promise(r => window.setTimeout(r, 100));
+          await this.rebuildSummary(msgFolder);
+          await new Promise(r => window.setTimeout(r, 1000));
 
-          let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
 
           console.log("IETNG: Recovery succeeded");
         } catch (ex) {
           console.log("IETNG: Recovery failed");
           // extend exception to include msg with subfolder name
-          let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+          let createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
 
           ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
           reject(ex);

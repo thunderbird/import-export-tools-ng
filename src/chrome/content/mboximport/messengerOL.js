@@ -20,10 +20,10 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotK
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
 
-var { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+const { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
 
 // Get our extension object.
-let extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
+const extension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
 
 // Load notifyTools into a custom namespace, to prevent clashes with other add-ons.
 

@@ -70,8 +70,25 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
+
+//const { ExtensionParent2 } = ChromeUtils.importESModule(
+//	"resource://gre/modules/ExtensionParent.sys.mjs"
+//);
+const extension2 = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+
+console.log(extension2)
+ let query1 = extension2.manifest.version;
+
+// Load TestModule.sys.mjs.
+var { mboxImportExport } = ChromeUtils.importESModule(
+"resource://mboximport/content/mboximport/modules/mboxImportExport-9.js?" + query1
+);
+
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-9.js");
+//var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-9.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 

@@ -33,8 +33,26 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
+	/*
+	const { ExtensionParent } = ChromeUtils.importESModule(
+    "resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+let extension2 = ExtensionParent.GlobalManager.getExtension(
+    "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+*/
+
+
+let query2 = extension2.manifest.version;
+
+// Load TestModule.sys.mjs.
+var { mboxImportExport } = ChromeUtils.importESModule(
+  "resource://mboximport/content/mboximport/modules/mboxImportExport-9.js?" + query2
+);
+
 //var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-9.js");
+//var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-9.js");
 
 var gVars = {
 	window: window,

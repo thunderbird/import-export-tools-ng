@@ -19,7 +19,7 @@
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
-console.log(" ietng 1")
+console.log(" ietng 2")
 
 
 var ietngUtils = {
@@ -307,7 +307,7 @@ var ietngUtils = {
   },
 
 
-/*
+
   rebuildSummary: async function (folder) {
 
     if (folder.locked) {
@@ -338,6 +338,8 @@ var ietngUtils = {
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
     console.log("createSubfolder ietngutils")
+    var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+
     const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {
@@ -383,5 +385,5 @@ var ietngUtils = {
 
     return folderAddedPromise;
   },
-*/
+
 };

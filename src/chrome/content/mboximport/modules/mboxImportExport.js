@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js -v7 A");
+console.log("IETNG: mboximportExport.js -v7 B");
 
 export var mboxImportExport = {
 
@@ -427,6 +427,7 @@ export var mboxImportExport = {
           onFolderPropertyFlagChanged() { },
           onFolderEvent() { },
         });
+        console.log("expmod createSubfolder")
       msgFolder.createSubfolder(subFolderName, window.msgWindow);
 
     });

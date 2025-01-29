@@ -79,16 +79,14 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+var dateNow = "";
+// add Date now to query for debugging, thanks JB
+dateNow = new Date();
 
-ietngExtension.query = ietngExtension.manifest.version;
-
-// Load TestModule.sys.mjs.
 var { mboxImportExport } = ChromeUtils.importESModule(
-"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.query
+"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + dateNow
 );
 
-//var { mboxImportExport } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/mboxImportExport.js");
-//var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-9.js");
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 

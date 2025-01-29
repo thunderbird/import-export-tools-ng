@@ -62,15 +62,34 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 		case "createSubfolder":
 			try {
 				let ver = await window.getThunderbirdVersion();
-				let res;
+				var folderOrId;
+				var res;
 				if (ver.major >= 121) {
-					res = await messenger.folders.create(info.folder.id, info.childName);
+					folderOrId = info.folder.id;
 				} else {
-					res = await messenger.folders.create(info.folder, info.childName);
-
+					folderOrId = info.folder;
 				}
+				res = await messenger.folders.create(folderOrId, info.childName);
+
 				return res;
 			} catch (ex) {
+				// handle duplicate names by adding number suffix
+				if (ex.message.includes("already exists in")) {
+					var idx = 1;
+					do {
+						try {
+							res = await messenger.folders.create(folderOrId, `${info.childName}${idx}`);
+							return res;
+						} catch (ex) {
+							if (ex.message.includes("already exists in")) {
+								continue;
+							} else {
+								return ex;
+							}
+
+						}
+					} while (++idx < 100);
+				}
 				return ex;
 			}
 	}

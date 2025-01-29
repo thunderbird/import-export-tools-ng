@@ -19,9 +19,6 @@
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
-console.log(" ietng 2")
-
-
 var ietngUtils = {
 
   Services: globalThis.Services || ChromeUtils.import(
@@ -34,6 +31,8 @@ var ietngUtils = {
   top: Cc["@mozilla.org/appshell/window-mediator;1"]
     .getService(Ci.nsIWindowMediator)
     .getMostRecentWindow("mail:3pane"),
+
+    MailServices: ChromeUtils.import("resource:///modules/MailServices.jsm").MailServices,
 
   getNativeSelectedMessages: async function (wextSelectedMessages) {
 
@@ -321,7 +320,7 @@ var ietngUtils = {
     }
 
     // Send a notification that we are triggering a database rebuild.
-    MailServices.mfn.notifyFolderReindexTriggered(folder);
+    this.MailServices.mfn.notifyFolderReindexTriggered(folder);
 
     try {
       const msgDB = folder.msgDatabase;
@@ -337,19 +336,17 @@ var ietngUtils = {
   },
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
-    console.log("createSubfolder ietngutils")
-    var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
     const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {
           if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
-            MailServices.mfn.removeListener(folderListener);
+            ietngUtils.MailServices.mfn.removeListener(folderListener);
             resolve(aFolder);
           }
         },
       };
-      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
+      this.MailServices.mfn.addListener(folderListener, this.MailServices.mfn.folderAdded);
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become

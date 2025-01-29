@@ -427,7 +427,6 @@ export var mboxImportExport = {
           onFolderPropertyFlagChanged() { },
           onFolderEvent() { },
         });
-        console.log("expmod createSubfolder")
       msgFolder.createSubfolder(subFolderName, window.msgWindow);
 
     });

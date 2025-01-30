@@ -6,16 +6,16 @@
         "message": "导出设置"
     },
     "MBlabel1": {
-        "message": "覆盖目标目录中同名的mbox文件"
+        "message": "覆盖目标目录中同名的 mbox 文件"
     },
     "MBlabel2": {
         "message": "导出单个文件时仅使用阿拉伯数字"
     },
     "MBlabel3": {
-        "message": "从目录中导入mbox文件之前确认"
+        "message": "从目录中导入 mbox 文件之前确认"
     },
     "MBlabel4": {
-        "message": "在信息面板中使用HTML格式显示"
+        "message": "在信息面板中使用 HTML 格式显示"
     },
     "MBlabel5": {
         "message": "以纯文本格式复制到剪贴板（可以提供更好的兼容性）"
@@ -63,7 +63,7 @@
         "message": "导出全部信息"
     },
     "asCSV": {
-        "message": "电子表格(CSV)"
+        "message": "电子表格（CSV）"
     },
     "attCtxMenu_Top_Id.title": {
         "message": "将 EML 附件保存到此文件夹"
@@ -114,7 +114,7 @@
         "message": "完整资料"
     },
     "buttonMenu_Exp_ProfileMailOnly_Id.title": {
-        "message": "仅限邮寄"
+        "message": "仅限邮件"
     },
     "buttonMenu_Exp_Profile_Id.title": {
         "message": "导出配置文件"
@@ -138,7 +138,7 @@
         "message": "复制磁盘上的文件夹路径"
     },
     "csvSep": {
-        "message": "Separator for export in CSV format:"
+        "message": "导出 CSV 格式使用的分隔符："
     },
     "ctxMenu_ExtensionName.title": {
         "message": "ImportExportTools NG"
@@ -210,7 +210,7 @@
         "message": "要继续么？"
     },
     "description5": {
-        "message": "正在进行备份…请等待。"
+        "message": "正在备份，请稍候……"
     },
     "description6": {
         "message": "备份完成。"
@@ -249,7 +249,7 @@
         "message": "复制文件夹路径"
     },
     "folderCtxMenu_Exp_Account_Id.title": {
-        "message": "出口账户"
+        "message": "导出账户"
     },
     "folderCtxMenu_Exp_AllMessages_Id.title": {
         "message": "导出文件夹中的所有邮件"
@@ -279,7 +279,7 @@
         "message": "单个压缩的 mbox 文件"
     },
     "folderCtxMenu_Exp_FolderMbox_Id.title": {
-        "message": "文件夹导出 (mbox)"
+        "message": "文件夹导出（mbox）"
     },
     "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
         "message": "带有子文件夹的消息和索引"
@@ -312,7 +312,7 @@
         "message": "消息和 HTML 索引"
     },
     "folderCtxMenu_Exp_PDFFormat_Id.title": {
-        "message": "PDF格式"
+        "message": "PDF 格式"
     },
     "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
         "message": "带有子文件夹的消息和索引"
@@ -381,7 +381,7 @@
         "message": "正在导入…"
     },
     "indexCSVdateFormat": {
-        "message": "索引，CSV日期格式："
+        "message": "索引、CSV 日期格式："
     },
     "indexFmtToken": {
         "message": "${索引}"
@@ -399,7 +399,7 @@
         "message": "内联附件文件夹"
     },
     "intro1": {
-        "message": "导入配置文件的功能正在试验当中，没有丢失数据的风险，但也不保证所有功能都完善，特别是从另外一套电脑导入配置文件的时候。无论如何他都比手动复制文件要可靠。"
+        "message": "导入配置文件的功能正在试验当中。虽然没有丢失数据的风险，但不保证所有功能都符合预期，尤其是导入另一台电脑的配置文件时。无论如何，这都比手动复制文件要可靠。"
     },
     "intro2": {
         "message": "这个文件夹包含一个可以导入的有效配置文件，在处理期间，您可能有数分钟或者更长时间无法使用这个程序。"
@@ -426,7 +426,7 @@
         "message": "杂项"
     },
     "modal": {
-        "message": "使用一个 \\\\\\'modal\\\\\\' 窗口"
+        "message": "使用模态窗口"
     },
     "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
         "message": "标头"
@@ -480,10 +480,10 @@
         "message": "新建 mbox 文件"
     },
     "msgCtxMenu_Exp_MboxFormat_Id.title": {
-        "message": "mbox格式"
+        "message": "mbox 格式"
     },
     "msgCtxMenu_Exp_PDFFormat_Id.title": {
-        "message": "PDF格式"
+        "message": "PDF 格式"
     },
     "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
         "message": "消息和 HTML 索引"
@@ -558,7 +558,7 @@
         "message": "Mbox"
     },
     "sdMBOX2": {
-        "message": "Mbox （附加）"
+        "message": "Mbox（追加）"
     },
     "sdMessages": {
         "message": "消息"
@@ -567,7 +567,7 @@
         "message": "选中"
     },
     "sdSingleFile": {
-        "message": "(一个文件)"
+        "message": "（一个文件）"
     },
     "sdText": {
         "message": "纯文本"
@@ -606,7 +606,7 @@
         "message": "${后缀}"
     },
     "textCharset": {
-        "message": "纯文本和逗号分隔文件（CSV）格式使用的字符集："
+        "message": "导出纯文本或 CSV 格式使用的字符集："
     },
     "title": {
         "message": "ImportExportTools NG - 配置文件导入"
@@ -618,7 +618,7 @@
         "message": "完整资料"
     },
     "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-        "message": "仅限邮寄"
+        "message": "仅限邮件"
     },
     "toolsCtxMenu_Exp_Profile_Id.title": {
         "message": "导出配置文件"
@@ -633,57 +633,57 @@
         "message": "对 mbox 文件使用 .mbox 扩展名（非结构化）"
     },
     "CRconversion.statusMsg": {
-        "message": "转换 CR =&gt; CRLF 线路终止"
+        "message": "换行符转换中：CR => CRLF"
     },
     "Size": {
         "message": "尺寸"
-    },
+    },
 
-	"latinizeTransform": {
-		"message": "拉丁化变换"
-	},
+    "latinizeTransform": {
+        "message": "拉丁化变换"
+    },
 
-	"characterFilter": {
-		"message": "字符过滤器（UTF-8 或 UTF-16）"
-	},
+    "characterFilter": {
+        "message": "字符过滤器（UTF-8 或 UTF-16）"
+    },
 
-	"utf16Filter": {
-		"message": "过滤 UTF-16 字符（符号和表情符号）"
-	},
+    "utf16Filter": {
+        "message": "过滤 UTF-16 字符（符号和表情符号）"
+    },
 
-	"nonAlphanumericFilter": {
-		"message": "过滤非字母数字字符"
-	},
+    "nonAlphanumericFilter": {
+        "message": "过滤非字母数字字符"
+    },
 
-	"multipleFolders.title": {
-		"message": "多个文件夹"
-	},
+    "multipleFolders.title": {
+        "message": "多个文件夹"
+    },
 
-	"multipleFolders.alertMsg": {
-		"message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
-	},
+    "multipleFolders.alertMsg": {
+        "message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
+    },
 
-	"cancel.msg": {
-		"message": "取消"
-	},
+    "cancel.msg": {
+        "message": "取消"
+    },
 
-	"Error.msg": {
-		"message": "错误"
-	},
+    "Error.msg": {
+        "message": "错误"
+    },
 
-	"Warning.msg": {
-		"message": "警告"
-	},
+    "Warning.msg": {
+        "message": "警告"
+    },
 
-	"numRetainBackups.msg": {
-		"message": "要保留的备份数量："
-	},
+    "numRetainBackups.msg": {
+        "message": "要保留的备份数量："
+    },
 
-	"createSubfolderErr.msg": {
-		"message": "创建子文件夹时出错："
-	},
+    "createSubfolderErr.msg": {
+        "message": "创建子文件夹时出错："
+    },
 
-	"largeFolderImport.msg": {
-		"message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
-	}
+    "largeFolderImport.msg": {
+        "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
+    }
 }

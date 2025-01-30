@@ -70,26 +70,8 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 					folderOrId = info.folder;
 				}
 				res = await messenger.folders.create(folderOrId, info.childName);
-
 				return res;
 			} catch (ex) {
-				// handle duplicate names by adding number suffix
-				if (ex.message.includes("already exists in")) {
-					var idx = 1;
-					do {
-						try {
-							res = await messenger.folders.create(folderOrId, `${info.childName}${idx}`);
-							return res;
-						} catch (ex) {
-							if (ex.message.includes("already exists in")) {
-								continue;
-							} else {
-								return ex;
-							}
-
-						}
-					} while (++idx < 100);
-				}
 				return ex;
 			}
 	}

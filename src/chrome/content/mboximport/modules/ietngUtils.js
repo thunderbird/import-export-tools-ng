@@ -360,6 +360,10 @@ var ietngUtils = {
       try {
         let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
       } catch (ex) {
+				if (ex.message.includes("already exists in")) {
+          console.log("IETNG: Folder exists");
+          reject(ex);
+        }
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
           await new Promise(r => this.top.setTimeout(r, 100));

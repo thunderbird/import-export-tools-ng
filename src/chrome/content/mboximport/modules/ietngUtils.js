@@ -363,6 +363,7 @@ var ietngUtils = {
 				if (ex.message.includes("already exists in")) {
           console.log("IETNG: Folder exists");
           reject(ex);
+          return;
         }
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);

@@ -20,12 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
     <p>
-      - Novinka: Možnosť zálohovania pre počet záloh na zachovanie #302, #663<br />
-      - Novinka: Podpora znakov Unicode v exportoch otvoreného textu #639<br />
-      - Opravte export CSV v dialógovom okne vyhľadávania č. 646<br />
-      - Opravte problémy s importom/exportom EML #631<br />
-      - Pridať poznámku do pomocníka ponuky importu mbox, platí len pre miestne priečinky, nie IMAP<br />
-      - Opravte exporty súborov mbox tak, aby používali zakončenie riadkov LF #607<br />
+      - Vrátenie modulu mboxImportExport do stabilnej verzie 7<br />
+      - Odstrániť dátum z názvu vlastného záložného priečinka<br />
+      - Aktualizujte miestne nastavenie čínštiny (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
@@ -50,7 +47,7 @@
         - Ponuka Nástroje (operácie profilu a zálohovania)<br /><br />
         Možnosti, ktoré sú dostupné v ponuke „Nástroje“, sa nenachádzajú v ponuke „Hamburger“, budú v budúcej
         verzii. Tieto funkcie sú dostupné aj v novom tlačidle na paneli nástrojov. Každá z ponúk a tlačidiel
-        má tiež položky ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
+        má tiež položku ponuky Pomocník a Možnosti na prístup k dialógu možností.<br />
       </p>
     </p>
     <h3>Podpora:</h3>
@@ -201,7 +198,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Vytvorí indexový súbor HTML so správami v priečinku (bez exportu správ)</td>
+          <td>Vytvorí indexový súbor HTML pre správy priečinka (bez exportu správ)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
@@ -308,7 +305,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportujte vybrané správy do súborov vo formáte HTML</td>
+          <td>Exportujte vybraté správy do súborov vo formáte HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
@@ -663,8 +660,8 @@
     <h2 id="ext_filename_format_help">Rozšírený formát názvu súboru:</h2>
     <br />
     <p>
-      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru je možné vytvoriť pomocou
-      tokenov, ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
+      Rozšírené formátovanie názvu súboru využíva tokeny. Presný názov súboru možno vytvoriť pomocou tokenov,
+      ako aj ľubovoľného textu alebo platných znakov názvu súboru. Neplatné znaky sú:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny sú dostupné vo všetkých miestnych
       nastaveniach. Dostupné sú aj tokeny špecifické pre miestne nastavenia a sú uvedené pod anglickou
       tabuľkou.<br /><br />

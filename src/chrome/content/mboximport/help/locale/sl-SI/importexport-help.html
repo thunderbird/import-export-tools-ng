@@ -20,18 +20,15 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
-      - Novo: možnost varnostnega kopiranja za število varnostnih kopij za ohranitev #302, #663<br />
-      - Novo: podpora znakom Unicode v izvozih navadnega besedila #639<br />
-      - Popravljen izvoz CSV v iskalnem pogovornem oknu #646<br />
-      - Odpravite težave z uvozom/izvozom EML #631<br />
-      - Dodajte opombo v pomoč menija za uvoz mbox, velja samo za lokalne mape, ne za IMAP<br />
-      - Popravljen izvoz datotek mbox za uporabo končnic vrstic LF #607<br />
+      - Povrnitev modula mboxImportExport na stabilno različico 7<br />
+      - Odstranite datum iz imena mape varnostne kopije po meri<br />
+      - Posodobite področne nastavitve za kitajščino (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
+      Opomba: nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -59,7 +56,7 @@
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
+      Pri težavah z napakami vključite naslednje informacije, da boste lažje rešili težave:<br />
       - Različica ImportExportTools NG<br />
       - Različica Thunderbird<br />
       - Operacijski sistem in različica<br />
@@ -79,7 +76,7 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Izvozite celoten račun s strukturo in podmapami v format mbox. Izvoz se izvede z vsebnikom z
+            Izvoz celotnega računa s strukturo in podmapami v format mbox. Izvoz se izvede z vsebnikom z
             imenom računa.<br />
             Opomba: ta element menija se prikaže samo, ko z desno miškino tipko kliknete vnos računa.
           </td>
@@ -142,7 +139,7 @@
             __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot datoteke zapisa HTML (brez strukture/podmap).<br />
+            Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
             Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
             vsakega sporočila.
           </td>
@@ -376,7 +373,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Ustvari indeksno datoteko HTML za izbrana sporočila</td>
+          <td>Ustvarite indeksno datoteko HTML za izbrana sporočila</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
@@ -653,7 +650,7 @@
         <td><code class="code1">${subject}</code></td>
         <td>Zadeva sporočila</td>
       </tr>
-      <li><code class="code1">%R</code> - ni implementirano (uporabi <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%R</code> - ni implementirano (uporabite <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - ni implementirano (uporabite <code class="code1">\t</code> )</li>
       <li>
         <code class="code1">%T</code> - ni implementirano (uporabite <code class="code1">%H:%M:%S</code> )
@@ -809,8 +806,8 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Običajno je &#39;Datum&#39; za sporočilo v Thunderbirdu datum, ki ga nastavi pošiljateljev poštni
-      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v poštnem odjemalcu prejemnika.
-      Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
+      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v prejemnikovem poštnem
+      odjemalcu. Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
     </p>
     <h2>Osnovna, globalna funkcija hitre tipke (bližnjice).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

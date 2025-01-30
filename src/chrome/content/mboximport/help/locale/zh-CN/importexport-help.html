@@ -20,11 +20,8 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
     <p>
-      - 新增：备份选项可保留 #302、#663 的备份数量<br />- 新增：支持纯文本导出的 Unicode 字符 #639<br />
-      - 修复搜索对话框中的 CSV 导出问题 #646<br />
-      - 修复 EML 导入/导出问题 #631<br />
-      - 在 mbox 导入菜单帮助中添加注释，仅适用于本地文件夹，不适用于 IMAP<br />
-      - 修复 mbox 文件导出以使用 LF 行尾 #607<br />
+      - 将 mboxImportExport 模块回滚至稳定的 v7<br />
+      - 从自定义备份文件夹名称中删除日期<br />- 更新中文（zh-CN）语言环境 - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
@@ -486,7 +483,8 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            使用 12 小时制的十进制数表示小时数（范围为 01 到 12）。另请参阅<code class="code1">%l</code> 。
+            使用 12 小时制时钟（范围为 01 到 12）以十进制数表示的小时数。另请参阅<code class="code1">%l</code>
+            。
           </td>
         </tr>
         <tr>

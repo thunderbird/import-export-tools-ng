@@ -20,13 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de la versión:</h3>
     <p>
-      - Nuevo: Opción de copia de seguridad para la cantidad de copias de seguridad a conservar #302, #663<br />
-      - Nuevo: Compatibilidad con caracteres Unicode en exportaciones de texto sin formato #639<br />
-      - Corregir la exportación CSV en el cuadro de diálogo de búsqueda n.° 646<br />
-      - Solucionar problemas de importación/exportación de EML n.° 631<br />
-      - Agregar nota a la ayuda del menú de importación de mbox, válida solo para carpetas locales, no para
-      IMAP<br />
-      - Se corrigieron las exportaciones de archivos mbox para usar finales de línea LF #607<br />
+      - Revertir el módulo mboxImportExport a la versión estable v7<br />
+      - Eliminar la fecha del nombre de la carpeta de copia de seguridad personalizada<br />
+      - Actualizar la configuración regional del idioma chino (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">Descripción general y menús de ImportExportTools NG</h2>
     <p>
@@ -281,7 +277,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Abrir la página de ayuda principal</td>
+          <td>Abrir la página principal de ayuda</td>
         </tr>
       </tbody>
     </table>
@@ -419,7 +415,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Abrir la página de ayuda principal</td>
+          <td>Abrir la página principal de ayuda</td>
         </tr>
       </tbody>
     </table>
@@ -827,8 +823,8 @@
     </p>
     <p>
       Ambas preferencias utilizan el mismo tipo de formatos de nombres de archivo extendidos que los que
-      utiliza el nombre de archivo de los mensajes exportados. La primera es para archivos adjuntos externos,
-      la segunda es para archivos adjuntos incrustados (en línea).
+      utiliza el nombre de archivo de los mensajes exportados. La primera es para archivos adjuntos externos y
+      la segunda para archivos adjuntos incrustados (en línea).
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>

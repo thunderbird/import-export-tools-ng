@@ -20,13 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Nou: opció de còpia de seguretat per al nombre de còpies de seguretat a conservar #302, #663<br />
-      - Nou: Admet caràcters Unicode a les exportacions de text sense format #639<br />
-      - Corregiu l&#39;exportació CSV al diàleg de cerca #646<br />
-      - Solucioneu els problemes d&#39;importació/exportació d&#39;EML #631<br />
-      - Afegiu una nota a l&#39;ajuda del menú d&#39;importació de mbox, només vàlida per a carpetes locals,
-      no IMAP<br />
-      - Corregiu les exportacions de fitxers mbox per utilitzar les terminacions de línia LF #607<br />
+      - Retrocedeix el mòdul mboxImportExport a v7 estable<br />
+      - Elimina la data del nom de la carpeta de còpia de seguretat personalitzada<br />
+      - Actualitza la configuració regional del xinès (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
@@ -355,7 +351,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exporteu els missatges seleccionats a fitxers de format de text sense format</td>
+          <td>Exporteu els missatges seleccionats a fitxers en format de text sense format</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
@@ -472,8 +468,8 @@
       fitxer. La data personalitzada també es pot utilitzar amb el testimoni ${date_custom} utilitzat als noms
       de fitxer personalitzats ampliats. El format de data original (predeterminat) és:<br />
       AAAAMMDDDHHmm: 202011060808<br /><br />
-      El format de data personalitzat utilitza % seqüències que coincideixen amb la funcionalitat semblant a
-      <code>strftime()</code> Unix. Es basa en un port JavaScript de
+      El format de data personalitzat utilitza % de seqüències que coincideixen amb la funcionalitat semblant
+      a Unix <code>strftime()</code> . Es basa en un port JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , una funció per formatar la data i l&#39;hora.<br />
       Port de strftime() per TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -548,8 +544,8 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu també
-            <code class="code1">%l</code> .
+            L&#39;hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu
+            també <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
@@ -659,7 +655,7 @@
         <code class="code1">%D</code> - no implementat (utilitza <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - l&#39;espai no s&#39;ha afegit</li>
+      <li><code class="code1">%e</code> - l&#39;espai no s&#39;afegeix</li>
       <li><code class="code1">%E</code> - no implementat</li>
       <li><code class="code1">%h</code> - no implementat (utilitza <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - l&#39;espai no s&#39;afegeix</li>
@@ -854,7 +850,7 @@
       <code class="notranslate">id</code> - l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
       <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
-      Es pot incloure qualsevol clau o codi de clau, però no tots dos<br />
+      Es pot incloure qualsevol clau o codi, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - una cadena d&#39;ordres directes<br />

@@ -20,12 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Nowość: Opcja tworzenia kopii zapasowej dla liczby kopii zapasowych do zachowania #302, #663<br />
-      - Nowość: Obsługa znaków Unicode w eksportach zwykłego tekstu #639<br />
-      - Napraw eksport CSV w oknie dialogowym wyszukiwania #646<br />
-      - Naprawiono problemy z importem/eksportem EML #631<br />
-      - Dodaj notatkę do pomocy menu importu mbox, dotyczy tylko folderów lokalnych, nie IMAP<br />
-      - Naprawiono eksportowanie plików mbox, aby używać zakończeń linii LF #607<br />
+      - Przywrócenie modułu mboxImportExport do stabilnej wersji v7<br />
+      - Usuń datę z nazwy niestandardowego folderu kopii zapasowej<br />
+      - Aktualizacja ustawień regionalnych języka chińskiego (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
@@ -785,8 +782,8 @@
     <br />
     <h2>Nowe i eksperymentalne preferencje (opcje)</h2>
     <p>
-      Istnieje kilka nowych funkcji i opcji, których jeszcze nie można skonfigurować w oknie dialogowym opcji.
-      Po ustabilizowaniu tych funkcji zostaną one dodane do interfejsu użytkownika.<br />
+      Istnieje kilka nowych funkcji i opcji, które nie są jeszcze konfigurowalne w oknie dialogowym opcji. Po
+      ustabilizowaniu tych funkcji zostaną one dodane do interfejsu użytkownika.<br />
       Aby ich użyć, należy je ustawić w Config Editor. Aby uzyskać dostęp do edytora, użyj menu
       Narzędzia/Opcje, a następnie wybierz sekcję Zaawansowane, a na dole pojawi się przycisk „Config Editor”.
       Jeśli wpiszesz „importexporttoolsng” w pasku wyszukiwania, otrzymasz wszystkie preferencje rozszerzeń.
@@ -807,8 +804,8 @@
     </p>
     <p>
       Obie te preferencje używają tego samego typu rozszerzonych formatów nazewnictwa plików, których używa
-      eksportowany plik wiadomości. Pierwsza jest dla załączników zewnętrznych, druga dla osadzonych (inline)
-      załączników.
+      eksportowany filename wiadomości. Pierwsza jest dla załączników zewnętrznych, druga dla osadzonych
+      (inline) załączników.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
@@ -828,7 +825,7 @@
       <code class="notranslate">id</code> - indeks klucza (1-10)<br />
       <code class="notranslate">key</code> - klucz (pojedynczy znak)<br />
       <code class="notranslate">keycode</code> - kod klucza zdefiniowany przez &#39;VK_*&#39;<br />
-      Można dołączyć klucz lub kod klucza, ale nie oba naraz.<br />
+      Można dołączyć klucz lub kod klucza, ale nie oba naraz<br />
       <code class="notranslate">modifiers</code> – klawisze modyfikujące, lista rozdzielona spacją
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - bezpośredni ciąg poleceń<br />

@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools Axuda de NG</title>
+    <title>ImportExportTools Axuda NG</title>
   </head>
   <body>
     <table style="width: 100%;" id="main-help">
       <tr>
         <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda de NG</div>
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda NG</div>
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
@@ -20,12 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
     <p>
-      - Novo: opción de copia de seguranza para o número de copias de seguridade a conservar #302, #663<br />
-      - Novo: admite caracteres Unicode nas exportacións de texto plano #639<br />
-      - Corrixir a exportación CSV no diálogo de busca #646<br />
-      - Corrixir problemas de importación/exportación de EML #631<br />
-      - Engade nota á axuda do menú de importación de mbox, só válida para cartafoles locais, non IMAP<br />
-      - Corrixir as exportacións de ficheiros mbox para usar as terminacións de liña LF #607<br />
+      - Revertir o módulo mboxImportExport a v7 estable<br />
+      - Elimina a data do nome do cartafol de copia de seguranza personalizado<br />
+      - Actualizar a configuración local do chinés (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
     <p>
@@ -44,9 +41,9 @@
       importación e exportación de perfís Thunderbird. Ademais, as exportacións tamén poden incluír un
       ficheiro de índice HTML ou CSV. A copia de seguranza do perfil de Thunderbird é outra característica.<br />
       <p>
-        O acceso á funcionalidade IETng faise a través de varios menús diferentes instalados pola extensión.
-        As funcións son sensibles ao contexto. Engádense menús para:<br />
-        - Contexto do panel de cartafoles (operación de cartafoles)<br />
+        O acceso á funcionalidade de IETng faise a través de varios menús diferentes instalados pola
+        extensión. As funcións son sensibles ao contexto. Engádense menús para:<br />
+        - O contexto do panel de cartafoles (operación de cartafoles)<br />
         - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
         - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
         As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
@@ -260,11 +257,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importa todas as mensaxes EML dun só cartafol, incluíndo estrutura/subcartafoles</td>
+          <td>Importa todas as mensaxes EML dun único cartafol, incluíndo estrutura/subcartafoles</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Copie a ruta do sistema operativo do cartafol seleccionado</td>
+          <td>Copia a ruta do sistema operativo do cartafol seleccionado</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
@@ -460,7 +457,7 @@
       personalizada tamén se pode usar co token ${date_custom} usado nos nomes de ficheiro personalizados
       estendidos. O formato de data orixinal (predeterminado) é:<br />
       AAAMMDDDHHmm: 202011060808<br /><br />
-      O formato de data personalizado utiliza secuencias % que coinciden coa funcionalidade
+      O formato de data personalizado utiliza secuencias % que coinciden coa función
       <code>strftime()</code> similar a Unix. Está baseado nun porto JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , unha función para formatar a data e a hora.<br />
@@ -516,8 +513,8 @@
           <td>
             ISO 8601 ano baseado nunha semana co século como número decimal. O ano de 4 díxitos corresponde ao
             número da semana ISO (ver <code class="code1">%V</code> ). Este ten o mesmo formato e valor que
-            <code class="code1">%Y</code> , excepto que se o número da semana ISO pertence ao ano anterior ou
-            ao seguinte, úsase ese ano no seu lugar.
+            <code class="code1">%Y</code> , agás que se o número de semana ISO pertence ao ano anterior ou ao
+            seguinte, utilízase ese ano.
           </td>
         </tr>
         <tr>
@@ -630,7 +627,7 @@
           <td><code class="code1">%z</code></td>
           <td>
             O fuso horario numérico <code class="code1">+hhmm</code> ou <code class="code1">-hhmm</code> (é
-            dicir, a desfase de hora e minuto respecto da UTC).
+            dicir, o desfase de hora e minuto con respecto ao UTC).
           </td>
         </tr>
         <tr>
@@ -675,8 +672,8 @@
       O formato de nome de ficheiro estendido utiliza tokens. O nome de ficheiro exacto pódese construír
       utilizando as fichas, así como calquera texto ou caracteres de nome de ficheiro válidos. Os caracteres
       non válidos son: <code>| * : &lt; &gt; ? \ / &quot;</code> Os tokens en inglés (en-US) están dispoñibles
-      en calquera lugar. Tamén están dispoñibles os tokens específicos da rexión e aparecen debaixo da táboa
-      en inglés.<br /><br />
+      en calquera lugar. Tamén están dispoñibles os tokens específicos de localidades que aparecen debaixo da
+      táboa en inglés.<br /><br />
       Exemplos:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - O formato predeterminado<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : use o formato de data
@@ -792,14 +789,14 @@
       que estas funcións estean estabilizadas, engadiranse á IU.<br />
       Para usalos deben estar configurados no Editor de configuración. Para acceder ao editor use o menú
       Ferramentas/Opcións, seleccione a sección Avanzado e haberá un botón &quot;Editor de configuración&quot;
-      na parte inferior. Se escribe &#39;importexporttoolsng&#39; na barra de busca, obterá todas as
+      na parte inferior. Se escribe &quot;importexporttoolsng&quot; na barra de busca, obterá todas as
       preferencias de extensión. A continuación, pode editar as distintas preferencias a continuación segundo
       sexa necesario.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Esta preferencia segue o mesmo formato completo que se utilizará para os ficheiros índice. É unha cadea
-      baleira por defecto, se ten unha cadea de data/hora formateada, isto cambiará o formato de data do
+      Esta preferencia segue o mesmo formato completo que se utilizará para os ficheiros de índice. É unha
+      cadea baleira por defecto, se ten unha cadea de data/hora formateada, isto cambiará o formato de data do
       índice.
     </p>
     <p>
@@ -826,8 +823,8 @@
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Esta nova preferencia permite ao usuario configurar ata 10 atallos de teclado. Os atallos poden realizar
-      a maioría das funcións de ImportExportTools NG, así como outras funcións de Thunderbird. A cadea de
-      preferencias está formatada como un obxecto con formato JSON. O formato e as claves son os seguintes:
+      a maioría das funcións ImportExportTools NG, así como outras funcións de Thunderbird. A cadea de
+      preferencia está formatada como un obxecto con formato JSON. O formato e as claves son os seguintes:
     </p>
     <p>
       Exemplos de entradas de teclas rápidas (matriz de obxectos JSON)<br /><br />

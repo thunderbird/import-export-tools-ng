@@ -17,6 +17,12 @@ export functions for messages, folders and profiles.
 
 ## Import Export Tools NG Add-On Features - Version Notes
 
+Version 14.1.5 : Maintenance Release - February 3, 2025
+
+- Rollback mboxImportExport module to stable v7
+- Remove date from custom backup folder name
+- Update Chinese (zh-CN) locale - @ziqin
+
 Version 14.1.4 : Maintenance Release - January 13 2025
 
 - New: Backup option for number of backups to retain #302, #663

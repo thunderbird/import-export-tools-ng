@@ -81,7 +81,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 
 var dateNow = "";
 // add Date now to query for debugging, thanks JB
-dateNow = new Date();
+//dateNow = new Date();
 
 var { mboxImportExport } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + dateNow

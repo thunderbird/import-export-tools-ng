@@ -151,8 +151,11 @@ var autoBackup = {
 		} else {
 			autoBackup.backupDirPath = clone.path;
 			var date = buildContainerDirName();
-			clone.append(autoBackup.profDir.leafName + "-" + date);
+			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
+			clone.append(baseDirName + "-" + date);
 			clone.createUnique(1, 0o0755);
+			autoBackup.backupContainerPath = clone.path;
+			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
 
@@ -286,14 +289,17 @@ var autoBackup = {
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
-
+		
 		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
 			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
 		}));
 
 		removeBackupsList.sort((a, b) => a.lastModified - b.lastModified);
+
 		let rn = Math.max(0, removeBackupsList.length - retainNumBackups + 1);
+
 		removeBackupsList = removeBackupsList.slice(0, rn);
+
 		for (const fo of removeBackupsList) {
 			await IOUtils.remove(fo.fn, { recursive: true });
 		}

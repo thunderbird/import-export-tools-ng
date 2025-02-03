@@ -352,10 +352,12 @@ function saveMboxImportPrefs() {
     else
         IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir");
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
-    if (document.getElementById("backupCustomName").value)
+    if (document.getElementById("backupCustomName").value != "") {
         IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
-    else
-        IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir_custom_name");
+    } else {
+        IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", "customName");
+    }
+
 
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
     IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);

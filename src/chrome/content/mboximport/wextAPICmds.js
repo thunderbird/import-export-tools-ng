@@ -43,8 +43,9 @@ async function onIetngShutdown() {
 
 async function WEXTcreateSubfolder(msgFolder, childName) {
 	let win = getMail3Pane();
+
 	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
-	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folderId: folder.id, childName: childName });
+	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folder: folder, childName: childName });
 
 	// we cannot use typeof or instanceof to check for an exception from
 	// another frame. checking for the two exception properties is not infallible

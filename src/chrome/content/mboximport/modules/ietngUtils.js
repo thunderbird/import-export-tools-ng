@@ -19,9 +19,6 @@
 
 var EXPORTED_SYMBOLS = ["ietngUtils"];
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-
-
 var ietngUtils = {
 
   Services: globalThis.Services || ChromeUtils.import(
@@ -34,6 +31,8 @@ var ietngUtils = {
   top: Cc["@mozilla.org/appshell/window-mediator;1"]
     .getService(Ci.nsIWindowMediator)
     .getMostRecentWindow("mail:3pane"),
+
+    MailServices: ChromeUtils.import("resource:///modules/MailServices.jsm").MailServices,
 
   getNativeSelectedMessages: async function (wextSelectedMessages) {
 
@@ -321,7 +320,7 @@ var ietngUtils = {
     }
 
     // Send a notification that we are triggering a database rebuild.
-    MailServices.mfn.notifyFolderReindexTriggered(folder);
+    this.MailServices.mfn.notifyFolderReindexTriggered(folder);
 
     try {
       const msgDB = folder.msgDatabase;
@@ -338,18 +337,16 @@ var ietngUtils = {
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
 
-    return new Promise(async (resolve, reject) => {
-
+    const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {
           if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
-            MailServices.mfn.removeListener(folderListener);
+            ietngUtils.MailServices.mfn.removeListener(folderListener);
             resolve(aFolder);
           }
         },
       };
-      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
-
+      this.MailServices.mfn.addListener(folderListener, this.MailServices.mfn.folderAdded);
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become
@@ -361,21 +358,26 @@ var ietngUtils = {
       // even if recovery succeeded
 
       try {
-        let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+        let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
       } catch (ex) {
+				if (ex.message.includes("already exists in")) {
+          console.log("IETNG: Folder exists");
+          reject(ex);
+          return;
+        }
         try {
           console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
-          await new Promise(r => window.setTimeout(r, 100));
+          await new Promise(r => this.top.setTimeout(r, 100));
           await this.rebuildSummary(msgFolder);
-          await new Promise(r => window.setTimeout(r, 1000));
+          await new Promise(r => this.top.setTimeout(r, 1000));
 
-          let res = await window.WEXTcreateSubfolder(msgFolder, subFolderName);
+          let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
 
           console.log("IETNG: Recovery succeeded");
         } catch (ex) {
           console.log("IETNG: Recovery failed");
           // extend exception to include msg with subfolder name
-          let createSubfolderErrMsg = window.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
+          let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
 
           ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
           reject(ex);
@@ -383,7 +385,7 @@ var ietngUtils = {
       }
     });
 
-
+    return folderAddedPromise;
   },
 
 };

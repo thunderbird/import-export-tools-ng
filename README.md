@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.1.4%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.1.5%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -16,6 +16,12 @@ export functions for messages, folders and profiles.
 - [Apple mail conversion help](https://github.com/thundernest/import-export-tools-ng/wiki) - @obar
 
 ## Import Export Tools NG Add-On Features - Version Notes
+
+Version 14.1.5 : Maintenance Release - February 3, 2025
+
+- Rollback mboxImportExport module to stable v7
+- Remove date from custom backup folder name
+- Update Chinese (zh-CN) locale - @ziqin
 
 Version 14.1.4 : Maintenance Release - January 13 2025
 

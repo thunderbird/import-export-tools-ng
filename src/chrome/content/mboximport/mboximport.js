@@ -70,7 +70,23 @@ var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileU
 var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-8.js");
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var dateNow = "";
+// add Date now to query for debugging, thanks JB
+//dateNow = new Date();
+
+var { mboxImportExport } = ChromeUtils.importESModule(
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + dateNow
+);
+
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 
@@ -447,7 +463,7 @@ async function trytocopyMAILDIR(params) {
 	// 1. add a subfolder with the name of the folder to import
 	// cdl - convert addSubfolder => createSubfolder
 
-	
+
 	try {
 		let res = await ietngUtils.createSubfolder(msgFolder, newfilename);
 	} catch (ex) {
@@ -1289,6 +1305,9 @@ async function importALLasEML(params) {
 	// using async/await.
 	await new Promise(resolve => window.setTimeout(resolve, 1000));
 	await RUNimportALLasEML(msgFolder, fp.file, recursive);
+	if (document.getElementById("IETabortIcon")) {
+		document.getElementById("IETabortIcon").collapsed = true;
+	}
 }
 
 async function RUNimportALLasEML(msgFolder, file, recursive) {
@@ -1303,7 +1322,12 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 
 	let rootFolder = msgFolder;
 
-	await buildEMLarray(file, msgFolder, recursive, rootFolder);
+	let res = await buildEMLarray(file, msgFolder, recursive, rootFolder);
+	if (res != true) {
+		alert(res);
+		return;
+	}
+
 	gEMLtotal = gFileEMLarray.length;
 	if (gEMLtotal < 1) {
 		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
@@ -1343,8 +1367,7 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			try {
 				newFolder = await ietngUtils.createSubfolder(msgFolder, folderName);
 			} catch (ex) {
-				// Throw error to allow termination
-				throw (ex);
+				return ex;
 			}
 			await buildEMLarray(afile, newFolder, true, rootFolder);
 		} else {
@@ -1410,15 +1433,15 @@ async function importEMLs(params) {
 
 var importEMLlistener = {
 
-	onStartCopy: function () { 
+	onStartCopy: function () {
 		console.log("start")
 	},
 
-	OnStartCopy: function () { 
+	OnStartCopy: function () {
 		console.log("start")
 	},
 
-	onStopCopy: function () { 
+	onStopCopy: function () {
 		console.log("stop")
 		importEMLlistener.next();
 	},
@@ -1519,7 +1542,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 
 		importEMLlistener.imap = true;
 		let rv = MailServices.copy.copyFileMessage(file, msgFolder, null, false, 1, "", importEMLlistener, msgWindow);
-	console.log(rv)
+		console.log(rv)
 
 		if (!removeFile) {
 			gEMLimported = gEMLimported + 1;
@@ -1610,9 +1633,9 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 
 	// Prologue needed to add the message to the folder
 	const tbVersion = ietngUtils.getThunderbirdVersion();
-			if (tbVersion.major > 115) {
-				prologue = "";
-			}
+	if (tbVersion.major > 115) {
+		prologue = "";
+	}
 
 	// If the message has no X-Mozilla-Status, we add them to it
 	if (!data.includes("X-Mozilla-Status"))
@@ -1731,4 +1754,3 @@ function IETopenFolderPath(params) {
 		}
 	}
 }
-

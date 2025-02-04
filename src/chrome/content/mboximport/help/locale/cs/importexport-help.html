@@ -20,18 +20,15 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydání:</h3>
     <p>
-      - Novinka: Možnost zálohování pro počet záloh pro zachování #302, #663<br />
-      - Novinka: Podpora znaků Unicode v exportech prostého textu #639<br />
-      - Opravte export CSV v dialogovém okně vyhledávání #646<br />
-      - Opravte problémy s importem/exportem EML #631<br />
-      - Přidat poznámku k nápovědě nabídky importu mbox, platí pouze pro místní složky, nikoli IMAP<br />
-      - Opravte exporty souborů mbox tak, aby používaly konce řádků LF #607<br />
+      - Vrácení modulu mboxImportExport do stabilní verze 7<br />
+      - Odebrat datum z názvu vlastní zálohovací složky<br />
+      - Aktualizujte národní prostředí čínštiny (zh-CN) - @ziqin<br />
     </p>
     <h2 id="main_help">ImportExportTools Přehled a nabídky NG</h2>
     <p>
       ImportExportTools NG je navazující rozšíření založené na původní práci Paola „Kaosmos“. Rozšíření nabízí
-      několik funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka:
-      Některé formáty nejsou podporovány ve všech funkcích.<br />
+      více funkcí importu a exportu podporujících několik různých formátů souborů, včetně: Poznámka: Některé
+      formáty nejsou podporovány ve všech funkcích.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -44,7 +41,7 @@
       profilu Thunderbird.<br />
       <p>
         Přístup k funkcím IETng se provádí prostřednictvím několika různých nabídek nainstalovaných
-        rozšířením. Funkce jsou kontextové. Menu jsou přidány pro:<br />
+        rozšířením. Funkce jsou závislé na kontextu. Menu jsou přidány pro:<br />
         - Kontext podokna složek (operace se složkami)<br />
         - Kontext seznamu zpráv (vybrané zprávy)<br />
         - Nabídka Nástroje (profil a operace zálohování)<br /><br />
@@ -205,7 +202,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvoří soubor indexu CSV se zprávami ve složce (žádný export zpráv)</td>
+          <td>Vytvoří indexový soubor CSV se zprávami ve složce (žádný export zpráv)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -379,7 +376,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvořte indexový soubor CSV pro vybrané zprávy</td>
+          <td>Vytvořte soubor indexu CSV pro vybrané zprávy</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -427,7 +424,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Import kompletního profilu (pošta, rozšíření, možnosti)</td>
+          <td>Import kompletního profilu (e-mail, rozšíření, možnosti)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -517,7 +514,7 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Hodina jako desetinné číslo pomocí 24hodinového času (rozsah 00 až 23). Viz také
+            Hodina jako desetinné číslo s použitím 24hodinového času (rozsah 00 až 23). Viz také
             <code class="code1">%k</code> .
           </td>
         </tr>
@@ -542,7 +539,7 @@
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hodina jako desetinné číslo s použitím 12hodinových hodin (rozsah 1 až 12). Viz také
+            Hodina jako desetinné číslo pomocí 12hodinových hodin (rozsah 1 až 12). Viz také
             <code class="code1">%I</code> .
           </td>
         </tr>
@@ -667,9 +664,9 @@
     <p>
       Rozšířené formátování názvu souboru využívá tokeny. Přesný název souboru lze sestavit pomocí tokenů a
       také libovolného textu nebo platných znaků názvu souboru. Neplatné znaky jsou:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny jsou k dispozici v jakémkoli národním
-      prostředí. K dispozici jsou také tokeny specifické pro národní prostředí a jsou uvedeny pod anglickou
-      tabulkou.<br /><br />
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Anglické (en-US) tokeny jsou dostupné v jakémkoli národním
+      prostředí. K dispozici jsou také tokeny specifické pro národní prostředí a jsou uvedeny pod tabulkou v
+      angličtině.<br /><br />
       Příklady:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Výchozí formát<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Použijte vlastní
@@ -786,7 +783,7 @@
       Aby bylo možné je používat, musí být nastaveny v editoru konfigurace. Pro přístup k editoru použijte
       nabídku Nástroje/Možnosti, poté vyberte sekci Pokročilé a ve spodní části se zobrazí tlačítko „Editor
       konfigurace“. Pokud do vyhledávacího pole zadáte „importexporttoolsng“, zobrazí se všechny předvolby
-      rozšíření. Podle potřeby pak můžete upravit různé předvolby níže.
+      rozšíření. Podle potřeby pak můžete upravit různé níže uvedené předvolby.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
@@ -822,7 +819,7 @@
       Příklady položek klávesových zkratek (pole objektů JSON)<br /><br />
       <code class="notranslate">id</code> – index klíče (1-10)<br />
       <code class="notranslate">key</code> - klíč (jeden znak)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definovaný kód klíče<br />
+      <code class="notranslate">keycode</code> – &#39;VK_*&#39; definovaný kód klíče<br />
       Může být zahrnut buď klíč nebo kód klíče, ale ne obojí<br />
       <code class="notranslate">modifiers</code> - modifikátory kláves, seznam oddělený mezerami
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

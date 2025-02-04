@@ -95,9 +95,9 @@ var autoBackup = {
 		var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
 			.createInstance(Ci.nsIFileOutputStream);
 		if (append)
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0664, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0o0664, 0);
 		else
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0666, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o0666, 0);
 		foStream.write(data, data.length);
 		foStream.close();
 	},
@@ -143,29 +143,22 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-		// add date and unique suffix for custom name
-		var date;
-		if (dirName) {
+		if (dirName && !autoBackup.filePicker) {
 			autoBackup.backupDirPath = clone.path;
-			date = buildContainerDirName();
-			// replace illegal characters and '.' because it interferes with 
-			// createUnique
-			dirName = dirName.replace(/[\/\\:<>*\?\"\|\.]/g, "_");
-			clone.append(dirName + "-" + date);
-			clone.createUnique(1, 0755);
-			autoBackup.unique = true;
-			autoBackup.backupContainerBaseName = dirName;
-			autoBackup.backupContainerPath = clone.path;
+			clone.append(dirName);
+			if (!clone.exists())
+				clone.create(1, 0o0755);
 		} else {
 			autoBackup.backupDirPath = clone.path;
-			date = buildContainerDirName();
+			var date = buildContainerDirName();
 			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
 			clone.append(baseDirName + "-" + date);
-			clone.createUnique(1, 0755);
+			clone.createUnique(1, 0o0755);
 			autoBackup.backupContainerPath = clone.path;
 			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
+
 
 		// Here "clone" is the container directory for the backup
 
@@ -225,7 +218,6 @@ var autoBackup = {
 			LFclone.append(entry.leafName);
 			if (LFclone.exists()) {
 				LFclone.remove(false);
-				console.log("old", LFclone.path)
 			}
 			try {
 				autoBackup.array1.push(entry);
@@ -297,14 +289,17 @@ var autoBackup = {
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
-
+		
 		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
 			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
 		}));
 
 		removeBackupsList.sort((a, b) => a.lastModified - b.lastModified);
+
 		let rn = Math.max(0, removeBackupsList.length - retainNumBackups + 1);
+
 		removeBackupsList = removeBackupsList.slice(0, rn);
+
 		for (const fo of removeBackupsList) {
 			await IOUtils.remove(fo.fn, { recursive: true });
 		}
@@ -314,7 +309,7 @@ var autoBackup = {
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())
-			file.create(1, 0775);
+			file.create(1, 0o0775);
 		for (let server of MailServices.accounts.allServers) {
 			var parentDir = null;
 			let serverFile = server.localPath;

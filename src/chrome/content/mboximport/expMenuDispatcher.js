@@ -33,7 +33,11 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
-var { mboxImportExport } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/mboxImportExport-8.js");
+
+var { mboxImportExport } = ChromeUtils.importESModule(
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + dateNow
+	);
+	
 
 var gVars = {
 	window: window,

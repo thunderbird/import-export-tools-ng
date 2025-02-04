@@ -20,13 +20,9 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
     <p>
-      - Új: Biztonsági mentés opció a #302, #663 megtartandó biztonsági másolatok számához<br />
-      - Új: Unicode karakterek támogatása a 639. számú egyszerű szöveges exportálásban<br />
-      - Javítsa ki a CSV-exportálást a 646-os keresési párbeszédpanelen<br />
-      - Javítsa ki az EML importálási/exportálási problémáit #631<br />
-      - Megjegyzés hozzáadása az mbox importálási menüjének súgójához, csak a helyi mappákhoz érvényes, az
-      IMAP-hoz nem<br />
-      - Javítsa ki az mbox fájlexportálást a #607. számú LF sorvégződés használatához<br />
+      - Az mboxImportExport modul visszaállítása a stabil v7-re<br />
+      - Távolítsa el a dátumot az egyéni biztonsági mentési mappa nevéből<br />
+      - Frissítse a kínai (zh-CN) nyelvi beállítást - @ziqin<br />
     </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
@@ -40,24 +36,24 @@
       - egyszerű szöveg<br />
       - CSV (vesszővel tagolt értékek)<br />
       - PDF<br /><br />
-      Míg a legtöbb funkció az üzenetek körül forog, a Thunderbird-profilok importálása és exportálása is
+      Míg a legtöbb funkció az üzenetek körül forog, a Thunderbird profilok importálása és exportálása is
       támogatott. Ezenkívül az exportálás HTML- vagy CSV-indexfájlt is tartalmazhat. A Thunderbird profil
       biztonsági mentése egy másik funkció.<br />
       <p>
         Az IETng funkciók elérése a bővítmény által telepített több különböző menün keresztül történik. A
-        függvények környezetérzékenyek. A menük a következőkhöz kerülnek hozzáadásra:<br />
+        függvények környezetérzékenyek. A menük hozzáadva:<br />
         - A mappapanel kontextusa (mappaművelet)<br />
         - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
         - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
         Az &quot;Eszközök menü&quot; alatt elérhető opciók nem a &quot;Hamburger&quot; menüben találhatók,
         hanem egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és
-        gombok mindegyike rendelkezik egy Súgó és Beállítások menüelemekkel is, amelyekkel elérheti a
-        beállítások párbeszédpanelt.<br />
+        gombok mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
+        párbeszédpanelt.<br />
       </p>
     </p>
     <h3>Támogatás:</h3>
     <p>
-      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a bővítmények GitHub-tárházában:
+      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a GitHub bővítménytárában:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -178,7 +174,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exportálja a mappa üzeneteit egyetlen egyszerű szöveges formátumú fájlként, a mellékleteket nem
+            Exportálja a mappaüzeneteket egyetlen egyszerű szöveges formátumú fájlként, a mellékleteket nem
             tartalmazza.<br />
             Ezzel létrehoz egy HTML indexfájlt is, amely felsorolja az egyes üzeneteket.
           </td>
@@ -259,7 +255,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a struktúrát/almappákat is</td>
+          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a szerkezetet/almappákat is</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
@@ -454,11 +450,11 @@
     </table>
     <h2 id="customdate_format_help">Egyéni dátumformátum</h2>
     <p>
-      Az egyéni dátum opció lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes körű
-      szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
+      Az egyéni dátum beállítás lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes
+      körű szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
       (egyéni)&quot; formátum elérhető a fájlnév legördülő menüjében. Az egyéni dátum a kiterjesztett egyéni
-      fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum
-      a következő:<br />
+      fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett)
+      dátumformátum:<br />
       ÉÉÉÉHHNNÓÓPP : 202011060808<br /><br />
       Az egyéni dátumformátum % sorozatokat használ, amelyek megfelelnek az <code>strftime()</code> Unix-szerű
       funkciónak.
@@ -614,7 +610,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Az év decimális számként, évszázad nélkül (00 és 99 között).</td>
+          <td>Az év decimális számként, század nélkül (00 és 99 között).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -793,8 +789,8 @@
       felülethez.<br />
       Használatukhoz be kell állítani őket a Config Editorban. A szerkesztő eléréséhez használja az
       Eszközök/Opciók menüt, majd válassza a Speciális részt, és alul megjelenik a „Konfigurációszerkesztő”
-      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes
-      bővítménybeállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
+      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes kiterjesztési
+      beállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
@@ -834,11 +830,11 @@
       <code class="notranslate">key</code> - a kulcs (egy karakter)<br />
       <code class="notranslate">keycode</code> – a &#39;VK_*&#39; meghatározott kulcskód<br />
       Bármelyik kulcs vagy kulcskód szerepelhet, de mindkettő nem<br />
-      <code class="notranslate">modifiers</code> - a kulcs módosítók, szóközzel elválasztott lista
+      <code class="notranslate">modifiers</code> – a billentyűmódosítók, szóközzel elválasztott lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - közvetlen parancssor<br />
       <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
-      <code class="notranslate">&#39;all&#39;</code> – minden ablak a messenger alatt, írás, keresés<br />
+      <code class="notranslate">&#39;all&#39;</code> – az összes ablak a messenger alatt, írás, keresés<br />
       <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és leszármazottai<br />
       <code class="notranslate">&#39;compose&#39;</code> – az üzenetírási ablak<br />
       <code class="notranslate">&#39;search&#39;</code> – a keresési párbeszédpanel<br /><br />

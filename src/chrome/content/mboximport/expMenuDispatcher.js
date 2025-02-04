@@ -33,11 +33,16 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
-
+// add date for debugging
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + dateNow
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + new Date()
 	);
-	
+
+/*
+var { mboxImportExport } = ChromeUtils.importESModule(
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + new Date()
+);
+*/
 
 var gVars = {
 	window: window,

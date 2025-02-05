@@ -380,6 +380,7 @@ var ietngUtils = {
           let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
 
           ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
+          console.log(`IETNG: ${ex.extendedMsg}`);
           reject(ex);
         }
       }

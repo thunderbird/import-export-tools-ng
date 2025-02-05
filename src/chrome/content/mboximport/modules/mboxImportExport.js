@@ -66,6 +66,11 @@ export var mboxImportExport = {
     let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
     let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
 
+    var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
+    var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+    var largeFolderImportMsg = window.ietngAddon.extension.localeData.localizeMessage("largeFolderImport.msg");
+
+    try {
 
     if (params.mboxImpType == "individual") {
       fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
@@ -98,6 +103,21 @@ export var mboxImportExport = {
     // wait for status done, remove our status element
     await new Promise(r => window.setTimeout(r, 8000));
     window.document.getElementById("ietngStatusText").remove();
+  } catch (ex) {
+    let errMsg = ex;
+    if (ex.extendedMsg) {
+      errMsg += `\n\n${ex.extendedMsg}`;
+    }
+    errMsg += `\n\n${ex.stack}`;
+
+    window.document.getElementById("ietngStatusText").remove();
+    Services.prompt.alert(window, errorMsg, errMsg);
+    console.log(`IETNG: ${errMsg}`);
+  }
+
+  if (this.totalImported > 200) {
+    Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
+  }
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {

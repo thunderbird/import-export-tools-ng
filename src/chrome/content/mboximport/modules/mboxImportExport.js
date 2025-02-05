@@ -591,6 +591,8 @@ export var mboxImportExport = {
       // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");
 
+      rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
+
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
 
       // tbd translate 

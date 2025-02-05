@@ -410,6 +410,34 @@ export var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
+    await ietngUtils.createSubfolder(msgFolder, subFolderName)
+
+    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
+    var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
+    var dst = subFolderPath;
+
+    // build our mbox in new subfolder
+    await mboxCopyImport({ srcPath: src, destPath: dst });
+
+    // this forces an mbox to be reindexed and build new msf
+    await this.rebuildSummary(subMsgFolder);
+    // give up some time to ui
+    await new Promise(r => window.setTimeout(r, 200));
+
+    return subMsgFolder;
+  },
+
+  _importMboxFileOrig: async function (filePath, msgFolder) {
+    var src = filePath;
+    var subFolderName;
+    if (src.endsWith(".mbox")) {
+      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
+    } else {
+      subFolderName = PathUtils.filename(filePath);
+    }
+
+    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
+
     await new Promise((resolve, reject) => {
 
       msgFolder.AddFolderListener(

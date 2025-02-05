@@ -584,9 +584,6 @@ export var mboxImportExport = {
         b = b.toString(16)
         rawBytes = rawBytes.replace(m[0][0], m[0][1] + b);
       }
-      //rawBytes = rawBytes.replace( /^X-Mozilla-Status: [0-9A-Fa-f]{4}/gm, "X-Mozilla-Status: 0000");
-      //rawBytes = rawBytes.replace( /^X-Mozilla-Status2: [0-9A-Fa-f]{8}/gm, "X-Mozilla-Status2: 00000000");
-
 
       // do only single From_ escape, assume pre escape handling by TB
       rawBytes = rawBytes.replace(fromRegx, ">$1");

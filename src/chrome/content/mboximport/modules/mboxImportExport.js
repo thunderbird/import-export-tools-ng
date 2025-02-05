@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js (v7 rollback)");
+console.log("IETNG: mboximportExport.js");
 
 export var mboxImportExport = {
 
@@ -72,52 +72,52 @@ export var mboxImportExport = {
 
     try {
 
-    if (params.mboxImpType == "individual") {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
-      if (fpRes.result == -1) {
-        return;
+      if (params.mboxImpType == "individual") {
+        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
+        if (fpRes.result == -1) {
+          return;
+        }
+        mboxFiles = fpRes.filesArray;
+      } else {
+        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
+        if (fpRes.result == -1) {
+          return;
+        }
+        mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
       }
-      mboxFiles = fpRes.filesArray;
-    } else {
-      fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
-      if (fpRes.result == -1) {
-        return;
+
+
+      var msgFolder;
+
+      msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
+
+      await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
+
+      let total = this.totalImported + this.totalSkipped;
+      let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
+      let result = `${doneMsg}: ${this.totalImported}/${total}`;
+
+      await new Promise(r => window.setTimeout(r, 2500));
+
+      ietngUtils.writeStatusLine(window, result, 8000);
+      // wait for status done, remove our status element
+      await new Promise(r => window.setTimeout(r, 8000));
+      window.document.getElementById("ietngStatusText").remove();
+    } catch (ex) {
+      let errMsg = ex;
+      if (ex.extendedMsg) {
+        errMsg += `\n\n${ex.extendedMsg}`;
       }
-      mboxFiles = await this._scanDirForMboxFiles(fpRes.folder);
+      errMsg += `\n\n${ex.stack}`;
+
+      window.document.getElementById("ietngStatusText").remove();
+      Services.prompt.alert(window, errorMsg, errMsg);
+      console.log(`IETNG: ${errMsg}`);
     }
 
-
-    var msgFolder;
-
-    msgFolder = window.getMsgFolderFromAccountAndPath(params.selectedAccount.id, params.selectedFolder.path);
-
-    await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
-
-    let total = this.totalImported + this.totalSkipped;
-    let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
-    let result = `${doneMsg}: ${this.totalImported}/${total}`;
-
-    await new Promise(r => window.setTimeout(r, 2500));
-
-    ietngUtils.writeStatusLine(window, result, 8000);
-    // wait for status done, remove our status element
-    await new Promise(r => window.setTimeout(r, 8000));
-    window.document.getElementById("ietngStatusText").remove();
-  } catch (ex) {
-    let errMsg = ex;
-    if (ex.extendedMsg) {
-      errMsg += `\n\n${ex.extendedMsg}`;
+    if (this.totalImported > 200) {
+      Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
     }
-    errMsg += `\n\n${ex.stack}`;
-
-    window.document.getElementById("ietngStatusText").remove();
-    Services.prompt.alert(window, errorMsg, errMsg);
-    console.log(`IETNG: ${errMsg}`);
-  }
-
-  if (this.totalImported > 200) {
-    Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
-  }
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
@@ -345,26 +345,7 @@ export var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    await new Promise((resolve, reject) => {
-
-      msgFolder.AddFolderListener(
-        {
-          onFolderAdded(parentFolder, childFolder) {
-            resolve();
-          },
-          onMessageAdded() { },
-          onFolderRemoved() { },
-          onMessageRemoved() { },
-          onFolderPropertyChanged() { },
-          onFolderIntPropertyChanged() { },
-          onFolderBoolPropertyChanged() { },
-          onFolderUnicharPropertyChanged() { },
-          onFolderPropertyFlagChanged() { },
-          onFolderEvent() { },
-        });
-      msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-    });
+    await ietngUtils.createSubfolder(msgFolder, subFolderName)
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
@@ -394,26 +375,7 @@ export var mboxImportExport = {
 
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
-    await new Promise((resolve, reject) => {
-
-      msgFolder.AddFolderListener(
-        {
-          onFolderAdded(parentFolder, childFolder) {
-            resolve();
-          },
-          onMessageAdded() { },
-          onFolderRemoved() { },
-          onMessageRemoved() { },
-          onFolderPropertyChanged() { },
-          onFolderIntPropertyChanged() { },
-          onFolderBoolPropertyChanged() { },
-          onFolderUnicharPropertyChanged() { },
-          onFolderPropertyFlagChanged() { },
-          onFolderEvent() { },
-        });
-      msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-    });
+    await ietngUtils.createSubfolder(msgFolder, subFolderName)
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     return subMsgFolder;
@@ -431,53 +393,6 @@ export var mboxImportExport = {
     subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
 
     await ietngUtils.createSubfolder(msgFolder, subFolderName)
-
-    var subMsgFolder = msgFolder.getChildNamed(subFolderName);
-    var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
-    var dst = subFolderPath;
-
-    // build our mbox in new subfolder
-    await mboxCopyImport({ srcPath: src, destPath: dst });
-
-    // this forces an mbox to be reindexed and build new msf
-    await this.rebuildSummary(subMsgFolder);
-    // give up some time to ui
-    await new Promise(r => window.setTimeout(r, 200));
-
-    return subMsgFolder;
-  },
-
-  _importMboxFileOrig: async function (filePath, msgFolder) {
-    var src = filePath;
-    var subFolderName;
-    if (src.endsWith(".mbox")) {
-      subFolderName = PathUtils.filename(filePath.split(".mbox")[0]);
-    } else {
-      subFolderName = PathUtils.filename(filePath);
-    }
-
-    subFolderName = msgFolder.generateUniqueSubfolderName(subFolderName, null);
-
-    await new Promise((resolve, reject) => {
-
-      msgFolder.AddFolderListener(
-        {
-          onFolderAdded(parentFolder, childFolder) {
-            resolve();
-          },
-          onMessageAdded() { },
-          onFolderRemoved() { },
-          onMessageRemoved() { },
-          onFolderPropertyChanged() { },
-          onFolderIntPropertyChanged() { },
-          onFolderBoolPropertyChanged() { },
-          onFolderUnicharPropertyChanged() { },
-          onFolderPropertyFlagChanged() { },
-          onFolderEvent() { },
-        });
-      msgFolder.createSubfolder(subFolderName, window.msgWindow);
-
-    });
 
     var subMsgFolder = msgFolder.getChildNamed(subFolderName);
     var subFolderPath = subMsgFolder.filePath.QueryInterface(Ci.nsIFile).path;
@@ -636,7 +551,7 @@ export var mboxImportExport = {
       let msgDate = (new Date(msgHdr.dateInSeconds * 1000));
       msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
       let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
-      
+
       // get message as 8b string
       let rawBytes = await this.getRawMessage(msgUri, false);
 
@@ -727,7 +642,7 @@ export var mboxImportExport = {
             resolve(this._data.join(""));
           } else {
             reject(
-              new ExtensionError(
+              new Error(
                 `Error while streaming message <${msgUri}>: ${status}`
               )
             );

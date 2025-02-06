@@ -553,8 +553,17 @@ export var mboxImportExport = {
       let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
 
       // get message as 8b string
-      let rawBytes = await this.getRawMessage(msgUri, false);
-
+      try {
+      var rawBytes = await this.getRawMessage(msgUri, false);
+    } catch (ex) {
+      console.log(ex)
+      rawBytes = `From: ${msgHdr.author}\n`;
+      rawBytes += `To: ${msgHdr.recipients}\n`
+      rawBytes += `Date: ${msgDateStr}\n`
+      rawBytes += `Subject: MsgError:: ${msgHdr.subject}\n\n`
+      rawBytes += `${ex}\n\n\n`
+      
+      }
       if (index) {
         sep = "\n";
       }
@@ -591,7 +600,10 @@ export var mboxImportExport = {
       rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-
+      console.log(msgsBuffer)
+      console.log(totalMessages)
+      console.log(index)
+  
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
         ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);

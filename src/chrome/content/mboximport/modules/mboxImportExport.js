@@ -640,6 +640,9 @@ export var mboxImportExport = {
           if (Components.isSuccessCode(status)) {
             resolve(this._data.join(""));
           } else {
+            var msserv = MailServices.messageServiceFromURI(msgUri);
+            var msg = msserv.messageURIToMsgHdr(msgUri);
+            console.log(msg.subject)
             reject(
               new Error(
                 `Error while streaming message <${msgUri}>: ${status}`

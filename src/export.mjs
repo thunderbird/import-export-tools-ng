@@ -84,14 +84,15 @@ export async function exportFolders(ctxInfo, params) {
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
 
     // get export directory
+    /*
+        let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
+    
+        if (resultObj.result != Ci.nsIFilePicker.returnOK) {
+          return;
+        }
+    */
 
-    let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
-
-    if (resultObj.result != Ci.nsIFilePicker.returnOK) {
-      return;
-    }
-
-    var runs = 10;
+    var runs = 20;
     var total = 0;
     var times = [];
 
@@ -101,8 +102,9 @@ export async function exportFolders(ctxInfo, params) {
 
       //console.log(new Date());
 
-      expTask.generalConfig.exportDirectory = resultObj.folder;
-
+      //expTask.generalConfig.exportDirectory = resultObj.folder;
+      expTask.generalConfig.exportDirectory =
+        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -111,57 +113,7 @@ export async function exportFolders(ctxInfo, params) {
       expTask.selectedFolder = ctxInfo.selectedFolder;
       //console.log(ctxInfo, expTask)
 
-      // iterate msgs
-
-      var wrtotal = 0;
-      var msgListPage = null;
-      var readRawInWext = false;
-      const targetMaxMsgData = 25 * 1000 * 1000;
-      var totalMsgsData = 0;
-      var expResult;
-
-      do {
-        if (!msgListPage) {
-          msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-        } else {
-          msgListPage = await messenger.messages.continueList(msgListPage.id);
-        }
-        const messagesLen = msgListPage.messages.length;
-        expTask.msgList = [];
-        for (let index = 0; index < messagesLen; index++) {
-          expTask.msgList.push(msgListPage.messages[index])
-          let msgId = msgListPage.messages[index].id;
-          if (readRawInWext) {
-            expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
-            totalMsgsData += msgListPage.messages[index].size;
-            //console.log(expTask.msgList[index].msgRawData)
-          }
-          if (expTask.attachments.save != "none") {
-            try {
-              expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
-            } catch (ex) {
-              expTask.msgList[index].attachments = [];
-            }
-          } else {
-            expTask.msgList[index].attachments = [];
-          }
-
-          if (totalMsgsData >= targetMaxMsgData) {
-            expResult = await browser.ExportMessages.exportMessages(expTask);
-            totalMsgsData = 0;
-            expTask.msgList = [];
-          }
-        }
-
-        expTask.st0 = st;
-        if (expTask.msgList) {
-          //console.log(expTask.msgList)
-          expResult = await browser.ExportMessages.exportMessages(expTask);
-        }
-
-        wrtotal += expResult;
-
-      } while (msgListPage.id);
+      await iterate2(expTask);
 
       times[index] = new Date() - st;
       total += times[index];
@@ -169,7 +121,7 @@ export async function exportFolders(ctxInfo, params) {
 
     }
 
-    console.log("wrt avg", wrtotal / runs)
+    //console.log("wrt avg", wrtotal / runs)
     console.log("avg", total / runs)
 
   } catch (ex) {
@@ -178,6 +130,179 @@ export async function exportFolders(ctxInfo, params) {
 
     console.log(ex.stack);
   }
+}
+
+async function getIndexedRaw(msgId, index) {
+  let gd = messenger.messages.getRaw(msgId);
+  return { gd };
+
+}
+
+
+async function iterate2(expTask) {
+
+  // 1522 msgs 50MB
+  // 20 run avg 3150ms
+  // no write 1100ms avg
+
+
+  // iterate msgs
+
+  var wrtotal = 0;
+  var msgListPage = null;
+  var readRawInWext = true;
+  const targetMaxMsgData = 25 * 1000 * 1000;
+  var totalMsgsData = 0;
+  var expResult;
+  var writePromises = [];
+  do {
+    if (!msgListPage) {
+      msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+    } else {
+      msgListPage = await messenger.messages.continueList(msgListPage.id);
+    }
+    const messagesLen = msgListPage.messages.length;
+    //console.log(messagesLen)
+    expTask.msgList = [];
+    var getRawPromises = [];
+
+    for (let index = 0; index < messagesLen; index++) {
+      //console.log("push", index)
+
+      expTask.msgList.push(msgListPage.messages[index])
+      let msgId = msgListPage.messages[index].id;
+      if (readRawInWext) {
+        //console.log("add data", expTask.msgList.length - 1)
+
+        //expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
+        getRawPromises.push(messenger.messages.getRaw(msgId));
+        totalMsgsData += msgListPage.messages[index].size;
+        //console.log(expTask.msgList[index].msgRawData)
+      }
+      /*
+      if (expTask.attachments.save != "none") {
+        try {
+          expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
+        } catch (ex) {
+          expTask.msgList[index].attachments = [];
+        }
+      } else {
+        console.log("empty att list", index)
+        expTask.msgList[index].attachments = [];
+      }
+*/
+
+      if (totalMsgsData >= targetMaxMsgData) {
+        if (1) {
+          let p = await Promise.allSettled(getRawPromises);
+
+          for (let index = 0; index < p.length; index++) {
+            expTask.msgList[index].msgData = p[index].value;
+          }
+        }
+
+//        expResult = await browser.ExportMessages.exportMessages(expTask);
+        writePromises.push(browser.ExportMessages.exportMessages(expTask));
+
+        //console.log(expTask.msgList)
+        totalMsgsData = 0;
+        expTask.msgList = [];
+        getRawPromises = [];
+      }
+    }
+
+    //expTask.st0 = st;
+    if (expTask.msgList) {
+      if (1) {
+        let p = await Promise.allSettled(getRawPromises);
+
+        for (let index = 0; index < p.length; index++) {
+          expTask.msgList[index].msgData = p[index].value;
+        }
+      }
+
+      //expResult = await browser.ExportMessages.exportMessages(expTask);
+      writePromises.push(browser.ExportMessages.exportMessages(expTask));
+
+      //console.log(expTask.msgList)
+      //console.log(expTask.msgList)
+      //expResult = await browser.ExportMessages.exportMessages(expTask);
+    }
+
+    wrtotal += expResult;
+
+  } while (msgListPage.id);
+
+  await Promise.allSettled(writePromises);
+}
+
+async function iterate1(expTask) {
+
+  // 1522 msgs 50MB
+  // 20 run avg 4061ms
+  // no write 1600ms avg
+
+
+  // iterate msgs
+
+  var wrtotal = 0;
+  var msgListPage = null;
+  var readRawInWext = true;
+  const targetMaxMsgData = 25 * 1000 * 1000;
+  var totalMsgsData = 0;
+  var expResult;
+
+  do {
+    if (!msgListPage) {
+      msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+    } else {
+      msgListPage = await messenger.messages.continueList(msgListPage.id);
+    }
+    const messagesLen = msgListPage.messages.length;
+    //console.log(messagesLen)
+    expTask.msgList = [];
+    for (let index = 0; index < messagesLen; index++) {
+      //console.log("push", index)
+
+      expTask.msgList.push(msgListPage.messages[index])
+      let msgId = msgListPage.messages[index].id;
+      if (readRawInWext) {
+        //console.log("add data", expTask.msgList.length - 1)
+
+        expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
+        totalMsgsData += msgListPage.messages[index].size;
+        //console.log(expTask.msgList[index].msgRawData)
+      }
+      /*
+      if (expTask.attachments.save != "none") {
+        try {
+          expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
+        } catch (ex) {
+          expTask.msgList[index].attachments = [];
+        }
+      } else {
+        console.log("empty att list", index)
+        expTask.msgList[index].attachments = [];
+      }
+*/
+
+      if (totalMsgsData >= targetMaxMsgData) {
+        //expResult = await browser.ExportMessages.exportMessages(expTask);
+        totalMsgsData = 0;
+        expTask.msgList = [];
+      }
+    }
+
+    //expTask.st0 = st;
+    if (expTask.msgList) {
+      //console.log(expTask.msgList)
+      //expResult = await browser.ExportMessages.exportMessages(expTask);
+    }
+
+    wrtotal += expResult;
+
+  } while (msgListPage.id);
+
 }
 
 async function _buildExportTask(params) {

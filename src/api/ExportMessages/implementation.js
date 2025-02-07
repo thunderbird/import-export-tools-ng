@@ -4,6 +4,21 @@ var Services = globalThis.Services ||
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
 
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+// add Date now to query for debugging, thanks JB
+//dateNow = new Date();
+
+var { mboxImportExport } = ChromeUtils.importESModule(
+	"resource://mboximport/content/mboximport/modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
+);
+
 var { exportTests } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/exportTests.js");
 //var { testexp } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/testexp.js");
 
@@ -25,7 +40,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     return {
       ExportMessages: {
 
-        async exportMessages(expTask) {
+        async exportMessagesA(expTask) {
           let aConvertData = false;
           let msgArrayLen = expTask.msgList.length;
           let idx = 0;
@@ -88,7 +103,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
         },
 
-        async exportMessages1(expTask) {
+        async exportMessages(expTask) {
           
           //await exportTests.exportFolderEML_WL(expTask);
 
@@ -112,13 +127,13 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
           let msgHdrList = [];
           for (let index = 0; index < expTask.msgList.length; index++) {
-            let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
-            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
+            //let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
+            //let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+            //msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
 
             // check if we are getting msgData in msgList otherwise read data
             if (!expTask.msgList[index].msgData) {
-              expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
+              //expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
             }
             let subject = expTask.msgList[index].subject.slice(0, 150);
             let name = `${subject}.eml`;

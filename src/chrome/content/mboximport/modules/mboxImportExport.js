@@ -556,14 +556,16 @@ export var mboxImportExport = {
       try {
       var rawBytes = await this.getRawMessage(msgUri, false);
     } catch (ex) {
-      console.log(ex)
+      // create placeholder error msg with header info and exception
       rawBytes = `From: ${msgHdr.author}\n`;
-      rawBytes += `To: ${msgHdr.recipients}\n`
-      rawBytes += `Date: ${msgDateStr}\n`
-      rawBytes += `Subject: MsgError:: ${msgHdr.subject}\n\n`
-      rawBytes += `${ex}\n\n\n`
-      
+      rawBytes += `To: ${msgHdr.recipients}\n`;
+      rawBytes += `Date: ${msgDateStr}\n`;
+      rawBytes += `Subject: MsgError:: ${msgHdr.subject}\n\n`;
+      rawBytes += `${ex}\n\n\n`;
+      console.log("IETNG: Message export error:");
+      console.log(rawBytes);
       }
+
       if (index) {
         sep = "\n";
       }
@@ -600,9 +602,6 @@ export var mboxImportExport = {
       rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-      console.log(msgsBuffer)
-      console.log(totalMessages)
-      console.log(index)
   
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
@@ -652,9 +651,6 @@ export var mboxImportExport = {
           if (Components.isSuccessCode(status)) {
             resolve(this._data.join(""));
           } else {
-            var msserv = MailServices.messageServiceFromURI(msgUri);
-            var msg = msserv.messageURIToMsgHdr(msgUri);
-            console.log(msg.subject)
             reject(
               new Error(
                 `Error while streaming message <${msgUri}>: ${status}`

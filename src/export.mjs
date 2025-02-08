@@ -92,7 +92,7 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 10;
+    var runs = 4;
     var total = 0;
     var times = [];
 
@@ -112,9 +112,9 @@ export async function exportFolders(ctxInfo, params) {
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       //console.log(expTask);
       expTask.selectedFolder = ctxInfo.selectedFolder;
-      //console.log(ctxInfo, expTask)
 
-      await iterate2(expTask);
+      //await msgIterateBase(expTask);
+      await msgIterateBatch(expTask);
 
       times[index] = new Date() - st;
       total += times[index];
@@ -133,14 +133,8 @@ export async function exportFolders(ctxInfo, params) {
   }
 }
 
-async function getIndexedRaw(msgId, index) {
-  let gd = messenger.messages.getRaw(msgId);
-  return { gd };
 
-}
-
-
-async function iterate2(expTask) {
+async function msgIterateBatch(expTask) {
 
   // 1522 msgs 50MB
   // 20 run avg 3150ms
@@ -165,69 +159,43 @@ async function iterate2(expTask) {
       msgListPage = await messenger.messages.continueList(msgListPage.id);
     }
     const messagesLen = msgListPage.messages.length;
-    //console.log(messagesLen)
     expTask.msgList = [];
     var getRawPromises = [];
 
     for (let index = 0; index < messagesLen; index++) {
-      //console.log("push", index)
 
       expTask.msgList.push(msgListPage.messages[index])
       let msgId = msgListPage.messages[index].id;
-      if (readRawInWext) {
-        //console.log("add data", expTask.msgList.length - 1)
-
-        //expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
         getRawPromises.push(messenger.messages.getRaw(msgId));
         totalMsgsData += msgListPage.messages[index].size;
-        //console.log(expTask.msgList[index].msgRawData)
-      }
-      /*
-      if (expTask.attachments.save != "none") {
-        try {
-          expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
-        } catch (ex) {
-          expTask.msgList[index].attachments = [];
-        }
-      } else {
-        console.log("empty att list", index)
-        expTask.msgList[index].attachments = [];
-      }
-*/
 
       if (totalMsgsData >= targetMaxMsgData) {
         if (writeMsgs) {
-          let p = await Promise.allSettled(getRawPromises);
+          let getRarSettledPromises = await Promise.allSettled(getRawPromises);
 
-          for (let index = 0; index < p.length; index++) {
-            expTask.msgList[index].msgData = p[index].value;
+          for (let index = 0; index < getRarSettledPromises.length; index++) {
+            expTask.msgList[index].msgData = getRarSettledPromises[index].value;
           }
-          writePromises.push(browser.ExportMessages.exportMessages(expTask));
-
+          //writePromises.push(browser.ExportMessages.exportMessagesBase(expTask));
+          writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
 
-
-        //console.log(expTask.msgList)
         totalMsgsData = 0;
         expTask.msgList = [];
         getRawPromises = [];
       }
     }
 
-    //expTask.st0 = st;
     if (expTask.msgList) {
       if (writeMsgs) {
-        let p = await Promise.allSettled(getRawPromises);
+        let getRarSettledPromises = await Promise.allSettled(getRawPromises);
 
-        for (let index = 0; index < p.length; index++) {
-          expTask.msgList[index].msgData = p[index].value;
+        for (let index = 0; index < getRarSettledPromises.length; index++) {
+          expTask.msgList[index].msgData = getRarSettledPromises[index].value;
         }
-        writePromises.push(browser.ExportMessages.exportMessages(expTask));
-
+        //writePromises.push(browser.ExportMessages.exportMessagesBase(expTask));
+        writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
       }
-
-
-      //console.log(expTask.msgList)
     }
 
     wrtotal += expResult;
@@ -239,7 +207,7 @@ async function iterate2(expTask) {
   }
 }
 
-async function iterate1(expTask) {
+async function msgIterateBase(expTask) {
 
   // 1522 msgs 50MB
   // 20 run avg 4061ms
@@ -262,44 +230,27 @@ async function iterate1(expTask) {
       msgListPage = await messenger.messages.continueList(msgListPage.id);
     }
     const messagesLen = msgListPage.messages.length;
-    //console.log(messagesLen)
     expTask.msgList = [];
     for (let index = 0; index < messagesLen; index++) {
-      //console.log("push", index)
 
       expTask.msgList.push(msgListPage.messages[index])
       let msgId = msgListPage.messages[index].id;
       if (readRawInWext) {
-        //console.log("add data", expTask.msgList.length - 1)
 
         expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
         totalMsgsData += msgListPage.messages[index].size;
-        //console.log(expTask.msgList[index].msgRawData)
       }
-      /*
-      if (expTask.attachments.save != "none") {
-        try {
-          expTask.msgList[index].attachments = await messenger.messages.listAttachments(msgId);
-        } catch (ex) {
-          expTask.msgList[index].attachments = [];
-        }
-      } else {
-        console.log("empty att list", index)
-        expTask.msgList[index].attachments = [];
-      }
-*/
 
       if (totalMsgsData >= targetMaxMsgData) {
-        //expResult = await browser.ExportMessages.exportMessages(expTask);
+        expResult = await browser.ExportMessages.exportMessagesBase(expTask);
         totalMsgsData = 0;
         expTask.msgList = [];
       }
     }
 
-    //expTask.st0 = st;
     if (expTask.msgList) {
       //console.log(expTask.msgList)
-      //expResult = await browser.ExportMessages.exportMessages(expTask);
+      expResult = await browser.ExportMessages.exportMessagesBase(expTask);
     }
 
     wrtotal += expResult;

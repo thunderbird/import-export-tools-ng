@@ -3,7 +3,7 @@
     "namespace": "ExportMessages",
     "functions": [
       {
-        "name": "exportMessages",
+        "name": "exportMessagesStream",
         "type": "function",
         "description": "Export messages for folders or selections",
         "async": true,
@@ -16,7 +16,20 @@
         ]
       },
       {
-        "name": "exportMessages1",
+        "name": "exportMessagesBase",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "exportMessagesES6",
         "type": "function",
         "description": "Export messages for folders or selections",
         "async": true,

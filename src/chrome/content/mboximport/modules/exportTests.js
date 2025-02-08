@@ -9,7 +9,7 @@ export var exportTests = {
   folder: null,
   expDirFile: window.getPredefinedFolder(1),
 
-  exportMessages: async function (expTask) {
+  exportMessagesES6: async function (expTask) {
           
     //await exportTests.exportFolderEML_WL(expTask);
 

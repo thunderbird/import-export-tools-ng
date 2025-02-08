@@ -15,12 +15,10 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 // add Date now to query for debugging, thanks JB
 //dateNow = new Date();
 
-var { mboxImportExport } = ChromeUtils.importESModule(
+var { exportTests } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
 );
 
-var { exportTests } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/exportTests.js");
-//var { testexp } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/testexp.js");
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -40,7 +38,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     return {
       ExportMessages: {
 
-        async exportMessagesA(expTask) {
+        async exportMessages1(expTask) {
           let aConvertData = false;
           let msgArrayLen = expTask.msgList.length;
           let idx = 0;
@@ -68,7 +66,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
                   if (Components.isSuccessCode(status)) {
       
                     let subject = expTask.msgList[idx].subject.slice(0, 100);
-                    let name = `${subject}-${msgHdr.messageKey}.eml`;
+                    let name = `${subject}.eml`;
                     //console.log(name, msgUriArray[idx].messageKey)
                     name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
                     let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
@@ -105,7 +103,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
         async exportMessages(expTask) {
           
-          //await exportTests.exportFolderEML_WL(expTask);
+          await exportTests.exportMessages(expTask);
+          return;
+
 
           //await exportTests.saveMessages_IOUtilsMsgList(context, expTask);
           

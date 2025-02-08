@@ -92,7 +92,7 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 20;
+    var runs = 10;
     var total = 0;
     var times = [];
 
@@ -104,7 +104,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -155,6 +156,8 @@ async function iterate2(expTask) {
   var totalMsgsData = 0;
   var expResult;
   var writePromises = [];
+  var writeMsgs = true;
+
   do {
     if (!msgListPage) {
       msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
@@ -193,16 +196,16 @@ async function iterate2(expTask) {
 */
 
       if (totalMsgsData >= targetMaxMsgData) {
-        if (1) {
+        if (writeMsgs) {
           let p = await Promise.allSettled(getRawPromises);
 
           for (let index = 0; index < p.length; index++) {
             expTask.msgList[index].msgData = p[index].value;
           }
+          writePromises.push(browser.ExportMessages.exportMessages(expTask));
+
         }
 
-//        expResult = await browser.ExportMessages.exportMessages(expTask);
-        writePromises.push(browser.ExportMessages.exportMessages(expTask));
 
         //console.log(expTask.msgList)
         totalMsgsData = 0;
@@ -213,27 +216,27 @@ async function iterate2(expTask) {
 
     //expTask.st0 = st;
     if (expTask.msgList) {
-      if (1) {
+      if (writeMsgs) {
         let p = await Promise.allSettled(getRawPromises);
 
         for (let index = 0; index < p.length; index++) {
           expTask.msgList[index].msgData = p[index].value;
         }
+        writePromises.push(browser.ExportMessages.exportMessages(expTask));
+
       }
 
-      //expResult = await browser.ExportMessages.exportMessages(expTask);
-      writePromises.push(browser.ExportMessages.exportMessages(expTask));
 
       //console.log(expTask.msgList)
-      //console.log(expTask.msgList)
-      //expResult = await browser.ExportMessages.exportMessages(expTask);
     }
 
     wrtotal += expResult;
 
   } while (msgListPage.id);
 
-  await Promise.allSettled(writePromises);
+  if (writeMsgs) {
+    await Promise.allSettled(writePromises);
+  }
 }
 
 async function iterate1(expTask) {

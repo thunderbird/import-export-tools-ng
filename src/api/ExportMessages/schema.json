@@ -16,6 +16,19 @@
         ]
       },
       {
+        "name": "exportMessages1",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
         "name": "createExportContainer",
         "type": "function",
         "description": "Create the export container directory",

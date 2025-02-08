@@ -1,13 +1,62 @@
 // paired down Wl tests
 
 var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+console.log("es6 exportMessages")
 
-var EXPORTED_SYMBOLS = ["exportTests"];
+//var EXPORTED_SYMBOLS = ["exportTests"];
 
-var exportTests = {
+export var exportTests = {
   folder: null,
   expDirFile: window.getPredefinedFolder(1),
 
+  exportMessages: async function (expTask) {
+          
+    //await exportTests.exportFolderEML_WL(expTask);
+
+    //await exportTests.saveMessages_IOUtilsMsgList(context, expTask);
+    
+    // iterate msgList and create new hdr array
+    // can't pass that back
+
+    //console.log(new Date())
+    //console.log(new Date() - expTask.st0)
+
+    var st1 = new Date();
+
+    // collecting promises and running the writeUTF8 calls
+    // concurrently and using Promise.allSettled makes
+    // a big improvement. This is possible because the prior
+    // awaited createUniqueFile guarantees the independent 
+    // write to file
+
+    var writePromises = [];
+
+    let msgHdrList = [];
+    for (let index = 0; index < expTask.msgList.length; index++) {
+      //let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
+      //let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+      //msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
+
+      // check if we are getting msgData in msgList otherwise read data
+      if (!expTask.msgList[index].msgData) {
+        //expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
+      }
+      let subject = expTask.msgList[index].subject.slice(0, 150);
+      let name = `${subject}.eml`;
+      name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
+      //name = PathUtils.join(expTask.exportContainer.directory, name)
+      let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
+      //console.log(uname);
+      writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
+
+      // ignore now
+      //if (expTask.msgList[index].attachments.length) {
+        // await self._saveMsgAttachments(expTask, msgHdrList[index]);
+      //}
+    }
+    return Promise.allSettled(writePromises);
+
+  },
 
 
 

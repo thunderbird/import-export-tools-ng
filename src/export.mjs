@@ -92,7 +92,7 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 4;
+    var runs = 20;
     var total = 0;
     var times = [];
 
@@ -104,8 +104,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -138,7 +138,7 @@ async function msgIterateBatch(expTask) {
 
   // 1522 msgs 50MB
   // 20 run avg 3150ms
-  // no write 1100ms avg
+  // no write 1050ms avg
 
 
   // iterate msgs
@@ -166,8 +166,8 @@ async function msgIterateBatch(expTask) {
 
       expTask.msgList.push(msgListPage.messages[index])
       let msgId = msgListPage.messages[index].id;
-        getRawPromises.push(messenger.messages.getRaw(msgId));
-        totalMsgsData += msgListPage.messages[index].size;
+      getRawPromises.push(messenger.messages.getRaw(msgId));
+      totalMsgsData += msgListPage.messages[index].size;
 
       if (totalMsgsData >= targetMaxMsgData) {
         if (writeMsgs) {
@@ -222,6 +222,8 @@ async function msgIterateBase(expTask) {
   const targetMaxMsgData = 25 * 1000 * 1000;
   var totalMsgsData = 0;
   var expResult;
+  var writeMsgs = true;
+
 
   do {
     if (!msgListPage) {
@@ -236,13 +238,14 @@ async function msgIterateBase(expTask) {
       expTask.msgList.push(msgListPage.messages[index])
       let msgId = msgListPage.messages[index].id;
       if (readRawInWext) {
-
         expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
-        totalMsgsData += msgListPage.messages[index].size;
       }
+      totalMsgsData += msgListPage.messages[index].size;
 
       if (totalMsgsData >= targetMaxMsgData) {
+        if (writeMsgs) {
         expResult = await browser.ExportMessages.exportMessagesBase(expTask);
+        }
         totalMsgsData = 0;
         expTask.msgList = [];
       }
@@ -250,7 +253,9 @@ async function msgIterateBase(expTask) {
 
     if (expTask.msgList) {
       //console.log(expTask.msgList)
-      expResult = await browser.ExportMessages.exportMessagesBase(expTask);
+      if (writeMsgs) {
+        expResult = await browser.ExportMessages.exportMessagesBase(expTask);
+      }
     }
 
     wrtotal += expResult;

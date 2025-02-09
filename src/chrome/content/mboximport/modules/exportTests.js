@@ -45,9 +45,13 @@ export var exportTests = {
       let name = `${subject}.eml`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
       //name = PathUtils.join(expTask.exportContainer.directory, name)
-      let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
+      //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
+      //writePromises.push(IOUtils.createUniqueFile(expTask.exportContainer.directory, name));
+      IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
+        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData))));
+
       //console.log(uname);
-      writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
+      //writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
 
       // ignore now
       //if (expTask.msgList[index].attachments.length) {

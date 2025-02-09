@@ -106,7 +106,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async exportMessagesBase(expTask) {
-          console.log("exportMessagesBase")
+          //console.log("exportMessagesBase")
           var st1 = new Date();
 
           // collecting promises and running the writeUTF8 calls
@@ -119,6 +119,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
           for (let index = 0; index < expTask.msgList.length; index++) {
             if (!expTask.msgList[index].msgData) {
+              console.log("readmsg")
               expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
             }
             let subject = expTask.msgList[index].subject.slice(0, 150);

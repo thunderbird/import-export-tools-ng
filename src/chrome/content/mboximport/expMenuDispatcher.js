@@ -61,6 +61,8 @@ async function expMenuDispatcher(data) {
 		return;
 	}
 
+	var rv;
+
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {
@@ -130,13 +132,13 @@ async function expMenuDispatcher(data) {
 			searchANDsave(data.params);
 			break;
 		case "WXMCMD_FolderExp_EML_Format":
-			await exportAllMsgs(0, data.params);
+			rv = await exportAllMsgs(0, data.params);
 			break;
 		case "WXMCMD_FolderExp_HTML_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-				await exportAllMsgs(1, data.params);
+				rv = await exportAllMsgs(1, data.params);
 			} else if (data.params.saveAtts) {
-				await exportAllMsgs(8, data.params);
+				rv = await exportAllMsgs(8, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
@@ -144,28 +146,28 @@ async function expMenuDispatcher(data) {
 			if (0) {
 				await IETprintPDFmain.print(true, data.params);
 			} else {
-				await exportAllMsgs(10, data.params);
+				rv = await exportAllMsgs(10, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
-				await exportAllMsgs(2, data.params);
+				rv = await exportAllMsgs(2, data.params);
 			} else if (data.params.saveAtts && !data.params.singleFile) {
-				await exportAllMsgs(9, data.params);
+				rv = await exportAllMsgs(9, data.params);
 			} else if (!data.params.saveAtts && data.params.singleFile) {
-				await exportAllMsgs(4, data.params);
+				rv = await exportAllMsgs(4, data.params);
 			} else if (data.params.saveAtts && data.params.singleFile) {
-				await exportAllMsgs(7, data.params);
+				rv = await exportAllMsgs(7, data.params);
 			}
 			break;
 		case "WXMCMD_FolderExp_CSV_Format":
-			await exportAllMsgs(6, data.params);
+			rv = await exportAllMsgs(6, data.params);
 			break;
 		case "WXMCMD_FolderExp_Index":
 			if (data.params.indexType == "indexHTML") {
-				await exportAllMsgs(3, data.params);
+				rv = await exportAllMsgs(3, data.params);
 			} else if (data.params.indexType == "indexCSV") {
-				await exportAllMsgs(5, data.params);
+				rv = await exportAllMsgs(5, data.params);
 			}
 			break;
 		case "WXMCMD_Exp_Profile":
@@ -213,8 +215,9 @@ async function expMenuDispatcher(data) {
 		default:
 			break;
 	}
+	console.log("rv.status", rv)
 
-	return true;
+	return rv;
 }
 
 function onUnload() {

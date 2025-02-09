@@ -53,10 +53,7 @@ export var exportTests = {
       //console.log(uname);
       //writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
 
-      // ignore now
-      //if (expTask.msgList[index].attachments.length) {
-        // await self._saveMsgAttachments(expTask, msgHdrList[index]);
-      //}
+      
     }
     return Promise.allSettled(writePromises);
 

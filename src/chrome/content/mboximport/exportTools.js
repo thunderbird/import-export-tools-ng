@@ -349,28 +349,33 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	//console.log("exportAllMsgs", type, params);
+	console.log("exportAllMsgs", type, params);
 
+	var exportFolderPath;
 	var question;
-	if (type === 1 || type === 2 || type === 4) {
-		question = IETformatWarning(1);
-		if (!question)
-			return;
-		question = IETformatWarning(0);
-		if (!question)
-			return;
-	}
 
-	if (type === 8 || type === 9 || type === 7) {
-		question = IETformatWarning(1);
-		if (!question)
-			return;
+	// only warn on first folder
+	if (params.warnings) {
+		if (type === 1 || type === 2 || type === 4) {
+			question = IETformatWarning(1);
+			if (!question)
+				return;
+			question = IETformatWarning(0);
+			if (!question)
+				return;
+		}
+
+		if (type === 8 || type === 9 || type === 7) {
+			question = IETformatWarning(1);
+			if (!question)
+				return;
+		}
 	}
 
 	try {
 
 		var file = getPredefinedFolder(1);
-		if (!file) {
+		if (!file && params.fileDialog) {
 			let winCtx = window;
 			const tbVersion = ietngUtils.getThunderbirdVersion();
 			if (tbVersion.major >= 120) {
@@ -385,15 +390,23 @@ async function exportAllMsgs(type, params) {
 				res = fp.show();
 			else
 				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK)
+			if (res === nsIFilePicker.returnOK) {
 				file = fp.file;
-			else
-				return;
+			} else {
+				return { status: "cancel" };
+			}
+		} else if (params.exportFolderPath) {
+			console.log("initpath")
+			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+			file.initWithPath(params.exportFolderPath);
 		}
+
+		exportFolderPath = file.path;
+
 		try {
 			if (!file.isWritable()) {
 				alert(mboximportbundle.GetStringFromName("nowritable"));
-				return;
+				return { status: "cancel" };
 			}
 		} catch (e) { }
 
@@ -405,13 +418,14 @@ async function exportAllMsgs(type, params) {
 			// If so, exits, because the export function can't handle this
 			if (IETglobalMsgFolders.length > 1 && IETglobalMsgFolders[i].flags & 0x0020) {
 				alert(mboximportbundle.GetStringFromName("virtFolAlert"));
-				return;
+				return { status: "cancel" };
 			}
-			if (type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
+
+			if (params.warnings && type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
 				var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-				if (!go)
-					return;
-				break;
+				if (!go) {
+					return { status: "cancel" };
+				}
 			}
 		}
 		IETglobalFile = file.clone();
@@ -429,7 +443,11 @@ async function exportAllMsgs(type, params) {
 			document.getElementById("IETabortIcon").collapsed = true;
 		let errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
 		Services.prompt.alert(window, errorMsg, ex);
+		return {status: "error", errMsg: ex};
 	}
+	console.log("end exp", exportFolderPath)
+
+	return {status: "ok", exportFolderPath: exportFolderPath};
 }
 
 // 2) exportAllMsgsStart
@@ -853,7 +871,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return { status: kStatusOK };
-		
+
 
 	// Custom date format
 	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
@@ -895,7 +913,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}
 
-	
+
 	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';

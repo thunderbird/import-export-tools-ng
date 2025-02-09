@@ -71,10 +71,6 @@
 		"mozilla/use-chromeutils-generateqi": "off",
 
 		"quotes":"off",
-		"spaced-comment": [
-			2,
-			"always"
-		],
 		"semi": "error",
 		"complexity": ["error", { "max": 80 }],
 

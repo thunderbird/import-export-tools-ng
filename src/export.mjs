@@ -92,11 +92,13 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 20;
+    var runs = 10;
     var total = 0;
     var times = [];
 
     for (let index = 0; index < runs; index++) {
+
+      await new Promise(r => setTimeout(r, 12000));
 
       let st = new Date();
 

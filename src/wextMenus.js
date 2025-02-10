@@ -1134,11 +1134,12 @@ async function wextctx_folderMenu(ctxEvent, tab) {
     case folderCtxMenu_Exp_EMLFormatCreateIndex_Id:
     case folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id:
 
-      var runs = 10;
+      var runs = 4;
       var total = 0;
       var times = [];
 
       for (let index = 0; index < runs; index++) {
+        await new Promise(r => setTimeout(r, 12000));
 
         let st = new Date();
         console.log(new Date());

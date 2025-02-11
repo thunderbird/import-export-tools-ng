@@ -10,53 +10,20 @@ export var exportTests = {
   expDirFile: window.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask) {
-          
-    //await exportTests.exportFolderEML_WL(expTask);
-
-    //await exportTests.saveMessages_IOUtilsMsgList(context, expTask);
-    
-    // iterate msgList and create new hdr array
-    // can't pass that back
-
-    //console.log(new Date())
-    //console.log(new Date() - expTask.st0)
-
-    var st1 = new Date();
-
-    // collecting promises and running the writeUTF8 calls
-    // concurrently and using Promise.allSettled makes
-    // a big improvement. This is possible because the prior
-    // awaited createUniqueFile guarantees the independent 
-    // write to file
 
     var writePromises = [];
+    const msgListLen = expTask.msgList.length;
 
-    let msgHdrList = [];
-    for (let index = 0; index < expTask.msgList.length; index++) {
-      //let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
-      //let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-      //msgHdrList.push({ msgId: expTask.msgList[index].id, msgHdr: msgHdr, msgUri: msgUri, attachments: expTask.msgList[index].attachments });
+    for (let index = 0; index < msgListLen; index++) {
 
-      // check if we are getting msgData in msgList otherwise read data
-      if (!expTask.msgList[index].msgData) {
-        //expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
-      }
       let subject = expTask.msgList[index].subject.slice(0, 150);
       let name = `${subject}.eml`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-      //name = PathUtils.join(expTask.exportContainer.directory, name)
-      //let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
-      //writePromises.push(IOUtils.createUniqueFile(expTask.exportContainer.directory, name));
+
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData))));
-
-      //console.log(uname);
-      //writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
-
-      
     }
     return Promise.allSettled(writePromises);
-
   },
 
 

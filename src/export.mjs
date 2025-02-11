@@ -139,9 +139,7 @@ export async function exportFolders(ctxInfo, params) {
 async function msgIterateBatch(expTask) {
 
   // 1522 msgs 50MB
-  // 20 run avg 3150ms
-  // no write 1050ms avg
-
+  // 20 run avg 1800msms
 
   // iterate msgs
 
@@ -166,7 +164,7 @@ async function msgIterateBatch(expTask) {
 
     for (let index = 0; index < messagesLen; index++) {
 
-      expTask.msgList.push(msgListPage.messages[index])
+      expTask.msgList.push(msgListPage.messages[index]);
       let msgId = msgListPage.messages[index].id;
       getRawPromises.push(messenger.messages.getRaw(msgId));
       totalMsgsData += msgListPage.messages[index].size;
@@ -178,7 +176,6 @@ async function msgIterateBatch(expTask) {
           for (let index = 0; index < getRarSettledPromises.length; index++) {
             expTask.msgList[index].msgData = getRarSettledPromises[index].value;
           }
-          //writePromises.push(browser.ExportMessages.exportMessagesBase(expTask));
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
 
@@ -195,7 +192,6 @@ async function msgIterateBatch(expTask) {
         for (let index = 0; index < getRarSettledPromises.length; index++) {
           expTask.msgList[index].msgData = getRarSettledPromises[index].value;
         }
-        //writePromises.push(browser.ExportMessages.exportMessagesBase(expTask));
         writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
       }
     }

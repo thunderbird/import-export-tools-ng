@@ -1228,6 +1228,8 @@ async function menusUpdate(info, tab) {
     )
   ) {
     await setNoMenusUpdate(info);
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
+
     return;
   }
 

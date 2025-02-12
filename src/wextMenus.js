@@ -1222,14 +1222,19 @@ async function menusUpdate(info, tab) {
 
 
   // check invalid multiple folder selections
-  if (accountId && info.selectedFolders.length > 1 || 
-    (info.selectedFolders.length > 1  &&
-      info.selectedFolders.find(folder =>  folder.name == "Root")
-    )
-  ) {
+  if (info.selectedAccount && info.selectedFolders.length > 1) {
+    console.log("account ++")
+    
     await setNoMenusUpdate(info);
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
+    return;
+  }
 
+  if (info.selectedFolders.length > 1 &&
+    info.selectedFolders.find(folder => folder.name == "Root")) {
+    console.log("straddle")
+    await setNoMenusUpdate(info);
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
     return;
   }
 
@@ -1301,10 +1306,9 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
 
     await messenger.menus.refresh();
-    return;
   }
 
-  
+
 
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
@@ -1343,10 +1347,15 @@ async function menusUpdate(info, tab) {
 
   // disable items when multiple folders selected 
   if (info.menuIds[0] == folderCtxMenu_TopId && info.selectedFolders && info.selectedFolders.length > 1) {
-    await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { enabled: false });
-    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { enabled: false });
-    await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { enabled: false });
-    await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { enabled: false });
+    await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep2", { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
+    await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
 
     await messenger.menus.refresh();
   }

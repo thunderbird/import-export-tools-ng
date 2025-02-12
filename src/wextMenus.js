@@ -1221,29 +1221,19 @@ async function menusUpdate(info, tab) {
   }
 
 
+  // check invalid multiple folder selections
+  if (accountId && info.selectedFolders.length > 1 || 
+    (info.selectedFolders.length > 1  &&
+      info.selectedFolders.find(folder =>  folder.name == "Root")
+    )
+  ) {
+    await setNoMenusUpdate(info);
+    return;
+  }
+
+
   // default visibility
-  await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
-  await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
-  await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
-  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
-  await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
-  await messenger.menus.update("folderCtxMenu_Sep2", { visible: true });
-  await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
-  await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
-  await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
-
-  // enable submenus
-  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: true });
-  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: true });
-
-  await messenger.menus.refresh();
+  await setDefaultMenusUpdate(info);
 
   // update for an account item
   if (accountId && !folderPath) {
@@ -1359,6 +1349,56 @@ async function menusUpdate(info, tab) {
     await messenger.menus.refresh();
   }
 }
+
+async function setDefaultMenusUpdate(info) {
+  await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Options_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Help_Id, { visible: true });
+
+  await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep2", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
+
+  // enable submenus
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: true });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: true });
+  await messenger.menus.refresh();
+}
+
+
+async function setNoMenusUpdate(info) {
+  await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Options_Id, { visible: false });
+  await messenger.menus.update(folderCtxMenu_Help_Id, { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep1", { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep2", { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
+  await messenger.menus.refresh();
+}
+
 
 async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};

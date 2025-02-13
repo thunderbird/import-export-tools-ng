@@ -1224,7 +1224,7 @@ async function menusUpdate(info, tab) {
   // check invalid multiple folder selections
   if (info.selectedAccount && info.selectedFolders.length > 1) {
     console.log("account ++")
-    
+
     await setNoMenusUpdate(info);
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
     return;
@@ -1234,7 +1234,8 @@ async function menusUpdate(info, tab) {
     info.selectedFolders.find(folder => folder.name == "Root")) {
     console.log("straddle")
     await setNoMenusUpdate(info);
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"),
+      "Invalid folder selection:\n\nSelect either a single account or multiple\nfolders within a single account.");
     return;
   }
 
@@ -1349,7 +1350,7 @@ async function menusUpdate(info, tab) {
   if (info.menuIds[0] == folderCtxMenu_TopId && info.selectedFolders && info.selectedFolders.length > 1) {
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
-  await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_CopyFolderPath_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep2", { visible: false });

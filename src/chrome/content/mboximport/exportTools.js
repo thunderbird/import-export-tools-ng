@@ -94,9 +94,14 @@ var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/Mime
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 function searchANDsave(params) {
-	let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	var args = { folder: preselectedFolder, ietngSearch: true };
-	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+	try {
+		let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+		var args = { folder: preselectedFolder, ietngSearch: true };
+		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		return { status: "ok" };
+	} catch (ex) {
+		return ex;
+	}
 }
 
 function IETgetSortType() {
@@ -166,179 +171,191 @@ async function exportSelectedMsgs(type, params) {
 	if (type === 1 || type === 2 || type === 7) {
 		question = IETformatWarning(1);
 		if (!question)
-			return;
+			return { status: "cancel" };
+
 		question = IETformatWarning(0);
 		if (!question)
-			return;
+			return { status: "cancel" };
 	}
 
 	if (type === 8 || type === 9) {
 		question = IETformatWarning(1);
 		if (!question)
-			return;
-	}
-
-	var file = getPredefinedFolder(2);
-	if (!file || type === 3 || type === 4) {
-		var nsIFilePicker = Ci.nsIFilePicker;
-		let winCtx = window;
-		const tbVersion = ietngUtils.getThunderbirdVersion();
-		if (tbVersion.major >= 120) {
-			winCtx = window.browsingContext;
-		}
-		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		if (type === 3) {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
-			fp.appendFilters(nsIFilePicker.filterAll);
-		} else if (type === 4) {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
-			fp.appendFilters(nsIFilePicker.filterAll);
-		} else {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
-		}
-
-		var res;
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK)
-			file = fp.file;
-		else
-			return;
+			return { status: "cancel" };
 	}
 
 	try {
-		if (file.exists() && !file.isWritable()) {
-			alert(mboximportbundle.GetStringFromName("nowritable"));
-			return;
+
+		var file = getPredefinedFolder(2);
+		if (!file || type === 3 || type === 4) {
+			var nsIFilePicker = Ci.nsIFilePicker;
+			let winCtx = window;
+			const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major >= 120) {
+				winCtx = window.browsingContext;
+			}
+			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+			if (type === 3) {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+				fp.appendFilters(nsIFilePicker.filterAll);
+			} else if (type === 4) {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+				fp.appendFilters(nsIFilePicker.filterAll);
+			} else {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+			}
+
+			var res;
+			if (fp.show)
+				res = fp.show();
+			else
+				res = IETopenFPsync(fp);
+			if (res === nsIFilePicker.returnOK)
+				file = fp.file;
+			else
+				return { status: "cancel" };
 		}
-	} catch (e) { }
+
+		try {
+			if (file.exists() && !file.isWritable()) {
+				alert(mboximportbundle.GetStringFromName("nowritable"));
+				return { status: "error" };
+			}
+		} catch (ex) {
+			return ex;
+		}
 
 
-	var curDBView;
-	// Lets see where we are
-	if (gTabmail.currentAbout3Pane) {
-		// On 3p
-		curDBView = gTabmail.currentAbout3Pane.gDBView;
-	} else if (gTabmail.currentAboutMessage) {
-		curDBView = gTabmail.currentAboutMessage.gDBView;
-	}
+		var curDBView;
+		// Lets see where we are
+		if (gTabmail.currentAbout3Pane) {
+			// On 3p
+			curDBView = gTabmail.currentAbout3Pane.gDBView;
+		} else if (gTabmail.currentAboutMessage) {
+			curDBView = gTabmail.currentAboutMessage.gDBView;
+		}
 
-	var msgUris = [];
+		var msgUris = [];
 
-	msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+		msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
 
-	// Use first message to get current folder
-	var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
-	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
-	var curMsgFolder = hdr1.folder;
+		// Use first message to get current folder
+		var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
+		var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
+		var curMsgFolder = hdr1.folder;
 
-	// support shortcuts (no params)
-	try {
-		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	} catch (ex) {
-		msgFolder = GetFirstSelectedMsgFolder();
+		// support shortcuts (no params)
+		try {
+			var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+		} catch (ex) {
+			msgFolder = GetFirstSelectedMsgFolder();
+
+			if (!msgFolder) {
+				msgFolder = curMsgFolder;
+			}
+		}
 
 		if (!msgFolder) {
-			msgFolder = curMsgFolder;
+			console.log("exp selected msgs - null msgFolder after folder check");
+			console.log(params);
+			Services.prompt.alert(window, "Error", "msgFolder null after check - exp selected msgs.\nPlease report!")
+			return { status: "error" };
 		}
-	}
 
-	if (!msgFolder) {
-		console.log("exp selected msgs - null msgFolder after folder check");
-		console.log(params);
-		Services.prompt.alert(window, "Error", "msgFolder null after check - exp selected msgs.\nPlease report!")
-		return;
-	}
+		var isOffLineImap;
 
-	var isOffLineImap;
+		let imapFolder = {};
 
-	let imapFolder = {};
-
-	try {
-		imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
-	} catch (e) {
-	}
-
-	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
-		var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-		if (!go)
-			return;
-		isOffLineImap = true;
-	} else {
-		isOffLineImap = false;
-	}
-
-	IETskipped = 0;
-	if (isOffLineImap) {
-		var tempArray = [];
-
-		for (var i = 0; i < msgUris.length; i++) {
-			var eml = msgUris[i];
-			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
-			var hdr = mms.messageURIToMsgHdr(eml);
-
-			if (hdr.flags & 0x00000080)
-				tempArray.push(eml);
-			else
-				IETskipped = IETskipped + 1;
+		try {
+			imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+		} catch (e) {
+			return { status: "error", e };
 		}
-		msgUris = tempArray;
-	}
-	IETtotal = msgUris.length;
-	IETexported = 0;
-	var msguri = msgUris[0];
 
-	var hdrArray;
-
-	switch (type) {
-		case 1:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
-			break;
-		case 2:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder);
-			break;
-		case 3:
-			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, msgFolder);
-			break;
-		case 4:
-			if (isMbox(file) !== 1) {
-				var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
-				alert(string);
-				return;
+		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
+			var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
+			if (!go) {
+				return { status: "cancel" };
 			}
-			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
-			break;
-		case 5:
-			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-			createIndex(type, file, hdrArray, msgFolder, true, true);
-			break;
-		case 6:
-			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-			createIndexCSV(type, file, hdrArray, msgFolder, false);
-			break;
-		case 7:
-			hdrArray = IETemlArray2hdrArray(msgUris, true, file);
-			createIndexCSV(type, file, hdrArray, msgFolder, true);
-			break;
-		case 8:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
-			break;
-		case 9:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder, true);
-			break;
-		default:
-			await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
-	}
+			isOffLineImap = true;
+		} else {
+			isOffLineImap = false;
+		}
 
-	if (needIndex) {
-		hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-		createIndex(type, file, hdrArray, msgFolder, false, false);
+		IETskipped = 0;
+		if (isOffLineImap) {
+			var tempArray = [];
+
+			for (var i = 0; i < msgUris.length; i++) {
+				var eml = msgUris[i];
+				var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
+				var hdr = mms.messageURIToMsgHdr(eml);
+
+				if (hdr.flags & 0x00000080)
+					tempArray.push(eml);
+				else
+					IETskipped = IETskipped + 1;
+			}
+			msgUris = tempArray;
+		}
+		IETtotal = msgUris.length;
+		IETexported = 0;
+		var msguri = msgUris[0];
+
+		var hdrArray;
+
+		switch (type) {
+			case 1:
+				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
+				break;
+			case 2:
+				await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder);
+				break;
+			case 3:
+				await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, msgFolder);
+				break;
+			case 4:
+				if (isMbox(file) !== 1) {
+					var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
+					alert(string);
+					return { status: "error" };
+				}
+				await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
+				break;
+			case 5:
+				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				createIndex(type, file, hdrArray, msgFolder, true, true);
+				break;
+			case 6:
+				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				createIndexCSV(type, file, hdrArray, msgFolder, false);
+				break;
+			case 7:
+				hdrArray = IETemlArray2hdrArray(msgUris, true, file);
+				createIndexCSV(type, file, hdrArray, msgFolder, true);
+				break;
+			case 8:
+				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
+				break;
+			case 9:
+				await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder, true);
+				break;
+			default:
+				await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
+		}
+
+		if (needIndex) {
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+			createIndex(type, file, hdrArray, msgFolder, false, false);
+		}
+		if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
+			document.getElementById("IETabortIcon").collapsed = false;
+		IETabort = false;
+
+		return { status: "ok" };
+	} catch (ex) {
+		return ex;
 	}
-	if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
-		document.getElementById("IETabortIcon").collapsed = false;
-	IETabort = false;
 }
 
 // Export all messages is done through more steps
@@ -409,7 +426,7 @@ async function exportAllMsgs(type, params) {
 			}
 		} catch (e) {
 			return { status: "cancel" };
-		 }
+		}
 
 		IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
@@ -444,10 +461,10 @@ async function exportAllMsgs(type, params) {
 			document.getElementById("IETabortIcon").collapsed = true;
 		let errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
 		Services.prompt.alert(window, errorMsg, ex);
-		return {status: "error", errMsg: ex};
+		return { status: "error", errMsg: ex };
 	}
 
-	return {status: "ok", exportFolderPath: exportFolderPath};
+	return { status: "ok", exportFolderPath: exportFolderPath };
 }
 
 // 2) exportAllMsgsStart
@@ -2276,7 +2293,6 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 
 async function copyMSGtoClip(selectedMsgs) {
 
-	const kConvertData = true;
 	var msguri;
 
 	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
@@ -2298,10 +2314,11 @@ async function copyMSGtoClip(selectedMsgs) {
 			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
 		if (!msguri)
-			return;
+			return { status: "cancel" };
+
 
 		exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
-		return;
+		return { status: "ok" };
 
 	}
 }

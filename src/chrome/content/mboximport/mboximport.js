@@ -132,9 +132,13 @@ var IETprintPDFmain = {
 			let printSvc = Cc["@mozilla.org/gfx/printsettings-service;1"].getService(Ci.nsIPrintSettingsService);
 			if (printSvc.defaultPrinterName === "") {
 				alert(mboximportbundle.GetStringFromName("noPDFnoPrinter"));
-				return;
+				return { status: "error" };
 			}
-		} catch (e) { }
+		} catch (e) {
+			return e;
+		}
+
+		try {
 
 		var msgFolders;
 		try {
@@ -145,14 +149,16 @@ var IETprintPDFmain = {
 
 		if (msgFolders.length > 1) {
 			alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
-			return;
+			return { status: "error" };
 		}
 		let question = IETformatWarning(1);
 		if (!question)
-			return;
+			return { status: "cancel" };
+
 		question = IETformatWarning(0);
 		if (!question)
-			return;
+			return { status: "cancel" };
+
 
 		if (!allMessages) {
 
@@ -190,7 +196,8 @@ var IETprintPDFmain = {
 			}
 		}
 		if (!IETprintPDFmain.uris)
-			return;
+			return { status: "cancel" };
+
 
 		IETprintPDFmain.total = IETprintPDFmain.uris.length;
 		let dir = getPredefinedFolder(2);
@@ -206,12 +213,16 @@ var IETprintPDFmain = {
 				fp.open(resolve);
 			});
 			if (res !== Ci.nsIFilePicker.returnOK) {
-				return;
+				return { status: "cancel" };
 			}
 			dir = fp.file;
 		}
 		IETprintPDFmain.file = dir;
 		await IETprintPDFmain.saveAsPDF();
+		return { status: "ok" };
+	} catch (ex) {
+		return ex;
+	}
 	},
 
 	/**
@@ -794,7 +805,7 @@ async function exportfolder(params) {
 	var subfolders = params.includeSubfolders;
 	var keepstructure = !params.flattenSubfolders;
 
-	// console.log("Start: ExportFolders (mbox)");
+	console.log("Start: ExportFolders (mbox)", params);
 
 	var folders = [];
 	var account;
@@ -842,17 +853,21 @@ async function exportfolder(params) {
 	}
 
 	var destdirNSIFILE = getPredefinedFolder(0);
+	console.log("dest pd", destdirNSIFILE)
 
 	if (!destdirNSIFILE && params.fileDialog) {
 		destdirNSIFILE = IETgetPickerModeFolder();
 		if (!destdirNSIFILE) {
+			console.log("fdialog cancel")
 			return { status: "cancel" };
 		}
 	} else if (params.exportFolderPath) {
 		destdirNSIFILE = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 		destdirNSIFILE.initWithPath(params.exportFolderPath);
-	} else {
-		return { status: "cancel" };
+	} else if (!destdirNSIFILE) {
+		console.log("no dest cancel")
+
+		return { status: "error" };
 	}
 
 	exportFolderPath = destdirNSIFILE.path;

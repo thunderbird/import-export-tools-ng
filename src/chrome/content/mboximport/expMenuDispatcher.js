@@ -63,73 +63,75 @@ async function expMenuDispatcher(data) {
 
 	var rv;
 
+	try {
+
 	switch (data.command) {
 		case "WXMCMD_EML_Format":
 			if (data.params.msgsOnly) {
-				await exportSelectedMsgs(0, data.params);
+				rv = await exportSelectedMsgs(0, data.params);
 			} else if (data.params.createIndex) {
-				await exportSelectedMsgs(100, data.params);
+				rv = await exportSelectedMsgs(100, data.params);
 			}
 			break;
 		case "WXMCMD_HTML_Format":
 			if (data.params.msgsOnly) {
-				await exportSelectedMsgs(1, data.params);
+				rv = await exportSelectedMsgs(1, data.params);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
-				await exportSelectedMsgs(8, data.params);
+				rv = await exportSelectedMsgs(8, data.params);
 			} else if (data.params.createIndex && !data.params.saveAtts) {
-				await exportSelectedMsgs(101, data.params);
+				rv = await exportSelectedMsgs(101, data.params);
 			} else if (data.params.saveAtts && data.params.createIndex) {
-				await exportSelectedMsgs(108, data.params);
+				rv = await exportSelectedMsgs(108, data.params);
 			}
 
 			break;
 		case "WXMCMD_PDF_Format":
-			await IETprintPDFmain.print(false, data.params);
+			rv = await IETprintPDFmain.print(false, data.params);
 			break;
 		case "WXMCMD_PlainText_Format":
 			if (data.params.msgsOnly) {
-				await exportSelectedMsgs(2, data.params);
+				rv = await exportSelectedMsgs(2, data.params);
 			} else if (data.params.saveAtts && !data.params.createIndex) {
-				await exportSelectedMsgs(9, data.params);
+				rv = await exportSelectedMsgs(9, data.params);
 			} else if (data.params.createIndex && !data.params.saveAtts) {
-				await exportSelectedMsgs(102, data.params);
+				rv = await exportSelectedMsgs(102, data.params);
 			} else if (data.params.saveAtts && data.params.createIndex) {
-				await exportSelectedMsgs(109, data.params);
+				rv = await exportSelectedMsgs(109, data.params);
 			}
 			break;
 		case "WXMCMD_CSV_Format":
-			await exportSelectedMsgs(7, data.params);
+			rv = await exportSelectedMsgs(7, data.params);
 			break;
 		case "WXMCMD_Mbox_Format":
 			if (data.params.mboxExpType == "newMbox") {
-				await exportSelectedMsgs(3, data.params);
+				rv = await exportSelectedMsgs(3, data.params);
 			} else if (data.params.mboxExpType == "appendMbox") {
-				await exportSelectedMsgs(4, data.params);
+				rv = await exportSelectedMsgs(4, data.params);
 			}
 			break;
 		case "WXMCMD_CopyToClipboard":
 			if (data.params.clipboardType == "Message") {
-				await copyMSGtoClip(data.params.selectedMsgs);
+				rv = await copyMSGtoClip(data.params.selectedMsgs);
 			} else {
 				copyHeaders.start(data.params.selectedMsgs);
 			}
 			break;
 		case "WXMCMD_Index":
 			if (data.params.indexType == "indexHTML") {
-				await exportSelectedMsgs(5, data.params);
+				rv = await exportSelectedMsgs(5, data.params);
 			} else if (data.params.indexType == "indexCSV") {
-				await exportSelectedMsgs(6, data.params);
+				rv = await exportSelectedMsgs(6, data.params);
 			}
 			break;
 
 		case "WXMCMD_ExpFolderMboxFormat":
-			exportfolder(data.params);
+			rv = await exportfolder(data.params);
 			break;
 		case "WXMCMD_ExpFolderRemote":
-			exportfolder(data.params);
+			rv = await exportfolder(data.params);
 			break;
 		case "WXMCMD_ExpSearch":
-			searchANDsave(data.params);
+			rv = searchANDsave(data.params);
 			break;
 		case "WXMCMD_FolderExp_EML_Format":
 			rv = await exportAllMsgs(0, data.params);
@@ -142,12 +144,7 @@ async function expMenuDispatcher(data) {
 			}
 			break;
 		case "WXMCMD_FolderExp_PDF_Format":
-			//if (!data.params.recursive && 0) {
-			if (0) {
-				await IETprintPDFmain.print(true, data.params);
-			} else {
 				rv = await exportAllMsgs(10, data.params);
-			}
 			break;
 		case "WXMCMD_FolderExp_PlainText_Format":
 			if (data.params.createIndex && !data.params.saveAtts) {
@@ -216,7 +213,18 @@ async function expMenuDispatcher(data) {
 			break;
 	}
 
+	console.log(rv)
+
+	if (!rv || rv == typeof Error) {
+		if (!rv) {
+			rv = Error("Undefined rv: \n\nexpMenuDispatcher");
+		}
+		throw (rv);
+	}
 	return rv;
+}  catch (ex) {
+	Services.prompt.alert(window, "Exception", ex);
+}
 }
 
 function onUnload() {

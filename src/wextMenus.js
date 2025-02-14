@@ -858,11 +858,14 @@ async function wextctx_ExportAs(ctxEvent, tab) {
   params.targetWinId = tab.windowId;
   params.tabType = tab.type;
 
+  var rv;
 
   // we need the accountId and path of the folder to get
   // the actual selected folder in legacy side
   // we don't get these in the messageDisplay so have to
   // get indirectly from messageDisplay
+
+  try {
 
   if (!ctxEvent.pageUrl) {
 
@@ -929,7 +932,10 @@ async function wextctx_ExportAs(ctxEvent, tab) {
     default:
       break;
   }
+  } catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("Error.msg"), `${ex}\n\n${ex.stack}`);
 
+  }
 }
 
 
@@ -958,13 +964,18 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  //console.log(ctxEvent, tab);
+  console.log(ctxEvent, tab);
 
   var params = {};
   params.targetWinId = tab.windowId;
   var selectedFolders = [ctxEvent.selectedFolder];
 
-  if (ctxEvent.menuItemId.includes("Recursive") && ctxEvent?.selectedFolders.length > 1) {
+  console.log(ctxEvent.menuItemId)
+
+  if ((ctxEvent.menuItemId.includes("Recursive") ||
+    ctxEvent.menuItemId.includes("SubFolders")) &&
+    ctxEvent?.selectedFolders.length > 1) {
+      console.log("pruning")
     let prunedFolders = ctxEvent.selectedFolders;
     ctxEvent.selectedFolders.forEach(folder => {
       prunedFolders = prunedFolders.filter(pfolder => pfolder == folder || !pfolder.path.startsWith(folder.path))
@@ -1244,8 +1255,8 @@ async function menusUpdate(info, tab) {
     return;
   }
 
-  if (info.selectedFolders.length > 1 &&
-    info.selectedFolders.find(folder => folder.name == "Root")) {
+  if (info.selectedFolders && info?.selectedFolders.length > 1 &&
+    info?.selectedFolders.find(folder => folder.name == "Root")) {
     console.log("straddle")
     await setNoMenusUpdate(info);
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"),

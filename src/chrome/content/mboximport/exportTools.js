@@ -396,7 +396,6 @@ async function exportAllMsgs(type, params) {
 				return { status: "cancel" };
 			}
 		} else if (params.exportFolderPath) {
-			console.log("initpath")
 			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 			file.initWithPath(params.exportFolderPath);
 		}
@@ -408,7 +407,9 @@ async function exportAllMsgs(type, params) {
 				alert(mboximportbundle.GetStringFromName("nowritable"));
 				return { status: "cancel" };
 			}
-		} catch (e) { }
+		} catch (e) {
+			return { status: "cancel" };
+		 }
 
 		IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
@@ -445,7 +446,6 @@ async function exportAllMsgs(type, params) {
 		Services.prompt.alert(window, errorMsg, ex);
 		return {status: "error", errMsg: ex};
 	}
-	console.log("end exp", exportFolderPath)
 
 	return {status: "ok", exportFolderPath: exportFolderPath};
 }

@@ -788,6 +788,7 @@ async function updateImportedFolder(msgFolder, forceCompact) {
 
 async function exportfolder(params) {
 
+	var exportFolderPath;
 	var localfolder = params.localFolder;
 	var zip = params.zipped;
 	var subfolders = params.includeSubfolders;
@@ -831,43 +832,70 @@ async function exportfolder(params) {
 		}
 		var lastType = folders[i].server.type;
 	}
-	if (localfolder && (lastType === "imap" || lastType === "nntp")) {
-		var go = IETremoteWarning();
-		if (!go)
-			return;
-	}
-	var destdirNSIFILE = getPredefinedFolder(0);
-	if (!destdirNSIFILE) {
-		destdirNSIFILE = IETgetPickerModeFolder();
-		if (!destdirNSIFILE)
-			return;
+
+	if (params.warnings) {
+		if (localfolder && (lastType === "imap" || lastType === "nntp")) {
+			var go = IETremoteWarning();
+			if (!go)
+				return;
+		}
 	}
 
+	var destdirNSIFILE = getPredefinedFolder(0);
+
+	if (!destdirNSIFILE && params.fileDialog) {
+		destdirNSIFILE = IETgetPickerModeFolder();
+		if (!destdirNSIFILE) {
+			return { status: "cancel" };
+		}
+	} else if (params.exportFolderPath) {
+		destdirNSIFILE = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+		destdirNSIFILE.initWithPath(params.exportFolderPath);
+	} else {
+		return { status: "cancel" };
+	}
+
+	exportFolderPath = destdirNSIFILE.path;
+
 	if (zip) {
-		if (!String.prototype.trim)
-			alert(mboximportbundle.GetStringFromName("needTB3"));
-		else
+		try {
 			await IETexportZip(destdirNSIFILE, folders);
-		return;
+			return { status: "ok", exportFolderPath: exportFolderPath };
+		} catch (ex) {
+			return { status: "error", errMsg: ex };
+		}
 	}
 
 	if (folders[0].isServer && keepstructure) {
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
-		await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
-		return;
+		try {
+			await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
+			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+			return { status: "ok", exportFolderPath: exportFolderPath };
+		} catch (ex) {
+			return { status: "error", errMsg: ex };
+		}
+
 	}
 
 	if (localfolder && !subfolders && isVirtualFolder) {
-		exportVirtualFolder(folders[0], destdirNSIFILE);
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
-		return;
+		try {
+			exportVirtualFolder(folders[0], destdirNSIFILE);
+			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+			return { status: "ok", exportFolderPath: exportFolderPath };
+		} catch (ex) {
+			return { status: "error", errMsg: ex };
+		}
 	}
 
 	if (!localfolder && !subfolders) {
-		exportRemoteFolders(destdirNSIFILE, folders);
-		return;
+		try {
+			exportRemoteFolders(destdirNSIFILE, folders);
+			return { status: "ok", exportFolderPath: exportFolderPath };
+		} catch (ex) {
+			return { status: "error", errMsg: ex };
+		}
 	}
 
 	// new export
@@ -877,18 +905,19 @@ async function exportfolder(params) {
 	let flatten = !keepstructure;
 	let destPath = destdirNSIFILE.path;
 
-	await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
+	try {
+		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
-	if (folders[0].isServer) {
-		let accountName = rootFolder.prettyName;
-		if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
-			accountName += ".mbox";
-		}
-		await IOUtils.remove(PathUtils.join(destPath, accountName));
+		if (folders[0].isServer) {
+			let accountName = rootFolder.prettyName;
+			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+				accountName += ".mbox";
+			}
+			await IOUtils.remove(PathUtils.join(destPath, accountName));
+		} return { status: "ok", exportFolderPath: exportFolderPath };
+	} catch (ex) {
+		return { status: "error", errMsg: ex };
 	}
-	return;
-
-
 }
 
 async function IETexportZip(destdirNSIFILE, folders) {

@@ -215,7 +215,6 @@ async function expMenuDispatcher(data) {
 		default:
 			break;
 	}
-	console.log("rv.status", rv)
 
 	return rv;
 }

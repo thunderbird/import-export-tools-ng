@@ -402,6 +402,7 @@ const folderCtxMenu_Exp_PlainTextFormatSingleFile_Id = "folderCtxMenu_Exp_PlainT
 const folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id = "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id";
 const folderCtxMenu_Exp_IndexHTML_Id = "folderCtxMenu_Exp_IndexHTML_Id";
 const folderCtxMenu_Exp_IndexCSV_Id = "folderCtxMenu_Exp_IndexCSV_Id";
+const folderCtxMenu_InvalidSelection_Id = "folderCtxMenu_InvalidSelection";
 
 var folderCtxMenuSet = [
   {
@@ -409,6 +410,14 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_TopId,
       title: localizeMenuTitle("ctxMenu_ExtensionName.title"),
+    },
+  },
+  {
+    menuDef: {
+      id: folderCtxMenu_InvalidSelection_Id,
+      title: "Invalid Folder Selection",
+      visible: false,
+      onclick: invalidSelection,
     },
   },
   {
@@ -949,22 +958,29 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  // console.log(ctxEvent, tab);
+  //console.log(ctxEvent, tab);
+
   var params = {};
   params.targetWinId = tab.windowId;
+  var selectedFolders = [ctxEvent.selectedFolder];
 
-  if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
-    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg"));
-    //if (!rv) {
-    //return;
-    //}
+  if (ctxEvent.menuItemId.includes("Recursive") && ctxEvent?.selectedFolders.length > 1) {
+    let prunedFolders = ctxEvent.selectedFolders;
+    ctxEvent.selectedFolders.forEach(folder => {
+      prunedFolders = prunedFolders.filter(pfolder => pfolder == folder || !pfolder.path.startsWith(folder.path))
+    });
+    console.log(prunedFolders)
+    selectedFolders = prunedFolders;
+  } else if (ctxEvent?.selectedFolders.length > 1) {
+    selectedFolders = ctxEvent.selectedFolders;
   }
 
-  console.log(ctxEvent.selectedFolders)
+  console.log(selectedFolders)
+
 
   var rv;
 
-  for (const [index, folder] of ctxEvent.selectedFolders.entries()) {
+  for (const [index, folder] of selectedFolders.entries()) {
     params.selectedFolder = folder;
     if (index == 0) {
       params.warnings = true;
@@ -983,8 +999,6 @@ async function wextctx_folderMenu(ctxEvent, tab) {
       params.selectedFolder = {};
       params.selectedFolder.path = "/";
     }
-
-
 
     params.selectedAccount = ctxEvent.selectedAccount;
     if (!params.selectedAccount) {
@@ -1161,19 +1175,19 @@ async function wextctx_folderMenu(ctxEvent, tab) {
       break;
     }
 
-    console.log("rv.status", rv)
-
     if (rv.exportFolderPath) {
       params.exportFolderPath = rv.exportFolderPath;
     }
-    console.log("end loop")
   }
-  console.log("end func")
-
 }
 
 function localizeMenuTitle(id) {
   return browser.i18n.getMessage(id);
+}
+
+async function invalidSelection() {
+  console.log("invalid sel")
+
 }
 
 // update menus based on folder type
@@ -1226,7 +1240,7 @@ async function menusUpdate(info, tab) {
     console.log("account ++")
 
     await setNoMenusUpdate(info);
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
+    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
     return;
   }
 
@@ -1234,8 +1248,8 @@ async function menusUpdate(info, tab) {
     info.selectedFolders.find(folder => folder.name == "Root")) {
     console.log("straddle")
     await setNoMenusUpdate(info);
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"),
-      "Invalid folder selection:\n\nSelect either a single account or multiple\nfolders within a single account.");
+    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"),
+    //"Invalid folder selection:\n\nSelect either a single account or multiple\nfolders within a single account.");
     return;
   }
 
@@ -1302,9 +1316,9 @@ async function menusUpdate(info, tab) {
 
 
     // disable submenus
-    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
+    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: false });
+    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: false });
+    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
 
     await messenger.menus.refresh();
   }
@@ -1363,6 +1377,7 @@ async function menusUpdate(info, tab) {
 }
 
 async function setDefaultMenusUpdate(info) {
+  await messenger.menus.update(folderCtxMenu_InvalidSelection_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
@@ -1391,6 +1406,7 @@ async function setDefaultMenusUpdate(info) {
 
 
 async function setNoMenusUpdate(info) {
+  await messenger.menus.update(folderCtxMenu_InvalidSelection_Id, { visible: true });
   await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
   await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: false });

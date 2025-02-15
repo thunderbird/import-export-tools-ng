@@ -1727,6 +1727,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 
 					} catch (ex) {
+						ex.extendedMsg = "Exporting:\n" + hdr.mime2DecodedSubject;
 						reject(ex);
 					}
 				},
@@ -2015,8 +2016,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 
 					} catch (ex) {
-						//msgHdr = window.messenger.msgHdrFromURI(msgUri);
-
 						ex.extendedMsg = "Exporting:\n" + hdr.mime2DecodedSubject;
 						reject(ex)
 					}

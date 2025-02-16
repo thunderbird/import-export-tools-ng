@@ -354,6 +354,16 @@ async function exportSelectedMsgs(type, params) {
 
 		return { status: "ok" };
 	} catch (ex) {
+		let errTitle = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+		let errMsg = ex;
+		if (ex.extendedMsg) {
+			errMsg += `\n\n${ex.extendedMsg}`;
+		}
+		errMsg += `\n\n${ex.stack}`;
+		Services.prompt.alert(window, errTitle, errMsg);
+		if (document.getElementById("IETabortIcon")) {
+			document.getElementById("IETabortIcon").collapsed = true;
+		}
 		return ex;
 	}
 }
@@ -1368,7 +1378,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					if (iid.equals(Ci.nsIStreamListener) ||
 						iid.equals(Ci.nsISupports))
 						return this;
-
 					throw Cr.NS_NOINTERFACE;
 				},
 
@@ -1379,134 +1388,144 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					var data;
 
 					this.scriptStream = null;
-					if (clipboard) {
-						IETcopyStrToClip(this.emailtext);
-						return;
-					}
-					var tags = hdr.getStringProperty("keywords");
-					if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
-						this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
-					if (append) {
 
-						if (this.emailtext !== "") {
-							data = this.emailtext + "\n";
+					try {
 
-							// Some IMAP servers don't add to the message the "From" prologue
-							if (data && !data.match(/^From /)) {
-								let fromAddr;
-								try {
-									fromAddr = parse5322.parseFrom(hdr.author)[0].address;
-								} catch (ex) {
-									fromAddr = "";
+						if (clipboard) {
+							IETcopyStrToClip(this.emailtext);
+							return;
+						}
+						var tags = hdr.getStringProperty("keywords");
+						if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
+							this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
+						if (append) {
+
+							if (this.emailtext !== "") {
+								data = this.emailtext + "\n";
+
+								// Some IMAP servers don't add to the message the "From" prologue
+								if (data && !data.match(/^From /)) {
+									let fromAddr;
+									try {
+										fromAddr = parse5322.parseFrom(hdr.author)[0].address;
+									} catch (ex) {
+										fromAddr = "";
+									}
+
+									let msgDate = (new Date(hdr.dateInSeconds * 1000));
+									msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
+									let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
+
+									var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
+									data = prologue + data;
+								}
+								data = IETescapeBeginningFrom(data);
+							}
+							var fileClone = file.clone();
+							data = data.replace(/\r\n/g, "\n");
+
+							IETwriteDataOnDisk(fileClone, data, true, null, null);
+							sub = true;
+						} else {
+							if (!hdrArray) {
+								sub = getSubjectForHdr(hdr, file.path);
+								console.log("get eml name ", sub)
+
+							} else {
+								var parts = hdrArray[IETexported].split("§][§^^§");
+								sub = parts[4];
+								sub = sub.replace(/[\x00-\x1F]/g, "_");
+							}
+
+							sub = IETstr_converter(sub);
+
+							if (sub) {
+								// Addresses #350
+								// This probably is removing an mbox separator, but is
+								// not specific enough and originally would replace 
+								// a normal From: field. Make better regex...
+								// data = this.emailtext.replace(/^From.+\r?\n/, "");
+
+								data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
+								data = IETescapeBeginningFrom(data);
+
+								// Strip CR option - @ashikase
+								if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
+									data = data.replace(/\r\n/g, "\n");
 								}
 
-								let msgDate = (new Date(hdr.dateInSeconds * 1000));
-								msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
-								let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
-
-								var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
-								data = prologue + data;
-							}
-							data = IETescapeBeginningFrom(data);
-						}
-						var fileClone = file.clone();
-						data = data.replace(/\r\n/g, "\n");
-
-						IETwriteDataOnDisk(fileClone, data, true, null, null);
-						sub = true;
-					} else {
-						if (!hdrArray) {
-							sub = getSubjectForHdr(hdr, file.path);
-							console.log("get eml name ", sub)
-
-						} else {
-							var parts = hdrArray[IETexported].split("§][§^^§");
-							sub = parts[4];
-							sub = sub.replace(/[\x00-\x1F]/g, "_");
-						}
-
-						sub = IETstr_converter(sub);
-
-						if (sub) {
-							// Addresses #350
-							// This probably is removing an mbox separator, but is
-							// not specific enough and originally would replace 
-							// a normal From: field. Make better regex...
-							// data = this.emailtext.replace(/^From.+\r?\n/, "");
-
-							data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
-							data = IETescapeBeginningFrom(data);
-
-							// Strip CR option - @ashikase
-							if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
-								data = data.replace(/\r\n/g, "\n");
-							}
-
-							var clone = file.clone();
-							// The name is taken from the subject "corrected"
-							clone.append(sub + ".eml");
-							clone.createUnique(0, 0644);
-							var time = (hdr.dateInSeconds) * 1000;
-							IETwriteDataOnDisk(clone, data, false, null, time);
-							// myEMLlistener.file2 exists just if we need the index
-							if (myEMLlistner.file2) {
-								var nameNoExt = clone.leafName.replace(/\.eml$/, "");
-								// If the leafName of the file is not equal to "sub", we must change also
-								// the correspondent section of hdrArray[IETexported], otherwise the link
-								// in the index will be wrong
-								if (sub !== nameNoExt) {
-									parts[4] = nameNoExt;
-									hdrArray[IETexported] = parts.join("§][§^^§");
+								var clone = file.clone();
+								// The name is taken from the subject "corrected"
+								clone.append(sub + ".eml");
+								clone.createUnique(0, 0o644);
+								var time = (hdr.dateInSeconds) * 1000;
+								IETwriteDataOnDisk(clone, data, false, null, time);
+								// myEMLlistener.file2 exists just if we need the index
+								if (myEMLlistner.file2) {
+									var nameNoExt = clone.leafName.replace(/\.eml$/, "");
+									// If the leafName of the file is not equal to "sub", we must change also
+									// the correspondent section of hdrArray[IETexported], otherwise the link
+									// in the index will be wrong
+									if (sub !== nameNoExt) {
+										parts[4] = nameNoExt;
+										hdrArray[IETexported] = parts.join("§][§^^§");
+									}
 								}
 							}
 						}
-					}
-					IETexported = IETexported + 1;
-					if (sub)
-						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+						IETexported = IETexported + 1;
+						if (sub)
+							IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
-					if (IETabort) {
-						IETabort = false;
-						resolve(kStatusAbort)
-						return;
-					}
-
-					if (IETexported < IETtotal) {
-						if (fileArray) {
-							nextUri = uriArray[IETexported];
-							nextFile = fileArray[IETexported];
-						} else if (!hdrArray) {
-							nextUri = uriArray[IETexported];
-							nextFile = file;
-						} else {
-							parts = hdrArray[IETexported].split("§][§^^§");
-							nextUri = parts[5];
-							nextFile = file;
+						if (IETabort) {
+							IETabort = false;
+							resolve(kStatusAbort)
+							return;
 						}
-						resolve(kStatusOK);
-						return;
-					} else {
-						if (myEMLlistner.file2)
-							createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
-						IETexported = 0;
-						IETtotal = 0;
-						IETskipped = 0;
-						if (IETglobalMsgFolders) {
-							IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-							if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length) {
-								if (imapFolder) {
-									setTimeout(function () {
-										exportIMAPfolder(IETglobalMsgFolders[IETglobalMsgFoldersExported], file.parent);
-									}, 1000);
-								} else
-									exportAllMsgsStart(0, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+
+						if (IETexported < IETtotal) {
+							if (fileArray) {
+								nextUri = uriArray[IETexported];
+								nextFile = fileArray[IETexported];
+							} else if (!hdrArray) {
+								nextUri = uriArray[IETexported];
+								nextFile = file;
+							} else {
+								parts = hdrArray[IETexported].split("§][§^^§");
+								nextUri = parts[5];
+								nextFile = file;
+							}
+							resolve(kStatusOK);
+							return;
+						} else {
+							if (myEMLlistner.file2)
+								createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
+							IETexported = 0;
+							IETtotal = 0;
+							IETskipped = 0;
+							if (IETglobalMsgFolders) {
+								IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
+								if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length) {
+									if (imapFolder) {
+										setTimeout(function () {
+											exportIMAPfolder(IETglobalMsgFolders[IETglobalMsgFoldersExported], file.parent);
+										}, 1000);
+									} else
+										exportAllMsgsStart(0, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+								} else if (document.getElementById("IETabortIcon"))
+									document.getElementById("IETabortIcon").collapsed = true;
 							} else if (document.getElementById("IETabortIcon"))
 								document.getElementById("IETabortIcon").collapsed = true;
-						} else if (document.getElementById("IETabortIcon"))
+						}
+						saveAsEmlDone = true;
+						resolve(kStatusDone);
+					} catch (ex) {
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
+						}
+						reject(ex)
 					}
-					saveAsEmlDone = true;
-					resolve(kStatusDone);
 				},
 
 				onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1727,7 +1746,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 
 					} catch (ex) {
-						ex.extendedMsg = "Exporting:\n" + hdr.mime2DecodedSubject;
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
+							document.getElementById("IETabortIcon").collapsed = true;
+						}
 						reject(ex);
 					}
 				},
@@ -2016,7 +2038,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 
 					} catch (ex) {
-						ex.extendedMsg = "Exporting:\n" + hdr.mime2DecodedSubject;
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
+							document.getElementById("IETabortIcon").collapsed = true;
+						}
 						reject(ex)
 					}
 				},
@@ -2517,33 +2542,40 @@ var copyHeaders = {
 
 
 	start: async function (selectedMsgs) {
-		var msguri;
-		let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
-		let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
-		if (selectedMsgs.length > 1) {
-			let prompt = Services.prompt;
-			let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
-			let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
-				copyHdrsToClip_firstOnly,
-				buttonFlags,
-				null,
-				null,
-				"",
-				null, {});
-		}
+		try {
 
-		if (selectedMsgs[0].id) {
-			let realMessage = window.ietngAddon.extension
-				.messageManager.get(selectedMsgs[0].id);
-			msguri = realMessage.folder.getUriForMsg(realMessage);
+			var msguri;
+			let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
+			let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
+			if (selectedMsgs.length > 1) {
+				let prompt = Services.prompt;
+				let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+				let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
+					copyHdrsToClip_firstOnly,
+					buttonFlags,
+					null,
+					null,
+					"",
+					null, {});
+			}
 
-			var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-			var streamListner = copyHeaders.getListener();
-			if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
-				streamListner.remote = true;
-			mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
+			if (selectedMsgs[0].id) {
+				let realMessage = window.ietngAddon.extension
+					.messageManager.get(selectedMsgs[0].id);
+				msguri = realMessage.folder.getUriForMsg(realMessage);
+
+				var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+				var streamListner = copyHeaders.getListener();
+				if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
+					streamListner.remote = true;
+				mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
+				return { status: "ok" };
+			}
+		} catch (ex) {
+			throw (ex);
 		}
 	},
+
 };
 
 function IETescapeBeginningFrom(data) {

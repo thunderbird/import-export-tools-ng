@@ -397,6 +397,7 @@ function openProfileImportWizard() {
 		setTimeout(function () {
 			appStartup.quit(Ci.nsIAppStartup.eAttemptQuit);
 		}, 1000);
+		return { status: "ok" };
 }
 
 function msgFolder2LocalFile(msgFolder) {
@@ -1751,9 +1752,11 @@ function openIEToptions() {
 	} else {
 		optionsWin.focus();
 	}
+	return { status: "ok" };
 }
 
 function IETcopyFolderPath(params) {
+	console.log("cop fp")
 	if (!params.selectedFolder) {
 		params.selectedFolder = {};
 		params.selectedFolder.path = "/";
@@ -1763,6 +1766,7 @@ function IETcopyFolderPath(params) {
 
 	var file = msgFolder2LocalFile(msgFolder);
 	IETcopyStrToClip(file.path);
+	return { status: "ok" };
 }
 
 function IETopenFolderPath(params) {
@@ -1801,4 +1805,5 @@ function IETopenFolderPath(params) {
 			protocolSvc.loadUrl(uri);
 		}
 	}
+	return { status: "ok" };
 }

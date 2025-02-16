@@ -53,7 +53,7 @@ mboxImportExport.setGlobals(gVars);
 async function expMenuDispatcher(data) {
 	let dispatcherWinId = window.ietngAddon.extension.windowManager.getWrapper(window).id;
 
-	// console.log("expMenuDispacher: winId", dispatcherWinId, data);
+	console.log("expMenuDispacher: winId", dispatcherWinId, data);
 	// console.log("expMenuDispacher focused: ", window.document.hasFocus());
 	// console.log(window)
 	if (data.params.tabType != "messageDisplay" && data.params.targetWinId != dispatcherWinId) {
@@ -113,7 +113,7 @@ async function expMenuDispatcher(data) {
 			if (data.params.clipboardType == "Message") {
 				rv = await copyMSGtoClip(data.params.selectedMsgs);
 			} else {
-				copyHeaders.start(data.params.selectedMsgs);
+				rv = copyHeaders.start(data.params.selectedMsgs);
 			}
 			break;
 		case "WXMCMD_Index":
@@ -168,13 +168,13 @@ async function expMenuDispatcher(data) {
 			}
 			break;
 		case "WXMCMD_Exp_Profile":
-			IETexport_all(data.params);
+			rv = IETexport_all(data.params);
 			break;
 		case "WXMCMD_Imp_Profile":
-			openProfileImportWizard();
+			rv = openProfileImportWizard();
 			break;
 		case "WXMCMD_Backup":
-			window.ietng.OpenBackupDialog('manual');
+			rv = window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
 			mboxImportExport.importMboxSetup(data.params);
@@ -189,19 +189,20 @@ async function expMenuDispatcher(data) {
 			importALLasEML(data.params);
 			break;
 		case "WXMCMD_CopyFolderPath":
-			IETcopyFolderPath(data.params);
+			rv = IETcopyFolderPath(data.params);
 			break;
 		case "WXMCMD_OpenFolderDir":
-			IETopenFolderPath(data.params);
+			rv = IETopenFolderPath(data.params);
 			break;
 		case "WXMCMD_OpenOptions":
-			openIEToptions();
+			rv = openIEToptions();
 			break;
-		case "WXMCMD_OpenHelp":
-			openIEThelp();
-			break;
+		//case "WXMCMD_OpenHelp":
+		//	openIEThelp();
+		//	break;
 		case "WXMCMD_SaveJSON":
 			IOUtils.writeJSON(data.params.path, data.params.obj);
+			rv =  { status: "ok" };
 			break;
 		case "WXMCMD_getMailStoreFromFolderPath":
 			let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);

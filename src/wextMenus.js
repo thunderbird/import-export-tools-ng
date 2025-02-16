@@ -991,6 +991,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
 
   var rv;
 
+
+
   for (const [index, folder] of selectedFolders.entries()) {
     params.selectedFolder = folder;
     if (index == 0) {
@@ -1039,10 +1041,10 @@ async function wextctx_folderMenu(ctxEvent, tab) {
             break;
           case folderCtxMenu_CopyFolderPath_Id:
             rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyFolderPath", params: params });
-            break;
+            return;
           case folderCtxMenu_OpenFolderDir_Id:
             rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenFolderDir", params: params });
-            break;
+            return;
           default:
             break;
         }
@@ -1295,6 +1297,10 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
+    // disable submenus
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: false });
+    await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
     await messenger.menus.refresh();
   }
 
@@ -1324,13 +1330,6 @@ async function menusUpdate(info, tab) {
       }
       await messenger.menus.refresh();
     }
-
-
-    // disable submenus
-    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: false });
-    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxZipped_Id, { visible: false });
-    //await messenger.menus.update(folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id, { visible: false });
-
     await messenger.menus.refresh();
   }
 

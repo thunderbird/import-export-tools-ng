@@ -415,6 +415,7 @@ function IETexport_all(params) {
 
 	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 	setTimeout(IETexport_all_delayed, 1000, just_mail, file);
+	return { status: "ok" };
 }
 
 function IETexport_all_delayed(just_mail, file) {

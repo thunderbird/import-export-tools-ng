@@ -94,12 +94,14 @@ var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/Mime
 var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 function searchANDsave(params) {
+
 	try {
 		let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 		var args = { folder: preselectedFolder, ietngSearch: true };
 		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 		return { status: "ok" };
 	} catch (ex) {
+		console.log(ex)
 		return ex;
 	}
 }
@@ -376,7 +378,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	console.log("exportAllMsgs", type, params);
+	//console.log("exportAllMsgs", type, params);
 
 	var exportFolderPath;
 	var question;
@@ -1429,8 +1431,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						} else {
 							if (!hdrArray) {
 								sub = getSubjectForHdr(hdr, file.path);
-								console.log("get eml name ", sub)
-
 							} else {
 								var parts = hdrArray[IETexported].split("§][§^^§");
 								sub = parts[4];
@@ -2215,6 +2215,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	if (!msgFolder.verifiedAsOnlineFolder) {
+		console.log("exp imap")
 		alert(mboximportbundle.GetStringFromName("noRemoteExport"));
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 		if (IETglobalMsgFolders.length === IETglobalMsgFoldersExported)

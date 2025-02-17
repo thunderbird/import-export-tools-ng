@@ -964,36 +964,28 @@ async function wextctx_toolsMenu(ctxEvent, tab) {
 }
 
 async function wextctx_folderMenu(ctxEvent, tab) {
-  console.log(ctxEvent, tab);
+  //console.log(ctxEvent, tab);
 
   var params = {};
   params.targetWinId = tab.windowId;
   var selectedFolders = [ctxEvent.selectedFolder];
 
-  console.log(ctxEvent.menuItemId)
-
   if ((ctxEvent.menuItemId.includes("Recursive") ||
     ctxEvent.menuItemId.includes("SubFolders")) &&
     ctxEvent?.selectedFolders.length > 1) {
-      console.log("pruning")
     let prunedFolders = ctxEvent.selectedFolders;
     ctxEvent.selectedFolders.forEach(folder => {
       prunedFolders = prunedFolders.filter(pfolder => pfolder == folder || !pfolder.path.startsWith(folder.path))
     });
-    console.log(prunedFolders)
     selectedFolders = prunedFolders;
   } else if (ctxEvent?.selectedFolders.length > 1) {
     selectedFolders = ctxEvent.selectedFolders;
   }
 
-  console.log(selectedFolders)
-
-
   var rv;
 
-
-
   for (const [index, folder] of selectedFolders.entries()) {
+    
     params.selectedFolder = folder;
     if (index == 0) {
       params.warnings = true;
@@ -1003,8 +995,6 @@ async function wextctx_folderMenu(ctxEvent, tab) {
       params.warnings = false;
       params.fileDialog = false;
     }
-
-    console.log(folder)
 
     // we need the accountId and path of the folder to get
     // the actual selected folder in legacy side
@@ -1038,7 +1028,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
             break;
           case folderCtxMenu_Exp_SearchExport_Id:
             rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpSearch", params: params });
-            break;
+            return;
           case folderCtxMenu_CopyFolderPath_Id:
             rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyFolderPath", params: params });
             return;
@@ -1199,15 +1189,14 @@ function localizeMenuTitle(id) {
 }
 
 async function invalidSelection() {
-  console.log("invalid sel")
-
+  console.log("IETNG: Invalid folder selection")
 }
 
+// update for multiple folder selection - some invalid
 // update menus based on folder type
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
-  console.log("menu update ", info)
 
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
@@ -1247,32 +1236,23 @@ async function menusUpdate(info, tab) {
     folderPath = info.displayedFolder.path;
   }
 
-
   // check invalid multiple folder selections
   if (info.selectedAccount && info.selectedFolders.length > 1) {
-    console.log("account ++")
-
     await setNoMenusUpdate(info);
-    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), "Invalid folder selection:");
     return;
   }
 
   if (info.selectedFolders && info?.selectedFolders.length > 1 &&
     info?.selectedFolders.find(folder => folder.name == "Root")) {
-    console.log("straddle")
     await setNoMenusUpdate(info);
-    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"),
-    //"Invalid folder selection:\n\nSelect either a single account or multiple\nfolders within a single account.");
     return;
   }
-
 
   // default visibility
   await setDefaultMenusUpdate(info);
 
   // update for an account item
   if (accountId && !folderPath) {
-    console.log("account selected")
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;
@@ -1310,10 +1290,7 @@ async function menusUpdate(info, tab) {
       (await messenger.accounts.get(accountId)).type == "imap" ||
       (await messenger.accounts.get(accountId)).type == "nntp") {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
-
       await messenger.menus.refresh();
-      console.log("imap disable mbox")
-
     } else {
       await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
 
@@ -1381,7 +1358,6 @@ async function menusUpdate(info, tab) {
     await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
     await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
-
     await messenger.menus.refresh();
   }
 }
@@ -1468,7 +1444,7 @@ async function copyToClipboard(ctxEvent, tab) {
   } else {
     params.clipboardType = "Headers";
   }
-  rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
+  return await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }
 
 async function importMaildirFiles(ctxEvent) {

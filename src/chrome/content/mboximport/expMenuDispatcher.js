@@ -83,7 +83,6 @@ async function expMenuDispatcher(data) {
 			} else if (data.params.saveAtts && data.params.createIndex) {
 				rv = await exportSelectedMsgs(108, data.params);
 			}
-
 			break;
 		case "WXMCMD_PDF_Format":
 			rv = await IETprintPDFmain.print(false, data.params);
@@ -177,16 +176,16 @@ async function expMenuDispatcher(data) {
 			rv = window.ietng.OpenBackupDialog('manual');
 			break;
 		case "WXMCMD_ImpMbox":
-			mboxImportExport.importMboxSetup(data.params);
+			rv = await mboxImportExport.importMboxSetup(data.params);
 			break;
 		case "WXMCMD_ImpMaildirFiles":
 			trytocopyMAILDIR(data.params);
 			break;
 		case "WXMCMD_ImpEML":
-			importEMLs(data.params);
+			rv = await importEMLs(data.params);
 			break;
 		case "WXMCMD_ImpEMLAll":
-			importALLasEML(data.params);
+			rv = await importALLasEML(data.params);
 			break;
 		case "WXMCMD_CopyFolderPath":
 			rv = IETcopyFolderPath(data.params);
@@ -214,8 +213,6 @@ async function expMenuDispatcher(data) {
 			break;
 	}
 
-	console.log(rv)
-
 	if (!rv || rv == typeof Error) {
 		if (!rv) {
 			rv = Error("Undefined rv: \n\nexpMenuDispatcher");
@@ -224,7 +221,7 @@ async function expMenuDispatcher(data) {
 	}
 	return rv;
 }  catch (ex) {
-	Services.prompt.alert(window, "Exception", ex);
+	Services.prompt.alert(window, "Exception", e`${ex}\n\n${ex.stack}`);
 }
 }
 

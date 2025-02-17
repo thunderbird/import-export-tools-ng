@@ -113,11 +113,13 @@ export var mboxImportExport = {
       window.document.getElementById("ietngStatusText").remove();
       Services.prompt.alert(window, errorMsg, errMsg);
       console.log(`IETNG: ${errMsg}`);
+      return { status: "error" };
     }
 
     if (this.totalImported > 200) {
       Services.prompt.alert(window, warningMsg, largeFolderImportMsg);
     }
+    return { status: "ok" };
   },
 
   importMboxFiles: async function (files, msgFolder, recursive) {
@@ -554,16 +556,16 @@ export var mboxImportExport = {
 
       // get message as 8b string
       try {
-      var rawBytes = await this.getRawMessage(msgUri, false);
-    } catch (ex) {
-      // create placeholder error msg with header info and exception
-      rawBytes = `From: ${msgHdr.author}\n`;
-      rawBytes += `To: ${msgHdr.recipients}\n`;
-      rawBytes += `Date: ${msgDateStr}\n`;
-      rawBytes += `Subject: MsgError:: ${msgHdr.subject}\n\n`;
-      rawBytes += `${ex}\n\n\n`;
-      console.log("IETNG: Message export error:");
-      console.log(rawBytes);
+        var rawBytes = await this.getRawMessage(msgUri, false);
+      } catch (ex) {
+        // create placeholder error msg with header info and exception
+        rawBytes = `From: ${msgHdr.author}\n`;
+        rawBytes += `To: ${msgHdr.recipients}\n`;
+        rawBytes += `Date: ${msgDateStr}\n`;
+        rawBytes += `Subject: MsgError:: ${msgHdr.subject}\n\n`;
+        rawBytes += `${ex}\n\n\n`;
+        console.log("IETNG: Message export error:");
+        console.log(rawBytes);
       }
 
       if (index) {
@@ -602,7 +604,7 @@ export var mboxImportExport = {
       rawBytes = rawBytes.replaceAll(/\r\n/g, "\n");
 
       msgsBuffer = msgsBuffer + fromHdr + rawBytes;
-  
+
       // tbd translate 
       if (msgsBuffer.length >= kFileChunkSize || index == (totalMessages - 1)) {
         ietngUtils.writeStatusLine(window, `${exportingMsg}  ` + msgFolder.name + " " + messagesMsg + ": " + (index + 1) + " - " + ietngUtils.formatBytes(totalBytes, 2), 14000);

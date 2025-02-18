@@ -1347,11 +1347,10 @@ async function importALLasEML(params) {
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
 
-	// I have no idea why so many setTimeout are in here, but each spins out of the main thread and
-	// it is hard to keep track of the actual execution flow. Let us return to sequential coding
-	// using async/await.
-	await new Promise(resolve => window.setTimeout(resolve, 100));
+	console.log("before")
 	await RUNimportALLasEML(msgFolder, fp.file, recursive);
+	console.log("after")
+
 	if (document.getElementById("IETabortIcon")) {
 		document.getElementById("IETabortIcon").collapsed = true;
 	}

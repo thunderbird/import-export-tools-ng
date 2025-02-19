@@ -347,12 +347,16 @@ var ietngUtils = {
       // Odd database behaviors have sometimes been observed
       // even if recovery succeeded
 
+      var res;
+
       try {
-        let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+        console.log("call wext", subFolderName, msgFolder.name)
+        res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+        console.log("af wext", res)
+
       } catch (ex) {
 				if (ex.message.includes("already exists in")) {
           console.log("IETNG: Folder exists");
-          reject(ex);
           return;
         }
         try {
@@ -361,19 +365,18 @@ var ietngUtils = {
           await this.rebuildSummary(msgFolder);
           await new Promise(r => this.top.setTimeout(r, 1000));
 
-          let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
+          res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
 
           console.log("IETNG: Recovery succeeded");
         } catch (ex) {
-          console.log("IETNG: Recovery failed");
+          console.log("IETNG: Recovery failed", ex);
           // extend exception to include msg with subfolder name
           let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
 
           ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
           console.log(`IETNG: ${ex.extendedMsg}`);
-          reject(ex);
         }
       }
-    return folderAddedPromise;
+    return res;
   },
 };

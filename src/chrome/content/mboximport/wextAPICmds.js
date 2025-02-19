@@ -42,10 +42,18 @@ async function onIetngShutdown() {
 }
 
 async function WEXTcreateSubfolder(msgFolder, childName) {
+	console.log("wext cs", childName)
+
 	let win = getMail3Pane();
 
 	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
+	console.log(folder)
+
 	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "createSubfolder", folder: folder, childName: childName });
+	console.log(res)
+	console.log(msgFolder.getChildNamed(childName).name)
+	folder = win.ietngAddon.extension.folderManager.convert(msgFolder.getChildNamed(childName));
+
 
 	// we cannot use typeof or instanceof to check for an exception from
 	// another frame. checking for the two exception properties is not infallible
@@ -61,5 +69,5 @@ async function importEML_Message(msgFolder, msgData) {
 
 	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
 	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "importMessage", folder: folder, msgData: msgData});
-
+	return res;
 }

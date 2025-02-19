@@ -55,3 +55,11 @@ async function WEXTcreateSubfolder(msgFolder, childName) {
 	}
 	return res;
 }
+
+async function importEML_Message(msgFolder, msgData) {
+	let win = getMail3Pane();
+
+	let folder = win.ietngAddon.extension.folderManager.convert(msgFolder);
+	let res = await win.ietngAddon.notifyTools.notifyBackground({ command: "importMessage", folder: folder, msgData: msgData});
+
+}

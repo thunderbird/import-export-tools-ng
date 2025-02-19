@@ -1387,8 +1387,11 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 	}
 
 	// cleidigh - start by closing all files
-	rootFolder.ForceDBClosed();
-	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
+	//rootFolder.ForceDBClosed();
+	//await trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
+	await importEML_Messages(gFileEMLarray[0].msgFolder, gFileEMLarray);
+	console.log("after try")
+	return;
 }
 
 async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
@@ -1433,10 +1436,10 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			emlObj.msgFolder = msgFolder;
 			gFileEMLarray[gFileEMLarrayIndex] = emlObj;
 			gFileEMLarrayIndex++;
-			// console.debug('message ' + gFileEMLarrayIndex);
+			//console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
-
+	console.log("end build")
 	return true;
 }
 
@@ -1544,22 +1547,24 @@ var importEMLlistener = {
 		importEMLlistener.next();
 	},
 
-	next: function () {
+	next: async function () {
 		var nextFile;
 		//console.log("next")
 
 		if (this.allEML && gEMLimported < gFileEMLarray.length) {
 			nextFile = gFileEMLarray[gEMLimported].file;
-			trytoimportEML(nextFile, gFileEMLarray[gEMLimported].msgFolder, this.removeFile, this.fileArray, this.allEML);
+			await trytoimportEML(nextFile, gFileEMLarray[gEMLimported].msgFolder, this.removeFile, this.fileArray, this.allEML);
 		} else if (this.fileArray && gEMLimported < this.fileArray.length) {
 			nextFile = this.fileArray[gEMLimported];
-			trytoimportEML(nextFile, this.msgFolder, this.removeFile, this.fileArray, false);
+			await trytoimportEML(nextFile, this.msgFolder, this.removeFile, this.fileArray, false);
 		} else {
 			// At the end we update the fodler view and summary
 			this.msgFolder.updateFolder(msgWindow);
 			this.msgFolder.updateSummaryTotals(true);
 			document.getElementById("IETabortIcon").collapsed = true;
 			gImporting = false;
+			console.log("done imp")
+			importEMLlistener._resolve("emlDone");
 		}
 	},
 
@@ -1577,8 +1582,21 @@ var importEMLlistener = {
 };
 
 
+async function importEML_Messages(msgFolder, fileArray) {
+	console.log(fileArray.length)
 
-function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
+	for (let idx = 0; idx < fileArray.length; idx++) {
+		const file = fileArray[idx].file;
+		let filePath = file.path;
+		console.log(filePath,idx)
+
+		let fileData = await IOUtils.readUTF8(filePath);
+		console.log(idx)
+		let msgHdr = await window.importEML_Message(msgFolder, fileData);
+	}
+}
+
+async function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 	if (file.path.indexOf(".emlx") > -1) {
 		file = IETemlx2eml(file);
 	}
@@ -1628,8 +1646,18 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			);
 		}
 
-		channel.asyncOpen(importEMLlistener, null);
+		let st = new Date();
+
+		let rv = await new Promise((resolve, reject) => {
+			importEMLlistener._resolve = resolve;
+			channel.asyncOpen(importEMLlistener, null);
+		});
+		console.log(rv)
+		console.log(new Date() - st)
+
 	}
+	console.log("try done")
+
 	return { status: "ok" };
 }
 

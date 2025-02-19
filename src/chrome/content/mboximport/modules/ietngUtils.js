@@ -337,17 +337,7 @@ var ietngUtils = {
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
 
-    const folderAddedPromise = new Promise(async (resolve, reject) => {
-      let folderListener = {
-        folderAdded: function (aFolder) {
-          if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
-            ietngUtils.MailServices.mfn.removeListener(folderListener);
-            resolve(aFolder);
-          }
-        },
-      };
-      this.MailServices.mfn.addListener(folderListener, this.MailServices.mfn.folderAdded);
-
+    
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become
       // persistent around 500+. The failures above 500 are likely
@@ -384,9 +374,6 @@ var ietngUtils = {
           reject(ex);
         }
       }
-    });
-
     return folderAddedPromise;
   },
-
 };

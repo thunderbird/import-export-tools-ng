@@ -74,6 +74,14 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			} catch (ex) {
 				return ex;
 			}
+			break;
+		case "importMessage":
+			console.log("bef file")
+			let msgDataFile = new File([info.msgData], "temp");
+			console.log("af file")
+
+			let msgHdr = await messenger.messages.import(msgDataFile, info.folder);
+			return msgHdr;
 	}
 	return false;
 }

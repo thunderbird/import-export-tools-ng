@@ -116,6 +116,9 @@ var IETabort;
 var gImporting;
 // cleidigh create folder fix
 var folderCount;
+var warningMsg = ietngExtension.localeData.localizeMessage("Warning.msg");
+    var errorMsg = ietngExtension.localeData.localizeMessage("Error.msg");
+
 
 // make sure there is no lingering ietngStatusText
 if (window.document.getElementById("ietngStatusText")) {
@@ -1300,7 +1303,7 @@ function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 }
 
 async function importALLasEML(params) {
-	console.debug('Start eml import', params);
+	//console.debug('Start eml import', params);
 
 	var recursive = params.emlImpRecursive;
 	var msgFolder;
@@ -1347,16 +1350,12 @@ async function importALLasEML(params) {
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
 
-	console.log("before")
 	await RUNimportALLasEML(msgFolder, fp.file, recursive);
-	console.log("after")
 
 	if (document.getElementById("IETabortIcon")) {
 		document.getElementById("IETabortIcon").collapsed = true;
 	}
-	console.log(gEMLimportedErrs)
 	if (gEMLimportedErrs) {
-		Services.prompt.alert(window, "Warning", "There were errors importing some messages:\n\nPlease view the Debug console with (Control-Shift-J)");
 	}
 	return { status: "ok" };
 }
@@ -1389,7 +1388,6 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 	// cleidigh - start by closing all files
 	rootFolder.ForceDBClosed();
 	trytoimportEML(gFileEMLarray[0].file, gFileEMLarray[0].msgFolder, false, null, true);
-	console.log("after try")
 	return;
 }
 
@@ -1419,8 +1417,6 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			var newFolder;
 			try {
 				newFolder = await ietngUtils.createSubfolder(msgFolder, folderName);
-				console.log(newFolder.name)
-
 			} catch (ex) {
 				return ex;
 			}
@@ -1437,10 +1433,8 @@ async function buildEMLarray(file, msgFolder, recursive, rootFolder) {
 			emlObj.msgFolder = msgFolder;
 			gFileEMLarray[gFileEMLarrayIndex] = emlObj;
 			gFileEMLarrayIndex++;
-			//console.debug('message ' + gFileEMLarrayIndex);
 		}
 	}
-	console.log("end build")
 	return true;
 }
 
@@ -1564,9 +1558,10 @@ var importEMLlistener = {
 			this.msgFolder.updateSummaryTotals(true);
 			document.getElementById("IETabortIcon").collapsed = true;
 			gImporting = false;
-			console.log("done imp", gEMLimportedErrs)
 			if (gEMLimportedErrs) {
-				alert("some errors")
+				// give the ui some time
+				await new Promise(r => window.setTimeout(r, 400));
+				Services.prompt.alert(window, warningMsg, "There were problems importing some messages:\n\n" + gEMLimportedErrs + "  Errors. View the Debug Console  (Control-Shift-J)");
 			}
 		}
 	},
@@ -1634,13 +1629,8 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			);
 		}
 
-		let st = new Date();
-
 		channel.asyncOpen(importEMLlistener, null);
-		console.log(new Date() - st)
-
 	}
-	console.log("try done")
 
 	return { status: "ok" };
 }

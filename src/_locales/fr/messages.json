@@ -636,51 +636,48 @@
         "message": "Taille"
     },
     "latinizeTransform": {
-	"message": "Latiniser la transformation"
+        "message": "Latiniser la transformation"
     },
     "characterFilter": {
-	"message": "Filtre de caractères (UTF-8 ou UTF-16) :"
+        "message": "Filtre de caractères (UTF-8 ou UTF-16) :"
     },	
     "utf16Filter": {
-	"message": "Filtrer les caractères UTF-16 (symboles et émojis)"
+        "message": "Filtrer les caractères UTF-16 (symboles et émojis)"
     },	
     "nonAlphanumericFilter": {
-	"message": "Filtrer les caractères non alphanumériques"
+        "message": "Filtrer les caractères non alphanumériques"
     },	
     "multipleFolders.title": {
-	"message": "Plusieurs dossiers"
+        "message": "Plusieurs dossiers"
     },	
     "multipleFolders.alertMsg": {
-	"message": "L’exportation de plusieurs dossiers n’est pas possible.\nEn cliquant sur OK, seul le premier dossier sera exporté."
+        "message": "L’exportation de plusieurs dossiers n’est pas possible.\nEn cliquant sur OK, seul le premier dossier sera exporté."
     },	
     "cancel.msg": {
-	"message": "Annuler"
+        "message": "Annuler"
     },
     "Error.msg": {
-	"message": "Erreur"
+        "message": "Erreur"
     },
     "Warning.msg": {
-	"message": "Avertissement"
+        "message": "Avertissement"
     },
     "numRetainBackups.msg": {
-	"message": "Nombre de sauvegardes à conserver :"
+        "message": "Nombre de sauvegardes à conserver :"
     },
     "createSubfolderErr.msg": {
-	"message": "Erreur lors de la création du sous-dossier :"
+        "message": "Erreur lors de la création du sous-dossier :"
     },
     "largeFolderImport.msg": {
-	"message": "Plus de 200 dossiers mbox ont été importés.\nThunderbird doit être redémarré pour réinitialiser la base de données."
-    },
-
-	"invalidFolderSelection": {
-		"message": "Sélection de dossier non valide"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Il y a eu des problèmes lors de l&#39;importation de certains messages :"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Erreurs. Afficher la console de débogage (Ctrl-Maj-J)"
-	}
+        "message": "Plus de 200 dossiers mbox ont été importés.\nThunderbird doit être redémarré pour réinitialiser la base de données."
+    },
+    "invalidFolderSelection": {
+        "message": "Sélection de dossier non valide"
+    },
+    "messageImportProblems.msg": {
+        "message": "Des problèmes sont survenus lors de l’importation de certains messages :"
+    },
+    "viewDbgConsole.msg": {
+        "message": "  erreurs, consulter la console d’erreurs (Ctrl+Maj+J)"
+    }
 }

@@ -1554,8 +1554,9 @@ var importEMLlistener = {
 			trytoimportEML(nextFile, this.msgFolder, this.removeFile, this.fileArray, false);
 		} else {
 			// At the end we update the fodler view and summary
-			this.msgFolder.updateFolder(msgWindow);
-			this.msgFolder.updateSummaryTotals(true);
+			ietngUtils.rebuildSummary(this.msgFolder);
+			//this.msgFolder.updateFolder(msgWindow);
+			//this.msgFolder.updateSummaryTotals(true);
 			document.getElementById("IETabortIcon").collapsed = true;
 			gImporting = false;
 			let msgImportErrMsg = ietngExtension.localeData.localizeMessage("messageImportProblems.msg");

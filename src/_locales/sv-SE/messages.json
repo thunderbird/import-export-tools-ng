@@ -683,5 +683,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Mer än 200 mbox-mappar importerade.\nThunderbird bör startas om för att återställa databasen."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Ogiltigt val av mapp"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Det uppstod problem med att importera några meddelanden:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Fel. Visa felsökningskonsolen (Control-Shift-J)"
 	}
 }

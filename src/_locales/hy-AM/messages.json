@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
+	},
+
+	"invalidFolderSelection": {
+		"message": "Թղթապանակի ընտրությունը սխալ է"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Որոշ հաղորդագրություններ ներմուծելիս խնդիրներ առաջացան."
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"
 	}
 }

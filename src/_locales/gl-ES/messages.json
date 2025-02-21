@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Importáronse máis de 200 cartafoles mbox.\nThunderbird debería reiniciarse para restablecer a base de datos."
+	},
+
+	"invalidFolderSelection": {
+		"message": "A selección do cartafol non é válida"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Houbo problemas ao importar algunhas mensaxes:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Erros. Ver a consola de depuración (Control-Shift-J)"
 	}
 }

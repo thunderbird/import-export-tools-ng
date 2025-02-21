@@ -683,5 +683,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "200 個を超える mbox フォルダーがインポートされました。\nデータベースをリセットするには、Thunderbird を再起動する必要があります。"
+	},
+
+	"invalidFolderSelection": {
+		"message": "無効なフォルダ選択"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "いくつかのメッセージのインポート中に問題が発生しました:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  エラー。デバッグ コンソールを表示する (Control-Shift-J)"
 	}
 }

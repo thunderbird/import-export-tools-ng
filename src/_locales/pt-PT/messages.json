@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Mais de 200 pastas mbox importadas.\nO Thunderbird deve ser reiniciado para redefinir o banco de dados."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Seleção de pasta inválida"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Ocorreram problemas ao importar algumas mensagens:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Erros. Veja o console de depuração (Control-Shift-J)"
 	}
 }

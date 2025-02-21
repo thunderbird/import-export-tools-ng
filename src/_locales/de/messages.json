@@ -683,5 +683,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Mehr als 200 Mbox-Ordner wurden importiert.\nThunderbird sollte neu gestartet werden, um die Datenbank zurückzusetzen."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Ungültige Ordnerauswahl"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Beim Importieren einiger Nachrichten sind Probleme aufgetreten:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Fehler. Debug-Konsole anzeigen (Strg-Umschalt-J)"
 	}
 }

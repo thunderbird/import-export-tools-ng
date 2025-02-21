@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Mere end 200 mbox-mapper er importeret.\nThunderbird bør genstartes for at nulstille databasen."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Ugyldigt mappevalg"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Der var problemer med at importere nogle meddelelser:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Fejl. Se fejlfindingskonsollen (Control-Shift-J)"
 	}
 }

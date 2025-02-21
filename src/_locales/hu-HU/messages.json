@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Több mint 200 mbox mappa importálva.\nAz adatbázis visszaállításához újra kell indítani a Thunderbird programot."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Érvénytelen mappaválasztás"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Problémák adódtak néhány üzenet importálásakor:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Hibák. A Debug Console megtekintése (Control-Shift-J)"
 	}
 }

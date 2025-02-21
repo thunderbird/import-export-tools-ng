@@ -670,5 +670,17 @@
     },
     "largeFolderImport.msg": {
 	"message": "Plus de 200 dossiers mbox ont été importés.\nThunderbird doit être redémarré pour réinitialiser la base de données."
-    }
+    },
+
+	"invalidFolderSelection": {
+		"message": "Sélection de dossier non valide"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Il y a eu des problèmes lors de l&#39;importation de certains messages :"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Erreurs. Afficher la console de débogage (Ctrl-Maj-J)"
+	}
 }

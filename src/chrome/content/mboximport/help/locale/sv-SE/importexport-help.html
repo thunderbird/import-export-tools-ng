@@ -20,9 +20,8 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
     <p>
-      - Återställ mboxImportExport-modulen till stabil v7<br />
-      - Ta bort datum från namnet på den anpassade backupmappen<br />
-      - Uppdatera kinesisk (zh-CN) språkversion - @ziqin<br />
+      - Nytt: Export av flera mappar<br />
+      - Mer felhantering för EML-import, mbox-export<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
@@ -76,8 +75,8 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med hjälp av en
-            behållare med kontonamnet.<br />
+            Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med en container
+            med kontonamnet.<br />
             Obs: Detta menyalternativ visas endast när du högerklickar på en kontopost.
           </td>
         </tr>
@@ -339,7 +338,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Exportera de valda meddelandena till filer i klartextformat inklusive bilagor</td>
+          <td>Exportera de markerade meddelandena till filer i klartextformat inklusive bilagor</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
@@ -485,7 +484,7 @@
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Århundradetal (år/100) som ett tvåsiffrigt heltal.</td>
+          <td>Århundrade (år/100) som ett tvåsiffrigt heltal.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
@@ -651,10 +650,10 @@
       <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code> )</li>
       <li>
-        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
+        <code class="code1">%T</code> - inte implementerat (använd <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> - inte implementerat</li>
-      <li><code class="code1">%W</code> - inte implementerad</li>
+      <li><code class="code1">%W</code> - inte implementerat</li>
       <li><code class="code1">%+</code> - inte implementerat</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>
@@ -667,7 +666,7 @@
       <code>| * : &lt; &gt; ? \ / &quot;</code> De engelska (en-US) tokens är tillgängliga i alla språk.
       Lokalspecifika tokens är också tillgängliga och listas under den engelska tabellen.<br /><br />
       Exempel:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Standardformatet<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Använd det anpassade
       datumformatet istället för standard<br />
       <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Med lite anpassad

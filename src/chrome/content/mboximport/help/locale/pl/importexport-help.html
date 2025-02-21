@@ -20,9 +20,8 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Przywrócenie modułu mboxImportExport do stabilnej wersji v7<br />
-      - Usuń datę z nazwy niestandardowego folderu kopii zapasowej<br />
-      - Aktualizacja ustawień regionalnych języka chińskiego (zh-CN) - @ziqin<br />
+      - Nowość: eksportowanie wielu folderów<br />
+      - Więcej obsługi błędów dla importów EML i eksportów mbox<br />
     </p>
     <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
@@ -145,7 +144,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Eksportuj wiadomości folderu jako zestaw plików w formacie PDF</td>
+          <td>Eksportuj wiadomości z folderu jako zestaw plików w formacie PDF</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -597,7 +596,7 @@
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Dzień tygodnia w formacie dziesiętnym (w zakresie od 0 do 6), gdzie niedziela ma wartość 0. Zobacz
+            Dzień tygodnia w formacie dziesiętnym (zakres od 0 do 6), gdzie niedziela ma wartość 0. Zobacz
             także <code class="code1">%u</code> .
           </td>
         </tr>
@@ -804,8 +803,8 @@
     </p>
     <p>
       Obie te preferencje używają tego samego typu rozszerzonych formatów nazewnictwa plików, których używa
-      eksportowany filename wiadomości. Pierwsza jest dla załączników zewnętrznych, druga dla osadzonych
-      (inline) załączników.
+      eksportowany plik wiadomości. Pierwsza jest dla załączników zewnętrznych, druga dla osadzonych (inline)
+      załączników.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>

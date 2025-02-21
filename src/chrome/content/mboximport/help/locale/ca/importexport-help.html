@@ -20,9 +20,8 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Retrocedeix el mòdul mboxImportExport a v7 estable<br />
-      - Elimina la data del nom de la carpeta de còpia de seguretat personalitzada<br />
-      - Actualitza la configuració regional del xinès (zh-CN) - @ziqin<br />
+      - Nou: exportacions de selecció de carpetes múltiples<br />
+      - Més gestió d&#39;errors per a importacions EML, exportacions mbox<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
@@ -351,7 +350,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exporteu els missatges seleccionats a fitxers en format de text sense format</td>
+          <td>Exporteu els missatges seleccionats a fitxers de format de text sense format</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
@@ -444,7 +443,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importa un perfil complet (correu electrònic, extensions, opcions)</td>
+          <td>Importa un perfil complet (correu, extensions, opcions)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -537,15 +536,15 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            L&#39;hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 00 a 23). Vegeu
-            també <code class="code1">%k</code> .
+            Hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 00 a 23). Vegeu també
+            <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            L&#39;hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu
-            també <code class="code1">%l</code> .
+            Hora com a nombre decimal utilitzant un rellotge de 12 hores (interval de 01 a 12). Vegeu també
+            <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
@@ -555,8 +554,8 @@
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu també
-            <code class="code1">%H</code> .
+            L&#39;hora com a nombre decimal utilitzant un rellotge de 24 hores (interval de 0 a 23). Vegeu
+            també <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
@@ -655,7 +654,7 @@
         <code class="code1">%D</code> - no implementat (utilitza <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - l&#39;espai no s&#39;afegeix</li>
+      <li><code class="code1">%e</code> - l&#39;espai no s&#39;ha afegit</li>
       <li><code class="code1">%E</code> - no implementat</li>
       <li><code class="code1">%h</code> - no implementat (utilitza <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - l&#39;espai no s&#39;afegeix</li>

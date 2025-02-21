@@ -20,15 +20,14 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
-      - Povrnitev modula mboxImportExport na stabilno različico 7<br />
-      - Odstranite datum iz imena mape varnostne kopije po meri<br />
-      - Posodobite področne nastavitve za kitajščino (zh-CN) - @ziqin<br />
+      - Novo: izvoz izbire več map<br />
+      - Več obravnavanja napak pri uvozih EML, izvozih mbox<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: nekateri formati niso podprti v vseh funkcijah.<br />
+      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -87,7 +86,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
-          <td>Izvozite eno mapo v datoteko formata mbox</td>
+          <td>Izvozite posamezno mapo v datoteko zapisa mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
@@ -181,7 +180,8 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
+            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, vključno s
+            prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -203,7 +203,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko CSV mape sporočil (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -247,7 +247,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
-          <td>Uvozite vsa sporočila EML iz ene mape</td>
+          <td>Uvozite vsa sporočila EML iz ene same mape</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
@@ -296,7 +296,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Izvozi izbrana sporočila v datoteke formata EML<br />
+            Izvozite izbrana sporočila v datoteke formata EML<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -373,7 +373,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Ustvarite indeksno datoteko HTML za izbrana sporočila</td>
+          <td>Ustvari indeksno datoteko HTML za izbrana sporočila</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
@@ -446,7 +446,7 @@
       Možnost datuma po meri omogoča popoln nadzor nad oblikovanjem datuma, ki se uporablja za obe datoteki v
       indeksu. Tako privzeta oblika »Datum« kot tudi nova oblika po meri »Datum (po meri)« sta na voljo v
       spustnih menijih imen datotek. Datum po meri je mogoče uporabiti tudi z žetonom ${date_custom},
-      uporabljenim v razširjenih imenih datotek po meri. Prvotni (privzeti) format datuma je:<br />
+      uporabljenim v razširjenih imenih datotek po meri. Izvirna (privzeta) oblika datuma je:<br />
       LLLLMMDDHHmm : 202011060808<br /><br />
       Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s funkcijo <code>strftime()</code> Unix.
       Temelji na vratih JavaScript
@@ -566,7 +566,7 @@
         <tr>
           <td><code class="code1">%P</code></td>
           <td>
-            Kot <code class="code1">%p</code> vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
+            Kot <code class="code1">%p</code> , vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
           </td>
         </tr>
         <tr>
@@ -667,7 +667,7 @@
       Razširjeno oblikovanje imena datoteke uporablja žetone. Natančno ime datoteke je mogoče sestaviti z
       uporabo žetonov ter katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki so:
       <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na voljo
-      so tudi žetoni, specifični za jezik, in navedeni pod angleško tabelo.<br /><br />
+      so tudi žetoni, specifični za jezike, in navedeni pod angleško tabelo.<br /><br />
       Primeri:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – privzeta oblika<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – namesto privzetega
@@ -718,7 +718,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardni format datuma. Privzeta oblika je: LLLLMMDDHHmm</td>
+        <td>Standardni format datuma. Privzeti format je: LLLLMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -784,7 +784,7 @@
       Če jih želite uporabljati, jih morate nastaviti v urejevalniku konfiguracij. Za dostop do urejevalnika
       uporabite meni Orodja/Možnosti, nato izberite razdelek Napredno in na dnu bo gumb &#39;Urejevalnik
       konfiguracij&#39;. Če v iskalno vrstico vnesete &#39;importexporttoolsng&#39;, boste dobili vse
-      nastavitve razširitev. Nato lahko po potrebi uredite različne spodnje nastavitve.
+      nastavitve razširitev. Nato lahko po potrebi uredite različne nastavitve spodaj.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
@@ -806,8 +806,8 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Običajno je &#39;Datum&#39; za sporočilo v Thunderbirdu datum, ki ga nastavi pošiljateljev poštni
-      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v prejemnikovem poštnem
-      odjemalcu. Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
+      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v poštnem odjemalcu prejemnika.
+      Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
     </p>
     <h2>Osnovna, globalna funkcija hitre tipke (bližnjice).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -821,7 +821,7 @@
       <code class="notranslate">id</code> - indeks ključa (1-10)<br />
       <code class="notranslate">key</code> - ključ (en znak)<br />
       <code class="notranslate">keycode</code> - ključna koda &#39;VK_*&#39;<br />
-      Vključen je lahko bodisi ključ ali ključna koda, vendar ne obojega<br />
+      Vključen je lahko bodisi ključ ali koda ključa, vendar ne obojega<br />
       <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam ločen s presledki
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />

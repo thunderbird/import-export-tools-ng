@@ -20,9 +20,8 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
     <p>
-      - Vrátenie modulu mboxImportExport do stabilnej verzie 7<br />
-      - Odstrániť dátum z názvu vlastného záložného priečinka<br />
-      - Aktualizujte miestne nastavenie čínštiny (zh-CN) - @ziqin<br />
+      - Novinka: Exporty výberu viacerých priečinkov<br />
+      - Viac spracovania chýb pre importy EML, exporty mbox<br />
     </p>
     <h2 id="main_help">ImportExportTools Prehľad a ponuky NG</h2>
     <p>
@@ -569,7 +568,7 @@
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 +0000 (UTC).</td>
+          <td>Počet sekúnd od epochy, 1970-01-01 00:00:00 + 0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
@@ -637,8 +636,8 @@
       <li><code class="code1">%h</code> – neimplementované (použite <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - medzera sa nepridáva</li>
       <li>
-        <code class="code1">%n</code> – ako <code class="code1">%m</code> , ale bez úvodnej nuly (na nový
-        riadok použite <code class="code1">\n</code> )
+        <code class="code1">%n</code> – ako <code class="code1">%m</code> , ale bez úvodnej nuly (použite
+        <code class="code1">\n</code> pre nový riadok)
       </li>
       <li><code class="code1">%O</code> – neimplementované</li>
       <li>
@@ -778,7 +777,7 @@
     <p>
       Existuje niekoľko nových funkcií a možností, ktoré ešte nie je možné konfigurovať v dialógovom okne
       možností. Keď budú tieto funkcie stabilizované, pridajú sa do používateľského rozhrania.<br />
-      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácií. Na prístup k editoru použite
+      Aby ste ich mohli používať, musia byť nastavené v editore konfigurácie. Na prístup k editoru použite
       ponuku Nástroje/Možnosti, potom vyberte časť Rozšírené a v spodnej časti sa zobrazí tlačidlo „Editor
       konfigurácie“. Ak do vyhľadávacieho panela napíšete „importexporttoolsng“, získate všetky predvoľby
       rozšírenia. Potom môžete podľa potreby upraviť rôzne predvoľby uvedené nižšie.
@@ -805,7 +804,7 @@
     <p>
       Normálne je „Dátum“ správy v Thunderbirde dátum nastavený poštovým klientom odosielateľa. Nastavenie
       tejto možnosti na „pravda“ využíva dátum prijatia v poštovom klientovi príjemcu. Tento dátum sa použije
-      pre oba názvy súborov, ako aj dátum v indexových súboroch.
+      pre oba názvy súborov, ako aj pre dátum v indexových súboroch.
     </p>
     <h2>Základná, globálna funkcia klávesových skratiek (skratky).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

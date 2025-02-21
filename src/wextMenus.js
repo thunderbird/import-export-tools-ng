@@ -415,7 +415,7 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       id: folderCtxMenu_InvalidSelection_Id,
-      title: "Invalid Folder Selection",
+      title: localizeMenuTitle("invalidFolderSelection"),
       visible: false,
       onclick: invalidSelection,
     },

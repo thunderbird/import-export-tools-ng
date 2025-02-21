@@ -117,7 +117,7 @@ var gImporting;
 // cleidigh create folder fix
 var folderCount;
 var warningMsg = ietngExtension.localeData.localizeMessage("Warning.msg");
-    var errorMsg = ietngExtension.localeData.localizeMessage("Error.msg");
+var errorMsg = ietngExtension.localeData.localizeMessage("Error.msg");
 
 
 // make sure there is no lingering ietngStatusText
@@ -1558,10 +1558,13 @@ var importEMLlistener = {
 			this.msgFolder.updateSummaryTotals(true);
 			document.getElementById("IETabortIcon").collapsed = true;
 			gImporting = false;
+			let msgImportErrMsg = ietngExtension.localeData.localizeMessage("messageImportProblems.msg");
+			let viewDbgConsoleMsg = ietngExtension.localeData.localizeMessage("viewDbgConsole.msg");
+
 			if (gEMLimportedErrs) {
 				// give the ui some time
 				await new Promise(r => window.setTimeout(r, 400));
-				Services.prompt.alert(window, warningMsg, "There were problems importing some messages:\n\n" + gEMLimportedErrs + "  Errors. View the Debug Console  (Control-Shift-J)");
+				Services.prompt.alert(window, warningMsg, `${msgImportErrMsg}\n\n${gEMLimportedErrs}${viewDbgConsoleMsg}`);
 			}
 		}
 	},

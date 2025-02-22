@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools Axuda NG</title>
+    <title>ImportExportTools Axuda de NG</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda NG</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools Axuda de NG</div>
+          <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas de lanzamento:</h3>
     <p>
       - Novo: exportacións de selección de cartafoles múltiples<br />
       - Máis tratamento de erros para as importacións de EML e as exportacións de mbox<br />
@@ -42,7 +42,7 @@
       <p>
         O acceso á funcionalidade de IETng faise a través de varios menús diferentes instalados pola
         extensión. As funcións son sensibles ao contexto. Engádense menús para:<br />
-        - O contexto do panel de cartafoles (operación de cartafoles)<br />
+        - O contexto do panel de cartafoles (operación do cartafol)<br />
         - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
         - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
         As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
@@ -256,11 +256,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importa todas as mensaxes EML dun único cartafol, incluíndo estrutura/subcartafoles</td>
+          <td>Importa todas as mensaxes EML dun só cartafol, incluíndo estrutura/subcartafoles</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Copia a ruta do sistema operativo do cartafol seleccionado</td>
+          <td>Copie a ruta do sistema operativo do cartafol seleccionado</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
@@ -455,7 +455,7 @@
       &quot;Data (personalizado)&quot; están dispoñibles nos menús despregables de nomes de ficheiro. A data
       personalizada tamén se pode usar co token ${date_custom} usado nos nomes de ficheiro personalizados
       estendidos. O formato de data orixinal (predeterminado) é:<br />
-      AAAMMDDDHHmm: 202011060808<br /><br />
+      AAAAMMDDHHmm: 202011060808<br /><br />
       O formato de data personalizado utiliza secuencias % que coinciden coa función
       <code>strftime()</code> similar a Unix. Está baseado nun porto JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
@@ -512,8 +512,8 @@
           <td>
             ISO 8601 ano baseado nunha semana co século como número decimal. O ano de 4 díxitos corresponde ao
             número da semana ISO (ver <code class="code1">%V</code> ). Este ten o mesmo formato e valor que
-            <code class="code1">%Y</code> , agás que se o número de semana ISO pertence ao ano anterior ou ao
-            seguinte, utilízase ese ano.
+            <code class="code1">%Y</code> , excepto que se o número da semana ISO pertence ao ano anterior ou
+            ao seguinte, úsase ese ano no seu lugar.
           </td>
         </tr>
         <tr>
@@ -626,7 +626,7 @@
           <td><code class="code1">%z</code></td>
           <td>
             O fuso horario numérico <code class="code1">+hhmm</code> ou <code class="code1">-hhmm</code> (é
-            dicir, o desfase de hora e minuto con respecto ao UTC).
+            dicir, a desfase de hora e minuto respecto da UTC).
           </td>
         </tr>
         <tr>
@@ -867,7 +867,6 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
       Como os atallos son novos e experimentais, tamén engadirei máis documentación no repositorio. Comprobe a
       extensión

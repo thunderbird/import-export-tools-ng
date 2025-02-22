@@ -7,18 +7,18 @@
     <title>Pomocník ImportExportTools NG</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">Pomocník ImportExportTools NG</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">Pomocník ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Poznámky k vydaniu:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu:</h3>
     <p>
       - Novinka: Exporty výberu viacerých priečinkov<br />
       - Viac spracovania chýb pre importy EML, exporty mbox<br />
@@ -446,8 +446,8 @@
       zoznamoch názvu súboru. Vlastný dátum možno použiť aj s tokenom ${date_custom} použitým v rozšírených
       vlastných názvoch súborov. Pôvodný (predvolený) formát dátumu je:<br />
       RRRRMMDDHHmm: 202011060808<br /><br />
-      Vlastný formát dátumu využíva % sekvencie zodpovedajúce funkcii <code>strftime()</code> podobnej Unixu.
-      Je založený na JavaScriptovom porte
+      Vlastný formát dátumu využíva % sekvencie zodpovedajúce funkcii <code>strftime()</code> typu Unix. Je
+      založený na JavaScriptovom porte
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , funkcii na formátovanie dátumu a času.<br />
       Port of strftime() od TH Doana (https://thdoan.github.io/strftime/)<br />
@@ -538,7 +538,7 @@
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Hodina ako desatinné číslo s použitím 12-hodinových hodín (rozsah 1 až 12). Pozri tiež
+            Hodina ako desatinné číslo s použitím 12-hodinového formátu hodín (rozsah 1 až 12). Pozri tiež
             <code class="code1">%I</code> .
           </td>
         </tr>
@@ -804,7 +804,7 @@
     <p>
       Normálne je „Dátum“ správy v Thunderbirde dátum nastavený poštovým klientom odosielateľa. Nastavenie
       tejto možnosti na „pravda“ využíva dátum prijatia v poštovom klientovi príjemcu. Tento dátum sa použije
-      pre oba názvy súborov, ako aj pre dátum v indexových súboroch.
+      pre oba názvy súborov, ako aj dátum v indexových súboroch.
     </p>
     <h2>Základná, globálna funkcia klávesových skratiek (skratky).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -855,7 +855,6 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
       Keďže skratky sú nové a experimentálne, pridám do úložiska aj ďalšiu dokumentáciu. Skontrolujte
       rozšírenie

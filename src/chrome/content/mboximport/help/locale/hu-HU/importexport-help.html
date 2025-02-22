@@ -7,18 +7,18 @@
     <title>ImportExportTools NG súgó</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG súgó</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG súgó</div>
+          <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések:</h3>
     <p>
       - Új: Több mappa kijelölés exportálása<br />
       - Több hibakezelés az EML importnál, mbox exportnál<br />
@@ -52,7 +52,7 @@
     </p>
     <h3>Támogatás:</h3>
     <p>
-      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a GitHub bővítménytárában:
+      Kérjük, tegyen közzé problémákat vagy funkciókra vonatkozó kéréseket a bővítmények GitHub-tárházában:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -104,8 +104,8 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Exportáljon egy mappát az összes almappájával egy mbox formátumú fájlkészletbe, minden almappához
-            egyet, amelyet egyetlen mappába exportál.
+            Exportáljon egy mappát az összes almappájával együtt mbox formátumú fájlkészletbe, minden
+            almappához egyet, amelyet egyetlen mappába exportál.
           </td>
         </tr>
         <tr>
@@ -254,7 +254,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a szerkezetet/almappákat is</td>
+          <td>Importálja az összes EML-üzenetet egyetlen mappából, beleértve a struktúrát/almappákat is</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
@@ -395,7 +395,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Egyetlen kiválasztott üzenet fejlécének másolása a vágólapra</td>
+          <td>Egyetlen kiválasztott üzenet fejléceinek másolása a vágólapra</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -449,8 +449,8 @@
     </table>
     <h2 id="customdate_format_help">Egyéni dátumformátum</h2>
     <p>
-      Az egyéni dátum beállítás lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes
-      körű szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
+      Az egyéni dátum opció lehetővé teszi az indexben található mindkét fájl dátumformázásának teljes körű
+      szabályozását. Mind az alapértelmezett &quot;Dátum&quot; formátum, mind az új egyéni &quot;Dátum
       (egyéni)&quot; formátum elérhető a fájlnév legördülő menüjében. Az egyéni dátum a kiterjesztett egyéni
       fájlnevekben használt ${date_custom} tokennel is használható. Az eredeti (alapértelmezett)
       dátumformátum:<br />
@@ -509,8 +509,8 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hétszámnak felel meg
-            (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
+            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hét számának felel
+            meg (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
             <code class="code1">%Y</code> , kivéve, hogy ha az ISO hét száma az előző vagy a következő évhez
             tartozik, akkor a rendszer azt az évet használja helyette.
           </td>
@@ -601,7 +601,7 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Előnyben részesített dátummegjelenítés az aktuális nyelvi beállításhoz idő nélkül.</td>
+          <td>Előnyben részesített dátummegjelenítés az aktuális területi beállításhoz idő nélkül.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
@@ -609,7 +609,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Az év decimális számként, század nélkül (00 és 99 között).</td>
+          <td>Az év decimális számként, évszázad nélkül (00 és 99 között).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -640,8 +640,8 @@
       <li><code class="code1">%h</code> – nincs implementálva (használd: <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - szóköz nincs hozzáadva</li>
       <li>
-        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (az újsorhoz
-        használja <code class="code1">\n</code> karaktert)
+        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (használja
+        <code class="code1">\n</code> karaktert az újsorhoz)
       </li>
       <li><code class="code1">%O</code> – nincs implementálva</li>
       <li>
@@ -718,7 +718,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Az utótag szövege beállítás értéke.</td>
+        <td>Az utótag szöveg opció értéke.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
@@ -788,12 +788,12 @@
       felülethez.<br />
       Használatukhoz be kell állítani őket a Config Editorban. A szerkesztő eléréséhez használja az
       Eszközök/Opciók menüt, majd válassza a Speciális részt, és alul megjelenik a „Konfigurációszerkesztő”
-      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes kiterjesztési
-      beállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
+      gomb. Ha beírja az „importexporttoolsng” kifejezést a keresősávba, megkapja az összes
+      bővítménybeállítást. Ezután szükség szerint módosíthatja a különböző beállításokat az alábbiakban.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint ez egy
+      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint egy
       üres karakterlánc, ha formázott dátum/idő karakterlánccal, akkor ez megváltoztatja az index
       dátumformátumát.
     </p>
@@ -825,7 +825,7 @@
     </p>
     <p>
       Példa gyorsbillentyű-bejegyzésekre (JSON-objektumok tömbje)<br /><br />
-      <code class="notranslate">id</code> - a kulcsindex (1-10)<br />
+      <code class="notranslate">id</code> – a kulcsindex (1-10)<br />
       <code class="notranslate">key</code> - a kulcs (egy karakter)<br />
       <code class="notranslate">keycode</code> – a &#39;VK_*&#39; meghatározott kulcskód<br />
       Bármelyik kulcs vagy kulcskód szerepelhet, de mindkettő nem<br />
@@ -833,7 +833,7 @@
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - egy közvetlen parancssor<br />
       <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
-      <code class="notranslate">&#39;all&#39;</code> – minden ablak a messenger alatt, írás, keresés<br />
+      <code class="notranslate">&#39;all&#39;</code> – az összes ablak a messenger alatt, írás, keresés<br />
       <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és leszármazottai<br />
       <code class="notranslate">&#39;compose&#39;</code> – az üzenetírási ablak<br />
       <code class="notranslate">&#39;search&#39;</code> – a keresési párbeszédpanel<br /><br />
@@ -864,9 +864,9 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
-      Mivel a parancsikonok újak és kísérletiek, további dokumentációt is hozzáadok a tárhoz. Ellenőrizze az
+      Mivel a parancsikonok újak és kísérleti jellegűek, további dokumentációt is hozzáadok a tárhoz.
+      Ellenőrizze az
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       >
@@ -884,8 +884,7 @@
         - Új eszköztár gomb<br />
         - Továbbfejlesztett súgó, telepítéskor megnyílik<br />
         - Exportálási fiók frissítése<br /><br />
-        Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a teszteléshez nyújtott
-        segítségért:<br /><br />
+        Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />

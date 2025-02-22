@@ -7,25 +7,25 @@
     <title>ImportExportTools NG Hjälp</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Hjälp</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG Hjälp</div>
+          <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Release Notes:</h3>
     <p>
       - Nytt: Export av flera mappar<br />
       - Mer felhantering för EML-import, mbox-export<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Översikt och menyer</h2>
     <p>
-      ImportExportTools NG är en uppföljningstillägg baserat på originalverket av Paolo &quot;Kaosmos&quot;.
+      ImportExportTools NG är en uppföljningstillägg baserad på originalverket av Paolo &quot;Kaosmos&quot;.
       Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat inklusive: Obs:
       Vissa format stöds inte i alla funktioner.<br />
       - mbox<br />
@@ -36,7 +36,7 @@
       - CSV (kommaseparerade värden)<br />
       - PDF<br /><br />
       Även om det mesta av funktionaliteten för kretsar kring meddelanden, finns det också stöd för import och
-      export av Thunderbird-profiler. Exporter kan dessutom innehålla en HTML- eller CSV-indexfil.
+      export av Thunderbird-profiler. Exporter kan också innehålla en HTML- eller CSV-indexfil.
       Säkerhetskopiering av Thunderbird-profilen är en annan funktion.<br />
       <p>
         Tillgång till IETng-funktioner görs genom flera olika menyer som installeras av tillägget.
@@ -186,7 +186,7 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Exportera mappmeddelanden som en enda CSV-fil (Comma Separated Values) textformat, bilagor ingår
+            Exportera mappmeddelandena som en enda CSV-fil (kommaseparerade värden) textformat, bilagor ingår
             inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
@@ -448,7 +448,7 @@
       (standard) datumformatet är:<br />
       ÅÅÅÅMMDDHHmm : 202011060808<br /><br />
       Det anpassade datumformatet använder %-sekvenser som matchar den <code>strftime()</code> Unix-liknande
-      funktionen. Den är baserad på JavaScript-porten
+      funktionen. Den är baserad på en JavaScript-port av
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , en funktion för att formatera datum och tid.<br />
       Port of strftime() av TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -639,7 +639,7 @@
         <code class="code1">%n</code> - som <code class="code1">%m</code> , men ingen inledande nolla (använd
         <code class="code1">\n</code> för nyrad)
       </li>
-      <li><code class="code1">%O</code> - ej implementerad</li>
+      <li><code class="code1">%O</code> - inte implementerat</li>
       <li>
         <code class="code1">%r</code> - inte implementerad (använd <code class="code1">%I:%M:%S %p</code> )
       </li>
@@ -652,8 +652,8 @@
       <li>
         <code class="code1">%T</code> - inte implementerat (använd <code class="code1">%H:%M:%S</code> )
       </li>
-      <li><code class="code1">%U</code> - inte implementerat</li>
-      <li><code class="code1">%W</code> - inte implementerat</li>
+      <li><code class="code1">%U</code> - inte implementerad</li>
+      <li><code class="code1">%W</code> - inte implementerad</li>
       <li><code class="code1">%+</code> - inte implementerat</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>
@@ -810,9 +810,9 @@
     <h2>Grundläggande, global snabbknappsfunktion (genvägar).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Denna nya inställning tillåter användaren att ställa in upp till 10 kortkommandon. Genvägarna kan utföra
-      de flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner.
-      Inställningssträngen är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
+      Denna nya inställning låter användaren ställa in upp till 10 kortkommandon. Genvägarna kan utföra de
+      flesta av ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner. Inställningssträngen
+      är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är som följer:
     </p>
     <p>
       Exempel på kortkommandon (array av JSON-objekt)<br /><br />
@@ -855,7 +855,6 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
       Eftersom genvägarna är nya och experimentella kommer jag också att lägga till mer dokumentation i
       förvaret. Kontrollera tillägget

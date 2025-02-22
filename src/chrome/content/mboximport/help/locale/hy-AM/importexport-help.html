@@ -7,18 +7,18 @@
     <title>ImportExportTools NG Օգնություն</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Օգնություն</div>
-          <div id="extVersion" style="padding-left: 4px;">վեր</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG Օգնություն</div>
+          <div id="extVersion" style="padding-left: 4px">վեր</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Թողարկման նշումներ.</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Թողարկման նշումներ.</h3>
     <p>
       - Նոր. Բազմաթիվ թղթապանակների ընտրության արտահանում<br />
       - EML ներմուծման, mbox արտահանման ավելի շատ սխալների կառավարում<br />
@@ -27,7 +27,7 @@
     <p>
       ImportExportTools NG-ը լրացուցիչ ընդլայնում է, որը հիմնված է Պաոլոյի «Կաոսմոսի» բնօրինակ աշխատանքի վրա:
       Ընդլայնումը առաջարկում է բազմաթիվ ներմուծման և արտահանման գործառույթներ, որոնք աջակցում են մի քանի
-      տարբեր ֆայլերի ձևաչափեր, այդ թվում՝ Նշում. որոշ ձևաչափեր չեն ապահովվում բոլոր գործառույթներում:<br />
+      տարբեր ֆայլերի ձևաչափեր, ներառյալ. Նշում. որոշ ձևաչափեր չեն ապահովվում բոլոր գործառույթներում:<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -275,7 +275,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Բացեք ընտրված թղթապանակի ՕՀ ուղին</td>
+          <td>Բացեք ընտրված թղթապանակի OS ուղին</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -312,7 +312,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Արտահանել ընտրված հաղորդագրությունները EML ձևաչափի ֆայլեր<br />
+            Արտահանեք ընտրված հաղորդագրությունները EML ձևաչափի ֆայլեր<br />
             Սա նաև ստեղծում է HTML ինդեքսային ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրություն:
           </td>
         </tr>
@@ -344,7 +344,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Արտահանեք ընտրված հաղորդագրությունները PDF ձևաչափի ֆայլեր</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները PDF ֆորմատի ֆայլեր</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -465,7 +465,7 @@
       նշանով, որն օգտագործվում է ընդլայնված հատուկ ֆայլերի անուններում: Ամսաթվի սկզբնական (կանխադրված) ձևաչափը
       հետևյալն է.<br />
       YYYYMMDDHHmm: 202011060808<br /><br />
-      Մաքսային ամսաթվի ձևաչափն օգտագործում է % հաջորդականություններ, որոնք համապատասխանում են
+      Մաքսային ամսաթվի ձևաչափը օգտագործում է % հաջորդականություններ, որոնք համապատասխանում են
       <code>strftime()</code> Unix-ի նման ֆունկցիոնալությանը: Այն հիմնված է
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       -ի JavaScript պորտի վրա՝ ամսաթիվը և ժամը ձևաչափելու ֆունկցիա:<br />
@@ -510,7 +510,7 @@
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Ամսվա օրը որպես տասնորդական թիվ (1-ից 31 միջակայք):</td>
+          <td>Ամսվա օրը որպես տասնորդական թիվ (1-ից մինչև 31 միջակայք):</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
@@ -571,7 +571,7 @@
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Րոպեը որպես տասնորդական թիվ (00-ից մինչև 59 միջակայք):</td>
+          <td>Րոպեն որպես տասնորդական թիվ (00-ից մինչև 59 միջակայք):</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
@@ -603,7 +603,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             Ընթացիկ տարվա ISO 8601 շաբաթվա համարը որպես տասնորդական թիվ (01-ից մինչև 53 միջակայք), որտեղ 1-ին
-            շաբաթն առաջին շաբաթն է, որն ունի առնվազն 4 օր նոր տարում (այսինքն, առաջին հինգշաբթին):
+            շաբաթն այն առաջին շաբաթն է, որն ունի առնվազն 4 օր նոր տարում (այսինքն՝ առաջին հինգշաբթին):
           </td>
         </tr>
         <tr>
@@ -623,7 +623,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Տարին որպես տասնորդական թիվ՝ առանց դարի (00-ից մինչև 99 միջակայք):</td>
+          <td>Տարին որպես տասնորդական թիվ առանց դարի (00-ից մինչև 99 միջակայք):</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -649,10 +649,10 @@
         <code class="code1">%D</code> - չի իրականացվել (օգտագործել <code class="code1">%m/%d/%y</code> կամ
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - տարածք չի ավելացվել</li>
+      <li><code class="code1">%e</code> - տարածություն ավելացված չէ</li>
       <li><code class="code1">%E</code> - չի իրականացվում</li>
       <li><code class="code1">%h</code> - չի իրականացվել (օգտագործել <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - տարածություն չի ավելացվել</li>
+      <li><code class="code1">%k</code> - բացատ չի ավելացվել</li>
       <li>
         <code class="code1">%n</code> - նման է <code class="code1">%m</code> , բայց առանց սկզբնական զրոյի
         (օգտագործեք <code class="code1">\n</code> նոր տողի համար)
@@ -745,7 +745,7 @@
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Նշան (en-ԱՄՆ)</td>
+        <td>Տոկեն (en-ԱՄՆ)</td>
         <td>Տեղայնացված (<span id="locale1"></span> ) նշան</td>
       </tr>
       <tr>
@@ -801,7 +801,7 @@
       Դրանք օգտագործելու համար դրանք պետք է տեղադրվեն Config Editor-ում: Խմբագիր մուտք գործելու համար
       օգտագործեք Գործիքներ/Ընտրանքներ ընտրացանկը, այնուհետև ընտրեք Ընդլայնված բաժինը և ներքևում կլինի «Config
       Editor» կոճակը: Եթե որոնման տողում մուտքագրեք «importexporttoolsng», դուք կստանաք ընդլայնման բոլոր
-      նախապատվությունները: Դուք կարող եք այնուհետև խմբագրել ստորև ներկայացված տարբեր նախապատվությունները՝ ըստ
+      նախապատվությունները: Այնուհետև կարող եք խմբագրել ստորև բերված տարբեր նախապատվությունները՝ ըստ
       անհրաժեշտության:
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
@@ -821,7 +821,7 @@
     <p>
       Այս երկու նախապատվություններն օգտագործում են նույն տեսակի ֆայլերի անվանման ընդլայնված ձևաչափեր, որոնք
       օգտագործում է արտահանվող հաղորդագրությունների ֆայլի անունը: Առաջինը արտաքին կցորդների համար է, երկրորդը՝
-      ներկառուցված (ներկառուցված) կցորդների համար:
+      ներկառուցված (ներդիր) կցորդների համար։
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
@@ -842,7 +842,7 @@
       <code class="notranslate">id</code> - հիմնական ցուցանիշը (1-10)<br />
       <code class="notranslate">key</code> - բանալին (մեկ նիշ)<br />
       <code class="notranslate">keycode</code> - «VK_*» սահմանված բանալի կոդը<br />
-      Բանալին կամ բանալի կոդը կարող են ներառվել, բայց ոչ երկուսն էլ<br />
+      Բանալին կամ բանալու կոդը կարող են ներառվել, բայց ոչ երկուսն էլ<br />
       <code class="notranslate">modifiers</code> - հիմնական մոդիֆիկատորներ, բացատով առանձնացված ցուցակ
       («վերահսկում», «shift», «alt», «accel»)<br />
       <code class="notranslate">oncommand</code> - ուղղակի հրամանի տող<br />
@@ -879,7 +879,6 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
       Քանի որ դյուրանցումները նոր են և փորձնական, ես նաև լրացուցիչ փաստաթղթեր կավելացնեմ պահեստում: Ստուգեք
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"

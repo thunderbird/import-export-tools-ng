@@ -445,7 +445,7 @@ async function trytocopyMAILDIR(params) {
 		fp.open(resolve);
 	});
 	if (res !== Ci.nsIFilePicker.returnOK) {
-		return;
+		return { status: "cancel" };
 	}
 
 	var destFile = fp.file;
@@ -525,8 +525,10 @@ async function trytocopyMAILDIR(params) {
 	// 3. update the database by using our fancy new reindexDBandRebuildSummary
 	try {
 		mboxImportExport.reindexDBandRebuildSummary(newFolder);
+		return { status: "ok" };
 	} catch (e) {
 		console.log(e);
+		return { status: "error", ex };
 	}
 }
 

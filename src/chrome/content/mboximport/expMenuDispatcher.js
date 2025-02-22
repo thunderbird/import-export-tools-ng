@@ -179,7 +179,7 @@ async function expMenuDispatcher(data) {
 			rv = await mboxImportExport.importMboxSetup(data.params);
 			break;
 		case "WXMCMD_ImpMaildirFiles":
-			trytocopyMAILDIR(data.params);
+			rv = await trytocopyMAILDIR(data.params);
 			break;
 		case "WXMCMD_ImpEML":
 			rv = await importEMLs(data.params);

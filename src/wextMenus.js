@@ -968,18 +968,21 @@ async function wextctx_folderMenu(ctxEvent, tab) {
 
   var params = {};
   params.targetWinId = tab.windowId;
-  var selectedFolders = [ctxEvent.selectedFolder];
+  var selectedFolders;
+  if (ctxEvent?.selectedFoldes) {
+    selectedFolders = ctxEvent.selectedFolder;
+  } else {
+    selectedFolders = [ctxEvent.selectedFolder];
+  }
 
   if ((ctxEvent.menuItemId.includes("Recursive") ||
     ctxEvent.menuItemId.includes("SubFolders")) &&
-    ctxEvent?.selectedFolders.length > 1) {
-    let prunedFolders = ctxEvent.selectedFolders;
-    ctxEvent.selectedFolders.forEach(folder => {
+    selectedFolders.length > 1) {
+    let prunedFolders = selectedFolders;
+    selectedFolders.forEach(folder => {
       prunedFolders = prunedFolders.filter(pfolder => pfolder == folder || !pfolder.path.startsWith(folder.path))
     });
     selectedFolders = prunedFolders;
-  } else if (ctxEvent.selectedFolders && ctxEvent?.selectedFolders.length > 1) {
-    selectedFolders = ctxEvent.selectedFolders;
   }
 
   var rv;

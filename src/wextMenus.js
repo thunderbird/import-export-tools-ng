@@ -978,7 +978,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
       prunedFolders = prunedFolders.filter(pfolder => pfolder == folder || !pfolder.path.startsWith(folder.path))
     });
     selectedFolders = prunedFolders;
-  } else if (ctxEvent?.selectedFolders.length > 1) {
+  } else if (ctxEvent.selectedFolders && ctxEvent?.selectedFolders.length > 1) {
     selectedFolders = ctxEvent.selectedFolders;
   }
 

@@ -867,71 +867,71 @@ async function wextctx_ExportAs(ctxEvent, tab) {
 
   try {
 
-  if (!ctxEvent.pageUrl) {
+    if (!ctxEvent.pageUrl) {
 
-    params.selectedFolder = ctxEvent.displayedFolder;
-    params.selectedAccount = ctxEvent.selectedAccount;
-    params.selectedMessages = ctxEvent.selectedMessages;
+      params.selectedFolder = ctxEvent.displayedFolder;
+      params.selectedAccount = ctxEvent.selectedAccount;
+      params.selectedMessages = ctxEvent.selectedMessages;
 
-  } else {
-    let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
-    params.selectedMessages = { id: 0, messages: [msg] };
-    params.selectedFolder = msg.folder;
-  }
+    } else {
+      let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
+      params.selectedMessages = { id: 0, messages: [msg] };
+      params.selectedFolder = msg.folder;
+    }
 
-  if (ctxEvent.menuItemId.includes("MsgsOnly")) {
-    params.msgsOnly = true;
-  }
-  if (ctxEvent.menuItemId.includes("Atts")) {
-    params.saveAtts = true;
-  }
-  if (ctxEvent.menuItemId.includes("Index")) {
-    params.createIndex = true;
-  }
+    if (ctxEvent.menuItemId.includes("MsgsOnly")) {
+      params.msgsOnly = true;
+    }
+    if (ctxEvent.menuItemId.includes("Atts")) {
+      params.saveAtts = true;
+    }
+    if (ctxEvent.menuItemId.includes("Index")) {
+      params.createIndex = true;
+    }
 
-  switch (ctxEvent.menuItemId) {
-    case msgCtxMenu_Exp_EMLFormatMsgsOnly_Id:
-    case msgCtxMenu_Exp_EMLFormatCreateIndex_Id:
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
-    case msgCtxMenu_Exp_HTMLFormatSaveAtts_Id:
-    case msgCtxMenu_Exp_HTMLFormatCreateIndex_Id:
-    case msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_PDFFormat_Id:
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id:
-    case msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id:
-    case msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
-    case msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PlainText_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_CSVFormat_Id:
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CSV_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_MboxFormatNewMbox_Id:
-      params.mboxExpType = "newMbox";
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_MboxFormatAppendMbox_Id:
-      params.mboxExpType = "appendMbox";
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
-      break;
-    case msgCtxMenu_Exp_IndexHTML_Id:
-      params.indexType = "indexHTML";
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
-      break;
-    case msgCtxMenu_Exp_IndexCSV_Id:
-      params.indexType = "indexCSV";
-      rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
-      break;
+    switch (ctxEvent.menuItemId) {
+      case msgCtxMenu_Exp_EMLFormatMsgsOnly_Id:
+      case msgCtxMenu_Exp_EMLFormatCreateIndex_Id:
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_EML_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id:
+      case msgCtxMenu_Exp_HTMLFormatSaveAtts_Id:
+      case msgCtxMenu_Exp_HTMLFormatCreateIndex_Id:
+      case msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id:
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_HTML_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_PDFFormat_Id:
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PDF_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id:
+      case msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id:
+      case msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id:
+      case msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id:
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_PlainText_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_CSVFormat_Id:
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CSV_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_MboxFormatNewMbox_Id:
+        params.mboxExpType = "newMbox";
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_MboxFormatAppendMbox_Id:
+        params.mboxExpType = "appendMbox";
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Mbox_Format", params: params });
+        break;
+      case msgCtxMenu_Exp_IndexHTML_Id:
+        params.indexType = "indexHTML";
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
+        break;
+      case msgCtxMenu_Exp_IndexCSV_Id:
+        params.indexType = "indexCSV";
+        rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Index", params: params });
+        break;
 
-    default:
-      break;
-  }
+      default:
+        break;
+    }
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("Error.msg"), `${ex}\n\n${ex.stack}`);
 
@@ -988,7 +988,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   var rv;
 
   for (const [index, folder] of selectedFolders.entries()) {
-    
+
     params.selectedFolder = folder;
     if (index == 0) {
       params.warnings = true;
@@ -1226,6 +1226,7 @@ async function menusUpdate(info, tab) {
   }
 
   // deal with folderCtx for maildir and account entries
+  console.log(info)
 
   var folderPath;
   var accountId;
@@ -1271,7 +1272,7 @@ async function menusUpdate(info, tab) {
       await messenger.menus.update(folderCtxMenu_OpenFolderDir_Id, { visible: true });
     }
     await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
-    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+    await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_AllMessages_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Exp_SearchExport_Id, { visible: false });
     await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: false });
@@ -1295,16 +1296,21 @@ async function menusUpdate(info, tab) {
       await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: false });
       await messenger.menus.refresh();
     } else {
-      await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
-
+      if (!accountId) {
+        await messenger.menus.update(folderCtxMenu_Imp_EMLFormat_Id, { visible: true });
+      }
       // we are a LF, check store type
       let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
       // 0 = mbox
       if (mailStoreType == 0) {
         await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
         await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
-        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
-        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+        if (accountId) {
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+        } else {
+          await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+        }
       } else {
         await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
       }
@@ -1317,14 +1323,24 @@ async function menusUpdate(info, tab) {
 
   // For folder ctx menu show or hide items based on store type, mbox or maildir
   if (info.menuIds[0] == folderCtxMenu_TopId) {
-
+    console.log("mstore check ")
     let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
     // 0 = mbox
     if (mailStoreType == 0) {
+      console.log("mstore check mbox", accountId)
+
       await messenger.menus.update(folderCtxMenu_Imp_MaildirFiles_Id, { visible: false });
       await messenger.menus.update(folderCtxMenu_Exp_FolderMbox_Id, { visible: true });
       await messenger.menus.update(folderCtxMenu_Exp_RemoteFolderMbox_Id, { visible: false });
-      await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+      if (!accountId) {
+        console.log("non ac")
+
+        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: true });
+        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { enabled: true });
+      } else if ((await messenger.accounts.get(accountId)).type != "imap" ||
+        (await messenger.accounts.get(accountId)).type != "nntp") {
+        await messenger.menus.update(folderCtxMenu_Imp_MboxFiles_Id, { visible: false });
+      }
       await messenger.menus.update("folderCtxMenu_Sep1", { visible: true });
       await messenger.menus.refresh();
       // 1 = maildir
@@ -1338,6 +1354,7 @@ async function menusUpdate(info, tab) {
     }
   }
 
+  /*
   // disable for importing mbox to imaap or nntp
   if (info.menuIds[0] == folderCtxMenu_TopId) {
     if (info.selectedFolder &&
@@ -1349,6 +1366,7 @@ async function menusUpdate(info, tab) {
     }
     await messenger.menus.refresh();
   }
+*/
 
   // disable items when multiple folders selected 
   if (info.menuIds[0] == folderCtxMenu_TopId && info.selectedFolders && info.selectedFolders.length > 1) {

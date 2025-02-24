@@ -1368,6 +1368,7 @@ async function setDefaultMenusUpdate(info) {
   await messenger.menus.update("folderCtxMenu_Sep3", { visible: true });
   await messenger.menus.update("folderCtxMenu_Sep4", { visible: true });
   await messenger.menus.update("folderCtxMenu_Sep5", { visible: true });
+  await messenger.menus.update("folderCtxMenu_Sep6", { visible: true });
 
   // enable submenus
   await messenger.menus.update(folderCtxMenu_Exp_FolderMboxOnly_Id, { visible: true });
@@ -1396,6 +1397,7 @@ async function setNoMenusUpdate(info) {
   await messenger.menus.update("folderCtxMenu_Sep3", { visible: false });
   await messenger.menus.update("folderCtxMenu_Sep4", { visible: false });
   await messenger.menus.update("folderCtxMenu_Sep5", { visible: false });
+  await messenger.menus.update("folderCtxMenu_Sep6", { visible: false });
   await messenger.menus.refresh();
 }
 

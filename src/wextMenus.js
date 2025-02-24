@@ -969,8 +969,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   var params = {};
   params.targetWinId = tab.windowId;
   var selectedFolders;
-  if (ctxEvent?.selectedFoldes) {
-    selectedFolders = ctxEvent.selectedFolder;
+  if (ctxEvent?.selectedFolders) {
+    selectedFolders = ctxEvent.selectedFolders;
   } else {
     selectedFolders = [ctxEvent.selectedFolder];
   }
@@ -986,6 +986,8 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   }
 
   var rv;
+
+  console.log(selectedFolders)
 
   for (const [index, folder] of selectedFolders.entries()) {
 

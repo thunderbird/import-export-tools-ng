@@ -987,8 +987,6 @@ async function wextctx_folderMenu(ctxEvent, tab) {
 
   var rv;
 
-  console.log(selectedFolders)
-
   for (const [index, folder] of selectedFolders.entries()) {
 
     params.selectedFolder = folder;
@@ -1228,7 +1226,6 @@ async function menusUpdate(info, tab) {
   }
 
   // deal with folderCtx for maildir and account entries
-  console.log(info)
 
   var folderPath;
   var accountId;
@@ -1236,15 +1233,14 @@ async function menusUpdate(info, tab) {
 
   if (info.selectedAccount) {
     accountId = info.selectedAccount.id;
-  } else {
+  } else if (info.selectedFolder) {
     accountId = info.selectedFolder.accountId;
+  } else {
+    accountId = info.displayedFolder.accountId;
   }
-  console.log("account", accountId)
 
   accountType = (await messenger.accounts.get(accountId)).type;
   let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
-
-  console.log("accountT", accountType)
 
   var selectedFolders;
   if (info?.selectedFolders) {
@@ -1280,7 +1276,6 @@ async function menusUpdate(info, tab) {
 
   // update for an account item
   if (info.selectedAccount) {
-    console.log("account")
     await messenger.menus.update(folderCtxMenu_Exp_Account_Id, { visible: true });
 
     let newTitle = localizeMenuTitle("folderCtxMenu_Exp_Account_Id.title") + " - " + info.selectedAccount.name;

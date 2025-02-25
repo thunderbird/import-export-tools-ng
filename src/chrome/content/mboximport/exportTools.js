@@ -160,8 +160,8 @@ async function exportSelectedMsgs(type, params) {
 	9 = Plain Text with attachments
 	*/
 
-	//console.log("export selected messages ")
-	//console.log(params)
+	console.log("export selected messages ")
+	console.log(params)
 
 	var needIndex = false;
 	if (type > 99) {
@@ -271,14 +271,20 @@ async function exportSelectedMsgs(type, params) {
 		try {
 			imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
 		} catch (e) {
-			return { status: "error", e };
+		console.log("exi",e)
+			return e;
+			return { status: "error", errMsg: e };
 		}
 
+		console.log("af f")
+
 		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
+			/*
 			var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
 			if (!go) {
 				return { status: "cancel" };
 			}
+*/
 			isOffLineImap = true;
 		} else {
 			isOffLineImap = false;
@@ -306,6 +312,7 @@ async function exportSelectedMsgs(type, params) {
 
 		var hdrArray;
 
+		console.log("bef exp")
 		switch (type) {
 			case 1:
 				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
@@ -356,6 +363,8 @@ async function exportSelectedMsgs(type, params) {
 
 		return { status: "ok" };
 	} catch (ex) {
+		console.log("ex", ex)
+
 		let errTitle = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
 		let errMsg = ex;
 		if (ex.extendedMsg) {
@@ -459,7 +468,6 @@ async function exportAllMsgs(type, params) {
 				}
 			}
 				*/
-				
 		}
 		IETglobalFile = file.clone();
 		if (type !== 3 && type !== 5) {

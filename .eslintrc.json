@@ -71,7 +71,7 @@
 		"mozilla/use-chromeutils-generateqi": "off",
 
 		"quotes":"off",
-		"semi": "error",
+		"semi": ["error", "always"],
 		"complexity": ["error", { "max": 80 }],
 
 		"no-restricted-properties": [

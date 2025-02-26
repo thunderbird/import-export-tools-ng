@@ -239,7 +239,7 @@ async function exportSelectedMsgs(type, params) {
 
 		var msgUris = [];
 
-		msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+		msgUris = await ietngUtils.getNativeSelectedMessages(params.selectedMessages);
 
 		// Use first message to get current folder
 		var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);

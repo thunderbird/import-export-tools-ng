@@ -969,10 +969,14 @@ async function wextctx_folderMenu(ctxEvent, tab) {
   var params = {};
   params.targetWinId = tab.windowId;
   var selectedFolders;
-  if (ctxEvent?.selectedFolders) {
+  if (ctxEvent.selectedFolders) {
     selectedFolders = ctxEvent.selectedFolders;
-  } else {
+  } else if (ctxEvent.selectedFolder) {
     selectedFolders = [ctxEvent.selectedFolder];
+  } else if (ctxEvent.selectedAccount) {
+    selectedFolders = "/";
+  } else {
+    return;
   }
 
   if ((ctxEvent.menuItemId.includes("Recursive") ||
@@ -1021,7 +1025,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
             params.includeSubfolders = false;
             params.flattenSubfolders = false;
             rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
-            break;
+            return;
           case folderCtxMenu_Exp_RemoteFolderMbox_Id:
             params.localFolder = false;
             params.zipped = false;
@@ -1071,6 +1075,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
           default:
             break;
         }
+
         rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ExpFolderMboxFormat", params: params });
         break;
       case folderCtxMenu_Imp_MboxFiles_Id:

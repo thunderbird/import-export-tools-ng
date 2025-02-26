@@ -57,7 +57,7 @@ async function expMenuDispatcher(data) {
 	// console.log("expMenuDispacher focused: ", window.document.hasFocus());
 	// console.log(window)
 	if (data.params.tabType != "messageDisplay" && data.params.targetWinId != dispatcherWinId) {
-		console.log("Not for us: ", data.params.targetWinId)
+		console.log("Not for us: ", data.params.targetWinId);
 		return;
 	}
 
@@ -218,7 +218,7 @@ async function expMenuDispatcher(data) {
 	}
 	return rv;
 }  catch (ex) {
-	Services.prompt.alert(window, "Exception", e`${ex}\n\n${ex.stack}`);
+	Services.prompt.alert(window, "Exception", `${ex}\n\n${ex.stack}`);
 }
 }
 

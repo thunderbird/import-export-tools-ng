@@ -1486,15 +1486,12 @@ async function importEMLs(params) {
 var importEMLlistener = {
 
 	onStartCopy: function () {
-		console.log("start")
 	},
 
 	OnStartCopy: function () {
-		console.log("start")
 	},
 
 	onStopCopy: function () {
-		console.log("stop")
 		importEMLlistener.next();
 	},
 
@@ -1556,9 +1553,7 @@ var importEMLlistener = {
 			trytoimportEML(nextFile, this.msgFolder, this.removeFile, this.fileArray, false);
 		} else {
 			// At the end we update the fodler view and summary
-			ietngUtils.rebuildSummary(this.msgFolder);
-			//this.msgFolder.updateFolder(msgWindow);
-			//this.msgFolder.updateSummaryTotals(true);
+			await ietngUtils.rebuildSummary(this.msgFolder);
 			document.getElementById("IETabortIcon").collapsed = true;
 			gImporting = false;
 			let msgImportErrMsg = ietngExtension.localeData.localizeMessage("messageImportProblems.msg");

@@ -335,51 +335,6 @@ var ietngUtils = {
     return;
   },
 
-  createSubfolder2: async function (msgFolder, subFolderName, tryRecovery) {
-
-    
-      // createSubfolder will fail under some circumstances when
-      // doing large imports. Failures start around 250+ and become
-      // persistent around 500+. The failures above 500 are likely
-      // do to Windows file descriptor limits.
-      // A rebuildSummary followed by a createSubfolder retry
-      // recovers the operation in most circumstances.
-      // Odd database behaviors have sometimes been observed
-      // even if recovery succeeded
-
-      var res;
-
-      try {
-        console.log("call wext", subFolderName, msgFolder.name)
-        res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
-        console.log("af wext", res)
-
-      } catch (ex) {
-				if (ex.message.includes("already exists in")) {
-          console.log("IETNG: Folder exists");
-          return;
-        }
-        try {
-          console.log(`IETNG: createSubfolder failed, retry for: ${subFolderName}`);
-          await new Promise(r => this.top.setTimeout(r, 100));
-          await this.rebuildSummary(msgFolder);
-          await new Promise(r => this.top.setTimeout(r, 1000));
-
-          res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
-
-          console.log("IETNG: Recovery succeeded");
-        } catch (ex) {
-          console.log("IETNG: Recovery failed", ex);
-          // extend exception to include msg with subfolder name
-          let createSubfolderErrMsg = this.top.ietngAddon.extension.localeData.localizeMessage("createSubfolderErr.msg");
-
-          ex.extendedMsg = `${createSubfolderErrMsg} ${subFolderName}`;
-          console.log(`IETNG: ${ex.extendedMsg}`);
-        }
-      }
-    return res;
-  },
-
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
 
     const folderAddedPromise = new Promise(async (resolve, reject) => {

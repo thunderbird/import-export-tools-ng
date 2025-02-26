@@ -213,10 +213,7 @@ async function expMenuDispatcher(data) {
 			break;
 	}
 
-	if (!rv || rv == typeof Error) {
-		if (!rv) {
-			rv = Error("Undefined rv: \n\nexpMenuDispatcher");
-		}
+	if (rv == typeof Error) {
 		throw (rv);
 	}
 	return rv;

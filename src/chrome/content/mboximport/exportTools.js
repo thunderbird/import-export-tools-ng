@@ -268,14 +268,13 @@ async function exportSelectedMsgs(type, params) {
 
 		let imapFolder = {};
 
-		try {
-			imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
-		} catch (e) {
-		console.log("exi",e)
-			return { status: "error", errMsg: e.Message };
-		}
+		// try {
+		// 	imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
+		// } catch (e) {
+		// console.log("exi",e)
+		// 	return { status: "error", errMsg: e.message };
+		// }
 
-		console.log("af f")
 
 		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
 			/*

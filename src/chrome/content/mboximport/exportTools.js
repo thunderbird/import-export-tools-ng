@@ -272,8 +272,7 @@ async function exportSelectedMsgs(type, params) {
 			imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
 		} catch (e) {
 		console.log("exi",e)
-			return e;
-			return { status: "error", errMsg: e };
+			return { status: "error", errMsg: e.Message };
 		}
 
 		console.log("af f")

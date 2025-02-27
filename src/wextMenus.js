@@ -1206,12 +1206,15 @@ async function invalidSelection() {
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
 
+  //console.log(info)
+
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
   if (info.contexts.includes("page")) {
     await messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
     await messenger.menus.update(msgCtxMenu_TopId, { visible: (tab.type == "mail" || tab.type == "messageDisplay") });
     await messenger.menus.refresh();
+    return;
   } else {
     await messenger.menus.update(msgDisplayCtxMenu_Top_Id, { visible: false });
     await messenger.menus.update(msgCtxMenu_TopId, { visible: true });
@@ -1452,7 +1455,7 @@ async function openOptions(event, tab) {
   params.targetWinId = (await messenger.windows.getCurrent()).id;
   params.tabType = tab.type;
 
-  rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
+  let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
 }
 
 // import eml/rfv822 msg attachment as new msg in current folder

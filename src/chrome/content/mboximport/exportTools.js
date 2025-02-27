@@ -158,10 +158,11 @@ async function exportSelectedMsgs(type, params) {
 	7 = CSV (with body)
 	8 = HTML with attachments
 	9 = Plain Text with attachments
+	10 = PDF
 	*/
 
-	console.log("export selected messages ")
-	console.log(params)
+	//console.log("export selected messages ")
+	//console.log(params)
 
 	var needIndex = false;
 	if (type > 99) {
@@ -268,21 +269,7 @@ async function exportSelectedMsgs(type, params) {
 
 		let imapFolder = {};
 
-		// try {
-		// 	imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
-		// } catch (e) {
-		// console.log("exi",e)
-		// 	return { status: "error", errMsg: e.message };
-		// }
-
-
 		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
-			/*
-			var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-			if (!go) {
-				return { status: "cancel" };
-			}
-*/
 			isOffLineImap = true;
 		} else {
 			isOffLineImap = false;
@@ -310,7 +297,6 @@ async function exportSelectedMsgs(type, params) {
 
 		var hdrArray;
 
-		console.log("bef exp")
 		switch (type) {
 			case 1:
 				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);

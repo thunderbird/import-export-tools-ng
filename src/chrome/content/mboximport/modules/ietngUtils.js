@@ -21,6 +21,8 @@ var EXPORTED_SYMBOLS = ["ietngUtils"];
 
 var ietngUtils = {
 
+  _self: this,
+
   Services: globalThis.Services || ChromeUtils.import(
     'resource://gre/modules/Services.jsm'
   ).Services,
@@ -336,7 +338,6 @@ var ietngUtils = {
   },
 
   createSubfolder: async function (msgFolder, subFolderName, tryRecovery) {
-
     const folderAddedPromise = new Promise(async (resolve, reject) => {
       let folderListener = {
         folderAdded: function (aFolder) {

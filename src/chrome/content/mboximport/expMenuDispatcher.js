@@ -35,7 +35,7 @@ exportSelectedMsgs,
 
 // add date to query for debugging
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + new Date()
 );
 
 var Services = globalThis.Services || ChromeUtils.import(

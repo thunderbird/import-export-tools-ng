@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/impo
 
 var window;
 
-console.log("IETNG: mboximportExport.js");
+console.log("IETNG: mboximportExport.js -v10");
 
 export var mboxImportExport = {
 

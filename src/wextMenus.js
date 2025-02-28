@@ -799,7 +799,7 @@ var msgDisplayCtxMenuSet = [
 
 // Create all menus
 // Use anon async to pass ATN
-await((async () => {
+await ((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });

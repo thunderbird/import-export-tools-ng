@@ -632,20 +632,20 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, 0775);
+		file.create(1, O0775);
 
 		subfile = file.clone();
 
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, O0775);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, O0775);
 		}
 	}
 
@@ -738,7 +738,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, 0775);
+		file.create(1, 0o755);
 
 		// deal with top then recursive 
 
@@ -752,13 +752,13 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, 0o755);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, 0o755);
 		}
 	}
 
@@ -924,7 +924,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		subdirname = "";
 	// Build the index html page
 	clone2.append("index.html");
-	clone2.createUnique(0, 0644);
+	clone2.createUnique(0, 0o644);
 
 	var date_received_hdr = "";
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
@@ -1227,7 +1227,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	} else {
 		clone2 = file2.clone();
 		clone2.append("messages.csv");
-		clone2.createUnique(0, 0644);
+		clone2.createUnique(0, 0o644);
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
@@ -1631,7 +1631,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let afname = constructAttachmentsFilename(1, hdr);
 											attDirContainer.append(afname);
 										}
-										attDirContainer.createUnique(1, 0775);
+										attDirContainer.createUnique(1, 0o755);
 										footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 										noDir = false;
 									}
@@ -1868,7 +1868,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let afname = constructAttachmentsFilename(2, hdr);
 											embImgContainer.append(afname);
 										}
-										embImgContainer.createUnique(1, 0775);
+										embImgContainer.createUnique(1, 0o755);
 									}
 
 									var aUrl;
@@ -2177,7 +2177,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 	var foldername = msgFolder.name;
 	var clone = file.clone();
 	clone.append(foldername);
-	clone.createUnique(0, 0644);
+	clone.createUnique(0, 0o644);
 	var uriArray = [];
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
@@ -2225,7 +2225,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	}
 	var clone = destdirNSIFILE.clone();
 	clone.append(foldername);
-	clone.createUnique(0, 0644);
+	clone.createUnique(0, 0o644);
 	IETtotal = msgFolder.getTotalMessages(false);
 	IETexported = 0;
 	IETskipped = 0;
@@ -2286,9 +2286,9 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (append) {
 		if (fname)
 			file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, O0664, 0); // write, create, append
 	} else
-		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
@@ -2319,9 +2319,9 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		.createInstance(Ci.nsIFileOutputStream);
 	if (append) {
 		file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
-		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 
 	os = Cc["@mozilla.org/intl/converter-output-stream;1"]
 		.createInstance(Ci.nsIConverterOutputStream);

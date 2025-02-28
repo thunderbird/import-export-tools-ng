@@ -738,7 +738,7 @@ function addEmptyMessageToForceCompact(msgFolder) {
 
 	var istream = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(Ci.nsIFileInputStream);
 
-	istream.init(file, 0x01, 0444, 0);
+	istream.init(file, 0x01, 0o444, 0);
 	istream.QueryInterface(Ci.nsILineInputStream);
 	var line = {};
 	var first3lines = "";
@@ -759,7 +759,7 @@ function addEmptyMessageToForceCompact(msgFolder) {
 	var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
 		createInstance(Ci.nsIFileOutputStream);
 	var data = "\n\nFrom Moon\nX-Mozilla-Status: 0009\nX-Mozilla-Status2: 00800000\nDate: Fri, 08 Feb 2008 10:30:48 +0100\nFrom: nomail@nomail.no\nMIME-Version: 1.0\nTo: nomail@nomail.no\nSubject: empty\nContent-Type: text/plain\n\n\n\n";
-	foStream.init(file, 0x02 | 0x08 | 0x10, 0666, 0);
+	foStream.init(file, 0x02 | 0x08 | 0x10, 0o666, 0);
 	foStream.write(data, data.length);
 	foStream.close();
 	return true;
@@ -1059,7 +1059,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			// This must have changed...
 			var topdestdirNSI = destdirNSIFILE.clone();
 			topdestdirNSI.append(newname);
-			topdestdirNSI.create(0, 0644);
+			topdestdirNSI.create(0, 0o644);
 		}
 		var sbd = filex.parent;
 		sbd.append(filex.leafName + ".sbd");
@@ -1075,7 +1075,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 						let fname = listMSF[i].path.split(".msf")[0];
 						var nsifile = new FileUtils.File(fname);
 						if (!nsifile.exists()) {
-							nsifile.create(0, 0644);
+							nsifile.create(0, 0o644);
 						}
 					} catch (e) {
 						console.log(e);
@@ -1232,7 +1232,7 @@ function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
 				newname = IETcleanName(newname);
 				let destdirNSIFILEclone = destdirNSIFILE.clone();
 				destdirNSIFILEclone.append(newname);
-				destdirNSIFILEclone.create(0, 0644);
+				destdirNSIFILEclone.create(0, 0o644);
 			}
 			if (keepstructure) {
 				let sbd = subfolderNS.parent;

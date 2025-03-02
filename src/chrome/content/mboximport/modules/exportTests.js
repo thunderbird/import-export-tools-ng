@@ -17,7 +17,7 @@ export var exportTests = {
     for (let index = 0; index < msgListLen; index++) {
 
       let subject = expTask.msgList[index].subject.slice(0, 150);
-      let name = `${subject}.eml`;
+      let name = `${subject}.html`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)

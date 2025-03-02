@@ -92,13 +92,13 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 10;
+    var runs = 1;
     var total = 0;
     var times = [];
 
     for (let index = 0; index < runs; index++) {
 
-      await new Promise(r => setTimeout(r, 12000));
+      //await new Promise(r => setTimeout(r, 12000));
 
       let st = new Date();
 
@@ -106,8 +106,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -166,7 +166,9 @@ async function msgIterateBatch(expTask) {
 
       expTask.msgList.push(msgListPage.messages[index]);
       let msgId = msgListPage.messages[index].id;
-      getRawPromises.push(messenger.messages.getRaw(msgId));
+      //getRawPromises.push(messenger.messages.getRaw(msgId));
+      getRawPromises.push(_getprocessedMsg(msgId));
+
       totalMsgsData += msgListPage.messages[index].size;
 
       if (totalMsgsData >= targetMaxMsgData) {
@@ -203,6 +205,59 @@ async function msgIterateBatch(expTask) {
   if (writeMsgs) {
     await Promise.allSettled(writePromises);
   }
+}
+
+async function _getprocessedMsg(msgId) {
+  return new Promise(async (resolve, reject) => {
+    
+  console.log("id1", msgId)
+
+  let fm = await browser.messages.getFull(msgId);
+  console.log(msgId, fm)
+  let at = await browser.messages.listAttachments(msgId);
+  console.log(msgId,at)
+
+  //console.log(fm.parts)
+  console.log("fm parts", fm.parts.length)
+
+  let parts = fm.parts;
+
+  console.log(parts)
+
+  var textParts = [];
+  var htmlParts = [];
+
+  function getParts(parts) {
+    parts.forEach(part => {
+      //console.log(part)
+    
+        if (part.contentType == "text/html") {
+          htmlParts.push({ct: part.contentType, b: part.body});
+        }
+        if (part.contentType == "text/plain") {
+          textParts.push({ct: part.contentType, b: part.body});
+        }
+
+        if (part.parts) {
+          getParts(part.parts)
+        }
+      });
+  }
+  
+  getParts(parts)
+
+  console.log("ct", htmlParts)
+  console.log("ct", textParts, textParts.length)
+
+
+  if (htmlParts.length) {
+    resolve(htmlParts[0].b);
+  } else {
+    resolve(textParts[0].b); 
+  }
+  });
+  
+
 }
 
 async function msgIterateBase(expTask) {

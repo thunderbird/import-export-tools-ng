@@ -21,8 +21,12 @@ export var exportTests = {
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
-        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData))));
-    }
+        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
+      for(const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+        IOUtils.createUniqueFile(expTask.exportContainer.directory, inlinePart.name)
+        .then((name => writePromises.push(IOUtils.writeUTF8(name, inlinePart.inlinePartBody))));
+      }
+      }
     return Promise.allSettled(writePromises);
   },
 

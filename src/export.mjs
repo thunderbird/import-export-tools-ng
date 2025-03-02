@@ -106,8 +106,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -218,7 +218,7 @@ async function _getprocessedMsg(msgId) {
   console.log(msgId,at)
 
   //console.log(fm.parts)
-  console.log("fm parts", fm.parts.length)
+  //console.log("fm parts", fm.parts.length)
 
   let parts = fm.parts;
 
@@ -226,10 +226,12 @@ async function _getprocessedMsg(msgId) {
 
   var textParts = [];
   var htmlParts = [];
+  var inlineParts = [];
 
-  function getParts(parts) {
-    parts.forEach(part => {
-      //console.log(part)
+
+  async function getParts(parts) {
+    for(const part of parts) {
+      console.log(part)
     
         if (part.contentType == "text/html") {
           htmlParts.push({ct: part.contentType, b: part.body});
@@ -238,22 +240,40 @@ async function _getprocessedMsg(msgId) {
           textParts.push({ct: part.contentType, b: part.body});
         }
 
-        if (part.parts) {
-          getParts(part.parts)
+        if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
+          console.log(part.headers)
+          let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+          inlineBody = await inlineBody.text();
+          inlineParts.push({ct: part.contentType, b: inlineBody, name: part.name, contentId: part.headers["content-id"][0]});
         }
-      });
+        if (part.parts) {
+          await getParts(part.parts)
+        }
+      }
   }
   
-  getParts(parts)
+  await getParts(parts)
 
-  console.log("ct", htmlParts)
-  console.log("ct", textParts, textParts.length)
+  console.log("html", htmlParts)
+  console.log("text", textParts, textParts.length)
+  console.log("inline", inlineParts, inlineParts.length)
 
+  for (const inlinePart of inlineParts) {
+    console.log(inlinePart)
+    let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+    console.log(partIdName)
+    partIdName.replaceAll(/\./g,"\\")
+    
+    let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+    console.log(partIdName, partRegex)
+
+    htmlParts[0].b.replaceAll(partRegex, inlinePart.name);
+  }
 
   if (htmlParts.length) {
-    resolve(htmlParts[0].b);
+    resolve({msgBody: htmlParts[0].b, inlineParts: inlineParts});
   } else {
-    resolve(textParts[0].b); 
+    resolve({msgBody: textParts[0].b, inlineParts: inlineParts});
   }
   });
   

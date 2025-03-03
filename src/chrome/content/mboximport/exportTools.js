@@ -1944,7 +1944,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					}
 
 					IETexported = IETexported + 1;
-					IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+					//IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
 					if (IETabort) {
 						IETabort = false;

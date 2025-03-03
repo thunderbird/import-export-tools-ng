@@ -22,15 +22,39 @@ export var exportTests = {
 
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
-      for(const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+      for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+            let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
         IOUtils.createUniqueFile(expTask.exportContainer.directory, inlinePart.name)
-        .then((name => writePromises.push(IOUtils.writeUTF8(name, inlinePart.inlinePartBody))));
+          .then((name => writePromises.push(IOUtils.write(name, inlineBody))));
       }
+      for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+        let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
+        IOUtils.createUniqueFile(expTask.exportContainer.directory, attachmentPart.name)
+          .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
+    
+    }
     return Promise.allSettled(writePromises);
   },
 
-
+  fileToUint8Array: async function (file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+  
+      reader.onload = (event) => {
+        const arrayBuffer = event.target.result;
+        const uint8Array = new Uint8Array(arrayBuffer);
+        resolve(uint8Array);
+      };
+  
+      reader.onerror = (error) => {
+        reject(error);
+      };
+  
+      reader.readAsArrayBuffer(file);
+    });
+  },
+  
 
   exportFolderEML_WL: async function (params) {
 

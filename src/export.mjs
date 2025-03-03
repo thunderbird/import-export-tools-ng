@@ -70,7 +70,7 @@ export async function exportFolders(ctxInfo, params) {
         return;
       }
     }
-    console.log(ctxInfo, params);
+    //console.log(ctxInfo, params);
 
     // we do all main logic, folder and message iteration
     // and UI interactions in wext side
@@ -92,13 +92,13 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 1;
+    var runs = 10;
     var total = 0;
     var times = [];
 
     for (let index = 0; index < runs; index++) {
 
-      //await new Promise(r => setTimeout(r, 12000));
+      await new Promise(r => setTimeout(r, 12000));
 
       let st = new Date();
 
@@ -106,8 +106,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+      //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -209,76 +209,94 @@ async function msgIterateBatch(expTask) {
 
 async function _getprocessedMsg(msgId) {
   return new Promise(async (resolve, reject) => {
-    
-  console.log("id1", msgId)
 
-  let fm = await browser.messages.getFull(msgId);
-  console.log(msgId, fm)
-  let at = await browser.messages.listAttachments(msgId);
-  console.log(msgId,at)
+    //console.log("id1", msgId)
 
-  //console.log(fm.parts)
-  //console.log("fm parts", fm.parts.length)
+    let fm = await browser.messages.getFull(msgId);
+    let parts = fm.parts;
 
-  let parts = fm.parts;
+    var textParts = [];
+    var htmlParts = [];
+    var inlineParts = [];
+    var attachmentParts = [];
 
-  console.log(parts)
+    async function getParts(parts) {
+      for (const part of parts) {
+        //console.log(part)
 
-  var textParts = [];
-  var htmlParts = [];
-  var inlineParts = [];
-
-
-  async function getParts(parts) {
-    for(const part of parts) {
-      console.log(part)
-    
         if (part.contentType == "text/html") {
-          htmlParts.push({ct: part.contentType, b: part.body});
+          htmlParts.push({ ct: part.contentType, b: part.body });
         }
         if (part.contentType == "text/plain") {
-          textParts.push({ct: part.contentType, b: part.body});
+          textParts.push({ ct: part.contentType, b: part.body });
         }
 
         if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-          console.log(part.headers)
-          let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-          inlineBody = await inlineBody.text();
-          inlineParts.push({ct: part.contentType, b: inlineBody, name: part.name, contentId: part.headers["content-id"][0]});
+          //console.log(msgId, part)
+          //console.log(msgId, part.headers["content-disposition"])
+          let cd = part.headers["content-disposition"][0];
+          if (cd.startsWith("inline;")) {
+            let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+            //inlineBody = await fileToUint8Array(inlineBody);
+            inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: part.headers["content-id"][0] });
+          }
         }
+
+        if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
+          let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+          //attachmentBody = await fileToUint8Array(attachmentBody);
+          attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+        }
+
         if (part.parts) {
           await getParts(part.parts)
         }
       }
-  }
-  
-  await getParts(parts)
+    }
 
-  console.log("html", htmlParts)
-  console.log("text", textParts, textParts.length)
-  console.log("inline", inlineParts, inlineParts.length)
+    await getParts(parts)
 
-  for (const inlinePart of inlineParts) {
-    console.log(inlinePart)
-    let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
-    console.log(partIdName)
-    partIdName.replaceAll(/\./g,"\\")
-    
-    let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-    console.log(partIdName, partRegex)
+    //console.log("html", htmlParts)
+    //console.log("text", textParts, textParts.length)
+    //console.log("inline", inlineParts, inlineParts.length)
 
-    htmlParts[0].b.replaceAll(partRegex, inlinePart.name);
-  }
+    for (const inlinePart of inlineParts) {
+      let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+      partIdName = partIdName.replaceAll(/\./g, "\\.")
 
-  if (htmlParts.length) {
-    resolve({msgBody: htmlParts[0].b, inlineParts: inlineParts});
-  } else {
-    resolve({msgBody: textParts[0].b, inlineParts: inlineParts});
-  }
+      let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+
+      htmlParts[0].b = htmlParts[0].b.replaceAll(partRegex, `src="${inlinePart.name}"`);
+    }
+
+    if (htmlParts.length) {
+      resolve({ msgBody: htmlParts[0].b, inlineParts: inlineParts, attachmentParts: attachmentParts });
+    } else {
+      resolve({ msgBody: textParts[0].b, inlineParts: inlineParts, attachmentParts });
+    }
   });
-  
+
 
 }
+
+async function fileToUint8Array(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const arrayBuffer = event.target.result;
+      const uint8Array = new Uint8Array(arrayBuffer);
+      resolve(uint8Array);
+    };
+
+    reader.onerror = (error) => {
+      reject(error);
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+}
+
 
 async function msgIterateBase(expTask) {
 
@@ -317,7 +335,7 @@ async function msgIterateBase(expTask) {
 
       if (totalMsgsData >= targetMaxMsgData) {
         if (writeMsgs) {
-        expResult = await browser.ExportMessages.exportMessagesBase(expTask);
+          expResult = await browser.ExportMessages.exportMessagesBase(expTask);
         }
         totalMsgsData = 0;
         expTask.msgList = [];

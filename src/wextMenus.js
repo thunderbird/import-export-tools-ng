@@ -1203,7 +1203,7 @@ function localizeMenuTitle(id) {
 // update for attachment menu based on eml type
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
-   console.log("menu update ",info)
+   //console.log("menu update ",info)
 
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
@@ -1503,7 +1503,6 @@ async function menuFunctionDispatcher(ctxEvent) {
     menu = folderCtxMenuSet;
   }
   let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
-  console.log(menuOptions)
   menuOptions.dispatchFunction(ctxEvent, menuOptions.functionParams)
 }
 

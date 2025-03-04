@@ -13,6 +13,7 @@ export var exportTests = {
 
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
+    var updatedInlineFilenames = [];
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -20,19 +21,32 @@ export var exportTests = {
       let name = `${subject}.html`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
-      IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
-        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
+
       for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
-            let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
+        let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
         IOUtils.createUniqueFile(expTask.exportContainer.directory, inlinePart.name)
-          .then((name => writePromises.push(IOUtils.write(name, inlineBody))));
+          .then((unqName => {
+            let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+            partIdName = partIdName.replaceAll(/\./g, "\\.")
+            let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+            let unqFilename = PathUtils.filename(unqName)
+            console.log(name, unqFilename)
+            expTask.msgList[index].msgData.msgBody =
+              expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${unqFilename}"`);
+            writePromises.push(IOUtils.write(unqName, inlineBody));
+          }));
+
       }
+
       for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
         let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
         IOUtils.createUniqueFile(expTask.exportContainer.directory, attachmentPart.name)
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
-    
+
+      IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
+        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
+
     }
     return Promise.allSettled(writePromises);
   },
@@ -40,21 +54,21 @@ export var exportTests = {
   fileToUint8Array: async function (file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-  
+
       reader.onload = (event) => {
         const arrayBuffer = event.target.result;
         const uint8Array = new Uint8Array(arrayBuffer);
         resolve(uint8Array);
       };
-  
+
       reader.onerror = (error) => {
         reject(error);
       };
-  
+
       reader.readAsArrayBuffer(file);
     });
   },
-  
+
 
   exportFolderEML_WL: async function (params) {
 

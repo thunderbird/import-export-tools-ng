@@ -92,13 +92,13 @@ export async function exportFolders(ctxInfo, params) {
         }
     */
 
-    var runs = 10;
+    var runs = 1;
     var total = 0;
     var times = [];
 
     for (let index = 0; index < runs; index++) {
 
-      await new Promise(r => setTimeout(r, 12000));
+      //await new Promise(r => setTimeout(r, 12000));
 
       let st = new Date();
 
@@ -106,8 +106,8 @@ export async function exportFolders(ctxInfo, params) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-      //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -215,6 +215,7 @@ async function _getprocessedMsg(msgId) {
     let fm = await browser.messages.getFull(msgId);
     let parts = fm.parts;
 
+    console.log(fm)
     var textParts = [];
     var htmlParts = [];
     var inlineParts = [];
@@ -256,10 +257,11 @@ async function _getprocessedMsg(msgId) {
 
     await getParts(parts)
 
-    //console.log("html", htmlParts)
-    //console.log("text", textParts, textParts.length)
-    //console.log("inline", inlineParts, inlineParts.length)
+    console.log("html", htmlParts)
+    console.log("text", textParts, textParts.length)
+    console.log("inline", inlineParts, inlineParts.length)
 
+    /*
     for (const inlinePart of inlineParts) {
       let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
       partIdName = partIdName.replaceAll(/\./g, "\\.")
@@ -268,6 +270,7 @@ async function _getprocessedMsg(msgId) {
 
       htmlParts[0].b = htmlParts[0].b.replaceAll(partRegex, `src="${inlinePart.name}"`);
     }
+*/
 
     if (htmlParts.length) {
       resolve({ msgBody: htmlParts[0].b, inlineParts: inlineParts, attachmentParts: attachmentParts });

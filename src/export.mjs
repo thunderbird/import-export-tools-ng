@@ -215,7 +215,7 @@ async function _getprocessedMsg(msgId) {
     let fm = await browser.messages.getFull(msgId);
     let parts = fm.parts;
 
-    console.log(fm)
+    //console.log(fm)
     var textParts = [];
     var htmlParts = [];
     var inlineParts = [];
@@ -257,9 +257,9 @@ async function _getprocessedMsg(msgId) {
 
     await getParts(parts)
 
-    console.log("html", htmlParts)
-    console.log("text", textParts, textParts.length)
-    console.log("inline", inlineParts, inlineParts.length)
+    //console.log("html", htmlParts)
+    //console.log("text", textParts, textParts.length)
+    //console.log("inline", inlineParts, inlineParts.length)
 
     /*
     for (const inlinePart of inlineParts) {

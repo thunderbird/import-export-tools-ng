@@ -30,7 +30,7 @@ export var exportTests = {
             partIdName = partIdName.replaceAll(/\./g, "\\.")
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
             let unqFilename = PathUtils.filename(unqName)
-            console.log(name, unqFilename)
+            //console.log(name, unqFilename)
             expTask.msgList[index].msgData.msgBody =
               expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${unqFilename}"`);
             writePromises.push(IOUtils.write(unqName, inlineBody));
@@ -43,6 +43,8 @@ export var exportTests = {
         IOUtils.createUniqueFile(expTask.exportContainer.directory, attachmentPart.name)
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
+
+      expTask.msgList[index].msgData.msgBody = this._insertHdrTable(expTask, index);
 
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
@@ -67,6 +69,28 @@ export var exportTests = {
 
       reader.readAsArrayBuffer(file);
     });
+  },
+
+  _insertHdrTable: function (expTask, index) {
+    let msgData = expTask.msgList[index].msgData;
+    let msgItem = expTask.msgList[index];
+    
+    //console.log(msgItem)
+    let hdrRows = "";
+    hdrRows += `<tr><td>Subject:</td><td>${msgItem.subject}</td></tr>`;
+    hdrRows += `<tr><td>From:</td><td>${msgItem.author}</td></tr>`;
+    hdrRows += `<tr><td>To:</td><td>${msgItem.recipients}</td></tr>`;
+    hdrRows += `<tr><td>Date:</td><td>${msgItem.date}</td></tr>`;
+
+    let tbl1 = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
+    console.log(tbl1)
+    
+    //return msgData.msgBody.replace(/(<body.*>)/i, `$1${tbl1}`);
+    //return msgData.msgBody.replace(/(<BODY>)/i, `$1${tbl1}`);
+    let rpl = "$1 " + tbl1.replace(/\$/,"$$$$");
+    console.log(rpl)
+    return msgData.msgBody.replace(/(<BODY>)/i, rpl);
+
   },
 
 

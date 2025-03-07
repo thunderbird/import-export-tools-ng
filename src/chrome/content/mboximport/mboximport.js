@@ -76,7 +76,7 @@ var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUti
 var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
 //var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
 
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs") + ietngExtension.manifest.version + new Date();
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?") + ietngExtension.manifest.version + new Date();
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 
@@ -93,7 +93,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 // won't run without it???
 
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + new Date()
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");

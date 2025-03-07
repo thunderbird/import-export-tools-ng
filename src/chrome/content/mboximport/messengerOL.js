@@ -4,8 +4,10 @@
 // onLoad() installs each overlay xul fragment
 // Menus - Folder, messages, Tools
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
+// update to use es6 modules for 128+, 136+ required - thx Axel
+
+var Services = globalThis.Services || ChromeUtils.importESModule(
+	'resource://gre/modules/Services.sys.mjs'
 ).Services;
 
 window.ietngAddon = {};
@@ -20,7 +22,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotK
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
 
-const { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+const { ExtensionParent } = ChromeUtils.importESModule("resource://gre/modules/ExtensionParent.sys.mjs");
 
 // Get our extension object.
 window.ietngAddon.ietngExtension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);

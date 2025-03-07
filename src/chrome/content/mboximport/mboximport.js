@@ -57,17 +57,26 @@ getMsgFolderFromAccountAndPath,
 globalThis,
 */
 
+  // update to use es6 modules for 128+, 136+ required - thx Axel
 
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
+var Services = globalThis.Services || ChromeUtils.importESModule(
+	'resource://gre/modules/Services.mjs'
 ).Services;
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+	
+var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+//var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
+//var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs") + ietngExtension.manifest.version + new Date();
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 

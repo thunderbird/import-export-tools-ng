@@ -2,6 +2,11 @@
 
 ## Versions
 
+Version 14.1.6 : Multiple Folders Release - March 10, 2025
+
+- New: Multiple folder selection exports
+- More error handling for EML imports, mbox exports
+
 Version 14.1.5 : Maintenance Release - February 3, 2025
 
 - Rollback mboxImportExport module to stable v7

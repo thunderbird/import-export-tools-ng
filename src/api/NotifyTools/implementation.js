@@ -35,8 +35,8 @@
 
   var { ExtensionCommon } = ChromeUtils.importESModule("resource://gre/modules/ExtensionCommon.sys.mjs");
 
-  var Services = globalThis.Services ||
-    ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
+  // var Services = globalThis.Services ||
+  //   ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
 
   var observerTracker = new Set();
 

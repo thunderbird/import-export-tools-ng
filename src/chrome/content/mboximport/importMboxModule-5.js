@@ -15,9 +15,9 @@
 
 // update to use es6 modules for 128+, 136+ required - thx Axel
 
-var Services = globalThis.Services || ChromeUtils.importESModule(
-  'resource://gre/modules/Services.sys.mjs'
-).Services;
+// var Services = globalThis.Services || ChromeUtils.importESModule(
+//   'resource://gre/modules/Services.sys.mjs'
+// ).Services;
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs");
 

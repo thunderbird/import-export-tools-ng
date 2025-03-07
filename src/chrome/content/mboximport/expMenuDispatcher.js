@@ -39,9 +39,9 @@ var { mboxImportExport } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
+// var Services = globalThis.Services || ChromeUtils.import(
+// 	'resource://gre/modules/Services.jsm'
+// ).Services;
 
 var gVars = {
 	window: window,

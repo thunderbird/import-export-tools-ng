@@ -23,9 +23,9 @@ export var ietngUtils = {
 
   _self: this,
 
-  Services: globalThis.Services || ChromeUtils.importESModule(
-    'resource://gre/modules/Services.sys.mjs'
-  ).Services,
+  // Services: globalThis.Services || ChromeUtils.importESModule(
+  //   'resource://gre/modules/Services.sys.mjs'
+  // ).Services,
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),

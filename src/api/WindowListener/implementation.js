@@ -28,8 +28,8 @@ var { ExtensionSupport } = Ietng_ESM
   ? ChromeUtils.importESModule("resource:///modules/ExtensionSupport.sys.mjs")
   : ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
 
-var Services = globalThis.Services || 
-  ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
+// var Services = globalThis.Services || 
+//   ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");

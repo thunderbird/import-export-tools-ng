@@ -57,7 +57,7 @@ getMsgFolderFromAccountAndPath,
 globalThis,
 */
 
-  // update to use es6 modules for 128+, 136+ required - thx Axel
+// update to use es6 modules for 128+, 136+ required - thx Axel
 
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
@@ -70,14 +70,14 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
-var Services = globalThis.Services || ChromeUtils.importESModule(
-	'resource://gre/modules/Services.mjs'
-).Services;
+// var Services = globalThis.Services || ChromeUtils.importESModule(
+// 	'resource://gre/modules/Services.mjs'
+// ).Services;
 
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
 	: ChromeUtils.import("resource:///modules/MailServices.jsm");
-	
+
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 //var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 

@@ -1,5 +1,5 @@
-var Services = globalThis.Services ||
-  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
+
+
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");

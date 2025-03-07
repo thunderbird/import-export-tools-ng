@@ -58,11 +58,17 @@ gTabmail,
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
 
-var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+// update to use es6 modules for 128+, 136+ required - thx Axel
+
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
+
+// var Services = globalThis.Services || ChromeUtils.import(
+// 	'resource://gre/modules/Services.jsm'
+// ).Services;
+
+//var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 // console.debug('exportTools start');
@@ -89,9 +95,14 @@ var kStatusOK = 1;
 var kStatusDone = 2;
 var kStatusAbort = 3;
 
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
+
+var { MsgHdrToMimeMessage } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/gloda/MimeMessage.sys.mjs")
+	: ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
+
+//var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 function searchANDsave(params) {
 

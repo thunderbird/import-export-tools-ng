@@ -20,9 +20,9 @@
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-var Services = globalThis.Services || ChromeUtils.importESModule(
-  'resource://gre/modules/Services.sys.mjs'
-).Services;
+// var Services = globalThis.Services || ChromeUtils.importESModule(
+//   'resource://gre/modules/Services.sys.mjs'
+// ).Services;
 
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")

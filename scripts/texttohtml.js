@@ -29,3 +29,16 @@ output = `<html><body><pre>${output}</pre></body></html>`;
 //console.log(output)
 
 fs.writeFileSync("scripts/out.html", output,{ encoding: 'utf8' });
+
+function textToHtml(srcTxt) {
+  txtLines = srcTxt.split(/\r?\n/);
+  htmlLines = new Array(txtLines.length);
+  htm
+  for (let lineNum = 0; lineNum < txtLines.length; lineNum++) {
+    const line = txtLines[lineNum];
+    if (lineNum == 0) {
+      htmlLines[0] = "<div wrap><pre>";
+
+    }
+  }
+}

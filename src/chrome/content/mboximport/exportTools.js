@@ -64,11 +64,6 @@ gTabmail,
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-// var Services = globalThis.Services || ChromeUtils.import(
-// 	'resource://gre/modules/Services.jsm'
-// ).Services;
-
-//var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
 
 // console.debug('exportTools start');

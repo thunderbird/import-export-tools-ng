@@ -16,21 +16,19 @@
 
 // mboxImportExport.js
 
-// sometimes we may want to be a regular module
-// var EXPORTED_SYMBOLS = ["mboxImportExport"];
+// update to use es6 modules for 128+, 136+ required - thx Axel
 
-var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
-).Services;
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
 
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs");
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-
-var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
+var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
 
@@ -803,20 +801,7 @@ export var mboxImportExport = {
     return uriArray;
   },
 
-  // this will force a reindex that will make folder globally searchable
-  // usually this triggers a slew of gloda exceptions 
-  // so far these appear to not have negative side effects
-  // but this does bring folder into search
-
-  _toggleGlobalSearchEnable: function (msgFolder) {
-    this._setGlobalSearchEnabled(msgFolder, false);
-    this._setGlobalSearchEnabled(msgFolder, true);
-  },
-
-  // this is another method to get a folder searchable
-  // but less consistent than above
-  // this used to be THE method to use
-
+  
   _touchCopyFolderMsg: async function (msgFolder) {
 
     var tempEMLFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
@@ -907,14 +892,4 @@ export var mboxImportExport = {
     }
   },
 
-  // base function to set global search priority
-  _setGlobalSearchEnabled: function (msgFolder, searchEnable) {
-    if (searchEnable) {
-      Gloda.resetFolderIndexingPriority(msgFolder, true);
-    } else {
-      Gloda.setFolderIndexingPriority(
-        msgFolder,
-        Gloda.getFolderForFolder(msgFolder).kIndexingNeverPriority);
-    }
-  }
 };

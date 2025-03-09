@@ -2141,6 +2141,7 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
       }
     }
 
+    /*
     // Unload JSMs of this add-on
     const rootURI = this.extension.rootURI.spec;
     for (let module of Cu.loadedModules) {
@@ -2153,7 +2154,7 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
         Cu.unload(module);
       }
     }
-
+*/
     // Flush all caches
     Services.obs.notifyObservers(null, "startupcache-invalidate");
     this.registeredWindows = {};

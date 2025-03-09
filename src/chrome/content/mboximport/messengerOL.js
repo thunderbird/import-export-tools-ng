@@ -228,7 +228,6 @@ function onLoad() {
 		};
 	}
 
-
 	window.setupHotKeys('messenger');
 	window.addHotKeysObserver();
 }

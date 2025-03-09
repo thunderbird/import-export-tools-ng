@@ -15,11 +15,19 @@
 
 // update to use es6 modules for 128+, 136+ required - thx Axel
 
-// var Services = globalThis.Services || ChromeUtils.importESModule(
-//   'resource://gre/modules/Services.sys.mjs'
-// ).Services;
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs");
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"  + ietngExtension.manifest.version + new Date());
 
 var window = Services.wm.getMostRecentWindow("mail:3pane");
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");

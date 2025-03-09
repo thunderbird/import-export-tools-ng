@@ -15,9 +15,17 @@
 
 /* global IETprefs, IETgetComplexPref, IETsetComplexPref, browser */
 
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
 
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs");
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
 
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+    + ietngExtension.manifest.version + window.opener.ietngAddon.dateForDebugging);
+  
 function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
     var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");

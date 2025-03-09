@@ -15,6 +15,8 @@
 
 // update to use es6 modules for 128+, 136+ required - thx Axel
 
+var window = Services.wm.getMostRecentWindow("mail:3pane");
+
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
@@ -26,10 +28,9 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
 
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"  + ietngExtension.manifest.version + new Date());
-
-var window = Services.wm.getMostRecentWindow("mail:3pane");
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // as a module loaded by an ES6 module we bump name version so we avoid cache

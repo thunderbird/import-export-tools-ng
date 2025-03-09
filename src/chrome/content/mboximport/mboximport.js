@@ -77,17 +77,14 @@ var { MailServices } = Ietng_ESM
 
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"  + ietngExtension.manifest.version + new Date());
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
-
-// add Date now to query for debugging, thanks JB
-//dateNow = new Date();
-// won't run without it???
-
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?" + ietngExtension.manifest.version + new Date()
-);
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 

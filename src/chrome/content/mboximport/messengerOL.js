@@ -6,12 +6,12 @@
 
 // update to use es6 modules for 128+, 136+ required - thx Axel
 
-// var Services = globalThis.Services || ChromeUtils.importESModule(
-// 	'resource://gre/modules/Services.sys.mjs'
-// ).Services;
-
 window.ietngAddon = {};
 window.ietngAddon.window = window;
+
+// use global date obj for our es6 module queries
+window.ietngAddon.dateForDebugging = "";
+window.ietngAddon.dateForDebugging = new Date();
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");

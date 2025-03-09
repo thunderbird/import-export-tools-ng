@@ -33,11 +33,17 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
-// add date to query for debugging
-// won't run without it???
+	var { ExtensionParent } = ChromeUtils.importESModule(
+		"resource://gre/modules/ExtensionParent.sys.mjs"
+	);
+	
+	var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+		"ImportExportToolsNG@cleidigh.kokkini.net"
+	);
+
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?" + ietngExtension.manifest.version + new Date()
-);
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
 
 var gVars = {
 	window: window,

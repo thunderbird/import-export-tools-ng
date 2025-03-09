@@ -17,30 +17,33 @@
 // mboxImportExport.mjs
 // convert for esm modules
 
+var window = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
+
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
 var { ExtensionParent } = ChromeUtils.importESModule(
-	"resource://gre/modules/ExtensionParent.sys.mjs"
+  "resource://gre/modules/ExtensionParent.sys.mjs"
 );
 
 var ietngExtension = ExtensionParent.GlobalManager.getExtension(
-	"ImportExportToolsNG@cleidigh.kokkini.net"
+  "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
-
 var { MailServices } = Ietng_ESM
-	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
-	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+  ? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+  : ChromeUtils.import("resource:///modules/MailServices.jsm");
 
-var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"  + ietngExtension.manifest.version + new Date());
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
-
-var window;
 
 console.log("IETNG: mboximportExport.js -v10");
 
@@ -714,7 +717,7 @@ export var mboxImportExport = {
 
     folder.updateFolder(window.msgWindow);
 
-    
+
     return;
   },
 

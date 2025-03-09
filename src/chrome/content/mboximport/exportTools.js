@@ -1696,6 +1696,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 												}
 											}
 
+											console.log(att.url, uri, attDirContainerClone.path)
 											messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 										} catch (e) {
 											success = false;

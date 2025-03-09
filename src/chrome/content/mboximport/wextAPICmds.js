@@ -37,7 +37,7 @@ async function getAttachmentFile(msgHdr, attPartName) {
 	let fileObj = await win.ietngAddon.notifyTools.notifyBackground({ command: "getAttachmentFile", msgId: msgId, attPartName: attPartName });
 }
 
-}
+
 async function openHelp(bookmark) {
 	let win = getMail3Pane();
 	await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });

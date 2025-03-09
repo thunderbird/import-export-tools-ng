@@ -1598,7 +1598,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					this.emailtext += scriptStream.read(scriptStream.available());
 				},
 
-				onStopRequest: function (request, statusCode) {
+				onStopRequest: async function (request, statusCode) {
 
 					try {
 
@@ -1615,7 +1615,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
 							var aMsgHdr = hdr;
-							MsgHdrToMimeMessage(aMsgHdr, null, function (aMsgHdr, aMsg) {
+							MsgHdrToMimeMessage(aMsgHdr, null, async function (aMsgHdr, aMsg) {
 								var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
 								// attachments = attachments.filter(function (x) x.isRealAttachment);
 								var footer = null;
@@ -1696,8 +1696,11 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 												}
 											}
 
-											console.log(att.url, uri, attDirContainerClone.path)
-											messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
+											console.log(att.url,attDirContainerClone.path)
+											let attPartName = att.url.split("?")[1].split("&")[0].split("=")[1];
+											console.log(attPartName)
+											let attFile = await getAttachmentFile(hdr, attPartName)
+											//messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 										} catch (e) {
 											success = false;
 											console.debug('save attachment exception ' + att.name);

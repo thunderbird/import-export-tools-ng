@@ -49,8 +49,11 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			rv = await getFullMessage(info.messageId);
 			return rv;
 		case "getAttachmentFile":
-			let fileObj = await browser.messages.getAttachmentFile(info.msgId, info.attPartName);
-			
+			//console.log(await browser.messages.listAttachments(info.msgId.id));
+			let fileObj = await browser.messages.getAttachmentFile(info.msgId.id, info.attPartName);
+
+			console.log(fileObj)
+			return fileObj;
 		case "createFolder":
 			console.log(window.folder)
 			break;

@@ -19,13 +19,14 @@
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+
+
 export var ietngUtils = {
 
   _self: this,
-
-  // Services: globalThis.Services || ChromeUtils.importESModule(
-  //   'resource://gre/modules/Services.sys.mjs'
-  // ).Services,
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),
@@ -33,10 +34,6 @@ export var ietngUtils = {
   top: Cc["@mozilla.org/appshell/window-mediator;1"]
     .getService(Ci.nsIWindowMediator)
     .getMostRecentWindow("mail:3pane"),
-
-  MailServices: Ietng_ESM
-    ? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
-    : ChromeUtils.import("resource:///modules/MailServices.jsm"),
 
   getNativeSelectedMessages: async function (wextSelectedMessages) {
 
@@ -301,7 +298,7 @@ export var ietngUtils = {
   },
 
   getThunderbirdVersion: function () {
-    let parts = this.Services.appinfo.version.split(".");
+    let parts = Services.appinfo.version.split(".");
     return {
       major: parseInt(parts[0]),
       minor: parseInt(parts[1]),
@@ -324,7 +321,7 @@ export var ietngUtils = {
     }
 
     // Send a notification that we are triggering a database rebuild.
-    this.MailServices.mfn.notifyFolderReindexTriggered(folder);
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
 
     try {
       const msgDB = folder.msgDatabase;
@@ -344,12 +341,12 @@ export var ietngUtils = {
       let folderListener = {
         folderAdded: function (aFolder) {
           if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
-            ietngUtils.MailServices.mfn.removeListener(folderListener);
+            MailServices.mfn.removeListener(folderListener);
             resolve(aFolder);
           }
         },
       };
-      this.MailServices.mfn.addListener(folderListener, this.MailServices.mfn.folderAdded);
+      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become

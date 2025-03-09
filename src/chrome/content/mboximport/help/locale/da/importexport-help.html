@@ -1,851 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools NG Hjælp</title>
-  </head>
-  <body>
-    <table style="width: 100%;" id="main-help">
-      <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Hjælp</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
-        </td>
-        <td style="text-align: right; padding-right: 30px;">
-					<img src="../../../icons/import-export-tools-ng-icon-64px.png" />
-        </td>
-      </tr>
-    </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Udgivelses noter:</h3>
-    <p>
-      - Nyt: Eksport af flere mappevalg<br>
-      - Mere fejlhåndtering til EML-import, mbox-eksport<br>
-    </p>
 
-    <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
-    <p>
-      ImportExportTools NG er en opfølgende udvidelse baseret på det originale værk af Paolo
-      &quot;Kaosmos&quot;. Udvidelsen tilbyder flere import- og eksportfunktioner, der understøtter flere
-      forskellige filformater, herunder: Bemærk: Nogle formater understøttes ikke i alle funktioner.<br />
-      - mbox<br />
-      - EML<br />
-      - maildir<br />
-      - HTML<br />
-      - simpel tekst<br />
-      - CSV (kommaseparerede værdier)<br />
-      - PDF<br /><br />
-      Mens det meste af funktionaliteten til drejer sig om meddelelser, er der også understøttelse for import og
-      eksport af Thunderbird-profiler. Derudover kan eksporter også omfatte en HTML- eller CSV-indeksfil.
-      Sikkerhedskopiering af Thunderbird-profilen er en anden funktion.<br />
-      <p>
-        Adgang til IETng-funktionalitet sker gennem flere forskellige menuer installeret af udvidelsen.
-        Funktionerne er kontekstafhængige. Menuer tilføjes til:<br />
-        - Mapperudens genvejsmenu (mappeoperation)<br />
-        - Meddelelseslistes genvejsmenu (udvalgte meddelelser)<br />
-        - Menuen Funktioner (profil og sikkerhedskopiering)<br /><br />
-        De muligheder, der er tilgængelige under menuen &quot;Funktioner&quot;, er ikke i menuen
-        &quot;Hamburger&quot;, de vil være i en fremtidig version. Disse funktioner er også tilgængelige i den
-        nye knap på værktøjslinjen. Hver af menuerne og knappen har også et menupunkt Hjælp og Indstillinger
-        for at få adgang til indstillingsdialogen.<br />
-      </p>
-    </p>
-    <h3>Support:</h3>
-    <p>
-      Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-repository:
-      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
-      ><br /><br />
-      I fejlrapporter skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
-      - ImportExportTools NG-version<br />
-      - Thunderbird-version<br />
-      - Operativsystem og version<br />
-      - Debug output (kopi fra fejlkonsollen - Tilgåes med tastaturgenvejen Control-Skift-J)<br />
-      - En beskrivelse af de trin, der fører til problemet<br />
-    </p>
-    <h2 id="main_menu_help">Genvejsmenufunktioner på mapper</h2>
-    <table class="menu-table">
-      <thead>
-        <tr>
-          <th>Menupunkt</th>
-          <th>Funktionsbeskrivelse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
-          <td>
-            Eksporter hele kontoen med strukturen og undermapper i mbox-format. Eksporten sker ved hjælp af en
-            container med kontonavnet.<br />
-            Bemærk: Dette menupunkt vises kun, når du højreklikker på en konto mapperuden.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
-          <td>Eksporter en enkelt mappe til en fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
-          <td>Eksporter en enkelt mappe til en zip-fil i mbox-format</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">
-            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
-          </td>
-          <td>Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">
-            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
-          </td>
-          <td>
-            Eksporter en mappe inklusive alle dens undermapper til et sæt mbox-filer, en for hver
-            undermappe, eksporteret til en enkelt mappe.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
-          <td>
-            Eksporter meddelelserne i mappen som filer i EML-format (ingen struktur/undermapper).<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
-          <td>
-            Eksporter meddelelserne i mappen som HTML-filer (ingen struktur/undermapper).<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">
-            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
-          </td>
-          <td>
-            Eksporter meddelelserne i mappen som HTML-filer (ingen struktur/undermapper).<br />
-            Vedhæftede filer gemmes som separate filer. Dette opretter også en HTML-indeksfil med en liste
-            over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Eksporter meddelelserne i mappen som et sæt PDF-filer</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
-          <td>
-            Eksporter meddelelserne i mappen som filer i almindeligt tekstformat, vedhæftede filer er ikke
-            inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">
-            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
-          </td>
-          <td>
-            Eksporter meddelelserne i mappen som filer i almindeligt tekstformat, inklusive vedhæftede filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
-          <td>
-            Eksporter meddelelserne i mappen som en enkelt fil i almindeligt tekstformat, vedhæftede filer er ikke
-            inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">
-            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
-          </td>
-          <td>
-            Eksporter meddelelserne i mappen som en enkelt fil i almindeligt tekstformat, inklusive vedhæftede
-            filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
-          <td>
-            Eksporter meddelelserne i mappen som en enkelt CSV (Comma Separated Values) tekstformatfil, vedhæftede
-            filer er ikke inkluderet.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Opret en HTML-indeksfil over meddelelserne i mappen (ingen eksport af meddelelser)</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Opret en CSV-indeksfil over meddelelserne i mappen (ingen eksport af meddelelser)</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
-          <td>Åbn søgedialogen og eksporterer de ønskede resultater</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importer en eller flere mbox-filer fra en mappe.</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate">
-            Importer en eller flere mbox-filer fra en mappe inklusive undermapper og struktur
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate">Importer alle mbox-filer i en valgt mappe</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate">
-            Importer alle mbox-filer i en valgt mappe inklusive undermapper og struktur
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
-          <td>Vælg og importer en maildir-mappe</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
-          <td class="notranslate"></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
-          <td>Vælg og importer EML-meddelelsesfiler (ingen struktur/undermapper)</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
-          <td>Importer alle EML-meddelelser fra en enkelt mappe</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
-          <td>Importer alle EML-meddelelser fra en enkelt mappe inklusive struktur/undermapper</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Kopier OS-stien til den valgte mappe</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Åbn OS-stien til den valgte mappe</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Åbn hovedhjælpesiden</td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <h2 id="message_functions_help">Genvejsmenufunktioner på meddelelser</h2>
-    <table class="menu-table">
-      <thead>
-        <tr>
-          <th>Menupunkt</th>
-          <th>Funktionsbeskrivelse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til EML-filer (vedhæftede filer indlejret)</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
-          <td>
-            Eksporter de valgte meddelelser til filer i EML-format<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til HTML-filer</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til HTML-filer inklusive vedhæftede filer</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
-          <td>
-            Eksporter meddelelserne som HTML-filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
-          <td>
-            Eksporter meddelelserne som HTML-filer inklusive vedhæftede filer.<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til filer i PDF-format</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til filer i almindeligt tekstformat</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til filer i almindeligt tekstformat inklusive vedhæftede filer</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">
-            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
-          </td>
-          <td>
-            Eksporter meddelelserne som filer i almindeligt tekstformat inklusive vedhæftede filer<br />
-            Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
-          </td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til en enkelt CSV-tekstfil</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>Eksporter de valgte meddelelser til en enkelt mbox-fil</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
-          <td>Føj de valgte meddelelser til en eksisterende mbox-fil</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Opret en HTML-indeksfil for de valgte meddelelser</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Opret en CSV-indeksfil for de valgte meddelelser</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
-          <td>Kopier en enkelt valgt meddelelse til udklipsholderen</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Kopier en enkelt valgt meddelelses headers til udklipsholderen</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Åbn hovedhjælpesiden</td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <h2 id="tools_functions_help">Menuen Funktioner</h2>
-    <table class="menu-table">
-      <thead>
-        <tr>
-          <th>Menupunkt</th>
-          <th>Funktionsbeskrivelse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>Gem hele profilen (mail, udvidelser, indstilliger)</td>
-        </tr>
-        <tr>
-          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-          <td>Gem al mail i den aktuelle profil</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importer en komplet profil (mail, udvidelser, indstillinger)</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
-        </tr>
-        <tr>
-          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Åbn hovedhjælpesiden</td>
-        </tr>
-      </tbody>
-    </table>
-    <h2 id="customdate_format_help">Brugerdefineret datoformat</h2>
-    <p>
-      Den brugerdefinerede dato-indstilling giver mulighed for fuldstændig kontrol over den datoformatering,
-      der bruges til begge filer i indekset. Både standardformatet &quot;Dato&quot; såvel som det nye
-      brugerdefinerede format &quot;Dato (brugerdefineret)&quot; er tilgængelige i rullemenuerne for filnavne.
-      Den brugerdefinerede dato kan også bruges med ${date_custom}-tokenet, der bruges i de udvidede
-      brugerdefinerede filnavne. Det originale (standard) datoformat er:<br />
-      ÅÅÅÅMMDDHHmm : 202011060808<br /><br />
-      Det brugerdefinerede datoformat bruger %-sekvenser, der matcher den
-      <code>strftime()</code> Unix-lignende funktionalitet. Den er baseret på en JavaScript-port af
-      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , en funktion til at formatere dato og klokkeslæt.<br />
-      Port of strftime() af TH Doan (https://thdoan.github.io/strftime/)<br />
-    </p>
-    <h3>Konverteringssekvensbeskrivelser</h3>
-    <table class="dateformat-table">
-      <thead>
-        <tr>
-          <th>Sekvens</th>
-          <th>Beskrivelse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code class="code1">%a</code></td>
-          <td>Ugedagens forkortede navn.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%A</code></td>
-          <td>Ugedagens fulde navn.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%b</code></td>
-          <td>Forkortet månedsnavn.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%B</code></td>
-          <td>Fuldt måneds navn.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%c</code></td>
-          <td>Foretrukken dato og tid (UTC) repræsentation for den aktuelle landestandard.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%C</code></td>
-          <td>Århundredetal (år/100) som et 2-cifret heltal.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%d</code></td>
-          <td>Dag i måneden som et decimaltal (interval 01 til 31).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%e</code></td>
-          <td>Dag i måneden som et decimaltal (interval 1 til 31).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%F</code></td>
-          <td>ISO 8601 datoformat (svarende til <code class="code1">%Y-%m-%d</code> ).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%G</code></td>
-          <td>
-            ISO 8601 ugebaseret årstal med århundrede som decimaltal. Det 4-cifrede år svarer til
-            ISO-ugenummeret (se <code class="code1">%V</code> ). Dette har samme format og værdi som
-            <code class="code1">%Y</code> , bortset fra at hvis ISO-ugenummeret tilhører det foregående eller
-            næste år, bruges det år i stedet.
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%g</code></td>
-          <td>
-            Som <code class="code1">%G</code> , men uden århundrede, altså med et 2-cifret årstal (00-99).
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%H</code></td>
-          <td>
-            Time som et decimaltal ved hjælp af et 24-timers ur (interval 00 til 23). Se også
-            <code class="code1">%k</code> .
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%I</code></td>
-          <td>
-            Time som et decimaltal ved hjælp af et 12-timers ur (interval 01 til 12). Se også
-            <code class="code1">%l</code> .
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%j</code></td>
-          <td>Dag i året som et decimaltal (interval 001 til 366).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%k</code></td>
-          <td>
-            Time som et decimaltal ved hjælp af et 24-timers ur (interval 0 til 23). Se også
-            <code class="code1">%H</code> .
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%l</code></td>
-          <td>
-            Time som et decimaltal ved hjælp af et 12-timers ur (interval 1 til 12). Se også
-            <code class="code1">%I</code> .
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%m</code></td>
-          <td>Måned som et decimaltal (interval 01 til 12).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%n</code></td>
-          <td>Måned som et decimaltal (interval 1 til 12).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%M</code></td>
-          <td>Minut som et decimaltal (interval 00 til 59).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%p</code></td>
-          <td>
-            Enten &quot;AM&quot; eller &quot;PM&quot; i henhold til den givne tidsværdi. Middag behandles som
-            &quot;PM&quot; og midnat som &quot;AM&quot;.
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%P</code></td>
-          <td>
-            Som <code class="code1">%p</code> men med små bogstaver (&quot;am&quot; eller &quot;pm&quot;).
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%s</code></td>
-          <td>Antal sekunder siden epoken, 1970-01-01 00:00:00 +0000 (UTC).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%S</code></td>
-          <td>Anden som et decimaltal (interval 00 til 59).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%u</code></td>
-          <td>Ugedag som decimal (interval 1 til 7), mandag er 1. Se også <code class="code1">%w</code> .</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%V</code></td>
-          <td>
-            ISO 8601 ugenummer for det aktuelle år som et decimaltal (interval 01 til 53), hvor uge 1 er den
-            første uge, der har mindst 4 dage i det nye år (det vil sige den første torsdag).
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%w</code></td>
-          <td>
-            Ugedag som en decimal (interval 0 til 6), søndag er 0. Se også <code class="code1">%u</code> .
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%x</code></td>
-          <td>Foretrukken datorepræsentation for den aktuelle lokalitet uden klokkeslæt.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%X</code></td>
-          <td>Foretrukken tidsrepræsentation for den aktuelle lokalitet uden dato.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%y</code></td>
-          <td>År som et decimaltal uden et århundrede (interval 00 til 99).</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%Y</code></td>
-          <td>År som et decimaltal inklusive århundrede.</td>
-        </tr>
-        <tr>
-          <td><code class="code1">%z</code></td>
-          <td>
-            Den <code class="code1">+hhmm</code> eller <code class="code1">-hhmm</code> numeriske tidszone
-            (det vil sige time- og minutforskydningen fra UTC).
-          </td>
-        </tr>
-        <tr>
-          <td><code class="code1">%Z</code></td>
-          <td>Tidszonenavn eller forkortelse.</td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>Kompatibilitetsnoter:</h3>
-    <ul>
-      <li><code class="code1">%c</code> - formateret streng er lidt anderledes</li>
-      <li>
-        <code class="code1">%D</code> - ikke implementeret (brug <code class="code1">%m/%d/%y</code> eller
-        <code class="code1">%d/%m/%y</code> )
-      </li>
-      <li><code class="code1">%e</code> - mellemrum er ikke tilføjet</li>
-      <li><code class="code1">%E</code> - ikke implementeret</li>
-      <li><code class="code1">%h</code> - ikke implementeret (brug <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - mellemrum er ikke tilføjet</li>
-      <li>
-        <code class="code1">%n</code> - ligesom <code class="code1">%m</code> , men intet indledende nul (brug
-        <code class="code1">\n</code> til ny linje)
-      </li>
-      <li><code class="code1">%O</code> - ikke implementeret</li>
-      <li>
-        <code class="code1">%r</code> - ikke implementeret (brug <code class="code1">%I:%M:%S %p</code> )
-      </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
+  <title>ImportExportTools NG Hjælp</title>
+</head>
+
+<body>
+  <table style="width: 100%;" id="main-help">
+    <tr>
+      <td style="vertical-align: top;">
+        <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Hjælp</div>
+        <div id="extVersion" style="padding-left: 4px;">ver</div>
+      </td>
+      <td style="text-align: right; padding-right: 30px;">
+        <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
+      </td>
+    </tr>
+  </table>
+  <h3 id="release_notes" style="padding-left: 4px;">Udgivelses noter:</h3>
+  <p>
+    Vigtig bemærkning: Fra og med udgivelsen af ​​Thunderbird version 136 vil Mozilla
+    lave månedlige udgivelser. Jeg kan muligvis ikke udgive ImportExportTools NG hver måned.
+    Tjek venligst, før du opdaterer Thunderbird for at se, om der er en kompatibel
+    ImportExportTools NG-opdatering tilgængelig.<br><br>
+
+    Christopher<br><br>
+
+
+    - Nyt: Eksport af flere mappevalg<br>
+    - Mere fejlhåndtering til EML-import, mbox-eksport<br>
+  </p>
+
+  <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
+  <p>
+    ImportExportTools NG er en opfølgende udvidelse baseret på det originale værk af Paolo
+    &quot;Kaosmos&quot;. Udvidelsen tilbyder flere import- og eksportfunktioner, der understøtter flere
+    forskellige filformater, herunder: Bemærk: Nogle formater understøttes ikke i alle funktioner.<br />
+    - mbox<br />
+    - EML<br />
+    - maildir<br />
+    - HTML<br />
+    - simpel tekst<br />
+    - CSV (kommaseparerede værdier)<br />
+    - PDF<br /><br />
+    Mens det meste af funktionaliteten til drejer sig om meddelelser, er der også understøttelse for import og
+    eksport af Thunderbird-profiler. Derudover kan eksporter også omfatte en HTML- eller CSV-indeksfil.
+    Sikkerhedskopiering af Thunderbird-profilen er en anden funktion.<br />
+  <p>
+    Adgang til IETng-funktionalitet sker gennem flere forskellige menuer installeret af udvidelsen.
+    Funktionerne er kontekstafhængige. Menuer tilføjes til:<br />
+    - Mapperudens genvejsmenu (mappeoperation)<br />
+    - Meddelelseslistes genvejsmenu (udvalgte meddelelser)<br />
+    - Menuen Funktioner (profil og sikkerhedskopiering)<br /><br />
+    De muligheder, der er tilgængelige under menuen &quot;Funktioner&quot;, er ikke i menuen
+    &quot;Hamburger&quot;, de vil være i en fremtidig version. Disse funktioner er også tilgængelige i den
+    nye knap på værktøjslinjen. Hver af menuerne og knappen har også et menupunkt Hjælp og Indstillinger
+    for at få adgang til indstillingsdialogen.<br />
+  </p>
+  </p>
+  <h3>Support:</h3>
+  <p>
+    Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-repository:
+    <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">ImportExportTools NG
+      Issues</a><br /><br />
+    I fejlrapporter skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
+    - ImportExportTools NG-version<br />
+    - Thunderbird-version<br />
+    - Operativsystem og version<br />
+    - Debug output (kopi fra fejlkonsollen - Tilgåes med tastaturgenvejen Control-Skift-J)<br />
+    - En beskrivelse af de trin, der fører til problemet<br />
+  </p>
+  <h2 id="main_menu_help">Genvejsmenufunktioner på mapper</h2>
+  <table class="menu-table">
+    <thead>
       <tr>
-        <td><code class="code1">${subject}</code></td>
-        <td>Emnet for meddelelsen</td>
+        <th>Menupunkt</th>
+        <th>Funktionsbeskrivelse</th>
       </tr>
-      <li><code class="code1">%R</code> - ikke implementeret (brug <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> - ikke implementeret (brug <code class="code1">\t</code> )</li>
-      <li><code class="code1">%T</code> - ikke implementeret (brug <code class="code1">%H:%M:%S</code> )</li>
-      <li><code class="code1">%U</code> - ikke implementeret</li>
-      <li><code class="code1">%W</code> - ikke implementeret</li>
-      <li><code class="code1">%+</code> - ikke implementeret</li>
-      <li><code class="code1">%%</code> - ikke implementeret (brug <code class="code1">%</code> )</li>
-    </ul>
-    <br /><br />
-    <h2 id="ext_filename_format_help">Udvidet filnavnsformat:</h2>
-    <br />
-    <p>
-      Den udvidede filnavnsformatering bruger tokens. Det nøjagtige filnavn kan konstrueres ved hjælp af
-      tokens såvel som enhver tekst eller gyldige filnavnstegn. Ugyldige tegn er:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelske (en-US) tokens er tilgængelige i enhver lokalitet.
-      Lokalitetsspecifikke tokens er også tilgængelige og listet under den engelske tabel.<br /><br />
-      Eksempler:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Brug det tilpassede
-      datoformat i stedet for standard<br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Med noget tilpasset
-      tekst<br /><br /><br />
-    </p>
-    <table class="token-table">
+    </thead>
+    <tbody>
       <tr>
-        <td>Token</td>
-        <td>Beskrivelse</td>
+        <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+        <td>
+          Eksporter hele kontoen med strukturen og undermapper i mbox-format. Eksporten sker ved hjælp af en
+          container med kontonavnet.<br />
+          Bemærk: Dette menupunkt vises kun, når du højreklikker på en konto mapperuden.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${subject}</code></td>
-        <td>Emnet for meddelelsen. Længden kan være begrænset af muligheden for emnelængde.</td>
+        <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+        <td></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${sender}</code></td>
-        <td>Navnet på afsenderen af meddelelsen.</td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+        <td>Eksporter en enkelt mappe til en fil i mbox-format</td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${recipient}</code></td>
-        <td>Navnet på meddelelsesmodtageren.</td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+        <td>Eksporter en enkelt mappe til en zip-fil i mbox-format</td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${sender_email}</code></td>
-        <td>Mailadressen på afsenderen af meddelelsen.</td>
+        <td class="notranslate submenu1">
+          __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+        </td>
+        <td>Eksporter en mappe inklusive alle dens undermapper til et meddelelsestræ i mbox-format</td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${recipient_email}</code></td>
-        <td>Mailadressen på meddelelsesmodtageren.</td>
+        <td class="notranslate submenu1">
+          __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+        </td>
+        <td>
+          Eksporter en mappe inklusive alle dens undermapper til et sæt mbox-filer, en for hver
+          undermappe, eksporteret til en enkelt mappe.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${smart_name}</code></td>
-        <td>Modtagerne, hvis meddelelsen er i en Sendt-mappe, ellers afsendernavnet</td>
+        <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
+        <td></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${index}</code></td>
-        <td>Meddelelsens indeksnummer.</td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+        <td class="notranslate"></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${prefix}</code></td>
-        <td>Værdien af præfikset tekstindstilling.</td>
+        <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+        <td>
+          Eksporter meddelelserne i mappen som filer i EML-format (ingen struktur/undermapper).<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${suffix}</code></td>
-        <td>Suffikstekstindstillingsværdien.</td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+        <td class="notranslate"></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${date}</code></td>
-        <td>Standard datoformat. Standardformatet er: ÅÅÅÅMMDDHHmm</td>
+        <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+        <td>
+          Eksporter meddelelserne i mappen som HTML-filer (ingen struktur/undermapper).<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Det brugerdefinerede datoformat. Se afsnittet om tilpasset datoformatering.</td>
-      </tr>
-    </table>
-    <br />
-    <table id="localized-token-table" class="token-table">
-      <tr>
-        <td>Token (en-US)</td>
-        <td>Oversat (<span id="locale1"></span>) Token</td>
-      </tr>
-      <tr>
-        <td class="notranslate"><code>${subject}</code></td>
-        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
+        <td class="notranslate submenu2">
+          __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+        </td>
+        <td>
+          Eksporter meddelelserne i mappen som HTML-filer (ingen struktur/undermapper).<br />
+          Vedhæftede filer gemmes som separate filer. Dette opretter også en HTML-indeksfil med en liste
+          over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${sender}</code></td>
-        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+        <td>Eksporter meddelelserne i mappen som et sæt PDF-filer</td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${recipient}</code></td>
-        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+        <td class="notranslate"></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${sender_email}</code></td>
-        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
+        <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
+        <td>
+          Eksporter meddelelserne i mappen som filer i almindeligt tekstformat, vedhæftede filer er ikke
+          inkluderet.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${recipient_email}</code></td>
-        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
+        <td class="notranslate submenu2">
+          __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+        </td>
+        <td>
+          Eksporter meddelelserne i mappen som filer i almindeligt tekstformat, inklusive vedhæftede filer.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${smart_name}</code></td>
-        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
+        <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
+        <td>
+          Eksporter meddelelserne i mappen som en enkelt fil i almindeligt tekstformat, vedhæftede filer er ikke
+          inkluderet.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${index}</code></td>
-        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
+        <td class="notranslate submenu2">
+          __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+        </td>
+        <td>
+          Eksporter meddelelserne i mappen som en enkelt fil i almindeligt tekstformat, inklusive vedhæftede
+          filer.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${prefix}</code></td>
-        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
+        <td>
+          Eksporter meddelelserne i mappen som en enkelt CSV (Comma Separated Values) tekstformatfil, vedhæftede
+          filer er ikke inkluderet.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${suffix}</code></td>
-        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
+        <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+        <td class="notranslate"></td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${date}</code></td>
-        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+        <td>Opret en HTML-indeksfil over meddelelserne i mappen (ingen eksport af meddelelser)</td>
       </tr>
       <tr>
-        <td class="notranslate"><code>${date_custom}</code></td>
-        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+        <td>Opret en CSV-indeksfil over meddelelserne i mappen (ingen eksport af meddelelser)</td>
       </tr>
-    </table>
-    <br />
-    <h2>Nye og eksperimentelle præferencer (valgmuligheder)</h2>
-    <p>
-      Der er flere nye funktioner og muligheder, som endnu ikke kan konfigureres i indstillingsdialogen. Når
-      disse funktioner er stabiliseret, vil de blive tilføjet til brugergrænsefladen.<br />
-      For at kunne bruge dem skal de indstilles i Config Editor. For at få adgang til editoren skal du bruge
-      menuen Værktøjer/Indstillinger, og vælg derefter sektionen Avanceret, og der vil være en
-      &#39;Konfigurationseditor&#39;-knap i bunden. Hvis du skriver &#39;importexporttoolsng&#39; i
-      søgefeltet, får du alle udvidelsespræferencerne. Du kan derefter redigere de forskellige præferencer
-      nedenfor efter behov.
-    </p>
-    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
-    <p>
-      Denne præference følger den samme fulde formatering, der skal bruges til indeksfilerne. Det er en tom
-      streng som standard, hvis med en formateret dato/tidsstreng, så vil dette ændre indeksdatoformatet.
-    </p>
-    <p>
-      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
-      <p>
-        <code class="notranslate"
-          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
-        >
-      </p>
-    </p>
-    <p>
-      Begge disse præferencer bruger den samme type udvidede filnavneformater, som de eksporterede
-      meddelelsers filnavn bruger. Den første er til eksterne vedhæftede filer, den anden er til indlejrede
-      (inline) vedhæftede filer.
-    </p>
-    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
-    <p>
-      Normalt er &#39;Datoen&#39; for en meddelelse i Thunderbird den dato, der er indstillet af afsenderens
-      mailklient. Indstilling af denne indstilling til &#39;true&#39; udnytter modtagelsesdatoen på
-      modtagerens mailklient. Denne dato vil blive brugt til begge filnavne såvel som datoen i indeksfilerne.
-    </p>
-    <h2>Grundlæggende, global genvejsfunktion (genveje)</h2>
-    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
-    <p>
-      Denne nye præference giver brugeren mulighed for at indstille op til 10 tastaturgenveje. Genvejene kan
-      udføre de fleste af ImportExportTools NG-funktionerne såvel som andre Thunderbird-funktioner.
-      Præferencestrengen er formateret som et JSON-formateret objekt. Formatet og nøglerne er som følger:
-    </p>
-    <p>
-      Eksempler på genvejstaster (array af JSON-objekter)<br /><br />
-      <code class="notranslate">id</code> - nøgleindekset (1-10)<br />
-      <code class="notranslate">key</code> - nøglen (enkelt tegn)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definere nøglekoden<br />
-      Enten nøgle eller nøglekode kan være inkluderet, men ikke begge dele<br />
-      <code class="notranslate">modifiers</code> - nøglemodifikatorerne, mellemrumssepareret liste
-      (&#39;control&#39;, &#39;skift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> - en direkte kommandostreng<br />
-      <code class="notranslate">contexts</code> - vindueskonteksten, hvor nøglen er aktiv<br />
-      <code class="notranslate">&#39;all&#39;</code> - alle vinduer under messenger, skriv, søg<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - hovedbudbringervinduet og dets efterkommere<br />
-      <code class="notranslate">&#39;compose&#39;</code> - vinduet til at skrive meddelelser<br />
-      <code class="notranslate">&#39;search&#39;</code> - søgedialogen<br /><br />
-      <code class="notranslate"
-        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+        <td>Åbn søgedialogen og eksporterer de ønskede resultater</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+        <td class="notranslate"></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+        <td>Importer en eller flere mbox-filer fra en mappe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+        <td class="notranslate">
+          Importer en eller flere mbox-filer fra en mappe inklusive undermapper og struktur
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+        <td class="notranslate">Importer alle mbox-filer i en valgt mappe</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+        <td class="notranslate">
+          Importer alle mbox-filer i en valgt mappe inklusive undermapper og struktur
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+        <td>Vælg og importer en maildir-mappe</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+        <td class="notranslate"></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+        <td>Vælg og importer EML-meddelelsesfiler (ingen struktur/undermapper)</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
+        <td>Importer alle EML-meddelelser fra en enkelt mappe</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+        <td>Importer alle EML-meddelelser fra en enkelt mappe inklusive struktur/undermapper</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
+        <td>Kopier OS-stien til den valgte mappe</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
+        <td>Åbn OS-stien til den valgte mappe</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+        <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+        <td>Åbn hovedhjælpesiden</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <h2 id="message_functions_help">Genvejsmenufunktioner på meddelelser</h2>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>Menupunkt</th>
+        <th>Funktionsbeskrivelse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til EML-filer (vedhæftede filer indlejret)</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+        <td>
+          Eksporter de valgte meddelelser til filer i EML-format<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til HTML-filer</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til HTML-filer inklusive vedhæftede filer</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+        <td>
+          Eksporter meddelelserne som HTML-filer.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+        <td>
+          Eksporter meddelelserne som HTML-filer inklusive vedhæftede filer.<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til filer i PDF-format</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til filer i almindeligt tekstformat</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til filer i almindeligt tekstformat inklusive vedhæftede filer</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">
+          __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+        </td>
+        <td>
+          Eksporter meddelelserne som filer i almindeligt tekstformat inklusive vedhæftede filer<br />
+          Dette opretter også en HTML-indeksfil med en liste over hver meddelelse.
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til en enkelt CSV-tekstfil</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+        <td>Eksporter de valgte meddelelser til en enkelt mbox-fil</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+        <td>Føj de valgte meddelelser til en eksisterende mbox-fil</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+        <td>Opret en HTML-indeksfil for de valgte meddelelser</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+        <td>Opret en CSV-indeksfil for de valgte meddelelser</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+        <td>Kopier en enkelt valgt meddelelse til udklipsholderen</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+        <td>Kopier en enkelt valgt meddelelses headers til udklipsholderen</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+        <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+        <td>Åbn hovedhjælpesiden</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <h2 id="tools_functions_help">Menuen Funktioner</h2>
+  <table class="menu-table">
+    <thead>
+      <tr>
+        <th>Menupunkt</th>
+        <th>Funktionsbeskrivelse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+        <td>Gem hele profilen (mail, udvidelser, indstilliger)</td>
+      </tr>
+      <tr>
+        <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+        <td>Gem al mail i den aktuelle profil</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+        <td>Importer en komplet profil (mail, udvidelser, indstillinger)</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+        <td>Åbn dialogboksen ImportExportTools NG-indstillinger</td>
+      </tr>
+      <tr>
+        <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+        <td>Åbn hovedhjælpesiden</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 id="customdate_format_help">Brugerdefineret datoformat</h2>
+  <p>
+    Den brugerdefinerede dato-indstilling giver mulighed for fuldstændig kontrol over den datoformatering,
+    der bruges til begge filer i indekset. Både standardformatet &quot;Dato&quot; såvel som det nye
+    brugerdefinerede format &quot;Dato (brugerdefineret)&quot; er tilgængelige i rullemenuerne for filnavne.
+    Den brugerdefinerede dato kan også bruges med ${date_custom}-tokenet, der bruges i de udvidede
+    brugerdefinerede filnavne. Det originale (standard) datoformat er:<br />
+    ÅÅÅÅMMDDHHmm : 202011060808<br /><br />
+    Det brugerdefinerede datoformat bruger %-sekvenser, der matcher den
+    <code>strftime()</code> Unix-lignende funktionalitet. Den er baseret på en JavaScript-port af
+    <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+    , en funktion til at formatere dato og klokkeslæt.<br />
+    Port of strftime() af TH Doan (https://thdoan.github.io/strftime/)<br />
+  </p>
+  <h3>Konverteringssekvensbeskrivelser</h3>
+  <table class="dateformat-table">
+    <thead>
+      <tr>
+        <th>Sekvens</th>
+        <th>Beskrivelse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code1">%a</code></td>
+        <td>Ugedagens forkortede navn.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%A</code></td>
+        <td>Ugedagens fulde navn.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%b</code></td>
+        <td>Forkortet månedsnavn.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%B</code></td>
+        <td>Fuldt måneds navn.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%c</code></td>
+        <td>Foretrukken dato og tid (UTC) repræsentation for den aktuelle landestandard.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%C</code></td>
+        <td>Århundredetal (år/100) som et 2-cifret heltal.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%d</code></td>
+        <td>Dag i måneden som et decimaltal (interval 01 til 31).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%e</code></td>
+        <td>Dag i måneden som et decimaltal (interval 1 til 31).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%F</code></td>
+        <td>ISO 8601 datoformat (svarende til <code class="code1">%Y-%m-%d</code> ).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%G</code></td>
+        <td>
+          ISO 8601 ugebaseret årstal med århundrede som decimaltal. Det 4-cifrede år svarer til
+          ISO-ugenummeret (se <code class="code1">%V</code> ). Dette har samme format og værdi som
+          <code class="code1">%Y</code> , bortset fra at hvis ISO-ugenummeret tilhører det foregående eller
+          næste år, bruges det år i stedet.
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%g</code></td>
+        <td>
+          Som <code class="code1">%G</code> , men uden århundrede, altså med et 2-cifret årstal (00-99).
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%H</code></td>
+        <td>
+          Time som et decimaltal ved hjælp af et 24-timers ur (interval 00 til 23). Se også
+          <code class="code1">%k</code> .
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%I</code></td>
+        <td>
+          Time som et decimaltal ved hjælp af et 12-timers ur (interval 01 til 12). Se også
+          <code class="code1">%l</code> .
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%j</code></td>
+        <td>Dag i året som et decimaltal (interval 001 til 366).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%k</code></td>
+        <td>
+          Time som et decimaltal ved hjælp af et 24-timers ur (interval 0 til 23). Se også
+          <code class="code1">%H</code> .
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%l</code></td>
+        <td>
+          Time som et decimaltal ved hjælp af et 12-timers ur (interval 1 til 12). Se også
+          <code class="code1">%I</code> .
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%m</code></td>
+        <td>Måned som et decimaltal (interval 01 til 12).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%n</code></td>
+        <td>Måned som et decimaltal (interval 1 til 12).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%M</code></td>
+        <td>Minut som et decimaltal (interval 00 til 59).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%p</code></td>
+        <td>
+          Enten &quot;AM&quot; eller &quot;PM&quot; i henhold til den givne tidsværdi. Middag behandles som
+          &quot;PM&quot; og midnat som &quot;AM&quot;.
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%P</code></td>
+        <td>
+          Som <code class="code1">%p</code> men med små bogstaver (&quot;am&quot; eller &quot;pm&quot;).
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%s</code></td>
+        <td>Antal sekunder siden epoken, 1970-01-01 00:00:00 +0000 (UTC).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%S</code></td>
+        <td>Anden som et decimaltal (interval 00 til 59).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%u</code></td>
+        <td>Ugedag som decimal (interval 1 til 7), mandag er 1. Se også <code class="code1">%w</code> .</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%V</code></td>
+        <td>
+          ISO 8601 ugenummer for det aktuelle år som et decimaltal (interval 01 til 53), hvor uge 1 er den
+          første uge, der har mindst 4 dage i det nye år (det vil sige den første torsdag).
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%w</code></td>
+        <td>
+          Ugedag som en decimal (interval 0 til 6), søndag er 0. Se også <code class="code1">%u</code> .
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%x</code></td>
+        <td>Foretrukken datorepræsentation for den aktuelle lokalitet uden klokkeslæt.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%X</code></td>
+        <td>Foretrukken tidsrepræsentation for den aktuelle lokalitet uden dato.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%y</code></td>
+        <td>År som et decimaltal uden et århundrede (interval 00 til 99).</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%Y</code></td>
+        <td>År som et decimaltal inklusive århundrede.</td>
+      </tr>
+      <tr>
+        <td><code class="code1">%z</code></td>
+        <td>
+          Den <code class="code1">+hhmm</code> eller <code class="code1">-hhmm</code> numeriske tidszone
+          (det vil sige time- og minutforskydningen fra UTC).
+        </td>
+      </tr>
+      <tr>
+        <td><code class="code1">%Z</code></td>
+        <td>Tidszonenavn eller forkortelse.</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Kompatibilitetsnoter:</h3>
+  <ul>
+    <li><code class="code1">%c</code> - formateret streng er lidt anderledes</li>
+    <li>
+      <code class="code1">%D</code> - ikke implementeret (brug <code class="code1">%m/%d/%y</code> eller
+      <code class="code1">%d/%m/%y</code> )
+    </li>
+    <li><code class="code1">%e</code> - mellemrum er ikke tilføjet</li>
+    <li><code class="code1">%E</code> - ikke implementeret</li>
+    <li><code class="code1">%h</code> - ikke implementeret (brug <code class="code1">%b</code> )</li>
+    <li><code class="code1">%k</code> - mellemrum er ikke tilføjet</li>
+    <li>
+      <code class="code1">%n</code> - ligesom <code class="code1">%m</code> , men intet indledende nul (brug
+      <code class="code1">\n</code> til ny linje)
+    </li>
+    <li><code class="code1">%O</code> - ikke implementeret</li>
+    <li>
+      <code class="code1">%r</code> - ikke implementeret (brug <code class="code1">%I:%M:%S %p</code> )
+    </li>
+    <tr>
+      <td><code class="code1">${subject}</code></td>
+      <td>Emnet for meddelelsen</td>
+    </tr>
+    <li><code class="code1">%R</code> - ikke implementeret (brug <code class="code1">%H:%M</code> )</li>
+    <li><code class="code1">%t</code> - ikke implementeret (brug <code class="code1">\t</code> )</li>
+    <li><code class="code1">%T</code> - ikke implementeret (brug <code class="code1">%H:%M:%S</code> )</li>
+    <li><code class="code1">%U</code> - ikke implementeret</li>
+    <li><code class="code1">%W</code> - ikke implementeret</li>
+    <li><code class="code1">%+</code> - ikke implementeret</li>
+    <li><code class="code1">%%</code> - ikke implementeret (brug <code class="code1">%</code> )</li>
+  </ul>
+  <br /><br />
+  <h2 id="ext_filename_format_help">Udvidet filnavnsformat:</h2>
+  <br />
+  <p>
+    Den udvidede filnavnsformatering bruger tokens. Det nøjagtige filnavn kan konstrueres ved hjælp af
+    tokens såvel som enhver tekst eller gyldige filnavnstegn. Ugyldige tegn er:
+    <code>| * : &lt; &gt; ? \ / &quot;</code> De engelske (en-US) tokens er tilgængelige i enhver lokalitet.
+    Lokalitetsspecifikke tokens er også tilgængelige og listet under den engelske tabel.<br /><br />
+    Eksempler:<br /><br />
+    <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
+    <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Brug det tilpassede
+    datoformat i stedet for standard<br />
+    <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Med noget tilpasset
+    tekst<br /><br /><br />
+  </p>
+  <table class="token-table">
+    <tr>
+      <td>Token</td>
+      <td>Beskrivelse</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${subject}</code></td>
+      <td>Emnet for meddelelsen. Længden kan være begrænset af muligheden for emnelængde.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${sender}</code></td>
+      <td>Navnet på afsenderen af meddelelsen.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${recipient}</code></td>
+      <td>Navnet på meddelelsesmodtageren.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${sender_email}</code></td>
+      <td>Mailadressen på afsenderen af meddelelsen.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${recipient_email}</code></td>
+      <td>Mailadressen på meddelelsesmodtageren.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${smart_name}</code></td>
+      <td>Modtagerne, hvis meddelelsen er i en Sendt-mappe, ellers afsendernavnet</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${index}</code></td>
+      <td>Meddelelsens indeksnummer.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${prefix}</code></td>
+      <td>Værdien af præfikset tekstindstilling.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${suffix}</code></td>
+      <td>Suffikstekstindstillingsværdien.</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${date}</code></td>
+      <td>Standard datoformat. Standardformatet er: ÅÅÅÅMMDDHHmm</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${date_custom}</code></td>
+      <td>Det brugerdefinerede datoformat. Se afsnittet om tilpasset datoformatering.</td>
+    </tr>
+  </table>
+  <br />
+  <table id="localized-token-table" class="token-table">
+    <tr>
+      <td>Token (en-US)</td>
+      <td>Oversat (<span id="locale1"></span>) Token</td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${subject}</code></td>
+      <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${sender}</code></td>
+      <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${recipient}</code></td>
+      <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${sender_email}</code></td>
+      <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${recipient_email}</code></td>
+      <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${smart_name}</code></td>
+      <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${index}</code></td>
+      <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${prefix}</code></td>
+      <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${suffix}</code></td>
+      <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${date}</code></td>
+      <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
+    </tr>
+    <tr>
+      <td class="notranslate"><code>${date_custom}</code></td>
+      <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
+    </tr>
+  </table>
+  <br />
+  <h2>Nye og eksperimentelle præferencer (valgmuligheder)</h2>
+  <p>
+    Der er flere nye funktioner og muligheder, som endnu ikke kan konfigureres i indstillingsdialogen. Når
+    disse funktioner er stabiliseret, vil de blive tilføjet til brugergrænsefladen.<br />
+    For at kunne bruge dem skal de indstilles i Config Editor. For at få adgang til editoren skal du bruge
+    menuen Værktøjer/Indstillinger, og vælg derefter sektionen Avanceret, og der vil være en
+    &#39;Konfigurationseditor&#39;-knap i bunden. Hvis du skriver &#39;importexporttoolsng&#39; i
+    søgefeltet, får du alle udvidelsespræferencerne. Du kan derefter redigere de forskellige præferencer
+    nedenfor efter behov.
+  </p>
+  <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+  <p>
+    Denne præference følger den samme fulde formatering, der skal bruges til indeksfilerne. Det er en tom
+    streng som standard, hvis med en formateret dato/tidsstreng, så vil dette ændre indeksdatoformatet.
+  </p>
+  <p>
+    <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+  <p>
+    <code class="notranslate">importexporttoolsng.export.embedded_attachments.filename_extended_format</code>
+  </p>
+  </p>
+  <p>
+    Begge disse præferencer bruger den samme type udvidede filnavneformater, som de eksporterede
+    meddelelsers filnavn bruger. Den første er til eksterne vedhæftede filer, den anden er til indlejrede
+    (inline) vedhæftede filer.
+  </p>
+  <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+  <p>
+    Normalt er &#39;Datoen&#39; for en meddelelse i Thunderbird den dato, der er indstillet af afsenderens
+    mailklient. Indstilling af denne indstilling til &#39;true&#39; udnytter modtagelsesdatoen på
+    modtagerens mailklient. Denne dato vil blive brugt til begge filnavne såvel som datoen i indeksfilerne.
+  </p>
+  <h2>Grundlæggende, global genvejsfunktion (genveje)</h2>
+  <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+  <p>
+    Denne nye præference giver brugeren mulighed for at indstille op til 10 tastaturgenveje. Genvejene kan
+    udføre de fleste af ImportExportTools NG-funktionerne såvel som andre Thunderbird-funktioner.
+    Præferencestrengen er formateret som et JSON-formateret objekt. Formatet og nøglerne er som følger:
+  </p>
+  <p>
+    Eksempler på genvejstaster (array af JSON-objekter)<br /><br />
+    <code class="notranslate">id</code> - nøgleindekset (1-10)<br />
+    <code class="notranslate">key</code> - nøglen (enkelt tegn)<br />
+    <code class="notranslate">keycode</code> - &#39;VK_*&#39; definere nøglekoden<br />
+    Enten nøgle eller nøglekode kan være inkluderet, men ikke begge dele<br />
+    <code class="notranslate">modifiers</code> - nøglemodifikatorerne, mellemrumssepareret liste
+    (&#39;control&#39;, &#39;skift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+    <code class="notranslate">oncommand</code> - en direkte kommandostreng<br />
+    <code class="notranslate">contexts</code> - vindueskonteksten, hvor nøglen er aktiv<br />
+    <code class="notranslate">&#39;all&#39;</code> - alle vinduer under messenger, skriv, søg<br />
+    <code class="notranslate">&#39;messenger&#39;</code> - hovedbudbringervinduet og dets efterkommere<br />
+    <code class="notranslate">&#39;compose&#39;</code> - vinduet til at skrive meddelelser<br />
+    <code class="notranslate">&#39;search&#39;</code> - søgedialogen<br /><br />
+    <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         skift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control skift&quot;, &quot;oncommand&quot;:
-        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
-      ><br /><br />
-      <code class="notranslate"
-        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code><br /><br />
+    <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         skift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
-      ><br /><br />
-      <code class="notranslate"
-        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        skift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code><br /><br />
+    <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
         skift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
         &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
@@ -855,47 +857,46 @@
         all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
         &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control skift&quot;,
         &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
-        &quot;compose&quot; }]</code
-      ><br />
-    </p>
+        &quot;compose&quot; }]</code><br />
+  </p>
 
-    <p>
-      Da genvejene er nye og eksperimentelle, vil jeg også tilføje mere dokumentation i Github-repository. Tjek udvidelsen <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
-        >ImportExportTools NG README</a
-      ><br />
-    </p>
-    <br />
-    <h3>Version 14.0.0: Thunderbird 115 Support - 10. juli 2023</h3>
-    <p>
-      Funktioner og problemer behandlet:<br />
-      <p>
-        - Understøttelse af Thunderbird 115 Supernova<br />
-        - Omarbejd og moderniser brugerfladen for indstillinger<br />
-        - Komplet understøttelse af mørkt tema<br />
-        - Nyt, konsekvent menusystem<br />
-        - Ny knap på værktøjslinjen<br />
-        - Forbedret hjælp, åbnes ved installation<br />
-        - Opdater eksportkonto<br /><br />
-        Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
-        - <code class="notranslate">@kiki-ja</code><br />
-        - <code class="notranslate">@tidebre67</code><br />
-        - <code class="notranslate">@DenB10</code><br>
-	      - <code class="notranslate">@Yarny0</code><br>
-	      - <code class="notranslate">@librelegal</code><br>
-	      - <code class="notranslate">@Mr-Update</code><br>
-	      - <code class="notranslate">@Joergen</code><br>
-        - <code class="notranslate">@ovari</code><br />
-        - <code class="notranslate">@dipgithub</code><br />
-        - <code class="notranslate">@artofit</code><br />
-        - <code class="notranslate">@JF1313</code><br />
-        - <code class="notranslate">@jessejmorrow</code><br />
-        - <code class="notranslate">@spd2000</code><br />
-        - <code class="notranslate">@kanlukasz</code><br />
-        - <code class="notranslate">@razzmatazzz</code><br />
-        - <code class="notranslate">@triplee</code> <br />
-      </p>
-      <script type="application/javascript" src="../../../modules/i18n.js"></script>
-      <script type="application/javascript" src="../../help.js"></script>
-    </p>
-  </body>
+  <p>
+    Da genvejene er nye og eksperimentelle, vil jeg også tilføje mere dokumentation i Github-repository. Tjek udvidelsen
+    <a class="link1" href="https://github.com/thundernest/import-export-tools-ng">ImportExportTools NG README</a><br />
+  </p>
+  <br />
+  <h3>Version 14.0.0: Thunderbird 115 Support - 10. juli 2023</h3>
+  <p>
+    Funktioner og problemer behandlet:<br />
+  <p>
+    - Understøttelse af Thunderbird 115 Supernova<br />
+    - Omarbejd og moderniser brugerfladen for indstillinger<br />
+    - Komplet understøttelse af mørkt tema<br />
+    - Nyt, konsekvent menusystem<br />
+    - Ny knap på værktøjslinjen<br />
+    - Forbedret hjælp, åbnes ved installation<br />
+    - Opdater eksportkonto<br /><br />
+    Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
+    - <code class="notranslate">@kiki-ja</code><br />
+    - <code class="notranslate">@tidebre67</code><br />
+    - <code class="notranslate">@DenB10</code><br>
+    - <code class="notranslate">@Yarny0</code><br>
+    - <code class="notranslate">@librelegal</code><br>
+    - <code class="notranslate">@Mr-Update</code><br>
+    - <code class="notranslate">@Joergen</code><br>
+    - <code class="notranslate">@ovari</code><br />
+    - <code class="notranslate">@dipgithub</code><br />
+    - <code class="notranslate">@artofit</code><br />
+    - <code class="notranslate">@JF1313</code><br />
+    - <code class="notranslate">@jessejmorrow</code><br />
+    - <code class="notranslate">@spd2000</code><br />
+    - <code class="notranslate">@kanlukasz</code><br />
+    - <code class="notranslate">@razzmatazzz</code><br />
+    - <code class="notranslate">@triplee</code> <br />
+  </p>
+  <script type="application/javascript" src="../../../modules/i18n.js"></script>
+  <script type="application/javascript" src="../../help.js"></script>
+  </p>
+</body>
+
 </html>

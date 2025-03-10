@@ -1748,7 +1748,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 							}, true, { examineEncryptedParts: true });
 						} else
-							myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
+							await myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 
 					} catch (ex) {
 						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
@@ -1759,7 +1759,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					}
 				},
 
-				onAfterStopRequest: function (clone, data, saveAttachments) {
+				onAfterStopRequest: async function (clone, data, saveAttachments) {
 
 					try {
 
@@ -1926,18 +1926,37 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										}
 									}
 
+									console.log(aUrl)
+
+									let inlinePartName = aUrl[0].match(/part=([.0-9]*)&/)[1]
+									let inlineFilename = aUrl[0].match(/\&filename=(.+)\&?/)[1]
+
+									console.log(inlinePartName)
+									console.log(inlineFilename)
+
 									var embImg = embImgContainer.clone();
 
-									embImg.append(i + ".jpg");
-									imgAtts[i].file = embImg;
+									//embImg.append(i + ".jpg");
+									embImg.append(inlineFilename);
+
 									imgAtts[i].url = aUrl;
 
-									messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
+									let inlineFile = await getAttachmentFile(hdr, inlinePartName)
+									let fileData = await fileToUint8Array(inlineFile);
+									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path,inlineFilename)
+									await IOUtils.write(unqInlineFilepath, fileData);
+									embImg = embImg.initWithPath(unqInlineFilepath)
+									imgAtts[i].file = embImg;
+
+									//messenger.saveAttachmentToFile(embImg, aUrl[0], uri, "image/jpeg", embImgsUrlListener);
 									// var sep = isWin ? "\\" : "/";
 									// Encode for UTF-8 - Fixes #355
-									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
+									//data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
+									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
+
 								}
 							} catch (e) {
+								console.log(e)
 								IETlogger.write("save embedded images - error = " + e);
 							}
 						}

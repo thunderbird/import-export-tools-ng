@@ -49,7 +49,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			rv = await getFullMessage(info.messageId);
 			return rv;
 		case "getAttachmentFile":
-			//console.log(await browser.messages.listAttachments(info.msgId.id));
+			console.log(await browser.messages.listAttachments(info.msgId.id), info.msgId);
 			let fileObj = await browser.messages.getAttachmentFile(info.msgId.id, info.attPartName);
 
 			console.log(fileObj)

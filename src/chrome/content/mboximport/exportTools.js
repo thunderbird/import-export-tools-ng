@@ -1604,6 +1604,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						var data = this.emailtext;
 
+						console.log(data)
+
 						if (copyToClip) {
 							data = IEThtmlToText(data, msgFolder);
 							IETcopyToClip(data);
@@ -1697,9 +1699,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											}
 
 											console.log(att.url,attDirContainerClone.path)
-											let attPartName = att.url.split("?")[1].split("&")[0].split("=")[1];
+											//let attPartName = att.url.split("?")[1].split("&")[0].split("=")[1];
+											let attPartName = att.url.match(/\&part=(.+)\&/)[1]
 											console.log(attPartName)
-											let attFile = await getAttachmentFile(hdr, attPartName)
+											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
+											let fileData = await fileToUint8Array(attFile);
+											await IOUtils.write(attDirContainerClone.path, fileData);
+
 											//messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 										} catch (e) {
 											success = false;
@@ -1866,6 +1872,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									return { imgLink: img }
 								});
 
+								console.log(data)
+								console.log(imgAtts)
 								// Update for extended naming
 								for (var i = 0; i < imgs.length; i++) {
 									if (!embImgContainer) {
@@ -2112,6 +2120,24 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 		return { status: result };
 	}
 
+}
+
+async function fileToUint8Array (file) {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+
+		reader.onload = (event) => {
+			const arrayBuffer = event.target.result;
+			const uint8Array = new Uint8Array(arrayBuffer);
+			resolve(uint8Array);
+		};
+
+		reader.onerror = (error) => {
+			reject(error);
+		};
+
+		reader.readAsArrayBuffer(file);
+	});
 }
 
 async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {

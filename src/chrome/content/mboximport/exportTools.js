@@ -1655,6 +1655,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attNameAscii = encodeURIComponent(attName);
 										} catch (e) {
 											success = false;
+									console.debug(success);
+
 										}
 									} else {
 										try {
@@ -1714,6 +1716,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										}
 									}
 									// Encode for UTF-8 - Fixes #355
+									console.debug(success);
+
 									if (success)
 										footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
 								}

@@ -33,7 +33,6 @@ async function getSelectedMsgs() {
 async function getAttachmentFile(msgHdr, attPartName) {
 	let msgId = window.ietngAddon.extension.messageManager
 	.convert(msgHdr);
-	console.log(msgId, attPartName)
 	let win = getMail3Pane();
 	return win.ietngAddon.notifyTools.notifyBackground({ command: "getAttachmentFile", msgId: msgId, attPartName: attPartName });
 }

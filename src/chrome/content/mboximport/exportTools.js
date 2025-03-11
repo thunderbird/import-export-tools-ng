@@ -1604,8 +1604,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						var data = this.emailtext;
 
-						console.log(data)
-
 						if (copyToClip) {
 							data = IEThtmlToText(data, msgFolder);
 							IETcopyToClip(data);
@@ -1640,7 +1638,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attDirContainer.append(afname);
 										}
 										attDirContainer.createUnique(1, 0o755);
-										footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
+										footer = '<br><hr><br><div style="font-size:16px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
 										noDir = false;
 									}
 									var success = true;
@@ -1708,8 +1706,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											console.debug("non detat 3", success);
 
 											console.log(att.url, attDirContainerClone.path)
-											//let attPartName = att.url.split("?")[1].split("&")[0].split("=")[1];
-											let attPartName = att.url.match(/\&part=(.+)\&/)[1]
+
+											let attPartName = att.url.match(/part=([.0-9]+)&?/)[1];
+
 											console.log(attPartName)
 											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
 											let fileData = await fileToUint8Array(attFile);
@@ -1885,8 +1884,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									return { imgLink: img }
 								});
 
-								console.log(data)
-								console.log(imgAtts)
 								// Update for extended naming
 								for (var i = 0; i < imgs.length; i++) {
 									if (!embImgContainer) {
@@ -1941,8 +1938,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									console.log(aUrl)
 
-									let inlinePartName = aUrl[0].match(/part=([.0-9]*)&/)[1]
-									let inlineFilename = aUrl[0].match(/\&filename=(.+)\&?/)[1]
+									let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
+									let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
 
 									console.log(inlinePartName)
 									console.log(inlineFilename)

@@ -1644,6 +1644,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										noDir = false;
 									}
 									var success = true;
+
 									if (att.url.indexOf("file") === 0) { // Detached attachments
 										try {
 											var localFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
@@ -1655,11 +1656,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attNameAscii = encodeURIComponent(attName);
 										} catch (e) {
 											success = false;
-									console.debug(success);
+											console.debug(success);
 
 										}
 									} else {
 										try {
+											console.debug("non detat", success);
 
 											var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
 												.createInstance(Ci.nsIScriptableUnicodeConverter);
@@ -1672,6 +1674,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attDirContainerClone.append(att.name);
 											attachments[i].file = attDirContainerClone;
 
+											console.debug("non detat 2", success);
+
 											// The urlListener.OnStopRunningUrl fires before the 
 											// file is truly closed. An attempt to change lastModifiedTime
 											// here gets superceded with the current date. This is likely 
@@ -1680,33 +1684,37 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											// Setting the attachment date to match the message date #549
 
 											// @implements {nsIUrlListener}
-											const attsUrlListener = {
-												OnStartRunningUrl(url) { },
-												OnStopRunningUrl(url, status) {
-													if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-														return;
-													}
-													let curAtt = attachments.find((att) => {
-														if (att.url == url.spec) {
-															return true;
-														}
-													})
-													setTimeout(this.setFileTime, 50, curAtt.file.clone());
-												},
-												setFileTime(curAttFile) {
-													//console.log(curAttFile.path)
-													if (!IETabort)
-														curAttFile.lastModifiedTime = time;
-												}
-											}
+											/*
+																						const attsUrlListener = {
+																							OnStartRunningUrl(url) { },
+																							OnStopRunningUrl(url, status) {
+																								if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+																									return;
+																								}
+																								let curAtt = attachments.find((att) => {
+																									if (att.url == url.spec) {
+																										return true;
+																									}
+																								})
+																								setTimeout(this.setFileTime, 50, curAtt.file.clone());
+																							},
+																							setFileTime(curAttFile) {
+																								//console.log(curAttFile.path)
+																								if (!IETabort)
+																									curAttFile.lastModifiedTime = time;
+																							}
+																						}
+											*/
+											console.debug("non detat 3", success);
 
-											console.log(att.url,attDirContainerClone.path)
+											console.log(att.url, attDirContainerClone.path)
 											//let attPartName = att.url.split("?")[1].split("&")[0].split("=")[1];
 											let attPartName = att.url.match(/\&part=(.+)\&/)[1]
 											console.log(attPartName)
 											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
 											let fileData = await fileToUint8Array(attFile);
 											await IOUtils.write(attDirContainerClone.path, fileData);
+											console.debug("non detat 4",success);
 
 											//messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 										} catch (e) {
@@ -1716,7 +1724,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										}
 									}
 									// Encode for UTF-8 - Fixes #355
-									console.debug(success);
+									console.debug("non detat 5",success);
+									
 
 									if (success)
 										footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
@@ -1947,7 +1956,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									let inlineFile = await getAttachmentFile(hdr, inlinePartName)
 									let fileData = await fileToUint8Array(inlineFile);
-									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path,inlineFilename)
+									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path, inlineFilename)
 									await IOUtils.write(unqInlineFilepath, fileData);
 									embImg = embImg.initWithPath(unqInlineFilepath)
 									imgAtts[i].file = embImg;
@@ -2145,7 +2154,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 }
 
-async function fileToUint8Array (file) {
+async function fileToUint8Array(file) {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
 

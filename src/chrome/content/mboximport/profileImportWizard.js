@@ -29,6 +29,8 @@
 IETopenFPsync
 */
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
 var { ExtensionParent } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
 );
@@ -38,7 +40,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 );
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var IETimportWizard = {
 

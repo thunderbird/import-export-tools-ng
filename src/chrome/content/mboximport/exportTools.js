@@ -1741,8 +1741,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									// regex could somehow go to recursion
 									// https://github.com/thundernest/import-export-tools-ng/issues/98
 
-									// Just remove outlines for now
-									//data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
+									// Just remove all but top outlines for now
+
+									data = data.replace(/<\/head>/i, "<style>fieldset.moz-mime-attachment-header {border-bottom: none; border-right: none; border-left: none;}</style></head>");
 
 									let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
 									rs = null;

@@ -33,6 +33,8 @@ exportSelectedMsgs,
 	9 = Plain Text with attachments
 	*/
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
 	var { ExtensionParent } = ChromeUtils.importESModule(
 		"resource://gre/modules/ExtensionParent.sys.mjs"
 	);

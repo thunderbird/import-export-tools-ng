@@ -13,7 +13,6 @@ window.ietngAddon.window = window;
 window.ietngAddon.dateForDebugging = "";
 window.ietngAddon.dateForDebugging = new Date();
 
-console.log(window)
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/utils.js", window, "UTF-8");

@@ -1654,13 +1654,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attNameAscii = encodeURIComponent(attName);
 										} catch (e) {
 											success = false;
-											console.debug(success);
-
 										}
 									} else {
 										try {
-											console.debug("non detat", success);
-
 											var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
 												.createInstance(Ci.nsIScriptableUnicodeConverter);
 											converter.charset = "UTF-8";
@@ -1672,59 +1668,17 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attDirContainerClone.append(att.name);
 											attachments[i].file = attDirContainerClone;
 
-											console.debug("non detat 2", success);
-
-											// The urlListener.OnStopRunningUrl fires before the 
-											// file is truly closed. An attempt to change lastModifiedTime
-											// here gets superceded with the current date. This is likely 
-											// a file descriptor being closed after the event.
-											// A setTimeout delayed action is required. 
-											// Setting the attachment date to match the message date #549
-
-											// @implements {nsIUrlListener}
-											/*
-																						const attsUrlListener = {
-																							OnStartRunningUrl(url) { },
-																							OnStopRunningUrl(url, status) {
-																								if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-																									return;
-																								}
-																								let curAtt = attachments.find((att) => {
-																									if (att.url == url.spec) {
-																										return true;
-																									}
-																								})
-																								setTimeout(this.setFileTime, 50, curAtt.file.clone());
-																							},
-																							setFileTime(curAttFile) {
-																								//console.log(curAttFile.path)
-																								if (!IETabort)
-																									curAttFile.lastModifiedTime = time;
-																							}
-																						}
-											*/
-											console.debug("non detat 3", success);
-
-											console.log(att.url, attDirContainerClone.path)
-
 											let attPartName = att.url.match(/part=([.0-9]+)&?/)[1];
-
-											console.log(attPartName)
 											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
 											let fileData = await fileToUint8Array(attFile);
 											await IOUtils.write(attDirContainerClone.path, fileData);
-											console.debug("non detat 4",success);
 
-											//messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
 										} catch (e) {
 											success = false;
 											console.debug('save attachment exception ' + att.name);
 											console.debug(e);
 										}
 									}
-									// Encode for UTF-8 - Fixes #355
-									console.debug("non detat 5",success);
-									
 
 									if (success)
 										footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
@@ -1911,43 +1865,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										continue;
 									}
 
-									// The urlListener.OnStopRunningUrl fires before the 
-									// file is truly closed. An attempt to change lastModifiedTime
-									// here gets superceded with the current date. This is likely 
-									// a file descriptor being closed after the event.
-									// A setTimeout delayed action is required. 
-									// Setting the attachment date to match the message date #549
-
-									// @implements {nsIUrlListener}
-									const embImgsUrlListener = {
-										OnStartRunningUrl(url) { },
-										OnStopRunningUrl(url, status) {
-											if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-												return;
-											}
-											let curAtt = imgAtts.find((att) => {
-												if (att.url == url.spec) {
-													return true;
-												}
-											})
-											setTimeout(this.setFileTime, 50, curAtt);
-										},
-										setFileTime(curAtt) {
-											curAtt.file.lastModifiedTime = time;
-										}
-									}
-
-									console.log(aUrl)
-
 									let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
 									let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
-
-									console.log(inlinePartName)
-									console.log(inlineFilename)
-
 									var embImg = embImgContainer.clone();
-
-									//embImg.append(i + ".jpg");
 									embImg.append(inlineFilename);
 
 									imgAtts[i].url = aUrl;
@@ -1959,10 +1879,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									embImg = embImg.initWithPath(unqInlineFilepath)
 									imgAtts[i].file = embImg;
 
-									//messenger.saveAttachmentToFile(embImg, aUrl[0], uri, "image/jpeg", embImgsUrlListener);
-									// var sep = isWin ? "\\" : "/";
 									// Encode for UTF-8 - Fixes #355
-									//data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
 									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
 
 								}

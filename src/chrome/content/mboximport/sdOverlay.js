@@ -54,6 +54,9 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
+console.log(window.top)
+console.log(window.top.ietngAddon)
+
 var { ExtensionParent } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
 );
@@ -63,7 +66,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 );
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+  + ietngExtension.manifest.version + new Date());
 
 var searchFolder = null;
 

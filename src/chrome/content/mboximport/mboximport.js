@@ -59,6 +59,8 @@ globalThis,
 
 // update to use es6 modules for 128+, 136+ required - thx Axel
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
@@ -70,6 +72,9 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+//window.dateForDebugging = new Date();
+
+console.log(window.ietngAddon)
 
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
@@ -78,13 +83,13 @@ var { MailServices } = Ietng_ESM
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 var { mboxImportExport } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
-  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 

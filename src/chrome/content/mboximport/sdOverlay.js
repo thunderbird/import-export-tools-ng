@@ -54,8 +54,7 @@ createIndexCSV
 // type 4 = MBOX (new)
 // type 5 = MBOX (append)
 
-console.log(window.top)
-console.log(window.top.ietngAddon)
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
 var { ExtensionParent } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
@@ -66,7 +65,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 );
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + new Date());
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var searchFolder = null;
 

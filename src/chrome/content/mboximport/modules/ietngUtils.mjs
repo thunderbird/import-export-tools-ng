@@ -66,7 +66,7 @@ export var ietngUtils = {
       } else {
         // under, use params.selectedMessages
         wextSelectedMessages.messages.forEach(msg => {
-          let realMessage = window.ietngAddon.extension
+          let realMessage = this.top.ietngAddon.extension
             .messageManager.get(msg.id);
 
           let uri = realMessage.folder.getUriForMsg(realMessage);
@@ -75,12 +75,12 @@ export var ietngUtils = {
       }
     } else {
       // no params
-      var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
+      var msgIdList = await this.top.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
       if (msgIdList.id) {
         msgUris = curDBView.getURIsForSelection();
       } else {
         msgIdList.messages.forEach(msg => {
-          let realMessage = window.ietngAddon.extension
+          let realMessage = this.top.ietngAddon.extension
             .messageManager.get(msg.id);
 
           let uri = realMessage.folder.getUriForMsg(realMessage);
@@ -92,11 +92,10 @@ export var ietngUtils = {
   },
 
   openFileDialog: async function (window, mode, title, initialDir, filter) {
-
-    let winCtx = window;
+    let winCtx = this.top;
     const tbVersion = this.getThunderbirdVersion();
     if (tbVersion.major >= 120) {
-      winCtx = window.browsingContext;
+      winCtx = this.top.browsingContext;
     }
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};

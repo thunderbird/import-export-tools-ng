@@ -44,7 +44,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
-
+console.log(window)
 console.log("IETNG: mboximportExport.js -v10");
 
 export var mboxImportExport = {
@@ -410,7 +410,7 @@ export var mboxImportExport = {
     var dst = subFolderPath;
 
     // build our mbox in new subfolder
-    await mboxCopyImport({ srcPath: src, destPath: dst });
+    await window.mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
     await this.rebuildSummary(subMsgFolder);

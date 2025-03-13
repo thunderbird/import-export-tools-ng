@@ -43,8 +43,7 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
-console.log(window)
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
 console.log("IETNG: mboximportExport.js -v10");
 
 export var mboxImportExport = {
@@ -410,7 +409,7 @@ export var mboxImportExport = {
     var dst = subFolderPath;
 
     // build our mbox in new subfolder
-    await window.mboxCopyImport({ srcPath: src, destPath: dst });
+    await window.ietngAddon.mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
     await this.rebuildSummary(subMsgFolder);

@@ -157,10 +157,10 @@ export var ietngUtils = {
   },
 
   writeStatusLine: function (window, text, statusDelay) {
-    if (window.document.getElementById("ietngStatusText")) {
-      window.document.getElementById("ietngStatusText").setAttribute("label", text);
-      window.document.getElementById("ietngStatusText").setAttribute("value", text);
-      window.document.getElementById("ietngStatusText").innerText = text;
+    if (this.top.document.getElementById("ietngStatusText")) {
+      this.top.document.getElementById("ietngStatusText").setAttribute("label", text);
+      this.top.document.getElementById("ietngStatusText").setAttribute("value", text);
+      this.top.document.getElementById("ietngStatusText").innerText = text;
 
       var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
       if (statusDelay) {
@@ -168,9 +168,8 @@ export var ietngUtils = {
       }
       var _this = this;
       if (delay > 0) {
-        window.setTimeout(function () { _this.deleteStatusLine(window, text); }, delay);
+        this.top.setTimeout(function () { _this.deleteStatusLine(_this.top, text); }, delay);
       }
-      // window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
 
 
     } else {
@@ -180,12 +179,12 @@ export var ietngUtils = {
 
   createStatusLine: function (window) {
 
-    if (window.document.getElementById("ietngStatusText")) {
+    if (this.top.document.getElementById("ietngStatusText")) {
       return;
     }
 
-    let s = window.document.getElementById("statusText");
-    let s2 = window.document.createElement("label");
+    let s = this.top.document.getElementById("statusText");
+    let s2 = this.top.document.createElement("label");
     s2.classList.add("statusbarpanel");
     s2.setAttribute("id", "ietngStatusText");
     s2.style.width = "420px";
@@ -195,10 +194,10 @@ export var ietngUtils = {
 
   deleteStatusLine: function (window, text) {
     try {
-      if (window.document.getElementById("ietngStatusText").getAttribute("label") === text) {
-        window.document.getElementById("ietngStatusText").setAttribute("label", "");
-        window.document.getElementById("ietngStatusText").setAttribute("value", "");
-        window.document.getElementById("ietngStatusText").innerText = "";
+      if (this.top.document.getElementById("ietngStatusText").getAttribute("label") === text) {
+        this.top.document.getElementById("ietngStatusText").setAttribute("label", "");
+        this.top.document.getElementById("ietngStatusText").setAttribute("value", "");
+        this.top.document.getElementById("ietngStatusText").innerText = "";
 
         if (text.includes("Err")) {
           delay = 15000;

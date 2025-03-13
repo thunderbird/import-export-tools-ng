@@ -1868,6 +1868,35 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										continue;
 									}
 
+									
+									// The urlListener.OnStopRunningUrl fires before the 
+									// file is truly closed. An attempt to change lastModifiedTime
+									// here gets superceded with the current date. This is likely 
+									// a file descriptor being closed after the event.
+									// A setTimeout delayed action is required. 
+									// Setting the attachment date to match the message date #549
+
+									// @implements {nsIUrlListener}
+									const embImgsUrlListener = {
+										OnStartRunningUrl(url) { },
+										OnStopRunningUrl(url, status) {
+											if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+												return;
+											}
+											let curAtt = imgAtts.find((att) => {
+												if (att.url == url.spec) {
+													return true;
+												}
+											})
+											setTimeout(this.setFileTime, 50, curAtt);
+										},
+										setFileTime(curAtt) {
+											curAtt.file.lastModifiedTime = time;
+										}
+									}
+
+									//messenger.saveAttachmentToFile(embImg, aUrl[0], uri, "image/jpeg", embImgsUrlListener);
+
 									let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
 									let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
 

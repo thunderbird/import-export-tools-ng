@@ -309,7 +309,7 @@ export var ietngUtils = {
   rebuildSummary: async function (folder) {
 
     if (folder.locked) {
-      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      folder.throwAlertMsg("operationFailedFolderBusy", this.top.msgWindow);
       return;
     }
     if (folder.supportsOffline) {
@@ -330,7 +330,7 @@ export var ietngUtils = {
       folder.ForceDBClosed();
     }
 
-    folder.updateFolder(window.msgWindow);
+    folder.updateFolder(this.top.msgWindow);
     return;
   },
 

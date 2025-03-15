@@ -1730,7 +1730,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: async function (clone, data, saveAttachments) {
-
+					console.log(hdr.subject)
 					try {
 
 						let encoder = new TextEncoder();
@@ -1879,12 +1879,16 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									imgAtts[i].url = aUrl;
 
+									console.log(hdr.subject)
+
 									let inlineFile = await getAttachmentFile(hdr, inlinePartName)
 									let fileData = await fileToUint8Array(inlineFile);
 									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path, inlineFilename)
 									await IOUtils.write(unqInlineFilepath, fileData);
 									embImg = embImg.initWithPath(unqInlineFilepath)
 									imgAtts[i].file = embImg;
+
+									console.log(hdr.subject)
 
 									// Encode for UTF-8 - Fixes #355
 									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);

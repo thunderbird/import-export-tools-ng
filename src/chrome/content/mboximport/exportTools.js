@@ -1618,6 +1618,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							MsgHdrToMimeMessage(aMsgHdr, null, async function (aMsgHdr, aMsg) {
 								var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
 								// attachments = attachments.filter(function (x) x.isRealAttachment);
+
 								var footer = null;
 								var noDir = true;
 								var attName;
@@ -1868,10 +1869,17 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										continue;
 									}
 
+									console.log(data)
+
+									var msguri = hdr.folder.getUriForMsg(hdr);
+									console.log(msguri)
+
+
 									let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
 									let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
 
-									console.log(data)
+									console.log(aUrl)
+
 									console.log(inlinePartName, inlineFilename)
 
 									var embImg = embImgContainer.clone();
@@ -1881,6 +1889,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									console.log(hdr.subject)
 
+									try {
 									let inlineFile = await getAttachmentFile(hdr, inlinePartName)
 									let fileData = await fileToUint8Array(inlineFile);
 									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path, inlineFilename)
@@ -1892,7 +1901,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									// Encode for UTF-8 - Fixes #355
 									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
-
+									} catch {
+										data = data.replace(aUrl, "data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==")
+									}
 								}
 							} catch (e) {
 								console.log(e)

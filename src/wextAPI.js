@@ -54,7 +54,22 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			console.log(await browser.messages.getFull(info.msgId.id), info.msgId);
 
 			console.log(await browser.messages.listAttachments(info.msgId.id), info.msgId);
-			let fileObj = await browser.messages.getAttachmentFile(info.msgId.id, info.attPartName);
+			try {
+				var fileObj = await browser.messages.getAttachmentFile(info.msgId.id, info.attPartName);
+			} catch (ex) {
+				return ex;
+				let atts = await browser.messages.listAttachments(info.msgId.id);
+				let pn = atts[0].partName;
+				let fileObj = await browser.messages.getAttachmentFile(info.msgId.id, pn);
+				let allAccounts = await messenger.accounts.list(true);
+
+				// we cannot know name so just grab first "none" type account
+				let localFolder = allAccounts.find(acc => acc.type == "none");
+				console.log(localFolder.folders[0])
+				let msgHdr = await messenger.messages.import(fileObj, localFolder.folders[0].id);
+				let atts2 = await browser.messages.listAttachments(msgHdr.id);
+				console.log(atts2)
+			}
 
 			return fileObj;
 		case "createFolder":

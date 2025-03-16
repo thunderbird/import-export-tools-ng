@@ -105,7 +105,7 @@
         "message": "Jegyzék készítése az MBOX fájlokhoz"
     },
     "buttonMenu_Backup_Id.title": {
-        "message": "biztonsági mentés"
+        "message": "Biztonsági mentés"
     },
     "buttonMenu_Exp_ProfileFull_Id.title": {
         "message": "Teljes profil"
@@ -123,7 +123,7 @@
         "message": "Profil importálása"
     },
     "buttonMenu_Options.title": {
-        "message": "Lehetőségek"
+        "message": "Opciók"
     },
     "captionCustomize": {
         "message": "Fájlnév formátumának testreszabása"
@@ -144,7 +144,7 @@
         "message": "Segítség"
     },
     "ctxMenu_Options.title": {
-        "message": "Lehetőségek"
+        "message": "Opciók"
     },
     "customDate": {
         "message": "Egyéni dátum:"
@@ -213,7 +213,7 @@
         "message": "Biztonsági mentés kész."
     },
     "dialog.title": {
-        "message": "ImportExportTools NG - biztonsági mentés"
+        "message": "ImportExportTools NG - Biztonsági mentés"
     },
     "emlExport": {
         "message": "Mappák exportálása külön fájlokként:"
@@ -609,7 +609,7 @@
         "message": "ImportExportTools NG - Profil importálása"
     },
     "toolsCtxMenu_Backup_Id.title": {
-        "message": "biztonsági mentés"
+        "message": "Biztonsági mentés"
     },
     "toolsCtxMenu_Exp_ProfileFull_Id.title": {
         "message": "Teljes profil"
@@ -634,7 +634,8 @@
     },
     "Size": {
         "message": "Méret"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Transzformáció latinosítása"

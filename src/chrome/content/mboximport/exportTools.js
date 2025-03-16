@@ -1942,13 +1942,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									// Encode for UTF-8 - Fixes #355
 									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
 									} catch {
-										console.log(imgAtts[i])
 										let tmpAtt = imgAtts[i].imgLink.replace(/width=".*".*height=".*"/, 'width="24px" height="24px"');
-										console.log(tmpAtt)
 										data = data.replace(imgAtts[i].imgLink, tmpAtt);
 										data = data.replace(aUrl, "data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==");
-
-
 									}
 								}
 								}

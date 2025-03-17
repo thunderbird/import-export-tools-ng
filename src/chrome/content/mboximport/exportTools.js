@@ -1670,9 +1670,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											attachments[i].file = attDirContainerClone;
 
 											let attPartName = att.url.match(/part=([.0-9]+)&?/)[1];
-											console.log(data)
-											console.log(attPartName)
-
 											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
 											let fileData = await fileToUint8Array(attFile);
 											await IOUtils.write(attDirContainerClone.path, fileData);
@@ -1731,7 +1728,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: async function (clone, data, saveAttachments) {
-					console.log(hdr.subject)
 					try {
 
 						let encoder = new TextEncoder();

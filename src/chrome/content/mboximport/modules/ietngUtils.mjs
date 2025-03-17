@@ -14,18 +14,19 @@
  */
 
 
-// ietngUtils.js
+// ietngUtils.mjs - esm conversion
+
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
+
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 
-var EXPORTED_SYMBOLS = ["ietngUtils"];
-
-var ietngUtils = {
+export var ietngUtils = {
 
   _self: this,
-
-  Services: globalThis.Services || ChromeUtils.import(
-    'resource://gre/modules/Services.jsm'
-  ).Services,
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"]
     .getService(Ci.nsIPrefBranch),
@@ -33,8 +34,6 @@ var ietngUtils = {
   top: Cc["@mozilla.org/appshell/window-mediator;1"]
     .getService(Ci.nsIWindowMediator)
     .getMostRecentWindow("mail:3pane"),
-
-    MailServices: ChromeUtils.import("resource:///modules/MailServices.jsm").MailServices,
 
   getNativeSelectedMessages: async function (wextSelectedMessages) {
 
@@ -67,7 +66,7 @@ var ietngUtils = {
       } else {
         // under, use params.selectedMessages
         wextSelectedMessages.messages.forEach(msg => {
-          let realMessage = window.ietngAddon.extension
+          let realMessage = this.top.ietngAddon.extension
             .messageManager.get(msg.id);
 
           let uri = realMessage.folder.getUriForMsg(realMessage);
@@ -76,12 +75,12 @@ var ietngUtils = {
       }
     } else {
       // no params
-      var msgIdList = await window.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
+      var msgIdList = await this.top.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });
       if (msgIdList.id) {
         msgUris = curDBView.getURIsForSelection();
       } else {
         msgIdList.messages.forEach(msg => {
-          let realMessage = window.ietngAddon.extension
+          let realMessage = this.top.ietngAddon.extension
             .messageManager.get(msg.id);
 
           let uri = realMessage.folder.getUriForMsg(realMessage);
@@ -93,11 +92,10 @@ var ietngUtils = {
   },
 
   openFileDialog: async function (window, mode, title, initialDir, filter) {
-
-    let winCtx = window;
+    let winCtx = this.top;
     const tbVersion = this.getThunderbirdVersion();
     if (tbVersion.major >= 120) {
-      winCtx = window.browsingContext;
+      winCtx = this.top.browsingContext;
     }
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};
@@ -159,10 +157,10 @@ var ietngUtils = {
   },
 
   writeStatusLine: function (window, text, statusDelay) {
-    if (window.document.getElementById("ietngStatusText")) {
-      window.document.getElementById("ietngStatusText").setAttribute("label", text);
-      window.document.getElementById("ietngStatusText").setAttribute("value", text);
-      window.document.getElementById("ietngStatusText").innerText = text;
+    if (this.top.document.getElementById("ietngStatusText")) {
+      this.top.document.getElementById("ietngStatusText").setAttribute("label", text);
+      this.top.document.getElementById("ietngStatusText").setAttribute("value", text);
+      this.top.document.getElementById("ietngStatusText").innerText = text;
 
       var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
       if (statusDelay) {
@@ -170,9 +168,8 @@ var ietngUtils = {
       }
       var _this = this;
       if (delay > 0) {
-        window.setTimeout(function () { _this.deleteStatusLine(window, text); }, delay);
+        this.top.setTimeout(function () { _this.deleteStatusLine(_this.top, text); }, delay);
       }
-      // window.setTimeout(function () { _this.refreshStatusLine(window, text); }, delay - 500);
 
 
     } else {
@@ -182,12 +179,12 @@ var ietngUtils = {
 
   createStatusLine: function (window) {
 
-    if (window.document.getElementById("ietngStatusText")) {
+    if (this.top.document.getElementById("ietngStatusText")) {
       return;
     }
 
-    let s = window.document.getElementById("statusText");
-    let s2 = window.document.createElement("label");
+    let s = this.top.document.getElementById("statusText");
+    let s2 = this.top.document.createElement("label");
     s2.classList.add("statusbarpanel");
     s2.setAttribute("id", "ietngStatusText");
     s2.style.width = "420px";
@@ -197,10 +194,10 @@ var ietngUtils = {
 
   deleteStatusLine: function (window, text) {
     try {
-      if (window.document.getElementById("ietngStatusText").getAttribute("label") === text) {
-        window.document.getElementById("ietngStatusText").setAttribute("label", "");
-        window.document.getElementById("ietngStatusText").setAttribute("value", "");
-        window.document.getElementById("ietngStatusText").innerText = "";
+      if (this.top.document.getElementById("ietngStatusText").getAttribute("label") === text) {
+        this.top.document.getElementById("ietngStatusText").setAttribute("label", "");
+        this.top.document.getElementById("ietngStatusText").setAttribute("value", "");
+        this.top.document.getElementById("ietngStatusText").innerText = "";
 
         if (text.includes("Err")) {
           delay = 15000;
@@ -299,7 +296,7 @@ var ietngUtils = {
   },
 
   getThunderbirdVersion: function () {
-    let parts = this.Services.appinfo.version.split(".");
+    let parts = Services.appinfo.version.split(".");
     return {
       major: parseInt(parts[0]),
       minor: parseInt(parts[1]),
@@ -312,7 +309,7 @@ var ietngUtils = {
   rebuildSummary: async function (folder) {
 
     if (folder.locked) {
-      folder.throwAlertMsg("operationFailedFolderBusy", window.msgWindow);
+      folder.throwAlertMsg("operationFailedFolderBusy", this.top.msgWindow);
       return;
     }
     if (folder.supportsOffline) {
@@ -322,7 +319,7 @@ var ietngUtils = {
     }
 
     // Send a notification that we are triggering a database rebuild.
-    this.MailServices.mfn.notifyFolderReindexTriggered(folder);
+    MailServices.mfn.notifyFolderReindexTriggered(folder);
 
     try {
       const msgDB = folder.msgDatabase;
@@ -333,7 +330,7 @@ var ietngUtils = {
       folder.ForceDBClosed();
     }
 
-    folder.updateFolder(window.msgWindow);
+    folder.updateFolder(this.top.msgWindow);
     return;
   },
 
@@ -342,12 +339,12 @@ var ietngUtils = {
       let folderListener = {
         folderAdded: function (aFolder) {
           if (aFolder.name == subFolderName && aFolder.parent == msgFolder) {
-            ietngUtils.MailServices.mfn.removeListener(folderListener);
+            MailServices.mfn.removeListener(folderListener);
             resolve(aFolder);
           }
         },
       };
-      this.MailServices.mfn.addListener(folderListener, this.MailServices.mfn.folderAdded);
+      MailServices.mfn.addListener(folderListener, MailServices.mfn.folderAdded);
 
       // createSubfolder will fail under some circumstances when
       // doing large imports. Failures start around 250+ and become
@@ -361,7 +358,7 @@ var ietngUtils = {
       try {
         let res = await this.top.WEXTcreateSubfolder(msgFolder, subFolderName);
       } catch (ex) {
-				if (ex.message.includes("already exists in")) {
+        if (ex.message.includes("already exists in")) {
           console.log("IETNG: Folder exists");
           reject(ex);
           return;

@@ -14,28 +14,36 @@
  */
 
 
-// mboxImportExport.js
+// mboxImportExport.mjs
+// convert for esm modules
 
-// sometimes we may want to be a regular module
-// var EXPORTED_SYMBOLS = ["mboxImportExport"];
+var window = Cc["@mozilla.org/appshell/window-mediator;1"]
+		.getService(Ci.nsIWindowMediator)
+		.getMostRecentWindow("mail:3pane");
 
-var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
-).Services;
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+var { ExtensionParent } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionParent.sys.mjs"
+);
 
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+  "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { MailServices } = Ietng_ESM
+  ? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+  : ChromeUtils.import("resource:///modules/MailServices.jsm");
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
-var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
+var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
-var { Gloda } = ChromeUtils.import("resource:///modules/gloda/Gloda.jsm");
-
-Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window, "UTF-8");
-
-var window;
-
+Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
 console.log("IETNG: mboximportExport.js -v10");
 
 export var mboxImportExport = {
@@ -401,7 +409,7 @@ export var mboxImportExport = {
     var dst = subFolderPath;
 
     // build our mbox in new subfolder
-    await mboxCopyImport({ srcPath: src, destPath: dst });
+    await window.ietngAddon.mboxCopyImport({ srcPath: src, destPath: dst });
 
     // this forces an mbox to be reindexed and build new msf
     await this.rebuildSummary(subMsgFolder);
@@ -708,13 +716,7 @@ export var mboxImportExport = {
 
     folder.updateFolder(window.msgWindow);
 
-    // things we do to get folder to be included in global  search
-    // toggling global search inclusion works, but throws
-    // async tracker errors
-    // we won't do these automatically for now
 
-    //this._toggleGlobalSearchEnable(folder);
-    //await this._touchCopyFolderMsg(folder);
     return;
   },
 
@@ -802,20 +804,6 @@ export var mboxImportExport = {
     window.gTabmail.currentTabInfo.folder = curMsgFolder;
     return uriArray;
   },
-
-  // this will force a reindex that will make folder globally searchable
-  // usually this triggers a slew of gloda exceptions 
-  // so far these appear to not have negative side effects
-  // but this does bring folder into search
-
-  _toggleGlobalSearchEnable: function (msgFolder) {
-    this._setGlobalSearchEnabled(msgFolder, false);
-    this._setGlobalSearchEnabled(msgFolder, true);
-  },
-
-  // this is another method to get a folder searchable
-  // but less consistent than above
-  // this used to be THE method to use
 
   _touchCopyFolderMsg: async function (msgFolder) {
 

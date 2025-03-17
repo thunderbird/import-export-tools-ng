@@ -1618,7 +1618,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							MsgHdrToMimeMessage(aMsgHdr, null, async function (aMsgHdr, aMsg) {
 								var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
 								// attachments = attachments.filter(function (x) x.isRealAttachment);
-
 								var footer = null;
 								var noDir = true;
 								var attName;
@@ -1731,7 +1730,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				},
 
 				onAfterStopRequest: async function (clone, data, saveAttachments) {
-					console.log(hdr.subject)
+
 					try {
 
 						let encoder = new TextEncoder();
@@ -1869,57 +1868,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										continue;
 									}
 
-									if (ietngUtils.getThunderbirdVersion().major <= 128) {
-
-								// The urlListener.OnStopRunningUrl fires before the 
-								// file is truly closed. An attempt to change lastModifiedTime
-								// here gets superceded with the current date. This is likely 
-								// a file descriptor being closed after the event.
-								// A setTimeout delayed action is required. 
-								// Setting the attachment date to match the message date #549
-
-								// @implements {nsIUrlListener}
-								const embImgsUrlListener = {
-									OnStartRunningUrl(url) { },
-									OnStopRunningUrl(url, status) {
-										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-											return;
-										}
-										let curAtt = imgAtts.find((att) => {
-											if (att.url == url.spec) {
-												return true;
-											}
-										})
-										setTimeout(this.setFileTime, 50, curAtt);
-									},
-									setFileTime(curAtt) {
-										curAtt.file.lastModifiedTime = time;
-									}
-								}
-
-								var embImg = embImgContainer.clone();
-
-								embImg.append(i + ".jpg");
-								imgAtts[i].file = embImg;
-								imgAtts[i].url = aUrl;
-
-								messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
-								// Encode for UTF-8 - Fixes #355
-								data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
-
-									} else {
-
-									console.log(data)
-
-									var msguri = hdr.folder.getUriForMsg(hdr);
-									console.log(msguri)
-
-
 									let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
 									let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
 
-									console.log(aUrl)
-
+									console.log(data)
 									console.log(inlinePartName, inlineFilename)
 
 									var embImg = embImgContainer.clone();
@@ -1927,9 +1879,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 									imgAtts[i].url = aUrl;
 
-									console.log(hdr.subject)
-
-									try {
 									let inlineFile = await getAttachmentFile(hdr, inlinePartName)
 									let fileData = await fileToUint8Array(inlineFile);
 									let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path, inlineFilename)
@@ -1937,14 +1886,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									embImg = embImg.initWithPath(unqInlineFilepath)
 									imgAtts[i].file = embImg;
 
-									console.log(hdr.subject)
-
 									// Encode for UTF-8 - Fixes #355
 									data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
-									} catch {
-										data = data.replace(aUrl, "data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==")
-									}
-								}
+
 								}
 							} catch (e) {
 								console.log(e)

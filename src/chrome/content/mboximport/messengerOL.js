@@ -4,12 +4,14 @@
 // onLoad() installs each overlay xul fragment
 // Menus - Folder, messages, Tools
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
+// update to use es6 modules for 128+, 136+ required - thx Axel
 
 window.ietngAddon = {};
 window.ietngAddon.window = window;
+
+// use global date obj for our es6 module queries
+window.ietngAddon.dateForDebugging = "";
+window.ietngAddon.dateForDebugging = new Date();
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/mboximport.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/exportTools.js", window, "UTF-8");
@@ -20,7 +22,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/hotK
 // Setup for notifyTools
 var ADDON_ID = "ImportExportToolsNG@cleidigh.kokkini.net";
 
-const { ExtensionParent } = ChromeUtils.import("resource://gre/modules/ExtensionParent.jsm");
+const { ExtensionParent } = ChromeUtils.importESModule("resource://gre/modules/ExtensionParent.sys.mjs");
 
 // Get our extension object.
 window.ietngAddon.ietngExtension = ExtensionParent.GlobalManager.getExtension(ADDON_ID);
@@ -225,7 +227,6 @@ function onLoad() {
 			}
 		};
 	}
-
 
 	window.setupHotKeys('messenger');
 	window.addHotKeysObserver();

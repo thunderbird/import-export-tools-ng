@@ -57,19 +57,12 @@ getMsgFolderFromAccountAndPath,
 globalThis,
 */
 
+// update to use es6 modules for 128+, 136+ required - thx Axel
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
-
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
-var FileUtils = ChromeUtils.import("resource://gre/modules/FileUtils.jsm").FileUtils;
-
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
-var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
-
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
 var { ExtensionParent } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
@@ -79,13 +72,20 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
-// add Date now to query for debugging, thanks JB
-//dateNow = new Date();
-// won't run without it???
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+
+var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 var { mboxImportExport } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/mboxImportExport.js?" + ietngExtension.manifest.version + new Date()
-);
+	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
 

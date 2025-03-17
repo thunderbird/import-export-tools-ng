@@ -13,23 +13,28 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Originally a worker ftom test addon, temporarily
-// straight module for now, will convert back to worker for performance
+// update to use es6 modules for 128+, 136+ required - thx Axel
 
-
-// This worker does the heavy-duty file or processing methods
-// Just mbox(s) import now...
-
-var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
-).Services;
-
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 var window = Services.wm.getMostRecentWindow("mail:3pane");
+
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // as a module loaded by an ES6 module we bump name version so we avoid cache
-console.log("IETNG: importMboxModule.js -v5");
+console.log("IETNG: importMboxModule.js -v6");
 
 // if these are const or let they produce redeclaration error5
 // Common RFC822 header field-names for From_ exception analysis
@@ -98,8 +103,8 @@ async function mboxCopyImport(options) {
   var fromEscapeChar = ">";
   const tbVersion = ietngUtils.getThunderbirdVersion();
   if (tbVersion.major >= 115 && tbVersion.minor >= 9) {
-      fromEscapeChar = " ";
-      }
+    fromEscapeChar = " ";
+  }
 
   var fromExceptions;
   var cnt = 0;
@@ -232,7 +237,7 @@ function _exceptionHas2Hdrs(exceptionBuf) {
     let fieldName2 = exceptionHdrs[0][5];
 
     if ((_isRFC822FieldName(fieldName1) || _isCommonX_FieldName(fieldName1)) &&
-        (_isRFC822FieldName(fieldName2) || _isCommonX_FieldName(fieldName2))) {
+      (_isRFC822FieldName(fieldName2) || _isCommonX_FieldName(fieldName2))) {
       // no escape, two valid headers after From_
       return true;
     }

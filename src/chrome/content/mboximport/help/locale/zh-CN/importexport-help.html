@@ -7,19 +7,24 @@
     <title>ImportExportTools NG 帮助</title>
   </head>
   <body>
-    <table style="width: 100%" id="main-help">
+    <table style="width: 100%;" id="main-help">
       <tr>
-        <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG 帮助</div>
-          <div id="extVersion" style="padding-left: 4px">版本</div>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG 帮助</div>
+          <div id="extVersion" style="padding-left: 4px;">版本</div>
         </td>
-        <td style="text-align: right; padding-right: 30px">
+        <td style="text-align: right; padding-right: 30px;">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">发行说明：</h3>
-    <p>- 新功能：多文件夹选择导出<br />- 针对 EML 导入、mbox 导出提供更多错误处理<br /></p>
+    <h3 id="release_notes" style="padding-left: 4px;">发行说明：</h3>
+    <p>
+      <b>重要提示：</b>自 Thunderbird v136 发布以来，Mozilla 将每月发布一次。我可能无法每月发布
+      ImportExportTools NG。请在更新 Thunderbird 之前检查是否有兼容的 ImportExportTools NG 更新可用。<br /><br />克里斯托弗<br /><br />-
+      新功能：多文件夹选择导出<br />- 针对 EML 导入、mbox 导出提供更多错误处理<br />- 更新丹麦语 (da) 语言环境
+      - @Joergen - 更新匈牙利语 (hu-HU) 语言环境 - @ef99
+    </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
       ImportExportTools NG 是基于
@@ -58,7 +63,7 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            以 mbox 格式导出整个帐户及其结构和子文件夹。导出使用带有帐户名称的容器完成。<br />注意：仅右键单击帐户条目时才会出现此菜单项。
+            以 mbox 格式导出整个帐户及其结构和子文件夹。导出使用带有帐户名称的容器完成。<br />注意：仅当右键单击帐户条目时才会出现此菜单项。
           </td>
         </tr>
         <tr>
@@ -514,7 +519,7 @@
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
-          <td>根据给定的时间值，结果为“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
+          <td>根据给定的时间值，可以是“AM”或“PM”。中午被视为“PM”，午夜被视为“AM”。</td>
         </tr>
         <tr>
           <td><code class="code1">%P</code></td>
@@ -757,7 +762,7 @@
       热键条目示例（JSON 对象数组）<br /><br />
       <code class="notranslate">id</code> - 键索引（1-10）<br />
       <code class="notranslate">key</code> - 键（单个字符）<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义 keycode<br />可以包含密钥或密钥代码，但不能同时包含两者<br /><code
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; 定义键码<br />可以包含密钥或密钥代码，但不能同时包含两者<br /><code
         class="notranslate"
         >modifiers</code
       >
@@ -798,6 +803,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       由于快捷方式是新的和实验性的，我还将在存储库中添加更多文档。检查扩展<a
         class="link1"

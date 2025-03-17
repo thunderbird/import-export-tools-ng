@@ -7,21 +7,26 @@
     <title>Aiuto ImportExportTools NG</title>
   </head>
   <body>
-    <table style="width: 100%" id="main-help">
+    <table style="width: 100%;" id="main-help">
       <tr>
-        <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">Aiuto ImportExportTools NG</div>
-          <div id="extVersion" style="padding-left: 4px">vedere</div>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">Aiuto ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px;">vedere</div>
         </td>
-        <td style="text-align: right; padding-right: 30px">
+        <td style="text-align: right; padding-right: 30px;">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Note di rilascio:</h3>
+    <h3 id="release_notes" style="padding-left: 4px;">Note di rilascio:</h3>
     <p>
+      <b>Nota importante:</b> a partire dal rilascio di Thunderbird v136, Mozilla eseguirà rilasci mensili.
+      Potrei non essere in grado di rilasciare ImportExportTools NG ogni mese. Prima di aggiornare
+      Thunderbird, controlla se è disponibile un aggiornamento ImportExportTools NG compatibile.<br /><br />
+      Cristoforo<br /><br />
       - Novità: esportazioni con selezione di più cartelle<br />
       - Maggiore gestione degli errori per le importazioni EML e le esportazioni mbox<br />
+      - Aggiorna la locale danese (da) - @Joergen - Aggiorna la locale ungherese (hu-HU) - @ef99
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -452,7 +457,7 @@
       L&#39;opzione data personalizzata consente il controllo completo sulla formattazione della data
       utilizzata per entrambi i file nell&#39;indice. Sia il formato predefinito &quot;Data&quot; che il nuovo
       formato personalizzato &quot;Data (personalizzata)&quot; sono disponibili nei menu a discesa dei nomi
-      file. La data personalizzata può essere utilizzata anche con il token ${date_custom} utilizzato nei nomi
+      file. La data personalizzata può anche essere utilizzata con il token ${date_custom} utilizzato nei nomi
       file personalizzati estesi. Il formato data originale (predefinito) è:<br />
       AAAAMMGGGHHmm : 202011060808<br /><br />
       Il formato data personalizzato utilizza sequenze % corrispondenti alla funzionalità Unix-like
@@ -567,8 +572,8 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            &quot;AM&quot; o &quot;PM&quot; in base al valore orario specificato. Mezzogiorno è considerato
-            &quot;PM&quot; e mezzanotte &quot;AM&quot;.
+            Sia &quot;AM&quot; che &quot;PM&quot; in base al valore orario specificato. Mezzogiorno è
+            considerato &quot;PM&quot; e mezzanotte &quot;AM&quot;.
           </td>
         </tr>
         <tr>
@@ -657,7 +662,7 @@
         <td><code class="code1">${subject}</code></td>
         <td>L&#39;oggetto del messaggio</td>
       </tr>
-      <li><code class="code1">%R</code> - non implementato (usare <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%R</code> - non implementato (usa <code class="code1">%H:%M</code> )</li>
       <li><code class="code1">%t</code> - non implementato (usa <code class="code1">\t</code> )</li>
       <li><code class="code1">%T</code> - non implementato (usare <code class="code1">%H:%M:%S</code> )</li>
       <li><code class="code1">%U</code> - non implementato</li>
@@ -870,6 +875,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Poiché le scorciatoie sono nuove e sperimentali, aggiungerò anche altra documentazione nel repository.
       Controlla l&#39;estensione

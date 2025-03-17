@@ -7,21 +7,26 @@
     <title>ImportExportTools NG-hulp</title>
   </head>
   <body>
-    <table style="width: 100%" id="main-help">
+    <table style="width: 100%;" id="main-help">
       <tr>
-        <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG-hulp</div>
-          <div id="extVersion" style="padding-left: 4px">zie</div>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG-hulp</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px">
+        <td style="text-align: right; padding-right: 30px;">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen:</h3>
+    <h3 id="release_notes" style="padding-left: 4px;">Release-opmerkingen:</h3>
     <p>
+      <b>Belangrijke opmerking:</b> Vanaf de release van Thunderbird v136 zal Mozilla maandelijkse releases
+      doen. Ik kan ImportExportTools NG mogelijk niet elke maand uitbrengen. Controleer voordat u Thunderbird
+      bijwerkt of er een compatibele ImportExportTools NG-update beschikbaar is.<br /><br />
+      Christoffel<br /><br />
       - Nieuw: Export van meerdere mapselecties<br />
       - Meer foutbehandeling voor EML-importen, mbox-exporten<br />
+      - Update de Deense (da) locale - @Joergen - Update de Hongaarse (hu-HU) locale - @ef99
     </p>
     <h2 id="main_help">ImportExportTools NG Overzicht en Menu&#39;s</h2>
     <p>
@@ -36,9 +41,9 @@
       - platte tekst<br />
       - CSV (door komma&#39;s gescheiden waarden)<br />
       -PDF-bestand<br /><br />
-      Hoewel de meeste functionaliteit draait om berichten, is er ook ondersteuning voor het importeren en
-      exporteren van Thunderbird-profielen. Daarnaast kunnen exports ook een HTML- of CSV-indexbestand
-      bevatten. Een back-up van het Thunderbird-profiel is een andere functie.<br />
+      Hoewel de meeste functionaliteit draait om berichten, is er ook ondersteuning voor de import en export
+      van Thunderbird-profielen. Daarnaast kunnen exports ook een HTML- of CSV-indexbestand bevatten. Een
+      back-up van het Thunderbird-profiel is een andere functie.<br />
       <p>
         Toegang tot IETng-functionaliteit wordt gedaan via verschillende menu&#39;s die door de extensie zijn
         geïnstalleerd. De functies zijn contextgevoelig. Er zijn menu&#39;s toegevoegd voor:<br />
@@ -811,16 +816,16 @@
       </p>
     </p>
     <p>
-      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamgevingsformaten die de geëxporteerde
+      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamgevingsformaten als de geëxporteerde
       berichtenbestandsnaam gebruikt. De eerste is voor externe bijlagen, de tweede is voor ingebedde (inline)
       bijlagen.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normaal gesproken is de &#39;Datum&#39; voor een bericht in Thunderbird de datum die is ingesteld door
-      de mailclient van de verzender. Als u deze optie op &#39;true&#39; instelt, wordt de ontvangstdatum in
-      de mailclient van de ontvanger gebruikt. Deze datum wordt gebruikt voor zowel bestandsnamen als de datum
-      in de indexbestanden.
+      de mailclient van de verzender. Als u deze optie instelt op &#39;true&#39;, wordt de ontvangstdatum
+      gebruikt in de mailclient van de ontvanger. Deze datum wordt gebruikt voor zowel bestandsnamen als de
+      datum in de indexbestanden.
     </p>
     <h2>Basis, globale sneltoetsfunctie (snelkoppelingen)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
@@ -871,6 +876,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Omdat de shortcuts nieuw en experimenteel zijn, zal ik ook meer documentatie toevoegen aan de
       repository. Bekijk de extensie
@@ -890,7 +896,7 @@
         - Nieuwe werkbalkknop<br />
         - Verbeterde help, open bij installatie<br />
         - Exportaccount bijwerken<br /><br />
-        Dank aan de volgende gebruikers voor hun suggesties voor verbeteringen en hulp bij het testen:<br /><br />
+        Dank aan de volgende gebruikers voor hun suggesties voor verbeteringen en testhulp:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />

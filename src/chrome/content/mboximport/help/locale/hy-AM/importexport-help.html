@@ -7,21 +7,26 @@
     <title>ImportExportTools NG Օգնություն</title>
   </head>
   <body>
-    <table style="width: 100%" id="main-help">
+    <table style="width: 100%;" id="main-help">
       <tr>
-        <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG Օգնություն</div>
-          <div id="extVersion" style="padding-left: 4px">վեր</div>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG Օգնություն</div>
+          <div id="extVersion" style="padding-left: 4px;">վեր</div>
         </td>
-        <td style="text-align: right; padding-right: 30px">
+        <td style="text-align: right; padding-right: 30px;">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Թողարկման նշումներ.</h3>
+    <h3 id="release_notes" style="padding-left: 4px;">Թողարկման նշումներ.</h3>
     <p>
+      <b>Կարևոր նշում.</b> Thunderbird v136-ի թողարկման պահից Mozilla-ն ամսական թողարկումներ կանի: Հնարավոր է՝
+      ես չկարողանամ ամեն ամիս թողարկել ImportExportTools NG-ը: Խնդրում ենք ստուգել Thunderbird-ը թարմացնելուց
+      առաջ՝ տեսնելու, թե արդյոք հասանելի է համատեղելի ImportExportTools NG թարմացում:<br /><br />
+      Քրիստոֆեր<br /><br />
       - Նոր. Բազմաթիվ թղթապանակների ընտրության արտահանում<br />
       - EML ներմուծման, mbox արտահանման ավելի շատ սխալների կառավարում<br />
+      - Թարմացրեք դանիերեն (da) տեղանքը - @Joergen - Թարմացրեք հունգարերեն (hu-HU) տեղանքը - @ef99
     </p>
     <h2 id="main_help">ImportExportTools NG ակնարկ և ընտրացանկ</h2>
     <p>
@@ -229,7 +234,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Ներմուծեք մեկ կամ ավելի mbox ֆայլեր գրացուցակից:</td>
+          <td>Ներմուծեք մեկ կամ մի քանի mbox ֆայլեր գրացուցակից:</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
@@ -275,7 +280,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Բացեք ընտրված թղթապանակի OS ուղին</td>
+          <td>Բացեք ընտրված թղթապանակի ՕՀ ուղին</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -344,7 +349,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Արտահանել ընտրված հաղորդագրությունները PDF ֆորմատի ֆայլեր</td>
+          <td>Արտահանեք ընտրված հաղորդագրությունները PDF ձևաչափի ֆայլեր</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -465,7 +470,7 @@
       նշանով, որն օգտագործվում է ընդլայնված հատուկ ֆայլերի անուններում: Ամսաթվի սկզբնական (կանխադրված) ձևաչափը
       հետևյալն է.<br />
       YYYYMMDDHHmm: 202011060808<br /><br />
-      Մաքսային ամսաթվի ձևաչափը օգտագործում է % հաջորդականություններ, որոնք համապատասխանում են
+      Մաքսային ամսաթվի ձևաչափն օգտագործում է % հաջորդականություններ, որոնք համապատասխանում են
       <code>strftime()</code> Unix-ի նման ֆունկցիոնալությանը: Այն հիմնված է
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       -ի JavaScript պորտի վրա՝ ամսաթիվը և ժամը ձևաչափելու ֆունկցիա:<br />
@@ -603,7 +608,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             Ընթացիկ տարվա ISO 8601 շաբաթվա համարը որպես տասնորդական թիվ (01-ից մինչև 53 միջակայք), որտեղ 1-ին
-            շաբաթն այն առաջին շաբաթն է, որն ունի առնվազն 4 օր նոր տարում (այսինքն՝ առաջին հինգշաբթին):
+            շաբաթն առաջին շաբաթն է, որն ունի առնվազն 4 օր նոր տարում (այսինքն, առաջին հինգշաբթին):
           </td>
         </tr>
         <tr>
@@ -623,7 +628,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Տարին որպես տասնորդական թիվ առանց դարի (00-ից մինչև 99 միջակայք):</td>
+          <td>Տարին որպես տասնորդական թիվ՝ առանց դարի (00-ից մինչև 99 միջակայք):</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -652,7 +657,7 @@
       <li><code class="code1">%e</code> - տարածություն ավելացված չէ</li>
       <li><code class="code1">%E</code> - չի իրականացվում</li>
       <li><code class="code1">%h</code> - չի իրականացվել (օգտագործել <code class="code1">%b</code> )</li>
-      <li><code class="code1">%k</code> - բացատ չի ավելացվել</li>
+      <li><code class="code1">%k</code> - տարածություն չի ավելացվել</li>
       <li>
         <code class="code1">%n</code> - նման է <code class="code1">%m</code> , բայց առանց սկզբնական զրոյի
         (օգտագործեք <code class="code1">\n</code> նոր տողի համար)
@@ -745,7 +750,7 @@
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Տոկեն (en-ԱՄՆ)</td>
+        <td>Նշան (en-ԱՄՆ)</td>
         <td>Տեղայնացված (<span id="locale1"></span> ) նշան</td>
       </tr>
       <tr>
@@ -879,6 +884,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Քանի որ դյուրանցումները նոր են և փորձնական, ես նաև լրացուցիչ փաստաթղթեր կավելացնեմ պահեստում: Ստուգեք
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"

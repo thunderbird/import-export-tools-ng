@@ -7,27 +7,33 @@
     <title>ImportExportTools NG pomoč</title>
   </head>
   <body>
-    <table style="width: 100%" id="main-help">
+    <table style="width: 100%;" id="main-help">
       <tr>
-        <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG pomoč</div>
-          <div id="extVersion" style="padding-left: 4px">ver</div>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG pomoč</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px">
+        <td style="text-align: right; padding-right: 30px;">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Opombe ob izdaji:</h3>
+    <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
+      <b>Pomembna opomba:</b> od izdaje Thunderbird v136 bo Mozilla izdajala mesečne izdaje. Morda ne bom
+      mogel izdati ImportExportTools NG vsak mesec. Preden posodobite Thunderbird, preverite, ali je na voljo
+      združljiva posodobitev ImportExportTools NG.<br /><br />
+      Christopher<br /><br />
       - Novo: izvoz izbire več map<br />
       - Več obravnavanja napak pri uvozih EML, izvozih mbox<br />
+      - Posodobite danske (da) lokalne nastavitve - @Joergen - Posodobite madžarske (hu-HU) lokalne nastavitve
+      - @ef99
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: nekateri formati niso podprti v vseh funkcijah.<br />
+      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -180,8 +186,7 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, vključno s
-            prilogami.<br />
+            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -203,7 +208,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Ustvari indeksno datoteko CSV mape sporočil (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -373,11 +378,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Ustvari indeksno datoteko HTML za izbrana sporočila</td>
+          <td>Ustvarite indeksno datoteko HTML za izbrana sporočila</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Ustvari indeksno datoteko CSV za izbrana sporočila</td>
+          <td>Ustvarite indeksno datoteko CSV za izbrana sporočila</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -718,7 +723,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardna oblika datuma. Privzeti format je: LLLLMMDDHHmm</td>
+        <td>Standardni format datuma. Privzeta oblika je: LLLLMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -800,7 +805,7 @@
       </p>
     </p>
     <p>
-      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, ki jih uporablja ime
+      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, kot jih uporablja ime
       datoteke izvoženih sporočil. Prvi je za zunanje priloge, drugi pa za vdelane (inline) priloge.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
@@ -857,6 +862,7 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
+
     <p>
       Ker so bližnjice nove in eksperimentalne, bom v skladišče dodal tudi več dokumentacije. Preverite
       razširitev

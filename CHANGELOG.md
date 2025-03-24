@@ -2,10 +2,12 @@
 
 ## Versions
 
-Version 14.1.6 : Multiple Folders Release - March 10, 2025
+Version 14.1.6 : Multiple Folders Release - March 20, 2025
 
 - New: Multiple folder selection exports
 - More error handling for EML imports, mbox exports
+- Update Danish (da) locale - @Joergen
+- Update Hungarian (hu-HU) locale - @ef99
 
 Version 14.1.5 : Maintenance Release - February 3, 2025
 

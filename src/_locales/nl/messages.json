@@ -677,5 +677,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Er zijn meer dan 200 mbox-mappen geïmporteerd.\nThunderbird moet opnieuw worden opgestart om de database opnieuw in te stellen."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Ongeldige mapselectie"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Er waren problemen bij het importeren van sommige berichten:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Fouten. Bekijk de Debug Console (Control-Shift-J)"
 	}
 }

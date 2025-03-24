@@ -58,12 +58,13 @@ gTabmail,
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-concat */
 
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
 
-var { Utils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
-var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.js");
+// update to use es6 modules for 128+, 136+ required - thx Axel
+
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
+
+var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 // console.debug('exportTools start');
 
@@ -89,14 +90,26 @@ var kStatusOK = 1;
 var kStatusDone = 2;
 var kStatusAbort = 3;
 
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
-var { MsgHdrToMimeMessage } = ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
-var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
+
+var { MsgHdrToMimeMessage } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/gloda/MimeMessage.sys.mjs")
+	: ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
+
+//var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 function searchANDsave(params) {
-	let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	var args = { folder: preselectedFolder, ietngSearch: true };
-	window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+
+	try {
+		let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+		var args = { folder: preselectedFolder, ietngSearch: true };
+		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		return { status: "ok" };
+	} catch (ex) {
+		console.log(ex)
+		return ex;
+	}
 }
 
 function IETgetSortType() {
@@ -151,6 +164,7 @@ async function exportSelectedMsgs(type, params) {
 	7 = CSV (with body)
 	8 = HTML with attachments
 	9 = Plain Text with attachments
+	10 = PDF
 	*/
 
 	//console.log("export selected messages ")
@@ -166,179 +180,193 @@ async function exportSelectedMsgs(type, params) {
 	if (type === 1 || type === 2 || type === 7) {
 		question = IETformatWarning(1);
 		if (!question)
-			return;
+			return { status: "cancel" };
+
 		question = IETformatWarning(0);
 		if (!question)
-			return;
+			return { status: "cancel" };
 	}
 
 	if (type === 8 || type === 9) {
 		question = IETformatWarning(1);
 		if (!question)
-			return;
-	}
-
-	var file = getPredefinedFolder(2);
-	if (!file || type === 3 || type === 4) {
-		var nsIFilePicker = Ci.nsIFilePicker;
-		let winCtx = window;
-		const tbVersion = ietngUtils.getThunderbirdVersion();
-		if (tbVersion.major >= 120) {
-			winCtx = window.browsingContext;
-		}
-		var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-		if (type === 3) {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
-			fp.appendFilters(nsIFilePicker.filterAll);
-		} else if (type === 4) {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
-			fp.appendFilters(nsIFilePicker.filterAll);
-		} else {
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
-		}
-
-		var res;
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK)
-			file = fp.file;
-		else
-			return;
+			return { status: "cancel" };
 	}
 
 	try {
-		if (file.exists() && !file.isWritable()) {
-			alert(mboximportbundle.GetStringFromName("nowritable"));
-			return;
+
+		var file = getPredefinedFolder(2);
+		if (!file || type === 3 || type === 4) {
+			var nsIFilePicker = Ci.nsIFilePicker;
+			let winCtx = window;
+			const tbVersion = ietngUtils.getThunderbirdVersion();
+			if (tbVersion.major >= 120) {
+				winCtx = window.browsingContext;
+			}
+			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+			if (type === 3) {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+				fp.appendFilters(nsIFilePicker.filterAll);
+			} else if (type === 4) {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+				fp.appendFilters(nsIFilePicker.filterAll);
+			} else {
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+			}
+
+			var res;
+			if (fp.show)
+				res = fp.show();
+			else
+				res = IETopenFPsync(fp);
+			if (res === nsIFilePicker.returnOK)
+				file = fp.file;
+			else
+				return { status: "cancel" };
 		}
-	} catch (e) { }
+
+		try {
+			if (file.exists() && !file.isWritable()) {
+				alert(mboximportbundle.GetStringFromName("nowritable"));
+				return { status: "error" };
+			}
+		} catch (ex) {
+			return ex;
+		}
 
 
-	var curDBView;
-	// Lets see where we are
-	if (gTabmail.currentAbout3Pane) {
-		// On 3p
-		curDBView = gTabmail.currentAbout3Pane.gDBView;
-	} else if (gTabmail.currentAboutMessage) {
-		curDBView = gTabmail.currentAboutMessage.gDBView;
-	}
+		var curDBView;
+		// Lets see where we are
+		if (gTabmail.currentAbout3Pane) {
+			// On 3p
+			curDBView = gTabmail.currentAbout3Pane.gDBView;
+		} else if (gTabmail.currentAboutMessage) {
+			curDBView = gTabmail.currentAboutMessage.gDBView;
+		}
 
-	var msgUris = [];
+		var msgUris = [];
 
-	msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
+		msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
 
-	// Use first message to get current folder
-	var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
-	var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
-	var curMsgFolder = hdr1.folder;
+		// Use first message to get current folder
+		var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
+		var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
+		var curMsgFolder = hdr1.folder;
 
-	// support shortcuts (no params)
-	try {
-		var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-	} catch (ex) {
-		msgFolder = GetFirstSelectedMsgFolder();
+		// support shortcuts (no params)
+		try {
+			var msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
+		} catch (ex) {
+			msgFolder = GetFirstSelectedMsgFolder();
+
+			if (!msgFolder) {
+				msgFolder = curMsgFolder;
+			}
+		}
 
 		if (!msgFolder) {
-			msgFolder = curMsgFolder;
+			console.log("exp selected msgs - null msgFolder after folder check");
+			console.log(params);
+			Services.prompt.alert(window, "Error", "msgFolder null after check - exp selected msgs.\nPlease report!")
+			return { status: "error" };
 		}
-	}
 
-	if (!msgFolder) {
-		console.log("exp selected msgs - null msgFolder after folder check");
-		console.log(params);
-		Services.prompt.alert(window, "Error", "msgFolder null after check - exp selected msgs.\nPlease report!")
-		return;
-	}
+		var isOffLineImap;
 
-	var isOffLineImap;
+		let imapFolder = {};
 
-	let imapFolder = {};
-
-	try {
-		imapFolder = msgFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
-	} catch (e) {
-	}
-
-	if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
-		var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-		if (!go)
-			return;
-		isOffLineImap = true;
-	} else {
-		isOffLineImap = false;
-	}
-
-	IETskipped = 0;
-	if (isOffLineImap) {
-		var tempArray = [];
-
-		for (var i = 0; i < msgUris.length; i++) {
-			var eml = msgUris[i];
-			var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
-			var hdr = mms.messageURIToMsgHdr(eml);
-
-			if (hdr.flags & 0x00000080)
-				tempArray.push(eml);
-			else
-				IETskipped = IETskipped + 1;
+		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
+			isOffLineImap = true;
+		} else {
+			isOffLineImap = false;
 		}
-		msgUris = tempArray;
-	}
-	IETtotal = msgUris.length;
-	IETexported = 0;
-	var msguri = msgUris[0];
 
-	var hdrArray;
+		IETskipped = 0;
+		if (isOffLineImap) {
+			var tempArray = [];
 
-	switch (type) {
-		case 1:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
-			break;
-		case 2:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder);
-			break;
-		case 3:
-			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, msgFolder);
-			break;
-		case 4:
-			if (isMbox(file) !== 1) {
-				var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
-				alert(string);
-				return;
+			for (var i = 0; i < msgUris.length; i++) {
+				var eml = msgUris[i];
+				var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
+				var hdr = mms.messageURIToMsgHdr(eml);
+
+				if (hdr.flags & 0x00000080)
+					tempArray.push(eml);
+				else
+					IETskipped = IETskipped + 1;
 			}
-			await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
-			break;
-		case 5:
-			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-			createIndex(type, file, hdrArray, msgFolder, true, true);
-			break;
-		case 6:
-			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-			createIndexCSV(type, file, hdrArray, msgFolder, false);
-			break;
-		case 7:
-			hdrArray = IETemlArray2hdrArray(msgUris, true, file);
-			createIndexCSV(type, file, hdrArray, msgFolder, true);
-			break;
-		case 8:
-			await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
-			break;
-		case 9:
-			await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder, true);
-			break;
-		default:
-			await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
-	}
+			msgUris = tempArray;
+		}
+		IETtotal = msgUris.length;
+		IETexported = 0;
+		var msguri = msgUris[0];
 
-	if (needIndex) {
-		hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-		createIndex(type, file, hdrArray, msgFolder, false, false);
+		var hdrArray;
+
+		switch (type) {
+			case 1:
+				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder);
+				break;
+			case 2:
+				await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder);
+				break;
+			case 3:
+				await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, msgFolder);
+				break;
+			case 4:
+				if (isMbox(file) !== 1) {
+					var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
+					alert(string);
+					return { status: "error" };
+				}
+				await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
+				break;
+			case 5:
+				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				createIndex(type, file, hdrArray, msgFolder, true, true);
+				break;
+			case 6:
+				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				createIndexCSV(type, file, hdrArray, msgFolder, false);
+				break;
+			case 7:
+				hdrArray = IETemlArray2hdrArray(msgUris, true, file);
+				createIndexCSV(type, file, hdrArray, msgFolder, true);
+				break;
+			case 8:
+				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
+				break;
+			case 9:
+				await exportAsHtml(msguri, msgUris, file, true, false, false, false, null, null, msgFolder, true);
+				break;
+			default:
+				await saveMsgAsEML(msguri, file, false, msgUris, null, null, false, false, null, null);
+		}
+
+		if (needIndex) {
+			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+			createIndex(type, file, hdrArray, msgFolder, false, false);
+		}
+		if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
+			document.getElementById("IETabortIcon").collapsed = false;
+		IETabort = false;
+
+		return { status: "ok" };
+	} catch (ex) {
+		console.log("ex", ex)
+
+		let errTitle = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+		let errMsg = ex;
+		if (ex.extendedMsg) {
+			errMsg += `\n\n${ex.extendedMsg}`;
+		}
+		errMsg += `\n\n${ex.stack}`;
+		Services.prompt.alert(window, errTitle, errMsg);
+		if (document.getElementById("IETabortIcon")) {
+			document.getElementById("IETabortIcon").collapsed = true;
+		}
+		return ex;
 	}
-	if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
-		document.getElementById("IETabortIcon").collapsed = false;
-	IETabort = false;
 }
 
 // Export all messages is done through more steps
@@ -351,26 +379,31 @@ async function exportSelectedMsgs(type, params) {
 async function exportAllMsgs(type, params) {
 	//console.log("exportAllMsgs", type, params);
 
+	var exportFolderPath;
 	var question;
-	if (type === 1 || type === 2 || type === 4) {
-		question = IETformatWarning(1);
-		if (!question)
-			return;
-		question = IETformatWarning(0);
-		if (!question)
-			return;
-	}
 
-	if (type === 8 || type === 9 || type === 7) {
-		question = IETformatWarning(1);
-		if (!question)
-			return;
+	// only warn on first folder
+	if (params.warnings) {
+		if (type === 1 || type === 2 || type === 4) {
+			question = IETformatWarning(1);
+			if (!question)
+				return;
+			question = IETformatWarning(0);
+			if (!question)
+				return;
+		}
+
+		if (type === 8 || type === 9 || type === 7) {
+			question = IETformatWarning(1);
+			if (!question)
+				return;
+		}
 	}
 
 	try {
 
 		var file = getPredefinedFolder(1);
-		if (!file) {
+		if (!file && params.fileDialog) {
 			let winCtx = window;
 			const tbVersion = ietngUtils.getThunderbirdVersion();
 			if (tbVersion.major >= 120) {
@@ -385,17 +418,26 @@ async function exportAllMsgs(type, params) {
 				res = fp.show();
 			else
 				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK)
+			if (res === nsIFilePicker.returnOK) {
 				file = fp.file;
-			else
-				return;
+			} else {
+				return { status: "cancel" };
+			}
+		} else if (params.exportFolderPath) {
+			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+			file.initWithPath(params.exportFolderPath);
 		}
+
+		exportFolderPath = file.path;
+
 		try {
 			if (!file.isWritable()) {
 				alert(mboximportbundle.GetStringFromName("nowritable"));
-				return;
+				return { status: "cancel" };
 			}
-		} catch (e) { }
+		} catch (e) {
+			return { status: "cancel" };
+		}
 
 		IETglobalMsgFolders = [getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path)];
 
@@ -405,14 +447,17 @@ async function exportAllMsgs(type, params) {
 			// If so, exits, because the export function can't handle this
 			if (IETglobalMsgFolders.length > 1 && IETglobalMsgFolders[i].flags & 0x0020) {
 				alert(mboximportbundle.GetStringFromName("virtFolAlert"));
-				return;
+				return { status: "cancel" };
 			}
-			if (type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
+
+			/*
+			if (params.warnings && type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
 				var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
-				if (!go)
-					return;
-				break;
+				if (!go) {
+					return { status: "cancel" };
+				}
 			}
+				*/
 		}
 		IETglobalFile = file.clone();
 		if (type !== 3 && type !== 5) {
@@ -427,9 +472,17 @@ async function exportAllMsgs(type, params) {
 	} catch (ex) {
 		if (document.getElementById("IETabortIcon"))
 			document.getElementById("IETabortIcon").collapsed = true;
-		let errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
-		Services.prompt.alert(window, errorMsg, ex);
+		let errTitle = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
+		let errMsg = ex;
+		if (ex.extendedMsg) {
+			errMsg += `\n\n${ex.extendedMsg}`;
+		}
+		errMsg += `\n\n${ex.stack}`;
+		Services.prompt.alert(window, errTitle, errMsg);
+		return { status: "error", errMsg: ex };
 	}
+
+	return { status: "ok", exportFolderPath: exportFolderPath };
 }
 
 // 2) exportAllMsgsStart
@@ -585,20 +638,20 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, 0775);
+		file.create(1, O0775);
 
 		subfile = file.clone();
 
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, O0775);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, O0775);
 		}
 	}
 
@@ -691,7 +744,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, 0775);
+		file.create(1, 0o755);
 
 		// deal with top then recursive 
 
@@ -705,13 +758,13 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, 0o755);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, 0775);
+			subfile.create(1, 0o755);
 		}
 	}
 
@@ -853,7 +906,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return { status: kStatusOK };
-		
+
 
 	// Custom date format
 	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
@@ -877,7 +930,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		subdirname = "";
 	// Build the index html page
 	clone2.append("index.html");
-	clone2.createUnique(0, 0644);
+	clone2.createUnique(0, 0o644);
 
 	var date_received_hdr = "";
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
@@ -895,7 +948,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 	}
 
-	
+
 	// Improve index table formatting
 	let styles = '<style>\r\n';
 	styles += 'table { border-collapse: collapse; }\r\n';
@@ -1180,7 +1233,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	} else {
 		clone2 = file2.clone();
 		clone2.append("messages.csv");
-		clone2.createUnique(0, 0644);
+		clone2.createUnique(0, 0o644);
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
@@ -1322,7 +1375,6 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					if (iid.equals(Ci.nsIStreamListener) ||
 						iid.equals(Ci.nsISupports))
 						return this;
-
 					throw Cr.NS_NOINTERFACE;
 				},
 
@@ -1333,134 +1385,142 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					var data;
 
 					this.scriptStream = null;
-					if (clipboard) {
-						IETcopyStrToClip(this.emailtext);
-						return;
-					}
-					var tags = hdr.getStringProperty("keywords");
-					if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
-						this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
-					if (append) {
 
-						if (this.emailtext !== "") {
-							data = this.emailtext + "\n";
+					try {
 
-							// Some IMAP servers don't add to the message the "From" prologue
-							if (data && !data.match(/^From /)) {
-								let fromAddr;
-								try {
-									fromAddr = parse5322.parseFrom(hdr.author)[0].address;
-								} catch (ex) {
-									fromAddr = "";
+						if (clipboard) {
+							IETcopyStrToClip(this.emailtext);
+							return;
+						}
+						var tags = hdr.getStringProperty("keywords");
+						if (tags && this.emailtext.substring(0, 5000).includes("X-Mozilla-Keys"))
+							this.emailtext = "X-Mozilla-Keys: " + tags + "\r\n" + this.emailtext;
+						if (append) {
+
+							if (this.emailtext !== "") {
+								data = this.emailtext + "\n";
+
+								// Some IMAP servers don't add to the message the "From" prologue
+								if (data && !data.match(/^From /)) {
+									let fromAddr;
+									try {
+										fromAddr = parse5322.parseFrom(hdr.author)[0].address;
+									} catch (ex) {
+										fromAddr = "";
+									}
+
+									let msgDate = (new Date(hdr.dateInSeconds * 1000));
+									msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
+									let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
+
+									var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
+									data = prologue + data;
+								}
+								data = IETescapeBeginningFrom(data);
+							}
+							var fileClone = file.clone();
+							data = data.replace(/\r\n/g, "\n");
+
+							IETwriteDataOnDisk(fileClone, data, true, null, null);
+							sub = true;
+						} else {
+							if (!hdrArray) {
+								sub = getSubjectForHdr(hdr, file.path);
+							} else {
+								var parts = hdrArray[IETexported].split("§][§^^§");
+								sub = parts[4];
+								sub = sub.replace(/[\x00-\x1F]/g, "_");
+							}
+
+							sub = IETstr_converter(sub);
+
+							if (sub) {
+								// Addresses #350
+								// This probably is removing an mbox separator, but is
+								// not specific enough and originally would replace 
+								// a normal From: field. Make better regex...
+								// data = this.emailtext.replace(/^From.+\r?\n/, "");
+
+								data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
+								data = IETescapeBeginningFrom(data);
+
+								// Strip CR option - @ashikase
+								if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
+									data = data.replace(/\r\n/g, "\n");
 								}
 
-								let msgDate = (new Date(hdr.dateInSeconds * 1000));
-								msgDate.setMinutes(msgDate.getMinutes() + msgDate.getTimezoneOffset());
-								let msgDateStr = strftime.strftime("%a %b %d %H:%M:%S %Y", msgDate);
-
-								var prologue = "From " + fromAddr + " " + msgDateStr + "\n";
-								data = prologue + data;
-							}
-							data = IETescapeBeginningFrom(data);
-						}
-						var fileClone = file.clone();
-						data = data.replace(/\r\n/g, "\n");
-
-						IETwriteDataOnDisk(fileClone, data, true, null, null);
-						sub = true;
-					} else {
-						if (!hdrArray) {
-							sub = getSubjectForHdr(hdr, file.path);
-							console.log("get eml name ", sub)
-
-						} else {
-							var parts = hdrArray[IETexported].split("§][§^^§");
-							sub = parts[4];
-							sub = sub.replace(/[\x00-\x1F]/g, "_");
-						}
-
-						sub = IETstr_converter(sub);
-
-						if (sub) {
-							// Addresses #350
-							// This probably is removing an mbox separator, but is
-							// not specific enough and originally would replace 
-							// a normal From: field. Make better regex...
-							// data = this.emailtext.replace(/^From.+\r?\n/, "");
-
-							data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
-							data = IETescapeBeginningFrom(data);
-
-							// Strip CR option - @ashikase
-							if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
-								data = data.replace(/\r\n/g, "\n");
-							}
-
-							var clone = file.clone();
-							// The name is taken from the subject "corrected"
-							clone.append(sub + ".eml");
-							clone.createUnique(0, 0644);
-							var time = (hdr.dateInSeconds) * 1000;
-							IETwriteDataOnDisk(clone, data, false, null, time);
-							// myEMLlistener.file2 exists just if we need the index
-							if (myEMLlistner.file2) {
-								var nameNoExt = clone.leafName.replace(/\.eml$/, "");
-								// If the leafName of the file is not equal to "sub", we must change also
-								// the correspondent section of hdrArray[IETexported], otherwise the link
-								// in the index will be wrong
-								if (sub !== nameNoExt) {
-									parts[4] = nameNoExt;
-									hdrArray[IETexported] = parts.join("§][§^^§");
+								var clone = file.clone();
+								// The name is taken from the subject "corrected"
+								clone.append(sub + ".eml");
+								clone.createUnique(0, 0o644);
+								var time = (hdr.dateInSeconds) * 1000;
+								IETwriteDataOnDisk(clone, data, false, null, time);
+								// myEMLlistener.file2 exists just if we need the index
+								if (myEMLlistner.file2) {
+									var nameNoExt = clone.leafName.replace(/\.eml$/, "");
+									// If the leafName of the file is not equal to "sub", we must change also
+									// the correspondent section of hdrArray[IETexported], otherwise the link
+									// in the index will be wrong
+									if (sub !== nameNoExt) {
+										parts[4] = nameNoExt;
+										hdrArray[IETexported] = parts.join("§][§^^§");
+									}
 								}
 							}
 						}
-					}
-					IETexported = IETexported + 1;
-					if (sub)
-						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+						IETexported = IETexported + 1;
+						if (sub)
+							IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
 
-					if (IETabort) {
-						IETabort = false;
-						resolve(kStatusAbort)
-						return;
-					}
-
-					if (IETexported < IETtotal) {
-						if (fileArray) {
-							nextUri = uriArray[IETexported];
-							nextFile = fileArray[IETexported];
-						} else if (!hdrArray) {
-							nextUri = uriArray[IETexported];
-							nextFile = file;
-						} else {
-							parts = hdrArray[IETexported].split("§][§^^§");
-							nextUri = parts[5];
-							nextFile = file;
+						if (IETabort) {
+							IETabort = false;
+							resolve(kStatusAbort)
+							return;
 						}
-						resolve(kStatusOK);
-						return;
-					} else {
-						if (myEMLlistner.file2)
-							createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
-						IETexported = 0;
-						IETtotal = 0;
-						IETskipped = 0;
-						if (IETglobalMsgFolders) {
-							IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-							if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length) {
-								if (imapFolder) {
-									setTimeout(function () {
-										exportIMAPfolder(IETglobalMsgFolders[IETglobalMsgFoldersExported], file.parent);
-									}, 1000);
-								} else
-									exportAllMsgsStart(0, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+
+						if (IETexported < IETtotal) {
+							if (fileArray) {
+								nextUri = uriArray[IETexported];
+								nextFile = fileArray[IETexported];
+							} else if (!hdrArray) {
+								nextUri = uriArray[IETexported];
+								nextFile = file;
+							} else {
+								parts = hdrArray[IETexported].split("§][§^^§");
+								nextUri = parts[5];
+								nextFile = file;
+							}
+							resolve(kStatusOK);
+							return;
+						} else {
+							if (myEMLlistner.file2)
+								createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
+							IETexported = 0;
+							IETtotal = 0;
+							IETskipped = 0;
+							if (IETglobalMsgFolders) {
+								IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
+								if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length) {
+									if (imapFolder) {
+										setTimeout(function () {
+											exportIMAPfolder(IETglobalMsgFolders[IETglobalMsgFoldersExported], file.parent);
+										}, 1000);
+									} else
+										exportAllMsgsStart(0, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+								} else if (document.getElementById("IETabortIcon"))
+									document.getElementById("IETabortIcon").collapsed = true;
 							} else if (document.getElementById("IETabortIcon"))
 								document.getElementById("IETabortIcon").collapsed = true;
-						} else if (document.getElementById("IETabortIcon"))
+						}
+						saveAsEmlDone = true;
+						resolve(kStatusDone);
+					} catch (ex) {
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
+						}
+						reject(ex)
 					}
-					saveAsEmlDone = true;
-					resolve(kStatusDone);
 				},
 
 				onDataAvailable: function (aRequest, aInputStream, aOffset, aCount) {
@@ -1538,73 +1598,274 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					this.emailtext += scriptStream.read(scriptStream.available());
 				},
 
-				onStopRequest: function (request, statusCode) {
+				onStopRequest: async function (request, statusCode) {
 
-					var data = this.emailtext;
+					try {
 
-					if (copyToClip) {
-						data = IEThtmlToText(data, msgFolder);
-						IETcopyToClip(data);
-						return;
-					}
+						var data = this.emailtext;
 
-					this.scriptStream = null;
-					var clone = file.clone();
+						if (copyToClip) {
+							data = IEThtmlToText(data, msgFolder);
+							IETcopyToClip(data);
+							return;
+						}
 
-					if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
-						var aMsgHdr = hdr;
-						MsgHdrToMimeMessage(aMsgHdr, null, function (aMsgHdr, aMsg) {
-							var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
-							// attachments = attachments.filter(function (x) x.isRealAttachment);
-							var footer = null;
-							var noDir = true;
-							var attName;
-							var attNameAscii;
-							var attDirContainerName;
-							var time = (hdr.dateInSeconds) * 1000;
+						this.scriptStream = null;
+						var clone = file.clone();
 
-							for (var i = 0; i < attachments.length; i++) {
-								var att = attachments[i];
-								if (noDir) {
-									var attDirContainer = file.clone();
-									var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+						if (String.prototype.trim && saveAttachments && (hdr.flags & 0x10000000)) {
+							var aMsgHdr = hdr;
+							MsgHdrToMimeMessage(aMsgHdr, null, async function (aMsgHdr, aMsg) {
+								var attachments = aMsg.allUserAttachments ? aMsg.allUserAttachments : aMsg.allAttachments;
+								// attachments = attachments.filter(function (x) x.isRealAttachment);
 
-									if (attachmentsExtendedFilenameFormat === "") {
-										attDirContainer.append("Attachments");
+								var footer = null;
+								var noDir = true;
+								var attName;
+								var attNameAscii;
+								var attDirContainerName;
+								var time = (hdr.dateInSeconds) * 1000;
+
+								for (var i = 0; i < attachments.length; i++) {
+									var att = attachments[i];
+									if (noDir) {
+										var attDirContainer = file.clone();
+										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+
+										if (attachmentsExtendedFilenameFormat === "") {
+											attDirContainer.append("Attachments");
+										} else {
+											let afname = constructAttachmentsFilename(1, hdr);
+											attDirContainer.append(afname);
+										}
+										attDirContainer.createUnique(1, 0o755);
+										footer = '<br><hr><br><div style="font-size:16px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
+										noDir = false;
+									}
+									var success = true;
+
+									if (att.url.indexOf("file") === 0) { // Detached attachments
+										try {
+											var localFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+											var attURL = decodeURIComponent(att.url.replace(/\?part.+/, ""));
+											attURL = attURL.replace("file://", "");
+											localFile.initWithPath(attURL);
+											localFile.copyTo(attDirContainer, "");
+											attName = localFile.leafName;
+											attNameAscii = encodeURIComponent(attName);
+										} catch (e) {
+											success = false;
+										}
 									} else {
-										let afname = constructAttachmentsFilename(1, hdr);
-										attDirContainer.append(afname);
+										try {
+											var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
+												.createInstance(Ci.nsIScriptableUnicodeConverter);
+											converter.charset = "UTF-8";
+											attName = converter.ConvertFromUnicode(att.name);
+											attDirContainerName = converter.ConvertFromUnicode(attDirContainer.leafName);
+
+											var attDirContainerClone = attDirContainer.clone();
+											attNameAscii = encodeURIComponent(att.name);
+											attDirContainerClone.append(att.name);
+											attachments[i].file = attDirContainerClone;
+
+											let attPartName = att.url.match(/part=([.0-9]+)&?/)[1];
+											let attFile = await getAttachmentFile(aMsgHdr, attPartName)
+											let fileData = await fileToUint8Array(attFile);
+											await IOUtils.write(attDirContainerClone.path, fileData);
+
+										} catch (e) {
+											success = false;
+											console.debug('save attachment exception ' + att.name);
+											console.debug(e);
+										}
 									}
-									attDirContainer.createUnique(1, 0775);
-									footer = '<br><hr><br><div style="font-size:12px;color:black;"><img src="data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==">\r\n<ul>';
-									noDir = false;
+
+									if (success)
+										footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
 								}
-								var success = true;
-								if (att.url.indexOf("file") === 0) { // Detached attachments
-									try {
-										var localFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-										var attURL = decodeURIComponent(att.url.replace(/\?part.+/, ""));
-										attURL = attURL.replace("file://", "");
-										localFile.initWithPath(attURL);
-										localFile.copyTo(attDirContainer, "");
-										attName = localFile.leafName;
-										attNameAscii = encodeURIComponent(attName);
-									} catch (e) {
-										success = false;
+								if (footer) {
+									footer = footer + "</ul></div><div class='' ></div></body>";
+									data = data.replace("</body>", footer);
+									data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
+
+									// cleidigh - fix up group boxes and images
+									let rs;
+
+									// cleidigh - original outline for inline images 
+									// regex could somehow go to recursion
+									// https://github.com/thundernest/import-export-tools-ng/issues/98
+
+									// Just remove all but top outlines for now
+
+									data = data.replace(/<\/head>/i, "<style>fieldset.moz-mime-attachment-header {border-bottom: none; border-right: none; border-left: none;}</style></head>");
+
+									let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
+									rs = null;
+									rs = data.match(regex2);
+
+									if (!!rs && rs.length > 0) {
+										for (let index = 0; index < rs.length; index++) {
+											const element = rs[index];
+											data = data.replace(element, element + "\n</fieldset>\n");
+										}
 									}
-								} else {
-									try {
 
-										var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"]
-											.createInstance(Ci.nsIScriptableUnicodeConverter);
-										converter.charset = "UTF-8";
-										attName = converter.ConvertFromUnicode(att.name);
-										attDirContainerName = converter.ConvertFromUnicode(attDirContainer.leafName);
+								}
 
-										var attDirContainerClone = attDirContainer.clone();
-										attNameAscii = encodeURIComponent(att.name);
-										attDirContainerClone.append(att.name);
-										attachments[i].file = attDirContainerClone;
+								myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
+							}, true, { examineEncryptedParts: true });
+						} else
+							await myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
+
+					} catch (ex) {
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
+							document.getElementById("IETabortIcon").collapsed = true;
+						}
+						reject(ex);
+					}
+				},
+
+				onAfterStopRequest: async function (clone, data, saveAttachments) {
+					try {
+
+						let encoder = new TextEncoder();
+
+						let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
+						hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
+
+						let replyToStr = hdrsBundle.GetStringFromName("REPLY-TO");
+
+						let cvtToUTF16 = function (s) {
+							s = encoder.encode(s);
+							s = ietngUtils.bytesToString(s);
+							return s;
+						}
+
+						// This is a ridiculous set of transforms we have to do because
+						// streammessage with aConvert == true does not translate headers
+						// in the ja locale even in v128, just ty a Print!
+						if (Services.locale.appLocaleAsBCP47 === "ja") {
+							replyToStr = "返信先";
+							let jaSubject = "件名";
+							let jaTo = "宛先";
+							let jaFrom = "差出人";
+							let jaDate = "送信日時";
+							jaSubject = cvtToUTF16(jaSubject);
+							data = data.replace(">Subject: </", `>${jaSubject}: </`);
+							jaTo = cvtToUTF16(jaTo);
+							data = data.replace(">To: </", `>${jaTo}: </`);
+							jaFrom = cvtToUTF16(jaFrom);
+							data = data.replace(">From: </", `>${jaFrom}: </`);
+							jaDate = cvtToUTF16(jaDate);
+							data = data.replace(">Date: </", `>${jaDate}: </`);
+						}
+
+						replyToStr = encoder.encode(replyToStr);
+						replyToStr = ietngUtils.bytesToString(replyToStr);
+
+						var replyTo = hdr.getStringProperty("replyTo");
+						if (replyTo.length > 1) {
+							var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
+
+							var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">' + replyToStr + ': </div> ' + replyTo + '</td></tr>';
+							data = data.replace("</table><br>", rt + "</table><br>");
+						}
+
+						var appendClone;
+						if (this.append && convertToText) {
+							appendClone = clone.clone();
+						}
+
+						var sub;
+						if (!hdrArray)
+							sub = getSubjectForHdr(hdr, file.path);
+						else {
+							var parts = hdrArray[IETexported].split("§][§^^§");
+							sub = parts[4];
+							sub = sub.replace(/[\x00-\x1F]/g, "_");
+						}
+
+						sub = IETstr_converter(sub);
+
+						// The name is taken from the subject "corrected"
+						if (convertToText)
+							clone.append(sub + ".txt");
+						else
+							clone.append(sub + ".html");
+						var num = 0;
+						while (clone.exists()) {
+							num++;
+							clone = file.clone();
+							if (convertToText)
+								clone.append(sub + "-" + num + ".txt");
+							else
+								clone.append(sub + "-" + num + ".html");
+						}
+						if (myTxtListener.file2) {
+							if (num > 0) {
+								// If "num" is greater than 0, it means that the filename is not equal to subject
+								// and so the correspondent section of hdrArray[IETexported] must be modified too,
+								// otherwise the link the index will be wrong
+								parts[4] = sub + "-" + num;
+								hdrArray[IETexported] = parts.join("§][§^^§");
+							}
+						}
+						var time = (hdr.dateInSeconds) * 1000;
+
+						if (saveAttachments) {
+							// Save embedded images
+							try {
+								var embImgContainer = null;
+								var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
+
+								// Embedded in-line images can be either 'mailbox' for POP accounts
+								// or 'imap' for IMAP
+								// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
+
+								var imgs;
+								imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
+								if (imgs === null) {
+									imgs = [];
+								}
+
+								var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
+								if (imgsImap !== null) {
+									imgs = imgs.concat(imgsImap);
+								}
+
+								let imgAtts = imgs.map(img => {
+									return { imgLink: img }
+								});
+
+								// Update for extended naming
+								for (var i = 0; i < imgs.length; i++) {
+									if (!embImgContainer) {
+										embImgContainer = file.clone();
+										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+
+										if (attachmentsExtendedFilenameFormat === "") {
+											embImgContainer.append("EmbeddedImages");
+										} else {
+											let afname = constructAttachmentsFilename(2, hdr);
+											embImgContainer.append(afname);
+										}
+										embImgContainer.createUnique(1, 0o755);
+									}
+
+									var aUrl;
+
+									aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
+									if (aUrl === null) {
+										aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
+									}
+
+									if (aUrl === null) {
+										continue;
+									}
+
+									if (ietngUtils.getThunderbirdVersion().major <= 128) {
 
 										// The urlListener.OnStopRunningUrl fires before the 
 										// file is truly closed. An attempt to change lastModifiedTime
@@ -1614,352 +1875,176 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										// Setting the attachment date to match the message date #549
 
 										// @implements {nsIUrlListener}
-										const attsUrlListener = {
+										const embImgsUrlListener = {
 											OnStartRunningUrl(url) { },
 											OnStopRunningUrl(url, status) {
 												if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 													return;
 												}
-												let curAtt = attachments.find((att) => {
+												let curAtt = imgAtts.find((att) => {
 													if (att.url == url.spec) {
 														return true;
 													}
 												})
-												setTimeout(this.setFileTime, 50, curAtt.file.clone());
+												setTimeout(this.setFileTime, 50, curAtt);
 											},
-											setFileTime(curAttFile) {
-												//console.log(curAttFile.path)
-												if (!IETabort)
-													curAttFile.lastModifiedTime = time;
+											setFileTime(curAtt) {
+												curAtt.file.lastModifiedTime = time;
 											}
 										}
 
-										messenger.saveAttachmentToFile(attDirContainerClone, att.url, uri, att.contentType, attsUrlListener);
-									} catch (e) {
-										success = false;
-										console.debug('save attachment exception ' + att.name);
-										console.debug(e);
-									}
-								}
-								// Encode for UTF-8 - Fixes #355
-								if (success)
-									footer = footer + '<li><a href="' + encodeURIComponent(attDirContainer.leafName) + "/" + attNameAscii + '">' + attDirContainerName + "/" + attName + '</li></a>';
-							}
-							if (footer) {
-								footer = footer + "</ul></div><div class='' ></div></body>";
-								data = data.replace("</body>", footer);
-								data = data.replace(/<\/html>(?:.|\r?\n)+/, "</html>");
+										var embImg = embImgContainer.clone();
 
-								// cleidigh - fix up group boxes and images
-								let rs;
+										embImg.append(i + ".jpg");
+										imgAtts[i].file = embImg;
+										imgAtts[i].url = aUrl;
 
-								// cleidigh - original outline for inline images 
-								// regex could somehow go to recursion
-								// https://github.com/thundernest/import-export-tools-ng/issues/98
+										messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
+										// Encode for UTF-8 - Fixes #355
+										data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
 
-								// Just remove outlines for now
-								//data = data.replace(/<fieldset(.*?)*?<\/fieldset>/ig, "");
-
-								let regex2 = /<div class="moz-text-plain"([\S|\s]*?)<\/div>/gi;
-								rs = null;
-								rs = data.match(regex2);
-
-								if (!!rs && rs.length > 0) {
-									for (let index = 0; index < rs.length; index++) {
-										const element = rs[index];
-										data = data.replace(element, element + "\n</fieldset>\n");
-									}
-								}
-
-							}
-
-							myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
-						}, true, { examineEncryptedParts: true });
-					} else
-						myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
-				},
-
-				onAfterStopRequest: function (clone, data, saveAttachments) {
-					let encoder = new TextEncoder();
-
-					let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
-					hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
-
-					let replyToStr = hdrsBundle.GetStringFromName("REPLY-TO");
-
-					let cvtToUTF16 = function (s) {
-						s = encoder.encode(s);
-						s = ietngUtils.bytesToString(s);
-						return s;
-					}
-
-					// This is a ridiculous set of transforms we have to do because
-					// streammessage with aConvert == true does not translate headers
-					// in the ja locale even in v128, just ty a Print!
-					if (Services.locale.appLocaleAsBCP47 === "ja") {
-						replyToStr = "返信先";
-						let jaSubject = "件名";
-						let jaTo = "宛先";
-						let jaFrom = "差出人";
-						let jaDate = "送信日時";
-						jaSubject = cvtToUTF16(jaSubject);
-						data = data.replace(">Subject: </", `>${jaSubject}: </`);
-						jaTo = cvtToUTF16(jaTo);
-						data = data.replace(">To: </", `>${jaTo}: </`);
-						jaFrom = cvtToUTF16(jaFrom);
-						data = data.replace(">From: </", `>${jaFrom}: </`);
-						jaDate = cvtToUTF16(jaDate);
-						data = data.replace(">Date: </", `>${jaDate}: </`);
-					}
-
-					replyToStr = encoder.encode(replyToStr);
-					replyToStr = ietngUtils.bytesToString(replyToStr);
-
-					var replyTo = hdr.getStringProperty("replyTo");
-					if (replyTo.length > 1) {
-						var replyTo = replyTo.replace("<", "&lt;").replace(">", "&gt;");
-
-						var rt = '<tr><td><div class="moz-header-display-name" style="display:inline;">' + replyToStr + ': </div> ' + replyTo + '</td></tr>';
-						data = data.replace("</table><br>", rt + "</table><br>");
-					}
-
-					var appendClone;
-					if (this.append && convertToText) {
-						appendClone = clone.clone();
-					}
-
-					var sub;
-					if (!hdrArray)
-						sub = getSubjectForHdr(hdr, file.path);
-					else {
-						var parts = hdrArray[IETexported].split("§][§^^§");
-						sub = parts[4];
-						sub = sub.replace(/[\x00-\x1F]/g, "_");
-					}
-
-					sub = IETstr_converter(sub);
-
-					// The name is taken from the subject "corrected"
-					if (convertToText)
-						clone.append(sub + ".txt");
-					else
-						clone.append(sub + ".html");
-					var num = 0;
-					while (clone.exists()) {
-						num++;
-						clone = file.clone();
-						if (convertToText)
-							clone.append(sub + "-" + num + ".txt");
-						else
-							clone.append(sub + "-" + num + ".html");
-					}
-					if (myTxtListener.file2) {
-						if (num > 0) {
-							// If "num" is greater than 0, it means that the filename is not equal to subject
-							// and so the correspondent section of hdrArray[IETexported] must be modified too,
-							// otherwise the link the index will be wrong
-							parts[4] = sub + "-" + num;
-							hdrArray[IETexported] = parts.join("§][§^^§");
-						}
-					}
-					var time = (hdr.dateInSeconds) * 1000;
-
-					if (saveAttachments) {
-						// Save embedded images
-						try {
-							var embImgContainer = null;
-							var isWin = (navigator.platform.toLowerCase().indexOf("win") > -1);
-
-							// Embedded in-line images can be either 'mailbox' for POP accounts
-							// or 'imap' for IMAP
-							// Fix https://github.com/thundernest/import-export-tools-ng/issues/74
-
-							var imgs;
-							imgs = data.match(/<IMG[^>]+SRC=\"mailbox[^>]+>/gi);
-							if (imgs === null) {
-								imgs = [];
-							}
-
-							var imgsImap = data.match(/<IMG[^>]+SRC=\"imap[^>]+>/gi);
-							if (imgsImap !== null) {
-								imgs = imgs.concat(imgsImap);
-							}
-
-							let imgAtts = imgs.map(img => {
-								return { imgLink: img }
-							});
-
-							// Update for extended naming
-							for (var i = 0; i < imgs.length; i++) {
-								if (!embImgContainer) {
-									embImgContainer = file.clone();
-									var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
-
-									if (attachmentsExtendedFilenameFormat === "") {
-										embImgContainer.append("EmbeddedImages");
 									} else {
-										let afname = constructAttachmentsFilename(2, hdr);
-										embImgContainer.append(afname);
-									}
-									embImgContainer.createUnique(1, 0775);
-								}
 
-								var aUrl;
+										let inlinePartName = aUrl[0].match(/part=([.0-9]+)&?/)[1];
+										let inlineFilename = aUrl[0].match(/\&filename=(.+)&?/)[1];
 
-								aUrl = imgs[i].match(/mailbox:\/\/\/[^\"]+/);
-								if (aUrl === null) {
-									aUrl = imgs[i].match(/imap:\/\/[^\"]+/);
-								}
+										var embImg = embImgContainer.clone();
+										embImg.append(inlineFilename);
+										imgAtts[i].url = aUrl;
 
-								if (aUrl === null) {
-									continue;
-								}
+										try {
+											let inlineFile = await getAttachmentFile(hdr, inlinePartName)
+											let fileData = await fileToUint8Array(inlineFile);
+											let unqInlineFilepath = await IOUtils.createUniqueFile(embImgContainer.path, inlineFilename)
+											await IOUtils.write(unqInlineFilepath, fileData);
+											embImg = embImg.initWithPath(unqInlineFilepath)
+											imgAtts[i].file = embImg;
 
-								// The urlListener.OnStopRunningUrl fires before the 
-								// file is truly closed. An attempt to change lastModifiedTime
-								// here gets superceded with the current date. This is likely 
-								// a file descriptor being closed after the event.
-								// A setTimeout delayed action is required. 
-								// Setting the attachment date to match the message date #549
-
-								// @implements {nsIUrlListener}
-								const embImgsUrlListener = {
-									OnStartRunningUrl(url) { },
-									OnStopRunningUrl(url, status) {
-										if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-											return;
+											// Encode for UTF-8 - Fixes #355
+											data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + inlineFilename);
+										} catch {
+											data = data.replace(aUrl, "data:image/gif;base64,R0lGODdhDwAPAOMAAP///zEwYmJlzQAAAPr6+vv7+/7+/vb29pyZ//39/YOBg////////////////////ywAAAAADwAPAAAESRDISUG4lQYr+s5bIEwDUWictA2GdBjhaAGDrKZzjYq3PgUw2co24+VGLYAAAesRLQklxoeiUDUI0qSj6EoH4Iuoq6B0PQJyJQIAOw==")
 										}
-										let curAtt = imgAtts.find((att) => {
-											if (att.url == url.spec) {
-												return true;
-											}
-										})
-										setTimeout(this.setFileTime, 50, curAtt);
-									},
-									setFileTime(curAtt) {
-										curAtt.file.lastModifiedTime = time;
 									}
 								}
-
-								var embImg = embImgContainer.clone();
-
-								embImg.append(i + ".jpg");
-								imgAtts[i].file = embImg;
-								imgAtts[i].url = aUrl;
-
-								messenger.saveAttachmentToFile(embImg, aUrl, uri, "image/jpeg", embImgsUrlListener);
-								// var sep = isWin ? "\\" : "/";
-								// Encode for UTF-8 - Fixes #355
-								data = data.replace(aUrl, encodeURIComponent(embImgContainer.leafName) + "/" + i + ".jpg");
+							} catch (e) {
+								console.log(e)
+								IETlogger.write("save embedded images - error = " + e);
 							}
-						} catch (e) {
-							IETlogger.write("save embedded images - error = " + e);
 						}
-					}
-					/* Clean HTML code generated by streamMessage and "header=filter":
-					- Replace author/recipients/subject with mimeDecoded values
-					- Strip off the reference to messageBody.css
-					- Add a style rule to make headers name in bold
-					*/
+						/* Clean HTML code generated by streamMessage and "header=filter":
+						- Replace author/recipients/subject with mimeDecoded values
+						- Strip off the reference to messageBody.css
+						- Add a style rule to make headers name in bold
+						*/
 
-					let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
+						let mimePartsArray = data.match(/=\?[\w-]+\?[BQ]\?\S+\?=/g)
 
-					if (mimePartsArray) {
-						for (const mimePart of mimePartsArray) {
-							let mimePartStr = ietngUtils.bytesToString(encoder.encode(mimePart));
-							let decodedMimePartStr = MailServices.mimeConverter.decodeMimeHeader(
-								mimePartStr,
-								null,
-								false /* override_charset */,
-								true /* eatContinuations */
-							);
-							let encodedMimePartArr = encoder.encode(decodedMimePartStr);
-							let mimeStr = ietngUtils.bytesToString(encodedMimePartArr);
-							data = data.replace(mimePart, mimeStr);
+						if (mimePartsArray) {
+							for (const mimePart of mimePartsArray) {
+								let mimePartStr = ietngUtils.bytesToString(encoder.encode(mimePart));
+								let decodedMimePartStr = MailServices.mimeConverter.decodeMimeHeader(
+									mimePartStr,
+									null,
+									false /* override_charset */,
+									true /* eatContinuations */
+								);
+								let encodedMimePartArr = encoder.encode(decodedMimePartStr);
+								let mimeStr = ietngUtils.bytesToString(encodedMimePartArr);
+								data = data.replace(mimePart, mimeStr);
+							}
 						}
-					}
 
-					/* example insertion of mime element
-					tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
-					let decodedRecStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
-					let encodedRecArr = encoder.encode(decodedRecStr);
-					let utf8RecStr = ietngUtils.bytesToString(encodedRecArr);
-					data = data.replace(tempStr, utf8RecStr);
-					*/
+						/* example insertion of mime element
+						tempStr = this.hdr.recipients.replace("<", "&lt;").replace(">", "&gt;");
+						let decodedRecStr = this.hdr.mime2DecodedAuthor.replace("<", "&lt;").replace(">", "&gt;");
+						let encodedRecArr = encoder.encode(decodedRecStr);
+						let utf8RecStr = ietngUtils.bytesToString(encodedRecArr);
+						data = data.replace(tempStr, utf8RecStr);
+						*/
 
-					data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
+						data = data.replace("chrome:\/\/messagebody\/skin\/messageBody.css", "");
 
-					const r1 = "div.headerdisplayname {font-weight:bold;}\n";
-					// const rh = ".tb { display: none;}\n";
-					// const r2 = ".moz-text-html .tb { display: block;}\n";
-					data = data.replace("<\/head>", `<style>${r1}<\/style><\/head>`);
+						const r1 = "div.headerdisplayname {font-weight:bold;}\n";
+						// const rh = ".tb { display: none;}\n";
+						// const r2 = ".moz-text-html .tb { display: block;}\n";
+						data = data.replace("<\/head>", `<style>${r1}<\/style><\/head>`);
 
-					if (!HTMLasView && this.chrset)
-						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
-					else
-						data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
+						if (!HTMLasView && this.chrset)
+							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=' + this.chrset + '" />');
+						else
+							data = data.replace("<head>", '<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />');
 
-					if (!msgFolder) {
-						console.log("exportashtml Before cvt", msgFolder)
-						Services.prompt.alert(window, "Error", "msgFolder null before text converter.\nPlease report!")
-						resolve(kStatusOK);
-					}
-
-					if (convertToText) {
-						data = IEThtmlToText(data, msgFolder);
-					}
-					if (convertToText && append) {
-						data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
-
-						var nfile = appendClone.leafName + ".txt";
-						IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
-					} else if (convertToText) {
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
-					} else {
-						data = IETconvertToUTF8(data);
-						IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
-					}
-
-					IETexported = IETexported + 1;
-					IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
-
-					if (IETabort) {
-						IETabort = false;
-						console.log("abort", msgFolder.name)
-						resolve(kStatusAbort)
-						return;
-					}
-
-					if (IETexported < IETtotal) {
-						if (!hdrArray)
-							nextUri = uriArray[IETexported];
-						else {
-							parts = hdrArray[IETexported].split("§][§^^§");
-							nextUri = parts[5];
+						if (!msgFolder) {
+							console.log("exportashtml Before cvt", msgFolder)
+							Services.prompt.alert(window, "Error", "msgFolder null before text converter.\nPlease report!")
+							resolve(kStatusOK);
 						}
-						resolve(kStatusOK);
-						return;
 
-					} else {
-						var type = convertToText ? 2 : 1;
-						if (myTxtListener.file2) {
-							createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
+						if (convertToText) {
+							data = IEThtmlToText(data, msgFolder);
 						}
-						if (saveAttachments)
-							type += 7;
-						IETexported = 0;
-						IETtotal = 0;
-						IETskipped = 0;
-						IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
-						if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
-							exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
-						else if (document.getElementById("IETabortIcon"))
+						if (convertToText && append) {
+							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
+
+							var nfile = appendClone.leafName + ".txt";
+							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
+						} else if (convertToText) {
+							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
+						} else {
+							data = IETconvertToUTF8(data);
+							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
+						}
+
+						IETexported = IETexported + 1;
+						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+
+						if (IETabort) {
+							IETabort = false;
+							console.log("abort", msgFolder.name)
+							resolve(kStatusAbort)
+							return;
+						}
+
+						if (IETexported < IETtotal) {
+							if (!hdrArray)
+								nextUri = uriArray[IETexported];
+							else {
+								parts = hdrArray[IETexported].split("§][§^^§");
+								nextUri = parts[5];
+							}
+							resolve(kStatusOK);
+							return;
+
+						} else {
+							var type = convertToText ? 2 : 1;
+							if (myTxtListener.file2) {
+								createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
+							}
+							if (saveAttachments)
+								type += 7;
+							IETexported = 0;
+							IETtotal = 0;
+							IETskipped = 0;
+							IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
+							if (IETglobalMsgFoldersExported && IETglobalMsgFoldersExported < IETglobalMsgFolders.length)
+								exportAllMsgsStart(type, IETglobalFile, IETglobalMsgFolders[IETglobalMsgFoldersExported]);
+							else if (document.getElementById("IETabortIcon"))
+								document.getElementById("IETabortIcon").collapsed = true;
+							exportAsHtmlDone = true;
+							resolve(kStatusDone);
+						}
+
+					} catch (ex) {
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
-						exportAsHtmlDone = true;
-						resolve(kStatusDone);
+						}
+						reject(ex)
 					}
 				},
 			};
+
 
 			// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
 			var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
@@ -2013,6 +2098,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 		});
 
+
 		uri = nextUri;
 		if (result == kStatusAbort) {
 			break;
@@ -2024,6 +2110,25 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 	} else {
 		return { status: result };
 	}
+
+}
+
+async function fileToUint8Array(file) {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+
+		reader.onload = (event) => {
+			const arrayBuffer = event.target.result;
+			const uint8Array = new Uint8Array(arrayBuffer);
+			resolve(uint8Array);
+		};
+
+		reader.onerror = (error) => {
+			reject(error);
+		};
+
+		reader.readAsArrayBuffer(file);
+	});
 }
 
 async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
@@ -2099,7 +2204,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 	var foldername = msgFolder.name;
 	var clone = file.clone();
 	clone.append(foldername);
-	clone.createUnique(0, 0644);
+	clone.createUnique(0, 0o644);
 	var uriArray = [];
 
 	var gDBView = gTabmail.currentAbout3Pane.gDBView;
@@ -2126,6 +2231,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	if (!msgFolder.verifiedAsOnlineFolder) {
+		console.log("exp imap")
 		alert(mboximportbundle.GetStringFromName("noRemoteExport"));
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 		if (IETglobalMsgFolders.length === IETglobalMsgFoldersExported)
@@ -2146,7 +2252,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	}
 	var clone = destdirNSIFILE.clone();
 	clone.append(foldername);
-	clone.createUnique(0, 0644);
+	clone.createUnique(0, 0o644);
 	IETtotal = msgFolder.getTotalMessages(false);
 	IETexported = 0;
 	IETskipped = 0;
@@ -2207,9 +2313,9 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (append) {
 		if (fname)
 			file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, O0664, 0); // write, create, append
 	} else
-		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
@@ -2240,9 +2346,9 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		.createInstance(Ci.nsIFileOutputStream);
 	if (append) {
 		file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, 0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
-		foStream.init(file, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 
 	os = Cc["@mozilla.org/intl/converter-output-stream;1"]
 		.createInstance(Ci.nsIConverterOutputStream);
@@ -2258,7 +2364,6 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 
 async function copyMSGtoClip(selectedMsgs) {
 
-	const kConvertData = true;
 	var msguri;
 
 	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
@@ -2280,10 +2385,11 @@ async function copyMSGtoClip(selectedMsgs) {
 			.messageManager.get(selectedMsgs[0].id);
 		msguri = realMessage.folder.getUriForMsg(realMessage);
 		if (!msguri)
-			return;
+			return { status: "cancel" };
+
 
 		exportAsHtml(msguri, null, null, null, null, true, null, null, null, realMessage.folder, null);
-		return;
+		return { status: "ok" };
 
 	}
 }
@@ -2453,33 +2559,40 @@ var copyHeaders = {
 
 
 	start: async function (selectedMsgs) {
-		var msguri;
-		let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
-		let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
-		if (selectedMsgs.length > 1) {
-			let prompt = Services.prompt;
-			let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
-			let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
-				copyHdrsToClip_firstOnly,
-				buttonFlags,
-				null,
-				null,
-				"",
-				null, {});
-		}
+		try {
 
-		if (selectedMsgs[0].id) {
-			let realMessage = window.ietngAddon.extension
-				.messageManager.get(selectedMsgs[0].id);
-			msguri = realMessage.folder.getUriForMsg(realMessage);
+			var msguri;
+			let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
+			let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
+			if (selectedMsgs.length > 1) {
+				let prompt = Services.prompt;
+				let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
+				let buttonReturn = Services.prompt.confirmEx(window, copyHdrsToClip_promptTitle,
+					copyHdrsToClip_firstOnly,
+					buttonFlags,
+					null,
+					null,
+					"",
+					null, {});
+			}
 
-			var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
-			var streamListner = copyHeaders.getListener();
-			if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
-				streamListner.remote = true;
-			mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
+			if (selectedMsgs[0].id) {
+				let realMessage = window.ietngAddon.extension
+					.messageManager.get(selectedMsgs[0].id);
+				msguri = realMessage.folder.getUriForMsg(realMessage);
+
+				var mms = MailServices.messageServiceFromURI(msguri).QueryInterface(Ci.nsIMsgMessageService);
+				var streamListner = copyHeaders.getListener();
+				if (msguri.indexOf("news") === 0 || msguri.indexOf("imap") === 0)
+					streamListner.remote = true;
+				mms.streamMessage(msguri, streamListner, msgWindow, null, false, "filter");
+				return { status: "ok" };
+			}
+		} catch (ex) {
+			throw (ex);
 		}
 	},
+
 };
 
 function IETescapeBeginningFrom(data) {

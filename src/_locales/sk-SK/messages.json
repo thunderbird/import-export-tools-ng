@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Importovalo sa viac ako 200 priečinkov mbox.\nThunderbird by sa mal reštartovať, aby sa obnovila databáza."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Neplatný výber priečinka"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Pri importovaní niektorých správ sa vyskytli problémy:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Chyby. Zobraziť konzolu ladenia (Ctrl-Shift-J)"
 	}
 }

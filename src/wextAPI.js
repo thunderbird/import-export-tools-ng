@@ -48,6 +48,13 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 
 			rv = await getFullMessage(info.messageId);
 			return rv;
+		case "getAttachmentFile":
+			try {
+				var fileObj = await browser.messages.getAttachmentFile(info.msgId.id, info.attPartName);
+			} catch (ex) {
+				return ex;
+			}
+			return fileObj;
 		case "createFolder":
 			console.log(window.folder)
 			break;
@@ -70,8 +77,10 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 					folderOrId = info.folder;
 				}
 				res = await messenger.folders.create(folderOrId, info.childName);
+
 				return res;
 			} catch (ex) {
+				console.log(ex)
 				return ex;
 			}
 	}

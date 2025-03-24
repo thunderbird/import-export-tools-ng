@@ -14,15 +14,20 @@
           <div id="extVersion" style="padding-left: 4px;">vedere</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Note di rilascio:</h3>
     <p>
-      - Ripristina il modulo mboxImportExport alla versione stabile v7<br />
-      - Rimuovi la data dal nome della cartella di backup personalizzata<br />
-      - Aggiorna la lingua cinese (zh-CN) - @ziqin<br />
+      <b>Nota importante:</b> a partire dal rilascio di Thunderbird v136, Mozilla eseguirà rilasci mensili.
+      Potrei non essere in grado di rilasciare ImportExportTools NG ogni mese. Prima di aggiornare
+      Thunderbird, controlla se è disponibile un aggiornamento ImportExportTools NG compatibile.<br /><br />
+      Cristoforo<br /><br />
+      - Novità: esportazioni con selezione di più cartelle<br />
+      - Maggiore gestione degli errori per le importazioni EML e le esportazioni mbox<br />
+      - Aggiorna la lingua danese (da) - @Joergen<br />
+      - Aggiorna la lingua ungherese (hu-HU) - @ef99<br />
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -210,7 +215,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Crea un file di indice CSV dei messaggi della cartella (nessuna esportazione dei messaggi)</td>
+          <td>Crea un file indice CSV dei messaggi della cartella (nessuna esportazione dei messaggi)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -453,7 +458,7 @@
       L&#39;opzione data personalizzata consente il controllo completo sulla formattazione della data
       utilizzata per entrambi i file nell&#39;indice. Sia il formato predefinito &quot;Data&quot; che il nuovo
       formato personalizzato &quot;Data (personalizzata)&quot; sono disponibili nei menu a discesa dei nomi
-      file. La data personalizzata può essere utilizzata anche con il token ${date_custom} utilizzato nei nomi
+      file. La data personalizzata può anche essere utilizzata con il token ${date_custom} utilizzato nei nomi
       file personalizzati estesi. Il formato data originale (predefinito) è:<br />
       AAAAMMGGGHHmm : 202011060808<br /><br />
       Il formato data personalizzato utilizza sequenze % corrispondenti alla funzionalità Unix-like
@@ -834,7 +839,7 @@
       <code class="notranslate">id</code> - l&#39;indice chiave (1-10)<br />
       <code class="notranslate">key</code> - la chiave (carattere singolo)<br />
       <code class="notranslate">keycode</code> - il codice chiave di definizione &#39;VK_*&#39;<br />
-      È possibile includere sia la chiave che il codice chiave, ma non entrambi.<br />
+      È possibile includere sia la chiave che il codice chiave, ma non entrambi<br />
       <code class="notranslate">modifiers</code> - i modificatori chiave, elenco separato da spazi
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - una stringa di comando diretto<br />
@@ -886,10 +891,10 @@
       <p>
         - Supporto per Thunderbird 115 Supernova<br />
         - Rielaborare e modernizzare l&#39;interfaccia utente delle opzioni<br />
-        - Supporto completo alla modalità scura<br />
+        - Supporto completo della modalità scura<br />
         - Nuovo sistema di menu coerente<br />
         - Nuovo pulsante della barra degli strumenti<br />
-        - Aiuto migliorato, apri durante l&#39;installazione<br />
+        - Aiuto migliorato, apertura durante l&#39;installazione<br />
         - Aggiorna account di esportazione<br /><br />
         Grazie ai seguenti utenti per i suggerimenti di miglioramento e l&#39;aiuto nei test:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />

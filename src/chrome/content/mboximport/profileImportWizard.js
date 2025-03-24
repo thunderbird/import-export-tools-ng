@@ -29,10 +29,18 @@
 IETopenFPsync
 */
 
-var Services = globalThis.Services || ChromeUtils.import(
-  'resource://gre/modules/Services.jsm'
-).Services;
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var IETimportWizard = {
 

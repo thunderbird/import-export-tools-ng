@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Μη έγκυρη επιλογή φακέλου"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή ορισμένων μηνυμάτων:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"
 	}
 }

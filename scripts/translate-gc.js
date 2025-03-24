@@ -16,12 +16,11 @@ const translate = new Translate({ projectId, key });
 // console.debug( translate );
 
 var translationArray = [
-  { key: "Error.msg", text: "Error"},
-  { key: "Warning.msg", text: "Warning"},
-  { key: "numRetainBackups.msg", text: "Number of backups to retain:"},
-  { key: "createSubfolderErr.msg", text: "Error creating subfolder:"},
-  { key: "largeFolderImport.msg", text: "More than 200 mbox folders imported.\\nThunderbird should be restarted to reset database."},
+  { key: "invalidFolderSelection", text: "Invalid folder selection"},
+  { key: "messageImportProblems.msg", text: "There were problems importing some messages:"},
+  { key: "viewDbgConsole.msg", text: "  Errors. View the Debug Console  (Control-Shift-J)"},
 
+  
 ];
 
 
@@ -540,6 +539,7 @@ translateHelpPage();
 //translationArray = translationArray.slice(101)
 //translateAll("messages.json", translationArray, options);
 
+// message translations
 //translateAll(inputFiles, translationArray, options);
  
 //loadTranslationArray(inputFiles, options);

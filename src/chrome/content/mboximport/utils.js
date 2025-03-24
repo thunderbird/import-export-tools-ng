@@ -36,13 +36,13 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-var Services = globalThis.Services || ChromeUtils.import(
-	'resource://gre/modules/Services.jsm'
-).Services;
+//var Services = globalThis.Services || ChromeUtils.import(
+//	'resource://gre/modules/Services.jsm'
+//).Services;
 
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
-var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
+//var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -415,6 +415,7 @@ function IETexport_all(params) {
 
 	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
 	setTimeout(IETexport_all_delayed, 1000, just_mail, file);
+	return { status: "ok" };
 }
 
 function IETexport_all_delayed(just_mail, file) {

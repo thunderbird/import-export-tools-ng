@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Invalid folder selection"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "There were problems importing some messages:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Errors. View the Debug Console  (Control-Shift-J)"
 	}
 }

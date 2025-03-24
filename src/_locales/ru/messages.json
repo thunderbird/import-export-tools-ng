@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Импортировано более 200 папок mbox.\nДля сброса базы данных необходимо перезапустить Thunderbird."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Неверный выбор папки"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Возникли проблемы с импортом некоторых сообщений:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Ошибки. Просмотр консоли отладки (Control-Shift-J)"
 	}
 }

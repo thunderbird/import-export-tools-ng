@@ -14,15 +14,20 @@
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notas de versão:</h3>
     <p>
-      - Reverter o módulo mboxImportExport para o estável v7<br />
-      - Remover data do nome da pasta de backup personalizada<br />
-      - Atualizar localidade chinesa (zh-CN) - @ziqin<br />
+      <b>Nota importante:</b> A partir do lançamento do Thunderbird v136, a Mozilla fará lançamentos mensais.
+      Talvez eu não consiga lançar o ImportExportTools NG todo mês. Verifique antes de atualizar o Thunderbird
+      para ver se há uma atualização compatível do ImportExportTools NG disponível.<br /><br />
+      Cristóvão<br /><br />
+      - Novo: Exportações de seleção de múltiplas pastas<br />
+      - Mais tratamento de erros para importações EML, exportações mbox<br />
+      - Atualizar localidade dinamarquesa (da) - @Joergen<br />
+      - Atualizar idioma húngaro (hu-HU) - @ef99<br />
     </p>
     <h2 id="main_help">Visão geral e menus do ImportExportTools NG</h2>
     <p>
@@ -32,7 +37,7 @@
       funções.<br />
       - caixa-m<br />
       - EML<br />
-      - diretório de e-mail<br />
+      - diretório de correio<br />
       - HTML<br />
       - texto simples<br />
       - CSV (Valores Separados por Vírgula)<br />
@@ -159,7 +164,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
-            Exporte as mensagens da pasta como arquivos de formato de texto simples, os anexos não são
+            Exporte as mensagens da pasta como arquivos de formato de texto simples; os anexos não são
             incluídos.<br />
             Isso também cria um arquivo de índice HTML listando cada mensagem.
           </td>
@@ -312,7 +317,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportar as mensagens selecionadas para arquivos de formato HTML</td>
+          <td>Exportar as mensagens selecionadas para arquivos no formato HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>

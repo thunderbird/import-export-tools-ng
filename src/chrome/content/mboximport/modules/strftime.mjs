@@ -8,11 +8,9 @@
  */
 
 
-// cleidigh - use as module
+// cleidigh - update to es6 module
 
-var EXPORTED_SYMBOLS = ["strftime"];
-
-var strftime = {
+export var strftime = {
   strftime: function (sFormat, date) {
 
     if (date === undefined) {

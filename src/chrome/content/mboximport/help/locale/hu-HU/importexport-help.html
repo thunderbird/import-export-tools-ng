@@ -14,15 +14,20 @@
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Kiadási megjegyzések:</h3>
     <p>
-      - Az mboxImportExport modul visszaállítása a stabil v7-re<br />
-      - Távolítsa el a dátumot az egyéni biztonsági mentési mappa nevéből<br />
-      - Frissítse a kínai (zh-CN) nyelvi beállítást - @ziqin<br />
+      <b>Fontos megjegyzés:</b> A Thunderbird v136 kiadásától kezdve a Mozilla havi kiadásokat fog kiadni.
+      Előfordulhat, hogy nem tudom minden hónapban kiadni az ImportExportTools NG-t. Kérjük, a Thunderbird
+      frissítése előtt ellenőrizze, hogy elérhető-e kompatibilis ImportExportTools NG frissítés.<br /><br />
+      Christopher<br /><br />
+      - Új: Több mappa kijelölés exportálása<br />
+      - Több hibakezelés az EML importnál, mbox exportnál<br />
+      - Frissítse a dán (da) nyelvi beállítást - @Joergen<br />
+      - Frissítse a magyar (hu-HU) nyelvterületet - @ef99<br />
     </p>
     <h2 id="main_help">Az ImportExportTools NG áttekintése és menüi</h2>
     <p>
@@ -45,9 +50,9 @@
         - A mappapanel kontextusa (mappaművelet)<br />
         - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
         - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
-        Az &quot;Eszközök menü&quot; alatt elérhető opciók nem a &quot;Hamburger&quot; menüben találhatók,
-        hanem egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és
-        gombok mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
+        Az &quot;Eszközök menü&quot; alatt elérhető opciók nincsenek a &quot;Hamburger&quot; menüben, hanem
+        egy későbbi verzióban lesznek. Ezek a funkciók az eszköztár új gombján is elérhetők. A menük és gombok
+        mindegyike rendelkezik egy Súgó és Beállítások menüponttal is, amellyel elérheti a beállítások
         párbeszédpanelt.<br />
       </p>
     </p>
@@ -105,8 +110,8 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Exportáljon egy mappát az összes almappájával egy mbox formátumú fájlkészletbe, minden almappához
-            egyet, amelyet egyetlen mappába exportál.
+            Exportáljon egy mappát az összes almappájával együtt mbox formátumú fájlkészletbe, minden
+            almappához egyet, amelyet egyetlen mappába exportál.
           </td>
         </tr>
         <tr>
@@ -120,7 +125,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportálja a mappaüzeneteket EML formátumú fájlként (nincs struktúra/almappák).<br />
+            Exportálja a mappaüzeneteket EML formátumú fájlként (nincs szerkezet/almappák).<br />
             Ezzel létrehoz egy HTML indexfájlt is, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -396,7 +401,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Egyetlen kiválasztott üzenet fejléceinek másolása a vágólapra</td>
+          <td>Egyetlen kiválasztott üzenet fejlécének másolása a vágólapra</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
@@ -457,7 +462,7 @@
       dátumformátum:<br />
       ÉÉÉÉHHNNÓÓPP : 202011060808<br /><br />
       Az egyéni dátumformátum % sorozatokat használ, amelyek megfelelnek az <code>strftime()</code> Unix-szerű
-      funkciónak.
+      funkciónak. Az
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       JavaScript-portján alapul, amely a dátum és az idő formázására szolgáló függvény.<br />
       Az strftime() portja, TH Doan (https://thdoan.github.io/strftime/)<br />
@@ -510,8 +515,8 @@
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hét számának felel
-            meg (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
+            ISO 8601 heti alapú évszám század decimális számmal. A 4 számjegyű év az ISO hétszámnak felel meg
+            (lásd <code class="code1">%V</code> ). Ennek ugyanaz a formátuma és értéke, mint
             <code class="code1">%Y</code> , kivéve, hogy ha az ISO hét száma az előző vagy a következő évhez
             tartozik, akkor a rendszer azt az évet használja helyette.
           </td>
@@ -529,7 +534,7 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Óra decimális számként 12 órás órával (01 és 12 között). Lásd még <code class="code1">%l</code> .
+            Óra decimális számként 12 órás órával (01-12 tartomány). Lásd még <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
@@ -596,13 +601,13 @@
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            A hét napja tizedesjegyként (0 és 6 között), a vasárnap pedig 0. Lásd még:
+            A hét napja tizedesjegyként (0 és 6 között), a vasárnap pedig 0. Lásd még
             <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Előnyben részesített dátummegjelenítés az aktuális területi beállításhoz idő nélkül.</td>
+          <td>Előnyben részesített dátummegjelenítés az aktuális nyelvi beállításhoz idő nélkül.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
@@ -641,8 +646,8 @@
       <li><code class="code1">%h</code> – nincs implementálva (használd: <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - szóköz nincs hozzáadva</li>
       <li>
-        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (használja
-        <code class="code1">\n</code> az újsorhoz)
+        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (az újsorhoz
+        használja <code class="code1">\n</code> karaktert)
       </li>
       <li><code class="code1">%O</code> – nincs implementálva</li>
       <li>
@@ -662,7 +667,7 @@
       <li><code class="code1">%U</code> – nincs implementálva</li>
       <li><code class="code1">%W</code> – nincs implementálva</li>
       <li><code class="code1">%+</code> – nincs implementálva</li>
-      <li><code class="code1">%%</code> – nincs implementálva (használd <code class="code1">%</code> )</li>
+      <li><code class="code1">%%</code> – nincs implementálva (használd: <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
     <h2 id="ext_filename_format_help">Bővített fájlnév formátum:</h2>
@@ -719,7 +724,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Az utótag szöveg opció értéke.</td>
+        <td>Az utótag szövege beállítás értéke.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
@@ -794,7 +799,7 @@
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint egy
+      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájloknál. Alapértelmezés szerint ez egy
       üres karakterlánc, ha formázott dátum/idő karakterlánccal, akkor ez megváltoztatja az index
       dátumformátumát.
     </p>
@@ -819,20 +824,20 @@
     <h2>Alapvető, globális gyorsbillentyű (parancsikonok) funkció</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy 10 billentyűparancsot állítson be. A
-      parancsikonok végrehajthatják az ImportExportTools NG legtöbb funkcióját, valamint más
+      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy legfeljebb 10 billentyűparancsot állítson
+      be. A parancsikonok végrehajthatják az ImportExportTools NG legtöbb funkcióját, valamint más
       Thunderbird-funkciókat. A beállítási karakterlánc JSON-formátumú objektumként van formázva. A formátum
       és a kulcsok a következők:
     </p>
     <p>
       Példa gyorsbillentyű-bejegyzésekre (JSON-objektumok tömbje)<br /><br />
-      <code class="notranslate">id</code> - a kulcsindex (1-10)<br />
+      <code class="notranslate">id</code> – a kulcsindex (1-10)<br />
       <code class="notranslate">key</code> - a kulcs (egy karakter)<br />
       <code class="notranslate">keycode</code> – a &#39;VK_*&#39; meghatározott kulcskód<br />
       Bármelyik kulcs vagy kulcskód szerepelhet, de mindkettő nem<br />
       <code class="notranslate">modifiers</code> – a billentyűmódosítók, szóközzel elválasztott lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> - közvetlen parancssor<br />
+      <code class="notranslate">oncommand</code> - egy közvetlen parancssor<br />
       <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
       <code class="notranslate">&#39;all&#39;</code> – az összes ablak a messenger alatt, írás, keresés<br />
       <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és leszármazottai<br />

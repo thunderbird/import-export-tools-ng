@@ -677,5 +677,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
+	},
+
+	"invalidFolderSelection": {
+		"message": "잘못된 폴더 선택"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "일부 메시지를 가져오는 중 문제가 발생했습니다."
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"
 	}
 }

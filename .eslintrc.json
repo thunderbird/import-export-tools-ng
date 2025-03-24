@@ -1,4 +1,7 @@
 	{
+	"parserOptions": {
+			"sourceType": "module"
+		},
 	"env": {
 		"browser": true,
 		"es6": true,
@@ -68,11 +71,7 @@
 		"mozilla/use-chromeutils-generateqi": "off",
 
 		"quotes":"off",
-		"spaced-comment": [
-			2,
-			"always"
-		],
-		"semi": "error",
+		"semi": ["error", "always"],
 		"complexity": ["error", { "max": 80 }],
 
 		"no-restricted-properties": [

@@ -14,21 +14,26 @@
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
     <p>
-      - Povrnitev modula mboxImportExport na stabilno različico 7<br />
-      - Odstranite datum iz imena mape varnostne kopije po meri<br />
-      - Posodobite področne nastavitve za kitajščino (zh-CN) - @ziqin<br />
+      <b>Pomembna opomba:</b> od izdaje Thunderbird v136 bo Mozilla izdajala mesečne izdaje. Morda ne bom
+      mogel izdati ImportExportTools NG vsak mesec. Preden posodobite Thunderbird, preverite, ali je na voljo
+      združljiva posodobitev ImportExportTools NG.<br /><br />
+      Christopher<br /><br />
+      - Novo: izvoz izbire več map<br />
+      - Več obravnavanja napak pri uvozih EML, izvozih mbox<br />
+      - Posodobite danščino (da) locale - @Joergen<br />
+      - Posodobite lokalne nastavitve za madžarščino (hu-HU) - @ef99<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
     <p>
       ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
-      Opomba: nekateri formati niso podprti v vseh funkcijah.<br />
+      Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
       - maildir<br />
@@ -56,7 +61,7 @@
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      Pri težavah z napakami vključite naslednje informacije, da boste lažje rešili težave:<br />
+      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
       - Različica ImportExportTools NG<br />
       - Različica Thunderbird<br />
       - Operacijski sistem in različica<br />
@@ -181,7 +186,8 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
+            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, vključno s
+            prilogami.<br />
             S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
           </td>
         </tr>
@@ -306,7 +312,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Izvozite izbrana sporočila v datoteke zapisa HTML</td>
+          <td>Izvozi izbrana sporočila v datoteke zapisa HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
@@ -566,7 +572,7 @@
         <tr>
           <td><code class="code1">%P</code></td>
           <td>
-            Kot <code class="code1">%p</code> vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
+            Kot <code class="code1">%p</code> , vendar z malimi črkami (&quot;am&quot; ali &quot;pm&quot;).
           </td>
         </tr>
         <tr>
@@ -800,7 +806,7 @@
       </p>
     </p>
     <p>
-      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, ki jih uporablja ime
+      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, kot jih uporablja ime
       datoteke izvoženih sporočil. Prvi je za zunanje priloge, drugi pa za vdelane (inline) priloge.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
@@ -871,7 +877,7 @@
       Funkcije in obravnavane težave:<br />
       <p>
         - Podpora za Thunderbird 115 Supernova<br />
-        - Predelava in posodobitev uporabniškega vmesnika možnosti<br />
+        - Predelajte in posodobite uporabniški vmesnik Options<br />
         - Popolna podpora za temni način<br />
         - Nov, dosleden sistem menijev<br />
         - Nov gumb orodne vrstice<br />

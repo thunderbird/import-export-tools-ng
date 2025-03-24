@@ -16,6 +16,9 @@
  *    NOTE: This requires to add the startup event to the manifest, see:
  *    https://github.com/thundernest/addon-developer-support/tree/master/auxiliary-apis/NotifyTools#usage
  *
+ * Version 1.1-esm-cdl
+ * esm module conversion
+ *
  * Author: John Bieling (john@thunderbird.net)
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -28,9 +31,12 @@
 (function (exports) {
 
   // Get various parts of the WebExtension framework that we need.
-  var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
-  var Services = globalThis.Services || 
-    ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
+  // update to use es6 modules for 128+, 136+ required - thx Axel
+
+  var { ExtensionCommon } = ChromeUtils.importESModule("resource://gre/modules/ExtensionCommon.sys.mjs");
+
+  // var Services = globalThis.Services ||
+  //   ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
 
   var observerTracker = new Set();
 

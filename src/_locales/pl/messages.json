@@ -682,5 +682,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Zaimportowano ponad 200 folderów mbox.\nNależy ponownie uruchomić Thunderbirda, aby zresetować bazę danych."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Nieprawidłowy wybór folderu"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Wystąpiły problemy z importowaniem niektórych wiadomości:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Błędy. Wyświetl konsolę debugowania (Control-Shift-J)"
 	}
 }

@@ -683,5 +683,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Sono state importate più di 200 cartelle mbox.\nThunderbird dovrebbe essere riavviato per reimpostare il database."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Selezione cartella non valida"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Si sono verificati problemi durante l&#39;importazione di alcuni messaggi:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Errori. Visualizza la console di debug (Ctrl-Shift-J)"
 	}
 }

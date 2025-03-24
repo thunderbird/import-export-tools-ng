@@ -677,5 +677,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Uvoženih je več kot 200 map mbox.\nZnova zaženite Thunderbird, da ponastavite bazo podatkov."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Neveljavna izbira mape"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Pri uvozu nekaterih sporočil je prišlo do težav:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Napake. Oglejte si konzolo za odpravljanje napak (Control-Shift-J)"
 	}
 }

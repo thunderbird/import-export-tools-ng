@@ -679,5 +679,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "S&#39;han importat més de 200 carpetes mbox.\nThunderbird s&#39;ha de reiniciar per restablir la base de dades."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Selecció de carpeta no vàlida"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Hi ha hagut problemes en importar alguns missatges:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Errors. Veure la consola de depuració (Control-Maj-J)"
 	}
 }

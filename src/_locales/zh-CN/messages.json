@@ -685,5 +685,17 @@
 
     "largeFolderImport.msg": {
         "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
-    }
+    },
+
+	"invalidFolderSelection": {
+		"message": "文件夹选择无效"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "导入某些消息时出现问题："
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  错误。查看调试控制台 (Control-Shift-J)"
+	}
 }

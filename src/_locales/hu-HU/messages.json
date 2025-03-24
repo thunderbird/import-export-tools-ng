@@ -105,13 +105,13 @@
         "message": "Jegyzék készítése az MBOX fájlokhoz"
     },
     "buttonMenu_Backup_Id.title": {
-        "message": "biztonsági mentés"
+        "message": "Biztonsági mentés"
     },
     "buttonMenu_Exp_ProfileFull_Id.title": {
         "message": "Teljes profil"
     },
     "buttonMenu_Exp_ProfileMailOnly_Id.title": {
-        "message": "Csak posta"
+        "message": "Csak a levelek"
     },
     "buttonMenu_Exp_Profile_Id.title": {
         "message": "Profil exportálása"
@@ -123,7 +123,7 @@
         "message": "Profil importálása"
     },
     "buttonMenu_Options.title": {
-        "message": "Lehetőségek"
+        "message": "Opciók"
     },
     "captionCustomize": {
         "message": "Fájlnév formátumának testreszabása"
@@ -144,7 +144,7 @@
         "message": "Segítség"
     },
     "ctxMenu_Options.title": {
-        "message": "Lehetőségek"
+        "message": "Opciók"
     },
     "customDate": {
         "message": "Egyéni dátum:"
@@ -609,13 +609,13 @@
         "message": "ImportExportTools NG - Profil importálása"
     },
     "toolsCtxMenu_Backup_Id.title": {
-        "message": "biztonsági mentés"
+        "message": "Biztonsági mentés"
     },
     "toolsCtxMenu_Exp_ProfileFull_Id.title": {
         "message": "Teljes profil"
     },
     "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
-        "message": "Csak posta"
+        "message": "Csak a levelek"
     },
     "toolsCtxMenu_Exp_Profile_Id.title": {
         "message": "Profil exportálása"
@@ -634,7 +634,8 @@
     },
     "Size": {
         "message": "Méret"
-    },
+    }
+,
 
 	"latinizeTransform": {
 		"message": "Transzformáció latinosítása"
@@ -661,7 +662,7 @@
 	},
 
 	"cancel.msg": {
-		"message": "Megszünteti"
+		"message": "Mégse"
 	},
 
 	"Error.msg": {
@@ -682,5 +683,17 @@
 
 	"largeFolderImport.msg": {
 		"message": "Több mint 200 mbox mappa importálva.\nAz adatbázis visszaállításához újra kell indítani a Thunderbird programot."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Érvénytelen mappaválasztás"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Problémák adódtak néhány üzenet importálásakor:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Hibák. Lásd a Hibakereső konzolt (Control-Shift-J)"
 	}
 }

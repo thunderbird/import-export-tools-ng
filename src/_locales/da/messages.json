@@ -255,7 +255,7 @@
         "message": "CSV-format (regneark)"
     },
     "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
-        "message": "Beskeder og indeks med undermapper"
+        "message": "Meddelelser og indeks med undermapper"
     },
     "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
         "message": "Meddelelser og HTML-indeks"
@@ -279,7 +279,7 @@
         "message": "Mappeeksport (mbox)"
     },
     "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
-        "message": "Beskeder og indeks med undermapper"
+        "message": "Meddelelser og indeks med undermapper"
     },
     "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
         "message": "Meddelelser og HTML-indeks"
@@ -303,16 +303,16 @@
         "message": "Meddelelsesindeks"
     },
     "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
-        "message": "Beskeder og indeks med undermapper"
+        "message": "Meddelelser og indeks med undermapper"
     },
     "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-        "message": "Beskeder og HTML-indeks"
+        "message": "Meddelelser og HTML-indeks"
     },
     "folderCtxMenu_Exp_PDFFormat_Id.title": {
         "message": "PDF-format"
     },
     "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
-        "message": "Beskeder og indeks med undermapper"
+        "message": "Meddelelser og indeks med undermapper"
     },
     "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
         "message": "Meddelelser og HTML-indeks"
@@ -637,7 +637,7 @@
     },
 
 	"latinizeTransform": {
-		"message": "Latinisere transformation"
+		"message": "Latiniser transformation"
 	},
 
 	"characterFilter": {
@@ -661,7 +661,7 @@
 	},
 
 	"cancel.msg": {
-		"message": "Afbestille"
+		"message": "Annuller"
 	},
 
 	"Error.msg": {
@@ -677,10 +677,22 @@
 	},
 
 	"createSubfolderErr.msg": {
-		"message": "Fejl ved oprettelse af undermappe:"
+		"message": "Fejl under oprettelse af undermappe:"
 	},
 
 	"largeFolderImport.msg": {
 		"message": "Mere end 200 mbox-mapper er importeret.\nThunderbird bør genstartes for at nulstille databasen."
+	},
+
+	"invalidFolderSelection": {
+		"message": "Ugyldigt mappevalg"
+	},
+
+	"messageImportProblems.msg": {
+		"message": "Der opstod problemer med at importere nogle meddelelser:"
+	},
+
+	"viewDbgConsole.msg": {
+		"message": "  Fejl. Se fejlkonsolkonsollen (Control+Skift+J)"
 	}
 }

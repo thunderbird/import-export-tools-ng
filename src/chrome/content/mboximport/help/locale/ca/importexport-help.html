@@ -14,15 +14,20 @@
           <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Notes de llançament:</h3>
     <p>
-      - Retrocedeix el mòdul mboxImportExport a v7 estable<br />
-      - Elimina la data del nom de la carpeta de còpia de seguretat personalitzada<br />
-      - Actualitza la configuració regional del xinès (zh-CN) - @ziqin<br />
+      <b>Nota important:</b> a partir del llançament de Thunderbird v136, Mozilla farà llançaments mensuals.
+      És possible que no pugui llançar ImportExportTools NG cada mes. Comproveu abans d&#39;actualitzar el
+      Thunderbird per veure si hi ha una actualització compatible d&#39;ImportExportTools NG disponible.<br /><br />
+      Cristòfor<br /><br />
+      - Nou: exportacions de selecció de carpetes múltiples<br />
+      - Més gestió d&#39;errors per a importacions EML, exportacions mbox<br />
+      - Actualitza la configuració regional del danès (da) - @Joergen<br />
+      - Actualitza la configuració regional hongarès (hu-HU) - @ef99<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Vista general i menús</h2>
     <p>
@@ -351,7 +356,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exporteu els missatges seleccionats a fitxers en format de text sense format</td>
+          <td>Exporteu els missatges seleccionats a fitxers de format de text sense format</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
@@ -444,7 +449,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importa un perfil complet (correu electrònic, extensions, opcions)</td>
+          <td>Importa un perfil complet (correu, extensions, opcions)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -655,7 +660,7 @@
         <code class="code1">%D</code> - no implementat (utilitza <code class="code1">%m/%d/%y</code> o
         <code class="code1">%d/%m/%y</code> )
       </li>
-      <li><code class="code1">%e</code> - l&#39;espai no s&#39;afegeix</li>
+      <li><code class="code1">%e</code> - l&#39;espai no s&#39;ha afegit</li>
       <li><code class="code1">%E</code> - no implementat</li>
       <li><code class="code1">%h</code> - no implementat (utilitza <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - l&#39;espai no s&#39;afegeix</li>
@@ -833,27 +838,27 @@
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalment, la &quot;Data&quot; d&#39;un missatge al Thunderbird és la data establerta pel client de
-      correu del remitent. Establir aquesta opció a &quot;true&quot; utilitza la data de recepció al client de
-      correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la data dels
-      fitxers d&#39;índex.
+      correu del remitent. Establir aquesta opció com a &quot;true&quot; utilitza la data de recepció al
+      client de correu del destinatari. Aquesta data s&#39;utilitzarà tant per als noms de fitxer com per a la
+      data dels fitxers d&#39;índex.
     </p>
     <h2>Funció bàsica i global de tecles de drecera (dreceres).</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Aquesta nova preferència permet a l&#39;usuari configurar fins a 10 dreceres de teclat. Les dreceres
-      poden realitzar la majoria de les funcions ImportExportTools NG així com altres funcions del
+      poden realitzar la majoria de les funcions ImportExportTools NG, així com altres funcions del
       Thunderbird. La cadena de preferències té el format d&#39;un objecte amb format JSON. El format i les
       claus són els següents:
     </p>
     <p>
       Exemples d&#39;entrades de tecles d&#39;accés ràpid (matriu d&#39;objectes JSON)<br /><br />
-      <code class="notranslate">id</code> - l&#39;índex clau (1-10)<br />
+      <code class="notranslate">id</code> : l&#39;índex clau (1-10)<br />
       <code class="notranslate">key</code> - la clau (un sol caràcter)<br />
       <code class="notranslate">keycode</code> : el &quot;VK_*&quot; defineix el codi clau<br />
       Es pot incloure qualsevol clau o codi, però no tots dos<br />
       <code class="notranslate">modifiers</code> : els modificadors de tecles, llista separada per espais
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
-      <code class="notranslate">oncommand</code> - una cadena d&#39;ordres directes<br />
+      <code class="notranslate">oncommand</code> : una cadena d&#39;ordres directes<br />
       <code class="notranslate">contexts</code> : el context de la finestra on la clau està activa<br />
       <code class="notranslate">&#39;all&#39;</code> : totes les finestres a messenger, redactar, cercar<br />
       <code class="notranslate">&#39;messenger&#39;</code> : la finestra principal de missatgeria i els seus

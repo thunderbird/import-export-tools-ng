@@ -3,6 +3,8 @@
  * https://github.com/thundernest/addon-developer-support
  *
  * Version 1.62
+ * Version 1.62-esm-cdl 
+* 
  *
  * Author: John Bieling (john@thunderbird.net)
  *
@@ -12,14 +14,22 @@
  */
 
 // Import some things we need.
-var { ExtensionCommon } = ChromeUtils.import(
-  "resource://gre/modules/ExtensionCommon.jsm"
+
+// update to use es6 modules for 128+, 136+ required - thx Axel
+
+var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
+var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
+
+var { ExtensionCommon } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionCommon.sys.mjs"
 );
-var { ExtensionSupport } = ChromeUtils.import(
-  "resource:///modules/ExtensionSupport.jsm"
-);
-var Services = globalThis.Services || 
-  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
+
+var { ExtensionSupport } = Ietng_ESM
+  ? ChromeUtils.importESModule("resource:///modules/ExtensionSupport.sys.mjs")
+  : ChromeUtils.import("resource:///modules/ExtensionSupport.jsm");
+
+// var Services = globalThis.Services || 
+//   ChromeUtils.importESModule("resource://gre/modules/Services.sys.mjs").Services;
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -2131,6 +2141,7 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
       }
     }
 
+    /*
     // Unload JSMs of this add-on
     const rootURI = this.extension.rootURI.spec;
     for (let module of Cu.loadedModules) {
@@ -2143,7 +2154,7 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
         Cu.unload(module);
       }
     }
-
+*/
     // Flush all caches
     Services.obs.notifyObservers(null, "startupcache-invalidate");
     this.registeredWindows = {};

@@ -11,18 +11,23 @@
       <tr>
         <td style="vertical-align: top;">
           <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG-hulp</div>
-          <div id="extVersion" style="padding-left: 4px;">zie</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Release-opmerkingen:</h3>
     <p>
-      - Rollback mboxImportExport module naar stabiele v7<br />
-      - Verwijder datum uit aangepaste back-upmapnaam<br />
-      - Update Chinese (zh-CN) landinstellingen - @ziqin<br />
+      <b>Belangrijke opmerking:</b> Vanaf de release van Thunderbird v136 zal Mozilla maandelijkse releases
+      doen. Ik kan ImportExportTools NG mogelijk niet elke maand uitbrengen. Controleer voordat u Thunderbird
+      bijwerkt of er een compatibele ImportExportTools NG-update beschikbaar is.<br /><br />
+      Christoffel<br /><br />
+      - Nieuw: Export van meerdere mapselecties<br />
+      - Meer foutbehandeling voor EML-importen, mbox-exporten<br />
+      - Deense (da) landinstelling bijwerken - @Joergen<br />
+      - Hongaarse (hu-HU) landinstellingen bijwerken - @ef99<br />
     </p>
     <h2 id="main_help">ImportExportTools NG Overzicht en Menu&#39;s</h2>
     <p>
@@ -37,9 +42,9 @@
       - platte tekst<br />
       - CSV (door komma&#39;s gescheiden waarden)<br />
       -PDF-bestand<br /><br />
-      Hoewel de meeste functionaliteit draait om berichten, is er ook ondersteuning voor het importeren en
-      exporteren van Thunderbird-profielen. Daarnaast kunnen exports ook een HTML- of CSV-indexbestand
-      bevatten. Een back-up van het Thunderbird-profiel is een andere functie.<br />
+      Hoewel de meeste functionaliteit draait om berichten, is er ook ondersteuning voor de import en export
+      van Thunderbird-profielen. Daarnaast kunnen exports ook een HTML- of CSV-indexbestand bevatten. Een
+      back-up van het Thunderbird-profiel is een andere functie.<br />
       <p>
         Toegang tot IETng-functionaliteit wordt gedaan via verschillende menu&#39;s die door de extensie zijn
         geïnstalleerd. De functies zijn contextgevoelig. Er zijn menu&#39;s toegevoegd voor:<br />
@@ -245,7 +250,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
-          <td>EML-berichtbestanden selecteren en importeren (geen structuur/submappen)</td>
+          <td>Selecteer en importeer EML-berichtbestanden (geen structuur/submappen)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
@@ -812,18 +817,18 @@
       </p>
     </p>
     <p>
-      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamgevingsformaten die de geëxporteerde
+      Beide voorkeuren gebruiken hetzelfde type uitgebreide bestandsnaamgevingsformaten als de geëxporteerde
       berichtenbestandsnaam gebruikt. De eerste is voor externe bijlagen, de tweede is voor ingebedde (inline)
       bijlagen.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normaal gesproken is de &#39;Datum&#39; voor een bericht in Thunderbird de datum die is ingesteld door
-      de mailclient van de verzender. Als u deze optie op &#39;true&#39; instelt, wordt de ontvangstdatum in
-      de mailclient van de ontvanger gebruikt. Deze datum wordt gebruikt voor zowel bestandsnamen als de datum
-      in de indexbestanden.
+      de mailclient van de verzender. Als u deze optie instelt op &#39;true&#39;, wordt de ontvangstdatum
+      gebruikt in de mailclient van de ontvanger. Deze datum wordt gebruikt voor zowel bestandsnamen als de
+      datum in de indexbestanden.
     </p>
-    <h2>Basis, globale sneltoetsfunctie (snelkoppelingen)</h2>
+    <h2>Basis, globale sneltoetsfunctie</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
       Met deze nieuwe voorkeur kan de gebruiker maximaal 10 sneltoetsen instellen. De sneltoetsen kunnen de
@@ -892,7 +897,7 @@
         - Nieuwe werkbalkknop<br />
         - Verbeterde help, open bij installatie<br />
         - Exportaccount bijwerken<br /><br />
-        Dank aan de volgende gebruikers voor hun suggesties voor verbeteringen en hulp bij het testen:<br /><br />
+        Dank aan de volgende gebruikers voor hun suggesties voor verbeteringen en testhulp:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />

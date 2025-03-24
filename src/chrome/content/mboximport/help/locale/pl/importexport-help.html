@@ -14,15 +14,20 @@
           <div id="extVersion" style="padding-left: 4px;">wer</div>
         </td>
         <td style="text-align: right; padding-right: 30px;">
-          <img src="resource://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" />
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
     <h3 id="release_notes" style="padding-left: 4px;">Informacje o wydaniu:</h3>
     <p>
-      - Przywrócenie modułu mboxImportExport do stabilnej wersji v7<br />
-      - Usuń datę z nazwy niestandardowego folderu kopii zapasowej<br />
-      - Aktualizacja ustawień regionalnych języka chińskiego (zh-CN) - @ziqin<br />
+      <b>Ważna uwaga:</b> Od wydania Thunderbird v136 Mozilla będzie wydawać miesięczne wydania. Być może nie
+      będę w stanie wydawać ImportExportTools NG co miesiąc. Przed aktualizacją Thunderbirda sprawdź, czy jest
+      dostępna zgodna aktualizacja ImportExportTools NG.<br /><br />
+      Krzysztof<br /><br />
+      - Nowość: eksportowanie wielu folderów<br />
+      - Więcej obsługi błędów dla importów EML i eksportów mbox<br />
+      - Aktualizacja ustawień regionalnych języka duńskiego (da) - @Joergen<br />
+      - Aktualizacja ustawień regionalnych języka węgierskiego (hu-HU) - @ef99<br />
     </p>
     <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
@@ -46,7 +51,7 @@
         - Kontekst listy wiadomości (wybrane wiadomości)<br />
         - Menu Narzędzia (operacje profilowe i kopii zapasowej)<br /><br />
         Opcje dostępne w menu „Narzędzia” nie znajdują się w menu „Hamburger”, będą dostępne w przyszłej
-        wersji. Te funkcje są również dostępne w nowym przycisku paska narzędzi. Każde z menu i przycisk ma
+        wersji. Funkcje te są również dostępne w nowym przycisku paska narzędzi. Każde z menu i przycisk ma
         również pozycję menu Pomoc i Opcje, aby uzyskać dostęp do okna dialogowego opcji.<br />
       </p>
     </p>
@@ -103,7 +108,7 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Eksportuje folder wraz ze wszystkimi podfolderami do zestawu plików w formacie mbox, po jednym dla
+            Eksportuj folder wraz ze wszystkimi podfolderami do zestawu plików w formacie mbox, po jednym dla
             każdego podfolderu, eksportowanych do pojedynczego folderu.
           </td>
         </tr>
@@ -145,7 +150,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Eksportuj wiadomości folderu jako zestaw plików w formacie PDF</td>
+          <td>Eksportuj wiadomości z folderu jako zestaw plików w formacie PDF</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -782,8 +787,8 @@
     <br />
     <h2>Nowe i eksperymentalne preferencje (opcje)</h2>
     <p>
-      Istnieje kilka nowych funkcji i opcji, które nie są jeszcze konfigurowalne w oknie dialogowym opcji. Po
-      ustabilizowaniu tych funkcji zostaną one dodane do interfejsu użytkownika.<br />
+      Istnieje kilka nowych funkcji i opcji, których jeszcze nie można skonfigurować w oknie dialogowym opcji.
+      Po ustabilizowaniu tych funkcji zostaną one dodane do interfejsu użytkownika.<br />
       Aby ich użyć, należy je ustawić w Config Editor. Aby uzyskać dostęp do edytora, użyj menu
       Narzędzia/Opcje, a następnie wybierz sekcję Zaawansowane, a na dole pojawi się przycisk „Config Editor”.
       Jeśli wpiszesz „importexporttoolsng” w pasku wyszukiwania, otrzymasz wszystkie preferencje rozszerzeń.
@@ -825,14 +830,14 @@
       <code class="notranslate">id</code> - indeks klucza (1-10)<br />
       <code class="notranslate">key</code> - klucz (pojedynczy znak)<br />
       <code class="notranslate">keycode</code> - kod klucza zdefiniowany przez &#39;VK_*&#39;<br />
-      Można dołączyć klucz lub kod klucza, ale nie oba naraz<br />
+      Można dołączyć klucz lub kod klucza, ale nie oba naraz.<br />
       <code class="notranslate">modifiers</code> – klawisze modyfikujące, lista rozdzielona spacją
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - bezpośredni ciąg poleceń<br />
       <code class="notranslate">contexts</code> - kontekst okna, w którym klucz jest aktywny<br />
       <code class="notranslate">&#39;all&#39;</code> - wszystkie okna w komunikatorze, komponowaniu,
       wyszukiwaniu<br />
-      <code class="notranslate">&#39;messenger&#39;</code> – główne okno komunikatora i jego potomków<br />
+      <code class="notranslate">&#39;messenger&#39;</code> – główne okno komunikatora i jego okna potomne<br />
       <code class="notranslate">&#39;compose&#39;</code> – okno tworzenia wiadomości<br />
       <code class="notranslate">&#39;search&#39;</code> – okno dialogowe wyszukiwania<br /><br />
       <code class="notranslate"

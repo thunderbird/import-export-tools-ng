@@ -167,8 +167,8 @@ async function exportSelectedMsgs(type, params) {
 	10 = PDF
 	*/
 
-	//console.log("export selected messages ")
-	//console.log(params)
+	console.log("export selected messages ")
+	console.log(params)
 
 	var needIndex = false;
 	if (type > 99) {
@@ -246,9 +246,15 @@ async function exportSelectedMsgs(type, params) {
 
 		var msgUris = [];
 
+	console.log("IETNG: wext msgs ", params?.selectedMessages)
+
 		msgUris = await ietngUtils.getNativeSelectedMessages(params?.selectedMessages);
 
+	console.log("IETNG: msguris from getSelectedMessages ", msgUris[0])
+
 		// Use first message to get current folder
+		var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+
 		var mms1 = MailServices.messageServiceFromURI(msgUris[0]).QueryInterface(Ci.nsIMsgMessageService);
 		var hdr1 = mms1.messageURIToMsgHdr(msgUris[0]);
 		var curMsgFolder = hdr1.folder;
@@ -1358,6 +1364,13 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray, imapFolder, clipboard, file2, msgFolder) {
 
+	try {
+	console.log("IETNG: uri at saveMsgAsEML:", msguri, uriArray[0]);
+	} catch (ex) {
+		console.log("IETNG: err", ex);
+
+	}
+
 	var saveAsEmlDone = false;
 	var nextUri = msguri;
 	var nextFile = file;
@@ -1529,6 +1542,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 					this.emailtext += scriptStream.read(scriptStream.available());
 				},
 			};
+
+			console.log("IETNG: uri before mms from uri:", nextUri);
 
 			var mms = MailServices.messageServiceFromURI(nextUri);
 			var hdr = mms.messageURIToMsgHdr(nextUri);

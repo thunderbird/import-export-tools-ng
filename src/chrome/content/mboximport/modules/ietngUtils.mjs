@@ -19,10 +19,13 @@
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
+/*
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
 	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+*/
 
+var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 export var ietngUtils = {
 
@@ -73,6 +76,7 @@ export var ietngUtils = {
           msgUris.push(uri);
         });
       }
+      console.log(msgUris[0])
     } else {
       // no params
       var msgIdList = await this.top.ietngAddon.notifyTools.notifyBackground({ command: "getSelectedMessages" });

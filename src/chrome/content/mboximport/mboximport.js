@@ -72,9 +72,12 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+/*
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
 	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+*/
+	var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;

@@ -64,6 +64,10 @@ gTabmail,
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 // console.debug('exportTools start');
@@ -271,6 +275,7 @@ async function exportSelectedMsgs(type, params) {
 			return { status: "error" };
 		}
 
+		/*
 		var isOffLineImap;
 
 		let imapFolder = {};
@@ -282,6 +287,8 @@ async function exportSelectedMsgs(type, params) {
 		}
 
 		IETskipped = 0;
+
+
 		if (isOffLineImap) {
 			var tempArray = [];
 
@@ -297,6 +304,9 @@ async function exportSelectedMsgs(type, params) {
 			}
 			msgUris = tempArray;
 		}
+*/
+
+		IETskipped = 0;
 		IETtotal = msgUris.length;
 		IETexported = 0;
 		var msguri = msgUris[0];
@@ -2313,7 +2323,7 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (append) {
 		if (fname)
 			file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, O0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 	if (data)

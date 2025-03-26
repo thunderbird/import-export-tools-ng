@@ -287,22 +287,32 @@ async function exportSelectedMsgs(type, params) {
 			isOffLineImap = false;
 		}
 
+		console.log("offline:",isOffLineImap)
+		isOffLineImap = false;
+
 		IETskipped = 0;
 		if (isOffLineImap) {
 			var tempArray = [];
-
+			console.log("offline")
 			for (var i = 0; i < msgUris.length; i++) {
 				var eml = msgUris[i];
 				var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
 				var hdr = mms.messageURIToMsgHdr(eml);
 
-				if (hdr.flags & 0x00000080)
+				if (hdr.flags & 0x00000080) {
 					tempArray.push(eml);
+			console.log("uri", eml)
+					
+				}
 				else
 					IETskipped = IETskipped + 1;
 			}
 			msgUris = tempArray;
 		}
+
+		console.log("uri len", msgUris.length)
+		console.log("uri", msgUris[0])
+
 		IETtotal = msgUris.length;
 		IETexported = 0;
 		var msguri = msgUris[0];

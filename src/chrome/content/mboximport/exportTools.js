@@ -648,20 +648,20 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, O0775);
+		file.create(1, 0o775);
 
 		subfile = file.clone();
 
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, O0775);
+			subfile.create(1, 0o775);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, O0775);
+			subfile.create(1, 0o775);
 		}
 	}
 

@@ -64,6 +64,9 @@ gTabmail,
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
 	: ChromeUtils.import("resource:///modules/MailServices.jsm");

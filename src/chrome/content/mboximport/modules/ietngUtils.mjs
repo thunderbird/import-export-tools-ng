@@ -46,6 +46,9 @@ export var ietngUtils = {
     // wextSelectedMessages we are coming from a shortcut and have to request
     // the selected msgs
 
+    console.log( " ietngUtils ", this.top)
+    console.log( " ietngUtils addon", this.top.ietngAddon)
+
     var msgUris = [];
 
     var curDBView;

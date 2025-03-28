@@ -203,7 +203,7 @@ async function exportSelectedMsgs(type, params) {
 	try {
 
 		var file = getPredefinedFolder(2);
-		if (!file || type === 3 || type === 4) {
+		if (!file || type === 3 || type === 4 | type === 5) {
 			var nsIFilePicker = Ci.nsIFilePicker;
 			let winCtx = window;
 			const tbVersion = ietngUtils.getThunderbirdVersion();
@@ -214,6 +214,11 @@ async function exportSelectedMsgs(type, params) {
 			if (type === 3) {
 				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
 				fp.appendFilters(nsIFilePicker.filterAll);
+			} else if (type === 5) {
+				console.log("index")
+				fp.defaultString = "index.html";
+					fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+					fp.appendFilters(nsIFilePicker.filterAll);
 			} else if (type === 4) {
 				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
 				fp.appendFilters(nsIFilePicker.filterAll);

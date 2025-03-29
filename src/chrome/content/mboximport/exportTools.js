@@ -203,7 +203,7 @@ async function exportSelectedMsgs(type, params) {
 	try {
 
 		var file = getPredefinedFolder(2);
-		if (!file || type === 3 || type === 4 | type === 5 | type === 6) {
+		if (!file || type === 3 || type === 4) {
 			var nsIFilePicker = Ci.nsIFilePicker;
 			let winCtx = window;
 			const tbVersion = ietngUtils.getThunderbirdVersion();
@@ -212,14 +212,6 @@ async function exportSelectedMsgs(type, params) {
 			}
 			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 			if (type === 3) {
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else if (type === 5) {
-				fp.defaultString = "index.html";
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else if (type === 6) {
-				fp.defaultString = "index.csv";
 				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
 				fp.appendFilters(nsIFilePicker.filterAll);
 			} else if (type === 4) {
@@ -286,36 +278,6 @@ async function exportSelectedMsgs(type, params) {
 			return { status: "error" };
 		}
 
-		/*
-		var isOffLineImap;
-
-		let imapFolder = {};
-
-		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
-			isOffLineImap = true;
-		} else {
-			isOffLineImap = false;
-		}
-
-		IETskipped = 0;
-
-
-		if (isOffLineImap) {
-			var tempArray = [];
-
-			for (var i = 0; i < msgUris.length; i++) {
-				var eml = msgUris[i];
-				var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
-				var hdr = mms.messageURIToMsgHdr(eml);
-
-				if (hdr.flags & 0x00000080)
-					tempArray.push(eml);
-				else
-					IETskipped = IETskipped + 1;
-			}
-			msgUris = tempArray;
-		}
-*/
 
 		IETskipped = 0;
 		IETtotal = msgUris.length;

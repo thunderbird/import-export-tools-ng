@@ -65,7 +65,7 @@ var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppCon
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { MailServices } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
@@ -203,7 +203,7 @@ async function exportSelectedMsgs(type, params) {
 	try {
 
 		var file = getPredefinedFolder(2);
-		if (!file || type === 3 || type === 4 | type === 5) {
+		if (!file || type === 3 || type === 4 | type === 5 | type === 6) {
 			var nsIFilePicker = Ci.nsIFilePicker;
 			let winCtx = window;
 			const tbVersion = ietngUtils.getThunderbirdVersion();
@@ -215,10 +215,13 @@ async function exportSelectedMsgs(type, params) {
 				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
 				fp.appendFilters(nsIFilePicker.filterAll);
 			} else if (type === 5) {
-				console.log("index")
 				fp.defaultString = "index.html";
-					fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
-					fp.appendFilters(nsIFilePicker.filterAll);
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+				fp.appendFilters(nsIFilePicker.filterAll);
+			} else if (type === 6) {
+				fp.defaultString = "index.csv";
+				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+				fp.appendFilters(nsIFilePicker.filterAll);
 			} else if (type === 4) {
 				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
 				fp.appendFilters(nsIFilePicker.filterAll);

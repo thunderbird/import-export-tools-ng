@@ -2,6 +2,11 @@
 
 ## Versions
 
+Version 14.1.7 : Multiple Folders Release - March 30, 2025
+
+- Fix for intermittent and inconsistent export failure of all message types
+
+
 Version 14.1.6 : Multiple Folders Release - March 20, 2025
 
 - New: Multiple folder selection exports

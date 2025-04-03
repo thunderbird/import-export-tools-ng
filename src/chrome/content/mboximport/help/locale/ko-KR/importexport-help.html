@@ -24,6 +24,7 @@
       ImportExportTools NG를 릴리스할 수 없을 수도 있습니다. Thunderbird를 업데이트하기 전에 호환되는
       ImportExportTools NG 업데이트가 있는지 확인하세요.<br /><br />
       크리스토퍼<br /><br />
+      - 모든 메시지 유형의 간헐적이고 일관되지 않은 내보내기 실패에 대한 수정<br />
       - 새로운 기능: 여러 폴더 선택 내보내기<br />
       - EML 가져오기, mbox 내보내기에 대한 오류 처리 기능 향상<br />
       - 덴마크어(da) 로케일 업데이트 - @Joergen<br />
@@ -343,7 +344,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>첨부 파일을 포함하여 선택된 메시지를 일반 텍스트 형식 파일로 내보냅니다.</td>
+          <td>첨부 파일을 포함하여 선택한 메시지를 일반 텍스트 형식 파일로 내보냅니다.</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
@@ -472,7 +473,7 @@
         </tr>
         <tr>
           <td><code class="code1">%A</code></td>
-          <td>요일의 전체 이름.</td>
+          <td>요일의 전체 이름입니다.</td>
         </tr>
         <tr>
           <td><code class="code1">%b</code></td>
@@ -523,8 +524,7 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            12시간제(범위 01~12)를 사용하여 10진수로 나타낸 시간입니다. <code class="code1">%l</code> 도
-            참조하세요.
+            12시간제(범위 01~12)를 사용한 10진수 형태의 시간. <code class="code1">%l</code> 도 참조하세요.
           </td>
         </tr>
         <tr>
@@ -553,7 +553,7 @@
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>분을 10진수로 표현합니다(범위: 00~59).</td>
+          <td>분을 10진수로 표현(범위: 00~59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>

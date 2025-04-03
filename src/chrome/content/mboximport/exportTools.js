@@ -64,6 +64,13 @@ gTabmail,
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
+var { MailServices } = Ietng_ESM
+	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 // console.debug('exportTools start');
@@ -271,32 +278,8 @@ async function exportSelectedMsgs(type, params) {
 			return { status: "error" };
 		}
 
-		var isOffLineImap;
-
-		let imapFolder = {};
-
-		if ((msgFolder.server.type === "imap" || msgFolder.server.type === "news") && !imapFolder.verifiedAsOnlineFolder) {
-			isOffLineImap = true;
-		} else {
-			isOffLineImap = false;
-		}
 
 		IETskipped = 0;
-		if (isOffLineImap) {
-			var tempArray = [];
-
-			for (var i = 0; i < msgUris.length; i++) {
-				var eml = msgUris[i];
-				var mms = MailServices.messageServiceFromURI(eml).QueryInterface(Ci.nsIMsgMessageService);
-				var hdr = mms.messageURIToMsgHdr(eml);
-
-				if (hdr.flags & 0x00000080)
-					tempArray.push(eml);
-				else
-					IETskipped = IETskipped + 1;
-			}
-			msgUris = tempArray;
-		}
 		IETtotal = msgUris.length;
 		IETexported = 0;
 		var msguri = msgUris[0];
@@ -638,20 +621,20 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		}
 		file = filetemp.clone();
 		// Create the container directory
-		file.create(1, O0775);
+		file.create(1, 0o775);
 
 		subfile = file.clone();
 
 		// no message directory for eml exports
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, O0775);
+			subfile.create(1, 0o775);
 		}
 	} else {
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			subfile.create(1, O0775);
+			subfile.create(1, 0o775);
 		}
 	}
 
@@ -2313,7 +2296,7 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (append) {
 		if (fname)
 			file.append(fname);
-		foStream.init(file, 0x02 | 0x08 | 0x10, O0664, 0); // write, create, append
+		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate
 	if (data)

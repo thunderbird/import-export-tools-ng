@@ -92,9 +92,9 @@ var autoBackup = {
 		var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
 			.createInstance(Ci.nsIFileOutputStream);
 		if (append)
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0o0664, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0o664, 0);
 		else
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o0666, 0);
+			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o666, 0);
 		foStream.write(data, data.length);
 		foStream.close();
 	},
@@ -144,13 +144,13 @@ var autoBackup = {
 			autoBackup.backupDirPath = clone.path;
 			clone.append(dirName);
 			if (!clone.exists())
-				clone.create(1, 0o0755);
+				clone.create(1, 0o755);
 		} else {
 			autoBackup.backupDirPath = clone.path;
 			var date = buildContainerDirName();
 			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
 			clone.append(baseDirName + "-" + date);
-			clone.createUnique(1, 0o0755);
+			clone.createUnique(1, 0o755);
 			autoBackup.backupContainerPath = clone.path;
 			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
@@ -306,7 +306,7 @@ var autoBackup = {
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())
-			file.create(1, 0o0775);
+			file.create(1, 0o775);
 		for (let server of MailServices.accounts.allServers) {
 			var parentDir = null;
 			let serverFile = server.localPath;

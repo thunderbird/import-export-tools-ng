@@ -16,6 +16,8 @@
 
 // wextAPI.js
 
+import * as miscCmds from "/Modules/miscCmds.js";
+
 messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 	let rv;
 	switch (info.command) {
@@ -59,7 +61,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			console.log(window.folder)
 			break;
 		case "openHelp":
-			window.wextOpenHelp({ bmark: info.bmark });
+			miscCmds.openHelp({ bmark: info.bmark });
 			break;
 		case "shutdown":
 			console.log("shut")
@@ -68,7 +70,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 			break;
 		case "createSubfolder":
 			try {
-				let ver = await window.getThunderbirdVersion();
+				let ver = await miscCmds.getThunderbirdVersion();
 				var folderOrId;
 				var res;
 				if (ver.major >= 121) {

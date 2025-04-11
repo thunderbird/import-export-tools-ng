@@ -17,6 +17,8 @@
 // Installs wext context and main menus
 // Interface via notifytools to expMenuDispatcher
 
+import * as miscCmds from "/Modules/miscCmds.js";
+
 
 // Message context menu
 const msgCtxMenu_TopId = "msgCtxMenu_TopId";
@@ -137,7 +139,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: msgCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.wextOpenHelp,
+      onclick: miscCmds.openHelp,
     },
   },
   {
@@ -1407,95 +1409,7 @@ async function setNoMenusUpdate(info) {
 }
 
 
-async function getMailStoreFromFolderPath(accountId, folderPath) {
-  let params = {};
-  params.targetWinId = (await messenger.windows.getCurrent()).id;
 
-  params.accountId = accountId;
-  params.folderPath = folderPath;
-
-  let storeType = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getMailStoreFromFolderPath", params: params });
-  return storeType;
-}
-
-async function copyToClipboard(ctxEvent, tab) {
-  let params = {};
-  params.targetWinId = tab.windowId;
-  params.tabType = tab.type;
-
-  if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
-    params.selectedMsgs = ctxEvent.selectedMessages.messages;
-
-  } else {
-    let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
-    params.selectedMsgs = [msg];
-  }
-
-  if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
-    ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
-    params.clipboardType = "Message";
-  } else {
-    params.clipboardType = "Headers";
-  }
-  return await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
-}
-
-async function importMaildirFiles(ctxEvent) {
-  let params = {};
-  params.targetWinId = (await messenger.windows.getCurrent()).id;
-
-  params.selectedFolder = ctxEvent.selectedFolder;
-  params.selectedAccount = ctxEvent.selectedAccount;
-  rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_ImpMaildirFiles", params: params });
-}
-
-async function openOptions(event, tab) {
-
-  let params = {};
-  params.targetWinId = (await messenger.windows.getCurrent()).id;
-  params.tabType = tab.type;
-
-  let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
-}
-
-// import eml/rfv822 msg attachment as new msg in current folder
-async function importEmlAttToFolder(attCtx) {
-
-  let windows = await messenger.windows.getAll({ populate: true });
-  let currentWin = windows.find(fw => fw.focused);
-  let currentTab = currentWin.tabs.find(t => t.active);
-
-  let msgDisplayed = await messenger.messageDisplay.getDisplayedMessage(currentTab.id);
-
-  // get attachment as File blob
-  let attachmentFile = await messenger.messages.getAttachmentFile(msgDisplayed.id, attCtx.attachments[0].partName);
-
-  // we cannot import directly to an imap folder
-  // get the first local folder account and import to first folder as tmp msg
-  // move to current folder
-
-  let allAccounts = await messenger.accounts.list(true);
-
-  // we cannot know name so just grab first "none" type account
-  let localFolder = allAccounts.find(acc => acc.type == "none");
-
-  let msgHdr = await messenger.messages.import(attachmentFile, localFolder.folders[0]);
-  await messenger.messages.move([msgHdr.id], msgDisplayed.folder);
-}
-
-
-
-async function getBoolPref(boolPref) {
-
-  let params = {};
-  params.targetWinId = (await messenger.windows.getCurrent()).id;
-  params.boolPref = boolPref;
-  let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
-  return bp;
-}
 
 // listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);
-// make openOptions window accessible
-window.openOptions = openOptions;
-window.getBoolPref = getBoolPref;

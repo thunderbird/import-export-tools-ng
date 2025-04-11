@@ -67,7 +67,7 @@
 
   ],
   "background": {
-    "script": "background.js",
+    "scripts": ["background.js"],
     "type": "module"
   },
   "icons": {

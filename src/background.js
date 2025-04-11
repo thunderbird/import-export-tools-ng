@@ -16,6 +16,9 @@
 
 // background.js - this kicks off the WindowListener framework
 
+import "/wextMenus.js";
+import "/wextAPI.js";
+
 // need this for wextMenus
 window.wextOpenHelp = wextOpenHelp;
 

@@ -67,7 +67,8 @@
 
   ],
   "background": {
-    "page": "background.html"
+    "script": "background.js",
+    "type": "module"
   },
   "icons": {
     "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"

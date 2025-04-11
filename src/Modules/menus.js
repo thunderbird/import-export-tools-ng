@@ -800,14 +800,14 @@ var msgDisplayCtxMenuSet = [
 ];
 
 // Create all menus
-// Use anon async to pass ATN
-await ((async () => {
-  await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
-  await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
-  await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"), contexts: ["message_attachments"], onclick: miscCmds.importEmlAttToFolder, visible: false });
+await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
+await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
+await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+await messenger.menus.create({
+  id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"),
+  contexts: ["message_attachments"], onclick: miscCmds.importEmlAttToFolder, visible: false
+});
 
-})());
 
 // Helper for creating menus efficiently
 async function createMenus(menuType, menuArray, options) {

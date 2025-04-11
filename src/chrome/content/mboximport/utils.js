@@ -553,7 +553,7 @@ function IETstr_converter(str) {
 	// null out function as this really isn't necessary 
 	//return str;
 
-	
+
 	var convStr;
 	try {
 		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
@@ -568,7 +568,7 @@ function IETstr_converter(str) {
 		return str;
 	}
 	return convStr;
-	
+
 }
 
 function nametoascii(str) {
@@ -716,14 +716,28 @@ function IETemlx2eml(file) {
 	return tempFile;
 }
 
+function getThunderbirdVersion() {
+	let parts = Services.appinfo.version.split(".");
+	return {
+		major: parseInt(parts[0]),
+		minor: parseInt(parts[1]),
+	}
+}
+
 function getMailStoreFromFolderPath(accountId, folderPath) {
 	if (!folderPath) {
 		folderPath = "/";
 	}
 	let msgFolder = window.ietngAddon.extension.folderManager.get(accountId, folderPath);
 	var storeFormat = 0;
+	let majorVersion = getThunderbirdVersion().major;
+	var store;
 	try {
-		var store = msgFolder.server.getCharValue("storeContractID");
+		if (majorVersion < 137) {
+			store = msgFolder.server.getCharValue("storeContractID");
+		} else {
+			store = msgFolder.server.getStringValue("storeContractID");
+		}
 		if (store && store.includes("maildirstore"))
 			storeFormat = 1;
 		else if (store && !store.includes("berkeleystore")) {

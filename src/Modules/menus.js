@@ -828,29 +828,6 @@ async function createMenus(menuType, menuArray, options) {
 }
 
 
-// helper for titles development
-async function createtitles(name, menuArray, options) {
-  console.log("start");
-  var defaultParentId = menuArray[0].menuDef.id;
-  var titleArray = [];
-  for (let index = 0; index < menuArray.length; index++) {
-    let menuObj = menuArray[index];
-
-    if (menuObj.menuDef.type) {
-      continue;
-    }
-    let titleObj = { key: "<td >__MSG_" + menuObj.menuDef.id + ".title__</td>" };
-    titleArray.push(titleObj);
-  }
-  console.log(titleArray);
-  let basePath = "C:\\Dev\\Thunderbird";
-  let path = basePath + "\\" + name + ".json";
-  let params = { path: path, obj: titleArray };
-
-  rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_SaveJSON", params: params });
-}
-
-
 // Message Context Menu Handlers
 
 async function wextctx_ExportAs(ctxEvent, tab) {

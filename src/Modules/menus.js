@@ -132,7 +132,7 @@ var msgCtxMenuSet = [
     menuDef: {
       id: msgCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
-      onclick: openOptions,
+      onclick: miscCmds.openOptions,
     },
   },
   {
@@ -245,7 +245,7 @@ var msgCtxMenuSet = [
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardMessage_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
-      onclick: copyToClipboard,
+      onclick: miscCmds.copyToClipboard,
     },
   },
   {
@@ -253,7 +253,7 @@ var msgCtxMenuSet = [
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
-      onclick: copyToClipboard,
+      onclick: miscCmds.copyToClipboard,
     },
   },
 ];
@@ -308,7 +308,7 @@ var toolsCtxMenuSet = [
     menuDef: {
       id: toolsCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
-      onclick: openOptions,
+      onclick: miscCmds.openOptions,
     },
 
   },
@@ -316,7 +316,7 @@ var toolsCtxMenuSet = [
     menuDef: {
       id: toolsCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.wextOpenHelp,
+      onclick: miscCmds.openHelp,
     },
 
   },
@@ -582,7 +582,7 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Imp_MaildirFiles_Id,
       title: localizeMenuTitle("folderCtxMenu_Imp_MaildirFiles_Id.title"),
-      onclick: importMaildirFiles,
+      onclick: miscCmds.importMaildirFiles,
     },
   },
   {
@@ -640,14 +640,14 @@ var folderCtxMenuSet = [
     menuDef: {
       id: folderCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
-      onclick: openOptions,
+      onclick: miscCmds.openOptions,
     },
   },
   {
     menuDef: {
       id: folderCtxMenu_Help_Id,
       title: localizeMenuTitle("ctxMenu_Help.title"),
-      onclick: window.wextOpenHelp,
+      onclick: miscCmds.openHelp,
     },
   },
   {
@@ -786,7 +786,7 @@ var msgDisplayCtxMenuSet = [
       parentId: msgDisplayCtxMenu_Top_Id,
       id: msgDisplayCtxMenu_CopyToClipboardMessage_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
-      onclick: copyToClipboard,
+      onclick: miscCmds.copyToClipboard,
     },
   },
   {
@@ -794,7 +794,7 @@ var msgDisplayCtxMenuSet = [
       parentId: msgDisplayCtxMenu_Top_Id,
       id: msgDisplayCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
-      onclick: copyToClipboard,
+      onclick: miscCmds.copyToClipboard,
     },
   },
 ];
@@ -805,7 +805,7 @@ await ((async () => {
   await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
   await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
   await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"), contexts: ["message_attachments"], onclick: importEmlAttToFolder, visible: false });
+  await messenger.menus.create({ id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"), contexts: ["message_attachments"], onclick: miscCmds.importEmlAttToFolder, visible: false });
 
 })());
 
@@ -1407,9 +1407,6 @@ async function setNoMenusUpdate(info) {
   await messenger.menus.update("folderCtxMenu_Sep6", { visible: false });
   await messenger.menus.refresh();
 }
-
-
-
 
 // listener to change any  menus
 messenger.menus.onShown.addListener(menusUpdate);

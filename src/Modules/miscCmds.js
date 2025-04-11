@@ -83,7 +83,7 @@ export async function importEmlAttToFolder(attCtx) {
   await messenger.messages.move([msgHdr.id], msgDisplayed.folder);
 }
 
-async function getMailStoreFromFolderPath(accountId, folderPath) {
+export async function getMailStoreFromFolderPath(accountId, folderPath) {
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
 
@@ -94,7 +94,7 @@ async function getMailStoreFromFolderPath(accountId, folderPath) {
   return storeType;
 }
 
-async function copyToClipboard(ctxEvent, tab) {
+export async function copyToClipboard(ctxEvent, tab) {
   let params = {};
   params.targetWinId = tab.windowId;
   params.tabType = tab.type;
@@ -113,10 +113,10 @@ async function copyToClipboard(ctxEvent, tab) {
   } else {
     params.clipboardType = "Headers";
   }
-  return await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
+  return messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }
 
-async function importMaildirFiles(ctxEvent) {
+export async function importMaildirFiles(ctxEvent) {
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;
 

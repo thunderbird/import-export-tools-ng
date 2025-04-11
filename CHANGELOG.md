@@ -2,6 +2,14 @@
 
 ## Versions
 
+Version 14.1.8 : v137-v138 Release - April 6, 2025
+
+- Fix for intermittent and inconsistent export failure of all message types
+- New: Multiple folder selection exports
+- More error handling for EML imports, mbox exports
+- Update Danish (da) locale - @Joergen
+- Update Hungarian (hu-HU) locale - @ef99
+
 Version 14.1.7 : Multiple Folders Release - March 30, 2025
 
 - Fix for intermittent and inconsistent export failure of all message types

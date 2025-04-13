@@ -1244,7 +1244,7 @@ async function menusUpdate(info, tab) {
   }
 
   accountType = (await messenger.accounts.get(accountId)).type;
-  let mailStoreType = await getMailStoreFromFolderPath(accountId, folderPath);
+  let mailStoreType = await miscCmds.getMailStoreFromFolderPath(accountId, folderPath);
 
   var selectedFolders;
   if (info?.selectedFolders) {

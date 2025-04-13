@@ -12,10 +12,10 @@
     }
   },
   "browser_action": {
-		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
+    "default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImportExport",
     "default_popup": "chrome/content/dummy.html"
-	  },
+  },
   "experiment_apis": {
     "WindowListener": {
       "schema": "api/WindowListener/schema.json",
@@ -34,10 +34,18 @@
     "NotifyTools": {
       "schema": "api/NotifyTools/schema.json",
       "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["NotifyTools"]],
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "NotifyTools"
+          ]
+        ],
         "script": "api/NotifyTools/implementation.js",
-        "events": ["startup"]
+        "events": [
+          "startup"
+        ]
       }
     },
     "AsyncPrompts": {
@@ -53,9 +61,23 @@
         ],
         "script": "api/AsyncPrompts/implementation.js"
       }
+    },
+    "LegacyPrefs": {
+      "schema": "api/LegacyPrefs/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "LegacyPrefs"
+          ]
+        ],
+        "script": "api/LegacyPrefs/implementation.js"
+      }
     }
   },
-  "permissions" : [
+  "permissions": [
     "menus",
     "activeTab",
     "messagesRead",
@@ -64,10 +86,11 @@
     "accountsRead",
     "messagesImport",
     "messagesMove"
-
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "type": "module"
   },
   "icons": {

@@ -827,6 +827,23 @@ async function createMenus(menuType, menuArray, options) {
   }
 }
 
+async function menuFunctionDispatcher(ctxEvent) {
+  let menu;
+  if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
+    menu = folderCtxMenuSet;
+  }
+  let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
+  menuOptions.dispatchFunction(ctxEvent, menuOptions.functionParams)
+}
+
+function getMenuFunctionOptions(menu, menuId) {
+  let menuItem = menu.find(menuObj => {
+    if (menuObj.menuDef.id == menuId) {
+      return true;
+    }
+  });
+  return menuItem.dispatchOptions;
+}
 
 // Message Context Menu Handlers
 

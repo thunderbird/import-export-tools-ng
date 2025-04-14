@@ -245,16 +245,24 @@ var msgCtxMenuSet = [
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardMessage_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
-      onclick: miscCmds.copyToClipboard,
+      onclick: menuFunctionDispatcher
     },
+    dispatchOptions: {
+      dispatchFunction: miscCmds.copyToClipboard,
+      functionParams: { clipboardType: "Message", ctx: "msgCtx" }
+    }
   },
   {
     menuDef: {
       parentId: msgCtxMenu_CopyToClipboard_Id,
       id: msgCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
-      onclick: miscCmds.copyToClipboard,
+      onclick: menuFunctionDispatcher,
     },
+    dispatchOptions: {
+      dispatchFunction: miscCmds.copyToClipboard,
+      functionParams: { clipboardType: "Headers", ctx: "msgCtx"}
+    }
   },
 ];
 
@@ -786,16 +794,23 @@ var msgDisplayCtxMenuSet = [
       parentId: msgDisplayCtxMenu_Top_Id,
       id: msgDisplayCtxMenu_CopyToClipboardMessage_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardMessage_Id.title"),
-      onclick: miscCmds.copyToClipboard,
+      onclick: menuFunctionDispatcher,
     },
+    dispatchOptions: {
+      dispatchFunction: miscCmds.copyToClipboard,
+      functionParams: { clipboardType: "Message", ctx: "msgDisplayCtx" }
+    }
   },
   {
     menuDef: {
       parentId: msgDisplayCtxMenu_Top_Id,
       id: msgDisplayCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
-      onclick: miscCmds.copyToClipboard,
-    },
+      onclick: menuFunctionDispatcher,
+    },dispatchOptions: {
+      dispatchFunction: miscCmds.copyToClipboard,
+      functionParams: { clipboardType: "Headers", ctx: "msgDisplayCtx" }
+    }
   },
 ];
 
@@ -827,13 +842,17 @@ async function createMenus(menuType, menuArray, options) {
   }
 }
 
-async function menuFunctionDispatcher(ctxEvent) {
+async function menuFunctionDispatcher(ctxEvent, tab) {
   let menu;
   if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
     menu = folderCtxMenuSet;
+  } else if (ctxEvent.menuItemId.startsWith("msgCtxMenu")) {
+    menu = msgCtxMenuSet;
+  } else if (ctxEvent.menuItemId.startsWith("msgDisplayCtxMenu")) {
+    menu = msgDisplayCtxMenuSet;
   }
   let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
-  menuOptions.dispatchFunction(ctxEvent, menuOptions.functionParams)
+  menuOptions.dispatchFunction(ctxEvent, tab, menuOptions.functionParams)
 }
 
 function getMenuFunctionOptions(menu, menuId) {

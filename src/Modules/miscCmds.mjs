@@ -4,51 +4,51 @@ import * as prefs from "./prefCmds.mjs";
 
 
 export async function getThunderbirdVersion() {
-	let browserInfo = await messenger.runtime.getBrowserInfo();
-	let parts = browserInfo.version.split(".");
-	return {
-		major: parseInt(parts[0]),
-		minor: parseInt(parts[1]),
-		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
-	};
+  let browserInfo = await messenger.runtime.getBrowserInfo();
+  let parts = browserInfo.version.split(".");
+  return {
+    major: parseInt(parts[0]),
+    minor: parseInt(parts[1]),
+    revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+  };
 }
 
 var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
-	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+  'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 export async function openHelp(info) {
-	if (!info.opentype) {
-		let openInWindow = await prefs.getPref("help.openInWindow");
-		info.opentype = openInWindow ? "window" : "tab";
-	}
+  if (!info.opentype) {
+    let openInWindow = await prefs.getPref("help.openInWindow");
+    info.opentype = openInWindow ? "window" : "tab";
+  }
 
-	var locale = messenger.i18n.getUILanguage();
+  var locale = messenger.i18n.getUILanguage();
 
-	if (!helpLocales.includes(locale)) {
-		var baseLocale = locale.split("-")[0];
+  if (!helpLocales.includes(locale)) {
+    var baseLocale = locale.split("-")[0];
 
-		locale = helpLocales.find(l => l.split("-")[0] == baseLocale);
-		if (!locale) {
-			locale = "en-US";
-		}
-	}
-	var bm = "";
-	if (info.bmark) {
-		bm = info.bmark;
-	}
-	try {
-		if (info.opentype == "tab") {
-			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 });
-		} else {
-			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-		}
-	} catch (ex) {
-			if (info.opentype == "tab") {
-				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 });
-			} else {
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-			}
-		}
+    locale = helpLocales.find(l => l.split("-")[0] == baseLocale);
+    if (!locale) {
+      locale = "en-US";
+    }
+  }
+  var bm = "";
+  if (info.bmark) {
+    bm = info.bmark;
+  }
+  try {
+    if (info.opentype == "tab") {
+      await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 });
+    } else {
+      await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
+    }
+  } catch (ex) {
+    if (info.opentype == "tab") {
+      await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 });
+    } else {
+      await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
+    }
+  }
 }
 
 export async function openOptions(event, tab) {
@@ -95,25 +95,19 @@ export async function getMailStoreFromFolderPath(accountId, folderPath) {
   return storeType;
 }
 
-export async function copyToClipboard(ctxEvent, tab) {
+export async function copyToClipboard(ctxEvent, tab, functionParams) {
   let params = {};
   params.targetWinId = tab.windowId;
   params.tabType = tab.type;
 
-  if (ctxEvent.pageUrl == undefined && ctxEvent.parentMenuItemId == msgCtxMenu_CopyToClipboard_Id) {
+  if (ctxEvent.pageUrl == undefined && functionParams?.ctx == "msgCtx") {
     params.selectedMsgs = ctxEvent.selectedMessages.messages;
 
   } else {
     let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
     params.selectedMsgs = [msg];
   }
-
-  if (ctxEvent.menuItemId == msgCtxMenu_CopyToClipboardMessage_Id ||
-    ctxEvent.menuItemId == msgDisplayCtxMenu_CopyToClipboardMessage_Id) {
-    params.clipboardType = "Message";
-  } else {
-    params.clipboardType = "Headers";
-  }
+  params.clipboardType = functionParams.clipboardType;
   return messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_CopyToClipboard", params: params });
 }
 

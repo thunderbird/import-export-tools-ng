@@ -62,6 +62,14 @@
         "script": "api/AsyncPrompts/implementation.js"
       }
     },
+    "LegacyHelper": {
+      "schema": "api/LegacyHelper/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["LegacyHelper"]],
+        "script": "api/LegacyHelper/implementation.js"
+      }
+    },
     "LegacyPrefs": {
       "schema": "api/LegacyPrefs/schema.json",
       "parent": {

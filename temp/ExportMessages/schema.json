@@ -1,0 +1,87 @@
+[
+  {
+    "namespace": "ExportMessages",
+    "functions": [
+      {
+        "name": "exportMessagesStream",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "exportMessagesBase",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "exportMessagesES6",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "createExportContainer",
+        "type": "function",
+        "description": "Create the export container directory",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "openFileDialog",
+        "type": "function",
+        "description": "Open the nsIFilePicker",
+        "async": true,
+        "parameters": [
+          {
+            "name": "mode",
+            "type": "integer",
+            "description": "FilePicker mode"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "description": "Dialog title"
+          },
+          {
+            "name": "initialDir",
+            "type": "string",
+            "description": "Initial directory"
+          },
+          {
+            "name": "filter",
+            "type": "integer",
+            "description": "Filter mask"
+          }
+        ]
+      }
+    ]
+  }
+]

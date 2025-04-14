@@ -263,7 +263,7 @@ var msgCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: miscCmds.copyToClipboard,
-      functionParams: { clipboardType: "Headers", ctx: "msgCtx"}
+      functionParams: { clipboardType: "Headers", ctx: "msgCtx" }
     }
   },
 ];
@@ -663,6 +663,19 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
+      id: "folderCtxMenu_EML_newexp",
+      title: "(new) Messages",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.createExpTask,
+      functionParams: { expType: "eml", saveAttatchments: true, index: false }
+    }
+  },
+
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: folderCtxMenu_Exp_EMLFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
     },
@@ -809,7 +822,7 @@ var msgDisplayCtxMenuSet = [
       id: msgDisplayCtxMenu_CopyToClipboardHeaders_Id,
       title: localizeMenuTitle("msgCtxMenu_CopyToClipboardHeaders_Id.title"),
       onclick: menuFunctionDispatcher,
-    },dispatchOptions: {
+    }, dispatchOptions: {
       dispatchFunction: miscCmds.copyToClipboard,
       functionParams: { clipboardType: "Headers", ctx: "msgDisplayCtx" }
     }

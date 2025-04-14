@@ -16,10 +16,10 @@
 
 // background.js - this kicks off the WindowListener framework
 
-import { openHelp } from "/Modules/miscCmds.js";
-import { getBoolPref } from "/Modules/prefCmds.js";
-import "/Modules/menus.js";
-import "/Modules/wextAPI.js";
+import { openHelp } from "/Modules/miscCmds.mjs";
+import * as prefs from "/Modules/prefCmds.mjs";
+import "/Modules/menus.mjs";
+import "/Modules/wextAPI.mjs";
 
 // now start
 main();
@@ -34,7 +34,7 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	if (await getBoolPref("extensions.importexporttoolsng.help.showOnInstallAndUpdate")) {
+	if (await prefs.getPref("help.showOnInstallAndUpdate")) {
 		await openHelp({ opentype: "tab" });
 	}
 });
@@ -92,12 +92,9 @@ function main() {
 		"chrome://messenger/content/messengercompose/messengercompose.xhtml",
 		"chrome://mboximport/content/mboximport/messengercomposeOL.js");
 
-
 	messenger.WindowListener.registerWindow(
 		"chrome://messenger/content/messageWindow.xhtml",
 		"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
 	messenger.WindowListener.startListening();
-
-
 }

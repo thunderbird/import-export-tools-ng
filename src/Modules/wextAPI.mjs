@@ -16,7 +16,7 @@
 
 // wextAPI.js
 
-import * as miscCmds from "/Modules/miscCmds.js";
+import * as miscCmds from "/Modules/miscCmds.mjs";
 
 messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 	let rv;

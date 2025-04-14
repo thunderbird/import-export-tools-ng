@@ -1,6 +1,6 @@
 // miscCmds.js
 
-import * as prefCmds from "./prefCmds.js";
+import * as prefs from "./prefCmds.mjs";
 
 
 export async function getThunderbirdVersion() {
@@ -12,12 +12,13 @@ export async function getThunderbirdVersion() {
 		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
 	};
 }
+
 var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 export async function openHelp(info) {
 	if (!info.opentype) {
-		let openInWindow = await prefCmds.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
+		let openInWindow = await prefs.getPref("help.openInWindow");
 		info.opentype = openInWindow ? "window" : "tab";
 	}
 

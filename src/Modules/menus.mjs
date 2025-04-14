@@ -2,7 +2,7 @@
   ImportExportTools NG is a extension for Thunderbird mail client
   providing import and export tools for messages and folders.
   The extension authors:
-    Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+    Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
   ImportExportTools NG is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 // Installs wext context and main menus
 // Interface via notifytools to expMenuDispatcher
 
-import * as miscCmds from "/Modules/miscCmds.js";
+import * as miscCmds from "/Modules/miscCmds.mjs";
 
 
 // Message context menu

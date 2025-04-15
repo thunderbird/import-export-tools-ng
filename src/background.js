@@ -39,8 +39,12 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	}
 });
 
-function main() {
+async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
+
+	await browser.LegacyHelper.registerGlobalUrls([
+		["resource", "ietng", "."],
+	]);
 
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 

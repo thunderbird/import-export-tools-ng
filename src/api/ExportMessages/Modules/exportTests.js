@@ -1,13 +1,14 @@
 // paired down Wl tests
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
+var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 console.log("es6 exportMessages")
 
-//var EXPORTED_SYMBOLS = ["exportTests"];
+
+var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 
 export var exportTests = {
   folder: null,
-  expDirFile: window.getPredefinedFolder(1),
+  expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask) {
 

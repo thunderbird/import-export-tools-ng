@@ -1,8 +1,7 @@
-var Services = globalThis.Services ||
-  ChromeUtils.import("resource://gre/modules/Services.jsm").Services;
 
-var { MailServices } = ChromeUtils.import("resource:///modules/MailServices.jsm");
-var { strftime } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/strftime.js");
+
+var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 
 var { ExtensionParent } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
@@ -16,7 +15,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 //dateNow = new Date();
 
 var { exportTests } = ChromeUtils.importESModule(
-	"resource://mboximport/content/mboximport/modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
+	"resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
 );
 
 

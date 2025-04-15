@@ -14,10 +14,6 @@ const kCancel = 0;
 
 var top = Services.wm.getMostRecentWindow("mail:3pane").top;
 
-var { exportTests } = ChromeUtils.importESModule(
-	"resource://ietng/api/ExportMessages/modules/exportTests.js?" + new Date()
-);
-
 var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
   getAPI(context) {

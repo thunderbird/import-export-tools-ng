@@ -668,7 +668,7 @@ var folderCtxMenuSet = [
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
-      dispatchFunction: exportCmds.createExpTask,
+      dispatchFunction: exportCmds.exportFolderTest,
       functionParams: { expType: "eml", saveAttatchments: true, index: false }
     }
   },

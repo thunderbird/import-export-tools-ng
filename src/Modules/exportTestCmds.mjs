@@ -1,6 +1,6 @@
 // export prototype
 
-import { Ci } from "./CiConstants.js";
+import { Ci } from "/Modules/CiConstants.js";
 
 var baseExpTask = {
   expType: null,
@@ -60,12 +60,12 @@ var baseExpTask = {
 };
 
 
-export async function exportFolders(ctxInfo, params) {
+export async function exportFolders(ctxEvent, tab, functionParams) {
 
   try {
     // for now only deal with a single folder for prototype
-    if (ctxInfo.selectedFolders && ctxInfo.selectedFolders.length > 1) {
-      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg") + params.toString());
+    if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
+      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg") + functionParams.toString());
       if (!rv) {
         return;
       }
@@ -76,8 +76,8 @@ export async function exportFolders(ctxInfo, params) {
     // and UI interactions in wext side
     // we avoid msg transfer for major performance issues
 
-    params.ctxInfo = ctxInfo;
-    var expTask = await _buildExportTask(params);
+    //params.ctxInfo = ctxInfo;
+    var expTask = await _buildExportTask(ctxEvent, functionParams);
 
     // warnings
 
@@ -113,7 +113,7 @@ export async function exportFolders(ctxInfo, params) {
       // create export container
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       //console.log(expTask);
-      expTask.selectedFolder = ctxInfo.selectedFolder;
+      expTask.selectedFolder = ctxEvent.selectedFolder;
 
       //await msgIterateBase(expTask);
       await msgIterateBatch(expTask);
@@ -236,6 +236,7 @@ async function _getprocessedMsg(msgId) {
           //console.log(msgId, part)
           //console.log(msgId, part.headers["content-disposition"])
           let cd = part.headers["content-disposition"][0];
+          console.log(part.headers)
           if (cd.startsWith("inline;")) {
             let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             //inlineBody = await fileToUint8Array(inlineBody);
@@ -358,22 +359,22 @@ async function msgIterateBase(expTask) {
 
 }
 
-async function _buildExportTask(params) {
+async function _buildExportTask(ctxEvent, params) {
   var expTask = baseExpTask;
 
   switch (params.expType) {
     case "eml":
-      expTask = await _build_EML_expTask(expTask, params);
+      expTask = await _build_EML_expTask(expTask, ctxEvent, params);
       break;
 
   }
   return expTask;
 }
 
-async function _build_EML_expTask(expTask, params) {
+async function _build_EML_expTask(expTask, ctxEvent,  params) {
   // hack setup
   expTask.expType = "eml";
-  expTask.folders = [params.ctxInfo.selectedFolder];
+  expTask.folders = [ctxEvent.selectedFolder];
   expTask.generalConfig.exportDirectory = "C:\\Dev\\test";
   expTask.exportContainer.create = true;
   expTask.dateFormat.type = 1;

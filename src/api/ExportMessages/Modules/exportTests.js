@@ -84,12 +84,12 @@ export var exportTests = {
     hdrRows += `<tr><td>Date:</td><td>${msgItem.date}</td></tr>`;
 
     let tbl1 = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
-    console.log(tbl1)
+    //console.log(tbl1)
     
     //return msgData.msgBody.replace(/(<body.*>)/i, `$1${tbl1}`);
     //return msgData.msgBody.replace(/(<BODY>)/i, `$1${tbl1}`);
     let rpl = "$1 " + tbl1.replace(/\$/,"$$$$");
-    console.log(rpl)
+    //console.log(rpl)
     return msgData.msgBody.replace(/(<BODY>)/i, rpl);
 
   },

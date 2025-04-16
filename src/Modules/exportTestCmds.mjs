@@ -186,7 +186,6 @@ async function msgIterateBatch(expTask) {
         getRawPromises = [];
       }
     }
-
     if (expTask.msgList) {
       if (writeMsgs) {
         let getRarSettledPromises = await Promise.allSettled(getRawPromises);
@@ -205,6 +204,7 @@ async function msgIterateBatch(expTask) {
   if (writeMsgs) {
     await Promise.allSettled(writePromises);
   }
+
 }
 
 async function _getprocessedMsg(msgId) {
@@ -213,6 +213,13 @@ async function _getprocessedMsg(msgId) {
     //console.log("id1", msgId)
 
     let fm = await browser.messages.getFull(msgId);
+    console.log(fm)
+    if (fm.decryptionStatus == "fail") {
+    console.log("dfail")
+      resolve({ msgBody: "decryption failed", inlineParts: [], attachmentParts: [] });
+    console.log("dfail2")
+      return;
+    }
     let parts = fm.parts;
 
     //console.log(fm)
@@ -222,6 +229,8 @@ async function _getprocessedMsg(msgId) {
     var attachmentParts = [];
 
     async function getParts(parts) {
+      console.log("getParts", parts)
+
       for (const part of parts) {
         //console.log(part)
 
@@ -237,10 +246,17 @@ async function _getprocessedMsg(msgId) {
           //console.log(msgId, part.headers["content-disposition"])
           let cd = part.headers["content-disposition"][0];
           console.log(part.headers)
-          if (cd.startsWith("inline;")) {
+          if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
+            console.log("inline", part.headers)
+            console.log("inline", part.headers["content-id"])
+            let contentId = part.headers["content-id"][0]
+            console.log("inline", contentId)
+
+            console.log("inline", part.headers["content-disposition"])
+
             let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             //inlineBody = await fileToUint8Array(inlineBody);
-            inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: part.headers["content-id"][0] });
+            inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
           }
         }
 
@@ -251,6 +267,7 @@ async function _getprocessedMsg(msgId) {
         }
 
         if (part.parts) {
+          console.log("call gp")
           await getParts(part.parts)
         }
       }
@@ -371,7 +388,7 @@ async function _buildExportTask(ctxEvent, params) {
   return expTask;
 }
 
-async function _build_EML_expTask(expTask, ctxEvent,  params) {
+async function _build_EML_expTask(expTask, ctxEvent, params) {
   // hack setup
   expTask.expType = "eml";
   expTask.folders = [ctxEvent.selectedFolder];

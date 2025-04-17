@@ -177,6 +177,7 @@ async function msgIterateBatch(expTask) {
 
           for (let index = 0; index < getRarSettledPromises.length; index++) {
             expTask.msgList[index].msgData = getRarSettledPromises[index].value;
+            console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
           }
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
@@ -192,6 +193,7 @@ async function msgIterateBatch(expTask) {
 
         for (let index = 0; index < getRarSettledPromises.length; index++) {
           expTask.msgList[index].msgData = getRarSettledPromises[index].value;
+          console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
         }
         writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
       }

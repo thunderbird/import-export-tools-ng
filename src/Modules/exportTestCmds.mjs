@@ -177,7 +177,7 @@ async function msgIterateBatch(expTask) {
 
           for (let index = 0; index < getRarSettledPromises.length; index++) {
             expTask.msgList[index].msgData = getRarSettledPromises[index].value;
-            console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
+            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
           }
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
@@ -193,7 +193,7 @@ async function msgIterateBatch(expTask) {
 
         for (let index = 0; index < getRarSettledPromises.length; index++) {
           expTask.msgList[index].msgData = getRarSettledPromises[index].value;
-          console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
+          //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
         }
         writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
       }
@@ -235,11 +235,15 @@ async function _getprocessedMsg(msgId) {
 
       for (const part of parts) {
         //console.log(part)
+        // we could have multiple sub parts
+        let contentType = part.contentType;
+        let size = part.size;
+        let body = part?.body;
 
-        if (part.contentType == "text/html") {
+        if (contentType == "text/html" && body) {
           htmlParts.push({ ct: part.contentType, b: part.body });
         }
-        if (part.contentType == "text/plain") {
+        if (part.contentType == "text/plain" && body) {
           textParts.push({ ct: part.contentType, b: part.body });
         }
 

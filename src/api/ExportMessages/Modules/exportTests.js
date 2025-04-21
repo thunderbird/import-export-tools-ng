@@ -47,7 +47,7 @@ export var exportTests = {
 
       expTask.msgList[index].msgData.msgBody = this._insertHdrTable(expTask, index);
 
-      if (true) {
+      if (false) {
         await this.saveAsPDF(expTask, index, context);
       } else {
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
@@ -221,7 +221,10 @@ export var exportTests = {
 				var messageService = MailServices.messageServiceFromURI(uri);
 				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
-				let fileName = aMsgHdr.subject + ".pdf";
+				let fileName = expTask.msgList[idx].subject + ".pdf";
+        fileName = fileName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+        console.log(fileName)
+        console.log(expTask.msgList[idx])
         let uniqueFileName;
 				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
 				printSettings.toFileName = uniqueFileName;

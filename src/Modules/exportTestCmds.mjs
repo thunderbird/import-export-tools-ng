@@ -106,8 +106,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
-        "C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        //"C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
+        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
+        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
 
       // create export container
@@ -244,7 +244,8 @@ async function _getprocessedMsg(msgId) {
           htmlParts.push({ ct: part.contentType, b: part.body });
         }
         if (part.contentType == "text/plain" && body) {
-          textParts.push({ ct: part.contentType, b: part.body });
+          //body = body.replaceAll(/\r?\n/g, "<br>\n");
+          textParts.push({ ct: part.contentType, b: body });
         }
 
         if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {

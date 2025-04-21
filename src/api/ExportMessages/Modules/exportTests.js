@@ -10,7 +10,7 @@ export var exportTests = {
   folder: null,
   expDirFile: w3p.getPredefinedFolder(1),
 
-  exportMessagesES6: async function (expTask) {
+  exportMessagesES6: async function (expTask, context) {
 
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
@@ -47,9 +47,12 @@ export var exportTests = {
 
       expTask.msgList[index].msgData.msgBody = this._insertHdrTable(expTask, index);
 
+      if (true) {
+        await this.saveAsPDF(expTask, index, context);
+      } else {
       IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
-
+      }
     }
     return Promise.allSettled(writePromises);
   },
@@ -94,6 +97,169 @@ export var exportTests = {
 
   },
 
+  saveAsPDF: async function (expTask, idx, context, pageSettings = {}) {
+
+    let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
+      let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+		let filePath = expTask.exportContainer.directory;
+
+    console.log(msgHdr)
+    console.log(msgUri)
+
+		let psService = Cc[
+			"@mozilla.org/gfx/printsettings-service;1"
+		].getService(Ci.nsIPrintSettingsService);
+
+		// pdf changes for 102
+		// newPrintSettings => createNewPrintSettings()
+		// printSetting.printToFile deprecated in 102, not needed in 91
+		let printSettings;
+		if (psService.newPrintSettings) {
+			printSettings = psService.newPrintSettings;
+		} else {
+			printSettings = psService.createNewPrintSettings();
+		}
+
+		printSettings.printerName = "Mozilla_Save_to_PDF";
+		psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+
+
+		printSettings.isInitializedFromPrinter = true;
+		printSettings.isInitializedFromPrefs = true;
+
+		printSettings.printSilent = true;
+		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+
+		// print setup for PDF printing changed somewhere around 102.3
+		// also on 91.x The change first appeared in Linux
+		// the printToFile gets deprecated and replaced by
+		// outputDestination
+		// As an XPCOM object you must check property existence
+		// Addresses #351
+
+		if (printSettings.outputDestination !== undefined) {
+			printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+		}
+
+		if (printSettings.printToFile !== undefined) {
+			printSettings.printToFile = true;
+		}
+
+		if (pageSettings.paperSizeUnit)
+			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+
+		if (pageSettings.paperWidth)
+			printSettings.paperWidth = pageSettings.paperWidth;
+
+		if (pageSettings.paperHeight)
+			printSettings.paperHeight = pageSettings.paperHeight;
+
+		if (pageSettings.orientation)
+			printSettings.orientation = pageSettings.orientation;
+		if (pageSettings.scaling)
+			printSettings.scaling = pageSettings.scaling;
+		if (pageSettings.shrinkToFit)
+			printSettings.shrinkToFit = pageSettings.shrinkToFit;
+		if (pageSettings.showBackgroundColors)
+			printSettings.printBGColors = pageSettings.showBackgroundColors;
+		if (pageSettings.showBackgroundImages)
+			printSettings.printBGImages = pageSettings.showBackgroundImages;
+		if (pageSettings.edgeLeft)
+			printSettings.edgeLeft = pageSettings.edgeLeft;
+		if (pageSettings.edgeRight)
+			printSettings.edgeRight = pageSettings.edgeRight;
+		if (pageSettings.edgeTop)
+			printSettings.edgeTop = pageSettings.edgeTop;
+		if (pageSettings.edgeBottom)
+			printSettings.edgeBottom = pageSettings.edgeBottom;
+		if (pageSettings.marginLeft)
+			printSettings.marginLeft = pageSettings.marginLeft;
+		if (pageSettings.marginRight)
+			printSettings.marginRight = pageSettings.marginRight;
+		if (pageSettings.marginTop)
+			printSettings.marginTop = pageSettings.marginTop;
+		if (pageSettings.marginBottom)
+			printSettings.marginBottom = pageSettings.marginBottom;
+		if (pageSettings.headerLeft)
+			printSettings.headerStrLeft = pageSettings.headerLeft;
+		if (pageSettings.headerCenter)
+			printSettings.headerStrCenter = pageSettings.headerCenter;
+		if (pageSettings.headerRight)
+			printSettings.headerStrRight = pageSettings.headerRight;
+		if (pageSettings.footerLeft)
+			printSettings.footerStrLeft = pageSettings.footerLeft;
+		if (pageSettings.footerCenter)
+			printSettings.footerStrCenter = pageSettings.footerCenter;
+		if (pageSettings.footerRight)
+			printSettings.footerStrRight = pageSettings.footerRight;
+
+    /*
+		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+		if (customDateFormat !== "") {
+			let customDate = strftime.strftime(customDateFormat, new Date());
+			printSettings.headerStrRight = printSettings.headerStrRight.replace("%d", customDate);
+			printSettings.headerStrLeft = printSettings.headerStrLeft.replace("%d", customDate);
+			printSettings.headerStrCenter = printSettings.headerStrCenter.replace("%d", customDate);
+			printSettings.footerStrRight = printSettings.footerStrRight.replace("%d", customDate);
+			printSettings.footerStrLeft = printSettings.footerStrLeft.replace("%d", customDate);
+			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
+		}
+*/
+		// console.log("IETNG: Save as PDF: ", new Date());
+		// console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
+		// We can simply by using PrintUtils.loadPrintBrowser eliminating
+		// the fakeBrowser NB: if the printBrowser does not exist we
+		// can create with PrintUtils as well
+
+
+		var errCounter = 0;
+		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
+			let uri = msgUri;
+
+			try {
+				var messageService = MailServices.messageServiceFromURI(uri);
+				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+
+				let fileName = aMsgHdr.subject + ".pdf";
+        let uniqueFileName;
+				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
+				printSettings.toFileName = uniqueFileName;
+        console.log(uri)
+
+				await mainWindow.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+        console.log(mainWindow.PrintUtils.printBrowser.contentDocument)
+        let doc = mainWindow.PrintUtils.printBrowser.contentDocument;
+
+    		var table = doc.querySelector(".moz-header-part1");
+        table.style.border = "thick solid black"
+        console.log(doc)
+
+				await mainWindow.PrintUtils.printBrowser.browsingContext.print(printSettings);
+				var time = (aMsgHdr.dateInSeconds) * 1000;
+
+				//if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+//					await IOUtils.setModificationTime(uniqueFileName, time);
+	//			}
+				//IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+				// When we got here, everything worked, and reset error counter.
+				errCounter = 0;
+			} catch (ex) {
+				// Something went wrong, wait a bit and try again.
+				// We did not inc i, so we will retry the same file.
+				//
+				errCounter++;
+				console.log(`Re-trying to print message ${idx + 1} (${uri}).`, ex);
+				if (errCounter > 3) {
+					console.log(`We retried ${errCounter} times to print message ${idx + 1} and abort.`);
+				} else {
+					// dec idx so next loop repeats msg that erred
+					idxdx--;
+				}
+				await new Promise(r => mainWindow.setTimeout(r, 150));
+			}
+		
+	},
 
   exportFolderEML_WL: async function (params) {
 
@@ -192,70 +358,6 @@ export var exportTests = {
         "" //aAdditionalHeader
       );
     });
-  },
-
-  saveMessages_NsIFile: async function (msgUriArray, aConvertData, folderDirFile) {
-    let msgArrayLen = msgUriArray.length;
-    let idx = 0;
-    var _self = this;
-
-    do {
-      let msguri = msgUriArray[idx].folder.getUriForMsg(msgUriArray[idx]);
-
-      let service = MailServices.messageServiceFromURI(msguri);
-      let pr = await new Promise((resolve, reject) => {
-        let streamlistener = {
-          _data: "",
-          _stream: null,
-          onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
-            if (!this._stream) {
-              this._stream = Cc[
-                "@mozilla.org/scriptableinputstream;1"
-              ].createInstance(Ci.nsIScriptableInputStream);
-              this._stream.init(aInputStream);
-            }
-            //this._data.push(this._stream.read(aCount));
-            this._data += this._stream.read(aCount);
-
-          },
-          onStartRequest() { },
-          onStopRequest(request, status) {
-            if (Components.isSuccessCode(status)) {
-
-              let subject = msgUriArray[idx].mime2DecodedSubject.slice(0, 100);
-              let name = `${subject}-${msgUriArray[idx].key}.eml`;
-              name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-              let msgFile = folderDirFile.clone();
-              msgFile.append(name);
-              msgFile.createUnique(0, 0o0755);
-              _self.IETwriteDataOnDisk(msgFile, this._data, false, null, null);
-
-              resolve(1);
-            } else {
-              reject(
-                new ExtensionError(
-                  `Error while streaming message <${msgUriArray[idx]}>: ${status}`
-                )
-              );
-            }
-          },
-          QueryInterface: ChromeUtils.generateQI([
-            "nsIStreamListener",
-            "nsIRequestObserver",
-          ]),
-        };
-
-        // This is not using aConvertData and therefore works for news:// messages.
-        service.streamMessage(
-          msguri,
-          streamlistener,
-          null, // aMsgWindow
-          null, // aUrlListener
-          aConvertData, // aConvertData
-          "" //aAdditionalHeader
-        );
-      });
-    } while (++idx < msgArrayLen);
   },
 
   saveMessages_IOUtils: async function (msgUriArray, aConvertData, folderDirPath, nameArray) {

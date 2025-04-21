@@ -32,8 +32,9 @@ var msgWindow = Services.wm.getMostRecentWindow("mail:3pane").top;
 var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
   getAPI(context) {
-    let self = this;
-
+    var self = this;
+    self.context = context;
+    
     return {
       ExportMessages: {
 
@@ -101,7 +102,8 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async exportMessagesES6(expTask) {
-          await exportTests.exportMessagesES6(expTask);
+          console.log(self.context)
+          await exportTests.exportMessagesES6(expTask, self.context);
         },
 
         async exportMessagesBase(expTask) {

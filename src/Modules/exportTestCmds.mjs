@@ -114,7 +114,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       //console.log(expTask);
       expTask.selectedFolder = ctxEvent.selectedFolder;
-
+      //expTask.folders[0] = ctxEvent.selectedFolder.path;
+      console.log(expTask.folders[0])
       //await msgIterateBase(expTask);
       await msgIterateBatch(expTask);
 
@@ -399,12 +400,16 @@ async function _build_EML_expTask(expTask, ctxEvent, params) {
   // hack setup
   expTask.expType = "eml";
   expTask.folders = [ctxEvent.selectedFolder];
+  expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = "C:\\Dev\\test";
   expTask.exportContainer.create = true;
   expTask.dateFormat.type = 1;
   expTask.msgNames.extension = "eml";
   expTask.attachments.save = "none";
 
+  expTask.currentFolderPath = 
+    expTask.currentFolderPath.slice(1).replaceAll("/","\\")
+  console.log(expTask.currentFolderPath)
   return expTask;
 
 }

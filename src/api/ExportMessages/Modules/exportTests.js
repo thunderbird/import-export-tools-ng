@@ -11,6 +11,9 @@ export var exportTests = {
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
+    var msgDir = this._getMsgDirectory(expTask);
+    console.log(msgDir)
+    //var attachmentsDirectory =_getAttachmentsDirectory(expTask);
 
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
@@ -50,11 +53,28 @@ export var exportTests = {
       if (false) {
         await this.saveAsPDF(expTask, index, context);
       } else {
-      IOUtils.createUniqueFile(expTask.exportContainer.directory, name)
+      IOUtils.createUniqueFile(msgDir, name)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
       }
     }
     return Promise.allSettled(writePromises);
+  },
+
+  _getMsgDirectory: function (expTask) {
+    expTask.currentFolderPath = "\\inbox\\etest"
+    console.log(expTask.currentFolderPath)
+
+    let msgDir = PathUtils.join(expTask.exportContainer.directory,
+      expTask.currentFolderPath,
+      expTask.messages.messageContainerName);
+      return msgDir;
+  },
+
+  _getAttachmentsDirectory: function (expTask, msgName) {
+    let attsDir = PathUtils.join(expTask.exportContainer.directory,
+      expTask.folders[expTask.currentFolderIndex],
+      expTask.messages.messageContainerName, msgName);
+      return attsDir;
   },
 
   fileToUint8Array: async function (file) {
@@ -106,6 +126,9 @@ export var exportTests = {
     console.log(msgHdr)
     console.log(msgUri)
 
+    let m = await this.getRawMessage(msgUri, true)
+    console.log(m)
+    
 		let psService = Cc[
 			"@mozilla.org/gfx/printsettings-service;1"
 		].getService(Ci.nsIPrintSettingsService);

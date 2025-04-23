@@ -11,9 +11,8 @@ export var exportTests = {
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
-    var msgDir = this._getMsgDirectory(expTask);
-    console.log(msgDir)
-    //var attachmentsDirectory =_getAttachmentsDirectory(expTask);
+    var msgsDir = this._getMsgsDirectory(expTask);
+    console.log(msgsDir)
 
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
@@ -21,19 +20,24 @@ export var exportTests = {
 
     for (let index = 0; index < msgListLen; index++) {
 
+      console.log(expTask.msgList[index])
       let subject = expTask.msgList[index].subject.slice(0, 150);
-      let name = `${subject}.html`;
+      let name = `${subject}`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-
+      if (name == "...") {
+        name = "NoKey"
+      }
+      console.log(name, name.length)
+      var attsDir = this._getAttachmentsDirectory(expTask, name);
 
       for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
         let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-        IOUtils.createUniqueFile(expTask.exportContainer.directory, inlinePart.name)
+        IOUtils.createUniqueFile(attsDir, inlinePart.name)
           .then((unqName => {
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
-            partIdName = partIdName.replaceAll(/\./g, "\\.")
+            partIdName = partIdName.replaceAll(/\./g, "\\.");
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-            let unqFilename = PathUtils.filename(unqName)
+            let unqFilename = PathUtils.filename(unqName);
             //console.log(name, unqFilename)
             expTask.msgList[index].msgData.msgBody =
               expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${unqFilename}"`);
@@ -44,7 +48,7 @@ export var exportTests = {
 
       for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
         let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-        IOUtils.createUniqueFile(expTask.exportContainer.directory, attachmentPart.name)
+        IOUtils.createUniqueFile(attsDir, attachmentPart.name)
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
 
@@ -53,28 +57,46 @@ export var exportTests = {
       if (false) {
         await this.saveAsPDF(expTask, index, context);
       } else {
-      IOUtils.createUniqueFile(msgDir, name)
-        .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
+        IOUtils.createUniqueFile(msgsDir, name + ".html")
+          .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
       }
     }
     return Promise.allSettled(writePromises);
   },
 
-  _getMsgDirectory: function (expTask) {
-    expTask.currentFolderPath = "\\inbox\\etest"
+  _getMsgsDirectory: function (expTask) {
     console.log(expTask.currentFolderPath)
 
-    let msgDir = PathUtils.join(expTask.exportContainer.directory,
-      expTask.currentFolderPath,
-      expTask.messages.messageContainerName);
-      return msgDir;
+    let msgsDir;
+    // we have to sanitize the path for file system export
+    // Thunderbird wont allow a forward slash in a folder name 
+    // so we can count on that as our path separator
+
+    let cleanFolderName = expTask.folders[expTask.currentFolderIndex].name.replace(/[\\:<>*\?\"\|]/g, "_");
+    // use PathUtils.join which will give us an OS proper path
+    let base = expTask.exportContainer.directory;
+    msgsDir = PathUtils.join(base, cleanFolderName);
+    if (expTask.messages.messageContainer) {
+      msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+    }
+    expTask.messages.messageContainerDirectory = msgsDir;
+    console.log(msgsDir)
+    return msgsDir;
   },
 
   _getAttachmentsDirectory: function (expTask, msgName) {
-    let attsDir = PathUtils.join(expTask.exportContainer.directory,
-      expTask.folders[expTask.currentFolderIndex],
-      expTask.messages.messageContainerName, msgName);
-      return attsDir;
+    let attsDir;
+    let msgsDir = expTask.messages.messageContainerDirectory;
+    // switch on structure type
+    switch (expTask.attachments.containerStructure) {
+      case "inMsgDir":
+        attsDir = msgsDir;
+        break;
+      case "perMsgDir":
+        attsDir = PathUtils.join(msgsDir, msgName);
+        break;
+    }
+    return attsDir;
   },
 
   fileToUint8Array: async function (file) {
@@ -98,7 +120,7 @@ export var exportTests = {
   _insertHdrTable: function (expTask, index) {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
-    
+
     //console.log(msgItem)
     let hdrRows = "";
     hdrRows += `<tr><td>Subject:</td><td>${msgItem.subject}</td></tr>`;
@@ -108,10 +130,10 @@ export var exportTests = {
 
     let tbl1 = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
     //console.log(tbl1)
-    
+
     //return msgData.msgBody.replace(/(<body.*>)/i, `$1${tbl1}`);
     //return msgData.msgBody.replace(/(<BODY>)/i, `$1${tbl1}`);
-    let rpl = "$1 " + tbl1.replace(/\$/,"$$$$");
+    let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
     //console.log(rpl)
     return msgData.msgBody.replace(/(<BODY>)/i, rpl);
 
@@ -120,172 +142,172 @@ export var exportTests = {
   saveAsPDF: async function (expTask, idx, context, pageSettings = {}) {
 
     let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
-      let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-		let filePath = expTask.exportContainer.directory;
+    let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+    let filePath = expTask.exportContainer.directory;
 
     console.log(msgHdr)
     console.log(msgUri)
 
     let m = await this.getRawMessage(msgUri, true)
     console.log(m)
-    
-		let psService = Cc[
-			"@mozilla.org/gfx/printsettings-service;1"
-		].getService(Ci.nsIPrintSettingsService);
 
-		// pdf changes for 102
-		// newPrintSettings => createNewPrintSettings()
-		// printSetting.printToFile deprecated in 102, not needed in 91
-		let printSettings;
-		if (psService.newPrintSettings) {
-			printSettings = psService.newPrintSettings;
-		} else {
-			printSettings = psService.createNewPrintSettings();
-		}
+    let psService = Cc[
+      "@mozilla.org/gfx/printsettings-service;1"
+    ].getService(Ci.nsIPrintSettingsService);
 
-		printSettings.printerName = "Mozilla_Save_to_PDF";
-		psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+    // pdf changes for 102
+    // newPrintSettings => createNewPrintSettings()
+    // printSetting.printToFile deprecated in 102, not needed in 91
+    let printSettings;
+    if (psService.newPrintSettings) {
+      printSettings = psService.newPrintSettings;
+    } else {
+      printSettings = psService.createNewPrintSettings();
+    }
+
+    printSettings.printerName = "Mozilla_Save_to_PDF";
+    psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
 
 
-		printSettings.isInitializedFromPrinter = true;
-		printSettings.isInitializedFromPrefs = true;
+    printSettings.isInitializedFromPrinter = true;
+    printSettings.isInitializedFromPrefs = true;
 
-		printSettings.printSilent = true;
-		printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+    printSettings.printSilent = true;
+    printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
 
-		// print setup for PDF printing changed somewhere around 102.3
-		// also on 91.x The change first appeared in Linux
-		// the printToFile gets deprecated and replaced by
-		// outputDestination
-		// As an XPCOM object you must check property existence
-		// Addresses #351
+    // print setup for PDF printing changed somewhere around 102.3
+    // also on 91.x The change first appeared in Linux
+    // the printToFile gets deprecated and replaced by
+    // outputDestination
+    // As an XPCOM object you must check property existence
+    // Addresses #351
 
-		if (printSettings.outputDestination !== undefined) {
-			printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
-		}
+    if (printSettings.outputDestination !== undefined) {
+      printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+    }
 
-		if (printSettings.printToFile !== undefined) {
-			printSettings.printToFile = true;
-		}
+    if (printSettings.printToFile !== undefined) {
+      printSettings.printToFile = true;
+    }
 
-		if (pageSettings.paperSizeUnit)
-			printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
+    if (pageSettings.paperSizeUnit)
+      printSettings.paperSizeUnit = pageSettings.paperSizeUnit;
 
-		if (pageSettings.paperWidth)
-			printSettings.paperWidth = pageSettings.paperWidth;
+    if (pageSettings.paperWidth)
+      printSettings.paperWidth = pageSettings.paperWidth;
 
-		if (pageSettings.paperHeight)
-			printSettings.paperHeight = pageSettings.paperHeight;
+    if (pageSettings.paperHeight)
+      printSettings.paperHeight = pageSettings.paperHeight;
 
-		if (pageSettings.orientation)
-			printSettings.orientation = pageSettings.orientation;
-		if (pageSettings.scaling)
-			printSettings.scaling = pageSettings.scaling;
-		if (pageSettings.shrinkToFit)
-			printSettings.shrinkToFit = pageSettings.shrinkToFit;
-		if (pageSettings.showBackgroundColors)
-			printSettings.printBGColors = pageSettings.showBackgroundColors;
-		if (pageSettings.showBackgroundImages)
-			printSettings.printBGImages = pageSettings.showBackgroundImages;
-		if (pageSettings.edgeLeft)
-			printSettings.edgeLeft = pageSettings.edgeLeft;
-		if (pageSettings.edgeRight)
-			printSettings.edgeRight = pageSettings.edgeRight;
-		if (pageSettings.edgeTop)
-			printSettings.edgeTop = pageSettings.edgeTop;
-		if (pageSettings.edgeBottom)
-			printSettings.edgeBottom = pageSettings.edgeBottom;
-		if (pageSettings.marginLeft)
-			printSettings.marginLeft = pageSettings.marginLeft;
-		if (pageSettings.marginRight)
-			printSettings.marginRight = pageSettings.marginRight;
-		if (pageSettings.marginTop)
-			printSettings.marginTop = pageSettings.marginTop;
-		if (pageSettings.marginBottom)
-			printSettings.marginBottom = pageSettings.marginBottom;
-		if (pageSettings.headerLeft)
-			printSettings.headerStrLeft = pageSettings.headerLeft;
-		if (pageSettings.headerCenter)
-			printSettings.headerStrCenter = pageSettings.headerCenter;
-		if (pageSettings.headerRight)
-			printSettings.headerStrRight = pageSettings.headerRight;
-		if (pageSettings.footerLeft)
-			printSettings.footerStrLeft = pageSettings.footerLeft;
-		if (pageSettings.footerCenter)
-			printSettings.footerStrCenter = pageSettings.footerCenter;
-		if (pageSettings.footerRight)
-			printSettings.footerStrRight = pageSettings.footerRight;
+    if (pageSettings.orientation)
+      printSettings.orientation = pageSettings.orientation;
+    if (pageSettings.scaling)
+      printSettings.scaling = pageSettings.scaling;
+    if (pageSettings.shrinkToFit)
+      printSettings.shrinkToFit = pageSettings.shrinkToFit;
+    if (pageSettings.showBackgroundColors)
+      printSettings.printBGColors = pageSettings.showBackgroundColors;
+    if (pageSettings.showBackgroundImages)
+      printSettings.printBGImages = pageSettings.showBackgroundImages;
+    if (pageSettings.edgeLeft)
+      printSettings.edgeLeft = pageSettings.edgeLeft;
+    if (pageSettings.edgeRight)
+      printSettings.edgeRight = pageSettings.edgeRight;
+    if (pageSettings.edgeTop)
+      printSettings.edgeTop = pageSettings.edgeTop;
+    if (pageSettings.edgeBottom)
+      printSettings.edgeBottom = pageSettings.edgeBottom;
+    if (pageSettings.marginLeft)
+      printSettings.marginLeft = pageSettings.marginLeft;
+    if (pageSettings.marginRight)
+      printSettings.marginRight = pageSettings.marginRight;
+    if (pageSettings.marginTop)
+      printSettings.marginTop = pageSettings.marginTop;
+    if (pageSettings.marginBottom)
+      printSettings.marginBottom = pageSettings.marginBottom;
+    if (pageSettings.headerLeft)
+      printSettings.headerStrLeft = pageSettings.headerLeft;
+    if (pageSettings.headerCenter)
+      printSettings.headerStrCenter = pageSettings.headerCenter;
+    if (pageSettings.headerRight)
+      printSettings.headerStrRight = pageSettings.headerRight;
+    if (pageSettings.footerLeft)
+      printSettings.footerStrLeft = pageSettings.footerLeft;
+    if (pageSettings.footerCenter)
+      printSettings.footerStrCenter = pageSettings.footerCenter;
+    if (pageSettings.footerRight)
+      printSettings.footerStrRight = pageSettings.footerRight;
 
     /*
-		let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
-		if (customDateFormat !== "") {
-			let customDate = strftime.strftime(customDateFormat, new Date());
-			printSettings.headerStrRight = printSettings.headerStrRight.replace("%d", customDate);
-			printSettings.headerStrLeft = printSettings.headerStrLeft.replace("%d", customDate);
-			printSettings.headerStrCenter = printSettings.headerStrCenter.replace("%d", customDate);
-			printSettings.footerStrRight = printSettings.footerStrRight.replace("%d", customDate);
-			printSettings.footerStrLeft = printSettings.footerStrLeft.replace("%d", customDate);
-			printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
-		}
+    let customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+    if (customDateFormat !== "") {
+      let customDate = strftime.strftime(customDateFormat, new Date());
+      printSettings.headerStrRight = printSettings.headerStrRight.replace("%d", customDate);
+      printSettings.headerStrLeft = printSettings.headerStrLeft.replace("%d", customDate);
+      printSettings.headerStrCenter = printSettings.headerStrCenter.replace("%d", customDate);
+      printSettings.footerStrRight = printSettings.footerStrRight.replace("%d", customDate);
+      printSettings.footerStrLeft = printSettings.footerStrLeft.replace("%d", customDate);
+      printSettings.footerStrCenter = printSettings.footerStrCenter.replace("%d", customDate);
+    }
 */
-		// console.log("IETNG: Save as PDF: ", new Date());
-		// console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
-		// We can simply by using PrintUtils.loadPrintBrowser eliminating
-		// the fakeBrowser NB: if the printBrowser does not exist we
-		// can create with PrintUtils as well
+    // console.log("IETNG: Save as PDF: ", new Date());
+    // console.log("IETNG: message count: ", IETprintPDFmain.uris.length);
+    // We can simply by using PrintUtils.loadPrintBrowser eliminating
+    // the fakeBrowser NB: if the printBrowser does not exist we
+    // can create with PrintUtils as well
 
 
-		var errCounter = 0;
-		let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
+    var errCounter = 0;
+    let mainWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-			let uri = msgUri;
+    let uri = msgUri;
 
-			try {
-				var messageService = MailServices.messageServiceFromURI(uri);
-				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
+    try {
+      var messageService = MailServices.messageServiceFromURI(uri);
+      let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
-				let fileName = expTask.msgList[idx].subject + ".pdf";
-        fileName = fileName.replace(/[\/\\:<>*\?\"\|]/g, "_");
-        console.log(fileName)
-        console.log(expTask.msgList[idx])
-        let uniqueFileName;
-				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
-				printSettings.toFileName = uniqueFileName;
-        console.log(uri)
+      let fileName = expTask.msgList[idx].subject + ".pdf";
+      fileName = fileName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+      console.log(fileName)
+      console.log(expTask.msgList[idx])
+      let uniqueFileName;
+      uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
+      printSettings.toFileName = uniqueFileName;
+      console.log(uri)
 
-				await mainWindow.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
-        console.log(mainWindow.PrintUtils.printBrowser.contentDocument)
-        let doc = mainWindow.PrintUtils.printBrowser.contentDocument;
+      await mainWindow.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+      console.log(mainWindow.PrintUtils.printBrowser.contentDocument)
+      let doc = mainWindow.PrintUtils.printBrowser.contentDocument;
 
-    		var table = doc.querySelector(".moz-header-part1");
-        table.style.border = "thick solid black"
-        console.log(doc)
+      var table = doc.querySelector(".moz-header-part1");
+      table.style.border = "thick solid black"
+      console.log(doc)
 
-				await mainWindow.PrintUtils.printBrowser.browsingContext.print(printSettings);
-				var time = (aMsgHdr.dateInSeconds) * 1000;
+      await mainWindow.PrintUtils.printBrowser.browsingContext.print(printSettings);
+      var time = (aMsgHdr.dateInSeconds) * 1000;
 
-				//if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
-//					await IOUtils.setModificationTime(uniqueFileName, time);
-	//			}
-				//IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
-				// When we got here, everything worked, and reset error counter.
-				errCounter = 0;
-			} catch (ex) {
-				// Something went wrong, wait a bit and try again.
-				// We did not inc i, so we will retry the same file.
-				//
-				errCounter++;
-				console.log(`Re-trying to print message ${idx + 1} (${uri}).`, ex);
-				if (errCounter > 3) {
-					console.log(`We retried ${errCounter} times to print message ${idx + 1} and abort.`);
-				} else {
-					// dec idx so next loop repeats msg that erred
-					idxdx--;
-				}
-				await new Promise(r => mainWindow.setTimeout(r, 150));
-			}
-		
-	},
+      //if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+      //					await IOUtils.setModificationTime(uniqueFileName, time);
+      //			}
+      //IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+      // When we got here, everything worked, and reset error counter.
+      errCounter = 0;
+    } catch (ex) {
+      // Something went wrong, wait a bit and try again.
+      // We did not inc i, so we will retry the same file.
+      //
+      errCounter++;
+      console.log(`Re-trying to print message ${idx + 1} (${uri}).`, ex);
+      if (errCounter > 3) {
+        console.log(`We retried ${errCounter} times to print message ${idx + 1} and abort.`);
+      } else {
+        // dec idx so next loop repeats msg that erred
+        idxdx--;
+      }
+      await new Promise(r => mainWindow.setTimeout(r, 150));
+    }
+
+  },
 
   exportFolderEML_WL: async function (params) {
 

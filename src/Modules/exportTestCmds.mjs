@@ -43,8 +43,8 @@ var baseExpTask = {
   },
   attachments: {
     save: "none",
-    containerType: "perMsg",
-    containerNamePattern: "$subject}-Atts",
+    containerStructure: "perMsgDir",
+    containerNamePattern: "${subject}-Atts",
   },
   getMsg: {
     method: "self._getRawMessage",
@@ -407,9 +407,9 @@ async function _build_EML_expTask(expTask, ctxEvent, params) {
   expTask.msgNames.extension = "eml";
   expTask.attachments.save = "none";
 
-  expTask.currentFolderPath = 
-    expTask.currentFolderPath.slice(1).replaceAll("/","\\")
-  console.log(expTask.currentFolderPath)
+  //expTask.currentFolderPath = 
+    //expTask.currentFolderPath.slice(1).replaceAll("/","\\")
+  console.log(expTask)
   return expTask;
 
 }

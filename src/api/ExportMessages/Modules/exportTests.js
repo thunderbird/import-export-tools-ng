@@ -3,7 +3,12 @@
 var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 console.log("es6 exportMessages")
 
+var os = Services.appinfo.OS.toLowerCase();
+var osPathSeparator = os.includes("win")
+  ? "\\"
+  : "/";
 
+console.log(osPathSeparator)
 var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 
 export var exportTests = {
@@ -27,7 +32,6 @@ export var exportTests = {
       if (name == "...") {
         name = "NoKey"
       }
-      console.log(name, name.length)
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
       for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
@@ -38,9 +42,19 @@ export var exportTests = {
             partIdName = partIdName.replaceAll(/\./g, "\\.");
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
             let unqFilename = PathUtils.filename(unqName);
-            //console.log(name, unqFilename)
+            let currentDir = "." + osPathSeparator;
+            let relUnqPartPath = currentDir;
+            if (expTask.attachments.containerStructure == "perMsgDir") {
+              relUnqPartPath = relUnqPartPath
+                + PathUtils.split(unqName)[PathUtils.split(unqName).length - 2]
+                + osPathSeparator + unqFilename;
+            } else {
+              relUnqPartPath = relUnqPartPath + unqFilename;
+            }
+            console.log(relUnqPartPath)
+            // need to
             expTask.msgList[index].msgData.msgBody =
-              expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${unqFilename}"`);
+              expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
             writePromises.push(IOUtils.write(unqName, inlineBody));
           }));
 
@@ -52,7 +66,7 @@ export var exportTests = {
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
 
-      expTask.msgList[index].msgData.msgBody = this._insertHdrTable(expTask, index);
+      expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
 
       if (false) {
         await this.saveAsPDF(expTask, index, context);
@@ -117,6 +131,31 @@ export var exportTests = {
     });
   },
 
+  _preprocessBody: async function (expTask, index) {
+    // so we need to do different processing 
+    // depending upon both expType and our body type
+    // critical to break things up and not have 
+    // spaghetti conditionals
+
+    let processedMsgBody;
+
+    switch (expTask.expType) {
+      case "html":
+        processedMsgBody = await this._preprocessHForHTML(expTask);
+      break;
+    }
+    return processedMsgBody;
+  },
+
+  _preprocessHForHTML: async function (expTask, index) {
+    // we process depending upon body content type
+
+    let msgData = expTask.msgList[index].msgData;
+    let msgItem = expTask.msgList[index];
+
+    if ()
+  },
+
   _insertHdrTable: function (expTask, index) {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
@@ -128,15 +167,42 @@ export var exportTests = {
     hdrRows += `<tr><td>To:</td><td>${msgItem.recipients}</td></tr>`;
     hdrRows += `<tr><td>Date:</td><td>${msgItem.date}</td></tr>`;
 
-    let tbl1 = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
+    let hdrTable = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
     //console.log(tbl1)
 
     //return msgData.msgBody.replace(/(<body.*>)/i, `$1${tbl1}`);
     //return msgData.msgBody.replace(/(<BODY>)/i, `$1${tbl1}`);
-    let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
-    //console.log(rpl)
-    return msgData.msgBody.replace(/(<BODY>)/i, rpl);
+    //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
+    console.log(hdrTable, msgData)
 
+    if (msgData.msgBodyType == "text/plain") {
+      return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgData.msgBody}</body>\n</html>\n`;
+    }
+    return msgData.msgBody.replace(/(<BODY>)/i, hdrTable);
+  },
+
+  _encodeSpecialTextToHTML: function (str) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+    };
+    return str.replace(/[&<>"]/g, function(m) { return map[m]; });
+},
+
+  _convertTextToHTML: function (plaintext) {
+    // we can do a lot here, but will start with the basics
+    // note we only convert the text, header, styling and html 
+    // wrapper is done later
+
+    let htmlConvertedText;
+    // first encode special characters
+    htmlConvertedText = this._encodeSpecialTextToHTML(plaintext);
+    htmlConvertedText = htmlConvertedText.replace(/\r?\n/g, "<br>\n");
+
+    return htmlConvertedText;
   },
 
   saveAsPDF: async function (expTask, idx, context, pageSettings = {}) {

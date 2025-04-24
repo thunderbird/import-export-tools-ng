@@ -22,7 +22,7 @@ var baseExpTask = {
     custom: "%Y%m%d%H%M",
   },
   messages: {
-    messageContainer: true,
+    messageContainer: false,
     create: true,
     messageContainerName: "messages",
     messageContainerDirectory: "",
@@ -43,7 +43,7 @@ var baseExpTask = {
   },
   attachments: {
     save: "none",
-    containerStructure: "perMsgDir",
+    containerStructure: "inMsgDir",
     containerNamePattern: "${subject}-Atts",
   },
   getMsg: {
@@ -219,7 +219,7 @@ async function _getprocessedMsg(msgId) {
     console.log(fm)
     if (fm.decryptionStatus == "fail") {
     console.log("dfail")
-      resolve({ msgBody: "decryption failed", inlineParts: [], attachmentParts: [] });
+      resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
     console.log("dfail2")
       return;
     }
@@ -299,9 +299,9 @@ async function _getprocessedMsg(msgId) {
 */
 
     if (htmlParts.length) {
-      resolve({ msgBody: htmlParts[0].b, inlineParts: inlineParts, attachmentParts: attachmentParts });
+      resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
     } else {
-      resolve({ msgBody: textParts[0].b, inlineParts: inlineParts, attachmentParts });
+      resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
     }
   });
 

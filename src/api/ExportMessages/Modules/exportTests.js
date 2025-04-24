@@ -153,7 +153,12 @@ export var exportTests = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    if ()
+    if (msgData.msgBodyType == "text/html") {
+     return this._insertHdrTable(expTask, index); 
+    }
+    // we have text/plain
+    msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
+
   },
 
   _insertHdrTable: function (expTask, index) {

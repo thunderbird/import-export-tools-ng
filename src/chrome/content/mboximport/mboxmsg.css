@@ -26,7 +26,7 @@
   box-shadow: 2px 2px 2px;
   border-top: 0.4px solid black;
   border-left: 0.4px solid black;
-  max-width: calc(100vw/2); /* flexible */
+  /* max-width: calc(100vw/2); flexible */
 }
 
 

@@ -108,8 +108,10 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       expTask.generalConfig.exportDirectory =
         //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
         "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
-      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), resultObj.folder);
-
+      
+        let str = "01234567890123456789012345678901234567890123456789012345678901234567890123456789"
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), str);
+      return;
       // create export container
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       //console.log(expTask);

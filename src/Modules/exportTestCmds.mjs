@@ -102,7 +102,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       let st = new Date();
 
-      //console.log(new Date());
+      console.log(new Date());
 
       //expTask.generalConfig.exportDirectory = resultObj.folder;
       expTask.generalConfig.exportDirectory =
@@ -117,6 +117,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       //expTask.folders[0] = ctxEvent.selectedFolder.path;
       //console.log(expTask.folders[0])
       await msgIterateBatch(expTask);
+      console.log(new Date());
 
       times[index] = new Date() - st;
       total += times[index];
@@ -167,7 +168,9 @@ async function msgIterateBatch(expTask) {
       expTask.msgList.push(msgListPage.messages[index]);
       let msgId = msgListPage.messages[index].id;
       //getRawPromises.push(messenger.messages.getRaw(msgId));
-      getRawPromises.push(_getprocessedMsg(msgId));
+      getRawPromises.push(messenger.messages.getFull(msgId));
+
+      //getRawPromises.push(_getprocessedMsg(msgId));
 
       totalMsgsData += msgListPage.messages[index].size;
 
@@ -190,6 +193,7 @@ async function msgIterateBatch(expTask) {
     if (expTask.msgList) {
       if (writeMsgs) {
         let getRarSettledPromises = await Promise.allSettled(getRawPromises);
+        console.log(new Date());
 
         for (let index = 0; index < getRarSettledPromises.length; index++) {
           expTask.msgList[index].msgData = getRarSettledPromises[index].value;
@@ -205,6 +209,8 @@ async function msgIterateBatch(expTask) {
 
   if (writeMsgs) {
     await Promise.allSettled(writePromises);
+    console.log(new Date());
+
   }
 
 }

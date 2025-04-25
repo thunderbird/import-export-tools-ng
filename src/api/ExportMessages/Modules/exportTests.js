@@ -25,7 +25,7 @@ export var exportTests = {
 
     for (let index = 0; index < msgListLen; index++) {
 
-      console.log(expTask.msgList[index])
+      //console.log(expTask.msgList[index])
       let subject = expTask.msgList[index].subject.slice(0, 150);
       let name = `${subject}`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
@@ -141,7 +141,7 @@ export var exportTests = {
 
     switch (expTask.expType) {
       case "html":
-        processedMsgBody = await this._preprocessHForHTML(expTask);
+        processedMsgBody = await this._preprocessHForHTML(expTask, index);
       break;
     }
     return processedMsgBody;
@@ -154,14 +154,14 @@ export var exportTests = {
     let msgItem = expTask.msgList[index];
 
     if (msgData.msgBodyType == "text/html") {
-     return this._insertHdrTable(expTask, index); 
+     return this._insertHdrTable(expTask, index, msgData.msgBody); 
     }
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
-
+    return this._insertHdrTable(expTask, index, msgData.msgBody); 
   },
 
-  _insertHdrTable: function (expTask, index) {
+  _insertHdrTable: function (expTask, index, msgBody) {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
@@ -175,15 +175,12 @@ export var exportTests = {
     let hdrTable = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
     //console.log(tbl1)
 
-    //return msgData.msgBody.replace(/(<body.*>)/i, `$1${tbl1}`);
-    //return msgData.msgBody.replace(/(<BODY>)/i, `$1${tbl1}`);
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
-    console.log(hdrTable, msgData)
 
     if (msgData.msgBodyType == "text/plain") {
-      return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgData.msgBody}</body>\n</html>\n`;
+      return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
     }
-    return msgData.msgBody.replace(/(<BODY>)/i, hdrTable);
+    return msgBody.replace(/(<BODY>)/i, hdrTable);
   },
 
   _encodeSpecialTextToHTML: function (str) {

@@ -360,7 +360,9 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	//console.log("exportAllMsgs", type, params);
+	console.log("exportAllMsgs", type, params);
+
+	let st = new Date();
 
 	var exportFolderPath;
 	var question;
@@ -464,6 +466,8 @@ async function exportAllMsgs(type, params) {
 		Services.prompt.alert(window, errTitle, errMsg);
 		return { status: "error", errMsg: ex };
 	}
+
+	console.log(new Date() - st);
 
 	return { status: "ok", exportFolderPath: exportFolderPath };
 }

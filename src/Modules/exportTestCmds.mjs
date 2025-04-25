@@ -115,8 +115,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       //console.log(expTask);
       expTask.selectedFolder = ctxEvent.selectedFolder;
       //expTask.folders[0] = ctxEvent.selectedFolder.path;
-      console.log(expTask.folders[0])
-      //await msgIterateBase(expTask);
+      //console.log(expTask.folders[0])
       await msgIterateBatch(expTask);
 
       times[index] = new Date() - st;
@@ -216,7 +215,7 @@ async function _getprocessedMsg(msgId) {
     //console.log("id1", msgId)
 
     let fm = await browser.messages.getFull(msgId);
-    console.log(fm)
+    //console.log(fm)
     if (fm.decryptionStatus == "fail") {
       resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
       return;
@@ -385,9 +384,7 @@ async function _build_EML_expTask(expTask, ctxEvent, params) {
   expTask.msgNames.extension = "eml";
   expTask.attachments.save = "none";
 
-  //expTask.currentFolderPath = 
-    //expTask.currentFolderPath.slice(1).replaceAll("/","\\")
-  console.log(expTask)
+  //console.log(expTask)
   return expTask;
 
 }

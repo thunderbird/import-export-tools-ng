@@ -17,8 +17,6 @@ export var exportTests = {
 
   exportMessagesES6: async function (expTask, context) {
     var msgsDir = this._getMsgsDirectory(expTask);
-    console.log(msgsDir)
-
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var updatedInlineFilenames = [];
@@ -51,13 +49,10 @@ export var exportTests = {
             } else {
               relUnqPartPath = relUnqPartPath + unqFilename;
             }
-            console.log(relUnqPartPath)
-            // need to
             expTask.msgList[index].msgData.msgBody =
               expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
             writePromises.push(IOUtils.write(unqName, inlineBody));
           }));
-
       }
 
       for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
@@ -79,7 +74,6 @@ export var exportTests = {
   },
 
   _getMsgsDirectory: function (expTask) {
-    console.log(expTask.currentFolderPath)
 
     let msgsDir;
     // we have to sanitize the path for file system export
@@ -94,7 +88,6 @@ export var exportTests = {
       msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
     }
     expTask.messages.messageContainerDirectory = msgsDir;
-    console.log(msgsDir)
     return msgsDir;
   },
 

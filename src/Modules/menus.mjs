@@ -18,7 +18,7 @@
 // Interface via notifytools to expMenuDispatcher
 
 import * as miscCmds from "/Modules/miscCmds.mjs";
-import * as exportCmds from "/Modules/exportCmds.mjs";
+import * as exportCmds from "/Modules/exportTestCmds.mjs";
 
 
 
@@ -668,7 +668,7 @@ var folderCtxMenuSet = [
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
-      dispatchFunction: exportCmds.exportFolderTest,
+      dispatchFunction: exportCmds.exportFolders,
       functionParams: { expType: "eml", saveAttatchments: true, index: false }
     }
   },
@@ -858,6 +858,7 @@ async function createMenus(menuType, menuArray, options) {
 }
 
 async function menuFunctionDispatcher(ctxEvent, tab) {
+  try {
   let menu;
   if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
     menu = folderCtxMenuSet;
@@ -867,7 +868,11 @@ async function menuFunctionDispatcher(ctxEvent, tab) {
     menu = msgDisplayCtxMenuSet;
   }
   let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
-  menuOptions.dispatchFunction(ctxEvent, tab, menuOptions.functionParams)
+  menuOptions.dispatchFunction(ctxEvent, tab, menuOptions.functionParams);
+} catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("error.msg"), ex);
+
+}
 }
 
 function getMenuFunctionOptions(menu, menuId) {

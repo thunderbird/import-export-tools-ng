@@ -1,63 +1,8 @@
 // export prototype
 
+import {createExportTask } from "./importExportTasks.mjs";
+import * as prefs from "./prefCmds.mjs";
 import { Ci } from "/Modules/CiConstants.js";
-
-var baseExpTask = {
-  expType: null,
-  folders: [],
-  currentFolderIndex: 0,
-  recursive: false,
-  expStatus: null,
-  generalConfig: {
-    exportDirectoryType: "prompt",
-    exportDirectory: "",
-  },
-  exportContainer: {
-    create: false,
-    namePattern: "${folder}-$(date}",
-    directory: "",
-  },
-  dateFormat: {
-    type: 0,
-    custom: "%Y%m%d%H%M",
-  },
-  messages: {
-    messageContainer: false,
-    create: true,
-    messageContainerName: "messages",
-    messageContainerDirectory: "",
-  },
-  msgNames: {
-    namePatternType: "default",
-    namePatternDefault: "${subject}-${date}-${index}",
-    namePatternCustom: "${subject}-${date}-${index}",
-    extension: "",
-    maxLength: 254,
-    nameComponents: {
-      subjectMaxLen: 50,
-      senderNameMaxLen: 50,
-      recipientNameMaxLen: 50,
-    },
-    filters: [],
-    substitutions: [],
-  },
-  attachments: {
-    save: "none",
-    containerStructure: "inMsgDir",
-    containerNamePattern: "${subject}-Atts",
-  },
-  getMsg: {
-    method: "self._getRawMessage",
-    convertData: false,
-  },
-  postProcessing: [],
-  msgSave: {
-    type: "file",
-    encoding: "UTF-8",
-    date: "saveDate",
-  },
-  msgList: {},
-};
 
 
 export async function exportFolders(ctxEvent, tab, functionParams) {
@@ -74,23 +19,27 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     // we do all main logic, folder and message iteration
     // and UI interactions in wext side
-    // we avoid msg transfer for major performance issues
 
-    //params.ctxInfo = ctxInfo;
-    var expTask = await _buildExportTask(ctxEvent, functionParams);
+    var expTask = await createExportTask(functionParams, ctxEvent);
 
     // warnings
 
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
 
     // get export directory
-    /*
-        let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
-    
-        if (resultObj.result != Ci.nsIFilePicker.returnOK) {
-          return;
-        }
-    */
+
+    let useFolderExportDir = await prefs.getPref("exportEML.use_dir");
+    let folderExportDir = await prefs.getPref("exportEML.dir");
+    console.log(folderExportDir)
+    if (useFolderExportDir && folderExportDir != "") {
+      expTask.generalConfig.exportDirectory = folderExportDir;
+    } else {
+      let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
+      if (resultObj.result != Ci.nsIFilePicker.returnOK) {
+        return;
+      }
+      expTask.generalConfig.exportDirectory = resultObj.folder;
+    }
 
     var runs = 1;
     var total = 0;
@@ -104,20 +53,13 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       console.log(new Date());
 
-      //expTask.generalConfig.exportDirectory = resultObj.folder;
-      expTask.generalConfig.exportDirectory =
-        //"C:\\Dev\\Thunderbird Exts\\import-export-tools-ng\\scratch\\Export 128";
-        "C:\\Dev\\Thunderbird\\Extensions XUL\\import-export-tools-ng\\scratch\\export2";
-      
-        let str = "01234567890123456789012345678901234567890123456789012345678901234567890123456789"
-        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), str);
-      return;
-      // create export container
+
+//      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), src);
+
+// create export container
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
-      //console.log(expTask);
       expTask.selectedFolder = ctxEvent.selectedFolder;
-      //expTask.folders[0] = ctxEvent.selectedFolder.path;
-      //console.log(expTask.folders[0])
+
       await msgIterateBatch(expTask);
       console.log(new Date());
 
@@ -170,9 +112,9 @@ async function msgIterateBatch(expTask) {
       expTask.msgList.push(msgListPage.messages[index]);
       let msgId = msgListPage.messages[index].id;
       //getRawPromises.push(messenger.messages.getRaw(msgId));
-      getRawPromises.push(messenger.messages.getFull(msgId));
+      //getRawPromises.push(messenger.messages.getFull(msgId));
 
-      //getRawPromises.push(_getprocessedMsg(msgId));
+      getRawPromises.push(_getprocessedMsg(msgId));
 
       totalMsgsData += msgListPage.messages[index].size;
 
@@ -369,33 +311,6 @@ async function msgIterateBase(expTask) {
 
 }
 
-async function _buildExportTask(ctxEvent, params) {
-  var expTask = baseExpTask;
-
-  switch (params.expType) {
-    case "eml":
-      expTask = await _build_EML_expTask(expTask, ctxEvent, params);
-      break;
-
-  }
-  return expTask;
-}
-
-async function _build_EML_expTask(expTask, ctxEvent, params) {
-  // hack setup
-  expTask.expType = "html";
-  expTask.folders = [ctxEvent.selectedFolder];
-  expTask.currentFolderPath = expTask.folders[0].path;
-  expTask.generalConfig.exportDirectory = "C:\\Dev\\test";
-  expTask.exportContainer.create = true;
-  expTask.dateFormat.type = 1;
-  expTask.msgNames.extension = "eml";
-  expTask.attachments.save = "none";
-
-  //console.log(expTask)
-  return expTask;
-
-}
 
 
 export async function test(ctxInfo, params) {

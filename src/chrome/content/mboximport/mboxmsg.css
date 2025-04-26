@@ -10,22 +10,26 @@
   left: 0px;
   width: 100%;
   height: 100%;
-  z-index: 1010; /* may be unnecessary */
+  z-index: 1010;
+  /* may be unnecessary */
 }
-#ietng-prompt-div
-{
+
+#ietng-prompt-div {
   position: absolute;
   top: calc(25vh);
-  left: calc(25vh);
-  z-index: 1010; /* may be unnecessary */
-  background: #e0e0e0;
-  
+  left: calc(1vw);
+  z-index: 1010;
+  /* may be unnecessary */
+  background: #f0f0f0;
+
   display: flex;
   flex-direction: column;
   /* may not work because html:div ?? */
   box-shadow: 2px 2px 2px;
   border-top: 0.4px solid black;
   border-left: 0.4px solid black;
+  /* justify-content: center; */
+
   /* max-width: calc(100vw/2); flexible */
 }
 
@@ -33,7 +37,8 @@
 #ietng-prompt-divheader {
   align-content: center;
   background: var(--color-blue-40);
-  cursor: move;  /* pointer ? */
+  cursor: move;
+  /* pointer ? */
   height: 2em;
   padding-inline: 0.6em;
   font-size: 13px;
@@ -45,7 +50,7 @@
   flex-direction: row;
   padding-block: 1em;
   gap: 0.4em;
-  flex: 1 0; 
+  flex: 1 0;
 }
 
 #ietng-imgdiv {
@@ -53,24 +58,25 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;
-  
-  z-index: 1040; /* ?? */
+
+  z-index: 1040;
+  /* ?? */
   flex-shrink: 0;
   width: var(--ietng-iconsize);
 }
 
 #ietng-textdiv {
-   align-content: center;
-   flex-grow: 1;
-   font-size: 12.5px;
-   padding-inline-end: 1em;
-   min-height: var(--ietng-iconsize);
-   white-space: pre;
+  align-content: center;
+  flex-grow: 1;
+  font-size: 12.5px;
+  padding-inline-end: 1em;
+  min-height: var(--ietng-iconsize);
+  white-space: pre;
 }
 
 #ietng-buttonsdiv {
   align-content: center;
-  background: #e0e0e0;
+  background: #f0f0f0;
   height: 3em;
   margin-left: auto;
   padding: 4px;

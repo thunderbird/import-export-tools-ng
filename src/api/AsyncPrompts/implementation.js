@@ -95,8 +95,8 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     AsyncPrompts.cancelButton = cancelButton;
     buttonsDiv.appendChild(cancelButton);
 
-    div.style.top = ((top.outerHeight / 2) - 90) + "px";
-    div.style.left = ((top.outerWidth / 2) - 100) + "px";
+    div.style.top = ((top.outerHeight / 2) - 140) + "px";
+    div.style.left = ((top.outerWidth / 2) - (div.offsetWidth / 2)) + "px";
     this._dragElement(div);
   }
 

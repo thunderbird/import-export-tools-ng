@@ -96,165 +96,187 @@ async function msgIterateBatch(expTask) {
   var writePromises = [];
   var writeMsgs = true;
 
-  do {
-    if (!msgListPage) {
-      msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-    } else {
-      msgListPage = await messenger.messages.continueList(msgListPage.id);
-    }
-    const messagesLen = msgListPage.messages.length;
-    expTask.msgList = [];
-    var getBodyPromises = [];
-
-    for (let index = 0; index < messagesLen; index++) {
-
-      expTask.msgList.push(msgListPage.messages[index]);
-      let msgId = msgListPage.messages[index].id;
-      //getRawPromises.push(messenger.messages.getRaw(msgId));
-      //getRawPromises.push(messenger.messages.getFull(msgId));
-
-      if (expTask.expType == "eml") {
-        getBodyPromises.push(messenger.messages.getRaw(msgId));
+  try {
+    do {
+      if (!msgListPage) {
+        msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
       } else {
-        console.log(index)
-        getBodyPromises.push(_getprocessedMsg(msgId));
+        msgListPage = await messenger.messages.continueList(msgListPage.id);
       }
+      const messagesLen = msgListPage.messages.length;
+      expTask.msgList = [];
+      var getBodyPromises = [];
 
-      totalMsgsData += msgListPage.messages[index].size;
+      for (let index = 0; index < messagesLen; index++) {
 
-      if (totalMsgsData >= targetMaxMsgData) {
+        expTask.msgList.push(msgListPage.messages[index]);
+        let msgId = msgListPage.messages[index].id;
+        //getRawPromises.push(messenger.messages.getRaw(msgId));
+        //getRawPromises.push(messenger.messages.getFull(msgId));
+
+        if (0 && expTask.expType == "eml") {
+          getBodyPromises.push(messenger.messages.getRaw(msgId));
+        } else {
+          console.log(index)
+          getBodyPromises.push(_getprocessedMsg(expTask, msgId));
+        }
+
+        totalMsgsData += msgListPage.messages[index].size;
+
+        if (totalMsgsData >= targetMaxMsgData) {
+          if (writeMsgs) {
+            let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
+
+            for (let index = 0; index < getBodySettledPromises.length; index++) {
+              if (expTask.expType == "eml") {
+                console.log(getBodySettledPromises[index].value)
+
+                expTask.msgList[index].msgData = {};
+                expTask.msgList[index].msgData.msgBody = getBodySettledPromises[index].value;
+              } else {
+                console.log(getBodySettledPromises[index].value)
+                expTask.msgList[index].msgData = getBodySettledPromises[index].value;
+              }
+              //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
+            }
+            writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
+          }
+
+          totalMsgsData = 0;
+          expTask.msgList = [];
+          getBodyPromises = [];
+        }
+      }
+      if (expTask.msgList) {
         if (writeMsgs) {
           let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
+          console.log(new Date());
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             if (expTask.expType == "eml") {
+              //console.log(getBodySettledPromises[index].value)
+
+              //expTask.msgList[index].msgData = { msgBody: "666" };
+              //expTask.msgList[index].msgData = {};
+              //expTask.msgList[index].msgData = {msgBody: getBodySettledPromises[index].value};
+              //console.log(expTask.msgList[index])
+              expTask.msgList[index].msgData = getBodySettledPromises[index].value;
               console.log(getBodySettledPromises[index].value)
 
-              expTask.msgList[index].msgData = {};
-              expTask.msgList[index].msgData.msgBody = getBodySettledPromises[index].value;
             } else {
               console.log(getBodySettledPromises[index].value)
               expTask.msgList[index].msgData = getBodySettledPromises[index].value;
             }
-            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
+
+            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
           }
+          console.log(expTask)
+
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
-
-        totalMsgsData = 0;
-        expTask.msgList = [];
-        getBodyPromises = [];
       }
+
+      wrtotal += expResult;
+
+    } while (msgListPage.id);
+
+    if (writeMsgs) {
+      await Promise.allSettled(writePromises);
+      console.log(new Date());
     }
-    if (expTask.msgList) {
-      if (writeMsgs) {
-        let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
-        console.log(new Date());
-
-        for (let index = 0; index < getBodySettledPromises.length; index++) {
-          if (expTask.expType == "eml") {
-            //console.log(getBodySettledPromises[index].value)
-
-            expTask.msgList[index].msgData = {msgBody: "666"};
-            //expTask.msgList[index].msgData = {};
-            //expTask.msgList[index].msgData = {msgBody: getBodySettledPromises[index].value};
-            //console.log(expTask.msgList[index])
-
-          } else {
-            console.log(getBodySettledPromises[index].value)
-            expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-          }
-
-          //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
-        }
-            console.log(expTask)
-
-        writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
-      }
-    }
-
-    wrtotal += expResult;
-
-  } while (msgListPage.id);
-
-  if (writeMsgs) {
-    await Promise.allSettled(writePromises);
-    console.log(new Date());
+  } catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
 
   }
-
 }
 
-async function _getprocessedMsg(msgId) {
+async function _getprocessedMsg(expTask, msgId) {
   return new Promise(async (resolve, reject) => {
 
     //console.log("id1", msgId)
 
-    let fm = await browser.messages.getFull(msgId);
-    //console.log(fm)
-    if (fm.decryptionStatus == "fail") {
-      resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
-      return;
-    }
-    let parts = fm.parts;
+    try {
 
-    //console.log(fm)
-    var textParts = [];
-    var htmlParts = [];
-    var inlineParts = [];
-    var attachmentParts = [];
-
-    async function getParts(parts) {
-      //console.log("getParts", parts)
-
-      for (const part of parts) {
-        //console.log(part)
-        // we could have multiple sub parts
-        let contentType = part.contentType;
-        let size = part.size;
-        let body = part?.body;
-
-        if (contentType == "text/html" && body) {
-          htmlParts.push({ ct: part.contentType, b: part.body });
+      if (expTask.expType == "eml") {
+        let rawMsg = await browser.messages.getRaw(msgId);
+        console.log(rawMsg)
+        if (rawMsg.decryptionStatus == "fail") {
+          resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
+          return;
         }
-        if (part.contentType == "text/plain" && body) {
-          //body = body.replaceAll(/\r?\n/g, "<br>\n");
-          textParts.push({ ct: part.contentType, b: body });
-        }
+        resolve({ msgBody: rawMsg, msgBody2: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [] });
+        return;
+      }
+      let fm = await browser.messages.getFull(msgId, { decrypt: false });
+      console.log(fm)
+      if (fm.decryptionStatus == "fail") {
+        resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
+        return;
+      }
+      let parts = fm.parts;
 
-        if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-          //console.log(msgId, part)
-          //console.log(msgId, part.headers["content-disposition"])
-          let cd = part.headers["content-disposition"][0];
-          //console.log(part.headers)
-          if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
-            //console.log("inline", part.headers)
-            //console.log("inline", part.headers["content-id"])
-            let contentId = part.headers["content-id"][0]
+      //console.log(fm)
+      var textParts = [];
+      var htmlParts = [];
+      var inlineParts = [];
+      var attachmentParts = [];
 
-            let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-            //inlineBody = await fileToUint8Array(inlineBody);
-            inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+      async function getParts(parts) {
+        //console.log("getParts", parts)
+
+        for (const part of parts) {
+          //console.log(part)
+          // we could have multiple sub parts
+          let contentType = part.contentType;
+          let size = part.size;
+          let body = part?.body;
+
+          if (contentType == "text/html" && body) {
+            htmlParts.push({ ct: part.contentType, b: part.body });
+          }
+          if (part.contentType == "text/plain" && body) {
+            //body = body.replaceAll(/\r?\n/g, "<br>\n");
+            textParts.push({ ct: part.contentType, b: body });
+          }
+
+          if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
+            //console.log(msgId, part)
+            //console.log(msgId, part.headers["content-disposition"])
+            let cd = part.headers["content-disposition"][0];
+            //console.log(part.headers)
+            if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
+              //console.log("inline", part.headers)
+              //console.log("inline", part.headers["content-id"])
+              let contentId = part.headers["content-id"][0]
+
+              let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+              //inlineBody = await fileToUint8Array(inlineBody);
+              inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+            }
+          }
+
+          if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
+            let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+            attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+          }
+
+          if (part.parts) {
+            await getParts(part.parts)
           }
         }
-
-        if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
-          let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-          attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
-        }
-
-        if (part.parts) {
-          await getParts(part.parts)
-        }
       }
-    }
 
-    await getParts(parts)
+      await getParts(parts)
 
-    if (htmlParts.length) {
-      resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
-    } else {
-      resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
+      if (htmlParts.length) {
+        resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
+      } else {
+        resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
+      }
+
+    } catch (ex) {
+      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+      reject(ex);
     }
   });
 

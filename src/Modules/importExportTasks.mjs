@@ -44,7 +44,7 @@ import * as prefs from "./prefCmds.mjs";
       },
       attachments: {
         save: "none",
-        containerStructure: "inMsgDir",
+        containerStructure: "perMsgDir",
         containerNamePattern: "${subject}-Atts",
       },
       getMsg: {
@@ -81,6 +81,7 @@ export async function createExportTask(params, ctxEvent) {
 
   async function _build_EML_expTask(expTask, params, ctxEvent) {
     // hack setup
+    console.log(params)
     expTask.expType = params.expType;
     expTask.folders = [ctxEvent.selectedFolder];
     expTask.currentFolderPath = expTask.folders[0].path;

@@ -669,7 +669,7 @@ var folderCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: exportCmds.exportFolders,
-      functionParams: { expType: "eml", saveAttatchments: true, index: false }
+      functionParams: { expType: "eml", saveAttachments: "none", index: false }
     }
   },
 

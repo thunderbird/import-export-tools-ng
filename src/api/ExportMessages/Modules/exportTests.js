@@ -32,6 +32,7 @@ export var exportTests = {
       }
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
+      console.log(expTask)
       if (expTask.attachments.save != "none") {
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
           let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);

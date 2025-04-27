@@ -32,7 +32,7 @@ export var exportTests = {
       }
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
-      console.log(expTask)
+      //console.log(expTask)
       if (expTask.attachments.save != "none") {
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
           let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
@@ -63,12 +63,12 @@ export var exportTests = {
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
     }
-    //expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+    expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
 
     if (false) {
       await this.saveAsPDF(expTask, index, context);
     } else {
-      IOUtils.createUniqueFile(msgsDir, name + ".html")
+      IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`)
         .then((name => writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody))));
     }
   }

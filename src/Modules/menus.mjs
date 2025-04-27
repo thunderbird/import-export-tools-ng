@@ -690,6 +690,18 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
+      id: "folderCtxMenu_HTML_newexp",
+      title: "(new) Messages and Attachments",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportFolders,
+      functionParams: { expType: "html", saveAttachments: "all", index: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: folderCtxMenu_Exp_HTMLFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
     },

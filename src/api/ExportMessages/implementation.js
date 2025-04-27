@@ -4,18 +4,18 @@ var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServi
 var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 
 var { ExtensionParent } = ChromeUtils.importESModule(
-	"resource://gre/modules/ExtensionParent.sys.mjs"
+  "resource://gre/modules/ExtensionParent.sys.mjs"
 );
 
 var ietngExtension = ExtensionParent.GlobalManager.getExtension(
-	"ImportExportToolsNG@cleidigh.kokkini.net"
+  "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
 // add Date now to query for debugging, thanks JB
 //dateNow = new Date();
 
 var { exportTests } = ChromeUtils.importESModule(
-	"resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
+  "resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
 );
 
 
@@ -34,7 +34,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     var self = this;
     self.context = context;
-    
+
     return {
       ExportMessages: {
 
@@ -43,7 +43,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           let msgArrayLen = expTask.msgList.length;
           let idx = 0;
           var writePromises = [];
-      
+
           do {
             let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
             let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
@@ -64,7 +64,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
                 onStartRequest() { },
                 async onStopRequest(request, status) {
                   if (Components.isSuccessCode(status)) {
-      
+
                     let subject = expTask.msgList[idx].subject.slice(0, 100);
                     let name = `${subject}.eml`;
                     //console.log(name, msgUriArray[idx].messageKey)
@@ -85,7 +85,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
                   "nsIRequestObserver",
                 ]),
               };
-      
+
               // This is not using aConvertData and therefore works for news:// messages.
               service.streamMessage(
                 msgUri,
@@ -104,6 +104,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         async exportMessagesES6(expTask) {
           //console.log(self.context)
           console.log(new Date());
+          console.log(expTask)
 
           await exportTests.exportMessagesES6(expTask, self.context);
         },

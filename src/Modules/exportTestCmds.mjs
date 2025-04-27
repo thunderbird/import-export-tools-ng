@@ -1,6 +1,6 @@
 // export prototype
 
-import {createExportTask } from "./importExportTasks.mjs";
+import { createExportTask } from "./importExportTasks.mjs";
 import * as prefs from "./prefCmds.mjs";
 import { Ci } from "/Modules/CiConstants.js";
 
@@ -30,7 +30,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     let useFolderExportDir = await prefs.getPref("exportEML.use_dir");
     let folderExportDir = await prefs.getPref("exportEML.dir");
-    console.log(folderExportDir)
     if (useFolderExportDir && folderExportDir != "") {
       expTask.generalConfig.exportDirectory = folderExportDir;
     } else {
@@ -54,9 +53,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       console.log(new Date());
 
 
-//      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), src);
+      //      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), src);
 
-// create export container
+      // create export container
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       expTask.selectedFolder = ctxEvent.selectedFolder;
 
@@ -105,7 +104,7 @@ async function msgIterateBatch(expTask) {
     }
     const messagesLen = msgListPage.messages.length;
     expTask.msgList = [];
-    var getRawPromises = [];
+    var getBodyPromises = [];
 
     for (let index = 0; index < messagesLen; index++) {
 
@@ -114,16 +113,29 @@ async function msgIterateBatch(expTask) {
       //getRawPromises.push(messenger.messages.getRaw(msgId));
       //getRawPromises.push(messenger.messages.getFull(msgId));
 
-      getRawPromises.push(_getprocessedMsg(msgId));
+      if (expTask.expType == "eml") {
+        getBodyPromises.push(messenger.messages.getRaw(msgId));
+      } else {
+        console.log(index)
+        getBodyPromises.push(_getprocessedMsg(msgId));
+      }
 
       totalMsgsData += msgListPage.messages[index].size;
 
       if (totalMsgsData >= targetMaxMsgData) {
         if (writeMsgs) {
-          let getRarSettledPromises = await Promise.allSettled(getRawPromises);
+          let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
 
-          for (let index = 0; index < getRarSettledPromises.length; index++) {
-            expTask.msgList[index].msgData = getRarSettledPromises[index].value;
+          for (let index = 0; index < getBodySettledPromises.length; index++) {
+            if (expTask.expType == "eml") {
+              console.log(getBodySettledPromises[index].value)
+
+              expTask.msgList[index].msgData = {};
+              expTask.msgList[index].msgData.msgBody = getBodySettledPromises[index].value;
+            } else {
+              console.log(getBodySettledPromises[index].value)
+              expTask.msgList[index].msgData = getBodySettledPromises[index].value;
+            }
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
           }
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
@@ -131,18 +143,32 @@ async function msgIterateBatch(expTask) {
 
         totalMsgsData = 0;
         expTask.msgList = [];
-        getRawPromises = [];
+        getBodyPromises = [];
       }
     }
     if (expTask.msgList) {
       if (writeMsgs) {
-        let getRarSettledPromises = await Promise.allSettled(getRawPromises);
+        let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
         console.log(new Date());
 
-        for (let index = 0; index < getRarSettledPromises.length; index++) {
-          expTask.msgList[index].msgData = getRarSettledPromises[index].value;
+        for (let index = 0; index < getBodySettledPromises.length; index++) {
+          if (expTask.expType == "eml") {
+            //console.log(getBodySettledPromises[index].value)
+
+            expTask.msgList[index].msgData = {msgBody: "666"};
+            //expTask.msgList[index].msgData = {};
+            //expTask.msgList[index].msgData = {msgBody: getBodySettledPromises[index].value};
+            //console.log(expTask.msgList[index])
+
+          } else {
+            console.log(getBodySettledPromises[index].value)
+            expTask.msgList[index].msgData = getBodySettledPromises[index].value;
+          }
+
           //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
         }
+            console.log(expTask)
+
         writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
       }
     }

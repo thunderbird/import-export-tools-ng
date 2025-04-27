@@ -20,6 +20,7 @@ export var exportTests = {
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var updatedInlineFilenames = [];
+    console.log(expTask)
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -63,6 +64,7 @@ export var exportTests = {
           .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
       }
     }
+    console.log(expTask)
     expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
 
     if (false) {

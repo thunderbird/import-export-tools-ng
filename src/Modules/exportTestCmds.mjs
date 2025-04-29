@@ -52,7 +52,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       console.log(new Date());
 
-
       //      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), src);
 
       // create export container
@@ -60,7 +59,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       expTask.selectedFolder = ctxEvent.selectedFolder;
 
       await msgIterateBatch(expTask);
-      console.log(new Date());
+      //console.log(new Date());
 
       times[index] = new Date() - st;
       total += times[index];
@@ -111,15 +110,8 @@ async function msgIterateBatch(expTask) {
 
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
-        //getRawPromises.push(messenger.messages.getRaw(msgId));
-        //getRawPromises.push(messenger.messages.getFull(msgId));
 
-        if (0 && expTask.expType == "eml") {
-          getBodyPromises.push(messenger.messages.getRaw(msgId));
-        } else {
-          console.log(index)
-          getBodyPromises.push(_getprocessedMsg(expTask, msgId));
-        }
+        getBodyPromises.push(_getprocessedMsg(expTask, msgId));
 
         totalMsgsData += msgListPage.messages[index].size;
 
@@ -128,15 +120,7 @@ async function msgIterateBatch(expTask) {
             let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
 
             for (let index = 0; index < getBodySettledPromises.length; index++) {
-              if (expTask.expType == "eml") {
-                console.log(getBodySettledPromises[index].value)
-
-                expTask.msgList[index].msgData = {};
-                expTask.msgList[index].msgData.msgBody = getBodySettledPromises[index].value;
-              } else {
-                console.log(getBodySettledPromises[index].value)
-                expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-              }
+              expTask.msgList[index].msgData = getBodySettledPromises[index].value;
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
             }
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
@@ -150,27 +134,12 @@ async function msgIterateBatch(expTask) {
       if (expTask.msgList) {
         if (writeMsgs) {
           let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
-          console.log(new Date());
+          //console.log(new Date());
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
-            if (expTask.expType == "eml") {
-              //console.log(getBodySettledPromises[index].value)
-
-              //expTask.msgList[index].msgData = { msgBody: "666" };
-              //expTask.msgList[index].msgData = {};
-              //expTask.msgList[index].msgData = {msgBody: getBodySettledPromises[index].value};
-              //console.log(expTask.msgList[index])
-              expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-              console.log(getBodySettledPromises[index].value)
-
-            } else {
-              console.log(getBodySettledPromises[index].value)
-              expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-            }
-
+            expTask.msgList[index].msgData = getBodySettledPromises[index].value;
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
           }
-          console.log(expTask)
 
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
@@ -182,7 +151,7 @@ async function msgIterateBatch(expTask) {
 
     if (writeMsgs) {
       await Promise.allSettled(writePromises);
-      console.log(new Date());
+      //console.log(new Date());
     }
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
@@ -199,16 +168,15 @@ async function _getprocessedMsg(expTask, msgId) {
 
       if (expTask.expType == "eml") {
         let rawMsg = await browser.messages.getRaw(msgId);
-        console.log(rawMsg)
         if (rawMsg.decryptionStatus == "fail") {
           resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
           return;
         }
-        resolve({ msgBody: rawMsg, msgBody2: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [] });
+        resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [] });
         return;
       }
       let fm = await browser.messages.getFull(msgId, { decrypt: false });
-      console.log(fm)
+      //console.log(fm)
       if (fm.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
         return;

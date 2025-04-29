@@ -121,6 +121,10 @@ async function msgIterateBatch(expTask) {
 
             for (let index = 0; index < getBodySettledPromises.length; index++) {
               expTask.msgList[index].msgData = getBodySettledPromises[index].value;
+              if (!expTask.msgList[index].msgData) {
+                console.log(index, expTask.msgList[index])
+                break;
+              }
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
             }
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
@@ -139,6 +143,10 @@ async function msgIterateBatch(expTask) {
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
+            if (!expTask.msgList[index].msgData) {
+              console.log(index, expTask.msgList[index])
+              break;
+            }
           }
 
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
@@ -236,6 +244,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
       await getParts(parts)
 
+      //console.log(htmlParts, textParts)
       if (htmlParts.length) {
         resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else {

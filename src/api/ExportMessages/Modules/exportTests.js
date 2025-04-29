@@ -19,13 +19,20 @@ export var exportTests = {
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var updatedInlineFilenames = [];
-    console.log(expTask)
+    //console.log(expTask)
 
     for (let index = 0; index < msgListLen; index++) {
 
       if (!expTask.msgList[index].msgData) {
-      console.log(index, expTask.msgList[index])
-      break;
+      console.log(index, "skip", expTask.msgList[index])
+      expTask.msgList[index].msgData = {};
+      expTask.msgList[index].msgData.inlineParts = [];
+      expTask.msgList[index].msgData.attachmentParts = [];
+
+
+      //expTask.msgList[index].msgData.msgBody = await this._getRawMessage()
+      expTask.msgList[index].msgData.msgBody = "No body"
+      //continue;
       }
       let subject = expTask.msgList[index].subject.slice(0, 150);
       let name = `${subject}`;

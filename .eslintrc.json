@@ -46,6 +46,7 @@
 		"IOUtils": "readonly",
 		"PathUtils": "readonly",
  		"globalThis": "readonly",
+ 		"Services": "readonly",
 
 		"BatchMessageMover": "readonly"
 		

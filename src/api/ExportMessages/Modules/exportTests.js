@@ -24,16 +24,15 @@ export var exportTests = {
     for (let index = 0; index < msgListLen; index++) {
 
       if (!expTask.msgList[index].msgData) {
-      console.log(index, "skip", expTask.msgList[index])
-      expTask.msgList[index].msgData = {};
-      expTask.msgList[index].msgData.inlineParts = [];
-      expTask.msgList[index].msgData.attachmentParts = [];
-
-
-      //expTask.msgList[index].msgData.msgBody = await this._getRawMessage()
-      expTask.msgList[index].msgData.msgBody = "No body"
-      //continue;
+        //console.log(index, "skip", expTask.msgList[index])
+        expTask.msgList[index].msgData = {};
+        expTask.msgList[index].msgData.inlineParts = [];
+        expTask.msgList[index].msgData.attachmentParts = [];
+        let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
+        expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
+        expTask.msgList[index].msgData.msgBodyType = "raw"
       }
+
       let subject = expTask.msgList[index].subject.slice(0, 150);
       let name = `${subject}`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
@@ -74,7 +73,9 @@ export var exportTests = {
         }
       }
       //console.log(expTask)
-      expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+      if (expTask.msgList[index].msgData.msgBodyType != "raw") {
+        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+      }
 
       if (false) {
         await this.saveAsPDF(expTask, index, context);
@@ -119,6 +120,9 @@ export var exportTests = {
         attsDir = msgsDir;
         break;
       case "perMsgDir":
+        if (msgName.endsWith(".")) {
+          msgName += ";";
+        }
         attsDir = PathUtils.join(msgsDir, msgName);
         break;
     }
@@ -192,7 +196,7 @@ export var exportTests = {
     if (msgData.msgBodyType == "text/plain") {
       return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
     }
-    return msgBody.replace(/(<BODY>)/i, hdrTable);
+    return msgBody.replace(/(<BODY.*>)/i, hdrTable);
   },
 
   _encodeSpecialTextToHTML: function (str) {
@@ -389,57 +393,10 @@ export var exportTests = {
 
   },
 
-  exportFolderEML_WL: async function (params) {
+  _getRawMessage: async function (msgId, aConvertData, context) {
 
-    //console.log(params);
-    let runs = 1;
-    //console.log(this.expDirFile.path);
-
-    this.folder = window.getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
-
-    for (let index = 0; index < runs; index++) {
-
-      var st1 = new Date();
-
-      /*
-      //console.log(this.folder);
-      let folderDir = `${this.folder.name}-WL1-2025`;
-      folderDir = folderDir.replace(/[\\:?"\*\/<>|]/g, "_");
-      let folderDirFile = this.expDirFile.clone();
-      folderDirFile.append(folderDir);
-      folderDirFile.createUnique(1, 0o0755);
-  */
-      let folderDirFile = {};
-      folderDirFile.path = params.exportContainer.directory;
-      var msgArray = [...this.folder.messages];
-
-      var st2 = new Date();
-
-      let nameArray;
-      //nameArray = this.createUniqueNameArray(msgArray);
-
-      //console.log(new Date() - st2)
-
-
-      //await this.saveMessages_NsIFile(msgArray, false, folderDirFile);
-      await this.saveMessages_IOUtils(msgArray, false, folderDirFile.path, nameArray);
-
-      //console.log(new Date() - st1)
-
-    }
-
-    return;
-  },
-
-  exportFolderEML_Exp_MsgList: async function (expTask) {
-
-    await this.saveMessages_IOUtils(msgArray, false, folderDirFile.path, nameArray);
-
-  },
-
-
-  getRawMessage: async function (msgUri, aConvertData) {
-
+    let msgHdr = context.extension.messageManager.get(msgId);
+    let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let service = MailServices.messageServiceFromURI(msgUri);
     return new Promise((resolve, reject) => {
       let streamlistener = {
@@ -486,6 +443,18 @@ export var exportTests = {
         "" //aAdditionalHeader
       );
     });
+  },
+
+  _convertToUnicode: function (text, charset) {
+    const conv = Cc[
+      "@mozilla.org/intl/scriptableunicodeconverter"
+    ].createInstance(Ci.nsIScriptableUnicodeConverter);
+    try {
+      conv.charset = charset || "UTF-8";
+      return conv.ConvertToUnicode(text);
+    } catch (ex) {
+      return text;
+    }
   },
 
   saveMessages_IOUtils: async function (msgUriArray, aConvertData, folderDirPath, nameArray) {

@@ -121,7 +121,7 @@ async function msgIterateBatch(expTask) {
 
             for (let index = 0; index < getBodySettledPromises.length; index++) {
               expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-              if (!expTask.msgList[index].msgData) {
+              if (0 && !expTask.msgList[index].msgData) {
                 console.log(index, expTask.msgList[index])
                 break;
               }
@@ -143,7 +143,7 @@ async function msgIterateBatch(expTask) {
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
-            if (!expTask.msgList[index].msgData) {
+            if (0 && !expTask.msgList[index].msgData) {
               console.log(index, expTask.msgList[index])
               break;
             }

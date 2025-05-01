@@ -13,6 +13,8 @@ var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 export var exportTests = {
   folder: null,
   expDirFile: w3p.getPredefinedFolder(1),
+  msgStatusList: [],
+  errors: [],
 
   exportMessagesES6: async function (expTask, context) {
     var msgsDir = this._getMsgsDirectory(expTask);
@@ -85,12 +87,29 @@ export var exportTests = {
             if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
               writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.rawMsg));
             } else {
-              writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
+              writePromises.push(this._writeMsg(name, expTask, index));
             }
           });
       }
     }
-    return Promise.allSettled(writePromises);
+      //console.log(this.errors)
+    let p = await Promise.allSettled(writePromises);
+
+
+    return {msgStatusList: this.msgStatusList, errors: this.errors};
+  },
+
+  _writeMsg: async function (unqName, expTask, index) {
+    try {
+    var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+    } catch (ex) {
+      console.log(ex)
+      this.errors.push({index: index, ex: ex});
+      return p;
+    }
+      this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+
+    return p;
   },
 
   _getMsgsDirectory: function (expTask) {

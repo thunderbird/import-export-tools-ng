@@ -158,7 +158,19 @@ async function msgIterateBatch(expTask) {
     } while (msgListPage.id);
 
     if (writeMsgs) {
-      await Promise.allSettled(writePromises);
+      var msgsStatus = await Promise.allSettled(writePromises);
+      console.log(msgsStatus)
+      console.log(msgsStatus.length)
+
+      for (let index = 0; index < msgsStatus.length; index++) {
+        console.log(msgsStatus[index].value);
+        
+      }
+
+        //msgList = msgList.concat(status.value.msgStatusList)
+      
+      console.log("880")
+
       //console.log(new Date());
     }
   } catch (ex) {

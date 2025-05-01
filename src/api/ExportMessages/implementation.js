@@ -106,7 +106,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           //console.log(new Date());
           //console.log(expTask)
 
-          await exportTests.exportMessagesES6(expTask, self.context);
+          return exportTests.exportMessagesES6(expTask, self.context);
         },
 
         async exportMessagesBase(expTask) {

@@ -91,6 +91,8 @@ async function msgIterateBatch(expTask) {
   var readRawInWext = true;
   const targetMaxMsgData = 25 * 1000 * 1000;
   var totalMsgsData = 0;
+  var totalMsgs = 0;
+
   var expResult;
   var writePromises = [];
   var writeMsgs = true;
@@ -105,6 +107,9 @@ async function msgIterateBatch(expTask) {
       const messagesLen = msgListPage.messages.length;
       expTask.msgList = [];
       var getBodyPromises = [];
+
+      console.log(messagesLen)
+      totalMsgs += messagesLen;
 
       for (let index = 0; index < messagesLen; index++) {
 
@@ -162,14 +167,19 @@ async function msgIterateBatch(expTask) {
       console.log(msgsStatus)
       console.log(msgsStatus.length)
 
+      var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
         console.log(msgsStatus[index].value);
-        
+        console.log(msgsStatus[index].value.length);
+
+        tp += msgsStatus[index].value.length;
       }
 
         //msgList = msgList.concat(status.value.msgStatusList)
       
-      console.log("880")
+      console.log("total msgs:", totalMsgs)
+      console.log("total promises:", tp)
+
 
       //console.log(new Date());
     }

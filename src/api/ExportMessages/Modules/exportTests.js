@@ -87,16 +87,29 @@ export var exportTests = {
             if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
               writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.rawMsg));
             } else {
-              writePromises.push(this._writeMsg(name, expTask, index));
+              writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
+              console.log("wp cnt", writePromises.length)
+
+              //writePromises.push(this._writeMsg(name, expTask, index));
             }
           });
       }
     }
       //console.log(this.errors)
+    do {
+      await new Promise(r => w3p.setTimeout(r, 50));
+
+    } while (writePromises.length != msgListLen);
+
+    console.log("wp toal", writePromises.length)
+    
     let p = await Promise.allSettled(writePromises);
+    //return Promise.allSettled(writePromises);
 
+    console.log(p)
+    return p;
 
-    return {msgStatusList: this.msgStatusList, errors: this.errors};
+    //return {msgStatusList: this.msgStatusList, errors: this.errors};
   },
 
   _writeMsg: async function (unqName, expTask, index) {
@@ -107,7 +120,7 @@ export var exportTests = {
       this.errors.push({index: index, ex: ex});
       return p;
     }
-      this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+      //this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
 
     return p;
   },

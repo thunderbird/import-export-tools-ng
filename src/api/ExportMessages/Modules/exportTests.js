@@ -42,7 +42,8 @@ export var exportTests = {
         name = "NoKey"
       }
 
-      console.log(index, "id", expTask.msgList[index].id, name)
+    
+      console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
       //console.log(expTask)
@@ -83,7 +84,7 @@ export var exportTests = {
       }
 
     } catch (ex) {
-      console.log("err", ex, index, "id", expTask.msgList[index].id, name)
+      console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
 
     }
       if (false) {
@@ -105,15 +106,16 @@ export var exportTests = {
       //console.log(this.errors)
     do {
       await new Promise(r => w3p.setTimeout(r, 50));
+    console.log("expId", expTask.id, "wp total", writePromises.length)
 
     } while (writePromises.length != msgListLen);
 
-    console.log("wp toal", writePromises.length)
+    console.log("expId", expTask.id, "wp final total", writePromises.length)
     
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
-    console.log(p)
-    console.log(this.errors)
+    console.log("expId", expTask.id, p)
+    console.log("expId", expTask.id, this.errors)
 
     for (let index = 0; index < this.errors.length; index++) {
       let err = this.errors[index];
@@ -137,7 +139,7 @@ export var exportTests = {
 
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {
-      console.log(ex)
+      console.log("expId", expTask.id, unqName, ex)
       this.errors.push({index: index, ex: ex, stack: ex.stack});
       return p;
     }

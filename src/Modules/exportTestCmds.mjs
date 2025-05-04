@@ -155,7 +155,7 @@ async function msgIterateBatch(expTask) {
               break;
             }
           }
-
+          expTask.id = expId++;
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
       }
@@ -177,8 +177,8 @@ async function msgIterateBatch(expTask) {
         tp += msgsStatus[index].value.length;
       }
 
-        //msgList = msgList.concat(status.value.msgStatusList)
-      
+      //msgList = msgList.concat(status.value.msgStatusList)
+
       console.log("total msgs:", totalMsgs)
       console.log("total promises:", tp)
 

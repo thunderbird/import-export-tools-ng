@@ -25,7 +25,7 @@ export var exportTests = {
 
     for (let index = 0; index < msgListLen; index++) {
 
-      if (!expTask.msgList[index].msgData) {
+      if (0 && !expTask.msgList[index].msgData) {
         //console.log(index, "skip", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
         expTask.msgList[index].msgData.inlineParts = [];
@@ -41,6 +41,8 @@ export var exportTests = {
       if (name == "...") {
         name = "NoKey"
       }
+
+      console.log(index, "id", expTask.msgList[index].id, name)
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
       //console.log(expTask)
@@ -75,10 +77,15 @@ export var exportTests = {
         }
       }
       //console.log(expTask)
+      try {
       if (expTask.msgList[index].msgData.msgBodyType != "raw") {
         expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
       }
 
+    } catch (ex) {
+      console.log("err", ex, index, "id", expTask.msgList[index].id, name)
+
+    }
       if (false) {
         await this.saveAsPDF(expTask, index, context);
       } else {
@@ -87,10 +94,10 @@ export var exportTests = {
             if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
               writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.rawMsg));
             } else {
-              writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
-              console.log("wp cnt", writePromises.length)
+              //writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
+              //console.log("wp cnt", writePromises.length)
 
-              //writePromises.push(this._writeMsg(name, expTask, index));
+              writePromises.push(this._writeMsg(name, expTask, index));
             }
           });
       }
@@ -105,6 +112,18 @@ export var exportTests = {
     
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
+    console.log(p)
+    console.log(this.errors)
+
+    for (let index = 0; index < this.errors.length; index++) {
+      let err = this.errors[index];
+      p[err.index].error = err;
+    }
+
+    for (let index = 0; index < this.msgStatusList.length; index++) {
+      let status = this.msgStatusList[index];
+      p[status.index].status = status;
+    }
 
     console.log(p)
     return p;
@@ -114,13 +133,14 @@ export var exportTests = {
 
   _writeMsg: async function (unqName, expTask, index) {
     try {
+      this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {
       console.log(ex)
       this.errors.push({index: index, ex: ex});
       return p;
     }
-      //this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
 
     return p;
   },

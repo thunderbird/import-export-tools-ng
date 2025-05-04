@@ -138,7 +138,7 @@ export var exportTests = {
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {
       console.log(ex)
-      this.errors.push({index: index, ex: ex});
+      this.errors.push({index: index, ex: ex, stack: ex.stack});
       return p;
     }
 

@@ -5,6 +5,7 @@ import * as prefs from "./prefCmds.mjs";
 
   const baseExpTask = {
       expType: null,
+      id: 0,
       folders: [],
       currentFolderIndex: 0,
       recursive: false,

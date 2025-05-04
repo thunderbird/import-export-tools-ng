@@ -96,6 +96,7 @@ async function msgIterateBatch(expTask) {
   var expResult;
   var writePromises = [];
   var writeMsgs = true;
+  var expId = 0;
 
   try {
     do {
@@ -132,6 +133,7 @@ async function msgIterateBatch(expTask) {
               }
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
             }
+            expTask.id = expId++;
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
           }
 

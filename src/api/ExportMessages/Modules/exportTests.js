@@ -137,7 +137,13 @@ export var exportTests = {
 
     async function __writeMsg(unqName, expTask, index) {
     try {
-      msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+      console.log(expTask.msgList[index])
+      let hdrs = { subject: expTask.msgList[index].subject,
+        recipients: expTask.msgList[index].recipients,
+        author: expTask.msgList[index].author,
+        date: expTask.msgList[index].date,
+      };
+      msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
       //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)

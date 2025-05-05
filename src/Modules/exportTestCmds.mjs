@@ -134,6 +134,7 @@ async function msgIterateBatch(expTask) {
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
             }
             expTask.id = expId++;
+            console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
           }
 
@@ -156,6 +157,7 @@ async function msgIterateBatch(expTask) {
             }
           }
           expTask.id = expId++;
+          console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
       }

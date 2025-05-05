@@ -17,6 +17,9 @@ export var exportTests = {
   errors: [],
 
   exportMessagesES6: async function (expTask, context) {
+  msgStatusList: [],
+  errors: [],
+
     var msgsDir = this._getMsgsDirectory(expTask);
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
@@ -114,8 +117,9 @@ export var exportTests = {
     
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
-    console.log("expId", expTask.id, p)
-    console.log("expId", expTask.id, this.errors)
+    console.log("expId", expTask.id, "wp bef", p)
+    console.log("expId", expTask.id, "status", this.msgStatusList)
+    console.log("expId", expTask.id, "errs", this.errors)
 
     for (let index = 0; index < this.errors.length; index++) {
       let err = this.errors[index];
@@ -127,7 +131,8 @@ export var exportTests = {
       p[status.index].status = status;
     }
 
-    console.log(p)
+    console.log("expId", expTask.id, "wp final", p)
+
     return p;
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
@@ -136,6 +141,7 @@ export var exportTests = {
   _writeMsg: async function (unqName, expTask, index) {
     try {
       this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+      console.log("expId", expTask.id, "statusnum", this.msgStatusList.length, unqName, )
 
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {

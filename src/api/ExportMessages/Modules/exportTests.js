@@ -13,12 +13,10 @@ var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 export var exportTests = {
   folder: null,
   expDirFile: w3p.getPredefinedFolder(1),
-  msgStatusList: [],
-  errors: [],
 
   exportMessagesES6: async function (expTask, context) {
-  msgStatusList: [],
-  errors: [],
+  var msgStatusList = [];
+  var errors = [];
 
     var msgsDir = this._getMsgsDirectory(expTask);
     var writePromises = [];
@@ -28,7 +26,7 @@ export var exportTests = {
 
     for (let index = 0; index < msgListLen; index++) {
 
-      if (0 && !expTask.msgList[index].msgData) {
+      if (!expTask.msgList[index].msgData) {
         //console.log(index, "skip", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
         expTask.msgList[index].msgData.inlineParts = [];
@@ -101,7 +99,7 @@ export var exportTests = {
               //writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
               //console.log("wp cnt", writePromises.length)
 
-              writePromises.push(this._writeMsg(name, expTask, index));
+              writePromises.push(__writeMsg(name, expTask, index));
             }
           });
       }
@@ -118,16 +116,16 @@ export var exportTests = {
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
     console.log("expId", expTask.id, "wp bef", p)
-    console.log("expId", expTask.id, "status", this.msgStatusList)
-    console.log("expId", expTask.id, "errs", this.errors)
+    console.log("expId", expTask.id, "status", msgStatusList)
+    console.log("expId", expTask.id, "errs", errors)
 
-    for (let index = 0; index < this.errors.length; index++) {
-      let err = this.errors[index];
+    for (let index = 0; index < errors.length; index++) {
+      let err = errors[index];
       p[err.index].error = err;
     }
 
-    for (let index = 0; index < this.msgStatusList.length; index++) {
-      let status = this.msgStatusList[index];
+    for (let index = 0; index < msgStatusList.length; index++) {
+      let status = msgStatusList[index];
       p[status.index].status = status;
     }
 
@@ -136,22 +134,23 @@ export var exportTests = {
     return p;
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
-  },
 
-  _writeMsg: async function (unqName, expTask, index) {
+    async function __writeMsg(unqName, expTask, index) {
     try {
-      this.msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
-      console.log("expId", expTask.id, "statusnum", this.msgStatusList.length, unqName, )
+      msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName});
+      //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {
       console.log("expId", expTask.id, unqName, ex)
-      this.errors.push({index: index, ex: ex, stack: ex.stack});
+      errors.push({index: index, ex: ex, msg: ex.message, stack: ex.stack});
       return p;
     }
 
     return p;
-  },
+  }
+
+  }, // exportMessagesES6 end
 
   _getMsgsDirectory: function (expTask) {
 

@@ -171,14 +171,22 @@ async function msgIterateBatch(expTask) {
       console.log(msgsStatus)
       console.log(msgsStatus.length)
 
+      var msgListLog = [];
+
       var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
         console.log(msgsStatus[index].value);
         console.log(msgsStatus[index].value.length);
 
+        for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
+          const status = msgsStatus[index].value[vindex].status;
+          msgListLog.push(status.msgName)
+          
+        }
         tp += msgsStatus[index].value.length;
       }
 
+      console.log(msgListLog)
       //msgList = msgList.concat(status.value.msgStatusList)
 
       console.log("total msgs:", totalMsgs)

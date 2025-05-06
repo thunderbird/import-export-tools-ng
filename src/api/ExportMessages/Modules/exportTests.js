@@ -142,7 +142,7 @@ export var exportTests = {
           author: expTask.msgList[index].author,
           date: expTask.msgList[index].date,
         };
-        fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
+        fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs });
         //console.log("fileStatus", fileStatusList)
         //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 

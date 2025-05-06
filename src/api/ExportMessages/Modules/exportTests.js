@@ -15,7 +15,7 @@ export var exportTests = {
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
-  var msgStatusList = [];
+  var fileStatusList = [];
   var errors = [];
 
     var msgsDir = this._getMsgsDirectory(expTask);
@@ -49,6 +49,7 @@ export var exportTests = {
 
       //console.log(expTask)
       if (expTask.attachments.save != "none") {
+        console.log("saving attachments")
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
           let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
           IOUtils.createUniqueFile(attsDir, inlinePart.name)
@@ -99,24 +100,26 @@ export var exportTests = {
               //writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
               //console.log("wp cnt", writePromises.length)
 
-              writePromises.push(__writeMsg(name, expTask, index));
+              writePromises.push(__writeFile("message", name, expTask, index));
             }
           });
       }
     }
-      //console.log(this.errors)
+
+    /*
     do {
       await new Promise(r => w3p.setTimeout(r, 50));
     console.log("expId", expTask.id, "wp total", writePromises.length)
 
     } while (writePromises.length != msgListLen);
+*/
 
     console.log("expId", expTask.id, "wp final total", writePromises.length)
     
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
     console.log("expId", expTask.id, "wp bef", p)
-    console.log("expId", expTask.id, "status", msgStatusList)
+    console.log("expId", expTask.id, "status", fileStatusList)
     console.log("expId", expTask.id, "errs", errors)
 
     for (let index = 0; index < errors.length; index++) {
@@ -124,9 +127,9 @@ export var exportTests = {
       p[err.index].error = err;
     }
 
-    for (let index = 0; index < msgStatusList.length; index++) {
-      let status = msgStatusList[index];
-      p[status.index].status = status;
+    for (let index = 0; index < fileStatusList.length; index++) {
+      let fileStatus = fileStatusList[index];
+      p[fileStatus.index].fileStatus = fileStatus;
     }
 
     console.log("expId", expTask.id, "wp final", p)
@@ -135,7 +138,7 @@ export var exportTests = {
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
 
-    async function __writeMsg(unqName, expTask, index) {
+    async function __writeFile(fileType, unqName, expTask, index) {
     try {
       console.log(expTask.msgList[index])
       let hdrs = { subject: expTask.msgList[index].subject,
@@ -143,12 +146,13 @@ export var exportTests = {
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,
       };
-      msgStatusList.push({index: index, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
+      fileStatusList.push({index: index, fileType: fileType, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
+      console.log("fileStatus", fileStatusList)
       //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
     var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
     } catch (ex) {
-      console.log("expId", expTask.id, unqName, ex)
+      console.log("err expId", expTask.id, unqName, ex)
       errors.push({index: index, ex: ex, msg: ex.message, stack: ex.stack});
       return p;
     }

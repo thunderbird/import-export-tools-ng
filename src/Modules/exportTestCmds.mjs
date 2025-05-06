@@ -145,7 +145,7 @@ async function msgIterateBatch(expTask) {
       if (expTask.msgList) {
         if (writeMsgs) {
           let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
-          //console.log(new Date());
+          // console.log(new Date());
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;

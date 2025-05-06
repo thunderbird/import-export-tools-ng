@@ -74,6 +74,7 @@
 		"quotes":"off",
 		"semi": ["error", "always"],
 		"complexity": ["error", { "max": 80 }],
+		"spaced-comment":"off",
 
 		"no-restricted-properties": [
 			1,

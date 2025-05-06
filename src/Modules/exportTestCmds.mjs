@@ -167,14 +167,14 @@ async function msgIterateBatch(expTask) {
 
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
-      //console.log(msgsStatus)
+      console.log(msgsStatus)
       //console.log(msgsStatus.length)
 
       var msgListLog = [];
 
       var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
-        //console.log(msgsStatus[index].value);
+        console.log(msgsStatus[index].value);
         //console.log(msgsStatus[index].value.length);
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {

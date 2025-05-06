@@ -52,31 +52,35 @@ export var exportTests = {
         console.log("saving attachments")
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
           let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-          IOUtils.createUniqueFile(attsDir, inlinePart.name)
-            .then((unqName => {
-              let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
-              partIdName = partIdName.replaceAll(/\./g, "\\.");
-              let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-              let unqFilename = PathUtils.filename(unqName);
-              let currentDir = "." + osPathSeparator;
-              let relUnqPartPath = currentDir;
-              if (expTask.attachments.containerStructure == "perMsgDir") {
-                relUnqPartPath = relUnqPartPath
-                  + PathUtils.split(unqName)[PathUtils.split(unqName).length - 2]
-                  + osPathSeparator + unqFilename;
-              } else {
-                relUnqPartPath = relUnqPartPath + unqFilename;
-              }
-              expTask.msgList[index].msgData.msgBody =
-                expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
-              writePromises.push(IOUtils.write(unqName, inlineBody));
-            }));
+          let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
+
+          let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+          partIdName = partIdName.replaceAll(/\./g, "\\.");
+          let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+          let filename = PathUtils.filename(unqFilename);
+          let currentDir = "." + osPathSeparator;
+          let relUnqPartPath = currentDir;
+          if (expTask.attachments.containerStructure == "perMsgDir") {
+            relUnqPartPath = relUnqPartPath
+              + PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2]
+              + osPathSeparator + filename;
+          } else {
+            relUnqPartPath = relUnqPartPath + filename;
+          }
+          expTask.msgList[index].msgData.msgBody =
+            expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+          writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
+          
+            //writePromises.push(IOUtils.write(unqFilename, inlineBody));
+
         }
 
         for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
           let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-          IOUtils.createUniqueFile(attsDir, attachmentPart.name)
-            .then((name => writePromises.push(IOUtils.write(name, attachmentBody))));
+          let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
+          writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
+
+          //writePromises.push(IOUtils.write(unqFilename, attachmentBody));
         }
       }
       //console.log(expTask)
@@ -103,19 +107,13 @@ export var exportTests = {
       }
     }
 
-    /*
-    do {
-      await new Promise(r => w3p.setTimeout(r, 50));
-    console.log("expId", expTask.id, "wp total", writePromises.length)
-
-    } while (writePromises.length != msgListLen);
-*/
-
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
 
     let p = await Promise.allSettled(writePromises);
+    console.log("expId", expTask.id, "wp final total", writePromises.length)
+
     //return Promise.allSettled(writePromises);
-    //console.log("expId", expTask.id, "status", fileStatusList)
+    console.log("expId", expTask.id, "status", fileStatusList)
     //console.log("expId", expTask.id, "errs", errors)
 
     for (let index = 0; index < errors.length; index++) {
@@ -126,33 +124,47 @@ export var exportTests = {
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       p[fileStatus.index].fileStatus = fileStatus;
+    //console.log("expId", expTask.id, index, "promises", p)
+
     }
+
+    console.log("expId", expTask.id, "promises", p)
 
     return p;
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
 
-    async function __writeFile(fileType, unqName, expTask, index) {
+    async function __writeFile(fileType, unqName, expTask, index, data = null) {
+      var writePromise;
       try {
         //console.log(expTask.msgList[index])
-        let hdrs = {
-          subject: expTask.msgList[index].subject,
-          recipients: expTask.msgList[index].recipients,
-          author: expTask.msgList[index].author,
-          date: expTask.msgList[index].date,
-        };
-        fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs });
-        //console.log("fileStatus", fileStatusList)
-        //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
+        if (fileType == "message") {
+          let hdrs = {
+            subject: expTask.msgList[index].subject,
+            recipients: expTask.msgList[index].recipients,
+            author: expTask.msgList[index].author,
+            date: expTask.msgList[index].date,
+          };
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs });
+          //console.log("fileStatus", fileStatusList)
+          //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
-        var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+          writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+          console.log(writePromise)
+          writePromise.test = "ii"
+          console.log(writePromise)
+
+        } else {
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName });
+          writePromise = IOUtils.writeUTF8(unqName, data)
+        }
       } catch (ex) {
         console.log("err expId", expTask.id, unqName, ex)
         errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-        return p;
+        return writePromise;
       }
 
-      return p;
+      return writePromise;
     }
 
   }, // exportMessagesES6 end

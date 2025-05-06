@@ -115,9 +115,8 @@ export var exportTests = {
 
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
-    console.log("expId", expTask.id, "wp bef", p)
-    console.log("expId", expTask.id, "status", fileStatusList)
-    console.log("expId", expTask.id, "errs", errors)
+    //console.log("expId", expTask.id, "status", fileStatusList)
+    //console.log("expId", expTask.id, "errs", errors)
 
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];

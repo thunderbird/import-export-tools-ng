@@ -109,7 +109,6 @@ async function msgIterateBatch(expTask) {
       expTask.msgList = [];
       var getBodyPromises = [];
 
-      console.log(messagesLen)
       totalMsgs += messagesLen;
 
       for (let index = 0; index < messagesLen; index++) {
@@ -134,7 +133,7 @@ async function msgIterateBatch(expTask) {
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index].msgData)
             }
             expTask.id = expId++;
-            console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+            //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
           }
 
@@ -157,7 +156,7 @@ async function msgIterateBatch(expTask) {
             }
           }
           expTask.id = expId++;
-          console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+          //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
         }
       }
@@ -168,15 +167,15 @@ async function msgIterateBatch(expTask) {
 
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
-      console.log(msgsStatus)
-      console.log(msgsStatus.length)
+      //console.log(msgsStatus)
+      //console.log(msgsStatus.length)
 
       var msgListLog = [];
 
       var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
-        console.log(msgsStatus[index].value);
-        console.log(msgsStatus[index].value.length);
+        //console.log(msgsStatus[index].value);
+        //console.log(msgsStatus[index].value.length);
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
           const fileStatus = msgsStatus[index].value[vindex].fileStatus;
@@ -186,7 +185,7 @@ async function msgIterateBatch(expTask) {
         tp += msgsStatus[index].value.length;
       }
 
-      console.log(msgListLog)
+      //console.log(msgListLog)
       //msgList = msgList.concat(status.value.msgStatusList)
 
       console.log("total msgs:", totalMsgs)

@@ -15,8 +15,8 @@ export var exportTests = {
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
-  var fileStatusList = [];
-  var errors = [];
+    var fileStatusList = [];
+    var errors = [];
 
     var msgsDir = this._getMsgsDirectory(expTask);
     var writePromises = [];
@@ -43,8 +43,8 @@ export var exportTests = {
         name = "NoKey"
       }
 
-    
-      console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
+
+      //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
       //console.log(expTask)
@@ -81,28 +81,25 @@ export var exportTests = {
       }
       //console.log(expTask)
       try {
-      if (expTask.msgList[index].msgData.msgBodyType != "raw") {
-        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+        if (expTask.msgList[index].msgData.msgBodyType != "raw") {
+          expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+        }
+
+      } catch (ex) {
+        console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+
       }
-
-    } catch (ex) {
-      console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-
-    }
       if (false) {
         await this.saveAsPDF(expTask, index, context);
       } else {
-        IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`)
-          .then((name) => {
-            if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
-              writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.rawMsg));
-            } else {
-              //writePromises.push(IOUtils.writeUTF8(name, expTask.msgList[index].msgData.msgBody));
-              //console.log("wp cnt", writePromises.length)
+        let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
 
-              writePromises.push(__writeFile("message", name, expTask, index));
-            }
-          });
+        if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
+          writePromises.push(IOUtils.writeUTF8(unqFilename, expTask.msgList[index].msgData.rawMsg));
+        } else {
+          writePromises.push(__writeFile("message", unqFilename, expTask, index));
+        }
+
       }
     }
 
@@ -114,8 +111,8 @@ export var exportTests = {
     } while (writePromises.length != msgListLen);
 */
 
-    console.log("expId", expTask.id, "wp final total", writePromises.length)
-    
+    //console.log("expId", expTask.id, "wp final total", writePromises.length)
+
     let p = await Promise.allSettled(writePromises);
     //return Promise.allSettled(writePromises);
     console.log("expId", expTask.id, "wp bef", p)
@@ -132,33 +129,32 @@ export var exportTests = {
       p[fileStatus.index].fileStatus = fileStatus;
     }
 
-    console.log("expId", expTask.id, "wp final", p)
-
     return p;
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
 
     async function __writeFile(fileType, unqName, expTask, index) {
-    try {
-      console.log(expTask.msgList[index])
-      let hdrs = { subject: expTask.msgList[index].subject,
-        recipients: expTask.msgList[index].recipients,
-        author: expTask.msgList[index].author,
-        date: expTask.msgList[index].date,
-      };
-      fileStatusList.push({index: index, fileType: fileType, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
-      console.log("fileStatus", fileStatusList)
-      //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
+      try {
+        //console.log(expTask.msgList[index])
+        let hdrs = {
+          subject: expTask.msgList[index].subject,
+          recipients: expTask.msgList[index].recipients,
+          author: expTask.msgList[index].author,
+          date: expTask.msgList[index].date,
+        };
+        fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, msgName: unqName, headers: hdrs });
+        //console.log("fileStatus", fileStatusList)
+        //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
-    var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
-    } catch (ex) {
-      console.log("err expId", expTask.id, unqName, ex)
-      errors.push({index: index, ex: ex, msg: ex.message, stack: ex.stack});
+        var p = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+      } catch (ex) {
+        console.log("err expId", expTask.id, unqName, ex)
+        errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+        return p;
+      }
+
       return p;
     }
-
-    return p;
-  }
 
   }, // exportMessagesES6 end
 

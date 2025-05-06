@@ -179,8 +179,8 @@ async function msgIterateBatch(expTask) {
         console.log(msgsStatus[index].value.length);
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
-          const status = msgsStatus[index].value[vindex].status;
-          msgListLog.push(status.msgName)
+          const fileStatus = msgsStatus[index].value[vindex].fileStatus;
+          msgListLog.push(fileStatus.msgName)
           
         }
         tp += msgsStatus[index].value.length;

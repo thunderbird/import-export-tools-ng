@@ -109,7 +109,7 @@ export var exportTests = {
 
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
 
-    let p = await Promise.allSettled(writePromises);
+    let settledWritePromises = await Promise.allSettled(writePromises);
     console.log("expId", expTask.id, "wp final total", writePromises.length)
 
     //return Promise.allSettled(writePromises);
@@ -118,19 +118,19 @@ export var exportTests = {
 
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];
-      p[err.index].error = err;
+      settledWritePromises[err.index].error = err;
     }
 
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
-      p[fileStatus.index].fileStatus = fileStatus;
+      settledWritePromises[index].fileStatus = fileStatus;
     //console.log("expId", expTask.id, index, "promises", p)
 
     }
 
-    console.log("expId", expTask.id, "promises", p)
+    console.log("expId", expTask.id, "promises", settledWritePromises)
 
-    return p;
+    return settledWritePromises;
 
     //return {msgStatusList: this.msgStatusList, errors: this.errors};
 
@@ -150,10 +150,6 @@ export var exportTests = {
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
           writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
-          console.log(writePromise)
-          writePromise.test = "ii"
-          console.log(writePromise)
-
         } else {
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName });
           writePromise = IOUtils.writeUTF8(unqName, data)

@@ -95,26 +95,17 @@ export var exportTests = {
         console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
 
       }
-      if (false) {
-        await this.saveAsPDF(expTask, index, context);
-      } else {
-        let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
-        let writePromise;
-        if (0 && expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
-          writePromises.push(IOUtils.writeUTF8(unqFilename, expTask.msgList[index].msgData.rawMsg));
-        } else {
-          writePromise = __writeFile("message", unqFilename, expTask, index);
-          if (expTask.fileSave.sentDate) {
-            writePromise.then(async (size) => {
-              let dateInMs = new Date(expTask.msgList[index].date).getTime();
-              await IOUtils.setModificationTime(unqFilename, dateInMs);
-            });
-          }
-          writePromises.push(writePromise);
-          //writePromises.push(__writeFile("message", unqFilename, expTask, index));
-        }
 
+      let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
+      let writePromise;
+      writePromise = __writeFile("message", unqFilename, expTask, index);
+      if (expTask.fileSave.sentDate) {
+        writePromise.then(async (size) => {
+          let dateInMs = new Date(expTask.msgList[index].date).getTime();
+          await IOUtils.setModificationTime(unqFilename, dateInMs);
+        });
       }
+      writePromises.push(writePromise);
     }
 
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
@@ -158,7 +149,11 @@ export var exportTests = {
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
-          writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+          if (expTask.expType == "pdf") {
+            writePromise = __writePdfFile(unqName, expTask, index);
+          } else {
+            writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+          }
         } else {
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName });
           writePromise = IOUtils.writeUTF8(unqName, data)
@@ -172,6 +167,10 @@ export var exportTests = {
       return writePromise;
     }
 
+    async function __writePdfFile(unqFilename, expand, index) {
+
+    }
+    
   }, // exportMessagesES6 end
 
   _getMsgsDirectory: function (expTask) {
@@ -271,13 +270,15 @@ export var exportTests = {
   _preprocessHForPDF: async function (expTask, index) {
     let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+    let messageService = MailServices.messageServiceFromURI(uri);
 
     await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
-      console.log(mainWindow.PrintUtils.printBrowser.contentDocument)
-      let doc = mainWindow.PrintUtils.printBrowser.contentDocument;
+    console.log(w3p.PrintUtils.printBrowser.contentDocument)
+    let document = w3p.PrintUtils.printBrowser.contentDocument;
 
-      var table = doc.querySelector(".moz-header-part1");
-      table.style.border = "thick solid black"
+    // we have to modify DOM for header
+    await this._insertDOMHdrTable(document);
+
     return null;
   },
 
@@ -301,6 +302,11 @@ export var exportTests = {
       return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
     }
     return msgBody.replace(/(<BODY.*>)/i, hdrTable);
+  },
+
+  _insertDOMHdrTable: async function (document) {
+    var table = document.querySelector(".moz-header-part1");
+    table.style.border = "thick solid black"
   },
 
   _encodeSpecialTextToHTML: function (str) {

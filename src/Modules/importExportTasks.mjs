@@ -53,10 +53,10 @@ import * as prefs from "./prefCmds.mjs";
         convertData: false,
       },
       postProcessing: [],
-      msgSave: {
+      fileSave: {
         type: "file",
         encoding: "UTF-8",
-        date: "saveDate",
+        sentDate: false,
       },
       msgList: {},
     };
@@ -107,7 +107,9 @@ export async function createExportTask(params, ctxEvent) {
     expTask.dateFormat.type = 1;
     expTask.msgNames.extension = "html";
     expTask.attachments.save = params.saveAttachments;
-
+    
+    expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+    console.log(expTask.fileSave.receivedDate)
     //console.log(expTask)
     return expTask;
 

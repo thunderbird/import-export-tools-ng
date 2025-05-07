@@ -174,7 +174,7 @@ async function msgIterateBatch(expTask) {
 
       var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
-        console.log(msgsStatus[index].value);
+        //console.log(msgsStatus[index].value);
         //console.log(msgsStatus[index].value.length);
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
@@ -215,6 +215,12 @@ async function _getprocessedMsg(expTask, msgId) {
         }
         resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [] });
         return;
+      }
+
+      // for PDF we only do getFull if we are saving attachments
+      if (expTask.expType == "pdf" && expTask.attachments.save == "none") {
+          resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: [], attachmentParts: [] });
+          return;
       }
       let fm = await browser.messages.getFull(msgId, { decrypt: false });
       //console.log(fm)

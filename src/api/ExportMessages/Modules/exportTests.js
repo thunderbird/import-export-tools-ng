@@ -11,10 +11,12 @@ var osPathSeparator = os.includes("win")
 var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 
 export var exportTests = {
+  context: null,
   folder: null,
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
+    this.context = context;
     var fileStatusList = [];
     var errors = [];
 
@@ -70,8 +72,8 @@ export var exportTests = {
           expTask.msgList[index].msgData.msgBody =
             expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
           writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
-          
-            //writePromises.push(IOUtils.write(unqFilename, inlineBody));
+
+          //writePromises.push(IOUtils.write(unqFilename, inlineBody));
 
         }
 
@@ -85,9 +87,9 @@ export var exportTests = {
       }
       //console.log(expTask)
       try {
-        if (expTask.msgList[index].msgData.msgBodyType != "raw") {
-          expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
-        }
+        //if (expTask.msgList[index].msgData.msgBodyType != "raw") {
+        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
+        //}
 
       } catch (ex) {
         console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
@@ -97,11 +99,19 @@ export var exportTests = {
         await this.saveAsPDF(expTask, index, context);
       } else {
         let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
-
-        if (expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
+        let writePromise;
+        if (0 && expTask.expType == "eml" && expTask.msgList[index].msgData.rawMsg) {
           writePromises.push(IOUtils.writeUTF8(unqFilename, expTask.msgList[index].msgData.rawMsg));
         } else {
-          writePromises.push(__writeFile("message", unqFilename, expTask, index));
+          writePromise = __writeFile("message", unqFilename, expTask, index);
+          if (expTask.fileSave.sentDate) {
+            writePromise.then(async (size) => {
+              let dateInMs = new Date(expTask.msgList[index].date).getTime();
+              await IOUtils.setModificationTime(unqFilename, dateInMs);
+            });
+          }
+          writePromises.push(writePromise);
+          //writePromises.push(__writeFile("message", unqFilename, expTask, index));
         }
 
       }
@@ -110,10 +120,9 @@ export var exportTests = {
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
 
     let settledWritePromises = await Promise.allSettled(writePromises);
-    console.log("expId", expTask.id, "wp final total", writePromises.length)
+    //console.log("expId", expTask.id, "wp final total", writePromises.length)
 
-    //return Promise.allSettled(writePromises);
-    console.log("expId", expTask.id, "status", fileStatusList)
+    //console.log("expId", expTask.id, "status", fileStatusList)
     //console.log("expId", expTask.id, "errs", errors)
 
     for (let index = 0; index < errors.length; index++) {
@@ -124,11 +133,11 @@ export var exportTests = {
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
-    //console.log("expId", expTask.id, index, "promises", p)
+      //console.log("expId", expTask.id, index, "promises", p)
 
     }
 
-    console.log("expId", expTask.id, "promises", settledWritePromises)
+    //console.log("expId", expTask.id, "promises", settledWritePromises)
 
     return settledWritePromises;
 
@@ -228,11 +237,21 @@ export var exportTests = {
     let processedMsgBody;
 
     switch (expTask.expType) {
+      case "eml":
+        processedMsgBody = await this._preprocessHForEML(expTask, index);
+        break;
       case "html":
         processedMsgBody = await this._preprocessHForHTML(expTask, index);
         break;
+      case "pdf":
+        processedMsgBody = await this._preprocessHForPDF(expTask, index);
+        break;
     }
     return processedMsgBody;
+  },
+
+  _preprocessHForEML: async function (expTask, index) {
+    return expTask.msgList[index].msgData.rawMsg;
   },
 
   _preprocessHForHTML: async function (expTask, index) {
@@ -247,6 +266,19 @@ export var exportTests = {
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
     return this._insertHdrTable(expTask, index, msgData.msgBody);
+  },
+
+  _preprocessHForPDF: async function (expTask, index) {
+    let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
+    let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+
+    await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+      console.log(mainWindow.PrintUtils.printBrowser.contentDocument)
+      let doc = mainWindow.PrintUtils.printBrowser.contentDocument;
+
+      var table = doc.querySelector(".moz-header-part1");
+      table.style.border = "thick solid black"
+    return null;
   },
 
   _insertHdrTable: function (expTask, index, msgBody) {
@@ -295,9 +327,9 @@ export var exportTests = {
     return htmlConvertedText;
   },
 
-  saveAsPDF: async function (expTask, idx, context, pageSettings = {}) {
+  saveAsPDF: async function (expTask, idx, pageSettings = {}) {
 
-    let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
+    let msgHdr = this.context.extension.messageManager.get(expTask.msgList[idx].id);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let filePath = expTask.exportContainer.directory;
 
@@ -465,9 +497,9 @@ export var exportTests = {
 
   },
 
-  _getRawMessage: async function (msgId, aConvertData, context) {
+  _getRawMessage: async function (msgId, aConvertData) {
 
-    let msgHdr = context.extension.messageManager.get(msgId);
+    let msgHdr = this.context.extension.messageManager.get(msgId);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let service = MailServices.messageServiceFromURI(msgUri);
     return new Promise((resolve, reject) => {

@@ -743,6 +743,18 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
+      id: "folderCtxMenu_PDF_newexp",
+      title: "(new) Messages",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportFolders,
+      functionParams: { expType: "pdf", saveAttachments: "none", index: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: folderCtxMenu_Exp_PDFFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
     },

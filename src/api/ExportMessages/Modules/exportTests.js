@@ -11,12 +11,14 @@ var osPathSeparator = os.includes("win")
 var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 
 export var exportTests = {
+  self: this,
   context: null,
   folder: null,
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
     this.context = context;
+    var self = this;
     var fileStatusList = [];
     var errors = [];
 
@@ -168,7 +170,7 @@ export var exportTests = {
 
     async function __writePdfFile(unqFilename, expTask, index) {
 
-      let pdfPrintSettings = this._getPdfPrintSettings(unqFilename);
+      let pdfPrintSettings = self._getPdfPrintSettings(unqFilename);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
       
     }
@@ -272,9 +274,9 @@ export var exportTests = {
   _preprocessHForPDF: async function (expTask, index) {
     let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-    let messageService = MailServices.messageServiceFromURI(uri);
+    let messageService = MailServices.messageServiceFromURI(msgUri);
 
-    await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
+    await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
     console.log(w3p.PrintUtils.printBrowser.contentDocument)
     let document = w3p.PrintUtils.printBrowser.contentDocument;
 

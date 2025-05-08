@@ -73,6 +73,9 @@ export async function createExportTask(params, ctxEvent) {
           case "html":
             expTask = await _build_HTML_expTask(expTask, params, ctxEvent);
             break;
+            case "pdf":
+            expTask = await _build_PDF_expTask(expTask, params, ctxEvent);
+            break;
         }
         return expTask;
       } catch (ex) {
@@ -113,5 +116,20 @@ export async function createExportTask(params, ctxEvent) {
     //console.log(expTask)
     return expTask;
 
+  }
+
+async function _build_PDF_expTask(expTask, params, ctxEvent) {
+    // hack setup
+    expTask.expType = params.expType;
+    expTask.folders = [ctxEvent.selectedFolder];
+    expTask.currentFolderPath = expTask.folders[0].path;
+    expTask.generalConfig.exportDirectory = params.exportDirectory;
+    expTask.exportContainer.create = true;
+    expTask.dateFormat.type = 1;
+    expTask.msgNames.extension = "pdf";
+    expTask.attachments.save = params.saveAttachments;
+    
+    expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+    return expTask;
   }
 

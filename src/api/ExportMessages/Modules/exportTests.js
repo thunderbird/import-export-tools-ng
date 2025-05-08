@@ -125,7 +125,6 @@ export var exportTests = {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
       //console.log("expId", expTask.id, index, "promises", p)
-
     }
 
     //console.log("expId", expTask.id, "promises", settledWritePromises)
@@ -167,8 +166,11 @@ export var exportTests = {
       return writePromise;
     }
 
-    async function __writePdfFile(unqFilename, expand, index) {
+    async function __writePdfFile(unqFilename, expTask, index) {
 
+      let pdfPrintSettings = this._getPdfPrintSettings(unqFilename);
+      await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
+      
     }
 
   }, // exportMessagesES6 end
@@ -566,4 +568,42 @@ export var exportTests = {
       return text;
     }
   },
+
+  _getPdfPrintSettings: function (pdfFilename) {
+    let psService = Cc[
+      "@mozilla.org/gfx/printsettings-service;1"
+    ].getService(Ci.nsIPrintSettingsService);
+
+    // pdf changes for 102
+    // newPrintSettings => createNewPrintSettings()
+    // printSetting.printToFile deprecated in 102, not needed in 91
+    let printSettings;
+    if (psService.newPrintSettings) {
+      printSettings = psService.newPrintSettings;
+    } else {
+      printSettings = psService.createNewPrintSettings();
+    }
+
+    printSettings.printerName = "Mozilla_Save_to_PDF";
+    psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+
+
+    printSettings.isInitializedFromPrinter = true;
+    printSettings.isInitializedFromPrefs = true;
+
+    printSettings.printSilent = true;
+    printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+
+
+    if (printSettings.outputDestination !== undefined) {
+      printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+    }
+
+    if (printSettings.printToFile !== undefined) {
+      printSettings.printToFile = true;
+    }
+      printSettings.toFileName = pdfFilename;
+      return printSettings;
+  },
 };
+

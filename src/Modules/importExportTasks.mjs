@@ -48,6 +48,13 @@ import * as prefs from "./prefCmds.mjs";
         containerStructure: "perMsgDir",
         containerNamePattern: "${subject}-Atts",
       },
+      outputSpecific: {
+        eml: {},
+        html: {},
+        pdf: {
+          pdfPrinterName: "Mozilla_Save_to_PDF",
+        },
+      },
       getMsg: {
         method: "self._getRawMessage",
         convertData: false,

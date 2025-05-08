@@ -170,9 +170,9 @@ export var exportTests = {
 
     async function __writePdfFile(unqFilename, expTask, index) {
 
-      let pdfPrintSettings = self._getPdfPrintSettings(unqFilename);
+      let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
-      
+
     }
 
   }, // exportMessagesES6 end
@@ -276,12 +276,14 @@ export var exportTests = {
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let messageService = MailServices.messageServiceFromURI(msgUri);
 
+		//await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
+    console.log(msgUri)
     await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
     console.log(w3p.PrintUtils.printBrowser.contentDocument)
     let document = w3p.PrintUtils.printBrowser.contentDocument;
 
     // we have to modify DOM for header
-    await this._insertDOMHdrTable(document);
+    //await this._insertDOMHdrTable(document);
 
     return null;
   },
@@ -571,41 +573,23 @@ export var exportTests = {
     }
   },
 
-  _getPdfPrintSettings: function (pdfFilename) {
+  _getPdfPrintSettings: function (pdfFilename, expTask) {
     let psService = Cc[
       "@mozilla.org/gfx/printsettings-service;1"
     ].getService(Ci.nsIPrintSettingsService);
 
-    // pdf changes for 102
-    // newPrintSettings => createNewPrintSettings()
-    // printSetting.printToFile deprecated in 102, not needed in 91
     let printSettings;
-    if (psService.newPrintSettings) {
-      printSettings = psService.newPrintSettings;
-    } else {
-      printSettings = psService.createNewPrintSettings();
-    }
+    printSettings = psService.createNewPrintSettings();
+    printSettings.printerName = expTask.outputSpecific.pdf.pdfPrinterName;
 
-    printSettings.printerName = "Mozilla_Save_to_PDF";
     psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
-
-
     printSettings.isInitializedFromPrinter = true;
     printSettings.isInitializedFromPrefs = true;
-
     printSettings.printSilent = true;
     printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
-
-
-    if (printSettings.outputDestination !== undefined) {
-      printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
-    }
-
-    if (printSettings.printToFile !== undefined) {
-      printSettings.printToFile = true;
-    }
-      printSettings.toFileName = pdfFilename;
-      return printSettings;
+    printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+    printSettings.toFileName = pdfFilename;
+    return printSettings;
   },
 };
 

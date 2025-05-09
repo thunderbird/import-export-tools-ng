@@ -53,7 +53,7 @@ export var exportTests = {
 
       //console.log(expTask)
       if (expTask.attachments.save != "none") {
-        console.log("saving attachments")
+        //console.log("saving attachments")
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
           let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
           let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
@@ -100,14 +100,19 @@ export var exportTests = {
 
       let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
       let writePromise;
-      writePromise = __writeFile("message", unqFilename, expTask, index);
-      if (expTask.fileSave.sentDate) {
-        writePromise.then(async (size) => {
-          let dateInMs = new Date(expTask.msgList[index].date).getTime();
-          await IOUtils.setModificationTime(unqFilename, dateInMs);
-        });
+      if (expTask.expType == "pdf") {
+        await __writePdfFile(unqFilename, expTask, index);
+        writePromises.push(__pdfPromise(expTask, index, unqFilename));
+      } else {
+        writePromise = __writeFile("message", unqFilename, expTask, index);
+        if (expTask.fileSave.sentDate) {
+          writePromise.then(async (size) => {
+            let dateInMs = new Date(expTask.msgList[index].date).getTime();
+            await IOUtils.setModificationTime(unqFilename, dateInMs);
+          });
+        }
+        writePromises.push(writePromise);
       }
-      writePromises.push(writePromise);
     }
 
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
@@ -151,7 +156,9 @@ export var exportTests = {
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
           if (expTask.expType == "pdf") {
-            writePromise = __writePdfFile(unqName, expTask, index);
+            //writePromise = __writePdfFile(unqName, expTask, index);
+            await __writePdfFile(unqName, expTask, index);
+            return;
           } else {
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
           }
@@ -169,10 +176,25 @@ export var exportTests = {
     }
 
     async function __writePdfFile(unqFilename, expTask, index) {
+      let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
+      let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+      let messageService = MailServices.messageServiceFromURI(msgUri);
+
+      //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
+      console.log(msgUri)
+      await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
+      console.log(w3p.PrintUtils.printBrowser.contentDocument)
 
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
+      console.log("after print")
 
+    }
+
+    async function __pdfPromise(expTask, index, unqName) {
+      fileStatusList.push({ index: index, fileType: "message", id: expTask.msgList[index].id, filename: unqName });
+
+      return 0;
     }
 
   }, // exportMessagesES6 end
@@ -272,11 +294,12 @@ export var exportTests = {
   },
 
   _preprocessHForPDF: async function (expTask, index) {
+    return null;
     let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let messageService = MailServices.messageServiceFromURI(msgUri);
 
-		//await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
+    //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
     console.log(msgUri)
     await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
     console.log(w3p.PrintUtils.printBrowser.contentDocument)

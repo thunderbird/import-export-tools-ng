@@ -102,8 +102,16 @@ export var exportTests = {
           } else {
             relUnqPartPath = relUnqPartPath + filename;
           }
+
+          // pdf output from Thunderbird includes inline attachments so no
+          // need to fixup links
+          // we may not need to save either
+          
+          if (expTask.expType != "pdf") {
           expTask.msgList[index].msgData.msgBody =
             expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+          }
+
           writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
 
           //writePromises.push(IOUtils.write(unqFilename, inlineBody));

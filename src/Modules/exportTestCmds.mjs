@@ -222,11 +222,15 @@ async function _getprocessedMsg(expTask, msgId) {
       }
 
       // for PDF we only do getFull if we are saving attachments
-      if (expTask.expType == "pdf" && expTask.attachments.save == "none") {
+      if (expTask.expType == "pdf") {
+        if (expTask.attachments.save == "none") {
           resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: [], attachmentParts: [] });
           return;
+        }
+
       }
-      let fm = await browser.messages.getFull(msgId, { decrypt: false });
+
+      let fm = await browser.messages.getFull(msgId, { decrypt: true });
       //console.log(fm)
       if (fm.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
@@ -250,11 +254,10 @@ async function _getprocessedMsg(expTask, msgId) {
           let size = part.size;
           let body = part?.body;
 
-          if (contentType == "text/html" && body) {
+          if (expTask.expType != "pdf" && contentType == "text/html" && body) {
             htmlParts.push({ ct: part.contentType, b: part.body });
           }
-          if (part.contentType == "text/plain" && body) {
-            //body = body.replaceAll(/\r?\n/g, "<br>\n");
+          if (expTask.expType != "pdf" && part.contentType == "text/plain" && body) {
             textParts.push({ ct: part.contentType, b: body });
           }
 
@@ -290,8 +293,10 @@ async function _getprocessedMsg(expTask, msgId) {
       //console.log(htmlParts, textParts)
       if (htmlParts.length) {
         resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
-      } else {
+      } else if (textParts.length) {
         resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
+      } else {
+          resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: inlineParts, attachmentParts: attachmentParts });
       }
 
     } catch (ex) {

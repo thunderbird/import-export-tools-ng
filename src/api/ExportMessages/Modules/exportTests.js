@@ -1,6 +1,22 @@
 // paired down Wl tests
 
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+  "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
 var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
+var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
+
+var { MutexAsync } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/mutex-async.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
 //console.log("es6 exportMessages")
 
 var os = Services.appinfo.OS.toLowerCase();
@@ -9,6 +25,7 @@ var osPathSeparator = os.includes("win")
   : "/";
 
 var w3p = Services.wm.getMostRecentWindow("mail:3pane");
+var test = "start"
 
 export var exportTests = {
   self: this,
@@ -17,6 +34,13 @@ export var exportTests = {
   expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context) {
+
+    console.log(test, expTask.id)
+    if (expTask.id == 0) {
+      test = "exp pers" + expTask.id
+    }
+    console.log(test, expTask.id)
+
     this.context = context;
     var self = this;
     var fileStatusList = [];

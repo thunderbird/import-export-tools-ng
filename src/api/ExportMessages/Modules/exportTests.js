@@ -25,7 +25,17 @@ var osPathSeparator = os.includes("win")
   : "/";
 
 var w3p = Services.wm.getMostRecentWindow("mail:3pane");
-var test = "start"
+
+// we need a mutex for pdf export
+// the concurrency with using allSettled gains us about 10% performance 
+// however, this also allows asynchronous reentrancy
+// since pdf output requires two steps, loadPrintBrowser and print printBrowser
+// we must make this an atomic locked critical section
+// we also need the mutex as a global across exportMessagesES6 calls
+// so we define here
+
+console.log("create mutex")
+const pdfWriteMutex = new MutexAsync({warnOnOverlap: true});
 
 export var exportTests = {
   self: this,
@@ -35,11 +45,9 @@ export var exportTests = {
 
   exportMessagesES6: async function (expTask, context) {
 
-    console.log(test, expTask.id)
-    if (expTask.id == 0) {
-      test = "exp pers" + expTask.id
-    }
-    console.log(test, expTask.id)
+    let unlock = await pdfWriteMutex.lock();
+
+    console.log("start exptask id", expTask.id)
 
     this.context = context;
     var self = this;
@@ -160,10 +168,14 @@ export var exportTests = {
 
     //console.log("expId", expTask.id, "promises", settledWritePromises)
 
+    console.log("finish exptask id", expTask.id)
+    await unlock();
+    
     return settledWritePromises;
 
-    //return {msgStatusList: this.msgStatusList, errors: this.errors};
 
+    // inline functions
+    
     async function __writeFile(fileType, unqName, expTask, index, data = null) {
       var writePromise;
       try {
@@ -220,6 +232,7 @@ export var exportTests = {
 
       return 0;
     }
+
 
   }, // exportMessagesES6 end
 

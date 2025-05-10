@@ -190,8 +190,8 @@ export var exportTests = {
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
           if (expTask.expType == "pdf") {
-            //writePromise = __writePdfFile(unqName, expTask, index);
-            await __writePdfFile(unqName, expTask, index);
+            writePromise = __writePdfFile(unqName, expTask, index);
+            //await __writePdfFile(unqName, expTask, index);
             return;
           } else {
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)

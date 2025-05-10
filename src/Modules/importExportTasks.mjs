@@ -52,7 +52,7 @@ import * as prefs from "./prefCmds.mjs";
         eml: {},
         html: {},
         pdf: {
-          pdfPrinterName: "Mozilla_Save_to_PDF",
+          pdfPrinterName: "Microsoft_Print_to_PDF",
         },
       },
       getMsg: {

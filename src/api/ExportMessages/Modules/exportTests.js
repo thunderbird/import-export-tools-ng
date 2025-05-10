@@ -45,7 +45,6 @@ export var exportTests = {
 
   exportMessagesES6: async function (expTask, context) {
 
-    let unlock = await pdfWriteMutex.lock();
 
     console.log("start exptask id", expTask.id)
 
@@ -169,7 +168,6 @@ export var exportTests = {
     //console.log("expId", expTask.id, "promises", settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
-    await unlock();
     
     return settledWritePromises;
 
@@ -212,11 +210,15 @@ export var exportTests = {
     }
 
     async function __writePdfFile(unqFilename, expTask, index) {
+    let unlock = await pdfWriteMutex.lock();
+
       let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
       let messageService = MailServices.messageServiceFromURI(msgUri);
 
       //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
+      console.log("start print")
+
       console.log(msgUri)
       await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
       console.log(w3p.PrintUtils.printBrowser.contentDocument)
@@ -224,7 +226,7 @@ export var exportTests = {
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
       console.log("after print")
-
+      unlock();
     }
 
     async function __pdfPromise(expTask, index, unqName) {

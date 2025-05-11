@@ -332,7 +332,7 @@ export var exportTests = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    console.log(msgData.msgBody)
+    console.log(msgData)
 
     if (msgData.msgBodyType == "text/html") {
       return this._insertHdrTable(expTask, index, msgData.msgBody);
@@ -403,6 +403,7 @@ export var exportTests = {
     // note we only convert the text, header, styling and html 
     // wrapper is done later
 
+    console.log(plaintext)
 
     let htmlConvertedText;
     // first encode special characters

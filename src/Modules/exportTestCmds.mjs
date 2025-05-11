@@ -301,7 +301,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
       await getParts(parts)
 
-      //console.log(htmlParts, textParts)
+      console.log(htmlParts, textParts)
       if (htmlParts.length) {
         resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {

@@ -357,13 +357,13 @@ async function _createIndex(expTask, msgListLog) {
 
   console.log(msgListLog)
   for (let index = 0; index < msgListLog.length; index++) {
-    const msgItem = msgListLog[index].fileStatus.filename;
-    let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
-    console.log(msgName)
-    indexData = indexData + "\r\n<tr><td>" +  + "</td>";
-    indexData = indexData + "\r\n<td>" + "" + "</td>";
-    indexData = indexData + "\r\n<td>" + "" + "</td>";
-    indexData = indexData + "\r\n<td>" + "" + "</td>";
+    const msgItem = msgListLog[index].fileStatus;
+    //let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
+    //console.log(msgName)
+    indexData = indexData + "\r\n<tr><td>" + msgItem.headers.subject + "</td>";
+    indexData = indexData + "\r\n<td>" + msgItem.headers.author + "</td>";
+    indexData = indexData + "\r\n<td>" + msgItem.headers.recipients[0] + "</td>";
+    indexData = indexData + "\r\n<td>" + msgItem.headers.date + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
     indexData = indexData + "</tr>";

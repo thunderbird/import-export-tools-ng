@@ -62,11 +62,12 @@ export var exportTests = {
     for (let index = 0; index < msgListLen; index++) {
 
       if (!expTask.msgList[index].msgData) {
-        //console.log(index, "skip", expTask.msgList[index])
+        console.log(index, "no msgData", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
         expTask.msgList[index].msgData.inlineParts = [];
         expTask.msgList[index].msgData.attachmentParts = [];
         let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
+        console.log(rawMsgBody)
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
         expTask.msgList[index].msgData.msgBodyType = "raw"
       }
@@ -332,7 +333,7 @@ export var exportTests = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    console.log(msgData)
+    console.log(expTask.msgList[index])
 
     if (msgData.msgBodyType == "text/html") {
       return this._insertHdrTable(expTask, index, msgData.msgBody);

@@ -57,7 +57,7 @@ export var exportTests = {
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var updatedInlineFilenames = [];
-    //console.log(expTask)
+    console.log(expTask)
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -193,7 +193,7 @@ export var exportTests = {
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
           };
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs });
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs , hasAttachments: expTask.msgList[index].msgData.attachmentParts.length});
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
@@ -332,6 +332,8 @@ export var exportTests = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
+    console.log(msgData.msgBody)
+
     if (msgData.msgBodyType == "text/html") {
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
@@ -400,6 +402,7 @@ export var exportTests = {
     // we can do a lot here, but will start with the basics
     // note we only convert the text, header, styling and html 
     // wrapper is done later
+
 
     let htmlConvertedText;
     // first encode special characters

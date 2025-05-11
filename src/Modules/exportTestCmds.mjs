@@ -185,8 +185,10 @@ async function msgIterateBatch(expTask) {
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
           const fileStatus = msgsStatus[index].value[vindex].fileStatus;
+          const error = msgsStatus[index].value[vindex].error;
+
           if (fileStatus.fileType == "message") {
-            msgListLog.push(fileStatus.filename);
+            msgListLog.push({fileStatus: fileStatus, error: error});
           }
 
         }
@@ -317,6 +319,7 @@ async function _createIndex(expTask, msgListLog) {
 
   // we create as text/html since we are saving as an html document
 
+  try {
   var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
   let indexData = "";
@@ -352,12 +355,12 @@ async function _createIndex(expTask, msgListLog) {
 
   indexData = indexData + "</tr>";
 
+  console.log(msgListLog)
   for (let index = 0; index < msgListLog.length; index++) {
-    const msgItem = msgListLog[index];
+    const msgItem = msgListLog[index].fileStatus.filename;
     let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
     console.log(msgName)
-    //indexData += `${msgName}\\n`;
-    indexData = indexData + "\r\n<tr><td>" + msgName + "</td>";
+    indexData = indexData + "\r\n<tr><td>" +  + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
@@ -370,6 +373,9 @@ async function _createIndex(expTask, msgListLog) {
 
   indexData += "</table></body></html>\n";
   let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
+  } catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+  }
 
 }
 

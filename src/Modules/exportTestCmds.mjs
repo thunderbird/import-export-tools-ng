@@ -185,6 +185,7 @@ async function msgIterateBatch(expTask) {
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
           const fileStatus = msgsStatus[index].value[vindex].fileStatus;
+          fileStatus.fileSize = msgsStatus[index].value[vindex].value;
           const error = msgsStatus[index].value[vindex].error;
 
           if (fileStatus.fileType == "message") {
@@ -365,7 +366,7 @@ async function _createIndex(expTask, msgListLog) {
     indexData = indexData + "\r\n<td>" + msgItem.headers.recipients[0] + "</td>";
     indexData = indexData + "\r\n<td>" + msgItem.headers.date + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
-    indexData = indexData + "\r\n<td>" + "" + "</td>";
+    indexData = indexData + "\r\n<td>" + msgItem.fileSize + "</td>";
     indexData = indexData + "</tr>";
 
 

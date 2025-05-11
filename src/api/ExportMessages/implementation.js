@@ -11,6 +11,12 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
   "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+var os = Services.appinfo.OS.toLowerCase();
+var osPathSeparator = os.includes("win")
+  ? "\\"
+  : "/";
+
+
 // add Date now to query for debugging, thanks JB
 //dateNow = new Date();
 
@@ -109,6 +115,28 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           return exportTests.exportMessagesES6(expTask, self.context);
         },
 
+        async writeIndex(expTask, indexData) {
+          let indexDir = this._getIndexDirectory(expTask)
+          return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
+        },
+
+_getIndexDirectory: function (expTask) {
+
+    let indexDir;
+    // we have to sanitize the path for file system export
+    // Thunderbird wont allow a forward slash in a folder name 
+    // so we can count on that as our path separator
+
+    let cleanFolderName = expTask.folders[expTask.currentFolderIndex].name.replace(/[\\:<>*\?\"\|]/g, "_");
+    // use PathUtils.join which will give us an OS proper path
+    let base = expTask.exportContainer.directory;
+    indexDir = PathUtils.join(base, cleanFolderName);
+    //if (expTask.messages.messageContainer) {
+//      indexDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+    //}
+    expTask.index.directory = indexDir;
+    return indexDir;
+  },
         async exportMessagesBase(expTask) {
           //console.log("exportMessagesBase")
           var st1 = new Date();

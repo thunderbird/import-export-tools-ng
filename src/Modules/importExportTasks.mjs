@@ -48,6 +48,9 @@ import * as prefs from "./prefCmds.mjs";
         containerStructure: "perMsgDir",
         containerNamePattern: "${subject}-Atts",
       },
+      index: {
+        directory: "",
+      },
       outputSpecific: {
         eml: {},
         html: {},

@@ -81,6 +81,24 @@
             "description": "Filter mask"
           }
         ]
+      },
+       {
+        "name": "writeIndex",
+        "type": "function",
+        "description": "Write the index.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "The primary task descriptor."
+          },
+          {
+            "name": "indexData",
+            "type": "string",
+            "description": "Index data."
+          }
+        ]
       }
     ]
   }

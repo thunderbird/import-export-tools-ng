@@ -2,6 +2,9 @@
 
 import { createExportTask } from "./importExportTasks.mjs";
 import * as prefs from "./prefCmds.mjs";
+import { strftime } from "./strftime.mjs";
+
+console.log(strftime)
 import { Ci } from "/Modules/CiConstants.js";
 
 
@@ -364,9 +367,9 @@ async function _createIndex(expTask, msgListLog) {
     indexData = indexData + "\r\n<tr><td>" + msgItem.headers.subject + "</td>";
     indexData = indexData + "\r\n<td>" + msgItem.headers.author + "</td>";
     indexData = indexData + "\r\n<td>" + msgItem.headers.recipients[0] + "</td>";
-    indexData = indexData + "\r\n<td>" + msgItem.headers.date + "</td>";
+    indexData = indexData + "\r\n<td>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
-    indexData = indexData + "\r\n<td>" + msgItem.fileSize + "</td>";
+    indexData = indexData + "\r\n<td>" + _formatBytes(msgItem.fileSize,2) + "</td>";
     indexData = indexData + "</tr>";
 
 
@@ -380,6 +383,14 @@ async function _createIndex(expTask, msgListLog) {
 
 }
 
+function _formatBytes(bytes, decimals) {
+    if (bytes == 0) return '0 Bytes';
+    var k = 1024,
+      dm = decimals || 2,
+      sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+      i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
 
 async function fileToUint8Array(file) {
   return new Promise((resolve, reject) => {

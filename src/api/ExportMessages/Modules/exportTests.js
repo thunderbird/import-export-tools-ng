@@ -35,7 +35,7 @@ var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 // so we define here
 
 console.log("create mutex")
-const pdfWriteMutex = new MutexAsync({warnOnOverlap: true});
+const pdfWriteMutex = new MutexAsync({ warnOnOverlap: true });
 
 export var exportTests = {
   self: this,
@@ -61,7 +61,20 @@ export var exportTests = {
 
     for (let index = 0; index < msgListLen; index++) {
 
-      if (!expTask.msgList[index].msgData) {
+      // if there are no body parts we have two scenarios
+      // it can be a message with blocked remote content
+      // where getFull gives us nothing. In this case
+      // we fall back to _getRawMessage using the SimpleHtml
+      // flag so the export is similar to the view in the UI.
+      //
+      // The second case is for pdf export where we purposely
+      // do not pass any bodys as we do not use for export
+      // in the pdf case, the message is exported using  the
+      // msgUri and print of the printBrowser
+
+      if (!expTask.msgList[index].msgData.msgBodyType == "none" &&
+        expTask.expType != "pd"
+      ) {
         console.log(index, "no msgData", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
         expTask.msgList[index].msgData.inlineParts = [];
@@ -73,7 +86,7 @@ export var exportTests = {
       }
 
       let subject = expTask.msgList[index].subject.slice(0, 150);
-      let name = `${subject}`;
+      var name = `${subject}`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
       if (name == "...") {
         name = "NoKey"
@@ -107,10 +120,10 @@ export var exportTests = {
           // pdf output from Thunderbird includes inline attachments so no
           // need to fixup links
           // we may not need to save either
-          
+
           if (expTask.expType != "pdf") {
-          expTask.msgList[index].msgData.msgBody =
-            expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+            expTask.msgList[index].msgData.msgBody =
+              expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
           }
 
           writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
@@ -135,6 +148,8 @@ export var exportTests = {
 
       } catch (ex) {
         console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+        errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+        expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
 
       }
 
@@ -177,12 +192,12 @@ export var exportTests = {
     //console.log("expId", expTask.id, "promises", settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
-    
+
     return settledWritePromises;
 
 
     // inline functions
-    
+
     async function __writeFile(fileType, unqName, expTask, index, data = null) {
       var writePromise;
       try {
@@ -194,7 +209,7 @@ export var exportTests = {
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
           };
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs , hasAttachments: expTask.msgList[index].msgData.attachmentParts.length});
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
@@ -219,7 +234,7 @@ export var exportTests = {
     }
 
     async function __writePdfFile(unqFilename, expTask, index) {
-    let unlock = await pdfWriteMutex.lock();
+      let unlock = await pdfWriteMutex.lock();
 
       let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
@@ -244,6 +259,17 @@ export var exportTests = {
       return 0;
     }
 
+    async function _createErrMessage(index, ex) {
+
+      expTask.msgList[index].msgData.msgBody = `${ex}\n\n${ex.msg}\n\n${ex.stack}`;
+      name = "[Err] " + name;
+      expTask.msgList[index].subject = name;
+      // we have text/plain
+      expTask.msgList[index].msgData.msgBodyType = "text/plain";
+      expTask.msgList[index].msgData.msgBody = self._convertTextToHTML(expTask.msgList[index].msgData.msgBody);
+      return self._insertHdrTable(expTask, index, expTask.msgList[index].msgData.msgBody);
+
+    }
 
   }, // exportMessagesES6 end
 

@@ -57,7 +57,8 @@ export var exportTests = {
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var updatedInlineFilenames = [];
-    console.log(expTask)
+    let md = expTask.msgList
+    console.log(md)
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -72,8 +73,8 @@ export var exportTests = {
       // in the pdf case, the message is exported using  the
       // msgUri and print of the printBrowser
 
-      if (!expTask.msgList[index].msgData.msgBodyType == "none" &&
-        expTask.expType != "pd"
+      if (expTask.msgList[index].msgData.msgBodyType == "none" &&
+        expTask.expType != "pdf"
       ) {
         console.log(index, "no msgData", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
@@ -82,7 +83,7 @@ export var exportTests = {
         let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
         console.log(rawMsgBody)
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
-        expTask.msgList[index].msgData.msgBodyType = "raw"
+        expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
 
       let subject = expTask.msgList[index].subject.slice(0, 150);
@@ -96,7 +97,7 @@ export var exportTests = {
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       var attsDir = this._getAttachmentsDirectory(expTask, name);
 
-      //console.log(expTask)
+      console.log(expTask)
       if (expTask.attachments.save != "none") {
         //console.log("saving attachments")
         for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
@@ -216,7 +217,6 @@ export var exportTests = {
           if (expTask.expType == "pdf") {
             writePromise = __writePdfFile(unqName, expTask, index);
             //await __writePdfFile(unqName, expTask, index);
-            return;
           } else {
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
           }
@@ -253,8 +253,18 @@ export var exportTests = {
       unlock();
     }
 
-    async function __pdfPromise(expTask, index, unqName) {
-      fileStatusList.push({ index: index, fileType: "message", id: expTask.msgList[index].id, filename: unqName });
+    async function __pdfPromise(expTask, index, unqFilename) {
+      let hdrs = {
+        subject: expTask.msgList[index].subject,
+        recipients: expTask.msgList[index].recipients,
+        author: expTask.msgList[index].author,
+        date: expTask.msgList[index].date,
+      };
+      fileStatusList.push({ index: index, fileType: "message",
+        id: expTask.msgList[index].id, filename: unqFilename, headers: hdrs,
+        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
+
+
 
       return 0;
     }

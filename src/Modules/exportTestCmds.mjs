@@ -307,7 +307,7 @@ async function _getprocessedMsg(expTask, msgId) {
       } else if (textParts.length) {
         resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
-        resolve({ msgBody: null, msgBodyType: "non", inlineParts: inlineParts, attachmentParts: attachmentParts });
+        resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
       }
 
     } catch (ex) {

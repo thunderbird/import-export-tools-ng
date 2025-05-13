@@ -210,7 +210,7 @@ export var exportTests = {
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
           };
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
@@ -221,7 +221,7 @@ export var exportTests = {
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
           }
         } else {
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filename: unqName });
+          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
           writePromise = IOUtils.writeUTF8(unqName, data)
         }
       } catch (ex) {
@@ -261,7 +261,7 @@ export var exportTests = {
         date: expTask.msgList[index].date,
       };
       fileStatusList.push({ index: index, fileType: "message",
-        id: expTask.msgList[index].id, filename: unqFilename, headers: hdrs,
+        id: expTask.msgList[index].id, filePath: unqFilename, headers: hdrs,
         hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
 
 

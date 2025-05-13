@@ -7,6 +7,10 @@ import { strftime } from "./strftime.mjs";
 console.log(strftime)
 import { Ci } from "/Modules/CiConstants.js";
 
+var os = navigator.platform.toLowerCase();
+var osPathSeparator = os.includes("win")
+  ? "\\"
+  : "/";
 
 export async function exportFolders(ctxEvent, tab, functionParams) {
 
@@ -242,7 +246,7 @@ async function _getprocessedMsg(expTask, msgId) {
       }
 
       let fm = await browser.messages.getFull(msgId, { decrypt: true });
-      //console.log(fm)
+      console.log(fm)
       if (fm.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
         return;
@@ -362,11 +366,17 @@ async function _createIndex(expTask, msgListLog) {
   console.log(msgListLog)
   for (let index = 0; index < msgListLog.length; index++) {
     const msgItem = msgListLog[index].fileStatus;
+    let fpParts = msgItem.filePath.split(osPathSeparator);
+    let filename = fpParts[fpParts.length - 1];
+
+    let relUrl = "./" + encodeURIComponent(`${filename}`);
+    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject)}</a>}`;
     //let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
     //console.log(msgName)
-    indexData = indexData + "\r\n<tr><td>" + msgItem.headers.subject + "</td>";
-    indexData = indexData + "\r\n<td>" + msgItem.headers.author + "</td>";
-    indexData = indexData + "\r\n<td>" + msgItem.headers.recipients[0] + "</td>";
+    
+    indexData = indexData + "\r\n<tr><td>" + aHref + "</td>";
+    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author) + "</td>";
+    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.recipients[0]) + "</td>";
     indexData = indexData + "\r\n<td>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
     indexData = indexData + "\r\n<td>" + "" + "</td>";
     indexData = indexData + "\r\n<td>" + _formatBytes(msgItem.fileSize,2) + "</td>";
@@ -411,65 +421,15 @@ async function fileToUint8Array(file) {
 }
 
 
-async function msgIterateBase(expTask) {
+// body and index processing functions to be consolidated
 
-  // 1522 msgs 50MB
-  // 20 run avg 4061ms
-  // no write 1600ms avg
-
-
-  // iterate msgs
-
-  var wrtotal = 0;
-  var msgListPage = null;
-  var readRawInWext = true;
-  const targetMaxMsgData = 25 * 1000 * 1000;
-  var totalMsgsData = 0;
-  var expResult;
-  var writeMsgs = true;
-
-
-  do {
-    if (!msgListPage) {
-      msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-    } else {
-      msgListPage = await messenger.messages.continueList(msgListPage.id);
-    }
-    const messagesLen = msgListPage.messages.length;
-    expTask.msgList = [];
-    for (let index = 0; index < messagesLen; index++) {
-
-      expTask.msgList.push(msgListPage.messages[index])
-      let msgId = msgListPage.messages[index].id;
-      if (readRawInWext) {
-        expTask.msgList[expTask.msgList.length - 1].msgData = await messenger.messages.getRaw(msgId);
-      }
-      totalMsgsData += msgListPage.messages[index].size;
-
-      if (totalMsgsData >= targetMaxMsgData) {
-        if (writeMsgs) {
-          expResult = await browser.ExportMessages.exportMessagesBase(expTask);
-        }
-        totalMsgsData = 0;
-        expTask.msgList = [];
-      }
-    }
-
-    if (expTask.msgList) {
-      //console.log(expTask.msgList)
-      if (writeMsgs) {
-        expResult = await browser.ExportMessages.exportMessagesBase(expTask);
-      }
-    }
-
-    wrtotal += expResult;
-
-  } while (msgListPage.id);
-
-}
-
-
-
-export async function test(ctxInfo, params) {
-  console.log(ctxInfo, params);
-}
+ function _encodeSpecialTextToHTML(str) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    };
+    return str.replace(/[&<>"]/g, function (m) { return map[m]; });
+  }

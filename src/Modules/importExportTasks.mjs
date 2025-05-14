@@ -45,7 +45,7 @@ import * as prefs from "./prefCmds.mjs";
       },
       attachments: {
         save: "none",
-        containerStructure: "perMsgDir",
+        containerStructure: "perMsgDir2",
         containerNamePattern: "${subject}-Atts",
       },
       index: {

@@ -95,54 +95,62 @@ export var exportTests = {
 
 
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
-      var attsDir = this._getAttachmentsDirectory(expTask, name);
-
-      console.log(expTask)
-      if (expTask.attachments.save != "none") {
-        //console.log("saving attachments")
-        for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
-          let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-          let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
-
-          let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
-          partIdName = partIdName.replaceAll(/\./g, "\\.");
-          let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-          let filename = PathUtils.filename(unqFilename);
-          let currentDir = "." + osPathSeparator;
-          let relUnqPartPath = currentDir;
-          if (expTask.attachments.containerStructure == "perMsgDir") {
-            relUnqPartPath = relUnqPartPath
-              + PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2]
-              + osPathSeparator + filename;
-          } else {
-            relUnqPartPath = relUnqPartPath + filename;
-          }
-
-          // pdf output from Thunderbird includes inline attachments so no
-          // need to fixup links
-          // we may not need to save either
-
-          if (expTask.expType != "pdf") {
-            expTask.msgList[index].msgData.msgBody =
-              expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
-          }
-
-          writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
-
-          //writePromises.push(IOUtils.write(unqFilename, inlineBody));
-
-        }
-
-        for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
-          let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-          let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
-          writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
-
-          //writePromises.push(IOUtils.write(unqFilename, attachmentBody));
-        }
-      }
-      //console.log(expTask)
       try {
+        var attsDir = this._getAttachmentsDirectory(expTask, name);
+
+        console.log(expTask)
+        if (expTask.attachments.save != "none") {
+          //console.log("saving attachments")
+          for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+            let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
+            console.log(attsDir, inlinePart.name)
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
+
+            let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+            partIdName = partIdName.replaceAll(/\./g, "\\.");
+            let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+            let filename = PathUtils.filename(unqFilename);
+            let currentDir = "." + osPathSeparator;
+            let relUnqPartPath = currentDir;
+            if (expTask.attachments.containerStructure == "perMsgDir") {
+              relUnqPartPath = relUnqPartPath
+                + PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2]
+                + osPathSeparator + filename;
+            } else {
+              relUnqPartPath = relUnqPartPath + filename;
+            }
+
+            // pdf output from Thunderbird includes inline attachments so no
+            // need to fixup links
+            // we may not need to save either
+
+            if (expTask.expType != "pdf") {
+              expTask.msgList[index].msgData.msgBody =
+                expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+            }
+
+            writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
+
+            //writePromises.push(IOUtils.write(unqFilename, inlineBody));
+
+          }
+
+          for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
+            writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
+
+            //writePromises.push(IOUtils.write(unqFilename, attachmentBody));
+          }
+        }
+      // } catch (ex) {
+      //   console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+      //   errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+      //   expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
+
+      // }
+      //console.log(expTask)
+      //try {
         //if (expTask.msgList[index].msgData.msgBodyType != "raw") {
         expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
         //}
@@ -260,9 +268,11 @@ export var exportTests = {
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,
       };
-      fileStatusList.push({ index: index, fileType: "message",
+      fileStatusList.push({
+        index: index, fileType: "message",
         id: expTask.msgList[index].id, filePath: unqFilename, headers: hdrs,
-        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
+        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length
+      });
 
 
 
@@ -270,14 +280,14 @@ export var exportTests = {
     }
 
     async function _createErrMessage(index, ex) {
-
-      expTask.msgList[index].msgData.msgBody = `${ex}\n\n${ex.msg}\n\n${ex.stack}`;
+      let exMsg = ex.msg ? ex.msg : "";
+      let msgBody = `${ex}\n\n${exMsg}\n\n${ex.stack}`;
       name = "[Err] " + name;
       expTask.msgList[index].subject = name;
       // we have text/plain
       expTask.msgList[index].msgData.msgBodyType = "text/plain";
-      expTask.msgList[index].msgData.msgBody = self._convertTextToHTML(expTask.msgList[index].msgData.msgBody);
-      return self._insertHdrTable(expTask, index, expTask.msgList[index].msgData.msgBody);
+      msgBody = self._convertTextToHTML(msgBody);
+      return self._insertHdrTable(expTask, index, msgBody);
 
     }
 

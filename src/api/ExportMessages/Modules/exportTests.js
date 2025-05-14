@@ -109,13 +109,13 @@ export var exportTests = {
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
             partIdName = partIdName.replaceAll(/\./g, "\\.");
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-            let filename = PathUtils.filename(unqFilename);
-            let currentDir = "." + osPathSeparator;
-            let relUnqPartPath = currentDir;
+            let filename = encodeURIComponent(PathUtils.filename(unqFilename));
+            // we must replace inlinepart references
+            let relUnqPartPath = "./";
             if (expTask.attachments.containerStructure == "perMsgDir") {
               relUnqPartPath = relUnqPartPath
-                + PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2]
-                + osPathSeparator + filename;
+                + encodeURIComponent(PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2])
+                + "/" + filename;
             } else {
               relUnqPartPath = relUnqPartPath + filename;
             }
@@ -230,7 +230,7 @@ export var exportTests = {
           }
         } else {
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
-          writePromise = IOUtils.writeUTF8(unqName, data)
+          writePromise = IOUtils.write(unqName, data)
         }
       } catch (ex) {
         console.log("err expId", expTask.id, unqName, ex)
@@ -325,6 +325,8 @@ export var exportTests = {
         }
         attsDir = PathUtils.join(msgsDir, msgName);
         break;
+      default:
+        throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
     return attsDir;
   },

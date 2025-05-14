@@ -24,7 +24,7 @@ import * as prefs from "./prefCmds.mjs";
         custom: "%Y%m%d%H%M",
       },
       messages: {
-        messageContainer: false,
+        messageContainer: true,
         create: true,
         messageContainerName: "messages",
         messageContainerDirectory: "",
@@ -45,7 +45,7 @@ import * as prefs from "./prefCmds.mjs";
       },
       attachments: {
         save: "none",
-        containerStructure: "perMsgDir2",
+        containerStructure: "perMsgDir",
         containerNamePattern: "${subject}-Atts",
       },
       index: {

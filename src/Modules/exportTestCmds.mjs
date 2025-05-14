@@ -374,14 +374,15 @@ async function _createIndex(expTask, msgListLog) {
     }
     let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
     let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject)}</a>`;
-    //let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
-    //console.log(msgName)
-    
+    let attachments = "";
+    if (msgItem.hasAttachments) {
+      attachments = msgItem.hasAttachments;
+    }
     indexData = indexData + "\r\n<tr><td>" + aHref + "</td>";
     indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author) + "</td>";
     indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.recipients[0]) + "</td>";
     indexData = indexData + "\r\n<td>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
-    indexData = indexData + "\r\n<td>" + "" + "</td>";
+    indexData = indexData + "\r\n<td>" + attachments + "</td>";
     indexData = indexData + "\r\n<td>" + _formatBytes(msgItem.fileSize,2) + "</td>";
     indexData = indexData + "</tr>";
 

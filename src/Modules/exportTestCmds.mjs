@@ -367,7 +367,7 @@ async function _createIndex(expTask, msgListLog) {
   for (let index = 0; index < msgListLog.length; index++) {
     const msgItem = msgListLog[index].fileStatus;
     let fpParts = msgItem.filePath.split(osPathSeparator);
-    let filename = fpParts[fpParts.length - 1];
+    var filename = fpParts[fpParts.length - 1];
     let messageContainerName = "";
     if (expTask.messages.messageContainer) {
       messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
@@ -392,8 +392,8 @@ async function _createIndex(expTask, msgListLog) {
   indexData += "</table></body></html>\n";
   let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
   } catch (ex) {
-    console.log(ex);
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+    console.log(ex, filename);
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${filename}\n${ex.message}\n\n${ex.stack}`);
   }
 
 }
@@ -436,5 +436,8 @@ async function fileToUint8Array(file) {
       '"': '&quot;',
       "'": '&#39;',
     };
+    if (!str) {
+      return "";
+    }
     return str.replace(/[&<>"]/g, function (m) { return map[m]; });
   }

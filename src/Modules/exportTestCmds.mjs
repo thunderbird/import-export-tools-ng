@@ -366,6 +366,10 @@ async function _createIndex(expTask, msgListLog) {
   console.log(msgListLog)
   for (let index = 0; index < msgListLog.length; index++) {
     const msgItem = msgListLog[index].fileStatus;
+    let recipient = msgItem.headers.recipients[0]
+    if (recipient) {
+      recipient = recipient.slice(0, 50)
+    }
     let fpParts = msgItem.filePath.split(osPathSeparator);
     var filename = fpParts[fpParts.length - 1];
     let messageContainerName = "";
@@ -373,17 +377,17 @@ async function _createIndex(expTask, msgListLog) {
       messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
     }
     let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
-    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject)}</a>`;
+    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
     let attachments = "";
     if (msgItem.hasAttachments) {
       attachments = msgItem.hasAttachments;
     }
-    indexData = indexData + "\r\n<tr><td>" + aHref + "</td>";
-    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author) + "</td>";
-    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.recipients[0]) + "</td>";
-    indexData = indexData + "\r\n<td>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
+    indexData = indexData + "\r\n<tr><td style=''>" + aHref + "</td>";
+    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
+    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
+    indexData = indexData + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
     indexData = indexData + "\r\n<td>" + attachments + "</td>";
-    indexData = indexData + "\r\n<td>" + _formatBytes(msgItem.fileSize,2) + "</td>";
+    indexData = indexData + "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize,2) + "</td>";
     indexData = indexData + "</tr>";
 
 

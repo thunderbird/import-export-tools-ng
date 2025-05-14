@@ -368,9 +368,12 @@ async function _createIndex(expTask, msgListLog) {
     const msgItem = msgListLog[index].fileStatus;
     let fpParts = msgItem.filePath.split(osPathSeparator);
     let filename = fpParts[fpParts.length - 1];
-
-    let relUrl = "./" + encodeURIComponent(`${filename}`);
-    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject)}</a>}`;
+    let messageContainerName = "";
+    if (expTask.messages.messageContainer) {
+      messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
+    }
+    let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
+    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject)}</a>`;
     //let msgName = msgItem.split("\\")[msgItem.split("\\").length - 1];
     //console.log(msgName)
     
@@ -388,6 +391,7 @@ async function _createIndex(expTask, msgListLog) {
   indexData += "</table></body></html>\n";
   let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
   } catch (ex) {
+    console.log(ex);
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
   }
 

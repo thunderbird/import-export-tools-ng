@@ -420,15 +420,20 @@ export var exportTests = {
     hdrRows += `<tr><td>To:</td><td>${msgItem.recipients}</td></tr>`;
     hdrRows += `<tr><td>Date:</td><td>${msgItem.date}</td></tr>`;
 
-    let hdrTable = `<table border-collapse="true" border=0>${hdrRows}</table><br>`;
-    //console.log(tbl1)
+    let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
+    console.log(msgData.msgBodyType)
     if (msgData.msgBodyType == "text/plain") {
-      return `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+    console.log(tp)
+      return tp;
     }
-    return msgBody.replace(/(<BODY.*>)/i, hdrTable);
+    let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
+    console.log(rp)
+
+    return rp;
   },
 
   _insertDOMHdrTable: async function (document) {

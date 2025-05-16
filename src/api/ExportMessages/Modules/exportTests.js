@@ -56,9 +56,10 @@ export var exportTests = {
     var msgsDir = this._getMsgsDirectory(expTask);
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
-    var updatedInlineFilenames = [];
-    let md = expTask.msgList
-    console.log(md)
+    var attachmentFilenames = [];
+
+    //let md = expTask.msgList
+    //console.log(md)
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -81,7 +82,7 @@ export var exportTests = {
         expTask.msgList[index].msgData.inlineParts = [];
         expTask.msgList[index].msgData.attachmentParts = [];
         let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
-        console.log(rawMsgBody)
+        //console.log(rawMsgBody)
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
         expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
@@ -100,10 +101,12 @@ export var exportTests = {
 
         console.log(expTask)
         if (expTask.attachments.save != "none") {
+          attachmentFilenames = [];
+
           //console.log("saving attachments")
           for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
             let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-            console.log(attsDir, inlinePart.name)
+            //console.log(attsDir, inlinePart.name)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
 
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -139,21 +142,12 @@ export var exportTests = {
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
-
-            //writePromises.push(IOUtils.write(unqFilename, attachmentBody));
+            attachmentFilenames.push(PathUtils.filename(unqFilename));
+            console.log(attachmentFilenames)
           }
         }
-        // } catch (ex) {
-        //   console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-        //   errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-        //   expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
 
-        // }
-        //console.log(expTask)
-        //try {
-        //if (expTask.msgList[index].msgData.msgBodyType != "raw") {
-        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
-        //}
+        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attsDir, attachmentFilenames);
 
       } catch (ex) {
         console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
@@ -218,7 +212,12 @@ export var exportTests = {
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
           };
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length });
+          fileStatusList.push({
+            index: index, fileType: fileType, id: expTask.msgList[index].id,
+            filePath: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
+            attachmentFilenames: attachmentFilenames
+          });
+
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
@@ -271,11 +270,9 @@ export var exportTests = {
       fileStatusList.push({
         index: index, fileType: "message",
         id: expTask.msgList[index].id, filePath: unqFilename, headers: hdrs,
-        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length
+        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
+        attachmentFilenames: attachmentFilenames
       });
-
-
-
       return 0;
     }
 
@@ -349,7 +346,7 @@ export var exportTests = {
     });
   },
 
-  _preprocessBody: async function (expTask, index) {
+  _preprocessBody: async function (expTask, index, attsDir, attachmentFilenames) {
     // so we need to do different processing 
     // depending upon both expType and our body type
     // critical to break things up and not have 
@@ -362,7 +359,7 @@ export var exportTests = {
         processedMsgBody = await this._preprocessHForEML(expTask, index);
         break;
       case "html":
-        processedMsgBody = await this._preprocessHForHTML(expTask, index);
+        processedMsgBody = await this._preprocessHForHTML(expTask, index, attsDir, attachmentFilenames);
         break;
       case "pdf":
         processedMsgBody = await this._preprocessHForPDF(expTask, index);
@@ -375,7 +372,7 @@ export var exportTests = {
     return expTask.msgList[index].msgData.rawMsg;
   },
 
-  _preprocessHForHTML: async function (expTask, index) {
+  _preprocessHForHTML: async function (expTask, index, attsDir, attachmentFilenames) {
     // we process depending upon body content type
 
     let msgData = expTask.msgList[index].msgData;
@@ -384,11 +381,14 @@ export var exportTests = {
     console.log(expTask.msgList[index])
 
     if (msgData.msgBodyType == "text/html") {
+      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
-    return this._insertHdrTable(expTask, index, msgData.msgBody);
+    msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
+    return this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+
   },
 
   _preprocessHForPDF: async function (expTask, index) {
@@ -424,14 +424,14 @@ export var exportTests = {
 
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
-    console.log(msgData.msgBodyType)
+    //console.log(msgData.msgBodyType)
     if (msgData.msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
-      console.log(tp)
+      //console.log(tp)
       return tp;
     }
     let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
-    console.log(rp)
+    //console.log(rp)
 
     return rp;
   },
@@ -447,6 +447,29 @@ export var exportTests = {
     if (table3) {
       table2.style.background = "#ffffff";
     }
+  },
+
+  _insertAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
+    let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>Attachments</legend></fieldset>\n`;
+    let relAttsDir = "./";
+    if (expTask.attachments.containerStructure == "perMsgDir") {
+      relAttsDir += PathUtils.filename(attsDir);
+    }
+    console.log(relAttsDir)
+
+    attachmentFilenames.forEach(filename => {
+      let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
+      attList += `<li style="padding-left: 20px">${attHref}</li>\n`;
+    });
+
+    attList += "</div>\n";
+    console.log(attList)
+
+    msgBody = msgBody.replace(/<\/BODY>/i, `${attList}</body>`);
+    console.log(msgBody)
+
+    return msgBody;
+
   },
 
   _encodeSpecialTextToHTML: function (str) {

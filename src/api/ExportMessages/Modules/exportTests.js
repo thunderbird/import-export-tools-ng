@@ -143,14 +143,14 @@ export var exportTests = {
             //writePromises.push(IOUtils.write(unqFilename, attachmentBody));
           }
         }
-      // } catch (ex) {
-      //   console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-      //   errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-      //   expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
+        // } catch (ex) {
+        //   console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+        //   errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+        //   expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
 
-      // }
-      //console.log(expTask)
-      //try {
+        // }
+        //console.log(expTask)
+        //try {
         //if (expTask.msgList[index].msgData.msgBodyType != "raw") {
         expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index);
         //}
@@ -251,10 +251,10 @@ export var exportTests = {
       //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
       console.log("start print")
 
-      console.log(msgUri)
+      //console.log(msgUri)
       await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
-      console.log(w3p.PrintUtils.printBrowser.contentDocument)
-
+      //console.log(w3p.PrintUtils.printBrowser.contentDocument)
+      self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
       console.log("after print")
@@ -427,7 +427,7 @@ export var exportTests = {
     console.log(msgData.msgBodyType)
     if (msgData.msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
-    console.log(tp)
+      console.log(tp)
       return tp;
     }
     let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
@@ -437,8 +437,16 @@ export var exportTests = {
   },
 
   _insertDOMHdrTable: async function (document) {
-    var table = document.querySelector(".moz-header-part1");
-    table.style.border = "thick solid black"
+    let table = document.querySelector(".moz-header-part1");
+    let table2 = document.querySelector(".moz-header-part2");
+    let table3 = document.querySelector(".moz-header-part3");
+    table.style.background = "#ffffff";
+    if (table2) {
+      table2.style.background = "#ffffff";
+    }
+    if (table3) {
+      table2.style.background = "#ffffff";
+    }
   },
 
   _encodeSpecialTextToHTML: function (str) {

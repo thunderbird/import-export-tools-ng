@@ -415,10 +415,10 @@ export var exportTests = {
 
     //console.log(msgItem)
     let hdrRows = "";
-    hdrRows += `<tr><td>Subject:</td><td>${msgItem.subject}</td></tr>`;
-    hdrRows += `<tr><td>From:</td><td>${msgItem.author}</td></tr>`;
-    hdrRows += `<tr><td>To:</td><td>${msgItem.recipients}</td></tr>`;
-    hdrRows += `<tr><td>Date:</td><td>${msgItem.date}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msgItem.recipients}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msgItem.date}</td></tr>`;
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 

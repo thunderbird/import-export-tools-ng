@@ -74,6 +74,7 @@ export var exportTests = {
       // in the pdf case, the message is exported using  the
       // msgUri and print of the printBrowser
 
+      console.log(expTask)
       if (expTask.msgList[index].msgData.msgBodyType == "none" &&
         expTask.expType != "pdf"
       ) {
@@ -99,7 +100,7 @@ export var exportTests = {
       try {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
 
-        console.log(expTask)
+        //console.log(expTask)
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 
@@ -143,7 +144,6 @@ export var exportTests = {
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));
-            console.log(attachmentFilenames)
           }
         }
 
@@ -378,8 +378,6 @@ export var exportTests = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    console.log(expTask.msgList[index])
-
     if (msgData.msgBodyType == "text/html") {
       msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       return this._insertHdrTable(expTask, index, msgData.msgBody);
@@ -455,7 +453,6 @@ export var exportTests = {
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir);
     }
-    console.log(relAttsDir)
 
     attachmentFilenames.forEach(filename => {
       let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
@@ -463,13 +460,8 @@ export var exportTests = {
     });
 
     attList += "</div>\n";
-    console.log(attList)
-
     msgBody = msgBody.replace(/<\/BODY>/i, `${attList}</body>`);
-    console.log(msgBody)
-
     return msgBody;
-
   },
 
   _encodeSpecialTextToHTML: function (str) {
@@ -488,7 +480,7 @@ export var exportTests = {
     // note we only convert the text, header, styling and html 
     // wrapper is done later
 
-    console.log(plaintext)
+    //console.log(plaintext)
 
     let htmlConvertedText;
     // first encode special characters

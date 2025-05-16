@@ -160,7 +160,7 @@ async function msgIterateBatch(expTask) {
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
+            console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
             if (0 && !expTask.msgList[index].msgData) {
               console.log(index, expTask.msgList[index])
               break;
@@ -246,14 +246,14 @@ async function _getprocessedMsg(expTask, msgId) {
       }
 
       let fm = await browser.messages.getFull(msgId, { decrypt: true });
-      console.log(fm)
+      //console.log(fm)
       if (fm.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
         return;
       }
       let parts = fm.parts;
 
-      //console.log(fm)
+      console.log(fm)
       var textParts = [];
       var htmlParts = [];
       var inlineParts = [];
@@ -263,7 +263,7 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          //console.log(part)
+          console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let size = part.size;

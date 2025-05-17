@@ -147,8 +147,14 @@ export var exportTests = {
           }
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            console.log(attachmentPart)
             currentFileType = "attachment";
-            currentFileName = attachmentPart.name;
+            currentFileName = attachmentPart?.name;
+            // some attachments seen without a name
+            if (!currentFileName) {
+              currentFileName = "message.txt";
+              attachmentPart.name = "message.txt";
+            }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
@@ -160,8 +166,10 @@ export var exportTests = {
 
       } catch (ex) {
         //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-      let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
+      let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
         console.log(errMsg);
+        console.log(expTask.msgList[index]);
+
         errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
         expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
 

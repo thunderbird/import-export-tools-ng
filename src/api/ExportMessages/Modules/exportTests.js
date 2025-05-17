@@ -78,7 +78,7 @@ export var exportTests = {
       if (expTask.msgList[index].msgData.msgBodyType == "none" &&
         expTask.expType != "pdf"
       ) {
-        console.log(index, "no msgData", expTask.msgList[index])
+        //console.log(index, "no msgData", expTask.msgList[index])
         expTask.msgList[index].msgData = {};
         expTask.msgList[index].msgData.inlineParts = [];
         expTask.msgList[index].msgData.attachmentParts = [];
@@ -99,8 +99,12 @@ export var exportTests = {
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       try {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
-        //var maxFilePathLen = 252 - msgsDir.length;
-        var maxFilePathLen = 500
+        var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
+        console.log(attsDir)
+        attsDir = attsDir.slice(0, maxFilePathLen);
+        console.log(attsDir)
+
+        //var maxFilePathLen = 500
         var currentFileType = "";
         var currentFileName = "";
 
@@ -115,7 +119,7 @@ export var exportTests = {
             currentFileName = inlinePart.name;
             let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
             //console.log(attsDir, inlinePart.name)
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen));
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
             partIdName = partIdName.replaceAll(/\./g, "\\.");
@@ -147,7 +151,7 @@ export var exportTests = {
           }
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
-            console.log(attachmentPart)
+            //console.log(attachmentPart)
             currentFileType = "attachment";
             currentFileName = attachmentPart?.name;
             // some attachments seen without a name
@@ -156,7 +160,7 @@ export var exportTests = {
               attachmentPart.name = "message.txt";
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen));
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));
           }

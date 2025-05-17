@@ -177,7 +177,7 @@ async function msgIterateBatch(expTask) {
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
       console.log(msgsStatus)
-      //console.log(msgsStatus.length)
+      console.log(msgsStatus.length)
 
       var msgListLog = [];
 

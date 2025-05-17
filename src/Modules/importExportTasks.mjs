@@ -122,7 +122,6 @@ export async function createExportTask(params, ctxEvent) {
     expTask.attachments.save = params.saveAttachments;
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
-    console.log(expTask.fileSave.receivedDate)
     //console.log(expTask)
     return expTask;
 

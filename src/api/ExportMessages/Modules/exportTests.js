@@ -99,6 +99,11 @@ export var exportTests = {
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       try {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
+        //var maxFilePathLen = 252 - msgsDir.length;
+        var maxFilePathLen = 500
+        var currentFileType = "";
+        var currentFileName = "";
+
 
         //console.log(expTask)
         if (expTask.attachments.save != "none") {
@@ -106,9 +111,11 @@ export var exportTests = {
 
           //console.log("saving attachments")
           for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+            currentFileType = "inline";
+            currentFileName = inlinePart.name;
             let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
             //console.log(attsDir, inlinePart.name)
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name);
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen));
 
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
             partIdName = partIdName.replaceAll(/\./g, "\\.");
@@ -140,8 +147,10 @@ export var exportTests = {
           }
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            currentFileType = "attachment";
+            currentFileName = attachmentPart.name;
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name);
+            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));
           }
@@ -150,9 +159,11 @@ export var exportTests = {
         expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attsDir, attachmentFilenames);
 
       } catch (ex) {
-        console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+        //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
+      let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
+        console.log(errMsg);
         errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-        expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex);
+        expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
 
       }
 
@@ -276,9 +287,9 @@ export var exportTests = {
       return 0;
     }
 
-    async function _createErrMessage(index, ex) {
+    async function _createErrMessage(index, ex, currentFileType) {
       let exMsg = ex.msg ? ex.msg : "";
-      let msgBody = `${ex}\n\n${exMsg}\n\n${ex.stack}`;
+      let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
       name = "[Err] " + name;
       expTask.msgList[index].subject = name;
       // we have text/plain

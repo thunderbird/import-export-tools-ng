@@ -160,11 +160,7 @@ async function msgIterateBatch(expTask) {
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-            console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
-            if (0 && !expTask.msgList[index].msgData) {
-              console.log(index, expTask.msgList[index])
-              break;
-            }
+            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
           }
           expTask.id = expId++;
           //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
@@ -196,7 +192,7 @@ async function msgIterateBatch(expTask) {
           const error = msgsStatus[index].value[vindex].error;
 
           if (fileStatus.fileType == "message") {
-            msgListLog.push({fileStatus: fileStatus, error: error});
+            msgListLog.push({ fileStatus: fileStatus, error: error });
           }
 
         }
@@ -253,7 +249,6 @@ async function _getprocessedMsg(expTask, msgId) {
       }
       let parts = fm.parts;
 
-      console.log(fm)
       var textParts = [];
       var htmlParts = [];
       var inlineParts = [];
@@ -263,12 +258,13 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          console.log(part)
+          //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let size = part.size;
           let body = part?.body;
 
+          //console.log("body:", body)
           if (expTask.expType != "pdf" && contentType == "text/html" && body) {
             htmlParts.push({ ct: part.contentType, b: part.body });
           }
@@ -284,17 +280,24 @@ async function _getprocessedMsg(expTask, msgId) {
             if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
               //console.log("inline", part.headers)
               //console.log("inline", part.headers["content-id"])
-              let contentId = part.headers["content-id"][0]
+              try {
+                let contentId = part.headers["content-id"][0];
+                let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+                inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
 
-              let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              //inlineBody = await fileToUint8Array(inlineBody);
-              inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+              } catch {
+                let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+                attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+                //console.log("push inline att", attachmentParts)
+              }
             }
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
             let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+            //console.log("push att", attachmentParts)
+
           }
 
           if (part.parts) {
@@ -305,7 +308,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
       await getParts(parts)
 
-      console.log(htmlParts, textParts)
+      //console.log(htmlParts, textParts)
       if (htmlParts.length) {
         resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
@@ -315,7 +318,7 @@ async function _getprocessedMsg(expTask, msgId) {
       }
 
     } catch (ex) {
-      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
       reject(ex);
     }
   });
@@ -328,73 +331,73 @@ async function _createIndex(expTask, msgListLog) {
   // we create as text/html since we are saving as an html document
 
   try {
-  var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
+    var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
-  let indexData = "";
-  let titleDate = new Date();
+    let indexData = "";
+    let titleDate = new Date();
 
-  let styles = '<style>\r\n';
-  styles += 'table { border-collapse: collapse; }\r\n';
-  styles += 'th { background-color: #e6ffff; }\r\n';
-  styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
-  styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
-  styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
-  styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
-  styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
-  styles += '</style>\r\n';
+    let styles = '<style>\r\n';
+    styles += 'table { border-collapse: collapse; }\r\n';
+    styles += 'th { background-color: #e6ffff; }\r\n';
+    styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
+    styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
+    styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
+    styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
+    styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
+    styles += '</style>\r\n';
 
-  indexData = '<html>\r\n<head>\r\n';
+    indexData = '<html>\r\n<head>\r\n';
 
-  indexData = indexData + styles;
-  indexData = indexData + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>";
+    indexData = indexData + styles;
+    indexData = indexData + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>";
 
-  indexData = indexData + '<table width="99%" border="1" >';
+    indexData = indexData + '<table width="99%" border="1" >';
 
-  indexData = indexData + "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
-  indexData = indexData + "<th><b>" + "From" + "</b></th>"; // From
-  indexData = indexData + "<th><b>" + "To" + "</b></th>"; // To
-  indexData = indexData + "<th><b>" + "Date" + "</b></th>"; // Date
+    indexData = indexData + "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
+    indexData = indexData + "<th><b>" + "From" + "</b></th>"; // From
+    indexData = indexData + "<th><b>" + "To" + "</b></th>"; // To
+    indexData = indexData + "<th><b>" + "Date" + "</b></th>"; // Date
 
-  indexData = indexData + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+    indexData = indexData + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
-  //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
-  let sizeStr = "Size";
-  indexData = indexData + "<th><b>" + sizeStr + "</b></th>"; // Attachment
+    //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
+    let sizeStr = "Size";
+    indexData = indexData + "<th><b>" + sizeStr + "</b></th>"; // Attachment
 
-  indexData = indexData + "</tr>";
-
-  console.log(msgListLog)
-  for (let index = 0; index < msgListLog.length; index++) {
-    const msgItem = msgListLog[index].fileStatus;
-    let recipient = msgItem.headers.recipients[0]
-    if (recipient) {
-      recipient = recipient.slice(0, 50)
-    }
-    let fpParts = msgItem.filePath.split(osPathSeparator);
-    var filename = fpParts[fpParts.length - 1];
-    let messageContainerName = "";
-    if (expTask.messages.messageContainer) {
-      messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
-    }
-    let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
-    let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
-    let attachments = "";
-    if (msgItem.hasAttachments) {
-      attachments = msgItem.hasAttachments;
-    }
-    indexData = indexData + "\r\n<tr><td style=''>" + aHref + "</td>";
-    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
-    indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
-    indexData = indexData + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
-    indexData = indexData + "\r\n<td>" + attachments + "</td>";
-    indexData = indexData + "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize,2) + "</td>";
     indexData = indexData + "</tr>";
 
+    console.log(msgListLog)
+    for (let index = 0; index < msgListLog.length; index++) {
+      const msgItem = msgListLog[index].fileStatus;
+      let recipient = msgItem.headers.recipients[0]
+      if (recipient) {
+        recipient = recipient.slice(0, 50)
+      }
+      let fpParts = msgItem.filePath.split(osPathSeparator);
+      var filename = fpParts[fpParts.length - 1];
+      let messageContainerName = "";
+      if (expTask.messages.messageContainer) {
+        messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
+      }
+      let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
+      let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
+      let attachments = "";
+      if (msgItem.hasAttachments) {
+        attachments = msgItem.hasAttachments;
+      }
+      indexData = indexData + "\r\n<tr><td style=''>" + aHref + "</td>";
+      indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
+      indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
+      indexData = indexData + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
+      indexData = indexData + "\r\n<td>" + attachments + "</td>";
+      indexData = indexData + "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize, 2) + "</td>";
+      indexData = indexData + "</tr>";
 
-  }
 
-  indexData += "</table></body></html>\n";
-  let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
+    }
+
+    indexData += "</table></body></html>\n";
+    let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
   } catch (ex) {
     console.log(ex, filename);
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${filename}\n${ex.message}\n\n${ex.stack}`);
@@ -403,13 +406,13 @@ async function _createIndex(expTask, msgListLog) {
 }
 
 function _formatBytes(bytes, decimals) {
-    if (bytes == 0) return '0 Bytes';
-    var k = 1024,
-      dm = decimals || 2,
-      sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-      i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-  }
+  if (bytes == 0) return '0 Bytes';
+  var k = 1024,
+    dm = decimals || 2,
+    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+    i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
 async function fileToUint8Array(file) {
   return new Promise((resolve, reject) => {
@@ -432,16 +435,16 @@ async function fileToUint8Array(file) {
 
 // body and index processing functions to be consolidated
 
- function _encodeSpecialTextToHTML(str) {
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
-    };
-    if (!str) {
-      return "";
-    }
-    return str.replace(/[&<>"]/g, function (m) { return map[m]; });
+function _encodeSpecialTextToHTML(str) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  if (!str) {
+    return "";
   }
+  return str.replace(/[&<>"]/g, function (m) { return map[m]; });
+}

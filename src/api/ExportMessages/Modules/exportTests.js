@@ -74,7 +74,7 @@ export var exportTests = {
       // in the pdf case, the message is exported using  the
       // msgUri and print of the printBrowser
 
-      console.log(expTask)
+      //console.log(expTask)
       if (expTask.msgList[index].msgData.msgBodyType == "none" &&
         expTask.expType != "pdf"
       ) {

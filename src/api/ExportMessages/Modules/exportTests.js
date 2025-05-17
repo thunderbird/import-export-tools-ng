@@ -100,9 +100,7 @@ export var exportTests = {
       try {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
-        console.log(attsDir)
         attsDir = attsDir.slice(0, maxFilePathLen);
-        console.log(attsDir)
 
         //var maxFilePathLen = 500
         var currentFileType = "";

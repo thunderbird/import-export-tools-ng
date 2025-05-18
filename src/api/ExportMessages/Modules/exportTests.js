@@ -172,9 +172,9 @@ export var exportTests = {
         console.log(errMsg);
         console.log(expTask.msgList[index]);
 
-        errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+        //errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
         expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
-        expTask.msgList[index].msgData.err = true;
+        expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
       }
 
       let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
@@ -201,15 +201,15 @@ export var exportTests = {
 
     //console.log("expId", expTask.id, "status", fileStatusList)
     //console.log("expId", expTask.id, "errs", errors)
-      console.log(settledWritePromises)
+    console.log(settledWritePromises)
 
-      /*
+
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];
-      settledWritePromises[err.index].error = err;
+      settledWritePromises[index].error = err;
       console.log(err)
     }
-*/
+
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
@@ -247,6 +247,11 @@ export var exportTests = {
             attachmentFilenames: attachmentFilenames
           });
 
+          if (expTask.msgList[index].msgData.error) {
+            errors.push(expTask.msgList[index].msgData.error);
+          } else {
+            errors.push({ error: "none" });
+          }
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
@@ -261,6 +266,7 @@ export var exportTests = {
           }
         } else {
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
+          errors.push({ error: "none" });
           writePromise = IOUtils.write(unqName, data)
         }
       } catch (ex) {

@@ -29,15 +29,16 @@ import * as prefs from "./prefCmds.mjs";
         messageContainerName: "messages",
         messageContainerDirectory: "",
       },
-      msgNames: {
+      names: {
         namePatternType: "default",
+        namePatternBasic: "",
         namePatternDefault: "${subject}-${date}-${index}",
         namePatternCustom: "${subject}-${date}-${index}",
         extension: "",
         maxLength: 254,
-        nameComponents: {
+        components: {
           subjectMaxLen: 50,
-          senderNameMaxLen: 50,
+          authorNameMaxLen: 50,
           recipientNameMaxLen: 50,
         },
         filters: [],

@@ -168,16 +168,16 @@ export var exportTests = {
 
       } catch (ex) {
         //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-      let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
+        let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
         console.log(errMsg);
         console.log(expTask.msgList[index]);
 
         errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
         expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
-
+        expTask.msgList[index].msgData.err = true;
       }
 
-      let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.msgNames.extension}`);
+      let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
       let writePromise;
       if (expTask.expType == "pdf") {
         await __writePdfFile(unqFilename, expTask, index);
@@ -201,18 +201,26 @@ export var exportTests = {
 
     //console.log("expId", expTask.id, "status", fileStatusList)
     //console.log("expId", expTask.id, "errs", errors)
+      console.log(settledWritePromises)
 
+      /*
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];
       settledWritePromises[err.index].error = err;
+      console.log(err)
     }
-
+*/
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
-      //console.log("expId", expTask.id, index, "promises", p)
+      console.log(settledWritePromises)
+
+      console.log("expId", expTask.id, index, "fs", fileStatus)
     }
 
+    if (errors.length) {
+      console.log(settledWritePromises)
+    }
     //console.log("expId", expTask.id, "promises", settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
@@ -246,6 +254,9 @@ export var exportTests = {
             writePromise = __writePdfFile(unqName, expTask, index);
             //await __writePdfFile(unqName, expTask, index);
           } else {
+            if (expTask.msgList[index].msgData.err) {
+              console.log("write err", unqName, unqName.length)
+            }
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
           }
         } else {

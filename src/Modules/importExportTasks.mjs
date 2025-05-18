@@ -103,7 +103,7 @@ export async function createExportTask(params, ctxEvent) {
     expTask.generalConfig.exportDirectory = "";
     expTask.exportContainer.create = true;
     expTask.dateFormat.type = 1;
-    expTask.msgNames.extension = "eml";
+    expTask.names.extension = "eml";
     expTask.attachments.save = params.saveAttachments;
 
     //console.log(expTask)
@@ -119,7 +119,7 @@ export async function createExportTask(params, ctxEvent) {
     expTask.generalConfig.exportDirectory = params.exportDirectory;
     expTask.exportContainer.create = true;
     expTask.dateFormat.type = 1;
-    expTask.msgNames.extension = "html";
+    expTask.names.extension = "html";
     expTask.attachments.save = params.saveAttachments;
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
@@ -136,7 +136,7 @@ async function _build_PDF_expTask(expTask, params, ctxEvent) {
     expTask.generalConfig.exportDirectory = params.exportDirectory;
     expTask.exportContainer.create = true;
     expTask.dateFormat.type = 1;
-    expTask.msgNames.extension = "pdf";
+    expTask.names.extension = "pdf";
     expTask.attachments.save = params.saveAttachments;
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");

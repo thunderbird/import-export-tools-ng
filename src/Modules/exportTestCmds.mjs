@@ -344,31 +344,39 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
     styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
+    styles += '.msgError { background-color: red; }\r\n';
     styles += '</style>\r\n';
 
     indexData = '<html>\r\n<head>\r\n';
 
-    indexData = indexData + styles;
-    indexData = indexData + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>";
+    indexData += styles;
+    indexData += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>";
 
-    indexData = indexData + '<table width="99%" border="1" >';
+    indexData += '<table width="99%" border="1" >';
 
-    indexData = indexData + "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
-    indexData = indexData + "<th><b>" + "From" + "</b></th>"; // From
-    indexData = indexData + "<th><b>" + "To" + "</b></th>"; // To
-    indexData = indexData + "<th><b>" + "Date" + "</b></th>"; // Date
+    indexData += "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
+    indexData += "<th><b>" + "From" + "</b></th>"; // From
+    indexData += "<th><b>" + "To" + "</b></th>"; // To
+    indexData += "<th><b>" + "Date" + "</b></th>"; // Date
 
-    indexData = indexData + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+    indexData += "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
     //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
     let sizeStr = "Size";
-    indexData = indexData + "<th><b>" + sizeStr + "</b></th>"; // Attachment
+    indexData += "<th><b>" + sizeStr + "</b></th>"; // Attachment
 
-    indexData = indexData + "</tr>";
+    indexData += "</tr>";
 
     console.log(msgListLog)
     for (let index = 0; index < msgListLog.length; index++) {
       const msgItem = msgListLog[index].fileStatus;
+      const errItem = msgListLog[index].error;
+      let errClass = "";
+      if (errItem ) {
+        console.log("err", errItem)
+        errClass = ".msgError";
+      }
+
       let recipient = msgItem.headers.recipients[0]
       if (recipient) {
         recipient = recipient.slice(0, 50)
@@ -385,13 +393,13 @@ async function _createIndex(expTask, msgListLog) {
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData = indexData + "\r\n<tr><td style=''>" + aHref + "</td>";
-      indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
-      indexData = indexData + "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
-      indexData = indexData + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
-      indexData = indexData + "\r\n<td>" + attachments + "</td>";
-      indexData = indexData + "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize, 2) + "</td>";
-      indexData = indexData + "</tr>";
+      indexData += `\r\n<tr><td ${errClass} style=''>"${aHref}"</td>`;
+      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
+      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
+      indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
+      indexData += "\r\n<td>" + attachments + "</td>";
+      indexData += "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize, 2) + "</td>";
+      indexData += "</tr>";
 
 
     }

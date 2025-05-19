@@ -417,6 +417,12 @@ export var exportTests = {
     let msgItem = expTask.msgList[index];
 
     if (msgData.msgBodyType == "text/html") {
+      // first check if this is headless html where 
+      // there is no html or body tags
+      if(!/<HTML[^>]>/i.test(msgData.msgBody)) {
+        // wrap body with <html><body>
+        msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
+      }
       msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }

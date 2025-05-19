@@ -258,7 +258,7 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          //console.log(part)
+          console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let size = part.size;
@@ -294,8 +294,18 @@ async function _getprocessedMsg(expTask, msgId) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
-            let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-            attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+            try {
+                let contentId = part.headers["content-id"][0];
+                let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+                inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+
+              } catch {
+                let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+                attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+                //console.log("push inline att", attachmentParts)
+              }
+            //let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+            //attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
             //console.log("push att", attachmentParts)
 
           }

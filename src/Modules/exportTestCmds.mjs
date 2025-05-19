@@ -344,7 +344,7 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
     styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
-    styles += '.msgError { background-color: red; }\r\n';
+    styles += '.msgError { background-color: red !important;}\r\n';
     styles += '</style>\r\n';
 
     indexData = '<html>\r\n<head>\r\n';
@@ -372,9 +372,9 @@ async function _createIndex(expTask, msgListLog) {
       const msgItem = msgListLog[index].fileStatus;
       const errItem = msgListLog[index].error;
       let errClass = "";
-      if (errItem ) {
+      if (errItem.error != "none" ) {
         console.log("err", errItem)
-        errClass = ".msgError";
+        errClass = " class='msgError' ";
       }
 
       let recipient = msgItem.headers.recipients[0]

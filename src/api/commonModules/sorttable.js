@@ -15,10 +15,8 @@
   This basically means: do what you want with it.
 */
 
+export var sorttable = {
 
-var stIsIE = /*@cc_on!@*/false;
-
-sorttable = {
   init: function() {
     // quit if this function has already been called
     if (arguments.callee.done) return;
@@ -71,7 +69,7 @@ sorttable = {
       for (var i=0; i<sortbottomrows.length; i++) {
         tfo.appendChild(sortbottomrows[i]);
       }
-      delete sortbottomrows;
+      //delete sortbottomrows;
     }
 
     // work through each column and calculate its type
@@ -157,7 +155,7 @@ sorttable = {
 	          tb.appendChild(row_array[j][1]);
 	        }
 
-	        delete row_array;
+	        row_array = null;;
 	      });
 	    }
     }
@@ -252,7 +250,7 @@ sorttable = {
     for (var i=newrows.length-1; i>=0; i--) {
        tbody.appendChild(newrows[i]);
     }
-    delete newrows;
+    newrows = null;
   },
 
   /* sort functions

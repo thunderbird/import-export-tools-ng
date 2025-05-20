@@ -24,6 +24,9 @@ var { exportTests } = ChromeUtils.importESModule(
   "resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
 );
 
+var { sorttable } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/sorttable.js?" + ietngExtension.manifest.version + new Date()
+);
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -44,69 +47,6 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     return {
       ExportMessages: {
 
-        async exportMessagesStream(expTask) {
-          let aConvertData = false;
-          let msgArrayLen = expTask.msgList.length;
-          let idx = 0;
-          var writePromises = [];
-
-          do {
-            let msgHdr = context.extension.messageManager.get(expTask.msgList[idx].id);
-            let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-            let service = MailServices.messageServiceFromURI(msgUri);
-            let pr = await new Promise((resolve, reject) => {
-              let streamlistener = {
-                _data: "",
-                _stream: null,
-                onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
-                  if (!this._stream) {
-                    this._stream = Cc[
-                      "@mozilla.org/scriptableinputstream;1"
-                    ].createInstance(Ci.nsIScriptableInputStream);
-                    this._stream.init(aInputStream);
-                  }
-                  this._data += this._stream.read(aCount);
-                },
-                onStartRequest() { },
-                async onStopRequest(request, status) {
-                  if (Components.isSuccessCode(status)) {
-
-                    let subject = expTask.msgList[idx].subject.slice(0, 100);
-                    let name = `${subject}.eml`;
-                    //console.log(name, msgUriArray[idx].messageKey)
-                    name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-                    let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
-                    writePromises.push(IOUtils.writeUTF8(uname, this._data));
-                    resolve(1);
-                  } else {
-                    reject(
-                      new Error(
-                        `Error while streaming message <${msgUri}>: ${status}`
-                      )
-                    );
-                  }
-                },
-                QueryInterface: ChromeUtils.generateQI([
-                  "nsIStreamListener",
-                  "nsIRequestObserver",
-                ]),
-              };
-
-              // This is not using aConvertData and therefore works for news:// messages.
-              service.streamMessage(
-                msgUri,
-                streamlistener,
-                null, // aMsgWindow
-                null, // aUrlListener
-                aConvertData, // aConvertData
-                "" //aAdditionalHeader
-              );
-            });
-          } while (++idx < msgArrayLen);
-          return Promise.allSettled(writePromises);
-
-        },
-
         async exportMessagesES6(expTask) {
           //console.log(self.context)
           //console.log(new Date());
@@ -116,11 +56,10 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async writeIndex(expTask, indexData) {
-          let st = {};
-          Services.scriptloader.loadSubScript("resource://ietng/api/commonModules/sorttable.js", st, "UTF-8");
-
-          let file = IOUtils.readUTF8()
+          let sorttableSource = sorttable.code;
+          console.log(sorttable.toSource())
           let indexDir = this._getIndexDirectory(expTask)
+          indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
         },
 

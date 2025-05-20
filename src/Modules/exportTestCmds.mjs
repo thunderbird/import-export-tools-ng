@@ -360,9 +360,10 @@ async function _createIndex(expTask, msgListLog) {
     indexData = '<html>\r\n<head>\r\n';
 
     indexData += styles;
-    indexData += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>";
+    indexData += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + expTask.folders[expTask.currentFolderIndex].name + '</title>\r\n</head>\r\n<body>\r\n<h2>'
+     + expTask.folders[expTask.currentFolderIndex].name + " (" + titleDate + ")</h2>\n";
 
-    indexData += '<table width="99%" border="1" >';
+    indexData += '<table width="99%" border="1" class="sortable">\n';
 
     indexData += "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
     indexData += "<th><b>" + "From" + "</b></th>"; // From
@@ -403,18 +404,16 @@ async function _createIndex(expTask, msgListLog) {
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData += `\r\n<tr><td ${errClass} style=''>"${aHref}"</td>`;
+      indexData += `\r\n<tr ${errClass}><td style=''>"${aHref}"</td>`;
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
       indexData += "\r\n<td>" + attachments + "</td>";
       indexData += "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize, 2) + "</td>";
       indexData += "</tr>";
-
-
     }
 
-    indexData += "</table></body></html>\n";
+    indexData += "</table>\n<script>\nsorttable.js\n</script>\n</body></html>\n";
     let rv = await browser.ExportMessages.writeIndex(expTask, indexData);
   } catch (ex) {
     console.log(ex, filename);

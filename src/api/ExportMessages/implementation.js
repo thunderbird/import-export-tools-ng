@@ -116,27 +116,31 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async writeIndex(expTask, indexData) {
+          let st = {};
+          Services.scriptloader.loadSubScript("resource://ietng/api/commonModules/sorttable.js", st, "UTF-8");
+
+          let file = IOUtils.readUTF8()
           let indexDir = this._getIndexDirectory(expTask)
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
         },
 
-_getIndexDirectory: function (expTask) {
+        _getIndexDirectory: function (expTask) {
 
-    let indexDir;
-    // we have to sanitize the path for file system export
-    // Thunderbird wont allow a forward slash in a folder name 
-    // so we can count on that as our path separator
+          let indexDir;
+          // we have to sanitize the path for file system export
+          // Thunderbird wont allow a forward slash in a folder name 
+          // so we can count on that as our path separator
 
-    let cleanFolderName = expTask.folders[expTask.currentFolderIndex].name.replace(/[\\:<>*\?\"\|]/g, "_");
-    // use PathUtils.join which will give us an OS proper path
-    let base = expTask.exportContainer.directory;
-    indexDir = PathUtils.join(base, cleanFolderName);
-    //if (expTask.messages.messageContainer) {
-//      indexDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
-    //}
-    expTask.index.directory = indexDir;
-    return indexDir;
-  },
+          let cleanFolderName = expTask.folders[expTask.currentFolderIndex].name.replace(/[\\:<>*\?\"\|]/g, "_");
+          // use PathUtils.join which will give us an OS proper path
+          let base = expTask.exportContainer.directory;
+          indexDir = PathUtils.join(base, cleanFolderName);
+          //if (expTask.messages.messageContainer) {
+          //      indexDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+          //}
+          expTask.index.directory = indexDir;
+          return indexDir;
+        },
         async exportMessagesBase(expTask) {
           //console.log("exportMessagesBase")
           var st1 = new Date();

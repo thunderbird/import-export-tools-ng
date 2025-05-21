@@ -24,9 +24,9 @@ var { exportTests } = ChromeUtils.importESModule(
   "resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
 );
 
-var { sorttable } = ChromeUtils.importESModule(
-  "resource://ietng/api/commonModules/sorttable.js?" + ietngExtension.manifest.version + new Date()
-);
+//var { sorttable } = ChromeUtils.importESModule(
+//  "resource://ietng/api/commonModules/sorttable.js?" + ietngExtension.manifest.version + new Date()
+//);
 
 function getThunderbirdVersion() {
   let parts = Services.appinfo.version.split(".");
@@ -56,10 +56,10 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async writeIndex(expTask, indexData) {
-          let sorttableSource = sorttable.code;
-          console.log(sorttable.toSource())
+          //let sorttableSource = sorttable.code;
+          //console.log(sorttable.toSource())
           let indexDir = this._getIndexDirectory(expTask)
-          indexData = indexData.replace("sorttable.js", sorttableSource);
+          //indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
         },
 

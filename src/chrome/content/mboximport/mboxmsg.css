@@ -29,7 +29,7 @@
   border-top: 0.4px solid black;
   border-left: 0.4px solid black;
   /* justify-content: center; */
-
+  min-width: 410px;
   /* max-width: calc(100vw/2); flexible */
 }
 

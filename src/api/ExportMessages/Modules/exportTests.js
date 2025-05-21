@@ -100,7 +100,11 @@ export var exportTests = {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         attsDir = attsDir.slice(0, maxFilePathLen);
-
+        if (attsDir.endsWith(".")) {
+          attsDir += ";";
+        }
+        console.log(attsDir.length, attsDir)
+        console.log(maxFilePathLen)
         //var maxFilePathLen = 500
         var currentFileType = "";
         var currentFileName = "";
@@ -157,6 +161,7 @@ export var exportTests = {
               attachmentPart.name = "message.txt";
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
+            console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));

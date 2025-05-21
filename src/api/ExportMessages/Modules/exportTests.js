@@ -34,7 +34,6 @@ var w3p = Services.wm.getMostRecentWindow("mail:3pane");
 // we also need the mutex as a global across exportMessagesES6 calls
 // so we define here
 
-console.log("create mutex")
 const pdfWriteMutex = new MutexAsync({ warnOnOverlap: true });
 
 export var exportTests = {
@@ -213,9 +212,8 @@ export var exportTests = {
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
-      console.log(settledWritePromises)
-
-      console.log("expId", expTask.id, index, "fs", fileStatus)
+      //console.log(settledWritePromises)
+      //console.log("expId", expTask.id, index, "fs", fileStatus)
     }
 
     if (errors.length) {

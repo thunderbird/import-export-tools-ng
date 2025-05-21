@@ -65,8 +65,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
       expTask.selectedFolder = ctxEvent.selectedFolder;
 
-      let msgListLog = await msgIterateBatch(expTask);
-      _createIndex(expTask, msgListLog);
+      var exportStatus = await msgIterateBatch(expTask);
+      _createIndex(expTask, exportStatus.msgListLog);
 
       //console.log(new Date());
 
@@ -78,6 +78,12 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     //console.log("wrt avg", wrtotal / runs)
     console.log("avg", total / runs)
+    let exportMessage = `Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n\n`;
+    exportMessage += `Messages exported: ${exportStatus.msgCount}\n`;
+    exportMessage += `Error count: ${exportStatus.errCount}\n\n`;
+    exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
+
+    let rv = await browser.AsyncPrompts.asyncAlert("Folder Export", `${exportMessage}`);
 
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
@@ -179,9 +185,10 @@ async function msgIterateBatch(expTask) {
       console.log(msgsStatus)
       console.log(msgsStatus.length)
 
-      var msgListLog = [];
+      let msgListLog = [];
+      let msgCount = 0;
+      let errCount = 0;
 
-      var tp = 0;
       for (let index = 0; index < msgsStatus.length; index++) {
         //console.log(msgsStatus[index].value);
         //console.log(msgsStatus[index].value.length);
@@ -190,22 +197,22 @@ async function msgIterateBatch(expTask) {
           const fileStatus = msgsStatus[index].value[vindex].fileStatus;
           fileStatus.fileSize = msgsStatus[index].value[vindex].value;
           const error = msgsStatus[index].value[vindex].error;
-
           if (fileStatus.fileType == "message") {
+            msgCount++;
+            if ( error.error != "none") {
+              errCount++;
+            }
             msgListLog.push({ fileStatus: fileStatus, error: error });
           }
-
         }
-        tp += msgsStatus[index].value.length;
       }
 
       //console.log(msgListLog)
-      //msgList = msgList.concat(status.value.msgStatusList)
 
       console.log("total msgs:", totalMsgs)
-      console.log("total promises:", tp)
+      //console.log("total promises:", tp)
 
-      return msgListLog;
+      return { msgListLog: msgListLog, msgCount: msgCount, errCount: errCount};
 
       //console.log(new Date());
     }

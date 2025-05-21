@@ -265,7 +265,7 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          console.log(part)
+          //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let size = part.size;

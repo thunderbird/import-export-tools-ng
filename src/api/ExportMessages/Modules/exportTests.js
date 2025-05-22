@@ -103,7 +103,11 @@ export var exportTests = {
         if (attsDir.endsWith(".")) {
           attsDir += ";";
         }
-        console.log(attsDir.length, attsDir)
+        if (attsDir.endsWith(" ")) {
+          console.log("space")
+          //attsDir = attsDir.slice(0, -1);;
+        }
+        console.log(attsDir.length, `"${attsDir}"`)
         console.log(maxFilePathLen)
         //var maxFilePathLen = 500
         var currentFileType = "";
@@ -422,7 +426,7 @@ export var exportTests = {
     if (msgData.msgBodyType == "text/html") {
       // first check if this is headless html where 
       // there is no html or body tags
-      if(!/<HTML[^>]>/i.test(msgData.msgBody)) {
+      if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
         // wrap body with <html><body>
         msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
       }
@@ -620,7 +624,6 @@ export var exportTests = {
     printSettings.toFileName = pdfFilename;
     return printSettings;
   },
-
 
 };
 

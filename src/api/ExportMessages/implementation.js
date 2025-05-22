@@ -11,6 +11,10 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
   "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
+var { NetUtil } = ChromeUtils.importESModule(
+    "resource://gre/modules/NetUtil.sys.mjs"
+);
+
 var os = Services.appinfo.OS.toLowerCase();
 var osPathSeparator = os.includes("win")
   ? "\\"
@@ -56,8 +60,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async writeIndex(expTask, indexData) {
+          let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
           //let sorttableSource = sorttable.code;
-          //console.log(sorttable.toSource())
+          console.log(script)
           let indexDir = this._getIndexDirectory(expTask)
           //indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
@@ -80,31 +85,37 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           expTask.index.directory = indexDir;
           return indexDir;
         },
-        async exportMessagesBase(expTask) {
-          //console.log("exportMessagesBase")
-          var st1 = new Date();
 
-          // collecting promises and running the writeUTF8 calls
-          // concurrently and using Promise.allSettled makes
-          // a big improvement. This is possible because the prior
-          // awaited createUniqueFile guarantees the independent 
-          // write to file
 
-          var writePromises = [];
+        // read file from within the XPI package
+        // from John Beiling
+        _fetchFile: async function (aURL) {
+          return new Promise((resolve, reject) => {
+            let uri = Services.io.newURI(aURL);
+            let channel = Services.io.newChannelFromURI(uri,
+              null,
+              Services.scriptSecurityManager.getSystemPrincipal(),
+              null,
+              Components.interfaces.nsILoadInfo.SEC_REQUIRE_SAME_ORIGIN_INHERITS_SEC_CONTEXT,
+              Components.interfaces.nsIContentPolicy.TYPE_OTHER);
 
-          for (let index = 0; index < expTask.msgList.length; index++) {
-            if (!expTask.msgList[index].msgData) {
-              console.log("readmsg")
-              expTask.msgList[index].msgData = await self._readMsg(expTask, msgHdrList[index]);
-            }
-            let subject = expTask.msgList[index].subject.slice(0, 150);
-            let name = `${subject}.eml`;
-            name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-            let uname = await IOUtils.createUniqueFile(expTask.exportContainer.directory, name);
-            writePromises.push(IOUtils.writeUTF8(uname, expTask.msgList[index].msgData));
-          }
-          return Promise.allSettled(writePromises);
+            NetUtil.asyncFetch(channel, (inputStream, status) => {
+              if (!Components.isSuccessCode(status)) {
+                reject(status);
+                return;
+              }
+
+              try {
+                let data = NetUtil.readInputStreamToString(inputStream, inputStream.available());
+                console.log(data)
+                resolve(data);
+              } catch (ex) {
+                reject(ex);
+              }
+            });
+          });
         },
+
 
         async createExportContainer(expTask) {
           let dateStr = strftime.strftime("%Y", new Date());

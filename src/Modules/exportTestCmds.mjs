@@ -413,7 +413,7 @@ async function _createIndex(expTask, msgListLog) {
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData += `\r\n<tr ${errClass}><td style=''>"${aHref}"</td>`;
+      indexData += `\r\n<tr ${errClass}><td style=''>${aHref}</td>`;
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";

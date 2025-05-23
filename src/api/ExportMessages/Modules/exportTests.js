@@ -292,7 +292,6 @@ export var exportTests = {
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
       let messageService = MailServices.messageServiceFromURI(msgUri);
 
-      //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
       console.log("start print")
 
       //console.log(msgUri)
@@ -446,7 +445,6 @@ export var exportTests = {
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
     let messageService = MailServices.messageServiceFromURI(msgUri);
 
-    //await w3p.PrintUtils.loadPrintBrowser("resource:/test.html");
     console.log(msgUri)
     await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
     console.log(w3p.PrintUtils.printBrowser.contentDocument)

@@ -61,12 +61,12 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
         async writeIndex(expTask, indexData) {
           //try {
-          //var { sorttable } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttable.js?"  + ietngExtension.manifest.version + new Date());
+          var { sorttableSource } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttableSource.mjs?" + ietngExtension.manifest.version + new Date());
 
-          let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
-          console.log(script)
+          //let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
+          console.log(sorttableSource)
           let indexDir = this._getIndexDirectory(expTask)
-          //indexData = indexData.replace("sorttable.js", sorttableSource);
+          indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
           //} catch (ex){
             //console.log(ex)

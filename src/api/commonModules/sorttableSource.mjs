@@ -15,13 +15,10 @@
   This basically means: do what you want with it.
 */
 
-
+export var sorttableSource = String.raw `
 var stIsIE = /*@cc_on!@*/false;
 
-
 sorttable = {
-
-  /*
   init: function () {
     // quit if this function has already been called
     if (arguments.callee.done) return;
@@ -35,15 +32,14 @@ sorttable = {
     sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
 
     // cleidigh - replace with real es6 forEach
-
-    document.getElementsByTagName('table').forEach(table => {
+    [...document.getElementsByTagName('table')].forEach(table => {
       if (table.className.search(/\bsortable\b/) != -1) {
         sorttable.makeSortable(table);
       }
     });
 
     /*
-    forEach(document.getElementsByTagName('table'), function (table) {
+    forEach(document.getElementsByTagName('table'), function(table) {
       if (table.className.search(/\bsortable\b/) != -1) {
         sorttable.makeSortable(table);
       }
@@ -84,7 +80,7 @@ sorttable = {
       for (var i = 0; i < sortbottomrows.length; i++) {
         tfo.appendChild(sortbottomrows[i]);
       }
-      sortbottomrows = null;
+      delete sortbottomrows;
     }
 
     // work through each column and calculate its type
@@ -133,15 +129,15 @@ sorttable = {
 
           // remove sorttable_sorted classes
           theadrow = this.parentNode;
-          // cleidigh 
 
+
+          // cleidigh - replace with real es6 forEach
           theadrow.childNodes.forEach(cell => {
             if (cell.nodeType == 1) { // an element
               cell.className = cell.className.replace('sorttable_sorted_reverse', '');
               cell.className = cell.className.replace('sorttable_sorted', '');
             }
           });
-
           /*
           forEach(theadrow.childNodes, function (cell) {
             if (cell.nodeType == 1) { // an element
@@ -182,7 +178,7 @@ sorttable = {
             tb.appendChild(row_array[j][1]);
           }
 
-          row_array = null;
+          delete row_array;
         });
       }
     }
@@ -277,7 +273,7 @@ sorttable = {
     for (var i = newrows.length - 1; i >= 0; i--) {
       tbody.appendChild(newrows[i]);
     }
-    newrows = null;
+    delete newrows;
   },
 
   /* sort functions
@@ -364,6 +360,31 @@ sorttable = {
 
 // Dean Edwards/Matthias Miller/John Resig
 
+/* for Mozilla/Opera9 */
+if (document.addEventListener) {
+  document.addEventListener("DOMContentLoaded", sorttable.init, false);
+}
+
+/* for Internet Explorer */
+/*@cc_on @*/
+/*@if (@_win32)
+    document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+    var script = document.getElementById("__ie_onload");
+    script.onreadystatechange = function() {
+        if (this.readyState == "complete") {
+            sorttable.init(); // call the onload handler
+        }
+    };
+/*@end @*/
+
+/* for Safari */
+if (/WebKit/i.test(navigator.userAgent)) { // sniff
+  var _timer = setInterval(function () {
+    if (/loaded|complete/.test(document.readyState)) {
+      sorttable.init(); // call the onload handler
+    }
+  }, 10);
+}
 
 /* for other browsers */
 window.onload = sorttable.init;
@@ -405,7 +426,7 @@ function removeEvent(element, type, handler) {
   } else {
     // delete the event handler from the hash table
     if (element.events && element.events[type]) {
-      element.events[type][handler.$$guid] = null;
+      delete element.events[type][handler.$$guid];
     }
   }
 };
@@ -438,5 +459,4 @@ fixEvent.preventDefault = function () {
 fixEvent.stopPropagation = function () {
   this.cancelBubble = true;
 }
-
-
+`;

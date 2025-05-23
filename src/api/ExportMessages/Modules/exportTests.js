@@ -107,8 +107,7 @@ export var exportTests = {
           console.log("space")
           //attsDir = attsDir.slice(0, -1);;
         }
-        console.log(attsDir.length, `"${attsDir}"`)
-        console.log(maxFilePathLen)
+        //console.log(maxFilePathLen)
         //var maxFilePathLen = 500
         var currentFileType = "";
         var currentFileName = "";
@@ -123,7 +122,7 @@ export var exportTests = {
             currentFileType = "inline";
             currentFileName = inlinePart.name;
             let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-            //console.log(attsDir, inlinePart.name)
+            console.log(attsDir, inlinePart.name)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -165,6 +164,7 @@ export var exportTests = {
               attachmentPart.name = "message.txt";
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
+            console.log(attsDir.length, `"${attsDir}"`)
             console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));

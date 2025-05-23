@@ -355,6 +355,7 @@ async function _createIndex(expTask, msgListLog) {
 
     let styles = '<style>\r\n';
     styles += 'table { border-collapse: collapse; }\r\n';
+    styles += `table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { content: " \\2304\\2303"}`;
     styles += 'th { background-color: #e6ffff; }\r\n';
     styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
     styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
@@ -362,6 +363,7 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
     styles += '.msgError { background-color: red !important;}\r\n';
+
     styles += '</style>\r\n';
 
     indexData = '<html>\r\n<head>\r\n';
@@ -377,7 +379,7 @@ async function _createIndex(expTask, msgListLog) {
     indexData += "<th><b>" + "To" + "</b></th>"; // To
     indexData += "<th><b>" + "Date" + "</b></th>"; // Date
 
-    indexData += "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+    indexData += "<th class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
     //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
     let sizeStr = "Size";

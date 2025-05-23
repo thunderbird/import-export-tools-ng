@@ -60,18 +60,18 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         async writeIndex(expTask, indexData) {
-          try {
-          var { sorttable } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttable.js?"  + ietngExtension.manifest.version + new Date());
+          //try {
+          //var { sorttable } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttable.js?"  + ietngExtension.manifest.version + new Date());
 
-          //let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
-          //let sorttableSource = sorttable.code;
-          console.log(sorttable.toSource())
+          let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
+          console.log(script)
           let indexDir = this._getIndexDirectory(expTask)
           //indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
-          } catch (ex){
-            console.log(ex)
-          }
+          //} catch (ex){
+            //console.log(ex)
+            
+//          }
         },
 
         _getIndexDirectory: function (expTask) {
@@ -104,6 +104,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
               null,
               Components.interfaces.nsILoadInfo.SEC_REQUIRE_SAME_ORIGIN_INHERITS_SEC_CONTEXT,
               Components.interfaces.nsIContentPolicy.TYPE_OTHER);
+                console.log("bef f")
 
             NetUtil.asyncFetch(channel, (inputStream, status) => {
               if (!Components.isSuccessCode(status)) {

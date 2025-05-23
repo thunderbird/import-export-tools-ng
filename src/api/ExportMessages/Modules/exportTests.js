@@ -247,6 +247,7 @@ export var exportTests = {
             recipients: expTask.msgList[index].recipients,
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
+            size: expTask.msgList[index].size,
           };
           fileStatusList.push({
             index: index, fileType: fileType, id: expTask.msgList[index].id,

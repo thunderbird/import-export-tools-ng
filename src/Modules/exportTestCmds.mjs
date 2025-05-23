@@ -166,7 +166,7 @@ async function msgIterateBatch(expTask) {
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index].msgData)
+            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index])
           }
           expTask.id = expId++;
           //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
@@ -418,7 +418,7 @@ async function _createIndex(expTask, msgListLog) {
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
       indexData += "\r\n<td>" + attachments + "</td>";
-      indexData += "\r\n<td nowrap>" + _formatBytes(msgItem.fileSize, 2) + "</td>";
+      indexData += "\r\n<td nowrap>" + _formatBytes(msgItem.headers.size, 2) + "</td>";
       indexData += "</tr>";
     }
 

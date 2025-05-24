@@ -363,6 +363,8 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'tr>:nth-child(5) { text-align: center; }\r\n';
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
     styles += '.msgError { background-color: red !important; color: white;}\r\n';
+    styles += 'a:link { text-decoration: none;}\n';
+    styles += '.msgError a:link { color:rgb(198, 198, 229);}\n';
 
     styles += '</style>\r\n';
 

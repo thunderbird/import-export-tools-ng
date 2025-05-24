@@ -427,14 +427,18 @@ export var exportTests = {
         // wrap body with <html><body>
         msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
       }
-      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+      if (attachmentFilenames.length) {
+        msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+      }
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
     msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
-    return this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
-
+    if (attachmentFilenames.length) {
+      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+    }
+    return msgData.msgBody;
   },
 
   _preprocessHForPDF: async function (expTask, index) {

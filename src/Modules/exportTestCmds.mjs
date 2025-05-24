@@ -403,6 +403,7 @@ async function _createIndex(expTask, msgListLog) {
       let recipient = msgItem.headers.recipients[0]
       if (recipient) {
         recipient = recipient.slice(0, 50)
+        recipient = recipient.replace('"','');
       }
       let fpParts = msgItem.filePath.split(osPathSeparator);
       var filename = fpParts[fpParts.length - 1];
@@ -417,7 +418,7 @@ async function _createIndex(expTask, msgListLog) {
         attachments = msgItem.hasAttachments;
       }
       indexData += `\r\n<tr ${errClass}><td style=''>${aHref}</td>`;
-      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50)) + "</td>";
+      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"','')) + "</td>";
       indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
       indexData += "\r\n<td>" + attachments + "</td>";

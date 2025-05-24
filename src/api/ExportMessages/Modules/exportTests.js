@@ -100,12 +100,9 @@ export var exportTests = {
         var attsDir = this._getAttachmentsDirectory(expTask, name);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         attsDir = attsDir.slice(0, maxFilePathLen);
+        attsDir = attsDir.trimEnd();
         if (attsDir.endsWith(".")) {
           attsDir += ";";
-        }
-        if (attsDir.endsWith(" ")) {
-          console.log("space")
-          //attsDir = attsDir.slice(0, -1);;
         }
         //console.log(maxFilePathLen)
         //var maxFilePathLen = 500

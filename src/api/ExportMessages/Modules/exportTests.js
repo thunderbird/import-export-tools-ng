@@ -308,6 +308,7 @@ export var exportTests = {
         recipients: expTask.msgList[index].recipients,
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,
+        size: expTask.msgList[index].size,
       };
       fileStatusList.push({
         index: index, fileType: "message",
@@ -315,6 +316,13 @@ export var exportTests = {
         hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
         attachmentFilenames: attachmentFilenames
       });
+
+      if (expTask.msgList[index].msgData.error) {
+        errors.push(expTask.msgList[index].msgData.error);
+      } else {
+        errors.push({ error: "none" });
+      }
+
       return 0;
     }
 

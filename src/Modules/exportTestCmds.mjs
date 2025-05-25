@@ -358,7 +358,7 @@ async function _createIndex(expTask, msgListLog) {
     let styles = '<style>\r\n';
     styles += 'table { border-collapse: collapse; }\r\n';
     //styles += `table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { content: " \\2304\\2303"}`;
-    styles += `table.sortable th::after, th.sorttable_sorted::after, th.sorttable_sorted_reverse::after { content: " ";  display: inline-block; width: 24px;  height: 24px;}`;
+    styles += `table.sortable th::after, th.sorttable_sorted::after, th.sorttable_sorted_reverse::after { content: " ";  display: inline-block; width: 18px;  height: 24px;}`;
     styles += `th.sorttable_sorted::after { background: no-repeat url(${downArrowIcon}); background-size: 70%; float: right; padding-bottom: -8px}`;
     styles += `th.sorttable_sorted_reverse::after { background: no-repeat url(${upArrowIcon}); background-size: 70%; float: right}`;
     styles += `#sorttable_sortfwdind, #sorttable_sortrevind { display: none; }`;

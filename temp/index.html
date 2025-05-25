@@ -1,21 +1,94 @@
-/*
-  SortTable
-  version 2
-  7th April 2007
-  Stuart Langridge, http://www.kryogenix.org/code/browser/sorttable/
+<html>
+<head>
+<style>
+table { border-collapse: collapse; }
+th { background-color: #e6ffff; }
+th, td { padding: 4px; text-align: left; vertical-align: center; }
+th>:nth-child(5) { text-align: center; }
 
-  Instructions:
-  Download this file
-  Add <script src="sorttable.js"></script> to your HTML
-  Add class="sortable" to any table you'd like to make sortable
-  Click on the headers to sort
+tr:nth-child(even) { background-color: #f0f0f0; }
+tr:nth-child(odd) { background-color: #fff; }
+tr>:nth-child(5) { text-align: center; }
+tr>:nth-child(6) { text-align: center; }
+.msgError { background-color: red !important; color: white;}
+a:link { text-decoration: none;}
+.msgError a:link { color:rgb(198, 198, 229);}
+table.sortable th::after, th.sorttable_sorted::after, th.sorttable_sorted_reverse::after {
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 16px;
+}
+th.sorttable_sorted::after {
+  background: no-repeat url(down-arrow.png);
+  background-size: 80%;
+  float: right;
+}
+th.sorttable_sorted_reverse::after {
+  background: no-repeat url(up-arrow.png);
+  background-size: 80%;
+  float: right;
+}
+#sorttable_sortfwdind, #sorttable_sortrevind { display: none; } 
 
-  Thanks to many, many people for contributions and suggestions.
-  Licenced as X11: http://www.kryogenix.org/code/browser/licence.html
-  This basically means: do what you want with it.
-*/
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Folder: etest2</title>
+</head>
+<body>
+<h2>Folder: etest2 test&nbsp;&nbsp;&nbsp;&nbsp;Date: 5/24/2025</h2>
+<table width="99%" border="1" class="sortable">
+<tr><th><b>Subject</b></th><th><b>From</b></th><th><b>To</b></th><th><b>Date</b></th><th style="padding-left: 7px; width: 1.6em;" class='sorttable_nosort' ><b><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC' height='18px' width='18px'></b></th><th><b>Size</b></th></tr>
+<tr ><td style=''><a href='./messages/ja%20and%20emoji%20test.pdf'>ja and emoji test</a></td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td nowrap>12/06/2024</td>
+<td></td>
+<td nowrap>1.65 KB</td></tr>
+<tr ><td style=''><a href='./messages/test%20replyto.pdf'>test replyto</a></td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td>test1@kokkini.net</td>
+<td nowrap>4/21/2025</td>
+<td></td>
+<td nowrap>1.11 KB</td></tr>
+<tr ><td style=''><a href='./messages/NoKey.pdf'>...</a></td>
+<td>Aut45678901234567890123456789012345678901234567890</td>
+<td>test1@kokkini.net</td>
+<td nowrap>7/16/2024</td>
+<td></td>
+<td nowrap>10.67 KB</td></tr>
+<tr ><td style=''><a href='./messages/NoKey-1.pdf'>...</a></td>
+<td>Aut45678901234567890123456789012345678901234567890</td>
+<td>Aut45678901234567890123456789012345678901234567890</td>
+<td nowrap>7/16/2024</td>
+<td></td>
+<td nowrap>14.55 KB</td></tr>
+<tr ><td style=''><a href='./messages/NoKey-2.pdf'>...</a></td>
+<td>Aut45678901234567890123456789012345678901234567890</td>
+<td>Aut45678901234567890123456789012345678901234567890</td>
+<td nowrap>11/11/2024</td>
+<td></td>
+<td nowrap>10.83 KB</td></tr>
+<tr ><td style=''><a href='./messages/NoKey-3.pdf'>...</a></td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td nowrap>1/21/2025</td>
+<td></td>
+<td nowrap>10.31 KB</td></tr>
+<tr ><td style=''><a href='./messages/inline%20and%20att2.pdf'>inline and att2</a></td>
+<td>Christopher Leidigh &lt;test1@kokkini.net&gt;</td>
+<td>test1@kokkini.net</td>
+<td nowrap>3/10/2025</td>
+<td>1</td>
+<td nowrap>9.96 KB</td></tr>
+<tr ><td style=''><a href='./messages/Ashley%20Young's%20invitation%20is%20waiting%20for%20your%20response.pdf'>Ashley Young's invitation is waiting for your resp</a></td>
+<td>Ashley Young (via LinkedIn)&quot; &lt;messages-noreply@li</td>
+<td>Christopher Leidigh &lt;cleidigh@gmail.com&gt;</td>
+<td nowrap>4/27/2020</td>
+<td></td>
+<td nowrap>40.59 KB</td></tr></table>
+<script>
 
-export var sorttableSource = String.raw `
 var stIsIE = /*@cc_on!@*/false;
 
 sorttable = {
@@ -121,7 +194,6 @@ sorttable = {
               'sorttable_sorted');
             this.removeChild(document.getElementById('sorttable_sortrevind'));
             sortfwdind = document.createElement('span');
-            //sortfwdind.style.textAlign = "right";
             sortfwdind.id = "sorttable_sortfwdind";
             sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x2304;';
             this.appendChild(sortfwdind);
@@ -406,7 +478,7 @@ function dean_addEvent(element, type, handler) {
     element.addEventListener(type, handler, false);
   } else {
     // assign each event handler a unique ID
-    if (!handler.$$guid) handler.$$guid = dean_addEvent.guid++;
+    if (!handler.$guid) handler.$guid = dean_addEvent.guid++;
     // create a hash table of event types for the element
     if (!element.events) element.events = {};
     // create a hash table of event handlers for each element/event pair
@@ -419,7 +491,7 @@ function dean_addEvent(element, type, handler) {
       }
     }
     // store the event handler in the hash table
-    handlers[handler.$$guid] = handler;
+    handlers[handler.$guid] = handler;
     // assign a global event handler to do all the work
     element["on" + type] = handleEvent;
   }
@@ -433,7 +505,7 @@ function removeEvent(element, type, handler) {
   } else {
     // delete the event handler from the hash table
     if (element.events && element.events[type]) {
-      delete element.events[type][handler.$$guid];
+      delete element.events[type][handler.$guid];
     }
   }
 };
@@ -446,8 +518,8 @@ function handleEvent(event) {
   var handlers = this.events[event.type];
   // execute each event handler
   for (var i in handlers) {
-    this.$$handleEvent = handlers[i];
-    if (this.$$handleEvent(event) === false) {
+    this.$handleEvent = handlers[i];
+    if (this.$handleEvent(event) === false) {
       returnValue = false;
     }
   }
@@ -466,4 +538,6 @@ fixEvent.preventDefault = function () {
 fixEvent.stopPropagation = function () {
   this.cancelBubble = true;
 }
-`;
+
+</script>
+</body></html>

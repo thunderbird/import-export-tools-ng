@@ -387,7 +387,7 @@ async function _createIndex(expTask, msgListLog) {
     indexData += "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
     indexData += "<th><b>" + "From" + "</b></th>"; // From
     indexData += "<th><b>" + "To" + "</b></th>"; // To
-    indexData += "<th><b>" + "Date" + "</b></th>"; // Date
+    indexData += "<th id='dateHdr'><b>" + "Date" + "</b></th>"; // Date
 
     indexData += "<th style='padding-left: 12px;' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 

@@ -51,6 +51,7 @@ import * as prefs from "./prefCmds.mjs";
       },
       index: {
         directory: "",
+        dateFormat: "",
       },
       outputSpecific: {
         eml: {},
@@ -105,6 +106,7 @@ export async function createExportTask(params, ctxEvent) {
     expTask.dateFormat.type = 1;
     expTask.names.extension = "eml";
     expTask.attachments.save = params.saveAttachments;
+    expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
     //console.log(expTask)
     return expTask;
@@ -123,6 +125,8 @@ export async function createExportTask(params, ctxEvent) {
     expTask.attachments.save = params.saveAttachments;
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+    expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+
     //console.log(expTask)
     return expTask;
 
@@ -140,6 +144,8 @@ async function _build_PDF_expTask(expTask, params, ctxEvent) {
     expTask.attachments.save = params.saveAttachments;
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+    expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+
     return expTask;
   }
 

@@ -424,12 +424,12 @@ async function _createIndex(expTask, msgListLog) {
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData += `\r\n<tr ${errClass}><td style=''>${aHref}</td>`;
-      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"','')) + "</td>";
-      indexData += "\r\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
-      indexData += "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", msgItem.headers.date) + "</td>";
-      indexData += "\r\n<td>" + attachments + "</td>";
-      indexData += "\r\n<td nowrap>" + _formatBytes(msgItem.headers.size, 2) + "</td>";
+      indexData += `\n<tr ${errClass}><td style=''>${aHref}</td>`;
+      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"','')) + "</td>";
+      indexData += "\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
+      indexData += `\n<td sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
+      indexData += "\n<td>" + attachments + "</td>";
+      indexData += "\n<td nowrap>" + _formatBytes(msgItem.headers.size, 2) + "</td>";
       indexData += "</tr>";
     }
 

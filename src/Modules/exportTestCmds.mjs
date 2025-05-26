@@ -353,7 +353,7 @@ async function _createIndex(expTask, msgListLog) {
     const upArrowIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAOwAAADsAEnxA+tAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAgVJREFUeJzt3UFOFEEYhuHPsDExeiJPIZGjuAKXuhXv4Q2UuDAewXtwAIOL4Y8JDJnpoWeqq/p5kl4QWFTq/TLNChIAAAAAAAAAAAAAAAAAAAAAFu1F6wM0cpbkPMnb+69/JfmW5G+zE3Eyr5PcJLl78Nzcf4+BvUryM4/j1/M7yZtWh+O4dsU3goHtG98IBjQ1vhEM5ND4RjCA58Y3go7NFd8IOjR3fCPoyNT4H5N8mPDzRrBgh8QvRtC558QvRtCpOeIXI+jMnPGLEXTiGPGLESzcMeMXI1ioU8QvRrAwp4xfjGAhWsQvRtBYy/jFCBpZQvxiBCe2pPjFCE5kifGLERzZkuMXIziSHuIXI5hZT/GLEcykx/jFCJ6p5/jFCA40QvxiBBONFL8YwZ5GjF+MYIeR4xcjeMIa4hcjeGBN8YsR3Ftj/LL6Eaw5flntCMT/b3UjEP+x1YxA/KcNPwLxdxt2BOLvb7gRiD/dMCMQ/3Ddj+As2//86lPPVZtjLtpV9r+/m2zufDEuIv4cpozgotEZt/oaH/tz2fd1cN3qgNtcR/w57TOCL81Ot8WuV4CP/el2vQ7etzvaY2dJfmT7QS8bnqt3l9l+p9+zsF8Ck+Rlks9J/iS5zea/cLxreqIxnGdzl7fZ3O2nbO4aAAAAAAAAAAAAAAAAAAAAAAAAAAAAGMA/0nbvD8X+7HoAAAAASUVORK5CYII=";
     
     let indexData = "";
-    let titleDate = strftime.strftime("%n/%d/%Y", new Date());
+    let titleDate = strftime.strftime(expTask.index.dateFormat, new Date());
 
     let styles = '<style>\r\n';
     styles += 'table { border-collapse: collapse; }\r\n';
@@ -371,7 +371,7 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
     styles += '.msgError { background-color: red !important; color: white;}\r\n';
     styles += 'a:link { text-decoration: none;}\n';
-    styles += '.msgError a:link { color:rgb(198, 198, 229);}\n';
+    styles += '.msgError a:link { color:rgb(198, 198, 230);}\n';
 
     styles += '</style>\r\n';
 
@@ -389,7 +389,7 @@ async function _createIndex(expTask, msgListLog) {
     indexData += "<th><b>" + "To" + "</b></th>"; // To
     indexData += "<th><b>" + "Date" + "</b></th>"; // Date
 
-    indexData += "<th class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
+    indexData += "<th style='padding-left: 12px;' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
     //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
     let sizeStr = "Size";
@@ -427,7 +427,7 @@ async function _createIndex(expTask, msgListLog) {
       indexData += `\n<tr ${errClass}><td style=''>${aHref}</td>`;
       indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"','')) + "</td>";
       indexData += "\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
-      indexData += `\n<td sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
+      indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
       indexData += "\n<td>" + attachments + "</td>";
       indexData += "\n<td nowrap>" + _formatBytes(msgItem.headers.size, 2) + "</td>";
       indexData += "</tr>";

@@ -4,7 +4,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 
 export var names = {
 
-  generateName: function (expTask, index, context) {
+  generateMsgName: function (expTask, index, context) {
     // general options
     let namePatternType = expTask.names.namePatternType;
     let asciiOnly = expTask.names.asciiOnly;
@@ -17,10 +17,6 @@ export var names = {
     let recipientNameMaxLen = expTask.names.components.recipientNameMaxLen;
 
 
-    let = expTask.names.
-      let = expTask.names.
-        let = expTask.names.
-
     //var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
     //var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
     //var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
@@ -29,18 +25,18 @@ export var names = {
     //var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
 
     // we need the msgHdr for items not in the wext MessageHeader
-    let msgHdr = this.context.extension.messageManager.get(msgId);
+    let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
 
     // Subject formatting
     var subject = expTask.msgList[index].subject;
-    if (!subject) {
+    if (!subject || subject == "") {
       subject = "[No Subject]";
     } else if (subject == "...") {
       subject = "... [No Decryption]";
     }
 
     // add Re_ for responses 
-    if (hdr.flags & 0x0010) {
+    if (msgHdr.flags & 0x0010) {
       subject = "Re_" + subject;
     }
 
@@ -50,15 +46,34 @@ export var names = {
     }
 
     // Author email
-    let authorEmail = parse5322.parseFrom(expTask.msgList[index].author);
+    let authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
 
     // Author name
-    let authorName = parse5322.parseSender(expTask.msgList[index].author);
-    authorName = authorName.substring(0, authorNameMaxLen);
+    let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
+    authorName = authorName.slice(0, authorNameMaxLen);
+    authorName = authorName.trimEnd();
 
     // Recipient email
-    let recipients = parse5322.addressList(expTask.msgList[index].recipients);
+    let recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
 
+    // Recipient name
+    console.log("recipientsO", expTask.msgList[index].recipients[0])
+    
+    let recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
+    if (!recipientName || recipientName == "") {
+      recipientName = "[No Name]";
+    }
+    recipientName = recipientName.slice(0, recipientNameMaxLen);
+    recipientName = recipientName.trimEnd();
+
+    console.log("subject ", subject)
+    console.log("authoremail", authorEmail)
+    console.log("authname", authorName)
+    console.log("recipients", recipientEmail)
+    console.log("recipientName", recipientName)
+
+
+return
 
     // Recipient name
 
@@ -229,7 +244,17 @@ export var names = {
         fname = fname.substring(0, maxFN);
     }
     return fname;
-  }
+  },
+
+  _formatNameForSubject: function (str, recipients) {
+	if (recipients)
+		str = str.replace(/\s*\,.+/, "");
+	if (str.indexOf("<") > -1)
+		str = str.replace(/\s*<.+>/, "");
+	else
+		str = str.replace(/[@\.]/g, "_");
+	return str;
+}
 
 
 };

@@ -13,6 +13,10 @@ var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServi
 
 var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 
+var { names } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/namesModule.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
 var { MutexAsync } = ChromeUtils.importESModule(
   "resource://ietng/api/commonModules/mutex-async.mjs?" + ietngExtension.manifest.version + new Date()
 );
@@ -86,6 +90,8 @@ export var exportTests = {
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
         expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
+
+      let generatedMsgName = await names.generateMsgName(expTask, index, context);
 
       let subject = expTask.msgList[index].subject.slice(0, 150);
       var name = `${subject}`;

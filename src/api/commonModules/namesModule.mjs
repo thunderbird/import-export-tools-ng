@@ -1,10 +1,11 @@
 // namesModule.mjs
 
+var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 export var names = {
 
-  generateMsgName: function (expTask, index, context) {
+  generateMsgName: async function (expTask, index, context) {
     // general options
     let namePatternType = expTask.names.namePatternType;
     let asciiOnly = expTask.names.asciiOnly;
@@ -37,7 +38,7 @@ export var names = {
 
     // add Re_ for responses 
     if (msgHdr.flags & 0x0010) {
-      subject = "Re_" + subject;
+      subject = "Re;" + subject;
     }
 
     // length contraint
@@ -50,6 +51,9 @@ export var names = {
 
     // Author name
     let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
+    if (!authorName || authorName == "") {
+      authorName = "[No Author]";
+    }
     authorName = authorName.slice(0, authorNameMaxLen);
     authorName = authorName.trimEnd();
 
@@ -57,11 +61,10 @@ export var names = {
     let recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
 
     // Recipient name
-    console.log("recipientsO", expTask.msgList[index].recipients[0])
     
     let recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
     if (!recipientName || recipientName == "") {
-      recipientName = "[No Name]";
+      recipientName = "[No Recipient]";
     }
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
@@ -70,12 +73,12 @@ export var names = {
     console.log("authoremail", authorEmail)
     console.log("authname", authorName)
     console.log("recipients", recipientEmail)
-    console.log("recipientName", recipientName)
+    console.log("recipientName", recipientName + "\n")
 
 
     // Simple date - ${date}
-    msgHdrDate = new Date(expTask.msgList[index].date);
-    var msgDate8601string = dateInSecondsTo8601(msgHdr.dateInSec);
+    //msgHdrDate = new Date(expTask.msgList[index].date);
+    //var msgDate8601string = dateInSecondsTo8601(msgHdr.dateInSec);
     var dateInSec = msgHdr.dateInSeconds;
 
     // custom date format - ${date_custom}
@@ -100,6 +103,9 @@ export var names = {
 
     let generatedName = "";
     
+    //console.log(expTask.names.namePatternCustom)
+
+    
     // basic dropdown filename pattern
     if (expTask.names.namePatternType == "dropdown") {
       let pattern = expTask.names.namePatternDropdown;
@@ -108,7 +114,7 @@ export var names = {
 
       pattern = pattern.replace("%s", subject);
       pattern = pattern.replace("%k", key);
-      pattern = pattern.replace("%d", msgDate8601string);
+      //pattern = pattern.replace("%d", msgDate8601string);
       pattern = pattern.replace("%D", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
       pattern = pattern.replace("%n", smartName);
       pattern = pattern.replace("%a", authorName);
@@ -131,6 +137,7 @@ export var names = {
 
     } else if (expTask.names.namePatternType == "custom") {
       generatedName = expTask.names.namePatternCustom;
+
       // extended filename format
 
       let index = key;
@@ -163,7 +170,7 @@ export var names = {
 */
 
     } else {
-      generatedName = msgDate8601string + "-" + subject + "-" + hdr.messageKey;
+      //generatedName = msgDate8601string + "-" + subject + "-" + hdr.messageKey;
     }
 
     // filters and transforms
@@ -176,28 +183,35 @@ export var names = {
     }
 
     if (expTask.names.transforms.latinize) {
-      generatedName = latinizeString(generatedName);
+      //generatedName = latinizeString(generatedName);
     }
 
     if (expTask.names.filters.asciiOnly) {
-      generatedName = filterNonASCIICharacters(generatedName);
+      generatedName = this._filterNonASCIICharacters(generatedName);
     }
 
+
     // User defined character filter
-    var filterCharacters = expTask.names.filters.filterCharacters;
+    var filterCharacters = expTask.names.filters.characterFilter;
+
+console.log(filterCharacters)
 
     if (filterCharacters !== "") {
       let filter = new RegExp(`[${filterCharacters}]`, "g");
       generatedName = generatedName.replace(filter, "");
     }
 
+console.log(generatedName)
+
 		//return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
+    /*
     if (cutFileName) {
       var maxFN = 249 - dirPath.length;
       if (generatedName.length > maxFN)
         generatedName = generatedName.substring(0, nameMaxLen);
     }
+      */
     return generatedName;
   },
 

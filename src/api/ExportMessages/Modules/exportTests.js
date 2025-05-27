@@ -92,7 +92,7 @@ export var exportTests = {
       }
 
       let generatedMsgName = await names.generateMsgName(expTask, index, context);
-
+      console.log(generatedMsgName)
       let subject = expTask.msgList[index].subject.slice(0, 150);
       var name = `${subject}`;
       name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");

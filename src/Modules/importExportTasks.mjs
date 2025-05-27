@@ -119,7 +119,7 @@ export async function createExportTask(params, ctxEvent) {
       expTask.names.namePatternType = "dropdown";
       expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
     } else {
-      expTask.names.nameFormatType = "custom";
+      expTask.names.namePatternType = "custom";
       expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
     }
 
@@ -161,11 +161,12 @@ export async function createExportTask(params, ctxEvent) {
 
     // names
     let nameFormat = await prefs.getPref("exportEML.filename_format");
+    console.log(nameFormat)
     if (nameFormat == 2) {
       expTask.names.namePatternType = "dropdown";
       expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
     } else {
-      expTask.names.nameFormatType = "custom";
+      expTask.names.namePatternType = "custom";
       expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
     }
 
@@ -211,7 +212,7 @@ async function _build_PDF_expTask(expTask, params, ctxEvent) {
       expTask.names.namePatternType = "dropdown";
       expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
     } else {
-      expTask.names.nameFormatType = "custom";
+      expTask.names.namePatternType = "custom";
       expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
     }
 

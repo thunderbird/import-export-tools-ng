@@ -92,13 +92,8 @@ export var exportTests = {
       }
 
       let generatedMsgName = await names.generateMsgName(expTask, index, context);
-      console.log(generatedMsgName)
-      let subject = expTask.msgList[index].subject.slice(0, 150);
-      var name = `${subject}`;
-      name = name.replace(/[\/\\:<>*\?\"\|]/g, "_");
-      if (name == "...") {
-        name = "NoKey"
-      }
+      //console.log(generatedMsgName)
+      var name = generatedMsgName;
 
 
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
@@ -125,7 +120,7 @@ export var exportTests = {
             currentFileType = "inline";
             currentFileName = inlinePart.name;
             let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
-            console.log(attsDir, inlinePart.name)
+            //console.log(attsDir, inlinePart.name)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -167,8 +162,8 @@ export var exportTests = {
               attachmentPart.name = "message.txt";
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
-            console.log(attsDir.length, `"${attsDir}"`)
-            console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
+            //console.log(attsDir.length, `"${attsDir}"`)
+            //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));

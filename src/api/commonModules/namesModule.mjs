@@ -48,7 +48,9 @@ export var names = {
 
     // Author email
     let authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
-
+    if (!authorEmail || authorEmail == "") {
+      authorEmail = "[No Author Email]";
+    }
     // Author name
     let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
     if (!authorName || authorName == "") {
@@ -58,23 +60,38 @@ export var names = {
     authorName = authorName.trimEnd();
 
     // Recipient email
-    let recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
+    let recipientEmail;
+    try {
+      recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
+      if (!recipientEmail || recipientEmail == "") {
+        recipientEmail = "[No Recipient Email]";
+      }
+    } catch (ex) {
+      console.log(ex, expTask.msgList[index].recipients)
+      recipientEmail = "[No Recipient Email]";
 
+    }
     // Recipient name
-    
-    let recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
+
+    let recipientName;
+try {
+    recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
     if (!recipientName || recipientName == "") {
       recipientName = "[No Recipient]";
     }
+  } catch (ex) {
+      recipientName = "[No Recipient]";
+  }
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
 
+    /*
     console.log("subject ", subject)
     console.log("authoremail", authorEmail)
     console.log("authname", authorName)
     console.log("recipients", recipientEmail)
     console.log("recipientName", recipientName + "\n")
-
+*/
 
     // Simple date - ${date}
     //msgHdrDate = new Date(expTask.msgList[index].date);
@@ -82,18 +99,18 @@ export var names = {
     var dateInSec = msgHdr.dateInSeconds;
 
     // custom date format - ${date_custom}
-      var customDateFormat = expTask.dateFormat.custom;
-    
+    var customDateFormat = expTask.dateFormat.custom;
+
     // smart name - ${smart_name}
     // Sent of Drafts folder
-      let isSentFolder = msgHdr.folder.flags & 0x0200 || msgHdr.folder.flags & 0x0400;
-      let isSentSubFolder = msgHdr.folder.URI.indexOf("/Sent/");
-      let smartName;
+    let isSentFolder = msgHdr.folder.flags & 0x0200 || msgHdr.folder.flags & 0x0400;
+    let isSentSubFolder = msgHdr.folder.URI.indexOf("/Sent/");
+    let smartName;
 
-      if (isSentFolder || isSentSubFolder > -1)
-        smartName = recipientName;
-      else
-        smartName = authorName;
+    if (isSentFolder || isSentSubFolder > -1)
+      smartName = recipientName;
+    else
+      smartName = authorName;
 
 
     //subject = nametoascii(subject);
@@ -102,15 +119,15 @@ export var names = {
     var key = msgHdr.messageKey;
 
     let generatedName = "";
-    
+
     //console.log(expTask.names.namePatternCustom)
 
-    
+
     // basic dropdown filename pattern
     if (expTask.names.namePatternType == "dropdown") {
       let pattern = expTask.names.namePatternDropdown;
-      
-      
+
+
 
       pattern = pattern.replace("%s", subject);
       pattern = pattern.replace("%k", key);
@@ -155,19 +172,19 @@ export var names = {
       generatedName = generatedName.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
       generatedName = generatedName.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
-/*
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subject);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-      generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
-*/
+      /*
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subject);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+      */
 
     } else {
       //generatedName = msgDate8601string + "-" + subject + "-" + hdr.messageKey;
@@ -194,16 +211,19 @@ export var names = {
     // User defined character filter
     var filterCharacters = expTask.names.filters.characterFilter;
 
-console.log(filterCharacters)
-
     if (filterCharacters !== "") {
       let filter = new RegExp(`[${filterCharacters}]`, "g");
       generatedName = generatedName.replace(filter, "");
     }
 
-console.log(generatedName)
+    generatedName = generatedName.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
-		//return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
+    try {
+      let testURI = encodeURIComponent(generatedName)
+    } catch {
+      generatedName = this._filterNonASCIICharacters(generatedName);
+
+    }
 
     /*
     if (cutFileName) {
@@ -216,22 +236,22 @@ console.log(generatedName)
   },
 
   nametoascii: function (str) {
-	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
-		str = str.replace(/[\x00-\x19]/g, "_");
-		// Allow ',' and single quote character which is valid
-		return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
-	}
-	if (str)
-		str = str.replace(/[^a-zA-Z0-9\-]/g, "_");
-	else
-		str = "Undefinied_or_empty";
-	return str;
-},
+    if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
+      str = str.replace(/[\x00-\x19]/g, "_");
+      // Allow ',' and single quote character which is valid
+      return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
+    }
+    if (str)
+      str = str.replace(/[^a-zA-Z0-9\-]/g, "_");
+    else
+      str = "Undefinied_or_empty";
+    return str;
+  },
 
-_filterNonASCIICharacters: function (str) {
-	str = str.replace(/[\u{0100}-\u{FFFF}]/gu, "");
-	str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
-	return str;
-},
+  _filterNonASCIICharacters: function (str) {
+    str = str.replace(/[\u{0100}-\u{FFFF}]/gu, "");
+    str = str.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
+    return str;
+  },
 
 };

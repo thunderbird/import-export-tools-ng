@@ -351,58 +351,87 @@ async function _getMsgParts(expTask, msgId) {
 
 
 
-  async function _preprocessBody(expTask, index, attsDir, attachmentFilenames) {
-    // so we need to do different processing 
-    // depending upon both expType and our body type
-    // critical to break things up and not have 
-    // spaghetti conditionals
+async function _preprocessBody(expTask, index, attsDir, attachmentFilenames) {
+  // so we need to do different processing 
+  // depending upon both expType and our body type
+  // critical to break things up and not have 
+  // spaghetti conditionals
 
-    let processedMsgBody;
+  let processedMsgBody;
 
-    switch (expTask.expType) {
-      case "eml":
-        processedMsgBody = await _processBodyForEML(expTask, index);
-        break;
-      case "html":
-        processedMsgBody = await _processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
-        break;
-      case "pdf":
-        //processedMsgBody = await _processBodyForPDF(expTask, index);
-        break;
-    }
-    return processedMsgBody;
+  switch (expTask.expType) {
+    case "eml":
+      processedMsgBody = await _processBodyForEML(expTask, index);
+      break;
+    case "html":
+      processedMsgBody = await _processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
+      break;
+    case "pdf":
+      //processedMsgBody = await _processBodyForPDF(expTask, index);
+      break;
   }
+  return processedMsgBody;
+}
 
-  async function _processBodyForEML(expTask, index) {
-    return expTask.msgList[index].msgData.rawMsg;
-  }
+async function _processBodyForEML(expTask, index) {
+  return expTask.msgList[index].msgData.rawMsg;
+}
 
-  async function _processBodyForHTML(expTask, index, attsDir, attachmentFilenames) {
-    // we process depending upon body content type
+async function _processBodyForHTML(expTask, index, attsDir, attachmentFilenames) {
+  // we process depending upon body content type
 
-    let msgData = expTask.msgList[index].msgData;
-    let msgItem = expTask.msgList[index];
+  let msgData = expTask.msgList[index].msgData;
+  let msgItem = expTask.msgList[index];
 
-    if (msgData.msgBodyType == "text/html") {
-      // first check if this is headless html where 
-      // there is no html or body tags
-      if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
-        // wrap body with <html><body>
-        msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
-      }
-      if (attachmentFilenames.length) {
-        msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
-      }
-      return this._insertHdrTable(expTask, index, msgData.msgBody);
+  if (msgData.msgBodyType == "text/html") {
+    // first check if this is headless html where 
+    // there is no html or body tags
+    if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
+      // wrap body with <html><body>
+      msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
     }
-    // we have text/plain
-    msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
-    msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
     if (attachmentFilenames.length) {
       msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
     }
-    return msgData.msgBody;
+    return this._insertHdrTable(expTask, index, msgData.msgBody);
   }
+  // we have text/plain
+  msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
+  msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
+  if (attachmentFilenames.length) {
+    msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+  }
+  return msgData.msgBody;
+}
+
+
+function _insertHdrTable(expTask, index, msgBody) {
+  let msgData = expTask.msgList[index].msgData;
+  let msgItem = expTask.msgList[index];
+
+  //console.log(msgItem)
+  let hdrRows = "";
+  hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msgItem.recipients}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msgItem.date}</td></tr>`;
+
+  let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
+
+  //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
+
+  //console.log(msgData.msgBodyType)
+  if (msgData.msgBodyType == "text/plain") {
+    let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+    //console.log(tp)
+    return tp;
+  }
+  let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
+  //console.log(rp)
+
+  return rp;
+}
+
 
 async function _createIndex(expTask, msgListLog) {
 

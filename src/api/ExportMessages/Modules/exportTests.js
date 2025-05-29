@@ -407,23 +407,23 @@ export var exportTests = {
 
     switch (expTask.expType) {
       case "eml":
-        processedMsgBody = await this._preprocessHForEML(expTask, index);
+        processedMsgBody = await this._processBodyForEML(expTask, index);
         break;
       case "html":
-        processedMsgBody = await this._preprocessHForHTML(expTask, index, attsDir, attachmentFilenames);
+        processedMsgBody = await this._processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
         break;
       case "pdf":
-        processedMsgBody = await this._preprocessHForPDF(expTask, index);
+        processedMsgBody = await this._processBodyForPDF(expTask, index);
         break;
     }
     return processedMsgBody;
   },
 
-  _preprocessHForEML: async function (expTask, index) {
+  _processBodyForEML: async function (expTask, index) {
     return expTask.msgList[index].msgData.rawMsg;
   },
 
-  _preprocessHForHTML: async function (expTask, index, attsDir, attachmentFilenames) {
+  _processBodyForHTML: async function (expTask, index, attsDir, attachmentFilenames) {
     // we process depending upon body content type
 
     let msgData = expTask.msgList[index].msgData;
@@ -450,7 +450,7 @@ export var exportTests = {
     return msgData.msgBody;
   },
 
-  _preprocessHForPDF: async function (expTask, index) {
+  _processBodyForPDF: async function (expTask, index) {
     return null;
     let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
     let msgUri = msgHdr.folder.getUriForMsg(msgHdr);

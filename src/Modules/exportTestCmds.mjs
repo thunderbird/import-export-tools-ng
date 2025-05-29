@@ -347,9 +347,62 @@ async function _getMsgParts(expTask, msgId) {
       reject(ex);
     }
   });
-
-
 }
+
+
+
+  async function _preprocessBody(expTask, index, attsDir, attachmentFilenames) {
+    // so we need to do different processing 
+    // depending upon both expType and our body type
+    // critical to break things up and not have 
+    // spaghetti conditionals
+
+    let processedMsgBody;
+
+    switch (expTask.expType) {
+      case "eml":
+        processedMsgBody = await _processBodyForEML(expTask, index);
+        break;
+      case "html":
+        processedMsgBody = await _processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
+        break;
+      case "pdf":
+        //processedMsgBody = await _processBodyForPDF(expTask, index);
+        break;
+    }
+    return processedMsgBody;
+  }
+
+  async function _processBodyForEML(expTask, index) {
+    return expTask.msgList[index].msgData.rawMsg;
+  }
+
+  async function _processBodyForHTML(expTask, index, attsDir, attachmentFilenames) {
+    // we process depending upon body content type
+
+    let msgData = expTask.msgList[index].msgData;
+    let msgItem = expTask.msgList[index];
+
+    if (msgData.msgBodyType == "text/html") {
+      // first check if this is headless html where 
+      // there is no html or body tags
+      if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
+        // wrap body with <html><body>
+        msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
+      }
+      if (attachmentFilenames.length) {
+        msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+      }
+      return this._insertHdrTable(expTask, index, msgData.msgBody);
+    }
+    // we have text/plain
+    msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
+    msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
+    if (attachmentFilenames.length) {
+      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+    }
+    return msgData.msgBody;
+  }
 
 async function _createIndex(expTask, msgListLog) {
 
@@ -457,24 +510,6 @@ function _formatBytes(bytes, decimals) {
     sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
     i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
-
-async function fileToUint8Array(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (event) => {
-      const arrayBuffer = event.target.result;
-      const uint8Array = new Uint8Array(arrayBuffer);
-      resolve(uint8Array);
-    };
-
-    reader.onerror = (error) => {
-      reject(error);
-    };
-
-    reader.readAsArrayBuffer(file);
-  });
 }
 
 

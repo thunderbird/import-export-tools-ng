@@ -223,13 +223,6 @@ async function msgIterateBatch(expTask) {
 }
 
 async function _getprocessedMsg(expTask, msgId) {
-  // get all message parts: text and html bodies, attachments  and inline
-  let msgParts = await _getMsgParts(expTask, msgId);
-
-  return msgParts;
-}
-
-async function _getMsgParts(expTask, msgId) {
 
   return new Promise(async (resolve, reject) => {
 

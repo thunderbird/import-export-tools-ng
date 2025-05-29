@@ -131,7 +131,7 @@ async function msgIterateBatch(expTask) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        getBodyPromises.push(_getprocessedMsg(expTask, msgId));
+        getBodyPromises.push(_getprocessedMsg(expTask, index));
 
         totalMsgsData += msgListPage.messages[index].size;
 
@@ -222,11 +222,13 @@ async function msgIterateBatch(expTask) {
   }
 }
 
-async function _getprocessedMsg(expTask, msgId) {
+async function _getprocessedMsg(expTask, index) {
 
   return new Promise(async (resolve, reject) => {
 
     //console.log("id1", msgId)
+
+    let msgId = expTask.msgList[index].id;
 
     try {
 
@@ -423,19 +425,19 @@ function _insertHdrTable(expTask, msgId, msgBody) {
 }
 
 function _convertTextToHTML(plaintext) {
-    // we can do a lot here, but will start with the basics
-    // note we only convert the text, header, styling and html 
-    // wrapper is done later
+  // we can do a lot here, but will start with the basics
+  // note we only convert the text, header, styling and html 
+  // wrapper is done later
 
-    //console.log(plaintext)
+  //console.log(plaintext)
 
-    let htmlConvertedText;
-    // first encode special characters
-    htmlConvertedText = _encodeSpecialTextToHTML(plaintext);
-    htmlConvertedText = htmlConvertedText.replace(/\r?\n/g, "<br>\n");
+  let htmlConvertedText;
+  // first encode special characters
+  htmlConvertedText = _encodeSpecialTextToHTML(plaintext);
+  htmlConvertedText = htmlConvertedText.replace(/\r?\n/g, "<br>\n");
 
-    return htmlConvertedText;
-  }
+  return htmlConvertedText;
+}
 
 
 async function _createIndex(expTask, msgListLog) {

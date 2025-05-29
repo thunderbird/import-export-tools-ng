@@ -269,15 +269,12 @@ async function _getprocessedMsg(expTask, msgId) {
           //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
-          let size = part.size;
-          let body = part?.body;
 
-          //console.log("body:", body)
-          if (expTask.expType != "pdf" && contentType == "text/html" && body) {
-            htmlParts.push({ ct: part.contentType, b: part.body });
+          if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
+            htmlParts.push({ contentType: part.contentType, body: part?.body });
           }
-          if (expTask.expType != "pdf" && part.contentType == "text/plain" && body) {
-            textParts.push({ ct: part.contentType, b: body });
+          if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
+            textParts.push({ contentType: part.contentType, body: part?.body });
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
@@ -291,11 +288,11 @@ async function _getprocessedMsg(expTask, msgId) {
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-                inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+                inlineParts.push({ contentType: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
 
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-                attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+                attachmentParts.push({ contentType: part.contentType, attachmentBody: attachmentBody, name: part.name });
                 //console.log("push inline att", attachmentParts)
               }
             }
@@ -305,11 +302,11 @@ async function _getprocessedMsg(expTask, msgId) {
             try {
               let contentId = part.headers["content-id"][0];
               let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              inlineParts.push({ ct: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+              inlineParts.push({ contentType: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
 
             } catch {
               let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
+              attachmentParts.push({ contentType: part.contentType, attachmentBody: attachmentBody, name: part.name });
               //console.log("push inline att", attachmentParts)
             }
             //let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
@@ -327,10 +324,18 @@ async function _getprocessedMsg(expTask, msgId) {
       await getParts(parts)
 
       //console.log(htmlParts, textParts)
+
+      // we have collected the body parts
+      // we preprocess according to the export type
+      // and the body parts we have
+      // at this level we do text to html conversion 
+      // or html to text conversion if necessary 
+      //then a header table added
+
       if (htmlParts.length) {
-        resolve({ msgBody: htmlParts[0].b, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
+        resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
-        resolve({ msgBody: textParts[0].b, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
+        resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
         resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
       }

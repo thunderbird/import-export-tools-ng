@@ -349,7 +349,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
 
 
-async function _preprocessBody(expTask, index, attsDir, attachmentFilenames) {
+async function _preprocessBody(expTask, msgId, body, msgBodyType) {
   // so we need to do different processing 
   // depending upon both expType and our body type
   // critical to break things up and not have 
@@ -359,10 +359,10 @@ async function _preprocessBody(expTask, index, attsDir, attachmentFilenames) {
 
   switch (expTask.expType) {
     case "eml":
-      processedMsgBody = await _processBodyForEML(expTask, index);
+      //processedMsgBody = await _processBodyForEML(expTask, index);
       break;
     case "html":
-      processedMsgBody = await _processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
+      processedMsgBody = await _processBodyForHTML(expTask, msgId, body, msgBodyType);
       break;
     case "pdf":
       //processedMsgBody = await _processBodyForPDF(expTask, index);
@@ -375,35 +375,27 @@ async function _processBodyForEML(expTask, index) {
   return expTask.msgList[index].msgData.rawMsg;
 }
 
-async function _processBodyForHTML(expTask, index, attsDir, attachmentFilenames) {
+async function _processBodyForHTML(expTask, msgId, msgBody, msgBodyType) {
   // we process depending upon body content type
 
-  let msgData = expTask.msgList[index].msgData;
-  let msgItem = expTask.msgList[index];
 
-  if (msgData.msgBodyType == "text/html") {
+  if (msgBodyType == "text/html") {
     // first check if this is headless html where 
     // there is no html or body tags
-    if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
+    if (!/<HTML[^>]>/i.test(msgBody)) {
       // wrap body with <html><body>
-      msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
+      msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    if (attachmentFilenames.length) {
-      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
-    }
-    return this._insertHdrTable(expTask, index, msgData.msgBody);
+    return _insertHdrTable(expTask, msgId, msgBody);
   }
   // we have text/plain
-  msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
-  msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
-  if (attachmentFilenames.length) {
-    msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
-  }
-  return msgData.msgBody;
+  msgBody = _convertTextToHTML(msgBody);
+  msgBody = _insertHdrTable(expTask, msgId, msgBody);
+  return msgBody;
 }
 
 
-function _insertHdrTable(expTask, index, msgBody) {
+function _insertHdrTable(expTask, msgId, msgBody) {
   let msgData = expTask.msgList[index].msgData;
   let msgItem = expTask.msgList[index];
 
@@ -429,6 +421,21 @@ function _insertHdrTable(expTask, index, msgBody) {
 
   return rp;
 }
+
+function _convertTextToHTML(plaintext) {
+    // we can do a lot here, but will start with the basics
+    // note we only convert the text, header, styling and html 
+    // wrapper is done later
+
+    //console.log(plaintext)
+
+    let htmlConvertedText;
+    // first encode special characters
+    htmlConvertedText = _encodeSpecialTextToHTML(plaintext);
+    htmlConvertedText = htmlConvertedText.replace(/\r?\n/g, "<br>\n");
+
+    return htmlConvertedText;
+  }
 
 
 async function _createIndex(expTask, msgListLog) {

@@ -251,13 +251,15 @@ async function _getprocessedMsg(expTask, index) {
 
       }
 
-      let fm = await browser.messages.getFull(msgId, { decrypt: true });
-      //console.log(fm)
-      if (fm.decryptionStatus == "fail") {
+      let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
+      console.log(fullMsg)
+      var extraHeaders = {"x-mozilla-status": fullMsg.headers["x-mozilla-status"], "x-mozilla-status2": fullMsg.headers["x-mozilla-status2"], "reply-to": fullMsg.headers["reply-to"]};
+      console.log(extraHeaders)
+      if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
         return;
       }
-      let parts = fm.parts;
+      let parts = fullMsg.parts;
 
       var textParts = [];
       var htmlParts = [];
@@ -273,10 +275,10 @@ async function _getprocessedMsg(expTask, index) {
           let contentType = part.contentType;
 
           if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
-            htmlParts.push({ contentType: part.contentType, body: part?.body });
+            htmlParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
           if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
-            textParts.push({ contentType: part.contentType, body: part?.body });
+            textParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
@@ -335,17 +337,18 @@ async function _getprocessedMsg(expTask, index) {
       // then a header table added
 
       if (htmlParts.length) {
-        htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html");
+        htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
         resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
-        textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain");
+        textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain", textParts[0].extraHeaders );
         resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
         resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
       }
 
     } catch (ex) {
-      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+      console.log(ex)
+      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
       reject(ex);
     }
   });
@@ -353,7 +356,7 @@ async function _getprocessedMsg(expTask, index) {
 
 
 
-async function _preprocessBody(expTask, index, body, msgBodyType) {
+async function _preprocessBody(expTask, index, body, msgBodyType, extraHeaders) {
   // so we need to do different processing 
   // depending upon both expType and our body type
   // critical to break things up and not have 
@@ -361,12 +364,14 @@ async function _preprocessBody(expTask, index, body, msgBodyType) {
 
   let processedMsgBody;
 
+  console.log(expTask.msgList[index])
+console.log(extraHeaders)
   switch (expTask.expType) {
     case "eml":
       //processedMsgBody = await _processBodyForEML(expTask, index);
       break;
     case "html":
-      processedMsgBody = await _processBodyForHTML(expTask, index, body, msgBodyType);
+      processedMsgBody = await _processBodyForHTML(expTask, index, body, msgBodyType, extraHeaders);
       break;
     case "pdf":
       //processedMsgBody = await _processBodyForPDF(expTask, index);
@@ -379,9 +384,10 @@ async function _processBodyForEML(expTask, index) {
   return expTask.msgList[index].msgData.rawMsg;
 }
 
-async function _processBodyForHTML(expTask, index, msgBody, msgBodyType) {
+async function _processBodyForHTML(expTask, index, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
+console.log(extraHeaders)
 
   if (msgBodyType == "text/html") {
     // first check if this is headless html where 
@@ -390,19 +396,21 @@ async function _processBodyForHTML(expTask, index, msgBody, msgBodyType) {
       // wrap body with <html><body>
       msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    return _insertHdrTable(expTask, index, msgBody);
+    return _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
   msgBody = _convertTextToHTML(msgBody);
-  msgBody = _insertHdrTable(expTask, msgId, msgBody);
+  msgBody = _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
 
 
-function _insertHdrTable(expTask, index, msgBody, msgBodyType) {
-  let msgItem = expTask.msgList[index];
+function _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders) {
+console.log("hdr", extraHeaders)
 
-  //console.log(msgItem)
+  let msgItem = expTask.msgList[index];
+  let reStatus = parseInt(extraHeaders["x-mozilla-status"][0], 16) & 0x10;
+  console.log(reStatus)
   let hdrRows = "";
   hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
   hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;

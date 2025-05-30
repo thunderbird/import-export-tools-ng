@@ -332,11 +332,13 @@ async function _getprocessedMsg(expTask, index) {
       // and the body parts we have
       // at this level we do text to html conversion 
       // or html to text conversion if necessary 
-      //then a header table added
+      // then a header table added
 
       if (htmlParts.length) {
+        htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html");
         resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
+        textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain");
         resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
         resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
@@ -351,7 +353,7 @@ async function _getprocessedMsg(expTask, index) {
 
 
 
-async function _preprocessBody(expTask, msgId, body, msgBodyType) {
+async function _preprocessBody(expTask, index, body, msgBodyType) {
   // so we need to do different processing 
   // depending upon both expType and our body type
   // critical to break things up and not have 
@@ -364,7 +366,7 @@ async function _preprocessBody(expTask, msgId, body, msgBodyType) {
       //processedMsgBody = await _processBodyForEML(expTask, index);
       break;
     case "html":
-      processedMsgBody = await _processBodyForHTML(expTask, msgId, body, msgBodyType);
+      processedMsgBody = await _processBodyForHTML(expTask, index, body, msgBodyType);
       break;
     case "pdf":
       //processedMsgBody = await _processBodyForPDF(expTask, index);
@@ -377,7 +379,7 @@ async function _processBodyForEML(expTask, index) {
   return expTask.msgList[index].msgData.rawMsg;
 }
 
-async function _processBodyForHTML(expTask, msgId, msgBody, msgBodyType) {
+async function _processBodyForHTML(expTask, index, msgBody, msgBodyType) {
   // we process depending upon body content type
 
 
@@ -388,7 +390,7 @@ async function _processBodyForHTML(expTask, msgId, msgBody, msgBodyType) {
       // wrap body with <html><body>
       msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    return _insertHdrTable(expTask, msgId, msgBody);
+    return _insertHdrTable(expTask, index, msgBody);
   }
   // we have text/plain
   msgBody = _convertTextToHTML(msgBody);
@@ -397,8 +399,7 @@ async function _processBodyForHTML(expTask, msgId, msgBody, msgBodyType) {
 }
 
 
-function _insertHdrTable(expTask, msgId, msgBody) {
-  let msgData = expTask.msgList[index].msgData;
+function _insertHdrTable(expTask, index, msgBody, msgBodyType) {
   let msgItem = expTask.msgList[index];
 
   //console.log(msgItem)
@@ -413,15 +414,15 @@ function _insertHdrTable(expTask, msgId, msgBody) {
   //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
   //console.log(msgData.msgBodyType)
-  if (msgData.msgBodyType == "text/plain") {
+  if (msgBodyType == "text/plain") {
     let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
     //console.log(tp)
     return tp;
   }
-  let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
+  msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
   //console.log(rp)
 
-  return rp;
+  return msgBody;
 }
 
 function _convertTextToHTML(plaintext) {

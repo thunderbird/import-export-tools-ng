@@ -99,7 +99,21 @@
             "description": "Index data."
           }
         ]
+      },
+      {
+        "name": "getMsgHdrs",
+        "type": "function",
+        "description": "Get msgHdr items.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "msgHdrItems",
+            "type": "array",
+            "description": "The string array of items."
+          }
+        ]
       }
+    
     ]
   }
 ]

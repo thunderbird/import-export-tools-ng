@@ -107,8 +107,13 @@
         "async": true,
         "parameters": [
           {
+            "name": "msgId",
+            "type": "integer",
+            "description": "The id of the message."
+          },
+          {
             "name": "msgHdrItems",
-            "type": "array",
+            "type": "any",
             "description": "The string array of items."
           }
         ]

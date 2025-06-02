@@ -400,15 +400,17 @@ console.log(extraHeaders)
   }
   // we have text/plain
   msgBody = _convertTextToHTML(msgBody);
-  msgBody = _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
+  msgBody = await _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
 
 
-function _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders) {
+async function _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders) {
 console.log("hdr", extraHeaders)
 
   let msgItem = expTask.msgList[index];
+  let msgHdrFlags = await browser.ExportMessages.getMsgHdrs(msgItem.id, ["flags"]);
+  console.log(msgHdrFlags)
   let reStatus = parseInt(extraHeaders["x-mozilla-status"][0], 16) & 0x10;
   console.log(reStatus)
   let hdrRows = "";

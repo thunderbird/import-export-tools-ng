@@ -12,7 +12,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 );
 
 var { NetUtil } = ChromeUtils.importESModule(
-    "resource://gre/modules/NetUtil.sys.mjs"
+  "resource://gre/modules/NetUtil.sys.mjs"
 );
 
 var os = Services.appinfo.OS.toLowerCase();
@@ -59,7 +59,19 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           return exportTests.exportMessagesES6(expTask, self.context);
         },
 
-        async writeIndex(expTask, indexData) {
+        getMsgHdrs: async function (msgId, msgHdrItems) {
+          let msgHdr = context.extension.messageManager.get(msgId);
+          var returnItems = {};
+
+          msgHdrItems.forEach(hdrItem => {
+            if (hdrItem == "flags") {
+              returnItems.flags = msgHdr.flags;
+            }
+          });
+          return returnItems;
+        },
+
+        writeIndex: async function (expTask, indexData) {
           //try {
           var { sorttableSource } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttableSource.mjs?" + ietngExtension.manifest.version + new Date());
 
@@ -68,9 +80,9 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
           //} catch (ex){
-            //console.log(ex)
-            
-//          }
+          //console.log(ex)
+
+          //          }
         },
 
         _getIndexDirectory: function (expTask) {
@@ -103,7 +115,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
               null,
               Components.interfaces.nsILoadInfo.SEC_REQUIRE_SAME_ORIGIN_INHERITS_SEC_CONTEXT,
               Components.interfaces.nsIContentPolicy.TYPE_OTHER);
-                console.log("bef f")
+            console.log("bef f")
 
             NetUtil.asyncFetch(channel, (inputStream, status) => {
               if (!Components.isSuccessCode(status)) {

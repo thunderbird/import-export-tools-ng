@@ -439,8 +439,8 @@ export var exportTests = {
       if (attachmentFilenames.length) {
         msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       }
-      return msgData.msgBody;
-      //return this._insertHdrTable(expTask, index, msgData.msgBody);
+      //return msgData.msgBody;
+      return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);

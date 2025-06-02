@@ -131,7 +131,7 @@ async function msgIterateBatch(expTask) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        getBodyPromises.push(_getprocessedMsg(expTask, index));
+        getBodyPromises.push(_getprocessedMsg(expTask, msgId));
 
         totalMsgsData += msgListPage.messages[index].size;
 
@@ -222,13 +222,13 @@ async function msgIterateBatch(expTask) {
   }
 }
 
-async function _getprocessedMsg(expTask, index) {
+async function _getprocessedMsg(expTask, msgId) {
 
   return new Promise(async (resolve, reject) => {
 
     //console.log("id1", msgId)
 
-    let msgId = expTask.msgList[index].id;
+    //let msgId = expTask.msgList[index].id;
 
     try {
 
@@ -337,10 +337,10 @@ async function _getprocessedMsg(expTask, index) {
       // then a header table added
 
       if (htmlParts.length) {
-        htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
+        //htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
         resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
-        textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain", textParts[0].extraHeaders );
+        //textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain", textParts[0].extraHeaders );
         resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
         resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
@@ -527,7 +527,8 @@ async function _createIndex(expTask, msgListLog) {
         messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
       }
       let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
-      let aHref = `<a href='${relUrl}'>${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
+      console.log(relUrl)
+      let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
       let attachments = "";
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;

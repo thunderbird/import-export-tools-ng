@@ -196,7 +196,7 @@ try {
       generatedName = this.nametoascii(generatedName);
     else {
       // Allow ',' and single quote character which is valid
-      generatedName = generatedName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+      generatedName = generatedName.replace(/[\/\\:<>*\?\|]/g, "_");
     }
 
     if (expTask.names.transforms.latinize) {

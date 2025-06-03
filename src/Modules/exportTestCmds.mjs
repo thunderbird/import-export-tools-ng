@@ -273,11 +273,26 @@ async function _getprocessedMsg(expTask, msgId) {
           //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
+          let contentTypeFull = part.headers["content-type"][0];
+          console.log("ctf", contentTypeFull)
+
+          // convert non utf-8 character sets
+          let charset = contentTypeFull.match(/charset=([^;$]*)/i);
+          if (charset && charset.length == 2 && charset[1]) {
+            charset = charset[1]
+          }
+          console.log("cs", charset)
 
           if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
+            if (charset != "UTF-8") {
+             part.body = convertCharsetToUTF8(charset, part.body);
+            }
             htmlParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
           if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
+            if (charset != "UTF-8") {
+             part.body = convertCharsetToUTF8(charset, part.body);
+            }
             textParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
 
@@ -433,6 +448,21 @@ console.log("hdr", extraHeaders)
   //console.log(rp)
 
   return msgBody;
+}
+
+function convertCharsetToUTF8(charset, string) {
+  try {
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder(charset);
+    const encoded = encoder.encode(string);
+    const decoded = decoder.decode(encoded);
+      console.log("Converted to utf-8 from:", charset);
+    
+    return decoded;
+  } catch (e) {
+      console.error("Error converting to utf-8", e);
+      return string;
+  }
 }
 
 function _convertTextToHTML(plaintext) {

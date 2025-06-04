@@ -432,7 +432,7 @@ export var exportTests = {
     if (msgData.msgBodyType == "text/html") {
       // first check if this is headless html where 
       // there is no html or body tags
-      if (!/<HTML[^>]>/i.test(msgData.msgBody)) {
+      if (!/<HTML[^>]*>/i.test(msgData.msgBody)) {
         // wrap body with <html><body>
         msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
       }
@@ -440,6 +440,8 @@ export var exportTests = {
         msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       }
       //return msgData.msgBody;
+        //console.log(msgData.msgBody)
+
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
     // we have text/plain
@@ -486,11 +488,9 @@ export var exportTests = {
     //console.log(msgData.msgBodyType)
     if (msgData.msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
-      //console.log(tp)
       return tp;
     }
     let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
-    //console.log(rp)
 
     return rp;
   },

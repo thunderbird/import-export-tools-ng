@@ -253,7 +253,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       console.log(fullMsg)
-      var extraHeaders = {"x-mozilla-status": fullMsg.headers["x-mozilla-status"], "x-mozilla-status2": fullMsg.headers["x-mozilla-status2"], "reply-to": fullMsg.headers["reply-to"]};
+      var extraHeaders = { "x-mozilla-status": fullMsg.headers["x-mozilla-status"], "x-mozilla-status2": fullMsg.headers["x-mozilla-status2"], "reply-to": fullMsg.headers["reply-to"] };
       console.log(extraHeaders)
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
@@ -277,22 +277,15 @@ async function _getprocessedMsg(expTask, msgId) {
           console.log("ctf", contentTypeFull)
 
           // convert non utf-8 character sets
-          let charset = contentTypeFull.match(/charset=([^;$]*)/i);
-          if (charset && charset.length == 2 && charset[1]) {
-            charset = charset[1]
-          }
-          console.log("cs", charset)
 
           if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
-            if (charset != "UTF-8") {
-             part.body = convertCharsetToUTF8(charset, part.body);
+            let charsetMatch = part.body.match(/charset=([^;"]*)/i);
+            if (charsetMatch && charsetMatch.length == 2) {
+              part.body = part.body.replace(charsetMatch[1], "UTF-8")
             }
             htmlParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
           if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
-            if (charset != "UTF-8") {
-             part.body = convertCharsetToUTF8(charset, part.body);
-            }
             textParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
           }
 
@@ -380,7 +373,7 @@ async function _preprocessBody(expTask, index, body, msgBodyType, extraHeaders) 
   let processedMsgBody;
 
   console.log(expTask.msgList[index])
-console.log(extraHeaders)
+  console.log(extraHeaders)
   switch (expTask.expType) {
     case "eml":
       //processedMsgBody = await _processBodyForEML(expTask, index);
@@ -402,7 +395,7 @@ async function _processBodyForEML(expTask, index) {
 async function _processBodyForHTML(expTask, index, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
-console.log(extraHeaders)
+  console.log(extraHeaders)
 
   if (msgBodyType == "text/html") {
     // first check if this is headless html where 
@@ -421,7 +414,7 @@ console.log(extraHeaders)
 
 
 async function _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders) {
-console.log("hdr", extraHeaders)
+  console.log("hdr", extraHeaders)
 
   let msgItem = expTask.msgList[index];
   let msgHdrFlags = await browser.ExportMessages.getMsgHdrs(msgItem.id, ["flags"]);
@@ -456,12 +449,12 @@ function convertCharsetToUTF8(charset, string) {
     const decoder = new TextDecoder(charset);
     const encoded = encoder.encode(string);
     const decoded = decoder.decode(encoded);
-      console.log("Converted to utf-8 from:", charset);
-    
+    console.log("Converted to utf-8 from:", charset);
+
     return decoded;
   } catch (e) {
-      console.error("Error converting to utf-8", e);
-      return string;
+    console.error("Error converting to utf-8", e);
+    return string;
   }
 }
 

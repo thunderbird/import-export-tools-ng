@@ -270,7 +270,7 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          //console.log(part)
+          console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let contentTypeFull = part.headers["content-type"][0];
@@ -290,22 +290,23 @@ async function _getprocessedMsg(expTask, msgId) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-            //console.log(msgId, part)
-            //console.log(msgId, part.headers["content-disposition"])
+            console.log(msgId, part)
+            console.log(msgId, part.headers["content-disposition"])
             let cd = part.headers["content-disposition"][0];
             //console.log(part.headers)
             if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
-              //console.log("inline", part.headers)
+              console.log("inline", part.headers)
               //console.log("inline", part.headers["content-id"])
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 inlineParts.push({ contentType: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+                console.log("push inline att", attachmentParts)
 
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 attachmentParts.push({ contentType: part.contentType, attachmentBody: attachmentBody, name: part.name });
-                //console.log("push inline att", attachmentParts)
+                console.log("push  att", attachmentParts)
               }
             }
           }
@@ -550,13 +551,12 @@ async function _createIndex(expTask, msgListLog) {
         messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
       }
       let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
-      console.log(relUrl)
       let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
       let attachments = "";
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData += `\n<tr ${errClass}><td style=''>${aHref}</td>`;
+      indexData += `\n<tr ${errClass}><td sorttable_customkey="${msgItem.headers.subject}">${aHref}</td>`;
       indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"', '')) + "</td>";
       indexData += "\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;

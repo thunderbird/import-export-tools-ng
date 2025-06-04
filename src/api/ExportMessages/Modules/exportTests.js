@@ -126,6 +126,7 @@ export var exportTests = {
             let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
             partIdName = partIdName.replaceAll(/\./g, "\\.");
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+            
             let filename = encodeURIComponent(PathUtils.filename(unqFilename));
             // we must replace inlinepart references
             let relUnqPartPath = "./";

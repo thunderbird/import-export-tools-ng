@@ -119,7 +119,7 @@ export var exportTests = {
           for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
             currentFileType = "inline";
             currentFileName = inlinePart.name;
-            let inlineBody = await this.fileToUint8Array(inlinePart.inlinePartBody);
+            let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
             //console.log(attsDir, inlinePart.name)
             let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
@@ -127,6 +127,15 @@ export var exportTests = {
             partIdName = partIdName.replaceAll(/\./g, "\\.");
             let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
             
+            // verify part id is referenced in body, otherwise push
+            // to attachments list and continue 
+            if (!partRegex.test(expTask.msgList[index].msgData.msgBody)) {
+              console.log("no id ref")
+              // convert inlinePart to attachmentPart
+              inlinePart.partType = "attachment";
+              expTask.msgList[index].msgData.attachmentParts.push(inlinePart);
+              continue;
+            }
             let filename = encodeURIComponent(PathUtils.filename(unqFilename));
             // we must replace inlinepart references
             let relUnqPartPath = "./";
@@ -154,7 +163,7 @@ export var exportTests = {
           }
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
-            //console.log(attachmentPart)
+            console.log(attachmentPart)
             currentFileType = "attachment";
             currentFileName = attachmentPart?.name;
             // some attachments seen without a name
@@ -162,7 +171,7 @@ export var exportTests = {
               currentFileName = "message.txt";
               attachmentPart.name = "message.txt";
             }
-            let attachmentBody = await this.fileToUint8Array(attachmentPart.attachmentBody)
+            let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));

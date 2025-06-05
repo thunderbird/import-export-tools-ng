@@ -300,12 +300,12 @@ async function _getprocessedMsg(expTask, msgId) {
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-                inlineParts.push({ contentType: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+                inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
                 console.log("push inline att", attachmentParts)
 
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-                attachmentParts.push({ contentType: part.contentType, attachmentBody: attachmentBody, name: part.name });
+                attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
                 console.log("push  att", attachmentParts)
               }
             }
@@ -315,11 +315,11 @@ async function _getprocessedMsg(expTask, msgId) {
             try {
               let contentId = part.headers["content-id"][0];
               let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              inlineParts.push({ contentType: part.contentType, inlinePartBody: inlineBody, name: part.name, contentId: contentId });
+              inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
 
             } catch {
               let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              attachmentParts.push({ contentType: part.contentType, attachmentBody: attachmentBody, name: part.name });
+              attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
               //console.log("push inline att", attachmentParts)
             }
             //let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);

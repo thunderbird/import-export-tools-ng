@@ -131,7 +131,7 @@ async function msgIterateBatch(expTask) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        getBodyPromises.push(_getprocessedMsg(expTask, msgId));
+        getBodyPromises.push(_getprocessedMsg(expTask, msgId, msgListPage.messages[index]));
 
         totalMsgsData += msgListPage.messages[index].size;
 
@@ -222,7 +222,7 @@ async function msgIterateBatch(expTask) {
   }
 }
 
-async function _getprocessedMsg(expTask, msgId) {
+async function _getprocessedMsg(expTask, msgId, msg) {
 
   return new Promise(async (resolve, reject) => {
 
@@ -252,9 +252,9 @@ async function _getprocessedMsg(expTask, msgId) {
       }
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
-      console.log(fullMsg)
+      //console.log(fullMsg)
       var extraHeaders = { "x-mozilla-status": fullMsg.headers["x-mozilla-status"], "x-mozilla-status2": fullMsg.headers["x-mozilla-status2"], "reply-to": fullMsg.headers["reply-to"] };
-      console.log(extraHeaders)
+      //console.log(extraHeaders)
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
         return;
@@ -270,11 +270,10 @@ async function _getprocessedMsg(expTask, msgId) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          console.log(part)
+          //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let contentTypeFull = part.headers["content-type"][0];
-          console.log("ctf", contentTypeFull)
 
           // convert non utf-8 character sets
 
@@ -290,23 +289,23 @@ async function _getprocessedMsg(expTask, msgId) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-            console.log(msgId, part)
-            console.log(msgId, part.headers["content-disposition"])
+            //console.log(msgId, part)
+            //console.log(msgId, part.headers["content-disposition"])
             let cd = part.headers["content-disposition"][0];
             //console.log(part.headers)
             if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
-              console.log("inline", part.headers)
+              //console.log("inline", part.headers)
               //console.log("inline", part.headers["content-id"])
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
-                console.log("push inline att", attachmentParts)
+                //console.log("push inline att", attachmentParts)
 
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-                console.log("push  att", attachmentParts)
+                //console.log("push  att", attachmentParts)
               }
             }
           }
@@ -346,10 +345,10 @@ async function _getprocessedMsg(expTask, msgId) {
       // then a header table added
 
       if (htmlParts.length) {
-        //htmlParts[0].body = await _preprocessBody(expTask, index, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
+        htmlParts[0].body = await _preprocessBody(expTask, msg, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
         resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
       } else if (textParts.length) {
-        //textParts[0].body = await _preprocessBody(expTask, index, textParts[0].body, "text/plain", textParts[0].extraHeaders );
+        textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders );
         resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
       } else {
         resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
@@ -365,7 +364,7 @@ async function _getprocessedMsg(expTask, msgId) {
 
 
 
-async function _preprocessBody(expTask, index, body, msgBodyType, extraHeaders) {
+async function _preprocessBody(expTask, msg, body, msgBodyType, extraHeaders) {
   // so we need to do different processing 
   // depending upon both expType and our body type
   // critical to break things up and not have 
@@ -373,14 +372,14 @@ async function _preprocessBody(expTask, index, body, msgBodyType, extraHeaders) 
 
   let processedMsgBody;
 
-  console.log(expTask.msgList[index])
-  console.log(extraHeaders)
+  console.log(msg)
+  //console.log(extraHeaders)
   switch (expTask.expType) {
     case "eml":
       //processedMsgBody = await _processBodyForEML(expTask, index);
       break;
     case "html":
-      processedMsgBody = await _processBodyForHTML(expTask, index, body, msgBodyType, extraHeaders);
+      processedMsgBody = await _processBodyForHTML(msg, body, msgBodyType, extraHeaders);
       break;
     case "pdf":
       //processedMsgBody = await _processBodyForPDF(expTask, index);
@@ -393,40 +392,40 @@ async function _processBodyForEML(expTask, index) {
   return expTask.msgList[index].msgData.rawMsg;
 }
 
-async function _processBodyForHTML(expTask, index, msgBody, msgBodyType, extraHeaders) {
+async function _processBodyForHTML(msg, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
-  console.log(extraHeaders)
+  //console.log(extraHeaders)
 
   if (msgBodyType == "text/html") {
     // first check if this is headless html where 
     // there is no html or body tags
-    if (!/<HTML[^>]>/i.test(msgBody)) {
+    if (!/<HTML[^>]*>/i.test(msgBody)) {
       // wrap body with <html><body>
       msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    return _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
+    return _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
   msgBody = _convertTextToHTML(msgBody);
-  msgBody = await _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders);
+  msgBody = await _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
 
 
-async function _insertHdrTable(expTask, index, msgBody, msgBodyType, extraHeaders) {
-  console.log("hdr", extraHeaders)
+async function _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders) {
+  //console.log("hdr", extraHeaders)
 
-  let msgItem = expTask.msgList[index];
-  let msgHdrFlags = await browser.ExportMessages.getMsgHdrs(msgItem.id, ["flags"]);
-  console.log(msgHdrFlags)
-  let reStatus = parseInt(extraHeaders["x-mozilla-status"][0], 16) & 0x10;
-  console.log(reStatus)
+  //let msgItem = expTask.msgList[index];
+  //let msgHdrFlags = await browser.ExportMessages.getMsgHdrs(msgItem.id, ["flags"]);
+  //console.log(msgHdrFlags)
+  //let reStatus = parseInt(extraHeaders["x-mozilla-status"][0], 16) & 0x10;
+  //console.log(reStatus)
   let hdrRows = "";
-  hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msgItem.recipients}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msgItem.date}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msg.subject}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msg.recipients}</td></tr>`;
+  hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
 
   let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 

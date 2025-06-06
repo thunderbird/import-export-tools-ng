@@ -438,6 +438,8 @@ export var exportTests = {
 
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
+    return msgData.msgBody;
+
 
     if (msgData.msgBodyType == "text/html") {
       // first check if this is headless html where 

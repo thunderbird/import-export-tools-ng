@@ -438,7 +438,6 @@ export var exportTests = {
 
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
-    return msgData.msgBody;
 
 
     if (msgData.msgBodyType == "text/html") {
@@ -451,7 +450,8 @@ export var exportTests = {
       if (attachmentFilenames.length) {
         msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       }
-      //return msgData.msgBody;
+      
+      return msgData.msgBody;
         //console.log(msgData.msgBody)
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);

@@ -461,6 +461,7 @@ export var exportTests = {
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
+    
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
     msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);

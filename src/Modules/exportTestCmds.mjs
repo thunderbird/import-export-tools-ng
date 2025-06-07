@@ -318,10 +318,10 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
             } catch {
              */
-              let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-              attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-              console.log("push  att", attachmentParts)
-          //  }
+            let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+            attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
+            console.log("push  att", attachmentParts)
+            //}
 
             //let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             //attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
@@ -338,10 +338,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       await getParts(parts)
 
       //console.log(htmlParts, textParts)
-      console.log("ip", inlineParts)
-      console.log("ap", attachmentParts
-
-      )
+      //console.log("ip", inlineParts)
+      //console.log("ap", attachmentParts)
 
 
       // we have collected the body parts
@@ -351,15 +349,29 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       // or html to text conversion if necessary 
       // then a header table added
 
-      if (htmlParts.length) {
-        htmlParts[0].body = await _preprocessBody(expTask, msg, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
-        resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
-      } else if (textParts.length) {
-        textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders );
-        resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts });
-      } else {
-        resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+      switch (expTask.expType) {
+        case "eml":
+          break;
+        case "html":
+          if (htmlParts.length) {
+            htmlParts[0].body = await _preprocessBody(expTask, msg, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          } else if (textParts.length) {
+            htmlParts.push(textParts[0]);
+            htmlParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders);
+            textParts = [];
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts });
+          } else {
+            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          }
+
+          break;
+        case "pdf":
+            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+
+          break;
       }
+
 
     } catch (ex) {
       console.log(ex)

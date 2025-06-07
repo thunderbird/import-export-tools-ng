@@ -91,20 +91,16 @@ export var exportTests = {
         expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
 
-      let generatedMsgName = await names.generateMsgName(expTask, index, context);
+      let generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
       //console.log(generatedMsgName)
       var name = generatedMsgName;
 
 
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       try {
-        var attsDir = this._getAttachmentsDirectory(expTask, name);
+        var attsDir = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
-        attsDir = attsDir.slice(0, maxFilePathLen);
-        attsDir = attsDir.trimEnd();
-        if (attsDir.endsWith(".")) {
-          attsDir += ";";
-        }
+        
         //console.log(maxFilePathLen)
         //var maxFilePathLen = 500
         var currentFileType = "";
@@ -374,7 +370,7 @@ export var exportTests = {
     return msgsDir;
   },
 
-  _getAttachmentsDirectory: function (expTask, msgName) {
+  _getAttachmentsDirectorys: async function (expTask, index, context) {
     let attsDir;
     let msgsDir = expTask.messages.messageContainerDirectory;
     // switch on structure type
@@ -383,10 +379,15 @@ export var exportTests = {
         attsDir = msgsDir;
         break;
       case "perMsgDir":
-        if (msgName.endsWith(".")) {
-          msgName += ";";
+        let generatedAttsName = await names.generateFromPattern("customAttachments", expTask, index, context);
+        attsDir = PathUtils.join(msgsDir, generatedAttsName);
+
+        var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
+        attsDir = attsDir.slice(0, maxFilePathLen);
+        attsDir = attsDir.trimEnd();
+        if (attsDir.endsWith(".")) {
+          attsDir += ";";
         }
-        attsDir = PathUtils.join(msgsDir, msgName);
         break;
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
@@ -461,7 +462,7 @@ export var exportTests = {
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
-    
+
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
     msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);

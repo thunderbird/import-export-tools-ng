@@ -53,7 +53,9 @@ import * as prefs from "./prefCmds.mjs";
       attachments: {
         save: "none",
         containerStructure: "perMsgDir",
-        containerNamePattern: "${subject}-Atts",
+        namePattern: "${subject}",
+        inlineNamePattern: "${subject}",
+        
       },
       index: {
         directory: "",
@@ -156,6 +158,9 @@ export async function createExportTask(params, ctxEvent) {
     expTask.dateFormat.type = 1;
     expTask.names.extension = "html";
     expTask.attachments.save = params.saveAttachments;
+    expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
+    console.log(expTask.attachments.namePattern)
+    expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
 
@@ -203,6 +208,8 @@ async function _build_PDF_expTask(expTask, params, ctxEvent) {
     expTask.dateFormat.type = 1;
     expTask.names.extension = "pdf";
     expTask.attachments.save = params.saveAttachments;
+    expTask.attachments.namePattern = await prefs.getPref("attachments.filename_extended_format");
+    expTask.attachments.inlineNamePattern = await prefs.getPref("embedded_attachments.filename_extended_format");
     
     expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
 

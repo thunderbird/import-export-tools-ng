@@ -5,9 +5,9 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 
 export var names = {
 
-  generateMsgName: async function (expTask, index, context) {
+  generateFromPattern: async function (namePatternType, expTask, index, context) {
     // general options
-    let namePatternType = expTask.names.namePatternType;
+    //let namePatternType = expTask.names.namePatternType;
     let asciiOnly = expTask.names.asciiOnly;
     let nameMaxLen = expTask.names.maxLength;
     let extension = expTask.names.extension;
@@ -74,14 +74,14 @@ export var names = {
     // Recipient name
 
     let recipientName;
-try {
-    recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
-    if (!recipientName || recipientName == "") {
+    try {
+      recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
+      if (!recipientName || recipientName == "") {
+        recipientName = "[No Recipient]";
+      }
+    } catch (ex) {
       recipientName = "[No Recipient]";
     }
-  } catch (ex) {
-      recipientName = "[No Recipient]";
-  }
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
 
@@ -124,7 +124,7 @@ try {
 
 
     // basic dropdown filename pattern
-    if (expTask.names.namePatternType == "dropdown") {
+    if (namePatternType == "dropdown") {
       let pattern = expTask.names.namePatternDropdown;
 
 
@@ -152,8 +152,18 @@ try {
 
       generatedName = pattern;
 
-    } else if (expTask.names.namePatternType == "custom") {
-      generatedName = expTask.names.namePatternCustom;
+    } else if (namePatternType == "custom" || "customAttachments") {
+      console.log(namePatternType)
+      switch (namePatternType) {
+        case "custom":
+          generatedName = expTask.names.namePatternCustom;
+          break;
+        case "customAttachments":
+          generatedName = expTask.attachments.namePattern;
+      console.log(generatedName)
+
+          break;
+      }
 
       // extended filename format
 

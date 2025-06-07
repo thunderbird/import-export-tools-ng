@@ -270,12 +270,10 @@ async function _getprocessedMsg(expTask, msgId, msg) {
         //console.log("getParts", parts)
 
         for (const part of parts) {
-          //console.log(part)
+          console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
           let contentTypeFull = part.headers["content-type"][0];
-
-          // convert non utf-8 character sets
 
           if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
             let charsetMatch = part.body.match(/charset=([^;"]*)/i);
@@ -289,38 +287,42 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-            //console.log(msgId, part)
+            console.log("cd inline", part)
             //console.log(msgId, part.headers["content-disposition"])
             let cd = part.headers["content-disposition"][0];
             //console.log(part.headers)
             if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
-              //console.log("inline", part.headers)
+              console.log("inline", part.headers)
               //console.log("inline", part.headers["content-id"])
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
-                //console.log("push inline att", attachmentParts)
+                console.log("push inline att", attachmentParts)
 
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-                //console.log("push  att", attachmentParts)
+                console.log("push inline to att", attachmentParts)
               }
             }
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
+            /*
             try {
               let contentId = part.headers["content-id"][0];
               let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
               inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
+              console.log("push att as inline att", attachmentParts)
 
             } catch {
+             */
               let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
               attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-              //console.log("push inline att", attachmentParts)
-            }
+              console.log("push  att", attachmentParts)
+          //  }
+
             //let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             //attachmentParts.push({ ct: part.contentType, attachmentBody: attachmentBody, name: part.name });
             //console.log("push att", attachmentParts)
@@ -336,6 +338,11 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       await getParts(parts)
 
       //console.log(htmlParts, textParts)
+      console.log("ip", inlineParts)
+      console.log("ap", attachmentParts
+
+      )
+
 
       // we have collected the body parts
       // we preprocess according to the export type

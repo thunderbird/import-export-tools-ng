@@ -116,51 +116,56 @@ export var exportTests = {
           attachmentFilenames = [];
 
           //console.log("saving attachments")
-          for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
-            currentFileType = "inline";
-            currentFileName = inlinePart.name;
-            let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-            //console.log(attsDir, inlinePart.name)
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
+          console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
+          console.log("attp", expTask.msgList[index].msgData.attachmentParts)
 
-            let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
-            partIdName = partIdName.replaceAll(/\./g, "\\.");
-            let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
-            
-            // verify part id is referenced in body, otherwise push
-            // to attachments list and continue 
-            if (!partRegex.test(expTask.msgList[index].msgData.msgBody)) {
-              console.log("no id ref")
-              // convert inlinePart to attachmentPart
-              inlinePart.partType = "attachment";
-              expTask.msgList[index].msgData.attachmentParts.push(inlinePart);
-              continue;
-            }
-            let filename = encodeURIComponent(PathUtils.filename(unqFilename));
-            // we must replace inlinepart references
-            let relUnqPartPath = "./";
-            if (expTask.attachments.containerStructure == "perMsgDir") {
-              relUnqPartPath = relUnqPartPath
-                + encodeURIComponent(PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2])
-                + "/" + filename;
-            } else {
-              relUnqPartPath = relUnqPartPath + filename;
-            }
+          // we do not export inline attachments for pdf export
+          // these are part of the streamed message
 
-            // pdf output from Thunderbird includes inline attachments so no
-            // need to fixup links
-            // we may not need to save either
+          if (expTask.expType != "pdf") {
+            for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+              currentFileType = "inline";
+              currentFileName = inlinePart.name;
+              let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
+              console.log(attsDir, inlinePart)
+              let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
-            if (expTask.expType != "pdf") {
+              let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+              partIdName = partIdName.replaceAll(/\./g, "\\.");
+              let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+
+              // verify part id is referenced in body, otherwise push
+              // to attachments list and continue 
+              if (0 && partRegex.test(expTask.msgList[index].msgData.msgBody)) {
+                console.log("no id ref")
+                // convert inlinePart to attachmentPart
+                inlinePart.partType = "attachment";
+                expTask.msgList[index].msgData.attachmentParts.push(inlinePart);
+                continue;
+              }
+              let filename = encodeURIComponent(PathUtils.filename(unqFilename));
+              // we must replace inlinepart references
+              let relUnqPartPath = "./";
+              if (expTask.attachments.containerStructure == "perMsgDir") {
+                relUnqPartPath = relUnqPartPath
+                  + encodeURIComponent(PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2])
+                  + "/" + filename;
+              } else {
+                relUnqPartPath = relUnqPartPath + filename;
+              }
+
+              // pdf output from Thunderbird includes inline attachments so no
+              // need to fixup links
+              // we may not need to save either
+
               expTask.msgList[index].msgData.msgBody =
                 expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+
+              writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
+
             }
-
-            writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
-
-            //writePromises.push(IOUtils.write(unqFilename, inlineBody));
-
           }
+
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
             console.log(attachmentPart)
@@ -450,9 +455,9 @@ export var exportTests = {
       if (attachmentFilenames.length) {
         msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       }
-      
+
       return msgData.msgBody;
-        //console.log(msgData.msgBody)
+      //console.log(msgData.msgBody)
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }

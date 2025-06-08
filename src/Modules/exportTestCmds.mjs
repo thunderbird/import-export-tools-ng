@@ -569,12 +569,19 @@ async function _createIndex(expTask, msgListLog) {
         messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
       }
       let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
-      let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(msgItem.headers.subject).slice(0, 50)}</a>`;
+      let fullSubject = msgItem.headers.subject;
+      console.log("fs", fullSubject)
+      if (fullSubject.startsWith(".")) {
+        console.log("st.")
+        fullSubject = "[No Decryption]" + fullSubject;
+      }
+      let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(fullSubject).slice(0, 50)}</a>`;
+
       let attachments = "";
       if (msgItem.hasAttachments) {
         attachments = msgItem.hasAttachments;
       }
-      indexData += `\n<tr ${errClass}><td sorttable_customkey="${msgItem.headers.subject}">${aHref}</td>`;
+      indexData += `\n<tr ${errClass}><td sorttable_customkey="${fullSubject}">${aHref}</td>`;
       indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"', '')) + "</td>";
       indexData += "\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;

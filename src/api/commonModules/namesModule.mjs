@@ -33,7 +33,7 @@ export var names = {
     if (!subject || subject == "") {
       subject = "[No Subject]";
     } else if (subject == "...") {
-      subject = "... [No Decryption]";
+      subject = "[No Decryption]...";
     }
 
     // add Re_ for responses 
@@ -153,14 +153,12 @@ export var names = {
       generatedName = pattern;
 
     } else if (namePatternType == "custom" || "customAttachments") {
-      console.log(namePatternType)
       switch (namePatternType) {
         case "custom":
           generatedName = expTask.names.namePatternCustom;
           break;
         case "customAttachments":
           generatedName = expTask.attachments.namePattern;
-      console.log(generatedName)
 
           break;
       }

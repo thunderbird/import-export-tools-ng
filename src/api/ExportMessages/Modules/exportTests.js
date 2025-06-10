@@ -334,7 +334,7 @@ export var exportTests = {
 
     async function __pdfPromise(expTask, index, unqFilename) {
       let hdrs = {
-        subject: expTask.msgList[index].subject,
+        subject: expTask.msgList[index].msgData.extraHeaders.subjectHdt,
         recipients: expTask.msgList[index].recipients,
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,

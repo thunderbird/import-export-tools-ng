@@ -38,7 +38,7 @@ export var names = {
 
     // add Re_ for responses 
     if (msgHdr.flags & 0x0010) {
-      subject = "Re;" + subject;
+      subject = "Re; " + subject;
     }
 
     // length contraint

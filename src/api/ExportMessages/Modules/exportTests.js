@@ -91,6 +91,8 @@ export var exportTests = {
         expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
 
+      //console.log(expTask.msgList[index].msgData)
+
       let generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
       //console.log(generatedMsgName)
       var name = generatedMsgName;
@@ -252,7 +254,7 @@ export var exportTests = {
         //console.log(expTask.msgList[index])
         if (fileType == "message") {
           let hdrs = {
-            subject: expTask.msgList[index].subject,
+            subject: expTask.msgList[index].msgData.extraHeaders.subjectHdr,
             recipients: expTask.msgList[index].recipients,
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,

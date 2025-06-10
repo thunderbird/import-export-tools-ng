@@ -102,7 +102,7 @@ export var exportTests = {
       try {
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
-        
+
         //console.log(maxFilePathLen)
         //var maxFilePathLen = 500
         var currentFileType = "";
@@ -122,6 +122,7 @@ export var exportTests = {
 
           if (expTask.expType != "pdf") {
             for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+              let writePromise;
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
@@ -159,13 +160,20 @@ export var exportTests = {
               expTask.msgList[index].msgData.msgBody =
                 expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
 
-              writePromises.push(__writeFile("inline", unqFilename, expTask, index, inlineBody));
-
+              writePromise = __writeFile("inline", unqFilename, expTask, index, inlineBody);
+              if (expTask.fileSave.sentDate) {
+                writePromise.then(async (size) => {
+                  let dateInMs = new Date(expTask.msgList[index].date).getTime();
+                  await IOUtils.setModificationTime(unqFilename, dateInMs);
+                });
+              }
+              writePromises.push(writePromise);
             }
           }
 
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            let writePromise;
             console.log(attachmentPart)
             currentFileType = "attachment";
             currentFileName = attachmentPart?.name;
@@ -178,7 +186,15 @@ export var exportTests = {
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
-            writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
+            writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
+            if (expTask.fileSave.sentDate) {
+              writePromise.then(async (size) => {
+                let dateInMs = new Date(expTask.msgList[index].date).getTime();
+                await IOUtils.setModificationTime(unqFilename, dateInMs);
+              });
+            }
+            writePromises.push(writePromise);
+
             attachmentFilenames.push(PathUtils.filename(unqFilename));
           }
         }
@@ -401,7 +417,7 @@ export var exportTests = {
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
-    return {attachmentsDir: attsDir, inlineDir: inlineDir};
+    return { attachmentsDir: attsDir, inlineDir: inlineDir };
   },
 
   fileToUint8Array: async function (file) {

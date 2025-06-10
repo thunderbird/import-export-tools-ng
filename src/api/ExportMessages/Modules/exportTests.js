@@ -213,12 +213,15 @@ export var exportTests = {
       }
 
       let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
-      let writePromise;
       if (expTask.expType == "pdf") {
         await __writePdfFile(unqFilename, expTask, index);
+        if (expTask.fileSave.sentDate) {
+          let dateInMs = new Date(expTask.msgList[index].date).getTime();
+          await IOUtils.setModificationTime(unqFilename, dateInMs);
+        }
         writePromises.push(__pdfPromise(expTask, index, unqFilename));
       } else {
-        writePromise = __writeFile("message", unqFilename, expTask, index);
+        let writePromise = __writeFile("message", unqFilename, expTask, index);
         if (expTask.fileSave.sentDate) {
           writePromise.then(async (size) => {
             let dateInMs = new Date(expTask.msgList[index].date).getTime();
@@ -334,7 +337,7 @@ export var exportTests = {
 
     async function __pdfPromise(expTask, index, unqFilename) {
       let hdrs = {
-        subject: expTask.msgList[index].msgData.extraHeaders.subjectHdr,
+        subject: expTask.msgList[index].subject,
         recipients: expTask.msgList[index].recipients,
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,

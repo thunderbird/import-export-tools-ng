@@ -152,14 +152,16 @@ export var names = {
 
       generatedName = pattern;
 
-    } else if (namePatternType == "custom" || "customAttachments") {
+    } else if (namePatternType == "custom" || "customAttachments" || "customInline") {
       switch (namePatternType) {
         case "custom":
           generatedName = expTask.names.namePatternCustom;
           break;
         case "customAttachments":
           generatedName = expTask.attachments.namePattern;
-
+          break;
+        case "customInline":
+          generatedName = expTask.attachments.inlineNamePattern;
           break;
       }
 

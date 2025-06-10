@@ -100,7 +100,7 @@ export var exportTests = {
 
       //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       try {
-        var attsDir = await this._getAttachmentsDirectorys(expTask, index, context);
+        var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         
         //console.log(maxFilePathLen)
@@ -125,8 +125,8 @@ export var exportTests = {
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-              console.log(attsDir, inlinePart)
-              let unqFilename = await IOUtils.createUniqueFile(attsDir, inlinePart.name.slice(0, maxFilePathLen - 5));
+              //console.log(attDirs, inlinePart)
+              let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
               let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
               partIdName = partIdName.replaceAll(/\./g, "\\.");
@@ -177,13 +177,13 @@ export var exportTests = {
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
-            let unqFilename = await IOUtils.createUniqueFile(attsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
+            let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
             writePromises.push(__writeFile("attachment", unqFilename, expTask, index, attachmentBody));
             attachmentFilenames.push(PathUtils.filename(unqFilename));
           }
         }
 
-        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attsDir, attachmentFilenames);
+        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attDirs.attachmentsDir, attachmentFilenames);
 
       } catch (ex) {
         //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
@@ -374,6 +374,7 @@ export var exportTests = {
 
   _getAttachmentsDirectorys: async function (expTask, index, context) {
     let attsDir;
+    let inlineDir;
     let msgsDir = expTask.messages.messageContainerDirectory;
     // switch on structure type
     switch (expTask.attachments.containerStructure) {
@@ -381,20 +382,26 @@ export var exportTests = {
         attsDir = msgsDir;
         break;
       case "perMsgDir":
+        let maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         let generatedAttsName = await names.generateFromPattern("customAttachments", expTask, index, context);
         attsDir = PathUtils.join(msgsDir, generatedAttsName);
-
-        var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         attsDir = attsDir.slice(0, maxFilePathLen);
         attsDir = attsDir.trimEnd();
         if (attsDir.endsWith(".")) {
           attsDir += ";";
         }
+        generatedAttsName = await names.generateFromPattern("customInline", expTask, index, context);
+        inlineDir = PathUtils.join(msgsDir, generatedAttsName);
+        inlineDir = inlineDir.slice(0, maxFilePathLen);
+        inlineDir = inlineDir.trimEnd();
+        if (inlineDir.endsWith(".")) {
+          inlineDir += ";";
+        }
         break;
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
-    return attsDir;
+    return {attachmentsDir: attsDir, inlineDir: inlineDir};
   },
 
   fileToUint8Array: async function (file) {

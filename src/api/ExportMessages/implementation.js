@@ -72,17 +72,11 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         },
 
         writeIndex: async function (expTask, indexData) {
-          //try {
           var { sorttableSource } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttableSource.mjs?" + ietngExtension.manifest.version + new Date());
 
-          //let script = await this._fetchFile("chrome://mboximport/content/mboximport/modules/sortable.js")
-          let indexDir = this._getIndexDirectory(expTask)
+          let indexDir = this._getIndexDirectory(expTask);
           indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
-          //} catch (ex){
-          //console.log(ex)
-
-          //          }
         },
 
         _getIndexDirectory: function (expTask) {
@@ -96,9 +90,6 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           // use PathUtils.join which will give us an OS proper path
           let base = expTask.exportContainer.directory;
           indexDir = PathUtils.join(base, cleanFolderName);
-          //if (expTask.messages.messageContainer) {
-          //      indexDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
-          //}
           expTask.index.directory = indexDir;
           return indexDir;
         },
@@ -136,8 +127,8 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
 
 
         async createExportContainer(expTask) {
-          let dateStr = strftime.strftime("%Y", new Date());
-          let containerName = `${expTask.folders[expTask.currentFolderIndex].name}-${dateStr}`;
+          let dateStr = strftime.strftime("%Y%m%d-%H%M", new Date());
+          let containerName = `${expTask.folders[expTask.currentFolderIndex].name}_${dateStr}`;
           let uName = await IOUtils.createUniqueDirectory(expTask.generalConfig.exportDirectory, containerName);
           return uName;
         },

@@ -114,8 +114,8 @@ export var exportTests = {
           attachmentFilenames = [];
 
           //console.log("saving attachments")
-          console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
-          console.log("attp", expTask.msgList[index].msgData.attachmentParts)
+          //console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
+          //console.log("attp", expTask.msgList[index].msgData.attachmentParts)
 
           // we do not export inline attachments for pdf export
           // these are part of the streamed message
@@ -133,15 +133,6 @@ export var exportTests = {
               partIdName = partIdName.replaceAll(/\./g, "\\.");
               let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
 
-              // verify part id is referenced in body, otherwise push
-              // to attachments list and continue 
-              if (0 && partRegex.test(expTask.msgList[index].msgData.msgBody)) {
-                console.log("no id ref")
-                // convert inlinePart to attachmentPart
-                inlinePart.partType = "attachment";
-                expTask.msgList[index].msgData.attachmentParts.push(inlinePart);
-                continue;
-              }
               let filename = encodeURIComponent(PathUtils.filename(unqFilename));
               // we must replace inlinepart references
               let relUnqPartPath = "./";
@@ -174,7 +165,7 @@ export var exportTests = {
 
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
             let writePromise;
-            console.log(attachmentPart)
+            //console.log(attachmentPart)
             currentFileType = "attachment";
             currentFileName = attachmentPart?.name;
             // some attachments seen without a name
@@ -336,8 +327,14 @@ export var exportTests = {
     }
 
     async function __pdfPromise(expTask, index, unqFilename) {
+      let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
+      let subjectFull = msgHdr.mime2DecodedSubject;
+      if (msgHdr.flags & 0x0010) {
+      subjectFull = "Re: " + subjectFull;
+    }
+
       let hdrs = {
-        subject: expTask.msgList[index].subject,
+        subject: subjectFull,
         recipients: expTask.msgList[index].recipients,
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,

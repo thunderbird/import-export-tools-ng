@@ -94,8 +94,9 @@ export var names = {
 */
 
     // Simple date - ${date}
-    //msgHdrDate = new Date(expTask.msgList[index].date);
-    //var msgDate8601string = dateInSecondsTo8601(msgHdr.dateInSec);
+    //var date = strftime.strftime("%Y%m%d%H%M", new Date(dateInSec * 1000));
+    var date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
+
     var dateInSec = msgHdr.dateInSeconds;
 
     // custom date format - ${date_custom}
@@ -127,11 +128,9 @@ export var names = {
     if (namePatternType == "dropdown") {
       let pattern = expTask.names.namePatternDropdown;
 
-
-
       pattern = pattern.replace("%s", subject);
       pattern = pattern.replace("%k", key);
-      //pattern = pattern.replace("%d", msgDate8601string);
+      pattern = pattern.replace("%d", date);
       pattern = pattern.replace("%D", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
       pattern = pattern.replace("%n", smartName);
       pattern = pattern.replace("%a", authorName);
@@ -183,7 +182,7 @@ export var names = {
       generatedName = generatedName.replace("${prefix}", "");
       generatedName = generatedName.replace("${suffix}", "");
       generatedName = generatedName.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-      generatedName = generatedName.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+      generatedName = generatedName.replace("${date}", date);
 
       /*
             generatedName = generatedName.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subject);

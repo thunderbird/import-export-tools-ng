@@ -558,9 +558,7 @@ async function _createIndex(expTask, msgListLog) {
       }
       let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
       let fullSubject = msgItem.headers.subject;
-      console.log("fs", fullSubject)
       if (fullSubject.startsWith(".")) {
-        console.log("st.")
         fullSubject = "[No Decryption]" + fullSubject;
       }
       let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(fullSubject).slice(0, 50)}</a>`;

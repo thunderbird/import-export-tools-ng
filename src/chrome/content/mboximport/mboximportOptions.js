@@ -156,14 +156,14 @@ function initMboxImportPanel() {
             }
         }
     }
+    try {
 
     document.getElementById("addPrefix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix");
-    try {
         document.getElementById("prefixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
     } catch (e) { }
+    try {
 
     document.getElementById("addSuffix").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix");
-    try {
         document.getElementById("suffixText").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
     } catch (e) { }
 
@@ -324,11 +324,14 @@ function saveMboxImportPrefs() {
         pattern += val;
     }
     IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
+/*
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_prefix", document.getElementById("addPrefix").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_add_suffix", document.getElementById("addSuffix").checked);
     // if (document.getElementById("prefixText").value != "")
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_prefix", document.getElementById("prefixText").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_suffix", document.getElementById("suffixText").value);
+*/
+
     IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
     IETsetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
 
@@ -382,20 +385,23 @@ function customNamesCheck(el) {
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
         document.getElementById("part3").setAttribute("disabled", "true");
+        /*
         document.getElementById("addPrefix").setAttribute("disabled", "true");
         document.getElementById("prefixText").setAttribute("disabled", "true");
         document.getElementById("addSuffix").setAttribute("disabled", "true");
         document.getElementById("suffixText").setAttribute("disabled", "true");
-
+*/
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
         document.getElementById("part3").removeAttribute("disabled");
+        /*
         document.getElementById("addPrefix").removeAttribute("disabled");
         document.getElementById("prefixText").removeAttribute("disabled");
         document.getElementById("addSuffix").removeAttribute("disabled");
         document.getElementById("suffixText").removeAttribute("disabled");
+        */
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");

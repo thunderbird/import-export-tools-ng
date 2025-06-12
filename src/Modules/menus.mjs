@@ -781,6 +781,30 @@ var folderCtxMenuSet = [
   {
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: "folderCtxMenu_Plaintext_newexp",
+      title: "(new) Messages and HTML Index",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportFolders,
+      functionParams: { expType: "plaintext", saveAttachments: "none", index: true }
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
+      id: "folderCtxMenu_Plaintext_atts_newexp",
+      title: "(new) Messages and Attachments",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportFolders,
+      functionParams: { expType: "plaintext", saveAttachments: "all", index: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id,
       title: localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
     },

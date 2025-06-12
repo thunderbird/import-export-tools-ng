@@ -255,7 +255,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       //console.log(fullMsg)
       var extraHeaders = { subjectHdr: fullMsg.headers.subject[0], "reply-to": fullMsg.headers["reply-to"] };
-      console.log(extraHeaders)
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
@@ -274,7 +273,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           //console.log(part)
           // we could have multiple sub parts
           let contentType = part.contentType;
-          let contentTypeFull = part.headers["content-type"][0];
 
           if (expTask.expType != "pdf" && contentType == "text/html" && part?.body) {
             let charsetMatch = part.body.match(/charset=([^;"]*)/i);
@@ -310,7 +308,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
-            
+
             let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
             //console.log("push  att", attachmentParts)
@@ -352,11 +350,24 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           } else {
             resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
           }
-
           break;
         case "pdf":
-            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          break;
+        case "plaintext":
 
+          if (textParts.length) {
+
+            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders);
+            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: textParts[0].extraHeaders });
+          } else if (htmlParts.length) {
+            textParts.push(htmlParts[0]);
+            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/html", textParts[0].extraHeaders);
+            htmlParts = [];
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: htmlParts[0].extraHeaders });
+          } else {
+            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          }
           break;
       }
 
@@ -386,10 +397,13 @@ async function _preprocessBody(expTask, msg, body, msgBodyType, extraHeaders) {
       //processedMsgBody = await _processBodyForEML(expTask, index);
       break;
     case "html":
-      processedMsgBody = await _processBodyForHTML(msg, body, msgBodyType, extraHeaders);
+      processedMsgBody = await _processBodyForHTML(expTask, msg, body, msgBodyType, extraHeaders);
       break;
     case "pdf":
       //processedMsgBody = await _processBodyForPDF(expTask, index);
+      break;
+    case "plaintext":
+      processedMsgBody = await _processBodyForPlaintext(expTask, msg, body, msgBodyType, extraHeaders);
       break;
   }
   return processedMsgBody;
@@ -399,7 +413,27 @@ async function _processBodyForEML(expTask, index) {
   return expTask.msgList[index].msgData.rawMsg;
 }
 
-async function _processBodyForHTML(msg, msgBody, msgBodyType, extraHeaders) {
+async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHeaders) {
+  // we process depending upon body content type
+
+  //console.log(extraHeaders)
+
+  if (msgBodyType == "text/html") {
+    // first check if this is headless html where 
+    // there is no html or body tags
+    if (!/<HTML[^>]*>/i.test(msgBody)) {
+      // wrap body with <html><body>
+      msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
+    }
+    return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
+  }
+  // we have text/plain
+  msgBody = _convertTextToHTML(msgBody);
+  msgBody = await _insertHdrTable(expTask, expTask, msg, msgBody, msgBodyType, extraHeaders);
+  return msgBody;
+}
+
+async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
   //console.log(extraHeaders)
@@ -414,40 +448,49 @@ async function _processBodyForHTML(msg, msgBody, msgBodyType, extraHeaders) {
     return _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
-  msgBody = _convertTextToHTML(msgBody);
-  msgBody = await _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders);
+  msgBody = await _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
-
 
 async function _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders) {
   //console.log("hdr", extraHeaders)
 
-  //let msgItem = expTask.msgList[index];
-  //let msgHdrFlags = await browser.ExportMessages.getMsgHdrs(msgItem.id, ["flags"]);
-  //console.log(msgHdrFlags)
-  //let reStatus = parseInt(extraHeaders["x-mozilla-status"][0], 16) & 0x10;
-  //console.log(reStatus)
-  let hdrRows = "";
-  hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.subjectHdr}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msg.recipients}</td></tr>`;
-  hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
+  if (expTask.expType == "html") {
+    let hdrRows = "";
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.subjectHdr}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msg.recipients}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
 
-  let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
+    let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 
-  //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
+    //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
-  //console.log(msgData.msgBodyType)
-  if (msgBodyType == "text/plain") {
-    let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
-    //console.log(tp)
-    return tp;
+    //console.log(msgData.msgBodyType)
+    if (msgBodyType == "text/plain") {
+      let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      //console.log(tp)
+      return tp;
+    }
+    msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
+    //console.log(rp)
   }
-  msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
-  //console.log(rp)
 
-  return msgBody;
+  // plaintext export
+  let recipients;
+  if (msg.recipients == []) {
+    recipients = "(none)";
+  } else {
+    recipients = msg.recipients[0];
+  }
+
+  let hdr;
+  hdr += `Subject:   ${extraHeaders.subjectHdr}\r\n`;
+  hdr += `From :   ${msg.from}\r\n`;
+  hdr += `To:     ${recipients}\r\n`;
+  hdr += `Date:   ${msg.date}\r\n\r\n`;
+
+  return `${hdr}${msgBody}`;
 }
 
 function convertCharsetToUTF8(charset, string) {

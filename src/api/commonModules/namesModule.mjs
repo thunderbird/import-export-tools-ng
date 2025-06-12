@@ -156,7 +156,6 @@ export var names = {
       switch (namePatternType) {
         case "custom":
           generatedName = expTask.names.namePatternCustom;
-          console.log(generatedName)
           break;
         case "customAttachments":
           generatedName = expTask.attachments.namePattern;
@@ -169,8 +168,6 @@ export var names = {
       // extended filename format
 
       let index = key;
-
-          console.log(generatedName)
 
       // Allow en-US tokens always
       generatedName = generatedName.replace("${subject}", subject);

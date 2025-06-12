@@ -330,8 +330,8 @@ export var exportTests = {
       let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
       let subjectFull = msgHdr.mime2DecodedSubject;
       if (msgHdr.flags & 0x0010) {
-      subjectFull = "Re: " + subjectFull;
-    }
+        subjectFull = "Re: " + subjectFull;
+      }
 
       let hdrs = {
         subject: subjectFull,
@@ -456,6 +456,9 @@ export var exportTests = {
       case "pdf":
         processedMsgBody = await this._processBodyForPDF(expTask, index);
         break;
+      default:
+        let msgData = expTask.msgList[index].msgData;
+        return msgData.msgBody;
     }
     return processedMsgBody;
   },

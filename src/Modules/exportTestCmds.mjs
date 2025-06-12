@@ -445,14 +445,15 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
       // wrap body with <html><body>
       msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    return _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders);
+    msgBody = await browser.messengerUtilities.convertToPlainText(msgBody, {flowed: true});
+    return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
   msgBody = await _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
 
-async function _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders) {
+async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
   //console.log("hdr", extraHeaders)
 
   if (expTask.expType == "html") {
@@ -484,9 +485,9 @@ async function _insertHdrTable(msg, msgBody, msgBodyType, extraHeaders) {
     recipients = msg.recipients[0];
   }
 
-  let hdr;
+  let hdr = "";
   hdr += `Subject:   ${extraHeaders.subjectHdr}\r\n`;
-  hdr += `From :   ${msg.from}\r\n`;
+  hdr += `From :   ${msg.author}\r\n`;
   hdr += `To:     ${recipients}\r\n`;
   hdr += `Date:   ${msg.date}\r\n\r\n`;
 

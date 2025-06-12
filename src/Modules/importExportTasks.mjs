@@ -282,5 +282,6 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent) {
 
   // index
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+
   return expTask;
 }

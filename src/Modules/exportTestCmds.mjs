@@ -364,7 +364,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
             textParts.push(htmlParts[0]);
             textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/html", textParts[0].extraHeaders);
             htmlParts = [];
-            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: htmlParts[0].extraHeaders });
+            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts, extraHeaders: textParts[0].extraHeaders });
           } else {
             resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
           }
@@ -373,7 +373,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
 
     } catch (ex) {
-      console.log(ex)
+      console.log(ex, msg)
       //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
       reject(ex);
     }

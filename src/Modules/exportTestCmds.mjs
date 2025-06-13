@@ -416,8 +416,6 @@ async function _processBodyForEML(expTask, index) {
 async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
-  //console.log(extraHeaders)
-
   if (msgBodyType == "text/html") {
     // first check if this is headless html where 
     // there is no html or body tags
@@ -429,7 +427,7 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
   }
   // we have text/plain
   msgBody = _convertTextToHTML(msgBody);
-  msgBody = await _insertHdrTable(expTask, expTask, msg, msgBody, msgBodyType, extraHeaders);
+  msgBody = await _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   return msgBody;
 }
 
@@ -445,7 +443,7 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
       // wrap body with <html><body>
       msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    msgBody = await browser.messengerUtilities.convertToPlainText(msgBody, {flowed: true});
+    msgBody = await browser.messengerUtilities.convertToPlainText(msgBody, { flowed: true });
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
@@ -457,17 +455,23 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   //console.log("hdr", extraHeaders)
 
   if (expTask.expType == "html") {
+    let recipients;
+    if (msg.recipients == []) {
+      recipients = "(none)";
+    } else {
+      recipients = msg.recipients.join(",\n");
+    }
+
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.subjectHdr}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
-    hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msg.recipients}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${recipients}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
-    //console.log(msgData.msgBodyType)
     if (msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
       //console.log(tp)
@@ -482,7 +486,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   if (msg.recipients == []) {
     recipients = "(none)";
   } else {
-    recipients = msg.recipients[0];
+    recipients = msg.recipients.join(", ");
   }
 
   let hdr = "";
@@ -589,11 +593,20 @@ async function _createIndex(expTask, msgListLog) {
         errClass = " class='msgError' ";
       }
 
-      let recipient = msgItem.headers.recipients[0]
-      if (recipient) {
-        recipient = recipient.slice(0, 50)
-        recipient = recipient.replace('"', '');
+      console.log(msgItem)
+      let recipients;
+      if (msgItem.headers.recipients == []) {
+        recipients = "(none)";
+      } else {
+        recipients = msgItem.headers.recipients.map(recipient => {
+          recipient = recipient.slice(0, 50)
+          recipient = recipient.replaceAll('"', '');
+          recipient =_encodeSpecialTextToHTML(recipient);
+          return recipient;
+        })
+        recipients = recipients.join(",<br>");
       }
+
       let fpParts = msgItem.filePath.split(osPathSeparator);
       var filename = fpParts[fpParts.length - 1];
       let messageContainerName = "";
@@ -613,7 +626,7 @@ async function _createIndex(expTask, msgListLog) {
       }
       indexData += `\n<tr ${errClass}><td sorttable_customkey="${fullSubject}">${aHref}</td>`;
       indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"', '')) + "</td>";
-      indexData += "\n<td>" + _encodeSpecialTextToHTML(recipient) + "</td>";
+      indexData += "\n<td>" + recipients + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
       indexData += "\n<td>" + attachments + "</td>";
       indexData += "\n<td nowrap>" + _formatBytes(msgItem.headers.size, 2) + "</td>";

@@ -459,7 +459,12 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     if (msg.recipients == []) {
       recipients = "(none)";
     } else {
-      recipients = msg.recipients.join(",\n");
+      recipients = msg.recipients.map(recipient => {
+          recipient = recipient.replaceAll('"', '');
+          recipient =_encodeSpecialTextToHTML(recipient);
+          return recipient;
+        });
+        recipients = recipients.join(",&nbsp;")
     }
 
     let hdrRows = "";
@@ -603,7 +608,7 @@ async function _createIndex(expTask, msgListLog) {
           recipient = recipient.replaceAll('"', '');
           recipient =_encodeSpecialTextToHTML(recipient);
           return recipient;
-        })
+        });
         recipients = recipients.join(",<br>");
       }
 

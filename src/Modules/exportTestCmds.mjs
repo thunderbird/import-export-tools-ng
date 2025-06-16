@@ -232,6 +232,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
     try {
 
+      var extraHeaders = await browser.ExportMessages.getMsgHdrs(msgId, ["fullSubject"]);
+
       if (expTask.expType == "eml") {
         let rawMsg = await browser.messages.getRaw(msgId);
         console.log(rawMsg)
@@ -239,14 +241,14 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
           return;
         }
-        resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [] });
+        resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
       }
 
       // for PDF we only do getFull if we are saving attachments
       if (expTask.expType == "pdf") {
         if (expTask.attachments.save == "none") {
-          resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: [], attachmentParts: [] });
+          resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;
         }
 
@@ -254,7 +256,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       //console.log(fullMsg)
-      var extraHeaders = { subjectHdr: fullMsg.headers.subject[0], "reply-to": fullMsg.headers["reply-to"] };
+      //var extraHeaders = { subjectHdr: fullMsg.headers.subject[0], "reply-to": fullMsg.headers["reply-to"] };
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
@@ -468,7 +470,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     }
 
     let hdrRows = "";
-    hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.subjectHdr}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${recipients}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
@@ -484,6 +486,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     }
     msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
     //console.log(rp)
+    return msgBody;
   }
 
   // plaintext export
@@ -495,7 +498,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   }
 
   let hdr = "";
-  hdr += `Subject:   ${extraHeaders.subjectHdr}\r\n`;
+  hdr += `Subject:   ${extraHeaders.fullSubject}\r\n`;
   hdr += `From :   ${msg.author}\r\n`;
   hdr += `To:     ${recipients}\r\n`;
   hdr += `Date:   ${msg.date}\r\n\r\n`;

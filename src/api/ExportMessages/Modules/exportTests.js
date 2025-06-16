@@ -264,7 +264,7 @@ export var exportTests = {
         //console.log(expTask.msgList[index])
         if (fileType == "message") {
           let hdrs = {
-            subject: expTask.msgList[index].msgData.extraHeaders.subjectHdr,
+            subject: expTask.msgList[index].msgData.extraHeaders.fullSubject,
             recipients: expTask.msgList[index].recipients,
             author: expTask.msgList[index].author,
             date: expTask.msgList[index].date,
@@ -327,14 +327,9 @@ export var exportTests = {
     }
 
     async function __pdfPromise(expTask, index, unqFilename) {
-      let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
-      let subjectFull = msgHdr.mime2DecodedSubject;
-      if (msgHdr.flags & 0x0010) {
-        subjectFull = "Re: " + subjectFull;
-      }
 
       let hdrs = {
-        subject: subjectFull,
+        subject: expTask.msgList[index].msgData.extraHeaders.fullSubject,
         recipients: expTask.msgList[index].recipients,
         author: expTask.msgList[index].author,
         date: expTask.msgList[index].date,

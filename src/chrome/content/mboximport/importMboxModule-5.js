@@ -34,7 +34,7 @@ var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mbo
 var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // as a module loaded by an ES6 module we bump name version so we avoid cache
-console.log("IETNG: importMboxModule.js -v6");
+console.log("IETNG: importMboxModule.js -v7");
 
 // if these are const or let they produce redeclaration error5
 // Common RFC822 header field-names for From_ exception analysis
@@ -78,7 +78,7 @@ async function mboxCopyImport(options) {
   // const kReadChunk = (50 * 1000) + 15; //  211 ex 19492 msg write bndry exc
 
   const kReadChunk = (150 * 1000) + 0; //  211 ex 19492 msg write bndry exc
-  const kExceptWin = 300;
+  const kExceptWin = 600;
 
   // we take the easy AND safe approach for the rare and
   // onerous CR line breaks from OSX 9-

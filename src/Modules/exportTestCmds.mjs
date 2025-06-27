@@ -456,42 +456,30 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
   //console.log("hdr", extraHeaders)
 
-  if (expTask.expType == "html") {
-    let recipients;
-    if (msg.recipients == []) {
-      recipients = "(none)";
-    } else {
-      recipients = msg.recipients.map(recipient => {
-          recipient = recipient.replaceAll('"', '');
-          recipient =_encodeSpecialTextToHTML(recipient);
-          return recipient;
-        });
-        recipients = recipients.join(",&nbsp;")
-    }
-    
-    let ccList;
-    if (msg.ccList == []) {
-      ccList = "";
-    } else {
-      ccList = msg.ccList.map(ccAddr => {
-          ccAddr = ccAddr.replaceAll('"', '');
-          ccAddr =_encodeSpecialTextToHTML(ccAddr);
-          return ccAddr;
-        });
-        ccList = ccList.join(",&nbsp;")
-    }
+  let recipients;
+  if (msg.recipients == []) {
+    recipients = "(none)";
+  } else {
+    recipients = msg.recipients.join(", ").replaceAll('"', '');
+  }
 
-    let bccList;
-    if (msg.bccList == []) {
-      bccList = "";
-    } else {
-      bccList = msg.bccList.map(bccAddr => {
-          bccAddr = bccAddr.replaceAll('"', '');
-          bccAddr =_encodeSpecialTextToHTML(bccAddr);
-          return bccAddr;
-        });
-        bccList = bccList.join(",&nbsp;")
-    }
+  let ccList;
+  if (msg.ccList == []) {
+    ccList = "";
+  } else {
+    ccList = msg.ccList.join(", ").replaceAll('"', '');
+  }
+  let bccList;
+  if (msg.bccList == []) {
+    bccList = "";
+  } else {
+    bccList = msg.bccList.join(", ").replaceAll('"', '');
+  }
+
+  if (expTask.expType == "html") {
+    recipients = _encodeSpecialTextToHTML(recipients);
+    ccList = _encodeSpecialTextToHTML(ccList);
+    bccList = _encodeSpecialTextToHTML(bccList);
 
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
@@ -500,11 +488,11 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
 
     if (ccList != "") {
-    hdrRows += `<tr><td style='padding-right: 10px'><b>Cc:</b></td><td>${ccList}</td></tr>`;
+      hdrRows += `<tr><td style='padding-right: 10px'><b>Cc:</b></td><td>${ccList}</td></tr>`;
     }
 
     if (bccList != "") {
-    hdrRows += `<tr><td style='padding-right: 10px'><b>Bcc:</b></td><td>${bccList}</td></tr>`;
+      hdrRows += `<tr><td style='padding-right: 10px'><b>Bcc:</b></td><td>${bccList}</td></tr>`;
     }
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
@@ -522,20 +510,22 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   }
 
   // plaintext export
-  let recipients;
-  if (msg.recipients == []) {
-    recipients = "(none)";
-  } else {
-    recipients = msg.recipients.join(", ");
-  }
+
 
   let hdr = "";
-  hdr += `Subject:   ${extraHeaders.fullSubject}\r\n`;
-  hdr += `From :   ${msg.author}\r\n`;
-  hdr += `To:     ${recipients}\r\n`;
-  hdr += `Date:   ${msg.date}\r\n\r\n`;
+  hdr += `Subject:  ${extraHeaders.fullSubject}\r\n`;
+  hdr += `From :  ${msg.author}\r\n`;
+  hdr += `To:  ${recipients}\r\n`;
+  hdr += `Date:  ${msg.date}\r\n`;
 
-  return `${hdr}${msgBody}`;
+  if (ccList != "") {
+    hdr += `Cc:  ${ccList}\r\n`;
+  }
+  if (bccList != "") {
+    hdr += `Bcc:  ${bccList}\r\n`;
+  }
+
+  return `${hdr}\r\n}${msgBody}`;
 }
 
 function convertCharsetToUTF8(charset, string) {
@@ -641,7 +631,7 @@ async function _createIndex(expTask, msgListLog) {
         recipients = msgItem.headers.recipients.map(recipient => {
           recipient = recipient.slice(0, 50)
           recipient = recipient.replaceAll('"', '');
-          recipient =_encodeSpecialTextToHTML(recipient);
+          recipient = _encodeSpecialTextToHTML(recipient);
           return recipient;
         });
         recipients = recipients.join(",<br>");

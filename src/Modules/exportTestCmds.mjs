@@ -468,12 +468,28 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
         });
         recipients = recipients.join(",&nbsp;")
     }
+    
+    let ccList;
+    if (msg.ccList == []) {
+      ccList = "";
+    } else {
+      ccList = msg.ccList.map(ccAddr => {
+          ccAddr = ccAddr.replaceAll('"', '');
+          ccAddr =_encodeSpecialTextToHTML(ccAddr);
+          return ccAddr;
+        });
+        ccList = ccList.join(",&nbsp;")
+    }
 
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msg.author}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${recipients}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msg.date}</td></tr>`;
+
+    if (ccList != "") {
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Cc:</b></td><td>${ccList}</td></tr>`;
+    }
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
 

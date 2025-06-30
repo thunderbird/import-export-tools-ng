@@ -238,7 +238,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
         let rawMsg = await browser.messages.getRaw(msgId);
         console.log(rawMsg)
         if (rawMsg.decryptionStatus == "fail") {
-          resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [] });
+          resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders  });
           return;
         }
         resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });

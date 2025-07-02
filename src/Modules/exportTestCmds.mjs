@@ -354,7 +354,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
           break;
         case "pdf":
-          resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+          resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           break;
         case "plaintext":
 

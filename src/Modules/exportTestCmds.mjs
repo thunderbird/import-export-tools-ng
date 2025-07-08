@@ -281,10 +281,10 @@ async function _getprocessedMsg(expTask, msgId, msg) {
             if (charsetMatch && charsetMatch.length == 2) {
               part.body = part.body.replace(charsetMatch[1], "UTF-8")
             }
-            htmlParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
+            htmlParts.push({ contentType: part.contentType, body: part?.body });
           }
           if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
-            textParts.push({ contentType: part.contentType, body: part?.body, extraHeaders: extraHeaders });
+            textParts.push({ contentType: part.contentType, body: part?.body });
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
@@ -341,16 +341,16 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           break;
         case "html":
           if (htmlParts.length) {
-            htmlParts[0].body = await _preprocessBody(expTask, msg, htmlParts[0].body, "text/html", htmlParts[0].extraHeaders);
-            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: htmlParts[0].extraHeaders });
+            htmlParts[0].body = await _preprocessBody(expTask, msg, htmlParts[0].body, "text/html", extraHeaders);
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           } else if (textParts.length) {
             htmlParts.push(textParts[0]);
-            htmlParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders);
+            htmlParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", extraHeaders );
             htmlParts[0].extraHeaders = textParts[0].extraHeaders;
             textParts = [];
-            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: htmlParts[0].extraHeaders });
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: extraHeaders  });
           } else {
-            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           }
           break;
         case "pdf":
@@ -360,15 +360,15 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
           if (textParts.length) {
 
-            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", textParts[0].extraHeaders);
-            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: textParts[0].extraHeaders });
+            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", extraHeaders);
+            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           } else if (htmlParts.length) {
             textParts.push(htmlParts[0]);
-            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/html", textParts[0].extraHeaders);
+            textParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/html", extraHeaders);
             htmlParts = [];
-            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts, extraHeaders: textParts[0].extraHeaders });
+            resolve({ msgBody: textParts[0].body, msgBodyType: "text/plain", inlineParts: inlineParts, attachmentParts, extraHeaders: extraHeaders });
           } else {
-            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts });
+            resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           }
           break;
       }
@@ -623,7 +623,7 @@ async function _createIndex(expTask, msgListLog) {
         errClass = " class='msgError' ";
       }
 
-      console.log(msgItem)
+      //console.log(msgItem)
       let recipients;
       if (msgItem.headers.recipients == []) {
         recipients = "(none)";

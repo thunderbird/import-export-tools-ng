@@ -991,6 +991,7 @@ async function wextctx_folderMenu(ctxEvent, tab) {
 
   var rv;
 
+  console.log(selectedFolders)
   for (const [index, folder] of selectedFolders.entries()) {
 
     params.selectedFolder = folder;

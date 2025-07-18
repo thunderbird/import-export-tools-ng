@@ -925,7 +925,7 @@ async function exportfolder(params) {
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
 		if (folders[0].isServer) {
-			let accountName = rootFolder.prettyName;
+			let accountName = rootFolder.localizedName;
 			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 				accountName += ".mbox";
 			}
@@ -952,7 +952,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 				useMboxExt = true;
 			}
-			let newname = ietngUtils.createUniqueFolderName(folders[i].prettyName, destPath, false, useMboxExt);
+			let newname = ietngUtils.createUniqueFolderName(folders[i].localizedName, destPath, false, useMboxExt);
 
 			path = newname;
 
@@ -1025,7 +1025,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		// console.log(msgFolder.filePath.path);
 		// console.log(msgFolder.prettyName);
 		let destPath = destdirNSIFILE.path;
-		await exportAccount(msgFolder.prettyName, msgFolder.filePath.path, destPath);
+		await exportAccount(msgFolder.localizedName, msgFolder.filePath.path, destPath);
 		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 	} else if (subfolder && !keepstructure) {
 		// export the folder with the subfolders

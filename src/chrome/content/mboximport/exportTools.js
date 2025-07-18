@@ -1501,7 +1501,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						saveAsEmlDone = true;
 						resolve(kStatusDone);
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.localizedName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}
@@ -1705,7 +1705,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							await myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.localizedName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}
@@ -2022,7 +2022,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.localizedName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}

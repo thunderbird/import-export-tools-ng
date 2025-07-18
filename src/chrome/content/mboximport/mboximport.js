@@ -881,6 +881,7 @@ async function exportfolder(params) {
 	}
 
 	if (folders[0].isServer && keepstructure) {
+
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		try {
@@ -888,6 +889,7 @@ async function exportfolder(params) {
 			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
 			return { status: "ok", exportFolderPath: exportFolderPath };
 		} catch (ex) {
+			console.log(ex)
 			return { status: "error", errMsg: ex };
 		}
 
@@ -1108,7 +1110,7 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	// console.log("   srcFolder: ", accountName);
 	// console.log("   destPath: ", destPath);
 
-	let accountName = rootFolder.prettyName;
+	let accountName = rootFolder.localizedName;
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath;
 	if (IOUtils.createUniqueDirectory) {

@@ -524,6 +524,9 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 		let folderDirName = nametoascii(subFolderName);
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		if (await IOUtils.exists(fullFolderPath)) {
+			fullFolderPath = await IOUtils.createUniqueDirectory(folderDirNamePath, folderDirName)
+		}
 		file = await IOUtils.getDirectory(fullFolderPath);
 
 		var newTopDir2;
@@ -753,7 +756,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		let folderDirName = nametoascii(msgFolder.name);
+		let folderDirName = nametoascii(folderName);
 		let folderDirNamePath = file.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);

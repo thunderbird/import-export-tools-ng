@@ -772,7 +772,6 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		subfile = file.clone();
 		if ((type < 3 || type > 6) && type != 0) {
 			subfile.append(IETmesssubdir);
-			console.log(subfile.path)
 			subfile.create(1, 0o755);
 		}
 	}

@@ -44,7 +44,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
-console.log("IETNG: mboximportExport.js -v12");
+console.log("IETNG: mboximportExport.js -v13");
 
 export var mboxImportExport = {
 

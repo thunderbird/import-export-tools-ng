@@ -1,21 +1,21 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.1.13-b1",
+  "version": "15.0.0-a5",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
-      "strict_min_version": "140.0",
-      "strict_max_version": "143.*"
+      "strict_min_version": "128.0",
+      "strict_max_version": "146.*"
     }
   },
   "browser_action": {
-		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
+    "default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImportExport",
     "default_popup": "chrome/content/dummy.html"
-	  },
+  },
   "experiment_apis": {
     "WindowListener": {
       "schema": "api/WindowListener/schema.json",
@@ -34,10 +34,18 @@
     "NotifyTools": {
       "schema": "api/NotifyTools/schema.json",
       "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["NotifyTools"]],
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "NotifyTools"
+          ]
+        ],
         "script": "api/NotifyTools/implementation.js",
-        "events": ["startup"]
+        "events": [
+          "startup"
+        ]
       }
     },
     "AsyncPrompts": {
@@ -53,9 +61,45 @@
         ],
         "script": "api/AsyncPrompts/implementation.js"
       }
+    },
+    "ExportMessages": {
+      "schema": "api/ExportMessages/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "ExportMessages"
+          ]
+        ],
+        "script": "api/ExportMessages/implementation.js"
+      }
+    },
+    "LegacyHelper": {
+      "schema": "api/LegacyHelper/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["LegacyHelper"]],
+        "script": "api/LegacyHelper/implementation.js"
+      }
+    },
+    "LegacyPrefs": {
+      "schema": "api/LegacyPrefs/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "LegacyPrefs"
+          ]
+        ],
+        "script": "api/LegacyPrefs/implementation.js"
+      }
     }
   },
-  "permissions" : [
+  "permissions": [
     "menus",
     "activeTab",
     "messagesRead",
@@ -64,10 +108,12 @@
     "accountsRead",
     "messagesImport",
     "messagesMove"
-
   ],
   "background": {
-    "page": "background.html"
+    "scripts": [
+      "background.js"
+    ],
+    "type": "module"
   },
   "icons": {
     "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"

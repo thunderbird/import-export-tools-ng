@@ -18,7 +18,7 @@
 // Interface via notifytools to expMenuDispatcher
 
 import * as miscCmds from "/Modules/miscCmds.mjs";
-import * as exportCmds from "/Modules/exportTestCmds.mjs";
+import * as exportCmds from "/Modules/exportCmds.mjs";
 
 
 

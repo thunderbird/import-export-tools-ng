@@ -2,6 +2,12 @@
 
 ## Versions
 
+Version 14.1.12 : v140-v142 Release - August 21, 2025
+
+- Use conditional for prettyName and localizedName 
+ to support v140 & v141+
+ - Compatibility for v142
+
 Version 14.1.8 : v137-v138 Release - April 6, 2025
 
 - Fix for intermittent and inconsistent export failure of all message types

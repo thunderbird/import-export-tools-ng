@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.1.6%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.1126%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 

@@ -18,8 +18,8 @@
 // convert for esm modules
 
 var window = Cc["@mozilla.org/appshell/window-mediator;1"]
-		.getService(Ci.nsIWindowMediator)
-		.getMostRecentWindow("mail:3pane");
+  .getService(Ci.nsIWindowMediator)
+  .getMostRecentWindow("mail:3pane");
 
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
@@ -44,7 +44,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
-console.log("IETNG: mboximportExport.js -v12");
+console.log("IETNG: mboximportExport.js -v13");
 
 export var mboxImportExport = {
 
@@ -426,7 +426,13 @@ export var mboxImportExport = {
       useMboxExt = true;
     }
 
-    let uniqueName = ietngUtils.createUniqueFolderName(rootMsgFolder.localizedName, destPath, false, useMboxExt);
+    let rootFolderName;
+    if (!rootMsgFolder.localizedName) {
+      rootFolderName = rootMsgFolder.prettyName;
+    } else {
+      rootFolderName = rootMsgFolder.localizedName;
+    }
+    let uniqueName = ietngUtils.createUniqueFolderName(rootFolderName, destPath, false, useMboxExt);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
     ietngUtils.createStatusLine(window);
@@ -455,7 +461,13 @@ export var mboxImportExport = {
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
 
     for (let subMsgFolder of msgFolder.subFolders) {
-      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.localizedName, fullSbdDirPath, false, false);
+      let subMsgFolderName;
+      if (!subMsgFolder.localizedName) {
+        subMsgFolderName = subMsgFolder.prettyName;
+      } else {
+        subMsgFolderName = subMsgFolder.localizedName;
+      }
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolderName, fullSbdDirPath, false, false);
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
@@ -470,7 +482,13 @@ export var mboxImportExport = {
   exportSubFoldersFlat: async function (msgFolder, fullFolderPath, useMboxExt) {
 
     for (let subMsgFolder of msgFolder.subFolders) {
-      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolder.localizedName, fullFolderPath, false, useMboxExt);
+      let subMsgFolderName;
+      if (!subMsgFolder.localizedName) {
+        subMsgFolderName = subMsgFolder.prettyName;
+      } else {
+        subMsgFolderName = subMsgFolder.localizedName;
+      }
+      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolderName, fullFolderPath, false, useMboxExt);
       let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, uniqueName);
 
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
@@ -565,7 +583,7 @@ export var mboxImportExport = {
       // get message as 8b string
       try {
         var rawBytes = await this.getRawMessage(msgUri, false);
-        
+
       } catch (ex) {
         // create placeholder error msg with header info and exception
         rawBytes = `From: ${msgHdr.author}\n`;

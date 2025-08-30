@@ -517,9 +517,20 @@ async function exportAllMsgsStart(type, file, msgFolder, params) {
 async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 	for (const subFolder of msgFolder.subFolders) {
 		await new Promise(resolve => setTimeout(resolve, 200));
-		let folderDirName = nametoascii(subFolder.name);
+
+		let subFolderName;
+		if (!subFolder.localizedName) {
+			subFolderName = subFolder.prettyName;
+		} else {
+			subFolderName = subFolder.localizedName;
+		}
+
+		let folderDirName = nametoascii(subFolderName);
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
+		if (await IOUtils.exists(fullFolderPath)) {
+			fullFolderPath = await IOUtils.createUniqueDirectory(folderDirNamePath, folderDirName)
+		}
 		file = await IOUtils.getDirectory(fullFolderPath);
 
 		var newTopDir2;
@@ -606,10 +617,17 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		var direname;
 		var subfile;
 
+		let folderName;
+		if (!msgFolder.localizedName) {
+			folderName = msgFolder.prettyName;
+		} else {
+			folderName = msgFolder.localizedName;
+		}
+
 		if (mustcorrectname)
-			direname = nametoascii(msgFolder.name) + "_" + datedir;
+			direname = nametoascii(folderName) + "_" + datedir;
 		else {
-			direname = msgFolder.name + "_" + datedir;
+			direname = folderName + "_" + datedir;
 			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
@@ -618,9 +636,9 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			index1++;
 			filetemp = file.clone();
 			if (mustcorrectname)
-				direname = nametoascii(msgFolder.name) + "_" + datedir + "-" + index1.toString();
+				direname = nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
 			else
-				direname = msgFolder.name + "_" + datedir + "-" + index1.toString();
+				direname = folderName + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
 		}
 		file = filetemp.clone();
@@ -712,10 +730,17 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		var direname;
 		var subfile;
 
+		let folderName;
+		if (!msgFolder.localizedName) {
+			folderName = msgFolder.prettyName;
+		} else {
+			folderName = msgFolder.localizedName;
+		}
+
 		if (mustcorrectname)
-			direname = nametoascii(msgFolder.name) + "_" + datedir;
+			direname = nametoascii(folderName) + "_" + datedir;
 		else {
-			direname = msgFolder.name + "_" + datedir;
+			direname = folderName + "_" + datedir;
 			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
 		}
 		filetemp.append(direname);
@@ -724,9 +749,9 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			index1++;
 			filetemp = file.clone();
 			if (mustcorrectname)
-				direname = nametoascii(msgFolder.name) + "_" + datedir + "-" + index1.toString();
+				direname = nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
 			else
-				direname = msgFolder.name.replace(/[\\:?"\*\/<>|]/g, "_") + "_" + datedir + "-" + index1.toString();
+				direname = folderName.replace(/[\\:?"\*\/<>|]/g, "_") + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
 		}
 		file = filetemp.clone();
@@ -735,7 +760,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		let folderDirName = nametoascii(msgFolder.name);
+		let folderDirName = nametoascii(folderName);
 		let folderDirNamePath = file.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);
@@ -1502,7 +1527,14 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						saveAsEmlDone = true;
 						resolve(kStatusDone);
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						let folderName;
+						if (!hdr.folder.localizedName) {
+							folderName = msgFolder.prettyName;
+						} else {
+							folderName = hdr.folder.localizedName;
+						}
+
+						ex.extendedMsg = `Exporting: Folder: ${folderName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}
@@ -1706,7 +1738,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							await myTxtListener.onAfterStopRequest(clone, data, saveAttachments);
 
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						let folderName;
+						if (!hdr.folder.localizedName) {
+							folderName = msgFolder.prettyName;
+						} else {
+							folderName = hdr.folder.localizedName;
+						}
+						ex.extendedMsg = `Exporting: Folder: ${folderName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}
@@ -2023,7 +2061,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 
 					} catch (ex) {
-						ex.extendedMsg = `Exporting: Folder: ${hdr.folder.prettyName}\nMsg: ${hdr.mime2DecodedSubject}`;
+						let folderName;
+						if (!hdr.folder.localizedName) {
+							folderName = msgFolder.prettyName;
+						} else {
+							folderName = hdr.folder.localizedName;
+						}
+						ex.extendedMsg = `Exporting: Folder: ${folderName}\nMsg: ${hdr.mime2DecodedSubject}`;
 						if (document.getElementById("IETabortIcon")) {
 							document.getElementById("IETabortIcon").collapsed = true;
 						}
@@ -2188,9 +2232,15 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 	if (IETtotal === 0)
 		return;
 	IETexported = 0;
-	var foldername = msgFolder.name;
+	let folderName;
+	if (!msgFolder.localizedName) {
+		folderName = msgFolder.prettyName;
+	} else {
+		folderName = msgFolder.localizedName;
+	}
+
 	var clone = file.clone();
-	clone.append(foldername);
+	clone.append(folderName);
 	clone.createUnique(0, 0o644);
 	var uriArray = [];
 

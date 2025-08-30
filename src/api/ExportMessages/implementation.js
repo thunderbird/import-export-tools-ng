@@ -24,8 +24,8 @@ var osPathSeparator = os.includes("win")
 // add Date now to query for debugging, thanks JB
 //dateNow = new Date();
 
-var { exportTests } = ChromeUtils.importESModule(
-  "resource://ietng/api/ExportMessages/Modules/exportTests.js?" + ietngExtension.manifest.version + new Date()
+var { exportMessages } = ChromeUtils.importESModule(
+  "resource://ietng/api/ExportMessages/Modules/exportMessages.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
 //var { sorttable } = ChromeUtils.importESModule(
@@ -56,7 +56,7 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           //console.log(new Date());
           //console.log(expTask)
 
-          return exportTests.exportMessagesES6(expTask, self.context);
+          return exportMessages.exportMessagesES6(expTask, self.context);
         },
 
         getMsgHdrs: async function (msgId, msgHdrItems) {

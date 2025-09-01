@@ -18,7 +18,7 @@ async function main() {
   let dc = await fsp.readdir(`${localeDir}`);
   console.log(dc)
 
-  for (dobj of dc) {
+  for (const dobj of dc) {
     if ((await fsp.stat(`${localeDir}\\${dobj}`)).isDirectory()) {
       console.log(dobj)
 
@@ -27,8 +27,8 @@ async function main() {
       console.log(fobj)
       
 
-      let from = fobj.match(/^FROM = (.*)/gm);
-      console.log(from)
+      let from = fobj.match(/^FROM\s*=\s*(.*)/m);
+      console.log(from[1])
 
     }
   }

@@ -1,1 +1,4 @@
 conversion notes
+
+python ..\scripts\locale-converter.py
+python ..\scripts\lc.py .\localeSrc1 .\localeDst

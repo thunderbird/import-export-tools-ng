@@ -30,7 +30,7 @@ def convert(source, destination, current = None, level = 0):
         if os.path.isfile(path):
             #if path.endswith('autobackup.dtd'):
              #   messages.extend(convert_dtd(path, dir))
-            if path.endswith('mboximport.properties'):
+            if path.endswith('autobackup.properties'):
                 messages.extend(convert_prop(path, dir))
 
         else:

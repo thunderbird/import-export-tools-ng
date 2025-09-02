@@ -546,6 +546,10 @@
         "message": "Nelze provést zálohu: zkontrolujte cestu a oprávnění cílové složky",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Tato složka neobsahuje platný adresář",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrujte nealfanumerické znaky"
     },
@@ -555,14 +559,23 @@
     "openHelpInWindow.label": {
         "message": "Otevřete nápovědu v okně místo na kartě"
     },
+    "pickProfile": {
+        "message": "Cesta profilu pro import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefix}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Import profilu",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Název profilu k importu"
     },
     "profilePath": {
-        "message": "Cesta k profilu k importu"
+        "message": "Cesta importovaného profilu je:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Příjemce"

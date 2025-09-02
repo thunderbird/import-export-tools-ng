@@ -549,6 +549,10 @@
         "message": "Հնարավոր չէ պահուստացնել. ստուգեք ճ-ը և թղթապանակի լիազորությունները",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Թղթապանակում չկա պրոֆիլ",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Զտել ոչ այբբենական նիշերը"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Բացեք օգնությունը պատուհանում՝ ներդիրի փոխարեն"
     },
+    "pickProfile": {
+        "message": "Պրոֆիլը ներմուծելու ճ-ը.",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${նախածանց}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Պրոֆիլի ներմուծում",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Ներմուծվող պրոֆիլի անունը"
     },
     "profilePath": {
-        "message": "Պրոֆիլը ներմուծելու ճ-ը"
+        "message": "Ներմուծած պրոֆիլի ճ-ն է.",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Ստացողը"

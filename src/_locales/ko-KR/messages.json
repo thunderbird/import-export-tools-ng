@@ -549,6 +549,10 @@
         "message": "백업을 실행할 수 없음:경로와 대상 폴더의 권한을 확인하세요",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "영숫자가 아닌 문자 필터링"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "탭 대신 창에서 도움말 열기"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${접두사}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - 프로필 가져오기",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "받는이"

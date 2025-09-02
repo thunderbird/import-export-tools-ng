@@ -549,6 +549,10 @@
         "message": "Kan back-up niet uitvoeren: controleer pad en machtigingen van doelmap",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Deze map bevat geen geldig profiel",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filter niet-alfanumerieke tekens"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Open de Help in een venster in plaats van op een tabblad"
     },
+    "pickProfile": {
+        "message": "Pad van het te importeren profiel:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${voorvoegsel}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Profiel importeren",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Naam van het te importeren profiel"
     },
     "profilePath": {
-        "message": "Pad van het te importeren profiel"
+        "message": "Het pad van het geïmporteerde profiel is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Ontvanger"

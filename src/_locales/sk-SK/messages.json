@@ -549,6 +549,10 @@
         "message": "Zálohu nemožno vykonať: skontrolujte cestu a atribúty cieľového priečinka",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrujte nealfanumerické znaky"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Otvorte pomocníka v okne namiesto karty"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${predpona}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Import profilu",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Príjemca"

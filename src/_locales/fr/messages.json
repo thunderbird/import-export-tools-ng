@@ -549,6 +549,10 @@
         "message": "Impossible d’effectuer la sauvegarde, vérifiez le chemin et les autorisations du dossier de destination.",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Ce dossier ne contient pas de profil valide.",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrer les caractères non alphanumériques"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Ouvrir l’aide dans une fenêtre au lieu d’un onglet"
     },
+    "pickProfile": {
+        "message": "Chemin du profil à importer :",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${préfixe}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Importation de profil",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Nom du profil à importer "
     },
     "profilePath": {
-        "message": "Chemin du profil à importer "
+        "message": "Le chemin du profil importé est :",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "destinataire"

@@ -552,6 +552,10 @@
         "message": "无法进行备份：检查目标文件夹的路径和权限",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "这个文件夹里没有有效的配置文件",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "过滤非字母数字字符"
     },
@@ -561,14 +565,23 @@
     "openHelpInWindow.label": {
         "message": "在窗口而不是选项卡中打开帮助"
     },
+    "pickProfile": {
+        "message": "要导入的配置文件路径：",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${前缀}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - 配置文件导入",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "要导入的配置文件名称"
     },
     "profilePath": {
-        "message": "要导入的配置文件路径"
+        "message": "导入的配置文件路径:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "收信人"

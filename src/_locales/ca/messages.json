@@ -546,6 +546,10 @@
         "message": "No s\\'ha pogut fer la còpia de seguretat: comproveu el camí i els permisos de la carpeta de destinació",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtreu caràcters no alfanumèrics"
     },
@@ -555,14 +559,23 @@
     "openHelpInWindow.label": {
         "message": "Obriu l&#39;ajuda en una finestra en lloc d&#39;una pestanya"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefix}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Importació de perfils",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Remitent"

@@ -549,6 +549,10 @@
         "message": "Δεν είναι δυνατή η εκτέλεση αντιγράφων ασφαλείας: ελέγξτε τη διαδρομή και τα δικαιώματα του φακέλου προορισμού",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Αυτός ο φάκελος δεν περιέχει έγκυρο προφίλ",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Ανοίξτε τη βοήθεια σε ένα παράθυρο αντί για μια καρτέλα"
     },
+    "pickProfile": {
+        "message": "Διαδρομή του προφίλ προς εισαγωγή:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${πρόθεμα}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Εισαγωγή προφίλ",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Όνομα του προφίλ προς εισαγωγή"
     },
     "profilePath": {
-        "message": "Διαδρομή του προφίλ προς εισαγωγή"
+        "message": "Η διαδρομή του εισαγόμενου προφίλ είναι:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Παραλήπτης"

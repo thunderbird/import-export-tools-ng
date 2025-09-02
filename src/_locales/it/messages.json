@@ -549,6 +549,10 @@
         "message": "Impossibile procedere al backup: controllare il percorso e i permessi della cartella di destinazione.",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Questa cartella non contiene un profilo valido",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtra i caratteri non alfanumerici"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Apri la guida in una finestra anziché in una scheda"
     },
+    "pickProfile": {
+        "message": "Percorso del profilo da importare",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefisso}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Importazione di profili",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Indica il nome da usare per il profilo importato"
     },
     "profilePath": {
-        "message": "Indica il percorso del profilo da importare"
+        "message": "Il percorso del profilo importato è:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Destinatario"

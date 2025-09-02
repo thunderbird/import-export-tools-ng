@@ -549,6 +549,10 @@
         "message": "No se ha podido realizar la copia: compruebe la ruta y los permisos de la carpeta destino",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrar caracteres no alfanuméricos"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Abrir la ayuda en una ventana en lugar de una pestaña"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefijo}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Importación de perfiles",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Destinatario"

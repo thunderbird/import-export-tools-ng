@@ -549,6 +549,10 @@
         "message": "Det gick inte att utföra säkerhetskopieringen. Kontrollera sökväg och behörigheter för målmappen",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrera icke-alfanumeriska tecken"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Öppna hjälpen i ett fönster istället för en flik"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefix}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Profilimport",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Mottagare"

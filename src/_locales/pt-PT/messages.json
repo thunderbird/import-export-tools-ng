@@ -549,6 +549,10 @@
         "message": "Não foi possível realizar a cópia de segurança: Verifique o caminho e permissões de pasta de destino",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrar caracteres não alfanuméricos"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Abra a ajuda em uma janela em vez de uma guia"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefixo}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Importação de perfil",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Destinatário"

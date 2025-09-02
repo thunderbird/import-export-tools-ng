@@ -549,6 +549,10 @@
         "message": "Izvedba varnostnega kopiranja ni mogoča: preverite pot in dovoljenja ciljne mape",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Ta mapa ne vsebuje veljavnega profila",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrirajte nealfanumerične znake"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Odpiranje pomoči v oknu namesto na zavihku"
     },
+    "pickProfile": {
+        "message": "Pot profila za uvoz:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${predpono}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Uvoz profila",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Ime profila za uvoz"
     },
     "profilePath": {
-        "message": "Pot profila za uvoz"
+        "message": "Pot uvoženega profila je:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Prejemnik"

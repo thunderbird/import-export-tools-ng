@@ -549,6 +549,10 @@
         "message": "A mentés nem végezhető el: ellenőrizze az útvonalat és a célmappa hozzáféréseit",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Ez a mappa nem tartalmaz érvényes profilt",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "A nem alfanumerikus karakterek szűrése"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Lap helyett ablakban nyissa meg a súgót"
     },
+    "pickProfile": {
+        "message": "Az importálandó profil útvonala:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${előtag}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG – Profilimportálás",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Az importálandó profil neve"
     },
     "profilePath": {
-        "message": "Az importálandó profil útvonala"
+        "message": "Az importált profil útvonala:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Címzett"

@@ -549,6 +549,10 @@
         "message": "Nie udało się wykonać kopii zapasowej. Sprawdź ścieżkę i uprawnienia do katalogu docelowego.",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtruj znaki inne niż alfanumeryczne"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Otwórz pomoc w oknie zamiast na karcie"
     },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${przedrostek}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Import profilu",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Odbiorca"

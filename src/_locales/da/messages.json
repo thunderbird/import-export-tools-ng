@@ -549,6 +549,10 @@
         "message": "Kunne ikke tage sikkerhedskopier: Undersøg destinationsmappes sti og og tilladelser",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "Denne mappe indeholder ikke en gyldig profil",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrer ikke-alfanumeriske tegn"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Åbn hjælp i et vindue i stedet for i et faneblad"
     },
+    "pickProfile": {
+        "message": "Stien til profilen der skal importeres:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${præfiks}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Profilimport",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Navnet på profilen der skal importeres"
     },
     "profilePath": {
-        "message": "Stien til profilen der skal importeres"
+        "message": "Stien til den importerede profil er:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Modtager"

@@ -549,6 +549,10 @@
         "message": "Невозможно выполнить резервное копирование: проверьте путь и права доступа целевой папки",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "В этой папке нет корректного профиля",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "Фильтровать небуквенно-цифровые символы"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "Открыть справку в окне вместо вкладки"
     },
+    "pickProfile": {
+        "message": "Путь к профилю для импорта:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${префикс}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Импорт профиля",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Имя профиля для импорта"
     },
     "profilePath": {
-        "message": "Путь к профилю для импорта"
+        "message": "Путь к импортированному профилю:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Получатель"

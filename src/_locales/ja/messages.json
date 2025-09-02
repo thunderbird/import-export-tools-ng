@@ -549,6 +549,10 @@
         "message": "バックアップを実行できません：コピー先のフォルダーの場所とアクセス権限を確認してください。",
         "src": "autobackup"
     },
+    "noProfile": {
+        "message": "このフォルダーには、正常なプロファイルがありません。",
+        "src": "profilewizard"
+    },
     "nonAlphanumericFilter": {
         "message": "英数字以外の文字をフィルタリングする"
     },
@@ -558,14 +562,23 @@
     "openHelpInWindow.label": {
         "message": "タブではなくウィンドウでヘルプを開く"
     },
+    "pickProfile": {
+        "message": "インポートするプロファイルの場所:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${接頭文字}"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - プロファイルのインポート",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "インポートするプロファイル名"
     },
     "profilePath": {
-        "message": "インポートするプロファイルの場所"
+        "message": "インポートされたプロファイルの場所:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "受信者"

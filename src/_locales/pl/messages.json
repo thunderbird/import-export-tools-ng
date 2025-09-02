@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Konwersja CR =&gt; CRLF zakończenia linii"
+    },
+    "Error.msg": {
+        "message": "Błąd"
+    },
     "MACwarning": {
         "message": "Przed kontynuacją zamknij inne okna."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Maksymalna długość pola Do:"
+    },
+    "Size": {
+        "message": "Rozmiar"
+    },
+    "Warning.msg": {
+        "message": "Ostrzeżenie"
     },
     "abortExport": {
         "message": "Zatrzymaj bieżący eksport"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opcje"
     },
+    "cancel.msg": {
+        "message": "Anulować"
+    },
     "captionCustomize": {
         "message": "Własny format nazw plików"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "Filtr znaków (UTF-8 lub UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Kopiuj ścieżkę dostępu"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Błąd podczas tworzenia podfolderu:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "Nieprawidłowy wybór folderu"
+    },
     "justMailFiles": {
         "message": "tylko pliki poczty"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Import/Eksport"
     },
+    "largeFolderImport.msg": {
+        "message": "Zaimportowano ponad 200 folderów mbox.\nNależy ponownie uruchomić Thunderbirda, aby zresetować bazę danych."
+    },
     "lastBackup": {
         "message": "Ostatnia kopia zapasowa wykonana"
     },
+    "latinizeTransform": {
+        "message": "Transformacja latynoska"
+    },
     "mboxExport": {
         "message": "Folder eksportu dla plików mbox:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Wystąpiły problemy z importowaniem niektórych wiadomości:"
     },
     "misc": {
         "message": "Różne"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Eksportuj wiadomości jako…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Wiele folderów nie jest obsługiwanych:\nKliknij OK, aby wyeksportować tylko pierwszy folder."
+    },
+    "multipleFolders.title": {
+        "message": "Wiele folderów"
+    },
     "name": {
         "message": "Nazwa"
     },
     "newFilesMode": {
         "message": "tylko pliki zmienione od czasu ostatniej kopii"
+    },
+    "noBackup": {
+        "message": "Nie udało się wykonać kopii zapasowej. Sprawdź ścieżkę i uprawnienia do katalogu docelowego.",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtruj znaki inne niż alfanumeryczne"
+    },
+    "numRetainBackups.msg": {
+        "message": "Liczba kopii zapasowych do zachowania:"
     },
     "openHelpInWindow.label": {
         "message": "Otwórz pomoc w oknie zamiast na karcie"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Użyj rozszerzenia .mbox dla plików mbox (niestrukturalnych)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Konwersja CR =&gt; CRLF zakończenia linii"
+    "utf16Filter": {
+        "message": "Filtruj znaki UTF-16 (symbole i emotikony)"
     },
-    "Size": {
-        "message": "Rozmiar"
-    },
-
-	"latinizeTransform": {
-		"message": "Transformacja latynoska"
-	},
-
-	"characterFilter": {
-		"message": "Filtr znaków (UTF-8 lub UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtruj znaki UTF-16 (symbole i emotikony)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtruj znaki inne niż alfanumeryczne"
-	},
-
-	"multipleFolders.title": {
-		"message": "Wiele folderów"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Wiele folderów nie jest obsługiwanych:\nKliknij OK, aby wyeksportować tylko pierwszy folder."
-	},
-
-	"cancel.msg": {
-		"message": "Anulować"
-	},
-
-	"Error.msg": {
-		"message": "Błąd"
-	},
-
-	"Warning.msg": {
-		"message": "Ostrzeżenie"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Liczba kopii zapasowych do zachowania:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Błąd podczas tworzenia podfolderu:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Zaimportowano ponad 200 folderów mbox.\nNależy ponownie uruchomić Thunderbirda, aby zresetować bazę danych."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Nieprawidłowy wybór folderu"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Wystąpiły problemy z importowaniem niektórych wiadomości:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Błędy. Wyświetl konsolę debugowania (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Błędy. Wyświetl konsolę debugowania (Control-Shift-J)"
+    }
 }

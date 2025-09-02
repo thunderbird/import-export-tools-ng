@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+    },
+    "Error.msg": {
+        "message": "Սխալ"
+    },
     "MACwarning": {
         "message": "Ուշադրություն. փակեք բոլոր պատուհանները:"
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Ստացողների անվան առավ. երկարությունը"
+    },
+    "Size": {
+        "message": "Չափը"
+    },
+    "Warning.msg": {
+        "message": "Զգուշացում"
     },
     "abortExport": {
         "message": "Կանգնեցնել ներմուծումը"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Ընտրանքներ"
     },
+    "cancel.msg": {
+        "message": "Չեղարկել"
+    },
     "captionCustomize": {
         "message": "Հարմարեցված տեսակ՝ ֆայլի անունների համար"
     },
     "changeProfileNameLabel": {
         "message": "Հետագայում կարող եք փոխել պրոֆիլի անունը"
     },
+    "characterFilter": {
+        "message": "Նիշերի զտիչ (UTF-8 կամ UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Պատճենել թղթապանակի ճ-ը պնակում"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Ենթաթղթապանակ ստեղծելու սխալ՝"
     },
     "csvSep": {
         "message": "Բաժանիչ՝ արտածվող CSV ֆայլի համար."
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Մուտք ստանալու համար ներմուծված պրոֆիլին՝ բացեք Պրոֆլիների կառավարիչը։ Գործող պրոֆիլը միանգամից կփակվի"
     },
+    "invalidFolderSelection": {
+        "message": "Թղթապանակի ընտրությունը սխալ է"
+    },
     "justMailFiles": {
         "message": "Պարզապես ուղարկել ֆայլերը"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Ներմուծել/Արտածել"
     },
+    "largeFolderImport.msg": {
+        "message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
+    },
     "lastBackup": {
         "message": "Վերջին պահուստացումը"
     },
+    "latinizeTransform": {
+        "message": "Լատինականացնել փոխակերպումը"
+    },
     "mboxExport": {
         "message": "Արտածել թղթապանակները որպես MBOX ֆայլ."
+    },
+    "messageImportProblems.msg": {
+        "message": "Որոշ հաղորդագրություններ ներմուծելիս խնդիրներ առաջացան."
     },
     "misc": {
         "message": "Խառը"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Արտահանել հաղորդագրությունները որպես…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Բազմաթիվ թղթապանակներ չեն աջակցվում.\nՍեղմեք OK՝ միայն առաջին թղթապանակը արտահանելու համար:"
+    },
+    "multipleFolders.title": {
+        "message": "Բազմաթիվ Թղթապանակներ"
+    },
     "name": {
         "message": "Անունը"
     },
     "newFilesMode": {
         "message": "Միայն ֆայլերը, որոնք փոփոխվել են վերջին պահուստացումից հետո"
+    },
+    "noBackup": {
+        "message": "Հնարավոր չէ պահուստացնել. ստուգեք ճ-ը և թղթապանակի լիազորությունները",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Զտել ոչ այբբենական նիշերը"
+    },
+    "numRetainBackups.msg": {
+        "message": "Պահպանման պահուստների քանակը."
     },
     "openHelpInWindow.label": {
         "message": "Բացեք օգնությունը պատուհանում՝ ներդիրի փոխարեն"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Օգտագործեք .mbox ընդլայնում mbox ֆայլերի համար (ոչ կառուցվածքային)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+    "utf16Filter": {
+        "message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
     },
-    "Size": {
-        "message": "Չափը"
-    },
-
-	"latinizeTransform": {
-		"message": "Լատինականացնել փոխակերպումը"
-	},
-
-	"characterFilter": {
-		"message": "Նիշերի զտիչ (UTF-8 կամ UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Զտել ոչ այբբենական նիշերը"
-	},
-
-	"multipleFolders.title": {
-		"message": "Բազմաթիվ Թղթապանակներ"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Բազմաթիվ թղթապանակներ չեն աջակցվում.\nՍեղմեք OK՝ միայն առաջին թղթապանակը արտահանելու համար:"
-	},
-
-	"cancel.msg": {
-		"message": "Չեղարկել"
-	},
-
-	"Error.msg": {
-		"message": "Սխալ"
-	},
-
-	"Warning.msg": {
-		"message": "Զգուշացում"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Պահպանման պահուստների քանակը."
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Ենթաթղթապանակ ստեղծելու սխալ՝"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
-	},
-
-	"invalidFolderSelection": {
-		"message": "Թղթապանակի ընտրությունը սխալ է"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Որոշ հաղորդագրություններ ներմուծելիս խնդիրներ առաջացան."
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"
+    }
 }

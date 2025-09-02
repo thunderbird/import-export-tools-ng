@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Convertint CR =&gt; CRLF terminacions de línia"
+    },
+    "Error.msg": {
+        "message": "Error"
+    },
     "MACwarning": {
         "message": "N.B: close every other window, before continue."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Màx. longitud dels noms dels destinataris:"
+    },
+    "Size": {
+        "message": "Mida"
+    },
+    "Warning.msg": {
+        "message": "Avís"
     },
     "abortExport": {
         "message": "Atura l\\'exportació"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opcions"
     },
+    "cancel.msg": {
+        "message": "Cancel · lar"
+    },
     "captionCustomize": {
         "message": "Format personalitzat per als noms de fixers"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "Filtre de caràcters (UTF-8 o UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Copia la ruta a la carpeta al disc"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Error en crear la subcarpeta:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -401,6 +422,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "Selecció de carpeta no vàlida"
+    },
     "justMailFiles": {
         "message": "Només fitxers de correu"
     },
@@ -410,11 +434,20 @@
     "labelmenuMI": {
         "message": "Importació/exportació"
     },
+    "largeFolderImport.msg": {
+        "message": "S&#39;han importat més de 200 carpetes mbox.\nThunderbird s&#39;ha de reiniciar per restablir la base de dades."
+    },
     "lastBackup": {
         "message": "Última còpia de seguretat"
     },
+    "latinizeTransform": {
+        "message": "llatinitzar transformar"
+    },
     "mboxExport": {
         "message": "Exporta les carpetes a un fitxer MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Hi ha hagut problemes en importar alguns missatges:"
     },
     "misc": {
         "message": "Miscel·lània"
@@ -497,11 +530,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exporta missatges com a..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "No s&#39;admeten diverses carpetes:\nFeu clic a D&#39;acord per exportar només la primera carpeta."
+    },
+    "multipleFolders.title": {
+        "message": "Múltiples carpetes"
+    },
     "name": {
         "message": "Nom"
     },
     "newFilesMode": {
         "message": "Només els fitxers modificats des de la darrera còpia de seguretat"
+    },
+    "noBackup": {
+        "message": "No s\\'ha pogut fer la còpia de seguretat: comproveu el camí i els permisos de la carpeta de destinació",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtreu caràcters no alfanumèrics"
+    },
+    "numRetainBackups.msg": {
+        "message": "Nombre de còpies de seguretat a conservar:"
     },
     "openHelpInWindow.label": {
         "message": "Obriu l&#39;ajuda en una finestra en lloc d&#39;una pestanya"
@@ -626,70 +675,10 @@
     "useMboxExt.label": {
         "message": "Utilitzeu l&#39;extensió .mbox per a fitxers mbox (no estructurats)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Convertint CR =&gt; CRLF terminacions de línia"
+    "utf16Filter": {
+        "message": "Filtra caràcters UTF-16 (símbols i emojis)"
     },
-    "Size": {
-        "message": "Mida"
-    },
-
-	"latinizeTransform": {
-		"message": "llatinitzar transformar"
-	},
-
-	"characterFilter": {
-		"message": "Filtre de caràcters (UTF-8 o UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtra caràcters UTF-16 (símbols i emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtreu caràcters no alfanumèrics"
-	},
-
-	"multipleFolders.title": {
-		"message": "Múltiples carpetes"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "No s&#39;admeten diverses carpetes:\nFeu clic a D&#39;acord per exportar només la primera carpeta."
-	},
-
-	"cancel.msg": {
-		"message": "Cancel · lar"
-	},
-
-	"Error.msg": {
-		"message": "Error"
-	},
-
-	"Warning.msg": {
-		"message": "Avís"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Nombre de còpies de seguretat a conservar:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Error en crear la subcarpeta:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "S&#39;han importat més de 200 carpetes mbox.\nThunderbird s&#39;ha de reiniciar per restablir la base de dades."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Selecció de carpeta no vàlida"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Hi ha hagut problemes en importar alguns missatges:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Errors. Veure la consola de depuració (Control-Maj-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Errors. Veure la consola de depuració (Control-Maj-J)"
+    }
 }

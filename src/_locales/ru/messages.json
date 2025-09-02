@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Преобразование CR =&gt; окончания строки CRLF"
+    },
+    "Error.msg": {
+        "message": "Ошибка"
+    },
     "MACwarning": {
         "message": "Внимание: перед продолжением закройте все остальные окна."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Максимальная длина имени получателя:"
+    },
+    "Size": {
+        "message": "Размер"
+    },
+    "Warning.msg": {
+        "message": "Предупреждение"
     },
     "abortExport": {
         "message": "Остановить текущую операцию экспорта"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Параметры"
     },
+    "cancel.msg": {
+        "message": "Отмена"
+    },
     "captionCustomize": {
         "message": "Настройка формата имени файлов"
     },
     "changeProfileNameLabel": {
         "message": "Имя профиля можно изменить с помощью диспетчера профилей"
     },
+    "characterFilter": {
+        "message": "Фильтр символов (UTF-8 или UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Копировать путь к папке на диске"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Ошибка создания подпапки:"
     },
     "csvSep": {
         "message": "Разделитель для экспорта в формате CSV:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Чтобы получить доступ к импортированному профилю, запустите диспетчер профилей нажатием расположенной ниже кнопки. Текущий профиль автоматически закроется"
     },
+    "invalidFolderSelection": {
+        "message": "Неверный выбор папки"
+    },
     "justMailFiles": {
         "message": "Только файлы почты"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Импорт/Экспорт NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Импортировано более 200 папок mbox.\nДля сброса базы данных необходимо перезапустить Thunderbird."
+    },
     "lastBackup": {
         "message": "Последняя резервная копия"
     },
+    "latinizeTransform": {
+        "message": "Латинизировать преобразование"
+    },
     "mboxExport": {
         "message": "папок как файла mbox:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Возникли проблемы с импортом некоторых сообщений:"
     },
     "misc": {
         "message": "Разное"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Экспортировать сообщения как…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Несколько папок не поддерживаются:\nНажмите «ОК», чтобы экспортировать только первую папку."
+    },
+    "multipleFolders.title": {
+        "message": "Несколько папок"
+    },
     "name": {
         "message": "Имя"
     },
     "newFilesMode": {
         "message": "Только изменённые после прошлого резервного копирования файлы"
+    },
+    "noBackup": {
+        "message": "Невозможно выполнить резервное копирование: проверьте путь и права доступа целевой папки",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Фильтровать небуквенно-цифровые символы"
+    },
+    "numRetainBackups.msg": {
+        "message": "Количество сохраняемых резервных копий:"
     },
     "openHelpInWindow.label": {
         "message": "Открыть справку в окне вместо вкладки"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Используйте расширение .mbox для файлов mbox (неструктурированных)."
     },
-    "CRconversion.statusMsg": {
-        "message": "Преобразование CR =&gt; окончания строки CRLF"
+    "utf16Filter": {
+        "message": "Фильтрация символов UTF-16 (символы и смайлы)"
     },
-    "Size": {
-        "message": "Размер"
-    },
-
-	"latinizeTransform": {
-		"message": "Латинизировать преобразование"
-	},
-
-	"characterFilter": {
-		"message": "Фильтр символов (UTF-8 или UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Фильтрация символов UTF-16 (символы и смайлы)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Фильтровать небуквенно-цифровые символы"
-	},
-
-	"multipleFolders.title": {
-		"message": "Несколько папок"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Несколько папок не поддерживаются:\nНажмите «ОК», чтобы экспортировать только первую папку."
-	},
-
-	"cancel.msg": {
-		"message": "Отмена"
-	},
-
-	"Error.msg": {
-		"message": "Ошибка"
-	},
-
-	"Warning.msg": {
-		"message": "Предупреждение"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Количество сохраняемых резервных копий:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Ошибка создания подпапки:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Импортировано более 200 папок mbox.\nДля сброса базы данных необходимо перезапустить Thunderbird."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Неверный выбор папки"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Возникли проблемы с импортом некоторых сообщений:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Ошибки. Просмотр консоли отладки (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Ошибки. Просмотр консоли отладки (Control-Shift-J)"
+    }
 }

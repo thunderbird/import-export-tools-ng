@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "CR =&gt; CRLF vonalvégződések konvertálása"
+    },
+    "Error.msg": {
+        "message": "Hiba"
+    },
     "MACwarning": {
         "message": "Megj.: folytatás előtt a többi ablak bezárása"
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Címzett nevének maximális hossza:"
+    },
+    "Size": {
+        "message": "Méret"
+    },
+    "Warning.msg": {
+        "message": "Figyelmeztetés"
     },
     "abortExport": {
         "message": "Jelenlegi exportálás leállítása"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opciók"
     },
+    "cancel.msg": {
+        "message": "Mégse"
+    },
     "captionCustomize": {
         "message": "Fájlnév formátumának testreszabása"
     },
     "changeProfileNameLabel": {
         "message": "Egyébként megváltoztathatja a profil nevét a profilkezelőben"
     },
+    "characterFilter": {
+        "message": "Karakterszűrő (UTF-8 vagy UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Mappa útvonalának másolása"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Hiba az almappa létrehozásakor:"
     },
     "csvSep": {
         "message": "Elválasztó CSV formátumban történő exportáláshoz:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Az importált profil eléréséhez futtassa a profilkezelőt az alábbi gombra kattintva. A jelenlegi profil önműködően bezáródik."
     },
+    "invalidFolderSelection": {
+        "message": "Érvénytelen mappaválasztás"
+    },
     "justMailFiles": {
         "message": "Csak mail fájlok"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Importálás/Exportálás"
     },
+    "largeFolderImport.msg": {
+        "message": "Több mint 200 mbox mappa importálva.\nAz adatbázis visszaállításához újra kell indítani a Thunderbird programot."
+    },
     "lastBackup": {
         "message": "Utolsó mentés"
     },
+    "latinizeTransform": {
+        "message": "Transzformáció latinosítása"
+    },
     "mboxExport": {
         "message": "Mappák exportálása MBOX fájlként:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Problémák adódtak néhány üzenet importálásakor:"
     },
     "misc": {
         "message": "Vegyes"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Üzenetek exportálása mint…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Több mappa nem támogatott:\nKattintson az OK gombra, ha csak az első mappát szeretné exportálni."
+    },
+    "multipleFolders.title": {
+        "message": "Több mappa"
+    },
     "name": {
         "message": "Név"
     },
     "newFilesMode": {
         "message": "Csak a módosított fájlok az utolsó módosítás után"
+    },
+    "noBackup": {
+        "message": "A mentés nem végezhető el: ellenőrizze az útvonalat és a célmappa hozzáféréseit",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "A nem alfanumerikus karakterek szűrése"
+    },
+    "numRetainBackups.msg": {
+        "message": "A megőrzendő biztonsági másolatok száma:"
     },
     "openHelpInWindow.label": {
         "message": "Lap helyett ablakban nyissa meg a súgót"
@@ -629,71 +678,10 @@
     "useMboxExt.label": {
         "message": ".mbox kiterjesztés használata mbox fájlokhoz (nem strukturált)"
     },
-    "CRconversion.statusMsg": {
-        "message": "CR =&gt; CRLF vonalvégződések konvertálása"
+    "utf16Filter": {
+        "message": "UTF-16 karakterek szűrése (szimbólumok és hangulatjelek)"
     },
-    "Size": {
-        "message": "Méret"
+    "viewDbgConsole.msg": {
+        "message": "  Hibák. Lásd a Hibakereső konzolt (Control-Shift-J)"
     }
-,
-
-	"latinizeTransform": {
-		"message": "Transzformáció latinosítása"
-	},
-
-	"characterFilter": {
-		"message": "Karakterszűrő (UTF-8 vagy UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "UTF-16 karakterek szűrése (szimbólumok és hangulatjelek)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "A nem alfanumerikus karakterek szűrése"
-	},
-
-	"multipleFolders.title": {
-		"message": "Több mappa"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Több mappa nem támogatott:\nKattintson az OK gombra, ha csak az első mappát szeretné exportálni."
-	},
-
-	"cancel.msg": {
-		"message": "Mégse"
-	},
-
-	"Error.msg": {
-		"message": "Hiba"
-	},
-
-	"Warning.msg": {
-		"message": "Figyelmeztetés"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "A megőrzendő biztonsági másolatok száma:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Hiba az almappa létrehozásakor:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Több mint 200 mbox mappa importálva.\nAz adatbázis visszaállításához újra kell indítani a Thunderbird programot."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Érvénytelen mappaválasztás"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Problémák adódtak néhány üzenet importálásakor:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Hibák. Lásd a Hibakereső konzolt (Control-Shift-J)"
-	}
 }

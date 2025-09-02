@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "CR 변환 =&gt; CRLF 라인 종료"
+    },
+    "Error.msg": {
+        "message": "오류"
+    },
     "MACwarning": {
         "message": "주의:계속하기 전에, 모든 다른 창을 닫으세요."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "받는이 이름의 최대 길이:"
+    },
+    "Size": {
+        "message": "크기"
+    },
+    "Warning.msg": {
+        "message": "경고"
     },
     "abortExport": {
         "message": "현재 내보내기 중지"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "옵션"
     },
+    "cancel.msg": {
+        "message": "취소"
+    },
     "captionCustomize": {
         "message": "파일명 형식 사용자 지정"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "문자 필터(UTF-8 또는 UTF-16)"
+    },
     "copyFolderPath": {
         "message": "디스크 내 폴더 경로 복사"
+    },
+    "createSubfolderErr.msg": {
+        "message": "하위 폴더 생성 오류:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "잘못된 폴더 선택"
+    },
     "justMailFiles": {
         "message": "메일 파일만"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "불러오기/내보내기"
     },
+    "largeFolderImport.msg": {
+        "message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
+    },
     "lastBackup": {
         "message": "최종 백업"
     },
+    "latinizeTransform": {
+        "message": "라틴화 변환"
+    },
     "mboxExport": {
         "message": "MBOX 파일로 폴더 내보내기:"
+    },
+    "messageImportProblems.msg": {
+        "message": "일부 메시지를 가져오는 중 문제가 발생했습니다."
     },
     "misc": {
         "message": "기타"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "다음으로 메시지 내보내기…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "여러 폴더는 지원되지 않습니다.\n첫 번째 폴더만 내보내려면 확인을 클릭하세요."
+    },
+    "multipleFolders.title": {
+        "message": "여러 폴더"
+    },
     "name": {
         "message": "이름"
     },
     "newFilesMode": {
         "message": "마지막 백업 이후 수정된 파일만"
+    },
+    "noBackup": {
+        "message": "백업을 실행할 수 없음:경로와 대상 폴더의 권한을 확인하세요",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "영숫자가 아닌 문자 필터링"
+    },
+    "numRetainBackups.msg": {
+        "message": "보관할 백업 수:"
     },
     "openHelpInWindow.label": {
         "message": "탭 대신 창에서 도움말 열기"
@@ -629,65 +678,10 @@
     "useMboxExt.label": {
         "message": "mbox 파일에 .mbox 확장자 사용(비구조적)"
     },
-    "CRconversion.statusMsg": {
-        "message": "CR 변환 =&gt; CRLF 라인 종료"
-    },
-    "Size": {
-        "message": "크기"
-    },
-    "latinizeTransform": {
-        "message": "라틴화 변환"
-    },
-    "characterFilter": {
-        "message": "문자 필터(UTF-8 또는 UTF-16)"
-    },
     "utf16Filter": {
         "message": "UTF-16 문자 필터링(기호 및 이모티콘)"
     },
-    "nonAlphanumericFilter": {
-        "message": "영숫자가 아닌 문자 필터링"
-    },
-    "multipleFolders.title": {
-        "message": "여러 폴더"
-    },
-
-	"multipleFolders.alertMsg": {
-		"message": "여러 폴더는 지원되지 않습니다.\n첫 번째 폴더만 내보내려면 확인을 클릭하세요."
-	},
-
-	"cancel.msg": {
-		"message": "취소"
-	},
-
-	"Error.msg": {
-		"message": "오류"
-	},
-
-	"Warning.msg": {
-		"message": "경고"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "보관할 백업 수:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "하위 폴더 생성 오류:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
-	},
-
-	"invalidFolderSelection": {
-		"message": "잘못된 폴더 선택"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "일부 메시지를 가져오는 중 문제가 발생했습니다."
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"
+    }
 }

@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "换行符转换中：CR => CRLF"
+    },
+    "Error.msg": {
+        "message": "错误"
+    },
     "MACwarning": {
         "message": "警示：继续前，关闭所有其他窗口。"
     },
@@ -34,6 +40,12 @@
     },
     "Received": {
         "message": "已收到"
+    },
+    "Size": {
+        "message": "尺寸"
+    },
+    "Warning.msg": {
+        "message": "警告"
     },
     "abortExport": {
         "message": "停止当前的导出"
@@ -128,14 +140,23 @@
     "buttonMenu_Options.title": {
         "message": "选项"
     },
+    "cancel.msg": {
+        "message": "取消"
+    },
     "captionCustomize": {
         "message": "自定义文件名格式"
     },
     "changeProfileNameLabel": {
         "message": "您可以在配置文件管理器中任意修改配置文件名称"
     },
+    "characterFilter": {
+        "message": "字符过滤器（UTF-8 或 UTF-16）"
+    },
     "copyFolderPath": {
         "message": "复制磁盘上的文件夹路径"
+    },
+    "createSubfolderErr.msg": {
+        "message": "创建子文件夹时出错："
     },
     "csvSep": {
         "message": "导出 CSV 格式使用的分隔符："
@@ -407,6 +428,9 @@
     "intro3": {
         "message": "要访问导入的配置文件，点击下面的按钮运行配置文件管理器，当前配置文件会自动关闭"
     },
+    "invalidFolderSelection": {
+        "message": "文件夹选择无效"
+    },
     "justMailFiles": {
         "message": "仅邮件文件"
     },
@@ -416,11 +440,20 @@
     "labelmenuMI": {
         "message": "导入/导出"
     },
+    "largeFolderImport.msg": {
+        "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
+    },
     "lastBackup": {
         "message": "上次备份"
     },
+    "latinizeTransform": {
+        "message": "拉丁化变换"
+    },
     "mboxExport": {
         "message": "将信件夹作为 MBOX 文件导出："
+    },
+    "messageImportProblems.msg": {
+        "message": "导入某些消息时出现问题："
     },
     "misc": {
         "message": "杂项"
@@ -503,11 +536,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "将消息导出为..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
+    },
+    "multipleFolders.title": {
+        "message": "多个文件夹"
+    },
     "name": {
         "message": "名字"
     },
     "newFilesMode": {
         "message": "仅上次备份后有改动的文件"
+    },
+    "noBackup": {
+        "message": "无法进行备份：检查目标文件夹的路径和权限",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "过滤非字母数字字符"
+    },
+    "numRetainBackups.msg": {
+        "message": "要保留的备份数量："
     },
     "openHelpInWindow.label": {
         "message": "在窗口而不是选项卡中打开帮助"
@@ -632,70 +681,10 @@
     "useMboxExt.label": {
         "message": "对 mbox 文件使用 .mbox 扩展名（非结构化）"
     },
-    "CRconversion.statusMsg": {
-        "message": "换行符转换中：CR => CRLF"
-    },
-    "Size": {
-        "message": "尺寸"
-    },
-
-    "latinizeTransform": {
-        "message": "拉丁化变换"
-    },
-
-    "characterFilter": {
-        "message": "字符过滤器（UTF-8 或 UTF-16）"
-    },
-
     "utf16Filter": {
         "message": "过滤 UTF-16 字符（符号和表情符号）"
     },
-
-    "nonAlphanumericFilter": {
-        "message": "过滤非字母数字字符"
-    },
-
-    "multipleFolders.title": {
-        "message": "多个文件夹"
-    },
-
-    "multipleFolders.alertMsg": {
-        "message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
-    },
-
-    "cancel.msg": {
-        "message": "取消"
-    },
-
-    "Error.msg": {
-        "message": "错误"
-    },
-
-    "Warning.msg": {
-        "message": "警告"
-    },
-
-    "numRetainBackups.msg": {
-        "message": "要保留的备份数量："
-    },
-
-    "createSubfolderErr.msg": {
-        "message": "创建子文件夹时出错："
-    },
-
-    "largeFolderImport.msg": {
-        "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
-    },
-
-	"invalidFolderSelection": {
-		"message": "文件夹选择无效"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "导入某些消息时出现问题："
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  错误。查看调试控制台 (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  错误。查看调试控制台 (Control-Shift-J)"
+    }
 }

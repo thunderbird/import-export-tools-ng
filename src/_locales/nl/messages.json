@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
+    },
+    "Error.msg": {
+        "message": "Fout"
+    },
     "MACwarning": {
         "message": "NB Sluit alle andere vensters voordat u doorgaat."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Maximale lengte van naam van ontvanger:"
+    },
+    "Size": {
+        "message": "Maat"
+    },
+    "Warning.msg": {
+        "message": "Waarschuwing"
     },
     "abortExport": {
         "message": "Het huidige exporteren stoppen"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opties"
     },
+    "cancel.msg": {
+        "message": "Annuleren"
+    },
     "captionCustomize": {
         "message": "Aangepaste indeling voor bestandsnamen"
     },
     "changeProfileNameLabel": {
         "message": "U kunt de profielnaam altijd wijzigen in de profielbeheerder."
     },
+    "characterFilter": {
+        "message": "Tekenfilter (UTF-8 of UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Mappad op schijf kopiëren"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Fout bij het aanmaken van submap:"
     },
     "csvSep": {
         "message": "Scheidingsteken voor exporteren in CSV-indeling:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Start om het geïmporteerde profiel te benaderen de profielbeheerder door op onderstaande knop te klikken. Het huidige profiel wordt automatisch gesloten."
     },
+    "invalidFolderSelection": {
+        "message": "Ongeldige mapselectie"
+    },
     "justMailFiles": {
         "message": "Alleen mailbestanden"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Er zijn meer dan 200 mbox-mappen geïmporteerd.\nThunderbird moet opnieuw worden opgestart om de database opnieuw in te stellen."
+    },
     "lastBackup": {
         "message": "Laatste back-up"
     },
+    "latinizeTransform": {
+        "message": "Latiniseer transformatie"
+    },
     "mboxExport": {
         "message": "Mappen exporteren als mbox-bestand:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Er waren problemen bij het importeren van sommige berichten:"
     },
     "misc": {
         "message": "Diversen"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Berichten exporteren als..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "Meerdere mappen worden niet ondersteund:\nKlik op OK om alleen de eerste map te exporteren."
+    },
+    "multipleFolders.title": {
+        "message": "Meerdere mappen"
+    },
     "name": {
         "message": "Naam"
     },
     "newFilesMode": {
         "message": "Alleen bestanden die na de laatste back-up zijn gewijzigd"
+    },
+    "noBackup": {
+        "message": "Kan back-up niet uitvoeren: controleer pad en machtigingen van doelmap",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filter niet-alfanumerieke tekens"
+    },
+    "numRetainBackups.msg": {
+        "message": "Aantal te bewaren back-ups:"
     },
     "openHelpInWindow.label": {
         "message": "Open de Help in een venster in plaats van op een tabblad"
@@ -629,65 +678,10 @@
     "useMboxExt.label": {
         "message": "Gebruik de .mbox-extensie voor mbox-bestanden (niet-gestructureerd)"
     },
-    "CRconversion.statusMsg": {
-        "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
-    },
-    "Size": {
-        "message": "Maat"
-    },
-    "latinizeTransform": {
-        "message": "Latiniseer transformatie"
-    },
-    "characterFilter": {
-        "message": "Tekenfilter (UTF-8 of UTF-16)"
-    },
     "utf16Filter": {
         "message": "Filter UTF-16-tekens (symbolen en emoji&#39;s)"
     },
-    "nonAlphanumericFilter": {
-        "message": "Filter niet-alfanumerieke tekens"
-    },
-    "multipleFolders.title": {
-        "message": "Meerdere mappen"
-    },
-
-	"multipleFolders.alertMsg": {
-		"message": "Meerdere mappen worden niet ondersteund:\nKlik op OK om alleen de eerste map te exporteren."
-	},
-
-	"cancel.msg": {
-		"message": "Annuleren"
-	},
-
-	"Error.msg": {
-		"message": "Fout"
-	},
-
-	"Warning.msg": {
-		"message": "Waarschuwing"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Aantal te bewaren back-ups:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Fout bij het aanmaken van submap:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Er zijn meer dan 200 mbox-mappen geïmporteerd.\nThunderbird moet opnieuw worden opgestart om de database opnieuw in te stellen."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Ongeldige mapselectie"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Er waren problemen bij het importeren van sommige berichten:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Fouten. Bekijk de Debug Console (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Fouten. Bekijk de Debug Console (Control-Shift-J)"
+    }
 }

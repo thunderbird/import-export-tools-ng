@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Konverzia zakončení CR =&gt; CRLF"
+    },
+    "Error.msg": {
+        "message": "Chyba"
+    },
     "MACwarning": {
         "message": "N.B: pred pokračovaním zavrieť všetky ostatné okná."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Max. dĺžka mena príjemcu:"
+    },
+    "Size": {
+        "message": "Veľkosť"
+    },
+    "Warning.msg": {
+        "message": "POZOR"
     },
     "abortExport": {
         "message": "Zastaviť aktuálny export"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "možnosti"
     },
+    "cancel.msg": {
+        "message": "Zrušiť"
+    },
     "captionCustomize": {
         "message": "Prispôsobenie formátu názvu súborov"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "Filter znakov (UTF-8 alebo UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Kopírovať cestu k priečinku na disku"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Chyba pri vytváraní podpriečinku:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "Neplatný výber priečinka"
+    },
     "justMailFiles": {
         "message": "Len súbory s poštou"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Import/Export"
     },
+    "largeFolderImport.msg": {
+        "message": "Importovalo sa viac ako 200 priečinkov mbox.\nThunderbird by sa mal reštartovať, aby sa obnovila databáza."
+    },
     "lastBackup": {
         "message": "Posledná záloha"
     },
+    "latinizeTransform": {
+        "message": "Latinizovať transformovať"
+    },
     "mboxExport": {
         "message": "Export priečinkov ako MBOX súbory:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Pri importovaní niektorých správ sa vyskytli problémy:"
     },
     "misc": {
         "message": "Rôzne"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportovať správy ako…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Viaceré priečinky nie sú podporované:\nKliknutím na tlačidlo OK exportujete iba prvý priečinok."
+    },
+    "multipleFolders.title": {
+        "message": "Viaceré priečinky"
+    },
     "name": {
         "message": "Názov"
     },
     "newFilesMode": {
         "message": "Len súbory zmenené od poslednéhozálohovania"
+    },
+    "noBackup": {
+        "message": "Zálohu nemožno vykonať: skontrolujte cestu a atribúty cieľového priečinka",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrujte nealfanumerické znaky"
+    },
+    "numRetainBackups.msg": {
+        "message": "Počet záloh, ktoré sa majú zachovať:"
     },
     "openHelpInWindow.label": {
         "message": "Otvorte pomocníka v okne namiesto karty"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Použiť príponu .mbox pre súbory mbox (neštruktúrované)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Konverzia zakončení CR =&gt; CRLF"
+    "utf16Filter": {
+        "message": "Filtrovanie znakov UTF-16 (symboly a emotikony)"
     },
-    "Size": {
-        "message": "Veľkosť"
-    },
-
-	"latinizeTransform": {
-		"message": "Latinizovať transformovať"
-	},
-
-	"characterFilter": {
-		"message": "Filter znakov (UTF-8 alebo UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrovanie znakov UTF-16 (symboly a emotikony)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrujte nealfanumerické znaky"
-	},
-
-	"multipleFolders.title": {
-		"message": "Viaceré priečinky"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Viaceré priečinky nie sú podporované:\nKliknutím na tlačidlo OK exportujete iba prvý priečinok."
-	},
-
-	"cancel.msg": {
-		"message": "Zrušiť"
-	},
-
-	"Error.msg": {
-		"message": "Chyba"
-	},
-
-	"Warning.msg": {
-		"message": "POZOR"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Počet záloh, ktoré sa majú zachovať:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Chyba pri vytváraní podpriečinku:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Importovalo sa viac ako 200 priečinkov mbox.\nThunderbird by sa mal reštartovať, aby sa obnovila databáza."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Neplatný výber priečinka"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Pri importovaní niektorých správ sa vyskytli problémy:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Chyby. Zobraziť konzolu ladenia (Ctrl-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Chyby. Zobraziť konzolu ladenia (Ctrl-Shift-J)"
+    }
 }

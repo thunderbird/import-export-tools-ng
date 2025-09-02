@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "CR から CRLF へ改行コードを変換しました。"
+    },
+    "Error.msg": {
+        "message": "エラー"
+    },
     "MACwarning": {
         "message": "注意: 続行する前に、すべての他のウィンドウを閉じてください。"
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "宛先名の最大長:"
+    },
+    "Size": {
+        "message": "サイズ"
+    },
+    "Warning.msg": {
+        "message": "警告"
     },
     "abortExport": {
         "message": "現在のエクスポートを中止"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "設定"
     },
+    "cancel.msg": {
+        "message": "キャンセル"
+    },
     "captionCustomize": {
         "message": "ファイル名のカスタマイズ"
     },
     "changeProfileNameLabel": {
         "message": "プロファイルマネージャーでプロファイル名を変更することができます。"
     },
+    "characterFilter": {
+        "message": "文字フィルター(UTF-8 または UTF-16)"
+    },
     "copyFolderPath": {
         "message": "ディスク上のフォルダーパスをコピー"
+    },
+    "createSubfolderErr.msg": {
+        "message": "サブフォルダーの作成中にエラーが発生しました:"
     },
     "csvSep": {
         "message": "CSV 形式でエクスポートするときのセパレーター:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "インポートするプロファイルにアクセスするためにはボタンをクリックして、プロファイルマネージャーを起動してください。現在のプロファイルは自動的に閉じます。"
     },
+    "invalidFolderSelection": {
+        "message": "無効なフォルダーの選択"
+    },
     "justMailFiles": {
         "message": "メッセージファイルのみ"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "200 個を超える mbox フォルダーがインポートされました。\nデータベースをリセットするには Thunderbird を再起動する必要があります。"
+    },
     "lastBackup": {
         "message": "最終バックアップ日時"
     },
+    "latinizeTransform": {
+        "message": "ラテン語に変換する"
+    },
     "mboxExport": {
         "message": "フォルダーを mbox ファイルでエクスポートする場所："
+    },
+    "messageImportProblems.msg": {
+        "message": "いくつかのメッセージのインポート中に問題が発生しました:"
     },
     "misc": {
         "message": "全般"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "メッセージを次の形式でエクスポート…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "複数のフォルダーはサポートされていません:\n最初のフォルダーのみをエクスポートするには、[OK] をクリックします。"
+    },
+    "multipleFolders.title": {
+        "message": "複数のフォルダー"
+    },
     "name": {
         "message": "名前"
     },
     "newFilesMode": {
         "message": "最後のバックアップ以降に変更されたファイルのみ"
+    },
+    "noBackup": {
+        "message": "バックアップを実行できません：コピー先のフォルダーの場所とアクセス権限を確認してください。",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "英数字以外の文字をフィルタリングする"
+    },
+    "numRetainBackups.msg": {
+        "message": "バックアップの保存数:"
     },
     "openHelpInWindow.label": {
         "message": "タブではなくウィンドウでヘルプを開く"
@@ -629,72 +678,10 @@
     "useMboxExt.label": {
         "message": "mbox ファイルには .mbox 拡張子を使用します (非構造化)"
     },
-    "CRconversion.statusMsg": {
-        "message": "CR から CRLF へ改行コードを変換しました。"
+    "utf16Filter": {
+        "message": "UTF-16 文字(記号と絵文字)をフィルタリングする"
     },
-    "Size": {
-        "message": "サイズ"
+    "viewDbgConsole.msg": {
+        "message": "  エラー デバッグコンソールを表示する  (Control-Shift-J)"
     }
-,
-
-	"latinizeTransform": {
-		"message": "ラテン語に変換する"
-	},
-
-	"characterFilter": {
-		"message": "文字フィルター(UTF-8 または UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "UTF-16 文字(記号と絵文字)をフィルタリングする"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "英数字以外の文字をフィルタリングする"
-	},
-
-	"multipleFolders.title": {
-		"message": "複数のフォルダー"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "複数のフォルダーはサポートされていません:\n最初のフォルダーのみをエクスポートするには、[OK] をクリックします。"
-	},
-
-	"cancel.msg": {
-		"message": "キャンセル"
-	},
-
-	"Error.msg": {
-		"message": "エラー"
-	},
-
-	"Warning.msg": {
-		"message": "警告"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "バックアップの保存数:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "サブフォルダーの作成中にエラーが発生しました:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "200 個を超える mbox フォルダーがインポートされました。\nデータベースをリセットするには Thunderbird を再起動する必要があります。"
-	}
-,
-
-	"invalidFolderSelection": {
-		"message": "無効なフォルダーの選択"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "いくつかのメッセージのインポート中に問題が発生しました:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  エラー デバッグコンソールを表示する  (Control-Shift-J)"
-	}
 }

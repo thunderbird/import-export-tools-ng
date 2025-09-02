@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Conversione delle terminazioni di linea CR =&gt; CRLF"
+    },
+    "Error.msg": {
+        "message": "Errore"
+    },
     "MACwarning": {
         "message": "N.B: prima di proseguire, chiudere eventuali finestre aperte"
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Lunghezza massima dei destinatari: "
+    },
+    "Size": {
+        "message": "Misurare"
+    },
+    "Warning.msg": {
+        "message": "Avvertimento"
     },
     "abortExport": {
         "message": "Interrompi l'esportazione dei messaggi"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opzioni"
     },
+    "cancel.msg": {
+        "message": "Annulla"
+    },
     "captionCustomize": {
         "message": "Formato personalizzato per i nomi dei file"
     },
     "changeProfileNameLabel": {
         "message": "Il nome del profilo potrà comunque essere modificato dal manager dei profili"
     },
+    "characterFilter": {
+        "message": "Filtro caratteri (UTF-8 o UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Copia il percorso della cartella"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Errore durante la creazione della sottocartella:"
     },
     "csvSep": {
         "message": "Separatore per l'esportazione in CSV:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Per accedere al profilo importato, lancia il manager dei profili cliccando il bottone sottostante. Il profilo corrente verrà automaticamente chiuso."
     },
+    "invalidFolderSelection": {
+        "message": "Selezione cartella non valida"
+    },
     "justMailFiles": {
         "message": "Solo la posta"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Sono state importate più di 200 cartelle mbox.\nThunderbird dovrebbe essere riavviato per reimpostare il database."
+    },
     "lastBackup": {
         "message": "Ultimo backup"
     },
+    "latinizeTransform": {
+        "message": "Trasformazione latinizzata"
+    },
     "mboxExport": {
         "message": "Esportazione cartelle come file MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Si sono verificati problemi durante l&#39;importazione di alcuni messaggi:"
     },
     "misc": {
         "message": "Varie"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Esporta messaggi come..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "Non sono supportate più cartelle:\nFare clic su OK per esportare solo la prima cartella."
+    },
+    "multipleFolders.title": {
+        "message": "Cartelle multiple"
+    },
     "name": {
         "message": "Nome"
     },
     "newFilesMode": {
         "message": "Solo i file modificati dall'ultimo backup"
+    },
+    "noBackup": {
+        "message": "Impossibile procedere al backup: controllare il percorso e i permessi della cartella di destinazione.",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtra i caratteri non alfanumerici"
+    },
+    "numRetainBackups.msg": {
+        "message": "Numero di backup da conservare:"
     },
     "openHelpInWindow.label": {
         "message": "Apri la guida in una finestra anziché in una scheda"
@@ -629,71 +678,10 @@
     "useMboxExt.label": {
         "message": "Utilizza l'estensione .mbox per i file mbox (non strutturati)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Conversione delle terminazioni di linea CR =&gt; CRLF"
+    "utf16Filter": {
+        "message": "Filtra caratteri UTF-16 (Simboli ed Emoji)"
     },
-    "Size": {
-        "message": "Misurare"
+    "viewDbgConsole.msg": {
+        "message": "  Errori. Visualizza la console di debug (Ctrl-Shift-J)"
     }
-,
-
-	"latinizeTransform": {
-		"message": "Trasformazione latinizzata"
-	},
-
-	"characterFilter": {
-		"message": "Filtro caratteri (UTF-8 o UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtra caratteri UTF-16 (Simboli ed Emoji)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtra i caratteri non alfanumerici"
-	},
-
-	"multipleFolders.title": {
-		"message": "Cartelle multiple"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Non sono supportate più cartelle:\nFare clic su OK per esportare solo la prima cartella."
-	},
-
-	"cancel.msg": {
-		"message": "Annulla"
-	},
-
-	"Error.msg": {
-		"message": "Errore"
-	},
-
-	"Warning.msg": {
-		"message": "Avvertimento"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Numero di backup da conservare:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Errore durante la creazione della sottocartella:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Sono state importate più di 200 cartelle mbox.\nThunderbird dovrebbe essere riavviato per reimpostare il database."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Selezione cartella non valida"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Si sono verificati problemi durante l&#39;importazione di alcuni messaggi:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Errori. Visualizza la console di debug (Ctrl-Shift-J)"
-	}
 }

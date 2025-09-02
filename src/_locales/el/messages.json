@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
+    },
+    "Error.msg": {
+        "message": "Σφάλμα"
+    },
     "MACwarning": {
         "message": "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Μέγιστο μήκος ονόματος παραλήπτη:"
+    },
+    "Size": {
+        "message": "Μέγεθος"
+    },
+    "Warning.msg": {
+        "message": "Προειδοποίηση"
     },
     "abortExport": {
         "message": "Διακοπή της τρέχουσας εξαγωγής"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Επιλογές"
     },
+    "cancel.msg": {
+        "message": "Ματαίωση"
+    },
     "captionCustomize": {
         "message": "Προσαρμοσμένη μορφή για ονόματα αρχείων"
     },
     "changeProfileNameLabel": {
         "message": "Μπορείτε ούτως ή άλλως να αλλάξετε το όνομα προφίλ στη Διαχείριση προφίλ"
     },
+    "characterFilter": {
+        "message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Αντιγραφή διαδρομής φακέλου στο δίσκο"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Σφάλμα δημιουργίας υποφακέλου:"
     },
     "csvSep": {
         "message": "Διαχωριστικό για εξαγωγή σε μορφή CSV:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Για να αποκτήσετε πρόσβαση στο εισαγόμενο προφίλ, εκτελέστε τη Διαχείριση προφίλ κάνοντας κλικ στο παρακάτω κουμπί. Το τρέχον προφίλ θα κλείσει αυτόματα"
     },
+    "invalidFolderSelection": {
+        "message": "Μη έγκυρη επιλογή φακέλου"
+    },
     "justMailFiles": {
         "message": "Απλά αλληλογραφία αρχείων"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
+    },
     "lastBackup": {
         "message": "Τελευταίο αντίγραφο ασφαλείας"
     },
+    "latinizeTransform": {
+        "message": "Λατινοποίηση μετασχηματισμού"
+    },
     "mboxExport": {
         "message": "Εξαγωγή φακέλων ως αρχείο MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή ορισμένων μηνυμάτων:"
     },
     "misc": {
         "message": "Διάφορα"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Εξαγωγή μηνυμάτων ως…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Δεν υποστηρίζονται πολλοί φάκελοι:\nΚάντε κλικ στο OK για να εξαγάγετε μόνο τον πρώτο φάκελο."
+    },
+    "multipleFolders.title": {
+        "message": "Πολλαπλοί φάκελοι"
+    },
     "name": {
         "message": "Ονομα"
     },
     "newFilesMode": {
         "message": "Απλά τροποποιήθηκαν αρχεία μετά την τελευταία δημιουργία αντιγράφων ασφαλείας"
+    },
+    "noBackup": {
+        "message": "Δεν είναι δυνατή η εκτέλεση αντιγράφων ασφαλείας: ελέγξτε τη διαδρομή και τα δικαιώματα του φακέλου προορισμού",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
+    },
+    "numRetainBackups.msg": {
+        "message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
     },
     "openHelpInWindow.label": {
         "message": "Ανοίξτε τη βοήθεια σε ένα παράθυρο αντί για μια καρτέλα"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Χρησιμοποιήστε την επέκταση .mbox για αρχεία mbox (μη δομημένα)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
+    "utf16Filter": {
+        "message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
     },
-    "Size": {
-        "message": "Μέγεθος"
-    },
-
-	"latinizeTransform": {
-		"message": "Λατινοποίηση μετασχηματισμού"
-	},
-
-	"characterFilter": {
-		"message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
-	},
-
-	"multipleFolders.title": {
-		"message": "Πολλαπλοί φάκελοι"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Δεν υποστηρίζονται πολλοί φάκελοι:\nΚάντε κλικ στο OK για να εξαγάγετε μόνο τον πρώτο φάκελο."
-	},
-
-	"cancel.msg": {
-		"message": "Ματαίωση"
-	},
-
-	"Error.msg": {
-		"message": "Σφάλμα"
-	},
-
-	"Warning.msg": {
-		"message": "Προειδοποίηση"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Σφάλμα δημιουργίας υποφακέλου:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Μη έγκυρη επιλογή φακέλου"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή ορισμένων μηνυμάτων:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"
+    }
 }

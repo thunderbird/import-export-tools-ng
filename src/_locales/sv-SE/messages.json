@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
+    },
+    "Error.msg": {
+        "message": "Fel"
+    },
     "MACwarning": {
         "message": "Obs.: Stäng alla andra fönster innan du går vidare."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Mottagarnamnets maxlängd: "
+    },
+    "Size": {
+        "message": "Storlek"
+    },
+    "Warning.msg": {
+        "message": "Varning"
     },
     "abortExport": {
         "message": "Avbryt den aktuella exporten"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Alternativ"
     },
+    "cancel.msg": {
+        "message": "Annullera"
+    },
     "captionCustomize": {
         "message": "Anpassat format för filnamn"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "Teckenfilter (UTF-8 eller UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Kopiera mappsökväg på disk"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Det gick inte att skapa undermapp:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "Ogiltigt val av mapp"
+    },
     "justMailFiles": {
         "message": "Endast meddelandefiler"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Importera/Exportera"
     },
+    "largeFolderImport.msg": {
+        "message": "Mer än 200 mbox-mappar importerade.\nThunderbird bör startas om för att återställa databasen."
+    },
     "lastBackup": {
         "message": "Senaste säkerhetskopiering"
     },
+    "latinizeTransform": {
+        "message": "Latinisera transformera"
+    },
     "mboxExport": {
         "message": "Exportera mappar som MBOX-fil:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Det uppstod problem med att importera några meddelanden:"
     },
     "misc": {
         "message": "Övrigt"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportera meddelanden som..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "Flera mappar stöds inte:\nKlicka på OK för att exportera bara den första mappen."
+    },
+    "multipleFolders.title": {
+        "message": "Flera mappar"
+    },
     "name": {
         "message": "Namn"
     },
     "newFilesMode": {
         "message": "Endast filer som ändrats sedan senaste säkerhetskopiering"
+    },
+    "noBackup": {
+        "message": "Det gick inte att utföra säkerhetskopieringen. Kontrollera sökväg och behörigheter för målmappen",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrera icke-alfanumeriska tecken"
+    },
+    "numRetainBackups.msg": {
+        "message": "Antal säkerhetskopior att behålla:"
     },
     "openHelpInWindow.label": {
         "message": "Öppna hjälpen i ett fönster istället för en flik"
@@ -629,71 +678,10 @@
     "useMboxExt.label": {
         "message": "Använd tillägget .mbox för mbox-filer (icke-strukturerade)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
+    "utf16Filter": {
+        "message": "Filtrera UTF-16-tecken (symboler och emojis)"
     },
-    "Size": {
-        "message": "Storlek"
+    "viewDbgConsole.msg": {
+        "message": "  Fel. Visa felsökningskonsolen (Control-Shift-J)"
     }
-,
-
-	"latinizeTransform": {
-		"message": "Latinisera transformera"
-	},
-
-	"characterFilter": {
-		"message": "Teckenfilter (UTF-8 eller UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrera UTF-16-tecken (symboler och emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrera icke-alfanumeriska tecken"
-	},
-
-	"multipleFolders.title": {
-		"message": "Flera mappar"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Flera mappar stöds inte:\nKlicka på OK för att exportera bara den första mappen."
-	},
-
-	"cancel.msg": {
-		"message": "Annullera"
-	},
-
-	"Error.msg": {
-		"message": "Fel"
-	},
-
-	"Warning.msg": {
-		"message": "Varning"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Antal säkerhetskopior att behålla:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Det gick inte att skapa undermapp:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Mer än 200 mbox-mappar importerade.\nThunderbird bör startas om för att återställa databasen."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Ogiltigt val av mapp"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Det uppstod problem med att importera några meddelanden:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Fel. Visa felsökningskonsolen (Control-Shift-J)"
-	}
 }

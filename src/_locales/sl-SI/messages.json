@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Pretvarjanje zaključkov vrstic CR =&gt; CRLF"
+    },
+    "Error.msg": {
+        "message": "Napaka"
+    },
     "MACwarning": {
         "message": "N.B: zapri vsako drugo okno pred nadaljevanjem"
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Največja dolžina prejemnikovega imena:"
+    },
+    "Size": {
+        "message": "Velikost"
+    },
+    "Warning.msg": {
+        "message": "Opozorilo"
     },
     "abortExport": {
         "message": "Ustavi trenutni izvoz"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opcije"
     },
+    "cancel.msg": {
+        "message": "Prekliči"
+    },
     "captionCustomize": {
         "message": "Oblika po meri za imena datotek"
     },
     "changeProfileNameLabel": {
         "message": "Ime profila lahko vedno spremenite v upravitelju profilov"
     },
+    "characterFilter": {
+        "message": "Filter znakov (UTF-8 ali UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Kopiraj pot mape na disk"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Napaka pri ustvarjanju podmape:"
     },
     "csvSep": {
         "message": "Ločilo za izvoz v obliki CSV:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "Za dostop do uvoženega profila, zaženite upravitelja profilov s klikom na spodnji gumb. Trenutni profil bo samodejno zaprt"
     },
+    "invalidFolderSelection": {
+        "message": "Neveljavna izbira mape"
+    },
     "justMailFiles": {
         "message": "Samo datoteke pošte"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Uvoženih je več kot 200 map mbox.\nZnova zaženite Thunderbird, da ponastavite bazo podatkov."
+    },
     "lastBackup": {
         "message": "Zadnje varnostno kopiranje"
     },
+    "latinizeTransform": {
+        "message": "Latiniziraj transformacijo"
+    },
     "mboxExport": {
         "message": "Izvozi mape kot datoteko MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Pri uvozu nekaterih sporočil je prišlo do težav:"
     },
     "misc": {
         "message": "Razno"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Izvozi sporočila kot ..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "Več map ni podprtih:\nKliknite V redu, da izvozite samo prvo mapo."
+    },
+    "multipleFolders.title": {
+        "message": "Več map"
+    },
     "name": {
         "message": "Ime"
     },
     "newFilesMode": {
         "message": "samo datoteke, ki so bile spremenjene po zadnjem kopiranju"
+    },
+    "noBackup": {
+        "message": "Izvedba varnostnega kopiranja ni mogoča: preverite pot in dovoljenja ciljne mape",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrirajte nealfanumerične znake"
+    },
+    "numRetainBackups.msg": {
+        "message": "Število varnostnih kopij, ki jih je treba obdržati:"
     },
     "openHelpInWindow.label": {
         "message": "Odpiranje pomoči v oknu namesto na zavihku"
@@ -629,65 +678,10 @@
     "useMboxExt.label": {
         "message": "Uporabite pripono .mbox za datoteke mbox (nestrukturirane)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Pretvarjanje zaključkov vrstic CR =&gt; CRLF"
-    },
-    "Size": {
-        "message": "Velikost"
-    },
-    "latinizeTransform": {
-        "message": "Latiniziraj transformacijo"
-    },
-    "characterFilter": {
-        "message": "Filter znakov (UTF-8 ali UTF-16)"
-    },
     "utf16Filter": {
         "message": "Filtrirajte znake UTF-16 (simboli in emojiji)"
     },
-    "nonAlphanumericFilter": {
-        "message": "Filtrirajte nealfanumerične znake"
-    },
-    "multipleFolders.title": {
-        "message": "Več map"
-    },
-
-	"multipleFolders.alertMsg": {
-		"message": "Več map ni podprtih:\nKliknite V redu, da izvozite samo prvo mapo."
-	},
-
-	"cancel.msg": {
-		"message": "Prekliči"
-	},
-
-	"Error.msg": {
-		"message": "Napaka"
-	},
-
-	"Warning.msg": {
-		"message": "Opozorilo"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Število varnostnih kopij, ki jih je treba obdržati:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Napaka pri ustvarjanju podmape:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Uvoženih je več kot 200 map mbox.\nZnova zaženite Thunderbird, da ponastavite bazo podatkov."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Neveljavna izbira mape"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Pri uvozu nekaterih sporočil je prišlo do težav:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Napake. Oglejte si konzolo za odpravljanje napak (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Napake. Oglejte si konzolo za odpravljanje napak (Control-Shift-J)"
+    }
 }

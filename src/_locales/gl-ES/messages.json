@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Convertendo CR =&gt; terminacións de liña CRLF"
+    },
+    "Error.msg": {
+        "message": "Erro"
+    },
     "MACwarning": {
         "message": "N.B.: pechar todas as outras xanelas antes de continuar."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Lonxitude máxima dos destinatarios:"
+    },
+    "Size": {
+        "message": "Tamaño"
+    },
+    "Warning.msg": {
+        "message": "Aviso"
     },
     "abortExport": {
         "message": "Deter a actual exportación"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Opcións"
     },
+    "cancel.msg": {
+        "message": "Cancelar"
+    },
     "captionCustomize": {
         "message": "Formato personalizado para nomes de ficheiros"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "Filtro de caracteres (UTF-8 ou UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Copiar o camiño do cartafol no disco"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Erro ao crear o subcartafol:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
     },
+    "invalidFolderSelection": {
+        "message": "A selección do cartafol non é válida"
+    },
     "justMailFiles": {
         "message": "Só arquivos de correo electrónico"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "Importar/exportar"
     },
+    "largeFolderImport.msg": {
+        "message": "Importáronse máis de 200 cartafoles mbox.\nThunderbird debería reiniciarse para restablecer a base de datos."
+    },
     "lastBackup": {
         "message": "Última copia e seguranza"
     },
+    "latinizeTransform": {
+        "message": "Latinizar transformar"
+    },
     "mboxExport": {
         "message": "Exportar cartafoles como ficheiros MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Houbo problemas ao importar algunhas mensaxes:"
     },
     "misc": {
         "message": "Varios"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportar mensaxes como..."
     },
+    "multipleFolders.alertMsg": {
+        "message": "Non se admiten varios cartafoles:\nFai clic en Aceptar para exportar só o primeiro cartafol."
+    },
+    "multipleFolders.title": {
+        "message": "Múltiples cartafoles"
+    },
     "name": {
         "message": "Nome"
     },
     "newFilesMode": {
         "message": "Só os fichiros modificados despois da copia de seguranza"
+    },
+    "noBackup": {
+        "message": "Non foi posíbel realizar a copia de seguranza: comprobe a ruta e os permisos do cartafol de destino",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrar caracteres non alfanuméricos"
+    },
+    "numRetainBackups.msg": {
+        "message": "Número de copias de seguridade a conservar:"
     },
     "openHelpInWindow.label": {
         "message": "Abre a axuda nunha xanela en lugar dunha pestana"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Use a extensión .mbox para ficheiros mbox (non estruturados)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Convertendo CR =&gt; terminacións de liña CRLF"
+    "utf16Filter": {
+        "message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
     },
-    "Size": {
-        "message": "Tamaño"
-    },
-
-	"latinizeTransform": {
-		"message": "Latinizar transformar"
-	},
-
-	"characterFilter": {
-		"message": "Filtro de caracteres (UTF-8 ou UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrar caracteres non alfanuméricos"
-	},
-
-	"multipleFolders.title": {
-		"message": "Múltiples cartafoles"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Non se admiten varios cartafoles:\nFai clic en Aceptar para exportar só o primeiro cartafol."
-	},
-
-	"cancel.msg": {
-		"message": "Cancelar"
-	},
-
-	"Error.msg": {
-		"message": "Erro"
-	},
-
-	"Warning.msg": {
-		"message": "Aviso"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Número de copias de seguridade a conservar:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Erro ao crear o subcartafol:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Importáronse máis de 200 cartafoles mbox.\nThunderbird debería reiniciarse para restablecer a base de datos."
-	},
-
-	"invalidFolderSelection": {
-		"message": "A selección do cartafol non é válida"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Houbo problemas ao importar algunhas mensaxes:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Erros. Ver a consola de depuración (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Erros. Ver a consola de depuración (Control-Shift-J)"
+    }
 }

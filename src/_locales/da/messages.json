@@ -1,4 +1,10 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
+    },
+    "Error.msg": {
+        "message": "Fejl"
+    },
     "MACwarning": {
         "message": "N.B.: Luk alle andre vinduer før du fortsætter."
     },
@@ -31,6 +37,12 @@
     },
     "MBlabel7d": {
         "message": "Maksimum længde på modtagers navn:"
+    },
+    "Size": {
+        "message": "Størrelse"
+    },
+    "Warning.msg": {
+        "message": "Advarsel"
     },
     "abortExport": {
         "message": "Stop den pågældende eksport"
@@ -125,14 +137,23 @@
     "buttonMenu_Options.title": {
         "message": "Indstillinger"
     },
+    "cancel.msg": {
+        "message": "Annuller"
+    },
     "captionCustomize": {
         "message": "Tilpas filnavnes format"
     },
     "changeProfileNameLabel": {
         "message": "Du kan altid ændre profilnavnet i profilmanageren"
     },
+    "characterFilter": {
+        "message": "Tegnfilter (UTF-8 eller UTF-16)"
+    },
     "copyFolderPath": {
         "message": "Kopier mappens sti på disken"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Fejl under oprettelse af undermappe:"
     },
     "csvSep": {
         "message": "Separator til eksport i CSV-format:"
@@ -404,6 +425,9 @@
     "intro3": {
         "message": "For at tilgå den importerede profil, kør profilmanageren ved at klikke på knappen nedenunder. Den nuværende profil vil automatisk blive lukket"
     },
+    "invalidFolderSelection": {
+        "message": "Ugyldigt mappevalg"
+    },
     "justMailFiles": {
         "message": "Kun mailfiler"
     },
@@ -413,11 +437,20 @@
     "labelmenuMI": {
         "message": "ImportEksportTools"
     },
+    "largeFolderImport.msg": {
+        "message": "Mere end 200 mbox-mapper er importeret.\nThunderbird bør genstartes for at nulstille databasen."
+    },
     "lastBackup": {
         "message": "Seneste sikkerhedskopi"
     },
+    "latinizeTransform": {
+        "message": "Latiniser transformation"
+    },
     "mboxExport": {
         "message": "Eksporter mapper som MBOX-fil:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Der opstod problemer med at importere nogle meddelelser:"
     },
     "misc": {
         "message": "Diverse"
@@ -500,11 +533,27 @@
     "msgCtxMenu_TopId.title": {
         "message": "Eksporter meddelelser som…"
     },
+    "multipleFolders.alertMsg": {
+        "message": "Flere mapper understøttes ikke:\nKlik OK for kun at eksportere den første mappe."
+    },
+    "multipleFolders.title": {
+        "message": "Flere mapper"
+    },
     "name": {
         "message": "Navn"
     },
     "newFilesMode": {
         "message": "Kun filer der er ændret siden seneste sikkerhedskopi"
+    },
+    "noBackup": {
+        "message": "Kunne ikke tage sikkerhedskopier: Undersøg destinationsmappes sti og og tilladelser",
+        "src": "autobackup"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filtrer ikke-alfanumeriske tegn"
+    },
+    "numRetainBackups.msg": {
+        "message": "Antal sikkerhedskopier, der skal beholdes:"
     },
     "openHelpInWindow.label": {
         "message": "Åbn hjælp i et vindue i stedet for i et faneblad"
@@ -629,70 +678,10 @@
     "useMboxExt.label": {
         "message": "Brug filendelsen .mbox til mbox-filer (ikke-struktureret)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
+    "utf16Filter": {
+        "message": "Filtrer UTF-16-tegn (symboler og emojis)"
     },
-    "Size": {
-        "message": "Størrelse"
-    },
-
-	"latinizeTransform": {
-		"message": "Latiniser transformation"
-	},
-
-	"characterFilter": {
-		"message": "Tegnfilter (UTF-8 eller UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filtrer UTF-16-tegn (symboler og emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filtrer ikke-alfanumeriske tegn"
-	},
-
-	"multipleFolders.title": {
-		"message": "Flere mapper"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Flere mapper understøttes ikke:\nKlik OK for kun at eksportere den første mappe."
-	},
-
-	"cancel.msg": {
-		"message": "Annuller"
-	},
-
-	"Error.msg": {
-		"message": "Fejl"
-	},
-
-	"Warning.msg": {
-		"message": "Advarsel"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Antal sikkerhedskopier, der skal beholdes:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Fejl under oprettelse af undermappe:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Mere end 200 mbox-mapper er importeret.\nThunderbird bør genstartes for at nulstille databasen."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Ugyldigt mappevalg"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Der opstod problemer med at importere nogle meddelelser:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Fejl. Se fejlkonsolkonsollen (Control+Skift+J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Fejl. Se fejlkonsolkonsollen (Control+Skift+J)"
+    }
 }

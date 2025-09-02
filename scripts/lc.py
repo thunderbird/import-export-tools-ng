@@ -114,7 +114,7 @@ def convert_prop(path, dir):
                 placeholders["P" + str(count)] = { "content" : "$" + str(count) }
             
             data = {}
-            data["src"] = "autobackup";
+            data["src"] = "profilewizard";
             data["message"] = a[1].strip();
             if len(placeholders) > 0:
                 data["placeholders"] = placeholders

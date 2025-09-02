@@ -44,7 +44,11 @@ var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mbo
 
 var IETimportWizard = {
 
-	bundle: Services.strings.createBundle("chrome://mboximport/locale/profilewizard.properties"),
+	msgWindow: Services.wm.getMostRecentWindow("mail:3pane"),
+
+	localizeMsg: function (msgName) {
+		return this.msgWindow.ietngAddon.extension.localeData.localizeMessage(msgName);
+	},
 
 	start: function () {
 		i18n.updateDocument({extension: window.opener.ietngAddon.extension});
@@ -52,7 +56,7 @@ var IETimportWizard = {
 		let wiz = document.getElementById("profileImportWizard");
 		let shadowWiz = wiz && wiz.shadowRoot;
 		let hdr = shadowWiz.querySelector(".wizard-header-label");
-		hdr.textContent = IETimportWizard.bundle.GetStringFromName("profileImportWizHdr");
+		hdr.textContent = IETimportWizard.localizeMsg("profileImportWizHdr");
 
 		if (document.getElementById("pathBox").value.length === 0)
 			document.getElementById("profileImportWizard").canAdvance = false;
@@ -64,7 +68,7 @@ var IETimportWizard = {
 
 	thirdPage: function () {
 		document.getElementById("profileImportWizard").canRewind = false;
-		document.getElementById("newProfDetails").textContent = IETimportWizard.bundle.GetStringFromName("profilePath") + "\n" + IETimportWizard.profDir.path;
+		document.getElementById("newProfDetails").textContent = IETimportWizard.localizeMsg("profilePath") + "\n" + IETimportWizard.profDir.path;
 	},
 
 	checkName: function (el) {
@@ -83,7 +87,7 @@ var IETimportWizard = {
 		}
 		let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
 
-		fp.init(winCtx, IETimportWizard.bundle.GetStringFromName("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, IETimportWizard.localizeMsg("pickProfile"), Ci.nsIFilePicker.modeGetFolder);
 		let res = await new Promise(resolve => {
 			fp.open(resolve);
 		});
@@ -92,7 +96,7 @@ var IETimportWizard = {
 			let testFile = fp.file.clone();
 			testFile.append("prefs.js");
 			if (!testFile.exists()) {
-				alert(IETimportWizard.bundle.GetStringFromName("noProfile"));
+				Services.prompt.alert(window, IETimportWizard.localizeMsg("Error.msg"), IETimportWizard.localizeMsg("noProfile"));
 				return;
 			}
 			if (document.getElementById("nameBox").value.length > 0)

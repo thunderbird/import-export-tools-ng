@@ -107,10 +107,8 @@ var autoBackup = {
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
-		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
-
 		if (!dir.exists() || !dir.isWritable) {
-			Services.prompt.alert(w, "Error", strbundle.getStringFromName("noBackup"));
+			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
 			return;
 		}

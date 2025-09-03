@@ -387,7 +387,7 @@ export var ietngUtils = {
   },
 
   localizeMsg: function (msgName) {
-		return this.top.ietngAddon.extension.localeData.localizeMessage(msgName);
+		return this.top.ietngAddon.ietngExtension.localeData.localizeMessage(msgName);
 	},
 
 };

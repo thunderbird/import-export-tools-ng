@@ -92,8 +92,10 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var MBstrBundleService = Services.strings;
-var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
-var nosub = mboximportbundle.GetStringFromName("nosubjectmsg");
+//var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
+
+console.log(ietngUtils.localizeMsg("Error.msg"))
+var nosub = ietngUtils.localizeMsg("nosubjectmsg");
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
 
 var gEMLimported;
@@ -129,7 +131,7 @@ var IETprintPDFmain = {
 		try {
 			let printSvc = Cc["@mozilla.org/gfx/printsettings-service;1"].getService(Ci.nsIPrintSettingsService);
 			if (printSvc.defaultPrinterName === "") {
-				alert(mboximportbundle.GetStringFromName("noPDFnoPrinter"));
+				alert(ietngUtils.localizeMsg("noPDFnoPrinter"));
 				return { status: "error" };
 			}
 		} catch (e) {
@@ -146,7 +148,7 @@ var IETprintPDFmain = {
 			}
 
 			if (msgFolders.length > 1) {
-				alert(mboximportbundle.GetStringFromName("noPDFmultipleFolders"));
+				alert(ietngUtils.localizeMsg("noPDFmultipleFolders"));
 				return { status: "error" };
 			}
 			let question = IETformatWarning(1);
@@ -206,7 +208,7 @@ var IETprintPDFmain = {
 					winCtx = window.browsingContext;
 				}
 				let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
+				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), Ci.nsIFilePicker.modeGetFolder);
 				let res = await new Promise(resolve => {
 					fp.open(resolve);
 				});
@@ -357,7 +359,7 @@ var IETprintPDFmain = {
 				if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 					await IOUtils.setModificationTime(uniqueFileName, time);
 				}
-				IETwritestatus(mboximportbundle.GetStringFromName("exported") + ": " + fileName);
+				IETwritestatus(ietngUtils.localizeMsg("exported") + ": " + fileName);
 				// When we got here, everything worked, and reset error counter.
 				errCounter = 0;
 			} catch (ex) {
@@ -415,7 +417,7 @@ async function trytocopyMAILDIR(params) {
 	let storeType = getMailStoreFromFolderPath(params.selectedFolder.accountId, params.selectedFolder.path);
 
 	if (storeType !== 1) {
-		alert(mboximportbundle.GetStringFromName("noMaildirStorage"));
+		alert(ietngUtils.localizeMsg("noMaildirStorage"));
 		return;
 	}
 
@@ -424,7 +426,7 @@ async function trytocopyMAILDIR(params) {
 
 	// we don't import the file in imap or nntp accounts
 	if ((msgFolder.server.type === "imap") || (msgFolder.server.type === "nntp")) {
-		alert(mboximportbundle.GetStringFromName("badfolder"));
+		alert(ietngUtils.localizeMsg("badfolder"));
 		return;
 	}
 
@@ -434,7 +436,7 @@ async function trytocopyMAILDIR(params) {
 		winCtx = window.browsingContext;
 	}
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerImport"), Ci.nsIFilePicker.modeGetFolder);
 	fp.appendFilters(Ci.nsIFilePicker.filterAll);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
@@ -497,13 +499,13 @@ async function trytocopyMAILDIR(params) {
 		var destFileClone = destFile.clone();
 		destFileClone.append("cur");
 		if (!destFileClone.exists() || !destFileClone.isDirectory()) {
-			alert(mboximportbundle.GetStringFromName("isNotMaildir"));
+			alert(ietngUtils.localizeMsg("isNotMaildir"));
 			return;
 		}
 		destFileClone = destFileClone.parent;
 		destFileClone.append("tmp");
 		if (!destFileClone.exists() || !destFileClone.isDirectory()) {
-			alert(mboximportbundle.GetStringFromName("isNotMaildir"));
+			alert(ietngUtils.localizeMsg("isNotMaildir"));
 			return;
 		}
 		var allfiles = destFile.directoryEntries;
@@ -547,12 +549,12 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 			var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
 			var flags = prompts.BUTTON_TITLE_CANCEL * prompts.BUTTON_POS_0 +
 				prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 + prompts.BUTTON_POS_0_DEFAULT;
-			var string = ("\"" + filename + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
+			var string = ("\"" + filename + "\" " + ietngUtils.localizeMsg("nomboxfile"));
 			var button = prompts.confirmEx(window, "ImportExportTools NG", string, flags, "Button 0", continuelabel, "", null, {});
 			if (button === 0)
 				return false;
 		} else {
-			if (!confirm(mboximportbundle.GetStringFromName("isNotStandard")))
+			if (!confirm(ietngUtils.localizeMsg("isNotStandard")))
 				return false;
 		}
 	}
@@ -617,7 +619,7 @@ async function trytocopy(file, filename, msgFolder, keepstructure) {
 	tempfolder.msgStore.deleteFolder(tempfolder);
 
 	if (!filex) {
-		alert(mboximportbundle.GetStringFromName("internalerror"));
+		alert(ietngUtils.localizeMsg("internalerror"));
 		return false;
 	}
 	try {
@@ -781,7 +783,7 @@ async function buildMSGfile(scan) {
 	}
 	gMsgFolderImported = [];
 	if (scan)
-		IETwritestatus(mboximportbundle.GetStringFromName("endscan"));
+		IETwritestatus(ietngUtils.localizeMsg("endscan"));
 }
 
 async function updateImportedFolder(msgFolder, forceCompact) {
@@ -839,7 +841,7 @@ async function exportfolder(params) {
 	for (var i = 0; i < folders.length; i++) {
 		isVirtualFolder = folders[i] ? folders[i].flags & Ci.nsMsgFolderFlags.Virtual : false;
 		if ((i > 0 && folders[i].server.type !== lastType) || (folders.length > 1 && isVirtualFolder)) {
-			alert(mboximportbundle.GetStringFromName("noFolderExport"));
+			alert(ietngUtils.localizeMsg("noFolderExport"));
 			return;
 		}
 		var lastType = folders[i].server.type;
@@ -886,7 +888,7 @@ async function exportfolder(params) {
 		let msgFolder = folders[0];
 		try {
 			await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
-			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+			IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 			return { status: "ok", exportFolderPath: exportFolderPath };
 		} catch (ex) {
 			console.log(ex)
@@ -898,7 +900,7 @@ async function exportfolder(params) {
 	if (localfolder && !subfolders && isVirtualFolder) {
 		try {
 			exportVirtualFolder(folders[0], destdirNSIFILE);
-			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+			IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 			return { status: "ok", exportFolderPath: exportFolderPath };
 		} catch (ex) {
 			return { status: "error", errMsg: ex };
@@ -979,7 +981,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();
-			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+			IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 			await new Promise(resolve => window.setTimeout(resolve, 100));
 
 			zipW.open(zipFile, 0x04 | 0x08 | 0x20);
@@ -992,7 +994,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			IOUtils.remove(newDestPath);
 			IOUtils.remove(destPath);
 
-			IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+			IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 
 		}
 	}
@@ -1045,7 +1047,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 			folderName = msgFolder.localizedName;
 		}
 		await exportAccount(folderName, msgFolder.filePath.path, destPath);
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	} else if (subfolder && !keepstructure) {
 		// export the folder with the subfolders
 		// first we copy the folder, finding a good name from its displayed name
@@ -1063,7 +1065,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		}
 		// then we export the subfolders
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
-		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		// IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
 		console.log("Exporting with subfolders");
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
@@ -1105,7 +1107,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 				}
 			}
 		}
-		IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	} else {
 		// export just the folder
 		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
@@ -1117,7 +1119,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 
 			// await IOUtils.copy(filex.path, dest);
 		}
-		// IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+		// IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	}
 }
 
@@ -1346,7 +1348,7 @@ async function importALLasEML(params) {
 
 
 	if (!msgFolder) {
-		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
+		alert(ietngUtils.localizeMsg("noFolderSelected"));
 		return;
 	}
 
@@ -1358,7 +1360,7 @@ async function importALLasEML(params) {
 
 	// Open the filepicker to choose the directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("searchdir"), Ci.nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("searchdir"), Ci.nsIFilePicker.modeGetFolder);
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
 	});
@@ -1369,7 +1371,7 @@ async function importALLasEML(params) {
 	gEMLimported = 0;
 	gEMLimportedErrs = 0;
 	gImporting = true;
-	IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
+	IETwritestatus(ietngUtils.localizeMsg("importEMLstart"));
 	if (document.getElementById("IETabortIcon")) {
 		document.getElementById("IETabortIcon").collapsed = false;
 	}
@@ -1390,7 +1392,7 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 	folderCount = 1;
 
 	if (!msgFolder) {
-		alert(mboximportbundle.GetStringFromName("noFolderSelected"));
+		alert(ietngUtils.localizeMsg("noFolderSelected"));
 		return;
 	}
 
@@ -1404,7 +1406,7 @@ async function RUNimportALLasEML(msgFolder, file, recursive) {
 
 	gEMLtotal = gFileEMLarray.length;
 	if (gEMLtotal < 1) {
-		IETwritestatus(mboximportbundle.GetStringFromName("numEML") + " 0" + "/" + gEMLtotal);
+		IETwritestatus(ietngUtils.localizeMsg("numEML") + " 0" + "/" + gEMLtotal);
 		document.getElementById("IETabortIcon").collapsed = true;
 		return;
 	}
@@ -1467,7 +1469,7 @@ async function importEMLs(params) {
 	let msgFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 	// No import for imap and news account, sorry...
 	if ((!String.prototype.trim && msgFolder.server.type === "imap") || msgFolder.server.type === "nntp") {
-		alert(mboximportbundle.GetStringFromName("badfolder"));
+		alert(ietngUtils.localizeMsg("badfolder"));
 		return;
 	}
 
@@ -1478,8 +1480,8 @@ async function importEMLs(params) {
 	}
 	// Set the filepicker to open the last opened directory
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
-	fp.appendFilter(mboximportbundle.GetStringFromName("emailFiles"), "*.eml; *.emlx; *.nws; *._eml");
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerImportMSG"), Ci.nsIFilePicker.modeOpenMultiple);
+	fp.appendFilter(ietngUtils.localizeMsg("emailFiles"), "*.eml; *.emlx; *.nws; *._eml");
 	fp.appendFilter("All files", "*.*");
 	let res = await new Promise(resolve => {
 		fp.open(resolve);
@@ -1500,7 +1502,7 @@ async function importEMLs(params) {
 	gEMLimportedErrs = 0;
 	gImporting = true;
 	gEMLtotal = fileArray.length;
-	IETwritestatus(mboximportbundle.GetStringFromName("importEMLstart"));
+	IETwritestatus(ietngUtils.localizeMsg("importEMLstart"));
 	trytoimportEML(fileArray[0], msgFolder, false, fileArray, false);
 	return { status: "ok" };
 }
@@ -1623,7 +1625,7 @@ function trytoimportEML(file, msgFolder, removeFile, fileArray, allEML) {
 			if (gEMLimportedErrs) {
 				errs = `(Errs: ${gEMLimportedErrs})`;
 			}
-			IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + errs + "/" + gEMLtotal);
+			IETwritestatus(ietngUtils.localizeMsg("numEML") + gEMLimported + errs + "/" + gEMLtotal);
 		}
 	} else {
 		importEMLlistener.imap = false;
@@ -1761,7 +1763,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	if (gEMLimportedErrs) {
 		errs = ` (Errs: ${gEMLimportedErrs})`;
 	}
-	IETwritestatus(mboximportbundle.GetStringFromName("numEML") + gEMLimported + errs + "/" + gEMLtotal);
+	IETwritestatus(ietngUtils.localizeMsg("numEML") + gEMLimported + errs + "/" + gEMLtotal);
 
 	if (removeFile)
 		file.remove(false);

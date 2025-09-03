@@ -37,12 +37,27 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 
+if (!ExtensionParent) {
+	var { ExtensionParent } = ChromeUtils.importESModule(
+		"resource://gre/modules/ExtensionParent.sys.mjs"
+	);
+}
+
+if (!ietngExtension) {
+	var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+		"ImportExportToolsNG@cleidigh.kokkini.net"
+	);
+}
+
+if (!messengerWin) {
+	var messengerWin = Services.wm.getMostRecentWindow("mail:3pane");
+}
+
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWin.ietngAddon.dateForDebugging);
 
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
-//var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -275,17 +290,17 @@ function getSubjectForHdr(hdr, dirPath) {
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("subjectFmtToken"), subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("senderFmtToken"), authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("senderEmailFmtToken"), authEmail);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientFmtToken"), recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 
 		fname = extendedFilenameFormat;
@@ -900,17 +915,17 @@ function constructAttachmentsFilename(type, hdr) {
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("subjectFmtToken"), subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("senderFmtToken"), authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("senderEmailFmtToken"), authEmail);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientFmtToken"), recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 	fname = attachmentsExtendedFilenameFormat;
 

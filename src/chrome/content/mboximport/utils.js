@@ -399,7 +399,7 @@ function IETexport_all(params) {
 		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 		//.getService(Ci.nsIPromptService);
 		var check = { value: false };
-		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
+		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", ietngUtils.localizeMsg("backupWarning"), ietngUtils.localizeMsg("noWarning"), check);
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else
@@ -416,7 +416,7 @@ function IETexport_all(params) {
 	// Open the filepicker to choose the directory
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -428,7 +428,7 @@ function IETexport_all(params) {
 	else
 		return;
 
-	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+	IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 	setTimeout(IETexport_all_delayed, 1000, just_mail, file);
 	return { status: "ok" };
 }
@@ -468,7 +468,7 @@ function IETexport_all_delayed(just_mail, file) {
 	}
 	var clone = file.clone();
 	saveExternalMailFolders(clone, profDir);
-	IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+	IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	return file;
 }
 
@@ -510,13 +510,13 @@ function IETformatWarning(warning_type) {
 	var pref;
 
 	if (warning_type === 0) {
-		text = mboximportbundle.GetStringFromName("formatWarning");
+		text = ietngUtils.localizeMsg("formatWarning");
 		pref = "extensions.importexporttoolsng.export.format_warning";
 	} else {
-		text = mboximportbundle.GetStringFromName("formatWarningImport");
+		text = ietngUtils.localizeMsg("formatWarningImport");
 		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWarning"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, ietngUtils.localizeMsg("noWarning"), check);
 	IETprefs.setBoolPref(pref, !check.value);
 	return result;
 }
@@ -526,7 +526,7 @@ function IETremoteWarning() {
 		return true;
 
 	var check = { value: false };
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", ietngUtils.localizeMsg("remoteWarning"), ietngUtils.localizeMsg("noWarning"), check);
 	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }
@@ -675,7 +675,7 @@ function IETgetPickerModeFolder() {
 	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -685,7 +685,7 @@ function IETgetPickerModeFolder() {
 	if (res === nsIFilePicker.returnOK) {
 		dir = fp.file;
 		if (dir && !dir.isWritable()) {
-			alert(mboximportbundle.GetStringFromName("nowritable"));
+			alert(ietngUtils.localizeMsg("nowritable"));
 			dir = null;
 		}
 	}

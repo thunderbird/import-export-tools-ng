@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "Convertendo CR =&gt; terminações de linha CRLF"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Erro"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Comprimento máx. do nome do destinatário:"
+    },
+    "Received": {
+        "message": "Recebido",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Tamanho"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Cópia de segurança do conteúdo"
     },
+    "backupWarning": {
+        "message": "Durante esta operação, o programa pode\\\\nbloquear durante alguns minuto.\\\\nDeseja continuar?\\\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Impossível importar esta pasta (tipo imap ou grupo de discussão)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Não é possível para importar esta pasta (imap ou grupos de discussão ou tipo virtual)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Browser"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Filtro de caracteres (UTF-8 ou UTF-16)"
     },
+    "confirmimport": {
+        "message": "Deseja importar o ficheiro",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Copiar caminho da pasta no disco"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Várias mensagens selecionadas, apenas os primeiros cabeçalhos das mensagens copiados para a área de transferência.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Copiar cabeçalhos para a área de transferência",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Várias mensagens selecionadas, apenas a primeira mensagem copiada para a área de transferência.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Copiar mensagens para a área de transferência",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Erro ao criar subpasta:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - Cópia de segurança"
     },
+    "emailFiles": {
+        "message": "Enviar ficheiros por correio electrónico",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Exportar pastas como ficheiro único:"
     },
+    "endscan": {
+        "message": "Fim da procura à directoria",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "Exportação parada",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Exportar todas as pastas",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Exportar pasta",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "A exportação foi efectuada correctamente",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Exportado",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exportador",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "A Exportar...Por favor aguarde",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Referência de formato de nome de arquivo estendido"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Adicionas algumas ferramentas para importar e exportar mensagens e pastas (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Tamanho do nome dos ficheiros"
+    },
+    "filePickerAppend": {
+        "message": "Seleccione o ficheiro mbox",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Seleccione a directoria de destino",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Seleccione o ficheiro mbox a importar",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Seleccione as mensagens a importar",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Não é possível exportar: existe um ficheiro com o mesmo nome",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Conjunto de caracteres para nomes dos ficheiros:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Abra o Diretório de Pastas"
     },
+    "folderexists": {
+        "message": "Não é possível exportar: existe uma pasta com o mesmo nome",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Se você exportar neste formato, os anexos não serão salvos. \\ NSe também quiser salvar os anexos, escolha um formato diferente. \\ NTem certeza de que deseja continuar?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Se você usar este formato, não será possível importar as mensagens exportadas. \\ NTem certeza de que deseja continuar? \\ N",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Importação concluída",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "A importar...por favor aguarde",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "The import was successful!"
     },
     "importRunning": {
         "message": "Import running..."
+    },
+    "importedMsg": {
+        "message": "Importado",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "importando",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Índice, formato de data CSV:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Pastas de Anexos Inline"
     },
+    "internalerror": {
+        "message": "Não foi possível importar devido a um erro desconhecido",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Seleção de pasta inválida"
+    },
+    "isEudora": {
+        "message": "Este arquivo “Mbox” parece vir do Eudora. \\ NO Thunderbird não consegue lidar com isso e, portanto, você deve convertê-lo para o formato “Mbox” padrão.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Funcionalidade não disponível: é possível importar de uma conta de notícias\\\\nou IMAP apenas se a pasta estiver para uso quando desligado",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "A pasta a importar não é uma pasta “Maildir”",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Este arquivo “Mbox” usa um formato diferente do formato de pasta do Thunderbird e é possível que o Thunderbird não o manipule corretamente. \\ NTem certeza de que deseja continuar?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Apenas ficheiros de correio"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Ocorreram problemas ao importar algumas mensagens:"
+    },
+    "messagesMsg": {
+        "message": "Mensagens",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "mensagens",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Misc"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportar mensagens como…"
     },
+    "msgs": {
+        "message": "mensagens de",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Várias pastas não são suportadas:\nClique em OK para exportar apenas a primeira pasta."
     },
@@ -549,18 +709,86 @@
         "message": "Não foi possível realizar a cópia de segurança: Verifique o caminho e permissões de pasta de destino",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "Nenhum ficheiro eml encontrado na directoria",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Não é possível exportar.\\\\\\\\nAs pastas selecionadas são de tipos diferentes ou uma delas é uma pasta virtual.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Nenhuma pasta de mensagens selecionada:\\n\\n Crie ou selecione uma conta válida ou uma subpasta de pasta local.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Impossível importar uma pasta “Maildir” em uma conta usando outro formato",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Impossível importar uma pasta “Mbox” em uma conta usando outro formato",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Por causa de um bug do Thunderbird, o recurso não está disponível nesta plataforma",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "Para exportar em formato PDF, selecione apenas uma pasta",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Nenhuma impressora parece instalada nesta máquina. Este recurso requer pelo menos uma impressora instalada (também virtual)",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "This folder doesn't contain a valid profile",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Não é possível exportar esta pasta remota, porque não está online.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Não mostrar este aviso de novo",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Nenhuma pasta de destino seleccionada",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "parece não ser um ficheiro mbox\\\\nou é um ficheiro mbox corrupto",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrar caracteres não alfanuméricos"
+    },
+    "nosubjectmsg": {
+        "message": "sem_assunto",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Não é possível exportar: não tem permissão de escrita na directoria",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Ficheiros eml importados:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Número de backups a serem mantidos:"
     },
+    "offlineWarning": {
+        "message": "Esta pasta está offline.\\\\\\\\nApenas as mensagens guardadas localmente serão exportadas. Deseja continuar?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Abra a ajuda em uma janela em vez de uma guia"
+    },
+    "over4GBskipMsg": {
+        "message": "maior que 4 GB, ignorando",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Path of the profile to import:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${prefixo}"
+    },
+    "processingMsg": {
+        "message": "Em processamento",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Importação de perfil",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${destinatário}"
+    },
+    "remoteWarning": {
+        "message": "Está a exportar a cópia local de uma pasta IMAP ou NEWS.\\\\\\\\nA pasta local não tem todas as mensagens presentes na pasta remota.\\\\\\\\nDeseja continuar?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Run the profile manager"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Texto"
     },
+    "searchdir": {
+        "message": "Seleccione uma directoria para procurar os ficheiros",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Exportar mensagens seleccionadas:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Selecione a pasta para importar arquivos mbox",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Selecione arquivos mbox para importar",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Remetente"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "não guardar mensagens quando o ficheiro correspondente existir"
+    },
+    "skipNonMbox": {
+        "message": "Pular arquivo não mbox",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${nome_inteligente}"
@@ -659,13 +911,22 @@
         "message": "Assunto"
     },
     "subjectFmtToken": {
-        "message": "${assunto}"
+        "message": "${assunto}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${sufixo}"
     },
+    "temp_error": {
+        "message": "Não é possível importar: ocorreu um erro na criação do ficheiro temporário",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Charset for export in text and CSV format: "
+    },
+    "timeMsg": {
+        "message": "Tempo",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profile import"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Erros. Veja o console de depuração (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Pastas virtuais podem ser exportadas neste formato separadamente",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Isto é uma pasta virtual, para exportar as mensagens tem de copiá-las para uma\\\\npasta normal e exportar esta pasta normal",
+        "src": "mboximport"
     }
 }

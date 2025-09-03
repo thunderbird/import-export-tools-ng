@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "CR から CRLF へ改行コードを変換しました。"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "エラー"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "宛先名の最大長:"
+    },
+    "Received": {
+        "message": "受け取りました",
+        "src": "mboximport"
     },
     "Size": {
         "message": "サイズ"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "バックアップ種別"
     },
+    "backupWarning": {
+        "message": "この操作中はプログラムが\\n応答しなくなる可能性があります。\\nこのまま続行しますか？",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "このフォルダーにインポートはできません (IMAP またはニュースグループ形式のため)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "このフォルダーにはインポートできません (IMAP 、ニュースグループまたは仮想フォルダー形式のため)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "参照"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "文字フィルター(UTF-8 または UTF-16)"
     },
+    "confirmimport": {
+        "message": "ファイルをインポートしますか",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "ディスク上のフォルダーパスをコピー"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "複数のメッセージを選択したときは最初のメッセージヘッダーのみクリップボードにコピーします",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "ヘッダーをクリップボードにコピーする",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "複数のメッセージが選択したときは最初のメッセージのみクリップボードにコピーします",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "メッセージをクリップボードにコピーする",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "サブフォルダーの作成中にエラーが発生しました:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - バックアップ"
     },
+    "emailFiles": {
+        "message": "メールファイル",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "フォルダーを単一ファイルでエクスポートする場所："
     },
+    "endscan": {
+        "message": "フォルダースキャンの最後",
+        "src": "mboximport"
+    },
     "error": {
         "message": "プロファイルのインポート中にエラーが発生しました。エラーの詳細は次のとおりです:"
+    },
+    "exportAborted": {
+        "message": "エクスポートを中止しました",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "すべてのフォルダーをエクスポート",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "フォルダーをエクスポート",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "エクスポートは正常に完了しました",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "エクスポートしました",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "エクスポート中",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "エクスポート中...お待ちください",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "ファイル名形式リファレンス"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "メッセージとフォルダーのインポート・エクスポート機能を追加します (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "ファイル名の長さ"
+    },
+    "filePickerAppend": {
+        "message": "選択した mbox ファイル",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "目的のフォルダーを選択",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "インポートする mbox ファイルを選択",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "選択したメッセージをインポート",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "エクスポート不可: 同じ名前のファイルが存在します",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "ファイル名用の文字コード: "
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "フォルダーの場所を開く"
     },
+    "folderexists": {
+        "message": "インポート不可: 同じ名前のフォルダーが存在します",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "このエクスポートでは、添付ファイルは保存されません。\\n添付ファイルも保存したい場合は、他の形式を使用してください。\\n  注：但し（添付ファイル含む）は、別フォルダーに保存します。\\nこのまま続行しますか？",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "この形式を使用した場合は、エクスポートしたメッセージのインポートは可能にはなりません。\\nこのまま続行しますか？",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "インポートを完了しました",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "インポート中...お待ちください",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "インポート完了！"
     },
     "importRunning": {
         "message": "インポート中..."
+    },
+    "importedMsg": {
+        "message": "インポート",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "インポート中",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "インデックス、CSV 日時形式："
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "インライン添付ファイルフォルダー名"
     },
+    "internalerror": {
+        "message": "不明なエラーのためインポートできません",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "これはプロファイルのインポートの実験的な機能です。データを失う危険はありません。しかしながら別のコンピューターからプロファイルをインポートする場合は、すべて想定どおりの動作を保証しません。ファイルを手動でコピーするよりは安全です。"
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "無効なフォルダーの選択"
+    },
+    "isEudora": {
+        "message": "この「mbox」ファイルは、Eudora のものと思われます。\\nThunderbird ではそのままでは扱うことができませんので、標準の「mbox」形式に変換してください。",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "未対応: IMAP または NEWS のアカウントは\\nオフライン利用に設定されているフォルダーのみエクスポート可能です",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "インポートフォルダーは「Maildir」フォルダーではありません。",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "この「mbox」ファイルは、Thunderbird のフォルダー形式と異なる形式を使用します。また、Thunderbird が、適切に扱えない可能性があります。\\nこのまま続行しますか？",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "メッセージファイルのみ"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "いくつかのメッセージのインポート中に問題が発生しました:"
+    },
+    "messagesMsg": {
+        "message": "メッセージ数",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "メッセージ",
+        "src": "mboximport"
     },
     "misc": {
         "message": "全般"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "メッセージを次の形式でエクスポート…"
     },
+    "msgs": {
+        "message": "メッセージ:",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "複数のフォルダーはサポートされていません:\n最初のフォルダーのみをエクスポートするには、[OK] をクリックします。"
     },
@@ -549,18 +709,86 @@
         "message": "バックアップを実行できません：コピー先のフォルダーの場所とアクセス権限を確認してください。",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "このフォルダーには EML ファイルがありませんでした",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "エクスポートすることができません。\\n選択されたフォルダーは異なるタイプか、あるいは仮想フォルダーがあります。",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "メッセージフォルダーが選択されていません：\\n\\n有効なアカウントまたはローカルフォルダーサブフォルダーを作成または選択してください。",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "別形式を使用しているアカウントの「Maildir」フォルダーのインポートはできません。",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "別形式を使用しているアカウントの「mbox」フォルダーのインポートはできません。",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "この機能は Thunderbird のバグのため、このプラットフォームでは利用できません。",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "PDF 形式でエクスポートする場合は、1 つのフォルダーのみを選択してください。",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "この PC にインストールされているプリンターがありません。この機能には、少なくともインストールされている 1 台のプリンター (または仮想プリンター 1 台) が必要です。",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "このフォルダーには、正常なプロファイルがありません。",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "オンライン状態ではないので、このリモートフォルダーをエクスポートすることができません。",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "次回からこの警告を表示しない",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "目的のフォルダーが選択されていません",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "mbox 形式のファイルではないか\\n破損した mbox ファイルのようです",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "英数字以外の文字をフィルタリングする"
+    },
+    "nosubjectmsg": {
+        "message": "件名なし",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "エクスポート不可: フォルダーへの書き込み権限がありません",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "インポート EML ファイル:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "バックアップの保存数:"
     },
+    "offlineWarning": {
+        "message": "このフォルダーはオフラインです。\\nローカルに保存されているメッセージのみエクスポートします。このまま続行しますか？",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "タブではなくウィンドウでヘルプを開く"
+    },
+    "over4GBskipMsg": {
+        "message": "4GB より大きいサイズはスキップします",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "インポートするプロファイルの場所:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${接頭文字}"
+    },
+    "processingMsg": {
+        "message": "処理",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - プロファイルのインポート",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${受信者}"
+    },
+    "remoteWarning": {
+        "message": "ローカルにある IMAP または NEWS のコピーをエクスポートしています。\\nローカルフォルダーはリモートフォルダー内のすべてのメッセージまで含むことができません。\\nこのまま続行しますか？",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "プロファイルマネージャーの起動"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "プレーンテキスト"
     },
+    "searchdir": {
+        "message": "ファイル検索するフォルダーを選択する",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "選択メッセージをエクスポートする場所："
+    },
+    "selectFolderForMboxes_title": {
+        "message": "mbox ファイルをインポートするフォルダーの選択",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "インポートする mbox ファイルの選択",
+        "src": "mboximport"
     },
     "sender": {
         "message": "差出人"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "送受信中（作成中）のファイルがあるときは保存しない"
+    },
+    "skipNonMbox": {
+        "message": "mbox 以外のファイルをスキップします",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${スマート名}"
@@ -659,13 +911,22 @@
         "message": "タイトル"
     },
     "subjectFmtToken": {
-        "message": "${件名}"
+        "message": "${件名}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${接尾文字}"
     },
+    "temp_error": {
+        "message": "インポート不可: 一時ファイル作成でエラーが発生しました",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "テキストおよび CSV 形式でエクスポートするときの文字コード："
+    },
+    "timeMsg": {
+        "message": "時間",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - プロファイルのインポート"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  エラー デバッグコンソールを表示する  (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "仮想フォルダーはこの形式で別々にエクスポートすることができます",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "これは仮想フォルダーであり、メッセージをエクスポートするためには\\n通常のフォルダーにコピーしてエクスポートする必要があります",
+        "src": "mboximport"
     }
 }

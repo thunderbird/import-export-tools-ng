@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "Konverzia zakončení CR =&gt; CRLF"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Chyba"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Max. dĺžka mena príjemcu:"
+    },
+    "Received": {
+        "message": "obdržané",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Veľkosť"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Obsah zálohy"
     },
+    "backupWarning": {
+        "message": "Počas tejto operácie môže aplikácia \\\\nna niekoľko minút prestať reagovať. \\\\nChcete pokračovať?",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Nemožno naimportovať do tohoto priečinka (typ imap alebo diskusná skupina)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Do tohto priečinka sa nedá importovať (imap, diskusná skupina alebo virtuálny)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Browser"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Filter znakov (UTF-8 alebo UTF-16)"
     },
+    "confirmimport": {
+        "message": "Chcete importovať súbor?",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Kopírovať cestu k priečinku na disku"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Bolo vybratých viacero správ, do schránky boli skopírované iba hlavičky prvých správ.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Skopírujte hlavičky do schránky",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Bolo vybratých viacero správ, do schránky bola skopírovaná iba prvá správa.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Kopírovať správy do schránky",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Chyba pri vytváraní podpriečinku:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - Záloha"
     },
+    "emailFiles": {
+        "message": "Súbory e-mailov",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Export priečinkov ako samostatné súbory:"
     },
+    "endscan": {
+        "message": "Koniec prehľadávania priečinkov",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "Export zastavený",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Exportovať všetky priečinky",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Exportovať priečinok",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Export bol úspešne dokončený",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Exportovalo sa",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exportuje sa",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Prebieha export, čakajte prosím...",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Odkaz na formát rozšíreného názvu súboru"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Umožňuje import a export súborov vo formáte .mbox (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Dĺžka názvov súborov"
+    },
+    "filePickerAppend": {
+        "message": "Výber súboru .mbox",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Výber cieľového priečinka",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Výber súboru na import",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Výber správ na importovanie",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Nemožno importovať: súbor s rovnakým názvom už existuje",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Znaková sada pre názvy súborov:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Otvorte adresár priečinka"
     },
+    "folderexists": {
+        "message": "Nemožno importovať: priečinok s rovnakým názvom už existuje",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Ak exportujete v tomto formáte, prílohy sa neuložia. \\ NAk chcete uložiť aj prílohy, zvoľte iný formát. \\ NNaozaj chcete pokračovať?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Ak použijete tento formát, nebude možné exportované správy importovať. \\ NNaozaj chcete pokračovať? \\ N",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Import Hotovo",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Prebieha import... čakajte",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "The import was successful!"
     },
     "importRunning": {
         "message": "Import running..."
+    },
+    "importedMsg": {
+        "message": "Importované",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importuje sa",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Register, formát dátumu CSV:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Vložené priečinky príloh"
     },
+    "internalerror": {
+        "message": "Nemožno naimportovať, pretože nastala neznáma chyba",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Neplatný výber priečinka"
+    },
+    "isEudora": {
+        "message": "Zdá sa, že tento súbor „Mbox“ pochádza od Eudory. \\ NThunderbird to nedokáže spracovať, a preto ho musíte previesť v štandardnom formáte „Mbox“.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Táto funkcia je nedostupná: export priečinka s účtov IMAP alebo  diskusných \\\\nskupín, je možný len ak sú nastavené na čítanie v režime Offline",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Priečinok na importovanie nie je priečinkom „Maildir“",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Tento súbor „Mbox“ používa iný formát ako formát priečinka Thunderbird a je možné, že ho Thunderbird nedokáže správne spracovať. \\ NNaozaj chcete pokračovať?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Len súbory s poštou"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Pri importovaní niektorých správ sa vyskytli problémy:"
+    },
+    "messagesMsg": {
+        "message": "Správy",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "správy",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Rôzne"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportovať správy ako…"
     },
+    "msgs": {
+        "message": "správ z",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Viaceré priečinky nie sú podporované:\nKliknutím na tlačidlo OK exportujete iba prvý priečinok."
     },
@@ -549,18 +709,86 @@
         "message": "Zálohu nemožno vykonať: skontrolujte cestu a atribúty cieľového priečinka",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "V tomto priečinku nie je žiadny súbor .eml",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Nemožno exportovať. \\\\nVo vybrané priečinky sú rôznych typov, alebo jeden z nich je virtuálny priečinok.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Nie je vybratý žiadny priečinok so správami:\\n\\n Vytvorte alebo vyberte platný účet alebo podpriečinok Miestny priečinok.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Nie je možné importovať priečinok „Maildir“ do účtu v inom formáte",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Nie je možné importovať priečinok „Mbox“ do účtu v inom formáte",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Kvôli chybe Thunderbirdu nie je táto funkcia na tejto platforme k dispozícii",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "Ak chcete exportovať do formátu PDF, vyberte iba jeden priečinok",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Na tomto stroji sa zdá, že nie je nainštalovaná žiadna tlačiareň. Táto funkcia vyžaduje aspoň jednu nainštalovanú tlačiareň (tiež virtuálnu)",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "This folder doesn't contain a valid profile",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Tento vzdialený priečinok nemožno exportovať, pretože nie je online.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Toto varovanie už viac nezobrazovať",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Nebol vybraný žiadny cieľový priečinok",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "nie je súbor typu .mbox",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrujte nealfanumerické znaky"
+    },
+    "nosubjectmsg": {
+        "message": "bez_predmetu",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Nemožno importovať: nemáte právo zápisu do priečinka",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Importované .eml súbory:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Počet záloh, ktoré sa majú zachovať:"
     },
+    "offlineWarning": {
+        "message": "Tento priečinok je offline. \\\\nExportované budú len lokálne uložené správy. Naozaj chcete pokračovať?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Otvorte pomocníka v okne namiesto karty"
+    },
+    "over4GBskipMsg": {
+        "message": "väčšie ako 4 GB, preskakovanie",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Path of the profile to import:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${predpona}"
+    },
+    "processingMsg": {
+        "message": "Spracovanie",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Import profilu",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${príjemca}"
+    },
+    "remoteWarning": {
+        "message": "Exportujete lokálnu kópiu priečinka IMAP alebo NEWS. \\\\nMiestny priečinok však neobsahuje všetky správy, ktoré sú vo vzdialenom priečinku. \\\\nNaozaj chcete pokračovať?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Run the profile manager"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Čistý text"
     },
+    "searchdir": {
+        "message": "Vyberte priečinok, v ktorom budú vyhľadané súbory mbox",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Export vybraných správ:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Vyberte priečinok na import súborov mbox",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Vyberte súbory mbox, ktoré chcete importovať",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Odosielateľ"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "neukladať správy ak už podobný súbor existuje"
+    },
+    "skipNonMbox": {
+        "message": "Preskočiť iný súbor ako mbox",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${inteligentné_meno}"
@@ -659,13 +911,22 @@
         "message": "Predmet"
     },
     "subjectFmtToken": {
-        "message": "${predmet}"
+        "message": "${predmet}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${prípona}"
     },
+    "temp_error": {
+        "message": "Nemožnosť importu: neznáma chyba pri vytváraní dočasného súboru",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Znaková sada pre export v textovom a CVS formáte:"
+    },
+    "timeMsg": {
+        "message": "Čas",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profile import"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Chyby. Zobraziť konzolu ladenia (Ctrl-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Virtuálne priečinky nemožno exportovať v tomto formáte, ale oddelene",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Toto je virtuálny priečinok. Pre export jeho\\\\nspráv ich musíte najskôr skopírovať do\\\\nnormálneho priečinka.",
+        "src": "mboximport"
     }
 }

@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "Konvertering av CR =&gt; CRLF-linjeavslutningar"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Fel"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Mottagarnamnets maxlängd: "
+    },
+    "Received": {
+        "message": "Mottagen",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Storlek"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Säkerhetskopians innehåll"
     },
+    "backupWarning": {
+        "message": "Under den här operationen kan programmet bli\\nokontaktbart under några minuter.\\nVill du fortsätta?\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Det är omöjligt att importera till den här mappen (IMAP- eller diskussionsgruppsmapp)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Det är omöjligt att importera till den här mappen (IMAP-, diskussionsgrupps- eller virtuell mapp)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Browser"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Teckenfilter (UTF-8 eller UTF-16)"
     },
+    "confirmimport": {
+        "message": "Vill du importera filen",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Kopiera mappsökväg på disk"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Flera meddelanden har valts, endast första meddelanderubriker har kopierats till urklipp.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Kopiera rubriker till Urklipp",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Flera meddelanden har valts, bara det första meddelandet kopieras till urklipp.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Kopiera meddelanden till Urklipp",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Det gick inte att skapa undermapp:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG: Säkerhetskopiering"
     },
+    "emailFiles": {
+        "message": "E-postfiler",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Exportera mappar som enskilda filer:"
     },
+    "endscan": {
+        "message": "Mappsökningen avslutad",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "Exporten avbröts",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Exportera alla mappar",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Exportera mapp",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Exporten slutfördes",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Exporterade",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exporterar",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Exporterar… Var vänlig vänta",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Utökad referens för filnamnsformat"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Lägger till några verktyg för import och export av meddelanden och mappar (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Filnamnslängd"
+    },
+    "filePickerAppend": {
+        "message": "Välj MBOX-fil",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Välj målmapp",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Välj MBOX-fil att importera",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Välj meddelanden att importera",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Det går inte att exportera: Det finns en fil med samma namn",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Teckenuppsättning för filnamn:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Öppna mappkatalog"
     },
+    "folderexists": {
+        "message": "Det går inte att importera: Det finns en mapp med samma namn",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Om du exporterar i det här formatet sparas inte bilagorna. \\ NOm du också vill spara bilagorna väljer du ett annat format. \\ NVill du vara säker på att du vill fortsätta?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Om du använder det här formatet är det inte möjligt att importera de exporterade meddelandena. \\ NÄr du säker på att du vill fortsätta? \\ N",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Import klar",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Importerar… Var vänlig vänta",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "The import was successful!"
     },
     "importRunning": {
         "message": "Import running..."
+    },
+    "importedMsg": {
+        "message": "Importerad",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importerar",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Index, CSV-datumformat:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Inline bifogade mappar"
     },
+    "internalerror": {
+        "message": "Det går inte att importera p.g.a. ett okänt fel",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Ogiltigt val av mapp"
+    },
+    "isEudora": {
+        "message": "Den här &quot;Mbox&quot; -filen verkar komma från Eudora. \\ NThunderbird kan inte hantera den och så måste du konvertera den i standard &quot;Mbox&quot; -format.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Funktionen är inte tillgänglig: Det är endast möjligt att exportera från ett IMAP-\\neller diskussionsgruppskonto om mappen har ställts in för offlineanvändning",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Mappen som ska importeras är inte en ”Maildir” -mapp",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Den här &quot;Mbox&quot; -filen använder ett annat format än Thunderbird-mappformatet och det är möjligt att Thunderbird inte kan hantera den ordentligt. \\ NÄr du säker på att du vill fortsätta?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Endast meddelandefiler"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Det uppstod problem med att importera några meddelanden:"
+    },
+    "messagesMsg": {
+        "message": "Meddelanden",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "meddelanden",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Övrigt"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportera meddelanden som..."
     },
+    "msgs": {
+        "message": "meddelanden av",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Flera mappar stöds inte:\nKlicka på OK för att exportera bara den första mappen."
     },
@@ -549,18 +709,86 @@
         "message": "Det gick inte att utföra säkerhetskopieringen. Kontrollera sökväg och behörigheter för målmappen",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "Ingen EML-fil hittades i den här mappen",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Det gick inte att exportera.\\nDe valda mapparna är antingen av olika typ eller så är en av dem en virtuell mapp.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Ingen meddelandemapp vald:\\n\\n Skapa eller välj ett giltigt konto eller en lokal mapp.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Det går inte att importera en &quot;Maildir&quot; -mapp till ett konto med ett annat format",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Det går inte att importera en &quot;Mbox&quot; -mapp till ett konto med ett annat format",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "På grund av ett Thunderbird-fel är funktionen inte tillgänglig på den här plattformen",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "För att exportera i PDF-format, välj bara en mapp",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Ingen skrivare verkar installerad på den här maskinen. Den här funktionen kräver minst en skrivare installerad (även en virtuell)",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "This folder doesn't contain a valid profile",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Det gick inte att exportera denna fjärrmapp eftersom den inte är online.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Visa inte den här varningen igen",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Ingen målmapp har valts",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "verkar inte vara en MBOX-fil\\neller så är den en skadad MBOX-fil",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrera icke-alfanumeriska tecken"
+    },
+    "nosubjectmsg": {
+        "message": "(inget_ämne)",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Det går inte att exportera: Mappen är skrivskyddad",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Antal importerade EML-filer:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Antal säkerhetskopior att behålla:"
     },
+    "offlineWarning": {
+        "message": "Denna mapp är offline.\\nEndast lokalt sparade meddelanden kommer att exporteras. Vill du fortsätta?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Öppna hjälpen i ett fönster istället för en flik"
+    },
+    "over4GBskipMsg": {
+        "message": "större än 4 GB, hoppar över",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Path of the profile to import:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${prefix}"
+    },
+    "processingMsg": {
+        "message": "Bearbetning",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Profilimport",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${mottagare}"
+    },
+    "remoteWarning": {
+        "message": "Du håller på att exportera den lokala kopian av en IMAP- eller diskussionsgruppsmapp.\\nDen lokala mappen kan inte innehålla alla meddelanden som finns i fjärrmappen.\\nVill du fortsätta?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Run the profile manager"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Oformaterad text"
     },
+    "searchdir": {
+        "message": "Välj mapp för sökning efter MBOX-filer",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Exportera markerade meddelanden:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Välj mapp för att importera mbox-filer",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Välj mbox-filer att importera",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Användare"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "spara inte meddelanden om motsvarande fil redan finns"
+    },
+    "skipNonMbox": {
+        "message": "Hoppa över icke-mbox-fil",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${smart_namn}"
@@ -659,13 +911,22 @@
         "message": "Ämne"
     },
     "subjectFmtToken": {
-        "message": "${ämne}"
+        "message": "${ämne}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${suffix}"
     },
+    "temp_error": {
+        "message": "Det är omöjligt att importera: Ett fel inträffade när en temporär fil skulle skapas",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Teckenuppsättning för export i text- och CSV-format:"
+    },
+    "timeMsg": {
+        "message": "Tid",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profile import"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Fel. Visa felsökningskonsolen (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Virtuella mappar kan exporteras i det här formatet, fast var för sig",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Det här är en virtuell mapp. För att exportera dess meddelanden måste du\\nkopiera dem till en vanlig mapp och exportera den istället",
+        "src": "mboximport"
     }
 }

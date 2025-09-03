@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "Konvertering af CR =&gt; CRLF linjeafslutninger"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Fejl"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Maksimum længde på modtagers navn:"
+    },
+    "Received": {
+        "message": "Modtaget",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Størrelse"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Indhold af sikkerhedskopi"
     },
+    "backupWarning": {
+        "message": "Under denne handling kan det ske,\\nat programmet ikke svarer i nogle minutter.\\nVil du fortsætte?\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Ude af stand til at importere i denne mappe (imap eller nyhedsgruppe type)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Import til denne mappe er ikke mulig (imap, nyhedsgruppe eller virtuel type)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Gennemse…"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Tegnfilter (UTF-8 eller UTF-16)"
     },
+    "confirmimport": {
+        "message": "Vil du importere filen",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Kopier mappens sti på disken"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Flere meddelelser valgt, kun første meddelelses-header kopieret til udklipsholder.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Kopier headers til udklipsholder",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Flere meddelelser valgt, kun første meddelelse kopieret til udklipsholder.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Kopier meddelelser til udklipsholder",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Fejl under oprettelse af undermappe:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - Sikkerhedskopier"
     },
+    "emailFiles": {
+        "message": "Mailfiler",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Eksporter mapper som enkelte filer:"
     },
+    "endscan": {
+        "message": "Søgning i mappe er fuldført",
+        "src": "mboximport"
+    },
     "error": {
         "message": "Der opstod en fejl under import af profilen. Fejldetaljer:"
+    },
+    "exportAborted": {
+        "message": "Eksport stoppet",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Eksporter alle mapperne",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Eksporter mappe",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Eksporten er blevet korrekt udført",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Eksporteret",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Eksporterer",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Eksporterer...vent venligst",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Henvisning til udvidet filnavnsformat"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Tilføjer nogle værktøjer til import og eksport af meddelelser og mapper (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Filnavnes længde"
+    },
+    "filePickerAppend": {
+        "message": "Vælg mbox-filen",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Vælg destinationsmappe",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Vælg mbox-filen der skal importeres",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Vælg meddelelserne til import",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Ude at stand til at eksportere: der findes en mappe med samme navn",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Tegnkodning af filnavne:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Åbn mappens mappe"
     },
+    "folderexists": {
+        "message": "Ude at stand til at importere: der findes en mappe med samme navn",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Eksport i HTML eller ren tekstformat gemmer ikke de vedhæftede filer.\\nHvis du også ønsker at gemme de vedhæftede filer, brug EML-format.\\nVil du fortsætte?\\n",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Hvis du bruger dette format, vil det ikke være muligt at importere de eksporterede meddelelser.\\nVil du fortsætte?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Import færdig",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Importere...vent venligst",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Importen lykkedes!"
     },
     "importRunning": {
         "message": "Import kører…"
+    },
+    "importedMsg": {
+        "message": "Importeret",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importerer",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Indeks, CSV-datoformat:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Mapper med indlejrede vedhæftede filer"
     },
+    "internalerror": {
+        "message": "Ude af stand til at importerer på grund af ukendt fejl",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Dette er en eksperimentel procedure til import af en profil. Der er ingen fare for tab af data, men der er ingen garanti for, at alt vil fungere som ventet, specielt ikke, hvis du importere en profil fra en anden computer. Det er dog sikrere end at kopiere filerne manuelt."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Ugyldigt mappevalg"
+    },
+    "isEudora": {
+        "message": "Denne \"mbox\"-fil ser ud til at komme fra Eudora.\\nThunderbird kan ikke håndtere den, så du skal konvertere den i standard \"mbox\"-format.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Funktionen er ikke tilgængelig: Det er kun muligt at eksportere fra en IMAP-\\neller NEWS-konto hvis mappen er sat til offline-brug",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Mappen til import er ikke en \"Maildir\"-mappe",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Denne \"mbox\"-fil bruger et andet format end Thunderbird-mappe-formatet\\nog det er muligt at Thunderbird ikke kan håndtere den korrekt.\\nVil du fortsætte?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Kun mailfiler"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Der opstod problemer med at importere nogle meddelelser:"
+    },
+    "messagesMsg": {
+        "message": "Meddelelser",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "meddelelser",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Diverse"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Eksporter meddelelser som…"
     },
+    "msgs": {
+        "message": "meddelelser af",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Flere mapper understøttes ikke:\nKlik OK for kun at eksportere den første mappe."
     },
@@ -549,18 +709,86 @@
         "message": "Kunne ikke tage sikkerhedskopier: Undersøg destinationsmappes sti og og tilladelser",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "Der blev ikke fundet nogen eml-fil i denne mappe",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Kunne ikke eksportere.\\De valgte mapper er af en anden type, eller en af dem er en virtuel mappe.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Ingen meddelelsesmappe valgt:\\n\\n Opret eller vælg en gyldig konto eller undermappe til lokal mappe.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Umuligt at importere en \"Maildir\"-mappe i en konto der anvender et andet format",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Umuligt at importere en \"Mbox\"-mappe i en konto der anvender et andet format",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "På grund af en fejl i Thunderbird, er denne funktion ikke tilgængelig på denne platform.",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "For at eksportere i PDF-format, vælg kun én mappe",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Der ser ikke ud til at være installeret nogen printer på denne maskine. Denne funktion kræver mindst én printer installeret (også en virtuel)",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "Denne mappe indeholder ikke en gyldig profil",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Kunne ikke eksportere denne fjernmappe da den ikke er online.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Vis ikke denne advarsel igen",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Ingen destinationsmappe er valgt",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "ser ikke ud til at være en mbox-fil\\neller at være en ødelagt mbox-fil",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Filtrer ikke-alfanumeriske tegn"
+    },
+    "nosubjectmsg": {
+        "message": "intet_emne",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Ude at stand til at eksportere: ingen skrivetilladelse i denne mappe",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Eml-filer importeret:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Antal sikkerhedskopier, der skal beholdes:"
     },
+    "offlineWarning": {
+        "message": "Denne mappe er offline.\\Kun de meddelelser der er gemt lokalt vil blive eksporteret. Vil du fortsætte?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Åbn hjælp i et vindue i stedet for i et faneblad"
+    },
+    "over4GBskipMsg": {
+        "message": "større end 4 GB, springer over",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Stien til profilen der skal importeres:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${præfiks}"
+    },
+    "processingMsg": {
+        "message": "Arbejder",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Profilimport",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${modtager}"
+    },
+    "remoteWarning": {
+        "message": "Du er ved at eksportere den lokale kopi af en IMAP- eller en NEWS-mappe.\\nDen lokale mappe kan ikke indeholde alle de meddelelser som findes i fjernmappen.\\nVil du fortsætte?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Kør profilmanageren"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Ren tekst"
     },
+    "searchdir": {
+        "message": "Vælg en mappe at søge i",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Eksporter valgte meddelelser:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Vælg mappe for at importere mbox-filer",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Vælg mbox-filer, der skal importeres",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Afsender"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "Gem ikke meddelelser når den tilsvarende fil findes"
+    },
+    "skipNonMbox": {
+        "message": "Spring ikke-mbox-fil over",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${smart_navn}"
@@ -659,13 +911,22 @@
         "message": "Emne"
     },
     "subjectFmtToken": {
-        "message": "${emne}"
+        "message": "${emne}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${suffiks}"
     },
+    "temp_error": {
+        "message": "Import er ikke mulig: en fejl er opstået i oprettelse af midlertidig fil",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Tegnkodning til eksport i tekst- og CSV-format:"
+    },
+    "timeMsg": {
+        "message": "Tid",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profilimport"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Fejl. Se fejlkonsolkonsollen (Control+Skift+J)"
+    },
+    "virtFolAlert": {
+        "message": "Virtuelle mapper kan eksporteres i dette format, men kun separat",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Dette er en virtuel mappe. For at eksportere dens meddelelser skal du\\nkopiere dem til en almindelig mappe og eksportere denne almindelig mappe",
+        "src": "mboximport"
     }
 }

@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "Преобразование CR =&gt; окончания строки CRLF"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Ошибка"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Максимальная длина имени получателя:"
+    },
+    "Received": {
+        "message": "Получили",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Размер"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Состав резервной копии"
     },
+    "backupWarning": {
+        "message": "Во время этой операции в течение нескольких минут\\nпрограмма может не реагировать на ваши действия.\\nВы хотите продолжить?",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Невозможно импортировать в эту папку (тип IMAP или группы обсуждения)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Невозможно импортировать в эту папку (тип IMAP, группы обсуждения или виртуальный)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Обзор"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Фильтр символов (UTF-8 или UTF-16)"
     },
+    "confirmimport": {
+        "message": "Вы хотите импортировать файл",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Копировать путь к папке на диске"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Выбрано несколько сообщений, в буфер обмена скопированы только заголовки первых сообщений.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Копировать заголовки в буфер обмена",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Выбрано несколько сообщений, в буфер обмена скопировано только первое сообщение.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Копирование сообщений в буфер обмена",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Ошибка создания подпапки:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG — Резервное копирование"
     },
+    "emailFiles": {
+        "message": "Файлы эл. почты",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "папок как одного файла:"
     },
+    "endscan": {
+        "message": "Сканирование каталогов закончено",
+        "src": "mboximport"
+    },
     "error": {
         "message": "При импорте профиля произошла ошибка. Сведения об ошибке:"
+    },
+    "exportAborted": {
+        "message": "Экспортирование остановлено",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Экспортировать все папки",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Экспортировать папку",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Экспорт был завершён правильно",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Экспортировано",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Экспорт",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Подождите, идёт экспорт…",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Расширенная ссылка на формат имени файла"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Добавляет инструменты для импорта и экспорта сообщений и папок (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Длина имени файла"
+    },
+    "filePickerAppend": {
+        "message": "Выберите файл mbox",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Укажите целевой каталог",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Укажите файл для импорта",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Выберите сообщение для импорта",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Невозможно экспортировать: файл с таким именем уже существует",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Кодировка символов для имён файлов:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Открыть каталог папок"
     },
+    "folderexists": {
+        "message": "Невозможно импортировать: папка с таким именем уже существует",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Если вы экспортируете в этом формате, вложения не сохраняются.\\nЕсли вы хотите сохранить также вложения, выберите другой формат.\\nВы уверены, что хотите продолжить?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Если вы используете этот формат, будет невозможно импортировать экспортированные сообщения.\\nВы уверены, что хотите продолжить?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Импорт выполнен",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Подождите, идёт импорт…",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Импорт выполнен успешно!"
     },
     "importRunning": {
         "message": "Выполняется импорт…"
+    },
+    "importedMsg": {
+        "message": "Импортировано",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Импорт",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Индекс, формат даты CSV:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Встроенные папки вложений"
     },
+    "internalerror": {
+        "message": "Невозможно импортировать из-за неизвестной ошибки",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Процедура импорта профиля является экспериментальной. Риск потери данных отсутствует, но нет гарантий, что процедура будет выполнена ожидаемым образом (особенно при импорте профиля с другого компьютера). В любом случае, это безопаснее копирования файлов вручную."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Неверный выбор папки"
+    },
+    "isEudora": {
+        "message": "Этот файл «Mbox», кажется, исходит от Eudora.\\nThunderbird не может его обработать, поэтому вы должны преобразовать его в стандартный формат «Mbox».",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Возможность недоступна: экспорт из учётной записи IMAP или NEWS\\nвозможен, только если папка настроена для автономной работы",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Папка для импорта не является папкой «Maildir».",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "В этом файле «Mbox» используется формат, отличный от формата папки Thunderbird, и возможно, что Thunderbird не сможет правильно его обработать.\\nВы уверены, что хотите продолжить?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Только файлы почты"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Возникли проблемы с импортом некоторых сообщений:"
+    },
+    "messagesMsg": {
+        "message": "Сообщения",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "сообщений",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Разное"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Экспортировать сообщения как…"
     },
+    "msgs": {
+        "message": "сообщений из",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Несколько папок не поддерживаются:\nНажмите «ОК», чтобы экспортировать только первую папку."
     },
@@ -549,18 +709,86 @@
         "message": "Невозможно выполнить резервное копирование: проверьте путь и права доступа целевой папки",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "В этом каталоге не найдено ни одного файла eml.",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Невозможно экспортировать.\\nВыбранные папки имеют разные типы, или одна из них является виртуальной.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Папка сообщений не выбрана:\\n\\nПожалуйста, создайте или выберите действующую учётную запись или подпапку локальной папки.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Невозможно импортировать папку «Maildir» в учётную запись с использованием другого формата",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Невозможно импортировать папку «Mbox» в учётную запись с использованием другого формата",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Из-за ошибки Thunderbird эта функция недоступна на этой платформе.",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "Для экспорта в формате PDF выберите только одну папку",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "На этом компьютере не установлен принтер. Для этой функции требуется как минимум один установленный принтер (также виртуальный).",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "В этой папке нет корректного профиля",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Невозможно экспортировать эту удалённую папку, потому что она не подключена.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Больше не показывать это предупреждение",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Не указана целевая папка",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "кажется, не файл mbox или повреждённый файл mbox",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Фильтровать небуквенно-цифровые символы"
+    },
+    "nosubjectmsg": {
+        "message": "нет_объекта",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Невозможно экспортировать: нет прав для записи в указанный каталог",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Импортированные файлы eml:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Количество сохраняемых резервных копий:"
     },
+    "offlineWarning": {
+        "message": "Это автономная папка.\\nБудут экспортированы только локально сохранённые сообщения. Вы хотите продолжить?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Открыть справку в окне вместо вкладки"
+    },
+    "over4GBskipMsg": {
+        "message": "больше 4 ГБ, пропускаем",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Путь к профилю для импорта:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${префикс}"
+    },
+    "processingMsg": {
+        "message": "Обработка",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Импорт профиля",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${получатель}"
+    },
+    "remoteWarning": {
+        "message": "Вы экспортируете локальную копию папки IMAP или новостей.\\nЛокальная папка может не содержать всех сообщений, присутствующих в удалённой папке.\\nВы хотите продолжить?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Запустить диспетчер профилей"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Обычный текст"
     },
+    "searchdir": {
+        "message": "Выберите каталог для поиска файлов mbox",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "выбранных сообщений:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Выберите папку для импорта файлов mbox",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Выберите файлы mbox для импорта",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Отправитель"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "Не сохранять сообщения, если соответствующий файл существует"
+    },
+    "skipNonMbox": {
+        "message": "Пропустить файл, отличный от mbox",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${умное_имя}"
@@ -659,13 +911,22 @@
         "message": "Тема"
     },
     "subjectFmtToken": {
-        "message": "${тема}"
+        "message": "${тема}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${суффикс}"
     },
+    "temp_error": {
+        "message": "Невозможно импортировать: произошла ошибка при создании временного файла",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Кодировка для экспорта в виде текста и формате CSV: "
+    },
+    "timeMsg": {
+        "message": "Время",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG — Импорт профиля"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Ошибки. Просмотр консоли отладки (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Виртуальные папки могут быть экспортированы в этом формате только по отдельности",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Это — виртуальная папка. Чтобы экспортировать сообщения из неё, вы должны\\nскопировать их в обычную папку и экспортировать эту папку.",
+        "src": "mboximport"
     }
 }

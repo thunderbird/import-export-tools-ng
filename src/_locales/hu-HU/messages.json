@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "CR =&gt; CRLF vonalvégződések konvertálása"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Hiba"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Címzett nevének maximális hossza:"
+    },
+    "Received": {
+        "message": "Beérkezett",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Méret"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Biztonsági mentés tartalma"
     },
+    "backupWarning": {
+        "message": "E művelet közben a program pár\\npercre inaktívnak tűnhet.\\nVégrehajtja a műveletet?",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Nem lehet importálni ebbe a mappába (IMAP vagy hírcsoport)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "A mappa nem importálható (IMAP, hírcsoport vagy virtuális típus)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Tallózás…"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Karakterszűrő (UTF-8 vagy UTF-16)"
     },
+    "confirmimport": {
+        "message": "Szeretné importálni a fájlt?",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Mappa útvonalának másolása"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Több üzenet van kiválasztva, csak az első üzenet fejléce másolva a vágólapra.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Fejlécek másolása a vágólapra",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Több üzenet van kiválasztva, csak az első üzenet másolva a vágólapra.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Üzenetek másolása a vágólapra",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Hiba az almappa létrehozásakor:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - biztonsági mentés"
     },
+    "emailFiles": {
+        "message": "Fájl küldése emailben",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Mappák exportálása külön fájlokként:"
     },
+    "endscan": {
+        "message": "A mappa ellenőrzése befejeződött",
+        "src": "mboximport"
+    },
     "error": {
         "message": "Hiba történt a profil importálása során. A hiba részletei:"
+    },
+    "exportAborted": {
+        "message": "Az exportálás leállítva",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Mindegyik mappa exportálása",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Mappa exportálása",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Az exportálás sikeresen befejeződött",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Exportált üzenetek száma:",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exportálás",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Exportálás, kis türelmet…",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Bővített fájlnév-formátum-referencia"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Üzenetek és mappák importálása/exportálása (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Fájlnév hossza"
+    },
+    "filePickerAppend": {
+        "message": "Válassza ki az MBOX fájlt",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Válassza ki a célmappát",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Válassza ki az importálandó MBOX fájlt",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Az importálni kívánt üzenetek kijelölése",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Nem importálható: ilyen nevű fájl már létezik",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Fájlnév karaktertábla:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Nyissa meg a Mappa könyvtárát"
     },
+    "folderexists": {
+        "message": "Nem importálható: ilyen nevű mappa már létezik",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "A mellékletek nincsenek elmentve, ha HTML vagy nem formázott szövegként exportál.\\nHa menteni kívánja a mellékleteket is, használja az EML formátumot.\\\\nÁtvált erre a formátumra most?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Ha ezt a formátumot használja, nem lesz lehetséges az exportált üzenetek importálása.\\nBiztosan folytatja?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Az importálás kész",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Importálás, kis türelmet…",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Az importálás sikeres!"
     },
     "importRunning": {
         "message": "Importálás folyamatban…"
+    },
+    "importedMsg": {
+        "message": "Importált",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importálás",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Index, CSV dátumformátum:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Beépített mellékletek mappái"
     },
+    "internalerror": {
+        "message": "Nem importálható, mert ismeretlen hiba keletkezett",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Ez egy profil importálására szolgáló kísérleti eljárás. Nincs adatkezelési kockázat, de nem garantált, hogy minden a várt módon működni fog, különösen, ha egy profilt egy másik számítógépről importál. Egyébként biztonságosabb, mint a fájlok manuális másolása."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Érvénytelen mappaválasztás"
+    },
+    "isEudora": {
+        "message": "Ezt az MBOX fájlt az Eudora küldte.\\nA Thunderbird nem tudja kezelni. Alakítsa át MBOX formátumba.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Ez a funkció nem érhető el: az IMAP vagy hírcsoportok exportálása csak akkor érhető el, ha a mappa kapcsolat nélküli munkára (Offline) van beállítva",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Az importálandó mappa nem egy MAILDIR mappa",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Ez az MBOX fájl más formátumot használ, mint a Thunderbird mappa, és lehetséges, hogy a Thunderbird nem tudja megfelelően kezelni.\\nBiztosan folytatja?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Csak mail fájlok"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Problémák adódtak néhány üzenet importálásakor:"
+    },
+    "messagesMsg": {
+        "message": "üzenetek",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "üzenetek",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Vegyes"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Üzenetek exportálása mint…"
     },
+    "msgs": {
+        "message": "/",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Több mappa nem támogatott:\nKattintson az OK gombra, ha csak az első mappát szeretné exportálni."
     },
@@ -549,18 +709,86 @@
         "message": "A mentés nem végezhető el: ellenőrizze az útvonalat és a célmappa hozzáféréseit",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "Nem található EML fájl a mappában",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Nem lehet exportálni.\\\\nA kiválasztott mappák különböző típusúak, vagy az egyik egy virtuális mappa.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Nincs kiválasztva üzenet mappa:\\n\\n Kérjük, hozzon létre vagy válasszon ki egy érvényes fiókot vagy Helyi mappa almappát.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Az MAILDIR mappa nem importálható a postafióktól különböző formátumban",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Az MBOX mappa nem importálható a postafióktól különböző formátumban",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "A Thunderbird hiba miatt a szolgáltatás nem érhető el ezen a platformon",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "PDF formátumban történő exportáláshoz válasszon csak egy mappát",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Úgy tűnik, hogy nincs nyomtató telepítve a számítógépre. Legalább egy nyomtató (beleértve a virtuálisat is) telepítve van ehhez a szolgáltatáshoz.",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "Ez a mappa nem tartalmaz érvényes profilt",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Nem sikerült exportálni a távoli mappát, mert az nem elérhető.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Ne jelenjen meg újra a figyelmeztetés",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Célmappa nincs kiválasztva",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "nem MBOX fájl vagy az MBOX fájl sérült",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "A nem alfanumerikus karakterek szűrése"
+    },
+    "nosubjectmsg": {
+        "message": "nincs_tárgy",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Nem importálható: nincs a mappához írás jogosultsága",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Az EML fájlok importálva:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "A megőrzendő biztonsági másolatok száma:"
     },
+    "offlineWarning": {
+        "message": "Ez a mappa nem elérhető.\\nCsak a helyileg mentett üzenetek kerülnek exportálásra. Szeretné folytatni?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Lap helyett ablakban nyissa meg a súgót"
+    },
+    "over4GBskipMsg": {
+        "message": "nagyobb, mint 4 GB, kihagyva",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Az importálandó profil útvonala:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${előtag}"
+    },
+    "processingMsg": {
+        "message": "Feldolgozás",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG – Profilimportálás",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${címzett}"
+    },
+    "remoteWarning": {
+        "message": "IMAP vagy HÍREK mappa helyi másolatábak ezportálása.\\\\nA helyi mappa nem tartalmazza a távoli mappa minden üzenetét.\\\\nSzeretné folytatni?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Profilkezelő futtatása"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Nem formázott szöveg"
     },
+    "searchdir": {
+        "message": "Válasszon mappát a fájlok kereséséhez",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Kijelölt üzenetek exportálása:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Válassza ki a mappát az mbox fájlok importálásához",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Válassza ki az importálni kívánt mbox fájlokat",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Feladó"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "ne mentse az üzenetet, ha a fájl létezik"
+    },
+    "skipNonMbox": {
+        "message": "Nem mbox fájl kihagyása",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${okos_név}"
@@ -659,13 +911,22 @@
         "message": "Tárgy"
     },
     "subjectFmtToken": {
-        "message": "${tárgy}"
+        "message": "${tárgy}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${utótag}"
     },
+    "temp_error": {
+        "message": "Nem importálható: hiba az ideiglenes fájl létrehozásakor",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Szöveg és CSV formátum karakterkódolása exportáláskor:"
+    },
+    "timeMsg": {
+        "message": "Idő",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profil importálása"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Hibák. Lásd a Hibakereső konzolt (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "A virtuális mappák csak külön exportálhatók",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Ez egy virtuális mappa.\\nÜzeneteinek exportálásához először másolja át a mappa üzeneteit egy normál mappába.",
+        "src": "mboximport"
     }
 }

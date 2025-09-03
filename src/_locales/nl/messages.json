@@ -2,6 +2,10 @@
     "CRconversion.statusMsg": {
         "message": "CR =&gt; CRLF-lijnbeëindigingen converteren"
     },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
     "Error.msg": {
         "message": "Fout"
     },
@@ -37,6 +41,10 @@
     },
     "MBlabel7d": {
         "message": "Maximale lengte van naam van ontvanger:"
+    },
+    "Received": {
+        "message": "Ontvangen",
+        "src": "mboximport"
     },
     "Size": {
         "message": "Maat"
@@ -110,6 +118,18 @@
     "backupType": {
         "message": "Back-upinhoud"
     },
+    "backupWarning": {
+        "message": "Tijdens deze bewerking kan het programma\\nenkele minuten niet reageren.\\nWilt u doorgaan?\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Importeren in deze map is niet mogelijk (IMAP- of nieuwsgroeptype)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Importeren in deze map is niet mogelijk (virtueel, IMAP- of nieuwsgroeptype)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Bladeren…"
     },
@@ -149,8 +169,28 @@
     "characterFilter": {
         "message": "Tekenfilter (UTF-8 of UTF-16)"
     },
+    "confirmimport": {
+        "message": "Wilt u dit bestand importeren:",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Mappad op schijf kopiëren"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Meerdere berichten geselecteerd, alleen de eerste berichtkoppen gekopieerd naar het klembord.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Kopieer kopteksten naar klembord",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Meerdere berichten geselecteerd, alleen het eerste bericht gekopieerd naar het klembord.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Kopieer berichten naar het klembord",
+        "src": "mboximport"
     },
     "createSubfolderErr.msg": {
         "message": "Fout bij het aanmaken van submap:"
@@ -236,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - Back-up"
     },
+    "emailFiles": {
+        "message": "E-mailbestanden",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Mappen exporteren als losse bestanden:"
     },
+    "endscan": {
+        "message": "Mapscan voltooid",
+        "src": "mboximport"
+    },
     "error": {
         "message": "Er is een fout opgetreden bij het importeren van het profiel. Foutdetails:"
+    },
+    "exportAborted": {
+        "message": "Exporteren gestopt",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Alle mappen exporteren",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Map exporteren",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Exporteren uitgevoerd",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Geëxporteerd:",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exporteren",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Exporteren… Een ogenblik geduld",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Uitgebreide verwijzing naar bestandsnaamindeling"
@@ -254,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Voegt enkele hulpmiddelen toe om berichten en mappen te importeren en exporteren (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Bestandsnaamlengte"
+    },
+    "filePickerAppend": {
+        "message": "Selecteer het mbox-bestand",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Selecteer de doelmap",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Selecteer het te importeren mbox-bestand",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Selecteer de te importeren berichten",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Kan niet exporteren: er bestaat al een bestand met deze naam",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Tekenset voor bestandsnamen:"
@@ -392,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Mappenlijst openen"
     },
+    "folderexists": {
+        "message": "Kan niet importeren: er bestaat al een map met deze naam",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Als u in deze indeling exporteert, worden de bijlagen niet opgeslagen.\\nAls u ook de bijlagen wilt opslaan, kies dan een andere indeling.\\nWilt u doorgaan?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Als u deze indeling gebruikt, zult u de geëxporteerde berichten niet kunnen importeren.\\nWilt u doorgaan?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Importeren klaar",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Importeren… Een ogenblik geduld",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Importeren voltooid!"
     },
     "importRunning": {
         "message": "Importeren…"
+    },
+    "importedMsg": {
+        "message": "Geïmporteerd",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importeren",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Index, CSV-datumnotatie:"
@@ -416,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Inline bijlagenmappen"
     },
+    "internalerror": {
+        "message": "Kan niet importeren vanwege een onbekende fout",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Dit is een experimentele procedure voor het importeren van een profiel. Er is geen kans op gegevensverlies, maar er is geen garantie dat alles naar verwachting werkt, vooral als u een profiel van een andere computer importeert. Het is in elk geval veiliger dan de bestanden handmatig kopiëren."
     },
@@ -427,6 +559,22 @@
     },
     "invalidFolderSelection": {
         "message": "Ongeldige mapselectie"
+    },
+    "isEudora": {
+        "message": "Dit ‘mbox’-bestand lijkt afkomstig uit Eudora.\\nThunderbird kan hier niet mee overweg, dus u moet het converteren naar de standaard ‘mbox’-indeling.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Functie niet beschikbaar: het is alleen mogelijk om vanuit\\neen IMAP- of nieuwsaccount te exporteren als de map voor\\nofflinegebruik is ingesteld",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "De te importeren map is geen ‘maildir’-map",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Dit ‘mbox’-bestand gebruikt een andere indeling dan de Thunderbird-map,\\nen mogelijk kan Thunderbird dit niet goed verwerken.\\nWilt u doorgaan?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Alleen mailbestanden"
@@ -451,6 +599,14 @@
     },
     "messageImportProblems.msg": {
         "message": "Er waren problemen bij het importeren van sommige berichten:"
+    },
+    "messagesMsg": {
+        "message": "Berichten",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "berichten",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Diversen"
@@ -533,6 +689,10 @@
     "msgCtxMenu_TopId.title": {
         "message": "Berichten exporteren als..."
     },
+    "msgs": {
+        "message": "berichten van de",
+        "src": "mboximport"
+    },
     "multipleFolders.alertMsg": {
         "message": "Meerdere mappen worden niet ondersteund:\nKlik op OK om alleen de eerste map te exporteren."
     },
@@ -549,18 +709,86 @@
         "message": "Kan back-up niet uitvoeren: controleer pad en machtigingen van doelmap",
         "src": "autobackup"
     },
+    "noEML": {
+        "message": "Geen eml-bestand gevonden in deze map",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Kan niet exporteren.\\nDe geselecteerde mappen hebben een verschillend type, of één ervan is een virtuele map.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Geen berichtenmap geselecteerd:\\n\\n Maak of selecteer een geldige account of submap Lokale map.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Importeren van een ‘maildir’-map is niet mogelijk in een account die een andere indeling gebruikt",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Importeren van een ‘mbox’-map is niet mogelijk in een account die een andere indeling gebruikt",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Vanwege een bug in Thunderbird is de functie niet beschikbaar op dit platform",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "Selecteer slechts één map om te exporteren in PDF-indeling",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Er lijkt geen printer op deze machine te zijn geïnstalleerd. Deze functie vereist minstens één geïnstalleerde printer (ook een virtuele).",
+        "src": "mboximport"
+    },
     "noProfile": {
         "message": "Deze map bevat geen geldig profiel",
         "src": "profilewizard"
     },
+    "noRemoteExport": {
+        "message": "Kan deze externe map niet exporteren, omdat deze niet online is.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Deze waarschuwing niet meer tonen",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Geen doelmap geselecteerd",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "lijkt geen mbox-bestand te zijn\\nof is een beschadigd mbox-bestand",
+        "src": "mboximport"
+    },
     "nonAlphanumericFilter": {
         "message": "Filter niet-alfanumerieke tekens"
+    },
+    "nosubjectmsg": {
+        "message": "geen_onderwerp",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Kan niet exporteren: u hebt geen schrijfrechten in de map",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Geïmporteerde eml-bestanden:",
+        "src": "mboximport"
     },
     "numRetainBackups.msg": {
         "message": "Aantal te bewaren back-ups:"
     },
+    "offlineWarning": {
+        "message": "Deze map is offline.\\nAlleen de lokaal opgeslagen berichten worden geëxporteerd. Wilt u doorgaan?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Open de Help in een venster in plaats van op een tabblad"
+    },
+    "over4GBskipMsg": {
+        "message": "groter dan 4 GB, overslaan",
+        "src": "mboximport"
     },
     "pickProfile": {
         "message": "Pad van het te importeren profiel:",
@@ -568,6 +796,10 @@
     },
     "prefixFmtToken": {
         "message": "${voorvoegsel}"
+    },
+    "processingMsg": {
+        "message": "Verwerken",
+        "src": "mboximport"
     },
     "profileImportWizHdr": {
         "message": "ImportExportTools NG - Profiel importeren",
@@ -588,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${ontvanger}"
+    },
+    "remoteWarning": {
+        "message": "U exporteert de lokale kopie van een IMAP- of nieuwsmap.\\nMogelijk bevat de lokale map niet alle berichten die in de externe map aanwezig zijn.\\nWilt u doorgaan?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Profielbeheerder starten"
@@ -631,8 +867,20 @@
     "sdText": {
         "message": "Platte tekst"
     },
+    "searchdir": {
+        "message": "Selecteer een map om de bestanden te zoeken",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Geselecteerde berichten exporteren:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Selecteer een map om mbox-bestanden te importeren",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Selecteer mbox-bestanden om te importeren",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Afzender"
@@ -645,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "geen berichten opslaan als overeenkomend bestand bestaat"
+    },
+    "skipNonMbox": {
+        "message": "Sla niet-mbox-bestand over",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${slimme_naam}"
@@ -659,13 +911,22 @@
         "message": "Onderwerp"
     },
     "subjectFmtToken": {
-        "message": "${onderwerp}"
+        "message": "${onderwerp}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${achtervoegsel}"
     },
+    "temp_error": {
+        "message": "Importeren niet mogelijk: er is een fout opgetreden bij het aanmaken van een tijdelijk bestand",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Tekenset voor exporteren in tekst- en CSV-indeling:"
+    },
+    "timeMsg": {
+        "message": "Tijd",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profiel importeren"
@@ -696,5 +957,13 @@
     },
     "viewDbgConsole.msg": {
         "message": "  Fouten. Bekijk de Debug Console (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Virtuele mappen kunnen in deze indeling alleen apart worden geëxporteerd",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Dit is een virtuele map. Om de berichten ervan te exporteren\\nmoet u ze naar een normale map kopiëren en deze normale map\\nexporteren",
+        "src": "mboximport"
     }
 }

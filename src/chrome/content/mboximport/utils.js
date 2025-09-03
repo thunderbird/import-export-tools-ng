@@ -36,9 +36,9 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-//var Services = globalThis.Services || ChromeUtils.import(
-//	'resource://gre/modules/Services.jsm'
-//).Services;
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");

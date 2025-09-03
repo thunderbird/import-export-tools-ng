@@ -92,9 +92,7 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var MBstrBundleService = Services.strings;
-//var mboximportbundle = MBstrBundleService.createBundle("chrome://mboximport/locale/mboximport.properties");
 
-console.log(ietngUtils.localizeMsg("Error.msg"))
 var nosub = ietngUtils.localizeMsg("nosubjectmsg");
 var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
 

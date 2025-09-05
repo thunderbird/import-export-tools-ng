@@ -933,6 +933,10 @@ function constructAttachmentsFilename(type, hdr) {
 	// Allow ',' and single quote character which is valid
 	fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
+	// directories ending with a period can cause issues
+	if (fname.endsWith('.')) {
+		fname = fname.slice(0, -1) + ";";
+	}
 	return fname;
 }
 

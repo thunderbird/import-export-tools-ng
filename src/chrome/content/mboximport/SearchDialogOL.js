@@ -12,9 +12,10 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/sdOv
 
 function onLoad() {
 
+	// vbox collapsed property needs to be removed, not set to false
 	WL.injectElements(`
 
-<vbox id="IETSearchFrame" insertbefore="status-bar" collapsed="false" style="padding-left: 6px">
+<vbox id="IETSearchFrame" insertbefore="status-bar" style="padding-left: 6px">
 	<hbox>
 	<vbox>
 		<spacer flex="1" />

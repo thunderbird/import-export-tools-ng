@@ -948,14 +948,33 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
 
 	var hdrsBundle;
-	if (Services.locale.appLocaleAsBCP47 === "ja") {
-		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-ja.properties");
-	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
-		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-zh.properties");
-	} else {
-		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
-	}
+	hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 
+	// temporarily fixup ja and zh-CN since these mime.properties
+	// are actually English 
+	// TBD - compile translations and convert to messages.json
+
+	let subjectHdr;
+	let fromHdr;
+	let toHdr;
+	let dateHdr;
+
+	if (Services.locale.appLocaleAsBCP47 === "ja") {
+		subjectHdr = "件名";
+		fromHdr = "差出人";
+		toHdr = "宛先";
+		dateHdr = "送信日時";
+	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
+		subjectHdr = "主题";
+		fromHdr = "来自";
+		toHdr = "收件人";
+		dateHdr = "日期";
+	} else {
+		subjectHdr = hdrsBundle.GetStringFromID(1000);
+		fromHdr = hdrsBundle.GetStringFromID(1009);
+		toHdr = hdrsBundle.GetStringFromID(1012);
+		dateHdr = hdrsBundle.GetStringFromID(1007);
+	}
 
 	// Improve index table formatting
 	let styles = '<style>\r\n';
@@ -974,10 +993,10 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
-	data = data + "<tr><th><b>" + hdrsBundle.GetStringFromID(1000) + "</b></th>"; // Subject
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1009) + "</b></th>"; // From
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1012) + "</b></th>"; // To
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<tr><th><b>" + subjectHdr + "</b></th>"; // Subject
+	data = data + "<th><b>" + fromHdr + "</b></th>"; // From
+	data = data + "<th><b>" + toHdr + "</b></th>"; // To
+	data = data + "<th><b>" + dateHdr + date_received_hdr + "</b></th>"; // Date
 
 	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 

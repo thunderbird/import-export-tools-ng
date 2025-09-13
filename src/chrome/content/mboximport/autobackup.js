@@ -26,6 +26,7 @@
 
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
+		console.log("load autobk")
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -33,6 +34,7 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 var autoBackup = {
 
 	onOK: function () {
+		console.log("ok start")
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -100,6 +102,7 @@ var autoBackup = {
 	},
 
 	start: function () {
+		console.log("start")
 		// "dir" is the target directory for the backup
 		var dir = autoBackup.getDir();
 		if (!dir)
@@ -139,6 +142,8 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
+		console.log("start cont")
+
 		if (dirName && !autoBackup.filePicker) {
 			autoBackup.backupDirPath = clone.path;
 			clone.append(dirName);
@@ -170,6 +175,8 @@ var autoBackup = {
 
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
+
+		console.log("start scan")
 
 		autoBackup.scanExternal(clone);
 
@@ -302,6 +309,8 @@ var autoBackup = {
 	},
 
 	scanExternal: function (destDir) {
+		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())
@@ -328,6 +337,7 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
+	console.log("load evt")
 	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });
 	autoBackup.load();
 });

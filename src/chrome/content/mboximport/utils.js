@@ -37,24 +37,37 @@ GetSelectedMessages,
 IETstoreHeaders,
 */
 
+		console.log("load utils")
+
+		/*
 if (!ExtensionParent) {
+		console.log("no ext p")
+
 	var { ExtensionParent } = ChromeUtils.importESModule(
 		"resource://gre/modules/ExtensionParent.sys.mjs"
 	);
 }
 
 if (!ietngExtension) {
+		console.log("no ietex")
+
 	var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 		"ImportExportToolsNG@cleidigh.kokkini.net"
 	);
 }
 
+		console.log("ietex", ietngExtension)
+
 if (!messengerWin) {
+		console.log("no mwin")
 	var messengerWin = Services.wm.getMostRecentWindow("mail:3pane");
+		console.log("mwin", messengerWin)
+
 }
+*/
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-	+ ietngExtension.manifest.version + messengerWin.ietngAddon.dateForDebugging);
+	+ new Date());
 
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");

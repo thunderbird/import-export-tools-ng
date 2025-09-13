@@ -1,4 +1,14 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+    },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
+    "Error.msg": {
+        "message": "Սխալ"
+    },
     "MACwarning": {
         "message": "Ուշադրություն. փակեք բոլոր պատուհանները:"
     },
@@ -31,6 +41,16 @@
     },
     "MBlabel7d": {
         "message": "Ստացողների անվան առավ. երկարությունը"
+    },
+    "Received": {
+        "message": "Ստացվեց",
+        "src": "mboximport"
+    },
+    "Size": {
+        "message": "Չափը"
+    },
+    "Warning.msg": {
+        "message": "Զգուշացում"
     },
     "abortExport": {
         "message": "Կանգնեցնել ներմուծումը"
@@ -98,6 +118,18 @@
     "backupType": {
         "message": "Պահուստի բով-ը"
     },
+    "backupWarning": {
+        "message": "Այս գործողության ընթացքում հնարավոր է ծրագիրը\\nմի քանի րոպե չպատասխանի ձեր հարցումներին:\\nՇարունակե՞լ:\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Հնարավոր չէ ներմուծել այս թղթապանակ (imap կամ newsgroup տեսակ)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Հնարավոր չէ ներմուծել այս թղթապանակ (imap կամ newsgroup կամ վիրտուալ տեսակի է)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Դիտարկիչ"
     },
@@ -125,14 +157,43 @@
     "buttonMenu_Options.title": {
         "message": "Ընտրանքներ"
     },
+    "cancel.msg": {
+        "message": "Չեղարկել"
+    },
     "captionCustomize": {
         "message": "Հարմարեցված տեսակ՝ ֆայլի անունների համար"
     },
     "changeProfileNameLabel": {
         "message": "Հետագայում կարող եք փոխել պրոֆիլի անունը"
     },
+    "characterFilter": {
+        "message": "Նիշերի զտիչ (UTF-8 կամ UTF-16)"
+    },
+    "confirmimport": {
+        "message": "Ցանկանում եք ներմուծել ֆայլը",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Պատճենել թղթապանակի ճ-ը պնակում"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Ընտրված են բազմաթիվ հաղորդագրություններ, միայն առաջին հաղորդագրությունների վերնագրերը պատճենվել են clipboard-ում:",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Պատճենել վերնագրերը clipboard-ում",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Ընտրված են բազմաթիվ հաղորդագրություններ, միայն առաջին հաղորդագրությունը պատճենված է clipboard-ում:",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Պատճենել հաղորդագրությունները clipboard-ում",
+        "src": "mboximport"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Ենթաթղթապանակ ստեղծելու սխալ՝"
     },
     "csvSep": {
         "message": "Բաժանիչ՝ արտածվող CSV ֆայլի համար."
@@ -215,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG` Պահուստացնել"
     },
+    "emailFiles": {
+        "message": "Էլ. նամակների ֆայլեր",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Արտածել թղթապանակները որպես եզակի ֆայլեր."
     },
+    "endscan": {
+        "message": "Թղթապանակը վերլուծելուց հետո",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "Արտածումը կանգնեցվել է",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Արտածել բոլոր թղթապանակները",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Արտածել թղթապանակը",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Հաջողությամբ արտածվեց",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Պատրաստ է",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Արտահանում",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Արտածվում է…մի փոքր սպասեք",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Ֆայլի անվան ձևաչափի ընդլայնված հղում"
@@ -233,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Ավելացնում է որոշ գործիքներ՝ ներմուծելու և արտածելու Ձեր նամակները և թղթապանակները (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Ֆայլերի անունների երկարությունը"
+    },
+    "filePickerAppend": {
+        "message": "Ընտրեք mbox ֆայլը",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Ընտրեք արտածման թղթապանակը",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Ընտրեք mbox ֆայլը՝ ներմուծելու համար",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Ընտրեք ներմուծվող նամակները",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Հնարավոր չէ արտածել. արդեն առկա է այդ անունով ֆայլ",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Ֆայլերի անունների գրանշանը"
@@ -371,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Բացեք Թղթապանակների գրացուցակը"
     },
+    "folderexists": {
+        "message": "Հնարավոր չէ ներմուծել. արդեն առկա է այդ անունով թղթապանակ",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Եթե արտածեք այս եղանակով, ապա կցորդները չեն պահպանվի:\\nԵթե ցանկանում եք, որ կցորդները պահպանվեն, ընտրեք այլ եղանակ:\\nՇարունակե՞լ:\\n",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Այս ձևաչափը օգտագործելիս հնարավոր չէ ներմուծել արտածած հաղորդագրությունները։\\nՇարունակե՞լ։\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Ներմուծումն ավարտված է",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Ներմուծվում է…փոքր-ինչ սպասեք",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Ներմուծեց։"
     },
     "importRunning": {
         "message": "Ներմուծում է…"
+    },
+    "importedMsg": {
+        "message": "Ներմուծված",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Ներմուծում",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Ինդեքս, CSV Ամսաթիվ Ձևաչափը."
@@ -395,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Ներդիր հավելվածների թղթապանակներ"
     },
+    "internalerror": {
+        "message": "Հնարավոր չէ ներմուծել անհայտ սխալի պատճառով",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Սա փորձնական գործողություն է։ Որևէ տվյալ չեք կորցնի, բայց նաև չի երաշխավորվում ճիշտ աշխատանքը։"
     },
@@ -403,6 +556,25 @@
     },
     "intro3": {
         "message": "Մուտք ստանալու համար ներմուծված պրոֆիլին՝ բացեք Պրոֆլիների կառավարիչը։ Գործող պրոֆիլը միանգամից կփակվի"
+    },
+    "invalidFolderSelection": {
+        "message": "Թղթապանակի ընտրությունը սխալ է"
+    },
+    "isEudora": {
+        "message": "Այս \"mbox\" ֆայլը կարծես եկել է Eudora-ից:\\nThunderbird-ը չի կարող օգտագործել այն և դուք պետք է այն փոխարկեք սովորական \"mbox\" տեսակի:",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Հնարավորությունը հասանելի չէ. հնարավոր է արտածել միայն IMAP-ից, իսկ NEWS հաշիվներից միայն, եթե թղթապանակը նշված է անցանց օգտ. համար",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Ներմուծվող թղթապանակը \"Maildir\" թղթապանակ չէ",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "This \"mbox\" file uses a different format from the Thunderbird folder format\\nand it's possible that Thunderbird can't handle it properly.\\nDo you want to continue?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Պարզապես ուղարկել ֆայլերը"
@@ -413,11 +585,28 @@
     "labelmenuMI": {
         "message": "Ներմուծել/Արտածել"
     },
+    "largeFolderImport.msg": {
+        "message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
+    },
     "lastBackup": {
         "message": "Վերջին պահուստացումը"
     },
+    "latinizeTransform": {
+        "message": "Լատինականացնել փոխակերպումը"
+    },
     "mboxExport": {
         "message": "Արտածել թղթապանակները որպես MBOX ֆայլ."
+    },
+    "messageImportProblems.msg": {
+        "message": "Որոշ հաղորդագրություններ ներմուծելիս խնդիրներ առաջացան."
+    },
+    "messagesMsg": {
+        "message": "Հաղորդագրություններ",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "նամակներ",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Խառը"
@@ -500,23 +689,128 @@
     "msgCtxMenu_TopId.title": {
         "message": "Արտահանել հաղորդագրությունները որպես…"
     },
+    "msgs": {
+        "message": "նամակները՝",
+        "src": "mboximport"
+    },
+    "multipleFolders.alertMsg": {
+        "message": "Բազմաթիվ թղթապանակներ չեն աջակցվում.\nՍեղմեք OK՝ միայն առաջին թղթապանակը արտահանելու համար:"
+    },
+    "multipleFolders.title": {
+        "message": "Բազմաթիվ Թղթապանակներ"
+    },
     "name": {
         "message": "Անունը"
     },
     "newFilesMode": {
         "message": "Միայն ֆայլերը, որոնք փոփոխվել են վերջին պահուստացումից հետո"
     },
+    "noBackup": {
+        "message": "Հնարավոր չէ պահուստացնել. ստուգեք ճ-ը և թղթապանակի լիազորությունները",
+        "src": "autobackup"
+    },
+    "noEML": {
+        "message": "Չի գտնվել eml ֆայլ այս թղթապանակում",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Հնարավոր չէ արտածել:\\nԸնտրված թղթապանակները տարբեր են կամ նրանցից մեկը վիրտուալ թղթապանակ է:",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Հաղորդագրության պանակ ընտրված չէ.\\n\\n Խնդրում ենք ստեղծել կամ ընտրել վավեր հաշիվ կամ Տեղական պանակների ենթապանակ:",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Հնարավոր չէ ներմուծել \"Maildir\" թղթապանակը այն հաշվում, որը օգտագործում է այլ եղանակ",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Հնարավոր չէ ներմուծել \"Mbox\" թղթապանակը այն հաշվում, որը օգտագործում է այլ եղանակ",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Because of a Thunderbird bug, the feature is not available on this platform",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "PDF-ով արտածելու համար ընտրեք թղթապանակ",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "No printer seems installed on this machine. This feature requires at least one printer installed (also a virtual one)",
+        "src": "mboximport"
+    },
+    "noProfile": {
+        "message": "Թղթապանակում չկա պրոֆիլ",
+        "src": "profilewizard"
+    },
+    "noRemoteExport": {
+        "message": "Հնարավոր չէ արտածել հեռադիր թղթապանակը, քանզի այն առցանց չէ:",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Այլևս չցուցադրել",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Թղթապանակը ընտրված չէ",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "կարծես mbox ֆայլ չէ կամ վնասված mbox ֆայլ է",
+        "src": "mboximport"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Զտել ոչ այբբենական նիշերը"
+    },
+    "nosubjectmsg": {
+        "message": "առանց_վերնագրի",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Հնարավոր չէ արտածել. չկա գրելու իրավունք այդ թղթապանակում",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Eml ֆայլերը ներմուծվել են.",
+        "src": "mboximport"
+    },
+    "numRetainBackups.msg": {
+        "message": "Պահպանման պահուստների քանակը."
+    },
+    "offlineWarning": {
+        "message": "Այս թղթապանակը անցանց է:\\nԿարտածվեն միայն պահպանված տեղային նամակները: Շարունակե՞լ:",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Բացեք օգնությունը պատուհանում՝ ներդիրի փոխարեն"
     },
+    "over4GBskipMsg": {
+        "message": "4 ԳԲ-ից մեծ՝ բաց թողնելով",
+        "src": "mboximport"
+    },
+    "pickProfile": {
+        "message": "Պրոֆիլը ներմուծելու ճ-ը.",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${նախածանց}"
+    },
+    "processingMsg": {
+        "message": "Մշակում",
+        "src": "mboximport"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Պրոֆիլի ներմուծում",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Ներմուծվող պրոֆիլի անունը"
     },
     "profilePath": {
-        "message": "Պրոֆիլը ներմուծելու ճ-ը"
+        "message": "Ներմուծած պրոֆիլի ճ-ն է.",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Ստացողը"
@@ -526,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${ստացող}"
+    },
+    "remoteWarning": {
+        "message": "Դուք արտածում եք IMAP կամ NEWS թղթապանակի տեղային օրինակը:\\nՀնարավոր է տեային օրինակը չպարունակի բոլոր այն նամակները, որոնք առկա են հեռադիր թղթապանակում:\\nՇարունակե՞լ:",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Բացել Պրոֆիլների կառավարիչը"
@@ -569,8 +867,20 @@
     "sdText": {
         "message": "Plain text"
     },
+    "searchdir": {
+        "message": "Ընտրեք թղթապանակը՝ փնտրելու համար ֆայլերը",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Արտածել ընտրված նամակները."
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Ընտրեք թղթապանակ mbox ֆայլեր ներմուծելու համար",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Ընտրեք mbox ֆայլեր ներմուծման համար",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Ուղարկողը"
@@ -583,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "չպահպանել նամակները, երբ թղթակից ֆայլը առկա է"
+    },
+    "skipNonMbox": {
+        "message": "Բաց թողնել ոչ mbox ֆայլը",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${խելացի_անուն}"
@@ -597,13 +911,22 @@
         "message": "Վերնագիրը"
     },
     "subjectFmtToken": {
-        "message": "${Վերնագիրը}"
+        "message": "${Վերնագիրը}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${վերջածանց}"
     },
+    "temp_error": {
+        "message": "Հնարավոր չէ ներմուծել. սխալ է գրանցվել ժամանակավոր ֆայլը ստեղծելիս",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Արտածելու գրանշանը տեքստային և CSV տեսակի համար՝"
+    },
+    "timeMsg": {
+        "message": "Ժամանակը",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG՝ պրոֆիլի ներմուծում"
@@ -629,70 +952,18 @@
     "useMboxExt.label": {
         "message": "Օգտագործեք .mbox ընդլայնում mbox ֆայլերի համար (ոչ կառուցվածքային)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Փոխակերպում CR =&gt; CRLF տողերի վերջավորությունները"
+    "utf16Filter": {
+        "message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
     },
-    "Size": {
-        "message": "Չափը"
-    },
-
-	"latinizeTransform": {
-		"message": "Լատինականացնել փոխակերպումը"
-	},
-
-	"characterFilter": {
-		"message": "Նիշերի զտիչ (UTF-8 կամ UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Զտել ոչ այբբենական նիշերը"
-	},
-
-	"multipleFolders.title": {
-		"message": "Բազմաթիվ Թղթապանակներ"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Բազմաթիվ թղթապանակներ չեն աջակցվում.\nՍեղմեք OK՝ միայն առաջին թղթապանակը արտահանելու համար:"
-	},
-
-	"cancel.msg": {
-		"message": "Չեղարկել"
-	},
-
-	"Error.msg": {
-		"message": "Սխալ"
-	},
-
-	"Warning.msg": {
-		"message": "Զգուշացում"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Պահպանման պահուստների քանակը."
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Ենթաթղթապանակ ստեղծելու սխալ՝"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Ներմուծվել է ավելի քան 200 mbox պանակ:\nThunderbird-ը պետք է վերագործարկվի տվյալների բազան վերակայելու համար:"
-	},
-
-	"invalidFolderSelection": {
-		"message": "Թղթապանակի ընտրությունը սխալ է"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Որոշ հաղորդագրություններ ներմուծելիս խնդիրներ առաջացան."
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Վիրտուալ թղթապանակները կարող են արտածվել այս եղանակով միայն տարանջատ",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Սա վիրտուալ թղթապանակ է, դրա նամակները արտածելու համար պետք է\\n պատճենեք դրանք նորմալ թղթապանակ և արտածեք այնտեղից",
+        "src": "mboximport"
+    }
 }

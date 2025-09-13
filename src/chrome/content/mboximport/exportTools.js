@@ -78,8 +78,8 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var IETexported;
 var IETskipped;
 var IETtotal;
-var IETnosub = mboximportbundle.GetStringFromName("nosubjectmsg");
-var IETmesssubdir = mboximportbundle.GetStringFromName("messsubdir");
+var IETnosub = ietngUtils.localizeMsg("nosubjectmsg");
+var IETmesssubdir = ietngUtils.localizeMsg("messsubdir");
 // Values of IETsortType:
 // 0 = date+subject+recipients+author
 // 1 = subject+recipients+author+date
@@ -153,7 +153,7 @@ function IETabortExport() {
 		gImporting = false;
 		document.getElementById("IETabortIcon").collapsed = true;
 	} else {
-		IETwritestatus(mboximportbundle.GetStringFromName("exportAborted"));
+		IETwritestatus(ietngUtils.localizeMsg("exportAborted"));
 		document.getElementById("IETabortIcon").collapsed = true;
 	}
 
@@ -212,13 +212,13 @@ async function exportSelectedMsgs(type, params) {
 			}
 			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 			if (type === 3) {
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeSave);
+				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeSave);
 				fp.appendFilters(nsIFilePicker.filterAll);
 			} else if (type === 4) {
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+				fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
 				fp.appendFilters(nsIFilePicker.filterAll);
 			} else {
-				fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 			}
 
 			var res;
@@ -234,7 +234,7 @@ async function exportSelectedMsgs(type, params) {
 
 		try {
 			if (file.exists() && !file.isWritable()) {
-				alert(mboximportbundle.GetStringFromName("nowritable"));
+				alert(ietngUtils.localizeMsg("nowritable"));
 				return { status: "error" };
 			}
 		} catch (ex) {
@@ -298,7 +298,7 @@ async function exportSelectedMsgs(type, params) {
 				break;
 			case 4:
 				if (isMbox(file) !== 1) {
-					var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
+					var string = ("\"" + file.leafName + "\" " + ietngUtils.localizeMsg("nomboxfile"));
 					alert(string);
 					return { status: "error" };
 				}
@@ -396,7 +396,7 @@ async function exportAllMsgs(type, params) {
 			var nsIFilePicker = Ci.nsIFilePicker;
 			var res;
 			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-			fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+			fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 			if (fp.show)
 				res = fp.show();
 			else
@@ -415,7 +415,7 @@ async function exportAllMsgs(type, params) {
 
 		try {
 			if (!file.isWritable()) {
-				alert(mboximportbundle.GetStringFromName("nowritable"));
+				alert(ietngUtils.localizeMsg("nowritable"));
 				return { status: "cancel" };
 			}
 		} catch (e) {
@@ -429,13 +429,13 @@ async function exportAllMsgs(type, params) {
 			// Check if there is a multiple selection and one of the folders is a virtual one.
 			// If so, exits, because the export function can't handle this
 			if (IETglobalMsgFolders.length > 1 && IETglobalMsgFolders[i].flags & 0x0020) {
-				alert(mboximportbundle.GetStringFromName("virtFolAlert"));
+				alert(ietngUtils.localizeMsg("virtFolAlert"));
 				return { status: "cancel" };
 			}
 
 			/*
 			if (params.warnings && type !== 3 && type !== 5 && (IETglobalMsgFolders[i].server.type === "imap" || IETglobalMsgFolders[i].server.type === "news") && !IETglobalMsgFolders[i].verifiedAsOnlineFolder) {
-				var go = confirm(mboximportbundle.GetStringFromName("offlineWarning"));
+				var go = confirm(ietngUtils.localizeMsg("offlineWarning"));
 				if (!go) {
 					return { status: "cancel" };
 				}
@@ -444,7 +444,7 @@ async function exportAllMsgs(type, params) {
 		}
 		IETglobalFile = file.clone();
 		if (type !== 3 && type !== 5) {
-			IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+			IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 			document.getElementById("IETabortIcon").collapsed = false;
 		}
 
@@ -942,20 +942,39 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	var date_received_hdr = "";
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
-		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+		date_received_hdr = " (" + ietngUtils.localizeMsg("Received") + ")";
 	}
 
 	let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
 
 	var hdrsBundle;
-	if (Services.locale.appLocaleAsBCP47 === "ja") {
-		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-ja.properties");
-	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
-		hdrsBundle = strBundleService.createBundle("chrome://mboximport/locale/headers-zh.properties");
-	} else {
-		hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
-	}
+	hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mime.properties");
 
+	// temporarily fixup ja and zh-CN since these mime.properties
+	// are actually English 
+	// TBD - compile translations and convert to messages.json
+
+	let subjectHdr;
+	let fromHdr;
+	let toHdr;
+	let dateHdr;
+
+	if (Services.locale.appLocaleAsBCP47 === "ja") {
+		subjectHdr = "件名";
+		fromHdr = "差出人";
+		toHdr = "宛先";
+		dateHdr = "送信日時";
+	} else if (Services.locale.appLocaleAsBCP47 === "zh-CN") {
+		subjectHdr = "主题";
+		fromHdr = "来自";
+		toHdr = "收件人";
+		dateHdr = "日期";
+	} else {
+		subjectHdr = hdrsBundle.GetStringFromID(1000);
+		fromHdr = hdrsBundle.GetStringFromID(1009);
+		toHdr = hdrsBundle.GetStringFromID(1012);
+		dateHdr = hdrsBundle.GetStringFromID(1007);
+	}
 
 	// Improve index table formatting
 	let styles = '<style>\r\n';
@@ -974,10 +993,10 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
 
 	data = data + '<table width="99%" border="1" >';
-	data = data + "<tr><th><b>" + hdrsBundle.GetStringFromID(1000) + "</b></th>"; // Subject
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1009) + "</b></th>"; // From
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1012) + "</b></th>"; // To
-	data = data + "<th><b>" + hdrsBundle.GetStringFromID(1007) + date_received_hdr + "</b></th>"; // Date
+	data = data + "<tr><th><b>" + subjectHdr + "</b></th>"; // Subject
+	data = data + "<th><b>" + fromHdr + "</b></th>"; // From
+	data = data + "<th><b>" + toHdr + "</b></th>"; // To
+	data = data + "<th><b>" + dateHdr + date_received_hdr + "</b></th>"; // Date
 
 	data = data + "<th><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
@@ -1116,7 +1135,7 @@ function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 
 	var date_received_hdr = "";
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
-		date_received_hdr = " (" + mboximportbundle.GetStringFromName("Received") + ")";
+		date_received_hdr = " (" + ietngUtils.localizeMsg("Received") + ")";
 	}
 
 	// Improve index table formatting
@@ -1478,7 +1497,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						}
 						IETexported = IETexported + 1;
 						if (sub)
-							IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+							IETwritestatus(ietngUtils.localizeMsg("exported") + " " + IETexported + " " + ietngUtils.localizeMsg("msgs") + " " + (IETtotal + IETskipped));
 
 						if (IETabort) {
 							IETabort = false;
@@ -2018,7 +2037,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						}
 
 						IETexported = IETexported + 1;
-						IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+						IETwritestatus(ietngUtils.localizeMsg("exported") + " " + IETexported + " " + ietngUtils.localizeMsg("msgs") + " " + (IETtotal + IETskipped));
 
 						if (IETabort) {
 							IETabort = false;
@@ -2223,7 +2242,7 @@ function exportVirtualFolder(msgFolder, destDir) {
 function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 	var file = destDir;
-	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+	IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 	IETtotal = msgFolder.getTotalMessages(false);
 	if (IETtotal === 0)
 		return;
@@ -2264,8 +2283,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 	if (!msgFolder.verifiedAsOnlineFolder) {
-		console.log("exp imap")
-		alert(mboximportbundle.GetStringFromName("noRemoteExport"));
+		alert(ietngUtils.localizeMsg("noRemoteExport"));
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
 		if (IETglobalMsgFolders.length === IETglobalMsgFoldersExported)
 			return;
@@ -2301,7 +2319,7 @@ function exportIMAPfolder(msgFolder, destdirNSIFILE) {
 		} else if (msguri)
 			uriArray.push(msguri);
 	}
-	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+	IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 	if (IETtotal > 0) {
 		saveMsgAsEML(uriArray[0], clone, true, uriArray, null, null, true, false, null, null);
 	}
@@ -2399,8 +2417,8 @@ async function copyMSGtoClip(selectedMsgs) {
 
 	var msguri;
 
-	let copyMsgsToClip_promptTitle = mboximportbundle.GetStringFromName("copyMsgsToClip_promptTitle");
-	let copyMsgsToClip_firstOnly = mboximportbundle.GetStringFromName("copyMsgsToClip_firstOnly");
+	let copyMsgsToClip_promptTitle = ietngUtils.localizeMsg("copyMsgsToClip_promptTitle");
+	let copyMsgsToClip_firstOnly = ietngUtils.localizeMsg("copyMsgsToClip_firstOnly");
 	if (selectedMsgs.length > 1) {
 		let prompt = Services.prompt;
 		let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
@@ -2595,8 +2613,8 @@ var copyHeaders = {
 		try {
 
 			var msguri;
-			let copyHdrsToClip_promptTitle = mboximportbundle.GetStringFromName("copyHdrsToClip_promptTitle");
-			let copyHdrsToClip_firstOnly = mboximportbundle.GetStringFromName("copyHdrsToClip_firstOnly");
+			let copyHdrsToClip_promptTitle = ietngUtils.localizeMsg("copyHdrsToClip_promptTitle");
+			let copyHdrsToClip_firstOnly = ietngUtils.localizeMsg("copyHdrsToClip_firstOnly");
 			if (selectedMsgs.length > 1) {
 				let prompt = Services.prompt;
 				let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_OK);
@@ -2782,6 +2800,6 @@ function IETstoreBody(msguri) {
 	text = '"' + text + '"';
 
 	IETexported = IETexported + 1;
-	IETwritestatus(mboximportbundle.GetStringFromName("exported") + " " + IETexported + " " + mboximportbundle.GetStringFromName("msgs") + " " + (IETtotal + IETskipped));
+	IETwritestatus(ietngUtils.localizeMsg("exported") + " " + IETexported + " " + ietngUtils.localizeMsg("msgs") + " " + (IETtotal + IETskipped));
 	return text;
 }

@@ -1,4 +1,14 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "CR 변환 =&gt; CRLF 라인 종료"
+    },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
+    "Error.msg": {
+        "message": "오류"
+    },
     "MACwarning": {
         "message": "주의:계속하기 전에, 모든 다른 창을 닫으세요."
     },
@@ -31,6 +41,16 @@
     },
     "MBlabel7d": {
         "message": "받는이 이름의 최대 길이:"
+    },
+    "Received": {
+        "message": "받았습니다",
+        "src": "mboximport"
+    },
+    "Size": {
+        "message": "크기"
+    },
+    "Warning.msg": {
+        "message": "경고"
     },
     "abortExport": {
         "message": "현재 내보내기 중지"
@@ -98,6 +118,18 @@
     "backupType": {
         "message": "백업 내용"
     },
+    "backupWarning": {
+        "message": "이 작업을 하는 동안, 프로그램이\\\\n몇 분간 반응하지 않을수 있습니다.\\\\n시작하길 원하십니까?",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "이 폴더 안으로 불러오기가 불가능합니다(imap 또는 뉴스그룹 계정)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "이 폴더 안으로 불러오기가 불가능합니다(imap 또는 뉴스그룹 또는 가상 형식)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Browser"
     },
@@ -125,14 +157,43 @@
     "buttonMenu_Options.title": {
         "message": "옵션"
     },
+    "cancel.msg": {
+        "message": "취소"
+    },
     "captionCustomize": {
         "message": "파일명 형식 사용자 지정"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the profile manager"
     },
+    "characterFilter": {
+        "message": "문자 필터(UTF-8 또는 UTF-16)"
+    },
+    "confirmimport": {
+        "message": "파일를 불러오기 원합니까?",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "디스크 내 폴더 경로 복사"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "여러 메시지가 선택되었습니다. 첫 번째 메시지 헤더만 클립보드에 복사되었습니다.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "헤더를 클립보드에 복사",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "여러 메시지가 선택되었습니다. 첫 번째 메시지만 클립보드에 복사되었습니다.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "메시지를 클립보드에 복사",
+        "src": "mboximport"
+    },
+    "createSubfolderErr.msg": {
+        "message": "하위 폴더 생성 오류:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -215,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - Backup"
     },
+    "emailFiles": {
+        "message": "Email 파일",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "단일 파일로 폴더 내보내기:"
     },
+    "endscan": {
+        "message": "디렉토리 검사의 마지막",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "내보내기 중단됨",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "모든 폴더 내보내기",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "내보내기 폴더",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "내보내기를 정상적으로 끝마쳤습니다",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "내보내기 완료",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "내보내기",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "내보내는 중...잠시만 기다려주세요",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "확장 파일 이름 형식 참조"
@@ -233,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "메세지나 폴더를 불러오거나 내보낼 도구를 추가합니다 (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "파일명 길이"
+    },
+    "filePickerAppend": {
+        "message": "Mbox 파일 선택",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "목적 디렉토리 선택",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "불러올 mbox파일 선택",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "들여올 메세지를 선택하세요",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "내보내기 불가: 같은 이름의 파일이 있습니다",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "파일명의 캐릭터셋:"
@@ -371,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "폴더 디렉토리 열기"
     },
+    "folderexists": {
+        "message": "불러오기 불가: 같은 이름의 폴더가 있습니다",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "HTML 또는 단순 글로 내보내는 경우 첨부파일은 저장하지 않습니다.\\\\n만약 첨부파일을 저장하기 원한다면, EML 형식을 사용하세요.\\\\n계속하길 원하십니까?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "If you use this format, it will not be possible to import the exported messages.\\nDo you want to continue?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "가져오기 완료",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "불러오기 중...잠시만 기다려주세요",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "The import was successful!"
     },
     "importRunning": {
         "message": "Import running..."
+    },
+    "importedMsg": {
+        "message": "수입됨",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "가져오기",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "색인, CSV 날짜 형식 :"
@@ -395,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "인라인 첨부 파일 폴더"
     },
+    "internalerror": {
+        "message": "알 수 없는 오류 때문에 불러오기를 할 수가 없습니다",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
     },
@@ -403,6 +556,25 @@
     },
     "intro3": {
         "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
+    },
+    "invalidFolderSelection": {
+        "message": "잘못된 폴더 선택"
+    },
+    "isEudora": {
+        "message": "This \"mbox\" file seems to come from Eudora.\\nThunderbird can't handle it and so you must convert it in standard \"mbox\" format.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "기능 사용불가: IMAP 또는 NEWS 계정은\\\\n오프라인 이용이 설정되어 있는 폴더만 쓰기가 가능합니다",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "불러올 폴더가 \"Maildir\" 폴더가 아닙니다",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "This \"mbox\" file uses a different format from the Thunderbird folder format\\nand it's possible that Thunderbird can't handle it properly.\\nDo you want to continue?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "메일 파일만"
@@ -413,11 +585,28 @@
     "labelmenuMI": {
         "message": "불러오기/내보내기"
     },
+    "largeFolderImport.msg": {
+        "message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
+    },
     "lastBackup": {
         "message": "최종 백업"
     },
+    "latinizeTransform": {
+        "message": "라틴화 변환"
+    },
     "mboxExport": {
         "message": "MBOX 파일로 폴더 내보내기:"
+    },
+    "messageImportProblems.msg": {
+        "message": "일부 메시지를 가져오는 중 문제가 발생했습니다."
+    },
+    "messagesMsg": {
+        "message": "메시지",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "메세지",
+        "src": "mboximport"
     },
     "misc": {
         "message": "기타"
@@ -500,23 +689,128 @@
     "msgCtxMenu_TopId.title": {
         "message": "다음으로 메시지 내보내기…"
     },
+    "msgs": {
+        "message": "메세지",
+        "src": "mboximport"
+    },
+    "multipleFolders.alertMsg": {
+        "message": "여러 폴더는 지원되지 않습니다.\n첫 번째 폴더만 내보내려면 확인을 클릭하세요."
+    },
+    "multipleFolders.title": {
+        "message": "여러 폴더"
+    },
     "name": {
         "message": "이름"
     },
     "newFilesMode": {
         "message": "마지막 백업 이후 수정된 파일만"
     },
+    "noBackup": {
+        "message": "백업을 실행할 수 없음:경로와 대상 폴더의 권한을 확인하세요",
+        "src": "autobackup"
+    },
+    "noEML": {
+        "message": "이 디렉토리에서 eml 파일을 찾을 수 없습니다.",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "내보낼 수 없습니다.\\\\n선택된 폴더들이 서로 다른 형식이거나 그것들 중 하나가 가상 폴더입니다.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "선택한 메시지 폴더 없음 :\\n\\n 유효한 계정 또는 로컬 폴더 하위 폴더를 만들거나 선택하십시오.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "다른 형식을 사용하는 계정 내 \"Maildir\"폴더는 불러오기가 불가능합니다",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Impossible to import a \"Mbox\" folder in an account using another format",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Because of a Thunderbird bug, the feature is not available on this platform",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "To export in PDF format, select just one folder",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "No printer seems installed on this machine. This feature requires at least one printer installed (also a virtual one)",
+        "src": "mboximport"
+    },
+    "noProfile": {
+        "message": "This folder doesn't contain a valid profile",
+        "src": "profilewizard"
+    },
+    "noRemoteExport": {
+        "message": "온라인 상태가 아니기 때문에,이 원격 폴더를 내보낼 수 없습니다.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "이 경고를 다시 표시하지 않음",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "목적 폴더가 선택되어 있지 않습니다",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "mbox 파일이 아니거나\\\\n 파손된 mbox 파일로 보입니다",
+        "src": "mboximport"
+    },
+    "nonAlphanumericFilter": {
+        "message": "영숫자가 아닌 문자 필터링"
+    },
+    "nosubjectmsg": {
+        "message": "제목 없음",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "내보내기 불가: 디렉토리 안의 쓰기 권한이 없습니다",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Eml 파일 불러오기:",
+        "src": "mboximport"
+    },
+    "numRetainBackups.msg": {
+        "message": "보관할 백업 수:"
+    },
+    "offlineWarning": {
+        "message": "이 폴더는 오프라인입니다.\\\\n이 메세지는 지역적으로만 저장되어 내보내집니다. 계속하길 원하십니까?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "탭 대신 창에서 도움말 열기"
     },
+    "over4GBskipMsg": {
+        "message": "4GB보다 큼, 건너뛰기",
+        "src": "mboximport"
+    },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${접두사}"
+    },
+    "processingMsg": {
+        "message": "처리",
+        "src": "mboximport"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - 프로필 가져오기",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "받는이"
@@ -526,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${수신자}"
+    },
+    "remoteWarning": {
+        "message": "귀하는 IMAP 또는 NEWS 폴더의 지역복사본을 내보내고 있습니다.\\\\n지역 폴더는 원격 폴더 내 현재 모든 메세지를 있지 않습니다\\\\n계속 하길 원하십니까?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Run the profile manager"
@@ -569,8 +867,20 @@
     "sdText": {
         "message": "단순 글"
     },
+    "searchdir": {
+        "message": "파일을 검색할 디렉토리를 선택",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "선택된 메세지 내보내기:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "mbox 파일을 가져올 폴더를 선택하세요.",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "가져올 mbox 파일 선택",
+        "src": "mboximport"
     },
     "sender": {
         "message": "보낸이"
@@ -583,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "통신 파일이 존재하면 메세지를 저장하지 않음"
+    },
+    "skipNonMbox": {
+        "message": "mbox가 아닌 파일 건너뛰기",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${스마트_이름}"
@@ -597,13 +911,22 @@
         "message": "제목"
     },
     "subjectFmtToken": {
-        "message": "${제목}"
+        "message": "${제목}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${접미사}"
     },
+    "temp_error": {
+        "message": "불러오기 불가능: 임시 파일 생성 중 오류가 발생했습니다",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Text 및 CSV형식으로 내보내기 위한 문자셋:"
+    },
+    "timeMsg": {
+        "message": "시간",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profile import"
@@ -629,65 +952,18 @@
     "useMboxExt.label": {
         "message": "mbox 파일에 .mbox 확장자 사용(비구조적)"
     },
-    "CRconversion.statusMsg": {
-        "message": "CR 변환 =&gt; CRLF 라인 종료"
-    },
-    "Size": {
-        "message": "크기"
-    },
-    "latinizeTransform": {
-        "message": "라틴화 변환"
-    },
-    "characterFilter": {
-        "message": "문자 필터(UTF-8 또는 UTF-16)"
-    },
     "utf16Filter": {
         "message": "UTF-16 문자 필터링(기호 및 이모티콘)"
     },
-    "nonAlphanumericFilter": {
-        "message": "영숫자가 아닌 문자 필터링"
+    "viewDbgConsole.msg": {
+        "message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"
     },
-    "multipleFolders.title": {
-        "message": "여러 폴더"
-    },
-
-	"multipleFolders.alertMsg": {
-		"message": "여러 폴더는 지원되지 않습니다.\n첫 번째 폴더만 내보내려면 확인을 클릭하세요."
-	},
-
-	"cancel.msg": {
-		"message": "취소"
-	},
-
-	"Error.msg": {
-		"message": "오류"
-	},
-
-	"Warning.msg": {
-		"message": "경고"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "보관할 백업 수:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "하위 폴더 생성 오류:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "200개가 넘는 mbox 폴더를 가져왔습니다.\n데이터베이스를 재설정하려면 Thunderbird를 다시 시작해야 합니다."
-	},
-
-	"invalidFolderSelection": {
-		"message": "잘못된 폴더 선택"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "일부 메시지를 가져오는 중 문제가 발생했습니다."
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"
-	}
+    "virtFolAlert": {
+        "message": "가상 폴더는 단독으로 이 형식을 내보낼 수 있습니다.",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "이것은 가상 폴더이므로, 메세지가 내보내기 위해서는\\\\n일반 폴더에 복사해 내보낼 필요가 있습니다",
+        "src": "mboximport"
+    }
 }

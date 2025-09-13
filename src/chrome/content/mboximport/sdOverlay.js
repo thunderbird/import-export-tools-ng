@@ -109,7 +109,7 @@ function SDexportMsg() {
 	if (type === 4 || type === 6)
 		file = getPredefinedFolder(0);
 	else if (type === 5) {
-		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerAppend"), nsIFilePicker.modeOpen);
+		fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
 		fp.appendFilters(nsIFilePicker.filterAll);
 		if (fp.show)
 			res = fp.show();
@@ -118,7 +118,7 @@ function SDexportMsg() {
 		if (res === nsIFilePicker.returnOK) {
 			file = fp.file;
 			if (isMbox(file) !== 1) {
-				var string = ("\"" + file.leafName + "\" " + mboximportbundle.GetStringFromName("nomboxfile"));
+				var string = ("\"" + file.leafName + "\" " + ietngUtils.localizeMsg("nomboxfile"));
 				alert(string);
 				return;
 			}
@@ -129,7 +129,7 @@ function SDexportMsg() {
 
 
 	if (!file) {
-		fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+		fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 		if (fp.show)
 			res = fp.show();
 		else

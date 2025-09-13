@@ -1,4 +1,14 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "换行符转换中：CR => CRLF"
+    },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
+    "Error.msg": {
+        "message": "错误"
+    },
     "MACwarning": {
         "message": "警示：继续前，关闭所有其他窗口。"
     },
@@ -33,7 +43,14 @@
         "message": "收件人姓名最大长度："
     },
     "Received": {
-        "message": "已收到"
+        "message": "已收到",
+        "src": "mboximport"
+    },
+    "Size": {
+        "message": "尺寸"
+    },
+    "Warning.msg": {
+        "message": "警告"
     },
     "abortExport": {
         "message": "停止当前的导出"
@@ -101,6 +118,18 @@
     "backupType": {
         "message": "备份内容"
     },
+    "backupWarning": {
+        "message": "在此操作期间，程序将会失去响应几分钟。\\n你是否希望继续？",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "不能导入到这个信件夹（IMAP或者新闻组类型的）",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "无法导入此信件夹（IMAP或新闻组或虚拟类型）",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "浏览器"
     },
@@ -128,14 +157,43 @@
     "buttonMenu_Options.title": {
         "message": "选项"
     },
+    "cancel.msg": {
+        "message": "取消"
+    },
     "captionCustomize": {
         "message": "自定义文件名格式"
     },
     "changeProfileNameLabel": {
         "message": "您可以在配置文件管理器中任意修改配置文件名称"
     },
+    "characterFilter": {
+        "message": "字符过滤器（UTF-8 或 UTF-16）"
+    },
+    "confirmimport": {
+        "message": "你确定要导入这个文件？",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "复制磁盘上的文件夹路径"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "选择了多条消息，仅将第一条消息标题复制到剪贴板。",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "将标题复制到剪贴板",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "选择了多条消息，仅将第一条消息复制到剪贴板。",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "将消息复制到剪贴板",
+        "src": "mboximport"
+    },
+    "createSubfolderErr.msg": {
+        "message": "创建子文件夹时出错："
     },
     "csvSep": {
         "message": "导出 CSV 格式使用的分隔符："
@@ -218,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG - 备份"
     },
+    "emailFiles": {
+        "message": "邮件文件",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "将信件夹作为一个单独文件导出："
     },
+    "endscan": {
+        "message": "目录扫描完毕",
+        "src": "mboximport"
+    },
     "error": {
         "message": "导入配置文件时发生错误，错误信息为："
+    },
+    "exportAborted": {
+        "message": "已停止导出",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "导出所有信件夹",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "导出信件夹",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "导出成功",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "已导出",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "出口",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "正在导出……请稍候",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "扩展文件名格式参考"
@@ -236,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "加入一些工具以便导入或者导出邮件或信件夹 (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "文件名长度"
+    },
+    "filePickerAppend": {
+        "message": "选择 mbox 文件",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "选择目标目录",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "选择要导入的 mbox 文件",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "选择要导入的邮件",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "无法导出：有同名的文件",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "文件名的字符集："
@@ -374,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "打开文件夹目录"
     },
+    "folderexists": {
+        "message": "无法导入：有同名的文件夹",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "以 HTML 或 纯文本 格式导出，附件不会被存储。\\n如果你希望同时保存附件，请使用 EML 格式。\\n是否继续？\\n",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "如果使用这个格式，将无法导入已导出的消息。\\n是否继续？",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "导入完成",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "正在导入……请稍候",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "导入成功！"
     },
     "importRunning": {
         "message": "正在导入…"
+    },
+    "importedMsg": {
+        "message": "进口",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "输入",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "索引、CSV 日期格式："
@@ -398,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "内联附件文件夹"
     },
+    "internalerror": {
+        "message": "由于未知错误而不能导入",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "导入配置文件的功能正在试验当中。虽然没有丢失数据的风险，但不保证所有功能都符合预期，尤其是导入另一台电脑的配置文件时。无论如何，这都比手动复制文件要可靠。"
     },
@@ -406,6 +556,25 @@
     },
     "intro3": {
         "message": "要访问导入的配置文件，点击下面的按钮运行配置文件管理器，当前配置文件会自动关闭"
+    },
+    "invalidFolderSelection": {
+        "message": "文件夹选择无效"
+    },
+    "isEudora": {
+        "message": "这个“mbox”文件看上去来自 Eudora。\\nThunderbird 无法处理它，因此你必须将其转换为标准的“mbox”格式。",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "不支持的特性：只有设置为离线使用以后，\\nIMAP 或者新闻组账户的信件夹才能导出。",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "导入的文件夹不是“Maildir”文件夹",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "此“mbox”文件所用格式不同于 Thunderbird 文件夹格式，\\nThunderbird 可能无法恰当处理它。\\n是否继续？",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "仅邮件文件"
@@ -416,11 +585,28 @@
     "labelmenuMI": {
         "message": "导入/导出"
     },
+    "largeFolderImport.msg": {
+        "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
+    },
     "lastBackup": {
         "message": "上次备份"
     },
+    "latinizeTransform": {
+        "message": "拉丁化变换"
+    },
     "mboxExport": {
         "message": "将信件夹作为 MBOX 文件导出："
+    },
+    "messageImportProblems.msg": {
+        "message": "导入某些消息时出现问题："
+    },
+    "messagesMsg": {
+        "message": "留言",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "消息目录",
+        "src": "mboximport"
     },
     "misc": {
         "message": "杂项"
@@ -503,23 +689,128 @@
     "msgCtxMenu_TopId.title": {
         "message": "将消息导出为..."
     },
+    "msgs": {
+        "message": "消息",
+        "src": "mboximport"
+    },
+    "multipleFolders.alertMsg": {
+        "message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
+    },
+    "multipleFolders.title": {
+        "message": "多个文件夹"
+    },
     "name": {
         "message": "名字"
     },
     "newFilesMode": {
         "message": "仅上次备份后有改动的文件"
     },
+    "noBackup": {
+        "message": "无法进行备份：检查目标文件夹的路径和权限",
+        "src": "autobackup"
+    },
+    "noEML": {
+        "message": "该目录下没有 eml 文件",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "无法导出。\\n选中的文件夹是不同的类型或者其中一个是虚拟文件夹。",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "未选择邮件文件夹：\\n\\n请创建或选择一个有效的帐户或“本地文件夹”子文件夹。",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "不能在一个帐户中使用其他格式导入一个“Maildir”文件夹",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "不能在一个帐户中使用其他格式导入一个“Mbox”文件夹",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "由于 Thunderbird 的 bug，在这个平台上尚不可用",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "要导出为 PDF 格式，只能选择一个文件夹",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "这台电脑上似乎没有安装打印机，使用该功能至少需要一台打印机（也可以是虚拟的）",
+        "src": "mboximport"
+    },
+    "noProfile": {
+        "message": "这个文件夹里没有有效的配置文件",
+        "src": "profilewizard"
+    },
+    "noRemoteExport": {
+        "message": "无法导出这个远程文件夹。他不处于在线状态。",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "不要再次显示这个警告",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "未选择目标文件夹",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "似乎不是一个 mbox 文件\\n或者是一个已经损坏的 mbox 文件",
+        "src": "mboximport"
+    },
+    "nonAlphanumericFilter": {
+        "message": "过滤非字母数字字符"
+    },
+    "nosubjectmsg": {
+        "message": "无主题",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "无法导出：该目录禁止写入",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "已导入 Eml 文件：",
+        "src": "mboximport"
+    },
+    "numRetainBackups.msg": {
+        "message": "要保留的备份数量："
+    },
+    "offlineWarning": {
+        "message": "该文件夹离线。\\n只有本地存储的信息会被导出。是否继续？",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "在窗口而不是选项卡中打开帮助"
     },
+    "over4GBskipMsg": {
+        "message": "大于4GB，跳过",
+        "src": "mboximport"
+    },
+    "pickProfile": {
+        "message": "要导入的配置文件路径：",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${前缀}"
+    },
+    "processingMsg": {
+        "message": "加工",
+        "src": "mboximport"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - 配置文件导入",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "要导入的配置文件名称"
     },
     "profilePath": {
-        "message": "要导入的配置文件路径"
+        "message": "导入的配置文件路径:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "收信人"
@@ -529,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${收件人}"
+    },
+    "remoteWarning": {
+        "message": "你正在导出一个 IMAP 或者新闻组文件夹的本地副本。\\n本地文件夹并未保存远程文件夹中的全部信息。\\n你是否要继续？",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "运行配置文件管理器"
@@ -572,8 +867,20 @@
     "sdText": {
         "message": "纯文本"
     },
+    "searchdir": {
+        "message": "选择要查找文件的目录",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "导出选中的消息："
+    },
+    "selectFolderForMboxes_title": {
+        "message": "选择要导入 mbox 文件的文件夹",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "选择要导入的 mbox 文件",
+        "src": "mboximport"
     },
     "sender": {
         "message": "发信人"
@@ -586,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "代理文件存在时不要保存信息"
+    },
+    "skipNonMbox": {
+        "message": "跳过非 mbox 文件",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${聪明的名字}"
@@ -600,13 +911,22 @@
         "message": "主题"
     },
     "subjectFmtToken": {
-        "message": "${主题}"
+        "message": "${主题}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${后缀}"
     },
+    "temp_error": {
+        "message": "无法导入：建立临时目录时发生错误",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "导出纯文本或 CSV 格式使用的字符集："
+    },
+    "timeMsg": {
+        "message": "时间",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - 配置文件导入"
@@ -632,70 +952,18 @@
     "useMboxExt.label": {
         "message": "对 mbox 文件使用 .mbox 扩展名（非结构化）"
     },
-    "CRconversion.statusMsg": {
-        "message": "换行符转换中：CR => CRLF"
-    },
-    "Size": {
-        "message": "尺寸"
-    },
-
-    "latinizeTransform": {
-        "message": "拉丁化变换"
-    },
-
-    "characterFilter": {
-        "message": "字符过滤器（UTF-8 或 UTF-16）"
-    },
-
     "utf16Filter": {
         "message": "过滤 UTF-16 字符（符号和表情符号）"
     },
-
-    "nonAlphanumericFilter": {
-        "message": "过滤非字母数字字符"
+    "viewDbgConsole.msg": {
+        "message": "  错误。查看调试控制台 (Control-Shift-J)"
     },
-
-    "multipleFolders.title": {
-        "message": "多个文件夹"
+    "virtFolAlert": {
+        "message": "虚拟文件夹可以用这个格式单独导出。",
+        "src": "mboximport"
     },
-
-    "multipleFolders.alertMsg": {
-        "message": "不支持多个文件夹：\n单击“确定”仅导出第一个文件夹。"
-    },
-
-    "cancel.msg": {
-        "message": "取消"
-    },
-
-    "Error.msg": {
-        "message": "错误"
-    },
-
-    "Warning.msg": {
-        "message": "警告"
-    },
-
-    "numRetainBackups.msg": {
-        "message": "要保留的备份数量："
-    },
-
-    "createSubfolderErr.msg": {
-        "message": "创建子文件夹时出错："
-    },
-
-    "largeFolderImport.msg": {
-        "message": "导入了超过 200 个 mbox 文件夹。\n应重新启动 Thunderbird 以重置数据库。"
-    },
-
-	"invalidFolderSelection": {
-		"message": "文件夹选择无效"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "导入某些消息时出现问题："
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  错误。查看调试控制台 (Control-Shift-J)"
-	}
+    "virtualfolder": {
+        "message": "这是一个虚拟信件夹，要导出这些信息你必须\\n将他们复制到一个普通信件夹，然后导出这个普通信件夹。",
+        "src": "mboximport"
+    }
 }

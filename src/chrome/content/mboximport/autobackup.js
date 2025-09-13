@@ -105,11 +105,10 @@ var autoBackup = {
 		if (!dir)
 			return;
 
-		// cleidigh
-		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
+		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
 		if (!dir.exists() || !dir.isWritable) {
-			alert(strbundle.getString("noBackup"));
+			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
 			return;
 		}
@@ -286,7 +285,7 @@ var autoBackup = {
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
-		
+
 		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
 			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
 		}));

@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -26,7 +26,6 @@
 
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
-		console.log("load autobk")
 
 var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -34,7 +33,6 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 var autoBackup = {
 
 	onOK: function () {
-		console.log("ok start")
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -102,7 +100,6 @@ var autoBackup = {
 	},
 
 	start: function () {
-		console.log("start")
 		// "dir" is the target directory for the backup
 		var dir = autoBackup.getDir();
 		if (!dir)
@@ -142,8 +139,6 @@ var autoBackup = {
 			.getService(Ci.nsIProperties)
 			.get("ProfD", Ci.nsIFile);
 
-		console.log("start cont")
-
 		if (dirName && !autoBackup.filePicker) {
 			autoBackup.backupDirPath = clone.path;
 			clone.append(dirName);
@@ -175,8 +170,6 @@ var autoBackup = {
 
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
-
-		console.log("start scan")
 
 		autoBackup.scanExternal(clone);
 
@@ -337,7 +330,6 @@ document.addEventListener("dialogaccept", function (event) {
 });
 
 window.addEventListener("load", function (event) {
-	console.log("load evt")
 	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });
 	autoBackup.load();
 });

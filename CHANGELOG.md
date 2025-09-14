@@ -2,6 +2,10 @@
 
 ## Versions
 
+Version 14.1.14 : Maintenance Release - September 16, 2025
+
+- Fix race condition preventing auto backup on shutdown 
+
 Version 14.1.13 : v140-v144 Release - September 8, 2025
 
 - Compatibility for v140-v144

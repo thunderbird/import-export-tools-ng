@@ -1,0 +1,76 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "version": "14.1.15-b1",
+  "description": "__MSG_extensionDescription__",
+  "author": "Christopher Leidigh",
+  "applications": {
+    "gecko": {
+      "id": "ImportExportToolsNG@cleidigh.kokkini.net",
+      "strict_min_version": "140.0",
+      "strict_max_version": "144.*"
+    }
+  },
+  "browser_action": {
+		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
+    "default_title": "ImportExport",
+    "default_popup": "chrome/content/dummy.html"
+	  },
+  "experiment_apis": {
+    "WindowListener": {
+      "schema": "api/WindowListener/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "WindowListener"
+          ]
+        ],
+        "script": "api/WindowListener/implementation.js"
+      }
+    },
+    "NotifyTools": {
+      "schema": "api/NotifyTools/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["NotifyTools"]],
+        "script": "api/NotifyTools/implementation.js",
+        "events": ["startup"]
+      }
+    },
+    "AsyncPrompts": {
+      "schema": "api/AsyncPrompts/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "AsyncPrompts"
+          ]
+        ],
+        "script": "api/AsyncPrompts/implementation.js"
+      }
+    }
+  },
+  "permissions" : [
+    "menus",
+    "activeTab",
+    "messagesRead",
+    "tabs",
+    "accountsFolders",
+    "accountsRead",
+    "messagesImport",
+    "messagesMove"
+
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "icons": {
+    "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
+  },
+  "default_locale": "en-US"
+}

@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -302,6 +302,8 @@ var autoBackup = {
 	},
 
 	scanExternal: function (destDir) {
+		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())

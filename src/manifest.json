@@ -7,8 +7,8 @@
   "applications": {
     "gecko": {
       "id": "ImportExportToolsNG@cleidigh.kokkini.net",
-      "strict_min_version": "128.0",
-      "strict_max_version": "142.*"
+      "strict_min_version": "140.0",
+      "strict_max_version": "145.*"
     }
   },
   "browser_action": {

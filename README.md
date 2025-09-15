@@ -7,7 +7,7 @@ export functions for messages, folders and profiles.
 [Click here to view this add-on’s version history](https://addons.thunderbird.net/addon/importexporttools-ng/versions/).
 
 [![TB78](https://raster.shields.io/badge/version-v12.0.4%20(released%20version)-darkgreen.png?label=Thunderbird%20102)](https://addons.thunderbird.net/addon/importexporttools-ng/)
-[![TB91](https://raster.shields.io/badge/version-v14.1126%20(released%20version)-C70039.png?label=Thunderbird%20v115-v128)](https://github.com/thundernest/import-export-tools-ng/issues/264)
+[![TB91](https://raster.shields.io/badge/version-v14.1.14%20(released%20version)-C70039.png?label=Thunderbird%20v140-v144)](https://github.com/thundernest/import-export-tools-ng/issues/264)
 [![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-red.png)](https://opensource.org/licenses/GPL-3.0)
 
 ## New Wiki 
@@ -17,6 +17,21 @@ export functions for messages, folders and profiles.
 
 ## Import Export Tools NG Add-On Features - Version Notes
 
+Version 14.1.14 : Maintenance Release - September 16, 2025
+
+- Fix race condition preventing auto backup on shutdown 
+
+Version 14.1.13 : v140-v144 Release - September 8, 2025
+
+- Compatibility for v140-v144
+- Convert and remove last properties files
+
+Version 14.1.12 : v140-v142 Release - August 21, 2025
+
+- Use conditional for prettyName and localizedName 
+ to support v140 & v141+
+ - Compatibility for v142
+ 
 Version 14.1.5 : Maintenance Release - February 3, 2025
 
 - Rollback mboxImportExport module to stable v7

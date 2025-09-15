@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2024 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -105,11 +105,10 @@ var autoBackup = {
 		if (!dir)
 			return;
 
-		// cleidigh
-		let strbundle = Services.strings.createBundle("chrome://mboximport/locale/autobackup.properties");
+		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
 		if (!dir.exists() || !dir.isWritable) {
-			alert(strbundle.getString("noBackup"));
+			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
 			return;
 		}
@@ -286,7 +285,7 @@ var autoBackup = {
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);
-		
+
 		removeBackupsList = await Promise.all(removeBackupsList.map(async fn => {
 			return { fn: fn, lastModified: (await IOUtils.stat(fn)).lastModified };
 		}));
@@ -303,6 +302,8 @@ var autoBackup = {
 	},
 
 	scanExternal: function (destDir) {
+		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
 		var file = destDir.clone();
 		file.append("ExternalMailFolders");
 		if (!file.exists())

@@ -31,10 +31,9 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
   + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
 
-var mboximportbundle = Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties");
 
 // as a module loaded by an ES6 module we bump name version so we avoid cache
-console.log("IETNG: importMboxModule.js -v7");
+console.log("IETNG: importMboxModule.js -v8");
 
 // if these are const or let they produce redeclaration error5
 // Common RFC822 header field-names for From_ exception analysis
@@ -114,9 +113,9 @@ async function mboxCopyImport(options) {
   var finalChunk;
 
   // Status messages
-  const processingMsg = this.mboximportbundle.GetStringFromName("processingMsg");
-  const importedMsg = this.mboximportbundle.GetStringFromName("importedMsg");
-  const timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+  const processingMsg = ietngUtils.localizeMsg("processingMsg");
+  const importedMsg = ietngUtils.localizeMsg("importedMsg");
+  const timeMsg = ietngUtils.localizeMsg("timeMsg");
 
   while (!eof) {
 

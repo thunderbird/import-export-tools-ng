@@ -1,4 +1,14 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Converting CR => CRLF line terminations"
+    },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
+    "Error.msg": {
+        "message": "Error"
+    },
     "MACwarning": {
         "message": "N.B: Please close every other window before continuing."
     },
@@ -31,6 +41,16 @@
     },
     "MBlabel7d": {
         "message": "Recipients name max length: "
+    },
+    "Received": {
+        "message": "Received",
+        "src": "mboximport"
+    },
+    "Size": {
+        "message": "Size"
+    },
+    "Warning.msg": {
+        "message": "Warning"
     },
     "abortExport": {
         "message": "Stop the current export"
@@ -98,6 +118,18 @@
     "backupType": {
         "message": "Backup content"
     },
+    "backupWarning": {
+        "message": "During this operation, the program could be\\nunresponsive for some minutes.\\nDo you want to go on?\\n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Impossibile to import in this folder (imap or newsgroup type)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Impossibile to import in this folder (imap or newsgroup or virtual type)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Browse…"
     },
@@ -125,14 +157,43 @@
     "buttonMenu_Options.title": {
         "message": "Options"
     },
+    "cancel.msg": {
+        "message": "Cancel"
+    },
     "captionCustomize": {
         "message": "Customized format for filenames"
     },
     "changeProfileNameLabel": {
         "message": "You can anyway change the profile name in the Profile Manager"
     },
+    "characterFilter": {
+        "message": "Character Filter (UTF-8 or UTF-16)"
+    },
+    "confirmimport": {
+        "message": "Do you want to import the file",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Copy folder path on disk"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Multiple messages selected, only fist message headers copied to clipboard.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Copy Headers to Clipboard",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Multiple messages selected, only the fist message copied to clipboard.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Copy Messages to Clipboard",
+        "src": "mboximport"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Error creating subfolder:"
     },
     "csvSep": {
         "message": "Separator for export in CSV format:"
@@ -215,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG- Backup"
     },
+    "emailFiles": {
+        "message": "Email files",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Export folders as single files:"
     },
+    "endscan": {
+        "message": "End of directory’s scan",
+        "src": "mboximport"
+    },
     "error": {
         "message": "An error occurred during profile import. Error details are:"
+    },
+    "exportAborted": {
+        "message": "Export stopped",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Export all the folders",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Export folder",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Export successfully performed",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Exported",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Exporting",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Exporting, please wait…",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Extended Filename Format Reference"
@@ -233,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Adds some tools to import and export messages and folders (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Filenames length"
+    },
+    "filePickerAppend": {
+        "message": "Select the mbox file",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Select the destination directory",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Select the mbox file to import",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Select the messages to import",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Unable to export: there is a file with the same name",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Charset for filenames: "
@@ -371,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Open Folder Directory"
     },
+    "folderexists": {
+        "message": "Unable to import: there is a folder with the same name",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "If you export in this format, the attachments are not saved.\\nIf you want to save also the attachments, choose a different format.\\nAre you sure you want to continue?",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "If you use this format, it will not be possible to import the exported messages.\\nAre you sure you want to continue?\\n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Import Done",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Importing, please wait…",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "The import was successful!"
     },
     "importRunning": {
         "message": "Import running…"
+    },
+    "importedMsg": {
+        "message": "Imported",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Importing",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Index, CSV Date Format:"
@@ -395,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Inline Attachments Folders"
     },
+    "internalerror": {
+        "message": "Unable to import because of a unknown error",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it’s not guaranteed that everything will work as expected, especially if you’re importing a profile from another computer. It’s anyway safer than copying the files manually."
     },
@@ -403,6 +556,25 @@
     },
     "intro3": {
         "message": "To access the imported profile, run the Profile Manager clicking on the button below. The current profile will be automatically closed"
+    },
+    "invalidFolderSelection": {
+        "message": "Invalid folder selection"
+    },
+    "isEudora": {
+        "message": "This “Mbox” file seems to come from Eudora.\\nThunderbird can’t handle it and so you must convert it in standard “Mbox” format.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Feature not available: it’s possible to export from an IMAP or NEWS account only if the folder is set for offline use",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "The folder to import is not a “Maildir” folder",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "This “Mbox” file uses a different format from the Thunderbird folder format and it’s possible that Thunderbird can’t handle it properly.\\nAre you sure you want to continue?",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Just mail files"
@@ -413,11 +585,28 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database."
+    },
     "lastBackup": {
         "message": "Last backup"
     },
+    "latinizeTransform": {
+        "message": "Latinize transform"
+    },
     "mboxExport": {
         "message": "Export folders as MBOX file:"
+    },
+    "messageImportProblems.msg": {
+        "message": "There were problems importing some messages:"
+    },
+    "messagesMsg": {
+        "message": "Messages",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "messages",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Misc"
@@ -500,23 +689,128 @@
     "msgCtxMenu_TopId.title": {
         "message": "Export Messages As…"
     },
+    "msgs": {
+        "message": "messages of",
+        "src": "mboximport"
+    },
+    "multipleFolders.alertMsg": {
+        "message": "Multiple folders are not supported:\nClick OK to export just the first folder."
+    },
+    "multipleFolders.title": {
+        "message": "Multiple Folders"
+    },
     "name": {
         "message": "Name"
     },
     "newFilesMode": {
         "message": "Just files modified after last backup"
     },
+    "noBackup": {
+        "message": "Unable to perform backup: check path and permissions of destination folder",
+        "src": "autobackup"
+    },
+    "noEML": {
+        "message": "No eml file found in this directory",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Unable to export.\\nThe selected folders are of different types or one of them is a virtual folder.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "No message folder selected:\\n\\nPlease create or select a valid account or Local Folder subfolder.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Impossible to import a “Maildir” folder in an account using another format",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Impossible to import a “Mbox” folder in an account using another format",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Because of a Thunderbird bug, the feature is not available on this platform",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "To export in PDF format, select just one folder",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "No printer seems installed on this machine. This feature requires at least one printer installed (also a virtual one)",
+        "src": "mboximport"
+    },
+    "noProfile": {
+        "message": "This folder doesn’t contain a valid profile",
+        "src": "profilewizard"
+    },
+    "noRemoteExport": {
+        "message": "Unable to export this remote folder, because it is not online.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Don’t show again this warning",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "No destination folder selected",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "seems not to be a mbox file or is a corrupted mbox file",
+        "src": "mboximport"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Filter non-alphanumeric characters"
+    },
+    "nosubjectmsg": {
+        "message": "no_subject",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Unable to export: no writing permission in the directory",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Eml files imported:",
+        "src": "mboximport"
+    },
+    "numRetainBackups.msg": {
+        "message": "Number of backups to retain:"
+    },
+    "offlineWarning": {
+        "message": "This folder is offline.\\nJust the messages locally saved will be exported. Are you sure you want to continue?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Open help in a window instead of a tab"
     },
+    "over4GBskipMsg": {
+        "message": "larger than 4GB, skipping",
+        "src": "mboximport"
+    },
+    "pickProfile": {
+        "message": "Path of the profile to import:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${prefix}"
+    },
+    "processingMsg": {
+        "message": "Processing",
+        "src": "mboximport"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Profile import",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Name of the profile to import"
     },
     "profilePath": {
-        "message": "Path of the profile to import"
+        "message": "The path of the imported profile is:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Recipient"
@@ -526,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${recipient}"
+    },
+    "remoteWarning": {
+        "message": "You’re exporting the local copy of a IMAP or NEWS folder.\\nThe local folder could not have all the messages present in remote folder.\\nAre you sure you want to continue?",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Run the Profile Manager"
@@ -569,8 +867,20 @@
     "sdText": {
         "message": "Plain text"
     },
+    "searchdir": {
+        "message": "Select a directory to search the files",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Export selected messages:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Select folder to import mbox files",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Select mbox files to import",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Sender"
@@ -583,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "don’t save messages when the file already exists"
+    },
+    "skipNonMbox": {
+        "message": "Skip non-mbox file",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${smart_name}"
@@ -602,8 +916,16 @@
     "suffixFmtToken": {
         "message": "${suffix}"
     },
+    "temp_error": {
+        "message": "Impossibile to import: an error occurred in temporary file creation",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Charset for export in text and CSV format: "
+    },
+    "timeMsg": {
+        "message": "Time",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Profile import"
@@ -629,70 +951,18 @@
     "useMboxExt.label": {
         "message": "Use .mbox extension for mbox files (non-structured)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Converting CR => CRLF line terminations"
+    "utf16Filter": {
+        "message": "Filter UTF-16 characters (Symbols and Emojis)"
     },
-    "Size": {
-        "message": "Size"
-    },
-
-	"latinizeTransform": {
-		"message": "Latinize transform"
-	},
-
-	"characterFilter": {
-		"message": "Character Filter (UTF-8 or UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Filter UTF-16 characters (Symbols and Emojis)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Filter non-alphanumeric characters"
-	},
-
-	"multipleFolders.title": {
-		"message": "Multiple Folders"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Multiple folders are not supported:\nClick OK to export just the first folder."
-	},
-
-	"cancel.msg": {
-		"message": "Cancel"
-	},
-
-	"Error.msg": {
-		"message": "Error"
-	},
-
-	"Warning.msg": {
-		"message": "Warning"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Number of backups to retain:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Error creating subfolder:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "More than 200 mbox folders imported.\nThunderbird should be restarted to reset database."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Invalid folder selection"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "There were problems importing some messages:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Errors. View the Debug Console  (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Errors. View the Debug Console  (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Virtual folders can be exported in this format just separately",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "This is a virtual folder, to export its messages you must\\ncopy them in a normal folder and export this normal folder",
+        "src": "mboximport"
+    }
 }

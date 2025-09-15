@@ -44,12 +44,11 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
-console.log("IETNG: mboximportExport.js -v13");
+console.log("IETNG: mboximportExport.mjs -v14");
 
 export var mboxImportExport = {
 
   IETprefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
-  mboximportbundle: Services.strings.createBundle("chrome://mboximport/locale/mboximport.properties"),
   totalImported: 0,
   totalSkipped: 0,
   toCompactFolderList: [],
@@ -71,8 +70,8 @@ export var mboxImportExport = {
     this.totalSkipped = 0;
     this.toCompactFolderList = [];
 
-    let selectMboxFiles_title = this.mboximportbundle.GetStringFromName("selectMboxFiles_title");
-    let selectFolderForMboxes_title = this.mboximportbundle.GetStringFromName("selectFolderForMboxes_title");
+    let selectMboxFiles_title = ietngUtils.localizeMsg("selectMboxFiles_title");
+    let selectFolderForMboxes_title = ietngUtils.localizeMsg("selectFolderForMboxes_title");
 
     var warningMsg = window.ietngAddon.extension.localeData.localizeMessage("Warning.msg");
     var errorMsg = window.ietngAddon.extension.localeData.localizeMessage("Error.msg");
@@ -102,7 +101,7 @@ export var mboxImportExport = {
       await this.importMboxFiles(mboxFiles, msgFolder, params.mboxImpRecursive);
 
       let total = this.totalImported + this.totalSkipped;
-      let doneMsg = this.mboximportbundle.GetStringFromName("importDone");
+      let doneMsg = ietngUtils.localizeMsg("importDone");
       let result = `${doneMsg}: ${this.totalImported}/${total}`;
 
       await new Promise(r => window.setTimeout(r, 2500));
@@ -144,7 +143,7 @@ export var mboxImportExport = {
       let stat = await IOUtils.stat(mboxFilePath);
       let fname = PathUtils.filename(mboxFilePath);
 
-      let over4GBskipMsg = this.mboximportbundle.GetStringFromName("over4GBskipMsg");
+      let over4GBskipMsg = ietngUtils.localizeMsg("over4GBskipMsg");
 
       if (stat.size > 30000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
@@ -169,13 +168,13 @@ export var mboxImportExport = {
         }
       }
 
-      let impMsg = this.mboximportbundle.GetStringFromName("importing");
+      let impMsg = ietngUtils.localizeMsg("importing");
 
       ietngUtils.writeStatusLine(window, impMsg + ": " + PathUtils.filename(mboxFilePath), 6000);
 
       let rv = await this._isMboxFile(mboxFilePath);
       if (!(await this._isMboxFile(mboxFilePath))) {
-        let skipNonMboxMsg = this.mboximportbundle.GetStringFromName("skipNonMbox");
+        let skipNonMboxMsg = ietngUtils.localizeMsg("skipNonMbox");
 
         console.log("IETNG: " + skipNonMboxMsg + ": " + mboxFilePath);
         ietngUtils.writeStatusLine(window, skipNonMboxMsg + ": " + PathUtils.filename(mboxFilePath), 3000);
@@ -499,9 +498,9 @@ export var mboxImportExport = {
   },
 
   buildAndExportMbox: async function (msgFolder, dest) {
-    var exportingMsg = this.mboximportbundle.GetStringFromName("exportingMsg");
-    var messagesMsg = this.mboximportbundle.GetStringFromName("messagesMsg");
-    let timeMsg = this.mboximportbundle.GetStringFromName("timeMsg");
+    var exportingMsg = ietngUtils.localizeMsg("exportingMsg");
+    var messagesMsg = ietngUtils.localizeMsg("messagesMsg");
+    let timeMsg = ietngUtils.localizeMsg("timeMsg");
 
     let st = new Date();
     //console.log("Start: ", st, msgFolder.prettyName);

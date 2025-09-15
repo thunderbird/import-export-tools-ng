@@ -385,4 +385,9 @@ export var ietngUtils = {
 
     return folderAddedPromise;
   },
+
+  localizeMsg: function (msgName) {
+		return this.top.ietngAddon.ietngExtension.localeData.localizeMessage(msgName);
+	},
+
 };

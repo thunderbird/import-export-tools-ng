@@ -2,7 +2,7 @@
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
 	The derivative extension authors:
-		Copyright (C) 2019 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2025 : Christopher Leidigh, The Thunderbird Team
 
 	The original extension & derivatives, ImportExportTools, by Paolo "Kaosmos",
 	is covered by the GPLv3 open-source license (see LICENSE file).
@@ -36,13 +36,14 @@ mboximportbundle,
 GetSelectedMessages,
 IETstoreHeaders,
 */
-//var Services = globalThis.Services || ChromeUtils.import(
-//	'resource://gre/modules/Services.jsm'
-//).Services;
+
+// Always load ietngUtils - we don't have access to extension.manifest.version
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+	+ new Date());
 
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
-//var { ietngUtils } = ChromeUtils.import("chrome://mboximport/content/mboximport/modules/ietngUtils.js");
 
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
@@ -275,17 +276,17 @@ function getSubjectForHdr(hdr, dirPath) {
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-		extendedFilenameFormat = extendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("subjectFmtToken"), subj);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("senderFmtToken"), authName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("senderEmailFmtToken"), authEmail);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientFmtToken"), recName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 
 		fname = extendedFilenameFormat;
@@ -384,7 +385,7 @@ function IETexport_all(params) {
 		//var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"]
 		//.getService(Ci.nsIPromptService);
 		var check = { value: false };
-		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("backupWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
+		var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", ietngUtils.localizeMsg("backupWarning"), ietngUtils.localizeMsg("noWarning"), check);
 		if (just_mail)
 			IETprefs.setBoolPref("extensions.importexporttoolsng.export_all.warning2", !check.value);
 		else
@@ -401,7 +402,7 @@ function IETexport_all(params) {
 	// Open the filepicker to choose the directory
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -413,7 +414,7 @@ function IETexport_all(params) {
 	else
 		return;
 
-	IETwritestatus(mboximportbundle.GetStringFromName("exportstart"));
+	IETwritestatus(ietngUtils.localizeMsg("exportstart"));
 	setTimeout(IETexport_all_delayed, 1000, just_mail, file);
 	return { status: "ok" };
 }
@@ -453,7 +454,7 @@ function IETexport_all_delayed(just_mail, file) {
 	}
 	var clone = file.clone();
 	saveExternalMailFolders(clone, profDir);
-	IETwritestatus(mboximportbundle.GetStringFromName("exportOK"));
+	IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	return file;
 }
 
@@ -495,13 +496,13 @@ function IETformatWarning(warning_type) {
 	var pref;
 
 	if (warning_type === 0) {
-		text = mboximportbundle.GetStringFromName("formatWarning");
+		text = ietngUtils.localizeMsg("formatWarning");
 		pref = "extensions.importexporttoolsng.export.format_warning";
 	} else {
-		text = mboximportbundle.GetStringFromName("formatWarningImport");
+		text = ietngUtils.localizeMsg("formatWarningImport");
 		pref = "extensions.importexporttoolsng.export.import_warning";
 	}
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, mboximportbundle.GetStringFromName("noWarning"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", text, ietngUtils.localizeMsg("noWarning"), check);
 	IETprefs.setBoolPref(pref, !check.value);
 	return result;
 }
@@ -511,7 +512,7 @@ function IETremoteWarning() {
 		return true;
 
 	var check = { value: false };
-	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", mboximportbundle.GetStringFromName("remoteWarning"), mboximportbundle.GetStringFromName("noWarning"), check);
+	var result = Services.prompt.confirmCheck(null, "ImportExportTools NG", ietngUtils.localizeMsg("remoteWarning"), ietngUtils.localizeMsg("noWarning"), check);
 	IETprefs.setBoolPref("extensions.importexporttoolsng.export.remote_warning", !check.value);
 	return result;
 }
@@ -660,7 +661,7 @@ function IETgetPickerModeFolder() {
 	}
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(winCtx, mboximportbundle.GetStringFromName("filePickerExport"), nsIFilePicker.modeGetFolder);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
 	var res;
 
 	if (fp.show)
@@ -670,7 +671,7 @@ function IETgetPickerModeFolder() {
 	if (res === nsIFilePicker.returnOK) {
 		dir = fp.file;
 		if (dir && !dir.isWritable()) {
-			alert(mboximportbundle.GetStringFromName("nowritable"));
+			alert(ietngUtils.localizeMsg("nowritable"));
 			dir = null;
 		}
 	}
@@ -900,17 +901,17 @@ function constructAttachmentsFilename(type, hdr) {
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subj);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("subjectFmtToken"), subj);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("senderFmtToken"), authName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("senderEmailFmtToken"), authEmail);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientFmtToken"), recName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
 	fname = attachmentsExtendedFilenameFormat;
 
@@ -918,6 +919,10 @@ function constructAttachmentsFilename(type, hdr) {
 	// Allow ',' and single quote character which is valid
 	fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
+	// directories ending with a period can cause issues
+	if (fname.endsWith('.')) {
+		fname = fname.slice(0, -1) + ";";
+	}
 	return fname;
 }
 

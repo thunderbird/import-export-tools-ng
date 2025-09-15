@@ -1,4 +1,14 @@
 {
+    "CRconversion.statusMsg": {
+        "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
+    },
+    "CSVseparator": {
+        "message": ",",
+        "src": "mboximport"
+    },
+    "Error.msg": {
+        "message": "Σφάλμα"
+    },
     "MACwarning": {
         "message": "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε."
     },
@@ -31,6 +41,16 @@
     },
     "MBlabel7d": {
         "message": "Μέγιστο μήκος ονόματος παραλήπτη:"
+    },
+    "Received": {
+        "message": "Ελήφθη",
+        "src": "mboximport"
+    },
+    "Size": {
+        "message": "Μέγεθος"
+    },
+    "Warning.msg": {
+        "message": "Προειδοποίηση"
     },
     "abortExport": {
         "message": "Διακοπή της τρέχουσας εξαγωγής"
@@ -98,6 +118,18 @@
     "backupType": {
         "message": "Εφεδρικό περιεχόμενο"
     },
+    "backupWarning": {
+        "message": "Κατά τη διάρκεια αυτής της λειτουργίας, το πρόγραμμα θα μπορούσε \\ n να μην ανταποκρίνεται για μερικά λεπτά. \\ NΘέλετε να συνεχίσετε; \\ n",
+        "src": "mboximport"
+    },
+    "badfolder": {
+        "message": "Αδύνατο για εισαγωγή σε αυτόν τον φάκελο (τύπος imap ή ομάδα συζήτησης)",
+        "src": "mboximport"
+    },
+    "badfolder2": {
+        "message": "Αδύνατο για εισαγωγή σε αυτόν το φάκελο (imap ή ομάδα συζήτησης ή εικονικός τύπος)",
+        "src": "mboximport"
+    },
     "browse": {
         "message": "Ξεφυλλίζω…"
     },
@@ -125,14 +157,43 @@
     "buttonMenu_Options.title": {
         "message": "Επιλογές"
     },
+    "cancel.msg": {
+        "message": "Ματαίωση"
+    },
     "captionCustomize": {
         "message": "Προσαρμοσμένη μορφή για ονόματα αρχείων"
     },
     "changeProfileNameLabel": {
         "message": "Μπορείτε ούτως ή άλλως να αλλάξετε το όνομα προφίλ στη Διαχείριση προφίλ"
     },
+    "characterFilter": {
+        "message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
+    },
+    "confirmimport": {
+        "message": "Θέλετε να εισαγάγετε το αρχείο",
+        "src": "mboximport"
+    },
     "copyFolderPath": {
         "message": "Αντιγραφή διαδρομής φακέλου στο δίσκο"
+    },
+    "copyHdrsToClip_firstOnly": {
+        "message": "Επιλέχθηκαν πολλά μηνύματα, αντιγράφηκαν μόνο οι κεφαλίδες των πρώτων μηνυμάτων στο πρόχειρο.",
+        "src": "mboximport"
+    },
+    "copyHdrsToClip_promptTitle": {
+        "message": "Αντιγραφή κεφαλίδων στο πρόχειρο",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_firstOnly": {
+        "message": "Επιλέχθηκαν πολλά μηνύματα, μόνο το πρώτο μήνυμα αντιγράφηκε στο πρόχειρο.",
+        "src": "mboximport"
+    },
+    "copyMsgsToClip_promptTitle": {
+        "message": "Αντιγραφή μηνυμάτων στο Πρόχειρο",
+        "src": "mboximport"
+    },
+    "createSubfolderErr.msg": {
+        "message": "Σφάλμα δημιουργίας υποφακέλου:"
     },
     "csvSep": {
         "message": "Διαχωριστικό για εξαγωγή σε μορφή CSV:"
@@ -215,11 +276,47 @@
     "dialog.title": {
         "message": "ImportExportTools NG- Δημιουργία αντιγράφων ασφαλείας"
     },
+    "emailFiles": {
+        "message": "Αρχεία email",
+        "src": "mboximport"
+    },
     "emlExport": {
         "message": "Εξαγωγή φακέλων ως μεμονωμένα αρχεία:"
     },
+    "endscan": {
+        "message": "Τέλος σάρωσης καταλόγου",
+        "src": "mboximport"
+    },
     "error": {
         "message": "Παρουσιάστηκε σφάλμα κατά την εισαγωγή προφίλ. Οι λεπτομέρειες σφάλματος είναι:"
+    },
+    "exportAborted": {
+        "message": "Η εξαγωγή σταμάτησε",
+        "src": "mboximport"
+    },
+    "exportAccount": {
+        "message": "Εξαγωγή όλων των φακέλων",
+        "src": "mboximport"
+    },
+    "exportFolder": {
+        "message": "Εξαγωγή φακέλου",
+        "src": "mboximport"
+    },
+    "exportOK": {
+        "message": "Η εξαγωγή πραγματοποιήθηκε με επιτυχία",
+        "src": "mboximport"
+    },
+    "exported": {
+        "message": "Εξαγωγή",
+        "src": "mboximport"
+    },
+    "exportingMsg": {
+        "message": "Εξαγωγή",
+        "src": "mboximport"
+    },
+    "exportstart": {
+        "message": "Εξαγωγή, περιμένετε…",
+        "src": "mboximport"
     },
     "extFilenameFormatRefTooltipText": {
         "message": "Αναφορά εκτεταμένης μορφής ονόματος αρχείου"
@@ -233,8 +330,32 @@
     "extensionName": {
         "message": "ImportExportTools NG"
     },
+    "extensions.ImportExportToolsNG@cleidigh.description": {
+        "message": "Προσθέτει ορισμένα εργαλεία για εισαγωγή και εξαγωγή μηνυμάτων και φακέλων (NextGen)",
+        "src": "mboximport"
+    },
     "fileLenCaption": {
         "message": "Μήκος ονομάτων αρχείων"
+    },
+    "filePickerAppend": {
+        "message": "Επιλέξτε το αρχείο mbox",
+        "src": "mboximport"
+    },
+    "filePickerExport": {
+        "message": "Επιλέξτε τον κατάλογο προορισμού",
+        "src": "mboximport"
+    },
+    "filePickerImport": {
+        "message": "Επιλέξτε το αρχείο mbox για εισαγωγή",
+        "src": "mboximport"
+    },
+    "filePickerImportMSG": {
+        "message": "Επιλέξτε τα μηνύματα για εισαγωγή",
+        "src": "mboximport"
+    },
+    "fileexists": {
+        "message": "Δεν είναι δυνατή η εξαγωγή: υπάρχει ένα αρχείο με το ίδιο όνομα",
+        "src": "mboximport"
     },
     "filenameCharset": {
         "message": "Charset για ονόματα αρχείων:"
@@ -371,11 +492,39 @@
     "folderCtxMenu_OpenFolderDir_Id.title": {
         "message": "Ανοίξτε τον κατάλογο φακέλων"
     },
+    "folderexists": {
+        "message": "Δεν είναι δυνατή η εισαγωγή: υπάρχει ένας φάκελος με το ίδιο όνομα",
+        "src": "mboximport"
+    },
+    "formatWarning": {
+        "message": "Εάν κάνετε εξαγωγή σε αυτήν τη μορφή, τα συνημμένα δεν αποθηκεύονται. \\ NΕάν θέλετε να αποθηκεύσετε και τα συνημμένα, επιλέξτε διαφορετική μορφή. \\ NΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;",
+        "src": "mboximport"
+    },
+    "formatWarningImport": {
+        "message": "Εάν χρησιμοποιείτε αυτήν τη μορφή, δεν θα είναι δυνατή η εισαγωγή των εξαγόμενων μηνυμάτων. \\ NΕίστε βέβαιοι ότι θέλετε να συνεχίσετε; \\ n",
+        "src": "mboximport"
+    },
+    "importDone": {
+        "message": "Η εισαγωγή ολοκληρώθηκε",
+        "src": "mboximport"
+    },
+    "importEMLstart": {
+        "message": "Εισαγωγή, περιμένετε…",
+        "src": "mboximport"
+    },
     "importEnd": {
         "message": "Η εισαγωγή ήταν επιτυχής!"
     },
     "importRunning": {
         "message": "Η εισαγωγή εκτελείται…"
+    },
+    "importedMsg": {
+        "message": "Εισαγόμενος",
+        "src": "mboximport"
+    },
+    "importing": {
+        "message": "Εισαγωγή",
+        "src": "mboximport"
     },
     "indexCSVdateFormat": {
         "message": "Ευρετήριο, Μορφή ημερομηνίας CSV:"
@@ -395,6 +544,10 @@
     "inlineAttachmentsFolders": {
         "message": "Ενσωματωμένοι φάκελοι συνημμένων"
     },
+    "internalerror": {
+        "message": "Δεν είναι δυνατή η εισαγωγή λόγω άγνωστου σφάλματος",
+        "src": "mboximport"
+    },
     "intro1": {
         "message": "Αυτή είναι μια πειραματική διαδικασία για την εισαγωγή ενός προφίλ. Δεν υπάρχει κίνδυνος dataloss, αλλά δεν είναι εγγυημένο ότι όλα θα λειτουργούν όπως αναμένεται, ειδικά εάν εισάγετε ένα προφίλ από άλλον υπολογιστή. Είναι ούτως ή άλλως ασφαλέστερο από την αντιγραφή των αρχείων με μη αυτόματο τρόπο."
     },
@@ -403,6 +556,25 @@
     },
     "intro3": {
         "message": "Για να αποκτήσετε πρόσβαση στο εισαγόμενο προφίλ, εκτελέστε τη Διαχείριση προφίλ κάνοντας κλικ στο παρακάτω κουμπί. Το τρέχον προφίλ θα κλείσει αυτόματα"
+    },
+    "invalidFolderSelection": {
+        "message": "Μη έγκυρη επιλογή φακέλου"
+    },
+    "isEudora": {
+        "message": "Αυτό το αρχείο &quot;Mbox&quot; φαίνεται να προέρχεται από το Eudora. \\ NΤο Thunderbird δεν μπορεί να το χειριστεί και γι &#39;αυτό πρέπει να το μετατρέψετε σε τυπική μορφή &quot;Mbox&quot;.",
+        "src": "mboximport"
+    },
+    "isNewsgroup": {
+        "message": "Η δυνατότητα δεν είναι διαθέσιμη: είναι δυνατή η εξαγωγή από λογαριασμό IMAP ή NEWS μόνο εάν ο φάκελος έχει ρυθμιστεί για χρήση εκτός σύνδεσης",
+        "src": "mboximport"
+    },
+    "isNotMaildir": {
+        "message": "Ο φάκελος για εισαγωγή δεν είναι φάκελος &quot;Maildir&quot;",
+        "src": "mboximport"
+    },
+    "isNotStandard": {
+        "message": "Αυτό το αρχείο &quot;Mbox&quot; χρησιμοποιεί διαφορετική μορφή από τη μορφή φακέλου Thunderbird και είναι πιθανό ότι το Thunderbird δεν μπορεί να το χειριστεί σωστά. \\ NΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;",
+        "src": "mboximport"
     },
     "justMailFiles": {
         "message": "Απλά αλληλογραφία αρχείων"
@@ -413,11 +585,28 @@
     "labelmenuMI": {
         "message": "ImportExportTools NG"
     },
+    "largeFolderImport.msg": {
+        "message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
+    },
     "lastBackup": {
         "message": "Τελευταίο αντίγραφο ασφαλείας"
     },
+    "latinizeTransform": {
+        "message": "Λατινοποίηση μετασχηματισμού"
+    },
     "mboxExport": {
         "message": "Εξαγωγή φακέλων ως αρχείο MBOX:"
+    },
+    "messageImportProblems.msg": {
+        "message": "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή ορισμένων μηνυμάτων:"
+    },
+    "messagesMsg": {
+        "message": "Μηνύματα",
+        "src": "mboximport"
+    },
+    "messsubdir": {
+        "message": "μηνύματα",
+        "src": "mboximport"
     },
     "misc": {
         "message": "Διάφορα"
@@ -500,23 +689,128 @@
     "msgCtxMenu_TopId.title": {
         "message": "Εξαγωγή μηνυμάτων ως…"
     },
+    "msgs": {
+        "message": "μηνύματα του",
+        "src": "mboximport"
+    },
+    "multipleFolders.alertMsg": {
+        "message": "Δεν υποστηρίζονται πολλοί φάκελοι:\nΚάντε κλικ στο OK για να εξαγάγετε μόνο τον πρώτο φάκελο."
+    },
+    "multipleFolders.title": {
+        "message": "Πολλαπλοί φάκελοι"
+    },
     "name": {
         "message": "Ονομα"
     },
     "newFilesMode": {
         "message": "Απλά τροποποιήθηκαν αρχεία μετά την τελευταία δημιουργία αντιγράφων ασφαλείας"
     },
+    "noBackup": {
+        "message": "Δεν είναι δυνατή η εκτέλεση αντιγράφων ασφαλείας: ελέγξτε τη διαδρομή και τα δικαιώματα του φακέλου προορισμού",
+        "src": "autobackup"
+    },
+    "noEML": {
+        "message": "Δεν βρέθηκε αρχείο eml σε αυτόν τον κατάλογο",
+        "src": "mboximport"
+    },
+    "noFolderExport": {
+        "message": "Δεν είναι δυνατή η εξαγωγή. \\ NΟι επιλεγμένοι φάκελοι είναι διαφορετικών τύπων ή ένας από αυτούς είναι ένας εικονικός φάκελος.",
+        "src": "mboximport"
+    },
+    "noFolderSelected": {
+        "message": "Δεν επιλέχθηκε φάκελος μηνυμάτων:\\n\\n Δημιουργήστε ή επιλέξτε έναν έγκυρο λογαριασμό ή έναν υποφάκελο Τοπικού φακέλου.",
+        "src": "mboximport"
+    },
+    "noMaildirStorage": {
+        "message": "Αδύνατη η εισαγωγή ενός φακέλου &quot;Maildir&quot; σε έναν λογαριασμό χρησιμοποιώντας άλλη μορφή",
+        "src": "mboximport"
+    },
+    "noMboxStorage": {
+        "message": "Αδύνατη η εισαγωγή ενός φακέλου &quot;Mbox&quot; σε έναν λογαριασμό χρησιμοποιώντας άλλη μορφή",
+        "src": "mboximport"
+    },
+    "noPDFmac": {
+        "message": "Λόγω ενός σφάλματος Thunderbird, η δυνατότητα δεν είναι διαθέσιμη σε αυτήν την πλατφόρμα",
+        "src": "mboximport"
+    },
+    "noPDFmultipleFolders": {
+        "message": "Για εξαγωγή σε μορφή PDF, επιλέξτε μόνο έναν φάκελο",
+        "src": "mboximport"
+    },
+    "noPDFnoPrinter": {
+        "message": "Δεν φαίνεται να υπάρχει εγκατεστημένος εκτυπωτής σε αυτό το μηχάνημα. Αυτή η δυνατότητα απαιτεί τουλάχιστον έναν εκτυπωτή εγκατεστημένο (επίσης έναν εικονικό)",
+        "src": "mboximport"
+    },
+    "noProfile": {
+        "message": "Αυτός ο φάκελος δεν περιέχει έγκυρο προφίλ",
+        "src": "profilewizard"
+    },
+    "noRemoteExport": {
+        "message": "Δεν είναι δυνατή η εξαγωγή αυτού του απομακρυσμένου φακέλου, επειδή δεν είναι συνδεδεμένος στο διαδίκτυο.",
+        "src": "mboximport"
+    },
+    "noWarning": {
+        "message": "Μην εμφανίσετε ξανά αυτήν την προειδοποίηση",
+        "src": "mboximport"
+    },
+    "nofolder": {
+        "message": "Δεν έχει επιλεγεί φάκελος προορισμού",
+        "src": "mboximport"
+    },
+    "nomboxfile": {
+        "message": "φαίνεται να μην είναι αρχείο mbox ή κατεστραμμένο αρχείο mbox",
+        "src": "mboximport"
+    },
+    "nonAlphanumericFilter": {
+        "message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
+    },
+    "nosubjectmsg": {
+        "message": "χωρίς θέμα",
+        "src": "mboximport"
+    },
+    "nowritable": {
+        "message": "Δεν είναι δυνατή η εξαγωγή: δεν υπάρχει άδεια γραφής στον κατάλογο",
+        "src": "mboximport"
+    },
+    "numEML": {
+        "message": "Εισαγόμενα αρχεία eml:",
+        "src": "mboximport"
+    },
+    "numRetainBackups.msg": {
+        "message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
+    },
+    "offlineWarning": {
+        "message": "Αυτός ο φάκελος είναι εκτός σύνδεσης. \\ NΑκριβώς τα μηνύματα που αποθηκεύονται τοπικά θα εξαχθούν. Εισαι σιγουρος οτι θελεις να συνεχισεις?",
+        "src": "mboximport"
+    },
     "openHelpInWindow.label": {
         "message": "Ανοίξτε τη βοήθεια σε ένα παράθυρο αντί για μια καρτέλα"
     },
+    "over4GBskipMsg": {
+        "message": "μεγαλύτερο από 4 GB, παράλειψη",
+        "src": "mboximport"
+    },
+    "pickProfile": {
+        "message": "Διαδρομή του προφίλ προς εισαγωγή:",
+        "src": "profilewizard"
+    },
     "prefixFmtToken": {
         "message": "${πρόθεμα}"
+    },
+    "processingMsg": {
+        "message": "Επεξεργασία",
+        "src": "mboximport"
+    },
+    "profileImportWizHdr": {
+        "message": "ImportExportTools NG - Εισαγωγή προφίλ",
+        "src": "profilewizard"
     },
     "profileName": {
         "message": "Όνομα του προφίλ προς εισαγωγή"
     },
     "profilePath": {
-        "message": "Διαδρομή του προφίλ προς εισαγωγή"
+        "message": "Η διαδρομή του εισαγόμενου προφίλ είναι:",
+        "src": "profilewizard"
     },
     "recipient": {
         "message": "Παραλήπτης"
@@ -526,6 +820,10 @@
     },
     "recipientFmtToken": {
         "message": "${παραλήπτης}"
+    },
+    "remoteWarning": {
+        "message": "Εξάγετε το τοπικό αντίγραφο ενός φακέλου IMAP ή NEWS. \\ NΟ τοπικός φάκελος δεν μπορούσε να έχει όλα τα μηνύματα που υπάρχουν στον απομακρυσμένο φάκελο. \\ NΕίστε βέβαιοι ότι θέλετε να συνεχίσετε;",
+        "src": "mboximport"
     },
     "runProfileManager": {
         "message": "Εκτελέστε τη Διαχείριση προφίλ"
@@ -569,8 +867,20 @@
     "sdText": {
         "message": "Απλό κείμενο"
     },
+    "searchdir": {
+        "message": "Επιλέξτε έναν κατάλογο για αναζήτηση των αρχείων",
+        "src": "mboximport"
+    },
     "selExport": {
         "message": "Εξαγωγή επιλεγμένων μηνυμάτων:"
+    },
+    "selectFolderForMboxes_title": {
+        "message": "Επιλέξτε φάκελο για εισαγωγή αρχείων mbox",
+        "src": "mboximport"
+    },
+    "selectMboxFiles_title": {
+        "message": "Επιλέξτε αρχεία mbox για εισαγωγή",
+        "src": "mboximport"
     },
     "sender": {
         "message": "Αποστολέας"
@@ -583,6 +893,10 @@
     },
     "skipMsgLabel": {
         "message": "μην αποθηκεύετε μηνύματα όταν το αρχείο υπάρχει ήδη"
+    },
+    "skipNonMbox": {
+        "message": "Παράλειψη αρχείου που δεν είναι mbox",
+        "src": "mboximport"
     },
     "smartNameFmtToken": {
         "message": "${smart_name}"
@@ -597,13 +911,22 @@
         "message": "Θέμα"
     },
     "subjectFmtToken": {
-        "message": "${θέμα}"
+        "message": "${θέμα}",
+        "src": "mboximport"
     },
     "suffixFmtToken": {
         "message": "${επίθημα}"
     },
+    "temp_error": {
+        "message": "Αδύνατο για εισαγωγή: Παρουσιάστηκε σφάλμα κατά την προσωρινή δημιουργία αρχείων",
+        "src": "mboximport"
+    },
     "textCharset": {
         "message": "Charset για εξαγωγή σε μορφή κειμένου και CSV:"
+    },
+    "timeMsg": {
+        "message": "χρόνος",
+        "src": "mboximport"
     },
     "title": {
         "message": "ImportExportTools NG - Εισαγωγή προφίλ"
@@ -629,70 +952,18 @@
     "useMboxExt.label": {
         "message": "Χρησιμοποιήστε την επέκταση .mbox για αρχεία mbox (μη δομημένα)"
     },
-    "CRconversion.statusMsg": {
-        "message": "Μετατροπή CR =&gt; τερματισμοί γραμμής CRLF"
+    "utf16Filter": {
+        "message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
     },
-    "Size": {
-        "message": "Μέγεθος"
-    },
-
-	"latinizeTransform": {
-		"message": "Λατινοποίηση μετασχηματισμού"
-	},
-
-	"characterFilter": {
-		"message": "Φίλτρο χαρακτήρων (UTF-8 ή UTF-16)"
-	},
-
-	"utf16Filter": {
-		"message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
-	},
-
-	"nonAlphanumericFilter": {
-		"message": "Φιλτράρισμα μη αλφαριθμητικών χαρακτήρων"
-	},
-
-	"multipleFolders.title": {
-		"message": "Πολλαπλοί φάκελοι"
-	},
-
-	"multipleFolders.alertMsg": {
-		"message": "Δεν υποστηρίζονται πολλοί φάκελοι:\nΚάντε κλικ στο OK για να εξαγάγετε μόνο τον πρώτο φάκελο."
-	},
-
-	"cancel.msg": {
-		"message": "Ματαίωση"
-	},
-
-	"Error.msg": {
-		"message": "Σφάλμα"
-	},
-
-	"Warning.msg": {
-		"message": "Προειδοποίηση"
-	},
-
-	"numRetainBackups.msg": {
-		"message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
-	},
-
-	"createSubfolderErr.msg": {
-		"message": "Σφάλμα δημιουργίας υποφακέλου:"
-	},
-
-	"largeFolderImport.msg": {
-		"message": "Έχουν εισαχθεί περισσότεροι από 200 φάκελοι mbox.\nΤο Thunderbird θα πρέπει να επανεκκινηθεί για να επαναφέρει τη βάση δεδομένων."
-	},
-
-	"invalidFolderSelection": {
-		"message": "Μη έγκυρη επιλογή φακέλου"
-	},
-
-	"messageImportProblems.msg": {
-		"message": "Παρουσιάστηκαν προβλήματα κατά την εισαγωγή ορισμένων μηνυμάτων:"
-	},
-
-	"viewDbgConsole.msg": {
-		"message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"
-	}
+    "viewDbgConsole.msg": {
+        "message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"
+    },
+    "virtFolAlert": {
+        "message": "Οι εικονικοί φάκελοι μπορούν να εξαχθούν σε αυτήν τη μορφή μόνο ξεχωριστά",
+        "src": "mboximport"
+    },
+    "virtualfolder": {
+        "message": "Αυτός είναι ένας εικονικός φάκελος, για να εξαγάγετε τα μηνύματά του, πρέπει να τα αντιγράψετε σε έναν κανονικό φάκελο και να εξαγάγετε αυτόν τον κανονικό φάκελο",
+        "src": "mboximport"
+    }
 }

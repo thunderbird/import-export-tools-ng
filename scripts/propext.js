@@ -11,12 +11,13 @@ let locales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl', 'hu',
 
 let locales2 = ['ca', 'ko2']
 let localeDir = ".\\localeSrc";
+let localeDst = ".\\localeDst";
 
 //\ca\chrome\ca\locale\ca\messenger
 
 async function main() {
   let dc = await fsp.readdir(`${localeDir}`);
-  console.log(dc)
+  console.log("locales", dc)
 
   for (const dobj of dc) {
     if ((await fsp.stat(`${localeDir}\\${dobj}`)).isDirectory()) {
@@ -45,6 +46,21 @@ async function main() {
       console.log(`Bcc:\t\t${bccMP[1]}`)
       console.log(`Reply-To:\t${replytoMP[1]}`)
       console.log(`Message-ID:\t${msgidMP[1]}\n`)
+
+      let dstLocaleFile = `${localeDst}\\${dobj}\\hdrs.properties`;
+      await fsp.mkdir(`${localeDst}\\${dobj}`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.Subject=${subjectMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.From=${fromMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.To=${toMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.Date=${dateMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.Cc=Cc\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.CcLocal=${ccMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.Bcc=Bcc\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.BccLocal=${bccMP[1]}\n`)
+
+      await fsp.appendFile(dstLocaleFile, `msgHdr.Sender=${senderMP[1]}\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.MessageID=Message-ID\n`)
+      await fsp.appendFile(dstLocaleFile, `msgHdr.ReplyTo=${replytoMP[1]}\n`)
 
 
 

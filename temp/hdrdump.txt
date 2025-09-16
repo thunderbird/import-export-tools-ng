@@ -1,0 +1,255 @@
+  'ca',    'ca.xpi',    'cs',    'cs.xpi',
+  'da',    'da.xpi',    'de',    'de.xpi',
+  'el',    'el.xpi',    'en-US', 'en-US.xpi',
+  'es-ES', 'es-ES.xpi', 'fr',    'fr.xpi',
+  'gl',    'gl.xpi',    'hu',    'hu.xpi',
+  'hy-AM', 'hy-AM.xpi', 'it',    'it.xpi',
+  'ja',    'ja.xpi',    'ko',    'ko.xpi',
+  'nl',    'nl.xpi',    'pl',    'pl.xpi',
+  'pt-PT', 'pt-PT.xpi', 'ru',    'ru.xpi',
+  'sk',    'sk.xpi',    'sl',    'sl.xpi',
+  'sv-SE', 'sv-SE.xpi', 'zh-CN', 'zh-CN.xpi'
+]
+Locale: ca 
+
+To:             Per a
+From:           De
+Date:           Data
+Subject:        Assumpte
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Respon a
+Message-ID:     Identificador del missatge
+
+Locale: cs
+
+To:             Komu
+From:           Od
+Date:           Datum
+Subject:        Předmět
+Cc:             Kopie
+Bcc:            Skrytá kopie
+Reply-To:       Adresa pro odpověď
+Message-ID:     Id zprávy
+
+Locale: da
+
+To:             Til
+From:           Fra
+Date:           Dato
+Subject:        Emne
+Cc:             Kopi til (CC)
+Bcc:            Skjult kopi til (BCC)
+Reply-To:       Svar til
+Message-ID:     Meddelelses-ID
+
+Locale: de
+
+To:             An
+From:           Von
+Date:           Datum
+Subject:        Betreff
+Cc:             Kopie (CC)
+Bcc:            Blindkopie (BCC)
+Reply-To:       Antwort an
+Message-ID:     Nachricht-ID
+
+Locale: el
+
+To:             Προς
+From:           Από
+Date:           Ημερομηνία
+Subject:        Θέμα
+Cc:             Κοινοποίηση
+Bcc:            Κρυφή κοιν.
+Reply-To:       Απάντηση
+Message-ID:     Ταυτότητα μηνύματος
+
+Locale: en-US
+
+To:             To
+From:           From
+Date:           Date
+Subject:        Subject
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Reply-To
+Message-ID:     Message-ID
+
+Locale: es-ES
+
+To:             Para
+From:           De
+Date:           Fecha
+Subject:        Asunto
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Responder a
+Message-ID:     Message-ID
+
+Locale: fr
+
+To:             Destinataire
+From:           Expéditeur
+Date:           Date
+Subject:        Sujet
+Cc:             Copie à
+Bcc:            Copie cachée à
+Reply-To:       Répondre à
+Message-ID:     ID du Message
+
+Locale: gl
+
+To:             Para
+From:           De
+Date:           Data
+Subject:        Asunto
+Cc:             Copia
+Bcc:            Cco
+Reply-To:       Responder a
+Message-ID:     ID da mensaxe
+
+Locale: hu 
+
+To:             Címzett
+From:           Feladó
+Date:           Dátum
+Subject:        Tárgy
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Válaszcím
+Message-ID:     Üzenetazonosító
+
+Locale: hy-AM
+
+To:             Ում
+From:           Ումից
+Date:           Ամսաթիվ
+Subject:        Վերնագիր
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Պատասխանել՝
+Message-ID:     Նամակի ID-ին
+
+Locale: it
+
+To:             A
+From:           Da
+Date:           Data
+Subject:        Oggetto
+Cc:             CC
+Bcc:            Ccn
+Reply-To:       Rispondi-a
+Message-ID:     ID-Messaggio
+
+Locale: ja
+
+To:             To
+From:           From
+Date:           Date
+Subject:        Subject
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Reply-To
+Message-ID:     Message-ID
+
+Locale: ko
+
+To:             받는 사람
+From:           보낸 사람
+Date:           날짜
+Subject:        제목
+Cc:             CC
+Bcc:            BCC
+Reply-To:       회신 주소
+Message-ID:     메시지 ID
+
+Locale: nl
+
+To:             Aan
+From:           Van
+Date:           Datum
+Subject:        Onderwerp
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Antwoord-naar
+Message-ID:     Bericht-ID
+
+Locale: pl
+
+To:             Do
+From:           Od
+Date:           Data
+Subject:        Temat
+Cc:             Kopia
+Bcc:            Ukryta kopia
+Reply-To:       Odpowiedź-Do
+Message-ID:     Identyfikator wiadomości
+
+Locale: pt-PT
+
+To:             Para
+From:           De
+Date:           Data
+Subject:        Assunto
+Cc:             CC
+Bcc:            BCC
+Reply-To:       Responder-Para
+Message-ID:     ID-Mensagem
+
+Locale: ru
+
+To:             Кому
+From:           От
+Date:           Дата
+Subject:        Тема
+Cc:             Копия
+Bcc:            Скрытая копия
+Reply-To:       Отвечать
+Message-ID:     Идентификатор
+
+Locale: sk
+
+To:             Komu
+From:           Od
+Date:           Dátum
+Subject:        Predmet
+Cc:             Kópia
+Bcc:            Skrytá kópia
+Reply-To:       Odpovedať na
+Message-ID:     Identifikátor správy
+
+Locale: sl
+
+To:             Za
+From:           Od
+Date:           Datum
+Subject:        Zadeva
+Cc:             Kp
+Bcc:            Skp
+Reply-To:       Odgovori za
+Message-ID:     ID sporočila
+
+Locale: sv-SE
+
+To:             Till
+From:           Från
+Date:           Datum
+Subject:        Ämne
+Cc:             Kopia
+Bcc:            Dold kopia
+Reply-To:       Svar till
+Message-ID:     Meddelande-ID
+
+Locale: zh-CN
+
+To:             收件人
+From:           From
+Date:           日期
+Subject:        主题
+Cc:             抄送
+Bcc:            密送
+Reply-To:       回复地址
+Message-ID:     消息标识
+
+PS C:\Dev\Thunderbird\Extensions XUL\import-export-tools-ng\scratch>

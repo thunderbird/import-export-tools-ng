@@ -27,7 +27,6 @@
 
 
 /* global
-mboximportbundle,
 GetFirstSelectedMsgFolder,
 FolderPaneSelectionChange,
 IETformatWarning,

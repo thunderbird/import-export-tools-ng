@@ -32,7 +32,6 @@
 IETformatWarning
 gSearchView
 getPredefinedFolder
-mboximportbundle
 IETopenFPsync
 isMbox
 IETtotal

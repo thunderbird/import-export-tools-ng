@@ -91,8 +91,6 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
-var MBstrBundleService = Services.strings;
-
 var nosub = ietngUtils.localizeMsg("nosubjectmsg");
 
 var gEMLimported;

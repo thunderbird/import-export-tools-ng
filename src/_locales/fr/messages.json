@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exporter les messages sélectionnés"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Copie cachée à"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Copie à"
+    },
+    "msgHdr.Date": {
+        "message": "Date"
+    },
+    "msgHdr.From": {
+        "message": "Expéditeur"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Répondre à"
+    },
+    "msgHdr.Sender": {
+        "message": "Expéditeur"
+    },
+    "msgHdr.Subject": {
+        "message": "Sujet"
+    },
+    "msgHdr.To": {
+        "message": "Destinataire"
+    },
     "msgs": {
         "message": "messages sur",
         "src": "mboximport"

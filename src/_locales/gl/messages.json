@@ -690,6 +690,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportar mensaxes como..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Cco"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Copia"
+    },
+    "msgHdr.Date": {
+        "message": "Data"
+    },
+    "msgHdr.From": {
+        "message": "De"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Responder a"
+    },
+    "msgHdr.Sender": {
+        "message": "Remitente"
+    },
+    "msgHdr.Subject": {
+        "message": "Asunto"
+    },
+    "msgHdr.To": {
+        "message": "Para"
+    },
     "msgs": {
         "message": "Mensaxes de",
         "src": "mboximport"

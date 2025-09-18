@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "다음으로 메시지 내보내기…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "BCC"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "날짜"
+    },
+    "msgHdr.From": {
+        "message": "보낸 사람"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "회신 주소"
+    },
+    "msgHdr.Sender": {
+        "message": "보낸 사람"
+    },
+    "msgHdr.Subject": {
+        "message": "제목"
+    },
+    "msgHdr.To": {
+        "message": "받는 사람"
+    },
     "msgs": {
         "message": "메세지",
         "src": "mboximport"

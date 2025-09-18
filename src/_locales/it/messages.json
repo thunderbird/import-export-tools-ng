@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Esporta messaggi come..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Ccn"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "Data"
+    },
+    "msgHdr.From": {
+        "message": "Da"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Rispondi-a"
+    },
+    "msgHdr.Sender": {
+        "message": "Mittente"
+    },
+    "msgHdr.Subject": {
+        "message": "Oggetto"
+    },
+    "msgHdr.To": {
+        "message": "A"
+    },
     "msgs": {
         "message": "messaggi su",
         "src": "mboximport"

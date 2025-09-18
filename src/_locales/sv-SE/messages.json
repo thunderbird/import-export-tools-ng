@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportera meddelanden som..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Dold kopia"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kopia"
+    },
+    "msgHdr.Date": {
+        "message": "Datum"
+    },
+    "msgHdr.From": {
+        "message": "Från"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Svar till"
+    },
+    "msgHdr.Sender": {
+        "message": "Avsändare"
+    },
+    "msgHdr.Subject": {
+        "message": "Ämne"
+    },
+    "msgHdr.To": {
+        "message": "Till"
+    },
     "msgs": {
         "message": "meddelanden av",
         "src": "mboximport"

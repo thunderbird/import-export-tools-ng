@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "将消息导出为..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "密送"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "抄送"
+    },
+    "msgHdr.Date": {
+        "message": "日期"
+    },
+    "msgHdr.From": {
+        "message": "来自"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "回复地址"
+    },
+    "msgHdr.Sender": {
+        "message": "Sender"
+    },
+    "msgHdr.Subject": {
+        "message": "主题"
+    },
+    "msgHdr.To": {
+        "message": "收件人"
+    },
     "msgs": {
         "message": "消息",
         "src": "mboximport"

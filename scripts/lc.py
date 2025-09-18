@@ -30,7 +30,7 @@ def convert(source, destination, current = None, level = 0):
         if os.path.isfile(path):
             #if path.endswith('autobackup.dtd'):
              #   messages.extend(convert_dtd(path, dir))
-            if path.endswith('mboximport.properties'):
+            if path.endswith('hdrs.properties'):
                 messages.extend(convert_prop(path, dir))
 
         else:
@@ -114,7 +114,7 @@ def convert_prop(path, dir):
                 placeholders["P" + str(count)] = { "content" : "$" + str(count) }
             
             data = {}
-            data["src"] = "mboximport";
+            #data["src"] = "mboximport";
             data["message"] = a[1].strip();
             if len(placeholders) > 0:
                 data["placeholders"] = placeholders

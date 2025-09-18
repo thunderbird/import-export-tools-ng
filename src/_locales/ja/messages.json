@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "メッセージを次の形式でエクスポート…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "BCC"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "送信日時"
+    },
+    "msgHdr.From": {
+        "message": "差出人"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Reply-To"
+    },
+    "msgHdr.Sender": {
+        "message": "Sender"
+    },
+    "msgHdr.Subject": {
+        "message": "件名"
+    },
+    "msgHdr.To": {
+        "message": "宛先"
+    },
     "msgs": {
         "message": "メッセージ:",
         "src": "mboximport"

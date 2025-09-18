@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Berichten exporteren als..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "BCC"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "Datum"
+    },
+    "msgHdr.From": {
+        "message": "Van"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Antwoord-naar"
+    },
+    "msgHdr.Sender": {
+        "message": "Afzender"
+    },
+    "msgHdr.Subject": {
+        "message": "Onderwerp"
+    },
+    "msgHdr.To": {
+        "message": "Aan"
+    },
     "msgs": {
         "message": "berichten van de",
         "src": "mboximport"

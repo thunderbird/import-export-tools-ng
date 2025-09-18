@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Izvozi sporočila kot ..."
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Skp"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kp"
+    },
+    "msgHdr.Date": {
+        "message": "Datum"
+    },
+    "msgHdr.From": {
+        "message": "Od"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Odgovori za"
+    },
+    "msgHdr.Sender": {
+        "message": "Pošiljatelj"
+    },
+    "msgHdr.Subject": {
+        "message": "Zadeva"
+    },
+    "msgHdr.To": {
+        "message": "Za"
+    },
     "msgs": {
         "message": "sporočil od",
         "src": "mboximport"

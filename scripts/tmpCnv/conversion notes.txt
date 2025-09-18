@@ -2,5 +2,5 @@ conversion notes
 
 python ..\scripts\locale-converter.py
 python ..\scripts\lc.py .\localeSrc .\localeDst
-python .\scripts\lc.py .\src\chrome\locale .\src\_locales
+python .\scripts\lc.py .\scratch\localeDst .\src\_locales
 

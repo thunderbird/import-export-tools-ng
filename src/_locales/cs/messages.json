@@ -686,6 +686,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Exportovat zprávy jako…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Skrytá kopie"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kopie"
+    },
+    "msgHdr.Date": {
+        "message": "Datum"
+    },
+    "msgHdr.From": {
+        "message": "Od"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Adresa pro odpověď"
+    },
+    "msgHdr.Sender": {
+        "message": "Odesílatel"
+    },
+    "msgHdr.Subject": {
+        "message": "Předmět"
+    },
+    "msgHdr.To": {
+        "message": "Komu"
+    },
     "msgs": {
         "message": "zprávy z",
         "src": "mboximport"

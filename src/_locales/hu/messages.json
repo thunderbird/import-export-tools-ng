@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Üzenetek exportálása mint…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "BCC"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "Dátum"
+    },
+    "msgHdr.From": {
+        "message": "Feladó"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Válaszcím"
+    },
+    "msgHdr.Sender": {
+        "message": "Küldő"
+    },
+    "msgHdr.Subject": {
+        "message": "Tárgy"
+    },
+    "msgHdr.To": {
+        "message": "Címzett"
+    },
     "msgs": {
         "message": "/",
         "src": "mboximport"

@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Экспортировать сообщения как…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Скрытая копия"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Копия"
+    },
+    "msgHdr.Date": {
+        "message": "Дата"
+    },
+    "msgHdr.From": {
+        "message": "От"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Отвечать"
+    },
+    "msgHdr.Sender": {
+        "message": "Отправитель"
+    },
+    "msgHdr.Subject": {
+        "message": "Тема"
+    },
+    "msgHdr.To": {
+        "message": "Кому"
+    },
     "msgs": {
         "message": "сообщений из",
         "src": "mboximport"

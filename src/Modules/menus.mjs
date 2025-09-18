@@ -664,7 +664,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: "folderCtxMenu_EML_newexp",
-      title: "(new) Messages",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -691,7 +691,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_newexp",
-      title: "(new) Messages",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -703,7 +703,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_atts_newexp",
-      title: "(new) Messages and Attachments",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),    
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -744,7 +744,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_newexp",
-      title: "(new) Messages",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -782,7 +782,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_Plaintext_newexp",
-      title: "(new) Messages and HTML Index",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -794,7 +794,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_Plaintext_atts_newexp",
-      title: "(new) Messages and Attachments",
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {

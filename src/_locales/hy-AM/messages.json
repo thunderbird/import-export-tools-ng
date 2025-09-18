@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Արտահանել հաղորդագրությունները որպես…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "BCC"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "CC"
+    },
+    "msgHdr.Date": {
+        "message": "Ամսաթիվ"
+    },
+    "msgHdr.From": {
+        "message": "Ումից"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Պատասխանել՝"
+    },
+    "msgHdr.Sender": {
+        "message": "Ուղարկողը"
+    },
+    "msgHdr.Subject": {
+        "message": "Վերնագիր"
+    },
+    "msgHdr.To": {
+        "message": "Ում"
+    },
     "msgs": {
         "message": "նամակները՝",
         "src": "mboximport"

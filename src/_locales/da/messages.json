@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Eksporter meddelelser som…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Skjult kopi til (BCC)"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kopi til (CC)"
+    },
+    "msgHdr.Date": {
+        "message": "Dato"
+    },
+    "msgHdr.From": {
+        "message": "Fra"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Svar til"
+    },
+    "msgHdr.Sender": {
+        "message": "Afsender"
+    },
+    "msgHdr.Subject": {
+        "message": "Emne"
+    },
+    "msgHdr.To": {
+        "message": "Til"
+    },
     "msgs": {
         "message": "meddelelser af",
         "src": "mboximport"

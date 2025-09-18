@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Εξαγωγή μηνυμάτων ως…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Κρυφή κοιν."
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Κοινοποίηση"
+    },
+    "msgHdr.Date": {
+        "message": "Ημερομηνία"
+    },
+    "msgHdr.From": {
+        "message": "Από"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Απάντηση"
+    },
+    "msgHdr.Sender": {
+        "message": "Αποστολέας"
+    },
+    "msgHdr.Subject": {
+        "message": "Θέμα"
+    },
+    "msgHdr.To": {
+        "message": "Προς"
+    },
     "msgs": {
         "message": "μηνύματα του",
         "src": "mboximport"

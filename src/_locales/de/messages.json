@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Nachrichten exportieren im…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Blindkopie"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kopie"
+    },
+    "msgHdr.Date": {
+        "message": "Datum"
+    },
+    "msgHdr.From": {
+        "message": "Von"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Antwort an"
+    },
+    "msgHdr.Sender": {
+        "message": "Absender"
+    },
+    "msgHdr.Subject": {
+        "message": "Betreff"
+    },
+    "msgHdr.To": {
+        "message": "An"
+    },
     "msgs": {
         "message": "Nachrichten von",
         "src": "mboximport"

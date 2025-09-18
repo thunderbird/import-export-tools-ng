@@ -689,6 +689,39 @@
     "msgCtxMenu_TopId.title": {
         "message": "Eksportuj wiadomości jako…"
     },
+    "msgHdr.Bcc": {
+        "message": "Bcc"
+    },
+    "msgHdr.BccLocal": {
+        "message": "Ukryta kopia"
+    },
+    "msgHdr.Cc": {
+        "message": "Cc"
+    },
+    "msgHdr.CcLocal": {
+        "message": "Kopia"
+    },
+    "msgHdr.Date": {
+        "message": "Data"
+    },
+    "msgHdr.From": {
+        "message": "Od"
+    },
+    "msgHdr.MessageID": {
+        "message": "Message-ID"
+    },
+    "msgHdr.ReplyTo": {
+        "message": "Odpowiedź-Do"
+    },
+    "msgHdr.Sender": {
+        "message": "Wysyłane przez"
+    },
+    "msgHdr.Subject": {
+        "message": "Temat"
+    },
+    "msgHdr.To": {
+        "message": "Do"
+    },
     "msgs": {
         "message": "wiadomości z",
         "src": "mboximport"

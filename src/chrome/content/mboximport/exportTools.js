@@ -1750,9 +1750,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						let encoder = new TextEncoder();
 
-						let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
-						hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
-
 						let replyToStr = ietngUtils.localizeMsg("msgHdr.ReplyTo");
 
 						let cvtToUTF16 = function (s) {
@@ -1765,11 +1762,10 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						// streammessage with aConvert == true does not translate headers
 						// in the ja locale even in v128, just ty a Print!
 						if (Services.locale.appLocaleAsBCP47 === "ja") {
-							replyToStr = "返信先";
-							let jaSubject = "件名";
-							let jaTo = "宛先";
-							let jaFrom = "差出人";
-							let jaDate = "送信日時";
+							let jaSubject = ietngUtils.localizeMsg("msgHdr.Subject");
+							let jaTo = ietngUtils.localizeMsg("msgHdr.To");
+							let jaFrom = ietngUtils.localizeMsg("msgHdr.From");
+							let jaDate = ietngUtils.localizeMsg("msgHdr.Date");
 							jaSubject = cvtToUTF16(jaSubject);
 							data = data.replace(">Subject: </", `>${jaSubject}: </`);
 							jaTo = cvtToUTF16(jaTo);

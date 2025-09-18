@@ -48,8 +48,8 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modu
 var IETprefs = Cc["@mozilla.org/preferences-service;1"]
 	.getService(Ci.nsIPrefBranch);
 
-var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hu-HG', 'hy-AM',
-	'it', 'ja', 'ko-KR', 'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN', 'el'];
+var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl', 'hu', 'hy-AM',
+	'it', 'ja', 'ko', 'nl', 'pl', 'pt-PT', 'ru', 'sk', 'sl', 'sv-SE', 'zh-CN', 'el'];
 
 function IETrunTimeDisable() {
 	IETprefs.setIntPref("dom.max_chrome_script_run_time", 0);

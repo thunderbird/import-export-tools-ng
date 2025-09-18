@@ -1753,7 +1753,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						let strBundleService = Cc["@mozilla.org/intl/stringbundle;1"].getService(Ci.nsIStringBundleService);
 						hdrsBundle = strBundleService.createBundle("chrome://messenger/locale/mimeheader.properties");
 
-						let replyToStr = hdrsBundle.GetStringFromName("REPLY-TO");
+						let replyToStr = ietngUtils.localizeMsg("msgHdr.ReplyTo");
 
 						let cvtToUTF16 = function (s) {
 							s = encoder.encode(s);

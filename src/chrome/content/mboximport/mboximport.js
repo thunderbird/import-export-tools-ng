@@ -94,7 +94,6 @@ XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 var MBstrBundleService = Services.strings;
 
 var nosub = ietngUtils.localizeMsg("nosubjectmsg");
-var mboximportbundle2 = MBstrBundleService.createBundle("chrome://messenger/locale/mime.properties");
 
 var gEMLimported;
 var gEMLimportedErrs;

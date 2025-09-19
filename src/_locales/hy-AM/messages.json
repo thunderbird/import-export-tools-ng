@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Սա վիրտուալ թղթապանակ է, դրա նամակները արտածելու համար պետք է\\n պատճենեք դրանք նորմալ թղթապանակ և արտածեք այնտեղից",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Հաղորդագրություններ՝ կից ֆայլերով և ինդեքսով"
+	}
 }

@@ -995,5 +995,9 @@
     "virtualfolder": {
         "message": "Toto je virtuální složka, pro export jejích zpráv je musíte\\nzkopírovat do normální složky a exportovat tuto normální složku",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Zprávy s přílohami a indexem"
+	}
 }

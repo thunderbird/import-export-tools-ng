@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Det här är en virtuell mapp. För att exportera dess meddelanden måste du\\nkopiera dem till en vanlig mapp och exportera den istället",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Meddelanden med bilagor och index"
+	}
 }

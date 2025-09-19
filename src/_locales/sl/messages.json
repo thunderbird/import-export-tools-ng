@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "To je navidezna mapa, za izvoz njenih sporočil jeh morate\\nkopirati v običajno mapo in jo izvoziti",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Sporočila s prilogami in kazalom"
+	}
 }

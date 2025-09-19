@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "이것은 가상 폴더이므로, 메세지가 내보내기 위해서는\\\\n일반 폴더에 복사해 내보낼 필요가 있습니다",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "첨부 파일 및 인덱스가 있는 메시지"
+	}
 }

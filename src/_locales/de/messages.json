@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Dies ist ein virtueller Ordner.\\nUm die darin enthaltenen Nachrichten exportieren zu können, müssen\\nsie in einen normalen Ordner kopiert und dieser dann exportiert werden.",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Nachrichten mit Anhängen und Index"
+	}
 }

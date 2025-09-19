@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "これは仮想フォルダーであり、メッセージをエクスポートするためには\\n通常のフォルダーにコピーしてエクスポートする必要があります",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "添付ファイルとインデックス付きのメッセージ"
+	}
 }

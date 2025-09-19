@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Dette er en virtuel mappe. For at eksportere dens meddelelser skal du\\nkopiere dem til en almindelig mappe og eksportere denne almindelig mappe",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Beskeder med vedhæftede filer og indeks"
+	}
 }

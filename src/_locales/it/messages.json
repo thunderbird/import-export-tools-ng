@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Questa è una cartella virtuale, per esportare i messaggi in essa contenuti\\nè necessario copiarli in una normale cartella ed esportare quella.",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messaggi con allegati e indice"
+	}
 }

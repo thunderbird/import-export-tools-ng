@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Ez egy virtuális mappa.\\nÜzeneteinek exportálásához először másolja át a mappa üzeneteit egy normál mappába.",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mellékletekkel és indexszel rendelkező üzenetek"
+	}
 }

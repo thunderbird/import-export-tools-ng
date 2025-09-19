@@ -997,5 +997,9 @@
     "virtualfolder": {
         "message": "This is a virtual folder, to export its messages you must\\ncopy them in a normal folder and export this normal folder",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Messages With Attachments And Index"
+	}
 }

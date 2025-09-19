@@ -16,9 +16,7 @@ const translate = new Translate({ projectId, key });
 // console.debug( translate );
 
 var translationArray = [
-  { key: "invalidFolderSelection", text: "Invalid folder selection"},
-  { key: "messageImportProblems.msg", text: "There were problems importing some messages:"},
-  { key: "viewDbgConsole.msg", text: "  Errors. View the Debug Console  (Control-Shift-J)"},
+  { key: "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title", text: "Messages With Attachments And Index"},
 
   
 ];
@@ -284,7 +282,9 @@ async function translateAll(iFile, strings, options) {
 	console.debug('Stop ' + (st - s) / 1000);
 }
 
-var localeFolders = _getAllFilesOrFolders(localeDir, true);
+// this is outdated we set st end
+//var localeFolders = _getAllFilesOrFolders(localeDir, true);
+var localeFolders;
 console.debug(localeFolders);
 
 function t() {
@@ -520,11 +520,11 @@ localeFolders = ['de', 'en-US', 'nl', 'fr', 'it', 'zh-CN', 'ja', 'es-ES', 'ru', 
 'el', 'pl', 'da', 'pt-PT', 'ca', 'gl-ES', 'sk-SK', 'sl-SI', 'sv-SE'];
 
 // full locale set
-localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
-	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
+localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl', 'hu', 'hy-AM', 'it', 'ja', 'ko',
+	'nl', 'pl', 'pt-PT', 'ru', 'sk', 'sl', 'sv-SE', 'zh-CN'];
 
 // unmanaged help locales
-localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
+let localeFoldersHelp = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
 
@@ -532,7 +532,7 @@ localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-translateHelpPage();
+//translateHelpPage();
 //translatePage();
 //loadTranslationArray(inputFiles, options);
 //console.log(translationArray.length)
@@ -540,7 +540,7 @@ translateHelpPage();
 //translateAll("messages.json", translationArray, options);
 
 // message translations
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
  
 //loadTranslationArray(inputFiles, options);
  //convert(inputFiles, options);

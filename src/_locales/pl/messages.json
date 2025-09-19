@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "To jest folder wirtualny. Aby wyeksportować wiadomości w nim zawarte\\nmusisz skopiować je do zwykłego folderu i z niego wywołać funkcję eksportu.",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Wiadomości z załącznikami i indeksem"
+	}
 }

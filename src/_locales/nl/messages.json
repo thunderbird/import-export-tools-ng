@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "Dit is een virtuele map. Om de berichten ervan te exporteren\\nmoet u ze naar een normale map kopiëren en deze normale map\\nexporteren",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Berichten met bijlagen en index"
+	}
 }

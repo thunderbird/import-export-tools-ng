@@ -998,5 +998,9 @@
     "virtualfolder": {
         "message": "这是一个虚拟信件夹，要导出这些信息你必须\\n将他们复制到一个普通信件夹，然后导出这个普通信件夹。",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "带有附件和索引的消息"
+	}
 }

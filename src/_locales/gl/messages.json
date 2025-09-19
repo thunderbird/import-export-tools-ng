@@ -999,5 +999,9 @@
     "virtualfolder": {
         "message": "Este é un cartafol virtual, para exportar estas mensaxes é preciso copiala nun cartafol normal e exportar este cartafol",
         "src": "mboximport"
-    }
+    },
+
+	"folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+		"message": "Mensaxes con anexos e índice"
+	}
 }

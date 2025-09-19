@@ -238,7 +238,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
         let rawMsg = await browser.messages.getRaw(msgId);
         console.log(rawMsg)
         if (rawMsg.decryptionStatus == "fail") {
-          resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders  });
+          resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;
         }
         resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
@@ -345,10 +345,10 @@ async function _getprocessedMsg(expTask, msgId, msg) {
             resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           } else if (textParts.length) {
             htmlParts.push(textParts[0]);
-            htmlParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", extraHeaders );
+            htmlParts[0].body = await _preprocessBody(expTask, msg, textParts[0].body, "text/plain", extraHeaders);
             htmlParts[0].extraHeaders = textParts[0].extraHeaders;
             textParts = [];
-            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: extraHeaders  });
+            resolve({ msgBody: htmlParts[0].body, msgBodyType: "text/html", inlineParts: inlineParts, attachmentParts, extraHeaders: extraHeaders });
           } else {
             resolve({ msgBody: null, msgBodyType: "none", inlineParts: inlineParts, attachmentParts: attachmentParts, extraHeaders: extraHeaders });
           }
@@ -475,6 +475,25 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   } else {
     bccList = msg.bccList.join(", ").replaceAll('"', '');
   }
+
+  // header localization 
+  let hdrSubject = browser.i18n.getMessage("msgHdr.Subject");
+  let hdrFrom = browser.i18n.getMessage("msgHdr.From");
+  let hdrTo = browser.i18n.getMessage("msgHdr.To");
+  let hdrDate = browser.i18n.getMessage("msgHdr.Date");
+
+  // for most locales Cc and Bcc are used as is
+  // we will have an option to use localized versions later
+  // for now some Asian locales warrant localized versions 
+
+  let hdrCc = browser.i18n.getMessage("msgHdr.Cc");
+  let hdrBcc = browser.i18n.getMessage("msgHdr.Bcc");
+
+  if (["zh-CN",].includes(browser.i18n.getUILanguage())) {
+    hdrCc = browser.i18n.getMessage("msgHdr.CcLocal");
+    hdrBcc = browser.i18n.getMessage("msgHdr.BccLocal");
+  }
+
 
   if (expTask.expType == "html") {
     recipients = _encodeSpecialTextToHTML(recipients);

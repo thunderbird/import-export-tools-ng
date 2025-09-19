@@ -282,7 +282,9 @@ async function translateAll(iFile, strings, options) {
 	console.debug('Stop ' + (st - s) / 1000);
 }
 
-var localeFolders = _getAllFilesOrFolders(localeDir, true);
+// this is outdated we set st end
+//var localeFolders = _getAllFilesOrFolders(localeDir, true);
+var localeFolders;
 console.debug(localeFolders);
 
 function t() {

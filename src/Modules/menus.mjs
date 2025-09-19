@@ -400,6 +400,8 @@ const folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_H
 const folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id = "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id";
 
 const folderCtxMenu_Exp_PDFFormatCreateIndex_Id = "folderCtxMenu_Exp_PDFFormatCreateIndex_Id";
+const folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id = "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id";
+
 const folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id = "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id";
 
 
@@ -756,7 +758,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_atts_newexp",
-      title: "(new) Messages and Attachments",
+      title: "(new) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {

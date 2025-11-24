@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "14.1.16-b1",
+  "version": "15.0.0-a7",
   "description": "__MSG_extensionDescription__",
   "author": "Christopher Leidigh",
   "applications": {
@@ -12,10 +12,10 @@
     }
   },
   "browser_action": {
-		"default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
+    "default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImportExport",
     "default_popup": "chrome/content/dummy.html"
-	  },
+  },
   "experiment_apis": {
     "WindowListener": {
       "schema": "api/WindowListener/schema.json",
@@ -34,10 +34,18 @@
     "NotifyTools": {
       "schema": "api/NotifyTools/schema.json",
       "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["NotifyTools"]],
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "NotifyTools"
+          ]
+        ],
         "script": "api/NotifyTools/implementation.js",
-        "events": ["startup"]
+        "events": [
+          "startup"
+        ]
       }
     },
     "AsyncPrompts": {
@@ -53,9 +61,46 @@
         ],
         "script": "api/AsyncPrompts/implementation.js"
       }
+    },
+    "ExportMessages": {
+      "schema": "api/ExportMessages/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "ExportMessages"
+          ]
+        ],
+        "script": "api/ExportMessages/implementation.js"
+      }
+    },
+    "LegacyHelper": {
+      "schema": "api/LegacyHelper/schema.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "paths": [["LegacyHelper"]],
+        "script": "api/LegacyHelper/implementation.js"
+      }
+    },
+    "LegacyPrefs": {
+      "schema": "api/LegacyPrefs/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "LegacyPrefs"
+          ]
+        ],
+        "script": "api/LegacyPrefs/implementation.js"
+      }
     }
   },
-  "permissions" : [
+  "content_security_policy": "script-src 'self'; object-src 'self';",
+  "permissions": [
     "menus",
     "activeTab",
     "messagesRead",
@@ -64,10 +109,12 @@
     "accountsRead",
     "messagesImport",
     "messagesMove"
-
   ],
   "background": {
-    "page": "background.html"
+    "scripts": [
+      "background.js"
+    ],
+    "type": "module"
   },
   "icons": {
     "64": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"

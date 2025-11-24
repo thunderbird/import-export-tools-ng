@@ -45,6 +45,7 @@ export default [...compat.extends("eslint:recommended", "plugin:mozilla/recommen
             IOUtils: "readonly",
             PathUtils: "readonly",
             globalThis: "readonly",
+            Services: "readonly",
             BatchMessageMover: "readonly",
         },
 

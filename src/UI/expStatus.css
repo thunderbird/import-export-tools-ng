@@ -1,0 +1,74 @@
+/* UI expStatus windows css */
+
+:root {
+	--dialog-bgcolor: Field;
+	--dialog-text-color: FieldText;
+	--in-content-box-background: Field !important;
+	--in-content-accent-color: rgb(69, 161, 255);
+	--list-item-hover: rgb(116, 183, 249);
+	--list-highlight-text-color: black;
+	--in-content-button-background: rgba(207, 207, 216, 0.33);
+	--list-disabled-font-color: #cccccc;
+	--table-border-color: #d2d2d2;
+	--table-stripe-even: #e8e8e8;
+	--link-color: darkblue;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dialog-bgcolor: rgb(35, 34, 43);
+		--dialog-text-color: #f7f7f7;
+		--table-border-color: #404040;
+		--table-stripe-even: #303030;
+		--link-color: lightblue;
+
+	}
+}
+
+body {
+  /* background-color: antiquewhite; */
+	background-color: var(--dialog-bgcolor);
+	font-family: 'Roboto', sans-serif;
+	color: var(--dialog-text-color);
+  min-width: 320px;
+  min-height: 150px;
+	margin: 10px;
+}
+
+table { 
+	border-collapse: collapse;
+
+}
+
+td:nth-child(1) {
+	padding-right: 20px;
+}
+
+/*
+tr, td {
+	border: 1px solid black;
+}
+*/
+
+.numright {
+	text-align: right;
+	width: 40px;
+}
+
+.progress::after {
+	padding-left: 5px;
+  content: attr(max);
+}
+
+#buttons {
+	text-align: right;
+}
+
+button {
+	padding: 2px;
+	min-width: 60px;
+}
+
+#okButton {
+	margin-right: 15px;
+}

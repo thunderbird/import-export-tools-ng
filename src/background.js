@@ -16,8 +16,10 @@
 
 // background.js - this kicks off the WindowListener framework
 
-// need this for wextMenus
-window.wextOpenHelp = wextOpenHelp;
+import { openHelp } from "/Modules/miscCmds.mjs";
+import * as prefs from "/Modules/prefCmds.mjs";
+import "/Modules/menus.mjs";
+import "/Modules/wextAPI.mjs";
 
 // now start
 main();
@@ -32,26 +34,17 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	if (await window.getBoolPref("extensions.importexporttoolsng.help.showOnInstallAndUpdate")) {
-		await window.wextOpenHelp({ opentype: "tab" });
+	if (await prefs.getPref("help.showOnInstallAndUpdate")) {
+		await openHelp({ opentype: "tab" });
 	}
 });
 
-
-async function getThunderbirdVersion() {
-	let browserInfo = await messenger.runtime.getBrowserInfo();
-	let parts = browserInfo.version.split(".");
-	return {
-		major: parseInt(parts[0]),
-		minor: parseInt(parts[1]),
-		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
-	};
-}
-
-window.getThunderbirdVersion = getThunderbirdVersion;
-
-function main() {
+async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
+
+	await browser.LegacyHelper.registerGlobalUrls([
+		["resource", "ietng", "."],
+	]);
 
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
@@ -103,51 +96,9 @@ function main() {
 		"chrome://messenger/content/messengercompose/messengercompose.xhtml",
 		"chrome://mboximport/content/mboximport/messengercomposeOL.js");
 
-
 	messenger.WindowListener.registerWindow(
 		"chrome://messenger/content/messageWindow.xhtml",
 		"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
 	messenger.WindowListener.startListening();
-
-
 }
-
-var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
-	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
-
-async function wextOpenHelp(info) {
-	if (!info.opentype) {
-		let openInWindow = await window.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
-		info.opentype = openInWindow ? "window" : "tab";
-	}
-
-	var locale = messenger.i18n.getUILanguage();
-
-	if (!helpLocales.includes(locale)) {
-		var baseLocale = locale.split("-")[0];
-
-		locale = helpLocales.find(l => l.split("-")[0] == baseLocale);
-		if (!locale) {
-			locale = "en-US";
-		}
-	}
-	var bm = "";
-	if (info.bmark) {
-		bm = info.bmark;
-	}
-	try {
-		if (info.opentype == "tab") {
-			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 });
-		} else {
-			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-		}
-	} catch (ex) {
-			if (info.opentype == "tab") {
-				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 });
-			} else {
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-			}
-		}
-}
-

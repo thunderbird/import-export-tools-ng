@@ -116,9 +116,9 @@ export var exportMessages = {
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 
-          //console.log("saving attachments")
-          //console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
-          //console.log("attp", expTask.msgList[index].msgData.attachmentParts)
+          console.log("saving attachments")
+          console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
+          console.log("attp", expTask.msgList[index].msgData.attachmentParts)
 
           // we do not export inline attachments for pdf export
           // these are part of the streamed message
@@ -129,7 +129,7 @@ export var exportMessages = {
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-              //console.log(attDirs, inlinePart)
+              console.log(attDirs, inlinePart)
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, inlinePart.name.slice(0, maxFilePathLen - 5));
 
               let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -324,6 +324,7 @@ export var exportMessages = {
             writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
           }
         } else {
+          console.log(fileType, unqName)
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
           errors.push({ error: "none" });
           writePromise = IOUtils.write(unqName, data)
@@ -456,6 +457,7 @@ export var exportMessages = {
         if (inlineDir.endsWith(".")) {
           inlineDir += ";";
         }
+        inlineDir = attsDir + "{"
         break;
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);

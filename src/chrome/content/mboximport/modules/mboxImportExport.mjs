@@ -44,7 +44,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
-console.log("IETNG: mboximportExport.mjs -v14");
+console.log("IETNG: mboximportExport.mjs -v15t1");
 
 export var mboxImportExport = {
 
@@ -145,7 +145,7 @@ export var mboxImportExport = {
 
       let over4GBskipMsg = ietngUtils.localizeMsg("over4GBskipMsg");
 
-      if (stat.size > 30000000000) {
+      if (stat.size > 170000000000) {
         console.log(`Mbox ${fname} larger than 4GB, skipping`);
         //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
 

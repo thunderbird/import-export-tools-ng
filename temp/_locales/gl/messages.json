@@ -1,0 +1,1036 @@
+{
+  "abortExport": {
+    "message": "Deter a actual exportación"
+  },
+  "addNumber.label": {
+    "message": "Engadir sempre ao nome un número ao chou ao importar ficheiros mbox"
+  },
+  "addPrefix": {
+    "message": "Engadir prefixo"
+  },
+  "addSuffix": {
+    "message": "Engadir sufixo"
+  },
+  "addtime.label": {
+    "message": "Engadir hora á data"
+  },
+  "addTimestamp": {
+    "message": "Engadir data ás propiedades do ficheiro"
+  },
+  "allFiles": {
+    "message": "Todos os ficheiros do perfil"
+  },
+  "allFilesMode": {
+    "message": "Sempre todos os ficheiros"
+  },
+  "allMsg": {
+    "message": "Exportar todas as mensaxes"
+  },
+  "asCSV": {
+    "message": "Folla de cálculo (CVS)"
+  },
+  "attachmentFolderNames": {
+    "message": "Nomes dos cartafoles de anexos"
+  },
+  "attachmentFolders": {
+    "message": "Cartafoles adxuntos"
+  },
+  "attCtxMenu_Top_Id.title": {
+    "message": "Garda o anexo EML neste cartafol"
+  },
+  "autoName": {
+    "message": "Automático (nome do cartafol + data)"
+  },
+  "backupDestination": {
+    "message": "Destino"
+  },
+  "backupFolderName": {
+    "message": "Nome do cartafol para a copia de seguranza"
+  },
+  "backupFreq": {
+    "message": "Frecuencia"
+  },
+  "backupOn": {
+    "message": "Activar"
+  },
+  "backupOnExit": {
+    "message": "Copia de seguridade á saída"
+  },
+  "backupSettings": {
+    "message": "Configuración da copia de seguranza"
+  },
+  "backupTab": {
+    "message": "Programación da copia de seguranza"
+  },
+  "backupType": {
+    "message": "Contido da copia de seguranza"
+  },
+  "backupWarning": {
+    "message": "Durante esta operación, o programa pode \\\nnon responder durante algúns minutos.\\\nQuere continuar?\\\n",
+    "src": "mboximport"
+  },
+  "badfolder": {
+    "message": "Non foi posíbel importar neste cartafol (tipo imap ou grupo de noticias)",
+    "src": "mboximport"
+  },
+  "badfolder2": {
+    "message": "Non foi posíbel importar neste cartafol (tipo IMAP ou grupo de noticias ou tipo virtual)",
+    "src": "mboximport"
+  },
+  "browse": {
+    "message": "Browser"
+  },
+  "buildMSF.label": {
+    "message": "Construír un índice para os ficheiros MBOX importados"
+  },
+  "buttonMenu_Backup_Id.title": {
+    "message": "Copia de seguranza"
+  },
+  "buttonMenu_Exp_Profile_Id.title": {
+    "message": "Exportar perfil"
+  },
+  "buttonMenu_Exp_ProfileFull_Id.title": {
+    "message": "Perfil completo"
+  },
+  "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+    "message": "Só correo"
+  },
+  "buttonMenu_Help.title": {
+    "message": "Axuda"
+  },
+  "buttonMenu_Imp_Profile_Id.title": {
+    "message": "Importar perfil"
+  },
+  "buttonMenu_Options.title": {
+    "message": "Opcións"
+  },
+  "Cancel.button": {
+    "message": "Cancelar"
+  },
+  "cancel.msg": {
+    "message": "Cancelar"
+  },
+  "captionCustomize": {
+    "message": "Formato personalizado para nomes de ficheiros"
+  },
+  "changeProfileNameLabel": {
+    "message": "You can anyway change the profile name in the profile manager"
+  },
+  "characterFilter": {
+    "message": "Filtro de caracteres (UTF-8 ou UTF-16)"
+  },
+  "confirmimport": {
+    "message": "Quere importar o ficheiro",
+    "src": "mboximport"
+  },
+  "copyFolderPath": {
+    "message": "Copiar o camiño do cartafol no disco"
+  },
+  "copyHdrsToClip_firstOnly": {
+    "message": "Seleccionáronse varias mensaxes, só as primeiras cabeceiras das mensaxes copiáronse no portapapeis.",
+    "src": "mboximport"
+  },
+  "copyHdrsToClip_promptTitle": {
+    "message": "Copiar cabeceiras no portapapeis",
+    "src": "mboximport"
+  },
+  "copyMsgsToClip_firstOnly": {
+    "message": "Seleccionáronse varias mensaxes, só a primeira mensaxe copiouse no portapapeis.",
+    "src": "mboximport"
+  },
+  "copyMsgsToClip_promptTitle": {
+    "message": "Copiar mensaxes no portapapeis",
+    "src": "mboximport"
+  },
+  "CRconversion.statusMsg": {
+    "message": "Convertendo CR =&gt; terminacións de liña CRLF"
+  },
+  "createSubfolderErr.msg": {
+    "message": "Erro ao crear o subcartafol:"
+  },
+  "csvSep": {
+    "message": "Separator for export in CSV format:"
+  },
+  "CSVseparator": {
+    "message": ",",
+    "src": "mboximport"
+  },
+  "ctxMenu_ExtensionName.title": {
+    "message": "ImportExportTools NG"
+  },
+  "ctxMenu_Help.title": {
+    "message": "Axuda"
+  },
+  "ctxMenu_Options.title": {
+    "message": "Opcións"
+  },
+  "currentFolder.label": {
+    "message": "Cartafol actual"
+  },
+  "customDate": {
+    "message": "Data personalizada:"
+  },
+  "customizeFilename": {
+    "message": "Empregar o seguinte formato:"
+  },
+  "customName": {
+    "message": "Personalizado"
+  },
+  "cutFN": {
+    "message": "Cortar a lonxitude da ruta do ficheiro a 256 caracteres"
+  },
+  "cutPathLen": {
+    "message": "Cortar a lonxitude da ruta do ficheiro a 256 caracteres"
+  },
+  "cutSub": {
+    "message": "Cortar o asunto despois dos 50 caracteres"
+  },
+  "dataCustomFmtToken": {
+    "message": "${data}",
+    "src": "mboximport"
+  },
+  "date": {
+    "message": "Data"
+  },
+  "dateCustomFmtToken": {
+    "message": "${data_personalizada}"
+  },
+  "dateCustomOpt": {
+    "message": "Data (personalizada)"
+  },
+  "dateFormatRefTooltipText": {
+    "message": "Referencia do formato de data"
+  },
+  "day1": {
+    "message": "1 día"
+  },
+  "day15": {
+    "message": "15 días"
+  },
+  "day3": {
+    "message": "3 días"
+  },
+  "day30": {
+    "message": "30 días"
+  },
+  "day7": {
+    "message": "7 días"
+  },
+  "description1": {
+    "message": "Data da última copia de seguranza: $t"
+  },
+  "description2": {
+    "message": "Segundo a configuración, é preciso que faga agora a copia de seguranza."
+  },
+  "description3": {
+    "message": "Durante esta operación, o programa non responderá durante uns minutos."
+  },
+  "description4": {
+    "message": "Quere continuar?"
+  },
+  "description5": {
+    "message": "A copia de seguranza está en progreso... agarde."
+  },
+  "description6": {
+    "message": "Finalizou a copia de seguranza."
+  },
+  "dialog.title": {
+    "message": "ImportExportTools NG - Copia de seguranza"
+  },
+  "emailFiles": {
+    "message": "Enviar ficheiros por correo electrónico",
+    "src": "mboximport"
+  },
+  "emlExport": {
+    "message": "Exportar cartafoles como ficheiros individuais:"
+  },
+  "endscan": {
+    "message": "Final do directorio de exploración",
+    "src": "mboximport"
+  },
+  "error": {
+    "message": "An error occurred during profile import. Error details are:"
+  },
+  "Error.msg": {
+    "message": "Erro"
+  },
+  "exportAborted": {
+    "message": "Exportación parada",
+    "src": "mboximport"
+  },
+  "exportAccount": {
+    "message": "Exportar todos os cartafoles",
+    "src": "mboximport"
+  },
+  "exported": {
+    "message": "Exportado",
+    "src": "mboximport"
+  },
+  "exportFolder": {
+    "message": "Exportar cartafol",
+    "src": "mboximport"
+  },
+  "exportingMsg": {
+    "message": "Exportando",
+    "src": "mboximport"
+  },
+  "exportOK": {
+    "message": "Exportouse correctamente",
+    "src": "mboximport"
+  },
+  "exportstart": {
+    "message": "Exportando... agarde por favor",
+    "src": "mboximport"
+  },
+  "extensionDescription": {
+    "message": "Engade ferramentas para importar/exportar mensaxes e cartafoles (NextGen)"
+  },
+  "extensionName": {
+    "message": "ImportExportTools NG"
+  },
+  "extensions.ImportExportToolsNG@cleidigh.description": {
+    "message": "Engade algunhas ferramentas para exportar mensaxes e cartafoles (NextGen)",
+    "src": "mboximport"
+  },
+  "extFilenameFormatRefTooltipText": {
+    "message": "Referencia estendida do formato do nome de ficheiro"
+  },
+  "extFormat": {
+    "message": "Formato:"
+  },
+  "fileexists": {
+    "message": "Non foi posíbel exportar: hai un ficheiro co mesmo nome",
+    "src": "mboximport"
+  },
+  "fileLenCaption": {
+    "message": "Tamaño dos nomes de ficheiro"
+  },
+  "filenameCharset": {
+    "message": "Codificación para os nomes de ficheiros:"
+  },
+  "filenameFormat": {
+    "message": "Nome dos ficheiros"
+  },
+  "filePickerAppend": {
+    "message": "Seleccionar o ficheiro Mbox",
+    "src": "mboximport"
+  },
+  "filePickerExport": {
+    "message": "Seleccione o directorio de destino",
+    "src": "mboximport"
+  },
+  "filePickerImport": {
+    "message": "Seleccione o ficheiro mbox a importar",
+    "src": "mboximport"
+  },
+  "filePickerImportMSG": {
+    "message": "Seleccionar as mensaxes a importar",
+    "src": "mboximport"
+  },
+  "folderCount.label": {
+    "message": "Número de cartafoles"
+  },
+  "folderCtxMenu_CopyFolderPath_Id.title": {
+    "message": "Copiar o camiño do cartafol"
+  },
+  "folderCtxMenu_Exp_Account_Id.title": {
+    "message": "Conta de exportación"
+  },
+  "folderCtxMenu_Exp_AllMessages_Id.title": {
+    "message": "Exportar todas as mensaxes no cartafol"
+  },
+  "folderCtxMenu_Exp_CSVFormat_Id.title": {
+    "message": "Formato CSV (folla de cálculo)"
+  },
+  "folderCtxMenu_Exp_EMLFormat_Id.title": {
+    "message": "Formato de mensaxe EML"
+  },
+  "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes e índice con subcarpetas"
+  },
+  "folderCtxMenu_Exp_FolderMbox_Id.title": {
+    "message": "Exportación de cartafoles (mbox)"
+  },
+  "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+    "message": "Con subcarpetas aplanadas"
+  },
+  "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+    "message": "Como ficheiro mbox"
+  },
+  "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+    "message": "Estruturado con subcarpetas"
+  },
+  "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+    "message": "Arquivo mbox comprimido único"
+  },
+  "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+    "message": "Formato HTML"
+  },
+  "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes e índice con subcarpetas"
+  },
+  "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
+  "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes, índices e anexos con subcarpetas"
+  },
+  "folderCtxMenu_Exp_Index_Id.title": {
+    "message": "Índice de mensaxes"
+  },
+  "folderCtxMenu_Exp_IndexCSV_Id.title": {
+    "message": "Formato CSV"
+  },
+  "folderCtxMenu_Exp_IndexHTML_Id.title": {
+    "message": "Formato HTML"
+  },
+  "folderCtxMenu_Exp_PDFFormat_Id.title": {
+    "message": "Formato PDF"
+  },
+  "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes e índice con subcarpetas"
+  },
+  "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
+  "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes, índice e anexos con subcartafoles"
+  },
+  "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+    "message": "Formato de texto plano"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes e índice con subcarpetas"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Mensaxes, índices e anexos con subcarpetas"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+    "message": "Mensaxes como ficheiro único"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+    "message": "Mensaxes como ficheiro único con anexos"
+  },
+  "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+    "message": "Exportar cartafol remoto"
+  },
+  "folderCtxMenu_Exp_SearchExport_Id.title": {
+    "message": "Busca e exporta mensaxes"
+  },
+  "folderCtxMenu_Imp_EMLFormat_Id.title": {
+    "message": "Importar mensaxes EML"
+  },
+  "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+    "message": "Todas as mensaxes EML dun directorio"
+  },
+  "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+    "message": "Todas as mensaxes EML dun directorio e subdirectorios"
+  },
+  "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+    "message": "Mensaxes individuais de EML"
+  },
+  "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+    "message": "Importar o cartafol Maildir"
+  },
+  "folderCtxMenu_Imp_MboxFiles_Id.title": {
+    "message": "Importar ficheiros mbox"
+  },
+  "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+    "message": "Todos os ficheiros mbox do directorio"
+  },
+  "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+    "message": "Todos os ficheiros mbox do directorio (con estrutura sbd)"
+  },
+  "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+    "message": "Arquivos mbox individuais"
+  },
+  "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+    "message": "Arquivos mbox individuais (con estrutura sbd)"
+  },
+  "folderCtxMenu_OpenFolderDir_Id.title": {
+    "message": "Abrir o directorio de cartafoles"
+  },
+  "folderexists": {
+    "message": "Non foi posíbel importar: hai un cartafol co mesmo nome",
+    "src": "mboximport"
+  },
+  "formatWarning": {
+    "message": "Exportando en formato HTML ou texto plano, os anexos non son gardados.\\\nSe desexa gardalos, use o formato EML.\\\nDesexa continuar?\\\n",
+    "src": "mboximport"
+  },
+  "formatWarningImport": {
+    "message": "If you use this format, it will not be possible to import the exported messages.\nDo you want to continue?\n",
+    "src": "mboximport"
+  },
+  "importDone": {
+    "message": "Importación Feita",
+    "src": "mboximport"
+  },
+  "importedMsg": {
+    "message": "Importado",
+    "src": "mboximport"
+  },
+  "importEMLstart": {
+    "message": "Importando... agarde por favor",
+    "src": "mboximport"
+  },
+  "importEnd": {
+    "message": "The import was successful!"
+  },
+  "importing": {
+    "message": "Importando",
+    "src": "mboximport"
+  },
+  "importRunning": {
+    "message": "Import running..."
+  },
+  "indexCSVdateFormat": {
+    "message": "Índice, formato de data CSV:"
+  },
+  "indexFmtToken": {
+    "message": "${índice}"
+  },
+  "indexOff": {
+    "message": "empregar o directorio seleccionado sen indice"
+  },
+  "indexOn": {
+    "message": "crea un novo directorio e o índice de mensaxes"
+  },
+  "indexSettingLabel": {
+    "message": "Cando exporta todas as mensaxe dun cartafol de correo:"
+  },
+  "inlineAttachmentsFolders": {
+    "message": "Cartafoles de anexos en liña"
+  },
+  "internalerror": {
+    "message": "Non foi posíbel importar a causa dun erro descoñecido",
+    "src": "mboximport"
+  },
+  "intro1": {
+    "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+  },
+  "intro2": {
+    "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+  },
+  "intro3": {
+    "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
+  },
+  "invalidFolderSelection": {
+    "message": "A selección do cartafol non é válida"
+  },
+  "isEudora": {
+    "message": "Este ficheiro \"mbox\" parece vir de Euroda.\nThunderbird non pode manexalo, ten convertelo a un formato \"mbox\" estándar.",
+    "src": "mboximport"
+  },
+  "isNewsgroup": {
+    "message": "Característica non dispoñíbel: é posíbel exportar dunha conta  IMAP\\\nou noticias só se está establecido o uso fora de liña",
+    "src": "mboximport"
+  },
+  "isNotMaildir": {
+    "message": "O cartafol a importar non é un cartafol \"Maildir\"",
+    "src": "mboximport"
+  },
+  "isNotStandard": {
+    "message": "This \"mbox\" file uses a different format from the Thunderbird folder format\nand it's possible that Thunderbird can't handle it properly.\nDo you want to continue?",
+    "src": "mboximport"
+  },
+  "justMailFiles": {
+    "message": "Só arquivos de correo electrónico"
+  },
+  "key": {
+    "message": "Índice"
+  },
+  "labelmenuMI": {
+    "message": "Importar/exportar"
+  },
+  "largeFolderImport.msg": {
+    "message": "Importáronse máis de 200 cartafoles mbox.\nThunderbird debería reiniciarse para restablecer a base de datos."
+  },
+  "lastBackup": {
+    "message": "Última copia e seguranza"
+  },
+  "latinizeTransform": {
+    "message": "Latinizar transformar"
+  },
+  "MACwarning": {
+    "message": "N.B.: pechar todas as outras xanelas antes de continuar."
+  },
+  "MBcaptionlabel1": {
+    "message": "Exportar axustes"
+  },
+  "MBlabel1": {
+    "message": "Sobrescribir os ficheiros MBOX co mesmo nome e directorio de destino"
+  },
+  "MBlabel2": {
+    "message": "Usar só caracteres alfanuméricos na exportación simple de ficheiros"
+  },
+  "MBlabel3": {
+    "message": "Pedir confirmación antes de importar ficheiros MBOX dun directorio"
+  },
+  "MBlabel4": {
+    "message": "Formato HTML como se amosa no panel de mensaxes"
+  },
+  "MBlabel5": {
+    "message": "Copiar no portarretallos só en formato texto (pode producir problemas de compatibilidade)"
+  },
+  "MBlabel7a": {
+    "message": "Tamaño máximo do asunto:"
+  },
+  "MBlabel7b": {
+    "message": "caracteres"
+  },
+  "MBlabel7c": {
+    "message": "Lonxitude máxima do remitente:"
+  },
+  "MBlabel7d": {
+    "message": "Lonxitude máxima dos destinatarios:"
+  },
+  "mboxExport": {
+    "message": "Exportar cartafoles como ficheiros MBOX:"
+  },
+  "messageCount.label": {
+    "message": "Número de mensaxes"
+  },
+  "messageImportProblems.msg": {
+    "message": "Houbo problemas ao importar algunhas mensaxes:"
+  },
+  "messagesExported.label": {
+    "message": "Mensaxes exportadas"
+  },
+  "messagesMsg": {
+    "message": "Mensaxes",
+    "src": "mboximport"
+  },
+  "messsubdir": {
+    "message": "mensaxes",
+    "src": "mboximport"
+  },
+  "misc": {
+    "message": "Varios"
+  },
+  "modal": {
+    "message": "Usar unha xanela \\\\\\'modal\\\\\\'"
+  },
+  "msgCtxMenu_CopyToClipboard_Id.title": {
+    "message": "Copiar ao portapapeis"
+  },
+  "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+    "message": "Cabeceiras"
+  },
+  "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+    "message": "Mensaxe"
+  },
+  "msgCtxMenu_Exp_CSVFormat_Id.title": {
+    "message": "Formato CSV (folla de cálculo)"
+  },
+  "msgCtxMenu_Exp_EMLFormat_Id.title": {
+    "message": "Formato de mensaxe EML"
+  },
+  "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+    "message": "Mensaxes (anexos incorporados)"
+  },
+  "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+    "message": "Formato HTML"
+  },
+  "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+    "message": "Só mensaxes"
+  },
+  "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+    "message": "Mensaxes e anexos"
+  },
+  "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
+  "msgCtxMenu_Exp_Index_Id.title": {
+    "message": "Índice de mensaxes"
+  },
+  "msgCtxMenu_Exp_IndexCSV_Id.title": {
+    "message": "Formato CSV"
+  },
+  "msgCtxMenu_Exp_IndexHTML_Id.title": {
+    "message": "Formato HTML"
+  },
+  "msgCtxMenu_Exp_MboxFormat_Id.title": {
+    "message": "Formato mbox"
+  },
+  "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+    "message": "Engadir ao ficheiro mbox existente"
+  },
+  "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+    "message": "Novo ficheiro mbox"
+  },
+  "msgCtxMenu_Exp_PDFFormat_Id.title": {
+    "message": "Formato PDF"
+  },
+  "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+    "message": "Formato de texto plano"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+    "message": "Só mensaxes"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+    "message": "Mensaxes e anexos"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
+  "msgCtxMenu_TopId.title": {
+    "message": "Exportar mensaxes como..."
+  },
+  "msgHdr.Bcc": {
+    "message": "Bcc"
+  },
+  "msgHdr.BccLocal": {
+    "message": "Cco"
+  },
+  "msgHdr.Cc": {
+    "message": "Cc"
+  },
+  "msgHdr.CcLocal": {
+    "message": "Copia"
+  },
+  "msgHdr.Date": {
+    "message": "Data"
+  },
+  "msgHdr.From": {
+    "message": "De"
+  },
+  "msgHdr.MessageID": {
+    "message": "Message-ID"
+  },
+  "msgHdr.ReplyTo": {
+    "message": "Responder a"
+  },
+  "msgHdr.Sender": {
+    "message": "Remitente"
+  },
+  "msgHdr.Subject": {
+    "message": "Asunto"
+  },
+  "msgHdr.To": {
+    "message": "Para"
+  },
+  "msgs": {
+    "message": "Mensaxes de",
+    "src": "mboximport"
+  },
+  "multipleFolders.alertMsg": {
+    "message": "Non se admiten varios cartafoles:\nFai clic en Aceptar para exportar só o primeiro cartafol."
+  },
+  "multipleFolders.title": {
+    "message": "Múltiples cartafoles"
+  },
+  "name": {
+    "message": "Nome"
+  },
+  "newFilesMode": {
+    "message": "Só os fichiros modificados despois da copia de seguranza"
+  },
+  "noBackup": {
+    "message": "Non foi posíbel realizar a copia de seguranza: comprobe a ruta e os permisos do cartafol de destino",
+    "src": "autobackup"
+  },
+  "noEML": {
+    "message": "Non foi posíbel atopar un ficheiro EML neste directorio",
+    "src": "mboximport"
+  },
+  "nofolder": {
+    "message": "Non hai seleccionado un cartafol de destino",
+    "src": "mboximport"
+  },
+  "noFolderExport": {
+    "message": "Non foi posíbel exportar.\\\nOs cartafoles seleccionados son de diferentes tipos ou un deles é un cartafol virtual.",
+    "src": "mboximport"
+  },
+  "noFolderSelected": {
+    "message": "Non se seleccionou ningún cartafol de mensaxes:\n\n Crea ou selecciona unha conta válida ou unha subcarpeta de cartafol local.",
+    "src": "mboximport"
+  },
+  "noMaildirStorage": {
+    "message": "Non é posíbel importar o cartafol \"Maildir\" nunha conta que está a usar outro formato",
+    "src": "mboximport"
+  },
+  "nomboxfile": {
+    "message": "non parece ser un ficheiro MBOX\\\nou é un ficheiro MBOX danado",
+    "src": "mboximport"
+  },
+  "noMboxStorage": {
+    "message": "Non é posíbel importar o cartafol \"Mbox\" nunha conta que está a usar outro formato",
+    "src": "mboximport"
+  },
+  "nonAlphanumericFilter": {
+    "message": "Filtrar caracteres non alfanuméricos"
+  },
+  "noPDFmac": {
+    "message": "Because of a Thunderbird bug, the feature is not available on this platform",
+    "src": "mboximport"
+  },
+  "noPDFmultipleFolders": {
+    "message": "To export in PDF format, select just one folder",
+    "src": "mboximport"
+  },
+  "noPDFnoPrinter": {
+    "message": "No printer seems installed on this machine. This feature requires at least one printer installed (also a virtual one)",
+    "src": "mboximport"
+  },
+  "noProfile": {
+    "message": "This folder doesn't contain a valid profile",
+    "src": "profilewizard"
+  },
+  "noRemoteExport": {
+    "message": "Non foi posíbel exportar este cartafol remoto, porque non está en liña.",
+    "src": "mboximport"
+  },
+  "nosubjectmsg": {
+    "message": "no_subject",
+    "src": "mboximport"
+  },
+  "noWarning": {
+    "message": "Non amosar de novo este aviso",
+    "src": "mboximport"
+  },
+  "nowritable": {
+    "message": "Non foi posíbel exportar: o directorio non ten permiso de escritura",
+    "src": "mboximport"
+  },
+  "numEML": {
+    "message": "Importáronse os ficheiros eml:",
+    "src": "mboximport"
+  },
+  "numRetainBackups.msg": {
+    "message": "Número de copias de seguridade a conservar:"
+  },
+  "offlineWarning": {
+    "message": "Este cartafol está fora de liña.\\\nSó se exportarán as mensaxes locais. Quere continuar?",
+    "src": "mboximport"
+  },
+  "OK.button": {
+    "message": "OK"
+  },
+  "openHelpInWindow.label": {
+    "message": "Abre a axuda nunha xanela en lugar dunha pestana"
+  },
+  "over4GBskipMsg": {
+    "message": "superior a 4 GB, saltándose",
+    "src": "mboximport"
+  },
+  "pickProfile": {
+    "message": "Path of the profile to import:",
+    "src": "profilewizard"
+  },
+  "prefixFmtToken": {
+    "message": "${prefixo}"
+  },
+  "processingMsg": {
+    "message": "Procesamento",
+    "src": "mboximport"
+  },
+  "profileImportWizHdr": {
+    "message": "ImportExportTools NG - Importación de perfil",
+    "src": "profilewizard"
+  },
+  "profileName": {
+    "message": "Name of the profile to import"
+  },
+  "profilePath": {
+    "message": "The path of the imported profile is:",
+    "src": "profilewizard"
+  },
+  "Received": {
+    "message": "Recibido",
+    "src": "mboximport"
+  },
+  "recipient": {
+    "message": "Destinatario"
+  },
+  "recipientEmailFmtToken": {
+    "message": "${destinatario_email}"
+  },
+  "recipientFmtToken": {
+    "message": "${destinatario}"
+  },
+  "remoteWarning": {
+    "message": "Está a exportar a copia local dun cartafol IMAP ou de Novas.\\\nPoidas que o cartafol non teña dodas as mensaxes do cartafol remoto.\\\nQuere continuar?",
+    "src": "mboximport"
+  },
+  "runProfileManager": {
+    "message": "Run the profile manager"
+  },
+  "save": {
+    "message": "Gardar"
+  },
+  "savedirs": {
+    "message": "Exportar directorios"
+  },
+  "sdAll": {
+    "message": "Todos"
+  },
+  "sdEML": {
+    "message": "EML"
+  },
+  "sdExportButton": {
+    "message": "Exportar"
+  },
+  "sdFormat": {
+    "message": "Formato"
+  },
+  "sdHTML": {
+    "message": "HTML"
+  },
+  "sdMBOX": {
+    "message": "MBOX"
+  },
+  "sdMBOX2": {
+    "message": "Mbox(anexar)"
+  },
+  "sdMessages": {
+    "message": "Mensaxes"
+  },
+  "sdSelected": {
+    "message": "Seleccionados"
+  },
+  "sdSingleFile": {
+    "message": "(un ficheiro)"
+  },
+  "sdText": {
+    "message": "Texto plano"
+  },
+  "searchdir": {
+    "message": "Seleccione un directorio para procurar os ficheiros",
+    "src": "mboximport"
+  },
+  "selectFolderForMboxes_title": {
+    "message": "Seleccione o cartafol para importar ficheiros mbox",
+    "src": "mboximport"
+  },
+  "selectMboxFiles_title": {
+    "message": "Seleccione ficheiros mbox para importar",
+    "src": "mboximport"
+  },
+  "selExport": {
+    "message": "Exportar mensaxes as seleccionadas:"
+  },
+  "sender": {
+    "message": "Remitente"
+  },
+  "senderEmailFmtToken": {
+    "message": "${remitente_email}"
+  },
+  "senderFmtToken": {
+    "message": "${remitente}"
+  },
+  "Size": {
+    "message": "Tamaño"
+  },
+  "skipMsgLabel": {
+    "message": "non gardar mensaxes cando o ficheiro correspondente existe"
+  },
+  "skipNonMbox": {
+    "message": "Omitir ficheiros non mbox",
+    "src": "mboximport"
+  },
+  "smartNameFmtToken": {
+    "message": "${nome_intelixente}"
+  },
+  "start": {
+    "message": "Start import"
+  },
+  "strip_eml_CR.label": {
+    "message": "Elimina CR dos finais de liña para as exportacións de mensaxes eml"
+  },
+  "subject": {
+    "message": "Asunto"
+  },
+  "subjectFmtToken": {
+    "message": "${asunto}",
+    "src": "mboximport"
+  },
+  "suffixFmtToken": {
+    "message": "${sufixo}"
+  },
+  "temp_error": {
+    "message": "Non foi posíbel importar ocorreu un erro na creación do ficheiro temporal.",
+    "src": "mboximport"
+  },
+  "textCharset": {
+    "message": "Codificación para a exportación en formato texto e csv:"
+  },
+  "timeMsg": {
+    "message": "Tempo",
+    "src": "mboximport"
+  },
+  "title": {
+    "message": "ImportExportTools NG - Profile import"
+  },
+  "toolsCtxMenu_Backup_Id.title": {
+    "message": "Copia de seguranza"
+  },
+  "toolsCtxMenu_Exp_Profile_Id.title": {
+    "message": "Exportar perfil"
+  },
+  "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+    "message": "Perfil completo"
+  },
+  "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+    "message": "Só correo"
+  },
+  "toolsCtxMenu_Imp_Profile_Id.title": {
+    "message": "Importar perfil"
+  },
+  "totalErrors.label": {
+    "message": "Total de erros"
+  },
+  "totalMessages.label": {
+    "message": "Total de mensaxes"
+  },
+  "totalMessagesExported.label": {
+    "message": "Total de mensaxes exportadas"
+  },
+  "useExtFilenameFormat": {
+    "message": "Usa Formato Estendido"
+  },
+  "useMboxExt.label": {
+    "message": "Use a extensión .mbox para ficheiros mbox (non estruturados)"
+  },
+  "utf16Filter": {
+    "message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
+  },
+  "viewDbgConsole.msg": {
+    "message": "  Erros. Ver a consola de depuración (Control-Shift-J)"
+  },
+  "virtFolAlert": {
+    "message": "Os cartafoles poden ser exportados a este formato por separado",
+    "src": "mboximport"
+  },
+  "virtualfolder": {
+    "message": "Este é un cartafol virtual, para exportar estas mensaxes é preciso copiala nun cartafol normal e exportar este cartafol",
+    "src": "mboximport"
+  },
+  "Warning.msg": {
+    "message": "Aviso"
+  }
+}

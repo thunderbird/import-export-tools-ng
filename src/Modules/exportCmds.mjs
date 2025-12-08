@@ -44,6 +44,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     // and UI interactions in wext side
 
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
+    console.log(expTask)
+    console.log(expTask.messages.messageContainer)
 
     // warnings
 

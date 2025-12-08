@@ -1,7 +1,7 @@
 /* UI expStatus windows css */
 
 :root {
-	--dialog-bgcolor: #E4E7F0;
+	--dialog-bgcolor: #f4f4f4;
 	--dialog-text-color: FieldText;
 	--in-content-box-background: Field !important;
 	--in-content-accent-color: rgb(69, 161, 255);

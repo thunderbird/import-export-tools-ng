@@ -429,6 +429,8 @@ export var exportMessages = {
       msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
     }
     expTask.messages.messageContainerDirectory = msgsDir;
+    console.log(msgsDir)
+
     return msgsDir;
   },
 
@@ -436,6 +438,8 @@ export var exportMessages = {
     let attsDir;
     let inlineDir;
     let msgsDir = expTask.messages.messageContainerDirectory;
+    console.log(msgsDir)
+
     // switch on structure type
     switch (expTask.attachments.containerStructure) {
       case "inMsgDir":
@@ -462,6 +466,8 @@ export var exportMessages = {
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
+    console.log(attsDir, inlineDir)
+
     return { attachmentsDir: attsDir, inlineDir: inlineDir };
   },
 

@@ -80,21 +80,13 @@ const baseExpTask = {
   msgList: {},
 };
 
-var t1  ={
-  test: 0
-}
 
 export async function createExportTask(params, ctxEvent, folderSet) {
   try {
 
-    let tl = t1
-    tl.test = 80
-    console.log(t1, tl)
-    let expTask = baseExpTask;
-    console.log(expTask)
-    expTask.messages.messageContainer = false
-    console.log(baseExpTask)
-
+    // we need a deep clone with structuredClone so
+    // our default baseExpTask object is not modified
+    let expTask = structuredClone(baseExpTask);
 
     switch (params.expType) {
       case "eml":

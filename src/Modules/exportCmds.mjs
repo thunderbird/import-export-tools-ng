@@ -783,6 +783,12 @@ async function _createIndex(expTask, msgListLog) {
     const downArrowIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAADsQAAA7EB9YPtSQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHPSURBVHic7dzBVtpAAIXh+zLFfV3QZ4bnqnZT9Q3swuaoYCSBwGRmvu+c7FwMuT+BjSQAAAAAAAAAAAAAAAAAAAAAAAAAQOvukuyTPPy/9kk2RU9Ul6rv312SpySvB9dzkm3Bc9Vim7d7dXj/nlJJBPscH364XiKC72zzdo/G7t+u3NGme8z4Cxgi+FXsdOt1n6+fnB+vP8VON8NDvn8RIjg2ZfzXJL9LHXCOXU6/EB8H70499qv7CNjk6y8xIjg2Z/znVPIlMEl+Jvmb6RH0+HEw9bFf7RtFBOOaH38ggmPdjD8Qwbvuxh+IoOPxBz1H0P34gx4jMP6BniIw/ogeIjD+CS1HYPyJWozA+DO1FIHxz9RCBMa/UM0RGH8hNUZg/IXVFIHxr6SGCIx/ZWuOwPg3ssYIjH9ja4rA+IWsIQLjF1YyAuOvRIkIjL8yt4zA+Ct1iwiMv3LXjMD4lbhGBMavzJIRGL9SS0Rg/MpdEoHxG3FOBMZvzJz/uX+Z+bfGr8ScJ4HxG7VUBMav2KURGL8B50Zg/IbMjcD4DZoagfEbdioC43dg7MeY/Zh1Rzb5/HPsuyQ/ip4IAAAAAAAAAAAAAAAAAAAAAAAAAOjeP1TCsZ3QSll0AAAAAElFTkSuQmCC";
     const upArrowIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAOwAAADsAEnxA+tAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAgVJREFUeJzt3UFOFEEYhuHPsDExeiJPIZGjuAKXuhXv4Q2UuDAewXtwAIOL4Y8JDJnpoWeqq/p5kl4QWFTq/TLNChIAAAAAAAAAAAAAAAAAAAAAFu1F6wM0cpbkPMnb+69/JfmW5G+zE3Eyr5PcJLl78Nzcf4+BvUryM4/j1/M7yZtWh+O4dsU3goHtG98IBjQ1vhEM5ND4RjCA58Y3go7NFd8IOjR3fCPoyNT4H5N8mPDzRrBgh8QvRtC558QvRtCpOeIXI+jMnPGLEXTiGPGLESzcMeMXI1ioU8QvRrAwp4xfjGAhWsQvRtBYy/jFCBpZQvxiBCe2pPjFCE5kifGLERzZkuMXIziSHuIXI5hZT/GLEcykx/jFCJ6p5/jFCA40QvxiBBONFL8YwZ5GjF+MYIeR4xcjeMIa4hcjeGBN8YsR3Ftj/LL6Eaw5flntCMT/b3UjEP+x1YxA/KcNPwLxdxt2BOLvb7gRiD/dMCMQ/3Ddj+As2//86lPPVZtjLtpV9r+/m2zufDEuIv4cpozgotEZt/oaH/tz2fd1cN3qgNtcR/w57TOCL81Ot8WuV4CP/el2vQ7etzvaY2dJfmT7QS8bnqt3l9l+p9+zsF8Ck+Rlks9J/iS5zea/cLxreqIxnGdzl7fZ3O2nbO4aAAAAAAAAAAAAAAAAAAAAAAAAAAAAGMA/0nbvD8X+7HoAAAAASUVORK5CYII=";
 
+    const subjectHdr = browser.i18n.getMessage("msgHdr.Subject");
+    const fromHdr = browser.i18n.getMessage("msgHdr.From");
+    const toHdr = browser.i18n.getMessage("msgHdr.To");
+    const dateHdr = browser.i18n.getMessage("msgHdr.Date");
+    const sizeStr = browser.i18n.getMessage("Size");
+
     let indexData = "";
     let titleDate = strftime.strftime(expTask.index.dateFormat, new Date());
 
@@ -815,15 +821,14 @@ async function _createIndex(expTask, msgListLog) {
 
     indexData += '<table width="99%" border="1" class="sortable">\n';
 
-    indexData += "<tr><th><b>" + "Subject" + "</b></th>"; // Subject
-    indexData += "<th><b>" + "From" + "</b></th>"; // From
-    indexData += "<th><b>" + "To" + "</b></th>"; // To
-    indexData += "<th id='dateHdr'><b>" + "Date" + "</b></th>"; // Date
+    indexData += "<tr><th><b>" + subjectHdr + "</b></th>"; // Subject
+    indexData += "<th><b>" + fromHdr + "</b></th>"; // From
+    indexData += "<th><b>" + toHdr + "</b></th>"; // To
+    indexData += "<th id='dateHdr'><b>" + dateHdr + "</b></th>"; // Date
 
     indexData += "<th style='padding-left: 12px;' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
     //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
-    let sizeStr = "Size";
     indexData += "<th><b>" + sizeStr + "</b></th>"; // Attachment
 
     indexData += "</tr>";

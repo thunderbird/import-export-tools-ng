@@ -828,7 +828,6 @@ async function _createIndex(expTask, msgListLog) {
 
     indexData += "<th style='padding-left: 12px;' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height='20px' width='20px'></b></th>"; // Attachment
 
-    //const sizeStr = window.ietng.extension.localeData.localizeMessage("Size");
     indexData += "<th><b>" + sizeStr + "</b></th>"; // Attachment
 
     indexData += "</tr>";

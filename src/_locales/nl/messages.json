@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Open de Help in een venster in plaats van op een tabblad"
   },
-  "over4GBskipMsg": {
-    "message": "groter dan 4 GB, overslaan",
+  "over50GBskipMsg": {
+    "message": "groter dan 50GB, overslaan",
     "src": "mboximport"
   },
   "pickProfile": {

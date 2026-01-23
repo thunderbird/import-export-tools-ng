@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Öppna hjälpen i ett fönster istället för en flik"
   },
-  "over4GBskipMsg": {
-    "message": "större än 4 GB, hoppar över",
+  "over50GBskipMsg": {
+    "message": "större än 50GB, hoppar över",
     "src": "mboximport"
   },
   "pickProfile": {

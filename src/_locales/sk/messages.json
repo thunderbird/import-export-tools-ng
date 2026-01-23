@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Otvorte pomocníka v okne namiesto karty"
   },
-  "over4GBskipMsg": {
-    "message": "väčšie ako 4 GB, preskakovanie",
+  "over50GBskipMsg": {
+    "message": "väčšie ako 50GB, preskakovanie",
     "src": "mboximport"
   },
   "pickProfile": {

@@ -830,8 +830,8 @@
   "openHelpInWindow.label": {
     "message": "Otevřete nápovědu v okně místo na kartě"
   },
-  "over4GBskipMsg": {
-    "message": "větší než 4 GB, přeskakování",
+  "over50GBskipMsg": {
+    "message": "větší než 50GB, přeskakování",
     "src": "mboximport"
   },
   "pickProfile": {

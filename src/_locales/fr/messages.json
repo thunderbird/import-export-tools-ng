@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Ouvrir l’aide dans une fenêtre au lieu d’un onglet"
   },
-  "over4GBskipMsg": {
-    "message": "supérieur à 4 Go, ignoré",
+  "over50GBskipMsg": {
+    "message": "supérieur à 50GB, ignoré",
     "src": "mboximport"
   },
   "pickProfile": {

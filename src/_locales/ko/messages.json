@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "탭 대신 창에서 도움말 열기"
   },
-  "over4GBskipMsg": {
-    "message": "4GB보다 큼, 건너뛰기",
+  "over50GBskipMsg": {
+    "message": "50GB보다 큼, 건너뛰기",
     "src": "mboximport"
   },
   "pickProfile": {

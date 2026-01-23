@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Lap helyett ablakban nyissa meg a súgót"
   },
-  "over4GBskipMsg": {
-    "message": "nagyobb, mint 4 GB, kihagyva",
+  "over50GBskipMsg": {
+    "message": "nagyobb, mint 50GB, kihagyva",
     "src": "mboximport"
   },
   "pickProfile": {

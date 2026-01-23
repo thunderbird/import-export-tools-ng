@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Odpiranje pomoči v oknu namesto na zavihku"
   },
-  "over4GBskipMsg": {
-    "message": "večji od 4 GB, preskok",
+  "over50GBskipMsg": {
+    "message": "večji od 50GB, preskok",
     "src": "mboximport"
   },
   "pickProfile": {

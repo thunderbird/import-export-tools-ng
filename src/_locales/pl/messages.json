@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Otwórz pomoc w oknie zamiast na karcie"
   },
-  "over4GBskipMsg": {
-    "message": "większy niż 4 GB, pomijam",
+  "over50GBskipMsg": {
+    "message": "większy niż 50GB, pomijam",
     "src": "mboximport"
   },
   "pickProfile": {

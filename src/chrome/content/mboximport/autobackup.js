@@ -68,32 +68,37 @@ var autoBackup = {
 		}
 	},
 
-	getDir: function () {
+	getDir: async function () {
 		var file = null;
+		var dir = null;
 
-		console.log("IETNG: getDir")
+		// handle empty pref
 		try {
-			var dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
-			alert("IETNG: dirpref:\n" + dir)
+			dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
+		} catch (ex) {
+			dir = null;
+		}
 
-			file = Cc["@mozilla.org/file/local;1"]
-				.createInstance(Ci.nsIFile);
-			file.initWithPath(dir);
-			if (!file.exists() || !file.isDirectory()) {
-				alert("IETNG: dir doesn't exist or not dir")
+		if (dir) {
+			try {
 
+				file = Cc["@mozilla.org/file/local;1"]
+					.createInstance(Ci.nsIFile);
+				file.initWithPath(dir);
+				if (!file.exists() || !file.isDirectory()) {
+					alert("IETNG: dir doesn't exist or not dir")
+
+					file = null;
+				}
+
+			} catch (e) {
+				alert("IETNG: ex\n" + e);
 				file = null;
 			}
-
-		} catch (e) {
-			alert("IETNG: ex\n" + e)
-
-			file = null;
 		}
-		if (!file) {
-			alert("IETNG: file null calling picker")
 
-			file = IETgetPickerModeFolder();
+		if (!file) {
+			file = await asyncIETgetPickerModeFolder();
 			autoBackup.filePicker = true;
 		}
 		return file;
@@ -110,9 +115,9 @@ var autoBackup = {
 		foStream.close();
 	},
 
-	start: function () {
+	start: async function () {
 		// "dir" is the target directory for the backup
-		var dir = autoBackup.getDir();
+		var dir = await autoBackup.getDir();
 		if (!dir)
 			return;
 
@@ -200,18 +205,9 @@ var autoBackup = {
 	},
 
 	end: function (sec) {
-		console.log("IETNG: end", sec)
-		autoBackup.writeLog("starting end " + sec + "\n", true);
-
 		if (sec === 0) {
-			console.log("IETNG: close ")
-			autoBackup.writeLog("closing\n", true);
-			alert("closing")
 			window.close();
 		} else {
-			console.log("IETNG: delay 1s")
-			autoBackup.writeLog("delay 1s\n", true);
-
 			window.setTimeout(autoBackup.end, 1000, sec - 1);
 		}
 	},
@@ -291,12 +287,8 @@ var autoBackup = {
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
 			// new remove old backups #663
-			console.log("IETNG: write done, removing backups")
 
 			await autoBackup.removeOldBackups();
-			console.log("IETNG: remove done, calling end")
-			autoBackup.writeLog("calling end\n", true);
-
 			autoBackup.end(3);
 		}
 	},

@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "タブではなくウィンドウでヘルプを開く"
   },
-  "over4GBskipMsg": {
-    "message": "4GB より大きいサイズはスキップします",
+  "over50GBskipMsg": {
+    "message": "50GB より大きいサイズはスキップします",
     "src": "mboximport"
   },
   "pickProfile": {

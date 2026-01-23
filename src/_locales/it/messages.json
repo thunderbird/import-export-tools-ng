@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Apri la guida in una finestra anziché in una scheda"
   },
-  "over4GBskipMsg": {
-    "message": "più grande di 4 GB, saltando",
+  "over50GBskipMsg": {
+    "message": "più grande di 50GB, saltando",
     "src": "mboximport"
   },
   "pickProfile": {

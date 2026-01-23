@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Ανοίξτε τη βοήθεια σε ένα παράθυρο αντί για μια καρτέλα"
   },
-  "over4GBskipMsg": {
-    "message": "μεγαλύτερο από 4 GB, παράλειψη",
+  "over50GBskipMsg": {
+    "message": "μεγαλύτερο από 50GB, παράλειψη",
     "src": "mboximport"
   },
   "pickProfile": {

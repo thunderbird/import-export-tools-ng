@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Բացեք օգնությունը պատուհանում՝ ներդիրի փոխարեն"
   },
-  "over4GBskipMsg": {
-    "message": "4 ԳԲ-ից մեծ՝ բաց թողնելով",
+  "over50GBskipMsg": {
+    "message": "50 ԳԲ-ից մեծ՝ բաց թողնելով",
     "src": "mboximport"
   },
   "pickProfile": {

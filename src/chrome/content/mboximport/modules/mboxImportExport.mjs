@@ -44,7 +44,7 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
-console.log("IETNG: mboximportExport.mjs -v15t1");
+console.log("IETNG: mboximportExport.mjs -v16");
 
 export var mboxImportExport = {
 
@@ -143,29 +143,12 @@ export var mboxImportExport = {
       let stat = await IOUtils.stat(mboxFilePath);
       let fname = PathUtils.filename(mboxFilePath);
 
-      let over4GBskipMsg = ietngUtils.localizeMsg("over4GBskipMsg");
+      let over50GBskipMsg = ietngUtils.localizeMsg("over50GBskipMsg");
 
-      if (stat.size > 170000000000) {
-        console.log(`Mbox ${fname} larger than 4GB, skipping`);
-        //window.alert(`Mbox ${fname} ${over4GBskipMsg}`);
-
-        let prompt = Services.prompt;
-        let buttonFlags = (prompt.BUTTON_POS_0) * (prompt.BUTTON_TITLE_IS_STRING) + (prompt.BUTTON_POS_1) * (prompt.BUTTON_TITLE_IS_STRING);
-        let buttonReturn = Services.prompt.confirmEx(window, "Mbox over 4GB",
-          "This mbox exceeds the 4GB direct import size.\n\nDo you want to use the copy import method ?\n\nThis method will not do mbox processing.\nIf the mbox has not been processed, some messages may\nbe corrupted.",
-
-          buttonFlags,
-          "Use Copy Import",
-          "Skip mbox import",
-          "",
-          null, {});
-
-        console.log(buttonReturn)
-        if (buttonReturn == 0) {
-          useCopyImport = true;
-        } else {
-          skipMbox = true;
-        }
+      if (stat.size > 53687091200) {
+        console.log(`Mbox ${fname} larger than 50GB, skipping`);
+        window.alert(`Mbox ${fname} ${over50GBskipMsg}`);
+        skipMbox = true;
       }
 
       let impMsg = ietngUtils.localizeMsg("importing");

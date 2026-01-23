@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "在窗口而不是选项卡中打开帮助"
   },
-  "over4GBskipMsg": {
-    "message": "大于4GB，跳过",
+  "over50GBskipMsg": {
+    "message": "大于50GB，跳过",
     "src": "mboximport"
   },
   "pickProfile": {

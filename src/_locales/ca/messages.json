@@ -834,8 +834,8 @@
   "openHelpInWindow.label": {
     "message": "Obriu l&#39;ajuda en una finestra en lloc d&#39;una pestanya"
   },
-  "over4GBskipMsg": {
-    "message": "més gran que 4 GB, saltant",
+  "over50GBskipMsg": {
+    "message": "més gran que 50GB, saltant",
     "src": "mboximport"
   },
   "pickProfile": {

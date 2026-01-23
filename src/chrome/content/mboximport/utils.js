@@ -186,6 +186,8 @@ function getSubjectForHdr(hdr, dirPath) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
 		var authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		authName = authName.replaceAll('"',"");
+		
 		if (authMaxLen > 0) {
 			authName = authName.substring(0, authMaxLen);
 		}
@@ -237,6 +239,7 @@ function getSubjectForHdr(hdr, dirPath) {
 
 		// Name
 		let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
+		authName = authName.replaceAll('"',"");
 		if (authMaxLen > 0) {
 			authName = authName.substring(0, authMaxLen);
 		}
@@ -297,7 +300,7 @@ function getSubjectForHdr(hdr, dirPath) {
 		fname = nametoascii(fname);
 	else {
 		// Allow ',' and single quote character which is valid
-		fname = fname.replace(/[\/\\:<>*\?\"\|]/g, "_");
+		fname = fname.replace(/[\/\\:<>*\?\|]/g, "_");
 	}
 
 	if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize")) {
@@ -675,6 +678,31 @@ function IETgetPickerModeFolder() {
 		}
 	}
 	return dir;
+}
+
+async function asyncIETgetPickerModeFolder() {
+	let winCtx = window;
+	const tbVersion = ietngUtils.getThunderbirdVersion();
+	if (tbVersion.major >= 120) {
+		winCtx = window.browsingContext;
+	}
+	var nsIFilePicker = Ci.nsIFilePicker;
+	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
+	
+	const task = Promise.withResolvers();
+	fp.open(res => {
+		let dir = null;
+		if (res === nsIFilePicker.returnOK) {
+			dir = fp.file;
+			if (dir && !dir.isWritable()) {
+				alert(ietngUtils.localizeMsg("nowritable"));
+				dir = null;
+			}
+		}
+		task.resolve(dir);
+	});
+	return task.promise
 }
 
 function IETemlx2eml(file) {

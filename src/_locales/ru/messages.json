@@ -833,8 +833,8 @@
   "openHelpInWindow.label": {
     "message": "Открыть справку в окне вместо вкладки"
   },
-  "over4GBskipMsg": {
-    "message": "больше 4 ГБ, пропускаем",
+  "over50GBskipMsg": {
+    "message": "больше 50ГБ, пропускаем",
     "src": "mboximport"
   },
   "pickProfile": {

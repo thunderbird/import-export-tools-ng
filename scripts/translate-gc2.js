@@ -251,14 +251,14 @@ async function translateHelpPage() {
 		console.debug('Translate ' + shortLocale);
 
 		try {
-			translatePage([`<data class="notranslate">${outputFileName}`, source], 'en', shortLocale, translation => {
-				console.debug('call back ' + translation[0].split('>')[1]);
-				let outputFileName = translation[0].split('>')[1];
-				console.debug(outputFileName);
-				console.log("trans", translation[1])
-				fs.outputFileSync(outputFileName, translation[1]);
+			//let t = await translatePage([`<data class="notranslate">${outputFileName}`, source], 'en', shortLocale, translation => {
+			let t = await translatePage(source, 'en', shortLocale)
+			
+console.debug("cb", outputFileName);
+				//console.log("trans", t)
+				fs.outputFileSync(outputFileName, t);
 				console.debug('Translated ' + shortLocale);
-			});
+			
 		} catch (e) {
 			console.debug(e);
 		}
@@ -268,7 +268,7 @@ async function translateHelpPage() {
 }
 
 
-function translatePage(pageSource, sourceLocale, targetLocale, saveOutputCB) {
+async function translatePage(pageSource, sourceLocale, targetLocale, saveOutputCB) {
 	// promises.push(translate.translate(sourceStrings, shortLocale)
 	// var helpPage = "./src/chrome/content/mboximport/importexport-help-en-US.html";
 	// var helpBase = "./src/chrome/content/mboximport/importexport-help";
@@ -277,19 +277,22 @@ function translatePage(pageSource, sourceLocale, targetLocale, saveOutputCB) {
 	// console.debug(source);
 	// var sourceLocale = "en";
 	// var shortLocale = "pt-PT";
-	var translatedString = translate.translate(pageSource, { prettyPrint: true, from: sourceLocale, to: targetLocale, format: 'html' })
-		.then(([translations]) => {
+	var translations = await translate.translate(pageSource, { prettyPrint: true, from: sourceLocale, to: targetLocale, format: 'html' })
+	//var translations = await translate.translate("<div>hello there</div>", { prettyPrint: true, from: sourceLocale, to: targetLocale, format: 'html' })
+
+			 //console.debug(translations[0]);
+			 //console.debug(translations[1]);
 			try {
-				console.debug('T0 ' + translations[0]);
-				translations[1] = prettier.format(translations[1], { parser: 'html', printWidth: 110 });
+				console.debug('T0 ' + translations[0].substr(0,100));
+				var t = prettier.format(translations[0], { parser: 'html', printWidth: 110 });
 			} catch (error) {
 				console.debug(error);
 			}
 			// fs.outputFileSync(helpBase+"-"+shortLocale+".html",translations);
-			// console.debug(translations);
 			// tarray.push(translations);
+			return t
+			return translations[0]
 			saveOutputCB(translations);
-		});
 	// console.debug(translatedString);
 }
 
@@ -549,7 +552,7 @@ localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl', 'hu
 localeFolders = ['en-US', 'ca', 'cs', 'el', 'es-ES', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ko-KR',
 	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
 
-localeFolders = ["it"]
+//localeFolders = ["it"]
 // managed help locales
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
@@ -561,5 +564,5 @@ translateHelpPage();
 //translateAll(inputFiles, translationArray, options);
 
 /*
-node .\scripts\translate-gc.js
+node .\scripts\translate-gc2.js
 */

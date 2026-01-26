@@ -211,6 +211,10 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   }
 }
 
+export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
+  console.log(functionParams)
+}
+
 async function getFolderSet(selectedFolders, functionParams) {
   var fullFolderSet = selectedFolders;
 

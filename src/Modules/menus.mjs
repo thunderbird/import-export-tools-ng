@@ -153,7 +153,7 @@ var msgCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: exportCmds.exportSelectedMsgs,
-      functionParams: { expType: "eml", saveAttachments: "none", index: true, subFolders: false }
+      functionParams: { expMethod: "selectedMsgs", expType: "eml", saveAttachments: "none", index: true, subFolders: false }
     }
   },  
   {

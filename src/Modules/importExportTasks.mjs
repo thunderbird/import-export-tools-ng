@@ -4,6 +4,7 @@ import * as prefs from "./prefCmds.mjs";
 
 
 const baseExpTask = {
+  expMethod: "folders",
   expType: null,
   id: 0,
   folders: [],
@@ -111,6 +112,9 @@ export async function createExportTask(params, ctxEvent, folderSet) {
 async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   // hack setup
   console.log(params)
+  if (params.expMethod) {
+    expTask.expMethod = params.expMethod;
+  }
   expTask.expType = params.expType;
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;

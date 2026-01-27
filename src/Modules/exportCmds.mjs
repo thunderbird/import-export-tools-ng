@@ -13,22 +13,12 @@ var osPathSeparator = os.includes("win")
   ? "\\"
   : "/";
 
-var abort = false;
+var gAbort = false;
 
 export async function exportFolders(ctxEvent, tab, functionParams) {
-  abort = false;
+  gAbort = false;
 
   try {
-
-    // for now only deal with a single folder for prototype
-    /*
-    if (ctxEvent.selectedFolders && ctxEvent.selectedFolders.length > 1) {
-      let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("multipleFolders.title"), browser.i18n.getMessage("multipleFolders.AlertMsg") + functionParams.toString());
-      if (!rv) {
-        return;
-      }
-    }
-      */
 
     // check for multiple folders selected
     let folderSet = await getFolderSet(ctxEvent.selectedFolders, functionParams);
@@ -52,7 +42,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
 
     // get export directory
-
     let useFolderExportDir = await prefs.getPref("exportEML.use_dir");
     let folderExportDir = await prefs.getPref("exportEML.dir");
     if (useFolderExportDir && folderExportDir != "") {
@@ -80,7 +69,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           case "cancelClick":
             console.log("cancel")
             // we are aborting current export
-            abort = true;
+            gAbort = true;
             break;
         }
       }
@@ -92,7 +81,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     let totalMsgsExported = 0;
 
     async function _updateListener(folderName, msgCount) {
-      if (abort) {
+      if (gAbort) {
         return;
       }
       folderExportedMsgCount += msgCount;
@@ -124,7 +113,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       console.log(new Date());
 
       folderExportedMsgCount = 0;
-      
+
       // this is our folder loop
       for (var folderIndex = 0; folderIndex < expTask.folders.length; folderIndex++) {
         expTask.currentFolderIndex = folderIndex;
@@ -176,7 +165,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         });
 
         var exportStatus = await msgIterateBatch(expTask);
-        if (abort) {
+        if (gAbort) {
           break;
         }
         _createIndex(expTask, exportStatus.msgListLog);
@@ -212,7 +201,153 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 }
 
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
-  console.log(functionParams)
+  console.log(ctxEvent, functionParams)
+
+  try {
+    gAbort = false;
+
+    // only displayedFolder
+    let folderSet = await getFolderSet([ctxEvent.displayedFolder], functionParams);
+    let totalFolderCount = folderSet.length;
+    folderSet[0].totalMsgCount = ctxEvent.selectedMessages.length;
+    let totalMsgCount = 0;
+
+    folderSet.forEach(folder => {
+      totalMsgCount += folder.totalMsgCount;
+    });
+
+    console.log(folderSet)
+    var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
+
+    // get export directory
+    let useSelectedMsgsExportDir = await prefs.getPref("exportMSG.use_dir");
+    let selectedMsgsExportDir = await prefs.getPref("exportMSG.dir");
+    if (useSelectedMsgsExportDir && selectedMsgsExportDir != "") {
+      expTask.generalConfig.exportDirectory = selectedMsgsExportDir;
+    } else {
+      let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
+      if (resultObj.result != Ci.nsIFilePicker.returnOK) {
+        return;
+      }
+      expTask.generalConfig.exportDirectory = resultObj.folder;
+    }
+
+    // UI listener
+    browser.runtime.onMessage.addListener(msg => {
+      if (msg.command != "UI_EVENT") {
+        return null;
+      }
+
+      if (msg.source == "expStatusWin") {
+        switch (msg.srcEvent) {
+          case "cancelClick":
+            console.log("cancel")
+            // we are aborting current export
+            gAbort = true;
+            break;
+        }
+      }
+    });
+
+    // ev listener
+
+    let folderExportedMsgCount = 0;
+    let totalMsgsExported = 0;
+
+    async function _updateListener(folderName, msgCount) {
+      if (gAbort) {
+        return;
+      }
+      folderExportedMsgCount += msgCount;
+      totalMsgsExported += msgCount;
+
+      browser.runtime.sendMessage({
+        command: "UI_UPDATE", target: "expStatusWin",
+        currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
+        currentFolderIndex: expTask.currentFolderIndex,
+        folderExportedMsgCount: folderExportedMsgCount,
+        totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
+        totalFolderCount: totalFolderCount,
+        totalMsgCount: totalMsgCount,
+        totalMsgsExported: totalMsgsExported
+
+      })
+      console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
+    }
+
+    var _updateListenerRef = _updateListener;
+
+    browser.ExportMessages.onExpUpdate.addListener(_updateListener);
+
+    // this is our folder loop
+    for (var folderIndex = 0; folderIndex < expTask.folders.length; folderIndex++) {
+      expTask.currentFolderIndex = folderIndex;
+      expTask.currentFolderPath = expTask.folders[folderIndex].exportPath;
+      folderExportedMsgCount = 0;
+
+      // create export container
+      if (!functionParams?.subFolders ||
+        (functionParams?.subFolders && folderIndex == 0)) {
+        expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+      }
+
+      // create the status window on first folder
+      if (folderIndex == 0) {
+        var winType = "singleFolder";
+        if (totalFolderCount > 1) {
+          winType = "multipleFolders";
+        }
+        await ui.createExportStatusWindow("Export HTML", winType);
+
+        // wait for the window to load and send expStatusWinOpen
+
+        await new Promise((resolve, reject) => {
+          async function expStatusWinOpen(msg) {
+            if (msg.command == "UI_EVENT" &&
+              msg.source == "expStatusWin" &&
+              msg.srcEvent == "expStatusWinOpen") {
+              browser.runtime.onMessage.removeListener(expStatusWinOpen);
+              resolve();
+            }
+          }
+          browser.runtime.onMessage.addListener(expStatusWinOpen);
+        });
+      }
+
+      // send initial ui status
+      browser.runtime.sendMessage({
+        command: "UI_UPDATE",
+        target: "expStatusWin",
+        currentFolderName: expTask.folders[folderIndex].exportPath,
+        currentFolderIndex: expTask.currentFolderIndex,
+        folderExportedMsgCount: folderExportedMsgCount,
+        totalFolderMsgCount: expTask.folders[folderIndex].totalMsgCount,
+        totalFolderCount: totalFolderCount,
+        totalMsgCount: totalMsgCount,
+        totalMsgsExported: totalMsgsExported,
+        winType: winType
+
+      });
+
+      var exportStatus = await msgIterateBatch(expTask);
+      if (gAbort) {
+        break;
+      }
+      _createIndex(expTask, exportStatus.msgListLog);
+    }
+
+    // tell expStatus window we are done
+    browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
+
+
+
+
+  } catch (ex) {
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+    console.log(ex);
+    console.log(ex.stack);
+    browser.ExportMessages.onExpUpdate.removeListener(_updateListenerRef);
+  }
 }
 
 async function getFolderSet(selectedFolders, functionParams) {
@@ -296,7 +431,7 @@ async function getFolderSet(selectedFolders, functionParams) {
 }
 
 async function msgIterateBatch(expTask) {
-  console.log(abort)
+  console.log(gAbort)
   // 1522 msgs 50MB
   // 20 run avg 1800msms
 
@@ -316,7 +451,7 @@ async function msgIterateBatch(expTask) {
 
   try {
     do {
-      if (abort) {
+      if (gAbort) {
         break;
       }
       if (!msgListPage) {
@@ -332,7 +467,7 @@ async function msgIterateBatch(expTask) {
 
       for (let index = 0; index < messagesLen; index++) {
 
-        if (abort) {
+        if (gAbort) {
           break;
         }
         expTask.msgList.push(msgListPage.messages[index]);

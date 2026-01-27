@@ -209,7 +209,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // only displayedFolder
     let folderSet = await getFolderSet([ctxEvent.displayedFolder], functionParams);
     let totalFolderCount = folderSet.length;
-    folderSet[0].totalMsgCount = ctxEvent.selectedMessages.length;
+    //folderSet[0].totalMsgCount = ctxEvent.selectedMessages.length;
     let totalMsgCount = 0;
 
     folderSet.forEach(folder => {

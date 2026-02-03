@@ -209,7 +209,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // only displayedFolder
     let folderSet = await getFolderSet([ctxEvent.displayedFolder], functionParams);
     let totalFolderCount = folderSet.length;
-    //folderSet[0].totalMsgCount = ctxEvent.selectedMessages.length;
+    folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
     let totalMsgCount = 0;
 
     folderSet.forEach(folder => {
@@ -329,7 +329,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
       });
 
-      var exportStatus = await msgIterateBatch(expTask);
+      var exportStatus = await msgIterateBatch(expTask, ctxEvent.selectedMessages);
       if (gAbort) {
         break;
       }
@@ -430,8 +430,7 @@ async function getFolderSet(selectedFolders, functionParams) {
   return fullFolderSet;
 }
 
-async function msgIterateBatch(expTask) {
-  console.log(gAbort)
+async function msgIterateBatch(expTask, selectedMsgs) {
   // 1522 msgs 50MB
   // 20 run avg 1800msms
 
@@ -439,7 +438,6 @@ async function msgIterateBatch(expTask) {
 
   var wrtotal = 0;
   var msgListPage = null;
-  var readRawInWext = true;
   const targetMaxMsgData = 25 * 1000 * 1000;
   var totalMsgsData = 0;
   var totalMsgs = 0;
@@ -455,7 +453,18 @@ async function msgIterateBatch(expTask) {
         break;
       }
       if (!msgListPage) {
-        msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+        // if we are doing a selected messages export, use 
+        // the mailTabs method otherwise for folders
+        // we use the massages.list
+
+        if (expTask.expMethod == "selectedMsgs") {
+          //let currentMailTab = await messenger.tabs.getCurrent();
+          //console.log(currentMailTab)
+          //msgListPage = await messenger.mailTabs.getSelectedMessages(currentMailTab.id);
+          msgListPage = selectedMsgs
+        } else {
+          msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
+        }
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
       }

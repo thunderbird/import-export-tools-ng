@@ -438,7 +438,7 @@ export var exportMessages = {
     let attsDir;
     let inlineDir;
     let msgsDir = expTask.messages.messageContainerDirectory;
-    console.log(msgsDir)
+    //console.log(msgsDir)
 
     // switch on structure type
     switch (expTask.attachments.containerStructure) {
@@ -466,7 +466,7 @@ export var exportMessages = {
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
-    console.log(attsDir, inlineDir)
+    //console.log(attsDir, inlineDir)
 
     return { attachmentsDir: attsDir, inlineDir: inlineDir };
   },

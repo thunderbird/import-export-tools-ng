@@ -84,14 +84,14 @@ export var exportMessages = {
         expTask.expType != "pdf"
       ) {
         //console.log(index, "no msgData", expTask.msgList[index])
-        
+
         expTask.msgList[index].msgData.inlineParts = [];
         expTask.msgList[index].msgData.attachmentParts = [];
         let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
         //console.log(rawMsgBody)
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
         expTask.msgList[index].msgData.msgBodyType = "text/html";
-        
+
       }
 
       //console.log(expTask.msgList[index].msgData)
@@ -423,10 +423,14 @@ export var exportMessages = {
     let base = expTask.exportContainer.directory;
     console.log(base)
 
-    msgsDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
-    console.log(msgsDir)
-    if (expTask.messages.messageContainer) {
-      msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+    if (expTask.expMethod == "selectedMsgs") {
+      msgsDir = expTask.generalConfig.exportDirectory;
+    } else {
+      msgsDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
+      console.log(msgsDir)
+      if (expTask.messages.messageContainer) {
+        msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+      }
     }
     expTask.messages.messageContainerDirectory = msgsDir;
     console.log(msgsDir)

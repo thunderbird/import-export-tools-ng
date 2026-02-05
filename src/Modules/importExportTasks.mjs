@@ -119,7 +119,12 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = "";
-  expTask.exportContainer.create = true;
+  if (params.expMethod == "selectedMsgs") {
+    expTask.exportContainer.create = false;
+  } else {
+    expTask.exportContainer.create = true;
+  }
+
   expTask.dateFormat.type = 1;
   expTask.names.extension = "eml";
   expTask.attachments.save = params.saveAttachments;

@@ -90,15 +90,19 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         _getIndexDirectory: function (expTask) {
 
           let indexDir;
-          // we have to sanitize the path for file system export
-          // Thunderbird wont allow a forward slash in a folder name 
-          // so we can count on that as our path separator
+          if (expTask.expMethod == "selectedMsgs") {
+            indexDir = expTask.generalConfig.exportDirectory;
+          } else {
+            // we have to sanitize the path for file system export
+            // Thunderbird wont allow a forward slash in a folder name 
+            // so we can count on that as our path separator
 
-          let cleanFolderName = expTask.folders[expTask.currentFolderIndex].exportPath;
-          //replace(/[\\:<>*\?\"\|]/g, "_");
-          // use PathUtils.join which will give us an OS proper path
-          let base = expTask.exportContainer.directory;
-          indexDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
+            let cleanFolderName = expTask.folders[expTask.currentFolderIndex].exportPath;
+            //replace(/[\\:<>*\?\"\|]/g, "_");
+            // use PathUtils.join which will give us an OS proper path
+            let base = expTask.exportContainer.directory;
+            indexDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
+          }
           expTask.index.directory = indexDir;
           return indexDir;
         },
@@ -175,14 +179,14 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
     };
   }
 
-onShutdown(isAppShutdown) {
-      // This function is called if the extension is disabled or removed, or
-      // Thunderbird closes. We usually do not have to do any cleanup, if
-      // Thunderbird is shutting down entirely.
-      if (isAppShutdown) {
-        return;
-      }
+  onShutdown(isAppShutdown) {
+    // This function is called if the extension is disabled or removed, or
+    // Thunderbird closes. We usually do not have to do any cleanup, if
+    // Thunderbird is shutting down entirely.
+    if (isAppShutdown) {
+      return;
     }
+  }
 
   // private msg processing functions
 

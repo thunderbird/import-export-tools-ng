@@ -201,8 +201,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 }
 
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
-  console.log(ctxEvent, functionParams)
-
+  console.log(ctxEvent, tab, functionParams)
+  let currentMailTab = await messenger.tabs.getCurrent();
+  console.log(currentMailTab)
   try {
     gAbort = false;
 
@@ -213,18 +214,23 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // cruddy way to get selected msg cnt
     folderSet[0].totalMsgCount = 0;
 
+    let msgListPage1;
+
     let msgListPage;
     do {
       if (!msgListPage) {
-        msgListPage = ctxEvent.selectedMessages;
+        msgListPage = await messenger.mailTabs.getSelectedMessages()
+        //msgListPage = ctxEvent.selectedMessages;
         folderSet[0].totalMsgCount += msgListPage.messages.length;
+        console.log(msgListPage)
+        msgListPage1 = msgListPage
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
+        console.log(msgListPage)
+
       }
     } while (msgListPage.id);
-
-    console.log(folderSet[0].totalMsgCount)
 
     let totalMsgCount = 0;
 
@@ -301,10 +307,12 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       expTask.currentFolderPath = expTask.folders[folderIndex].exportPath;
       folderExportedMsgCount = 0;
 
-      // create export container
-      if (!functionParams?.subFolders ||
-        (functionParams?.subFolders && folderIndex == 0)) {
-        expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+      // create export container if enabled 
+      if (functionParams.expMethod != "selectedMsgs") {
+        if (!functionParams?.subFolders ||
+          (functionParams?.subFolders && folderIndex == 0)) {
+          expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
+        }
       }
 
       // create the status window on first folder
@@ -474,11 +482,15 @@ async function msgIterateBatch(expTask, selectedMsgs) {
         // we use the massages.list
 
         if (expTask.expMethod == "selectedMsgs") {
-          //let currentMailTab = await messenger.tabs.getCurrent();
-          //console.log(currentMailTab)
-          //msgListPage = await messenger.mailTabs.getSelectedMessages(currentMailTab.id);
+          let currentMailTab = await messenger.tabs.getCurrent();
+          console.log(currentMailTab)
+          //let cmt = await messenger.tabs.getCurrent()
+          //console.log(cmt)
+          //let mpl = await messenger.mailTabs.getSelectedMessages(cmt.id);
+          //console.log(mpl)
+          //msgListPage = await browser.mailTabs.getSelectedMessages();
           msgListPage = selectedMsgs
-        console.log("bef 1", msgListPage)
+          console.log("bef 1", msgListPage)
 
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
@@ -586,7 +598,7 @@ async function msgIterateBatch(expTask, selectedMsgs) {
     }
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-        console.log(ex)
+    console.log(ex)
 
   }
 }

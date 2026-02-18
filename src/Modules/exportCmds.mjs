@@ -132,7 +132,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           if (totalFolderCount > 1) {
             winType = "multipleFolders";
           }
-          await ui.createExportStatusWindow("Export HTML", winType);
+          await ui.createExportStatusWindow(`Export Folders: ${expTask.expType}`, winType);
 
           // wait for the window to load and send expStatusWinOpen
 
@@ -321,7 +321,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         if (totalFolderCount > 1) {
           winType = "multipleFolders";
         }
-        await ui.createExportStatusWindow("Export HTML", winType);
+        await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType}`, winType);
 
         // wait for the window to load and send expStatusWinOpen
 
@@ -529,8 +529,8 @@ async function msgIterateBatch(expTask, selectedMsgs) {
             }
             expTask.id = expId++;
             console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
-            //writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
-            await browser.ExportMessages.exportMessagesES6(expTask);
+            writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
+            //await browser.ExportMessages.exportMessagesES6(expTask);
 
           }
 
@@ -550,8 +550,8 @@ async function msgIterateBatch(expTask, selectedMsgs) {
           }
           expTask.id = expId++;
           console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
-          //writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
-          await browser.ExportMessages.exportMessagesES6(expTask);
+          writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
+          //await browser.ExportMessages.exportMessagesES6(expTask);
 
         }
       }

@@ -242,9 +242,9 @@ export var exportMessages = {
       }
 
       // send msg count update for ui
-      if ((index + 1) % 10 == 0 && index != 0) {
+      if ((index + 1) % 2 == 0 && index != 0) {
         //console.log("fire taskid:", expTask.id)
-        emitter.emit("export-update", "inbox", 10);
+        emitter.emit("export-update", "inbox", 2);
       } else if (index == msgListLen - 1) {
         //console.log("fire event end", expTask.id, index)
         emitter.emit("export-update", "inbox", (index + 1) % 10);
@@ -357,7 +357,7 @@ export var exportMessages = {
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
       let messageService = MailServices.messageServiceFromURI(msgUri);
 
-      console.log("start print")
+      console.log("start print", PathUtils.filename(unqFilename))
 
       //console.log(msgUri)
       await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);

@@ -528,9 +528,9 @@ async function msgIterateBatch(expTask, selectedMsgs) {
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index])
             }
             expTask.id = expId++;
-            //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
-            writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
-            //await browser.ExportMessages.exportMessagesES6(expTask);
+            console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+            //writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
+            await browser.ExportMessages.exportMessagesES6(expTask);
 
           }
 
@@ -549,9 +549,9 @@ async function msgIterateBatch(expTask, selectedMsgs) {
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index])
           }
           expTask.id = expId++;
-          //console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
-          writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
-          //await browser.ExportMessages.exportMessagesES6(expTask);
+          console.log("ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+          //writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
+          await browser.ExportMessages.exportMessagesES6(expTask);
 
         }
       }

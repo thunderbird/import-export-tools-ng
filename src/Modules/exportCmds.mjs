@@ -132,7 +132,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           if (totalFolderCount > 1) {
             winType = "multipleFolders";
           }
-          await ui.createExportStatusWindow(`Export Folders: ${expTask.expType}`, winType);
+          await ui.createExportStatusWindow(`Export Folders: ${expTask.expType} - `, winType);
 
           // wait for the window to load and send expStatusWinOpen
 
@@ -321,7 +321,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         if (totalFolderCount > 1) {
           winType = "multipleFolders";
         }
-        await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType}`, winType);
+        await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType} - `, winType);
 
         // wait for the window to load and send expStatusWinOpen
 

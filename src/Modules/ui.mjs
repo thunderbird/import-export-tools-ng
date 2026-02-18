@@ -4,9 +4,9 @@ import { strftime } from "./strftime.mjs";
 
 export async function createExportStatusWindow(title, winType) {
   if (winType == "singleFolder") {
-    await browser.windows.create({ url: "/UI/expStatus.html", type: "popup", width: 545, height: 240 });
+    await browser.windows.create({ url: "/UI/expStatus.html", titlePreface: title, type: "popup", width: 545, height: 240 });
   } else {
-    await browser.windows.create({ url: "/UI/expStatus.html", type: "popup", width: 545, height: 320 });
+    await browser.windows.create({ url: "/UI/expStatus.html", titlePreface: title, type: "popup", width: 545, height: 320 });
   }
 
 }

@@ -637,7 +637,8 @@ export var exportMessages = {
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
   let relAttsDir = "./";
     if (expTask.attachments.containerStructure == "perMsgDir") {
-      relAttsDir += PathUtils.filename(attsDir);
+      console.log(attsDir)
+      relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
     }
 
     console.log(attachmentFilenames)
@@ -656,11 +657,13 @@ export var exportMessages = {
 
     let attHref = document.createElement('a');
 
-    attHref.setAttribute("href", `${relAttsDir}/${attachmentFilenames[0]}">${attachmentFilenames[0]}`);
+    attHref.setAttribute("href", `${relAttsDir}/${attachmentFilenames[0]}`);
+    attHref.innerText = `${attachmentFilenames[0]}`
     attsDiv.appendChild(attHref);
 
     //div.setAttribute("id", "ietng-overlay");
     document.body.appendChild(attsDiv);
+			console.log(document.documentElement.outerHTML);
 
   },
 

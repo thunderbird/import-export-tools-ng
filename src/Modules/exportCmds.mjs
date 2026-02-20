@@ -611,6 +611,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
     //let msgId = expTask.msgList[index].id;
 
+    let atts = browser.messages.listAttachments(msgId)
+    console.log(atts)
     try {
 
       var extraHeaders = await browser.ExportMessages.getMsgHdrs(msgId, ["fullSubject"]);

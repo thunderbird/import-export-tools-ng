@@ -224,7 +224,7 @@ export var exportMessages = {
 
       let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
       if (expTask.expType == "pdf") {
-        await __writePdfFile(unqFilename, expTask, index);
+        await __writePdfFile(unqFilename, expTask, index, attDirs, attachmentFilenames);
         if (expTask.fileSave.sentDate) {
           let dateInMs = new Date(expTask.msgList[index].date).getTime();
           await IOUtils.setModificationTime(unqFilename, dateInMs);
@@ -350,7 +350,7 @@ export var exportMessages = {
       return writePromise;
     }
 
-    async function __writePdfFile(unqFilename, expTask, index) {
+    async function __writePdfFile(unqFilename, expTask, index, attsDir, attachmentFilenames) {
       let unlock = await pdfWriteMutex.lock();
 
       let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
@@ -363,6 +363,8 @@ export var exportMessages = {
       await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
       //console.log(w3p.PrintUtils.printBrowser.contentDocument)
       self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
+      self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
+
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
       console.log("after print")
@@ -530,6 +532,7 @@ export var exportMessages = {
 
 
     if (msgData.msgBodyType == "text/html") {
+      console.log("html")
       // first check if this is headless html where 
       // there is no html or body tags
       if (!/<HTML[^>]*>/i.test(msgData.msgBody)) {
@@ -545,6 +548,8 @@ export var exportMessages = {
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
+
+      console.log("text")
 
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
@@ -624,7 +629,39 @@ export var exportMessages = {
 
     attList += "</div>\n";
     msgBody = msgBody.replace(/<\/BODY>/i, `${attList}</body>`);
+      console.log(msgBody)
+
     return msgBody;
+  },
+
+  _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
+  let relAttsDir = "./";
+    if (expTask.attachments.containerStructure == "perMsgDir") {
+      relAttsDir += PathUtils.filename(attsDir);
+    }
+
+    console.log(attachmentFilenames)
+    let attsDiv = document.createElement('div');
+
+    attsDiv.style.width = "60%";
+
+    let attsFieldset = document.createElement('fieldset');
+    attsFieldset.style.borderStyle = "solid none none none";
+    attsFieldset.style.borderTop = "1px solid black";
+    
+    let attsLegend = document.createElement('legend');
+    attsLegend.innerText = "Attachments";
+    attsFieldset.appendChild(attsLegend);
+    attsDiv.appendChild(attsFieldset);
+
+    let attHref = document.createElement('a');
+
+    attHref.setAttribute("href", `${relAttsDir}/${attachmentFilenames[0]}">${attachmentFilenames[0]}`);
+    attsDiv.appendChild(attHref);
+
+    //div.setAttribute("id", "ietng-overlay");
+    document.body.appendChild(attsDiv);
+
   },
 
   _encodeSpecialTextToHTML: function (str) {

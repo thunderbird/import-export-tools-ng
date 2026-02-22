@@ -130,7 +130,8 @@ export var exportMessages = {
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
               console.log(attDirs, inlinePart)
-              let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, inlinePart.name.slice(0, maxFilePathLen - 5));
+              let sanitizedPartName = this._sanitizeAttachmentName(inlinePart.name);
+              let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
               let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
               partIdName = partIdName.replaceAll(/\./g, "\\.");
@@ -195,7 +196,9 @@ export var exportMessages = {
 
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
-            let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, attachmentPart.name.slice(0, maxFilePathLen - 5));
+              let sanitizedPartName = this._sanitizeAttachmentName(attachmentPart.name);
+
+            let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
             if (expTask.fileSave.sentDate) {
               writePromise.then(async (size) => {
@@ -477,6 +480,12 @@ export var exportMessages = {
     return { attachmentsDir: attsDir, inlineDir: inlineDir };
   },
 
+  _sanitizeAttachmentName: function (filename) {
+    let sanitizedName = filename.replaceAll(':',';');
+    sanitizedName = sanitizedName.replace(/[\/\\<>*\?\|]/g, "_");
+    return sanitizedName;
+  },
+
   fileToUint8Array: async function (file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -502,6 +511,8 @@ export var exportMessages = {
     // spaghetti conditionals
 
     let processedMsgBody;
+
+      console.log(attsDir)
 
     switch (expTask.expType) {
       case "eml":
@@ -618,9 +629,12 @@ export var exportMessages = {
   _insertAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
     let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>Attachments</legend></fieldset>\n`;
     let relAttsDir = "./";
+      console.log(attsDir)
+
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir);
     }
+      console.log(relAttsDir)
 
     attachmentFilenames.forEach(filename => {
       let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;

@@ -366,7 +366,7 @@ export var exportMessages = {
       await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
       //console.log(w3p.PrintUtils.printBrowser.contentDocument)
       self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
-      self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
+      //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
 
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);

@@ -130,7 +130,7 @@ export var exportMessages = {
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
               console.log(attDirs, inlinePart)
-              let sanitizedPartName = this._sanitizeAttachmentName(inlinePart.name);
+              let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
               let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -196,7 +196,7 @@ export var exportMessages = {
 
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
-              let sanitizedPartName = this._sanitizeAttachmentName(attachmentPart.name);
+              let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -478,12 +478,6 @@ export var exportMessages = {
     //console.log(attsDir, inlineDir)
 
     return { attachmentsDir: attsDir, inlineDir: inlineDir };
-  },
-
-  _sanitizeAttachmentName: function (filename) {
-    let sanitizedName = filename.replaceAll(':',';');
-    sanitizedName = sanitizedName.replace(/[\/\\<>*\?\|]/g, "_");
-    return sanitizedName;
   },
 
   fileToUint8Array: async function (file) {

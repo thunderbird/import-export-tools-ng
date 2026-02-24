@@ -170,6 +170,19 @@ var msgCtxMenuSet = [
       title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
     },
   },
+  
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_HTMLFormat_Id,
+      id: "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id_newexp",
+      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "none", index: true, subFolders: false }
+    }
+  },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,

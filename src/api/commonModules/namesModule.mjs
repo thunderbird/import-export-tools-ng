@@ -265,32 +265,35 @@ export var names = {
   },
 
   splitFilenameAndExtension(filename) {
-  // Find the index of the last dot in the filename
-  const lastDotIndex = filename.lastIndexOf('.');
-  
-  // Handle edge cases: no dot found, or filename is just a dot file (e.g., '.gitignore')
-  if (lastDotIndex === -1 || (lastDotIndex === 0 && filename.indexOf('/') === -1 && filename.indexOf('\\') === -1)) {
-    return {
-      name: filename,
-      extension: ""
-    };
-  }
-  
-  // Extract the filename part (everything before the last dot)
-  const name = filename.substring(0, lastDotIndex);
-  // Extract the extension part (everything after the last dot)
-  const extension = filename.substring(lastDotIndex + 1);
-  
-  return { name, extension };
-},
+    // Find the index of the last dot in the filename
+    const lastDotIndex = filename.lastIndexOf('.');
+
+    // Handle edge cases: no dot found, or filename is just a dot file (e.g., '.gitignore')
+    if (lastDotIndex === -1 || (lastDotIndex === 0 && filename.indexOf('/') === -1 && filename.indexOf('\\') === -1)) {
+      return {
+        name: filename,
+        extension: ""
+      };
+    }
+
+    // Extract the filename part (everything before the last dot)
+    const name = filename.substring(0, lastDotIndex);
+    // Extract the extension part (everything after the last dot)
+    const extension = filename.substring(lastDotIndex + 1);
+
+    return { name, extension };
+  },
 
 
   truncateFilename(filename, truncationLength) {
-
+    let filenameParts = this.splitFilenameAndExtension(filename);
+    return filenameParts.name.
+      slice(0, truncationLength - filenameParts.extension.length + 1) +
+      "." + filenameParts.extension;
   },
-  
+
   sanitizeFilename: function (filename) {
-    let sanitizedName = filename.replaceAll(':',';');
+    let sanitizedName = filename.replaceAll(':', ';');
     sanitizedName = sanitizedName.replace(/[\/\\<>*\?\|]/g, "_");
     return sanitizedName;
   },

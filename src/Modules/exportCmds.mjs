@@ -41,11 +41,18 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
 
-    // get export directory
-    let useFolderExportDir = await prefs.getPref("exportEML.use_dir");
-    let folderExportDir = await prefs.getPref("exportEML.dir");
-    if (useFolderExportDir && folderExportDir != "") {
-      expTask.generalConfig.exportDirectory = folderExportDir;
+    // get export directory, use predefined type or open dir dialog
+    let usePredefinedExportDir;
+    let exportDir;
+    if (functionParams.expMethod == "selectedMsgs") {
+      usePredefinedExportDir = await prefs.getPref("exportMSG.use_dir");
+      exportDir = await prefs.getPref("exportMSG.dir");
+    } else {
+      usePredefinedExportDir = await prefs.getPref("exportEML.use_dir");
+      exportDir = await prefs.getPref("exportEML.dir");
+    }
+    if (usePredefinedExportDir && exportDir != "") {
+      expTask.generalConfig.exportDirectory = exportDir;
     } else {
       let resultObj = await browser.ExportMessages.openFileDialog(Ci.nsIFilePicker.modeGetFolder, "Export Directory", "", Ci.nsIFilePicker.filterAll);
       if (resultObj.result != Ci.nsIFilePicker.returnOK) {

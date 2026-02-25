@@ -144,7 +144,7 @@ var msgCtxMenuSet = [
       onclick: miscCmds.openHelp,
     },
   },
-{
+  {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: "msgCtxMenu_Exp_EMLFormatCreateIndex_Id_newexp",
@@ -155,7 +155,7 @@ var msgCtxMenuSet = [
       dispatchFunction: exportCmds.exportSelectedMsgs,
       functionParams: { expMethod: "selectedMsgs", expType: "eml", saveAttachments: "none", index: true, subFolders: false }
     }
-  },  
+  },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
@@ -170,17 +170,29 @@ var msgCtxMenuSet = [
       title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
     },
   },
-  
+
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-      id: "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+      id: "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id_newexp",
+      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
       dispatchFunction: exportCmds.exportSelectedMsgs,
       functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "none", index: true, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_HTMLFormat_Id,
+      id: "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id_newexp",
+      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "all", index: true, subFolders: false }
     }
   },
   {
@@ -210,6 +222,30 @@ var msgCtxMenuSet = [
       id: msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
     },
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PDFFormat_Id,
+      id: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id_newexp",
+      title: "(New) " + "Messages and HTML Index",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "pdf", saveAttachments: "none", index: true, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PDFFormat_Id,
+      id: "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id_newexp",
+      title: "(New) " + "Messages with Attachments and HTML Index",
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "pdf", saveAttachments: "all", index: true, subFolders: false }
+    }
   },
   {
     menuDef: {
@@ -742,7 +778,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_atts_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -754,7 +790,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -766,7 +802,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -831,7 +867,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -843,7 +879,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -895,7 +931,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_PlainText_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -907,7 +943,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_PlainText_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),    
+      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -1044,20 +1080,20 @@ async function createMenus(menuType, menuArray, options) {
 
 async function menuFunctionDispatcher(ctxEvent, tab) {
   try {
-  let menu;
-  if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
-    menu = folderCtxMenuSet;
-  } else if (ctxEvent.menuItemId.startsWith("msgCtxMenu")) {
-    menu = msgCtxMenuSet;
-  } else if (ctxEvent.menuItemId.startsWith("msgDisplayCtxMenu")) {
-    menu = msgDisplayCtxMenuSet;
-  }
-  let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
-  menuOptions.dispatchFunction(ctxEvent, tab, menuOptions.functionParams);
-} catch (ex) {
+    let menu;
+    if (ctxEvent.menuItemId.startsWith("folderCtxMenu")) {
+      menu = folderCtxMenuSet;
+    } else if (ctxEvent.menuItemId.startsWith("msgCtxMenu")) {
+      menu = msgCtxMenuSet;
+    } else if (ctxEvent.menuItemId.startsWith("msgDisplayCtxMenu")) {
+      menu = msgDisplayCtxMenuSet;
+    }
+    let menuOptions = getMenuFunctionOptions(menu, ctxEvent.menuItemId);
+    menuOptions.dispatchFunction(ctxEvent, tab, menuOptions.functionParams);
+  } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("error.msg"), ex);
 
-}
+  }
 }
 
 function getMenuFunctionOptions(menu, menuId) {

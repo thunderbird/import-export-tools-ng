@@ -175,6 +175,8 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.generalConfig.exportDirectory = params.exportDirectory;
   if (params.expMethod == "selectedMsgs") {
     expTask.exportContainer.create = false;
+    // containers
+    expTask.messages.messageContainer = false;
   } else {
     expTask.exportContainer.create = true;
   }
@@ -218,12 +220,19 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
 }
 
 async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
-  // hack setup
+  if (params.expMethod) {
+    expTask.expMethod = params.expMethod;
+  }
   expTask.expType = params.expType;
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = params.exportDirectory;
-  expTask.exportContainer.create = true;
+  if (params.expMethod == "selectedMsgs") {
+    expTask.exportContainer.create = false;
+    expTask.messages.messageContainer = false;
+  } else {
+    expTask.exportContainer.create = true;
+  }
   expTask.dateFormat.type = 1;
   expTask.names.extension = "pdf";
   expTask.attachments.save = params.saveAttachments;
@@ -262,12 +271,18 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
 }
 
 async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
-  // hack setup
+  if (params.expMethod) {
+    expTask.expMethod = params.expMethod;
+  }
   expTask.expType = params.expType;
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = params.exportDirectory;
-  expTask.exportContainer.create = true;
+  if (params.expMethod == "selectedMsgs") {
+    expTask.exportContainer.create = false;
+  } else {
+    expTask.exportContainer.create = true;
+  }
   expTask.dateFormat.type = 1;
   expTask.names.extension = "txt";
   expTask.attachments.save = params.saveAttachments;

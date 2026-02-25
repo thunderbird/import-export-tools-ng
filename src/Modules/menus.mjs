@@ -250,6 +250,37 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
+      id: "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id_newexp",
+      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "none", index: true, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
+      id: "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id_newexp",
+      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "all", index: true, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
+      id: "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id_newexp",
+      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title"),
     },

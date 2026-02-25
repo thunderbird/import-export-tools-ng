@@ -280,6 +280,7 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.generalConfig.exportDirectory = params.exportDirectory;
   if (params.expMethod == "selectedMsgs") {
     expTask.exportContainer.create = false;
+    expTask.messages.messageContainer = false;
   } else {
     expTask.exportContainer.create = true;
   }

@@ -111,7 +111,6 @@ export async function createExportTask(params, ctxEvent, folderSet) {
 
 async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   // hack setup
-  console.log(params)
   if (params.expMethod) {
     expTask.expMethod = params.expMethod;
   }
@@ -184,14 +183,12 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.names.extension = "html";
   expTask.attachments.save = params.saveAttachments;
   expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
-  console.log(expTask.attachments.namePattern)
   expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
 
   expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
 
   // names
   let nameFormat = await prefs.getPref("exportEML.filename_format");
-  console.log(nameFormat)
   if (nameFormat == 2) {
     expTask.names.namePatternType = "dropdown";
     expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");

@@ -28,14 +28,12 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       totalMsgCount += folder.totalMsgCount;
     });
 
-    console.log(ctxEvent, functionParams, folderSet);
+    //console.log(ctxEvent, functionParams, folderSet);
 
     // we do all main logic, folder and message iteration
     // and UI interactions in wext side
 
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
-    console.log(expTask)
-    console.log(expTask.messages.messageContainer)
 
     // warnings
 
@@ -117,7 +115,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       //await new Promise(r => setTimeout(r, 12000));
       let st = new Date();
-      console.log(new Date());
 
       folderExportedMsgCount = 0;
 
@@ -409,7 +406,7 @@ async function _getFolderSet(selectedFolders, functionParams) {
       await getSubFolders(folder);
     }
   }
-  console.log("full set", fullFolderSet)
+  //console.log("full set", fullFolderSet)
 
   // get path of shortest parent
 
@@ -431,8 +428,6 @@ async function _getFolderSet(selectedFolders, functionParams) {
     }
   }
 
-  console.log("base", basePath)
-
   // create relative export paths with localization
 
   for (const [index, folder] of fullFolderSet.entries()) {
@@ -449,7 +444,7 @@ async function _getFolderSet(selectedFolders, functionParams) {
         `${parentfolders[index2].name.replace(/[\\:<>*\?\"\|]/g, "_")}${osPathSeparator}${fullFolderSet[index].exportPath}`;
 
     }
-    console.log(fullFolderSet[index].path, fullFolderSet[index].exportPath)
+    //console.log(fullFolderSet[index].path, fullFolderSet[index].exportPath)
   }
 
 
@@ -569,8 +564,8 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
-      console.log(msgsStatus)
-      console.log(msgsStatus.length)
+      //console.log(msgsStatus)
+      //console.log(msgsStatus.length)
       if (msgsStatus.length == 1 && msgsStatus[0].value.error) {
         console.log(msgsStatus[0].value.error)
         throw new Error(msgsStatus[0].value.error)

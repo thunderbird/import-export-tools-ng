@@ -222,12 +222,15 @@ export var exportMessages = {
 
       } catch (ex) {
         //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-        let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${ex.msg}\n\n${ex.stack}\n`;
-        console.log(errMsg);
-        console.log(expTask.msgList[index]);
+      let exMsg = ex.msg ? ex.msg + "\n": "";
+      let exStack = ex.stack ? ex.stack.replaceAll("%20"," ") : "";
+
+        let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
 
         //errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-        expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
+        //expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
+        //let errMsgDetail = await _createErrMessage(index, ex, currentFileType, currentFileName);
+        console.log(`${errMsg}------`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
       }
 
@@ -407,10 +410,12 @@ export var exportMessages = {
 
     async function _createErrMessage(index, ex, currentFileType) {
       let exMsg = ex.msg ? ex.msg : "";
-      let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
+      let errMsg = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
       name = "[Err] " + name;
       expTask.msgList[index].subject = name;
       // we have text/plain
+      return errMsg;
+
       expTask.msgList[index].msgData.msgBodyType = "text/plain";
       msgBody = self._convertTextToHTML(msgBody);
       return self._insertHdrTable(expTask, index, msgBody);

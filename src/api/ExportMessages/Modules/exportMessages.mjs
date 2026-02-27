@@ -477,7 +477,6 @@ export var exportMessages = {
         if (inlineDir.endsWith(".")) {
           inlineDir += ";";
         }
-        inlineDir = attsDir + "{"
         break;
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);

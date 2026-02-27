@@ -571,6 +571,10 @@ async function msgIterateBatch(expTask, selectedMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
       console.log(msgsStatus)
       console.log(msgsStatus.length)
+      if (msgsStatus.length == 1 && msgsStatus[0].value.error) {
+        console.log(msgsStatus[0].value.error)
+        throw new Error(msgsStatus[0].value.error)
+      }
 
       let msgListLog = [];
       let msgCount = 0;

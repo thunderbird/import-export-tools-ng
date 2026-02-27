@@ -45,7 +45,6 @@ export var exportMessages = {
   context: null,
   emitter: null,
   folder: null,
-  expDirFile: w3p.getPredefinedFolder(1),
 
   exportMessagesES6: async function (expTask, context, emitter) {
 
@@ -58,7 +57,13 @@ export var exportMessages = {
     var fileStatusList = [];
     var errors = [];
 
+    try {
     var msgsDir = this._getMsgsDirectory(expTask);
+    } catch (ex) {
+      console.log(ex, ex.stack)
+        //throw new Error(`Error: _getMsgsDirectory\n\n ${ex}`);
+      return {error: `${ex}\n\n${ex.stack.replaceAll("%20"," ")}`}
+    }
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var attachmentFilenames = [];
@@ -196,7 +201,8 @@ export var exportMessages = {
 
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
-              let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+              //let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+              let sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -422,23 +428,19 @@ export var exportMessages = {
 
     let cleanFolderName = expTask.folders[expTask.currentFolderIndex].
       exportPath;
-    console.log(cleanFolderName)
 
     // use PathUtils.join which will give us an OS proper path
     let base = expTask.exportContainer.directory;
-    console.log(base)
 
     if (expTask.expMethod == "selectedMsgs") {
       msgsDir = expTask.generalConfig.exportDirectory;
     } else {
       msgsDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
-      console.log(msgsDir)
       if (expTask.messages.messageContainer) {
         msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
       }
     }
     expTask.messages.messageContainerDirectory = msgsDir;
-    console.log(msgsDir)
 
     return msgsDir;
   },
@@ -506,8 +508,6 @@ export var exportMessages = {
 
     let processedMsgBody;
 
-      console.log(attsDir)
-
     switch (expTask.expType) {
       case "eml":
         processedMsgBody = await this._processBodyForEML(expTask, index);
@@ -537,7 +537,6 @@ export var exportMessages = {
 
 
     if (msgData.msgBodyType == "text/html") {
-      console.log("html")
       // first check if this is headless html where 
       // there is no html or body tags
       if (!/<HTML[^>]*>/i.test(msgData.msgBody)) {
@@ -553,8 +552,6 @@ export var exportMessages = {
 
       return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
-
-      console.log("text")
 
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
@@ -623,12 +620,10 @@ export var exportMessages = {
   _insertAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
     let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>Attachments</legend></fieldset>\n`;
     let relAttsDir = "./";
-      console.log(attsDir)
 
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir);
     }
-      console.log(relAttsDir)
 
     attachmentFilenames.forEach(filename => {
       let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
@@ -637,7 +632,6 @@ export var exportMessages = {
 
     attList += "</div>\n";
     msgBody = msgBody.replace(/<\/BODY>/i, `${attList}</body>`);
-      console.log(msgBody)
 
     return msgBody;
   },
@@ -645,7 +639,6 @@ export var exportMessages = {
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
   let relAttsDir = "./";
     if (expTask.attachments.containerStructure == "perMsgDir") {
-      console.log(attsDir)
       relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
     }
 

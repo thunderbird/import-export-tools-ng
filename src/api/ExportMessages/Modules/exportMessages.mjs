@@ -71,6 +71,8 @@ export var exportMessages = {
     //let md = expTask.msgList
     //console.log(md)
 
+    let msgCntIncrement = 0;
+
     for (let index = 0; index < msgListLen; index++) {
 
       // if there are no body parts we have two scenarios
@@ -254,12 +256,16 @@ export var exportMessages = {
       }
 
       // send msg count update for ui
-      if ((index + 1) % 2 == 0 && index != 0) {
+      if (index + 1 <= 10) {
+        emitter.emit("export-update", "inbox", 1);
+      } else if (index + 1 > 10 && ((index + 1) % 2 == 0)) {
         //console.log("fire taskid:", expTask.id)
+        msgCntIncrement = 2;
         emitter.emit("export-update", "inbox", 2);
+
       } else if (index == msgListLen - 1) {
         //console.log("fire event end", expTask.id, index)
-        emitter.emit("export-update", "inbox", (index + 1) % 10);
+        emitter.emit("export-update", "inbox", 1);
 
       }
       //console.log("idx", expTask.id, index)

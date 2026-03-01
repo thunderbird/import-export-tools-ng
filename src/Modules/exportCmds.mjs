@@ -103,10 +103,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         totalMsgsExported: totalMsgsExported
 
       })
-      console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
+      //console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
     }
-
-    var _updateListenerRef = _updateListener;
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
@@ -187,11 +185,12 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     }
 
     //console.log("wrt avg", wrtotal / runs)
-    console.log("avg", total / runs)
-    let exportMessage = `Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n\n`;
+    let exportMessage = `Exported Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n`;
     exportMessage += `Messages exported: ${exportStatus.msgCount}\n`;
-    exportMessage += `Error count: ${exportStatus.errCount}\n\n`;
+    exportMessage += `Error count: ${exportStatus.errCount}\n`;
     exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
+    console.log(exportMessage)
+
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
 
     //let rv = await browser.AsyncPrompts.asyncAlert("Folder Export", `${exportMessage}`);
@@ -200,7 +199,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
     console.log(ex);
     console.log(ex.stack);
-    browser.ExportMessages.onExpUpdate.removeListener(_updateListenerRef);
+
+    browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   }
 }
 
@@ -365,16 +365,13 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     }
 
     // tell expStatus window we are done
-    browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
-
-
-
-
+    browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
+    browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
     console.log(ex);
     console.log(ex.stack);
-    browser.ExportMessages.onExpUpdate.removeListener(_updateListenerRef);
+    browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   }
 }
 

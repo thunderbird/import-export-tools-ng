@@ -58,11 +58,11 @@ export var exportMessages = {
     var errors = [];
 
     try {
-    var msgsDir = this._getMsgsDirectory(expTask);
+      var msgsDir = this._getMsgsDirectory(expTask);
     } catch (ex) {
       console.log(ex, ex.stack)
-        //throw new Error(`Error: _getMsgsDirectory\n\n ${ex}`);
-      return {error: `${ex}\n\n${ex.stack.replaceAll("%20"," ")}`}
+      //throw new Error(`Error: _getMsgsDirectory\n\n ${ex}`);
+      return { error: `${ex}\n\n${ex.stack.replaceAll("%20", " ")}` }
     }
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
@@ -203,9 +203,7 @@ export var exportMessages = {
 
             //console.log(attsDir.length, `"${attsDir}"`)
             //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
-              //let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
-              let sanitizedPartName = attachmentPart.name;
-
+            let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
             if (expTask.fileSave.sentDate) {
@@ -224,8 +222,8 @@ export var exportMessages = {
 
       } catch (ex) {
         //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
-      let exMsg = ex.msg ? ex.msg + "\n": "";
-      let exStack = ex.stack ? ex.stack.replaceAll("%20"," ") : "";
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
 
         let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
 
@@ -647,7 +645,7 @@ export var exportMessages = {
   },
 
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
-  let relAttsDir = "./";
+    let relAttsDir = "./";
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
     }
@@ -660,7 +658,7 @@ export var exportMessages = {
     let attsFieldset = document.createElement('fieldset');
     attsFieldset.style.borderStyle = "solid none none none";
     attsFieldset.style.borderTop = "1px solid black";
-    
+
     let attsLegend = document.createElement('legend');
     attsLegend.innerText = "Attachments";
     attsFieldset.appendChild(attsLegend);
@@ -674,7 +672,7 @@ export var exportMessages = {
 
     //div.setAttribute("id", "ietng-overlay");
     document.body.appendChild(attsDiv);
-			console.log(document.documentElement.outerHTML);
+    console.log(document.documentElement.outerHTML);
 
   },
 

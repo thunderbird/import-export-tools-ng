@@ -78,6 +78,9 @@ const baseExpTask = {
     encoding: "UTF-8",
     sentDate: false,
   },
+  debug: {
+    options: "",
+  },
   msgList: {},
 };
 
@@ -158,10 +161,11 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   // index
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
+  // debug and logging
+  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  console.log(expTask.debug.logTypes)
 
-  //console.log(expTask)
   return expTask;
-
 }
 
 async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
@@ -213,6 +217,10 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
 
   // index
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+
+  // debug and logging
+  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  console.log(expTask.debug.logTypes)
   return expTask;
 }
 
@@ -264,6 +272,9 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
 
   // index
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+
+  // debug and logging
+  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
   return expTask;
 }
 
@@ -316,5 +327,7 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   // index
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
+  // debug and logging
+  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
   return expTask;
 }

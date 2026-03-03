@@ -21,7 +21,10 @@ var { MutexAsync } = ChromeUtils.importESModule(
   "resource://ietng/api/commonModules/mutex-async.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
-//console.log("es6 exportMessages")
+var { logging, test } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/debugLogging.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
 
 var os = Services.appinfo.OS.toLowerCase();
 var osPathSeparator = os.includes("win")
@@ -48,9 +51,6 @@ export var exportMessages = {
 
   exportMessagesES6: async function (expTask, context, emitter) {
 
-
-    console.log("start exptask id", expTask.id, expTask.msgList.length)
-
     this.context = context;
     this.emitter = emitter;
     var self = this;
@@ -58,6 +58,9 @@ export var exportMessages = {
     var errors = [];
 
     try {
+      logging.init(expTask.debug)
+      logging.log("msg", `Start exptask id: ${expTask.id} MsgCnt: ${expTask.msgList.length}`);
+      test("msg", "888")
       var msgsDir = this._getMsgsDirectory(expTask);
     } catch (ex) {
       console.log(ex, ex.stack)

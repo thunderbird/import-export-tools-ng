@@ -1,5 +1,6 @@
 /* global pref */
 
+pref("extensions.importexporttoolsng.debug.logTypes", "");
 pref("extensions.importexporttoolsng.export.filenames_toascii", false);
 pref("extensions.importexporttoolsng.export.overwrite", false);
 pref("extensions.importexporttoolsng.confirm.before_mbox_import", true);

@@ -21,7 +21,7 @@ var { MutexAsync } = ChromeUtils.importESModule(
   "resource://ietng/api/commonModules/mutex-async.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
-var { logging, test } = ChromeUtils.importESModule(
+var { logging, log } = ChromeUtils.importESModule(
   "resource://ietng/api/commonModules/debugLogging.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
@@ -56,12 +56,13 @@ export var exportMessages = {
     var self = this;
     var fileStatusList = [];
     var errors = [];
+    let currentFolderName = expTask.folders[expTask.currentFolderIndex].name;
 
     try {
       logging.init(expTask.debug)
-      logging.log("msg", `Start exptask id: ${expTask.id} MsgCnt: ${expTask.msgList.length}`);
-      test("msg", "888")
       var msgsDir = this._getMsgsDirectory(expTask);
+      log("msg", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
+
     } catch (ex) {
       console.log(ex, ex.stack)
       //throw new Error(`Error: _getMsgsDirectory\n\n ${ex}`);
@@ -110,8 +111,9 @@ export var exportMessages = {
       //console.log(generatedMsgName)
       var name = generatedMsgName;
 
+      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
+      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
 
-      //console.log("expId", expTask.id, index, "msgid", expTask.msgList[index].id, name)
       try {
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
@@ -126,9 +128,17 @@ export var exportMessages = {
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 
-          console.log("saving attachments")
-          console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
-          console.log("attp", expTask.msgList[index].msgData.attachmentParts)
+          let attNamesStr = expTask.msgList[index].msgData.attachmentParts.length ? "" : "  [None]";
+          expTask.msgList[index].msgData.attachmentParts.forEach(attPart => attNamesStr += (attPart.name + "\n  "));
+          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Attachments: \n  ${attNamesStr}`);
+
+          let embAttNamesStr = expTask.msgList[index].msgData.inlineParts.length ? "" : "  [None]";
+          expTask.msgList[index].msgData.inlineParts.forEach(attPart => embAttNamesStr += (attPart.name + "\n  "));
+          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, EmbAttachments: \n  ${embAttNamesStr}`);
+
+          //console.log("saving attachments")
+          //console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
+          //console.log("attp", expTask.msgList[index].msgData.attachmentParts)
 
           // we do not export inline attachments for pdf export
           // these are part of the streamed message
@@ -139,7 +149,6 @@ export var exportMessages = {
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-              console.log(attDirs, inlinePart)
               let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
@@ -188,24 +197,7 @@ export var exportMessages = {
               attachmentPart.name = "message.txt";
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
-            /*
-             console.log(attachmentBody)
-             function bytesToString(buffer) {
-               var string = "";
-               for (var i = 0; i < buffer.length; i++) {
-                 string += String.fromCharCode(buffer[i]);
-               }
-               return string;
-             }
-             attachmentBody = bytesToString(attachmentBody)
-             console.log(attachmentBody)
- 
-             attachmentBody = this._convertCharsetToUTF8("Windows-1252", attachmentBody)
-             console.log(attachmentBody)
- */
 
-            //console.log(attsDir.length, `"${attsDir}"`)
-            //console.log(attachmentPart.name.slice(0, maxFilePathLen - 5))
             let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -215,6 +207,7 @@ export var exportMessages = {
                 await IOUtils.setModificationTime(unqFilename, dateInMs);
               });
             }
+
             writePromises.push(writePromise);
 
             attachmentFilenames.push(PathUtils.filename(unqFilename));
@@ -340,13 +333,17 @@ export var exportMessages = {
             if (expTask.msgList[index].msgData.err) {
               console.log("write err", unqName, unqName.length)
             }
-            writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+            writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
+            log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqName}`);
+
           }
         } else {
-          console.log(fileType, unqName)
+          //console.log(fileType, unqName)
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
           errors.push({ error: "none" });
-          writePromise = IOUtils.write(unqName, data)
+          writePromise = IOUtils.write(unqName, data);
+          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
+
         }
       } catch (ex) {
         console.log("err expId", expTask.id, unqName, ex)

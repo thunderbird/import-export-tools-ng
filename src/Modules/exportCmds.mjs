@@ -641,7 +641,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       //console.log(fullMsg)
-      //var extraHeaders = { subjectHdr: fullMsg.headers.subject[0], "reply-to": fullMsg.headers["reply-to"] };
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;

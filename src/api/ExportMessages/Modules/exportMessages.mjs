@@ -145,8 +145,8 @@ export var exportMessages = {
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-              //let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
-              let sanitizedPartName = attachmentPart.name;
+              let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
+              //let sanitizedPartName = inlinePart.name;
 
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
@@ -196,8 +196,8 @@ export var exportMessages = {
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
 
-            //let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
-            let sanitizedPartName = attachmentPart.name;
+            let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+            //let sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);

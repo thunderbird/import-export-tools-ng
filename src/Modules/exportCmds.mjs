@@ -80,17 +80,19 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       }
     });
 
-    // ev listener
+    // export update listener
 
     let folderExportedMsgCount = 0;
     let totalMsgsExported = 0;
+    let totalErrCount = 0;
 
-    async function _updateListener(folderName, msgCount) {
+    async function _updateListener(folderName, msgCount, errCount) {
       if (gAbort) {
         return;
       }
       folderExportedMsgCount += msgCount;
       totalMsgsExported += msgCount;
+      totalErrCount += errCount;
 
       browser.runtime.sendMessage({
         command: "UI_UPDATE", target: "expStatusWin",
@@ -100,7 +102,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
         totalFolderCount: totalFolderCount,
         totalMsgCount: totalMsgCount,
-        totalMsgsExported: totalMsgsExported
+        totalMsgsExported: totalMsgsExported,
+        totalErrCount: totalErrCount
 
       })
       //console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
@@ -162,6 +165,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           totalFolderCount: totalFolderCount,
           totalMsgCount: totalMsgCount,
           totalMsgsExported: totalMsgsExported,
+          totalErrCount: totalErrCount,
           winType: winType
 
         });
@@ -207,7 +211,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   console.log(ctxEvent, tab, functionParams)
   let currentMailTab = await messenger.tabs.getCurrent();
-  console.log(currentMailTab)
   try {
     gAbort = false;
 
@@ -218,7 +221,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // cruddy way to get selected msg cnt
     folderSet[0].totalMsgCount = 0;
 
-    let msgListPage1;
 
     let msgListPage;
     do {
@@ -226,8 +228,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         msgListPage = await messenger.mailTabs.getSelectedMessages()
         //msgListPage = ctxEvent.selectedMessages;
         folderSet[0].totalMsgCount += msgListPage.messages.length;
-        console.log(msgListPage)
-        msgListPage1 = msgListPage
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -242,7 +242,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       totalMsgCount += folder.totalMsgCount;
     });
 
-    console.log(folderSet)
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
 
     // get export directory
@@ -275,17 +274,19 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       }
     });
 
-    // ev listener
+    // export update listener
 
     let folderExportedMsgCount = 0;
     let totalMsgsExported = 0;
+    let totalErrCount = 0;
 
-    async function _updateListener(folderName, msgCount) {
+    async function _updateListener(folderName, msgCount, errCount) {
       if (gAbort) {
         return;
       }
       folderExportedMsgCount += msgCount;
       totalMsgsExported += msgCount;
+      totalErrCount += errCount;
 
       browser.runtime.sendMessage({
         command: "UI_UPDATE", target: "expStatusWin",
@@ -295,9 +296,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
         totalFolderCount: totalFolderCount,
         totalMsgCount: totalMsgCount,
-        totalMsgsExported: totalMsgsExported
+        totalMsgsExported: totalMsgsExported,
+        totalErrCount: totalErrCount
+      });
 
-      })
       console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
     }
 
@@ -353,8 +355,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         totalFolderCount: totalFolderCount,
         totalMsgCount: totalMsgCount,
         totalMsgsExported: totalMsgsExported,
+        totalErrCount: totalErrCount,
         winType: winType
-
       });
 
       var exportStatus = await _msgIterateBatch(expTask, ctxEvent.selectedMessages);

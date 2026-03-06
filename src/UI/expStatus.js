@@ -5,6 +5,7 @@ const currentFolder = document.getElementById("current-folder");
 const totalFolderMsgCount = document.getElementById("total-folder-msg-count");
 const totalFolderCount = document.getElementById("total-folder-count");
 const totalMsgCount = document.getElementById("total-msg-count");
+const totalErrCount = document.getElementById("total-errors");
 const totalMsgProgress = document.getElementById("total-msg-progress");
 
 const okButton = document.getElementById("okButton");
@@ -41,7 +42,7 @@ browser.runtime.onMessage.addListener(msg => {
   }
   switch (msg.command) {
     case "UI_UPDATE":
-      //console.log(msg);
+      console.log(msg);
       currentFolder.innerText = msg.currentFolderName;
       totalFolderMsgCount.innerText = msg.totalFolderMsgCount;
       currentFolderProgress.max = msg.totalFolderMsgCount;
@@ -50,6 +51,8 @@ browser.runtime.onMessage.addListener(msg => {
       totalMsgCount.innerText = msg.totalMsgCount;
       totalMsgProgress.value = msg.totalMsgsExported;
       totalMsgProgress.max = msg.totalMsgCount;
+      totalErrCount.innerText = msg.totalErrCount;
+
       if (msg?.winType == "multipleFolders") {
         console.log("display on")
         document.documentElement.style.setProperty('--multiple-folders-display', 'block');

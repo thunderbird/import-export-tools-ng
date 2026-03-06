@@ -13,8 +13,12 @@ export var logging = {
   },
 
   log: function (logType, logMsg, logOptions) {
-    if (this.logTypes.includes(logType)) {
-      console.log("IETNG: " + logMsg);
+    if (logType == "err" || this.logTypes.includes(logType)) {
+      if (logType == "err") {
+        console.error("IETNG Err: " + logMsg);
+      } else {
+        console.log("IETNG: " + logMsg);
+      }
     }
   },
 

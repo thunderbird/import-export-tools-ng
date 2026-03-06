@@ -135,6 +135,12 @@
             "name": "msgCount",
             "minimum": 0,
             "description": "The number of messages exported in the current batch."
+          },
+          {
+            "type": "integer",
+            "name": "errCount",
+            "minimum": 0,
+            "description": "The number of errors in the current batch."
           }
         ]
       }

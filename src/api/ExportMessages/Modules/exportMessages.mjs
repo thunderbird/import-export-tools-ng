@@ -22,7 +22,7 @@ var { MutexAsync } = ChromeUtils.importESModule(
 );
 
 var { logging, log } = ChromeUtils.importESModule(
-  "resource://ietng/api/commonModules/debugLogging.mjs?" + ietngExtension.manifest.version + new Date()
+  "resource://ietng/api/commonModules/loggingExp.mjs?" + ietngExtension.manifest.version + new Date()
 );
 
 
@@ -64,18 +64,14 @@ export var exportMessages = {
       log("msg", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
 
     } catch (ex) {
-      console.log(ex, ex.stack)
-      //throw new Error(`Error: _getMsgsDirectory\n\n ${ex}`);
+      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}\n  _getMsgsDirectory Err:`);
+      log("msg", `expTaskId[idx]: ${expTask.id}[${index}]:\n${ex}\n${ex.stack}`);
       return { error: `${ex}\n\n${ex.stack.replaceAll("%20", " ")}` }
     }
+
     var writePromises = [];
     const msgListLen = expTask.msgList.length;
     var attachmentFilenames = [];
-
-    //let md = expTask.msgList
-    //console.log(md)
-
-    let msgCntIncrement = 0;
 
     for (let index = 0; index < msgListLen; index++) {
 
@@ -149,7 +145,9 @@ export var exportMessages = {
               currentFileType = "inline";
               currentFileName = inlinePart.name;
               let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
-              let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
+              //let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
+              let sanitizedPartName = attachmentPart.name;
+
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
               let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
@@ -198,7 +196,9 @@ export var exportMessages = {
             }
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
 
-            let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+            //let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+            let sanitizedPartName = attachmentPart.name;
+
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
             if (expTask.fileSave.sentDate) {
@@ -221,13 +221,15 @@ export var exportMessages = {
         let exMsg = ex.msg ? ex.msg + "\n" : "";
         let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
 
-        let errMsg = `IETNG: There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
 
         //errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
         //expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
         //let errMsgDetail = await _createErrMessage(index, ex, currentFileType, currentFileName);
-        console.log(`${errMsg}------`);
+        log("err", `${errMsg}\n\n`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        emitter.emit("export-update", "inbox", 0, 1);
+
       }
 
       let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
@@ -251,15 +253,13 @@ export var exportMessages = {
 
       // send msg count update for ui
       if (index + 1 <= 10) {
-        emitter.emit("export-update", "inbox", 1);
+        emitter.emit("export-update", "inbox", 1, 0);
       } else if (index + 1 > 10 && ((index + 1) % 2 == 0)) {
         //console.log("fire taskid:", expTask.id)
-        msgCntIncrement = 2;
-        emitter.emit("export-update", "inbox", 2);
+        emitter.emit("export-update", "inbox", 2, 0);
 
       } else if (index == msgListLen - 1) {
-        //console.log("fire event end", expTask.id, index)
-        emitter.emit("export-update", "inbox", 1);
+        emitter.emit("export-update", "inbox", 1, 0);
 
       }
       //console.log("idx", expTask.id, index)

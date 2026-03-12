@@ -197,7 +197,7 @@ export var exportMessages = {
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
 
             let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
-            //let sanitizedPartName = attachmentPart.name;
+          //sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -217,15 +217,9 @@ export var exportMessages = {
         expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attDirs.attachmentsDir, attachmentFilenames);
 
       } catch (ex) {
-        //console.log("err", "expId", expTask.id, ex, index, "id", expTask.msgList[index].id, name)
         let exMsg = ex.msg ? ex.msg + "\n" : "";
         let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
-
         let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
-
-        //errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
-        //expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
-        //let errMsgDetail = await _createErrMessage(index, ex, currentFileType, currentFileName);
         log("err", `${errMsg}\n\n`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
         emitter.emit("export-update", "inbox", 0, 1);
@@ -272,7 +266,7 @@ export var exportMessages = {
 
     //console.log("expId", expTask.id, "status", fileStatusList)
     //console.log("expId", expTask.id, "errs", errors)
-    //console.log(settledWritePromises)
+    console.log(settledWritePromises)
 
 
     for (let index = 0; index < errors.length; index++) {
@@ -301,7 +295,8 @@ export var exportMessages = {
     // inline functions
 
     async function __writeFile(fileType, unqName, expTask, index, data = null) {
-      var writePromise;
+      let writePromise;
+
       try {
         //console.log(expTask.msgList[index])
         if (fileType == "message") {
@@ -318,6 +313,7 @@ export var exportMessages = {
             attachmentFilenames: attachmentFilenames
           });
 
+          unqName += "99<"
           if (expTask.msgList[index].msgData.error) {
             errors.push(expTask.msgList[index].msgData.error);
           } else {
@@ -326,17 +322,15 @@ export var exportMessages = {
           //console.log("fileStatus", fileStatusList)
           //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
 
-          if (expTask.expType == "pdf") {
-            writePromise = __writePdfFile(unqName, expTask, index);
-            //await __writePdfFile(unqName, expTask, index);
-          } else {
-            if (expTask.msgList[index].msgData.err) {
-              console.log("write err", unqName, unqName.length)
-            }
-            writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
-            log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqName}`);
-
+          console.log(unqName)
+          if (expTask.msgList[index].msgData.err) {
+            console.log("write err", unqName, unqName.length)
           }
+          writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
+          console.log(writePromise)
+          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqName}`);
+
+
         } else {
           //console.log(fileType, unqName)
           fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
@@ -346,7 +340,13 @@ export var exportMessages = {
 
         }
       } catch (ex) {
-        console.log("err expId", expTask.id, unqName, ex)
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        log("err", `${errMsg}\n\n`);
+        expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        emitter.emit("export-update", "inbox", 0, 1);
+
         expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
         if (hdrs.subject == undefined || hdrs.subject == null) {
@@ -414,11 +414,11 @@ export var exportMessages = {
 
     async function _createErrMessage(index, ex, currentFileType) {
       let exMsg = ex.msg ? ex.msg : "";
-      let errMsg = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
-      name = "[Err] " + name;
-      expTask.msgList[index].subject = name;
+      let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
+      let msgName = "[Err] " + names.sanitizeFilename(expTask.msgList[index].subject);
+      expTask.msgList[index].subject = msgName;
+      
       // we have text/plain
-      return errMsg;
 
       expTask.msgList[index].msgData.msgBodyType = "text/plain";
       msgBody = self._convertTextToHTML(msgBody);

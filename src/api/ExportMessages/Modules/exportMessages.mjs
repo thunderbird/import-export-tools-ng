@@ -197,7 +197,7 @@ export var exportMessages = {
             let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
 
             let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
-          //sanitizedPartName = attachmentPart.name;
+            //sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -298,22 +298,14 @@ export var exportMessages = {
       let writePromise;
 
       try {
-        //console.log(expTask.msgList[index])
+
+        let filename = unqName
+
         if (fileType == "message") {
-          var hdrs = {};
-          hdrs.recipients = expTask.msgList[index].recipients;
-          hdrs.author = expTask.msgList[index].author;
-          hdrs.date = expTask.msgList[index].date;
-          hdrs.size = expTask.msgList[index].size;
-          hdrs.subject = expTask.msgList[index].msgData.extraHeaders.fullSubject;
 
-          fileStatusList.push({
-            index: index, fileType: fileType, id: expTask.msgList[index].id,
-            filePath: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
-            attachmentFilenames: attachmentFilenames
-          });
+          fileStatusList.push(__createFileStatus(expTask, index, fileType, filename, attachmentFilenames));
 
-          unqName += "99<"
+          //unqName += "99<"
           if (expTask.msgList[index].msgData.error) {
             errors.push(expTask.msgList[index].msgData.error);
           } else {
@@ -412,12 +404,35 @@ export var exportMessages = {
       return 0;
     }
 
+    function __getMsgHeaders(expTask, index) {
+      let msgHdrs = {};
+      msgHdrs.recipients = expTask.msgList[index].recipients;
+      msgHdrs.author = expTask.msgList[index].author;
+      msgHdrs.date = expTask.msgList[index].date;
+      msgHdrs.size = expTask.msgList[index].size;
+      msgHdrs.subject = expTask.msgList[index].msgData.extraHeaders.fullSubject;
+      return msgHdrs;
+    }
+
+    function __createFileStatus(expTask, index, fileType, filename, attachmentFilenames) {
+      let fileStatus = {};
+        fileStatus.index = index;
+        fileStatus.fileType = fileType;
+        fileStatus.id = expTask.msgList[index].id;
+        fileStatus.filePath = filename;
+        fileStatus.headers = __getMsgHeaders(expTask, index);
+        fileStatus.hasAttachments = expTask.msgList[index].msgData.attachmentParts.length;
+        fileStatus.attachmentFilenames = attachmentFilenames;
+      return fileStatus;
+    }
+
+
     async function _createErrMessage(index, ex, currentFileType) {
       let exMsg = ex.msg ? ex.msg : "";
       let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
       let msgName = "[Err] " + names.sanitizeFilename(expTask.msgList[index].subject);
       expTask.msgList[index].subject = msgName;
-      
+
       // we have text/plain
 
       expTask.msgList[index].msgData.msgBodyType = "text/plain";

@@ -322,14 +322,21 @@ export var exportMessages = {
           }
 
           let unqName = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`)
-        
+          if (index == 10) {
+            unqName += "99<"
+          }
 
           writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
           writePromise.index = index;
           writePromise.name = name;
-            writePromise.then(size => {
-              log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+          writePromise.then(size => {
+            log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("ms2", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
 
+          })
+            .catch(reason => {
+              emitter.emit("export-update", "inbox", 0, 1);
+              log("err", `Msg Error: ${writePromise.index} ${writePromise.name} \n  Err: ${reason}`)
             })
 
 

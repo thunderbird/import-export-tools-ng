@@ -1033,7 +1033,7 @@ async function _createIndex(expTask, msgListLog) {
         errClass = " class='msgError' ";
       }
 
-      //console.log(msgItem)
+      console.log(msgItem)
       let recipients;
       if (msgItem.headers.recipients == []) {
         recipients = "(none)";

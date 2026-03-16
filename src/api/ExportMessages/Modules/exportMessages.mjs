@@ -173,12 +173,7 @@ export var exportMessages = {
                 expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
 
               writePromise = __writeFile("inline", unqFilename, expTask, index, inlineBody);
-              if (expTask.fileSave.sentDate) {
-                writePromise.then(async (size) => {
-                  let dateInMs = new Date(expTask.msgList[index].date).getTime();
-                  await IOUtils.setModificationTime(unqFilename, dateInMs);
-                });
-              }
+
               writePromises.push(writePromise);
             }
           }
@@ -201,12 +196,6 @@ export var exportMessages = {
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
-            if (expTask.fileSave.sentDate) {
-              writePromise.then(async (size) => {
-                let dateInMs = new Date(expTask.msgList[index].date).getTime();
-                await IOUtils.setModificationTime(unqFilename, dateInMs);
-              });
-            }
 
             writePromises.push(writePromise);
 
@@ -230,20 +219,12 @@ export var exportMessages = {
       let unqFilename;
 
       if (expTask.expType == "pdf") {
-        await __writePdfFile(unqFilename, expTask, index, attDirs, attachmentFilenames);
-        if (expTask.fileSave.sentDate) {
-          let dateInMs = new Date(expTask.msgList[index].date).getTime();
-          await IOUtils.setModificationTime(unqFilename, dateInMs);
-        }
+        unqFilename = await __writePdfFile(generatedMsgName, expTask, index, attDirs, attachmentFilenames);
+
         writePromises.push(__pdfPromise(expTask, index, unqFilename));
       } else {
         let writePromise = __writeFile("message", name, expTask, index);
-        if (expTask.fileSave.sentDate) {
-          writePromise.then(async (size) => {
-            let dateInMs = new Date(expTask.msgList[index].date).getTime();
-            await IOUtils.setModificationTime(unqFilename, dateInMs);
-          });
-        }
+
         writePromises.push(writePromise);
       }
 
@@ -288,6 +269,7 @@ export var exportMessages = {
       console.log(settledWritePromises)
     }
     //console.log("expId", expTask.id, "promises", settledWritePromises)
+      console.log(settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
 
@@ -296,12 +278,11 @@ export var exportMessages = {
 
     // inline functions
 
-    async function __writeFile(fileType, name, expTask, index, data = null) {
+    async function __writeFile(fileType, filename, expTask, index, data = null) {
       let writePromise;
 
       try {
 
-        let filename = name
 
         if (fileType == "message") {
 
@@ -321,31 +302,53 @@ export var exportMessages = {
             console.log("write err", unqName, unqName.length)
           }
 
-          let unqName = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`)
+          let unqName = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
           if (index == 10) {
             unqName += "99<"
           }
 
           writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
           writePromise.index = index;
-          writePromise.name = name;
-          writePromise.then(size => {
+          writePromise.filename = filename;
+          writePromise.then(async (size) => {
+            if (expTask.fileSave.sentDate) {
+              let dateInMs = new Date(expTask.msgList[index].date).getTime();
+              await IOUtils.setModificationTime(unqName, dateInMs);
+            }
             log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("ms2", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
 
           })
             .catch(reason => {
               emitter.emit("export-update", "inbox", 0, 1);
-              log("err", `Msg Error: ${writePromise.index} ${writePromise.name} \n  Err: ${reason}`)
+              log("err", `Msg Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
             })
 
 
         } else {
           //console.log(fileType, unqName)
-          fileStatusList.push({ index: index, fileType: fileType, id: expTask.msgList[index].id, filePath: unqName });
+          let unqName = filename;
+          fileStatusList.push(__createFileStatus(expTask, index, fileType, filename, attachmentFilenames));
+
           errors.push({ error: "none" });
           writePromise = IOUtils.write(unqName, data);
-          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
+          writePromise.index = index;
+          writePromise.filename = filename;
+          writePromise.then(async (size) => {
+            if (expTask.fileSave.sentDate) {
+              let dateInMs = new Date(expTask.msgList[index].date).getTime();
+              await IOUtils.setModificationTime(unqName, dateInMs);
+            }
+            log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("ms2", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject}`);
+
+          })
+            .catch(reason => {
+              emitter.emit("export-update", "inbox", 0, 1);
+              log("err", `Att/Inline Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
+            })
+
+          log("ms2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
 
         }
       } catch (ex) {
@@ -372,15 +375,18 @@ export var exportMessages = {
         return writePromise;
       }
 
+      console.log(writePromise)
       return writePromise;
     }
 
-    async function __writePdfFile(unqFilename, expTask, index, attsDir, attachmentFilenames) {
+    async function __writePdfFile(filename, expTask, index, attsDir, attachmentFilenames) {
       let unlock = await pdfWriteMutex.lock();
 
       let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
       let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
       let messageService = MailServices.messageServiceFromURI(msgUri);
+
+      let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
 
       console.log("start print", PathUtils.filename(unqFilename))
 
@@ -394,23 +400,14 @@ export var exportMessages = {
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
       console.log("after print")
       unlock();
+      return unqFilename;
     }
 
     async function __pdfPromise(expTask, index, unqFilename) {
 
-      let hdrs = {
-        subject: expTask.msgList[index].msgData.extraHeaders.fullSubject,
-        recipients: expTask.msgList[index].recipients,
-        author: expTask.msgList[index].author,
-        date: expTask.msgList[index].date,
-        size: expTask.msgList[index].size,
-      };
-      fileStatusList.push({
-        index: index, fileType: "message",
-        id: expTask.msgList[index].id, filePath: unqFilename, headers: hdrs,
-        hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
-        attachmentFilenames: attachmentFilenames
-      });
+      fileStatusList.push(__createFileStatus(expTask, index, "message", unqFilename, attachmentFilenames));
+
+
 
       if (expTask.msgList[index].msgData.error) {
         errors.push(expTask.msgList[index].msgData.error);

@@ -401,7 +401,7 @@ export var exportMessages = {
         let dateInMs = new Date(expTask.msgList[index].date).getTime();
         await IOUtils.setModificationTime(unqFilename, dateInMs);
       }
-      log("ms1", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqName}`);
+      log("ms1", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqFilename}`);
       log("ms2", `Msg Saved: ${expTask.msgList[index].subject}`);
 
       console.log("after print")

@@ -269,7 +269,7 @@ export var exportMessages = {
       console.log(settledWritePromises)
     }
     //console.log("expId", expTask.id, "promises", settledWritePromises)
-      console.log(settledWritePromises)
+    console.log(settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
 
@@ -285,8 +285,9 @@ export var exportMessages = {
 
 
         if (fileType == "message") {
+          let unqName = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
 
-          fileStatusList.push(__createFileStatus(expTask, index, fileType, filename, attachmentFilenames));
+          fileStatusList.push(__createFileStatus(expTask, index, fileType, unqName, attachmentFilenames));
 
           //unqName += "99<"
           if (expTask.msgList[index].msgData.error) {
@@ -302,8 +303,7 @@ export var exportMessages = {
             console.log("write err", unqName, unqName.length)
           }
 
-          let unqName = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
-          if (index == 10) {
+          if (index == -1) {
             unqName += "99<"
           }
 
@@ -375,7 +375,6 @@ export var exportMessages = {
         return writePromise;
       }
 
-      console.log(writePromise)
       return writePromise;
     }
 
@@ -398,6 +397,13 @@ export var exportMessages = {
 
       let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
       await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
+      if (expTask.fileSave.sentDate) {
+        let dateInMs = new Date(expTask.msgList[index].date).getTime();
+        await IOUtils.setModificationTime(unqFilename, dateInMs);
+      }
+      log("ms1", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqName}`);
+      log("ms2", `Msg Saved: ${expTask.msgList[index].subject}`);
+
       console.log("after print")
       unlock();
       return unqFilename;

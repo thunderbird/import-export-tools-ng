@@ -61,11 +61,13 @@ export var exportMessages = {
     try {
       logging.init(expTask.debug)
       var msgsDir = this._getMsgsDirectory(expTask);
-      log("msg", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
+      log("msg", `Exporting Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
+      
+      log("msg2", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
 
     } catch (ex) {
-      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}\n  _getMsgsDirectory Err:`);
-      log("msg", `expTaskId[idx]: ${expTask.id}[${index}]:\n${ex}\n${ex.stack}`);
+      log("err", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}\n  _getMsgsDirectory Err:`);
+      log("err", `expTaskId[idx]: ${expTask.id}[${index}]:\n${ex}\n${ex.stack}`);
       return { error: `${ex}\n\n${ex.stack.replaceAll("%20", " ")}` }
     }
 
@@ -107,8 +109,8 @@ export var exportMessages = {
       //console.log(generatedMsgName)
       var name = generatedMsgName;
 
-      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
-      log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
+      log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
+      log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
 
       try {
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
@@ -126,15 +128,11 @@ export var exportMessages = {
 
           let attNamesStr = expTask.msgList[index].msgData.attachmentParts.length ? "" : "  [None]";
           expTask.msgList[index].msgData.attachmentParts.forEach(attPart => attNamesStr += (attPart.name + "\n  "));
-          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Attachments: \n  ${attNamesStr}`);
+          log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Attachments: \n  ${attNamesStr}`);
 
           let embAttNamesStr = expTask.msgList[index].msgData.inlineParts.length ? "" : "  [None]";
           expTask.msgList[index].msgData.inlineParts.forEach(attPart => embAttNamesStr += (attPart.name + "\n  "));
-          log("msg", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, EmbAttachments: \n  ${embAttNamesStr}`);
-
-          //console.log("saving attachments")
-          //console.log("inlinep", expTask.msgList[index].msgData.inlineParts)
-          //console.log("attp", expTask.msgList[index].msgData.attachmentParts)
+          log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, EmbAttachments: \n  ${embAttNamesStr}`);
 
           // we do not export inline attachments for pdf export
           // these are part of the streamed message
@@ -261,8 +259,6 @@ export var exportMessages = {
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
-      //console.log(settledWritePromises)
-      //console.log("expId", expTask.id, index, "fs", fileStatus)
     }
 
     if (errors.length) {
@@ -289,7 +285,6 @@ export var exportMessages = {
 
           fileStatusList.push(__createFileStatus(expTask, index, fileType, unqName, attachmentFilenames));
 
-          //unqName += "99<"
           if (expTask.msgList[index].msgData.error) {
             errors.push(expTask.msgList[index].msgData.error);
           } else {
@@ -315,8 +310,8 @@ export var exportMessages = {
               let dateInMs = new Date(expTask.msgList[index].date).getTime();
               await IOUtils.setModificationTime(unqName, dateInMs);
             }
-            log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
-            log("ms2", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
+            log("msg2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("msg", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
 
           })
             .catch(reason => {
@@ -339,8 +334,8 @@ export var exportMessages = {
               let dateInMs = new Date(expTask.msgList[index].date).getTime();
               await IOUtils.setModificationTime(unqName, dateInMs);
             }
-            log("ms1", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
-            log("ms2", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject}`);
+            log("msg2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("msg", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject}`);
 
           })
             .catch(reason => {
@@ -348,7 +343,7 @@ export var exportMessages = {
               log("err", `Att/Inline Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
             })
 
-          log("ms2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
+          log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
 
         }
       } catch (ex) {
@@ -380,31 +375,36 @@ export var exportMessages = {
 
     async function __writePdfFile(filename, expTask, index, attsDir, attachmentFilenames) {
       let unlock = await pdfWriteMutex.lock();
+      try {
+        let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
+        let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+        let messageService = MailServices.messageServiceFromURI(msgUri);
 
-      let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
-      let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-      let messageService = MailServices.messageServiceFromURI(msgUri);
+        let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
 
-      let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
+        console.log("start print", PathUtils.filename(unqFilename))
 
-      console.log("start print", PathUtils.filename(unqFilename))
+        //console.log(msgUri)
+        await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
+        //console.log(w3p.PrintUtils.printBrowser.contentDocument)
+        self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
+        //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
 
-      //console.log(msgUri)
-      await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
-      //console.log(w3p.PrintUtils.printBrowser.contentDocument)
-      self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
-      //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
+        let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
+        await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
+        if (expTask.fileSave.sentDate) {
+          let dateInMs = new Date(expTask.msgList[index].date).getTime();
+          await IOUtils.setModificationTime(unqFilename, dateInMs);
+        }
+        log("msg", `Msg Saved: ${expTask.msgList[index].subject}`);
 
-      let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
-      await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
-      if (expTask.fileSave.sentDate) {
-        let dateInMs = new Date(expTask.msgList[index].date).getTime();
-        await IOUtils.setModificationTime(unqFilename, dateInMs);
+      } catch (ex) {
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        log("err", `${errMsg}\n\n`);
+        emitter.emit("export-update", "inbox", 0, 1);
       }
-      log("ms1", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved message: \n  ${unqFilename}`);
-      log("ms2", `Msg Saved: ${expTask.msgList[index].subject}`);
-
-      console.log("after print")
       unlock();
       return unqFilename;
     }

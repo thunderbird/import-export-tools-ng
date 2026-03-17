@@ -163,7 +163,6 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
 
   // debug and logging
   expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
-  console.log(expTask.debug.logTypes)
 
   return expTask;
 }

@@ -54,7 +54,6 @@ browser.runtime.onMessage.addListener(msg => {
       totalErrCount.innerText = msg.totalErrCount;
 
       if (msg?.winType == "multipleFolders") {
-        console.log("display on")
         document.documentElement.style.setProperty('--multiple-folders-display', 'block');
         document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
 
@@ -73,7 +72,7 @@ browser.runtime.onMessage.addListener(msg => {
   }
 });
 
-console.log("listener set");
+console.log("UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', () => {
   i18n.updateDocument();

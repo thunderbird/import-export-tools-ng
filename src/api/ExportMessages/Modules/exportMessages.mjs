@@ -380,7 +380,7 @@ export var exportMessages = {
         let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
         let messageService = MailServices.messageServiceFromURI(msgUri);
 
-        let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
+        var unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
 
         console.log("start print", PathUtils.filename(unqFilename))
 

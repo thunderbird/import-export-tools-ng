@@ -299,11 +299,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         totalMsgsExported: totalMsgsExported,
         totalErrCount: totalErrCount
       });
-
-      console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
     }
 
-    var _updateListenerRef = _updateListener;
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
@@ -483,24 +480,12 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         // we use the massages.list
 
         if (expTask.expMethod == "selectedMsgs") {
-          let currentMailTab = await messenger.tabs.getCurrent();
-          console.log(currentMailTab)
-          //let cmt = await messenger.tabs.getCurrent()
-          //console.log(cmt)
-          //let mpl = await messenger.mailTabs.getSelectedMessages(cmt.id);
-          //console.log(mpl)
-          //msgListPage = await browser.mailTabs.getSelectedMessages();
           msgListPage = selectedMsgs
-          console.log("bef 1", msgListPage)
-
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
         }
       } else {
-        console.log("bef")
         msgListPage = await messenger.messages.continueList(msgListPage.id);
-        console.log("aft", msgListPage)
-
       }
       const messagesLen = msgListPage.messages.length;
       expTask.msgList = [];

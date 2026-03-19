@@ -63,7 +63,7 @@ export var exportMessages = {
       var msgsDir = this._getMsgsDirectory(expTask);
       log("msg", `Exporting Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
       
-      log("msg2", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
+      log("msg2", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  MsgDir: ${msgsDir}`);
 
     } catch (ex) {
       log("err", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}\n  _getMsgsDirectory Err:`);
@@ -243,12 +243,6 @@ export var exportMessages = {
     //console.log("expId", expTask.id, "wp final total", writePromises.length)
 
     let settledWritePromises = await Promise.allSettled(writePromises);
-    //console.log("expId", expTask.id, "wp final total", writePromises.length)
-
-    //console.log("expId", expTask.id, "status", fileStatusList)
-    //console.log("expId", expTask.id, "errs", errors)
-    console.log(settledWritePromises)
-
 
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];
@@ -264,8 +258,6 @@ export var exportMessages = {
     if (errors.length) {
       console.log(settledWritePromises)
     }
-    //console.log("expId", expTask.id, "promises", settledWritePromises)
-    console.log(settledWritePromises)
 
     console.log("finish exptask id", expTask.id)
 
@@ -335,7 +327,7 @@ export var exportMessages = {
               await IOUtils.setModificationTime(unqName, dateInMs);
             }
             log("msg2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
-            log("msg", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject}`);
+            log("msg", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject} (${unqName})`);
 
           })
             .catch(reason => {

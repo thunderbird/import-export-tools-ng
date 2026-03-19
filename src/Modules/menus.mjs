@@ -148,7 +148,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: "msgCtxMenu_Exp_EMLFormatCreateIndex_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -174,8 +174,8 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
-      id: "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
+      id: "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id_exp",
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -187,7 +187,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
       id: "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -227,7 +227,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id_newexp",
-      title: "(New) " + "Messages and HTML Index",
+      title: " (v15) " + "Messages and HTML Index",
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -239,7 +239,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id_newexp",
-      title: "(New) " + "Messages with Attachments and HTML Index",
+      title: " (v15) " + "Messages with Attachments and HTML Index",
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -251,7 +251,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -263,7 +263,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id_newexp",
-      title: "(New) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -758,7 +758,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: "folderCtxMenu_EML_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -770,7 +770,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_EMLFormat_Id,
       id: "folderCtxMenu_EML_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -797,7 +797,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -809,7 +809,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_atts_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -821,7 +821,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -833,7 +833,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_HTMLFormat_Id,
       id: "folderCtxMenu_HTML_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -874,7 +874,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -886,7 +886,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_atts_newexp",
-      title: "(new) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -898,7 +898,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -910,7 +910,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PDFFormat_Id,
       id: "folderCtxMenu_PDF_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -938,7 +938,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_Plaintext_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -950,7 +950,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_Plaintext_atts_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -962,7 +962,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_PlainText_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -974,7 +974,7 @@ var folderCtxMenuSet = [
     menuDef: {
       parentId: folderCtxMenu_Exp_PlainTextFormat_Id,
       id: "folderCtxMenu_PlainText_saveatts_subfolders_newexp",
-      title: "(New) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),
+      title: " (v15) " + localizeMenuTitle("folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {

@@ -4,71 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools NG pomoč</title>
+    <title>Pomoč za ImportExportTools NG</title>
   </head>
   <body>
-    <table style="width: 100%;" id="main-help">
+    <table style="width: 100%" id="main-help">
       <tr>
-        <td style="vertical-align: top;">
-          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools NG pomoč</div>
-          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">Pomoč za ImportExportTools NG</div>
+          <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
-        <td style="text-align: right; padding-right: 30px;">
+        <td style="text-align: right; padding-right: 30px">
           <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px;">Opombe ob izdaji:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Opombe k izdaji:</h3>
     <p>
-      <b>Pomembna opomba:</b> od izdaje Thunderbird v136 bo Mozilla izdajala mesečne izdaje. Morda ne bom
-      mogel izdati ImportExportTools NG vsak mesec. Preden posodobite Thunderbird, preverite, ali je na voljo
-      združljiva posodobitev ImportExportTools NG.<br /><br />
-      Christopher<br /><br />
-      - Popravek za občasno in nedosledno napako izvoza vseh vrst sporočil<br />
-      - Novo: izvoz izbire več map<br />
-      - Več obravnavanja napak pri uvozih EML, izvozih mbox<br />
-      - Posodobite danščino (da) locale - @Joergen<br />
-      - Posodobite lokalne nastavitve za madžarščino (hu-HU) - @ef99<br />
+      <b>v15.0.0-b1 Prva beta izdaja</b><br /><br />
+      Popolnoma prepisane funkcije izvoza sporočil, tako map kot izbranih sporočil. Beta 1 ima naslednje:<br />
+      - EML<br />
+      - HTML in priloge<br />
+      - PDF in priloge<br />
+      - Goto besedilo in priloge<br /><br />
+      Poleg novega izvoza PDF-jev s prilogami je na voljo tudi novo okno s stanjem izvoza in nova datoteka s
+      kazalom, kjer lahko razvrščate stolpce s klikom na glave.<br /><br />
+      Nove funkcije so trenutno dodane na vrh starih funkcij in imajo predpono (v15).<br /><br />
+      Stara koda bo amortizirana, ko bodo nove funkcije stabilne.<br /><br />
+      Novo beleženje in kmalu bosta na voljo datoteka dnevnika.
     </p>
-    <h2 id="main_help">ImportExportTools NG Pregled in meniji</h2>
+    <h2 id="main_help">Pregled in meniji orodij ImportExportTools NG</h2>
     <p>
-      ImportExportTools NG je naslednja razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
+      ImportExportTools NG je nadaljevalna razširitev, ki temelji na izvirnem delu Paola &quot;Kaosmos&quot;.
       Razširitev ponuja več funkcij uvoza in izvoza, ki podpirajo več različnih formatov datotek, vključno z:
       Opomba: Nekateri formati niso podprti v vseh funkcijah.<br />
       - mbox<br />
       - EML<br />
-      - maildir<br />
+      - poštni imenik<br />
       - HTML<br />
-      - golo besedilo<br />
-      - CSV (vrednosti, ločene z vejico)<br />
+      - odprto besedilo<br />
+      - CSV (vrednosti, ločene z vejicami)<br />
       - PDF<br /><br />
-      Medtem ko se večina funkcionalnosti vrti okoli sporočil, obstaja tudi podpora za uvoz in izvoz profilov
-      Thunderbird. Poleg tega lahko izvozi vključujejo tudi indeksno datoteko HTML ali CSV. Varnostno
-      kopiranje profila Thunderbird je še ena funkcija.<br />
+      Čeprav se večina funkcionalnosti vrti okoli sporočil, obstaja tudi podpora za uvoz in izvoz profilov
+      Thunderbird. Poleg tega lahko izvoz vključuje tudi indeksno datoteko HTML ali CSV. Varnostno kopiranje
+      profila Thunderbird je še ena funkcija.<br />
       <p>
-        Dostop do funkcionalnosti IETng poteka prek več različnih menijev, ki jih namesti razširitev. Funkcije
-        so odvisno od konteksta. Meniji so dodani za:<br />
-        - Kontekst podokna mape (delovanje mape)<br />
+        Dostop do funkcionalnosti IETng je mogoč prek več različnih menijev, ki jih namesti razširitev.
+        Funkcije so občutljive na kontekst. Dodani so meniji za:<br />
+        - Kontekst podokna map (delovanje mape)<br />
         - Kontekst seznama sporočil (izbrana sporočila)<br />
-        - Meni Orodja (profil in operacije varnostnega kopiranja)<br /><br />
-        Možnosti, ki so dostopne v meniju »Orodja«, niso v meniju »Hamburger«, ampak bodo v prihodnji
-        različici. Te funkcije so na voljo tudi v novem gumbu orodne vrstice. Vsak od menijev in gumb ima tudi
-        menijsko postavko Pomoč in Možnosti za dostop do pogovornega okna z možnostmi.<br />
+        - Meni Orodja (profil in varnostno kopiranje)<br /><br />
+        Možnosti, ki so dostopne v meniju »Orodja«, niso v meniju »Hamburger«, temveč bodo v prihodnji
+        različici. Te funkcije so na voljo tudi v novem gumbu orodne vrstice. Vsak meni in gumb ima tudi
+        elementa menija Pomoč in Možnosti za dostop do pogovornega okna z možnostmi.<br />
       </p>
     </p>
     <h3>Podpora:</h3>
     <p>
-      Objavite težave ali zahteve po funkcijah v repozitoriju razširitev GitHub:
+      Prosimo, objavite težave ali zahteve za funkcije v repozitoriju razširitev GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG Issues</a
+        >Težave z ImportExportTools NG</a
       ><br /><br />
-      V težave z napakami vključite naslednje informacije, ki vam bodo pomagale rešiti težave:<br />
+      Pri težavah z napakami vključite naslednje informacije, ki bodo pomagale rešiti težave:<br />
       - Različica ImportExportTools NG<br />
-      - Različica Thunderbird<br />
+      - Različica Thunderbirda<br />
       - Operacijski sistem in različica<br />
-      - Izhod za odpravljanje napak (kopiraj iz konzole za odpravljanje napak - dostop s tipkami
-      Control-Shift-J)<br />
-      – Opis korakov, ki vodijo do težave<br />
+      - Izpis za odpravljanje napak (kopirano iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
+      - Opis korakov, ki vodijo do težave<br />
     </p>
     <h2 id="main_menu_help">Funkcije kontekstnega menija mape</h2>
     <table class="menu-table">
@@ -82,9 +83,9 @@
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
-            Izvoz celotnega računa s strukturo in podmapami v format mbox. Izvoz se izvede z vsebnikom z
-            imenom računa.<br />
-            Opomba: ta element menija se prikaže samo, ko z desno miškino tipko kliknete vnos računa.
+            Izvozite celoten račun s strukturo in podmapami v formatu mbox. Izvoz se izvede z uporabo vsebnika
+            z imenom računa.<br />
+            Opomba: Ta element menija se prikaže le, če z desno miškino tipko kliknete vnos računa.
           </td>
         </tr>
         <tr>
@@ -93,25 +94,25 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
-          <td>Izvozite eno mapo v datoteko formata mbox</td>
+          <td>Izvoz ene mape v datoteko formata mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
-          <td>Izvozite posamezno mapo v stisnjeno datoteko formata mbox</td>
+          <td>Izvoz ene mape v stisnjeno datoteko formata mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>Izvozite mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
+          <td>Izvozi mapo, vključno z vsemi njenimi podmapami, v drevo sporočil v formatu mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            Izvozite mapo, vključno z vsemi njenimi podmapami, v nabor datotek formata mbox, eno za vsako
-            podmapo, izvoženih v eno mapo.
+            Izvozi mapo, vključno z vsemi njenimi podmapami, v niz datotek formata mbox, eno za vsako podmapo,
+            izvoženo v eno samo mapo.
           </td>
         </tr>
         <tr>
@@ -126,7 +127,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke formata EML (brez strukture/podmap).<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -137,7 +138,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -146,8 +147,8 @@
           </td>
           <td>
             Izvozite sporočila mape kot datoteke v formatu HTML (brez strukture/podmap).<br />
-            Priloge so shranjene kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML s seznamom
-            vsakega sporočila.
+            Priloge se shranijo kot ločene datoteke. S tem se ustvari tudi indeksna datoteka HTML, ki navaja
+            vsako sporočilo.
           </td>
         </tr>
         <tr>
@@ -162,7 +163,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila mape kot datoteke v obliki navadnega besedila, priloge niso vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -171,7 +172,7 @@
           </td>
           <td>
             Izvozite sporočila mape kot datoteke v obliki navadnega besedila, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -179,7 +180,7 @@
           <td>
             Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, priloge niso
             vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -187,16 +188,17 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Izvozite sporočila mape kot eno datoteko v obliki navadnega besedila, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            Izvozite sporočila mape kot eno samo datoteko v obliki navadnega besedila, vključno s
+            prilogami.<br />
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Izvozite sporočila mape kot eno samo datoteko besedilnega formata CSV (vrednosti, ločene z
-            vejico), priloge niso vključene.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            Izvozite sporočila iz mape kot eno samo besedilno datoteko CSV (vrednosti, ločene z vejicami),
+            priloge niso vključene.<br />
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -205,19 +207,19 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Ustvari indeksno datoteko HTML mape messages (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko HTML za mapo sporočil (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Ustvari indeksno datoteko CSV mape messages (brez izvoza sporočil)</td>
+          <td>Ustvari indeksno datoteko CSV za mapo sporočila (brez izvoza sporočil)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
-          <td>Odprite iskalno pogovorno okno in izvozite želene rezultate</td>
+          <td>Odprite pogovorno okno za iskanje in izvozite želene rezultate</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td>(Uvoz samo v lokalne mape, ne IMAP)</td>
+          <td>(Uvozi samo v lokalne mape, ne v IMAP)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
@@ -249,11 +251,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
-          <td>Izberite in uvozite sporočilne datoteke EML (brez strukture/podmap)</td>
+          <td>Izberite in uvozite datoteke sporočil EML (brez strukture/podmap)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
-          <td>Uvozite vsa sporočila EML iz ene mape</td>
+          <td>Uvozi vsa sporočila EML iz ene mape</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
@@ -261,19 +263,19 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Kopirajte pot OS do izbrane mape</td>
+          <td>Kopirajte pot operacijskega sistema do izbrane mape</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Odprite pot OS do izbrane mape</td>
+          <td>Odprite pot operacijskega sistema do izbrane mape</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
+          <td>Odprite pogovorno okno z možnostmi ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Odprite glavno stran s pomočjo</td>
+          <td>Odpri glavno stran s pomočjo</td>
         </tr>
       </tbody>
     </table>
@@ -297,13 +299,13 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-          <td>Izvozi izbrana sporočila v datoteke formata EML (vdelane priloge)</td>
+          <td>Izvozi izbrana sporočila v datoteke formata EML (z vdelanimi prilogami)</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Izvozi izbrana sporočila v datoteke formata EML<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
@@ -312,29 +314,29 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Izvozi izbrana sporočila v datoteke zapisa HTML</td>
+          <td>Izvozi izbrana sporočila v datoteke formata HTML</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-          <td>Izvozite izbrana sporočila v datoteke formata HTML, vključno s prilogami</td>
+          <td>Izvozi izbrana sporočila v datoteke formata HTML, vključno s prilogami</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Izvozite sporočila kot datoteke v formatu HTML.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Izvozite sporočila kot datoteke v formatu HTML, vključno s prilogami.<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            Izvozite sporočila kot datoteke HTML, vključno s prilogami.<br />
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Izvozite izbrana sporočila v datoteke formata PDF</td>
+          <td>Izvoz izbranih sporočil v datoteke PDF</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -346,7 +348,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Izvozite izbrana sporočila v datoteke v obliki navadnega besedila, vključno s prilogami</td>
+          <td>Izvozi izbrana sporočila v datoteke v obliki navadnega besedila, vključno s prilogami</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
@@ -354,12 +356,12 @@
           </td>
           <td>
             Izvozite sporočila kot datoteke v obliki navadnega besedila, vključno s prilogami<br />
-            S tem se ustvari tudi indeksna datoteka HTML s seznamom vsakega sporočila.
+            S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
-          <td>Izvozi izbrana sporočila v eno besedilno datoteko CSV</td>
+          <td>Izvozi izbrana sporočila v eno samo besedilno datoteko CSV</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
@@ -367,7 +369,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>Izvozi izbrana sporočila v eno datoteko mbox</td>
+          <td>Izvozi izbrana sporočila v eno samo datoteko mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
@@ -391,24 +393,24 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
-          <td>Kopirajte posamezno izbrano sporočilo v odložišče</td>
+          <td>Kopiraj eno izbrano sporočilo v odložišče</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Kopirajte glave posameznega izbranega sporočila v odložišče</td>
+          <td>Kopiraj glave posameznega izbranega sporočila v odložišče</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
+          <td>Odprite pogovorno okno z možnostmi ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Odprite glavno stran s pomočjo</td>
+          <td>Odpri glavno stran s pomočjo</td>
         </tr>
       </tbody>
     </table>
     <br />
-    <h2 id="tools_functions_help">Meni Orodja</h2>
+    <h2 id="tools_functions_help">Meni orodij</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -423,11 +425,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>Shranite celoten profil (pošta, razširitve, možnosti)</td>
+          <td>Shrani celoten profil (pošta, razširitve, možnosti)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-          <td>Shrani vso pošto v trenutnem profilu</td>
+          <td>Shrani vso pošto v trenutni profil</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
@@ -439,26 +441,26 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Odprite pogovorno okno možnosti ImportExportTools NG</td>
+          <td>Odprite pogovorno okno z možnostmi ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Odprite glavno stran s pomočjo</td>
+          <td>Odpri glavno stran s pomočjo</td>
         </tr>
       </tbody>
     </table>
     <h2 id="customdate_format_help">Oblika datuma po meri</h2>
     <p>
       Možnost datuma po meri omogoča popoln nadzor nad oblikovanjem datuma, ki se uporablja za obe datoteki v
-      indeksu. Tako privzeta oblika »Datum« kot tudi nova oblika po meri »Datum (po meri)« sta na voljo v
-      spustnih menijih imen datotek. Datum po meri je mogoče uporabiti tudi z žetonom ${date_custom},
-      uporabljenim v razširjenih imenih datotek po meri. Prvotni (privzeti) format datuma je:<br />
-      LLLLMMDDHHmm : 202011060808<br /><br />
-      Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s funkcijo <code>strftime()</code> Unix.
-      Temelji na vratih JavaScript
+      indeksu. V spustnih menijih imen datotek sta na voljo tako privzeta oblika »Datum« kot tudi nova oblika
+      po meri »Datum (po meri)«. Datum po meri se lahko uporabi tudi z žetonom ${date_custom}, ki se uporablja
+      v razširjenih imenih datotek po meri. Prvotna (privzeta) oblika datuma je:<br />
+      LLLLMDDHHmm : 202011060808<br /><br />
+      Oblika datuma po meri uporablja zaporedja %, ki se ujemajo s funkcionalnostjo <code>strftime()</code> v
+      Unixu. Temelji na JavaScript različici funkcije
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , funkciji za oblikovanje datuma in ure.<br />
-      Pristanišče strftime() TH Doana (https://thdoan.github.io/strftime/)<br />
+      , ki omogoča oblikovanje datuma in časa.<br />
+      Priloga funkcije strftime() avtorja TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Opisi zaporedja pretvorb</h3>
     <table class="dateformat-table">
@@ -487,86 +489,88 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Predstavitev želenega datuma in časa (UTC) za trenutni jezik.</td>
+          <td>Prednostna predstavitev datuma in časa (UTC) za trenutne jezikovne nastavitve.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
-          <td>Številka stoletja (leto/100) kot 2-mestno celo število.</td>
+          <td>Številka stoletja (leto/100) kot dvomestno celo število.</td>
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>Dan v mesecu kot decimalno število (razpon od 01 do 31).</td>
+          <td>Dan v mesecu kot decimalno število (območje od 01 do 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Dan v mesecu kot decimalno število (razpon od 1 do 31).</td>
+          <td>Dan v mesecu kot decimalno število (območje od 1 do 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>Format datuma ISO 8601 (enakovredno <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>Oblika datuma po standardu ISO 8601 (enakovredno <code class="code1">%Y-%m-%d</code> ).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            Tedensko leto po ISO 8601 s stoletjem kot decimalnim številom. 4-mestno leto ustreza številki
-            tedna ISO (glejte <code class="code1">%V</code> ). To ima enako obliko in vrednost kot
-            <code class="code1">%Y</code> , le da če številka tedna ISO pripada prejšnjemu ali naslednjemu
-            letu, se namesto tega uporabi to leto.
+            Leto po standardu ISO 8601, ki temelji na tednu in je decimalno število stoletje. Štirimestno leto
+            ustreza številki tedna po standardu ISO (glejte <code class="code1">%V</code> ). Ima enako obliko
+            in vrednost kot <code class="code1">%Y</code> , le da če številka tedna po standardu ISO pripada
+            prejšnjemu ali naslednjemu letu, se namesto tega uporabi to leto.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
-          <td>Kot <code class="code1">%G</code> , vendar brez stoletja, to je z 2-mestno letnico (00-99).</td>
+          <td>
+            Kot <code class="code1">%G</code> , vendar brez stoletja, torej z dvomestno letnico (00–99).
+          </td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Ura kot decimalno število z uporabo 24-urne ure (razpon od 00 do 23). Glej tudi
+            Ura kot decimalno število z uporabo 24-urnega formata (območje od 00 do 23). Glejte tudi
             <code class="code1">%k</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Ura kot decimalno število z uporabo 12-urne ure (razpon od 01 do 12). Glej tudi
+            Ura kot decimalno število z uporabo 12-urnega formata (območje od 01 do 12). Glejte tudi
             <code class="code1">%l</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>Dan v letu kot decimalno število (razpon od 001 do 366).</td>
+          <td>Dan v letu kot decimalno število (območje od 001 do 366).</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Ura kot decimalno število z uporabo 24-urne ure (razpon od 0 do 23). Glej tudi
+            Ura kot decimalno število z uporabo 24-urnega formata (območje od 0 do 23). Glejte tudi
             <code class="code1">%H</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Ura kot decimalno število z uporabo 12-urne ure (razpon od 1 do 12). Glej tudi
+            Ura kot decimalno število z uporabo 12-urnega formata (območje od 1 do 12). Glejte tudi
             <code class="code1">%I</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>Mesec kot decimalno število (razpon od 01 do 12).</td>
+          <td>Mesec kot decimalno število (območje od 01 do 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Mesec kot decimalno število (razpon od 1 do 12).</td>
+          <td>Mesec kot decimalno število (območje od 1 do 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minuta kot decimalno število (razpon od 00 do 59).</td>
+          <td>Minuta kot decimalno število (območje od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Bodisi &quot;AM&quot; ali &quot;PM&quot; glede na podano časovno vrednost. Opoldne se obravnava
-            kot &quot;PM&quot;, polnoč pa kot &quot;AM&quot;.
+            Bodisi »AM« ali »PM« glede na podano časovno vrednost. Poldne se obravnava kot »PM«, polnoč pa kot
+            »AM«.
           </td>
         </tr>
         <tr>
@@ -577,53 +581,53 @@
         </tr>
         <tr>
           <td><code class="code1">%s</code></td>
-          <td>Število sekund od Epohe, 1970-01-01 00:00:00 +0000 (UTC).</td>
+          <td>Število sekund od epohe, 1. 1. 1970 00:00:00 +0000 (UTC).</td>
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Sekunda kot decimalno število (razpon od 00 do 59).</td>
+          <td>Sekunda kot decimalno število (območje od 00 do 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dan v tednu kot decimalno število (razpon od 1 do 7), pri čemer je ponedeljek 1. Glejte tudi
+            Dan v tednu kot decimalno število (območje od 1 do 7), ponedeljek je 1. Glejte tudi
             <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Številka tedna po ISO 8601 tekočega leta kot decimalno število (razpon od 01 do 53), kjer je 1.
-            teden prvi teden, ki ima vsaj 4 dni v novem letu (to je prvi četrtek).
+            Številka tedna po standardu ISO 8601 tekočega leta kot decimalno število (območje od 01 do 53),
+            kjer je 1. teden prvi teden, ki ima vsaj 4 dni v novem letu (torej prvi četrtek).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Dan v tednu kot decimalno (razpon od 0 do 6), nedelja je 0. Glejte tudi
+            Dan v tednu kot decimalno število (območje od 0 do 6), nedelja je 0. Glejte tudi
             <code class="code1">%u</code> .
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Želena predstavitev datuma za trenutni jezik brez časa.</td>
+          <td>Prednostna predstavitev datuma za trenutno lokacijo brez časa.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Prednostna predstavitev časa za trenutni jezik brez datuma.</td>
+          <td>Prednostna predstavitev časa za trenutno lokacijo brez datuma.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Leto kot decimalno število brez stoletja (razpon od 00 do 99).</td>
+          <td>Leto kot decimalno število brez stoletja (območje od 00 do 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>Leto kot decimalno število vključno s stoletjem.</td>
+          <td>Leto kot decimalno število, vključno s stoletjem.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
-            <code class="code1">+hhmm</code> ali <code class="code1">-hhmm</code> numerični časovni pas (to je
+            Številski časovni pas <code class="code1">+hhmm</code> ali <code class="code1">-hhmm</code> (torej
             odmik ure in minute od UTC).
           </td>
         </tr>
@@ -642,15 +646,15 @@
       </li>
       <li><code class="code1">%e</code> - presledek ni dodan</li>
       <li><code class="code1">%E</code> - ni implementirano</li>
-      <li><code class="code1">%h</code> - ni implementirano (uporabi <code class="code1">%b</code> )</li>
+      <li><code class="code1">%h</code> - ni implementirano (uporabite <code class="code1">%b</code> )</li>
       <li><code class="code1">%k</code> - presledek ni dodan</li>
       <li>
-        <code class="code1">%n</code> - kot <code class="code1">%m</code> , vendar brez začetne ničle
-        (uporabite <code class="code1">\n</code> za novo vrstico)
+        <code class="code1">%n</code> - kot <code class="code1">%m</code> , vendar brez začetne ničle (za novo
+        vrstico uporabite <code class="code1">\n</code> )
       </li>
       <li><code class="code1">%O</code> - ni implementirano</li>
       <li>
-        <code class="code1">%r</code> - ni implementirano (uporabi <code class="code1">%I:%M:%S %p</code> )
+        <code class="code1">%r</code> - ni implementirano (uporabite <code class="code1">%I:%M:%S %p</code> )
       </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
@@ -664,21 +668,22 @@
       <li><code class="code1">%U</code> - ni implementirano</li>
       <li><code class="code1">%W</code> - ni implementirano</li>
       <li><code class="code1">%+</code> - ni implementirano</li>
-      <li><code class="code1">%%</code> - ni implementirano (uporabi <code class="code1">%</code> )</li>
+      <li><code class="code1">%%</code> - ni implementirano (uporabite <code class="code1">%</code> )</li>
     </ul>
     <br /><br />
     <h2 id="ext_filename_format_help">Razširjena oblika imena datoteke:</h2>
     <br />
     <p>
-      Razširjeno oblikovanje imena datoteke uporablja žetone. Natančno ime datoteke je mogoče sestaviti z
-      uporabo žetonov ter katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki so:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikih. Na voljo
-      so tudi žetoni, specifični za jezik, in navedeni pod angleško tabelo.<br /><br />
+      Razširjeno oblikovanje imen datotek uporablja žetone. Natančno ime datoteke je mogoče sestaviti z
+      uporabo žetonov, pa tudi katerega koli besedila ali veljavnih znakov imena datoteke. Neveljavni znaki
+      so: <code>| * : &lt; &gt; ? \ / &quot;</code> Angleški (en-US) žetoni so na voljo v vseh jezikovnih
+      nastavitvah. Na voljo so tudi žetoni, specifični za jezikovne nastavitve, ki so navedeni pod tabelo za
+      angleščino.<br /><br />
       Primeri:<br /><br />
-      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – privzeta oblika<br />
-      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – namesto privzetega
-      uporabite obliko datuma po meri<br />
-      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - z nekaj besedila po
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Privzeta oblika<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Uporabite obliko
+      datuma po meri namesto privzete<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Z nekaj besedila po
       meri<br /><br /><br />
     </p>
     <table class="token-table">
@@ -688,7 +693,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>Zadeva sporočila. Dolžina je lahko omejena z možnostjo dolžine predmeta.</td>
+        <td>Zadeva sporočila. Dolžina je lahko omejena z možnostjo dolžine zadeve.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>
@@ -712,11 +717,11 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
-        <td>Številka indeksa sporočila.</td>
+        <td>Indeksna številka sporočila.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Vrednost možnosti besedila predpone.</td>
+        <td>Vrednost možnosti predpone besedila.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
@@ -724,18 +729,18 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standardni format datuma. Privzeta oblika je: LLLLMMDDHHmm</td>
+        <td>Standardna oblika datuma. Privzeta oblika je: LLLLMMDDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
-        <td>Oblika datuma po meri. Oglejte si razdelek o oblikovanju datuma po meri.</td>
+        <td>Oblika datuma po meri. Glejte razdelek o oblikovanju datuma po meri.</td>
       </tr>
     </table>
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
         <td>Žeton (en-US)</td>
-        <td>lokalizirano (<span id="locale1"></span> ) Žeton</td>
+        <td>Lokalizirano (<span id="locale1"></span> ) Žeton</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -783,19 +788,19 @@
       </tr>
     </table>
     <br />
-    <h2>Nove in poskusne nastavitve (možnosti)</h2>
+    <h2>Nove in eksperimentalne nastavitve (možnosti)</h2>
     <p>
-      Obstaja več novih funkcij in možnosti, ki jih še ni mogoče konfigurirati v pogovornem oknu z možnostmi.
-      Ko bodo te funkcije stabilizirane, bodo dodane v uporabniški vmesnik.<br />
+      V pogovornem oknu z možnostmi je več novih funkcij in možnosti, ki jih še ni mogoče konfigurirati. Ko
+      bodo te funkcije stabilizirane, bodo dodane v uporabniški vmesnik.<br />
       Če jih želite uporabljati, jih morate nastaviti v urejevalniku konfiguracij. Za dostop do urejevalnika
-      uporabite meni Orodja/Možnosti, nato izberite razdelek Napredno in na dnu bo gumb &#39;Urejevalnik
-      konfiguracij&#39;. Če v iskalno vrstico vnesete &#39;importexporttoolsng&#39;, boste dobili vse
-      nastavitve razširitev. Nato lahko po potrebi uredite različne spodnje nastavitve.
+      uporabite meni Orodja/Možnosti, nato izberite razdelek Napredno, kjer bo na dnu gumb »Urejevalnik
+      konfiguracij«. Če v iskalno vrstico vnesete »importexporttoolsng«, boste dobili vse nastavitve
+      razširitev. Nato lahko po potrebi uredite različne spodnje nastavitve.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Ta nastavitev sledi istemu polnemu oblikovanju, ki se uporablja za indeksne datoteke. Privzeto je prazen
-      niz, če ima formatiran niz datuma/časa, bo to spremenilo obliko datuma indeksa.
+      Ta nastavitev sledi enakemu polnemu oblikovanju, ki se uporablja za indeksne datoteke. Privzeto je
+      prazen niz, če pa je niz z oblikovanim nizom datuma/ure, se bo format datuma indeksa spremenil.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -806,34 +811,35 @@
       </p>
     </p>
     <p>
-      Obe nastavitvi uporabljata isto vrsto razširjenih formatov poimenovanja datotek, kot jih uporablja ime
-      datoteke izvoženih sporočil. Prvi je za zunanje priloge, drugi pa za vdelane (inline) priloge.
+      Obe nastavitvi uporabljata isto vrsto razširjenih oblik poimenovanja datotek, kot jih uporablja ime
+      datoteke izvoženih sporočil. Prva je za zunanje priloge, druga pa za vdelane (vrstične) priloge.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
-      Običajno je &#39;Datum&#39; za sporočilo v Thunderbirdu datum, ki ga nastavi pošiljateljev poštni
-      odjemalec. Če to možnost nastavite na »true«, se uporabi datum prejema v prejemnikovem poštnem
-      odjemalcu. Ta datum bo uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
+      Običajno je »Datum« za sporočilo v Thunderbirdu datum, ki ga nastavi pošiljateljev poštni odjemalec. Če
+      to možnost nastavite na »true«, se uporabi datum prejema v prejemnikovem poštnem odjemalcu. Ta datum bo
+      uporabljen tako za imena datotek kot tudi za datum v indeksnih datotekah.
     </p>
-    <h2>Osnovna, globalna funkcija hitre tipke (bližnjice).</h2>
+    <h2>Osnovna, globalna funkcija bližnjic (hotkey)</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Ta nova nastavitev omogoča uporabniku, da nastavi do 10 bližnjic na tipkovnici. Bližnjice lahko izvajajo
-      večino funkcij ImportExportTools NG kot tudi druge funkcije Thunderbird. Prednostni niz je oblikovan kot
-      objekt v obliki JSON. Format in ključi so naslednji:
+      Ta nova nastavitev uporabniku omogoča nastavitev do 10 bližnjic na tipkovnici. Bližnjice lahko izvajajo
+      večino funkcij ImportExportTools NG, kot tudi druge funkcije Thunderbirda. Niz nastavitev je formatiran
+      kot objekt v formatu JSON. Oblika in tipke so naslednje:
     </p>
     <p>
-      Primer vnosov vročih tipk (niz predmetov JSON)<br /><br />
-      <code class="notranslate">id</code> - indeks ključa (1-10)<br />
-      <code class="notranslate">key</code> - ključ (en znak)<br />
-      <code class="notranslate">keycode</code> - ključna koda &#39;VK_*&#39;<br />
-      Vključen je lahko bodisi ključ ali ključna koda, vendar ne obojega<br />
-      <code class="notranslate">modifiers</code> - ključni modifikatorji, seznam ločen s presledki
+      Primeri vnosov bližnjic (niz objektov JSON)<br /><br />
+      <code class="notranslate">id</code> - ključni indeks (1-10)<br />
+      <code class="notranslate">key</code> - ključ (en sam znak)<br />
+      <code class="notranslate">keycode</code> - definira kodo tipke &#39;VK_*&#39;<br />
+      Vključen je lahko ključ ali koda ključa, ne pa oboje.<br />
+      <code class="notranslate">modifiers</code> - seznam modifikatorjev tipk, ločenih s presledki
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - neposredni ukazni niz<br />
-      <code class="notranslate">contexts</code> - kontekst okna, kjer je ključ aktiven<br />
-      <code class="notranslate">&#39;all&#39;</code> - vsa okna pod Messenger, sestavi, iskanje<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - glavno okno sporočila in njegovi potomci<br />
+      <code class="notranslate">contexts</code> - kontekst okna, kjer je tipka aktivna<br />
+      <code class="notranslate">&#39;all&#39;</code> - vsa okna v storitvi Messenger, Sestavi, Išči<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - glavno okno programa Messenger in njegovi
+      podrejeni programi<br />
       <code class="notranslate">&#39;compose&#39;</code> - okno za sestavljanje sporočila<br />
       <code class="notranslate">&#39;search&#39;</code> - pogovorno okno za iskanje<br /><br />
       <code class="notranslate"
@@ -863,27 +869,26 @@
         &quot;compose&quot; }]</code
       ><br />
     </p>
-
     <p>
-      Ker so bližnjice nove in eksperimentalne, bom v skladišče dodal tudi več dokumentacije. Preverite
-      razširitev
+      Ker so bližnjice nove in eksperimentalne, bom v repozitorij dodal tudi več dokumentacije. Preverite
+      datoteko
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
-        >ImportExportTools NG README</a
+        >README za razširitev ImportExportTools NG.</a
       ><br />
     </p>
     <br />
-    <h3>Različica 14.0.0: podpora za Thunderbird 115 - 10. julij 2023</h3>
+    <h3>Različica 14.0.0: Podpora za Thunderbird 115 - 10. julij 2023</h3>
     <p>
-      Funkcije in obravnavane težave:<br />
+      Obravnavane funkcije in težave:<br />
       <p>
         - Podpora za Thunderbird 115 Supernova<br />
-        - Predelava in posodobitev uporabniškega vmesnika možnosti<br />
+        - Preoblikujte in posodobite uporabniški vmesnik Možnosti<br />
         - Popolna podpora za temni način<br />
         - Nov, dosleden sistem menijev<br />
         - Nov gumb orodne vrstice<br />
-        - Izboljšana pomoč, odprta ob namestitvi<br />
-        - Posodobite izvozni račun<br /><br />
-        Hvala naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
+        - Izboljšana pomoč, odpiranje ob namestitvi<br />
+        - Posodobi izvozni račun<br /><br />
+        Zahvaljujemo se naslednjim uporabnikom za predloge za izboljšave in pomoč pri testiranju:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />

@@ -217,6 +217,7 @@ export var exportMessages = {
       let unqFilename;
 
       if (expTask.expType == "pdf") {
+        console.log(attachmentFilenames)
         unqFilename = await __writePdfFile(generatedMsgName, expTask, index, attDirs, attachmentFilenames);
 
         writePromises.push(__pdfPromise(expTask, index, unqFilename));
@@ -380,7 +381,7 @@ export var exportMessages = {
         await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
         //console.log(w3p.PrintUtils.printBrowser.contentDocument)
         self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
-        //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
+        self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
 
         let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
         await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
@@ -672,7 +673,7 @@ export var exportMessages = {
   },
 
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
-    let relAttsDir = "./";
+    let relAttsDir = "file:///";
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
     }

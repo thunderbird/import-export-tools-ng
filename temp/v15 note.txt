@@ -23,27 +23,26 @@ There are things like some translations and options TBD.
 I have not done CSV export, this Wil be done later.
 
 Complete rewrite of the message export functions, both Folders
-		and selected messages. Beta 1 has the following :
-		- EML
-		- HTML and attachments 
-		- PDF and attachments 
-		- Plaintext and attachments 
+and selected messages. Beta 1 has the following :
+- EML
+- HTML and attachments 
+- PDF and attachments 
+- Plaintext and attachments 
 
-		Besides the new PDF with attachments export. There is 
-		also a new export status window as well as a new 
-		index file where you can sort columns by clicking 
-		on the headers.
+Besides the new PDF with attachments export. There is 
+also a new export status window as well as a new 
+index file where you can sort columns by clicking 
+on the headers.
 
-		The new functions are currently added on top of the 
-		old functions and have a (v15) prefix.
-		
-		The old code will be depreciated once the new functions 
-		are stable.
-		New logging and soon a log file will be available.
-		Performance has also improved for everything but PDF export.
+The new functions are currently added on top of the 
+old functions and have a (v15) prefix.
 
-		Thanks to everyone in advance.
-	
-		Christopher 
+The old code will be depreciated once the new functions 
+are stable.
+New logging and soon a log file will be available.
+Performance has also improved for everything but PDF export.
 
-		
+Thanks to everyone in advance.
+
+Christopher 
+

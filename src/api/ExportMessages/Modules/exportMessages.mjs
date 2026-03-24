@@ -673,9 +673,10 @@ export var exportMessages = {
   },
 
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
-    let relAttsDir = "file:///";
+    let relAttsDir = "./";
     if (expTask.attachments.containerStructure == "perMsgDir") {
       relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
+      //relAttsDir += attsDir.attachmentsDir
     }
 
     console.log(attachmentFilenames)

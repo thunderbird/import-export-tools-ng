@@ -92,21 +92,15 @@ export var exportMessages = {
       if (expTask.msgList[index].msgData.msgBodyType == "none" &&
         expTask.expType != "pdf"
       ) {
-        //console.log(index, "no msgData", expTask.msgList[index])
 
         expTask.msgList[index].msgData.inlineParts = [];
         expTask.msgList[index].msgData.attachmentParts = [];
         let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
-        //console.log(rawMsgBody)
         expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
         expTask.msgList[index].msgData.msgBodyType = "text/html";
-
       }
 
-      //console.log(expTask.msgList[index].msgData)
-
       let generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
-      //console.log(generatedMsgName)
       var name = generatedMsgName;
 
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
@@ -115,14 +109,9 @@ export var exportMessages = {
       try {
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
-
-        //console.log(maxFilePathLen)
-        //var maxFilePathLen = 500
         var currentFileType = "";
         var currentFileName = "";
 
-
-        //console.log(expTask)
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 
@@ -142,7 +131,7 @@ export var exportMessages = {
               let writePromise;
               currentFileType = "inline";
               currentFileName = inlinePart.name;
-              let inlineBody = await this.fileToUint8Array(inlinePart.partBody);
+              let inlineBody = await this._fileToUint8Array(inlinePart.partBody);
               let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
               //let sanitizedPartName = inlinePart.name;
 
@@ -171,15 +160,12 @@ export var exportMessages = {
                 expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
 
               writePromise = __writeFile("inline", unqFilename, expTask, index, inlineBody);
-
               writePromises.push(writePromise);
             }
           }
 
-
           for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
             let writePromise;
-            //console.log(attachmentPart)
             currentFileType = "attachment";
             currentFileName = attachmentPart?.name;
             // some attachments seen without a name
@@ -187,16 +173,14 @@ export var exportMessages = {
               currentFileName = "message.txt";
               attachmentPart.name = "message.txt";
             }
-            let attachmentBody = await this.fileToUint8Array(attachmentPart.partBody)
+            let attachmentBody = await this._fileToUint8Array(attachmentPart.partBody)
 
             let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
             //sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
-
             writePromises.push(writePromise);
-
             attachmentFilenames.push(PathUtils.filename(unqFilename));
           }
         }
@@ -213,7 +197,6 @@ export var exportMessages = {
 
       }
 
-      //let unqFilename = await IOUtils.createUniqueFile(msgsDir, `${name}.${expTask.names.extension}`);
       let unqFilename;
 
       if (expTask.expType == "pdf") {
@@ -229,20 +212,15 @@ export var exportMessages = {
 
       // send msg count update for ui
       if (index + 1 <= 10) {
-        emitter.emit("export-update", "inbox", 1, 0);
+        emitter.emit("export-update", "", 1, 0);
       } else if (index + 1 > 10 && ((index + 1) % 2 == 0)) {
-        //console.log("fire taskid:", expTask.id)
-        emitter.emit("export-update", "inbox", 2, 0);
-
+        emitter.emit("export-update", "", 2, 0);
       } else if (index == msgListLen - 1) {
-        emitter.emit("export-update", "inbox", 1, 0);
-
+        emitter.emit("export-update", "", 1, 0);
       }
-      //console.log("idx", expTask.id, index)
     }
 
-    //console.log("expId", expTask.id, "wp final total", writePromises.length)
-
+    // wait for attachments and message writes to complete
     let settledWritePromises = await Promise.allSettled(writePromises);
 
     for (let index = 0; index < errors.length; index++) {
@@ -251,19 +229,15 @@ export var exportMessages = {
       //console.log(err)
     }
 
+    // we add the fileStatus info to be used by the index
     for (let index = 0; index < fileStatusList.length; index++) {
       let fileStatus = fileStatusList[index];
       settledWritePromises[index].fileStatus = fileStatus;
     }
 
-    if (errors.length) {
-      console.log(settledWritePromises)
-    }
-
     console.log("finish exptask id", expTask.id)
 
     return settledWritePromises;
-
 
     // inline functions
 
@@ -271,7 +245,6 @@ export var exportMessages = {
       let writePromise;
 
       try {
-
 
         if (fileType == "message") {
           let unqName = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
@@ -284,8 +257,6 @@ export var exportMessages = {
             errors.push({ error: "none" });
           }
           //console.log("fileStatus", fileStatusList)
-          //console.log("expId", expTask.id, "statusnum", msgStatusList.length, unqName, )
-
 
           if (expTask.msgList[index].msgData.err) {
             console.log("write err", unqName, unqName.length)
@@ -305,16 +276,13 @@ export var exportMessages = {
             }
             log("msg2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("msg", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
-
           })
             .catch(reason => {
               emitter.emit("export-update", "inbox", 0, 1);
               log("err", `Msg Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
             })
 
-
         } else {
-          //console.log(fileType, unqName)
           let unqName = filename;
           fileStatusList.push(__createFileStatus(expTask, index, fileType, filename, attachmentFilenames));
 
@@ -329,7 +297,6 @@ export var exportMessages = {
             }
             log("msg2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("msg", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject} (${unqName})`);
-
           })
             .catch(reason => {
               emitter.emit("export-update", "inbox", 0, 1);
@@ -337,7 +304,6 @@ export var exportMessages = {
             })
 
           log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
-
         }
       } catch (ex) {
         let exMsg = ex.msg ? ex.msg + "\n" : "";
@@ -345,7 +311,7 @@ export var exportMessages = {
         let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
         log("err", `${errMsg}\n\n`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
-        emitter.emit("export-update", "inbox", 0, 1);
+        emitter.emit("export-update", "", 0, 1);
 
         expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
@@ -375,11 +341,7 @@ export var exportMessages = {
 
         var unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
 
-        console.log("start print", PathUtils.filename(unqFilename))
-
-        //console.log(msgUri)
         await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
-        //console.log(w3p.PrintUtils.printBrowser.contentDocument)
         self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
         //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
 
@@ -396,7 +358,7 @@ export var exportMessages = {
         let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
         let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
         log("err", `${errMsg}\n\n`);
-        emitter.emit("export-update", "inbox", 0, 1);
+        emitter.emit("export-update", "", 0, 1);
       }
       unlock();
       return unqFilename;
@@ -406,14 +368,11 @@ export var exportMessages = {
 
       fileStatusList.push(__createFileStatus(expTask, index, "message", unqFilename, attachmentFilenames));
 
-
-
       if (expTask.msgList[index].msgData.error) {
         errors.push(expTask.msgList[index].msgData.error);
       } else {
         errors.push({ error: "none" });
       }
-
       return 0;
     }
 
@@ -439,7 +398,6 @@ export var exportMessages = {
       return fileStatus;
     }
 
-
     async function _createErrMessage(index, ex, currentFileType) {
       let exMsg = ex.msg ? ex.msg : "";
       let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
@@ -451,7 +409,6 @@ export var exportMessages = {
       expTask.msgList[index].msgData.msgBodyType = "text/plain";
       msgBody = self._convertTextToHTML(msgBody);
       return self._insertHdrTable(expTask, index, msgBody);
-
     }
 
   }, // exportMessagesES6 end
@@ -486,7 +443,6 @@ export var exportMessages = {
     let attsDir;
     let inlineDir;
     let msgsDir = expTask.messages.messageContainerDirectory;
-    //console.log(msgsDir)
 
     // switch on structure type
     switch (expTask.attachments.containerStructure) {
@@ -513,12 +469,11 @@ export var exportMessages = {
       default:
         throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
     }
-    //console.log(attsDir, inlineDir)
 
     return { attachmentsDir: attsDir, inlineDir: inlineDir };
   },
 
-  fileToUint8Array: async function (file) {
+  _fileToUint8Array: async function (file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
 
@@ -569,8 +524,6 @@ export var exportMessages = {
     // we process depending upon body content type
 
     let msgData = expTask.msgList[index].msgData;
-    let msgItem = expTask.msgList[index];
-
 
     if (msgData.msgBodyType == "text/html") {
       // first check if this is headless html where 
@@ -619,7 +572,7 @@ export var exportMessages = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    //console.log(msgItem)
+    console.log("insert hdr table")
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;
@@ -630,7 +583,6 @@ export var exportMessages = {
 
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
-    //console.log(msgData.msgBodyType)
     if (msgData.msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
       return tp;
@@ -754,14 +706,12 @@ export var exportMessages = {
             ].createInstance(Ci.nsIScriptableInputStream);
             this._stream.init(aInputStream);
           }
-          //this._data.push(this._stream.read(aCount));
           this._data2 += this._stream.read(aCount);
 
         },
         onStartRequest() { },
         onStopRequest(request, status) {
           if (Components.isSuccessCode(status)) {
-            //resolve(this._data.join(""));
             resolve(this._data2);
           } else {
             reject(

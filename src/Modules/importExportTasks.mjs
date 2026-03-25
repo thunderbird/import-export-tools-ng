@@ -58,6 +58,7 @@ const baseExpTask = {
 
   },
   index: {
+    create: true,
     directory: "",
     dateFormat: "",
   },
@@ -159,6 +160,7 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
 
   // index
+  expTask.index.create = params.index;
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
   // debug and logging

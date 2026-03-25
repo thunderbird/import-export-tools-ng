@@ -147,8 +147,20 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_EMLFormat_Id,
+      id: "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id_newexp",
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "eml", saveAttachments: "none", index: false, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_EMLFormat_Id,
       id: "msgCtxMenu_Exp_EMLFormatCreateIndex_Id_newexp",
-      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {

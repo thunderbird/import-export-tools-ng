@@ -360,7 +360,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       if (gAbort) {
         break;
       }
-      _createIndex(expTask, exportStatus.msgListLog);
+
+      if (expTask.index.create) {
+        _createIndex(expTask, exportStatus.msgListLog);
+      }
+
     }
 
     // tell expStatus window we are done

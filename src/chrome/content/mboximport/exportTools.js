@@ -1452,8 +1452,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 								data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 								data = IETescapeBeginningFrom(data);
 
-								// Strip CR option - @ashikase
-								if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
+								// Strip CR option - @ashikase - always remove CR
+								if (true) {
 									data = data.replace(/\r\n/g, "\n");
 								}
 

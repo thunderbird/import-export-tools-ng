@@ -10,7 +10,9 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
 		title="ImportExportTools NG "
-		windowtype="ietng:options">
+		windowtype="ietng:options"
+		style="margin-bottom: 10px;"
+		>
 	<tabbox>
 		<tabs>
 			<tab label="__MSG_misc__" selected="true" />
@@ -19,7 +21,7 @@
 			<tab label=" __MSG_backupTab__ " />
 		</tabs>
 		<tabpanels>
-			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
+			<tabpanel style="margin-left: 10px; margin-top: 0px; margin-bottom: 10px;" orient="vertical">
 				<label class="top-header" >__MSG_MBcaptionlabel1__</label>
 				<html:div style="min-width: 550px">
 					<html:div style="padding-left: 10px; float: left">
@@ -29,9 +31,6 @@
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="__MSG_MBlabel1__" />
-						</hbox>
-						<hbox align="center">
-							<checkbox id="MBconfrimimport" label="__MSG_MBlabel3__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBhtmlasdisplayed" label="__MSG_MBlabel4__" />
@@ -47,9 +46,6 @@
 						</hbox>
 						<hbox align="center">
 							<checkbox id="addNumber" label="__MSG_addNumber.label__" />
-						</hbox>
-						<hbox align="center">
-							<checkbox id="stripEML_CR" label="__MSG_strip_eml_CR.label__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="openHelpInWin" label="__MSG_openHelpInWindow.label__" />

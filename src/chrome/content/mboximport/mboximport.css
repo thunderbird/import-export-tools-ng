@@ -71,6 +71,10 @@
 
 }
 
+/* Add space at the bottom of the entire dialog */
+dialog {
+  padding-bottom: 10px !important;
+}
 
 #optionsdialog {
   background-color: var(--dialog-bgcolor);

@@ -69,6 +69,9 @@ function initMboxImportPanel() {
     document.getElementById("addNumber").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number");
     document.getElementById("openHelpInWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
+    // new v15 options
+    document.getElementById("loggingOptions").value = IETgetComplexPref("extensions.importexporttoolsng.debug.logTypes");
+
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
         document.getElementById("customizeFilenames").checked = true;
@@ -283,6 +286,9 @@ function saveMboxImportPrefs() {
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.build_mbox_index", document.getElementById("buildMSF").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.import.name_add_number", document.getElementById("addNumber").checked);
     IETprefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
+
+    // new v15 options
+    IETsetComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
 
 
     if (document.getElementById("customizeFilenames").checked)

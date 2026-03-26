@@ -182,7 +182,30 @@ var msgCtxMenuSet = [
       title: localizeMenuTitle("msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title"),
     },
   },
-
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_HTMLFormat_Id,
+      id: "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id_newexp",
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "none", index: false, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_HTMLFormat_Id,
+      id: "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id_newexp",
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "none", index: false, subFolders: false }
+    }
+  },
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_HTMLFormat_Id,
@@ -238,8 +261,32 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
+      id: "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id_newexp",
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "pdf", saveAttachments: "none", index: false, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PDFFormat_Id,
+      id: "msgCtxMenu_Exp_PDFFormatSaveAtts_Id_newexp",
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "pdf", saveAttachments: "all", index: false, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id_newexp",
-      title: " (v15) " + "Messages and HTML Index",
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -257,6 +304,30 @@ var msgCtxMenuSet = [
     dispatchOptions: {
       dispatchFunction: exportCmds.exportSelectedMsgs,
       functionParams: { expMethod: "selectedMsgs", expType: "pdf", saveAttachments: "all", index: true, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
+      id: "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id_newexp",
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "none", index: false, subFolders: false }
+    }
+  },
+  {
+    menuDef: {
+      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
+      id: "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id_newexp",
+      title: "(v15) " + localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title"),
+      onclick: menuFunctionDispatcher,
+    },
+    dispatchOptions: {
+      dispatchFunction: exportCmds.exportSelectedMsgs,
+      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "none", index: false, subFolders: false }
     }
   },
   {

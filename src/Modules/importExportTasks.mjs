@@ -217,6 +217,7 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
 
   // index
+  expTask.index.create = params.index;
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
   // debug and logging
@@ -272,6 +273,7 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
 
   // index
+  expTask.index.create = params.index;
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
   // debug and logging
@@ -326,6 +328,7 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
 
   // index
+  expTask.index.create = params.index;
   expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
 
   // debug and logging

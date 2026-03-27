@@ -179,7 +179,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       // tell expStatus window we are done
       browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
-
+      
       //console.log(new Date());
 
       times[index] = new Date() - st;
@@ -373,6 +373,9 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     // tell expStatus window we are done
     browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
+
+      let id = await messenger.notifications.create({message: `Exported  messages`, title: "Export selected messages", type: "basic"})
+    console.log(id)
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);

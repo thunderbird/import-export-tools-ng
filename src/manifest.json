@@ -108,6 +108,7 @@
     "accountsFolders",
     "accountsRead",
     "messagesImport",
+    "notifications",
     "messagesMove"
   ],
   "background": {

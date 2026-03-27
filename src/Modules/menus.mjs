@@ -203,7 +203,7 @@ var msgCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: exportCmds.exportSelectedMsgs,
-      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "none", index: false, subFolders: false }
+      functionParams: { expMethod: "selectedMsgs", expType: "html", saveAttachments: "all", index: false, subFolders: false }
     }
   },
   {
@@ -327,7 +327,7 @@ var msgCtxMenuSet = [
     },
     dispatchOptions: {
       dispatchFunction: exportCmds.exportSelectedMsgs,
-      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "none", index: false, subFolders: false }
+      functionParams: { expMethod: "selectedMsgs", expType: "plaintext", saveAttachments: "all", index: false, subFolders: false }
     }
   },
   {
@@ -357,7 +357,7 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
-      id: "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id_newexp",
+      id: msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
     },
   },

@@ -315,17 +315,19 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
-      browser.runtime.sendMessage({
-        command: "UI_UPDATE", target: "expStatusWin",
-        currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
-        currentFolderIndex: expTask.currentFolderIndex,
-        folderExportedMsgCount: folderExportedMsgCount,
-        totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
-        totalFolderCount: totalFolderCount,
-        totalMsgCount: totalMsgCount,
-        totalMsgsExported: totalMsgsExported,
-        totalErrCount: totalErrCount
-      });
+      if (!expTask.debug.logTypes.includes("nostatuswin")) {
+        browser.runtime.sendMessage({
+          command: "UI_UPDATE", target: "expStatusWin",
+          currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
+          currentFolderIndex: expTask.currentFolderIndex,
+          folderExportedMsgCount: folderExportedMsgCount,
+          totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
+          totalFolderCount: totalFolderCount,
+          totalMsgCount: totalMsgCount,
+          totalMsgsExported: totalMsgsExported,
+          totalErrCount: totalErrCount
+        });
+      }
     }
 
 
@@ -351,37 +353,44 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         if (totalFolderCount > 1) {
           winType = "multipleFolders";
         }
-        await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType} - `, winType);
 
-        // wait for the window to load and send expStatusWinOpen
+        if (!expTask.debug.logTypes.includes("nostatuswin")) {
+          await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType} - `, winType);
 
-        await new Promise((resolve, reject) => {
-          async function expStatusWinOpen(msg) {
-            if (msg.command == "UI_EVENT" &&
-              msg.source == "expStatusWin" &&
-              msg.srcEvent == "expStatusWinOpen") {
-              browser.runtime.onMessage.removeListener(expStatusWinOpen);
-              resolve();
+
+          // wait for the window to load and send expStatusWinOpen
+
+          await new Promise((resolve, reject) => {
+            async function expStatusWinOpen(msg) {
+              if (msg.command == "UI_EVENT" &&
+                msg.source == "expStatusWin" &&
+                msg.srcEvent == "expStatusWinOpen") {
+                browser.runtime.onMessage.removeListener(expStatusWinOpen);
+                resolve();
+              }
             }
-          }
-          browser.runtime.onMessage.addListener(expStatusWinOpen);
-        });
+            browser.runtime.onMessage.addListener(expStatusWinOpen);
+          });
+        }
       }
 
-      // send initial ui status
-      browser.runtime.sendMessage({
-        command: "UI_UPDATE",
-        target: "expStatusWin",
-        currentFolderName: expTask.folders[folderIndex].exportPath,
-        currentFolderIndex: expTask.currentFolderIndex,
-        folderExportedMsgCount: folderExportedMsgCount,
-        totalFolderMsgCount: expTask.folders[folderIndex].totalMsgCount,
-        totalFolderCount: totalFolderCount,
-        totalMsgCount: totalMsgCount,
-        totalMsgsExported: totalMsgsExported,
-        totalErrCount: totalErrCount,
-        winType: winType
-      });
+      if (expTask.debug.logTypes.includes("nostatuswin")) {
+
+        // send initial ui status
+        browser.runtime.sendMessage({
+          command: "UI_UPDATE",
+          target: "expStatusWin",
+          currentFolderName: expTask.folders[folderIndex].exportPath,
+          currentFolderIndex: expTask.currentFolderIndex,
+          folderExportedMsgCount: folderExportedMsgCount,
+          totalFolderMsgCount: expTask.folders[folderIndex].totalMsgCount,
+          totalFolderCount: totalFolderCount,
+          totalMsgCount: totalMsgCount,
+          totalMsgsExported: totalMsgsExported,
+          totalErrCount: totalErrCount,
+          winType: winType
+        });
+      }
 
       var exportStatus = await _msgIterateBatch(expTask, ctxEvent.selectedMessages);
       if (gAbort) {
@@ -397,8 +406,15 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // tell expStatus window we are done
     browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
 
-    let id = await messenger.notifications.create({ message: `Exported  messages`, title: "Export selected messages", type: "basic" })
-    console.log(id)
+    if (expTask.debug.logTypes.includes("nostatuswin")) {
+      let id = await messenger.notifications.create({
+        message: `Exported (${totalMsgsExported}) messages`,
+        title: "Export selected messages",
+        type: "basic",
+        iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
+      });
+    }
+
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
@@ -599,7 +615,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
 
-      console.log(`IETNG: writePromises all settled status: ${writePromises.status} values: ${writePromises.value.length}`)
+      //console.log(`IETNG: writePromises all settled status: ${msgsStatus.status} values: ${msgsStatus.value.length}`)
 
       console.log(msgsStatus)
       //console.log(msgsStatus.length)

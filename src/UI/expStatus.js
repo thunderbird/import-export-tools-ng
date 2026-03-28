@@ -72,10 +72,11 @@ browser.runtime.onMessage.addListener(msg => {
   }
 });
 
-console.log("UI started, listener running");
+console.log("IETNG: UI started, listener running");
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   i18n.updateDocument();
+  //await new Promise(r => setTimeout(r, 9000));
 
   messenger.runtime
     .sendMessage({
@@ -83,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
       source: "expStatusWin",
       srcEvent: "expStatusWinOpen",
     });
+
+  console.log("IETNG: UI Sent expStatusWinOpen event");
 
   okButton.addEventListener("click", okButtonListener);
   cancelButton.addEventListener("click", cancelButtonListener);

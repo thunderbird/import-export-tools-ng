@@ -71,6 +71,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     var times = [];
 
     // UI listener
+    let expStatusWinOpenState = false;
+
     browser.runtime.onMessage.addListener(msg => {
       if (msg.command != "UI_EVENT") {
         return null;
@@ -83,6 +85,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
             // we are aborting current export
             gAbort = true;
             break;
+          case "expStatusWinOpen":
+            expStatusWinOpenState = true;
         }
       }
     });
@@ -117,6 +121,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     }
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
+
 
     console.log(`IETNG: Added UI and exportStatus listeners`)
     console.log(`IETNG: Starting folder loop`)
@@ -159,17 +164,28 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           // wait for the window to load and send expStatusWinOpen
 
           await new Promise((resolve, reject) => {
+            let resolved = false;
             async function expStatusWinOpen(msg) {
               if (msg.command == "UI_EVENT" &&
                 msg.source == "expStatusWin" &&
                 msg.srcEvent == "expStatusWinOpen") {
                 browser.runtime.onMessage.removeListener(expStatusWinOpen);
                 console.log(`IETNG: Received expStatusWinOpen event`)
-
+                resolved = true;
                 resolve();
               }
             }
             browser.runtime.onMessage.addListener(expStatusWinOpen);
+            // create timeout for reject and abort
+            setTimeout(() => {
+              if (resolved) {
+                return;
+              }
+              console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
+              reject();
+              gAbort = true;
+              throw new Error("No expStatusWinOpen event")
+            }, 5200);
           });
         }
 

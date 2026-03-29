@@ -163,8 +163,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
           // wait for the window to load and send expStatusWinOpen
 
-          await new Promise((resolve, reject) => {
+          var w = await new Promise((resolve, reject) => {
             let resolved = false;
+
             async function expStatusWinOpen(msg) {
               if (msg.command == "UI_EVENT" &&
                 msg.source == "expStatusWin" &&
@@ -182,13 +183,16 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                 return;
               }
               console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
-              reject();
               gAbort = true;
-              throw new Error("No expStatusWinOpen event")
-            }, 5200);
+              //throw new Error("No expStatusWinOpen event")
+              reject("IETNG: Timeout waiting for expStatusWinOpen event");
+              return;
+
+            }, 4200);
           });
         }
 
+        console.log("w", w)
 
         // send initial ui status
         browser.runtime.sendMessage({
@@ -239,11 +243,19 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     //let rv = await browser.AsyncPrompts.asyncAlert("Folder Export", `${exportMessage}`);
 
   } catch (ex) {
-    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-    console.log(ex);
-    console.log(ex.stack);
+    console.log(ex)
+    if (!ex) {
+      var ex = "Unknown"
+    }
+    //let exMsg = ex.message || "";
 
-    browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+    let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex}\n\n${ex.stack}`);
+    console.log(ex.stack);
+    try {
+      browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+    } catch (ex) {
+    }
+    return;
   }
 }
 

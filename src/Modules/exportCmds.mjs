@@ -192,8 +192,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           });
         }
 
-        console.log("w", w)
-
         // send initial ui status
         browser.runtime.sendMessage({
           command: "UI_UPDATE",
@@ -233,8 +231,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     //console.log("wrt avg", wrtotal / runs)
     let exportMessage = `Exported Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n`;
-    exportMessage += `Messages exported: ${exportStatus.msgCount}\n`;
-    exportMessage += `Error count: ${exportStatus.errCount}\n`;
+    exportMessage += `Messages exported: ${exportStatus?.msgCount}\n`;
+    exportMessage += `Error count: ${exportStatus?.errCount}\n`;
     exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
     console.log(exportMessage)
 
@@ -646,7 +644,13 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
       //console.log(`IETNG: writePromises all settled status: ${msgsStatus.status} values: ${msgsStatus.value.length}`)
 
       console.log(msgsStatus)
+
       //console.log(msgsStatus.length)
+
+      if (msgsStatus.length == 1 && msgsStatus[0]?.reason) {
+        throw new Error(msgsStatus[0].reason + "\n\nSee the Debug Console for more detail.\n(Control-Shift-J)")
+      }
+
       if (msgsStatus.length == 1 && msgsStatus[0].value.error) {
         console.log(msgsStatus[0].value.error)
         throw new Error(msgsStatus[0].value.error)
@@ -686,7 +690,8 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
     console.log(ex)
-
+    gAbort = true;
+    return;
   }
 }
 

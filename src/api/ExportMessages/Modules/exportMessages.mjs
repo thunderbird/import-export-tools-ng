@@ -77,6 +77,8 @@ export var exportMessages = {
 
     for (let index = 0; index < msgListLen; index++) {
 
+//      try {
+
       // if there are no body parts we have two scenarios
       // it can be a message with blocked remote content
       // where getFull gives us nothing. In this case
@@ -107,6 +109,7 @@ export var exportMessages = {
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
 
       try {
+
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
         var currentFileType = "";

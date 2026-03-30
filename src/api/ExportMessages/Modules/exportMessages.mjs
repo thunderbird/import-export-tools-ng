@@ -77,7 +77,7 @@ export var exportMessages = {
 
     for (let index = 0; index < msgListLen; index++) {
 
-//      try {
+      try {
 
       // if there are no body parts we have two scenarios
       // it can be a message with blocked remote content
@@ -107,8 +107,6 @@ export var exportMessages = {
 
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
-
-      try {
 
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;

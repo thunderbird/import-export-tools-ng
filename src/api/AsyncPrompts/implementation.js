@@ -55,8 +55,6 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
   _addStyleSheet() {
     let head = top.document.head || top.document.getElementsByTagName('head')[0];
-    //let style = this._addElementChild("link", "ietng-styles", head, [], { rel: "stylesheet", type: "text/css", href: "chrome://mboximport/content/mboximport/mboxmsg.css" });
-    //let style = this._addElementChild("link", "ietng-styles", head, [], { rel: "stylesheet", type: "text/css", href: "chrome://./mboxmsg2.css" });
     let style = this._addElementChild("link", "ietng-styles", head, [], { rel: "stylesheet", type: "text/css", href: "resource://ietng/api/AsyncPrompts/asyncprompts.css" });
 
 

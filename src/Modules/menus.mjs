@@ -357,13 +357,6 @@ var msgCtxMenuSet = [
   {
     menuDef: {
       parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
-      id: msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id,
-      title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title"),
-    },
-  },
-  {
-    menuDef: {
-      parentId: msgCtxMenu_Exp_PlainTextFormat_Id,
       id: msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id,
       title: localizeMenuTitle("msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title"),
     },

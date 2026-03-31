@@ -102,8 +102,7 @@ export var exportMessages = {
         expTask.msgList[index].msgData.msgBodyType = "text/html";
       }
 
-      let generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
-      var name = generatedMsgName;
+      var generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
 
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
       log("msg2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
@@ -201,12 +200,11 @@ export var exportMessages = {
       let unqFilename;
 
       if (expTask.expType == "pdf") {
-        console.log(attachmentFilenames)
         unqFilename = await __writePdfFile(generatedMsgName, expTask, index, attDirs, attachmentFilenames);
 
         writePromises.push(__pdfPromise(expTask, index, unqFilename));
       } else {
-        let writePromise = __writeFile("message", name, expTask, index);
+        let writePromise = __writeFile("message", generatedMsgName, expTask, index);
 
         writePromises.push(writePromise);
       }

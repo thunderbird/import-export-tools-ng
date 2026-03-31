@@ -70,7 +70,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     var times = [];
 
     // UI listener
-    let expStatusWinOpenState = false;
 
     browser.runtime.onMessage.addListener(msg => {
       if (msg.command != "UI_EVENT") {
@@ -84,8 +83,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
             // we are aborting current export
             gAbort = true;
             break;
-          case "expStatusWinOpen":
-            expStatusWinOpenState = true;
         }
       }
     });
@@ -104,19 +101,19 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
-      browser.runtime.sendMessage({
-        command: "UI_UPDATE", target: "expStatusWin",
-        currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
-        currentFolderIndex: expTask.currentFolderIndex,
-        folderExportedMsgCount: folderExportedMsgCount,
-        totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
-        totalFolderCount: totalFolderCount,
-        totalMsgCount: totalMsgCount,
-        totalMsgsExported: totalMsgsExported,
-        totalErrCount: totalErrCount
-
-      })
-      //console.log(folderName, `Msg count: (${folderExportedMsgCount} / ${expTask.folders[expTask.currentFolderIndex].totalMsgCount})`)
+      if (!expTask.debug.logTypes.includes("nostatuswin")) {
+        browser.runtime.sendMessage({
+          command: "UI_UPDATE", target: "expStatusWin",
+          currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
+          currentFolderIndex: expTask.currentFolderIndex,
+          folderExportedMsgCount: folderExportedMsgCount,
+          totalFolderMsgCount: expTask.folders[expTask.currentFolderIndex].totalMsgCount,
+          totalFolderCount: totalFolderCount,
+          totalMsgCount: totalMsgCount,
+          totalMsgsExported: totalMsgsExported,
+          totalErrCount: totalErrCount
+        });
+      }
     }
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
@@ -155,59 +152,66 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           if (totalFolderCount > 1) {
             winType = "multipleFolders";
           }
-          await ui.createExportStatusWindow(`Export Folders: ${expTask.expType} - `, winType);
 
-          console.log(`IETNG: Created expStatusWin winType: ${winType}`)
+          if (!expTask.debug.logTypes.includes("nostatuswin")) {
+
+            await ui.createExportStatusWindow(`Export Folders: ${expTask.expType} - `, winType);
+
+            console.log(`IETNG: Created expStatusWin winType: ${winType}`)
 
 
-          // wait for the window to load and send expStatusWinOpen
+            // wait for the window to load and send expStatusWinOpen
 
-          var w = await new Promise((resolve, reject) => {
-            let resolved = false;
+            var w = await new Promise((resolve, reject) => {
+              let resolved = false;
 
-            async function expStatusWinOpen(msg) {
-              if (msg.command == "UI_EVENT" &&
-                msg.source == "expStatusWin" &&
-                msg.srcEvent == "expStatusWinOpen") {
-                browser.runtime.onMessage.removeListener(expStatusWinOpen);
-                console.log(`IETNG: Received expStatusWinOpen event`)
-                resolved = true;
-                resolve();
+              async function expStatusWinOpen(msg) {
+                if (msg.command == "UI_EVENT" &&
+                  msg.source == "expStatusWin" &&
+                  msg.srcEvent == "expStatusWinOpen") {
+                  browser.runtime.onMessage.removeListener(expStatusWinOpen);
+                  console.log(`IETNG: Received expStatusWinOpen event`)
+                  resolved = true;
+                  resolve();
+                }
               }
-            }
-            browser.runtime.onMessage.addListener(expStatusWinOpen);
-            // create timeout for reject and abort
-            setTimeout(() => {
-              if (resolved) {
+              browser.runtime.onMessage.addListener(expStatusWinOpen);
+              // create timeout for reject and abort
+              setTimeout(() => {
+                if (resolved) {
+                  return;
+                }
+                console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
+                gAbort = true;
+                //throw new Error("No expStatusWinOpen event")
+                reject("IETNG: Timeout waiting for expStatusWinOpen event");
                 return;
-              }
-              console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
-              gAbort = true;
-              //throw new Error("No expStatusWinOpen event")
-              reject("IETNG: Timeout waiting for expStatusWinOpen event");
-              return;
 
-            }, 4200);
-          });
+              }, 4200);
+            });
+          }
         }
 
-        // send initial ui status
-        browser.runtime.sendMessage({
-          command: "UI_UPDATE",
-          target: "expStatusWin",
-          currentFolderName: expTask.folders[folderIndex].exportPath,
-          currentFolderIndex: expTask.currentFolderIndex,
-          folderExportedMsgCount: folderExportedMsgCount,
-          totalFolderMsgCount: expTask.folders[folderIndex].totalMsgCount,
-          totalFolderCount: totalFolderCount,
-          totalMsgCount: totalMsgCount,
-          totalMsgsExported: totalMsgsExported,
-          totalErrCount: totalErrCount,
-          winType: winType
+        if (!expTask.debug.logTypes.includes("nostatuswin")) {
+          // send initial ui status
+          browser.runtime.sendMessage({
+            command: "UI_UPDATE",
+            target: "expStatusWin",
+            currentFolderName: expTask.folders[folderIndex].exportPath,
+            currentFolderIndex: expTask.currentFolderIndex,
+            folderExportedMsgCount: folderExportedMsgCount,
+            totalFolderMsgCount: expTask.folders[folderIndex].totalMsgCount,
+            totalFolderCount: totalFolderCount,
+            totalMsgCount: totalMsgCount,
+            totalMsgsExported: totalMsgsExported,
+            totalErrCount: totalErrCount,
+            winType: winType
 
-        });
+          });
 
-        console.log(`IETNG: Sent initial UI_UPDATE msg`)
+          console.log(`IETNG: Sent initial UI_UPDATE msg`)
+        }
+
         console.log(`IETNG: Calling _msgIterateBatch`)
 
         var exportStatus = await _msgIterateBatch(expTask);
@@ -222,6 +226,14 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
       } catch (ex) { }
 
+      if (expTask.debug.logTypes.includes("nostatuswin")) {
+        let id = await messenger.notifications.create({
+          message: `Exported (${totalMsgsExported}) messages`,
+          title: "Export Folders",
+          type: "basic",
+          iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
+        });
+      }
       //console.log(new Date());
 
       times[index] = new Date() - st;
@@ -259,8 +271,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 }
 
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
-  console.log(ctxEvent, tab, functionParams)
-  let currentMailTab = await messenger.tabs.getCurrent();
   try {
     gAbort = false;
 
@@ -383,7 +393,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
         if (!expTask.debug.logTypes.includes("nostatuswin")) {
           await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType} - `, winType);
-
 
           // wait for the window to load and send expStatusWinOpen
 

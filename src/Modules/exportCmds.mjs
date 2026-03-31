@@ -5,7 +5,6 @@ import * as prefs from "./prefCmds.mjs";
 import { strftime } from "./strftime.mjs";
 import * as ui from "./ui.mjs";
 
-console.log(strftime)
 import { Ci } from "/Modules/CiConstants.js";
 
 var os = navigator.platform.toLowerCase();
@@ -220,9 +219,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       // tell expStatus window we are done
       try {
-      browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
-      } catch (ex) {}
-      
+        browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
+      } catch (ex) { }
+
       //console.log(new Date());
 
       times[index] = new Date() - st;

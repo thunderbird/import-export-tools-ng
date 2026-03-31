@@ -219,8 +219,10 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       }
 
       // tell expStatus window we are done
+      try {
       browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
-
+      } catch (ex) {}
+      
       //console.log(new Date());
 
       times[index] = new Date() - st;

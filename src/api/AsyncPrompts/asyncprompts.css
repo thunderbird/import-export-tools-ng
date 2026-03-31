@@ -54,7 +54,7 @@
 }
 
 #ietng-imgdiv {
-  background-image: url(chrome://mboximport/content/mboximport/icons/info.png);
+  background-image: url(resource://ietng/chrome/content/mboximport/icons/info.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;

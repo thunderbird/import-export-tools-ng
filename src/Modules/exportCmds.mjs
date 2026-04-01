@@ -397,15 +397,29 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           // wait for the window to load and send expStatusWinOpen
 
           await new Promise((resolve, reject) => {
+            let resolved = false;
             async function expStatusWinOpen(msg) {
               if (msg.command == "UI_EVENT" &&
                 msg.source == "expStatusWin" &&
                 msg.srcEvent == "expStatusWinOpen") {
                 browser.runtime.onMessage.removeListener(expStatusWinOpen);
+                resolved = true;
                 resolve();
               }
             }
             browser.runtime.onMessage.addListener(expStatusWinOpen);
+            // create timeout for reject and abort
+            setTimeout(() => {
+              if (resolved) {
+                return;
+              }
+              console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
+              gAbort = true;
+              //throw new Error("No expStatusWinOpen event")
+              reject("IETNG: Timeout waiting for expStatusWinOpen event");
+              return;
+
+            }, 4200);
           });
         }
       }

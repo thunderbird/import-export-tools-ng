@@ -155,7 +155,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
           if (!expTask.debug.logTypes.includes("nostatuswin")) {
 
-            await ui.createExportStatusWindow(`Export Folders: ${expTask.expType} - `, winType);
+            await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
 
             console.log(`IETNG: Created expStatusWin winType: ${winType}`)
 
@@ -392,7 +392,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         }
 
         if (!expTask.debug.logTypes.includes("nostatuswin")) {
-          await ui.createExportStatusWindow(`Export Selected messages: ${expTask.expType} - `, winType);
+          await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
 
           // wait for the window to load and send expStatusWinOpen
 

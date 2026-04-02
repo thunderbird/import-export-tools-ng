@@ -119,6 +119,7 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
     expTask.expMethod = params.expMethod;
   }
   expTask.expType = params.expType;
+  expTask.exportFormatText = browser.i18n.getMessage("exportFormatEML");
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = "";
@@ -174,6 +175,8 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
     expTask.expMethod = params.expMethod;
   }
   expTask.expType = params.expType;
+  expTask.exportFormatText = browser.i18n.getMessage("exportFormatHTML");
+
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = params.exportDirectory;
@@ -231,6 +234,8 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
     expTask.expMethod = params.expMethod;
   }
   expTask.expType = params.expType;
+  expTask.exportFormatText = browser.i18n.getMessage("exportFormatPDF");
+
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = params.exportDirectory;
@@ -286,6 +291,8 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
     expTask.expMethod = params.expMethod;
   }
   expTask.expType = params.expType;
+  expTask.exportFormatText = browser.i18n.getMessage("exportFormatPlaintext");
+
   expTask.folders = folderSet;
   expTask.currentFolderPath = expTask.folders[0].path;
   expTask.generalConfig.exportDirectory = params.exportDirectory;

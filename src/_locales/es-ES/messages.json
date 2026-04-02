@@ -682,6 +682,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Formato PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Índice de mensajes y HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Solo mensajes"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Mensajes y archivos adjuntos"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensajes con archivos adjuntos e índice"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Formato de texto sin formato"
   },

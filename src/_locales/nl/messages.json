@@ -682,6 +682,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF-formaat"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Berichten en HTML-index"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Alleen berichten"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Berichten en bijlagen"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Berichten met bijlagen en index"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Platte tekstformaat"
   },

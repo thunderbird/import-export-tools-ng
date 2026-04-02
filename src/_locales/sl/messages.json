@@ -682,6 +682,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF format"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Sporočila in kazalo HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Samo sporočila"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Sporočila in priloge"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Sporočila s prilogami in kazalom"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Oblika navadnega besedila"
   },

@@ -682,6 +682,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF 格式"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "消息和 HTML 索引"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "仅限消息"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "消息和附件"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "带附件和索引的消息"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "纯文本格式"
   },

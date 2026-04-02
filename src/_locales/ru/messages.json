@@ -269,6 +269,21 @@
     "message": "Экспортировать папку",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Экспорт папок"
+  },
+  "exportFormatEML": {
+    "message": "ЭМЛ"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Простой текст"
+  },
   "exportingMsg": {
     "message": "Экспорт",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Экспорт был завершён правильно",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Экспорт выбранных сообщений"
   },
   "exportstart": {
     "message": "Подождите, идёт экспорт…",

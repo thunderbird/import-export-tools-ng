@@ -270,6 +270,21 @@
     "message": "Carpeta d\\'exportació",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportar carpetes"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Text sense format"
+  },
   "exportingMsg": {
     "message": "Exportant",
     "src": "mboximport"
@@ -277,6 +292,9 @@
   "exportOK": {
     "message": "L\\'exportació s\\'ha realitzat correctament",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exporta els missatges seleccionats"
   },
   "exportstart": {
     "message": "S\\'està exportant... espereu",

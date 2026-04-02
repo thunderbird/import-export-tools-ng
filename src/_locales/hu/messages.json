@@ -269,6 +269,21 @@
     "message": "Mappa exportálása",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Mappák exportálása"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Sima szöveg"
+  },
   "exportingMsg": {
     "message": "Exportálás",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Az exportálás sikeresen befejeződött",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Kijelölt üzenetek exportálása"
   },
   "exportstart": {
     "message": "Exportálás, kis türelmet…",

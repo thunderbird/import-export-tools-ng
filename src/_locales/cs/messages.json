@@ -269,6 +269,21 @@
     "message": "Exportovat složku",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportovat složky"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Prostý text"
+  },
   "exportingMsg": {
     "message": "Export",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Export byl úspěšně proveden",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportovat vybrané zprávy"
   },
   "exportstart": {
     "message": "Export, čekejte prosím…",

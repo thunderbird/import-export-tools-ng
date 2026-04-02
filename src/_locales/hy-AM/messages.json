@@ -269,6 +269,21 @@
     "message": "Արտածել թղթապանակը",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Արտահանել թղթապանակներ"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Պարզ տեքստ"
+  },
   "exportingMsg": {
     "message": "Արտահանում",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Հաջողությամբ արտածվեց",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Արտահանել ընտրված հաղորդագրությունները"
   },
   "exportstart": {
     "message": "Արտածվում է…մի փոքր սպասեք",

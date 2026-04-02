@@ -270,6 +270,21 @@
     "message": "Exportar cartafol",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportar cartafoles"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Texto sen formato"
+  },
   "exportingMsg": {
     "message": "Exportando",
     "src": "mboximport"
@@ -277,6 +292,9 @@
   "exportOK": {
     "message": "Exportouse correctamente",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportar mensaxes seleccionadas"
   },
   "exportstart": {
     "message": "Exportando... agarde por favor",

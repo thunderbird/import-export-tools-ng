@@ -269,6 +269,21 @@
     "message": "Εξαγωγή φακέλου",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Εξαγωγή φακέλων"
+  },
+  "exportFormatEML": {
+    "message": "Ηλεκτρονική Μίμηση"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Απλό κείμενο"
+  },
   "exportingMsg": {
     "message": "Εξαγωγή",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Η εξαγωγή πραγματοποιήθηκε με επιτυχία",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Εξαγωγή επιλεγμένων μηνυμάτων"
   },
   "exportstart": {
     "message": "Εξαγωγή, περιμένετε…",

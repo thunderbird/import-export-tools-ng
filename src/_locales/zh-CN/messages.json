@@ -269,6 +269,21 @@
     "message": "导出信件夹",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "导出文件夹"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "纯文本"
+  },
   "exportingMsg": {
     "message": "出口",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "导出成功",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "导出选定消息"
   },
   "exportstart": {
     "message": "正在导出……请稍候",

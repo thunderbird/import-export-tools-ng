@@ -269,6 +269,21 @@
     "message": "Exportera mapp",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportera mappar"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Klartext"
+  },
   "exportingMsg": {
     "message": "Exporterar",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Exporten slutfördes",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportera valda meddelanden"
   },
   "exportstart": {
     "message": "Exporterar… Var vänlig vänta",

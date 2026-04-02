@@ -269,6 +269,21 @@
     "message": "フォルダーをエクスポート",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "エクスポートフォルダ"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "プレーンテキスト"
+  },
   "exportingMsg": {
     "message": "エクスポート中",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "エクスポートは正常に完了しました",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "選択したメッセージをエクスポート"
   },
   "exportstart": {
     "message": "エクスポート中...お待ちください",

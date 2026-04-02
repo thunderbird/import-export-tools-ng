@@ -269,6 +269,21 @@
     "message": "Eksporter mappe",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Eksportér mapper"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF-fil"
+  },
+  "exportFormatPlaintext": {
+    "message": "Almindelig tekst"
+  },
   "exportingMsg": {
     "message": "Eksporterer",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Eksporten er blevet korrekt udført",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Eksporter valgte beskeder"
   },
   "exportstart": {
     "message": "Eksporterer...vent venligst",

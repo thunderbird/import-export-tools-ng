@@ -269,6 +269,21 @@
     "message": "내보내기 폴더",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "내보내기 폴더"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "평문"
+  },
   "exportingMsg": {
     "message": "내보내기",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "내보내기를 정상적으로 끝마쳤습니다",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "선택한 메시지 내보내기"
   },
   "exportstart": {
     "message": "내보내는 중...잠시만 기다려주세요",

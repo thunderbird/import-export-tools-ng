@@ -269,6 +269,21 @@
     "message": "Exportovať priečinok",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportovať priečinky"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Obyčajný text"
+  },
   "exportingMsg": {
     "message": "Exportuje sa",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Export bol úspešne dokončený",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportovať vybrané správy"
   },
   "exportstart": {
     "message": "Prebieha export, čakajte prosím...",

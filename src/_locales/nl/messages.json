@@ -269,6 +269,21 @@
     "message": "Map exporteren",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Mappen exporteren"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Platte tekst"
+  },
   "exportingMsg": {
     "message": "Exporteren",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Exporteren uitgevoerd",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Geselecteerde berichten exporteren"
   },
   "exportstart": {
     "message": "Exporteren… Een ogenblik geduld",

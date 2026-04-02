@@ -269,6 +269,21 @@
     "message": "Izvozi mapo",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Izvozi mape"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Golo besedilo"
+  },
   "exportingMsg": {
     "message": "Izvažanje",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Izvoz uspešno izveden",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Izvozi izbrana sporočila"
   },
   "exportstart": {
     "message": "Izvažanje ... počakajte",

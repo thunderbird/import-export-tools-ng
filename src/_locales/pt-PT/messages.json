@@ -269,6 +269,21 @@
     "message": "Exportar pasta",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Pastas de exportação"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "texto simples"
+  },
   "exportingMsg": {
     "message": "Exportador",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "A exportação foi efectuada correctamente",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportar mensagens selecionadas"
   },
   "exportstart": {
     "message": "A Exportar...Por favor aguarde",

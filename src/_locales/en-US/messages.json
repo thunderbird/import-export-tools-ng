@@ -269,6 +269,21 @@
     "message": "Export folder",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Export Folders"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Plaintext"
+  },
   "exportingMsg": {
     "message": "Exporting",
     "src": "mboximport"
@@ -276,6 +291,9 @@
   "exportOK": {
     "message": "Export successfully performed",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Export Selected Messages"
   },
   "exportstart": {
     "message": "Exporting, please wait…",

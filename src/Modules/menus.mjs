@@ -262,7 +262,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id_newexp",
-      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -274,7 +274,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatSaveAtts_Id_newexp",
-      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -286,7 +286,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id_newexp",
-      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title"),
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {
@@ -298,7 +298,7 @@ var msgCtxMenuSet = [
     menuDef: {
       parentId: msgCtxMenu_Exp_PDFFormat_Id,
       id: "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id_newexp",
-      title: " (v15) " + "Messages with Attachments and HTML Index",
+      title: " (v15) " + localizeMenuTitle("msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title"),
       onclick: menuFunctionDispatcher,
     },
     dispatchOptions: {

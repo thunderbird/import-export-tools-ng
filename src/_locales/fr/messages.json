@@ -683,7 +683,7 @@
     "message": "Format PDF"
   },
   "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-    "message": "Index des messages et du HTML"
+    "message": "Messages et index HTML"
   },
   "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
     "message": "Messages uniquement"

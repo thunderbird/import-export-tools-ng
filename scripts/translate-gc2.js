@@ -16,11 +16,15 @@ const translate = new Translate({ projectId, key });
 //console.debug( translate );
 
 var translationArray = [
-	{ key: "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title", text: "Messages Only"},
-	{ key: "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title", text: "Messages And Attachments"},
-	{ key: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title", text: "Messages And HTML Index"},
-	{ key: "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title", text: "Messages With Attachments And Index"},
+	{ key: "exportFormatEML", text: "EML"},
+	{ key: "exportFormatHTML", text: "HTML"},
+	{ key: "exportFormatPDF", text: "PDF"},
+	{ key: "exportFormatPlaintext", text: "Plaintext"},
+	{ key: "ExportFolders.title", text: "Export Folders"},
+	{ key: "ExportSelectedMessages.title", text: "Export Selected Messages"},
 
+
+	
 	
 
 ];

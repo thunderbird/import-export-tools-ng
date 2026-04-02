@@ -692,7 +692,7 @@
     "message": "Nachrichten und Anhänge"
   },
   "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
-    "message": "Nachrichten mit Anhängen und Inhaltsverzeichnis"
+    "message": "Nachrichten mit Anhängen und HTML-Index"
   },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Reintext-Format"

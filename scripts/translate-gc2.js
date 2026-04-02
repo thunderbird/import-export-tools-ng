@@ -16,15 +16,12 @@ const translate = new Translate({ projectId, key });
 //console.debug( translate );
 
 var translationArray = [
-	{ key: "currentFolder.label", text: "Current Folder"},
-	{ key: "messageCount.label", text: "Message Count"},
-	{ key: "folderCount.label", text: "Folder Count"},
-	{ key: "totalMessages.label", text: "Total Messages"},
-	{ key: "totalErrors.label", text: "Total Errors"},
-	{ key: "messagesExported.label", text: "Messages Exported"},
-	{ key: "totalMessagesExported.label", text: "Total Messages Exported"},
+	{ key: "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title", text: "Messages Only"},
+	{ key: "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title", text: "Messages And Attachments"},
+	{ key: "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title", text: "Messages And HTML Index"},
+	{ key: "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title", text: "Messages With Attachments And Index"},
 
-
+	
 
 ];
 
@@ -557,11 +554,11 @@ localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl', 'hu
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-translateHelpPage();
+//translateHelpPage();
 //translatePage();
 
 // message translations
-//translateAll(inputFiles, translationArray, options);
+translateAll(inputFiles, translationArray, options);
 
 /*
 node .\scripts\translate-gc2.js

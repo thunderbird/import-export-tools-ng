@@ -225,11 +225,16 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       try {
         browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
       } catch (ex) { }
-
       if (expTask.debug.logTypes.includes("nostatuswin")) {
+        let notificationMsg =
+          `${browser.i18n.getMessage("totalMessages.label")} : ${totalMsgsExported}`;
+        if (totalErrCount) {
+          notificationMsg += `\n${browser.i18n.getMessage("totalErrors.label")} : ${totalMsgsExported}`;
+        }
+
         let id = await messenger.notifications.create({
-          message: `Exported (${totalMsgsExported}) messages`,
-          title: "Export Folders",
+          message: notificationMsg,
+          title: `${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText}`,
           type: "basic",
           iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
         });
@@ -457,9 +462,16 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
 
     if (expTask.debug.logTypes.includes("nostatuswin")) {
+      let notificationMsg =
+        `${browser.i18n.getMessage("totalMessages.label")} : ${totalMsgsExported}`;
+      if (totalErrCount) {
+        notificationMsg += `\n${browser.i18n.getMessage("totalErrors.label")} : ${totalMsgsExported}`;
+      }
+
       let id = await messenger.notifications.create({
-        message: `Exported (${totalMsgsExported}) messages`,
-        title: "Export selected messages",
+        message: notificationMsg,
+        title: `${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText}`,
+
         type: "basic",
         iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
       });

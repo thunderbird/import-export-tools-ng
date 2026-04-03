@@ -1102,6 +1102,7 @@ async function _createIndex(expTask, msgListLog) {
     const toHdr = browser.i18n.getMessage("msgHdr.To");
     const dateHdr = browser.i18n.getMessage("msgHdr.Date");
     const sizeStr = browser.i18n.getMessage("Size");
+    const folderStr = browser.i18n.getMessage("Folder.label");
 
     let indexData = "";
     let titleDate = strftime.strftime(expTask.index.dateFormat, new Date());
@@ -1130,8 +1131,8 @@ async function _createIndex(expTask, msgListLog) {
 
     indexData += styles;
     indexData += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\n';
-    indexData += `<title>Folder: ${expTask.folders[expTask.currentFolderIndex].name}</title>\n</head>\n<body>\n`;
-    indexData += `<h2>Folder: ${expTask.folders[expTask.currentFolderIndex].name}&nbsp;&nbsp;&nbsp;&nbsp;Date: ${titleDate}</h2>\n`;
+    indexData += `<title>${folderStr} : ${expTask.folders[expTask.currentFolderIndex].name}</title>\n</head>\n<body>\n`;
+    indexData += `<h2>${folderStr} : ${expTask.folders[expTask.currentFolderIndex].name}&nbsp;&nbsp;&nbsp;&nbsp;${dateHdr} : ${titleDate}</h2>\n`;
 
     indexData += '<table width="99%" border="1" class="sortable">\n';
 

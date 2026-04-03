@@ -344,6 +344,9 @@
     "message": "Seleccione as mensagens a importar",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Pasta"
+  },
   "folderCount.label": {
     "message": "Contagem de pastas"
   },

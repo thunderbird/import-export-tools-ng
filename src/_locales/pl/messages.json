@@ -344,6 +344,9 @@
     "message": "Wybierz wiadomości do zaimportowania",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Falcówka"
+  },
   "folderCount.label": {
     "message": "Liczba folderów"
   },

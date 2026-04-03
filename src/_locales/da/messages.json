@@ -344,6 +344,9 @@
     "message": "Vælg meddelelserne til import",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Folder"
+  },
   "folderCount.label": {
     "message": "Antal mapper"
   },

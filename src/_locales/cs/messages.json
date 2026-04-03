@@ -344,6 +344,9 @@
     "message": "Vyberte zprávy, které chcete importovat",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Složka"
+  },
   "folderCount.label": {
     "message": "Počet složek"
   },

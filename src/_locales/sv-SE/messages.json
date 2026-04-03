@@ -344,6 +344,9 @@
     "message": "Välj meddelanden att importera",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Mapp"
+  },
   "folderCount.label": {
     "message": "Antal mappar"
   },

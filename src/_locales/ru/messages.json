@@ -344,6 +344,9 @@
     "message": "Выберите сообщение для импорта",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Папка"
+  },
   "folderCount.label": {
     "message": "Количество папок"
   },

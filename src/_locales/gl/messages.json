@@ -345,6 +345,9 @@
     "message": "Seleccionar as mensaxes a importar",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Cartafol"
+  },
   "folderCount.label": {
     "message": "Número de cartafoles"
   },

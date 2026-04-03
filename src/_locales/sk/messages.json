@@ -344,6 +344,9 @@
     "message": "Výber správ na importovanie",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Priečinok"
+  },
   "folderCount.label": {
     "message": "Počet priečinkov"
   },

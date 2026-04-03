@@ -344,6 +344,9 @@
     "message": "选择要导入的邮件",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "文件夹"
+  },
   "folderCount.label": {
     "message": "文件夹数量"
   },

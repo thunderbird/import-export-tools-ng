@@ -344,6 +344,9 @@
     "message": "Selecteer de te importeren berichten",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Map"
+  },
   "folderCount.label": {
     "message": "Aantal mappen"
   },

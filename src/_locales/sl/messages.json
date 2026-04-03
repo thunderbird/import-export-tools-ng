@@ -344,6 +344,9 @@
     "message": "Izberite sporočila za uvoz",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Mapa"
+  },
   "folderCount.label": {
     "message": "Število map"
   },

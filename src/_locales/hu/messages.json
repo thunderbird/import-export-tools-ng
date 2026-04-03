@@ -344,6 +344,9 @@
     "message": "Az importálni kívánt üzenetek kijelölése",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Mappa"
+  },
   "folderCount.label": {
     "message": "Mappák száma"
   },

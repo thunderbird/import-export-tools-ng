@@ -344,6 +344,9 @@
     "message": "들여올 메세지를 선택하세요",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "접는 사람"
+  },
   "folderCount.label": {
     "message": "폴더 수"
   },

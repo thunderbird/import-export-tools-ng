@@ -344,6 +344,9 @@
     "message": "Scegliere i messaggi da importare",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Cartella"
+  },
   "folderCount.label": {
     "message": "Conteggio cartelle"
   },

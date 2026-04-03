@@ -344,6 +344,9 @@
     "message": "Επιλέξτε τα μηνύματα για εισαγωγή",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Ντοσιέ"
+  },
   "folderCount.label": {
     "message": "Αριθμός φακέλων"
   },

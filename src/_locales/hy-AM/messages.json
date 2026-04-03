@@ -344,6 +344,9 @@
     "message": "Ընտրեք ներմուծվող նամակները",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "Պանակ"
+  },
   "folderCount.label": {
     "message": "Թղթապանակների քանակը"
   },

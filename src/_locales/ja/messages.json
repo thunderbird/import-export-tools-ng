@@ -344,6 +344,9 @@
     "message": "選択したメッセージをインポート",
     "src": "mboximport"
   },
+  "Folder.label": {
+    "message": "フォルダ"
+  },
   "folderCount.label": {
     "message": "フォルダ数"
   },

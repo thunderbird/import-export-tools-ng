@@ -70,4 +70,6 @@ pref("extensions.importexporttoolsng.experimental.csv.account_folder_col", false
 pref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports", false);
 pref("extensions.importexporttoolsng.help.showOnInstallAndUpdate", true);
 pref("extensions.importexporttoolsng.help.openInWindow", false);
+pref("extensions.importexporttoolsng.ui.notificationsForExpFolders", false);
+pref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", false);
 

@@ -1569,7 +1569,7 @@ async function invalidSelection() {
 // update for store type, attachments, page type
 async function menusUpdate(info, tab) {
 
-  //console.log(info)
+  console.log(info)
 
   // toggle copyToClipboard visibility
   // toggle msgCtx visibility - #459
@@ -1638,6 +1638,14 @@ async function menusUpdate(info, tab) {
 
   if (selectedFoldersLen > 1 &&
     selectedFolders.find(folder => folder.name == "Root")) {
+    await setNoMenusUpdate(info);
+    return;
+  }
+
+  // check if we have folders from more than one account - invalid
+  if (selectedFoldersLen > 1 &&
+    selectedFolders.find(folder => folder.accountId != accountId)) {
+      console.log("two accounts ")
     await setNoMenusUpdate(info);
     return;
   }

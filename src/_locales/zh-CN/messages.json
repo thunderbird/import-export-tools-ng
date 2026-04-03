@@ -975,6 +975,9 @@
   "senderFmtToken": {
     "message": "${发件人}"
   },
+  "setMsgExpDate.label": {
+    "message": "将导出邮件文件的日期设置为发送日期"
+  },
   "Size": {
     "message": "尺寸"
   },

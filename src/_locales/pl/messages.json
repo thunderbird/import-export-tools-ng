@@ -975,6 +975,9 @@
   "senderFmtToken": {
     "message": "${nadawca}"
   },
+  "setMsgExpDate.label": {
+    "message": "Ustaw datę wyeksportowanych plików wiadomości na datę wysłania"
+  },
   "Size": {
     "message": "Rozmiar"
   },

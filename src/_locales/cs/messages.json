@@ -972,6 +972,9 @@
   "senderFmtToken": {
     "message": "${sender}"
   },
+  "setMsgExpDate.label": {
+    "message": "Nastavit datum exportovaných souborů zpráv na datum odeslání"
+  },
   "Size": {
     "message": "Velikost"
   },

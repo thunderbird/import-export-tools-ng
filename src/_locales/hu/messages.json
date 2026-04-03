@@ -975,6 +975,9 @@
   "senderFmtToken": {
     "message": "${feladó}"
   },
+  "setMsgExpDate.label": {
+    "message": "Exportált üzenetfájlok dátumának beállítása küldési dátumra"
+  },
   "Size": {
     "message": "Méret"
   },

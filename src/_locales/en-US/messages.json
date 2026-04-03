@@ -975,6 +975,9 @@
   "senderFmtToken": {
     "message": "${sender}"
   },
+  "setMsgExpDate.label": {
+    "message": "Set exported message files date to sent date"
+  },
   "Size": {
     "message": "Size"
   },

@@ -976,6 +976,9 @@
   "senderFmtToken": {
     "message": "${remitent}"
   },
+  "setMsgExpDate.label": {
+    "message": "Estableix la data dels fitxers de missatges exportats a la data d&#39;enviament"
+  },
   "Size": {
     "message": "Mida"
   },

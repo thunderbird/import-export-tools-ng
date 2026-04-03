@@ -975,6 +975,9 @@
   "senderFmtToken": {
     "message": "${差出人}"
   },
+  "setMsgExpDate.label": {
+    "message": "エクスポートされたメッセージファイルの日付を送信日に設定します"
+  },
   "Size": {
     "message": "サイズ"
   },

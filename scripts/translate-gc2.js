@@ -20,7 +20,8 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "setMsgExpDate.label", text: "Set exported message files date to sent date"},
+	{ key: "notificationsForExpFolders.label", text: "Use notifications instead of status window for folder export"},
+	{ key: "notificationsForExpSelMsgs.label", text: "Use notifications instead of status window for selected messages export"},
 
 
 ];

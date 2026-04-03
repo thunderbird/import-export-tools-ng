@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "setMsgExpDate.label", text: "Set exported message files date to message sent date"},
+	{ key: "setMsgExpDate.label", text: "Set exported message files date to sent date"},
 
 
 ];

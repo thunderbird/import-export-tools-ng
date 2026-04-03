@@ -841,6 +841,12 @@
     "message": "нет_объекта",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Используйте уведомления вместо окна состояния для экспорта папок."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Используйте уведомления вместо окна состояния для экспорта выбранных сообщений."
+  },
   "noWarning": {
     "message": "Больше не показывать это предупреждение",
     "src": "mboximport"

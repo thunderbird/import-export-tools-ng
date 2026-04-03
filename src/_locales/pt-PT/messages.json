@@ -841,6 +841,12 @@
     "message": "sem_assunto",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Use notificações em vez da janela de status para exportar pastas."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Use notificações em vez da janela de status para exportar mensagens selecionadas."
+  },
   "noWarning": {
     "message": "Não mostrar este aviso de novo",
     "src": "mboximport"

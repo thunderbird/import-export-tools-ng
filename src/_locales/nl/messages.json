@@ -841,6 +841,12 @@
     "message": "geen_onderwerp",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Gebruik meldingen in plaats van het statusvenster voor het exporteren van mappen."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Gebruik meldingen in plaats van het statusvenster voor het exporteren van geselecteerde berichten."
+  },
   "noWarning": {
     "message": "Deze waarschuwing niet meer tonen",
     "src": "mboximport"

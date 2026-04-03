@@ -841,6 +841,12 @@
     "message": "제목 없음",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "폴더 내보내기 시 상태 창 대신 알림을 사용하세요."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "선택한 메시지 내보내기에 대해 상태 창 대신 알림을 사용하세요"
+  },
   "noWarning": {
     "message": "이 경고를 다시 표시하지 않음",
     "src": "mboximport"

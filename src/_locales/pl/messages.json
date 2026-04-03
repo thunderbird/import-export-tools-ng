@@ -841,6 +841,12 @@
     "message": "bez_tematu",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Użyj powiadomień zamiast okna stanu podczas eksportowania folderów"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Użyj powiadomień zamiast okna statusu dla wybranych wiadomości eksportowych"
+  },
   "noWarning": {
     "message": "Nie pokazuj więcej tego ostrzeżenia",
     "src": "mboximport"

@@ -841,6 +841,12 @@
     "message": "nincs_tárgy",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Értesítések használata állapotablak helyett mappa exportálásakor"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Értesítések használata állapotablak helyett a kiválasztott üzenetek exportálásakor"
+  },
   "noWarning": {
     "message": "Ne jelenjen meg újra a figyelmeztetés",
     "src": "mboximport"

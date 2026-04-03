@@ -841,6 +841,12 @@
     "message": "առանց_վերնագրի",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Թղթապանակների արտահանման համար օգտագործեք ծանուցումներ կարգավիճակի պատուհանի փոխարեն"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Ընտրված հաղորդագրությունների արտահանման համար կարգավիճակի պատուհանի փոխարեն օգտագործել ծանուցումներ"
+  },
   "noWarning": {
     "message": "Այլևս չցուցադրել",
     "src": "mboximport"

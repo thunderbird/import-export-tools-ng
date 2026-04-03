@@ -841,6 +841,12 @@
     "message": "χωρίς θέμα",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Χρήση ειδοποιήσεων αντί για παράθυρο κατάστασης για εξαγωγή φακέλων"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Χρήση ειδοποιήσεων αντί για παράθυρο κατάστασης για την εξαγωγή επιλεγμένων μηνυμάτων"
+  },
   "noWarning": {
     "message": "Μην εμφανίσετε ξανά αυτήν την προειδοποίηση",
     "src": "mboximport"

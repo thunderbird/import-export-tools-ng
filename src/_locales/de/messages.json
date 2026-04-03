@@ -841,6 +841,12 @@
     "message": "kein_betreff",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Verwenden Sie Benachrichtigungen anstelle des Statusfensters für den Ordnerexport."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Benachrichtigungen anstelle des Statusfensters für ausgewählte Nachrichten exportieren"
+  },
   "noWarning": {
     "message": "Diese Warnung nicht mehr anzeigen",
     "src": "mboximport"

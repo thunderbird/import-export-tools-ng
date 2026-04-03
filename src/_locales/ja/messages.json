@@ -841,6 +841,12 @@
     "message": "件名なし",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "フォルダのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "選択したメッセージのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
+  },
   "noWarning": {
     "message": "次回からこの警告を表示しない",
     "src": "mboximport"

@@ -841,6 +841,12 @@
     "message": "intet_emne",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Brug notifikationer i stedet for statusvindue til mappeeksport"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Brug notifikationer i stedet for statusvindue til eksport af valgte beskeder"
+  },
   "noWarning": {
     "message": "Vis ikke denne advarsel igen",
     "src": "mboximport"

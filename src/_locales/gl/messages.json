@@ -842,6 +842,12 @@
     "message": "no_subject",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Usar notificacións en lugar da xanela de estado para a exportación de cartafoles"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Usar notificacións en lugar da xanela de estado para a exportación de mensaxes seleccionadas"
+  },
   "noWarning": {
     "message": "Non amosar de novo este aviso",
     "src": "mboximport"

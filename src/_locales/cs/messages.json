@@ -838,6 +838,12 @@
     "message": "žádný předmět",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Pro export složek používejte oznámení místo stavového okna"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Pro export vybraných zpráv použít oznámení místo stavového okna"
+  },
   "noWarning": {
     "message": "Toto varování již nezobrazovat",
     "src": "mboximport"

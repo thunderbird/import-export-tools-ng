@@ -841,6 +841,12 @@
     "message": "bez_predmetu",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Na export priečinkov použite namiesto stavového okna upozornenia"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Pre export vybraných správ použiť upozornenia namiesto stavového okna"
+  },
   "noWarning": {
     "message": "Toto varovanie už viac nezobrazovať",
     "src": "mboximport"

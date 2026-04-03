@@ -841,6 +841,12 @@
     "message": "sans_sujet",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Utilisez les notifications plutôt que la fenêtre d&#39;état pour l&#39;exportation de dossiers."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilisez les notifications plutôt que la fenêtre d&#39;état pour l&#39;exportation des messages sélectionnés."
+  },
   "noWarning": {
     "message": "Ne plus afficher cet avertissement",
     "src": "mboximport"

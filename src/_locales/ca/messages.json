@@ -842,6 +842,12 @@
     "message": "sense_assumpte",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de carpetes"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de missatges seleccionats"
+  },
   "noWarning": {
     "message": "No mostris més aquest avís",
     "src": "mboximport"

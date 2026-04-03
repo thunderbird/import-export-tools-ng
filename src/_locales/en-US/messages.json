@@ -841,6 +841,12 @@
     "message": "no_subject",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Use notifications instead of status window for folder export"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Use notifications instead of status window for selected messages export"
+  },
   "noWarning": {
     "message": "Don’t show again this warning",
     "src": "mboximport"

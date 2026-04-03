@@ -841,6 +841,12 @@
     "message": "brez_zadeve",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Za izvoz map uporabite obvestila namesto okna stanja"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Za izvoz izbranih sporočil uporabite obvestila namesto okna s stanjem"
+  },
   "noWarning": {
     "message": "Ne prikaži tega opozorila",
     "src": "mboximport"

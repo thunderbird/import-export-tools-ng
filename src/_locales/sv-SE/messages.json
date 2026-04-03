@@ -841,6 +841,12 @@
     "message": "(inget_ämne)",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Använd aviseringar istället för statusfönster för mappexport"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Använd aviseringar istället för statusfönster för export av valda meddelanden"
+  },
   "noWarning": {
     "message": "Visa inte den här varningen igen",
     "src": "mboximport"

@@ -841,6 +841,12 @@
     "message": "Nessun_oggetto",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Per l&#39;esportazione delle cartelle, utilizza le notifiche anziché la finestra di stato."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilizza le notifiche anziché la finestra di stato per l&#39;esportazione dei messaggi selezionati."
+  },
   "noWarning": {
     "message": "Non mostrare di nuovo questo avviso",
     "src": "mboximport"

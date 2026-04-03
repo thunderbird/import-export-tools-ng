@@ -841,6 +841,12 @@
     "message": "无主题",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "文件夹导出时，请使用通知而不是状态窗口。"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "对于选定的消息导出，请使用通知而不是状态窗口。"
+  },
   "noWarning": {
     "message": "不要再次显示这个警告",
     "src": "mboximport"

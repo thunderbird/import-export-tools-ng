@@ -15,20 +15,15 @@ const translate = new Translate({ projectId, key });
 
 //console.debug( translate );
 
+/*
+	{ key: "", text: ""},
+*/
+
 var translationArray = [
-	{ key: "exportFormatEML", text: "EML"},
-	{ key: "exportFormatHTML", text: "HTML"},
-	{ key: "exportFormatPDF", text: "PDF"},
-	{ key: "exportFormatPlaintext", text: "Plaintext"},
-	{ key: "ExportFolders.title", text: "Export Folders"},
-	{ key: "ExportSelectedMessages.title", text: "Export Selected Messages"},
+	{ key: "Folder.label", text: "Folder"},
 
-
-	
-	
 
 ];
-
 
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";

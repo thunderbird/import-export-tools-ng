@@ -157,14 +157,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
           if (!notificationsForExpFolders) {
 
-            await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
-
-            console.log(`IETNG: Created expStatusWin winType: ${winType}`)
-
-
             // wait for the window to load and send expStatusWinOpen
 
-            var w = await new Promise((resolve, reject) => {
+            var w = await new Promise(async (resolve, reject) => {
               let resolved = false;
 
               async function expStatusWinOpen(msg) {
@@ -190,6 +185,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                 return;
 
               }, 4200);
+              await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
+              console.log(`IETNG: Created expStatusWin winType: ${winType}`)
             });
           }
         }
@@ -402,11 +399,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         }
 
         if (!notificationsForExpSelMsgs) {
-          await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
 
           // wait for the window to load and send expStatusWinOpen
 
-          await new Promise((resolve, reject) => {
+          await new Promise(async (resolve, reject) => {
             let resolved = false;
             async function expStatusWinOpen(msg) {
               if (msg.command == "UI_EVENT" &&
@@ -430,6 +426,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
               return;
 
             }, 4200);
+            await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
+
           });
         }
       }

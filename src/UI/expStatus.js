@@ -76,7 +76,6 @@ console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
   i18n.updateDocument();
-  await new Promise(r => setTimeout(r, 300));
 
   messenger.runtime
     .sendMessage({

@@ -7,8 +7,9 @@ import * as ui from "./ui.mjs";
 
 import { Ci } from "/Modules/CiConstants.js";
 
-var os = navigator.platform.toLowerCase();
-var osPathSeparator = os.includes("win")
+
+const os = navigator.platform.toLowerCase();
+const osPathSeparator = os.includes("win")
   ? "\\"
   : "/";
 
@@ -18,6 +19,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   gAbort = false;
 
   try {
+    const notificationsForExpFolders = await prefs.getPref("ui.notificationsForExpFolders");
 
     console.log("IETNG: Start Export folders\nFolders:")
 
@@ -101,7 +103,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
-      if (!expTask.debug.logTypes.includes("nostatuswin")) {
+      if (!notificationsForExpFolders) {
         browser.runtime.sendMessage({
           command: "UI_UPDATE", target: "expStatusWin",
           currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
@@ -153,7 +155,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
             winType = "multipleFolders";
           }
 
-          if (!expTask.debug.logTypes.includes("nostatuswin")) {
+          if (!notificationsForExpFolders) {
 
             await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
 
@@ -192,7 +194,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           }
         }
 
-        if (!expTask.debug.logTypes.includes("nostatuswin")) {
+        if (!notificationsForExpFolders) {
           // send initial ui status
           browser.runtime.sendMessage({
             command: "UI_UPDATE",
@@ -225,7 +227,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       try {
         browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
       } catch (ex) { }
-      if (expTask.debug.logTypes.includes("nostatuswin")) {
+
+      if (notificationsForExpFolders) {
         let notificationMsg =
           `${browser.i18n.getMessage("totalMessages.label")} : ${totalMsgsExported}`;
         if (totalErrCount) {
@@ -278,6 +281,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   try {
     gAbort = false;
+
+    const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
     let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
@@ -357,7 +362,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
-      if (!expTask.debug.logTypes.includes("nostatuswin")) {
+      if (!notificationsForExpSelMsgs) {
         browser.runtime.sendMessage({
           command: "UI_UPDATE", target: "expStatusWin",
           currentFolderName: expTask.folders[expTask.currentFolderIndex].exportPath,
@@ -396,7 +401,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           winType = "multipleFolders";
         }
 
-        if (!expTask.debug.logTypes.includes("nostatuswin")) {
+        if (!notificationsForExpSelMsgs) {
           await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
 
           // wait for the window to load and send expStatusWinOpen
@@ -429,7 +434,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         }
       }
 
-      if (expTask.debug.logTypes.includes("nostatuswin")) {
+      if (!notificationsForExpSelMsgs) {
 
         // send initial ui status
         browser.runtime.sendMessage({
@@ -461,7 +466,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // tell expStatus window we are done
     browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
 
-    if (expTask.debug.logTypes.includes("nostatuswin")) {
+    if (notificationsForExpSelMsgs) {
       let notificationMsg =
         `${browser.i18n.getMessage("totalMessages.label")} : ${totalMsgsExported}`;
       if (totalErrCount) {

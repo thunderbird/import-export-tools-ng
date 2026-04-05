@@ -72,9 +72,23 @@ browser.runtime.onMessage.addListener(msg => {
   }
 });
 
-console.log("IETNG: UI started, listener running");
+//console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
+  //let bodyHeight = document.getElementById("body-id").offsetHeight;
+  let outerDivHeight = document.getElementById("body-id").offsetHeight;
+  
+  //console.log(bodyHeight)
+  console.log(outerDivHeight)
+
+  //console.log(window.outerHeight)
+  //console.log(window.innerHeight)
+  //console.log(window.outerHeight - window.innerHeight)
+  let chromeHeight = window.outerHeight - window.innerHeight;
+  let calcWinHeight = outerDivHeight + chromeHeight + 25;
+  let win = await browser.windows.getCurrent()
+  //console.log(win)
+  await browser.windows.update(win.id, {height: calcWinHeight})
   i18n.updateDocument();
 
   messenger.runtime

@@ -39,14 +39,13 @@ body {
 #outer-container {
 	display: flex;
 	flex-direction: column;
-	min-height: calc(100vh - 25px);
+	/* min-height: calc(100vh - 25px); */
 	margin: 10px;
 
 }
 
 #main-content {
-	flex: 1;
-
+	flex: 0;
 }
 
 table { 
@@ -90,6 +89,7 @@ tr.multiple-folders-display {
 }
 
 #buttons {
+	flex: 0;
 	/* background-color: aqua; */
 	text-align: right;
 

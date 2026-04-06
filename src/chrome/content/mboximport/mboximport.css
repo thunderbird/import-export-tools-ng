@@ -103,6 +103,7 @@ tab[selected] {
 #mainDiv {
 	flex: 1;
 	padding-left: 10px;
+	padding-right: 40px;
 }
 
 #logoDiv {

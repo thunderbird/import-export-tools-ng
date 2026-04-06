@@ -190,7 +190,7 @@ export var exportMessages = {
       } catch (ex) {
         let exMsg = ex.msg ? ex.msg + "\n" : "";
         let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
-        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${expTask.msgList[index].subject}\n\n${ex}\n\n${exMsg}${exStack}\n`;
         log("err", `${errMsg}\n\n`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
         emitter.emit("export-update", "inbox", 0, 1);
@@ -447,6 +447,7 @@ export var exportMessages = {
     switch (expTask.attachments.containerStructure) {
       case "inMsgDir":
         attsDir = msgsDir;
+        inlineDir = msgsDir;
         break;
       case "perMsgDir":
         let maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;

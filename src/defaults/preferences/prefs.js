@@ -72,4 +72,5 @@ pref("extensions.importexporttoolsng.help.showOnInstallAndUpdate", true);
 pref("extensions.importexporttoolsng.help.openInWindow", false);
 pref("extensions.importexporttoolsng.ui.notificationsForExpFolders", false);
 pref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", false);
+pref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
 

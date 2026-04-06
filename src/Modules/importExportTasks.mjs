@@ -190,6 +190,7 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "html";
   expTask.attachments.save = params.saveAttachments;
+  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
   expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
   expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
 
@@ -248,6 +249,8 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "pdf";
   expTask.attachments.save = params.saveAttachments;
+  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
+
   expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
   expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
 
@@ -305,6 +308,8 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "txt";
   expTask.attachments.save = params.saveAttachments;
+  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
+
   expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
   expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
 

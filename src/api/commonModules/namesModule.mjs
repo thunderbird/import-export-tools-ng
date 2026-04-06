@@ -2,6 +2,7 @@
 
 var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
+var { latinize } = ChromeUtils.importESModule("resource://ietng/api/commonModules/latinize.mjs");
 
 export var names = {
 
@@ -95,7 +96,6 @@ export var names = {
 */
 
     // Simple date - ${date}
-    //var date = strftime.strftime("%Y%m%d%H%M", new Date(dateInSec * 1000));
     var date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
 
     var dateInSec = msgHdr.dateInSeconds;
@@ -114,16 +114,10 @@ export var names = {
     else
       smartName = authorName;
 
-
-    //subject = nametoascii(subject);
-
     // Key
     var key = msgHdr.messageKey;
 
     let generatedName = "";
-
-    //console.log(expTask.names.namePatternCustom)
-
 
     // basic dropdown filename pattern
     if (namePatternType == "dropdown") {
@@ -137,18 +131,6 @@ export var names = {
       pattern = pattern.replace("%a", authorName);
       pattern = pattern.replace("%r", recipientName);
       pattern = pattern.replace(/-%e/g, "");
-
-      /*
-      if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
-        var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-        pattern = prefix + pattern;
-      }
-
-      if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix")) {
-        var suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
-        pattern = pattern + suffix;
-      }
-*/
 
       generatedName = pattern;
 
@@ -202,17 +184,21 @@ export var names = {
 
     // filters and transforms
     generatedName = generatedName.replace(/[\x00-\x1F]/g, "_");
+
+    // latinize characters transform
+    if (expTask.names.transforms.latinize) {
+      generatedName = latinize.latinizeString(generatedName);
+    }
+
+    // alphaNumericOnly filter
     if (expTask.names.filters.alphaNumericOnly)
-      generatedName = generatedName.replace(/[^a-zA-Z0-9\-]/g, "_");
+      generatedName = generatedName.replace(/[^a-zA-Z0-9\-\ ]/g, "_");
     else {
       // Allow ',' and single quote character which is valid
       generatedName = generatedName.replace(/[\/\\:<>*\?\|]/g, "_");
     }
 
-    if (expTask.names.transforms.latinize) {
-      //generatedName = latinizeString(generatedName);
-    }
-
+    // non-ASCII character filter
     if (expTask.names.filters.asciiOnly) {
       generatedName = this._filterNonASCIICharacters(generatedName);
     }

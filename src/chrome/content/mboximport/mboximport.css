@@ -103,11 +103,11 @@ tab[selected] {
 #mainDiv {
 	flex: 1;
 	padding-left: 10px;
-	padding-right: 40px;
+	padding-right: 0px;
 }
 
 #logoDiv {
-	width: 60px;
+	width: 50px;
 }
 
 .top-header {

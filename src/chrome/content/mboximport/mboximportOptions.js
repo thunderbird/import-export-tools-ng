@@ -175,6 +175,14 @@ function initMboxImportPanel() {
     document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
     document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
+    // v15 attachments containerStructure
+    if (IETgetComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure") == "inMsgDir") {
+        document.getElementById("saveAttsInMsgDir").checked = true;
+    } else {
+        document.getElementById("saveAttsInMsgDir").checked = false;
+
+    }
+
     document.getElementById("attFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
     document.getElementById("inlineAttFolderFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
@@ -298,6 +306,13 @@ function saveMboxImportPrefs() {
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders", document.getElementById("notificationsForExpFolders").checked);
         IETprefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", document.getElementById("notificationsForExpSelMsgs").checked);
+
+        // v15 attachments containerStructure
+        if (document.getElementById("saveAttsInMsgDir").checked == true) {
+            IETsetComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "inMsgDir");
+        } else {
+            IETsetComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
+        }
 
         if (document.getElementById("customizeFilenames").checked)
             IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);

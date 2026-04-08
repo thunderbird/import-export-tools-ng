@@ -20,8 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "notificationsForExpFolders.label", text: "Use notifications instead of status window for folder export"},
-	{ key: "notificationsForExpSelMsgs.label", text: "Use notifications instead of status window for selected messages export"},
+	{ key: "saveAttsInMsgDir.label", text: "Save attachments in the same directory with messages"},
 
 
 ];

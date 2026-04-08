@@ -7,6 +7,7 @@ const totalFolderCount = document.getElementById("total-folder-count");
 const totalMsgCount = document.getElementById("total-msg-count");
 const totalErrCount = document.getElementById("total-errors");
 const totalMsgProgress = document.getElementById("total-msg-progress");
+const statusMsg = document.getElementById("statusMsg");
 
 const okButton = document.getElementById("okButton");
 const cancelButton = document.getElementById("cancelButton");
@@ -52,6 +53,7 @@ browser.runtime.onMessage.addListener(msg => {
       totalMsgProgress.value = msg.totalMsgsExported;
       totalMsgProgress.max = msg.totalMsgCount;
       totalErrCount.innerText = msg.totalErrCount;
+      statusMsg.innerText = msg.statusMsg;
 
       if (msg?.winType == "multipleFolders") {
         document.documentElement.style.setProperty('--multiple-folders-display', 'block');
@@ -76,7 +78,7 @@ browser.runtime.onMessage.addListener(msg => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   //let bodyHeight = document.getElementById("body-id").offsetHeight;
-  let outerDivHeight = document.getElementById("body-id").offsetHeight;
+  let outerDivHeight = document.getElementById("outer-container").offsetHeight;
   
   //console.log(bodyHeight)
   console.log(outerDivHeight)
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   //console.log(window.innerHeight)
   //console.log(window.outerHeight - window.innerHeight)
   let chromeHeight = window.outerHeight - window.innerHeight;
-  let calcWinHeight = outerDivHeight + chromeHeight + 25;
+  let calcWinHeight = outerDivHeight + chromeHeight + 50;
   let win = await browser.windows.getCurrent()
   //console.log(win)
   await browser.windows.update(win.id, {height: calcWinHeight})

@@ -103,6 +103,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
+      let statusMsg = "";
+      if (totalErrCount) {
+        statusMsg = "There were errors. See the Debug Console (Control-Shift-J)"
+      }
+
       if (!notificationsForExpFolders) {
         browser.runtime.sendMessage({
           command: "UI_UPDATE", target: "expStatusWin",
@@ -113,7 +118,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           totalFolderCount: totalFolderCount,
           totalMsgCount: totalMsgCount,
           totalMsgsExported: totalMsgsExported,
-          totalErrCount: totalErrCount
+          totalErrCount: totalErrCount,
+          statusMsg: statusMsg,
         });
       }
     }
@@ -204,6 +210,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
             totalMsgCount: totalMsgCount,
             totalMsgsExported: totalMsgsExported,
             totalErrCount: totalErrCount,
+            statusMsg: "",
+
             winType: winType
 
           });
@@ -359,6 +367,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       totalMsgsExported += msgCount;
       totalErrCount += errCount;
 
+      let statusMsg = "";
+      if (totalErrCount) {
+        statusMsg = "There were errors. See the Debug Console (Control-Shift-J)"
+      }
       if (!notificationsForExpSelMsgs) {
         browser.runtime.sendMessage({
           command: "UI_UPDATE", target: "expStatusWin",
@@ -369,7 +381,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           totalFolderCount: totalFolderCount,
           totalMsgCount: totalMsgCount,
           totalMsgsExported: totalMsgsExported,
-          totalErrCount: totalErrCount
+          totalErrCount: totalErrCount,
+          statusMsg: statusMsg,
         });
       }
     }
@@ -446,6 +459,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           totalMsgCount: totalMsgCount,
           totalMsgsExported: totalMsgsExported,
           totalErrCount: totalErrCount,
+          statusMsg: "",
           winType: winType
         });
       }

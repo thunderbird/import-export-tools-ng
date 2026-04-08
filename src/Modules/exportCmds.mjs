@@ -300,10 +300,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let msgListPage;
     do {
       if (!msgListPage) {
-        msgListPage = await messenger.mailTabs.getSelectedMessages()
-        //msgListPage = ctxEvent.selectedMessages;
-        folderSet[0].totalMsgCount += msgListPage.messages.length;
-        //console.log(msgListPage)
+        //msgListPage = await messenger.mailTabs.getSelectedMessages()
+        msgListPage = ctxEvent.selectedMessages;
+        folderSet[0].totalMsgCount = msgListPage.messages.length;
+        console.log(msgListPage)
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -320,6 +320,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     console.log(folderSet[0].totalMsgCount)
     console.log(totalMsgCount)
+    console.log("exptask")
 
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
 

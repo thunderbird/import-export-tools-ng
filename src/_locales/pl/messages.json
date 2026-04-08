@@ -921,6 +921,9 @@
   "save": {
     "message": "Zapisuj"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Zapisz załączniki w tym samym katalogu, co wiadomości"
+  },
   "savedirs": {
     "message": "Foldery eksportu"
   },

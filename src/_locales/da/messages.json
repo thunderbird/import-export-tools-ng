@@ -921,6 +921,9 @@
   "save": {
     "message": "Gem"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Gem vedhæftede filer i samme mappe som beskeder"
+  },
   "savedirs": {
     "message": "Eksporter mapper"
   },

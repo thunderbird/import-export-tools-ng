@@ -921,6 +921,9 @@
   "save": {
     "message": "Guardar"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Salve os anexos no mesmo diretório das mensagens."
+  },
   "savedirs": {
     "message": "Exportar directorias"
   },

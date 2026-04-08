@@ -921,6 +921,9 @@
   "save": {
     "message": "저장"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "첨부 파일은 메시지와 같은 디렉토리에 저장하세요."
+  },
   "savedirs": {
     "message": "내보낼 디렉토리"
   },

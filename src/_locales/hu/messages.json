@@ -921,6 +921,9 @@
   "save": {
     "message": "Mentés"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Mellékletek mentése az üzenetekkel azonos könyvtárba"
+  },
   "savedirs": {
     "message": "Mappák exportálása"
   },

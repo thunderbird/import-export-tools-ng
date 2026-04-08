@@ -921,6 +921,9 @@
   "save": {
     "message": "Uložiť"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Ukladajte prílohy do rovnakého adresára ako správy"
+  },
   "savedirs": {
     "message": "Export priečinkov"
   },

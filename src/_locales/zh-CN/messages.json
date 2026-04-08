@@ -921,6 +921,9 @@
   "save": {
     "message": "保存"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "将附件保存在与邮件相同的目录中。"
+  },
   "savedirs": {
     "message": "导出目录"
   },

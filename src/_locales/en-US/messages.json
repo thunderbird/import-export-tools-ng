@@ -921,6 +921,9 @@
   "save": {
     "message": "Save"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Save attachments in the same directory with messages"
+  },
   "savedirs": {
     "message": "Export directories"
   },

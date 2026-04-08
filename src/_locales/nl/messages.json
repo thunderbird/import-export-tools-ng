@@ -921,6 +921,9 @@
   "save": {
     "message": "Opslaan"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Bewaar bijlagen in dezelfde map als berichten."
+  },
   "savedirs": {
     "message": "Mappen exporteren"
   },

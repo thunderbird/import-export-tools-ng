@@ -918,6 +918,9 @@
   "save": {
     "message": "Uložit"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Ukládat přílohy do stejného adresáře jako zprávy"
+  },
   "savedirs": {
     "message": "Export adresářů"
   },

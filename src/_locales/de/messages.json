@@ -921,6 +921,9 @@
   "save": {
     "message": "Speichern"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Anhänge sollten im selben Verzeichnis wie die Nachrichten gespeichert werden."
+  },
   "savedirs": {
     "message": "Verzeichnisse exportieren"
   },

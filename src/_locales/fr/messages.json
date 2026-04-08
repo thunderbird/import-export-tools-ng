@@ -921,6 +921,9 @@
   "save": {
     "message": "Mode de sauvegarde "
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Enregistrez les pièces jointes dans le même répertoire que les messages."
+  },
   "savedirs": {
     "message": "Dossiers d’exportation"
   },

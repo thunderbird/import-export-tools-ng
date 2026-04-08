@@ -921,6 +921,9 @@
   "save": {
     "message": "Spara"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Spara bilagor i samma katalog som meddelanden"
+  },
   "savedirs": {
     "message": "Exportera mappar"
   },

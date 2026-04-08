@@ -921,6 +921,9 @@
   "save": {
     "message": "Shrani"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Shranjevanje prilog v isti imenik kot sporočila"
+  },
   "savedirs": {
     "message": "Izvoz map"
   },

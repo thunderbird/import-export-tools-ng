@@ -921,6 +921,9 @@
   "save": {
     "message": "保存"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "添付ファイルをメッセージと同じディレクトリに保存する"
+  },
   "savedirs": {
     "message": "エクスポートフォルダー"
   },

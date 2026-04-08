@@ -922,6 +922,9 @@
   "save": {
     "message": "Desa"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Desa els fitxers adjunts al mateix directori amb els missatges"
+  },
   "savedirs": {
     "message": "Directoris d\\'exportació"
   },

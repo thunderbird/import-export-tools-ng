@@ -74,7 +74,7 @@ browser.runtime.onMessage.addListener(msg => {
   }
 });
 
-//console.log("IETNG: UI started, listener running");
+console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
   //let bodyHeight = document.getElementById("body-id").offsetHeight;
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let calcWinHeight = outerDivHeight + chromeHeight + 50;
   let win = await browser.windows.getCurrent()
   //console.log(win)
-  await browser.windows.update(win.id, {height: calcWinHeight})
+  //await browser.windows.update(win.id, {height: calcWinHeight})
   i18n.updateDocument();
 
   messenger.runtime

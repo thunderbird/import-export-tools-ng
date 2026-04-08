@@ -89,8 +89,9 @@ tr.multiple-folders-display {
 }
 
 #statusMsg {
-	padding-top: 4px;
+	padding-top: 8px;
 	padding-bottom: 10px;
+	height: 1.2em;
 }
 
 #buttons {

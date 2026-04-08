@@ -606,7 +606,7 @@
     "message": "Utiliser le format HTML tel qu’affiché dans le panneau des messages"
   },
   "MBlabel5": {
-    "message": "Copier dans le presse-papiers uniquement au format texte (peut poser des problèmes de compatibilité)"
+    "message": "Copier dans le presse-papiers uniquement au format texte"
   },
   "MBlabel7a": {
     "message": "Longueur maximale du sujet :"
@@ -842,10 +842,10 @@
     "src": "mboximport"
   },
   "notificationsForExpFolders.label": {
-    "message": "Utilisez les notifications plutôt que la fenêtre d&#39;état pour l&#39;exportation de dossiers."
+    "message": "Utiliser les notifications plutôt que la fenêtre d'état pour l'exportation de dossiers"
   },
   "notificationsForExpSelMsgs.label": {
-    "message": "Utilisez les notifications plutôt que la fenêtre d&#39;état pour l&#39;exportation des messages sélectionnés."
+    "message": "Utiliser les notifications au lieu de la fenêtre d'état pour l'exportation des messages sélectionnés"
   },
   "noWarning": {
     "message": "Ne plus afficher cet avertissement",
@@ -985,7 +985,7 @@
     "message": "${expéditeur}"
   },
   "setMsgExpDate.label": {
-    "message": "Définir la date des fichiers de messages exportés sur la date d&#39;envoi"
+    "message": "Définir la date des fichiers de messages exportés sur la date d'envoi."
   },
   "Size": {
     "message": "Taille"

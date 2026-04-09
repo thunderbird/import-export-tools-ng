@@ -77,20 +77,26 @@ browser.runtime.onMessage.addListener(msg => {
 console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
-  //let bodyHeight = document.getElementById("body-id").offsetHeight;
+
+  if (await browser.windows.getCurrent().height == 360) {
+    document.documentElement.style.setProperty('--multiple-folders-display', 'block');
+    document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
+  }
+  let bodyHeight = document.getElementById("body-id").offsetHeight;
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
-  
-  //console.log(bodyHeight)
+
+  console.log(bodyHeight)
   console.log(outerDivHeight)
 
-  //console.log(window.outerHeight)
-  //console.log(window.innerHeight)
-  //console.log(window.outerHeight - window.innerHeight)
+  console.log(window.outerHeight)
+  console.log(window.innerHeight)
+  console.log(window.outerHeight - window.innerHeight)
+
   let chromeHeight = window.outerHeight - window.innerHeight;
-  let calcWinHeight = outerDivHeight + chromeHeight + 50;
+  let calcWinHeight = outerDivHeight + chromeHeight + 22;
   let win = await browser.windows.getCurrent()
-  //console.log(win)
-  //await browser.windows.update(win.id, {height: calcWinHeight})
+  console.log(calcWinHeight)
+  await browser.windows.update(win.id, { height: calcWinHeight })
   i18n.updateDocument();
 
   messenger.runtime

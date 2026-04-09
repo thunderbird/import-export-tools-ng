@@ -29,7 +29,7 @@
 }
 
 body {
-  /* background-color: antiquewhite; */
+  background-color: antiquewhite;
 	background-color: var(--dialog-bgcolor);
 	font-family: 'Roboto', sans-serif;
 	color: var(--dialog-text-color);
@@ -41,7 +41,7 @@ body {
 	flex-direction: column;
 	/* min-height: calc(100vh - 25px); */
 	margin: 10px;
-
+	background-color: bisque;
 }
 
 #main-content {

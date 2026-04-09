@@ -1,10 +1,10 @@
 // export prototype
 
+import { logging, log } from "./loggingWext.mjs";
 import { createExportTask } from "./importExportTasks.mjs";
 import * as prefs from "./prefCmds.mjs";
 import { strftime } from "./strftime.mjs";
 import * as ui from "./ui.mjs";
-
 import { Ci } from "/Modules/CiConstants.js";
 
 
@@ -19,9 +19,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   gAbort = false;
 
   try {
+    logging.init({logTypes: await prefs.getPref("debug.logTypes")});
+
     const notificationsForExpFolders = await prefs.getPref("ui.notificationsForExpFolders");
 
-    console.log("IETNG: Start Export folders\nFolders:")
+    log("msgs msgs2", "Start Export folders\nFolders:")
 
     // check for multiple folders selected
     let folderSet = await _getFolderSet(ctxEvent.selectedFolders, functionParams);
@@ -30,8 +32,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     folderSet.forEach(folder => {
       totalMsgCount += folder.totalMsgCount;
-      console.log(`IETNG:  Folder: ${folder.exportPath}`)
-
+      log("msgs msgs2", ` Folder: ${folder.exportPath}`)
     });
 
     //console.log(ctxEvent, functionParams, folderSet);
@@ -65,7 +66,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       expTask.generalConfig.exportDirectory = resultObj.folder;
     }
 
-    console.log(`IETNG: Export path: ${expTask.generalConfig.exportDirectory}`)
+    log("msgs msgs2", `Export path: ${expTask.generalConfig.exportDirectory}`)
 
     var runs = 1;
     var total = 0;

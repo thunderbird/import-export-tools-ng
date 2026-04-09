@@ -303,11 +303,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         //msgListPage = await messenger.mailTabs.getSelectedMessages()
         msgListPage = ctxEvent.selectedMessages;
         folderSet[0].totalMsgCount = msgListPage.messages.length;
-        console.log(msgListPage)
+        //console.log(msgListPage)
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
-        console.log(msgListPage)
+        //console.log(msgListPage)
 
       }
     } while (msgListPage.id);
@@ -616,19 +616,17 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
         if (expTask.expMethod == "selectedMsgs") {
           msgListPage = selectedMsgs
-          console.log(`IETNG: First selected  msgListPage length: ${msgListPage.messages.length}`)
+          //console.log(`IETNG: First selected  msgListPage length: ${msgListPage.messages.length}`)
 
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-          console.log(`IETNG: First msgListPage length: ${msgListPage.messages.length}`)
-
+          //console.log(`IETNG: First msgListPage length: ${msgListPage.messages.length}`)
         }
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
-        console.log(`IETNG: Next msgListPage length: ${msgListPage.messages.length}`)
-
+        //console.log(`IETNG: Next msgListPage length: ${msgListPage.messages.length
       }
-      console.log(`IETNG: Processing msgListPage length: ${msgListPage.messages.length} id: ${msgListPage.id}`)
+      //console.log(`IETNG: Processing msgListPage length: ${msgListPage.messages.length} id: ${msgListPage.id}`)
 
       const messagesLen = msgListPage.messages.length;
       expTask.msgList = [];
@@ -645,7 +643,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        console.log(`IETNG: Processing msgListPage msgIndex: ${index} id: ${msgListPage.id}`)
+        //console.log(`IETNG: Processing msgListPage msgIndex: ${index} id: ${msgListPage.id}`)
 
         getBodyPromises.push(_getprocessedMsg(expTask, msgId, msgListPage.messages[index]));
 

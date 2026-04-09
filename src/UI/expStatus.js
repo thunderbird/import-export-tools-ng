@@ -77,26 +77,27 @@ browser.runtime.onMessage.addListener(msg => {
 console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // we resize the window to be pseudo reactive
+  // first we use the initial size (an approximation)
+  // to determine if we are a single or multi folder
+  // window. we use this to first set the css display 
+  // vars and then we can calculate the proper win size
 
-  if (await browser.windows.getCurrent().height == 360) {
+  let statusWin = await browser.windows.getCurrent();
+  // use initial height to determine winType, set display vars
+  if (statusWin.height == 340) {
+    // these control the visibility of the multi folder ui
     document.documentElement.style.setProperty('--multiple-folders-display', 'block');
     document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
+    // give little time for relayout to finish
+    await new Promise(r => setTimeout(r, 5));
   }
-  let bodyHeight = document.getElementById("body-id").offsetHeight;
+  // now we can resize win from content
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
-
-  console.log(bodyHeight)
-  console.log(outerDivHeight)
-
-  console.log(window.outerHeight)
-  console.log(window.innerHeight)
-  console.log(window.outerHeight - window.innerHeight)
-
   let chromeHeight = window.outerHeight - window.innerHeight;
+  // 22 == margins plus 2 to avoid srrollbar
   let calcWinHeight = outerDivHeight + chromeHeight + 22;
-  let win = await browser.windows.getCurrent()
-  console.log(calcWinHeight)
-  await browser.windows.update(win.id, { height: calcWinHeight })
+  await browser.windows.update(statusWin.id, { height: calcWinHeight });
   i18n.updateDocument();
 
   messenger.runtime
@@ -106,12 +107,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       srcEvent: "expStatusWinOpen",
     });
 
-  console.log("IETNG: UI Sent expStatusWinOpen event");
+  //console.log("IETNG: UI Sent expStatusWinOpen event");
 
   okButton.addEventListener("click", okButtonListener);
   cancelButton.addEventListener("click", cancelButtonListener);
-
-
 }, { once: true });
 
 window.addEventListener("beforeunload", (event) => {

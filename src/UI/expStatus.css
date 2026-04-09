@@ -24,12 +24,10 @@
 		--table-border-color: #404040;
 		--table-stripe-even: #303030;
 		--link-color: lightblue;
-
 	}
 }
 
 body {
-  background-color: antiquewhite;
 	background-color: var(--dialog-bgcolor);
 	font-family: 'Roboto', sans-serif;
 	color: var(--dialog-text-color);
@@ -39,9 +37,7 @@ body {
 #outer-container {
 	display: flex;
 	flex-direction: column;
-	/* min-height: calc(100vh - 25px); */
 	margin: 10px;
-	background-color: bisque;
 }
 
 #main-content {
@@ -50,18 +46,11 @@ body {
 
 table { 
 	border-collapse: collapse;
-
 }
 
 td:nth-child(1) {
 	padding-right: 20px;
 }
-
-/*
-tr, td {
-	border: 1px solid black;
-}
-*/
 
 .multiple-folders-display {
 	display: var(--multiple-folders-display);
@@ -96,9 +85,7 @@ tr.multiple-folders-display {
 
 #buttons {
 	flex: 0;
-	/* background-color: aqua; */
 	text-align: right;
-
 }
 
 button {

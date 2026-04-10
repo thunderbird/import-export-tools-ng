@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Üzenetek exportálása mint…"
   },
+  "msgErrs.label": {
+    "message": "Hibák történtek. Lásd a Hibakonzolt (Ctrl+Shift+J) a Thunderbird főablakában."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

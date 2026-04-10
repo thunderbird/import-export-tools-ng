@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "다음으로 메시지 내보내기…"
   },
+  "msgErrs.label": {
+    "message": "오류가 발생했습니다. Thunderbird 메인 창에서 오류 콘솔(Control+Shift+J)을 확인하세요."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

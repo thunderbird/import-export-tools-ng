@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "将消息导出为..."
   },
+  "msgErrs.label": {
+    "message": "出现错误。请在 Thunderbird 主窗口中查看错误控制台（Ctrl+Shift+J）。"
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

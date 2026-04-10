@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Exportar mensajes como…"
   },
+  "msgErrs.label": {
+    "message": "Se produjeron errores. Consulta la consola de errores (Control+Mayús+J) desde la ventana principal de Thunderbird."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

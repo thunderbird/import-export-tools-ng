@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Berichten exporteren als..."
   },
+  "msgErrs.label": {
+    "message": "Er zijn fouten opgetreden. Raadpleeg de foutconsole (Control+Shift+J) in het hoofdvenster van Thunderbird."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

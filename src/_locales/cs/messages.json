@@ -730,6 +730,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Exportovat zprávy jako…"
   },
+  "msgErrs.label": {
+    "message": "Vyskytly se chyby. V hlavním okně Thunderbirdu se podívejte do konzole chyb (Ctrl+Shift+J)."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

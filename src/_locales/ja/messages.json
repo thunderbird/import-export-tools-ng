@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "メッセージを次の形式でエクスポート…"
   },
+  "msgErrs.label": {
+    "message": "エラーが発生しました。Thunderbirdのメインウィンドウからエラーコンソール（Control+Shift+J）を開いて確認してください。"
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

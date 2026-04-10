@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Izvozi sporočila kot ..."
   },
+  "msgErrs.label": {
+    "message": "Prišlo je do napak. Oglejte si konzolo za napake (Control+Shift+J) v glavnem oknu Thunderbirda."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Eksportuj wiadomości jako…"
   },
+  "msgErrs.label": {
+    "message": "Wystąpiły błędy. Zobacz Konsolę błędów (Control+Shift+J) w głównym oknie Thunderbirda."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

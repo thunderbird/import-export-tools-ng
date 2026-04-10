@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Nachrichten exportieren im…"
   },
+  "msgErrs.label": {
+    "message": "Es sind Fehler aufgetreten. Die Fehlerkonsole (Strg+Umschalt+J) finden Sie im Hauptfenster von Thunderbird."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

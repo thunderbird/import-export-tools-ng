@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Eksporter meddelelser som…"
   },
+  "msgErrs.label": {
+    "message": "Der var fejl. Se fejlkonsollen (Ctrl+Shift+J) fra Thunderbirds hovedvindue."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

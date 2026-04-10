@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Exportovať správy ako…"
   },
+  "msgErrs.label": {
+    "message": "Vyskytli sa chyby. Pozrite si konzolu chýb (Control+Shift+J) v hlavnom okne Thunderbirdu."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

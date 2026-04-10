@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Εξαγωγή μηνυμάτων ως…"
   },
+  "msgErrs.label": {
+    "message": "Υπήρχαν σφάλματα. Δείτε την Κονσόλα σφαλμάτων (Control+Shift+J) από το κύριο παράθυρο του Thunderbird."
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

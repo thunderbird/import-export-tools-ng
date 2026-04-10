@@ -733,6 +733,9 @@
   "msgCtxMenu_TopId.title": {
     "message": "Արտահանել հաղորդագրությունները որպես…"
   },
+  "msgErrs.label": {
+    "message": "Սխալներ կային։ Տեսեք Thunderbird-ի գլխավոր պատուհանի սխալների վահանակը (Control+Shift+J):"
+  },
   "msgHdr.Bcc": {
     "message": "Bcc"
   },

@@ -234,7 +234,7 @@ export var exportMessages = {
       settledWritePromises[index].fileStatus = fileStatus;
     }
 
-    console.log("finish exptask id", expTask.id)
+    log("msgs2", `Finish exptask id: ${expTask.id}`)
 
     return settledWritePromises;
 
@@ -261,7 +261,7 @@ export var exportMessages = {
             console.log("write err", unqName, unqName.length)
           }
 
-          if (index == 10) {
+          if (index == -1) {
             unqName += "99<"
           }
 
@@ -572,7 +572,6 @@ export var exportMessages = {
     let msgData = expTask.msgList[index].msgData;
     let msgItem = expTask.msgList[index];
 
-    console.log("insert hdr table")
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;

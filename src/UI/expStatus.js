@@ -74,7 +74,7 @@ browser.runtime.onMessage.addListener(msg => {
   }
 });
 
-console.log("IETNG: UI started, listener running");
+//console.log("IETNG: UI started, listener running");
 
 document.addEventListener('DOMContentLoaded', async () => {
   // we resize the window to be pseudo reactive
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // window. we use this to first set the css display 
   // vars and then we can calculate the proper win size
 
+  i18n.updateDocument();
   let statusWin = await browser.windows.getCurrent();
   // use initial height to determine winType, set display vars
   if (statusWin.height == 340) {
@@ -98,7 +99,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 22 == margins plus 2 to avoid srrollbar
   let calcWinHeight = outerDivHeight + chromeHeight + 26;
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
-  i18n.updateDocument();
 
   messenger.runtime
     .sendMessage({

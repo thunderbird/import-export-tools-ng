@@ -128,8 +128,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
 
-    console.log(`IETNG: Added UI and exportStatus listeners`)
-    console.log(`IETNG: Starting folder loop`)
+    log("msgs2", `Added UI and exportStatus listeners`)
+    log("msgs2", `Starting folder loop`)
 
     // this outer loop is for performance testing 
     for (let index = 0; index < runs; index++) {
@@ -145,7 +145,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         expTask.currentFolderPath = expTask.folders[folderIndex].exportPath;
         folderExportedMsgCount = 0;
 
-        console.log(`IETNG: Starting: [${folderIndex}] ${expTask.currentFolderPath}`)
+        log("msgs msgs2", `Starting: [${folderIndex}] ${expTask.currentFolderPath}`)
 
         // create export container
         if (!functionParams?.subFolders ||
@@ -153,7 +153,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           expTask.exportContainer.directory = await browser.ExportMessages.createExportContainer(expTask);
         }
 
-        console.log(`IETNG: Created export container:\n${expTask.exportContainer.directory}`)
+        log("msgs msgs2", `Created export container:\n${expTask.exportContainer.directory}`)
 
         // create the status window on first folder
         if (folderIndex == 0) {
@@ -174,7 +174,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                   msg.source == "expStatusWin" &&
                   msg.srcEvent == "expStatusWinOpen") {
                   browser.runtime.onMessage.removeListener(expStatusWinOpen);
-                  console.log(`IETNG: Received expStatusWinOpen event`)
+                  log("msgs", `Received expStatusWinOpen event`)
                   resolved = true;
                   resolve();
                 }
@@ -185,7 +185,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                 if (resolved) {
                   return;
                 }
-                console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
+                log("err", `Timeout waiting for expStatusWinOpen event`)
                 gAbort = true;
                 //throw new Error("No expStatusWinOpen event")
                 reject("IETNG: Timeout waiting for expStatusWinOpen event");
@@ -193,7 +193,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
               }, 4200);
               await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
-              console.log(`IETNG: Created expStatusWin winType: ${winType}`)
+              log("msgs2", `Created expStatusWin winType: ${winType}`)
             });
           }
         }
@@ -217,10 +217,10 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
           });
 
-          console.log(`IETNG: Sent initial UI_UPDATE msg`)
+          log("msgs2", `Sent initial UI_UPDATE msg`)
         }
 
-        console.log(`IETNG: Calling _msgIterateBatch`)
+        log("msgs2", `Calling _msgIterateBatch`)
 
         var exportStatus = await _msgIterateBatch(expTask);
         if (gAbort) {
@@ -252,7 +252,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       times[index] = new Date() - st;
       total += times[index];
-      console.log(new Date() - st);
 
     }
 
@@ -261,7 +260,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     exportMessage += `Messages exported: ${exportStatus?.msgCount}\n`;
     exportMessage += `Error count: ${exportStatus?.errCount}\n`;
     exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
-    console.log(exportMessage)
+    log("msgs", exportMessage)
 
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
 
@@ -318,10 +317,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     folderSet.forEach(folder => {
       totalMsgCount += folder.totalMsgCount;
     });
-
-    console.log(folderSet[0].totalMsgCount)
-    console.log(totalMsgCount)
-    console.log("exptask")
 
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
 
@@ -434,7 +429,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
               if (resolved) {
                 return;
               }
-              console.log(`IETNG: Timeout waiting for expStatusWinOpen event`)
+              log("err", `Timeout waiting for expStatusWinOpen event`)
               gAbort = true;
               //throw new Error("No expStatusWinOpen event")
               reject("IETNG: Timeout waiting for expStatusWinOpen event");
@@ -490,7 +485,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       let id = await messenger.notifications.create({
         message: notificationMsg,
         title: `${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText}`,
-
         type: "basic",
         iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
       });
@@ -533,7 +527,6 @@ async function _getFolderSet(selectedFolders, functionParams) {
       await getSubFolders(folder);
     }
   }
-  //console.log("full set", fullFolderSet)
 
   // get path of shortest parent
 
@@ -589,8 +582,8 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
   // iterate msgs
 
-  console.log(`IETNG: Starting _msgIterateBatch`)
-  console.log(`IETNG: `)
+  log("msgs", `Starting _msgIterateBatch`)
+  log("msgs", ``)
 
   var wrtotal = 0;
   var msgListPage = null;
@@ -604,7 +597,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
   var expId = 0;
 
   try {
-    console.log(`IETNG: Starting msgList collection`)
+    log("msgs", `Starting msgList collection`)
 
     do {
       if (gAbort) {
@@ -617,17 +610,17 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
         if (expTask.expMethod == "selectedMsgs") {
           msgListPage = selectedMsgs
-          //console.log(`IETNG: First selected  msgListPage length: ${msgListPage.messages.length}`)
+          //log("msgs", `First selected  msgListPage length: ${msgListPage.messages.length}`)
 
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
-          //console.log(`IETNG: First msgListPage length: ${msgListPage.messages.length}`)
+          //log("msgs", `First msgListPage length: ${msgListPage.messages.length}`)
         }
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
-        //console.log(`IETNG: Next msgListPage length: ${msgListPage.messages.length
+        //log("msgs", `Next msgListPage length: ${msgListPage.messages.length
       }
-      //console.log(`IETNG: Processing msgListPage length: ${msgListPage.messages.length} id: ${msgListPage.id}`)
+      //log("msgs", `Processing msgListPage length: ${msgListPage.messages.length} id: ${msgListPage.id}`)
 
       const messagesLen = msgListPage.messages.length;
       expTask.msgList = [];
@@ -644,7 +637,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        //console.log(`IETNG: Processing msgListPage msgIndex: ${index} id: ${msgListPage.id}`)
+        //log("msgs", `Processing msgListPage msgIndex: ${index} id: ${msgListPage.id}`)
 
         getBodyPromises.push(_getprocessedMsg(expTask, msgId, msgListPage.messages[index]));
 
@@ -680,7 +673,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
             //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index])
           }
           expTask.id = expId++;
-          console.log("IETNG: Starting ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+          log("msgs2", `Starting ExpId: ${expTask.id} numMsgs: ${expTask.msgList.length}`);
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
           //await browser.ExportMessages.exportMessagesES6(expTask);
 
@@ -694,7 +687,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
     if (writeMsgs) {
       var msgsStatus = await Promise.allSettled(writePromises);
 
-      //console.log(`IETNG: writePromises all settled status: ${msgsStatus.status} values: ${msgsStatus.value.length}`)
+      //log("msgs", `writePromises all settled status: ${msgsStatus.status} values: ${msgsStatus.value.length}`)
 
       console.log(msgsStatus)
 
@@ -714,8 +707,6 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
       let errCount = 0;
 
       for (let index = 0; index < msgsStatus.length; index++) {
-        //console.log(msgsStatus[index].value);
-        //console.log(msgsStatus[index].value.length);
 
         for (let vindex = 0; vindex < msgsStatus[index].value.length; vindex++) {
           const fileStatus = msgsStatus[index].value[vindex].fileStatus;
@@ -733,12 +724,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
       //console.log(msgListLog)
 
-      console.log("total msgs:", totalMsgs)
-      //console.log("total promises:", tp)
-
       return { msgListLog: msgListLog, msgCount: msgCount, errCount: errCount };
-
-      //console.log(new Date());
     }
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
@@ -752,18 +738,11 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
   return new Promise(async (resolve, reject) => {
 
-    //console.log("id1", msgId)
-
-    //let msgId = expTask.msgList[index].id;
-
-    //let atts = await browser.messages.listAttachments(msgId)
-    //console.log(atts)
     try {
 
       var extraHeaders = await browser.ExportMessages.getMsgHdrs(msgId, ["fullSubject"]);
       if (expTask.expType == "eml") {
         let rawMsg = await browser.messages.getRaw(msgId);
-        //console.log(rawMsg)
         if (rawMsg.decryptionStatus == "fail") {
           resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;

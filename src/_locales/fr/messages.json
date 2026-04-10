@@ -734,7 +734,7 @@
     "message": "Exporter les messages sélectionnés"
   },
   "msgErrs.label": {
-    "message": "Des erreurs se sont produites. Consultez la console d&#39;erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
+    "message": "Des erreurs sont survenues. Consultez la console d'erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"

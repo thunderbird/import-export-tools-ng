@@ -21,7 +21,7 @@ export var logging = {
       if (logType == "err") {
         console.error("IETNG Err: " + logMsg);
       } else {
-        console.log("IETNG: " + logMsg);
+        console.log("IETNG:", logMsg);
       }
     }
   },

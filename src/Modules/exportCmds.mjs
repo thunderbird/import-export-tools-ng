@@ -19,7 +19,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   gAbort = false;
 
   try {
-    logging.init({logTypes: await prefs.getPref("debug.logTypes")});
+    logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
 
     const notificationsForExpFolders = await prefs.getPref("ui.notificationsForExpFolders");
 
@@ -106,7 +106,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       let statusMsg = "";
       if (totalErrCount) {
-        statusMsg = browser.i18n.getMessage("msgErrs.label");        
+        statusMsg = browser.i18n.getMessage("msgErrs.label");
       }
 
       if (!notificationsForExpFolders) {
@@ -174,7 +174,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                   msg.source == "expStatusWin" &&
                   msg.srcEvent == "expStatusWinOpen") {
                   browser.runtime.onMessage.removeListener(expStatusWinOpen);
-                  log("msgs", `Received expStatusWinOpen event`)
+                  log("msgs2", `Received expStatusWinOpen event`)
                   resolved = true;
                   resolve();
                 }
@@ -363,7 +363,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
       let statusMsg = "";
       if (totalErrCount) {
-        statusMsg = browser.i18n.getMessage("msgErrs.label");        
+        statusMsg = browser.i18n.getMessage("msgErrs.label");
       }
       if (!notificationsForExpSelMsgs) {
         browser.runtime.sendMessage({
@@ -559,12 +559,8 @@ async function _getFolderSet(selectedFolders, functionParams) {
       }
       fullFolderSet[index].exportPath =
         `${parentfolders[index2].name.replace(/[\\:<>*\?\"\|]/g, "_")}${osPathSeparator}${fullFolderSet[index].exportPath}`;
-
     }
-    //console.log(fullFolderSet[index].path, fullFolderSet[index].exportPath)
   }
-
-
 
   // add folder path and totalMsgCount 
   for (const [index, folder] of fullFolderSet.entries()) {
@@ -579,8 +575,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
   // iterate msgs
 
-  log("msgs", `Starting _msgIterateBatch`)
-  log("msgs", ``)
+  log("msgs2", `Starting _msgIterateBatch`)
 
   var wrtotal = 0;
   var msgListPage = null;
@@ -594,7 +589,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
   var expId = 0;
 
   try {
-    log("msgs", `Starting msgList collection`)
+    log("msgs2", `Starting msgList collection`)
 
     do {
       if (gAbort) {
@@ -649,7 +644,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
               //console.log(index, expTask.msgList[index].id, expTask.msgList[index])
             }
             expTask.id = expId++;
-            console.log("Starting ExpId", expTask.id, "numMsgs", expTask.msgList.length)
+            log("msgs2", `Starting ExpId: ${expTask.id} numMsgs: ${expTask.msgList.length}`);
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
             //await browser.ExportMessages.exportMessagesES6(expTask);
 

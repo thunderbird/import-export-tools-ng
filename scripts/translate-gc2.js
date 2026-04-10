@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "saveAttsInMsgDir.label", text: "Save attachments in the same directory with messages"},
+	{ key: "msgErrs.label", text: "There were errors. See the Error Console (Control+Shift+J) from the main Thunderbird window."},
 
 
 ];

@@ -261,7 +261,7 @@ export var exportMessages = {
             console.log("write err", unqName, unqName.length)
           }
 
-          if (index == -1) {
+          if (index == 10) {
             unqName += "99<"
           }
 

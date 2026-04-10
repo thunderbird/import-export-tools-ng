@@ -106,7 +106,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
       let statusMsg = "";
       if (totalErrCount) {
-        statusMsg = "There were errors. See the Debug Console (Control-Shift-J)"
+        statusMsg = browser.i18n.getMessage("msgErrs.label");
+        //statusMsg = "";
+        //statusMsg = "エラーが発生しました。Thunderbird のメインウィンドウにある「エラーコンソール」（Control+Shift+J）を確認してください。";
+        
+        
       }
 
       if (!notificationsForExpFolders) {
@@ -371,7 +375,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
       let statusMsg = "";
       if (totalErrCount) {
-        statusMsg = "There were errors. See the Debug Console (Control-Shift-J)"
+        statusMsg = "There were errors. See the Error Console (Control+Shift+J) from the main Thunderbird window."
       }
       if (!notificationsForExpSelMsgs) {
         browser.runtime.sendMessage({

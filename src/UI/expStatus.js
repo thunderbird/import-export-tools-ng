@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
   let chromeHeight = window.outerHeight - window.innerHeight;
   // 22 == margins plus 2 to avoid srrollbar
-  let calcWinHeight = outerDivHeight + chromeHeight + 22;
+  let calcWinHeight = outerDivHeight + chromeHeight + 26;
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
   i18n.updateDocument();
 

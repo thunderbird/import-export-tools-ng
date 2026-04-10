@@ -248,14 +248,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
         });
       }
-      //console.log(new Date());
 
       times[index] = new Date() - st;
       total += times[index];
-
     }
 
-    //console.log("wrt avg", wrtotal / runs)
     let exportMessage = `Exported Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n`;
     exportMessage += `Messages exported: ${exportStatus?.msgCount}\n`;
     exportMessage += `Error count: ${exportStatus?.errCount}\n`;

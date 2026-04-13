@@ -229,10 +229,12 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         _createIndex(expTask, exportStatus.msgListLog);
       }
 
-      // tell expStatus window we are done
-      try {
-        browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
-      } catch (ex) { }
+      if (!notificationsForExpFolders) {
+        // tell expStatus window we are done
+        try {
+          browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
+        } catch (ex) { }
+      }
 
       if (notificationsForExpFolders) {
         let notificationMsg =
@@ -257,7 +259,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     exportMessage += `Messages exported: ${exportStatus?.msgCount}\n`;
     exportMessage += `Error count: ${exportStatus?.errCount}\n`;
     exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
-    log("msgs", exportMessage)
+    log("msgs msgs2 summary", exportMessage)
 
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
 
@@ -472,8 +474,12 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     }
 
-    // tell expStatus window we are done
-    browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" });
+    if (!notificationsForExpSelMsgs) {
+      // tell expStatus window we are done
+      try {
+        browser.runtime.sendMessage({ command: "UI_CMD", target: "expStatusWin", subCommand: "finished" })
+      } catch (ex) { }
+    }
 
     if (notificationsForExpSelMsgs) {
       let notificationMsg =
@@ -578,8 +584,8 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
   // iterate msgs
 
-//  console.log("cmt", await browser.mailTabs.getCurrent())
-    //console.log("cs", await browser.mailTabs.getSelectedMessages())
+  //  console.log("cmt", await browser.mailTabs.getCurrent())
+  //console.log("cs", await browser.mailTabs.getSelectedMessages())
 
   log("msgs2", `Starting _msgIterateBatch`)
 
@@ -609,7 +615,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         if (expTask.expMethod == "selectedMsgs") {
           msgListPage = selectedMsgs
           //msgListPage = await browser.mailTabs.getSelectedMessages()
-          
+
           log("msgs", `First selected  msgListPage length: ${msgListPage.messages.length}`)
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);

@@ -1656,6 +1656,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let cutLen = attName.length / 4;
 											attName = attName.slice(0, attName.length - cutLen);
 											attName = attName.trimEnd();
+											attName = attName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+
 											attDirContainer.initWithPath(PathUtils.join(PathUtils.parent(attDirContainer.path), attName));
 										}
 										attDirContainer.createUnique(1, 0o755);
@@ -1705,6 +1707,8 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 													adjustedAttName = `${att.name.substring(0, lastDotIndex - cutLen)}.${extension}`;
 												}
 											}
+											adjustedAttName = adjustedAttName.replace(/[\/\\:<>*\?\"\|]/g, "_");
+
 											attDirContainerClone.append(adjustedAttName);
 											attachments[i].file = attDirContainerClone;
 

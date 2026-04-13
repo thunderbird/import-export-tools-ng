@@ -284,6 +284,9 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   try {
     gAbort = false;
 
+    console.log("cmt", await browser.mailTabs.getCurrent())
+    console.log("cs", await browser.mailTabs.getSelectedMessages())
+
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
@@ -297,10 +300,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let msgListPage;
     do {
       if (!msgListPage) {
-        //msgListPage = await messenger.mailTabs.getSelectedMessages()
-        msgListPage = ctxEvent.selectedMessages;
+        msgListPage = await messenger.mailTabs.getSelectedMessages()
+        //msgListPage = ctxEvent.selectedMessages;
         folderSet[0].totalMsgCount = msgListPage.messages.length;
-        //console.log(msgListPage)
+        console.log(msgListPage)
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -575,6 +578,9 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
   // iterate msgs
 
+//  console.log("cmt", await browser.mailTabs.getCurrent())
+    //console.log("cs", await browser.mailTabs.getSelectedMessages())
+
   log("msgs2", `Starting _msgIterateBatch`)
 
   var wrtotal = 0;
@@ -602,8 +608,9 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
         if (expTask.expMethod == "selectedMsgs") {
           msgListPage = selectedMsgs
-          //log("msgs", `First selected  msgListPage length: ${msgListPage.messages.length}`)
-
+          //msgListPage = await browser.mailTabs.getSelectedMessages()
+          
+          log("msgs", `First selected  msgListPage length: ${msgListPage.messages.length}`)
         } else {
           msgListPage = await messenger.messages.list(expTask.folders[expTask.currentFolderIndex].id);
           //log("msgs", `First msgListPage length: ${msgListPage.messages.length}`)

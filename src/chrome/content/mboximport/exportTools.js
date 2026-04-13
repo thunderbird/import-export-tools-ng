@@ -358,7 +358,7 @@ async function exportSelectedMsgs(type, params) {
 // all the selected folders are stored in IETglobalMsgFolders global array
 
 async function exportAllMsgs(type, params) {
-	console.log("exportAllMsgs", type, params);
+	//console.log("exportAllMsgs", type, params);
 
 	let st = new Date();
 
@@ -1709,6 +1709,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 													adjustedAttName = `${att.name.substring(0, lastDotIndex - cutLen)}.${extension}`;
 												}
 											}
+											adjustedAttName = adjustedAttName.replace(/[\/\\:<>*\?\"\|]/g, "_");
 											attDirContainerClone.append(adjustedAttName);
 											attachments[i].file = attDirContainerClone;
 

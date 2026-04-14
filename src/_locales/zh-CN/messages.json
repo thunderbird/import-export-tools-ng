@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "拉丁化变换"
   },
+  "LoggingOptions.label": {
+    "message": "日志记录选项"
+  },
   "MACwarning": {
     "message": "警示：继续前，关闭所有其他窗口。"
   },

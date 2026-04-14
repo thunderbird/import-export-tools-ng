@@ -584,6 +584,9 @@
   "latinizeTransform": {
     "message": "Latinizovat transformovat"
   },
+  "LoggingOptions.label": {
+    "message": "Možnosti protokolování"
+  },
   "MACwarning": {
     "message": "Poznámka: Před pokračováním zavřete všechna ostatní okna."
   },

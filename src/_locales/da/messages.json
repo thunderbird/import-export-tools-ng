@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latiniser transformation"
   },
+  "LoggingOptions.label": {
+    "message": "Logføringsmuligheder"
+  },
   "MACwarning": {
     "message": "N.B.: Luk alle andre vinduer før du fortsætter."
   },

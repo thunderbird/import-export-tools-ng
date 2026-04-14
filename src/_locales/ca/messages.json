@@ -588,6 +588,9 @@
   "latinizeTransform": {
     "message": "llatinitzar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opcions de registre"
+  },
   "MACwarning": {
     "message": "N.B: close every other window, before continue."
   },

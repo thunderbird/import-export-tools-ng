@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Transformacja latynoska"
   },
+  "LoggingOptions.label": {
+    "message": "Opcje rejestrowania"
+  },
   "MACwarning": {
     "message": "Przed kontynuacją zamknij inne okna."
   },

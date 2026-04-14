@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latiniziraj transformacijo"
   },
+  "LoggingOptions.label": {
+    "message": "Možnosti beleženja"
+  },
   "MACwarning": {
     "message": "N.B: zapri vsako drugo okno pred nadaljevanjem"
   },

@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Transformieren latinisieren"
   },
+  "LoggingOptions.label": {
+    "message": "Protokollierungsoptionen"
+  },
   "MACwarning": {
     "message": "Vor dem Fortfahren bitte alle anderen Fenster schließen."
   },

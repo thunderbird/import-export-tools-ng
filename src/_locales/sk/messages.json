@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latinizovať transformovať"
   },
+  "LoggingOptions.label": {
+    "message": "Možnosti protokolovania"
+  },
   "MACwarning": {
     "message": "N.B: pred pokračovaním zavrieť všetky ostatné okná."
   },

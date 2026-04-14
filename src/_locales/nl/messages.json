@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latiniseer transformatie"
   },
+  "LoggingOptions.label": {
+    "message": "Logboekopties"
+  },
   "MACwarning": {
     "message": "NB Sluit alle andere vensters voordat u doorgaat."
   },

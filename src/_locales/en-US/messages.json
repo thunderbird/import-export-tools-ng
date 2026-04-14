@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latinize transform"
   },
+  "LoggingOptions.label": {
+    "message": "Logging options"
+  },
   "MACwarning": {
     "message": "N.B: Please close every other window before continuing."
   },

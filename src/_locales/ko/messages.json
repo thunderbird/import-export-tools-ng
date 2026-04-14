@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "라틴화 변환"
   },
+  "LoggingOptions.label": {
+    "message": "로깅 옵션"
+  },
   "MACwarning": {
     "message": "주의:계속하기 전에, 모든 다른 창을 닫으세요."
   },

@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "ラテン語に変換する"
   },
+  "LoggingOptions.label": {
+    "message": "ログ記録オプション"
+  },
   "MACwarning": {
     "message": "注意: 続行する前に、すべての他のウィンドウを閉じてください。"
   },

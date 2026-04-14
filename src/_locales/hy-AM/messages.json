@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Լատինականացնել փոխակերպումը"
   },
+  "LoggingOptions.label": {
+    "message": "Գրանցման տարբերակներ"
+  },
   "MACwarning": {
     "message": "Ուշադրություն. փակեք բոլոր պատուհանները:"
   },

@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Λατινοποίηση μετασχηματισμού"
   },
+  "LoggingOptions.label": {
+    "message": "Επιλογές καταγραφής"
+  },
   "MACwarning": {
     "message": "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε."
   },

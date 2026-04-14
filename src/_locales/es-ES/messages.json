@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latinizar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opciones de registro"
+  },
   "MACwarning": {
     "message": "N.B: cerrar el resto de ventanas antes de continuar."
   },

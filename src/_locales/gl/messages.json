@@ -588,6 +588,9 @@
   "latinizeTransform": {
     "message": "Latinizar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opcións de rexistro"
+  },
   "MACwarning": {
     "message": "N.B.: pechar todas as outras xanelas antes de continuar."
   },

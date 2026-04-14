@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latinisera transformera"
   },
+  "LoggingOptions.label": {
+    "message": "Loggningsalternativ"
+  },
   "MACwarning": {
     "message": "Obs.: Stäng alla andra fönster innan du går vidare."
   },

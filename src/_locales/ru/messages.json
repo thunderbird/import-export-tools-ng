@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Латинизировать преобразование"
   },
+  "LoggingOptions.label": {
+    "message": "Параметры ведения журнала"
+  },
   "MACwarning": {
     "message": "Внимание: перед продолжением закройте все остальные окна."
   },

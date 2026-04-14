@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Trasformazione latinizzata"
   },
+  "LoggingOptions.label": {
+    "message": "Opzioni di registrazione"
+  },
   "MACwarning": {
     "message": "N.B: prima di proseguire, chiudere eventuali finestre aperte"
   },

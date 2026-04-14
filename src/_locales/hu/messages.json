@@ -587,6 +587,9 @@
   "latinizeTransform": {
     "message": "Transzformáció latinosítása"
   },
+  "LoggingOptions.label": {
+    "message": "Naplózási beállítások"
+  },
   "MACwarning": {
     "message": "Megj.: folytatás előtt a többi ablak bezárása"
   },

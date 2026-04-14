@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "msgErrs.label", text: "There were errors. See the Error Console (Control+Shift+J) from the main Thunderbird window."},
+	{ key: "LoggingOptions.label", text: "Logging options"},
 
 
 ];

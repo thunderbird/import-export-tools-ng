@@ -74,7 +74,7 @@
     "src": "mboximport"
   },
   "badfolder2": {
-    "message": "このフォルダーにはインポートできません (IMAP 、ニュースグループまたは仮想フォルダー形式のため)",
+    "message": "このフォルダーにはインポートできません (IMAP、ニュースグループまたは仮想フォルダー形式のため)",
     "src": "mboximport"
   },
   "browse": {
@@ -165,7 +165,7 @@
     "message": "設定"
   },
   "currentFolder.label": {
-    "message": "現在のフォルダ"
+    "message": "現在のフォルダー"
   },
   "customDate": {
     "message": "カスタマイズ日時形式："
@@ -237,7 +237,7 @@
     "message": "ImportExportTools NG - バックアップ"
   },
   "emailFiles": {
-    "message": "メールファイル",
+    "message": "メッセージファイル",
     "src": "mboximport"
   },
   "emlExport": {
@@ -270,7 +270,7 @@
     "src": "mboximport"
   },
   "ExportFolders.title": {
-    "message": "エクスポートフォルダ"
+    "message": "エクスポートフォルダー"
   },
   "exportFormatEML": {
     "message": "EML"
@@ -345,10 +345,10 @@
     "src": "mboximport"
   },
   "Folder.label": {
-    "message": "フォルダ"
+    "message": "フォルダー"
   },
   "folderCount.label": {
-    "message": "フォルダ数"
+    "message": "フォルダー数"
   },
   "folderCtxMenu_CopyFolderPath_Id.title": {
     "message": "フォルダーのパスをコピー"
@@ -414,7 +414,7 @@
     "message": "PDF 形式"
   },
   "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-    "message": "メッセージとHTMLインデックス"
+    "message": "メッセージと HTML インデックス"
   },
   "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
     "message": "メッセージとサブフォルダーのインデックス"
@@ -423,7 +423,7 @@
     "message": "添付ファイルとインデックス付きのメッセージ"
   },
   "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title": {
-    "message": "メッセージ、インデックス、添付ファイル（サブフォルダ付き）"
+    "message": "メッセージ、インデックス、添付ファイル（サブフォルダー付き）"
   },
   "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "プレーンテキスト形式"
@@ -490,7 +490,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "このエクスポートでは、添付ファイルは保存されません。\n添付ファイルも保存したい場合は、他の形式を使用してください。\n  注：但し（添付ファイル含む）は、別フォルダーに保存します。\nこのまま続行しますか？",
+    "message": "このエクスポートでは、添付ファイルは保存されません。\n添付ファイルも保存したい場合は、他の形式を使用してください。\n  注：但し（添付ファイル含む）、別フォルダーに保存します。\nこのまま続行しますか？",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -734,7 +734,7 @@
     "message": "メッセージを次の形式でエクスポート…"
   },
   "msgErrs.label": {
-    "message": "エラーが発生しました。Thunderbirdのメインウィンドウからエラーコンソール（Control+Shift+J）を開いて確認してください。"
+    "message": "エラーが発生しました。Thunderbird のメインウィンドウからエラーコンソール（Control+Shift+J）を開いて確認してください。"
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -845,7 +845,7 @@
     "src": "mboximport"
   },
   "notificationsForExpFolders.label": {
-    "message": "フォルダのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
+    "message": "フォルダーのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
   },
   "notificationsForExpSelMsgs.label": {
     "message": "選択したメッセージのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
@@ -1067,7 +1067,7 @@
     "message": "UTF-16 文字(記号と絵文字)をフィルタリングする"
   },
   "viewDbgConsole.msg": {
-    "message": "  エラー デバッグコンソールを表示する  (Control-Shift-J)"
+    "message": "  エラー デバッグコンソールを表示する  (Control+Shift+J)"
   },
   "virtFolAlert": {
     "message": "仮想フォルダーはこの形式で別々にエクスポートすることができます",

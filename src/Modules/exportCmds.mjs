@@ -250,10 +250,10 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
         });
       }
-
-      times[index] = new Date() - st;
-      total += times[index];
     }
+
+    times[index] = new Date() - st;
+    total += times[index];
 
     let expFolders = folderSet.map(folder => {
       return `  ${folder.exportPath}\n`;
@@ -290,8 +290,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   try {
     gAbort = false;
 
-    console.log("cmt", await browser.mailTabs.getCurrent())
-    console.log("cs", await browser.mailTabs.getSelectedMessages())
+    logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
+
+    //console.log("cmt", await browser.mailTabs.getCurrent())
+    //console.log("cs", await browser.mailTabs.getSelectedMessages())
 
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
@@ -309,7 +311,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         msgListPage = await messenger.mailTabs.getSelectedMessages()
         //msgListPage = ctxEvent.selectedMessages;
         folderSet[0].totalMsgCount = msgListPage.messages.length;
-        console.log(msgListPage)
+        //console.log(msgListPage)
       } else {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -338,6 +340,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       }
       expTask.generalConfig.exportDirectory = resultObj.folder;
     }
+
+    var runs = 1;
+    var total = 0;
+    var times = [];
 
     // UI listener
     browser.runtime.onMessage.addListener(msg => {
@@ -393,8 +399,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
+      let st = new Date();
+
     // this is our folder loop
     for (var folderIndex = 0; folderIndex < expTask.folders.length; folderIndex++) {
+
       expTask.currentFolderIndex = folderIndex;
       expTask.currentFolderPath = expTask.folders[folderIndex].exportPath;
       folderExportedMsgCount = 0;
@@ -500,12 +509,27 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       });
     }
 
+    times[0] = new Date() - st;
+    total += times[0];
+
+    let expFolders = folderSet.map(folder => {
+      return `  ${folder.exportPath}\n`;
+    }).join('');
+    let exportMessage = `Exported Selected Messages:\n`;
+    exportMessage += expFolders;
+    exportMessage += `Messages exported: ${totalMsgsExported}\n`;
+    exportMessage += `Error count: ${totalErrCount}\n`;
+    exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
+    log("msgs msgs2 summary", exportMessage)
+
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-    console.log(ex);
-    console.log(ex.stack);
-    browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+    console.error(ex);
+    console.error(ex.stack);
+    try {
+      browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+    } catch (ex) { }
   }
 }
 

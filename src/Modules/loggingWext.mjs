@@ -37,7 +37,8 @@ export var logging = {
       }
     });
     return includesLT;
-  }
-}
+  },
+};
+
 
 

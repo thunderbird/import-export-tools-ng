@@ -1,27 +1,44 @@
-// debugLogging.mjs
+// loggingWext.mjs
+// will be unified with exp side later
 
-export function log(logType, msg, logOptions) {
-  logging.log(logType, msg, logOptions);
+export function log(logType, msg, msgPrefix, logOptions) {
+  if (logging.logTypesList == "") {
+    return;
+  }
+  logging._log(logType, msg, msgPrefix, logOptions);
 }
 
 export var logging = {
-  logTypes: "",
+  logTypesList: "",
 
   init: function (debugOptions) {
-    this.logTypes = debugOptions.logTypes;
+    this.logTypesList = debugOptions.logTypes.split(" ");
     return;
   },
 
-  log: function (logType, logMsg, logOptions) {
-    if (logType == "" || logType == "err" || this.logTypes.split(" ").includes(logType)) {
+  _log: function (logType, logMsg, msgPrefix = "", logOptions) {
+    if (logType == "" || logType == "err" || this._includesLogType(logType)) {
       if (logType == "err") {
-        console.error("IETNG Err: " + logMsg);
+        console.error("IETNG Err: " + msgPrefix, logMsg);
+      } else if (typeof logMsg == "object") {
+        console.log("IETNG:", msgPrefix);
+         console.dir(logMsg, { depth: null });
       } else {
-        console.log("IETNG: " + logMsg);
+        console.log("IETNG:" + msgPrefix, logMsg);
       }
     }
   },
-
+  _includesLogType: function (logType) {
+    // logType may actually be OR'd types
+    let includesLT = false;
+    logType.split(" ").forEach(logType => {
+      if (this.logTypesList.includes(logType)) {
+        includesLT = true;
+      }
+    });
+    return includesLT;
+  },
 };
+
 
 

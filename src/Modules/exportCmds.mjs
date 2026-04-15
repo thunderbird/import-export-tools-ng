@@ -255,9 +255,13 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       total += times[index];
     }
 
-    let exportMessage = `Exported Folder: ${expTask.folders[expTask.currentFolderIndex].name}\n`;
-    exportMessage += `Messages exported: ${exportStatus?.msgCount}\n`;
-    exportMessage += `Error count: ${exportStatus?.errCount}\n`;
+    let expFolders = folderSet.map(folder => {
+      return `  ${folder.exportPath}\n`;
+    }).join('');
+    let exportMessage = `Exported Folders:\n`;
+    exportMessage += expFolders;
+    exportMessage += `Messages exported: ${totalMsgsExported}\n`;
+    exportMessage += `Error count: ${totalErrCount}\n`;
     exportMessage += `Average time: ${(total / runs) / 1000}s\n`;
     log("msgs msgs2 summary", exportMessage)
 
@@ -694,7 +698,7 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
       //log("msgs", `writePromises all settled status: ${msgsStatus.status} values: ${msgsStatus.value.length}`)
 
-      console.log(msgsStatus)
+      log("mstatus", msgsStatus, "msgsStatus")
 
       //console.log(msgsStatus.length)
 
@@ -1148,7 +1152,8 @@ async function _createIndex(expTask, msgListLog) {
 
     indexData += "</tr>";
 
-    console.log(msgListLog)
+    log("mstatus", msgListLog, "createIndex msgListLog")
+
     for (let index = 0; index < msgListLog.length; index++) {
       const msgItem = msgListLog[index].fileStatus;
       const errItem = msgListLog[index].error;

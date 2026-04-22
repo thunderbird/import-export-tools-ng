@@ -16,6 +16,21 @@
     "default_title": "ImportExport",
     "default_popup": "chrome/content/dummy.html"
   },
+  "commands": {
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "linux": "Ctrl+Shift+U"
+      },
+      "description": "Send a 'toggle-feature' event"
+    },
+    "_execute_compose_action": {
+      "suggested_key": {
+        "default": "Alt+F5"
+      },
+      "description": "Open the compose action popup"
+    }
+  },
   "experiment_apis": {
     "WindowListener": {
       "schema": "api/WindowListener/schema.json",
@@ -79,8 +94,14 @@
     "LegacyHelper": {
       "schema": "api/LegacyHelper/schema.json",
       "parent": {
-        "scopes": ["addon_parent"],
-        "paths": [["LegacyHelper"]],
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "LegacyHelper"
+          ]
+        ],
         "script": "api/LegacyHelper/implementation.js"
       }
     },
@@ -109,7 +130,8 @@
     "accountsRead",
     "messagesImport",
     "notifications",
-    "messagesMove"
+    "messagesMove",
+    "commands"
   ],
   "background": {
     "scripts": [

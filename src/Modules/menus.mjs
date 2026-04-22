@@ -19,6 +19,7 @@
 
 import * as miscCmds from "/Modules/miscCmds.mjs";
 import * as exportCmds from "/Modules/exportCmds.mjs";
+import * as commands from "/Modules/commands.mjs";
 
 
 
@@ -473,6 +474,13 @@ var toolsCtxMenuSet = [
     menuDef: {
       id: toolsCtxMenu_Backup_Id,
       title: localizeMenuTitle("toolsCtxMenu_Backup_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      id: "toolsCtxMenu_Shortcuts_Id",
+      title: "Shortcuts",
+      onclick: commands.configure,
     },
   },
   {

@@ -1,5 +1,13 @@
 // namesModule.mjs
 
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
 var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 var { latinize } = ChromeUtils.importESModule("resource://ietng/api/commonModules/latinize.mjs");
@@ -30,7 +38,7 @@ export var names = {
     let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
 
     // Subject formatting
-    var subject = expTask.msgList[index].subject;
+    let subject = expTask.msgList[index].subject;
     if (!subject || subject == "") {
       subject = "[No Subject]";
     } else if (subject == "...") {
@@ -96,12 +104,13 @@ export var names = {
 */
 
     // Simple date - ${date}
-    var date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
+    let date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
 
-    var dateInSec = msgHdr.dateInSeconds;
+    let dateInSec = msgHdr.dateInSeconds;
 
     // custom date format - ${date_custom}
-    var customDateFormat = expTask.dateFormat.custom;
+    let customDateFormat = expTask.dateFormat.custom;
+    let customDate = strftime.strftime(customDateFormat, new Date(dateInSec * 1000));
 
     // smart name - ${smart_name}
     // Sent of Drafts folder
@@ -163,6 +172,25 @@ export var names = {
       generatedName = generatedName.replace("${suffix}", "");
       generatedName = generatedName.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
       generatedName = generatedName.replace("${date}", date);
+
+      function _localize(msg) {
+        return ietngExtension.localeData.localizeMessage(msg);
+      }
+
+      const smartFmtMapLocalized = {
+        [_localize("subjectFmtToken")]: subject,
+        [_localize("senderFmtToken")]: authorName,
+        [_localize("senderEmailFmtToken")]: authorEmail,
+        [_localize("recipientFmtToken")]: recipientName,
+        [_localize("recipientEmailFmtToken")]: recipientEmail,
+        [_localize("smartNameFmtToken")]: smartName,
+        [_localize("indexFmtToken")]: index,
+        [_localize("dateCustomFmtToken")]: "cd",
+        [_localize("dateFmtToken")]: date,
+      };
+
+      generatedName = generatedName.replace(/\${.*?}/g, function (m) { return smartFmtMapLocalized[m]; });
+
 
       /*
             generatedName = generatedName.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subject);

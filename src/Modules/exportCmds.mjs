@@ -250,10 +250,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           iconUrl: "/chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png"
         });
       }
+      times[index] = new Date() - st;
+      total += times[index];
     }
 
-    times[index] = new Date() - st;
-    total += times[index];
+
 
     let expFolders = folderSet.map(folder => {
       return `  ${folder.exportPath}\n`;
@@ -399,7 +400,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
-      let st = new Date();
+    let st = new Date();
 
     // this is our folder loop
     for (var folderIndex = 0; folderIndex < expTask.folders.length; folderIndex++) {

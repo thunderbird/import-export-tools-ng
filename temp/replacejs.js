@@ -7,11 +7,15 @@ let final = dirStr.replace(/\${(.*?)}/g, `$1 - ${subject}`)
 
 console.log(final)
 
+function getname(msg) {
+  return "${asunto}"
+}
 let str = "${asunto}-name"
 const smartFmtMapLocalized = {
-    "${asunto}": subject,
+    [getname()]: subject,
   };
 
-  final = str.replace(/\${.*?}/g, function (m) { return localizedSmartFmtMap[m]; });
+  console.log(smartFmtMapLocalized)
+  final = str.replace(/\${.*?}/g, function (m) { return smartFmtMapLocalized[m]; });
 
 console.log(final)

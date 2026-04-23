@@ -1,11 +1,11 @@
 // namesModule.mjs
 
 var { ExtensionParent } = ChromeUtils.importESModule(
-	"resource://gre/modules/ExtensionParent.sys.mjs"
+  "resource://gre/modules/ExtensionParent.sys.mjs"
 );
 
 var ietngExtension = ExtensionParent.GlobalManager.getExtension(
-	"ImportExportToolsNG@cleidigh.kokkini.net"
+  "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
 var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
@@ -16,7 +16,7 @@ export var names = {
 
   generateFromPattern: async function (namePatternType, expTask, index, context) {
     // general options
-    //let namePatternType = expTask.names.namePatternType;
+
     let asciiOnly = expTask.names.asciiOnly;
     let nameMaxLen = expTask.names.maxLength;
     let extension = expTask.names.extension;
@@ -76,11 +76,9 @@ export var names = {
         recipientEmail = "[No Recipient Email]";
       }
     } catch (ex) {
-      //console.log(ex, expTask.msgList[index])
-      //console.log(ex, expTask.msgList[index].recipients)
       recipientEmail = "[No Recipient Email]";
-
     }
+
     // Recipient name
 
     let recipientName;
@@ -95,22 +93,12 @@ export var names = {
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
 
-    /*
-    console.log("subject ", subject)
-    console.log("authoremail", authorEmail)
-    console.log("authname", authorName)
-    console.log("recipients", recipientEmail)
-    console.log("recipientName", recipientName + "\n")
-*/
-
     // Simple date - ${date}
     let date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
 
-    let dateInSec = msgHdr.dateInSeconds;
-
     // custom date format - ${date_custom}
-    let customDateFormat = expTask.dateFormat.custom;
-    let customDate = strftime.strftime(customDateFormat, new Date(dateInSec * 1000));
+
+    let customDate = strftime.strftime(expTask.dateFormat.custom, new Date(msgHdr.dateInSeconds * 1000));
 
     // smart name - ${smart_name}
     // Sent of Drafts folder
@@ -161,6 +149,7 @@ export var names = {
       let index = key;
 
       // Allow en-US tokens always
+      /*
       generatedName = generatedName.replace("${subject}", subject);
       generatedName = generatedName.replace("${sender}", authorName);
       generatedName = generatedName.replace("${sender_email}", authorEmail);
@@ -172,6 +161,28 @@ export var names = {
       generatedName = generatedName.replace("${suffix}", "");
       generatedName = generatedName.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
       generatedName = generatedName.replace("${date}", date);
+*/
+
+      const smartFmtMap = {
+        "${subject}": subject,
+        "${sender}": authorName,
+        "${sender_email}": authorEmail,
+        "${recipient}": recipientName,
+        "${recipient_email}": recipientEmail,
+        "${smart_name}": smartName,
+        "${index}": index,
+        "${date_custom}": customDate,
+        "${date}": date,
+      };
+
+      generatedName = generatedName.replaceAll(/\${.*?}/g,
+        function (m) {
+          if (!smartFmtMap[m]) {
+            return m;
+          }
+          return smartFmtMap[m];
+        });
+
 
       function _localize(msg) {
         return ietngExtension.localeData.localizeMessage(msg);
@@ -189,7 +200,13 @@ export var names = {
         [_localize("dateFmtToken")]: date,
       };
 
-      generatedName = generatedName.replace(/\${.*?}/g, function (m) { return smartFmtMapLocalized[m]; });
+      generatedName = generatedName.replaceAll(/\${.*?}/g,
+        function (m) {
+          if (!smartFmtMapLocalized[m]) {
+            return m;
+          }
+          return smartFmtMapLocalized[m];
+        });
 
 
       /*
@@ -211,7 +228,7 @@ export var names = {
     }
 
     // filters and transforms
-    generatedName = generatedName.replace(/[\x00-\x1F]/g, "_");
+    generatedName = generatedName.replace(/[\x00-\x1F]/g, "");
 
     // latinize characters transform
     if (expTask.names.transforms.latinize) {
@@ -233,7 +250,7 @@ export var names = {
 
 
     // User defined character filter
-    var filterCharacters = expTask.names.filters.characterFilter;
+    let filterCharacters = expTask.names.filters.characterFilter;
 
     if (filterCharacters !== "") {
       let filter = new RegExp(`[${filterCharacters}]`, "g");
@@ -243,10 +260,9 @@ export var names = {
     generatedName = generatedName.replace(/[\/\\:<>*\?\"\|]/g, "_");
 
     try {
-      let testURI = encodeURIComponent(generatedName)
+      let testURI = encodeURIComponent(generatedName);
     } catch {
       generatedName = this._filterNonASCIICharacters(generatedName);
-
     }
 
     /*
@@ -257,19 +273,6 @@ export var names = {
     }
       */
     return generatedName;
-  },
-
-  nametoascii: function (str) {
-    if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
-      str = str.replace(/[\x00-\x19]/g, "_");
-      // Allow ',' and single quote character which is valid
-      return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
-    }
-    if (str)
-      str = str.replace(/[^a-zA-Z0-9\-]/g, "_");
-    else
-      str = "Undefinied_or_empty";
-    return str;
   },
 
   _filterNonASCIICharacters: function (str) {

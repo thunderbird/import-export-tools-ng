@@ -588,7 +588,7 @@
     "message": "ラテン語に変換する"
   },
   "LoggingOptions.label": {
-    "message": "ログ記録オプション"
+    "message": "ログ設定："
   },
   "MACwarning": {
     "message": "注意: 続行する前に、すべての他のウィンドウを閉じてください。"
@@ -707,7 +707,7 @@
     "message": "PDF 形式"
   },
   "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
-    "message": "メッセージとHTMLインデックス"
+    "message": "メッセージと HTML インデックス"
   },
   "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
     "message": "メッセージのみ"
@@ -905,7 +905,7 @@
     "src": "profilewizard"
   },
   "Received": {
-    "message": "受け取りました",
+    "message": "受信",
     "src": "mboximport"
   },
   "recipient": {

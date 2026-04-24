@@ -1,4 +1,21 @@
-// export prototype
+// ExportCmds.mjs
+// This has all the top level export menu options 
+// Export for all message types both folders and 
+// selected messages 
+
+// We process as much as possible at the WebExtension
+// level and batch the messages in an expTask object
+// along with attachments as fileObjs
+// The expTask objects are passed to the ExportMessages
+// experiment for the batched, parallel, high volume file
+// writing. Note that some processing for unique naming,
+// attachment tables (dependent on unique naming, and PDF
+// handling are also done at the experiment level.
+// The results are returned with the finalized filenames 
+// and per message errors. These are used for the index
+// creation back on the WebExtension level.
+
+// tbd - Add mbox export
 
 import { logging, log } from "./loggingWext.mjs";
 import { createExportTask } from "./importExportTasks.mjs";
@@ -40,11 +57,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     // we do all main logic, folder and message iteration
     // and UI interactions in wext side
 
+    // create our base, governing expTask, target modifications later
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
-
-    // warnings
-
-    //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), "Exporting IMAP folders");
 
     // get export directory, use predefined type or open dir dialog
     let usePredefinedExportDir;
@@ -72,7 +86,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     var total = 0;
     var times = [];
 
-    // UI listener
+    // UI listener for messages from the statusWin
 
     browser.runtime.onMessage.addListener(msg => {
       if (msg.command != "UI_EVENT") {
@@ -90,7 +104,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       }
     });
 
-    // export update listener
+    // export update listener for messages from the ExportMessages
+    // experiment for export progress and errors 
 
     let folderExportedMsgCount = 0;
     let totalMsgsExported = 0;
@@ -109,6 +124,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         statusMsg = browser.i18n.getMessage("msgErrs.label");
       }
 
+      // bypass UI messages when notifications enabled
       if (!notificationsForExpFolders) {
         browser.runtime.sendMessage({
           command: "UI_UPDATE", target: "expStatusWin",
@@ -126,7 +142,6 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     }
 
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
-
 
     log("msgs2", `Added UI and exportStatus listeners`)
     log("msgs2", `Starting folder loop`)
@@ -166,7 +181,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
             // wait for the window to load and send expStatusWinOpen
 
-            var w = await new Promise(async (resolve, reject) => {
+            let w = await new Promise(async (resolve, reject) => {
               let resolved = false;
 
               async function expStatusWinOpen(msg) {
@@ -187,10 +202,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                 }
                 log("err", `Timeout waiting for expStatusWinOpen event`)
                 gAbort = true;
-                //throw new Error("No expStatusWinOpen event")
                 reject("IETNG: Timeout waiting for expStatusWinOpen event");
                 return;
-
               }, 4200);
               await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
               log("msgs2", `Created expStatusWin winType: ${winType}`)
@@ -212,9 +225,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
             totalMsgsExported: totalMsgsExported,
             totalErrCount: totalErrCount,
             statusMsg: "",
-
             winType: winType
-
           });
 
           log("msgs2", `Sent initial UI_UPDATE msg`)
@@ -254,8 +265,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
       total += times[index];
     }
 
-
-
+    // export summary
     let expFolders = folderSet.map(folder => {
       return `  ${folder.exportPath}\n`;
     }).join('');
@@ -268,17 +278,14 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
 
-    //let rv = await browser.AsyncPrompts.asyncAlert("Folder Export", `${exportMessage}`);
-
   } catch (ex) {
-    console.log(ex)
+    console.error(ex)
     if (!ex) {
       var ex = "Unknown"
     }
-    //let exMsg = ex.message || "";
 
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex}\n\n${ex.stack}`);
-    console.log(ex.stack);
+    console.error(ex.stack);
     try {
       browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
     } catch (ex) {
@@ -287,6 +294,8 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   }
 }
 
+// export selected messages 
+// tbd - consolidate common functions 
 export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   try {
     gAbort = false;
@@ -305,7 +314,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // cruddy way to get selected msg cnt
     folderSet[0].totalMsgCount = 0;
 
-
     let msgListPage;
     do {
       if (!msgListPage) {
@@ -317,7 +325,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         msgListPage = await messenger.messages.continueList(msgListPage.id);
         folderSet[0].totalMsgCount += msgListPage.messages.length;
         //console.log(msgListPage)
-
       }
     } while (msgListPage.id);
 
@@ -355,7 +362,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       if (msg.source == "expStatusWin") {
         switch (msg.srcEvent) {
           case "cancelClick":
-            console.log("cancel")
             // we are aborting current export
             gAbort = true;
             break;
@@ -397,12 +403,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       }
     }
 
-
     browser.ExportMessages.onExpUpdate.addListener(_updateListener);
 
     let st = new Date();
 
-    // this is our folder loop
+    // this is our folder loop - could remove tbd
     for (var folderIndex = 0; folderIndex < expTask.folders.length; folderIndex++) {
 
       expTask.currentFolderIndex = folderIndex;
@@ -447,10 +452,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
               }
               log("err", `Timeout waiting for expStatusWinOpen event`)
               gAbort = true;
-              //throw new Error("No expStatusWinOpen event")
               reject("IETNG: Timeout waiting for expStatusWinOpen event");
               return;
-
             }, 4200);
             await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
 
@@ -485,7 +488,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       if (expTask.index.create) {
         _createIndex(expTask, exportStatus.msgListLog);
       }
-
     }
 
     if (!notificationsForExpSelMsgs) {
@@ -587,7 +589,6 @@ async function _getFolderSet(selectedFolders, functionParams) {
 
   for (const [index, folder] of fullFolderSet.entries()) {
     let parentfolders = await browser.folders.getParentFolders(folder.id);
-    //console.log(parentfolders)
 
     fullFolderSet[index].exportPath = folder.name.replace(/[\\:<>*\?\"\|]/g, "_");
 
@@ -671,8 +672,6 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         expTask.msgList.push(msgListPage.messages[index]);
         let msgId = msgListPage.messages[index].id;
 
-        //log("msgs", `Processing msgListPage msgIndex: ${index} id: ${msgListPage.id}`)
-
         getBodyPromises.push(_getprocessedMsg(expTask, msgId, msgListPage.messages[index]));
 
         totalMsgsData += msgListPage.messages[index].size;
@@ -689,7 +688,6 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
             log("msgs2", `Starting ExpId: ${expTask.id} numMsgs: ${expTask.msgList.length}`);
             writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
             //await browser.ExportMessages.exportMessagesES6(expTask);
-
           }
 
           totalMsgsData = 0;
@@ -700,17 +698,14 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
       if (expTask.msgList) {
         if (writeMsgs) {
           let getBodySettledPromises = await Promise.allSettled(getBodyPromises);
-          // console.log(new Date());
 
           for (let index = 0; index < getBodySettledPromises.length; index++) {
             expTask.msgList[index].msgData = getBodySettledPromises[index].value;
-            //console.log(index, expTask.msgList[index].id, expTask.msgList[index].subject, expTask.msgList[index])
           }
           expTask.id = expId++;
           log("msgs2", `Starting ExpId: ${expTask.id} numMsgs: ${expTask.msgList.length}`);
           writePromises.push(browser.ExportMessages.exportMessagesES6(expTask));
           //await browser.ExportMessages.exportMessagesES6(expTask);
-
         }
       }
 
@@ -725,14 +720,12 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
       log("mstatus", msgsStatus, "msgsStatus")
 
-      //console.log(msgsStatus.length)
-
       if (msgsStatus.length == 1 && msgsStatus[0]?.reason) {
         throw new Error(msgsStatus[0].reason + "\n\nSee the Debug Console for more detail.\n(Control-Shift-J)")
       }
 
       if (msgsStatus.length == 1 && msgsStatus[0].value.error) {
-        console.log(msgsStatus[0].value.error)
+        console.error(msgsStatus[0].value.error)
         throw new Error(msgsStatus[0].value.error)
       }
 
@@ -756,13 +749,11 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
         }
       }
 
-      //console.log(msgListLog)
-
       return { msgListLog: msgListLog, msgCount: msgCount, errCount: errCount };
     }
   } catch (ex) {
     let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
-    console.log(ex)
+    console.error(ex)
     gAbort = true;
     return;
   }
@@ -791,7 +782,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           resolve({ msgBody: null, msgBodyType: "pdf/none", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;
         }
-
       }
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
@@ -852,7 +842,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
             let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
             attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-            //console.log("push  att", attachmentParts)
           }
 
           if (part.parts) {
@@ -911,17 +900,12 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
           break;
       }
-
-
     } catch (ex) {
-      console.log(ex, msg)
-      //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `${ex.message}\n\n${ex.stack}`);
+      console.error(ex, msg);
       reject(ex);
     }
   });
 }
-
-
 
 async function _preprocessBody(expTask, msg, body, msgBodyType, extraHeaders) {
   // so we need to do different processing 
@@ -973,8 +957,6 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
 async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extraHeaders) {
   // we process depending upon body content type
 
-  //console.log(extraHeaders)
-
   if (msgBodyType == "text/html") {
     // first check if this is headless html where 
     // there is no html or body tags
@@ -991,7 +973,6 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 }
 
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
-  //console.log("hdr", extraHeaders)
 
   let recipients;
   if (msg.recipients == []) {
@@ -1057,16 +1038,13 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
     if (msgBodyType == "text/plain") {
       let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
-      //console.log(tp)
       return tp;
     }
     msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
-    //console.log(rp)
     return msgBody;
   }
 
   // plaintext export
-
 
   let hdr = "";
   hdr += `${hdrSubject}:  ${extraHeaders.fullSubject}\r\n`;
@@ -1090,7 +1068,7 @@ function convertCharsetToUTF8(charset, string) {
     const decoder = new TextDecoder(charset);
     const encoded = encoder.encode(string);
     const decoded = decoder.decode(encoded);
-    console.log("Converted to utf-8 from:", charset);
+    //console.log("Converted to utf-8 from:", charset);
 
     return decoded;
   } catch (e) {

@@ -1,5 +1,8 @@
 // namesModule.mjs
 
+// Generate filenames for messages and directory names 
+// for attachments from token based patterns
+
 var { ExtensionParent } = ChromeUtils.importESModule(
   "resource://gre/modules/ExtensionParent.sys.mjs"
 );
@@ -26,14 +29,6 @@ export var names = {
     let authorNameMaxLen = expTask.names.components.authorNameMaxLen;
     let recipientNameMaxLen = expTask.names.components.recipientNameMaxLen;
 
-
-    //var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
-    //var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
-    //var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
-    //var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
-    //var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
-    //var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
-
     // we need the msgHdr for items not in the wext MessageHeader
     let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
 
@@ -47,7 +42,7 @@ export var names = {
 
     // add Re_ for responses 
     if (msgHdr.flags & 0x0010) {
-      subject = "Re; " + subject;
+      subject = "Re_ " + subject;
     }
 
     // length contraint
@@ -97,7 +92,6 @@ export var names = {
     let date = strftime.strftime("%Y%m%d%H%M", expTask.msgList[index].date);
 
     // custom date format - ${date_custom}
-
     let customDate = strftime.strftime(expTask.dateFormat.custom, new Date(msgHdr.dateInSeconds * 1000));
 
     // smart name - ${smart_name}
@@ -149,19 +143,6 @@ export var names = {
       let index = key;
 
       // Allow en-US tokens always
-      /*
-      generatedName = generatedName.replace("${subject}", subject);
-      generatedName = generatedName.replace("${sender}", authorName);
-      generatedName = generatedName.replace("${sender_email}", authorEmail);
-      generatedName = generatedName.replace("${recipient}", recipientName);
-      generatedName = generatedName.replace("${recipient_email}", recipientEmail);
-      generatedName = generatedName.replace("${smart_name}", smartName);
-      generatedName = generatedName.replace("${index}", index);
-      generatedName = generatedName.replace("${prefix}", "");
-      generatedName = generatedName.replace("${suffix}", "");
-      generatedName = generatedName.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-      generatedName = generatedName.replace("${date}", date);
-*/
 
       const smartFmtMap = {
         "${subject}": subject,
@@ -183,6 +164,7 @@ export var names = {
           return smartFmtMap[m];
         });
 
+      // localized also available for the current locale
 
       function _localize(msg) {
         return ietngExtension.localeData.localizeMessage(msg);
@@ -207,24 +189,6 @@ export var names = {
           }
           return smartFmtMapLocalized[m];
         });
-
-
-      /*
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("subjectFmtToken"), subject);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderFmtToken"), authName);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("senderEmailFmtToken"), authEmail);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientFmtToken"), recName);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("recipientEmailFmtToken"), recEmail);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("smartNameFmtToken"), smartName);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("indexFmtToken"), index);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("prefixFmtToken"), prefix);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("suffixFmtToken"), suffix);
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
-            generatedName = generatedName.replace(mboximportbundle.GetStringFromName("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
-      */
-
-    } else {
-      //generatedName = msgDate8601string + "-" + subject + "-" + hdr.messageKey;
     }
 
     // filters and transforms
@@ -300,7 +264,6 @@ export var names = {
 
     return { name, extension };
   },
-
 
   truncateFilename(filename, truncationLength) {
     let filenameParts = this.splitFilenameAndExtension(filename);

@@ -1,6 +1,5 @@
 // ui elements and control
-
-import { strftime } from "./strftime.mjs";
+// tbd - move notifications here
 
 export async function createExportStatusWindow(title, winType) {
   if (winType == "singleFolder") {

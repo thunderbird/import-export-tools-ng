@@ -315,7 +315,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     if (!selMsgCnt) {
       console.log("use sel")
-      
+
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
     } else {
       console.log("use msgList")
@@ -773,8 +773,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
   return new Promise(async (resolve, reject) => {
 
     try {
-
-      var extraHeaders = await browser.ExportMessages.getMsgHdrs(msgId, ["fullSubject"]);
+      // we can't use getHeaders() until TB v147 so just wait until v140 depreciated
+      let extraHeaders = await browser.ExportMessages.getMsgHdrs(msgId, ["fullSubject"]);
       if (expTask.expType == "eml") {
         let rawMsg = await browser.messages.getRaw(msgId);
         if (rawMsg.decryptionStatus == "fail") {
@@ -794,7 +794,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       }
 
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
-      //console.log(fullMsg)
+      log("msgparts", fullMsg, `Msg: ${extraHeaders.fullSubject}\nFullMsg parts:`)
+
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
@@ -807,10 +808,10 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       var attachmentParts = [];
 
       async function getParts(parts) {
-        //console.log("getParts", parts)
 
         for (const part of parts) {
-          //console.log(part)
+          log("msgparts", part, `Msg: ${extraHeaders.fullSubject}\nMsg part:`)
+
           // we could have multiple sub parts
           let contentType = part.contentType;
 

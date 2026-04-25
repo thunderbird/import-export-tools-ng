@@ -303,7 +303,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
 
     //console.log("cmt", await browser.mailTabs.getCurrent())
-    //console.log("cs", await browser.mailTabs.getSelectedMessages())
+    console.log("cs", await browser.mailTabs.getSelectedMessages())
 
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
@@ -312,21 +312,30 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let totalFolderCount = folderSet.length;
 
     // cruddy way to get selected msg cnt
-    folderSet[0].totalMsgCount = 0;
+    let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
+    if (!selMsgCnt) {
+      console.log("use sel")
+      
+      folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
+    } else {
+      console.log("use msgList")
+      folderSet[0].totalMsgCount = 0;
 
-    let msgListPage;
-    do {
-      if (!msgListPage) {
-        msgListPage = await messenger.mailTabs.getSelectedMessages()
-        //msgListPage = ctxEvent.selectedMessages;
-        folderSet[0].totalMsgCount = msgListPage.messages.length;
-        //console.log(msgListPage)
-      } else {
-        msgListPage = await messenger.messages.continueList(msgListPage.id);
-        folderSet[0].totalMsgCount += msgListPage.messages.length;
-        //console.log(msgListPage)
-      }
-    } while (msgListPage.id);
+
+      let msgListPage;
+      do {
+        if (!msgListPage) {
+          msgListPage = await messenger.mailTabs.getSelectedMessages()
+          //msgListPage = ctxEvent.selectedMessages;
+          folderSet[0].totalMsgCount = msgListPage.messages.length;
+          //console.log(msgListPage)
+        } else {
+          msgListPage = await messenger.messages.continueList(msgListPage.id);
+          folderSet[0].totalMsgCount += msgListPage.messages.length;
+          //console.log(msgListPage)
+        }
+      } while (msgListPage.id);
+    }
 
     let totalMsgCount = 0;
 

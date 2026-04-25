@@ -224,12 +224,14 @@ async function exportSelectedMsgs(type, params) {
 				res = fp.show();
 			else
 				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK)
+			if (res === nsIFilePicker.returnOK || res === nsIFilePicker.returnReplace)
 				file = fp.file;
 			else
 				return { status: "cancel" };
 		}
 
+		// fix fp
+		console.log(res)
 		try {
 			if (file.exists() && !file.isWritable()) {
 				alert(ietngUtils.localizeMsg("nowritable"));
@@ -239,6 +241,9 @@ async function exportSelectedMsgs(type, params) {
 			return ex;
 		}
 
+			if (file.exists() && res == 2) {
+				file.remove(false);
+			}
 
 		var curDBView;
 		// Lets see where we are

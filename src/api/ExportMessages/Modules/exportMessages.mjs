@@ -112,6 +112,11 @@ export var exportMessages = {
         var currentFileType = "";
         var currentFileName = "";
 
+        if (expTask.debug.logTypes.includes("withatts")) {
+        console.log("same")  
+        msgsDir = attDirs.attachmentsDir;
+        }
+
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 

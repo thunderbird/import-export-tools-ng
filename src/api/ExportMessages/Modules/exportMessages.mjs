@@ -613,7 +613,7 @@ export var exportMessages = {
     let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>Attachments</legend></fieldset>\n`;
     let relAttsDir = "./";
 
-    if (expTask.attachments.containerStructure == "perMsgDir") {
+    if (expTask.attachments.containerStructure == "perMsgDir" && !expTask.debug.logTypes.includes("withatts")) {
       relAttsDir += PathUtils.filename(attsDir);
     }
 

@@ -111,6 +111,9 @@ export var ietngUtils = {
     let res = await new Promise(resolve => {
       fp.open(resolve);
     });
+    console.log(res)
+    console.log(fp.file.path)
+
     if (res != Ci.nsIFilePicker.returnOK || res != Ci.nsIFilePicker.returnReplace) {
       resultObj.result = -1;
       return resultObj;
@@ -133,6 +136,7 @@ export var ietngUtils = {
 
     if (mode === Ci.nsIFilePicker.modeGetFolder) {
       resultObj.folder = fp.file.path;
+      resultObj.folderFile = fp.file;
     }
     return resultObj;
   },

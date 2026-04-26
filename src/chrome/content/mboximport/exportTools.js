@@ -202,36 +202,27 @@ async function exportSelectedMsgs(type, params) {
 
 		var file = getPredefinedFolder(2);
 		if (!file || type === 3 || type === 4) {
-			var nsIFilePicker = Ci.nsIFilePicker;
-			let winCtx = window;
-			const tbVersion = ietngUtils.getThunderbirdVersion();
-			if (tbVersion.major >= 120) {
-				winCtx = window.browsingContext;
-			}
-			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+			let winCtx = window.browsingContext;
+			let fpRes;
 			if (type === 3) {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeSave);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else if (type === 4) {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-			}
+				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeSave, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.file;
+		console.log(fpRes)
 
-			var res;
-			if (fp.show)
-				res = fp.show();
-			else
-				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK || res === nsIFilePicker.returnReplace)
-				file = fp.file;
-			else
+			} else if (type === 4) {
+				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpen, ietngUtils.localizeMsg("filePickerAppend"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.file;
+			} else {
+				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.folderFile;
+			}
+			if (fpRes.result == -1) {
 				return { status: "cancel" };
+			}
 		}
 
 		// fix fp
-		console.log(res)
+		console.log(fpRes)
 		try {
 			if (file.exists() && !file.isWritable()) {
 				alert(ietngUtils.localizeMsg("nowritable"));
@@ -241,9 +232,9 @@ async function exportSelectedMsgs(type, params) {
 			return ex;
 		}
 
-			if (file.exists() && res == 2) {
-				file.remove(false);
-			}
+		if (file.exists() && fpRes.result == nsIFilePicker.returnReplace) {
+			file.remove(false);
+		}
 
 		var curDBView;
 		// Lets see where we are

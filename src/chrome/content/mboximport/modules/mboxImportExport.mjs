@@ -80,13 +80,13 @@ export var mboxImportExport = {
     try {
 
       if (params.mboxImpType == "individual") {
-        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
+        fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeOpenMultiple, selectMboxFiles_title, null, null);
         if (fpRes.result == -1) {
           return;
         }
         mboxFiles = fpRes.filesArray;
       } else {
-        fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
+        fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, selectFolderForMboxes_title, null, null);
         if (fpRes.result == -1) {
           return;
         }

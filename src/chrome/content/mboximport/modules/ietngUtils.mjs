@@ -20,16 +20,16 @@ var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppCon
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
 var { ExtensionParent } = ChromeUtils.importESModule(
-	"resource://gre/modules/ExtensionParent.sys.mjs"
+  "resource://gre/modules/ExtensionParent.sys.mjs"
 );
 
 var ietngExtension = ExtensionParent.GlobalManager.getExtension(
-	"ImportExportToolsNG@cleidigh.kokkini.net"
+  "ImportExportToolsNG@cleidigh.kokkini.net"
 );
 
 var { MailServices } = Ietng_ESM
-	? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
-	: ChromeUtils.import("resource:///modules/MailServices.jsm");
+  ? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
+  : ChromeUtils.import("resource:///modules/MailServices.jsm");
 
 
 export var ietngUtils = {
@@ -99,7 +99,7 @@ export var ietngUtils = {
     return msgUris;
   },
 
-  openFileDialog: async function (window, mode, title, initialDir, filter) {
+  openFileDialog: async function (mode, title, initialDir, filter) {
     let winCtx = this.top.browsingContext;
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};
@@ -111,10 +111,8 @@ export var ietngUtils = {
     let res = await new Promise(resolve => {
       fp.open(resolve);
     });
-    console.log(res)
-    console.log(fp.file.path)
 
-    if (res != Ci.nsIFilePicker.returnOK || res != Ci.nsIFilePicker.returnReplace) {
+    if (res != Ci.nsIFilePicker.returnOK && res != Ci.nsIFilePicker.returnReplace) {
       resultObj.result = -1;
       return resultObj;
     }
@@ -396,7 +394,7 @@ export var ietngUtils = {
   },
 
   localizeMsg: function (msgName) {
-		return ietngExtension.localeData.localizeMessage(msgName);
-	},
+    return ietngExtension.localeData.localizeMessage(msgName);
+  },
 
 };

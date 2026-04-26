@@ -201,19 +201,17 @@ async function exportSelectedMsgs(type, params) {
 	try {
 
 		var file = getPredefinedFolder(2);
-		if (!file || type === 3 || type === 4) {
-			let winCtx = window.browsingContext;
-			let fpRes;
-			if (type === 3) {
-				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeSave, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
-				file = fpRes.file;
-		console.log(fpRes)
+		let fpRes;
 
+		if (!file || type === 3 || type === 4) {
+			if (type === 3) {
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeSave, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.file;
 			} else if (type === 4) {
-				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeOpen, ietngUtils.localizeMsg("filePickerAppend"), null, Ci.nsIFilePicker.filterAll);
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeOpen, ietngUtils.localizeMsg("filePickerAppend"), null, Ci.nsIFilePicker.filterAll);
 				file = fpRes.file;
 			} else {
-				fpRes = await ietngUtils.openFileDialog(window, Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
 				file = fpRes.folderFile;
 			}
 			if (fpRes.result == -1) {
@@ -221,8 +219,6 @@ async function exportSelectedMsgs(type, params) {
 			}
 		}
 
-		// fix fp
-		console.log(fpRes)
 		try {
 			if (file.exists() && !file.isWritable()) {
 				alert(ietngUtils.localizeMsg("nowritable"));
@@ -232,7 +228,7 @@ async function exportSelectedMsgs(type, params) {
 			return ex;
 		}
 
-		if (file.exists() && fpRes.result == nsIFilePicker.returnReplace) {
+		if (file.exists() && fpRes.result == Ci.nsIFilePicker.returnReplace) {
 			file.remove(false);
 		}
 

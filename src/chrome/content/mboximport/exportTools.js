@@ -228,7 +228,7 @@ async function exportSelectedMsgs(type, params) {
 			return ex;
 		}
 
-		if (file.exists() && fpRes.result == Ci.nsIFilePicker.returnReplace) {
+		if (type == 4 && file.exists() && fpRes.result == Ci.nsIFilePicker.returnReplace) {
 			file.remove(false);
 		}
 

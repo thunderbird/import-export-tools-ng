@@ -113,8 +113,9 @@ export var exportMessages = {
         var currentFileName = "";
 
         if (expTask.debug.logTypes.includes("withatts")) {
-        console.log("same")  
         msgsDir = attDirs.attachmentsDir;
+        console.log("withatts :", msgsDir)  
+
         }
 
         if (expTask.attachments.save != "none") {
@@ -399,6 +400,7 @@ export var exportMessages = {
       fileStatus.headers = __getMsgHeaders(expTask, index);
       fileStatus.hasAttachments = expTask.msgList[index].msgData.attachmentParts.length;
       fileStatus.attachmentFilenames = attachmentFilenames;
+      log("filestatus", fileStatus, "fileStatus")
       return fileStatus;
     }
 

@@ -1191,12 +1191,23 @@ async function _createIndex(expTask, msgListLog) {
       }
 
       let fpParts = msgItem.filePath.split(osPathSeparator);
-      var filename = fpParts[fpParts.length - 1];
+      let filename = fpParts[fpParts.length - 1];
+      let fileParent = fpParts[fpParts.length - 2];
+
       let messageContainerName = "";
       if (expTask.messages.messageContainer) {
         messageContainerName = encodeURIComponent(expTask.messages.messageContainerName) + "/";
       }
-      let relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
+
+      let relUrl;
+
+      // experimental export structure with msgs in attachment directory
+      if (expTask.debug.logTypes.includes("withatts")) {
+        relUrl = "./" + messageContainerName + encodeURIComponent(`${fileParent}`) + "/" + encodeURIComponent(`${filename}`);
+      } else {
+        relUrl = "./" + messageContainerName + encodeURIComponent(`${filename}`);
+      }
+
       let fullSubject = msgItem.headers.subject;
       if (fullSubject.startsWith(".")) {
         fullSubject = "[No Decryption]" + fullSubject;

@@ -100,22 +100,18 @@ export var ietngUtils = {
   },
 
   openFileDialog: async function (window, mode, title, initialDir, filter) {
-    let winCtx = this.top;
-    const tbVersion = this.getThunderbirdVersion();
-    if (tbVersion.major >= 120) {
-      winCtx = this.top.browsingContext;
-    }
+    let winCtx = this.top.browsingContext;
     let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
     let resultObj = {};
     fp.init(winCtx, title, mode);
     fp.appendFilters(filter);
     if (initialDir) {
-      fp.displayDirectory = nsiFileFromPath(initialDir);
+      //fp.displayDirectory = nsiFileFromPath(initialDir);
     }
     let res = await new Promise(resolve => {
       fp.open(resolve);
     });
-    if (res !== Ci.nsIFilePicker.returnOK) {
+    if (res != Ci.nsIFilePicker.returnOK || res != Ci.nsIFilePicker.returnReplace) {
       resultObj.result = -1;
       return resultObj;
     }
@@ -133,7 +129,7 @@ export var ietngUtils = {
       resultObj.file = fp.file;
     }
 
-    resultObj.result = 0;
+    resultObj.result = res;
 
     if (mode === Ci.nsIFilePicker.modeGetFolder) {
       resultObj.folder = fp.file.path;
@@ -260,6 +256,7 @@ export var ietngUtils = {
     // the function must delete the existing files and then return the original filename.
     // If it's a structured export, it's deleted also the filename.sbd subdirectory
     if (overwrite) {
+      console.log("overwite")
       if (NSclone.exists()) {
         NSclone.remove(false);
         if (structure) {

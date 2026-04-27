@@ -117,7 +117,7 @@ export var names = {
       pattern = pattern.replace("%s", subject);
       pattern = pattern.replace("%k", key);
       pattern = pattern.replace("%d", date);
-      pattern = pattern.replace("%D", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
+      pattern = pattern.replace("%D", customDate);
       pattern = pattern.replace("%n", smartName);
       pattern = pattern.replace("%a", authorName);
       pattern = pattern.replace("%r", recipientName);
@@ -178,7 +178,7 @@ export var names = {
         [_localize("recipientEmailFmtToken")]: recipientEmail,
         [_localize("smartNameFmtToken")]: smartName,
         [_localize("indexFmtToken")]: index,
-        [_localize("dateCustomFmtToken")]: "cd",
+        [_localize("dateCustomFmtToken")]: expTask.dateFormat.custom,
         [_localize("dateFmtToken")]: date,
       };
 

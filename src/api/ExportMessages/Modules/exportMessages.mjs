@@ -62,7 +62,7 @@ export var exportMessages = {
       logging.init(expTask.debug)
       var msgsDir = this._getMsgsDirectory(expTask);
       log("msgs", `Exporting Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
-      
+
       log("msgs2", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  MsgDir: ${msgsDir}`);
 
     } catch (ex) {
@@ -79,33 +79,33 @@ export var exportMessages = {
 
       try {
 
-      // if there are no body parts we have two scenarios
-      // it can be a message with blocked remote content
-      // where getFull gives us nothing. In this case
-      // we fall back to _getRawMessage using the SimpleHtml
-      // flag so the export is similar to the view in the UI.
-      //
-      // The second case is for pdf export where we purposely
-      // do not pass any bodys as we do not use for export
-      // in the pdf case, the message is exported using  the
-      // msgUri and print of the printBrowser
+        // if there are no body parts we have two scenarios
+        // it can be a message with blocked remote content
+        // where getFull gives us nothing. In this case
+        // we fall back to _getRawMessage using the SimpleHtml
+        // flag so the export is similar to the view in the UI.
+        //
+        // The second case is for pdf export where we purposely
+        // do not pass any bodys as we do not use for export
+        // in the pdf case, the message is exported using  the
+        // msgUri and print of the printBrowser
 
-      //console.log(expTask)
-      if (expTask.msgList[index].msgData.msgBodyType == "none" &&
-        expTask.expType != "pdf"
-      ) {
+        //console.log(expTask)
+        if (expTask.msgList[index].msgData.msgBodyType == "none" &&
+          expTask.expType != "pdf"
+        ) {
 
-        expTask.msgList[index].msgData.inlineParts = [];
-        expTask.msgList[index].msgData.attachmentParts = [];
-        let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
-        expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
-        expTask.msgList[index].msgData.msgBodyType = "text/html";
-      }
+          expTask.msgList[index].msgData.inlineParts = [];
+          expTask.msgList[index].msgData.attachmentParts = [];
+          let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
+          expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
+          expTask.msgList[index].msgData.msgBodyType = "text/html";
+        }
 
-      var generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
+        var generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
 
-      log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
-      log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
+        log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
+        log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
 
         var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
         var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
@@ -113,8 +113,8 @@ export var exportMessages = {
         var currentFileName = "";
 
         if (expTask.debug.logTypes.includes("withatts")) {
-        msgsDir = attDirs.attachmentsDir;
-        console.log("withatts :", msgsDir)  
+          msgsDir = attDirs.attachmentsDir;
+          console.log("withatts :", msgsDir)
 
         }
 
@@ -278,6 +278,12 @@ export var exportMessages = {
             if (expTask.fileSave.sentDate) {
               let dateInMs = new Date(expTask.msgList[index].date).getTime();
               await IOUtils.setModificationTime(unqName, dateInMs);
+              // for the experimental structure we set the
+              // parent (combined msg and attachments) Directory modification 
+              // date to the msg date allowing sort by msg date
+              if (expTask.debug.logTypes.includes("withatts")) {
+                await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
+              }
             }
             log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("msgs", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
@@ -299,6 +305,7 @@ export var exportMessages = {
             if (expTask.fileSave.sentDate) {
               let dateInMs = new Date(expTask.msgList[index].date).getTime();
               await IOUtils.setModificationTime(unqName, dateInMs);
+                await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
             }
             log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("msgs", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject} (${unqName})`);

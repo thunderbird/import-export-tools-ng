@@ -376,25 +376,13 @@ async function exportAllMsgs(type, params) {
 	}
 
 	try {
-
 		var file = getPredefinedFolder(1);
-		if (!file && params.fileDialog) {
-			let winCtx = window;
-			const tbVersion = ietngUtils.getThunderbirdVersion();
-			if (tbVersion.major >= 120) {
-				winCtx = window.browsingContext;
-			}
+		console.log("pick", file.path)
 
-			var nsIFilePicker = Ci.nsIFilePicker;
-			var res;
-			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-			fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-			if (fp.show)
-				res = fp.show();
-			else
-				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK) {
-				file = fp.file;
+		if (!file && params.fileDialog) {
+			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+			if (fpRes == nsIFilePicker.returnOK) {
+				file = fpRes.folderFile;
 			} else {
 				return { status: "cancel" };
 			}
@@ -402,7 +390,6 @@ async function exportAllMsgs(type, params) {
 			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 			file.initWithPath(params.exportFolderPath);
 		}
-
 		exportFolderPath = file.path;
 
 		try {
@@ -2397,6 +2384,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		.createInstance(Ci.nsIFileOutputStream);
 	if (append) {
 		file.append(fname);
+		console.log(file.path, file.path.length)
 		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate

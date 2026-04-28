@@ -377,11 +377,10 @@ async function exportAllMsgs(type, params) {
 
 	try {
 		var file = getPredefinedFolder(1);
-		console.log("pick", file.path)
 
 		if (!file && params.fileDialog) {
 			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
-			if (fpRes == nsIFilePicker.returnOK) {
+			if (fpRes.result == Ci.nsIFilePicker.returnOK) {
 				file = fpRes.folderFile;
 			} else {
 				return { status: "cancel" };

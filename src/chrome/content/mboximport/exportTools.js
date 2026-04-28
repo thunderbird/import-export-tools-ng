@@ -792,7 +792,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
-			tempFile.append(sog + ext);
+			tempFile.append(sog + ext);			
 			tempExists = tempFile.exists();
 		}
 
@@ -1878,6 +1878,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let afname = constructAttachmentsFilename(2, hdr);
 											embImgContainer.append(afname);
 										}
+
 										embImgContainer.createUnique(1, 0o755);
 									}
 
@@ -2384,7 +2385,6 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		.createInstance(Ci.nsIFileOutputStream);
 	if (append) {
 		file.append(fname);
-		console.log(file.path, file.path.length)
 		foStream.init(file, 0x02 | 0x08 | 0x10, 0o664, 0); // write, create, append
 	} else
 		foStream.init(file, 0x02 | 0x08 | 0x20, 0o664, 0); // write, create, truncate

@@ -270,7 +270,7 @@
     "src": "mboximport"
   },
   "ExportFolders.title": {
-    "message": "Dossiers d&#39;exportation"
+    "message": "Exportation de dossiers"
   },
   "exportFormatEML": {
     "message": "EML"
@@ -293,7 +293,7 @@
     "src": "mboximport"
   },
   "ExportSelectedMessages.title": {
-    "message": "Exporter les messages sélectionnés"
+    "message": "Exportation des messages sélectionnés"
   },
   "exportstart": {
     "message": "Exportation en cours, veuillez patienter…",
@@ -609,7 +609,7 @@
     "message": "Utiliser le format HTML tel qu’affiché dans le panneau des messages"
   },
   "MBlabel5": {
-    "message": "Copier dans le presse-papiers uniquement au format texte"
+    "message": "Copier dans le presse-papiers uniquement au format texte (peut poser des problèmes de compatibilité)"
   },
   "MBlabel7a": {
     "message": "Longueur maximale du sujet :"
@@ -737,7 +737,7 @@
     "message": "Exporter les messages sélectionnés"
   },
   "msgErrs.label": {
-    "message": "Des erreurs sont survenues. Consultez la console d'erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
+    "message": "Des erreurs se sont produites. Consultez la console d’erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -848,10 +848,10 @@
     "src": "mboximport"
   },
   "notificationsForExpFolders.label": {
-    "message": "Utiliser les notifications plutôt que la fenêtre d'état pour l'exportation de dossiers"
+    "message": "Utiliser les notifications plutôt que la fenêtre d’état pour l’exportation de dossiers"
   },
   "notificationsForExpSelMsgs.label": {
-    "message": "Utiliser les notifications au lieu de la fenêtre d'état pour l'exportation des messages sélectionnés"
+    "message": "Utiliser les notifications plutôt que la fenêtre d’état pour l’exportation des messages sélectionnés"
   },
   "noWarning": {
     "message": "Ne plus afficher cet avertissement",
@@ -928,7 +928,7 @@
     "message": "Mode de sauvegarde "
   },
   "saveAttsInMsgDir.label": {
-    "message": "Enregistrez les pièces jointes dans le même répertoire que les messages."
+    "message": "Enregistrer les pièces jointes dans le même dossier que les messages"
   },
   "savedirs": {
     "message": "Dossiers d’exportation"
@@ -991,7 +991,7 @@
     "message": "${expéditeur}"
   },
   "setMsgExpDate.label": {
-    "message": "Définir la date des fichiers de messages exportés sur la date d'envoi."
+    "message": "Utiliser la date d’envoi comme date des fichiers exportés"
   },
   "Size": {
     "message": "Taille"

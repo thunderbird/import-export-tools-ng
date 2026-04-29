@@ -1,4 +1,18 @@
-// paired down Wl tests
+// exportMessages.mjs
+
+// This gets run as an ES6 module from implementation.js
+// which has an improvement in performance
+
+// we batch export the messages and attachments by
+// an iterated expTask object. We also parallel the
+// the asynchronous output to further gain performance
+
+// The current setup works for all the individual 
+// message formats eml, html, pdf,plaintext and csv tbd
+
+// We do the minimum processing here and return the
+// final fileStatus info for the index and error handling
+
 
 
 var { ExtensionParent } = ChromeUtils.importESModule(
@@ -112,10 +126,9 @@ export var exportMessages = {
         var currentFileType = "";
         var currentFileName = "";
 
+        // expermental combined export structure 
         if (expTask.debug.logTypes.includes("withatts")) {
           msgsDir = attDirs.attachmentsDir;
-          console.log("withatts :", msgsDir)
-
         }
 
         if (expTask.attachments.save != "none") {
@@ -139,7 +152,6 @@ export var exportMessages = {
               currentFileName = inlinePart.name;
               let inlineBody = await this._fileToUint8Array(inlinePart.partBody);
               let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
-              //let sanitizedPartName = inlinePart.name;
 
               let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
 
@@ -182,7 +194,6 @@ export var exportMessages = {
             let attachmentBody = await this._fileToUint8Array(attachmentPart.partBody)
 
             let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
-            //sanitizedPartName = attachmentPart.name;
 
             let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
             writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
@@ -199,8 +210,8 @@ export var exportMessages = {
         let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${expTask.msgList[index].subject}\n\n${ex}\n\n${exMsg}${exStack}\n`;
         log("err", `${errMsg}\n\n`);
         expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        // send up the error count to the wext ui
         emitter.emit("export-update", "inbox", 0, 1);
-
       }
 
       let unqFilename;
@@ -231,7 +242,6 @@ export var exportMessages = {
     for (let index = 0; index < errors.length; index++) {
       let err = errors[index];
       settledWritePromises[index].error = err;
-      //console.log(err)
     }
 
     // we add the fileStatus info to be used by the index
@@ -260,15 +270,6 @@ export var exportMessages = {
             errors.push(expTask.msgList[index].msgData.error);
           } else {
             errors.push({ error: "none" });
-          }
-          //console.log("fileStatus", fileStatusList)
-
-          if (expTask.msgList[index].msgData.err) {
-            console.log("write err", unqName, unqName.length)
-          }
-
-          if (index == -1) {
-            unqName += "99<"
           }
 
           writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
@@ -345,6 +346,7 @@ export var exportMessages = {
     }
 
     async function __writePdfFile(filename, expTask, index, attsDir, attachmentFilenames) {
+      // we use a mutex lock to keep the loadPrintBrowser and print atomic
       let unlock = await pdfWriteMutex.lock();
       try {
         let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
@@ -355,7 +357,6 @@ export var exportMessages = {
 
         await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
         self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
-        //self._insertDOMAttachmentTable(expTask, w3p.PrintUtils.printBrowser.contentDocument, attsDir, attachmentFilenames);
 
         let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
         await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
@@ -366,6 +367,7 @@ export var exportMessages = {
         log("msgs", `Msg Saved: ${expTask.msgList[index].subject}`);
 
       } catch (ex) {
+        unlock();
         let exMsg = ex.msg ? ex.msg + "\n" : "";
         let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
         let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
@@ -551,9 +553,6 @@ export var exportMessages = {
       }
 
       return msgData.msgBody;
-      //console.log(msgData.msgBody)
-
-      return this._insertHdrTable(expTask, index, msgData.msgBody);
     }
 
     // we have text/plain
@@ -637,6 +636,10 @@ export var exportMessages = {
     return msgBody;
   },
 
+  // we currently do not modify or add to the pdf
+  // attachments table because I have yet to find
+  // an href format for relative links that don't
+  // get converted to absolute paths
   _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
     let relAttsDir = "file://";
     if (expTask.attachments.containerStructure == "perMsgDir") {
@@ -690,8 +693,6 @@ export var exportMessages = {
     // we can do a lot here, but will start with the basics
     // note we only convert the text, header, styling and html 
     // wrapper is done later
-
-    //console.log(plaintext)
 
     let htmlConvertedText;
     // first encode special characters
@@ -789,11 +790,11 @@ export var exportMessages = {
       const decoder = new TextDecoder(charset);
       const encoded = encoder.encode(string);
       const decoded = decoder.decode(encoded);
-      console.log("Converted to utf-8 from:", charset);
+      //console.log("Converted to utf-8 from:", charset);
 
       return decoded;
     } catch (e) {
-      console.error("Error converting to utf-8", e);
+      //console.error("Error converting to utf-8", e);
       return string;
     }
   },

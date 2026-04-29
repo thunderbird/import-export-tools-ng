@@ -282,7 +282,7 @@ export var exportMessages = {
               // parent (combined msg and attachments) Directory modification 
               // date to the msg date allowing sort by msg date
               if (expTask.debug.logTypes.includes("withatts")) {
-                //await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
+                await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
               }
             }
             log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
@@ -305,7 +305,7 @@ export var exportMessages = {
             if (expTask.fileSave.sentDate) {
               let dateInMs = new Date(expTask.msgList[index].date).getTime();
               await IOUtils.setModificationTime(unqName, dateInMs);
-                //await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
+              await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
             }
             log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
             log("msgs", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject} (${unqName})`);

@@ -302,14 +302,15 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
 
-    //console.log("cmt", await browser.mailTabs.getCurrent())
-    console.log("cs", await browser.mailTabs.getSelectedMessages())
+    log("msgs msgs2", "Start Export selected messages\nFolder:")
 
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
     let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
     let totalFolderCount = folderSet.length;
+
+    log("msgs msgs2", ` Folder: ${folderSet[0].exportPath}`)
 
     // cruddy way to get selected msg cnt
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
@@ -357,6 +358,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       }
       expTask.generalConfig.exportDirectory = resultObj.folder;
     }
+
+    log("msgs msgs2", `Export path: ${expTask.generalConfig.exportDirectory}`)
 
     var runs = 1;
     var total = 0;

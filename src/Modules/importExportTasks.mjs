@@ -1,5 +1,7 @@
 // importExportTasks.mjs
 
+// We build the export task objects based on format and options
+
 import * as prefs from "./prefCmds.mjs";
 
 
@@ -114,7 +116,7 @@ export async function createExportTask(params, ctxEvent, folderSet) {
 }
 
 async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
-  // hack setup
+
   if (params.expMethod) {
     expTask.expMethod = params.expMethod;
   }

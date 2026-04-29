@@ -66,7 +66,7 @@ const baseExpTask = {
     eml: {},
     html: {},
     pdf: {
-      pdfPrinterName: "Microsoft_Print_to_PDF",
+      pdfPrinterName: "Mozilla_Save_to_PDF",
     },
   },
   getMsg: {

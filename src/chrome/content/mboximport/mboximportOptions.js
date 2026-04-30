@@ -410,23 +410,19 @@ function customNamesCheck(el) {
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
         document.getElementById("part3").setAttribute("disabled", "true");
-        /*
-        document.getElementById("addPrefix").setAttribute("disabled", "true");
-        document.getElementById("prefixText").setAttribute("disabled", "true");
-        document.getElementById("addSuffix").setAttribute("disabled", "true");
-        document.getElementById("suffixText").setAttribute("disabled", "true");
-*/
+     
+        // enable extended options
+        document.getElementById("useExtendedFormat").setAttribute("checked", "true");
+        document.getElementById("extendedFormat").removeAttribute("disabled");
+        document.getElementById("extendedFormatLabel").removeAttribute("disabled");
+ 
+     
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
         document.getElementById("part3").removeAttribute("disabled");
-        /*
-        document.getElementById("addPrefix").removeAttribute("disabled");
-        document.getElementById("prefixText").removeAttribute("disabled");
-        document.getElementById("addSuffix").removeAttribute("disabled");
-        document.getElementById("suffixText").removeAttribute("disabled");
-        */
+        
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
@@ -445,16 +441,20 @@ function extendedFormatCheck(el) {
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
         document.getElementById("part3").setAttribute("disabled", "true");
-        //document.getElementById("addPrefix").setAttribute("disabled", "true");
-        //document.getElementById("prefixText").setAttribute("disabled", "true");
-        //document.getElementById("addSuffix").setAttribute("disabled", "true");
-        //document.getElementById("suffixText").setAttribute("disabled", "true");
         document.getElementById("extendedFormat").removeAttribute("disabled");
         document.getElementById("extendedFormatLabel").removeAttribute("disabled");
 
     } else {
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
         document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
+        document.getElementById("customizeFilenames").setAttribute("checked", "true");
+        document.getElementById("addtimeCheckbox").removeAttribute("disabled");
+        document.getElementById("part1").removeAttribute("disabled");
+        document.getElementById("part2").removeAttribute("disabled");
+        document.getElementById("part3").removeAttribute("disabled");
+        
+        
     }
 }
 

@@ -18,6 +18,8 @@
 
 import { openHelp } from "/Modules/miscCmds.mjs";
 import * as prefs from "/Modules/prefCmds.mjs";
+import * as prefMigration from "/Modules/prefMigration.mjs";
+
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
 
@@ -41,6 +43,9 @@ browser.runtime.onInstalled.addListener(async (info) => {
 
 async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
+
+	// legacy pref migration for v15
+	prefMigration.legacyPrefMigration();
 
 	await browser.LegacyHelper.registerGlobalUrls([
 		["resource", "ietng", "."],

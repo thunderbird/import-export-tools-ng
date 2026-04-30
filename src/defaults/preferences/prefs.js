@@ -6,7 +6,7 @@ pref("extensions.importexporttoolsng.export.overwrite", false);
 pref("extensions.importexporttoolsng.confirm.before_mbox_import", true);
 pref("extensions.importexporttoolsng.clipboard.always_just_text", false);
 pref("extensions.importexporttoolsng.export.HTML_as_displayed", false);
-pref("extensions.importexporttoolsng.exportEML.filename_format", 0);
+pref("extensions.importexporttoolsng.exportEML.filename_format", 2);
 pref("extensions.importexporttoolsng.delay.clean_statusbar", 5000);
 pref("extensions.importexporttoolsng.subject.max_length", 50);
 pref("extensions.importexporttoolsng.author.max_length", 50);

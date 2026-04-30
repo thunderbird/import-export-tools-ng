@@ -525,6 +525,9 @@ export var exportMessages = {
       case "pdf":
         processedMsgBody = await this._processBodyForPDF(expTask, index);
         break;
+      case "plaintext":
+        processedMsgBody = await this._processBodyForPlaintext(expTask, index, attsDir, attachmentFilenames);
+        break;
       default:
         let msgData = expTask.msgList[index].msgData;
         return msgData.msgBody;
@@ -552,33 +555,31 @@ export var exportMessages = {
         msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
       }
 
-      return msgData.msgBody;
     }
 
+    /*
     // we have text/plain
     msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
     msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
     if (attachmentFilenames.length) {
       msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
     }
+      */
     return msgData.msgBody;
   },
 
   _processBodyForPDF: async function (expTask, index) {
     return null;
-    let msgHdr = this.context.extension.messageManager.get(expTask.msgList[index].id);
-    let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
-    let messageService = MailServices.messageServiceFromURI(msgUri);
+  },
 
-    console.log(msgUri)
-    await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
-    console.log(w3p.PrintUtils.printBrowser.contentDocument)
-    let document = w3p.PrintUtils.printBrowser.contentDocument;
-
-    // we have to modify DOM for header
-    //await this._insertDOMHdrTable(document);
-
-    return null;
+  _processBodyForPlaintext: async function (expTask, index, attsDir, attachmentFilenames) {
+    let msgData = expTask.msgList[index].msgData;
+    
+    
+  if (attachmentFilenames.length) {
+      msgData.msgBody = this._insertPlaintextAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+    }
+    return msgData.msgBody;
   },
 
   _insertHdrTable: function (expTask, index, msgBody) {
@@ -635,6 +636,21 @@ export var exportMessages = {
 
     return msgBody;
   },
+
+  _insertPlaintextAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
+
+    let txtAttTableHdr = "\n\n-----Attachments-----------------\n";
+    let attList = "";
+
+    attachmentFilenames.forEach(filename => {
+      let att = `${filename}`;
+      attList += `- ${att}\n`;
+    });
+
+    msgBody = msgBody + txtAttTableHdr + attList;
+    return msgBody;
+  },
+
 
   // we currently do not modify or add to the pdf
   // attachments table because I have yet to find

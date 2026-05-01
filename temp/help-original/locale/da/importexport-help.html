@@ -20,22 +20,82 @@
       </td>
     </tr>
   </table>
-  <h3 id="release_notes" style="padding-left: 4px;">Udgivelses noter:</h3>
-  <p>
-    <b>Vigtig bemærkning:</b><br> Fra og med udgivelsen af ​​Thunderbird version 136 vil Mozilla
-    lave månedlige udgivelser. Jeg kan muligvis ikke udgive ImportExportTools NG hver måned.
-    Tjek venligst, før du opdaterer Thunderbird for at se, om der er en kompatibel
-    ImportExportTools NG-opdatering tilgængelig.<br><br>
-
-    Christopher<br><br>
-
-    - Rette til intermitterende og inkonsekvent eksportfejl af alle meddelelsestyper<br>
-    - Nyt: Eksport af flere mappevalg<br>
-    - Mere fejlhåndtering til EML-import, mbox-eksport<br>
-    - Opdater dansk (da) lokalitet. - @Joergen<br>
-    - Opdater ungarsk (hu-HU) lokalitet. - @ef99<br>
-  </p>
-
+  <h3 id="release_notes" style="padding-left: 4px">Udgivelsesnoter: Stor ny v15-udgivelse</h3>
+    <p>
+      <b>v15 Noter, funktioner og ændringer. Læs venligst grundigt.</b><br /><br />
+      v15 er en komplet omskrivning af funktionerne til eksport af beskeder, både mapper og udvalgte beskeder.
+      Det er den første fase i en moderne, primært WebExtension-teknologi. Det nye design er en enorm
+      forbedring af arkitekturen, der giver mulighed for nye funktioner og bedre ydeevne.<br /><br />
+      Til den første v15-udgivelse er følgende formater blevet implementeret:<br /><br />
+      - EML<br />
+      - HTML og vedhæftede filer<br />
+      - PDF og vedhæftede filer<br />
+      - Almindelig tekst og vedhæftede filer<br /><br />
+      Udover den nye eksport af PDF med vedhæftede filer er der også et nyt vindue til eksportstatus samt et
+      nyt alternativ til OS-notifikationer. En liste over funktioner følger:<br /><br />
+      <b>PDF-eksport med vedhæftede filer</b><br /><br />
+      Dette er en længe efterspurgt mulighed. Der er én vigtig begrænsning i forhold til HTML-eksport.
+      Tabellen med vedhæftede filer har ikke klikbare links. Indtil videre har det ikke været muligt at
+      producere output med relative links. Enten PDF-konverteren og/eller fremviserne konverterer alle
+      file://-links til absolutte links, som ikke er nyttige. Jeg håber, at der findes en måde at opnå dette
+      på i fremtiden.<br /><br />
+      <b>Indeks</b><br /><br />
+      Den nye indeksfil giver dig mulighed for at sortere kolonner ved at klikke på overskrifterne.<br /><br />
+      <b>Eksportstrukturer:</b><br /><br />
+      - Alle vedhæftede filer i én mappe<br />
+      Hvis du bruger et statisk ord som &quot;Vedhæftede filer&quot;, vil alle vedhæftede filer blive placeret
+      i den mappe. Tidligere ville det have resulteret i Vedhæftede filer, Vedhæftede filer-1, Vedhæftede
+      filer-2 osv.<br /><br />
+      - Vedhæftede filer gemmes i samme mappe som beskeder.<br />
+      I denne nye indstilling, der findes på fanen Filnavne, oprettes der ingen vedhæftede filer-mapper, da de
+      alle findes i beskedmappen.<br /><br />
+      - Meddelelsesdatoen er nu angivet i mapperne med vedhæftede filer<br />
+      For sortering vil vedhæftede filers mapper nu have deres ændringsdato indstillet til den tilsvarende
+      beskeds afsendelsesdato.<br /><br />
+      - Eksperimentel &quot;withatts&quot;-struktur<br />
+      Denne struktur kombinerer hver besked med alle vedhæftede filer i den formaterede vedhæftede filmappe.
+      Den typiske opsætning ville være at indstille filnavnformatet til din foretrukne opsætning, f.eks.
+      ${subject}, og dine mappeformater til ${subject}. Dette ville producere mapper til hver besked med både
+      beskeden og de vedhæftede filer. Det er muligt at sortere mapperne efter dato eller navn.<br /><br />
+      For at afprøve denne eksperimentelle struktur, indsæt ordet:<br />
+      medhatts<br />
+      i logføringsindstillingerne under fanen Diverse. (Forslag fra @Rayerd)<br /><br />
+      <b>Logføringsmuligheder::</b><br /><br />
+      De nye logføringsindstillinger findes på fanen Diverse. Disse er angivet som en mellemrumssepareret
+      liste over logtypeord. De producerer forskellige log- og fejlfindingsoutput til fejlfindingskonsollen,
+      som tilgås via Ctrl-Shift-J. Logtyperne kan kombineres for at producere det additive output. Logtyperne
+      er som følger:<br />
+      - msgs: Grundlæggende beskedlagringsstatus<br />
+      - msgs2: Mere detaljeret fejlfindingsoutput for beskeder<br />
+      - summary: En opsummering af eksporten<br />
+      - msgparts: Fejlfindingsinfo for MIME-meddelelsesdele<br />
+      - withatts: En midlertidig mulighed for at bruge den kombinerede struktur for beskeder og vedhæftede
+      filer<br /><br />
+      <b>Menuer</b><br /><br />
+      De nye funktioner er i øjeblikket tilføjet oven i de gamle funktioner og har et (v15) præfiks.<br /><br />
+      Den gamle kode vil blive afskrevet, når de nye funktioner er stabile. Dette er gjort som en forsigtig
+      tilgang til den større udgivelse. Brug venligst de nye v15-funktioner, og rapporter eventuelle problemer
+      i Github-arkivet her:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github-problemer</a
+      ><br /><br />
+      <b>Kreditter</b><br /><br />
+      Denne udgivelse kunne ikke være sket uden test, oversættelser og forslag fra adskillige loyale og
+      dedikerede brugere. Mange tak til:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Jørgen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher <br />
+    </p>
   <h2 id="main_help">ImportExportTools NG Oversigt og menuer</h2>
   <p>
     ImportExportTools NG er en opfølgende udvidelse baseret på det originale værk af Paolo

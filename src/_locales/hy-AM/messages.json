@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Հավելվածի թղթապանակներ"
   },
+  "Attachments.label": {
+    "message": "Կից ֆայլեր"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Պահպանեք EML հավելվածն այս թղթապանակում"
   },

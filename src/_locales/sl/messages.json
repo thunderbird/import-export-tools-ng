@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mape s priponkami"
   },
+  "Attachments.label": {
+    "message": "Priloge"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Shranite prilogo EML v to mapo"
   },

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mapper med vedhæftede filer"
   },
+  "Attachments.label": {
+    "message": "Vedhæftede filer"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Gem EML-vedhæftet fil i denne mappe"
   },

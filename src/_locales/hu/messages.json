@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mellékletek mappák"
   },
+  "Attachments.label": {
+    "message": "Mellékletek"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML melléklet mentése ebbe a mappába"
   },

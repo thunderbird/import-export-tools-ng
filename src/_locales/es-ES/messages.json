@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Carpetas de archivos adjuntos"
   },
+  "Attachments.label": {
+    "message": "Archivos adjuntos"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Guarde el archivo adjunto EML en esta carpeta"
   },

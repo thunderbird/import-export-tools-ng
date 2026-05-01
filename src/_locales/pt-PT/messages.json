@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Pastas de anexos"
   },
+  "Attachments.label": {
+    "message": "Anexos"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Salve o anexo EML nesta pasta"
   },

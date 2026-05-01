@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Φάκελοι συνημμένων"
   },
+  "Attachments.label": {
+    "message": "Συνημμένα"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Αποθηκεύστε το συνημμένο EML σε αυτόν τον φάκελο"
   },

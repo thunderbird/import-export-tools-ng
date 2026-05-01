@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Složky příloh"
   },
+  "Attachments.label": {
+    "message": "Přílohy"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Uložte přílohu EML do této složky"
   },

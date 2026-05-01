@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Cartelle allegati"
   },
+  "Attachments.label": {
+    "message": "Allegati"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Salva l&#39;allegato EML in questa cartella"
   },

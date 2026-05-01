@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Foldery załączników"
   },
+  "Attachments.label": {
+    "message": "Załączniki"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Zapisz załącznik EML w tym folderze"
   },

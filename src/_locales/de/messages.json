@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Anhangsordner"
   },
+  "Attachments.label": {
+    "message": "Anlagen"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML-Anhang in diesem Ordner speichern"
   },

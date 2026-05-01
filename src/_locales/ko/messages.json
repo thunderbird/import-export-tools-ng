@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "첨부파일"
   },
+  "Attachments.label": {
+    "message": "첨부파일"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML 첨부 파일을 이 폴더에 저장"
   },

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Bijlagemappen"
   },
+  "Attachments.label": {
+    "message": "Bijlagen"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Sla de EML-bijlage op in deze map"
   },

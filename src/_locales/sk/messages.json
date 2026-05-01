@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Priečinky príloh"
   },
+  "Attachments.label": {
+    "message": "Prílohy"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Uložiť prílohu EML do tohto priečinka"
   },

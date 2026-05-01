@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Папки вложений"
   },
+  "Attachments.label": {
+    "message": "Вложения"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Сохраните вложение EML в эту папку."
   },

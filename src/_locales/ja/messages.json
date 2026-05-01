@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "添付ファイルフォルダー名"
   },
+  "Attachments.label": {
+    "message": "添付ファイル"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML 添付ファイルをこのフォルダーに保存します"
   },

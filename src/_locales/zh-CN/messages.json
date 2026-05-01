@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "附件文件夹"
   },
+  "Attachments.label": {
+    "message": "附件"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "将 EML 附件保存到此文件夹"
   },

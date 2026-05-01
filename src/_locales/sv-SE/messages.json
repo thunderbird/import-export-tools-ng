@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Bifogade mappar"
   },
+  "Attachments.label": {
+    "message": "Bilagor"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Spara EML-bilaga till den här mappen"
   },

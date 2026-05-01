@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Dossier des pièces jointes externes "
   },
+  "Attachments.label": {
+    "message": "Pièces jointes"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Enregistrer la pièce jointe EML dans ce dossier"
   },

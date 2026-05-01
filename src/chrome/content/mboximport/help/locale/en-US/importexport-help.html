@@ -24,11 +24,17 @@
 		</tr>
 	</table>
 
-	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
+	<h3 id="release_notes" style="padding-left: 4px;">Release Notes: Major new v15 release</h3>
 	<p>
-		<b>v15.0.0-b1 First beta release </b><br><br>
-		Complete rewrite of the message export functions, both Folders
-		and selected messages. Beta 1 has the following :<br>
+		<b>v15 Notes, Features and Changes. Please read carefully. </b><br><br>
+		v15 is a complete rewrite of the message export functions, both Folders
+		and selected messages. It's the first phase in a modern, mostly WebExtension
+		technology. The new design is a vast
+		improvement in architecture allowing new features and better 
+		performance.<br><br>
+		
+		For the first v15 release, the following formats have been implemented:
+		<br><br>
 		- EML<br>
 		- HTML and attachments <br>
 		- PDF and attachments <br>
@@ -36,15 +42,86 @@
 
 		Besides the new PDF with attachments export. There is 
 		also a new export status window as well as a new 
-		index file where you can sort columns by clicking 
-		on the headers.<br><br>
-
+		OS notification  alternative. A list of features follows:
+		<br><br>
+		<b>PDF export with attachments</b><br><br>
+		This is a long requested option. There is one important 
+		limitation versus HTML export. The attachments table 
+		does not have clickable links. Thus far it has not been
+		possible to produce output with relative links. Either 
+		the PDF converter and or the viewers convert all file:// links 
+		to absolute links which are not useful. I am hoping 
+		there is some way to accomplish this in the future.<br><br>
+		<b>Index</b><br><br>
+		The new	index file allows you to sort columns by clicking 
+		any the headers.<br><br>
+		<b>Export Structures:</b><br><br>
+		- All attachments in a single directory<br>
+		If you use a static word like "Attachments",
+		all attachments will go into that directory. In the 
+		past that would have produced Attachments, Attachments-1,
+		Attachments-2, etc.<br><br>
+		- Attachments saved in the same directory with messages.<br> 
+		In this new option found on the Filenames tab, no attachment 
+		directories are created as they are all in the messages 
+		directory.<br><br>
+		- Attachment directories now have the message date set<br>
+		For sorting the attachment directories will now have
+		their modification date set to the corresponding message's
+		sent date.<br><br>
+		- Experimental "withatts" structure<br>
+		This structure combines each message with all attachments 
+		into the formatted attachment directory. The typical
+		setup would be to set the filename format to your 
+		preferred setup say ${subject} and your directory 
+		formats to ${subject} as well. This would produce 
+		directories for each message with both the message and 
+		attachments. Sorting the directories by date or name 
+		is possible.<br><br>
+		To try this experimental structure place the word:<br>
+		withatts <br>
+		in the logging options in the Misc tab. (Proposal by @Rayerd)<br><br>
+		<b>Logging options::</b><br><br>
+		The new Logging options are on the Misc tab. These 
+		are set as a space separated list of log type words.
+		They produce various log and debug output to the Debug console 
+		which is accessed by Control-Shift-J. The log types 
+		can be combined to produce the additive output. The log types are as 
+		follows:<br>
+		- msgs : Basic message save status <br>
+		- msgs2 : More detailed debug output for messages <br>
+		- summary : A summary of the export <br>
+		- msgparts : Debug info for MIME message parts <br>
+		- withatts : A temporary option to use the combined message and attachments structure<br><br>
+		
+		<b>Menus</b><br><br>
 		The new functions are currently added on top of the 
 		old functions and have a (v15) prefix.<br>
 		<br>
 		The old code will be depreciated once the new functions 
-		are stable.<br><br>
-		New logging and soon a log file will be available.
+		are stable. This has been done as a cautious approach to
+	  the major release. Please use the new v15 functions and 
+		report any issues in the Github repository here:<br><br>
+		<a href="https://github.com/thunderbird/import-export-tools-ng/issues">ImportExportTools NG Github Issues</a>
+		<br><br>
+		<b>Credits</b><br><br>
+		This release could not have happened without the testing, translations
+		and suggestions from several loyal and dedicated users.
+		Many thanks to:<br><br>
+		<b>
+@DenB10<br>
+@kiki-ja<br>
+@tidebre67<br>
+@Yarny0<br>
+@Reyerd <br>
+@Joergen<br>
+@JF1313<br>
+@joeldebruijn <br>
+@pivi2402<br>
+@EXDEV-oss<br>
+</b>
+<br><br>
+Christopher <br>
 
 		
 </p>

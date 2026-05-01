@@ -556,15 +556,6 @@ export var exportMessages = {
       }
 
     }
-
-    /*
-    // we have text/plain
-    msgData.msgBody = this._convertTextToHTML(msgData.msgBody);
-    msgData.msgBody = this._insertHdrTable(expTask, index, msgData.msgBody);
-    if (attachmentFilenames.length) {
-      msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
-    }
-      */
     return msgData.msgBody;
   },
 

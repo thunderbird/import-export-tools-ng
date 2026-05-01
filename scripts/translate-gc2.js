@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "LoggingOptions.label", text: "Logging options"},
+	{ key: "Attachments.label", text: "Attachments"},
 
 
 ];

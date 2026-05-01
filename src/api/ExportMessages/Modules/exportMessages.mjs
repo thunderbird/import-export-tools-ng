@@ -574,9 +574,8 @@ export var exportMessages = {
 
   _processBodyForPlaintext: async function (expTask, index, attsDir, attachmentFilenames) {
     let msgData = expTask.msgList[index].msgData;
-    
-    
-  if (attachmentFilenames.length) {
+
+    if (attachmentFilenames.length) {
       msgData.msgBody = this._insertPlaintextAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
     }
     return msgData.msgBody;
@@ -606,6 +605,7 @@ export var exportMessages = {
   },
 
   _insertDOMHdrTable: async function (document) {
+    // tbd align headers
     let table = document.querySelector(".moz-header-part1");
     let table2 = document.querySelector(".moz-header-part2");
     let table3 = document.querySelector(".moz-header-part3");
@@ -639,7 +639,7 @@ export var exportMessages = {
 
   _insertPlaintextAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
 
-    let txtAttTableHdr = "\n\n-----Attachments-----------------\n";
+    let txtAttTableHdr = "\n-----Attachments-----------------\n";
     let attList = "";
 
     attachmentFilenames.forEach(filename => {

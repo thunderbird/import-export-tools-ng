@@ -18,19 +18,78 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Opombe k izdaji:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Opombe k izdaji: Pomembna nova izdaja v15</h3>
     <p>
-      <b>v15.0.0-b1 Prva beta izdaja</b><br /><br />
-      Popolnoma prepisane funkcije izvoza sporočil, tako map kot izbranih sporočil. Beta 1 ima naslednje:<br />
+      <b>Opombe, funkcije in spremembe različice 15. Prosimo, da natančno preberete.</b><br /><br />
+      v15 je popolnoma prenovljena funkcija izvoza sporočil, tako map kot izbranih sporočil. Gre za prvo fazo
+      sodobne tehnologije, večinoma WebExtension. Nova zasnova je velika izboljšava arhitekture, ki omogoča
+      nove funkcije in boljšo zmogljivost.<br /><br />
+      Za prvo izdajo v15 so bili implementirani naslednji formati:<br /><br />
       - EML<br />
       - HTML in priloge<br />
       - PDF in priloge<br />
       - Goto besedilo in priloge<br /><br />
-      Poleg novega izvoza PDF-jev s prilogami je na voljo tudi novo okno s stanjem izvoza in nova datoteka s
-      kazalom, kjer lahko razvrščate stolpce s klikom na glave.<br /><br />
+      Poleg novega izvoza PDF-jev s prilogami je na voljo tudi novo okno s stanjem izvoza in nova alternativa
+      za obvestila operacijskega sistema. Sledi seznam funkcij:<br /><br />
+      <b>Izvoz PDF-ja s prilogami</b><br /><br />
+      To je že dolgo zahtevana možnost. Obstaja ena pomembna omejitev v primerjavi z izvozom HTML. Tabela
+      prilog nima povezav, na katere je mogoče klikniti. Do sedaj ni bilo mogoče ustvariti izpisa z
+      relativnimi povezavami. Pretvornik PDF in/ali pregledovalniki pretvorijo vse povezave file:// v
+      absolutne povezave, ki niso uporabne. Upam, da bo v prihodnosti kakšen način, da se to doseže.<br /><br />
+      <b>Kazalo</b><br /><br />
+      Nova indeksna datoteka vam omogoča razvrščanje stolpcev s klikom na katero koli glavo.<br /><br />
+      <b>Izvozne strukture:</b><br /><br />
+      - Vse priloge v enem imeniku<br />
+      Če uporabite statično besedo, kot je »Priloge«, bodo vse priloge poslane v ta imenik. V preteklosti bi
+      to ustvarilo Priloge, Priloge-1, Priloge-2 itd.<br /><br />
+      - Priloge so shranjene v istem imeniku s sporočili.<br />
+      V tej novi možnosti, ki jo najdete na zavihku Imena datotek, se ne ustvarijo nobeni imeniki za priloge,
+      saj so vsi v imeniku sporočil.<br /><br />
+      - Imeniki prilog imajo zdaj nastavljen datum sporočila<br />
+      Pri razvrščanju bodo imeniki prilog zdaj imeli datum spremembe nastavljen na datum pošiljanja ustreznega
+      sporočila.<br /><br />
+      - Eksperimentalna struktura &quot;withatts&quot;<br />
+      Ta struktura združuje vsako sporočilo z vsemi prilogami v oblikovani imenik prilog. Tipična nastavitev
+      bi bila, da nastavite obliko imena datoteke na želeno, na primer ${subject}, in obliko imenika na
+      ${subject}. To bi ustvarilo imenike za vsako sporočilo s sporočilom in prilogami. Možno je razvrščanje
+      imenikov po datumu ali imenu.<br /><br />
+      Če želite preizkusiti to eksperimentalno strukturo, vstavite besedo:<br />
+      z atts<br />
+      v možnostih beleženja na zavihku Razno. (Predlog uporabnika @Rayerd)<br /><br />
+      <b>Možnosti beleženja::</b><br /><br />
+      Nove možnosti beleženja so na zavihku Razno. Nastavljene so kot seznam besed za vrsto dnevnika, ločen s
+      presledki. Ustvarijo različne izpise dnevnika in odpravljanja napak v konzoli za odpravljanje napak, do
+      katere dostopate s kombinacijo tipk Control-Shift-J. Vrste dnevnikov je mogoče kombinirati za
+      ustvarjanje aditivnega izpisa. Vrste dnevnikov so naslednje:<br />
+      - sporočila: Stanje shranjevanja osnovnega sporočila<br />
+      - msgs2: Podrobnejši izpis za odpravljanje napak pri sporočilih<br />
+      - povzetek: Povzetek izvoza<br />
+      - msgparts: Informacije o odpravljanju napak za dele sporočila MIME<br />
+      - withatts: Začasna možnost uporabe kombinirane strukture sporočil in prilog<br /><br />
+      <b>Meniji</b><br /><br />
       Nove funkcije so trenutno dodane na vrh starih funkcij in imajo predpono (v15).<br /><br />
-      Stara koda bo amortizirana, ko bodo nove funkcije stabilne.<br /><br />
-      Novo beleženje in kmalu bosta na voljo datoteka dnevnika.
+      Stara koda bo amortizirana, ko bodo nove funkcije stabilne. To je bilo storjeno kot previden pristop k
+      večji izdaji. Prosimo, uporabite nove funkcije v15 in morebitne težave prijavite v repozitoriju Github
+      tukaj:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Težave z orodjem ImportExportTools NG na Githubu</a
+      ><br /><br />
+      <b>Zasluge</b><br /><br />
+      Ta izdaja ne bi mogla biti mogoča brez testiranja, prevodov in predlogov več zvestih in predanih
+      uporabnikov. Najlepša hvala:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Krištof<br />
     </p>
     <h2 id="main_help">Pregled in meniji orodij ImportExportTools NG</h2>
     <p>
@@ -68,7 +127,7 @@
       - Različica ImportExportTools NG<br />
       - Različica Thunderbirda<br />
       - Operacijski sistem in različica<br />
-      - Izpis za odpravljanje napak (kopirano iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
+      - Izpis za odpravljanje napak (kopiranje iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
       - Opis korakov, ki vodijo do težave<br />
     </p>
     <h2 id="main_menu_help">Funkcije kontekstnega menija mape</h2>
@@ -460,7 +519,7 @@
       Unixu. Temelji na JavaScript različici funkcije
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , ki omogoča oblikovanje datuma in časa.<br />
-      Priloga funkcije strftime() avtorja TH Doana (https://thdoan.github.io/strftime/)<br />
+      Prilagajanje funkcije strftime() avtorja TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Opisi zaporedja pretvorb</h3>
     <table class="dateformat-table">

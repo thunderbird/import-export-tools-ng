@@ -18,20 +18,81 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas da versión:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas da versión: Nova versión importante da v15</h3>
     <p>
-      <b>v15.0.0-b1 Primeira versión beta</b><br /><br />
-      Reescritura completa das funcións de exportación de mensaxes, tanto de cartafoles como de mensaxes
-      seleccionadas. A versión Beta 1 ten o seguinte:<br />
+      <b>Notas, características e cambios da v15. Lea atentamente.</b><br /><br />
+      A v15 é unha reescritura completa das funcións de exportación de mensaxes, tanto de cartafoles como de
+      mensaxes seleccionadas. É a primeira fase dunha tecnoloxía moderna, principalmente de WebExtension. O
+      novo deseño supón unha gran mellora na arquitectura, o que permite novas funcionalidades e un mellor
+      rendemento.<br /><br />
+      Para a primeira versión v15, implementáronse os seguintes formatos:<br /><br />
       - EML<br />
       - HTML e anexos<br />
       - PDF e anexos<br />
       - Texto sen formato e anexos<br /><br />
       Ademais da nova exportación de PDF con anexos, tamén hai unha nova xanela de estado da exportación, así
-      como un novo ficheiro de índice onde podes ordenar as columnas facendo clic nas cabeceiras.<br /><br />
+      como unha nova alternativa de notificación do sistema operativo. A continuación, móstrase unha lista de
+      características:<br /><br />
+      <b>Exportación a PDF con anexos</b><br /><br />
+      Esta é unha opción solicitada desde hai tempo. Existe unha limitación importante con respecto á
+      exportación HTML. A táboa de anexos non ten ligazóns que se poidan premer. Ata o de agora non foi
+      posible producir saída con ligazóns relativas. O conversor de PDF e/ou os visores converten todas as
+      ligazóns file:// en ligazóns absolutas, o que non é útil. Espero que haxa algunha maneira de conseguilo
+      no futuro.<br /><br />
+      <b>Índice</b><br /><br />
+      O novo ficheiro de índice permíteche ordenar columnas facendo clic en calquera das cabeceiras.<br /><br />
+      <b>Estruturas de exportación:</b><br /><br />
+      - Todos os anexos nun único directorio<br />
+      Se empregas unha palabra estática como &quot;Anexos&quot;, todos os anexos irán a ese directorio. No
+      pasado, iso produciría Anexos, Anexos-1, Anexos-2, etc.<br /><br />
+      - Adxuntos gardados no mesmo directorio coas mensaxes.<br />
+      Nesta nova opción que se atopa na lapela Nomes de ficheiros, non se crean directorios de anexos xa que
+      todos están no directorio de mensaxes.<br /><br />
+      - Os directorios de anexos agora teñen a data da mensaxe definida<br />
+      Para ordenar os directorios de anexos, a data de modificación agora terá a data de envío da mensaxe
+      correspondente.<br /><br />
+      - Estrutura experimental &quot;withatts&quot;<br />
+      Esta estrutura combina cada mensaxe con todos os anexos no directorio de anexos formatado. A
+      configuración típica sería definir o formato do nome do ficheiro na configuración preferida, por exemplo
+      ${subject}, e os formatos do directorio tamén en ${subject}. Isto xeraría directorios para cada mensaxe
+      coa mensaxe e os anexos. É posible ordenar os directorios por data ou nome.<br /><br />
+      Para probar esta estrutura experimental, coloca a palabra:<br />
+      conatts<br />
+      nas opcións de rexistro da lapela Varios. (Proposta de @Rayerd)<br /><br />
+      <b>Opcións de rexistro::</b><br /><br />
+      As novas opcións de rexistro están na lapela Varios. Defínense como unha lista de palabras de tipo
+      rexistro separadas por espazos. Producen varias saídas de rexistro e depuración na consola de
+      depuración, á que se accede premendo Control-Maiús-J. Os tipos de rexistro pódense combinar para
+      producir a saída aditiva. Os tipos de rexistro son os seguintes:<br />
+      - msgs: Estado básico de gardado da mensaxe<br />
+      - msgs2: Saída de depuración máis detallada para as mensaxes<br />
+      - resumo: Un resumo da exportación<br />
+      - msgparts: Información de depuración para as partes da mensaxe MIME<br />
+      - withatts: Unha opción temporal para usar a estrutura combinada de mensaxes e anexos<br /><br />
+      <b>Menús</b><br /><br />
       As novas funcións engádense actualmente sobre as funcións antigas e teñen o prefixo (v15).<br /><br />
-      O código antigo depreciarase unha vez que as novas funcións sexan estables.<br /><br />
-      Novo rexistro e en breve un ficheiro de rexistro estarán dispoñibles.
+      O código antigo quedará desactualizado unha vez que as novas funcións sexan estables. Isto fíxose como
+      unha estratexia cautelosa para a versión principal. Usa as novas funcións da v15 e informa de calquera
+      problema no repositorio de Github aquí:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemas de ImportExportTools NG en Github</a
+      ><br /><br />
+      <b>Créditos</b><br /><br />
+      Este lanzamento non podería ter sido posible sen as probas, as traducións e as suxestións de varios
+      usuarios fieis e dedicados. Moitas grazas a:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @marebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Cristobal<br />
     </p>
     <h2 id="main_help">Visión xeral e menús de ImportExportTools NG</h2>
     <p>
@@ -133,7 +194,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros en formato EML (sen estrutura/subcartafoles).<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -169,7 +230,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros de texto sen formato; non se inclúen os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -178,7 +239,7 @@
           </td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros de texto sen formato, incluíndo anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -186,7 +247,7 @@
           <td>
             Exporta as mensaxes do cartafol como un único ficheiro en formato de texto sen formato; non se
             inclúen os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -196,7 +257,7 @@
           <td>
             Exporta as mensaxes do cartafol como un único ficheiro en formato de texto sen formato, incluíndo
             os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -330,14 +391,14 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes como ficheiros en formato HTML.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes como ficheiros en formato HTML, incluíndo anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -362,7 +423,7 @@
           </td>
           <td>
             Exportar as mensaxes como ficheiros de texto sen formato, incluíndo anexos<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>

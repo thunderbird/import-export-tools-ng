@@ -18,20 +18,81 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Versionsinformation:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Versionsinformation: Stor ny v15-utgåva</h3>
     <p>
-      <b>v15.0.0-b1 Första betaversionen</b><br /><br />
-      Fullständig omskrivning av meddelandeexportfunktionerna, både mappar och valda meddelanden. Beta 1 har
-      följande:<br />
+      <b>v15 Anmärkningar, funktioner och ändringar. Läs noggrant.</b><br /><br />
+      v15 är en fullständig omskrivning av meddelandeexportfunktionerna, både mappar och valda meddelanden.
+      Det är den första fasen i en modern, mestadels WebExtension-teknik. Den nya designen är en stor
+      förbättring av arkitekturen som möjliggör nya funktioner och bättre prestanda.<br /><br />
+      För den första v15-utgåvan har följande format implementerats:<br /><br />
       - EML<br />
       - HTML och bilagor<br />
       - PDF och bilagor<br />
       - Klartext och bilagor<br /><br />
-      Förutom den nya exporten av PDF med bilagor finns det också ett nytt exportstatusfönster samt en ny
-      indexfil där du kan sortera kolumner genom att klicka på rubrikerna.<br /><br />
+      Förutom den nya exportfunktionen för PDF med bilagor finns det också ett nytt exportstatusfönster samt
+      ett nytt alternativ för OS-aviseringar. En lista över funktioner följer:<br /><br />
+      <b>PDF-export med bilagor</b><br /><br />
+      Detta är ett länge efterfrågat alternativ. Det finns en viktig begränsning jämfört med HTML-export.
+      Tabellen med bilagor har inga klickbara länkar. Hittills har det inte varit möjligt att producera utdata
+      med relativa länkar. Antingen PDF-konverteraren och/eller visningsprogrammet konverterar alla
+      file://-länkar till absoluta länkar som inte är användbara. Jag hoppas att det finns något sätt att
+      åstadkomma detta i framtiden.<br /><br />
+      <b>Index</b><br /><br />
+      Den nya indexfilen låter dig sortera kolumner genom att klicka på valfri rubrik.<br /><br />
+      <b>Exportstrukturer:</b><br /><br />
+      - Alla bilagor i en enda katalog<br />
+      Om du använder ett statiskt ord som &quot;Bilagor&quot; kommer alla bilagor att hamna i den katalogen.
+      Tidigare skulle det ha gett bilagor, bilagor-1, bilagor-2, etc.<br /><br />
+      - Bilagor sparade i samma katalog som meddelanden.<br />
+      I det här nya alternativet som finns på fliken Filnamn skapas inga bilagekataloger eftersom de alla
+      finns i meddelandekatalogen.<br /><br />
+      - Meddelandedatumet är nu inställt i bilagekatalogerna<br />
+      För sortering kommer bilagekatalogerna nu att ha sitt ändringsdatum inställt på motsvarande meddelandes
+      sändningsdatum.<br /><br />
+      - Experimentell &quot;withatts&quot;-struktur<br />
+      Denna struktur kombinerar varje meddelande med alla bilagor i den formaterade bilagekatalogen. Den
+      typiska konfigurationen skulle vara att ställa in filnamnsformatet till din föredragna inställning, till
+      exempel ${subject}, och även dina katalogformat till ${subject}. Detta skulle skapa kataloger för varje
+      meddelande med både meddelandet och bilagorna. Det är möjligt att sortera katalogerna efter datum eller
+      namn.<br /><br />
+      För att testa denna experimentella struktur, placera ordet:<br />
+      medhatts<br />
+      i loggningsalternativen på fliken Diverse. (Förslag av @Rayerd)<br /><br />
+      <b>Loggningsalternativ::</b><br /><br />
+      De nya loggningsalternativen finns på fliken Diverse. Dessa ställs in som en mellanslagsavgränsad lista
+      med loggtypord. De producerar olika logg- och felsökningsutdata till felsökningskonsolen som nås via
+      Ctrl-Shift-J. Loggtyperna kan kombineras för att producera den additiva utdatan. Loggtyperna är
+      följande:<br />
+      - meddelanden: Grundläggande meddelandestatus för sparning<br />
+      - msgs2: Mer detaljerad felsökningsutdata för meddelanden<br />
+      - sammanfattning: En sammanfattning av exporten<br />
+      - msgparts: Felsökningsinformation för MIME-meddelandedelar<br />
+      - withatts: Ett tillfälligt alternativ för att använda den kombinerade strukturen för meddelanden och
+      bilagor<br /><br />
+      <b>Menyer</b><br /><br />
       De nya funktionerna läggs för närvarande till ovanpå de gamla funktionerna och har prefixet (v15).<br /><br />
-      Den gamla koden kommer att avskrivas när de nya funktionerna är stabila.<br /><br />
-      Ny loggning och snart en loggfil kommer att finnas tillgänglig.
+      Den gamla koden kommer att avskrivas när de nya funktionerna är stabila. Detta har gjorts som en
+      försiktig strategi för den stora utgåvan. Använd de nya v15-funktionerna och rapportera eventuella
+      problem i Github-arkivet här:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problem med ImportExportTools NG Github</a
+      ><br /><br />
+      <b>Krediter</b><br /><br />
+      Den här utgåvan hade inte kunnat genomföras utan tester, översättningar och förslag från flera lojala
+      och hängivna användare. Stort tack till:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Kristoffer<br />
     </p>
     <h2 id="main_help">Översikt och menyer för ImportExportTools NG</h2>
     <p>
@@ -369,7 +430,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>Exportera de valda meddelandena till en enda mbox-fil</td>
+          <td>Exportera de markerade meddelandena till en enda mbox-fil</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
@@ -590,7 +651,7 @@
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Veckodag som decimal (intervall 1 till 7), måndag är 1. Se även <code class="code1">%w</code> .
+            Veckodag som decimaltal (intervall 1 till 7), måndag är 1. Se även <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
@@ -830,7 +891,7 @@
       Exempel på snabbtangentposter (matris med JSON-objekt)<br /><br />
       <code class="notranslate">id</code> - nyckelindexet (1-10)<br />
       <code class="notranslate">key</code> - nyckeln (enkelt tecken)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definierar nyckelkoden<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definierar nyckelkod<br />
       Antingen nyckel eller nyckelkod kan inkluderas, men inte båda<br />
       <code class="notranslate">modifiers</code> - tangentmodifierare, mellanslagsseparerad lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

@@ -18,20 +18,82 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Versionshinweise:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Versionshinweise: Wichtige neue Version 15</h3>
     <p>
-      <b>v15.0.0-b1 Erste Beta-Version</b><br /><br />
-      Die Funktionen zum Exportieren von Nachrichten, sowohl Ordner als auch einzelne Nachrichten, wurden
-      vollständig überarbeitet. Beta 1 enthält Folgendes:<br />
+      <b>Version 15 – Hinweise, Funktionen und Änderungen. Bitte sorgfältig lesen.</b><br /><br />
+      Version 15 beinhaltet eine vollständige Neuentwicklung der Exportfunktionen für Ordner und einzelne
+      Nachrichten. Sie markiert den Beginn einer modernen, größtenteils webbasierten Technologie. Das neue
+      Design stellt eine deutliche Architekturverbesserung dar und ermöglicht neue Funktionen sowie eine
+      höhere Leistung.<br /><br />
+      Für die erste Version 15 wurden die folgenden Formate implementiert:<br /><br />
       - EML<br />
       - HTML und Anhänge<br />
       - PDF und Anhänge<br />
       - Klartext und Anhänge<br /><br />
-      Neben der neuen PDF-Exportfunktion mit Anhängen gibt es auch ein neues Exportstatusfenster sowie eine
-      neue Indexdatei, in der Sie Spalten durch Klicken auf die Überschriften sortieren können.<br /><br />
+      Neben der neuen Exportfunktion für PDFs mit Anhängen gibt es auch ein neues Exportstatusfenster sowie
+      eine neue Alternative für Betriebssystembenachrichtigungen. Eine Liste der Funktionen folgt:<br /><br />
+      <b>PDF-Export mit Anhängen</b><br /><br />
+      Dies ist eine lang ersehnte Option. Es gibt jedoch eine wichtige Einschränkung gegenüber dem
+      HTML-Export: Die Anhangstabelle enthält keine anklickbaren Links. Bisher war es nicht möglich, relative
+      Links zu verwenden. Entweder der PDF-Konverter oder die Viewer wandeln alle file://-Links in absolute
+      Links um, was nicht praktikabel ist. Ich hoffe, dass dies in Zukunft möglich sein wird.<br /><br />
+      <b>Index</b><br /><br />
+      Die neue Indexdatei ermöglicht es Ihnen, Spalten durch Anklicken einer beliebigen Spaltenüberschrift zu
+      sortieren.<br /><br />
+      <b>Exportstrukturen:</b><br /><br />
+      - Alle Anhänge in einem einzigen Verzeichnis<br />
+      Wenn Sie ein statisches Wort wie „Anhänge“ verwenden, werden alle Anhänge in diesem Verzeichnis
+      gespeichert. Früher wären dadurch Verzeichnisse wie „Anhänge“, „Anhänge-1“, „Anhänge-2“ usw.
+      entstanden.<br /><br />
+      - Anhänge werden im selben Verzeichnis wie die Nachrichten gespeichert.<br />
+      Bei dieser neuen Option, die sich auf der Registerkarte „Dateinamen“ befindet, werden keine
+      Anhangsverzeichnisse erstellt, da sich alle Anhänge im Nachrichtenverzeichnis befinden.<br /><br />
+      - In den Verzeichnissen für Anhänge ist nun das Nachrichtendatum festgelegt.<br />
+      Zum Sortieren der Anhangsverzeichnisse wird nun das Änderungsdatum auf das Sendedatum der jeweiligen
+      Nachricht gesetzt.<br /><br />
+      - Experimentelle &quot;withatts&quot;-Struktur<br />
+      Diese Struktur fasst jede Nachricht mit allen Anhängen im formatierten Anhangsverzeichnis zusammen.
+      Üblicherweise legen Sie das Dateinamenformat auf Ihr bevorzugtes Format fest, beispielsweise ${subject},
+      und auch das Verzeichnisformat ist ${subject}. Dadurch werden für jede Nachricht separate Verzeichnisse
+      mit der Nachricht und den Anhängen erstellt. Die Verzeichnisse können nach Datum oder Name sortiert
+      werden.<br /><br />
+      Um diese experimentelle Struktur auszuprobieren, geben Sie das Wort ein:<br />
+      mit<br />
+      in den Protokollierungsoptionen auf der Registerkarte „Sonstiges“. (Vorschlag von @Rayerd)<br /><br />
+      <b>Protokollierungsoptionen::</b><br /><br />
+      Die neuen Protokollierungsoptionen befinden sich auf der Registerkarte „Sonstiges“. Sie werden als durch
+      Leerzeichen getrennte Liste von Protokolltypwörtern angegeben. Sie erzeugen verschiedene Protokoll- und
+      Debug-Ausgaben in der Debug-Konsole, die über Strg+Umschalt+J aufgerufen wird. Die Protokolltypen können
+      kombiniert werden, um additive Ausgaben zu erzeugen. Die Protokolltypen sind:<br />
+      - msgs: Grundlegender Nachrichtenspeicherstatus<br />
+      - msgs2: Ausführlichere Debug-Ausgabe für Meldungen<br />
+      - Zusammenfassung: Eine Zusammenfassung des Exports<br />
+      - msgparts: Debug-Informationen für MIME-Nachrichtenteile<br />
+      - withatts: Eine temporäre Option zur Verwendung der kombinierten Nachrichten- und Anhangsstruktur<br /><br />
+      <b>Menüs</b><br /><br />
       Die neuen Funktionen werden aktuell auf den alten Funktionen aufgebaut und haben das Präfix (v15).<br /><br />
-      Der alte Code wird als veraltet gelten, sobald die neuen Funktionen stabil sind.<br /><br />
-      Neue Protokollierungsfunktion und in Kürze wird eine Protokolldatei verfügbar sein.
+      Der alte Code wird nach der Stabilisierung der neuen Funktionen als veraltet markiert. Dies ist eine
+      Vorsichtsmaßnahme für die bevorstehende Hauptversion. Bitte verwenden Sie die neuen Funktionen der
+      Version 15 und melden Sie etwaige Probleme im GitHub-Repository hier:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github Issues</a
+      ><br /><br />
+      <b>Credits</b><br /><br />
+      Diese Veröffentlichung wäre ohne die Tests, Übersetzungen und Anregungen zahlreicher treuer und
+      engagierter Nutzer nicht möglich gewesen. Vielen Dank an:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher<br />
     </p>
     <h2 id="main_help">ImportExportTools NG – Übersicht und Menüs</h2>
     <p>
@@ -66,8 +128,7 @@
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
-      Bei Fehlerberichten geben Sie bitte die folgenden Informationen an, um die Lösung der Probleme zu
-      erleichtern:<br />
+      Bei Fehlerberichten geben Sie bitte die folgenden Informationen an, um die Probleme zu lösen:<br />
       - ImportExportTools NG-Version<br />
       - Thunderbird-Version<br />
       - Betriebssystem und Version<br />
@@ -580,7 +641,7 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Entweder „AM“ oder „PM“ je nach angegebenem Zeitwert. Mittag wird als „PM“ und Mitternacht als
+            Je nach angegebenem Zeitwert entweder „AM“ oder „PM“. Mittag wird als „PM“ und Mitternacht als
             „AM“ behandelt.
           </td>
         </tr>
@@ -646,7 +707,7 @@
         </tr>
       </tbody>
     </table>
-    <h3>Kompatibilitätshinweise:</h3>
+    <h3>Hinweise zur Kompatibilität:</h3>
     <ul>
       <li><code class="code1">%c</code> - formatierte Zeichenkette ist etwas anders</li>
       <li>

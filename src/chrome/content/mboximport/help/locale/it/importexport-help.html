@@ -18,23 +18,85 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Note di rilascio:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Note di rilascio: Nuova importante versione v15</h3>
     <p>
-      <b>v15.0.0-b1 Prima versione beta</b><br /><br />
-      Riscrittura completa delle funzioni di esportazione dei messaggi, sia per le cartelle che per i messaggi
-      selezionati. La Beta 1 include le seguenti novità:<br />
+      <b>Note, funzionalità e modifiche della versione 15. Si prega di leggere attentamente.</b><br /><br />
+      La versione 15 rappresenta una completa riscrittura delle funzioni di esportazione dei messaggi, sia per
+      le cartelle che per i messaggi selezionati. È la prima fase di un&#39;implementazione basata
+      principalmente su una tecnologia WebExtension moderna. Il nuovo design apporta un notevole miglioramento
+      all&#39;architettura, consentendo l&#39;introduzione di nuove funzionalità e prestazioni superiori.<br /><br />
+      Per la prima versione 15, sono stati implementati i seguenti formati:<br /><br />
       - EML<br />
       - HTML e allegati<br />
       - PDF e allegati<br />
       - Testo semplice e allegati<br /><br />
-      Oltre alla nuova funzione di esportazione in PDF con allegati, è disponibile anche una nuova finestra di
-      stato dell&#39;esportazione e un nuovo file indice in cui è possibile ordinare le colonne cliccando
-      sulle intestazioni.<br /><br />
+      Oltre alla nuova funzionalità di esportazione in PDF con allegati, sono disponibili anche una nuova
+      finestra di stato dell&#39;esportazione e una nuova alternativa alle notifiche del sistema operativo. Di
+      seguito un elenco delle nuove funzionalità:<br /><br />
+      <b>Esportazione in PDF con allegati</b><br /><br />
+      Questa è un&#39;opzione richiesta da tempo. C&#39;è un&#39;importante limitazione rispetto
+      all&#39;esportazione in HTML: la tabella degli allegati non contiene link cliccabili. Finora non è stato
+      possibile produrre un output con link relativi. Sia il convertitore PDF che i visualizzatori convertono
+      tutti i link file:// in link assoluti, che risultano inutilizzabili. Spero che in futuro si trovi una
+      soluzione a questo problema.<br /><br />
+      <b>Indice</b><br /><br />
+      Il nuovo file indice consente di ordinare le colonne facendo clic su una qualsiasi delle
+      intestazioni.<br /><br />
+      <b>Strutture di esportazione:</b><br /><br />
+      - Tutti gli allegati in un&#39;unica cartella<br />
+      Se si utilizza una parola statica come &quot;Allegati&quot;, tutti gli allegati verranno inseriti in
+      quella cartella. In passato, ciò avrebbe generato cartelle come Allegati, Allegati-1, Allegati-2 e così
+      via.<br /><br />
+      - Gli allegati vengono salvati nella stessa cartella dei messaggi.<br />
+      In questa nuova opzione, disponibile nella scheda Nomi file, non vengono create cartelle per gli
+      allegati, poiché questi sono tutti contenuti nella cartella dei messaggi.<br /><br />
+      - Le cartelle degli allegati ora hanno la data del messaggio impostata<br />
+      Ai fini dell&#39;ordinamento, le cartelle degli allegati avranno ora la data di modifica impostata sulla
+      data di invio del messaggio corrispondente.<br /><br />
+      - Struttura sperimentale &quot;withatts&quot;<br />
+      Questa struttura combina ogni messaggio con tutti gli allegati in una directory di allegati formattata.
+      La configurazione tipica prevede di impostare il formato del nome file secondo le proprie preferenze, ad
+      esempio ${subject}, e il formato della directory su ${subject}. In questo modo, ogni messaggio verrà
+      creato in una directory contenente sia il messaggio stesso che gli allegati. È possibile ordinare le
+      directory per data o per nome.<br /><br />
+      Per provare questa struttura sperimentale, inserisci la parola:<br />
+      Withatts<br />
+      nelle opzioni di registrazione nella scheda Varie. (Proposta di @Rayerd)<br /><br />
+      <b>Opzioni di registrazione:</b><br /><br />
+      Le nuove opzioni di registrazione si trovano nella scheda Varie. Sono impostate come un elenco di parole
+      che indicano i tipi di log, separate da spazi. Producono vari output di log e di debug nella console di
+      debug, accessibile tramite la combinazione di tasti Ctrl+Maiusc+J. I tipi di log possono essere
+      combinati per produrre un output additivo. I tipi di log sono i seguenti:<br />
+      - msgs: Stato di salvataggio del messaggio di base<br />
+      - msgs2: output di debug più dettagliato per i messaggi<br />
+      - riepilogo: Un riepilogo dell&#39;esportazione<br />
+      - msgparts: Informazioni di debug per le parti del messaggio MIME<br />
+      - withatts: un&#39;opzione temporanea per utilizzare la struttura combinata di messaggi e allegati<br /><br />
+      <b>Menù</b><br /><br />
       Le nuove funzioni vengono attualmente aggiunte in aggiunta alle funzioni preesistenti e hanno il
       prefisso (v15).<br /><br />
-      Il vecchio codice verrà deprecato una volta che le nuove funzioni saranno stabili.<br /><br />
-      È stata introdotta una nuova funzionalità di registrazione e a breve sarà disponibile un file di
-      registro.
+      Il vecchio codice verrà deprecato una volta che le nuove funzioni saranno stabili. Questa scelta è stata
+      fatta per precauzione in vista del rilascio della versione principale. Si prega di utilizzare le nuove
+      funzioni della versione 15 e di segnalare eventuali problemi nel repository GitHub qui:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemi di ImportExportTools NG su GitHub</a
+      ><br /><br />
+      <b>Crediti</b><br /><br />
+      Questa versione non sarebbe stata possibile senza i test, le traduzioni e i suggerimenti di numerosi
+      utenti fedeli e appassionati. Un sentito ringraziamento a:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Cristoforo<br />
     </p>
     <h2 id="main_help">Panoramica e menu di ImportExportTools NG</h2>
     <p>
@@ -610,9 +672,9 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Numero della settimana ISO 8601 dell&#39;anno corrente espresso come numero decimale (intervallo
-            da 01 a 53), dove la settimana 1 è la prima settimana del nuovo anno ad avere almeno 4 giorni
-            (ovvero, il primo giovedì).
+            Numero della settimana ISO 8601 dell&#39;anno corrente come numero decimale (intervallo da 01 a
+            53), dove la settimana 1 è la prima settimana del nuovo anno ad avere almeno 4 giorni (ovvero, il
+            primo giovedì).
           </td>
         </tr>
         <tr>

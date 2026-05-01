@@ -18,22 +18,88 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notes de version :</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notes de version : Nouvelle version majeure v15</h3>
     <p>
-      <b>v15.0.0-b1 Première version bêta</b><br /><br />
-      Refonte complète des fonctions d&#39;exportation des messages, aussi bien pour les dossiers que pour les
-      messages sélectionnés. La bêta 1 comprend les éléments suivants :<br />
+      <b>Notes, fonctionnalités et modifications de la version 15. Veuillez lire attentivement.</b
+      ><br /><br />
+      La version 15 réécrit entièrement les fonctions d&#39;exportation des messages, qu&#39;il s&#39;agisse
+      des dossiers ou des messages sélectionnés. C&#39;est la première étape d&#39;une transition
+      technologique moderne, principalement basée sur les extensions Web. La nouvelle architecture offre une
+      nette amélioration, permettant de nouvelles fonctionnalités et des performances accrues.<br /><br />
+      Pour cette première version v15, les formats suivants ont été implémentés :<br /><br />
       - EML<br />
       - HTML et pièces jointes<br />
       - PDF et pièces jointes<br />
       - Texte brut et pièces jointes<br /><br />
-      Outre la nouvelle fonctionnalité d&#39;exportation PDF avec pièces jointes, une nouvelle fenêtre
-      d&#39;état d&#39;exportation et un nouveau fichier d&#39;index permettant de trier les colonnes en
-      cliquant sur leurs en-têtes sont également disponibles.<br /><br />
+      Outre la nouvelle fonctionnalité d&#39;exportation de PDF avec pièces jointes, une nouvelle fenêtre
+      d&#39;état d&#39;exportation et une nouvelle option de notification du système d&#39;exploitation sont
+      également disponibles. Voici la liste des fonctionnalités :<br /><br />
+      <b>Exportation PDF avec pièces jointes</b><br /><br />
+      Il s&#39;agit d&#39;une option très demandée. Une limitation importante subsiste par rapport à
+      l&#39;exportation HTML : le tableau des pièces jointes ne contient pas de liens cliquables. Jusqu&#39;à
+      présent, il n&#39;a pas été possible de générer un document avec des liens relatifs. Le convertisseur
+      PDF et/ou les visionneuses convertissent tous les liens file:// en liens absolus, ce qui les rend
+      inutilisables. J&#39;espère qu&#39;une solution sera trouvée à l&#39;avenir.<br /><br />
+      <b>Indice</b><br /><br />
+      Le nouveau fichier d&#39;index vous permet de trier les colonnes en cliquant sur n&#39;importe quel
+      en-tête.<br /><br />
+      <b>Structures d&#39;exportation :</b><br /><br />
+      - Toutes les pièces jointes dans un seul répertoire<br />
+      Si vous utilisez un nom statique comme « Pièces jointes », toutes les pièces jointes seront placées dans
+      ce répertoire. Auparavant, cela aurait créé des dossiers tels que Pièces jointes, Pièces jointes-1,
+      Pièces jointes-2, etc.<br /><br />
+      - Pièces jointes enregistrées dans le même répertoire que les messages.<br />
+      Dans cette nouvelle option de l&#39;onglet Noms de fichiers, aucun répertoire de pièces jointes
+      n&#39;est créé car elles se trouvent toutes dans le répertoire des messages.<br /><br />
+      - Les répertoires de pièces jointes ont désormais la date du message définie.<br />
+      Pour le tri des pièces jointes, la date de modification sera désormais définie sur la date d&#39;envoi
+      du message correspondant.<br /><br />
+      - Structure expérimentale « Withatts »<br />
+      Cette structure regroupe chaque message et toutes ses pièces jointes dans un répertoire de pièces
+      jointes formaté. En règle générale, vous pouvez définir le format des noms de fichiers selon vos
+      préférences, par exemple ${subject}, et celui des répertoires également selon ${subject}. Cela créera un
+      répertoire pour chaque message, contenant à la fois le message et ses pièces jointes. Il est possible de
+      trier ces répertoires par date ou par nom.<br /><br />
+      Pour tester cette structure expérimentale, insérez le mot :<br />
+      avecatts<br />
+      dans les options de journalisation de l&#39;onglet Divers. (Proposition de @Rayerd)<br /><br />
+      <b>Options de journalisation :</b><br /><br />
+      Les nouvelles options de journalisation se trouvent dans l&#39;onglet Divers. Elles sont définies sous
+      forme de liste de types de journalisation séparés par des espaces. Elles génèrent divers types de
+      messages de journalisation et de débogage dans la console de débogage, accessible via Ctrl+Maj+J. Les
+      types de journalisation peuvent être combinés pour produire des résultats cumulatifs. Voici la liste des
+      types de journalisation :<br />
+      - msgs : État de sauvegarde des messages de base<br />
+      - msgs2 : Sortie de débogage plus détaillée pour les messages<br />
+      - résumé : Un résumé de l&#39;exportation<br />
+      - msgparts : Informations de débogage pour les parties de message MIME<br />
+      - withatts : Une option temporaire pour utiliser la structure combinée des messages et des pièces
+      jointes<br /><br />
+      <b>Menus</b><br /><br />
       Les nouvelles fonctions sont actuellement ajoutées par-dessus les anciennes fonctions et ont un préfixe
       (v15).<br /><br />
-      L&#39;ancien code sera obsolète une fois que les nouvelles fonctions seront stables.<br /><br />
-      Nouvelle fonction d&#39;enregistrement et un fichier journal sera bientôt disponible.
+      L&#39;ancien code sera obsolète une fois les nouvelles fonctionnalités stabilisées. Cette approche
+      prudente est adoptée pour cette version majeure. Veuillez utiliser les nouvelles fonctionnalités v15 et
+      signaler tout problème sur le dépôt GitHub :<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problèmes Github d&#39;ImportExportTools NG</a
+      ><br /><br />
+      <b>Crédits</b><br /><br />
+      Cette version n&#39;aurait pas été possible sans les tests, les traductions et les suggestions de
+      plusieurs utilisateurs fidèles et dévoués. Un grand merci à :<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christophe<br />
     </p>
     <h2 id="main_help">Présentation et menus d&#39;ImportExportTools NG</h2>
     <p>
@@ -373,7 +439,7 @@
             __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exporter les messages sous forme de fichiers au format texte brut, pièces jointes incluses.<br />
+            Exportez les messages sous forme de fichiers au format texte brut, pièces jointes incluses.<br />
             Cela crée également un fichier index HTML répertoriant chaque message.
           </td>
         </tr>
@@ -861,7 +927,7 @@
       <code class="notranslate">key</code> - la clé (caractère unique)<br />
       <code class="notranslate">keycode</code> - le code de clé défini &#39;VK_*&#39;<br />
       Une clé ou un code d&#39;activation peut être inclus, mais pas les deux.<br />
-      <code class="notranslate">modifiers</code> - les modificateurs de touches, liste séparée par des espaces
+      <code class="notranslate">modifiers</code> - les touches de modification, liste séparée par des espaces
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - une chaîne de commande directe<br />
       <code class="notranslate">contexts</code> - le contexte de la fenêtre dans lequel la touche est

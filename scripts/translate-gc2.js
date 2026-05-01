@@ -553,11 +553,11 @@ localeFolders = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl', 'hu
 //localeFolders = ['de', 'ja', 'fr', 'da'];
 
 
-//translateHelpPage();
+translateHelpPage();
 //translatePage();
 
 // message translations
-translateAll(inputFiles, translationArray, options);
+//translateAll(inputFiles, translationArray, options);
 
 /*
 node .\scripts\translate-gc2.js

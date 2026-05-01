@@ -18,21 +18,85 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas de la versión:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas de la versión: Nueva versión importante v15</h3>
     <p>
-      <b>v15.0.0-b1 Primera versión beta</b><br /><br />
-      Reescritura completa de las funciones de exportación de mensajes, tanto de carpetas como de mensajes
-      seleccionados. La versión Beta 1 incluye lo siguiente:<br />
+      <b>Notas, características y cambios de la versión 15. Lea atentamente.</b><br /><br />
+      La versión 15 supone una reescritura completa de las funciones de exportación de mensajes, tanto de
+      carpetas como de mensajes seleccionados. Representa la primera fase de una tecnología moderna, basada
+      principalmente en extensiones web. El nuevo diseño supone una gran mejora en la arquitectura, lo que
+      permite incorporar nuevas funcionalidades y un mejor rendimiento.<br /><br />
+      Para la primera versión v15, se han implementado los siguientes formatos:<br /><br />
       - EML<br />
       - HTML y archivos adjuntos<br />
       - PDF y archivos adjuntos<br />
       - Texto plano y archivos adjuntos<br /><br />
-      Además de la nueva opción de exportar a PDF con archivos adjuntos, también hay una nueva ventana de
-      estado de exportación y un nuevo archivo de índice donde se pueden ordenar las columnas haciendo clic en
-      los encabezados.<br /><br />
+      Además de la nueva función de exportación a PDF con archivos adjuntos, también se incluye una nueva
+      ventana de estado de exportación y una nueva alternativa de notificación del sistema operativo. A
+      continuación, se presenta una lista de las funciones:<br /><br />
+      <b>Exportación a PDF con archivos adjuntos</b><br /><br />
+      Esta es una opción muy solicitada. Existe una limitación importante en comparación con la exportación a
+      HTML: la tabla de archivos adjuntos no tiene enlaces clicables. Hasta ahora, no ha sido posible generar
+      un resultado con enlaces relativos. Tanto el convertidor de PDF como los visores convierten todos los
+      enlaces file:// en enlaces absolutos, lo cual no resulta útil. Espero que en el futuro se encuentre una
+      manera de lograrlo.<br /><br />
+      <b>Índice</b><br /><br />
+      El nuevo archivo de índice permite ordenar las columnas haciendo clic en cualquiera de los
+      encabezados.<br /><br />
+      <b>Estructuras de exportación:</b><br /><br />
+      - Todos los archivos adjuntos en un único directorio<br />
+      Si utiliza una palabra clave estática como &quot;Archivos adjuntos&quot;, todos los archivos adjuntos se
+      guardarán en ese directorio. Anteriormente, esto habría generado carpetas como Archivos adjuntos,
+      Archivos adjuntos-1, Archivos adjuntos-2, etc.<br /><br />
+      - Los archivos adjuntos se guardan en el mismo directorio que los mensajes.<br />
+      En esta nueva opción que se encuentra en la pestaña Nombres de archivo, no se crean directorios de
+      archivos adjuntos, ya que todos se encuentran en el directorio de mensajes.<br /><br />
+      - Los directorios de archivos adjuntos ahora tienen configurada la fecha del mensaje.<br />
+      Para la clasificación, los directorios de archivos adjuntos ahora tendrán su fecha de modificación
+      establecida según la fecha de envío del mensaje correspondiente.<br /><br />
+      - Estructura experimental &quot;withatts&quot;<br />
+      Esta estructura combina cada mensaje con todos sus archivos adjuntos en un directorio de archivos
+      adjuntos formateado. La configuración típica consiste en establecer el formato del nombre de archivo
+      según su preferencia, por ejemplo, ${subject}, y el formato del directorio también a ${subject}. Esto
+      generará directorios para cada mensaje, que contendrán tanto el mensaje como los archivos adjuntos. Es
+      posible ordenar los directorios por fecha o nombre.<br /><br />
+      Para probar esta estructura experimental, coloque la palabra:<br />
+      con atts<br />
+      En las opciones de registro de la pestaña Varios. (Propuesta de @Rayerd)<br /><br />
+      <b>Opciones de registro::</b><br /><br />
+      Las nuevas opciones de registro se encuentran en la pestaña Varios. Se configuran como una lista de
+      palabras de tipo de registro separadas por espacios. Generan diversa información de registro y
+      depuración en la consola de depuración, a la que se accede mediante Control+Mayús+J. Los tipos de
+      registro se pueden combinar para generar una salida aditiva. Los tipos de registro son los
+      siguientes:<br />
+      - msgs: Estado básico de guardado de mensajes<br />
+      - msgs2: Salida de depuración más detallada para los mensajes<br />
+      - resumen: Un resumen de la exportación<br />
+      - msgparts: Información de depuración para las partes del mensaje MIME.<br />
+      - withatts: Una opción temporal para usar la estructura combinada de mensaje y archivos adjuntos.<br /><br />
+      <b>Menús</b><br /><br />
       Las nuevas funciones se añaden actualmente sobre las funciones antiguas y tienen el prefijo (v15).<br /><br />
-      El código antiguo quedará obsoleto una vez que las nuevas funciones sean estables.<br /><br />
-      Se ha implementado un nuevo sistema de registro y próximamente estará disponible un archivo de registro.
+      El código antiguo quedará obsoleto una vez que las nuevas funciones sean estables. Esto se ha hecho como
+      medida de precaución antes del lanzamiento principal. Utilice las nuevas funciones de la versión 15 e
+      informe de cualquier problema en el repositorio de GitHub aquí:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemas de Github de ImportExportTools NG</a
+      ><br /><br />
+      <b>Créditos</b><br /><br />
+      Este lanzamiento no habría sido posible sin las pruebas, traducciones y sugerencias de varios usuarios
+      fieles y dedicados. Muchas gracias a:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher<br />
     </p>
     <h2 id="main_help">Descripción general y menús de ImportExportTools NG</h2>
     <p>
@@ -190,8 +254,8 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exporta los mensajes de la carpeta como un único archivo de texto plano; los archivos adjuntos no
-            se incluyen.<br />
+            Exporta los mensajes de la carpeta como un único archivo de texto sin formato; los archivos
+            adjuntos no se incluyen.<br />
             Esto también crea un archivo de índice HTML que enumera cada mensaje.
           </td>
         </tr>

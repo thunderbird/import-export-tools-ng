@@ -18,20 +18,80 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas de lançamento:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas de lançamento: Nova versão principal v15</h3>
     <p>
-      <b>v15.0.0-b1 Primeira versão beta</b><br /><br />
-      Reescrita completa das funções de exportação de mensagens, tanto de pastas quanto de mensagens
-      selecionadas. A versão Beta 1 inclui o seguinte:<br />
+      <b>Notas, recursos e alterações da versão 15. Leia atentamente.</b><br /><br />
+      A versão 15 é uma reescrita completa das funções de exportação de mensagens, tanto de pastas quanto de
+      mensagens selecionadas. É a primeira fase de uma tecnologia moderna, baseada principalmente em extensões
+      da Web. O novo design representa uma grande melhoria na arquitetura, possibilitando novos recursos e
+      melhor desempenho.<br /><br />
+      Para a primeira versão v15, os seguintes formatos foram implementados:<br /><br />
       - EML<br />
       - HTML e anexos<br />
       - PDF e anexos<br />
       - Texto simples e anexos<br /><br />
-      Além da nova opção de exportação de PDF com anexos, há também uma nova janela de status de exportação,
-      bem como um novo arquivo de índice onde você pode classificar as colunas clicando nos cabeçalhos.<br /><br />
+      Além da nova opção de exportação de PDF com anexos, há também uma nova janela de status de exportação e
+      uma nova alternativa de notificação do sistema operacional. A seguir, uma lista dos recursos:<br /><br />
+      <b>Exportação de PDF com anexos</b><br /><br />
+      Esta é uma opção solicitada há muito tempo. Existe uma limitação importante em comparação com a
+      exportação para HTML. A tabela de anexos não possui links clicáveis. Até o momento, não foi possível
+      gerar uma saída com links relativos. O conversor de PDF e/ou os visualizadores convertem todos os links
+      file:// em links absolutos, o que não é útil. Espero que haja alguma maneira de resolver isso no
+      futuro.<br /><br />
+      <b>Índice</b><br /><br />
+      O novo arquivo de índice permite classificar as colunas clicando em qualquer um dos cabeçalhos.<br /><br />
+      <b>Estruturas de exportação:</b><br /><br />
+      - Todos os anexos em um único diretório<br />
+      Se você usar uma palavra estática como &quot;Anexos&quot;, todos os anexos serão colocados nesse
+      diretório. No passado, isso teria gerado os seguintes diretórios: Anexos, Anexos-1, Anexos-2, etc.<br /><br />
+      - Os anexos são salvos no mesmo diretório das mensagens.<br />
+      Nessa nova opção encontrada na aba Nomes de Arquivos, nenhum diretório de anexos é criado, pois todos os
+      arquivos estão no diretório de mensagens.<br /><br />
+      - Os diretórios de anexos agora têm a data da mensagem definida.<br />
+      Para a ordenação dos diretórios de anexos, a data de modificação será agora definida como a data de
+      envio da mensagem correspondente.<br /><br />
+      - Estrutura experimental &quot;withatts&quot;<br />
+      Essa estrutura combina cada mensagem com todos os seus anexos em um diretório formatado para anexos. A
+      configuração típica seria definir o formato do nome do arquivo para o formato desejado, por exemplo,
+      ${subject}, e também o formato do diretório para ${subject}. Isso criaria diretórios para cada mensagem,
+      contendo tanto a mensagem quanto os anexos. É possível classificar os diretórios por data ou nome.<br /><br />
+      Para testar esta estrutura experimental, insira a palavra:<br />
+      comatts<br />
+      nas opções de registro na aba Diversos. (Proposta de @Rayerd)<br /><br />
+      <b>Opções de registro::</b><br /><br />
+      As novas opções de registro (Logging) estão na aba Diversos. Elas são definidas como uma lista de
+      palavras-chave do tipo de registro, separadas por espaços. Geram diversas saídas de registro e depuração
+      no console de depuração, acessível pelo atalho Control-Shift-J. Os tipos de registro podem ser
+      combinados para produzir saídas adicionais. Os tipos de registro são os seguintes:<br />
+      - msgs: Status básico de salvamento de mensagens<br />
+      - msgs2: Saída de depuração mais detalhada para mensagens<br />
+      - Resumo: Um resumo da exportação<br />
+      - msgparts: Informações de depuração para partes de mensagens MIME<br />
+      - withatts: Uma opção temporária para usar a estrutura combinada de mensagem e anexos.<br /><br />
+      <b>Cardápios</b><br /><br />
       As novas funções são adicionadas sobre as funções antigas e têm um prefixo (v15).<br /><br />
-      O código antigo será descontinuado assim que as novas funções estiverem estáveis.<br /><br />
-      Novo sistema de registro de logs e, em breve, um arquivo de log estará disponível.
+      O código antigo será descontinuado assim que as novas funções estiverem estáveis. Essa medida foi tomada
+      como precaução para o lançamento da versão principal. Por favor, utilize as novas funções da versão 15 e
+      reporte quaisquer problemas no repositório do Github aqui:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemas do Github do ImportExportTools NG</a
+      ><br /><br />
+      <b>Créditos</b><br /><br />
+      Este lançamento não teria sido possível sem os testes, traduções e sugestões de diversos usuários fiéis
+      e dedicados. Muito obrigado a:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher<br />
     </p>
     <h2 id="main_help">Visão geral e menus do ImportExportTools NG</h2>
     <p>
@@ -582,8 +642,8 @@
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            &quot;AM&quot; ou &quot;PM&quot;, de acordo com o horário especificado. Meio-dia é considerado
-            &quot;PM&quot; e meia-noite, &quot;AM&quot;.
+            Pode ser &quot;AM&quot; ou &quot;PM&quot;, de acordo com o horário especificado. Meio-dia é
+            considerado &quot;PM&quot; e meia-noite é considerado &quot;AM&quot;.
           </td>
         </tr>
         <tr>
@@ -902,7 +962,7 @@
         - Suporte completo ao Modo Escuro<br />
         - Novo sistema de menu consistente<br />
         - Novo botão na barra de ferramentas<br />
-        - Ajuda aprimorada, abre durante a instalação<br />
+        - Ajuda aprimorada, abra durante a instalação<br />
         - Atualizar conta de exportação<br /><br />
         Agradecemos aos seguintes usuários pelas sugestões de melhoria e pela ajuda nos testes:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />

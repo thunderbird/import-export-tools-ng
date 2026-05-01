@@ -619,7 +619,9 @@ export var exportMessages = {
   },
 
   _insertAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
-    let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>Attachments</legend></fieldset>\n`;
+    let attachmentsLabel = ietngExtension.localeData.localizeMessage("Attachments.label");
+
+    let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>${attachmentsLabel}</legend></fieldset>\n`;
     let relAttsDir = "./";
 
     if (expTask.attachments.containerStructure == "perMsgDir" && !expTask.debug.logTypes.includes("withatts")) {
@@ -638,8 +640,8 @@ export var exportMessages = {
   },
 
   _insertPlaintextAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
-
-    let txtAttTableHdr = "\n-----Attachments-----------------\n";
+    let attachmentsLabel = ietngExtension.localeData.localizeMessage("Attachments.label");
+    let txtAttTableHdr = `\n----- ${attachmentsLabel} --------------------------------\n`;
     let attList = "";
 
     attachmentFilenames.forEach(filename => {

@@ -201,7 +201,7 @@ export var names = {
 
     // alphaNumericOnly filter
     if (expTask.names.filters.alphaNumericOnly)
-      generatedName = generatedName.replace(/[^a-zA-Z0-9\-\ ]/g, "_");
+      generatedName = generatedName.replace(/[^a-zA-Z0-9\-]/g, "_");
     else {
       // Allow ',' and single quote character which is valid
       generatedName = generatedName.replace(/[\/\\:<>*\?\|]/g, "_");

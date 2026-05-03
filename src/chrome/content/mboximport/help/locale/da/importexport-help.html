@@ -22,8 +22,8 @@
   </table>
   <h3 id="release_notes" style="padding-left: 4px">Udgivelsesnoter: Stor ny v15-udgivelse</h3>
     <p>
-      <b>v15 Noter, funktioner og ændringer. Læs venligst grundigt.</b><br /><br />
-      v15 er en komplet omskrivning af funktionerne til eksport af beskeder, både mapper og udvalgte beskeder.
+      <b>v15 Noter, funktioner og ændringer. Læs grundigt.</b><br /><br />
+      v15 er en komplet omskrivning af funktionerne til eksport af meddelelser, både mapper og udvalgte meddelelser.
       Det er den første fase i en moderne, primært WebExtension-teknologi. Det nye design er en enorm
       forbedring af arkitekturen, der giver mulighed for nye funktioner og bedre ydeevne.<br /><br />
       Til den første v15-udgivelse er følgende formater blevet implementeret:<br /><br />
@@ -34,7 +34,7 @@
       Udover den nye eksport af PDF med vedhæftede filer er der også et nyt vindue til eksportstatus samt et
       nyt alternativ til OS-notifikationer. En liste over funktioner følger:<br /><br />
       <b>PDF-eksport med vedhæftede filer</b><br /><br />
-      Dette er en længe efterspurgt mulighed. Der er én vigtig begrænsning i forhold til HTML-eksport.
+      Dette er en længe efterspurgt mulighed. Der er en vigtig begrænsning i forhold til HTML-eksport.
       Tabellen med vedhæftede filer har ikke klikbare links. Indtil videre har det ikke været muligt at
       producere output med relative links. Enten PDF-konverteren og/eller fremviserne konverterer alle
       file://-links til absolutte links, som ikke er nyttige. Jeg håber, at der findes en måde at opnå dette
@@ -42,44 +42,44 @@
       <b>Indeks</b><br /><br />
       Den nye indeksfil giver dig mulighed for at sortere kolonner ved at klikke på overskrifterne.<br /><br />
       <b>Eksportstrukturer:</b><br /><br />
-      - Alle vedhæftede filer i én mappe<br />
+      - Alle vedhæftede filer i en mappe<br />
       Hvis du bruger et statisk ord som &quot;Vedhæftede filer&quot;, vil alle vedhæftede filer blive placeret
       i den mappe. Tidligere ville det have resulteret i Vedhæftede filer, Vedhæftede filer-1, Vedhæftede
       filer-2 osv.<br /><br />
-      - Vedhæftede filer gemmes i samme mappe som beskeder.<br />
-      I denne nye indstilling, der findes på fanen Filnavne, oprettes der ingen vedhæftede filer-mapper, da de
-      alle findes i beskedmappen.<br /><br />
+      - Vedhæftede filer gemmes i samme mappe som meddelelser.<br />
+      I denne nye indstilling, der findes på fanebladet Filnavne, oprettes der ingen vedhæftede filer-mapper, da de
+      alle findes i meddelelsesmappen.<br /><br />
       - Meddelelsesdatoen er nu angivet i mapperne med vedhæftede filer<br />
       For sortering vil vedhæftede filers mapper nu have deres ændringsdato indstillet til den tilsvarende
-      beskeds afsendelsesdato.<br /><br />
+      meddelelses afsendelsesdato.<br /><br />
       - Eksperimentel &quot;withatts&quot;-struktur<br />
-      Denne struktur kombinerer hver besked med alle vedhæftede filer i den formaterede vedhæftede filmappe.
+      Denne struktur kombinerer hver meddelelse med alle vedhæftede filer i den formaterede vedhæftede filmappe.
       Den typiske opsætning ville være at indstille filnavnformatet til din foretrukne opsætning, f.eks.
-      ${subject}, og dine mappeformater til ${subject}. Dette ville producere mapper til hver besked med både
-      beskeden og de vedhæftede filer. Det er muligt at sortere mapperne efter dato eller navn.<br /><br />
+      ${subject}, og dine mappeformater til ${subject}. Dette ville producere mapper til hver meddelelse med både
+      meddelelsen og de vedhæftede filer. Det er muligt at sortere mapperne efter dato eller navn.<br /><br />
       For at afprøve denne eksperimentelle struktur, indsæt ordet:<br />
-      medhatts<br />
-      i logføringsindstillingerne under fanen Diverse. (Forslag fra @Rayerd)<br /><br />
-      <b>Logføringsmuligheder::</b><br /><br />
-      De nye logføringsindstillinger findes på fanen Diverse. Disse er angivet som en mellemrumssepareret
-      liste over logtypeord. De producerer forskellige log- og fejlfindingsoutput til fejlfindingskonsollen,
-      som tilgås via Ctrl-Shift-J. Logtyperne kan kombineres for at producere det additive output. Logtyperne
+      withatts<br />
+      i logningsindstillingerne under fanebladet Diverse. (Forslag fra @Rayerd)<br /><br />
+      <b>Logningsindstillinger:</b><br /><br />
+      De nye logningsindstillinger findes under fanebladet Diverse. Disse er angivet som en mellemrumssepareret
+      liste over log-typeord. De producerer forskellige log- og fejlfindingsoutput til fejlkonsollen,
+      som tilgås via Ctrl-Shift-J. Log-typerne kan kombineres for at producere det additive output. Log-typerne
       er som følger:<br />
-      - msgs: Grundlæggende beskedlagringsstatus<br />
-      - msgs2: Mere detaljeret fejlfindingsoutput for beskeder<br />
+      - msgs: Grundlæggende meddelelseslagringsstatus<br />
+      - msgs2: Mere detaljeret fejlfindingsoutput for meddelelser<br />
       - summary: En opsummering af eksporten<br />
       - msgparts: Fejlfindingsinfo for MIME-meddelelsesdele<br />
-      - withatts: En midlertidig mulighed for at bruge den kombinerede struktur for beskeder og vedhæftede
+      - withatts: En midlertidig mulighed for at bruge den kombinerede struktur for meddelelser og vedhæftede
       filer<br /><br />
       <b>Menuer</b><br /><br />
       De nye funktioner er i øjeblikket tilføjet oven i de gamle funktioner og har et (v15) præfiks.<br /><br />
       Den gamle kode vil blive afskrevet, når de nye funktioner er stabile. Dette er gjort som en forsigtig
       tilgang til den større udgivelse. Brug venligst de nye v15-funktioner, og rapporter eventuelle problemer
-      i Github-arkivet her:<br /><br />
+      i udvidelsens Github-repository her:<br /><br />
       <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
         >ImportExportTools NG Github-problemer</a
       ><br /><br />
-      <b>Kreditter</b><br /><br />
+      <b>Tak til</b><br /><br />
       Denne udgivelse kunne ikke være sket uden test, oversættelser og forslag fra adskillige loyale og
       dedikerede brugere. Mange tak til:<br /><br />
       <b
@@ -105,7 +105,7 @@
     - EML<br />
     - maildir<br />
     - HTML<br />
-    - simpel tekst<br />
+    - almindelig tekst<br />
     - CSV (kommaseparerede værdier)<br />
     - PDF<br /><br />
     Mens det meste af funktionaliteten til drejer sig om meddelelser, er der også understøttelse for import og
@@ -113,7 +113,7 @@
     Sikkerhedskopiering af Thunderbird-profilen er en anden funktion.<br />
   <p>
     Adgang til IETng-funktionalitet sker gennem flere forskellige menuer installeret af udvidelsen.
-    Funktionerne er kontekstafhængige. Menuer tilføjes til:<br />
+    Funktionerne er kontekstafhængige. Menuer føjes til:<br />
     - Mapperudens genvejsmenu (mappeoperation)<br />
     - Meddelelseslistes genvejsmenu (udvalgte meddelelser)<br />
     - Menuen Funktioner (profil og sikkerhedskopiering)<br /><br />
@@ -125,14 +125,14 @@
   </p>
   <h3>Support:</h3>
   <p>
-    Send venligst problemer eller funktionsanmodninger i udvidelserne GitHub-repository:
+    Send venligst problemer eller funktionsanmodninger i udvidelsens GitHub-repository:
     <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues">ImportExportTools NG
       Issues</a><br /><br />
     I fejlrapporter skal du inkludere følgende oplysninger for at hjælpe med at løse problemerne:<br />
     - ImportExportTools NG-version<br />
     - Thunderbird-version<br />
     - Operativsystem og version<br />
-    - Debug output (kopi fra fejlkonsollen - Tilgåes med tastaturgenvejen Control-Skift-J)<br />
+    - Fejlfindings-output (kopi fra fejlkonsollen - Tilgås med tastaturgenvejen Control-Skift-J)<br />
     - En beskrivelse af de trin, der fører til problemet<br />
   </p>
   <h2 id="main_menu_help">Genvejsmenufunktioner på mapper</h2>
@@ -490,15 +490,15 @@
       </tr>
       <tr>
         <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-        <td>Gem hele profilen (mail, udvidelser, indstilliger)</td>
+        <td>Gem hele profilen (mail, udvidelser, indstillinger)</td>
       </tr>
       <tr>
         <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-        <td>Gem al mail i den aktuelle profil</td>
+        <td>Gem alle mails i den aktuelle profil</td>
       </tr>
       <tr>
         <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-        <td>Importer en komplet profil (mail, udvidelser, indstillinger)</td>
+        <td>Importer en komplet profil (mails, udvidelser, indstillinger)</td>
       </tr>
       <tr>
         <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -547,11 +547,11 @@
       </tr>
       <tr>
         <td><code class="code1">%b</code></td>
-        <td>Forkortet månedsnavn.</td>
+        <td>Månedens forkortede navn.</td>
       </tr>
       <tr>
         <td><code class="code1">%B</code></td>
-        <td>Fuldt måneds navn.</td>
+        <td>Månedens fulde navn.</td>
       </tr>
       <tr>
         <td><code class="code1">%c</code></td>
@@ -559,7 +559,7 @@
       </tr>
       <tr>
         <td><code class="code1">%C</code></td>
-        <td>Århundredetal (år/100) som et 2-cifret heltal.</td>
+        <td>Århundredetal (år/100) som et tocifret heltal.</td>
       </tr>
       <tr>
         <td><code class="code1">%d</code></td>
@@ -576,7 +576,7 @@
       <tr>
         <td><code class="code1">%G</code></td>
         <td>
-          ISO 8601 ugebaseret årstal med århundrede som decimaltal. Det 4-cifrede år svarer til
+          ISO 8601 ugebaseret årstal med århundrede som decimaltal. Det firecifrede år svarer til
           ISO-ugenummeret (se <code class="code1">%V</code> ). Dette har samme format og værdi som
           <code class="code1">%Y</code> , bortset fra at hvis ISO-ugenummeret tilhører det foregående eller
           næste år, bruges det år i stedet.
@@ -585,7 +585,7 @@
       <tr>
         <td><code class="code1">%g</code></td>
         <td>
-          Som <code class="code1">%G</code> , men uden århundrede, altså med et 2-cifret årstal (00-99).
+          Som <code class="code1">%G</code>, men uden århundrede, altså med et tocifret årstal (00-99).
         </td>
       </tr>
       <tr>
@@ -642,7 +642,7 @@
       <tr>
         <td><code class="code1">%P</code></td>
         <td>
-          Som <code class="code1">%p</code> men med små bogstaver (&quot;am&quot; eller &quot;pm&quot;).
+          Som <code class="code1">%p</code>, men med små bogstaver (&quot;am&quot; eller &quot;pm&quot;).
         </td>
       </tr>
       <tr>
@@ -651,7 +651,7 @@
       </tr>
       <tr>
         <td><code class="code1">%S</code></td>
-        <td>Anden som et decimaltal (interval 00 til 59).</td>
+        <td>Sekund som et decimaltal (interval 00 til 59).</td>
       </tr>
       <tr>
         <td><code class="code1">%u</code></td>
@@ -672,11 +672,11 @@
       </tr>
       <tr>
         <td><code class="code1">%x</code></td>
-        <td>Foretrukken datorepræsentation for den aktuelle lokalitet uden klokkeslæt.</td>
+        <td>Foretrukken datorepræsentation for den aktuelle sprog uden klokkeslæt.</td>
       </tr>
       <tr>
         <td><code class="code1">%X</code></td>
-        <td>Foretrukken tidsrepræsentation for den aktuelle lokalitet uden dato.</td>
+        <td>Foretrukken tidsrepræsentation for den aktuelle sprog uden dato.</td>
       </tr>
       <tr>
         <td><code class="code1">%y</code></td>
@@ -711,7 +711,7 @@
     <li><code class="code1">%h</code> - ikke implementeret (brug <code class="code1">%b</code> )</li>
     <li><code class="code1">%k</code> - mellemrum er ikke tilføjet</li>
     <li>
-      <code class="code1">%n</code> - ligesom <code class="code1">%m</code> , men intet indledende nul (brug
+      <code class="code1">%n</code> - ligesom <code class="code1">%m</code>, men intet foranstillet nul (brug
       <code class="code1">\n</code> til ny linje)
     </li>
     <li><code class="code1">%O</code> - ikke implementeret</li>
@@ -720,7 +720,7 @@
     </li>
     <tr>
       <td><code class="code1">${subject}</code></td>
-      <td>Emnet for meddelelsen</td>
+      <td>Meddelelsens emne</td>
     </tr>
     <li><code class="code1">%R</code> - ikke implementeret (brug <code class="code1">%H:%M</code> )</li>
     <li><code class="code1">%t</code> - ikke implementeret (brug <code class="code1">\t</code> )</li>
@@ -736,8 +736,8 @@
   <p>
     Den udvidede filnavnsformatering bruger tokens. Det nøjagtige filnavn kan konstrueres ved hjælp af
     tokens såvel som enhver tekst eller gyldige filnavnstegn. Ugyldige tegn er:
-    <code>| * : &lt; &gt; ? \ / &quot;</code> De engelske (en-US) tokens er tilgængelige i enhver lokalitet.
-    Lokalitetsspecifikke tokens er også tilgængelige og listet under den engelske tabel.<br /><br />
+    <code>| * : &lt; &gt; ? \ / &quot;</code> De engelske (en-US) tokens er tilgængelige i enhver sprog.
+    Sprogspecifikke tokens er også tilgængelige og listet under den engelske tabel.<br /><br />
     Eksempler:<br /><br />
     <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
     <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> – Brug det tilpassede
@@ -752,7 +752,7 @@
     </tr>
     <tr>
       <td class="notranslate"><code>${subject}</code></td>
-      <td>Emnet for meddelelsen. Længden kan være begrænset af muligheden for emnelængde.</td>
+      <td>Meddelelsens emne. Længden kan være begrænset af muligheden for emnelængde.</td>
     </tr>
     <tr>
       <td class="notranslate"><code>${sender}</code></td>
@@ -760,7 +760,7 @@
     </tr>
     <tr>
       <td class="notranslate"><code>${recipient}</code></td>
-      <td>Navnet på meddelelsesmodtageren.</td>
+      <td>Navnet på modtageren af meddelelsen.</td>
     </tr>
     <tr>
       <td class="notranslate"><code>${sender_email}</code></td>
@@ -768,11 +768,11 @@
     </tr>
     <tr>
       <td class="notranslate"><code>${recipient_email}</code></td>
-      <td>Mailadressen på meddelelsesmodtageren.</td>
+      <td>Mailadressen på modtageren af meddelelsen.</td>
     </tr>
     <tr>
       <td class="notranslate"><code>${smart_name}</code></td>
-      <td>Modtagerne, hvis meddelelsen er i en Sendt-mappe, ellers afsendernavnet</td>
+      <td>Modtagerne, hvis meddelelsen er i en Sendt-mappe, ellers navnet på afsenderen</td>
     </tr>
     <tr>
       <td class="notranslate"><code>${index}</code></td>
@@ -784,7 +784,7 @@
     </tr>
     <tr>
       <td class="notranslate"><code>${suffix}</code></td>
-      <td>Suffikstekstindstillingsværdien.</td>
+      <td>Værdien af suffikset tekstindstilling.</td>
     </tr>
     <tr>
       <td class="notranslate"><code>${date}</code></td>
@@ -852,8 +852,8 @@
     Der er flere nye funktioner og muligheder, som endnu ikke kan konfigureres i indstillingsdialogen. Når
     disse funktioner er stabiliseret, vil de blive tilføjet til brugergrænsefladen.<br />
     For at kunne bruge dem skal de indstilles i Config Editor. For at få adgang til editoren skal du bruge
-    menuen Værktøjer/Indstillinger, og vælg derefter sektionen Avanceret, og der vil være en
-    &#39;Konfigurationseditor&#39;-knap i bunden. Hvis du skriver &#39;importexporttoolsng&#39; i
+    menuen Funktioner/Indstillinger, og vælg derefter Generelt, og der vil være en
+    knap med teksten &#39;Avancerede indstillinger&#39; nederst på siden. Hvis du skriver &#39;importexporttoolsng&#39; i
     søgefeltet, får du alle udvidelsespræferencerne. Du kan derefter redigere de forskellige præferencer
     nedenfor efter behov.
   </p>
@@ -884,40 +884,40 @@
   <p>
     Denne nye præference giver brugeren mulighed for at indstille op til 10 tastaturgenveje. Genvejene kan
     udføre de fleste af ImportExportTools NG-funktionerne såvel som andre Thunderbird-funktioner.
-    Præferencestrengen er formateret som et JSON-formateret objekt. Formatet og nøglerne er som følger:
+    Præferencestrengen er formateret som et JSON-formateret objekt. Formatet og tasterne er som følger:
   </p>
   <p>
     Eksempler på genvejstaster (array af JSON-objekter)<br /><br />
-    <code class="notranslate">id</code> - nøgleindekset (1-10)<br />
-    <code class="notranslate">key</code> - nøglen (enkelt tegn)<br />
-    <code class="notranslate">keycode</code> - &#39;VK_*&#39; definere nøglekoden<br />
-    Enten nøgle eller nøglekode kan være inkluderet, men ikke begge dele<br />
-    <code class="notranslate">modifiers</code> - nøglemodifikatorerne, mellemrumssepareret liste
-    (&#39;control&#39;, &#39;skift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+    <code class="notranslate">id</code> - tasteindekset (1-10)<br />
+    <code class="notranslate">key</code> - tasten (enkelt tegn)<br />
+    <code class="notranslate">keycode</code> - &#39;VK_*&#39; definere tasteekoden<br />
+    Enten tast eller tastekode kan være inkluderet, men ikke begge<br />
+    <code class="notranslate">modifiers</code> - tastemodifikatorerne, mellemrumssepareret liste
+    (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
     <code class="notranslate">oncommand</code> - en direkte kommandostreng<br />
-    <code class="notranslate">contexts</code> - vindueskonteksten, hvor nøglen er aktiv<br />
+    <code class="notranslate">contexts</code> - vindueskonteksten, hvor tasten er aktiv<br />
     <code class="notranslate">&#39;all&#39;</code> - alle vinduer under messenger, skriv, søg<br />
-    <code class="notranslate">&#39;messenger&#39;</code> - hovedbudbringervinduet og dets efterkommere<br />
+    <code class="notranslate">&#39;messenger&#39;</code> - hovedvinduet og dets efterkommere<br />
     <code class="notranslate">&#39;compose&#39;</code> - vinduet til at skrive meddelelser<br />
     <code class="notranslate">&#39;search&#39;</code> - søgedialogen<br /><br />
     <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
-        &quot;modifiers&quot;: &quot;control skift&quot;, &quot;oncommand&quot;:
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
         &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code><br /><br />
     <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code><br /><br />
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code><br /><br />
     <code class="notranslate">[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
         &quot;contexts&quot;: &quot;messenger&quot;},<br />
         {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
-        skift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
         &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
-        &quot;modifiers&quot;: &quot;control skift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
         all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
-        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control skift&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
         &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
         &quot;compose&quot; }]</code><br />
   </p>
@@ -937,7 +937,7 @@
     - Nyt, konsekvent menusystem<br />
     - Ny knap på værktøjslinjen<br />
     - Forbedret hjælp, åbnes ved installation<br />
-    - Opdater eksportkonto<br /><br />
+    - Opdater eksport af konto<br /><br />
     Tak til følgende brugere for forbedringsforslag og testhjælp:<br /><br />
     - <code class="notranslate">@kiki-ja</code><br />
     - <code class="notranslate">@tidebre67</code><br />

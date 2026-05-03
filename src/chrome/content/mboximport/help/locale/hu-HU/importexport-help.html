@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
+    <title>ImportExportTools NG Súgó</title>
+  </head>
+  <body>
+    <table style="width: 100%" id="main-help">
+      <tr>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG Súgó</div>
+          <div id="extVersion" style="padding-left: 4px">verzió</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
+    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések: Új, fontos v15 kiadás</h3>
+    <p>
+      <b>v15 Megjegyzések, funkciók és változások. Kérjük, figyelmesen olvassa el.</b><br /><br />
+      A v15 az üzenetexportálási funkciók teljes átdolgozása, mind a mappák, mind a kiválasztott üzenetek
+      esetében. Ez egy modern, többnyire WebExtension technológiának az első fázisa. Az új dizájn hatalmas
+      előrelépést jelent az architektúrában, amely új funkciókat és jobb teljesítményt tesz lehetővé.<br /><br />
+      Az első v15-ös kiadáshoz a következő formátumok kerültek megvalósításra:<br /><br />
+      - EML<br />
+      - HTML és mellékletek<br />
+      - PDF és mellékletek<br />
+      - Sima szöveg és mellékletek<br /><br />
+      Az új PDF-fájlok mellékletekkel történő exportálása mellett új exportálási állapotablak és új operációs
+      rendszer értesítési alternatíva is elérhető. A funkciók listája a következő:<br /><br />
+      <b>PDF exportálás mellékletekkel</b><br /><br />
+      Ez egy régóta kért lehetőség. Van egy fontos korlátozása a HTML exporttal szemben. A mellékletek
+      táblázatában nincsenek kattintható hivatkozások. Eddig nem volt lehetséges relatív hivatkozásokat
+      tartalmazó kimenetet előállítani. Vagy a PDF konverter, vagy a megjelenítők az összes file://
+      hivatkozást abszolút hivatkozássá alakítják, amelyek nem hasznosak. Remélem, hogy a jövőben lesz
+      valamilyen mód ennek megvalósítására.<br /><br />
+      <b>Index</b><br /><br />
+      Az új indexfájl lehetővé teszi az oszlopok rendezését a fejlécekre kattintva.<br /><br />
+      <b>Exportstruktúrák</b><br /><br />
+      - Minden melléklet egyetlen könyvtárban<br />
+      Ha statikus szót használsz, például a „Mellékletek”, akkor az összes melléklet ebbe a könyvtárba kerül.
+      Korábban ez Mellékletek, Mellékletek-1, Mellékletek-2 stb. fájlokat eredményezte volna.<br /><br />
+      - A mellékletek ugyanabba a könyvtárba vannak mentve, mint az üzenetei.<br />
+      Ebben az új, a Fájlnevek lapon található opcióban nem jönnek létre mellékletkönyvtárak, mivel azok mind
+      az üzenetek könyvtárában találhatók.<br /><br />
+      - A mellékletkönyvtárakban mostantól be van állítva az üzenet dátuma<br />
+      A mellékletkönyvtárak rendezéséhez a módosítási dátum mostantól a megfelelő üzenet küldési dátuma
+      lesz.<br /><br />
+      - Kísérleti &quot;withatts&quot; szerkezet<br />
+      Ez a struktúra minden egyes üzenetet az összes melléklettel együtt egy formázott mellékletkönyvtárba
+      egyesít. A tipikus beállítás az lenne, hogy a fájlnév formátumát a kívánt beállításra, például
+      ${subject}-re állítjuk, a könyvtár formátumát pedig szintén ${subject}-re. Ez minden üzenethez
+      könyvtárakat hoz létre, amelyek mind az üzenetet, mind a mellékleteket tartalmazzák. A könyvtárak dátum
+      vagy név szerint rendezhetők.<br /><br />
+      A kísérleti struktúra kipróbálásához helyezze el a következő szót:<br />
+      <span class="notranslate">withatts</span><br />
+      a naplózási beállításokban az Egyéb fülön. (Javaslat készítette: @Rayerd)<br /><br />
+      <b>Naplózási beállítások</b><br /><br />
+      Az új naplózási beállítások az Egyéb lapon találhatók. Ezek szóközökkel elválasztott naplótípus-szavak
+      listájaként vannak beállítva. Különböző napló- és hibakeresési kimenetet hoznak létre a hibakeresési
+      konzolon, amely a Ctrl-Shift-J billentyűkombinációval érhető el. A naplótípusok kombinálhatók az additív
+      kimenet előállításához. A naplótípusok a következők:<br />
+      - <span class="notranslate">msgs</span> : Alapvető üzenetmentési állapot<br />
+      - <span class="notranslate">msgs2</span> : Részletesebb hibakeresési kimenet az üzenetekhez<br />
+      - <span class="notranslate">summary</span> : Az exportálás összefoglalása<br />
+      - <span class="notranslate">msgparts</span> : MIME üzenetrészek hibakeresési információi<br />
+      - <span class="notranslate">withatts</span> : Ideiglenes lehetőség az üzenetek és mellékletek kombinált
+      struktúrájának használatára<br /><br />
+      <b>Menük</b><br /><br />
+      Az új függvények jelenleg a régi függvények fölé kerülnek hozzáadásra, és (v15) előtaggal
+      rendelkeznek.<br /><br />
+      A régi kód elavul, amint az új függvények stabilak lesznek. Ezt óvatos megközelítésként tettük a fő
+      kiadással kapcsolatban. Kérjük, használd az új v15 függvényeket, és jelentsd a problémákat a Github
+      repositoryban itt:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github problémák</a
+      ><br /><br />
+      <b>Közreműködők</b><br /><br />
+      Ez a kiadás nem jöhetett volna létre számos hűséges és elkötelezett felhasználó tesztelése, fordítása és
+      javaslata nélkül. Köszönjük szépen:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Kristóf<br />
+    </p>
+    <h2 id="main_help">ImportExportTools NG áttekintése és menüi</h2>
+    <p>
+      Az ImportExportTools NG egy folytatásos kiterjesztés, amely Paolo &quot;Kaosmos&quot; eredeti munkáján
+      alapul. A kiterjesztés több importálási és exportálási funkciót kínál, amelyek számos különböző
+      fájlformátumot támogatnak, beleértve a következőket: Megjegyzés: Egyes formátumok nem minden funkcióban
+      támogatottak.<br />
+      - mbox<br />
+      - EML<br />
+      - maildir<br />
+      - HTML<br />
+      - sima szöveg<br />
+      - CSV (vesszővel elválasztott értékek)<br />
+      PDF<br /><br />
+      Bár a funkciók nagy része az üzenetekre összpontosít, a Thunderbird-profilok importálása és exportálása
+      is támogatott. Ezenkívül az exportálás HTML vagy CSV indexfájlt is tartalmazhat. A Thunderbird-profil
+      biztonsági mentése egy másik funkció.<br />
+      <p>
+        Az IETng funkcióinak elérése a bővítmény által telepített számos különböző menün keresztül történik. A
+        funkciók környezetérzékenyek. A következő menük kerültek hozzáadásra:<br />
+        - A Mappa ablaktábla kontextusa (mappaművelet)<br />
+        - Az üzenetlista kontextusa (kiválasztott üzenetek)<br />
+        - Az Eszközök menü (profil és biztonsági mentési műveletek)<br /><br />
+        Az „Eszközök menü” alatt elérhető opciók nem szerepelnek a „Hamburger” menüben, egy későbbi verzióban
+        lesznek elérhetők. Ezek a funkciók az új eszköztár gombban is elérhetők. Mindegyik menühöz és gombhoz
+        tartozik egy Súgó és egy Beállítások menüpont is, amellyel a beállítások párbeszédpanelje érhető
+        el.<br />
+      </p>
+    </p>
+    <h3>Támogatás:</h3>
+    <p>
+      Kérjük, tegye közzé a problémákat vagy funkcióigényléseket a bővítmények GitHub repositoryjában:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      Hiba esetén a következő információkat kell megadni a problémák megoldásához:<br />
+      - ImportExportTools NG verzió<br />
+      - Thunderbird verzió<br />
+      - Operációs rendszer és verziója<br />
+      - Hibakeresési kimenet (másolás a hibakereső konzolról - hozzáférés a Ctrl-Shift-J
+      billentyűkombinációval)<br />
+      - A problémához vezető lépések leírása<br />
+    </p>
+    <h2 id="main_menu_help">Mappa helyi menü funkciói</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Menüpont</th>
+          <th>Funkció leírása</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exportálja a teljes fiókot a struktúrával és az almappákkal együtt mbox formátumban. Az exportálás
+            egy, a fiók nevét tartalmazó konténer használatával történik.<br />
+            Megjegyzés: Ez a menüpont csak akkor jelenik meg, ha jobb gombbal kattint egy fiókbejegyzésre.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>Egyetlen mappa exportálása mbox formátumú fájlba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>Egyetlen mappa exportálása zip mbox formátumú fájlba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
+          <td>Mappa exportálása az összes almappájával együtt mbox formátumú üzenetfába</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+          </td>
+          <td>
+            Exportáljon egy mappát, beleértve az összes almappáját is, mbox formátumú fájlok halmazába, minden
+            almappához egyet, amelyek egyetlen mappába exportálódnak.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportálja az üzenetek mappáját EML formátumú fájlként (struktúra/almappák nélkül).<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (struktúra/almappák nélkül).<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exportálja a mappaüzeneteket HTML formátumú fájlokként (struktúra/almappák nélkül).<br />
+            A mellékletek külön fájlokként lesznek mentve. Ez egy HTML indexfájlt is létrehoz, amely
+            felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exportálja a mappaüzeneteket PDF formátumú fájlokként</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
+          <td>
+            A mappaüzenetek exportálása sima szöveges formátumú fájlként, a mellékletek nélkül.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exportálja a mappaüzeneteket egyszerű szöveges formátumú fájlokként, beleértve a mellékleteket
+            is.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
+          <td>
+            Az üzenetek mappáját egyetlen sima szöveges formátumú fájlként exportálja, a mellékletek
+            nélkül.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
+          <td>
+            Exportálja az üzenetek mappáját egyetlen sima szöveges formátumú fájlként, a mellékletekkel
+            együtt.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>
+            A mappa üzeneteit egyetlen CSV (vesszővel elválasztott értékek) szövegformátumú fájlként
+            exportálja, a mellékletek nélkül.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>HTML indexfájlt hoz létre az üzenetek mappából (üzenetek exportálása nélkül)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Létrehoz egy CSV indexfájlt az üzenetek mappájáról (nincs üzenetexportálás)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+          <td>Nyissa meg a keresési párbeszédpanelt, és exportálja a kívánt eredményeket</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td>(Csak helyi mappákba importálás, IMAP-on keresztül nem)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importáljon egy vagy több mbox fájlt egy könyvtárból.</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Maildir mappa kiválasztása és importálása</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+          <td>EML üzenetfájlok kiválasztása és importálása (struktúra/almappák nélkül)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
+          <td>Az összes EML üzenet importálása egyetlen mappából</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+          <td>Importálja az összes EML üzenetet egyetlen mappából, beleértve a struktúrát/almappákat is</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
+          <td>A kiválasztott mappa operációs rendszer elérési útjának másolása</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
+          <td>Nyissa meg a kiválasztott mappa operációs rendszer elérési útját</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Nyissa meg az ImportExportTools NG beállítások párbeszédpanelt</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Nyissa meg a fő súgóoldalt</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="message_functions_help">Üzenet helyi menüje</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Menüpont</th>
+          <th>Funkció leírása</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása EML formátumú fájlokba (mellékletek beágyazva)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            A kiválasztott üzenetek exportálása EML formátumú fájlokba<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása HTML formátumú fájlokba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása HTML formátumú fájlokba, mellékletekkel együtt</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportálja az üzeneteket HTML formátumú fájlokként.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exportálja az üzeneteket HTML formátumú fájlokként, mellékletekkel együtt.<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása PDF formátumú fájlokba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása egyszerű szöveges formátumú fájlokba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>
+            A kiválasztott üzenetek exportálása egyszerű szöveges formátumú fájlokba, beleértve a
+            mellékleteket is
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Üzenetek exportálása egyszerű szöveges formátumú fájlokként, mellékletekkel együtt<br />
+            Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása egyetlen CSV szövegfájlba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>A kiválasztott üzenetek exportálása egyetlen mbox fájlba</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>A kijelölt üzenetek hozzáfűzése egy meglévő mbox fájlhoz</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>HTML indexfájl létrehozása a kiválasztott üzenetekhez</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>CSV indexfájl létrehozása a kiválasztott üzenetekhez</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Egyetlen kijelölt üzenet másolása a vágólapra</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Egyetlen kijelölt üzenet fejlécének másolása a vágólapra</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Nyissa meg az ImportExportTools NG beállítások párbeszédpanelt</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Nyissa meg a fő súgóoldalt</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="tools_functions_help">Eszközök menü</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Menüpont</th>
+          <th>Funkció leírása</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+          <td>A teljes profil mentése (e-mail, kiterjesztések, beállítások)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Az összes levél mentése az aktuális profilban</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+          <td>Teljes profil importálása (levelek, kiterjesztések, beállítások)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Nyissa meg az ImportExportTools NG beállítások párbeszédpanelt</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Nyissa meg a fő súgóoldalt</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="customdate_format_help">Egyéni dátumformátum</h2>
+    <p>
+      Az egyéni dátumbeállítás lehetővé teszi a teljes kontrollt az indexben található mindkét fájl
+      dátumformátuma felett. Mind az alapértelmezett „Dátum”, mind az új egyéni formátum, a „Dátum (egyéni)”
+      elérhető a fájlnév legördülő menüiben. Az egyéni dátum a kibővített egyéni fájlnevekben használt
+      ${date_custom} tokennel is használható. Az eredeti (alapértelmezett) dátumformátum:<br />
+      ÉÉÉÉHHNNÓÓpp: 202011060808<br /><br />
+      Az egyéni dátumformátum a <code>strftime()</code> Unix-szerű funkcionalitásával megegyező % sorozatokat
+      használ.
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+      függvény JavaScript portján alapul, amely egy dátum és idő formázására szolgáló függvény.<br />
+      Az strftime() portolása TH Doan által (https://thdoan.github.io/strftime/)<br />
+    </p>
+    <h3>Konverziós sorozat leírásai</h3>
+    <table class="dateformat-table">
+      <thead>
+        <tr>
+          <th>Sorrend</th>
+          <th>Leírás</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="code1">%a</code></td>
+          <td>A hét napjának rövidített neve.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%A</code></td>
+          <td>A hét napjának teljes neve.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%b</code></td>
+          <td>A hónap rövidített neve.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%B</code></td>
+          <td>A hónap teljes neve.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%c</code></td>
+          <td>
+            Az aktuális területi beállításhoz tartozó előnyben részesített dátum és idő (UTC) ábrázolása.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%C</code></td>
+          <td>Évszázad száma (év/100) kétjegyű egész számként.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%d</code></td>
+          <td>A hónap napja decimális törtként (01 és 31 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%e</code></td>
+          <td>A hónap napja decimális törtként (1-től 31-ig).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%F</code></td>
+          <td>ISO 8601 dátumformátum (egyenértékű a <code class="code1">%Y-%m-%d</code> formátummal).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%G</code></td>
+          <td>
+            ISO 8601 szabvány szerinti, heti alapú év, amelyben az évszázad decimális számként szerepel. A
+            négyjegyű év az ISO hétszámnak felel meg (lásd <code class="code1">%V</code> ). Ennek formátuma és
+            értéke megegyezik a <code class="code1">%Y</code> éval, azzal a különbséggel, hogy ha az ISO
+            hétszám az előző vagy a következő évhez tartozik, akkor az az év kerül felhasználásra.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%g</code></td>
+          <td>Mint <code class="code1">%G</code> , de évszázad nélkül, azaz kétjegyű évvel (00-99).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%H</code></td>
+          <td>
+            Az óra decimális törtként, 24 órás formátumban (00 és 23 közötti tartomány). Lásd még:
+            <code class="code1">%k</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%I</code></td>
+          <td>
+            Az óra decimális számként, 12 órás formátumban (01 és 12 közötti tartomány). Lásd még
+            <code class="code1">%l</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%j</code></td>
+          <td>Az év napja decimális törtként (001 és 366 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%k</code></td>
+          <td>
+            Az óra decimális számként, 24 órás formátumban (0 és 23 közötti tartomány). Lásd még:
+            <code class="code1">%H</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%l</code></td>
+          <td>
+            Az óra decimális számként, 12 órás formátumban (1-től 12-ig terjedő tartomány). Lásd még:
+            <code class="code1">%I</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%m</code></td>
+          <td>A hónap decimális törtként (01 és 12 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%n</code></td>
+          <td>A hónap decimális számként (1-től 12-ig terjedő tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%M</code></td>
+          <td>Perc decimális törtként (00 és 59 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%p</code></td>
+          <td>
+            Vagy &quot;AM&quot;, vagy &quot;PM&quot; az adott időértéknek megfelelően. A déli időpontot
+            &quot;PM&quot;, az éjfélt pedig &quot;AM&quot;-ként kezeli a rendszer.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%P</code></td>
+          <td>Mint <code class="code1">%p</code> , de kisbetűvel (&quot;am&quot; vagy &quot;pm&quot;).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%s</code></td>
+          <td>A korszak óta eltelt másodpercek száma, 1970-01-01 00:00:00 +0000 (UTC).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%S</code></td>
+          <td>Másodperc decimális számként (00 és 59 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%u</code></td>
+          <td>
+            A hét napja decimális törtben (1-től 7-ig terjedő tartomány), a hétfő az 1. Lásd még
+            <code class="code1">%w</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%V</code></td>
+          <td>
+            Az aktuális év ISO 8601 szabvány szerinti hetének száma decimális törtben (01 és 53 közötti
+            tartomány), ahol az 1. hét az új év első olyan hete, amely legalább 4 napból áll (azaz az első
+            csütörtök).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%w</code></td>
+          <td>
+            A hét napja tizedes törtként (0 és 6 közötti tartomány), a vasárnap 0. Lásd még
+            <code class="code1">%u</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%x</code></td>
+          <td>Az aktuális területi beállításhoz tartozó preferált dátumábrázolás az idő nélkül.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%X</code></td>
+          <td>Az aktuális területi beállításhoz tartozó preferált időábrázolás dátum nélkül.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%y</code></td>
+          <td>Év decimális törtként, évszázad nélkül (00 és 99 közötti tartomány).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Y</code></td>
+          <td>Év decimális törtként, beleértve az évszázadot is.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%z</code></td>
+          <td>
+            A <code class="code1">+hhmm</code> vagy <code class="code1">-hhmm</code> numerikus időzóna (azaz
+            az UTC-től való óra-perc eltolás).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Z</code></td>
+          <td>Időzóna neve vagy rövidítése.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Kompatibilitási megjegyzések:</h3>
+    <ul>
+      <li><code class="code1">%c</code> – a formázott karakterlánc kissé eltérő</li>
+      <li>
+        <code class="code1">%D</code> - nincs megvalósítva (használja <code class="code1">%m/%d/%y</code> vagy
+        <code class="code1">%d/%m/%y</code> )
+      </li>
+      <li><code class="code1">%e</code> - szóköz nem kerül hozzáadásra</li>
+      <li><code class="code1">%E</code> - nincs megvalósítva</li>
+      <li><code class="code1">%h</code> - nincs megvalósítva (használja <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - szóköz nem kerül hozzáadásra</li>
+      <li>
+        <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (sortöréshez
+        <code class="code1">\n</code> karaktert használ)
+      </li>
+      <li><code class="code1">%O</code> - nincs megvalósítva</li>
+      <li>
+        <code class="code1">%r</code> - nincs megvalósítva (használja <code class="code1">%I:%M:%S %p</code> )
+      </li>
+      <tr>
+        <td><code class="code1">${subject}</code></td>
+        <td>Az üzenet tárgya</td>
+      </tr>
+      <li>
+        <code class="code1">%R</code> - nincs implementálva (használja <code class="code1">%H:%M</code> )
+      </li>
+      <li><code class="code1">%t</code> - nincs megvalósítva (használd <code class="code1">\t</code> )</li>
+      <li>
+        <code class="code1">%T</code> - nincs megvalósítva (használja <code class="code1">%H:%M:%S</code> )
+      </li>
+      <li><code class="code1">%U</code> - nincs megvalósítva</li>
+      <li><code class="code1">%W</code> - nincs megvalósítva</li>
+      <li><code class="code1">%+</code> - nincs megvalósítva</li>
+      <li><code class="code1">%%</code> - nincs megvalósítva (használja <code class="code1">%</code> )</li>
+    </ul>
+    <br /><br />
+    <h2 id="ext_filename_format_help">Bővített fájlnév formátum:</h2>
+    <br />
+    <p>
+      A kibővített fájlnévformázás tokeneket használ. A pontos fájlnév a tokenek, valamint bármilyen szöveg
+      vagy érvényes fájlnévkarakter felhasználásával konstruálható. Érvénytelen karakterek:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Az angol (en-US) tokenek bármely területi beállításban
+      elérhetők. Területspecifikus tokenek is elérhetők, és az angol nyelvű táblázat alatt felsorolva
+      vannak.<br /><br />
+      Példák:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> – Az alapértelmezett
+      formátum<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Az egyéni
+      dátumformátum használata az alapértelmezett helyett<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Egyéni szöveggel<br /><br /><br />
+    </p>
+    <table class="token-table">
+      <tr>
+        <td>Jelképes</td>
+        <td>Leírás</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td>Az üzenet tárgya. A hosszát a tárgy hosszára vonatkozó beállítás korlátozhatja.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td>Az üzenet küldőjének neve.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td>Az üzenet címzettjének neve.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>Az üzenet küldőjének e-mail címe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>Az üzenet címzettjének e-mail címe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td>A címzettek, ha az üzenet az Elküldött mappában van, egyébként a feladó neve</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td>Az üzenet indexszáma.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td>Az előtag szöveges beállítási értéke.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td>Az utótag szöveges opció értéke.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td>A szabványos dátumformátum. Az alapértelmezett formátum: ÉÉÉÉHHNNÓÓpp</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td>Az egyéni dátumformátum. Lásd az egyéni dátumformázás című részt.</td>
+      </tr>
+    </table>
+    <br />
+    <table id="localized-token-table" class="token-table">
+      <tr>
+        <td>Token (hu-HU)</td>
+        <td>Lokalizált (<span id="locale1"></span> Token</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
+      </tr>
+    </table>
+    <br />
+    <h2>Új és kísérleti beállítások (opciók)</h2>
+    <p>
+      Számos új funkció és beállítási lehetőség van, amelyek még nem konfigurálhatók a beállítások
+      párbeszédpanelen. Amint ezek a funkciók stabilizálódnak, hozzáadódnak a felhasználói felülethez.<br />
+      Használatukhoz a Konfigurációszerkesztőben kell beállítani őket. A szerkesztő eléréséhez használd az
+      Eszközök/Beállítások menüt, majd válaszd a Speciális részt, és alul találod a „Konfigurációszerkesztő”
+      gombot. Ha a keresősávba beírod az „importexporttoolsng” kifejezést, megtalálod az összes
+      bővítménybeállítást. Ezután szükség szerint szerkesztheted az alábbi beállításokat.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Ez a beállítás ugyanazt a teljes formázást követi, mint az indexfájlok. Alapértelmezés szerint üres
+      karakterlánc, ha formázott dátum/idő karakterlánccal rendelkezik, akkor ez megváltoztatja az index
+      dátumformátumát.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
+    </p>
+    <p>
+      Mindkét beállítás ugyanazokat a kiterjesztett fájlnévformátumokat használja, mint az exportált üzenetek
+      fájlneve. Az első a külső mellékletekhez, a második a beágyazott (beágyazott) mellékletekhez tartozik.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      A Thunderbirdben az üzenetek „dátuma” általában a küldő levelezőprogramja által beállított dátum. Ha ezt
+      az opciót „true”-ra állítja, a rendszer a címzett levelezőprogramjánál beállított fogadási dátumot
+      használja. Ez a dátum lesz használatos mind a fájlnevekben, mind az indexfájlokban.
+    </p>
+    <h2>Alapvető, globális gyorsbillentyű (parancsikonok) funkció</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Ez az új beállítás lehetővé teszi a felhasználó számára, hogy akár 10 billentyűparancsot is beállítson.
+      A billentyűparancsok a legtöbb ImportExportTools NG funkciót, valamint más Thunderbird funkciókat is
+      képesek végrehajtani. A beállítási karakterlánc JSON formátumú objektumként van formázva. A formátum és
+      a kulcsok a következők:
+    </p>
+    <p>
+      Példa gyorsbillentyű-bejegyzésekre (JSON objektumok tömbje)<br /><br />
+      <code class="notranslate">id</code> - a kulcs indexe (1-10)<br />
+      <code class="notranslate">key</code> - a kulcs (egyetlen karakter)<br />
+      <code class="notranslate">keycode</code> - a &#39;VK_*&#39; definíciós kulcskódja<br />
+      Vagy a kulcs, vagy a kulcskód megadható, de nem mindkettő.<br />
+      <code class="notranslate">modifiers</code> - a legfontosabb módosítók, szóközzel elválasztott lista
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> - egy közvetlen parancs karakterlánc<br />
+      <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
+      <code class="notranslate">&#39;all&#39;</code> – az összes ablak a Messenger, levélírás és keresés
+      alatt<br />
+      <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és annak leszármazottai<br />
+      <code class="notranslate">&#39;compose&#39;</code> – az üzenetírás ablaka<br />
+      <code class="notranslate">&#39;search&#39;</code> – a keresési párbeszédpanel<br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      ><br />
+    </p>
+    <p>
+      Mivel a gyorsbillentyűk újak és kísérleti jellegűek, további dokumentációt is hozzáadok a tárhelyhez.
+      Nézd meg az
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      kiterjesztést.<br />
+    </p>
+    <br />
+    <h3>14.0.0 verzió: Thunderbird 115 támogatás - 2023. július 10.</h3>
+    <p>
+      Jellemzők és megoldott problémák:<br />
+      <p>
+        - Thunderbird 115 Supernova támogatás<br />
+        - A Beállítások felhasználói felületének átdolgozása és modernizálása<br />
+        - Teljes sötét mód támogatás<br />
+        - Új, egységes menürendszer<br />
+        - Új eszköztár gomb<br />
+        - Továbbfejlesztett súgó, megnyitás telepítéskor<br />
+        - Exportálási fiók frissítése<br /><br />
+        Köszönet a következő felhasználóknak a fejlesztési javaslatokért és a tesztelési segítségért:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
+  </body>
+</html>

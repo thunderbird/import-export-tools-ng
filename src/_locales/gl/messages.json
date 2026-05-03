@@ -974,6 +974,9 @@
     "message": "Seleccione un directorio para procurar os ficheiros",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Ver as notas da versión"
+  },
   "selectFolderForMboxes_title": {
     "message": "Seleccione o cartafol para importar ficheiros mbox",
     "src": "mboximport"

@@ -973,6 +973,9 @@
     "message": "Selecteer een map om de bestanden te zoeken",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Zie de release-opmerkingen."
+  },
   "selectFolderForMboxes_title": {
     "message": "Selecteer een map om mbox-bestanden te importeren",
     "src": "mboximport"

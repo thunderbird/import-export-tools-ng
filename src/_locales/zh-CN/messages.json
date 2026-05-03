@@ -973,6 +973,9 @@
     "message": "选择要查找文件的目录",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "请参阅发行说明"
+  },
   "selectFolderForMboxes_title": {
     "message": "选择要导入 mbox 文件的文件夹",
     "src": "mboximport"

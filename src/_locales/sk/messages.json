@@ -973,6 +973,9 @@
     "message": "Vyberte priečinok, v ktorom budú vyhľadané súbory mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Zobraziť poznámky k vydaniu"
+  },
   "selectFolderForMboxes_title": {
     "message": "Vyberte priečinok na import súborov mbox",
     "src": "mboximport"

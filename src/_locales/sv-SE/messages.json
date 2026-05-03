@@ -973,6 +973,9 @@
     "message": "Välj mapp för sökning efter MBOX-filer",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Se versionsinformation"
+  },
   "selectFolderForMboxes_title": {
     "message": "Välj mapp för att importera mbox-filer",
     "src": "mboximport"

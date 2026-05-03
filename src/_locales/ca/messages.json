@@ -974,6 +974,9 @@
     "message": "Seleccioneu un directori per cercar-hi els fitxers",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Vegeu les notes de la versió"
+  },
   "selectFolderForMboxes_title": {
     "message": "Seleccioneu la carpeta per importar fitxers mbox",
     "src": "mboximport"

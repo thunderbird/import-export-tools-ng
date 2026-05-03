@@ -973,6 +973,9 @@
     "message": "Ընտրեք թղթապանակը՝ փնտրելու համար ֆայլերը",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Տեսեք թողարկման նշումները"
+  },
   "selectFolderForMboxes_title": {
     "message": "Ընտրեք թղթապանակ mbox ֆայլեր ներմուծելու համար",
     "src": "mboximport"

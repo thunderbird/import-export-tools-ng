@@ -973,6 +973,9 @@
     "message": "Выберите каталог для поиска файлов mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "См. примечания к выпуску."
+  },
   "selectFolderForMboxes_title": {
     "message": "Выберите папку для импорта файлов mbox",
     "src": "mboximport"

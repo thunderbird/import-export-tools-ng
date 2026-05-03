@@ -973,6 +973,9 @@
     "message": "Izberite mapo za iskanje datotek",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Glejte opombe k izdaji"
+  },
   "selectFolderForMboxes_title": {
     "message": "Izberite mapo za uvoz datotek mbox",
     "src": "mboximport"

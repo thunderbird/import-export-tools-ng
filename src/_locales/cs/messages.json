@@ -970,6 +970,9 @@
     "message": "Vyberte adresář pro vyhledávání souborů",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Viz poznámky k vydání"
+  },
   "selectFolderForMboxes_title": {
     "message": "Vyberte složku pro import souborů mbox",
     "src": "mboximport"

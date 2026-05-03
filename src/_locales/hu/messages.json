@@ -973,6 +973,9 @@
     "message": "Válasszon mappát a fájlok kereséséhez",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Lásd a kiadási megjegyzéseket"
+  },
   "selectFolderForMboxes_title": {
     "message": "Válassza ki a mappát az mbox fájlok importálásához",
     "src": "mboximport"

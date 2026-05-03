@@ -973,6 +973,9 @@
     "message": "Επιλέξτε έναν κατάλογο για αναζήτηση των αρχείων",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Δείτε τις σημειώσεις έκδοσης"
+  },
   "selectFolderForMboxes_title": {
     "message": "Επιλέξτε φάκελο για εισαγωγή αρχείων mbox",
     "src": "mboximport"

@@ -973,6 +973,9 @@
     "message": "파일을 검색할 디렉토리를 선택",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "릴리스 노트를 참조하세요."
+  },
   "selectFolderForMboxes_title": {
     "message": "mbox 파일을 가져올 폴더를 선택하세요.",
     "src": "mboximport"

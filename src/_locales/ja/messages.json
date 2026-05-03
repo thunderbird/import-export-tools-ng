@@ -973,6 +973,9 @@
     "message": "ファイル検索するフォルダーを選択する",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "リリースノートを参照してください"
+  },
   "selectFolderForMboxes_title": {
     "message": "mbox ファイルをインポートするフォルダーの選択",
     "src": "mboximport"

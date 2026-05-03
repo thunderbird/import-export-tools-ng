@@ -973,6 +973,9 @@
     "message": "Wybierz katalog, w którym szukać plików mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Zobacz informacje o wydaniu"
+  },
   "selectFolderForMboxes_title": {
     "message": "Wybierz folder do importowania plików mbox",
     "src": "mboximport"

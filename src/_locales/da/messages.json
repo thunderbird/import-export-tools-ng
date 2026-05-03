@@ -973,6 +973,9 @@
     "message": "Vælg en mappe at søge i",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Se udgivelsesnoter"
+  },
   "selectFolderForMboxes_title": {
     "message": "Vælg mappe for at importere mbox-filer",
     "src": "mboximport"

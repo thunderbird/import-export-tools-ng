@@ -163,6 +163,8 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
     expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
   }
 
+  expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+
   // name components and constraints
 
   expTask.dateFormat.custom = await prefs.getPref("export.filename_date_custom_format");

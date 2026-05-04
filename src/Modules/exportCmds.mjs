@@ -327,16 +327,22 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     log("msgs msgs2", ` Folder: ${folderSet[0].exportPath}`)
 
-    // cruddy way to get selected msg cnt
+    // Cruddy way to get selected msg cnt
+    // We have to workaround an error with mailTabs.getSelectedMessages()
+    // intermittently and not that rarely, it will return 
+    // a zero length messages list. This appears only happen when 
+    // a single message is selected. We therefore assume a zero length 
+    // is an error and use ctxEvent.selectedMessages from the menu operation.
+    // Because there will be no iteration over the list, we we can
+    // reuse it in _msgIterateBatch
+    
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     if (!selMsgCnt) {
-      console.log("use sel")
-
+      //console.log("use sel")
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
     } else {
-      console.log("use msgList")
+      //console.log("use msgList")
       folderSet[0].totalMsgCount = 0;
-
 
       let msgListPage;
       do {
@@ -344,7 +350,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           msgListPage = await messenger.mailTabs.getSelectedMessages()
           //msgListPage = ctxEvent.selectedMessages;
           folderSet[0].totalMsgCount = msgListPage.messages.length;
-          //console.log(msgListPage)
+          console.log(msgListPage)
         } else {
           msgListPage = await messenger.messages.continueList(msgListPage.id);
           folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -641,9 +647,6 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
 
   // iterate msgs
 
-  //  console.log("cmt", await browser.mailTabs.getCurrent())
-  //console.log("cs", await browser.mailTabs.getSelectedMessages())
-
   log("msgs2", `Starting _msgIterateBatch`)
 
   var wrtotal = 0;
@@ -666,7 +669,8 @@ async function _msgIterateBatch(expTask, selectedMsgs) {
       }
       if (!msgListPage) {
         // if we are doing a selected messages export, use 
-        // the mailTabs method otherwise for folders
+        // the selected since cannot rely on getSelectedMessages()
+        // method otherwise for folders
         // we use the massages.list
 
         if (expTask.expMethod == "selectedMsgs") {

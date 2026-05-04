@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // now we can resize win from content
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
   let chromeHeight = window.outerHeight - window.innerHeight;
-  // 22 == margins plus 2 to avoid srrollbar
+  // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
   let calcWinHeight = outerDivHeight + chromeHeight + 26;
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
 

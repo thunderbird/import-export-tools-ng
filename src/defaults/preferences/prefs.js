@@ -12,7 +12,7 @@ pref("extensions.importexporttoolsng.subject.max_length", 50);
 pref("extensions.importexporttoolsng.author.max_length", 50);
 pref("extensions.importexporttoolsng.recipients.max_length", 50);
 pref("extensions.ImportExportToolsNG@cleidigh.description", "chrome://mboximport/locale/extensions.importexporttoolsng.properties");
-pref("extensions.importexporttoolsng.export.set_filetime", false);
+pref("extensions.importexporttoolsng.export.set_filetime", true);
 pref("extensions.importexporttoolsng.exportEML.use_dir", false);
 pref("extensions.importexporttoolsng.exportMBOX.use_dir", false);
 pref("extensions.importexporttoolsng.exportMSG.use_dir", false);

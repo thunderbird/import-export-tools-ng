@@ -78,9 +78,10 @@ tr.multiple-folders-display {
 }
 
 #statusMsg {
-	padding-top: 8px;
-	padding-bottom: 10px;
-	height: 2em;
+	flex: 0;
+	padding-top: 4px;
+	padding-bottom: 6px;
+	min-height: 2.2em;
 }
 
 #buttons {

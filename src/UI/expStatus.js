@@ -106,13 +106,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.documentElement.style.setProperty('--multiple-folders-display', 'block');
     document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
     // give little time for relayout to finish
-    await new Promise(r => setTimeout(r, 5));
+    await new Promise(r => setTimeout(r, 10));
   }
+ await document.fonts.ready;
+
   // now we can resize win from content
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
+ const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+
+  console.log(outerDivHeight)
+  console.log(contentHeight)
+
+
   let chromeHeight = window.outerHeight - window.innerHeight;
   // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
   let calcWinHeight = outerDivHeight + chromeHeight + 26;
+  //let calcWinHeight = contentHeight + chromeHeight + 26;
+
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
 
   messenger.runtime

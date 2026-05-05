@@ -124,7 +124,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
 
     let folderExportedMsgCount = 0;
     let totalMsgsExported = 0;
-    let totalErrCount = 0;
+    let totalErrCount = 1;
 
     async function _updateListener(folderName, msgCount, errCount) {
       if (gAbort) {

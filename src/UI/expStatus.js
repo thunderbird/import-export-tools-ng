@@ -108,19 +108,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     // give little time for relayout to finish
     await new Promise(r => setTimeout(r, 10));
   }
- await document.fonts.ready;
+  await document.fonts.ready;
+  await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => requestAnimationFrame(r));
 
   // now we can resize win from content
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
- const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-
+  const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+  const marginHeight = 20;
+  
+  let extraWinSizePadding = 6;
+  if (statusWin.height == 340) {
+    extraWinSizePadding = 10;
+  }
   console.log(outerDivHeight)
   console.log(contentHeight)
 
 
   let chromeHeight = window.outerHeight - window.innerHeight;
   // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
-  let calcWinHeight = outerDivHeight + chromeHeight + 26;
+  let calcWinHeight = outerDivHeight + chromeHeight + marginHeight + extraWinSizePadding;
   //let calcWinHeight = contentHeight + chromeHeight + 26;
 
   await browser.windows.update(statusWin.id, { height: calcWinHeight });

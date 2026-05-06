@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let chromeHeight = window.outerHeight - window.innerHeight;
   // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
   let calcWinHeight = outerDivHeight + chromeHeight + marginHeight + extraWinSizePadding;
-  //let calcWinHeight = contentHeight + chromeHeight + 26;
+  //let calcWinHeight = contentHeight + chromeHeight + 22;
   console.log("calcWinHeight", calcWinHeight)
 
   await browser.windows.update(statusWin.id, { height: calcWinHeight });

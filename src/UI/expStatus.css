@@ -32,12 +32,12 @@ body {
 	font-family: 'Roboto', sans-serif;
 	color: var(--dialog-text-color);
   min-width: 320px;
+	margin: 10px;
 }
 
 #outer-container {
 	display: flex;
 	flex-direction: column;
-	margin: 10px;
 }
 
 #main-content {

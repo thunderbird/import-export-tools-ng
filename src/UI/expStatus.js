@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let outerDivHeight = document.getElementById("outer-container").offsetHeight;
   const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   const marginHeight = 20;
-  
+
   let extraWinSizePadding = 6;
   if (statusWin.height == 340) {
     extraWinSizePadding = 10;
@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
   let calcWinHeight = outerDivHeight + chromeHeight + marginHeight + extraWinSizePadding;
   //let calcWinHeight = contentHeight + chromeHeight + 26;
+  console.log("calcWinHeight", calcWinHeight)
 
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
 

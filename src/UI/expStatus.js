@@ -100,34 +100,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   i18n.updateDocument();
   let statusWin = await browser.windows.getCurrent();
-  // use initial height to determine winType, set display vars
-  if (statusWin.height == 340) {
-    // these control the visibility of the multi folder ui
-    //document.documentElement.style.setProperty('--multiple-folders-display', 'block');
-    //document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
-    // give little time for relayout to finish
-    //await new Promise(r => setTimeout(r, 10));
-  }
+  
   await document.fonts.ready;
-  //await new Promise(r => requestAnimationFrame(r));
-  //await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => requestAnimationFrame(r));
 
-  // now we can resize win from content
-  let outerDivHeight = document.getElementById("outer-container").offsetHeight;
+  // now we can resize win from content -still not consistent
   const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
   const marginHeight = 10;
 
-  let extraWinSizePadding = 2;
-
-  console.log(outerDivHeight)
-  console.log(contentHeight)
-
+  const os = navigator.platform.toLowerCase();
+  const extraWinSizePadding = os.includes("win")
+    ? 4
+    : 14;
 
   let chromeHeight = window.outerHeight - window.innerHeight;
-  // 26 == (2 * 10) + 6 = 6margins plus 6 to avoid srrollbar - not reliable
-  //let calcWinHeight = outerDivHeight + chromeHeight + marginHeight + extraWinSizePadding;
   let calcWinHeight = contentHeight + chromeHeight + marginHeight + extraWinSizePadding;
-  console.log("calcWinHeight", calcWinHeight)
 
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
 

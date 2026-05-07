@@ -20,7 +20,7 @@ export async function createExportStatusWindow(title, winType) {
   if (winType == "singleFolder") {
     await browser.windows.create({ url: "/UI/expStatus.html", titlePreface: title, type: "popup", width: 545, height: 240 });
   } else {
-    await browser.windows.create({ url: "/UI/expStatus.html", titlePreface: title, type: "popup", width: 545, height: 340 });
+    await browser.windows.create({ url: "/UI/expStatusMultiFolder.html", titlePreface: title, type: "popup", width: 545, height: 350 });
   }
 
 }

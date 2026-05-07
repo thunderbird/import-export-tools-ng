@@ -14,7 +14,6 @@
 	--link-color: darkblue;
 	--multiple-folders-display: none;
 	--multiple-folders-display-row: none;
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,12 +26,22 @@
 	}
 }
 
+html, body {
+  overflow-x: clip; /* Modern way to prevent horizontal scroll */
+  max-width: 100%;
+}
+
 body {
 	background-color: var(--dialog-bgcolor);
 	font-family: 'Roboto', sans-serif;
 	color: var(--dialog-text-color);
   min-width: 320px;
-	margin: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+
+
+
 }
 
 #outer-container {

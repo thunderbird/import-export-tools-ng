@@ -815,6 +815,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
         }
       }
 
+      // we use getFull() because listAttachments() misses some edge conditions
+      // we can fixup
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       log("msgparts", fullMsg, `Msg: ${extraHeaders.fullSubject}\nFullMsg parts:`)
 
@@ -849,23 +851,15 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
-            //console.log("cd inline", part)
-            //console.log(msgId, part.headers["content-disposition"])
             let cd = part.headers["content-disposition"][0];
-            //console.log(part.headers)
             if (cd.startsWith("inline;") && !cd.includes('filename="Deleted:')) {
-              //console.log("inline", part.headers)
-              //console.log("inline", part.headers["content-id"])
               try {
                 let contentId = part.headers["content-id"][0];
                 let inlineBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 inlineParts.push({ partType: "inline", contentType: part.contentType, partBody: inlineBody, name: part.name, contentId: contentId });
-                //console.log("push inline att", attachmentParts)
-
               } catch {
                 let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
                 attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
-                //console.log("push inline to att", attachmentParts)
               }
             }
           }
@@ -883,11 +877,6 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       }
 
       await getParts(parts)
-
-      //console.log(htmlParts, textParts)
-      //console.log("ip", inlineParts)
-      //console.log("ap", attachmentParts)
-
 
       // we have collected the body parts
       // we preprocess according to the export type
@@ -1100,7 +1089,6 @@ function convertCharsetToUTF8(charset, string) {
     const decoder = new TextDecoder(charset);
     const encoded = encoder.encode(string);
     const decoded = decoder.decode(encoded);
-    //console.log("Converted to utf-8 from:", charset);
 
     return decoded;
   } catch (e) {
@@ -1114,8 +1102,6 @@ function _convertTextToHTML(plaintext) {
   // note we only convert the text, header, styling and html 
   // wrapper is done later
 
-  //console.log(plaintext)
-
   let htmlConvertedText;
   // first encode special characters
   htmlConvertedText = _encodeSpecialTextToHTML(plaintext);
@@ -1128,7 +1114,6 @@ function _convertTextToHTML(plaintext) {
 async function _createIndex(expTask, msgListLog) {
 
   // we create as text/html since we are saving as an html document
-
 
   try {
     msgListLog.sort((a, b) => new Date(b.fileStatus.headers.date) - new Date(a.fileStatus.headers.date));
@@ -1149,7 +1134,6 @@ async function _createIndex(expTask, msgListLog) {
 
     let styles = '<style>\r\n';
     styles += 'table { border-collapse: collapse; }\r\n';
-    //styles += `table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { content: " \\2304\\2303"}`;
     styles += `table.sortable th::after, th.sorttable_sorted::after, th.sorttable_sorted_reverse::after { content: " ";  display: inline-block; width: 20px;  height: 16px;}`;
     styles += `th.sorttable_sorted::after { background: no-repeat url(${downArrowIcon}); background-size: 80%; float: right; padding-bottom: -8px}`;
     styles += `th.sorttable_sorted_reverse::after { background: no-repeat url(${upArrowIcon}); background-size: 80%; float: right}`;
@@ -1198,7 +1182,6 @@ async function _createIndex(expTask, msgListLog) {
         errClass = " class='msgError' ";
       }
 
-      //console.log(msgItem)
       let recipients;
       if (msgItem.headers.recipients == []) {
         recipients = "(none)";

@@ -93,11 +93,7 @@ browser.runtime.onMessage.addListener(msg => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   // we resize the window to be pseudo reactive
-  // first we use the initial size (an approximation)
-  // to determine if we are a single or multi folder
-  // window. we use this to first set the css display 
-  // vars and then we can calculate the proper win size
-
+  // still have consistency issues
   i18n.updateDocument();
   let statusWin = await browser.windows.getCurrent();
   

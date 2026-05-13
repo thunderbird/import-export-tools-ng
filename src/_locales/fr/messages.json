@@ -30,7 +30,7 @@
     "message": "Feuille de calcul (CSV)"
   },
   "attachmentFolderNames": {
-    "message": "Nom des dossiers de pièces jointes"
+    "message": "Noms des dossiers de pièces jointes"
   },
   "attachmentFolders": {
     "message": "Dossier des pièces jointes externes "
@@ -84,7 +84,7 @@
     "message": "Parcourir…"
   },
   "buildMSF.label": {
-    "message": "Construire un index pour les fichiers mbox importés"
+    "message": "Créer un index pour les fichiers mbox importés"
   },
   "buttonMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"
@@ -183,7 +183,7 @@
     "message": "Limiter la longueur du chemin complet à 256 caractères"
   },
   "cutPathLen": {
-    "message": "Couper la longueur du chemin du fichier à 256 caractères"
+    "message": "Limiter la longueur du chemin complet à 256 caractères"
   },
   "cutSub": {
     "message": "Limiter le sujet à 50 caractères"
@@ -237,7 +237,7 @@
     "message": "Sauvegarde effectuée."
   },
   "dialog.title": {
-    "message": "ImportExportTools NG - Sauvegarde"
+    "message": "ImportExportTools NG · Sauvegarde"
   },
   "emailFiles": {
     "message": "Fichiers de courriel",
@@ -313,7 +313,7 @@
     "src": "mboximport"
   },
   "extFilenameFormatRefTooltipText": {
-    "message": "Aide pour le format avancé du nom de fichier"
+    "message": "Aide pour le format avancé des noms de fichiers"
   },
   "extFormat": {
     "message": "Format :"
@@ -360,10 +360,10 @@
     "message": "Exporter le compte"
   },
   "folderCtxMenu_Exp_AllMessages_Id.title": {
-    "message": "Exporter tous les messages du dossier"
+    "message": "Exporter tous les messages des dossiers"
   },
   "folderCtxMenu_Exp_CSVFormat_Id.title": {
-    "message": "Format CSV (feuille de calcul)"
+    "message": "Format CSV (tableur)"
   },
   "folderCtxMenu_Exp_EMLFormat_Id.title": {
     "message": "Format EML"
@@ -375,7 +375,7 @@
     "message": "Messages et index avec sous-dossiers"
   },
   "folderCtxMenu_Exp_FolderMbox_Id.title": {
-    "message": "Exporter le dossier (mbox)"
+    "message": "Exporter les dossiers (mbox)"
   },
   "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
     "message": "Avec les sous-dossiers à plat"
@@ -462,7 +462,7 @@
     "message": "Tous les messages EML d’un dossier"
   },
   "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
-    "message": "Tous les messages EML d’un dossier et des sous-dossiers"
+    "message": "Tous les messages EML d’un dossier et de ses sous-dossiers"
   },
   "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
     "message": "Messages EML individuels"
@@ -513,10 +513,10 @@
     "src": "mboximport"
   },
   "importEnd": {
-    "message": "L’importation a réussi !"
+    "message": "Importation réussie !"
   },
   "importing": {
-    "message": "Importation",
+    "message": "Importation de",
     "src": "mboximport"
   },
   "importRunning": {
@@ -554,7 +554,7 @@
     "message": "Pour accéder au profil importé, lancez le gestionnaire de profils en cliquant sur le bouton ci-dessous. Le profil actuel sera automatiquement fermé."
   },
   "invalidFolderSelection": {
-    "message": "Sélection de dossier non valide"
+    "message": "Sélection de dossiers non valide"
   },
   "isEudora": {
     "message": "Ce fichier mbox semble provenir d’Eudora.\nCe format n’est pas compatible avec Thunderbird, vous devez le convertir au format mbox standard.",
@@ -591,7 +591,7 @@
     "message": "Latiniser la transformation"
   },
   "LoggingOptions.label": {
-    "message": "Options de journalisation"
+    "message": "Options de journalisation "
   },
   "MACwarning": {
     "message": "Veuillez fermer toutes les autres fenêtres avant de continuer."
@@ -612,7 +612,7 @@
     "message": "Utiliser le format HTML tel qu’affiché dans le panneau des messages"
   },
   "MBlabel5": {
-    "message": "Copier dans le presse-papiers uniquement au format texte (peut poser des problèmes de compatibilité)"
+    "message": "Copier dans le presse-papiers au format texte seul (problèmes de compatibilité possibles)"
   },
   "MBlabel7a": {
     "message": "Longueur maximale du sujet :"
@@ -639,7 +639,7 @@
     "message": "Messages exportés"
   },
   "messagesMsg": {
-    "message": "Messages",
+    "message": "Messages ",
     "src": "mboximport"
   },
   "messsubdir": {
@@ -662,7 +662,7 @@
     "message": "Message"
   },
   "msgCtxMenu_Exp_CSVFormat_Id.title": {
-    "message": "Format CSV (feuille de calcul)"
+    "message": "Format CSV (tableur)"
   },
   "msgCtxMenu_Exp_EMLFormat_Id.title": {
     "message": "Format EML"
@@ -743,7 +743,7 @@
     "message": "Des erreurs se sont produites. Consultez la console d’erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
   },
   "msgHdr.Bcc": {
-    "message": "Bcc"
+    "message": "Cci"
   },
   "msgHdr.BccLocal": {
     "message": "Copie cachée à"
@@ -758,10 +758,10 @@
     "message": "Date"
   },
   "msgHdr.From": {
-    "message": "Expéditeur"
+    "message": "De"
   },
   "msgHdr.MessageID": {
-    "message": "Message-ID"
+    "message": "ID du message"
   },
   "msgHdr.ReplyTo": {
     "message": "Répondre à"
@@ -773,7 +773,7 @@
     "message": "Sujet"
   },
   "msgHdr.To": {
-    "message": "Destinataire"
+    "message": "Pour"
   },
   "msgs": {
     "message": "messages sur",
@@ -843,7 +843,7 @@
     "src": "profilewizard"
   },
   "noRemoteExport": {
-    "message": "Impossible d’exporter ce dossier distant car non connecté",
+    "message": "Impossible d’exporter ce dossier distant, car il n’est pas en ligne.",
     "src": "mboximport"
   },
   "nosubjectmsg": {
@@ -897,14 +897,14 @@
     "src": "mboximport"
   },
   "profileImportWizHdr": {
-    "message": "ImportExportTools NG - Importation de profil",
+    "message": "ImportExportTools NG · Importation de profil",
     "src": "profilewizard"
   },
   "profileName": {
     "message": "Nom du profil à importer "
   },
   "profilePath": {
-    "message": "Le chemin du profil importé est :",
+    "message": "Chemin du profil importé :",
     "src": "profilewizard"
   },
   "Received": {
@@ -925,7 +925,7 @@
     "src": "mboximport"
   },
   "runProfileManager": {
-    "message": "Exécuter le gestionnaire de profils"
+    "message": "Ouvrir le gestionnaire de profils"
   },
   "save": {
     "message": "Mode de sauvegarde "
@@ -937,7 +937,7 @@
     "message": "Dossiers d’exportation"
   },
   "sdAll": {
-    "message": "Tous"
+    "message": "Tout"
   },
   "sdEML": {
     "message": "EML"
@@ -961,7 +961,7 @@
     "message": "Messages"
   },
   "sdSelected": {
-    "message": "Sélectionnés"
+    "message": "Sélection"
   },
   "sdSingleFile": {
     "message": "Fichier texte unique"
@@ -1003,7 +1003,7 @@
     "message": "Taille"
   },
   "skipMsgLabel": {
-    "message": "Ne pas enregistrer les messages lorsque le fichier existe déjà"
+    "message": "Ne pas enregistrer les messages en cas de fichiers existants"
   },
   "skipNonMbox": {
     "message": "Fichier non mbox ignoré",
@@ -1040,7 +1040,7 @@
     "src": "mboximport"
   },
   "title": {
-    "message": "ImportExportTools NG - Importation de profil"
+    "message": "ImportExportTools NG · Importation de profil"
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"
@@ -1058,13 +1058,13 @@
     "message": "Importer un profil"
   },
   "totalErrors.label": {
-    "message": "Erreurs totales"
+    "message": "Nombre total d’erreurs"
   },
   "totalMessages.label": {
     "message": "Nombre total de messages"
   },
   "totalMessagesExported.label": {
-    "message": "Nombre total de messages exportés"
+    "message": "Total des messages exportés"
   },
   "useExtFilenameFormat": {
     "message": "Utiliser un format avancé"
@@ -1076,7 +1076,7 @@
     "message": "Filtrer les caractères UTF-16 (symboles et émojis)"
   },
   "viewDbgConsole.msg": {
-    "message": "  erreurs, consulter la console d’erreurs (Ctrl+Maj+J)"
+    "message": "  erreurs, consultez la console d’erreurs (Ctrl+Maj+J)."
   },
   "virtFolAlert": {
     "message": "Les dossiers virtuels ne peuvent être exportés dans ce format que séparément.",

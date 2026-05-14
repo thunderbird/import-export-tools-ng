@@ -69,15 +69,15 @@
 "export.filename_suffix", ""
 "export.strip_CR_for_EML_exports", false
 "sms.add_subject", true
+"migrate_prefs", true
+"experimental.printPDF.use_global_preferences", true
 
 
 "import.build_mbox_index", true
 
 "log.enable", false
 "export.mail_separator", "-------------------------"
-"migrate_prefs", true
 "printPDF.fileFormat", 2
 "printPDF.start", false
 "reset_mozilla_status", false
 "experimental.index_short1", false
-"experimental.printPDF.use_global_preferences", true

@@ -133,7 +133,7 @@ const defaultPrefs = {
         inlineAttachmentNamePattern: "",
         components: {
           dateFormat: {
-            custom: "",
+            custom: "%Y%m%d%H%M%S",
           },
           maxPathLen: 248,
           maxSubjectLen: 50,
@@ -170,9 +170,19 @@ const defaultPrefs = {
 
   },
   index: {
-    dateFormat: "",
+    dateFormat: "%n/%d/%Y %M:%S",
   },
   autobackup: {
+    temp: {
+  last: 0,
+type: 0,
+frequency: 0,
+dir_name_type: 0,
+save_mode: 2,
+dir_custom_nam: "customName",
+retainNumBackups: 0,
+use_modal_dialog: 
+    },
 
   },
   debug: {

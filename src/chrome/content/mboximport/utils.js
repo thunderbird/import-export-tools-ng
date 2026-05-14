@@ -220,17 +220,6 @@ function getSubjectForHdr(hdr, dirPath) {
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
 
-		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
-			var prefix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-			pattern = prefix + pattern;
-		}
-
-		if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix")) {
-			var suffix = IETgetComplexPref("extensions.importexporttoolsng.export.filename_suffix");
-			pattern = pattern + suffix;
-		}
-
-
 		fname = pattern;
 
 	} else if (emlNameType === 3) {

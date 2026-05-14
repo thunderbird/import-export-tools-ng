@@ -52,6 +52,7 @@
 "ui.notificationsForExpSelMsgs", false
 "export.attachments.containerStructure", "perMsgDir"
 "export.HTML_as_displayed", false
+"export.skip_existing_msg", false
 
 
 
@@ -62,17 +63,17 @@
 "clipboard.always_just_text", false
 "extensions.ImportExportToolsNG@cleidigh.description", "chrome://mboximport/locale/properties"
 "export.filenames_addtime", false
-
-  
-"import.build_mbox_index", true
 "export.filename_add_prefix", false
 "export.filename_prefix", ""
 "export.filename_add_suffix", false
 "export.filename_suffix", ""
-"sms.add_subject", true
 "export.strip_CR_for_EML_exports", false
+"sms.add_subject", true
+
+
+"import.build_mbox_index", true
+
 "log.enable", false
-"export.skip_existing_msg", false
 "export.mail_separator", "-------------------------"
 "migrate_prefs", true
 "printPDF.fileFormat", 2

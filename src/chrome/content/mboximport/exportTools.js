@@ -2197,7 +2197,8 @@ function getLoadContext() {
 function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
+	var justText = true;
+
 	str.data = data;
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
@@ -2316,8 +2317,7 @@ function IETwritestatus(text) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
-		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
-		delay += 3000;
+		let delay = 6000;
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}

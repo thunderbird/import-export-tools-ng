@@ -224,7 +224,7 @@ var IETprintPDFmain = {
 	 * Runs through IETprintPDFmain.uris and prints all to PDF
 	 */
 	saveAsPDF: async function (pageSettings = {}) {
-		let fileFormat = IETprefs.getIntPref("extensions.importexporttoolsng.printPDF.fileFormat");
+		let fileFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
 		let filePath = IETprintPDFmain.file.path;
 
 		let psService = Cc[

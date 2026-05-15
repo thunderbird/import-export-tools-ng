@@ -554,7 +554,7 @@ function IETstr_converter(str) {
 
 	var convStr;
 	try {
-		var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
+		var charset = "";
 		if (charset === "")
 			return str;
 

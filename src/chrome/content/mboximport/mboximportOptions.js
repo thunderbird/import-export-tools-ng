@@ -189,7 +189,6 @@ function initMboxImportPanel() {
     var csvSep = "";
 
     try {
-        //charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_charset");
         textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
         csvSep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
     } catch (e) {

@@ -1324,7 +1324,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		// Add experimental account /folder column #349
 		let accountFolderCol = "";
-		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
+		if (0) {
 			accountFolderCol = '"' + hdrs[5] + '"' + sep;
 		}
 

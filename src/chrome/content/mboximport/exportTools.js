@@ -886,7 +886,7 @@ var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXH
 
 function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
+	if (0) {
 		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
 		return { status: kStatusOK };
 	}

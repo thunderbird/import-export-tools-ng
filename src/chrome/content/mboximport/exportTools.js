@@ -2012,7 +2012,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							data = IEThtmlToText(data, msgFolder);
 						}
 						if (convertToText && append) {
-							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
+							data = data + "\r\n\r\n" + "-------------------------";
 
 							var nfile = appendClone.leafName + ".txt";
 							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);

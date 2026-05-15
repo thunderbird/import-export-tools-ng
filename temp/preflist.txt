@@ -71,13 +71,12 @@
 "sms.add_subject", true
 "migrate_prefs", true
 "experimental.printPDF.use_global_preferences", true
-
+"printPDF.fileFormat", 2
+"printPDF.start", false
 
 "import.build_mbox_index", true
 
 "log.enable", false
 "export.mail_separator", "-------------------------"
-"printPDF.fileFormat", 2
-"printPDF.start", false
 "reset_mozilla_status", false
 "experimental.index_short1", false

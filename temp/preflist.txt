@@ -76,7 +76,7 @@
 "export.mail_separator", "-------------------------"
 "log.enable", false
 "reset_mozilla_status", false
-
+"experimental.index_short1", false
 "import.build_mbox_index", true
 
-"experimental.index_short1", false
+

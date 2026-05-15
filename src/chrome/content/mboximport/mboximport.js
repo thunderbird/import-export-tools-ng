@@ -455,7 +455,7 @@ async function trytocopyMAILDIR(params) {
 	}
 	clonex.append(newfilename);
 	// add to the original filename a random number in range 0-999
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number"))
+	if (0)
 		newfilename = newfilename + Math.floor(Math.random() * 999);
 	var k = 0;
 	// if exists a subfolder with this name, we change the random number, with max. 500 tests

@@ -64,9 +64,6 @@ function initMboxImportPanel() {
     document.getElementById("MBauthmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
     document.getElementById("MBrecmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
     document.getElementById("setTimestamp").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
-    document.getElementById("addtimeCheckbox").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
-    document.getElementById("buildMSF").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.build_mbox_index");
-    document.getElementById("addNumber").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.import.name_add_number");
     document.getElementById("openHelpInWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
     // new v15 options
@@ -284,9 +281,6 @@ function saveMboxImportPrefs() {
         IETprefs.setIntPref("extensions.importexporttoolsng.author.max_length", document.getElementById("MBauthmaxlen").value);
         IETprefs.setIntPref("extensions.importexporttoolsng.recipients.max_length", document.getElementById("MBrecmaxlen").value);
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.set_filetime", document.getElementById("setTimestamp").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_addtime", document.getElementById("addtimeCheckbox").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.import.build_mbox_index", document.getElementById("buildMSF").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.import.name_add_number", document.getElementById("addNumber").checked);
         IETprefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
 
         // new v15 options

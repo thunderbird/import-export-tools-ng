@@ -121,4 +121,29 @@ const defaultPrefs = {
 
 };
 
+const flattenObject = (obj, prefix = '') => {
+  return Object.keys(obj).reduce((acc, k) => {
+    const pre = prefix.length ? prefix + '.' : '';
+    if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+      Object.assign(acc, flattenObject(obj[k], pre + k));
+    } else {
+      acc[pre + k] = obj[k];
+    }
+    return acc;
+  }, {});
+};
+
+// Example Usage
+const user = {
+  name: "John",
+  address: {
+    city: "New York",
+    geo: { lat: 40.7, lng: -74.0 }
+  }
+};
+
+const flattened = flattenObject(defaultPrefs);
+console.log(Object.keys(flattened)); 
+// Output: ["name", "address.city", "address.geo.lat", "address.geo.lng"]
+
 

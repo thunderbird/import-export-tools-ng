@@ -74,9 +74,9 @@
 "printPDF.fileFormat", 2
 "printPDF.start", false
 "export.mail_separator", "-------------------------"
+"log.enable", false
 
 "import.build_mbox_index", true
 
-"log.enable", false
 "reset_mozilla_status", false
 "experimental.index_short1", false

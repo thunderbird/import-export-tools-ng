@@ -1519,7 +1519,7 @@ function writeDataToFolder(data, msgFolder, file, removeFile) {
 	// If the message has no X-Mozilla-Status, we add them to it
 	if (!data.includes("X-Mozilla-Status"))
 		prologue = prologue + "X-Mozilla-Status: 0000\nX-Mozilla-Status2: 00000000\n";
-	else if (IETprefs.getBoolPref("extensions.importexporttoolsng.reset_mozilla_status")) {
+	else if (0) {
 		// Reset the X-Mozilla status
 		data = data.replace(/X-Mozilla-Status: \d{4}/, "X-Mozilla-Status: 0000");
 		data = data.replace(/X-Mozilla-Status2: \d{8}/, "X-Mozilla-Status2: 00000000");

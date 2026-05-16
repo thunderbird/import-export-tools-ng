@@ -50,23 +50,6 @@ const legacyPrefToStorageMap = {
   "ui.notificationsForExpSelMsgs": "ui.exportStatus.selectedMsgs.useNotificationsNoWindow",
   "export.attachments.containerStructure": "export.general.msgAndAttachmentsStructure",
   "export.HTML_as_displayed": "export_HTML_as_displayed",
-  "export.skip_existing_msg": "export_skip_existing_msg"
+  "export.skip_existing_msg": "export_skip_existing_msg",
 };
-
-  
-  
-  
-  
-  
-  
-  
-  
-   
-  
-  
-  
-  
-]
-
-
 

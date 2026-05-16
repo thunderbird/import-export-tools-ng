@@ -873,7 +873,7 @@
     "message": "${recipient}"
   },
   "remoteWarning": {
-    "message": "Du håller på att exportera den lokala kopian av en IMAP- eller diskussionsgruppsmapp.Den lokala mappen kanske inte innehåller alla meddelanden som finns i fjärrmappen.Vill du fortsätta?",
+    "message": "Du håller på att exportera den lokala kopian av en IMAP- eller diskussionsgruppsmapp.\nDen lokala mappen kanske inte innehåller alla meddelanden som finns i fjärrmappen.Vill du fortsätta?",
     "src": "mboximport"
   },
   "runProfileManager": {

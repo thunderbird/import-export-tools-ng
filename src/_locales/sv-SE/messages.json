@@ -541,7 +541,7 @@
     "src": "mboximport"
   },
   "isNotMaildir": {
-    "message": "Mappen som ska importeras är inte en ”Maildir” -mapp",
+    "message": "Mappen som ska importeras är inte en &quot;Maildir&quot; -mapp",
     "src": "mboximport"
   },
   "isNotStandard": {

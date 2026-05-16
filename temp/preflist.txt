@@ -1,4 +1,3 @@
-
 "debug.logTypes"
 "export.filenames_toascii"
 "export.overwrite"
@@ -16,7 +15,6 @@
 "export.cut_subject"
 "export.cut_filename"
 "export.mbox.use_mboxext"
-
 "export.filename_charset"
 "export.filename_date_custom_format"
 "export.index_date_custom_format"

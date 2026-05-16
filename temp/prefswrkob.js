@@ -69,10 +69,10 @@ const defaultPrefs = {
           dateFormat: {
             custom: "%Y%m%d%H%M%S",
           },
-          maxPathLen: 248,
-          maxSubjectLen: 50,
-          maxRecipientLen: 50,
-          maxAuthorLen: 50,
+          pathMaxLen: 248,
+          subjectMaxLen: 50,
+          recipientMaxLen: 50,
+          authorMaxLen: 50,
         },
         filters: {
           alphaNumericOnly: false,
@@ -116,6 +116,12 @@ const defaultPrefs = {
     export_all_warning2: false,
     export_format_warning: false,
     export_import_warning: false,
+    hot_keys: "",
+    export_use_container_folder: true,
+    use_delivery_date: false,
+    use_converter: false,
+    export_HTML_as_displayed: false,
+    export_skip_existing_msg: false,
 
   },
 

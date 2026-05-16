@@ -545,7 +545,7 @@
     "src": "mboximport"
   },
   "isNotStandard": {
-    "message": "Den här &quot;Mbox&quot;-filen använder ett annat format än Thunderbirds mappformat, och Thunderbird kanske inte kan hantera den korrekt.Är du säker på att du vill fortsätta?",
+    "message": "Den här &quot;Mbox&quot;-filen använder ett annat format än Thunderbirds mappformat, och Thunderbird kanske inte kan hantera den korrekt.\nÄr du säker på att du vill fortsätta?",
     "src": "mboximport"
   },
   "justMailFiles": {

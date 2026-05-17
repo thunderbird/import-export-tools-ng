@@ -182,6 +182,21 @@ const legacyPrefToStorageMap = {
   "export.skip_existing_msg": "export_skip_existing_msg",
 };
 
+function dotWalk(str, obj) {
+    // Splits the string by each dot
+    return str.split('.')
+        // iterate the string, passing back
+        // the property at each path
+        .reduce((result, path) => {
+            // Trailing dot case
+            if (path === '') return result + '.';
+
+            // Return undefined if the path doesn't exist
+            return result && result[path];
+        }, obj)
+        ?? str; // return the original string if no property found
+}
+
 
 
 const flattenObject = (obj, prefix = '') => {

@@ -1,0 +1,8 @@
+
+sed -i 's/debug.logTypes/debug.logTypes/g' 
+sed -i 's/export.filenames_toascii/export.names.defaults.filters.alphaNumericOnly/g' 
+sed -i 's/export.overwrite/export.mbox.overwrite/g' 
+
+  sed -i 's/old_string/new_string/g' filename.txt
+
+r  ^\s*?"

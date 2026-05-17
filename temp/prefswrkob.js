@@ -58,13 +58,13 @@ const defaultPrefs = {
     },
     names: {
       defaults: {
-        msgNamePatternType: "simple",
-        msgNameSimplePattern: "",
-        msgNameCustomPattern: "",
-        attachmentDirsPattern: "",
-        attachmentNamePattern: "",
-        inlineAttachmentDirsPattern: "",
-        inlineAttachmentNamePattern: "",
+        msgNameFormatType: "simple",
+        msgNameSimpleFormat: "",
+        msgNameCustomFormat: "",
+        attachmentDirsFormat: "",
+        attachmentNameFormat: "",
+        inlineAttachmentDirsFormat: "",
+        inlineAttachmentNameFormat: "",
         components: {
           dateFormat: {
             custom: "%Y%m%d%H%M%S",
@@ -102,7 +102,7 @@ const defaultPrefs = {
       frequency: 0,
       dir_name_type: 0,
       save_mode: 2,
-      dir_custom_nam: "customName",
+      dir_custom_name: "customName",
       retainNumBackups: 0,
       use_modal_dialog: true,
     },
@@ -132,7 +132,7 @@ const legacyPrefToStorageMap = {
   "debug.logTypes": "debug.logTypes",
   "export.filenames_toascii": "export.names.defaults.filters.alphaNumericOnly",
   "export.overwrite": "export.mbox.overwrite",
-  "exportEML.filename_format": "export.names.defaults.msgNamePatternType",
+  "exportEML.filename_format": "export.names.defaults.msgNameFormatType",
   "subject.max_length": "export.names.defaults.components.subjectMaxLen",
   "author.max_length": "export.names.defaults.components.authorMaxLen",
   "recipients.max_length": "export.names.defaults.components.recipientMaxLen",
@@ -142,21 +142,21 @@ const legacyPrefToStorageMap = {
   "exportMSG.use_dir": "export.general.useDefaultSelectedMsgsExportDir",
   "exportEML.dir": "export.general.defaultFolderExportDir",
   "exportMSG.dir": "export.general.defaultSelectedMsgsExportDir",
-  "exportMSG.dir": "export.general.defaultMboxExportDir",
+  "exportMBOX.dir": "export.general.defaultMboxExportDir",
   "export_all.warning1": "temp.export_all_warning1",
   "export_all.warning2": "temp.export_all_warning2",
   "export.format_warning": "temp.export_format_warning",
-  "export.cut_filename": "export.names.defaults.components.maxPathLen",
+  "export.cut_filename": "export.names.defaults.components.pathMaxLen",
   "export.mbox.use_mboxext": "export.mbox.useMboxExtension",
   "export.filename_date_custom_format": "export.names.defaults.components.dateFormat.custom",
   "export.index_date_custom_format": "index.dateFormat",
-  "export.filename_pattern": "export.names.defaults.msgNameSimplePattern",
-  "export.filename_extended_format": "export.names.defaults.msgNameCustomPattern",
-  "export.attachments.filename_extended_format": "export.names.defaults.attachmentDirsPattern",
+  "export.filename_pattern": "export.names.defaults.msgNameSimpleFormat",
+  "export.filename_extended_format": "export.names.defaults.msgNameCustomFormat",
+  "export.attachments.filename_extended_format": "export.names.defaults.attachmentDirsFormat",
   "export.filename_filterUTF16": "export.names.defaults.filters.asciiOnly",
   "export.filename_filter_characters": "export.names.defaults.filters.characterFilter",
   "export.filename_latinize": "export.names.defaults.transforms.latinize",
-  "export.embedded_attachments.filename_extended_format": "export.names.defaults.inlineAttachmentDirsPattern",
+  "export.embedded_attachments.filename_extended_format": "export.names.defaults.inlineAttachmentDirsFormat",
   "export.use_container_folder": "temp.export_use_container_folder",
   "autobackup.last": "autobackup.temp.last",
   "autobackup.type": "autobackup.temp.type",
@@ -178,8 +178,8 @@ const legacyPrefToStorageMap = {
   "ui.notificationsForExpFolders": "ui.exportStatus.folders.useNotificationsNoWindow",
   "ui.notificationsForExpSelMsgs": "ui.exportStatus.selectedMsgs.useNotificationsNoWindow",
   "export.attachments.containerStructure": "export.general.msgAndAttachmentsStructure",
-  "export.HTML_as_displayed": "export_HTML_as_displayed",
-  "export.skip_existing_msg": "export_skip_existing_msg",
+  "export.HTML_as_displayed": "temp.export_HTML_as_displayed",
+  "export.skip_existing_msg": "temp.export_skip_existing_msg",
 };
 
 function dotWalk(str, obj) {
@@ -218,13 +218,24 @@ const flattenObject = (obj, prefix = '') => {
 
 let mapKeys = Object.keys(legacyPrefToStorageMap);
 let storageMapKeys = [];
-console.log(mapKeys[0])
-console.log(defaultPrefs[mapKeys[0]])
+let sk = legacyPrefToStorageMap[mapKeys[4]]
+//console.log(sk)
+//console.log(dotWalk("export.names.defaults.filters.alphaNumericOnly",defaultPrefs))
 
+mapKeys.forEach(lkey => {
 
-mapKeys.forEach(key => {
-  storageMapKeys.push(legacyPrefToStorageMap[key])
-  //console.log(legacyPrefToStorageMap[key])
-  //console.log(defaultPrefs[key])
+let sk = legacyPrefToStorageMap[lkey]
+let sv = dotWalk(sk, defaultPrefs)
+if (sv === true) {
+  sv = true
+} else if (sv === false) {
+  sv = false
+} else if(sv == sk) {
+  sv = "NO KEY"
+} else if(sv === "") {
+
+  sv = '""'
+}
+console.log(lkey, "=", sk, sv)
 });
 

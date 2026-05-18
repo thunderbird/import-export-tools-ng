@@ -59,11 +59,11 @@ const defaultPrefs = {
     names: {
       defaults: {
         msgNameFormatType: "simple",
-        msgNameSimpleFormat: "",
-        msgNameCustomFormat: "",
-        attachmentDirsFormat: "",
+        msgNameSimpleFormat: "%s-%d-%k",
+        msgNameCustomFormat: "${subject}-${date_custom}-${index}",
+        attachmentDirsFormat: "${subject}",
         attachmentNameFormat: "",
-        inlineAttachmentDirsFormat: "",
+        inlineAttachmentDirsFormat: "${subject}",
         inlineAttachmentNameFormat: "",
         components: {
           dateFormat: {
@@ -122,7 +122,7 @@ const defaultPrefs = {
     use_converter: false,
     export_HTML_as_displayed: false,
     export_skip_existing_msg: false,
-
+    export_cut_filename: true,
   },
 
 };
@@ -146,7 +146,7 @@ const legacyPrefToStorageMap = {
   "export_all.warning1": "temp.export_all_warning1",
   "export_all.warning2": "temp.export_all_warning2",
   "export.format_warning": "temp.export_format_warning",
-  "export.cut_filename": "export.names.defaults.components.pathMaxLen",
+  "export.cut_filename": "temp.export_cut_filename",
   "export.mbox.use_mboxext": "export.mbox.useMboxExtension",
   "export.filename_date_custom_format": "export.names.defaults.components.dateFormat.custom",
   "export.index_date_custom_format": "index.dateFormat",

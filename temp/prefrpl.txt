@@ -1,8 +1,11 @@
-
-sed -i 's/debug.logTypes/debug.logTypes/g' 
-sed -i 's/export.filenames_toascii/export.names.defaults.filters.alphaNumericOnly/g' 
-sed -i 's/export.overwrite/export.mbox.overwrite/g' 
-
+"export.filename_filterUTF16": "export.names.defaults.filters.asciiOnly",
+  "export.filename_filter_characters": "export.names.defaults.filters.characterFilter",
+  "export.filename_latinize": "export.names.defaults.transforms.latinize",
+  
+  
   sed -i 's/old_string/new_string/g' filename.txt
 
-r  ^\s*?"
+r  ^\s*?"  sed -i 's/prefs.getPref("
+r  ": "    /prefCmds.getPref("
+r  ",      '/g importExportTasks.mjs
+

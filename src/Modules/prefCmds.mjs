@@ -35,7 +35,7 @@
 // Hint: Reloading/Updating an add-on does not clear storage.local.
 const userPrefStorageArea = "sync";
 
-export var preferences = {
+export var prefCmds = {
   
   _userPrefs: {},
   _defaultPrefs: {},

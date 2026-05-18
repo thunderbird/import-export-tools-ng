@@ -18,7 +18,7 @@
 
 import { openHelp } from "/Modules/miscCmds.mjs";
 import * as prefMgmt from "/Modules/prefMgmt.mjs";
-import * as prefCmds from "/Modules/prefCmds.mjs";
+import { prefCmds } from "./Modules/prefCmds.mjs";
 
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
@@ -36,6 +36,8 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
+	let h = await prefCmds.getPref("help.showOnInstallAndUpdate")
+	console.log(h)
 	if (await prefCmds.getPref("help.showOnInstallAndUpdate")) {
 		await openHelp({ opentype: "tab" });
 	}

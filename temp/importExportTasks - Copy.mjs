@@ -47,7 +47,7 @@ const baseExpTask = {
     messageContainerDirectory: "",
   },
   names: {
-    namePatternType: "dropdown",
+    namePatternType: "simple",
     namePatternDropdown: "",
     namePatternDefault: "${subject}-${date}-${index}",
     namePatternCustom: "${subject}-${date}-${index}",
@@ -156,7 +156,7 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   // names
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
+    expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
   } else {
     expTask.names.namePatternType = "custom";
@@ -218,7 +218,7 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   // names
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
+    expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
   } else {
     expTask.names.namePatternType = "custom";
@@ -277,7 +277,7 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
   // names
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
+    expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
   } else {
     expTask.names.namePatternType = "custom";
@@ -336,7 +336,7 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   // names
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
+    expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
   } else {
     expTask.names.namePatternType = "custom";

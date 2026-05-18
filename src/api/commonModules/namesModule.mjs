@@ -126,7 +126,7 @@ export var names = {
     let generatedName = "";
 
     // basic dropdown filename pattern
-    if (namePatternType == "dropdown") {
+    if (namePatternType == "simple") {
       let pattern = expTask.names.namePatternDropdown;
 
       pattern = pattern.replace("%s", subject);

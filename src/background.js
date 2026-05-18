@@ -56,7 +56,7 @@ async function main() {
 		["resource", "ietng", "."],
 	]);
 
-	messenger.WindowListener.registerDefaultprefCmds("defaults/preferences/prefCmds.js");
+	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefCmds.js");
 
 	// Register all necessary content, Resources, and locales
 

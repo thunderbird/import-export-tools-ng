@@ -34,7 +34,7 @@
 
 import { logging, log } from "./loggingWext.mjs";
 import { createExportTask } from "./importExportTasks.mjs";
-import * as prefs from "./prefCmds.mjs";
+import * as prefCmds from "./prefCmds.mjs";
 import { strftime } from "./strftime.mjs";
 import * as ui from "./ui.mjs";
 import { Ci } from "/Modules/CiConstants.js";
@@ -51,9 +51,9 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
   gAbort = false;
 
   try {
-    logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
+    logging.init({ logTypes: await prefCmds.getPref("debug.logTypes") });
 
-    const notificationsForExpFolders = await prefs.getPref("ui.notificationsForExpFolders");
+    const notificationsForExpFolders = await prefCmds.getPref("ui.exportStatus.folders.useNotificationsNoWindow");
 
     log("msgs msgs2", "Start Export folders\nFolders:")
 
@@ -79,11 +79,11 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
     let usePredefinedExportDir;
     let exportDir;
     if (functionParams.expMethod == "selectedMsgs") {
-      usePredefinedExportDir = await prefs.getPref("exportMSG.use_dir");
-      exportDir = await prefs.getPref("exportMSG.dir");
+      usePredefinedExportDir = await prefCmds.getPref("export.general.useDefaultSelectedMsgsExportDir");
+      exportDir = await prefCmds.getPref("export.general.defaultSelectedMsgsExportDir");
     } else {
-      usePredefinedExportDir = await prefs.getPref("exportEML.use_dir");
-      exportDir = await prefs.getPref("exportEML.dir");
+      usePredefinedExportDir = await prefCmds.getPref("export.general.useDefaultFolderExportDir");
+      exportDir = await prefCmds.getPref("export.general.defaultFolderExportDir");
     }
     if (usePredefinedExportDir && exportDir != "") {
       expTask.generalConfig.exportDirectory = exportDir;
@@ -315,11 +315,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
   try {
     gAbort = false;
 
-    logging.init({ logTypes: await prefs.getPref("debug.logTypes") });
+    logging.init({ logTypes: await prefCmds.getPref("debug.logTypes") });
 
     log("msgs msgs2", "Start Export selected messages\nFolder:")
 
-    const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
+    const notificationsForExpSelMsgs = await prefCmds.getPref("ui.exportStatus.selectedMsgs.useNotificationsNoWindow");
 
     // only displayedFolder
     let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
@@ -368,8 +368,8 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     var expTask = await createExportTask(functionParams, ctxEvent, folderSet);
 
     // get export directory
-    let useSelectedMsgsExportDir = await prefs.getPref("exportMSG.use_dir");
-    let selectedMsgsExportDir = await prefs.getPref("exportMSG.dir");
+    let useSelectedMsgsExportDir = await prefCmds.getPref("export.general.useDefaultSelectedMsgsExportDir");
+    let selectedMsgsExportDir = await prefCmds.getPref("export.general.defaultSelectedMsgsExportDir");
     if (useSelectedMsgsExportDir && selectedMsgsExportDir != "") {
       expTask.generalConfig.exportDirectory = selectedMsgsExportDir;
     } else {

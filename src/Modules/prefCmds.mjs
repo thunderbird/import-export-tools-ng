@@ -43,13 +43,15 @@ export var prefCmds = {
   // Get pref value from local pref obj.
   getPref: function(aName, aFallback = null) {
     // Get defaultPref.
-    let defaultPref = this._defaultPrefs.hasOwnProperty(aName)
-      ? this._defaultPrefs[aName]
+    console.log(this.dotWalk(aName, this._defaultPrefs))
+    
+    let defaultPref = this.dotWalk(aName, this._defaultPrefs)
+      ? this.dotWalk(aName, this._defaultPrefs)
       : aFallback;
     
     // Check if userPref type is defaultPref type and return default if no match.
-    if (this._userPrefs.hasOwnProperty(aName)) {
-      let userPref = this._userPrefs[aName];
+    if (this.dotWalk(aName, this._userPrefs)) {
+      let userPref = this.dotWalk(aName, this._userPrefs);
       if (typeof defaultPref == typeof userPref) {
         return userPref;
       }      
@@ -105,7 +107,7 @@ export var prefCmds = {
         let prefV1Value = (await browser.storage[userPrefStorageArea].get("pref.value." + prefName))["pref.value." + prefName];
         if (prefV1Value) {
           await browser.storage[userPrefStorageArea].remove("pref.value." + prefName);
-          preferences.setPref(prefName, prefV1Value);
+          prefCmds.setPref(prefName, prefV1Value);
         }
       }
     }
@@ -117,5 +119,20 @@ export var prefCmds = {
       await messenger.storage.onChanged.addListener(this.storageChanged);
     }
   },
+
+   dotWalk: function (str, obj) {
+    // Splits the string by each dot
+    return str.split('.')
+        // iterate the string, passing back
+        // the property at each path
+        .reduce((result, path) => {
+            // Trailing dot case
+            if (path === '') return result + '.';
+
+            // Return undefined if the path doesn't exist
+            return result && result[path];
+        }, obj)
+        ?? null; // return null if no property found
+},
 
 }

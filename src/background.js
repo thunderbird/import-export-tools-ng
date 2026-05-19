@@ -36,9 +36,9 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	let h = await prefCmds.getPref("help.showOnInstallAndUpdate")
-	console.log(h)
-	if (await prefCmds.getPref("help.showOnInstallAndUpdate")) {
+	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
+	console.log(showOnInstallAndUpdate)
+	if (showOnInstallAndUpdate || showOnInstallAndUpdate == null) {
 		await openHelp({ opentype: "tab" });
 	}
 });
@@ -51,6 +51,9 @@ async function main() {
 
 
 	await prefMgmt.initializePrefs();
+
+	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
+	console.log(showOnInstallAndUpdate)
 
 	await browser.LegacyHelper.registerGlobalUrls([
 		["resource", "ietng", "."],

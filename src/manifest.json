@@ -109,7 +109,8 @@
     "accountsRead",
     "messagesImport",
     "notifications",
-    "messagesMove"
+    "messagesMove",
+    "storage"
   ],
   "background": {
     "scripts": [

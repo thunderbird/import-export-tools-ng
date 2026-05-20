@@ -55,11 +55,14 @@ async function main() {
 	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
 	console.log(showOnInstallAndUpdate)
 
+	let test  = await prefCmds.getPref("debug.logTypes")
+	console.log(test)
+
 	await browser.LegacyHelper.registerGlobalUrls([
 		["resource", "ietng", "."],
 	]);
 
-	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefCmds.js");
+	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	// Register all necessary content, Resources, and locales
 

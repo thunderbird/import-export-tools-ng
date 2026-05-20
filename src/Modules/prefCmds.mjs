@@ -36,44 +36,48 @@
 const userPrefStorageArea = "sync";
 
 export var prefCmds = {
-  
+
   _userPrefs: {},
   _defaultPrefs: {},
-    
+
   // Get pref value from local pref obj.
-  getPref: function(aName, aFallback = null) {
+  getPref: function (aName, aFallback = null) {
     // Get defaultPref.
-    console.log(this.dotWalk(aName, this._defaultPrefs))
-    
-    let defaultPref = this.dotWalk(aName, this._defaultPrefs)
-      ? this.dotWalk(aName, this._defaultPrefs)
+
+    //let defaultPref = (this.dotWalk(aName, this._defaultPrefs) || this.dotWalk(aName, this._defaultPrefs) === "")
+    let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
+      ? this.dotGet(aName, this._defaultPrefs)
       : aFallback;
-    
+
+    //console.log("def", defaultPref)
     // Check if userPref type is defaultPref type and return default if no match.
-    if (this.dotWalk(aName, this._userPrefs)) {
-      let userPref = this.dotWalk(aName, this._userPrefs);
+    if (this.dotHasOwnProperty(aName, this._userPrefs)) {
+      let userPref = this.dotGet(aName, this._userPrefs);
       if (typeof defaultPref == typeof userPref) {
+        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._defaultPrefs))
+
         return userPref;
-      }      
+      }
       console.log("Type of defaultPref <" + defaultPref + ":" + typeof defaultPref + "> does not match type of userPref <" + userPref + ":" + typeof userPref + ">. Fallback to defaultPref.")
     }
-    
+
     // Fallback to default value.
+    console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
     return defaultPref;
   },
 
   // Set pref value by updating local pref obj and updating storage.
-  setPref: function(aName, aValue) {
+  setPref: function (aName, aValue) {
     this._userPrefs[aName] = aValue;
-    messenger.storage[userPrefStorageArea].set({ userPrefs : this._userPrefs });
+    messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
   },
 
   // Remove a preference (calls to getPref will return default value)
-  clearPref: function(aName, aValue) {
+  clearPref: function (aName, aValue) {
     delete this._userPrefs[aName];
-    messenger.storage[userPrefStorageArea].set({ userPrefs : this._userPrefs });
+    messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
   },
-  
+
   // Listener for storage changes.
   storageChanged: function (changes, area) {
     let changedItems = Object.keys(changes);
@@ -81,29 +85,29 @@ export var prefCmds = {
       if (area == userPrefStorageArea && item == "userPrefs") {
         this._userPrefs = changes.userPrefs.newValue;
       }
-      
+
       if (area == "local" && item == "defaultPrefs") {
         this._defaultPrefs = changes.defaultPrefs.newValue;
       }
-    }    
+    }
   },
 
   // Initialize the local pref obj by loading userPrefs and defaultPrefs from
   // WebExtension storage. If a defaults obj is given, the defaults in storage
   // are updated/set.
-  init: async function(defaults = null) {
+  init: async function (defaults = null) {
     this._userPrefs = {};
     this._defaultPrefs = {};
-    
+
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-       
+
     // If defaults are given, push them into storage.local
     if (defaults) {
-      await messenger.storage.local.set({ defaultPrefs : defaults });
+      await messenger.storage.local.set({ defaultPrefs: defaults });
 
       // We need to migration from prefsV1 to prefsV2    
-      for(let prefName of Object.keys(defaults)) {
+      for (let prefName of Object.keys(defaults)) {
         let prefV1Value = (await browser.storage[userPrefStorageArea].get("pref.value." + prefName))["pref.value." + prefName];
         if (prefV1Value) {
           await browser.storage[userPrefStorageArea].remove("pref.value." + prefName);
@@ -111,7 +115,7 @@ export var prefCmds = {
         }
       }
     }
-    
+
     this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
     // Add storage change listener.
@@ -120,19 +124,27 @@ export var prefCmds = {
     }
   },
 
-   dotWalk: function (str, obj) {
+  dotGet: function (str, obj) {
     // Splits the string by each dot
     return str.split('.')
-        // iterate the string, passing back
-        // the property at each path
-        .reduce((result, path) => {
-            // Trailing dot case
-            if (path === '') return result + '.';
+      // iterate the string, passing back
+      // the property at each path
+      .reduce((result, path) => {
+        // Trailing dot case
+        if (path === '') return result + '.';
 
-            // Return undefined if the path doesn't exist
-            return result && result[path];
-        }, obj)
-        ?? null; // return null if no property found
-},
+        // Return undefined if the path doesn't exist
+        return result && result[path];
+      }, obj)
+      ?? null; // return null if no property found
+  },
+
+  dotHasOwnProperty: function (str, obj) {
+    let dotValue = this.dotGet(str, obj);
+    if (dotValue != null && dotValue != undefined) {
+      return true;
+    }
+    return false;
+  }
 
 }

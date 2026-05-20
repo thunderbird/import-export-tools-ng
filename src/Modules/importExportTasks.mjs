@@ -17,7 +17,7 @@
 
 // We build the export task objects based on format and options
 
-import * as prefCmds from "./prefCmds.mjs";
+import { prefCmds } from "./prefCmds.mjs";
 
 
 const baseExpTask = {

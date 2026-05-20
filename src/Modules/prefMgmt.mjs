@@ -33,7 +33,7 @@ let defaultPrefs = {
       defaultFolderExportDir: "",
       defaultSelectedMsgsExportDir: "",
       defaultMboxExportDir: "",
-      msgAndAttachmentsStructure: "",
+      msgAndAttachmentsStructure: "perMsgDir",
     },
     eml: {
       messageContainer: false,

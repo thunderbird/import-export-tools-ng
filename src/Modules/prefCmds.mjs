@@ -139,6 +139,21 @@ export var prefCmds = {
       ?? null; // return null if no property found
   },
 
+  dotSet: function (str, obj) {
+    // Splits the string by each dot
+    return str.split('.')
+      // iterate the string, passing back
+      // the property at each path
+      .reduce((result, path) => {
+        // Trailing dot case
+        if (path === '') return result + '.';
+
+        // Return undefined if the path doesn't exist
+        return result && result[path];
+      }, obj)
+      ?? null; // return null if no property found
+  },
+
   dotHasOwnProperty: function (str, obj) {
     let dotValue = this.dotGet(str, obj);
     if (dotValue != null && dotValue != undefined) {

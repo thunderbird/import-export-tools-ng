@@ -1,7 +1,7 @@
 
 
 
-const defaultPrefs = {
+var defaultPrefs = {
   general: {
     version: 1.0,
   },
@@ -183,18 +183,49 @@ const legacyPrefToStorageMap = {
 };
 
 function dotWalk(str, obj) {
-    // Splits the string by each dot
-    return str.split('.')
-        // iterate the string, passing back
-        // the property at each path
-        .reduce((result, path) => {
-            // Trailing dot case
-            if (path === '') return result + '.';
+  // Splits the string by each dot
+  return str.split('.')
+    // iterate the string, passing back
+    // the property at each path
+    .reduce((result, path) => {
+      // Trailing dot case
+      if (path === '') return result + '.';
 
-            // Return undefined if the path doesn't exist
-            return result && result[path];
-        }, obj)
-        ?? str; // return the original string if no property found
+      // Return undefined if the path doesn't exist
+      return result && result[path];
+    }, obj)
+    ?? str; // return the original string if no property found
+}
+
+function dotSet(str, val, obj, createNewProperty = false) {
+  let dotSplit = str.split('.');
+  let dotSplitLen = dotSplit.length;
+
+  // Splits the string by each dot
+  return dotSplit
+    // iterate the string, passing back[]
+    // the property at each path
+    .reduce((result, path) => {
+      // We might need to construct object pbranch
+      console.log("res", result)
+      console.log("path", path)
+      if (--dotSplitLen) {
+        console.log("i path", path)
+
+        // Return undefined if the path doesn't exist
+        return result && result[path];
+      }
+
+        console.log("f path", path, result[path])
+
+      if ((result[path] != undefined) || createNewProperty) {
+        console.log("set")
+        result[path] = val;
+        return result[path];
+      }
+      return undefined;
+    }, obj)
+    ?? null; // return null if no property found
 }
 
 
@@ -224,18 +255,40 @@ let sk = legacyPrefToStorageMap[mapKeys[4]]
 
 mapKeys.forEach(lkey => {
 
-let sk = legacyPrefToStorageMap[lkey]
-let sv = dotWalk(sk, defaultPrefs)
-if (sv === true) {
-  sv = true
-} else if (sv === false) {
-  sv = false
-} else if(sv == sk) {
-  sv = "NO KEY"
-} else if(sv === "") {
+  let sk = legacyPrefToStorageMap[lkey]
+  let sv = dotWalk(sk, defaultPrefs)
+  if (sv === true) {
+    sv = true
+  } else if (sv === false) {
+    sv = false
+  } else if (sv == sk) {
+    sv = "NO KEY"
+  } else if (sv === "") {
 
-  sv = '""'
-}
-console.log(lkey, "=", sk, sv)
+    sv = '""'
+  }
+  //console.log(lkey, "=", sk, sv)
 });
 
+/*
+
+console.log(defaultPrefs.index.dateFormat)
+
+let df = dotWalk("index.dateFormat", defaultPrefs)
+console.log(df)
+
+df = dotSet("index.dateFormat", "666", defaultPrefs)
+console.log(df)
+
+df = dotWalk("index.dateFormat", defaultPrefs)
+console.log(df)
+*/
+df = dotSet("index.dateFormat2", "77", defaultPrefs)
+console.log(df)
+console.log(defaultPrefs.index.dateFormat)
+//console.log(defaultPrefs.index.dateFormat2)
+
+df = dotSet("index.dateFormat2", "88", defaultPrefs, true)
+console.log(df)
+
+//console.log(defaultPrefs)

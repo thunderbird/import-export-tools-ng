@@ -207,16 +207,20 @@ function dotSet(str, val, obj, createNewProperty = false) {
     // the property at each path
     .reduce((result, path) => {
       // We might need to construct object pbranch
-      console.log("res", result)
-      console.log("path", path)
+      //console.log("res", result)
+      //console.log("path", path)
       if (--dotSplitLen) {
-        console.log("i path", path)
+        //console.log("i path", path, result[path])
+        if (result[path] == undefined && createNewProperty) {
+          result[path] = {};
+        console.log("set new branch ", result[path])
 
+        }
         // Return undefined if the path doesn't exist
         return result && result[path];
       }
 
-        console.log("f path", path, result[path])
+        //console.log("f path", path, result[path])
 
       if ((result[path] != undefined) || createNewProperty) {
         console.log("set")
@@ -291,4 +295,6 @@ console.log(defaultPrefs.index.dateFormat)
 df = dotSet("index.dateFormat2", "88", defaultPrefs, true)
 console.log(df)
 
-//console.log(defaultPrefs)
+df = dotSet("index.group.dateFormat3", "33", defaultPrefs, true)
+console.log(df)
+console.log(defaultPrefs)

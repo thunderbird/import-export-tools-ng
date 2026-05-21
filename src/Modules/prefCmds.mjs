@@ -67,8 +67,8 @@ export var prefCmds = {
   },
 
   // Set pref value by updating local pref obj and updating storage.
-  setPref: function (aName, aValue) {
-    this._userPrefs[aName] = aValue;
+  setPref: function (aName, aValue, createNewProperty = false) {
+    this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
     messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
   },
 
@@ -139,20 +139,40 @@ export var prefCmds = {
       ?? null; // return null if no property found
   },
 
-  dotSet: function (str, obj) {
-    // Splits the string by each dot
-    return str.split('.')
-      // iterate the string, passing back
-      // the property at each path
-      .reduce((result, path) => {
-        // Trailing dot case
-        if (path === '') return result + '.';
+  dotSet: function (str, val, obj, createNewProperty = false) {
+  let dotSplit = str.split('.');
+  let dotSplitLen = dotSplit.length;
 
+  // Splits the string by each dot
+  return dotSplit
+    // iterate the string, passing back[]
+    // the property at each path
+    .reduce((result, path) => {
+      // We might need to construct object pbranch
+      //console.log("res", result)
+      //console.log("path", path)
+      if (--dotSplitLen) {
+        //console.log("i path", path, result[path])
+        if (result[path] == undefined && createNewProperty) {
+          result[path] = {};
+        console.log("set new branch ", result[path])
+
+        }
         // Return undefined if the path doesn't exist
         return result && result[path];
-      }, obj)
-      ?? null; // return null if no property found
-  },
+      }
+
+        //console.log("f path", path, result[path])
+
+      if ((result[path] != undefined) || createNewProperty) {
+        console.log("set")
+        result[path] = val;
+        return result[path];
+      }
+      return undefined;
+    }, obj)
+    ?? null; // return null if no property found
+},
 
   dotHasOwnProperty: function (str, obj) {
     let dotValue = this.dotGet(str, obj);

@@ -336,9 +336,12 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // Because there will be no iteration over the list, we we can
     // reuse it in _msgIterateBatch
     
+    let mtselectedList = await messenger.mailTabs.getSelectedMessages()
+      console.log("mtsel", mtselectedList)
+
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     if (!selMsgCnt) {
-      //console.log("use sel")
+      console.log("use sel", selMsgCnt)
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
     } else {
       //console.log("use msgList")

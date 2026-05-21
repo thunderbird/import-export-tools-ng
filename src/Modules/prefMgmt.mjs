@@ -182,6 +182,39 @@ const legacyPrefToStorageMap = {
 export async function initializePrefs() {
 
   await prefCmds.init(defaultPrefs);
+  await _migrateLegacyPrefs();
+}
 
+async function _migrateLegacyPrefs() {
+  const addonRootPref = "extensions.importexporttoolsng";
 
+  // first set all userPrefs from legacy map
+  // were also cleaning up names and structure
+
+  let legacyKeys = Object.keys(legacyPrefToStorageMap);
+
+  for (let legacyKey of legacyKeys) {
+    let storageKey = legacyPrefToStorageMap[legacyKey];
+    // depracated legacy prefs will have a null for the storage key
+    // we just delete these
+    if (storageKey != null) {
+      let legacyVal = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.${legacyKey}`);
+      // set the storage pref with createNewProperty = true
+      // since the storage keys don't exist
+      await prefCmds.setPref(storageKey, legacyVal, true);
+    }
+    // clear the legacy pref regardless
+    //messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);
+  }
+
+  // transforms
+  // we need to convert some legacy pref vals to updated vals
+
+  let msgFilenameFormatType = await prefCmds.getPref("export.names.defaults.msgNameFormatType")
+  if (msgFilenameFormatType == 3) {
+    await prefCmds.setPref("export.names.defaults.msgNameFormatType", "custom");
+  } else {
+    await prefCmds.setPref("export.names.defaults.msgNameFormatType", "simple");
+
+  }
 }

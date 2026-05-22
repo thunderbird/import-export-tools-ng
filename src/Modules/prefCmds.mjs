@@ -33,7 +33,7 @@
 // Even though Thunderbird does not actually have a sync backend, storage.sync
 // is not cleared on add-on removal to mimic syncing stored values.
 // Hint: Reloading/Updating an add-on does not clear storage.local.
-const userPrefStorageArea = "sync";
+const userPrefStorageArea = "local";
 
 export var prefCmds = {
 
@@ -54,7 +54,7 @@ export var prefCmds = {
     if (this.dotHasOwnProperty(aName, this._userPrefs)) {
       let userPref = this.dotGet(aName, this._userPrefs);
       if (typeof defaultPref == typeof userPref) {
-        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._defaultPrefs))
+        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._userPrefs))
 
         return userPref;
       }
@@ -120,7 +120,7 @@ export var prefCmds = {
 
     // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {
-      await messenger.storage.onChanged.addListener(this.storageChanged);
+      //await messenger.storage.onChanged.addListener(this.storageChanged);
     }
   },
 

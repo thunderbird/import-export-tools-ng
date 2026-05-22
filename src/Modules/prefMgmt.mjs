@@ -2,6 +2,7 @@
 
 import { prefCmds } from "./prefCmds.mjs";
 
+const addonRootPref = "extensions.importexporttoolsng";
 
 let defaultPrefs = {
   general: {
@@ -187,7 +188,6 @@ export async function initializePrefs() {
 
 
 async function _migrateLegacyPrefs() {
-  const addonRootPref = "extensions.importexporttoolsng";
 
   // first we do some transforms on legacy prefs
   // in case any types have changed
@@ -197,14 +197,14 @@ async function _migrateLegacyPrefs() {
 
   let msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
   console.log(msgFilenameFormatType)
-  
+
   // next set all userPrefs from legacy map
   // were also cleaning up names and structure
 
   let legacyKeys = Object.keys(legacyPrefToStorageMap);
 
   for (let legacyKey of legacyKeys) {
-  let storageKey = legacyPrefToStorageMap[legacyKey];
+    let storageKey = legacyPrefToStorageMap[legacyKey];
     // depracated legacy prefs will have a null for the storage key
     // we just delete these
     if (storageKey != null) {
@@ -226,5 +226,21 @@ async function _migrateLegacyPrefs() {
   msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
   console.log(msgFilenameFormatType)
 
-  
+
 }
+
+// our legacy code side now needs Notify tools to access storage prefs
+messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
+  if (info.command != "Pref_CMD") {
+    return null;
+  }
+
+  let storageKey = legacyPrefToStorageMap[info.prefName];
+
+  switch (info.subcommand) {
+    case "getPref":
+      return prefCmds.getPref(storageKey);
+    case "setPref":
+      return prefCmds.setPref(info.prefName, info.value);
+  }
+});

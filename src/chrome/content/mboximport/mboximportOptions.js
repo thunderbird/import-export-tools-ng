@@ -28,7 +28,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
-var { IETprefs2 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETPrefs.mjs?"
+var { IETPrefs2 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETPrefs.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 function IETsetCharsetPopup(charsetPref) {
@@ -48,6 +48,8 @@ function IETsetCharsetPopup(charsetPref) {
 }
 
 async function initMboxImportPanel() {
+
+    console.log(await IETPrefs2.getComplexPref("extensions.importexporttoolsng.exportEML.dir"))
 
     var IETngVersion = window.opener.ietng.extension.addonData.version;
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);

@@ -86,6 +86,6 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 				return ex;
 			}
 	}
-	return false;
+	return null;
 }
 );

@@ -207,10 +207,10 @@ function dotSet(str, val, obj, createNewProperty = false) {
     // the property at each path
     .reduce((result, path) => {
       // We might need to construct object pbranch
-      //console.log("res", result)
-      //console.log("path", path)
+      console.log("res", result)
+      console.log("path", path)
       if (--dotSplitLen) {
-        //console.log("i path", path, result[path])
+        console.log("i path", path, result[path])
         if (result[path] == undefined && createNewProperty) {
           result[path] = {};
         console.log("set new branch ", result[path])
@@ -220,7 +220,7 @@ function dotSet(str, val, obj, createNewProperty = false) {
         return result && result[path];
       }
 
-        //console.log("f path", path, result[path])
+        console.log("f path", path, result[path])
 
       if ((result[path] != undefined) || createNewProperty) {
         console.log("set")
@@ -288,13 +288,15 @@ df = dotWalk("index.dateFormat", defaultPrefs)
 console.log(df)
 */
 df = dotSet("index.dateFormat2", "77", defaultPrefs)
-console.log(df)
-console.log(defaultPrefs.index.dateFormat)
+//console.log(df)
+//console.log(defaultPrefs.index.dateFormat)
 //console.log(defaultPrefs.index.dateFormat2)
 
 df = dotSet("index.dateFormat2", "88", defaultPrefs, true)
-console.log(df)
+//console.log(df)
 
-df = dotSet("index.group.dateFormat3", "33", defaultPrefs, true)
+let newobj = {}
+
+df = dotSet("index.t1", 77, newobj, true)
 console.log(df)
-console.log(defaultPrefs)
+console.log(newobj)

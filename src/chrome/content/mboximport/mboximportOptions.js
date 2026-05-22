@@ -73,6 +73,7 @@ function initMboxImportPanel() {
     document.getElementById("notificationsForExpFolders").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
     document.getElementById("notificationsForExpSelMsgs").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
 
+    console.log(IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format"));
 
     if (IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
         document.getElementById("customizeFilenames").checked = true;

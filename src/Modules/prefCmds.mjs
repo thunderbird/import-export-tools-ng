@@ -105,15 +105,6 @@ export var prefCmds = {
     // If defaults are given, push them into storage.local
     if (defaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });
-
-      // We need to migration from prefsV1 to prefsV2    
-      for (let prefName of Object.keys(defaults)) {
-        let prefV1Value = (await browser.storage[userPrefStorageArea].get("pref.value." + prefName))["pref.value." + prefName];
-        if (prefV1Value) {
-          await browser.storage[userPrefStorageArea].remove("pref.value." + prefName);
-          prefCmds.setPref(prefName, prefV1Value);
-        }
-      }
     }
 
     this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
@@ -130,9 +121,6 @@ export var prefCmds = {
       // iterate the string, passing back
       // the property at each path
       .reduce((result, path) => {
-        // Trailing dot case
-        if (path === '') return result + '.';
-
         // Return undefined if the path doesn't exist
         return result && result[path];
       }, obj)
@@ -140,7 +128,7 @@ export var prefCmds = {
   },
 
   dotSet: function (str, val, obj, createNewProperty = false) {
-  let dotSplit = str.split('.');
+    let dotSplit = str.split('.');
   let dotSplitLen = dotSplit.length;
 
   // Splits the string by each dot
@@ -148,24 +136,15 @@ export var prefCmds = {
     // iterate the string, passing back[]
     // the property at each path
     .reduce((result, path) => {
-      // We might need to construct object pbranch
-      //console.log("res", result)
-      //console.log("path", path)
+      // We might need to construct new object branch
       if (--dotSplitLen) {
-        //console.log("i path", path, result[path])
         if (result[path] == undefined && createNewProperty) {
           result[path] = {};
-        console.log("set new branch ", result[path])
-
         }
         // Return undefined if the path doesn't exist
         return result && result[path];
       }
-
-        //console.log("f path", path, result[path])
-
       if ((result[path] != undefined) || createNewProperty) {
-        console.log("set")
         result[path] = val;
         return result[path];
       }

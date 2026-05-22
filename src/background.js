@@ -37,7 +37,6 @@ browser.runtime.onInstalled.addListener(async (info) => {
 
 	// add option to not show help - #458
 	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
-	console.log(showOnInstallAndUpdate)
 	if (showOnInstallAndUpdate || showOnInstallAndUpdate == null) {
 		await openHelp({ opentype: "tab" });
 	}
@@ -46,17 +45,7 @@ browser.runtime.onInstalled.addListener(async (info) => {
 async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
 
-	// legacy pref migration for v15
-	//prefMigration.legacyPrefMigration();
-
-
 	await prefMgmt.initializePrefs();
-
-	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
-	console.log(showOnInstallAndUpdate)
-
-	let test  = await prefCmds.getPref("debug.logTypes")
-	console.log(test)
 
 	await browser.LegacyHelper.registerGlobalUrls([
 		["resource", "ietng", "."],

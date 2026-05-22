@@ -28,6 +28,9 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
+var { IETprefs2 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETPrefs.mjs?"
+    + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
 function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
     var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
@@ -44,7 +47,7 @@ function IETsetCharsetPopup(charsetPref) {
     }
 }
 
-function initMboxImportPanel() {
+async function initMboxImportPanel() {
 
     var IETngVersion = window.opener.ietng.extension.addonData.version;
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
@@ -159,7 +162,7 @@ function initMboxImportPanel() {
             }
         }
     }
-    
+
     document.getElementById("customDateFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
     document.getElementById("extendedFormat").value = IETgetComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
@@ -270,7 +273,7 @@ function initMboxImportPanel() {
 
 }
 
-function saveMboxImportPrefs() {
+async function saveMboxImportPrefs() {
     try {
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
@@ -333,7 +336,7 @@ function saveMboxImportPrefs() {
             pattern += val;
         }
         IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
-        
+
 
         IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
         IETsetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
@@ -388,19 +391,19 @@ function customNamesCheck(el) {
         document.getElementById("part1").setAttribute("disabled", "true");
         document.getElementById("part2").setAttribute("disabled", "true");
         document.getElementById("part3").setAttribute("disabled", "true");
-     
+
         // enable extended options
         document.getElementById("useExtendedFormat").setAttribute("checked", "true");
         document.getElementById("extendedFormat").removeAttribute("disabled");
         document.getElementById("extendedFormatLabel").removeAttribute("disabled");
- 
-     
+
+
     } else {
         document.getElementById("addtimeCheckbox").removeAttribute("disabled");
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
         document.getElementById("part3").removeAttribute("disabled");
-        
+
         document.getElementById("customDateFormat").removeAttribute("disabled");
         document.getElementById("customDateLabel").removeAttribute("disabled");
         document.getElementById("extendedFormat").setAttribute("disabled", "true");
@@ -431,8 +434,8 @@ function extendedFormatCheck(el) {
         document.getElementById("part1").removeAttribute("disabled");
         document.getElementById("part2").removeAttribute("disabled");
         document.getElementById("part3").removeAttribute("disabled");
-        
-        
+
+
     }
 }
 
@@ -478,12 +481,12 @@ async function openHelpBM(bookmark) {
     await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
 }
 
-document.addEventListener("dialogaccept", function (event) {
-    saveMboxImportPrefs();
+document.addEventListener("dialogaccept", async function (event) {
+    await saveMboxImportPrefs();
 });
 
-window.addEventListener("load", function (event) {
-    initMboxImportPanel();
+window.addEventListener("load", async function (event) {
+    await initMboxImportPanel();
 });
 
 document.addEventListener('DOMContentLoaded', () => {

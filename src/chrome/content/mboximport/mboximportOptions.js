@@ -28,13 +28,13 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
-var { IETPrefs2 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETPrefs.mjs?"
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 async function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
     var charsetList = IETgetComplexPref("extensions.importexporttoolsng.export.charset_list");
-    
+
     //var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
     var charsetItems = charsetList.split(",");
     var menuitem;
@@ -106,7 +106,7 @@ async function initMboxImportPanel() {
     }
 
     //if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
-        document.getElementById("export_eml_dir").value = await IETPrefs2.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
+    document.getElementById("export_eml_dir").value = await IETPrefs2.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
         document.getElementById("export_eml_dir").removeAttribute("disabled");
@@ -315,22 +315,16 @@ async function saveMboxImportPrefs() {
 
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
-        if (document.getElementById("export_mbox_dir").value !== "")
-            IETsetComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
-        else
-            IETprefs.deleteBranch("extensions.importexporttoolsng.exportMBOX.dir");
+        IETsetComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
         //if (document.getElementById("export_eml_dir").value !== "")
-            await IETPrefs2.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
+        await IETPrefs2.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
         //else
-          //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
+        //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
-        if (document.getElementById("export_msgs_dir").value !== "")
-            IETsetComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
-        else
-            IETprefs.deleteBranch("extensions.importexporttoolsng.exportMSG.dir");
+        IETsetComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
 
         var pattern = "";
         for (let u = 1; u < 4; u++) {

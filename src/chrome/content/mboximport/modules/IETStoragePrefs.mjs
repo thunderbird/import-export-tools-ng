@@ -1,9 +1,9 @@
-// IETPrefs.mjs
+// IETStoragePrefs.mjs
 
 const addonRootPref = "extensions.importexporttoolsng.";
 var win = Services.wm.getMostRecentWindow("mail:3pane").top;
 
-export var IETPrefs2 = {
+export var IETStoragePrefs = {
 
   getBoolPref: async function (prefName) {
     let shortPrefName = prefName.split(addonRootPref)[1];

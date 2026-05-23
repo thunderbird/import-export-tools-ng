@@ -62,7 +62,7 @@ export var prefCmds = {
     }
 
     // Fallback to default value.
-    console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
+    //console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
     return defaultPref;
   },
 

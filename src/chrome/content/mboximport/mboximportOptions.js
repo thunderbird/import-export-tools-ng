@@ -31,9 +31,11 @@ var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mbo
 var { IETPrefs2 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETPrefs.mjs?"
     + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
-function IETsetCharsetPopup(charsetPref) {
+async function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
-    var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
+    var charsetList = IETgetComplexPref("extensions.importexporttoolsng.export.charset_list");
+    
+    //var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
     var charsetItems = charsetList.split(",");
     var menuitem;
 
@@ -103,8 +105,8 @@ async function initMboxImportPanel() {
         document.getElementById("export_mbox_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
-    if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
-        document.getElementById("export_eml_dir").value = IETgetComplexPref("extensions.importexporttoolsng.exportEML.dir");
+    //if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
+        document.getElementById("export_eml_dir").value = await IETPrefs2.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
         document.getElementById("export_eml_dir").removeAttribute("disabled");
@@ -204,8 +206,8 @@ async function initMboxImportPanel() {
     }
 
 
-    IETsetCharsetPopup(textCharset);
-    //document.getElementById("filenameCharset").value = charset;
+    await IETsetCharsetPopup(textCharset);
+
     document.getElementById("csvSep").value = csvSep;
 
     document.getElementById("skipMsg").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
@@ -319,10 +321,10 @@ async function saveMboxImportPrefs() {
             IETprefs.deleteBranch("extensions.importexporttoolsng.exportMBOX.dir");
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
-        if (document.getElementById("export_eml_dir").value !== "")
-            IETsetComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
-        else
-            IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
+        //if (document.getElementById("export_eml_dir").value !== "")
+            await IETPrefs2.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
+        //else
+          //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
         if (document.getElementById("export_msgs_dir").value !== "")

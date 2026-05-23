@@ -3,7 +3,7 @@
 const addonRootPref = "extensions.importexporttoolsng.";
 var win = Services.wm.getMostRecentWindow("mail:3pane").top;
 
-export var IETPrefs = {
+export var IETPrefs2 = {
 
   getBoolPref: async function (prefName) {
     let shortPrefName = prefName.split(addonRootPref)[1];
@@ -36,7 +36,7 @@ export var IETPrefs = {
     let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
-      subcommand: "getPref",
+      subcommand: "setPref",
       prefName: shortPrefName,
       prefValue: prefValue
     });
@@ -46,7 +46,7 @@ export var IETPrefs = {
     let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
-      subcommand: "getPref",
+      subcommand: "setPref",
       prefName: shortPrefName,
       prefValue: prefValue
     });
@@ -56,7 +56,7 @@ export var IETPrefs = {
     let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
-      subcommand: "getPref",
+      subcommand: "setPref",
       prefName: shortPrefName,
       prefValue: prefValue
     });

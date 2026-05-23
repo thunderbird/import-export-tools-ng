@@ -230,6 +230,7 @@ async function _migrateLegacyPrefs() {
 }
 
 // our legacy code side now needs Notify tools to access storage prefs
+// Note: this will be eliminated once all legacy code updated
 messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
   if (info.command != "Pref_CMD") {
     return null;
@@ -241,6 +242,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     case "getPref":
       return prefCmds.getPref(storageKey);
     case "setPref":
-      return prefCmds.setPref(info.prefName, info.value);
+      return prefCmds.setPref(storageKey, info.prefValue);
   }
+  return null;
 });

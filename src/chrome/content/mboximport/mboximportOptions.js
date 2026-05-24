@@ -62,23 +62,23 @@ async function initMboxImportPanel() {
         document.documentElement.style.setProperty("--question-height", "28px");
     }
 
-    document.getElementById("useMboxExt").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
-    document.getElementById("MBoverwrite").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
-    document.getElementById("MBasciiname").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
-    document.getElementById("MBhtmlasdisplayed").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
-    document.getElementById("MBcliptextplain").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
+    document.getElementById("useMboxExt").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
+    document.getElementById("MBoverwrite").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
+    document.getElementById("MBasciiname").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+    document.getElementById("MBhtmlasdisplayed").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+    document.getElementById("MBcliptextplain").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
     document.getElementById("MBsubmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
     document.getElementById("MBauthmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
     document.getElementById("MBrecmaxlen").value = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
-    document.getElementById("setTimestamp").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
-    document.getElementById("openHelpInWin").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
+    document.getElementById("setTimestamp").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
+    document.getElementById("openHelpInWin").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
     // new v15 options
     document.getElementById("loggingOptions").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.debug.logTypes");
 
     // ui
-    document.getElementById("notificationsForExpFolders").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
-    document.getElementById("notificationsForExpSelMsgs").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
+    document.getElementById("notificationsForExpFolders").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
+    document.getElementById("notificationsForExpSelMsgs").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
 
     console.log(IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format"));
 
@@ -94,7 +94,7 @@ async function initMboxImportPanel() {
         document.getElementById("useExtendedFormat").removeAttribute("checked");
 
     document.getElementById("export_mbox_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
-    if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
         document.getElementById("use_export_mbox_dir").checked = true;
         document.getElementById("export_mbox_dir").removeAttribute("disabled");
         document.getElementById("export_mbox_dir").nextElementSibling.removeAttribute("disabled");
@@ -105,7 +105,7 @@ async function initMboxImportPanel() {
     }
 
     document.getElementById("export_eml_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
-    if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
         document.getElementById("export_eml_dir").removeAttribute("disabled");
         document.getElementById("export_eml_dir").nextElementSibling.removeAttribute("disabled");
@@ -116,7 +116,7 @@ async function initMboxImportPanel() {
     }
 
     document.getElementById("export_msgs_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMSG.dir");
-    if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
         document.getElementById("export_msgs_dir").removeAttribute("disabled");
         document.getElementById("export_msgs_dir").nextElementSibling.removeAttribute("disabled");
@@ -176,12 +176,12 @@ async function initMboxImportPanel() {
     document.getElementById("attFolderFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
     document.getElementById("inlineAttFolderFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
-    document.getElementById("utf16-filter").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16");
-    document.getElementById("latinize-transform").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize");
+    document.getElementById("utf16-filter").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16");
+    document.getElementById("latinize-transform").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize");
     document.getElementById("character-filter").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_filter_characters");
 
 
-    document.getElementById("cutFN").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
+    document.getElementById("cutFN").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
     customNamesCheck(document.getElementById("customizeFilenames"));
     extendedFormatCheck(document.getElementById("useExtendedFormat"));
 
@@ -205,8 +205,8 @@ async function initMboxImportPanel() {
 
     document.getElementById("csvSep").value = csvSep;
 
-    document.getElementById("skipMsg").checked = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
-    if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder")) {
+    document.getElementById("skipMsg").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder")) {
         document.getElementById("indexSetting").selectedIndex = 0;
         document.getElementById("skipMsg").disabled = true;
     } else {

@@ -122,6 +122,7 @@ let defaultPrefs = {
     export_HTML_as_displayed: false,
     export_skip_existing_msg: false,
     export_cut_filename: true,
+    clipboard_always_just_text: false,
   },
 };
 
@@ -179,6 +180,8 @@ const legacyPrefToStorageMap = {
   "export.attachments.containerStructure": "export.general.msgAndAttachmentsStructure",
   "export.HTML_as_displayed": "temp.export_HTML_as_displayed",
   "export.skip_existing_msg": "temp.export_skip_existing_msg",
+  "clipboard.always_just_text": "temp.clipboard_always_just_text",
+
 };
 
 

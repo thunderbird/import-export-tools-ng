@@ -214,6 +214,7 @@ async function _migrateLegacyPrefs() {
     // we just delete these
     if (storageKey != null) {
       let legacyVal = await messenger.LegacyPrefs.getPref(`${addonRootPref}.${legacyKey}`);
+      console.log("init from", legacyKey, legacyVal)
       // set the storage pref with createNewProperty = true
       // since the storage keys don't exist
       await prefCmds.setPref(storageKey, legacyVal, true);

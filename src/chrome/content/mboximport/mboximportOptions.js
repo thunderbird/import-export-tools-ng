@@ -35,7 +35,7 @@ async function IETsetCharsetPopup(charsetPref) {
     var charsetPopup = document.getElementById("charset-list-popup");
     var charsetList = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.charset_list");
 
-    //var charsetList = IETprefs.getCharPref("extensions.importexporttoolsng.export.charset_list");
+    //var charsetList = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.charset_list");
     var charsetItems = charsetList.split(",");
     var menuitem;
 
@@ -131,7 +131,7 @@ async function initMboxImportPanel() {
     }
 
     if (IETprefs.getPrefType("extensions.importexporttoolsng.export.filename_pattern") > 0) {
-        var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
+        var pattern = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_pattern");
         var patternParts = pattern.split("-");
 
         for (var i = 0; i < 3; i++) {
@@ -197,8 +197,8 @@ async function initMboxImportPanel() {
     var csvSep = "";
 
     try {
-        textCharset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
-        csvSep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
+        textCharset = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.text_plain_charset");
+        csvSep = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.csv_separator");
     } catch (e) {
         //charset = "";
         textCharset = "";

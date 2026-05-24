@@ -242,6 +242,10 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
 
   let storageKey = legacyPrefToStorageMap[info.prefName];
 
+  if (storageKey == undefined) {
+    console.error("unkown pref map:", info.prefName);
+    return undefined;
+  }
   switch (info.subcommand) {
     case "getPref":
       return prefCmds.getPref(storageKey);

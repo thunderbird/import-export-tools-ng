@@ -93,8 +93,7 @@ async function initMboxImportPanel() {
     else
         document.getElementById("useExtendedFormat").removeAttribute("checked");
 
-    if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMBOX.dir") > 0)
-        document.getElementById("export_mbox_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
+    document.getElementById("export_mbox_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
         document.getElementById("use_export_mbox_dir").checked = true;
         document.getElementById("export_mbox_dir").removeAttribute("disabled");
@@ -105,7 +104,6 @@ async function initMboxImportPanel() {
         document.getElementById("export_mbox_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
-    //if (IETprefs.getPrefType("extensions.importexporttoolsng.exportEML.dir") > 0)
     document.getElementById("export_eml_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
         document.getElementById("use_export_eml_dir").checked = true;
@@ -117,9 +115,7 @@ async function initMboxImportPanel() {
         document.getElementById("export_eml_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
-    if (IETprefs.getPrefType("extensions.importexporttoolsng.exportMSG.dir") > 0)
-
-        document.getElementById("export_msgs_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMSG.dir");
+    document.getElementById("export_msgs_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMSG.dir");
     if (IETprefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
         document.getElementById("use_export_msgs_dir").checked = true;
         document.getElementById("export_msgs_dir").removeAttribute("disabled");
@@ -130,42 +126,41 @@ async function initMboxImportPanel() {
         document.getElementById("export_msgs_dir").nextElementSibling.setAttribute("disabled", "true");
     }
 
-    if (IETprefs.getPrefType("extensions.importexporttoolsng.export.filename_pattern") > 0) {
-        var pattern = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_pattern");
-        var patternParts = pattern.split("-");
+    var pattern = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_pattern");
+    var patternParts = pattern.split("-");
 
-        for (var i = 0; i < 3; i++) {
-            var list = document.getElementById(`part${i + 1}`);
-            var popup = document.getElementById(`part${i + 1}-popup-list`);
+    for (var i = 0; i < 3; i++) {
+        var list = document.getElementById(`part${i + 1}`);
+        var popup = document.getElementById(`part${i + 1}-popup-list`);
 
-            switch (patternParts[i]) {
-                case "%d":
-                    list.selectedItem = popup.childNodes[1];
-                    break;
-                case "%D":
-                    list.selectedItem = popup.childNodes[2];
-                    break;
-                case "%k":
-                    list.selectedItem = popup.childNodes[3];
-                    break;
-                case "%n":
-                    list.selectedItem = popup.childNodes[4];
-                    break;
-                case "%a":
-                    list.selectedItem = popup.childNodes[5];
-                    break;
-                case "%r":
+        switch (patternParts[i]) {
+            case "%d":
+                list.selectedItem = popup.childNodes[1];
+                break;
+            case "%D":
+                list.selectedItem = popup.childNodes[2];
+                break;
+            case "%k":
+                list.selectedItem = popup.childNodes[3];
+                break;
+            case "%n":
+                list.selectedItem = popup.childNodes[4];
+                break;
+            case "%a":
+                list.selectedItem = popup.childNodes[5];
+                break;
+            case "%r":
 
-                    list.selectedItem = popup.childNodes[6];
-                    break;
-                case "%e":
-                    list.selectedItem = popup.childNodes[7];
-                    break;
-                default:
-                    list.selectedItem = popup.childNodes[0];
-            }
+                list.selectedItem = popup.childNodes[6];
+                break;
+            case "%e":
+                list.selectedItem = popup.childNodes[7];
+                break;
+            default:
+                list.selectedItem = popup.childNodes[0];
         }
     }
+
 
     document.getElementById("customDateFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
     document.getElementById("extendedFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_extended_format");

@@ -241,7 +241,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     return null;
   }
 
-        console.log("getStoragePref", info.prefName)
+  console.log("getStoragePref", info.prefName)
 
   let storageKey = legacyPrefToStorageMap[info.prefName];
 

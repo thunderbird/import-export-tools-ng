@@ -71,6 +71,8 @@ export var prefCmds = {
   setPref: function (aName, aValue, createNewProperty = false) {
     this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
     messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
+    console.log("setPref:", aName, "userPref:", this.dotGet(aName, this._userPrefs))
+
   },
 
   // Remove a preference (calls to getPref will return default value)

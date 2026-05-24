@@ -43,6 +43,7 @@ export var prefCmds = {
   // Get pref value from local pref obj.
   getPref: function (aName, aFallback = null) {
     // Get defaultPref.
+        console.log("getPref", aName, "userPref:")
 
     //let defaultPref = (this.dotWalk(aName, this._defaultPrefs) || this.dotWalk(aName, this._defaultPrefs) === "")
     let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
@@ -62,7 +63,7 @@ export var prefCmds = {
     }
 
     // Fallback to default value.
-    //console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
+    console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
     return defaultPref;
   },
 
@@ -116,6 +117,9 @@ export var prefCmds = {
   },
 
   dotGet: function (str, obj) {
+    console.log("dotget")
+    let dotSplit = str.split('.');
+
     // Splits the string by each dot
     return str.split('.')
       // iterate the string, passing back

@@ -99,6 +99,7 @@ let defaultPrefs = {
       last: 0,
       type: 0,
       frequency: 0,
+      dir: "",
       dir_name_type: 0,
       save_mode: 2,
       dir_custom_name: "customName",
@@ -159,6 +160,7 @@ const legacyPrefToStorageMap = {
   "autobackup.type": "autobackup.temp.type",
   "autobackup.frequency": "autobackup.temp.frequency",
   "autobackup.dir_name_type": "autobackup.temp.dir_name_type",
+  "autobackup.dir": "autobackup.temp.dir",
   "autobackup.save_mode": "autobackup.temp.save_mode",
   "autobackup.dir_custom_name": "autobackup.temp.dir_custom_name",
   "autobackup.retainNumBackups": "autobackup.temp.retainNumBackups",
@@ -235,6 +237,8 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
   if (info.command != "Pref_CMD") {
     return null;
   }
+
+        console.log("getStoragePref", info.prefName)
 
   let storageKey = legacyPrefToStorageMap[info.prefName];
 

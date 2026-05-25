@@ -279,9 +279,9 @@ async function saveMboxImportPrefs() {
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed", document.getElementById("MBhtmlasdisplayed").checked);
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.clipboard.always_just_text", document.getElementById("MBcliptextplain").checked);
-        IETprefs.setIntPref("extensions.importexporttoolsng.subject.max_length", document.getElementById("MBsubmaxlen").value);
-        IETprefs.setIntPref("extensions.importexporttoolsng.author.max_length", document.getElementById("MBauthmaxlen").value);
-        IETprefs.setIntPref("extensions.importexporttoolsng.recipients.max_length", document.getElementById("MBrecmaxlen").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.subject.max_length", document.getElementById("MBsubmaxlen").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.author.max_length", document.getElementById("MBauthmaxlen").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.recipients.max_length", document.getElementById("MBrecmaxlen").value);
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.set_filetime", document.getElementById("setTimestamp").checked);
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
 
@@ -301,11 +301,11 @@ async function saveMboxImportPrefs() {
         }
 
         if (document.getElementById("customizeFilenames").checked)
-            IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
         else if (document.getElementById("useExtendedFormat").checked) {
-            IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
         } else
-            IETprefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
 
 
 
@@ -354,14 +354,14 @@ async function saveMboxImportPrefs() {
 
         // Backup section
         if (!document.getElementById("backupEnable").checked)
-            IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
         else
-            IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
         if (document.getElementById("backupDir").value)
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
         else
             IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir");
-        IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
         if (document.getElementById("backupCustomName").value != "") {
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
         } else {
@@ -370,9 +370,9 @@ async function saveMboxImportPrefs() {
 
 
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
-        IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
-        IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
-        IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
         window.close();
 
     } catch (ex) {

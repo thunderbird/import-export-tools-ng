@@ -43,7 +43,6 @@ export var prefCmds = {
   // Get pref value from local pref obj.
   getPref: function (aName, aFallback = null) {
     // Get defaultPref.
-        console.log("getPref", aName, "userPref:")
 
     //let defaultPref = (this.dotWalk(aName, this._defaultPrefs) || this.dotWalk(aName, this._defaultPrefs) === "")
     let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
@@ -72,7 +71,7 @@ export var prefCmds = {
     this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
     messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
     console.log("setPref:", aName, "userPref:", this.dotGet(aName, this._userPrefs))
-
+    return aValue;
   },
 
   // Remove a preference (calls to getPref will return default value)
@@ -119,9 +118,6 @@ export var prefCmds = {
   },
 
   dotGet: function (str, obj) {
-    console.log("dotget")
-    let dotSplit = str.split('.');
-
     // Splits the string by each dot
     return str.split('.')
       // iterate the string, passing back

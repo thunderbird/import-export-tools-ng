@@ -54,7 +54,7 @@ export var IETStoragePrefs = {
 
   setComplexPref: async function (prefName, prefValue) {
     let shortPrefName = prefName.split(addonRootPref)[1];
-    return win.ietngAddon.notifyTools.notifyBackground({
+    return await win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "setPref",
       prefName: shortPrefName,

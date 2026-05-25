@@ -13,7 +13,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* global IETprefs, await IETStoragePrefs.getComplexPref, IETsetComplexPref, browser */
+/* global IETprefs, await IETStoragePrefs.getComplexPref, await IETStoragePrefs.setComplexPref, browser */
 
 var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
@@ -286,8 +286,8 @@ async function saveMboxImportPrefs() {
         IETprefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
 
         // new v15 options
-        IETsetComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
 
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
         // ui
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders", document.getElementById("notificationsForExpFolders").checked);
@@ -295,9 +295,9 @@ async function saveMboxImportPrefs() {
 
         // v15 attachments containerStructure
         if (document.getElementById("saveAttsInMsgDir").checked == true) {
-            IETsetComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "inMsgDir");
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "inMsgDir");
         } else {
-            IETsetComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
         }
 
         if (document.getElementById("customizeFilenames").checked)
@@ -310,7 +310,7 @@ async function saveMboxImportPrefs() {
 
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
-        IETsetComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
         //if (document.getElementById("export_eml_dir").value !== "")
@@ -319,7 +319,7 @@ async function saveMboxImportPrefs() {
         //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
-        IETsetComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
 
         var pattern = "";
         for (let u = 1; u < 4; u++) {
@@ -331,17 +331,17 @@ async function saveMboxImportPrefs() {
         IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
 
 
-        IETsetComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
-        IETsetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
 
-        IETsetComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
 
-        IETsetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
-        IETsetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
-        IETsetComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
 
         IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
         IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
@@ -358,14 +358,14 @@ async function saveMboxImportPrefs() {
         else
             IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
         if (document.getElementById("backupDir").value)
-            IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
         else
             IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir");
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
         if (document.getElementById("backupCustomName").value != "") {
-            IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
         } else {
-            IETsetComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", "customName");
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", "customName");
         }
 
 
@@ -373,7 +373,10 @@ async function saveMboxImportPrefs() {
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
+        window.close();
+
     } catch (ex) {
+        console.log(ex)
         Services.prompt.alert(window, "Error", ex.message + "\n\n" + ex.stack);
     }
 }
@@ -473,10 +476,6 @@ async function openHelpBM(bookmark) {
     let win = getMail3Pane();
     await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
 }
-
-document.addEventListener("dialogaccept", async function (event) {
-    await saveMboxImportPrefs();
-});
 
 window.addEventListener("load", async function (event) {
     await initMboxImportPanel();

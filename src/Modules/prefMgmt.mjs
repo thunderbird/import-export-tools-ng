@@ -214,7 +214,9 @@ async function _migrateLegacyPrefs() {
     // we just delete these
     if (storageKey != null) {
       let legacyVal = await messenger.LegacyPrefs.getPref(`${addonRootPref}.${legacyKey}`);
-      console.log("init from", legacyKey, legacyVal)
+      let legacyValU = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.${legacyKey}`);
+
+      console.log("init from", legacyKey, legacyVal, legacyValU)
       // set the storage pref with createNewProperty = true
       // since the storage keys don't exist
       await prefCmds.setPref(storageKey, legacyVal, true);
@@ -223,6 +225,7 @@ async function _migrateLegacyPrefs() {
     //messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);
   }
 
+  /*
   if (msgFilenameFormatType == 3) {
     await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom");
   } else {
@@ -231,7 +234,7 @@ async function _migrateLegacyPrefs() {
 
   msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
   console.log(msgFilenameFormatType)
-
+*/
 
 }
 
@@ -254,7 +257,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     case "getPref":
       return prefCmds.getPref(storageKey);
     case "setPref":
-      return prefCmds.setPref(storageKey, info.prefValue);
+      return await prefCmds.setPref(storageKey, info.prefValue);
   }
   return null;
 });

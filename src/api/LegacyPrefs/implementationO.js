@@ -107,19 +107,14 @@ var LegacyPrefs = class extends ExtensionCommon.ExtensionAPI {
           switch (prefType) {
             case Services.prefs.PREF_STRING:
               value = Services.prefs.getStringPref(aName, aFallback);
-              console.log("string", aName, value)
               break;
 
             case Services.prefs.PREF_INT:
               value = Services.prefs.getIntPref(aName, aFallback);
-              console.log("int", aName, value)
-
               break;
 
             case Services.prefs.PREF_BOOL:
               value = Services.prefs.getBoolPref(aName, aFallback);
-              console.log("bool", aName, value)
-
               break;
 
             default:

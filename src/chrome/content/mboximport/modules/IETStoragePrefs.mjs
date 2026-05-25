@@ -44,11 +44,15 @@ export var IETStoragePrefs = {
 
   setIntPref: async function (prefName, prefValue) {
     let shortPrefName = prefName.split(addonRootPref)[1];
+    let prefValueNum = Number(prefValue);
+    if (isNaN(prefValueNum)) {
+      prefValueNum = 0;
+    }
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "setPref",
       prefName: shortPrefName,
-      prefValue: prefValue
+      prefValue: prefValueNum
     });
   },
 

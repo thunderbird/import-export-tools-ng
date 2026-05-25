@@ -274,24 +274,24 @@ async function initMboxImportPanel() {
 
 async function saveMboxImportPrefs() {
     try {
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed", document.getElementById("MBhtmlasdisplayed").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.clipboard.always_just_text", document.getElementById("MBcliptextplain").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed", document.getElementById("MBhtmlasdisplayed").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.clipboard.always_just_text", document.getElementById("MBcliptextplain").checked);
         IETprefs.setIntPref("extensions.importexporttoolsng.subject.max_length", document.getElementById("MBsubmaxlen").value);
         IETprefs.setIntPref("extensions.importexporttoolsng.author.max_length", document.getElementById("MBauthmaxlen").value);
         IETprefs.setIntPref("extensions.importexporttoolsng.recipients.max_length", document.getElementById("MBrecmaxlen").value);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.set_filetime", document.getElementById("setTimestamp").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.set_filetime", document.getElementById("setTimestamp").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
 
         // new v15 options
 
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
         // ui
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders", document.getElementById("notificationsForExpFolders").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", document.getElementById("notificationsForExpSelMsgs").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders", document.getElementById("notificationsForExpFolders").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", document.getElementById("notificationsForExpSelMsgs").checked);
 
         // v15 attachments containerStructure
         if (document.getElementById("saveAttsInMsgDir").checked == true) {
@@ -309,16 +309,16 @@ async function saveMboxImportPrefs() {
 
 
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
         //if (document.getElementById("export_eml_dir").value !== "")
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
         //else
         //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
 
         var pattern = "";
@@ -339,18 +339,18 @@ async function saveMboxImportPrefs() {
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
         IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
         IETprefs.setCharPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
 
         if (document.getElementById("indexSetting").selectedIndex === 0)
-            IETprefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", true);
+            await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", true);
         else
-            IETprefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
+            await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
 
         // Backup section
         if (!document.getElementById("backupEnable").checked)
@@ -369,7 +369,7 @@ async function saveMboxImportPrefs() {
         }
 
 
-        IETprefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
         IETprefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);

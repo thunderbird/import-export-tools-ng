@@ -47,7 +47,7 @@ IETlogger,
 IETcopyStrToClip,
 MsgHdrToMimeMessage,
 findGoodFolderName,
-IETgetComplexPref,
+await IETStoragePrefs.getComplexPref,
 constructAttachmentsFilename,
 gTabmail,
 */
@@ -893,7 +893,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 
 	// Custom date format
 	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
-	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+	var customDateFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
 	var myDate = new Date();
 	var titleDate;
 
@@ -1067,7 +1067,7 @@ async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
-	var sep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
+	var sep = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
 	// Build the index CSV page
@@ -1152,7 +1152,7 @@ async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
 
-		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+		var customDateFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
 		var msgDate = new Date(time / 1000);
 		var csvDate;
 
@@ -1467,7 +1467,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									var att = attachments[i];
 									if (noDir) {
 										var attDirContainer = file.clone();
-										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+										var attachmentsExtendedFilenameFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
 
 										if (attachmentsExtendedFilenameFormat === "") {
 											attDirContainer.append("Attachments");
@@ -1713,7 +1713,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								for (var i = 0; i < imgs.length; i++) {
 									if (!embImgContainer) {
 										embImgContainer = file.clone();
-										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+										var attachmentsExtendedFilenameFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
 										if (attachmentsExtendedFilenameFormat === "") {
 											embImgContainer.append("EmbeddedImages");
@@ -2207,7 +2207,7 @@ async function IETwriteDataOnDisk(file, data, append, fname, time) {
 
 async function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
 	var os;
-	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
+	var charset = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.text_plain_charset");
 	if (charsetOverride) {
 		charset = charsetOverride;
 	}

@@ -1051,7 +1051,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 
 	}
 	data = data + "</table></body></html>";
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
+	await IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
 	return { status: kStatusOK };
 }
 
@@ -1181,7 +1181,7 @@ async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
+	await IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
 	return { status: kStatusOK };
 }
 
@@ -1251,7 +1251,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							var fileClone = file.clone();
 							data = data.replace(/\r\n/g, "\n");
 
-							IETwriteDataOnDisk(fileClone, data, true, null, null);
+							await IETwriteDataOnDisk(fileClone, data, true, null, null);
 							sub = true;
 						} else {
 							if (!hdrArray) {
@@ -1284,7 +1284,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 								clone.append(sub + ".eml");
 								clone.createUnique(0, 0o644);
 								var time = (hdr.dateInSeconds) * 1000;
-								IETwriteDataOnDisk(clone, data, false, null, time);
+								await IETwriteDataOnDisk(clone, data, false, null, time);
 								// myEMLlistener.file2 exists just if we need the index
 								if (myEMLlistner.file2) {
 									var nameNoExt = clone.leafName.replace(/\.eml$/, "");
@@ -1859,12 +1859,12 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							data = data + "\r\n\r\n" + "-------------------------";
 
 							var nfile = appendClone.leafName + ".txt";
-							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
+							await IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 						} else if (convertToText) {
-							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
+							await IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 						} else {
 							data = IETconvertToUTF8(data);
-							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
+							await IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
 						}
 
 						IETexported = IETexported + 1;
@@ -2184,7 +2184,7 @@ function IETdeletestatus(text) {
 	}
 }
 
-function IETwriteDataOnDisk(file, data, append, fname, time) {
+async function IETwriteDataOnDisk(file, data, append, fname, time) {
 	try {
 		IETlogger.write("call to IETwriteDataOnDisk - file path = " + file.path);
 	} catch (e) {
@@ -2205,7 +2205,7 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 		file.lastModifiedTime = time;
 }
 
-function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
+async function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
 	var os;
 	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
 	if (charsetOverride) {
@@ -2221,7 +2221,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		os = Cc["@mozilla.org/intl/converter-output-stream;1"]
 			.createInstance(Ci.nsIConverterOutputStream);
 	} catch (e) {
-		IETwriteDataOnDisk(file, data, append, fname, time);
+		await IETwriteDataOnDisk(file, data, append, fname, time);
 		return;
 	}
 	var foStream = Cc["@mozilla.org/network/file-output-stream;1"]

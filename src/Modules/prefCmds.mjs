@@ -33,7 +33,7 @@
 // Even though Thunderbird does not actually have a sync backend, storage.sync
 // is not cleared on add-on removal to mimic syncing stored values.
 // Hint: Reloading/Updating an add-on does not clear storage.local.
-const userPrefStorageArea = "sync";
+const userPrefStorageArea = "local";
 
 export var prefCmds = {
 

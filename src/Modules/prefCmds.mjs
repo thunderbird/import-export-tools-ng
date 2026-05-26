@@ -66,6 +66,28 @@ export var prefCmds = {
     return defaultPref;
   },
 
+  // Get user pref value from local pref obj.
+  getUserPref: function (aName, aFallback = null) {
+    let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
+      ? this.dotGet(aName, this._defaultPrefs)
+      : aFallback;
+
+    // Check if userPref type is defaultPref type and return default if no match.
+    if (this.dotHasOwnProperty(aName, this._userPrefs)) {
+      let userPref = this.dotGet(aName, this._userPrefs);
+      if (typeof defaultPref == typeof userPref) {
+        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._userPrefs))
+
+        return userPref;
+      } else if (userPref != undefined) {
+        console.log("Type of defaultPref <" + defaultPref + ":" + typeof defaultPref + "> does not match type of userPref <" + userPref + ":" + typeof userPref + ">. Fallback to defaultPref.")
+      }
+    }
+
+    console.log("getPref:", aName, "userPref", this.dotGet(aName, this._userPrefs))
+    return null;
+  },
+
   // Set pref value by updating local pref obj and updating storage.
   setPref: async function (aName, aValue, createNewProperty = false) {
     this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
@@ -136,29 +158,29 @@ export var prefCmds = {
 
   dotSet: function (str, val, obj, createNewProperty = false) {
     let dotSplit = str.split('.');
-  let dotSplitLen = dotSplit.length;
+    let dotSplitLen = dotSplit.length;
 
-  // Splits the string by each dot
-  return dotSplit
-    // iterate the string, passing back[]
-    // the property at each path
-    .reduce((result, path) => {
-      // We might need to construct new object branch
-      if (--dotSplitLen) {
-        if (result[path] == undefined && createNewProperty) {
-          result[path] = {};
+    // Splits the string by each dot
+    return dotSplit
+      // iterate the string, passing back[]
+      // the property at each path
+      .reduce((result, path) => {
+        // We might need to construct new object branch
+        if (--dotSplitLen) {
+          if (result[path] == undefined && createNewProperty) {
+            result[path] = {};
+          }
+          // Return undefined if the path doesn't exist
+          return result && result[path];
         }
-        // Return undefined if the path doesn't exist
-        return result && result[path];
-      }
-      if ((result[path] != undefined) || createNewProperty) {
-        result[path] = val;
-        return result[path];
-      }
-      return undefined;
-    }, obj)
-    ?? null; // return null if no property found
-},
+        if ((result[path] != undefined) || createNewProperty) {
+          result[path] = val;
+          return result[path];
+        }
+        return undefined;
+      }, obj)
+      ?? null; // return null if no property found
+  },
 
   dotHasOwnProperty: function (str, obj) {
     let dotValue = this.dotGet(str, obj);

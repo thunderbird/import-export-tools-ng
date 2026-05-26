@@ -582,10 +582,10 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	IETskipped = 0;
 
 	var hdrArray = [];
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var useContainer = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
 	if (useContainer && !containerOverride) {
 
@@ -694,11 +694,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	}
 	var hdrArray = [];
 
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
-	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
+	var useContainer = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var skipExistingMsg = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
 	if (useContainer && !overrideContainer) {
@@ -887,7 +887,7 @@ var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXH
 
 async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
-	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
+	if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return { status: kStatusOK };
 
 
@@ -916,7 +916,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 	clone2.createUnique(0, 0o644);
 
 	var date_received_hdr = "";
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+	if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
 		date_received_hdr = " (" + ietngUtils.localizeMsg("Received") + ")";
 	}
 
@@ -1749,7 +1749,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										const embImgsUrlListener = {
 											OnStartRunningUrl(url) { },
 											OnStopRunningUrl(url, status) {
-												if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+												if (time && !await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 													return;
 												}
 												let curAtt = imgAtts.find((att) => {
@@ -1924,7 +1924,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 
 			// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-			var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+			var HTMLasView = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
 			// For additional headers see http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 			if (!HTMLasView && !convertToText && !copyToClip)
 				uri = uri + "?header=saveas";
@@ -1953,7 +1953,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			insert a preference to use it anyway.
 			*/
 
-			var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
+			var useConverter = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
 			if (hdr.folder.server.type === "nntp" || useConverter) {
 				var nsURI = Cc["@mozilla.org/network/io-service;1"]
 					.getService(Ci.nsIIOService).newURI(uri, null, null);
@@ -2201,7 +2201,7 @@ async function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
+	if (time && await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
@@ -2239,7 +2239,7 @@ async function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, ch
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+	if (time && await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 		file.lastModifiedTime = time;
 	}
 }
@@ -2536,7 +2536,7 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
 
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+	if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
 		var time2 = msg.getUint32Property('dateReceived');
 		time = time2 * 1000 * 1000;
 	}

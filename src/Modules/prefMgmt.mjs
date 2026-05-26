@@ -203,6 +203,14 @@ async function _migrateLegacyPrefs() {
   let msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
   console.log(msgFilenameFormatType)
 
+  if (msgFilenameFormatType == 3) {
+    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom", true);
+  } else {
+    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple", true);
+  }
+  msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
+  console.log(msgFilenameFormatType)
+
   // next set all userPrefs from legacy map
   // were also cleaning up names and structure
 
@@ -228,17 +236,6 @@ async function _migrateLegacyPrefs() {
     // clear the legacy pref regardless
     //messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);
   }
-
-  /*
-  if (msgFilenameFormatType == 3) {
-    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom");
-  } else {
-    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple");
-  }
-  msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
-  console.log(msgFilenameFormatType)
-*/
-
 }
 
 // our legacy code side now needs Notify tools to access storage prefs

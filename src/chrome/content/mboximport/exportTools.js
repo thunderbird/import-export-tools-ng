@@ -2488,9 +2488,9 @@ function IETescapeBeginningFrom(data) {
 }
 
 function IETstoreHeaders(msg, msguri, subfile, addBody) {
-	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
-	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
-	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
+	var subMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
+	var authMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.author.max_length");
+	var recMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
 	var realsubject;
 	var author;
 	var recipients;

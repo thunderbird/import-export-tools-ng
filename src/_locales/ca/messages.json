@@ -3,7 +3,7 @@
     "message": "Atura l\\'exportació"
   },
   "addNumber.label": {
-    "message": "Add always to the name a random number when importing mbox files"
+    "message": "Always add a random number to the name when importing mbox files"
   },
   "addPrefix": {
     "message": "Afegeix el prefix"

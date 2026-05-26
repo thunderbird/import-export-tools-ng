@@ -301,11 +301,11 @@ async function exportSelectedMsgs(type, params) {
 				break;
 			case 6:
 				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-				createIndexCSV(type, file, hdrArray, msgFolder, false);
+				await createIndexCSV(type, file, hdrArray, msgFolder, false);
 				break;
 			case 7:
 				hdrArray = IETemlArray2hdrArray(msgUris, true, file);
-				createIndexCSV(type, file, hdrArray, msgFolder, true);
+				await createIndexCSV(type, file, hdrArray, msgFolder, true);
 				break;
 			case 8:
 				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
@@ -855,10 +855,10 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder);
 			break;
 		case 5: // Just CSV index
-			result = createIndexCSV(type, file2, hdrArray, msgFolder, false);
+			result = await createIndexCSV(type, file2, hdrArray, msgFolder, false);
 			break;
 		case 6: // CSV format, with body too
-			result = createIndexCSV(type, file2, hdrArray, msgFolder, true);
+			result = await createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
 			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder, true);
@@ -1055,7 +1055,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 	return { status: kStatusOK };
 }
 
-function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
+async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;
 	if (type !== 7 && type !== 6) {
 		clone2 = file2.clone();

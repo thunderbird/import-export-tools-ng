@@ -1210,7 +1210,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 				onStartRequest: function (aRequest) { },
 
-				onStopRequest: function (aRequest, aStatusCode) {
+				onStopRequest: async function (aRequest, aStatusCode) {
 					var sub;
 					var data;
 
@@ -1749,7 +1749,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										const embImgsUrlListener = {
 											OnStartRunningUrl(url) { },
 											OnStopRunningUrl(url, status) {
-												if (time && !await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+												if (time && !(await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))) {
 													return;
 												}
 												let curAtt = imgAtts.find((att) => {

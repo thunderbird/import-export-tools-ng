@@ -72,7 +72,7 @@ var { MailServices } = Ietng_ESM
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
-    + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var IETexported;
 var IETskipped;
@@ -657,7 +657,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		// cleidigh
 		// var addBody = (type === 6) ? true : false;
 		var addBody = type === 6;
-		var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
+		var hdrStr = await IETstoreHeaders(msg, msguri, subfile, addBody);
 		hdrArray.push(hdrStr);
 	}
 
@@ -792,7 +792,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
-			tempFile.append(sog + ext);			
+			tempFile.append(sog + ext);
 			tempExists = tempFile.exists();
 		}
 
@@ -804,7 +804,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 				IETabort = false;
 				break;
 			}
-			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
+			var hdrStr = await IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
 		}
 
@@ -1395,6 +1395,12 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
 	//console.log("exportashtml", msgFolder)
+	// get these prefs asynchronously here for the code that 
+	// later is synchronous 
+	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
+	var HTMLasView = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+	var useConverter = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
+
 
 	if (!msgFolder) {
 		var messageService = MailServices.messageServiceFromURI(uri);
@@ -1745,11 +1751,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										// A setTimeout delayed action is required. 
 										// Setting the attachment date to match the message date #549
 
+										let setFileTimeOption = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
+
 										// @implements {nsIUrlListener}
 										const embImgsUrlListener = {
 											OnStartRunningUrl(url) { },
 											OnStopRunningUrl(url, status) {
-												if (time && !(await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))) {
+												if (time && !setFileTimeOption) {
 													return;
 												}
 												let curAtt = imgAtts.find((att) => {
@@ -1923,8 +1931,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			};
 
 
-			// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-			var HTMLasView = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+
 			// For additional headers see http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 			if (!HTMLasView && !convertToText && !copyToClip)
 				uri = uri + "?header=saveas";
@@ -1953,7 +1960,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			insert a preference to use it anyway.
 			*/
 
-			var useConverter = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
 			if (hdr.folder.server.type === "nntp" || useConverter) {
 				var nsURI = Cc["@mozilla.org/network/io-service;1"]
 					.getService(Ci.nsIIOService).newURI(uri, null, null);
@@ -2487,7 +2493,7 @@ function IETescapeBeginningFrom(data) {
 	return datacorrected;
 }
 
-function IETstoreHeaders(msg, msguri, subfile, addBody) {
+async function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	var subMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
 	var authMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.author.max_length");
 	var recMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");

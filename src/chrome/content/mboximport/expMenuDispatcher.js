@@ -130,9 +130,6 @@ async function expMenuDispatcher(data) {
 				console.log("expf")
 				rv = await exportfolder(data.params);
 				break;
-			case "WXMCMD_ExpFolderRemote":
-				rv = await exportfolder(data.params);
-				break;
 			case "WXMCMD_ExpSearch":
 				rv = searchANDsave(data.params);
 				break;

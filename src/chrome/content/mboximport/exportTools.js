@@ -2119,6 +2119,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 
 function exportIMAPfolder(msgFolder, destdirNSIFILE) {
+	console.log("exp	imap f")
 	if (!msgFolder.verifiedAsOnlineFolder) {
 		alert(ietngUtils.localizeMsg("noRemoteExport"));
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;

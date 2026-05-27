@@ -714,16 +714,6 @@ async function exportfolder(params) {
 		}
 	}
 
-	if (!localfolder && !subfolders) {
-		try {
-			console.log("call rem")
-			exportRemoteFolders(destdirNSIFILE, folders);
-			return { status: "ok", exportFolderPath: exportFolderPath };
-		} catch (ex) {
-			return { status: "error", errMsg: ex };
-		}
-	}
-
 	// new export
 	let rootFolder = folders[0];
 	rootFolder = rootFolder.QueryInterface(Ci.nsIMsgFolder);

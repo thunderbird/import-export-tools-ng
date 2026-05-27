@@ -35,7 +35,6 @@ getPredefinedFolder,
 IETwritestatus,
 IETgetSelectedMessages,
 isMbox,
-IETprefs,
 IETgetComplexPref,
 nametoascii,
 getSubjectForHdr,
@@ -79,15 +78,19 @@ var { MailServices } = Ietng_ESM
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 var FileUtils = ChromeUtils.importESModule("resource://gre/modules/FileUtils.sys.mjs").FileUtils;
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
 var { mboxImportExport } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
-  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subprocess.sys.mjs");
+
+
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
@@ -350,8 +353,10 @@ var IETprintPDFmain = {
 
 				await PrintUtils.loadPrintBrowser(messageService.getUrlForUri(uri).spec);
 				await PrintUtils.printBrowser.browsingContext.print(printSettings);
-				var time = (aMsgHdr.dateInSeconds) * 1000;
-				if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+				let time = (aMsgHdr.dateInSeconds) * 1000;
+				let setFileTimeOption = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
+
+				if (time && setFileTimeOption) {
 					await IOUtils.setModificationTime(uniqueFileName, time);
 				}
 				IETwritestatus(ietngUtils.localizeMsg("exported") + ": " + fileName);
@@ -610,7 +615,7 @@ async function exportfolder(params) {
 	var subfolders = params.includeSubfolders;
 	var keepstructure = !params.flattenSubfolders;
 
-	//console.log("Start: ExportFolders (mbox)", params);
+	console.log("Start: ExportFolders (mbox)", params);
 
 	var folders = [];
 	var account;
@@ -711,6 +716,7 @@ async function exportfolder(params) {
 
 	if (!localfolder && !subfolders) {
 		try {
+			console.log("call rem")
 			exportRemoteFolders(destdirNSIFILE, folders);
 			return { status: "ok", exportFolderPath: exportFolderPath };
 		} catch (ex) {
@@ -726,17 +732,17 @@ async function exportfolder(params) {
 	let destPath = destdirNSIFILE.path;
 
 	let rootFolderName;
-		if (!rootFolder.localizedName) {
-			rootFolderName = rootFolder.prettyName;
-		} else {
-			rootFolderName = rootFolder.localizedName;
-		}
+	if (!rootFolder.localizedName) {
+		rootFolderName = rootFolder.prettyName;
+	} else {
+		rootFolderName = rootFolder.localizedName;
+	}
 	try {
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
 		if (folders[0].isServer) {
 			let accountName = rootFolderName;
-			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+			if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 				accountName += ".mbox";
 			}
 			await IOUtils.remove(PathUtils.join(destPath, accountName));
@@ -759,16 +765,16 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			var destPath = destdirNSIFILE.path + "\\ztmp";
 
 			let useMboxExt = false;
-			if (this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+			if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
 				useMboxExt = true;
 			}
-			
+
 			let folderName;
-		if (!folders[i].localizedName) {
-			folderName = folders[i].prettyName;
-		} else {
-			folderName = folders[i].localizedName;
-		}
+			if (!folders[i].localizedName) {
+				folderName = folders[i].prettyName;
+			} else {
+				folderName = folders[i].localizedName;
+			}
 			let newname = ietngUtils.createUniqueFolderName(folderName, destPath, false, useMboxExt);
 
 			path = newname;
@@ -855,7 +861,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		// first we copy the folder, finding a good name from its displayed name
 		console.log("flat");
 
-		newname = findGoodFolderName(thefoldername, destdirNSIFILE, false);
+		newname = await findGoodFolderName(thefoldername, destdirNSIFILE, false);
 		if (filex.exists()) {
 			console.log("copy ", newname);
 
@@ -869,8 +875,7 @@ async function exportSingleLocaleFolder(msgFolder, subfolder, keepstructure, des
 		exportSubFolders(msgFolder, destdirNSIFILE, keepstructure);
 		// IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 	} else if (subfolder && msgFolder.hasSubFolders && keepstructure) {
-		console.log("Exporting with subfolders");
-		newname = findGoodFolderName(thefoldername, destdirNSIFILE, true);
+		newname = await findGoodFolderName(thefoldername, destdirNSIFILE, true);
 		if (filex.exists()) {
 			// filex.copyTo(destdirNSIFILE, newname);
 			let dest = PathUtils.join(destdirNSIFILE.path, newname);
@@ -934,11 +939,11 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 	// console.log("   destPath: ", destPath);
 
 	let rootFolderName;
-		if (!rootFolder.localizedName) {
-			rootFolderName = rootFolder.prettyName;
-		} else {
-			rootFolderName = rootFolder.localizedName;
-		}
+	if (!rootFolder.localizedName) {
+		rootFolderName = rootFolder.prettyName;
+	} else {
+		rootFolderName = rootFolder.localizedName;
+	}
 	let accountName = rootFolderName;
 	let tmpAccountFolderName = nametoascii(accountName);
 	let finalExportFolderPath;
@@ -1036,64 +1041,8 @@ var MBOXIMPORTscandir = {
 };
 
 
-
-function exportSubFolders(msgFolder, destdirNSIFILE, keepstructure) {
-	if (msgFolder.subFolders) {
-		console.log("copy Subfolders ");
-
-		for (let subfolder of msgFolder.subFolders) {
-			// Search for a good name
-			console.log(subfolder);
-			console.log(subfolder.filePath);
-			console.log(subfolder.name);
-
-
-			let newname = findGoodFolderName(subfolder.name, destdirNSIFILE, false);
-			let subfolderNS = msgFolder2LocalFile(subfolder);
-			console.log(subfolderNS);
-
-			console.log(subfolderNS.exists());
-			console.log(subfolderNS.path);
-
-			if (subfolderNS.exists()) {
-				// subfolderNS.copyTo(destdirNSIFILE, newname);
-				let dest = PathUtils.join(destdirNSIFILE.path, newname);
-				console.log("copyfix");
-				mboxImportExport.copyAndFixMboxFile(subfolderNS.path, dest);
-			} else {
-				newname = IETcleanName(newname);
-				let destdirNSIFILEclone = destdirNSIFILE.clone();
-				destdirNSIFILEclone.append(newname);
-				destdirNSIFILEclone.create(0, 0o644);
-			}
-			if (keepstructure) {
-				let sbd = subfolderNS.parent;
-				sbd.append(subfolderNS.leafName + ".sbd");
-				if (sbd.exists() && sbd.directoryEntries.length > 0) {
-					sbd.copyTo(destdirNSIFILE, newname + ".sbd");
-					let destdirNsFile = destdirNSIFILE.clone();
-					destdirNsFile.append(newname + ".sbd");
-					let listMSF = MBOXIMPORTscandir.find(destdirNsFile);
-					for (let i = 0; i < listMSF.length; ++i) {
-						if (listMSF[i].leafName.substring(listMSF[i].leafName.lastIndexOf(".")) === ".msf") {
-							try {
-								listMSF[i].remove(false);
-							} catch (e) { }
-						}
-					}
-				}
-			}
-
-			// If the subfolder has subfolders, the function calls itself
-			if (subfolder.hasSubFolders && !keepstructure)
-				exportSubFolders(subfolder, destdirNSIFILE, keepstructure);
-		}
-	}
-}
-
-
-function findGoodFolderName(foldername, destdirNSIFILE, structure) {
-	var overwrite = IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
+async function findGoodFolderName(foldername, destdirNSIFILE, structure) {
+	var overwrite = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
 	var index = 0;
 	var nameIndex = "";
 	var NSclone = destdirNSIFILE.clone();

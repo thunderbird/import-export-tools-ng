@@ -4,7 +4,6 @@
 // Copyright Christopher Leidigh (2020)
 
 /* global
-IETprefs,
 IETlogger,
 IETgetComplexPref,
 
@@ -31,6 +30,19 @@ IETgetComplexPref,
 // [{"id": "1", "key": "K", "modifiers": "control shift", "oncommand": "updateHotKeys()", "contexts": "all"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "alert('testD')", "contexts": "all"}]
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)"}]
 // [{"id": "1", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printpreview')", "contexts": "messenger"}, {"id": "2", "key": "D", "modifiers": "control shift", "oncommand": "exportSelectedMsgs(5)", "contexts": "messenger"},  {"id": "3", "key": "Y", "modifiers": "control shift", "oncommand": "alert('hk3 all')", "contexts": "all"}, {"id": "4", "key": "P", "modifiers": "control shift", "oncommand": "goDoCommand('cmd_printPreview')", "contexts": "compose" }]
+
+let messengerWindow = Services.wm.getMostRecentWindow("mail:3pane").top;
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+    "resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+    "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 
 function normalizeModifiers(modifiers) {
@@ -118,9 +130,9 @@ function compareKeyDefinition(hotKey, keyElement) {
 	return compareModifiers(hotKey.modifiers, keyElementModifiers);
 }
 
-function setupHotKeys(contexts) {
+async function setupHotKeys(contexts) {
 	//console.debug('setupHotKs ' + contexts);
-	var hotKeysStr = IETgetComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
+	var hotKeysStr = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.experimental.hot_keys");
 
 	IETlogger.write('Setup hot-keys: ' + contexts);
 	var existingKeys = getCurrentKeys();
@@ -226,8 +238,8 @@ function setupHotKeys(contexts) {
 	}
 }
 
-function updateHotKeys() {
-	setupHotKeys();
+async function updateHotKeys() {
+	await setupHotKeys();
 	let keyset = document.getElementById("tasksKeys");
 	// console.debug('UpdateKeys');
 	keyset.parentNode.appendChild(keyset);
@@ -246,9 +258,9 @@ function updateHotKeys() {
 }
 
 var hkObserver = {
-	observe: function (aSubject, aTopic, aData) {
+	observe: async function (aSubject, aTopic, aData) {
 		//console.debug('IET: Hot key change');
-		updateHotKeys();
+		await updateHotKeys();
 	},
 };
 

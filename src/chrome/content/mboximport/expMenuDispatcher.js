@@ -209,9 +209,6 @@ async function expMenuDispatcher(data) {
 			case "WXMCMD_getMailStoreFromFolderPath":
 				let storeType = getMailStoreFromFolderPath(data.params.accountId, data.params.folderPath);
 				return storeType;
-			case "WXMCMD_getBoolPref":
-				let bp = IETprefs.getBoolPref(data.params.boolPref);
-				return bp;
 			default:
 				break;
 		}

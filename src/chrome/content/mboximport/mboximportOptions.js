@@ -13,7 +13,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* global IETprefs, await IETStoragePrefs.getComplexPref, await IETStoragePrefs.setComplexPref, browser */
+/* global  browser */
 
 var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
@@ -315,8 +315,6 @@ async function saveMboxImportPrefs() {
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
         //if (document.getElementById("export_eml_dir").value !== "")
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
-        //else
-        //  IETprefs.deleteBranch("extensions.importexporttoolsng.exportEML.dir");
 
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
@@ -360,8 +358,9 @@ async function saveMboxImportPrefs() {
         if (document.getElementById("backupDir").value)
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
         else
-            IETprefs.deleteBranch("extensions.importexporttoolsng.autobackup.dir");
-        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", "");
+
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
         if (document.getElementById("backupCustomName").value != "") {
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
         } else {

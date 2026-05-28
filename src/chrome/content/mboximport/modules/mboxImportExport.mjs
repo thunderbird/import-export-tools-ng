@@ -403,8 +403,9 @@ export var mboxImportExport = {
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
 
-    let useMboxExt = false;
-    if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+    let useMboxExtension = false;
+    let useMboxExtOption = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
+    if ((!inclSubfolders || flattenSubfolders) && useMboxExtOption) {
       useMboxExt = true;
     }
 

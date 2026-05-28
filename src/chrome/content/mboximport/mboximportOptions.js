@@ -328,7 +328,7 @@ async function saveMboxImportPrefs() {
                 val = "-" + val;
             pattern += val;
         }
-        IETprefs.setCharPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
 
 
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
@@ -344,8 +344,8 @@ async function saveMboxImportPrefs() {
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
 
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
-        IETprefs.setCharPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
-        IETprefs.setCharPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
 
         if (document.getElementById("indexSetting").selectedIndex === 0)
             await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", true);

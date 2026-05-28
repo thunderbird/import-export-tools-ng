@@ -55,7 +55,7 @@
 
 "import.name_add_number"
   "confirm.before_mbox_import"
-"delay.clean_statusbar"
+"delay.clean_statusbar" xxx
 "clipboard.always_just_text"
 "extensions.ImportExportToolsNG@cleidigh.description"
 "export.filenames_addtime"

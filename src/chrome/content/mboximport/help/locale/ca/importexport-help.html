@@ -18,18 +18,84 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notes de la versió:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notes de la versió: Nova versió important de la v15</h3>
     <p>
-      <b>Nota: Thunderbird v148 ha solucionat el problema que impedia l&#39;exportació de PDF.</b><br /><br />
-      He reconsiderat el meu suport al canal de llançament. Amb uns 78.000 usuaris, és un grup massa gran per
-      interrompre&#39;l. També vull que tothom participi a la versió beta i al proper llançament de la v15,
-      que és una reescriptura completa de les funcions d&#39;exportació de missatges. També afegirà noves
-      funcions com ara l&#39;exportació de PDF amb fitxers adjunts.<br /><br />
-      Després del proper llançament d&#39;ESR decidiré la meva política de llançaments.<br />
-      Tanmateix, comproveu si hi ha compatibilitat amb ImportExportTools NG abans d&#39;actualitzar el
-      Thunderbird.<br /><br />
-      Cristòfor<br /><br />
-      Correcció: Elimina les cometes del nom de visualització per als noms de fitxer intel·ligents<br /><br />
+      <b>Notes, característiques i canvis de la v15. Llegiu atentament.</b><br /><br />
+      La versió 15 és una reescriptura completa de les funcions d&#39;exportació de missatges, tant de
+      carpetes com de missatges seleccionats. És la primera fase d&#39;una tecnologia moderna, principalment
+      de WebExtension. El nou disseny és una gran millora en l&#39;arquitectura que permet noves funcions i un
+      millor rendiment.<br /><br />
+      Per a la primera versió v15, s&#39;han implementat els formats següents:<br /><br />
+      - EML<br />
+      - HTML i fitxers adjunts<br />
+      - PDF i fitxers adjunts<br />
+      - Text sense format i fitxers adjunts<br /><br />
+      A més de la nova exportació de PDF amb fitxers adjunts, també hi ha una nova finestra d&#39;estat de
+      l&#39;exportació, així com una nova alternativa de notificació del sistema operatiu. A continuació es
+      mostra una llista de funcions:<br /><br />
+      <b>Exportació a PDF amb fitxers adjunts</b><br /><br />
+      Aquesta és una opció que s&#39;ha sol·licitat durant molt de temps. Hi ha una limitació important
+      respecte a l&#39;exportació HTML. La taula de fitxers adjunts no té enllaços que es puguin fer clic.
+      Fins ara no ha estat possible produir resultats amb enllaços relatius. El convertidor de PDF i/o els
+      visualitzadors converteixen tots els enllaços file:// en enllaços absoluts, que no són útils. Espero que
+      hi hagi alguna manera d&#39;aconseguir-ho en el futur.<br /><br />
+      <b>Índex</b><br /><br />
+      El nou fitxer d&#39;índex us permet ordenar columnes fent clic a qualsevol de les capçaleres.<br /><br />
+      <b>Estructures d&#39;exportació</b><br /><br />
+      - Tots els fitxers adjunts en un sol directori<br />
+      Si feu servir una paraula estàtica com ara &quot;Adjunts&quot;, tots els adjunts aniran a aquest
+      directori. Abans, això hauria produït Adjunts, Adjunts-1, Adjunts-2, etc.<br /><br />
+      - Els fitxers adjunts es desen al mateix directori amb els missatges.<br />
+      En aquesta nova opció que es troba a la pestanya Noms de fitxer, no es creen directoris d&#39;adjunts,
+      ja que tots són al directori de missatges.<br /><br />
+      - Els directoris d&#39;adjunts ara tenen la data del missatge definida<br />
+      Per ordenar els directoris d&#39;adjunts, ara la data de modificació serà la data d&#39;enviament del
+      missatge corresponent.<br /><br />
+      - Estructura experimental &quot;withatts&quot;<br />
+      Aquesta estructura combina cada missatge amb tots els fitxers adjunts al directori de fitxers adjunts
+      formatat. La configuració típica seria establir el format del nom de fitxer al vostre preferit, per
+      exemple ${subject}, i els formats del directori també a ${subject}. Això produiria directoris per a cada
+      missatge amb el missatge i els fitxers adjunts. És possible ordenar els directoris per data o nom.<br /><br />
+      Per provar aquesta estructura experimental, col·loca la paraula:<br />
+      <span class="notranslate">withatts</span><br />
+      a les opcions de registre de la pestanya Diversos. (Proposta de @Rayerd)<br /><br />
+      <b>Opcions de registre</b><br /><br />
+      Les noves opcions de registre es troben a la pestanya Diversos. Es defineixen com una llista de paraules
+      de tipus de registre separades per espais. Produeixen diverses sortides de registre i depuració a la
+      consola de depuració, a la qual s&#39;accedeix mitjançant Control-Maj-J. Els tipus de registre es poden
+      combinar per produir la sortida additiva. Els tipus de registre són els següents:<br />
+      - <span class="notranslate">msgs</span> : Estat bàsic de desament del missatge<br />
+      - <span class="notranslate">msgs2</span> : Sortida de depuració més detallada per als missatges<br />
+      - <span class="notranslate">summary</span> : Un resum de l&#39;exportació<br />
+      - <span class="notranslate">msgparts</span> : Informació de depuració per a les parts del missatge
+      MIME<br />
+      - <span class="notranslate">withatts</span> : Una opció temporal per utilitzar l&#39;estructura
+      combinada de missatges i fitxers adjunts<br /><br />
+      <b>Menús</b><br /><br />
+      Les noves funcions s&#39;afegeixen actualment a sobre de les funcions antigues i tenen el prefix
+      (v15).<br /><br />
+      El codi antic es desvaloritzarà un cop les noves funcions siguin estables. Això s&#39;ha fet com a
+      mesura cautelosa respecte a la versió principal. Si us plau, feu servir les noves funcions de la versió
+      15 i informeu de qualsevol problema al repositori de Github aquí:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemes de Github amb ImportExportTools NG</a
+      ><br /><br />
+      <b>Crèdits</b><br /><br />
+      Aquest llançament no hauria estat possible sense les proves, les traduccions i els suggeriments de
+      diversos usuaris fidels i dedicats. Moltes gràcies a:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Cristòfor<br />
     </p>
     <h2 id="main_help">Visió general i menús d&#39;ImportExportTools NG</h2>
     <p>
@@ -130,7 +196,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exporta els missatges de carpeta com a fitxers en format EML (sense estructura/subcarpetes).<br />
+            Exporta els missatges de la carpeta com a fitxers en format EML (sense estructura/subcarpetes).<br />
             Això també crea un fitxer d&#39;índex HTML que llista cada missatge.
           </td>
         </tr>

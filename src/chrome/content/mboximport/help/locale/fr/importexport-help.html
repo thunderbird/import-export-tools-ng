@@ -23,35 +23,58 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes">Notes de version</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notes de version (nouvelle version majeure v15)</h3>
     <p>
-<b>Remarque : Thunderbird v148 corrige le problème empêchant l’exportation PDF</b>
-
-<br><br>
-
-J’ai reconsidéré ma position concernant le canal de publication. Avec environ
-78 000 utilisateurs, il est trop important de perturber ce groupe. De plus, je souhaite que tous les utilisateurs participent à la
-bêta et à la prochaine version 15, qui réécrit entièrement les
-fonctions d’exportation des messages. Elle ajoutera également de nouvelles fonctionnalités,
-
-telles que l’exportation PDF avec pièces jointes.
-
-<br><br>
-
-Après la prochaine version ESR, je déciderai de ma politique de publication.<br>
-
-Cependant, veuillez vérifier la compatibilité avec ImportExportTools NG avant de mettre à jour Thunderbird.
-
-<br><br>
-Christopher
-
-<br><br>
-
-Correction : Suppression des guillemets du nom d’affichage pour les noms de fichiers intelligents
-
-<br><br>
-      
+      <b>Notes, fonctionnalités et changements (à lire attentivement)</b><br/><br/>
+      La version 15 constitue une refonte complète des fonctions d’exportation des messages, aussi bien pour les dossiers que pour les messages sélectionnés. C’est la première étape de transition vers la technologie moderne WebExtension. Cette nouvelle conception apporte une amélioration considérable de l’architecture, permettant l’ajout de nouvelles fonctionnalités et de meilleures performances.<br /><br />
+      Pour la première version v15, les formats suivants ont été intégrés :<br/><br/>
+      - EML ;<br/>
+      - HTML et pièces jointes ;<br/>
+      - PDF et pièces jointes ;<br/>
+      - Texte brut et pièces jointes.<br/><br/>
+      Outre la nouvelle fonctionnalité d’exportation au format PDF avec pièces jointes, une nouvelle fenêtre d’état de l’exportation ainsi qu’une nouvelle option de notification système ont également été ajoutées. Vous trouverez ci-dessous la liste des fonctionnalités.<br/><br/>
+      <b>Exportation en PDF avec pièces jointes</b><br/><br/>
+      Il s’agit d'une fonctionnalité attendue depuis longtemps. Il existe toutefois une limitation importante par rapport à l’exportation en HTML : le tableau des pièces jointes ne contient pas de liens cliquables. Jusqu’à présent, il n’a pas été possible de générer un fichier de sortie contenant des liens relatifs. Le convertisseur PDF et/ou les visionneuses transforment tous les liens <code>file://</code> en liens absolus, ce qui n’est pas très pratique. J’espère qu’il sera possible d’y remédier à l’avenir.<br/><br/>
+      <b>Index</b><br/><br/>
+      Le nouveau fichier index permet de trier les colonnes en cliquant sur n’importe quel en-tête.<br/><br/>
+      <b>Structures d’exportation</b><br/><br/>
+      - Toutes les pièces jointes dans un seul dossier<br/>
+      Si vous utilisez un nom de dossier statique tel que « Pièces jointes », toutes les pièces jointes seront placées dans ce dossier. Auparavant, cela aurait donné des dossiers intitulés « Pièces jointes », « Pièces jointes-1 », « Pièces jointes-2 », etc.<br/><br/>
+      - Pièces jointes enregistrées dans le même dossier que les messages<br/>
+      Avec cette nouvelle option disponible à l’onglet « Noms de fichiers », aucun dossier de pièces jointes n’est créé, celles-ci sont toutes regroupées dans le dossier des messages.<br/><br/>
+      - Dossiers de pièces jointes avec la date des messages<br/>
+      Pour faciliter le tri, la date de modification d’un dossier de pièces jointes correspondra désormais à la date d’envoi du messages associé.<br/><br/>
+      - Structure expérimentale « withatts »<br/>
+      Cette structure regroupe un message et toutes ses pièces jointes dans un dossier formaté. La configuration type consiste à définir le format de nom de fichier selon ses préférences, disons <code>${sujet}</code>, et le format de dossier en <code>${sujet}</code> également. Cela permet de créer, pour chaque message, un dossier contenant à la fois le message et ses pièces jointes. Il est possible de trier les dossiers par date ou par nom.<br/><br/>
+      Pour tester cette structure expérimentale, insérez le mot « withatts » dans les options de journalisation à l’onglet « Divers » (proposition de @Rayerd).<br/><br/>
+      <b>Options de journalisation</b><br/><br/>
+      Les nouvelles options de journalisation se trouvent à l’onglet « Divers ». Elles prennent la forme d’une liste de mots désignant les types de journal, séparés par des espaces. Elles génèrent divers messages de journalisation et de débogage dans la console de débogage, accessible via la combinaison de touches Ctrl+Maj+J. Les types de journal, décrits ci-dessous, peuvent être combinés pour produire des messages cumulatifs.<br/>
+      - msgs : état basique d’enregistrement des messages<br/>
+      - msgs2 : sortie de débogage pour les messages plus détaillée<br/>
+      - summary : résumé de l’exportation<br/>
+      - msgparts : informations de débogage pour la partie MIME des messages<br />
+      - withatts : option temporaire pour utiliser la structure combinée des messages et des pièces jointes<br /><br />
+      <b>Menus</b><br/><br/>
+      Les nouvelles fonctions sont actuellement ajoutées au-dessus des anciennes et sont précédées du préfixe (v15).<br/><br/>
+      L’ancien code sera obsolète dès que les nouvelles fonctions seront stabilisées. Cette décision a été prise par mesure de prudence en vue de la sortie de cette version majeure. Veuillez utiliser les nouvelles fonctions de la v15 et signaler tout problème dans le dépôt GitHub <a href="https://github.com/thunderbird/import-export-tools-ng/issues">ici</a>.<br/><br/>
+      <b>Crédits</b><br/><br/>
+      Cette version n’aurait pas pu voir le jour sans les tests, les traductions et les suggestions de plusieurs utilisateurs fidèles et dévoués. Un grand merci à :<br/><br/>
+      <b
+        >@DenB10<br/>
+        @kiki-ja<br/>
+        @tidebre67<br/>
+        @Yarny0<br/>
+        @Reyerd<br/>
+        @Joergen<br/>
+        @JF1313<br/>
+        @joeldebruijn<br/>
+        @pivi2402<br/>
+        @EXDEV-oss<br/></b
+      ><br/><br/>
+      Christophe<br/>
     </p>
+    <h2 id="main_help">Présentation et menus d&#39;ImportExportTools NG</h2>
+    <p>
     <h2 id="main_help">Présentation</h2>
     <p><i>ImportExportTools NG</i> est une extension basée sur le travail original de Paolo "Kaosmos". Elle fournit de multiples fonctions d’importation et d’exportation acceptant plusieurs formats de fichiers (certains n’étant pas supportés par toutes les fonctions) :<br>
       - mbox ;<br>

@@ -18,19 +18,80 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Informacje o wydaniu:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Informacje o wydaniu: główne nowe wydanie v15</h3>
     <p>
-      <b>Uwaga: w programie Thunderbird v148 naprawiono problem uniemożliwiający eksportowanie plików PDF</b
+      <b>Uwagi, funkcje i zmiany w wersji 15. Prosimy o uważne przeczytanie.</b><br /><br />
+      Wersja 15 to całkowicie przeprojektowane funkcje eksportu wiadomości, zarówno do folderów, jak i do
+      wybranych wiadomości. To pierwszy etap nowoczesnej technologii, opartej głównie na WebExtension. Nowy
+      design to ogromna poprawa architektury, umożliwiająca wprowadzenie nowych funkcji i lepszą wydajność.<br /><br />
+      W pierwszej wersji v15 zaimplementowano następujące formaty:<br /><br />
+      - EML<br />
+      - HTML i załączniki<br />
+      - PDF i załączniki<br />
+      - Tekst jawny i załączniki<br /><br />
+      Oprócz nowego eksportu plików PDF z załącznikami, dostępne jest również nowe okno statusu eksportu oraz
+      nowa opcja powiadomień systemu operacyjnego. Poniżej znajduje się lista funkcji:<br /><br />
+      <b>Eksport PDF z załącznikami</b><br /><br />
+      To długo oczekiwana opcja. Istnieje jedno istotne ograniczenie w stosunku do eksportu HTML. Tabela
+      załączników nie zawiera klikalnych linków. Do tej pory nie było możliwe wygenerowanie wyników z linkami
+      względnymi. Zarówno konwerter PDF, jak i przeglądarki konwertują wszystkie linki file:// na linki
+      absolutne, co jest bezużyteczne. Mam nadzieję, że w przyszłości uda się to jakoś osiągnąć.<br /><br />
+      <b>Indeks</b><br /><br />
+      Nowy plik indeksu umożliwia sortowanie kolumn poprzez kliknięcie dowolnego nagłówka.<br /><br />
+      <b>Struktury eksportowe</b><br /><br />
+      - Wszystkie załączniki w jednym katalogu<br />
+      Jeśli użyjesz statycznego słowa, takiego jak „Załączniki”, wszystkie załączniki trafią do tego katalogu.
+      Wcześniej generowałoby to „Załączniki”, „Załączniki-1”, „Załączniki-2” itd.<br /><br />
+      - Załączniki zapisywane są w tym samym katalogu co wiadomości.<br />
+      W tej nowej opcji, znajdującej się na karcie Nazwy plików, nie są tworzone żadne katalogi załączników,
+      ponieważ wszystkie znajdują się w katalogu wiadomości.<br /><br />
+      - Katalogi załączników mają teraz ustawioną datę wiadomości<br />
+      Aby posortować katalogi załączników, data modyfikacji będzie teraz ustawiona na datę wysłania
+      odpowiedniej wiadomości.<br /><br />
+      - Eksperymentalna struktura „withatts”<br />
+      Ta struktura łączy każdą wiadomość ze wszystkimi załącznikami w sformatowanym katalogu załączników.
+      Typowa konfiguracja polega na ustawieniu formatu nazwy pliku na preferowany, na przykład ${subject}, a
+      formatu katalogu na ${subject}. Spowoduje to utworzenie katalogów dla każdej wiadomości, zawierających
+      zarówno wiadomość, jak i załączniki. Możliwe jest sortowanie katalogów według daty lub nazwy.<br /><br />
+      Aby wypróbować tę eksperymentalną strukturę, umieść słowo:<br />
+      <span class="notranslate">withatts</span><br />
+      w opcjach rejestrowania w zakładce Różne. (Propozycja @Rayerd)<br /><br />
+      <b>Opcje rejestrowania</b><br /><br />
+      Nowe opcje rejestrowania znajdują się na karcie Różne. Są one ustawione jako lista słów typu logu
+      rozdzielonych spacjami. Generują one różne dane wyjściowe logu i debugowania do konsoli debugowania, do
+      której dostęp uzyskuje się za pomocą kombinacji klawiszy Control-Shift-J. Typy logów można łączyć, aby
+      uzyskać dane wyjściowe addytywne. Oto typy logów:<br />
+      - <span class="notranslate">msgs</span> : Podstawowy status zapisu wiadomości<br />
+      - <span class="notranslate">msgs2</span> : Bardziej szczegółowe dane wyjściowe debugowania dla
+      wiadomości<br />
+      - <span class="notranslate">summary</span> : Podsumowanie eksportu<br />
+      - <span class="notranslate">msgparts</span> : Informacje debugowania dla części wiadomości MIME<br />
+      - <span class="notranslate">withatts</span> : Tymczasowa opcja umożliwiająca użycie połączonej struktury
+      wiadomości i załączników<br /><br />
+      <b>Menu</b><br /><br />
+      Nowe funkcje są obecnie dodawane do starych funkcji i mają prefiks (v15).<br /><br />
+      Stary kod zostanie wycofany z użytku, gdy nowe funkcje będą stabilne. Zostało to zrobione z ostrożności
+      przed wydaniem głównej wersji. Prosimy o korzystanie z nowych funkcji w wersji 15 i zgłaszanie wszelkich
+      problemów w repozytorium Github tutaj:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problemy z ImportExportTools NG Github</a
       ><br /><br />
-      Ponownie rozważyłem swoje wsparcie dla kanału wydań. Przy około 78 tysiącach użytkowników to zbyt duża
-      grupa, aby ją zakłócać. Chcę również, aby wszyscy skorzystali z wersji beta i nadchodzącej wersji v15,
-      która jest całkowicie przeprojektowaną wersją funkcji eksportu wiadomości. Doda ona również nowe
-      funkcje, takie jak eksport plików PDF z załącznikami.<br /><br />
-      Po wydaniu kolejnej wersji ESR podejmę decyzję w sprawie polityki wydawniczej.<br />
-      Przed aktualizacją Thunderbirda należy jednak sprawdzić, czy jest dostępna obsługa ImportExportTools
-      NG.<br /><br />
-      Krzysztof<br /><br />
-      Naprawiono: Usuń cudzysłowy z nazwy wyświetlanej w przypadku nazw plików inteligentnych<br /><br />
+      <b>Kredyty</b><br /><br />
+      To wydanie nie mogłoby się ukazać bez testów, tłumaczeń i sugestii od kilku lojalnych i oddanych
+      użytkowników. Wielkie podziękowania dla:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Krzysztof<br />
     </p>
     <h2 id="main_help">Przegląd i menu ImportExportTools NG</h2>
     <p>
@@ -104,7 +165,7 @@
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>Eksportuj folder wraz ze wszystkimi jego podfolderami do drzewa wiadomości w formacie mbox</td>
+          <td>Eksportuj folder wraz ze wszystkimi podfolderami do drzewa wiadomości w formacie mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
@@ -593,8 +654,8 @@
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dzień tygodnia w formacie dziesiętnym (zakres od 1 do 7), przy czym poniedziałek ma wartość 1.
-            Zobacz także <code class="code1">%w</code> .
+            Dzień tygodnia w formacie dziesiętnym (zakres od 1 do 7), gdzie poniedziałek ma wartość 1. Zobacz
+            także <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
@@ -825,7 +886,8 @@
     <p>
       Zazwyczaj „Data” wiadomości w Thunderbirdzie to data ustawiona przez klienta pocztowego nadawcy.
       Ustawienie tej opcji na „prawda” powoduje wykorzystanie daty otrzymania wiadomości przez klienta
-      pocztowego odbiorcy. Data ta będzie używana zarówno w nazwach plików, jak i w plikach indeksowych.
+      pocztowego odbiorcy. Data ta będzie używana zarówno w nazwach plików, jak i w datach w plikach
+      indeksowych.
     </p>
     <h2>Podstawowa, globalna funkcja skrótów klawiszowych</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

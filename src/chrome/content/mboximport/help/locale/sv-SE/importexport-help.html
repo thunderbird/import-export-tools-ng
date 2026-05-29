@@ -18,17 +18,81 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Versionsinformation:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Versionsinformation: Stor ny v15-utgåva</h3>
     <p>
-      <b>Obs! Thunderbird v148 har åtgärdat problemet med att förhindra PDF-export</b><br /><br />
-      Jag har omprövat mitt stöd för releasekanalen. Med runt 78 000 användare är det en för stor grupp för
-      att störa. Jag vill också att alla ska vara med i betaversionen och den kommande versionen av v15, som
-      är en fullständig omskrivning av exportfunktionerna för meddelanden. Den kommer också att lägga till nya
-      funktioner som PDF-export med bilagor.<br /><br />
-      Efter nästa ESR-release kommer jag att bestämma min policy för utgivning.<br />
-      Kontrollera dock om ImportExportTools NG stöder innan du uppdaterar Thunderbird.<br /><br />
-      Kristoffer<br /><br />
-      Åtgärd: Ta bort citattecken från visningsnamn för smarta filnamn<br /><br />
+      <b>v15 Anmärkningar, funktioner och ändringar. Läs noggrant.</b><br /><br />
+      v15 är en fullständig omskrivning av meddelandeexportfunktionerna, både mappar och valda meddelanden.
+      Det är den första fasen i en modern, mestadels WebExtension-teknik. Den nya designen är en stor
+      förbättring av arkitekturen som möjliggör nya funktioner och bättre prestanda.<br /><br />
+      För den första v15-utgåvan har följande format implementerats:<br /><br />
+      - EML<br />
+      - HTML och bilagor<br />
+      - PDF och bilagor<br />
+      - Klartext och bilagor<br /><br />
+      Förutom den nya exportfunktionen för PDF med bilagor finns det också ett nytt exportstatusfönster samt
+      ett nytt alternativ för OS-aviseringar. En lista över funktioner följer:<br /><br />
+      <b>PDF-export med bilagor</b><br /><br />
+      Detta är ett länge efterfrågat alternativ. Det finns en viktig begränsning jämfört med HTML-export.
+      Tabellen med bilagor har inga klickbara länkar. Hittills har det inte varit möjligt att producera utdata
+      med relativa länkar. Antingen PDF-konverteraren och/eller visningsprogrammet konverterar alla
+      file://-länkar till absoluta länkar som inte är användbara. Jag hoppas att det finns något sätt att
+      åstadkomma detta i framtiden.<br /><br />
+      <b>Index</b><br /><br />
+      Den nya indexfilen låter dig sortera kolumner genom att klicka på valfri rubrik.<br /><br />
+      <b>Exportstrukturer</b><br /><br />
+      - Alla bilagor i en enda katalog<br />
+      Om du använder ett statiskt ord som &quot;Bilagor&quot; kommer alla bilagor att hamna i den katalogen.
+      Tidigare skulle det ha gett bilagor, bilagor-1, bilagor-2, etc.<br /><br />
+      - Bilagor sparade i samma katalog som meddelanden.<br />
+      I det här nya alternativet som finns på fliken Filnamn skapas inga bilagekataloger eftersom de alla
+      finns i meddelandekatalogen.<br /><br />
+      - Meddelandedatumet är nu inställt i bilagekatalogerna<br />
+      För sortering kommer bilagekatalogerna nu att ha sitt ändringsdatum inställt på motsvarande meddelandes
+      sändningsdatum.<br /><br />
+      - Experimentell &quot;withatts&quot;-struktur<br />
+      Denna struktur kombinerar varje meddelande med alla bilagor i den formaterade bilagekatalogen. Den
+      typiska konfigurationen skulle vara att ställa in filnamnsformatet till din föredragna inställning, till
+      exempel ${subject}, och även dina katalogformat till ${subject}. Detta skulle skapa kataloger för varje
+      meddelande med både meddelandet och bilagorna. Det är möjligt att sortera katalogerna efter datum eller
+      namn.<br /><br />
+      För att testa denna experimentella struktur, placera ordet:<br />
+      <span class="notranslate">withatts</span><br />
+      i loggningsalternativen på fliken Diverse. (Förslag av @Rayerd)<br /><br />
+      <b>Loggningsalternativ</b><br /><br />
+      De nya loggningsalternativen finns på fliken Diverse. Dessa ställs in som en mellanslagsavgränsad lista
+      med loggtypord. De producerar olika logg- och felsökningsutdata till felsökningskonsolen som nås via
+      Ctrl-Shift-J. Loggtyperna kan kombineras för att producera den additiva utdatan. Loggtyperna är
+      följande:<br />
+      - <span class="notranslate">msgs</span> : Grundläggande meddelandestatus för sparning<br />
+      - <span class="notranslate">msgs2</span> : Mer detaljerad felsökningsutdata för meddelanden<br />
+      - <span class="notranslate">summary</span> : En sammanfattning av exporten<br />
+      - <span class="notranslate">msgparts</span> : Felsökningsinformation för MIME-meddelandedelar<br />
+      - <span class="notranslate">withatts</span> : Ett tillfälligt alternativ för att använda den kombinerade
+      strukturen för meddelanden och bilagor<br /><br />
+      <b>Menyer</b><br /><br />
+      De nya funktionerna läggs för närvarande till ovanpå de gamla funktionerna och har prefixet (v15).<br /><br />
+      Den gamla koden kommer att avskrivas när de nya funktionerna är stabila. Detta har gjorts som en
+      försiktig strategi för den stora utgåvan. Använd de nya v15-funktionerna och rapportera eventuella
+      problem i Github-arkivet här:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problem med ImportExportTools NG Github</a
+      ><br /><br />
+      <b>Krediter</b><br /><br />
+      Den här utgåvan hade inte kunnat genomföras utan tester, översättningar och förslag från flera lojala
+      och hängivna användare. Stort tack till:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Kristoffer<br />
     </p>
     <h2 id="main_help">Översikt och menyer för ImportExportTools NG</h2>
     <p>
@@ -145,7 +209,7 @@
             __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportera mappmeddelandena som HTML-filer (ingen struktur/undermappar).<br />
+            Exportera mappmeddelandena som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor sparas som separata filer. Detta skapar också en HTML-indexfil som listar varje
             meddelande.
           </td>
@@ -884,7 +948,7 @@
         - Ny knapp i verktygsfältet<br />
         - Förbättrad hjälp, öppnas vid installation<br />
         - Uppdatera exportkonto<br /><br />
-        Tack till följande användare för förslag på förbättringar och hjälp med testning:<br /><br />
+        Tack till följande användare för förslag på förbättringar och hjälp med tester:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />
         - <code class="notranslate">@DenB10</code><br />

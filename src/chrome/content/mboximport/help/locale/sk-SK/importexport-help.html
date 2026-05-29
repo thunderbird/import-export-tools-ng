@@ -18,17 +18,78 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu: Hlavné nové vydanie v15</h3>
     <p>
-      <b>Poznámka: Thunderbird v148 opravil problém s blokovaním exportu PDF</b><br /><br />
-      Prehodnotil som svoju podporu pre vydaný kanál. S približne 78 000 používateľmi je to príliš veľká
-      skupina na to, aby som ju mohol narušiť. Tiež chcem, aby sa všetci zúčastnili beta verzie a
-      pripravovanej verzie v15, ktorá predstavuje kompletné prepracovanie funkcií exportu správ. Pridá aj nové
-      funkcie, ako napríklad export PDF s prílohami.<br /><br />
-      Po ďalšom vydaní ESR sa rozhodnem o mojej politike vydávania.<br />
-      Pred aktualizáciou Thunderbirdu však skontrolujte podporu ImportExportTools NG.<br /><br />
-      Christopher<br /><br />
-      Oprava: Odstránenie úvodzoviek zo zobrazovaného názvu pre inteligentné názvy súborov<br /><br />
+      <b>Poznámky, funkcie a zmeny k verzii 15. Pozorne si prečítajte.</b><br /><br />
+      v15 je kompletne prepracované funkcie exportu správ, a to ako priečinkov, tak aj vybraných správ. Je to
+      prvá fáza modernej technológie, prevažne WebExtension. Nový dizajn predstavuje obrovské zlepšenie
+      architektúry, ktoré umožňuje nové funkcie a lepší výkon.<br /><br />
+      Pre prvú verziu v15 boli implementované nasledujúce formáty:<br /><br />
+      - EML<br />
+      - HTML a prílohy<br />
+      - PDF a prílohy<br />
+      - Otvorený text a prílohy<br /><br />
+      Okrem nového exportu PDF s prílohami je k dispozícii aj nové okno so stavom exportu, ako aj nová
+      alternatíva upozornení operačného systému. Zoznam funkcií je uvedený nižšie:<br /><br />
+      <b>Export PDF s prílohami</b><br /><br />
+      Toto je dlho požadovaná možnosť. Existuje jedno dôležité obmedzenie oproti exportu do HTML. Tabuľka
+      príloh nemá klikateľné odkazy. Doteraz nebolo možné vytvoriť výstup s relatívnymi odkazmi. Buď PDF
+      konvertor, alebo prehliadače konvertujú všetky odkazy file:// na absolútne odkazy, ktoré nie sú
+      užitočné. Dúfam, že v budúcnosti sa nájde spôsob, ako to dosiahnuť.<br /><br />
+      <b>Index</b><br /><br />
+      Nový indexový súbor umožňuje triediť stĺpce kliknutím na ľubovoľnú hlavičku.<br /><br />
+      <b>Exportné štruktúry</b><br /><br />
+      - Všetky prílohy v jednom adresári<br />
+      Ak použijete statické slovo ako „Prílohy“, všetky prílohy sa presunú do tohto adresára. V minulosti by
+      to znamenalo Prílohy, Prílohy-1, Prílohy-2 atď.<br /><br />
+      - Prílohy uložené v rovnakom adresári ako správy.<br />
+      V tejto novej možnosti, ktorá sa nachádza na karte Názvy súborov, sa nevytvárajú žiadne adresáre príloh,
+      pretože všetky sa nachádzajú v adresári správ.<br /><br />
+      - Adresáre príloh majú teraz nastavený dátum správy<br />
+      Pri triedení príloh budú mať adresáre s dátumom úpravy nastavený na dátum odoslania príslušnej
+      správy.<br /><br />
+      - Experimentálna štruktúra „withatts“<br />
+      Táto štruktúra kombinuje každú správu so všetkými prílohami do formátovaného adresára príloh. Typické
+      nastavenie by bolo nastaviť formát názvu súboru na vami preferovaný formát, napríklad ${subject} a
+      formát adresára tiež na ${subject}. Tým by sa vytvorili adresáre pre každú správu so správou aj
+      prílohami. Je možné triediť adresáre podľa dátumu alebo názvu.<br /><br />
+      Ak chcete vyskúšať túto experimentálnu štruktúru, umiestnite slovo:<br />
+      <span class="notranslate">withatts</span><br />
+      v možnostiach logovania na karte Rôzne. (Návrh od @Rayerd)<br /><br />
+      <b>Možnosti protokolovania</b><br /><br />
+      Nové možnosti protokolovania sa nachádzajú na karte Rôzne. Nastavujú sa ako zoznam slov typu
+      protokolovania oddelených medzerami. Vytvárajú rôzne protokoly a ladiace výstupy do ladiacej konzoly, ku
+      ktorej sa pristupuje pomocou kombinácie klávesov Control-Shift-J. Typy protokolov je možné kombinovať a
+      vytvoriť tak aditívny výstup. Typy protokolov sú nasledovné:<br />
+      - <span class="notranslate">msgs</span> : Stav uloženia základných správ<br />
+      - <span class="notranslate">msgs2</span> : Podrobnejší ladiaci výstup pre správy<br />
+      - <span class="notranslate">summary</span> : Súhrn exportu<br />
+      - <span class="notranslate">msgparts</span> : Ladiace informácie pre časti MIME správ<br />
+      - <span class="notranslate">withatts</span> : Dočasná možnosť použitia kombinovanej štruktúry správy a
+      príloh<br /><br />
+      <b>Menu</b><br /><br />
+      Nové funkcie sú momentálne pridané nad staré funkcie a majú predponu (v15).<br /><br />
+      Starý kód bude zastaraný hneď, ako budú nové funkcie stabilné. Toto bolo urobené ako opatrný prístup k
+      hlavnej verzii. Používajte nové funkcie v15 a nahláste všetky problémy v repozitári Github tu:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problémy s ImportExportTools NG na GitHube</a
+      ><br /><br />
+      <b>Kredity</b><br /><br />
+      Toto vydanie by nebolo možné bez testovania, prekladov a návrhov od niekoľkých verných a oddaných
+      používateľov. Veľká vďaka patrí:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher<br />
     </p>
     <h2 id="main_help">Prehľad a ponuky nástroja ImportExportTools NG</h2>
     <p>
@@ -145,7 +206,7 @@
           </td>
           <td>
             Exportujte správy z priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
-            Prílohy sa ukladajú ako samostatné súbory. Vytvorí sa tým aj indexový súbor HTML so zoznamom
+            Prílohy sa ukladajú ako samostatné súbory. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
             každej správy.
           </td>
         </tr>

@@ -18,20 +18,83 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen: Belangrijke nieuwe versie 15</h3>
     <p>
-      <b
-        >Opmerking: Thunderbird versie 148 heeft het probleem opgelost dat het exporteren van PDF-bestanden
-        werd geblokkeerd.</b
+      <b>Versie 15: Notities, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
+      Versie 15 is een volledig herschreven versie van de berichtexportfuncties, zowel voor mappen als voor
+      geselecteerde berichten. Het is de eerste fase in een moderne, grotendeels op WebExtension gebaseerde
+      technologie. Het nieuwe ontwerp is een enorme verbetering in de architectuur, waardoor nieuwe functies
+      en betere prestaties mogelijk zijn.<br /><br />
+      Voor de eerste versie 15 zijn de volgende formaten geïmplementeerd:<br /><br />
+      - EML<br />
+      - HTML en bijlagen<br />
+      - PDF en bijlagen<br />
+      - Platte tekst en bijlagen<br /><br />
+      Naast de nieuwe exportfunctie voor PDF met bijlagen, is er ook een nieuw venster met de exportstatus en
+      een nieuw alternatief voor meldingen van het besturingssysteem. Hieronder volgt een overzicht van de
+      functies:<br /><br />
+      <b>PDF-export met bijlagen</b><br /><br />
+      Dit is een langverwachte optie. Er is echter één belangrijke beperking ten opzichte van de HTML-export.
+      De tabel met bijlagen bevat geen klikbare links. Tot nu toe is het niet mogelijk gebleken om uitvoer met
+      relatieve links te genereren. Zowel de PDF-converter als de PDF-viewers zetten alle file://-links om in
+      absolute links, wat niet bruikbaar is. Ik hoop dat er in de toekomst een manier komt om dit te
+      realiseren.<br /><br />
+      <b>Index</b><br /><br />
+      Met het nieuwe indexbestand kunt u kolommen sorteren door op een van de kolomkoppen te klikken.<br /><br />
+      <b>Exportstructuren</b><br /><br />
+      - Alle bijlagen in één map<br />
+      Als je een statisch woord gebruikt zoals &#39;Bijlagen&#39;, worden alle bijlagen in die map geplaatst.
+      In het verleden zou dat bijvoorbeeld &#39;Bijlagen&#39;, &#39;Bijlagen-1&#39;, &#39;Bijlagen-2&#39;,
+      enzovoort hebben opgeleverd.<br /><br />
+      - Bijlagen worden in dezelfde map als de berichten opgeslagen.<br />
+      Met deze nieuwe optie op het tabblad &#39;Bestandsnamen&#39; worden er geen bijlagemappen aangemaakt,
+      omdat alle bijlagen zich in de map &#39;Berichten&#39; bevinden.<br /><br />
+      - Bijlagenmappen hebben nu de berichtdatum ingesteld.<br />
+      Voor het sorteren van de bijlagenmappen wordt de wijzigingsdatum nu ingesteld op de verzenddatum van het
+      betreffende bericht.<br /><br />
+      - Experimentele &quot;withatts&quot;-structuur<br />
+      Deze structuur combineert elk bericht met alle bijlagen in een opgemaakte bijlagemap. De gebruikelijke
+      configuratie is om de bestandsnaamindeling in te stellen op uw voorkeur, bijvoorbeeld ${onderwerp}, en
+      uw mapindeling ook op ${onderwerp}. Dit creëert mappen voor elk bericht, met daarin zowel het bericht
+      zelf als de bijlagen. Het is mogelijk om de mappen te sorteren op datum of naam.<br /><br />
+      Om deze experimentele structuur uit te proberen, typt u het woord:<br />
+      <span class="notranslate">withatts</span><br />
+      in de logboekinstellingen in het tabblad Diversen. (Voorstel van @Rayerd)<br /><br />
+      <b>Logboekopties</b><br /><br />
+      De nieuwe logopties vindt u op het tabblad &#39;Diversen&#39;. Deze worden ingesteld als een lijst met
+      woorden van het logtype, gescheiden door spaties. Ze genereren verschillende log- en debug-uitvoer naar
+      de debugconsole, die toegankelijk is via Control-Shift-J. De logtypen kunnen worden gecombineerd om een
+      gecombineerde uitvoer te produceren. De logtypen zijn als volgt:<br />
+      - <span class="notranslate">msgs</span> : Basisstatus voor het opslaan van berichten<br />
+      - <span class="notranslate">msgs2</span> : Gedetailleerdere debug-uitvoer voor berichten<br />
+      - <span class="notranslate">summary</span> : Een samenvatting van de export<br />
+      - <span class="notranslate">msgparts</span> : Foutopsporingsinformatie voor MIME-berichtonderdelen<br />
+      - <span class="notranslate">withatts</span> : Een tijdelijke optie om de gecombineerde bericht- en
+      bijlagenstructuur te gebruiken.<br /><br />
+      <b>Menu&#39;s</b><br /><br />
+      De nieuwe functies worden momenteel bovenop de oude functies toegevoegd en hebben een (v15) prefix.<br /><br />
+      De oude code zal worden afgeschreven zodra de nieuwe functies stabiel zijn. Dit is gedaan als
+      voorzorgsmaatregel voor de grote release. Gebruik de nieuwe functies van versie 15 en meld eventuele
+      problemen in de GitHub-repository hier:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github-problemen</a
       ><br /><br />
-      Ik heb mijn steun voor het releasekanaal heroverwogen. Met ongeveer 78.000 gebruikers is dat een te
-      grote groep om te verstoren. Bovendien wil ik iedereen graag betrekken bij de bèta en de aankomende
-      release van versie 15, die een volledig herschreven versie van de exportfunctie voor berichten is. Deze
-      versie zal ook nieuwe functies toevoegen, zoals het exporteren van pdf&#39;s met bijlagen.<br /><br />
-      Na de volgende ESR-release zal ik mijn releasebeleid bepalen.<br />
-      Controleer echter eerst of ImportExportTools NG wordt ondersteund voordat u Thunderbird bijwerkt.<br /><br />
-      Christopher<br /><br />
-      Oplossing: Verwijder aanhalingstekens uit de weergavenaam voor slimme bestandsnamen.<br /><br />
+      <b>Credits</b><br /><br />
+      Deze release was niet mogelijk geweest zonder de tests, vertalingen en suggesties van een aantal trouwe
+      en toegewijde gebruikers. Hartelijk dank aan:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Christopher<br />
     </p>
     <h2 id="main_help">Overzicht en menu&#39;s van ImportExportTools NG</h2>
     <p>
@@ -63,7 +126,7 @@
     </p>
     <h3>Steun:</h3>
     <p>
-      Meld problemen of doe functieverzoeken in de GitHub-repository van de extensie:
+      Meld problemen of dien functieverzoeken in bij de GitHub-repository van de extensie:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -624,7 +687,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
+          <td>Het jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -855,8 +918,7 @@
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - een directe opdrachtreeks<br />
       <code class="notranslate">contexts</code> - de venstercontext waarin de toets actief is<br />
-      <code class="notranslate">&#39;all&#39;</code> - alle vensters onder Messenger, Berichten opstellen,
-      Zoeken<br />
+      <code class="notranslate">&#39;all&#39;</code> - alle vensters onder Messenger, Opstellen en Zoeken<br />
       <code class="notranslate">&#39;messenger&#39;</code> - het hoofdvenster van Messenger en de daarvan
       afgeleide vensters<br />
       <code class="notranslate">&#39;compose&#39;</code> - het venster voor het opstellen van berichten<br />

@@ -18,17 +18,77 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydání:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydání: Nová velká verze v15</h3>
     <p>
-      <b>Poznámka: Thunderbird v148 opravuje problém s blokováním exportu PDF.</b><br /><br />
-      Znovu jsem zvážil svou podporu pro tento release kanál. S přibližně 78 tisíci uživateli je to příliš
-      velká skupina na to, aby to narušilo jeho fungování. Také chci, aby se všichni zúčastnili beta verze a
-      nadcházejícího vydání v15, které představuje kompletní přepracování funkcí exportu zpráv. Přidá také
-      nové funkce, jako je export PDF s přílohami.<br /><br />
-      Po dalším vydání ESR se rozhodnu o své politice vydávání.<br />
-      Před aktualizací Thunderbirdu však prosím zkontrolujte podporu ImportExportTools NG.<br /><br />
-      Kryštof<br /><br />
-      Oprava: Odebrání uvozovek ze zobrazovaného názvu pro inteligentní názvy souborů<br /><br />
+      <b>Poznámky, funkce a změny k verzi 15. Pečlivě si přečtěte.</b><br /><br />
+      Verze v15 je kompletně přepracovaná pro export zpráv, a to jak složek, tak vybraných zpráv. Jedná se o
+      první fázi moderní technologie, převážně založené na WebExtension. Nový design představuje obrovské
+      vylepšení architektury, které umožňuje nové funkce a lepší výkon.<br /><br />
+      Pro první verzi v15 byly implementovány následující formáty:<br /><br />
+      - EML<br />
+      - HTML a přílohy<br />
+      - PDF a přílohy<br />
+      - Prostý text a přílohy<br /><br />
+      Kromě nového exportu PDF s přílohami je zde také nové okno se stavem exportu a nová alternativa pro
+      oznámení operačního systému. Následuje seznam funkcí:<br /><br />
+      <b>Export PDF s přílohami</b><br /><br />
+      Toto je dlouho požadovaná možnost. Oproti exportu do HTML existuje jedno důležité omezení. Tabulka
+      příloh neobsahuje klikatelné odkazy. Zatím nebylo možné vytvořit výstup s relativními odkazy. Buď
+      převodník PDF, nebo prohlížeče převádějí všechny odkazy file:// na absolutní odkazy, což není užitečné.
+      Doufám, že se v budoucnu najde nějaký způsob, jak toho dosáhnout.<br /><br />
+      <b>Index</b><br /><br />
+      Nový indexový soubor umožňuje řadit sloupce kliknutím na libovolné záhlaví.<br /><br />
+      <b>Exportní struktury</b><br /><br />
+      - Všechny přílohy v jednom adresáři<br />
+      Pokud použijete statické slovo jako „Přílohy“, všechny přílohy se přesunou do tohoto adresáře. Dříve by
+      to znamenalo Přílohy, Přílohy-1, Přílohy-2 atd.<br /><br />
+      - Přílohy uložené ve stejném adresáři jako zprávy.<br />
+      V této nové možnosti, která se nachází na kartě Názvy souborů, se nevytvářejí žádné adresáře příloh,
+      protože všechny se nacházejí v adresáři zpráv.<br /><br />
+      - Adresáře příloh mají nyní nastavené datum zprávy<br />
+      Pro řazení bude nyní datum úpravy adresářů příloh nastaveno na datum odeslání odpovídající zprávy.<br /><br />
+      - Experimentální struktura „withatts“<br />
+      Tato struktura sloučí každou zprávu se všemi přílohami do formátovaného adresáře příloh. Typické
+      nastavení by bylo nastavit formát názvu souboru na vámi preferovaný formát, například ${subject}, a
+      formát adresáře také na ${subject}. Tím by se vytvořily adresáře pro každou zprávu, a to jak se zprávou,
+      tak s přílohami. Adresáře je možné třídit podle data nebo názvu.<br /><br />
+      Chcete-li vyzkoušet tuto experimentální strukturu, umístěte slovo:<br />
+      <span class="notranslate">withatts</span><br />
+      v možnostech protokolování na kartě Různé. (Návrh od @Rayerd)<br /><br />
+      <b>Možnosti protokolování</b><br /><br />
+      Nové možnosti protokolování jsou na kartě Různé. Nastavují se jako seznam slov typu protokolu oddělených
+      mezerami. Produkují různé protokoly a ladicí výstupy do ladicí konzole, která je přístupná pomocí
+      Ctrl-Shift-J. Typy protokolů lze kombinovat a vytvářet tak aditivní výstup. Typy protokolů jsou
+      následující:<br />
+      - <span class="notranslate">msgs</span> : Stav uložení základních zpráv<br />
+      - <span class="notranslate">msgs2</span> : Podrobnější ladicí výstup pro zprávy<br />
+      - <span class="notranslate">summary</span> : Souhrn exportu<br />
+      - <span class="notranslate">msgparts</span> : Ladicí informace pro části zpráv MIME<br />
+      - <span class="notranslate">withatts</span> : Dočasná možnost použití kombinované struktury zpráv a
+      příloh<br /><br />
+      <b>Nabídky</b><br /><br />
+      Nové funkce jsou aktuálně přidány nad staré funkce a mají prefix (v15).<br /><br />
+      Starý kód bude zastaralý, jakmile budou nové funkce stabilní. Toto bylo provedeno jako opatrný přístup k
+      hlavní verzi. Používejte prosím nové funkce v15 a jakékoli problémy nahlaste v repozitáři Github zde:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >Problémy s Githubem v ImportExportTools NG</a
+      ><br /><br />
+      <b>Kredity</b><br /><br />
+      Toto vydání by nemohlo vzniknout bez testování, překladů a návrhů od několika věrných a oddaných
+      uživatelů. Mnohokrát děkujeme:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Kryštof<br />
     </p>
     <h2 id="main_help">Přehled a nabídky nástroje ImportExportTools NG</h2>
     <p>
@@ -58,7 +118,7 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření na GitHubu:
+      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >Problémy s ImportExportTools NG</a
       ><br /><br />
@@ -382,7 +442,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvořit indexový soubor CSV pro vybrané zprávy</td>
+          <td>Vytvořte indexový soubor CSV pro vybrané zprávy</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>

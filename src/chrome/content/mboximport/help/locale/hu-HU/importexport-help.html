@@ -18,18 +18,82 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések: Új, fontos v15 kiadás</h3>
     <p>
-      <b>Megjegyzés: A Thunderbird v148-as verziójában kijavították a PDF-exportálást megakadályozó hibát.</b
+      <b>v15 Megjegyzések, funkciók és változások. Kérjük, figyelmesen olvassa el.</b><br /><br />
+      A v15 az üzenetexportálási funkciók teljes átdolgozása, mind a mappák, mind a kiválasztott üzenetek
+      esetében. Ez egy modern, többnyire WebExtension technológiának az első fázisa. Az új dizájn hatalmas
+      előrelépést jelent az architektúrában, amely új funkciókat és jobb teljesítményt tesz lehetővé.<br /><br />
+      Az első v15-ös kiadáshoz a következő formátumok kerültek megvalósításra:<br /><br />
+      - EML<br />
+      - HTML és mellékletek<br />
+      - PDF és mellékletek<br />
+      - Sima szöveg és mellékletek<br /><br />
+      Az új PDF-fájlok mellékletekkel történő exportálása mellett új exportálási állapotablak és új operációs
+      rendszer értesítési alternatíva is elérhető. A funkciók listája a következő:<br /><br />
+      <b>PDF exportálás mellékletekkel</b><br /><br />
+      Ez egy régóta kért lehetőség. Van egy fontos korlátozása a HTML exporttal szemben. A mellékletek
+      táblázatában nincsenek kattintható hivatkozások. Eddig nem volt lehetséges relatív hivatkozásokat
+      tartalmazó kimenetet előállítani. Vagy a PDF konverter, vagy a megjelenítők az összes file://
+      hivatkozást abszolút hivatkozássá alakítják, amelyek nem hasznosak. Remélem, hogy a jövőben lesz
+      valamilyen mód ennek megvalósítására.<br /><br />
+      <b>Index</b><br /><br />
+      Az új indexfájl lehetővé teszi az oszlopok rendezését a fejlécekre kattintva.<br /><br />
+      <b>Exportstruktúrák</b><br /><br />
+      - Minden melléklet egyetlen könyvtárban<br />
+      Ha statikus szót használsz, például a „Mellékletek”, akkor az összes melléklet ebbe a könyvtárba kerül.
+      Korábban ez Mellékletek, Mellékletek-1, Mellékletek-2 stb. fájlokat eredményezte volna.<br /><br />
+      - A mellékletek ugyanabba a könyvtárba vannak mentve, mint az üzenetei.<br />
+      Ebben az új, a Fájlnevek lapon található opcióban nem jönnek létre mellékletkönyvtárak, mivel azok mind
+      az üzenetek könyvtárában találhatók.<br /><br />
+      - A mellékletkönyvtárakban mostantól be van állítva az üzenet dátuma<br />
+      A mellékletkönyvtárak rendezéséhez a módosítási dátum mostantól a megfelelő üzenet küldési dátuma
+      lesz.<br /><br />
+      - Kísérleti &quot;withatts&quot; szerkezet<br />
+      Ez a struktúra minden egyes üzenetet az összes melléklettel együtt egy formázott mellékletkönyvtárba
+      egyesít. A tipikus beállítás az lenne, hogy a fájlnév formátumát a kívánt beállításra, például
+      ${subject}-re állítjuk, a könyvtár formátumát pedig szintén ${subject}-re. Ez minden üzenethez
+      könyvtárakat hoz létre, amelyek mind az üzenetet, mind a mellékleteket tartalmazzák. A könyvtárak dátum
+      vagy név szerint rendezhetők.<br /><br />
+      A kísérleti struktúra kipróbálásához helyezze el a következő szót:<br />
+      <span class="notranslate">withatts</span><br />
+      a naplózási beállításokban az Egyéb fülön. (Javaslat készítette: @Rayerd)<br /><br />
+      <b>Naplózási beállítások</b><br /><br />
+      Az új naplózási beállítások az Egyéb lapon találhatók. Ezek szóközökkel elválasztott naplótípus-szavak
+      listájaként vannak beállítva. Különböző napló- és hibakeresési kimenetet hoznak létre a hibakeresési
+      konzolon, amely a Ctrl-Shift-J billentyűkombinációval érhető el. A naplótípusok kombinálhatók az additív
+      kimenet előállításához. A naplótípusok a következők:<br />
+      - <span class="notranslate">msgs</span> : Alapvető üzenetmentési állapot<br />
+      - <span class="notranslate">msgs2</span> : Részletesebb hibakeresési kimenet az üzenetekhez<br />
+      - <span class="notranslate">summary</span> : Az exportálás összefoglalása<br />
+      - <span class="notranslate">msgparts</span> : MIME üzenetrészek hibakeresési információi<br />
+      - <span class="notranslate">withatts</span> : Ideiglenes lehetőség az üzenetek és mellékletek kombinált
+      struktúrájának használatára<br /><br />
+      <b>Menük</b><br /><br />
+      Az új függvények jelenleg a régi függvények fölé kerülnek hozzáadásra, és (v15) előtaggal
+      rendelkeznek.<br /><br />
+      A régi kód elavul, amint az új függvények stabilak lesznek. Ezt óvatos megközelítésként tettük a fő
+      kiadással kapcsolatban. Kérjük, használd az új v15 függvényeket, és jelentsd a problémákat a Github
+      repositoryban itt:<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github problémák</a
       ><br /><br />
-      Újragondoltam a kiadási csatorna támogatását. Körülbelül 78 ezer felhasználóval ez túl nagy csoport
-      ahhoz, hogy megzavarják. Azt is szeretném, ha mindenki csatlakozna a v15 béta verziójához és a közelgő
-      kiadáshoz, amely az üzenetek exportálási funkcióinak teljes átdolgozását jelenti. Új funkciókat is
-      hozzáad, például a PDF exportálást mellékletekkel.<br /><br />
-      A következő ESR kiadás után fogom eldönteni a kiadási irányelveimet.<br />
-      Azonban a Thunderbird frissítése előtt kérjük, ellenőrizze az ImportExportTools NG támogatását.<br /><br />
-      Kristóf<br /><br />
-      Javítás: Idézőjelek eltávolítása az intelligens fájlnevek megjelenített nevéből<br /><br />
+      <b>Közreműködők</b><br /><br />
+      Ez a kiadás nem jöhetett volna létre számos hűséges és elkötelezett felhasználó tesztelése, fordítása és
+      javaslata nélkül. Köszönjük szépen:<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Kristóf<br />
     </p>
     <h2 id="main_help">ImportExportTools NG áttekintése és menüi</h2>
     <p>
@@ -149,8 +213,8 @@
           </td>
           <td>
             Exportálja a mappaüzeneteket HTML formátumú fájlokként (struktúra/almappák nélkül).<br />
-            A mellékletek külön fájlokban lesznek mentve. Ez egy HTML indexfájlt is létrehoz, amely felsorolja
-            az egyes üzeneteket.
+            A mellékletek külön fájlokként lesznek mentve. Ez egy HTML indexfájlt is létrehoz, amely
+            felsorolja az egyes üzeneteket.
           </td>
         </tr>
         <tr>
@@ -173,7 +237,8 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportálja a mappaüzeneteket egyszerű szöveges formátumú fájlokként, a mellékletekkel együtt.<br />
+            Exportálja a mappaüzeneteket egyszerű szöveges formátumú fájlokként, beleértve a mellékleteket
+            is.<br />
             Ez egy HTML indexfájlt is létrehoz, amely felsorolja az egyes üzeneteket.
           </td>
         </tr>
@@ -209,11 +274,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Létrehoz egy HTML indexfájlt az üzenetek mappából (nincs üzenetexportálás)</td>
+          <td>HTML indexfájlt hoz létre az üzenetek mappából (üzenetek exportálása nélkül)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>CSV indexfájlt hoz létre az üzenetek mappájából (üzenetek exportálása nélkül)</td>
+          <td>Létrehoz egy CSV indexfájlt az üzenetek mappájáról (nincs üzenetexportálás)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -265,7 +330,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Másolja a kiválasztott mappa operációs rendszer elérési útját</td>
+          <td>A kiválasztott mappa operációs rendszer elérési útjának másolása</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
@@ -565,7 +630,7 @@
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>A hónap decimális törtként (1-től 12-ig terjedő tartomány).</td>
+          <td>A hónap decimális számként (1-től 12-ig terjedő tartomány).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
@@ -731,7 +796,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Az utótag szöveges beállítási értéke.</td>
+        <td>Az utótag szöveges opció értéke.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>

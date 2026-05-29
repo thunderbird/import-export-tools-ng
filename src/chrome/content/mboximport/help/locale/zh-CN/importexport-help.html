@@ -18,14 +18,54 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">发布说明：</h3>
+    <h3 id="release_notes" style="padding-left: 4px">发布说明：v15 版本重大更新</h3>
     <p>
-      <b>注意：Thunderbird v148 已修复阻止 PDF 导出的问题。</b
-      ><br /><br />我重新考虑了对发布渠道的支持。该渠道拥有约 7.8
-      万用户，影响如此庞大的用户群体实在不妥。此外，我希望大家都能参与 v15 的 beta 测试和即将发布的正式版，v15
-      将彻底重写导出消息功能，并新增诸如导出带附件的 PDF 文件等功能。<br /><br />下一次 ESR
-      版本发布后，我将决定我的发布策略。<br />但是，请在更新 Thunderbird 之前检查 ImportExportTools NG
-      是否受支持。<br /><br />克里斯托弗<br /><br />修复：移除智能文件名显示名称中的引号<br /><br />
+      <b>v15 版本更新说明、功能特性及变更内容。请仔细阅读。</b><br /><br />
+      v15 版本对邮件导出功能进行了全面重写，包括文件夹导出和选定邮件导出。这是基于 WebExtension
+      技术的现代化方案的第一阶段。新设计在架构上进行了大幅改进，从而实现了更多新功能并提升了性能。<br /><br />首个
+      v15 版本已实现以下格式：<br /><br />
+      - EML<br />
+      - HTML 和附件<br />- PDF文件及其附件<br />- 纯文本和附件<br /><br />除了新增的带附件 PDF
+      导出功能外，还新增了导出状态窗口和操作系统通知选项。功能列表如下：<br /><br /><b>导出带附件的PDF文件</b
+      ><br /><br />这是一个用户期待已久的功能。与 HTML 导出相比，PDF
+      导出存在一个重要的限制：附件表格中的链接不可点击。目前，PDF 还无法生成带有相对链接的输出。PDF
+      转换器或查看器会将所有 file://
+      链接转换为绝对链接，这显然是不可行的。我希望未来能够找到解决此问题的方法。<br /><br /><b>指数</b
+      ><br /><br />新的索引文件允许您通过单击任何标题对列进行排序。<br /><br /><b>出口结构</b><br /><br />-
+      所有附件都位于同一个目录中<br />如果您使用像“附件”这样的固定名称，所有附件都将存放在该目录中。过去，这会生成“附件”、“附件-1”、“附件-2”等等目录。<br /><br />
+      - 附件与邮件保存在同一目录下。<br />在“文件名”选项卡上的这个新选项中，不会创建任何附件目录，因为它们都位于邮件目录中。<br /><br />
+      - 附件目录现在已设置邮件日期。<br />为了进行排序，附件目录的修改日期现在将设置为相应邮件的发送日期。<br /><br />
+      - 实验性的“瓦特”结构<br />这种结构会将每封邮件及其所有附件合并到格式化的附件目录中。典型的设置方法是将文件名格式设置为您偏好的格式，例如
+      ${subject}，并将目录格式也设置为
+      ${subject}。这样，每封邮件都会生成一个包含邮件正文和附件的目录。您可以按日期或名称对目录进行排序。<br /><br />要尝试这种实验性结构，请输入以下单词：<br />
+      <span class="notranslate">withatts</span><br />在“其他”选项卡的日志记录选项中。（@Rayerd 建议）<br /><br /><b
+        >日志记录选项</b
+      ><br /><br />新的日志选项位于“其他”选项卡中。这些选项以空格分隔的日志类型单词列表形式设置。它们会生成各种日志和调试输出到调试控制台（可通过
+      Control-Shift-J 访问）。日志类型可以组合使用以生成累加输出。日志类型如下：<br />
+      - <span class="notranslate">msgs</span> ：基本消息保存状态<br />-
+      <span class="notranslate">msgs2</span> ：更详细的消息调试输出<br />-
+      <span class="notranslate">summary</span> ：出口概要<br />-
+      <span class="notranslate">msgparts</span> ：MIME 消息部分的调试信息<br />-
+      <span class="notranslate">withatts</span> ：一个临时选项，用于使用合并的消息和附件结构<br /><br /><b
+        >菜单</b
+      ><br /><br />新功能目前是在旧功能的基础上添加的，并且带有（v15）前缀。<br /><br />旧代码将在新功能稳定后弃用。这是为了谨慎地发布主要版本而采取的做法。请使用新的
+      v15 功能，并将任何问题报告到此处的 GitHub 仓库：<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github 问题</a
+      ><br /><br /><b>鸣谢</b
+      ><br /><br />如果没有众多忠实用户的测试、翻译和建议，本次版本发布不可能完成。在此特别感谢：<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Reyerd<br />
+        @Joergen<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />克里斯托弗<br />
     </p>
     <h2 id="main_help">ImportExportTools NG 概述和菜单</h2>
     <p>
@@ -553,7 +593,7 @@
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>当前区域设置中不带时间的首选日期表示方式。</td>
+          <td>当前区域设置的首选日期表示方式，不包含时间。</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>

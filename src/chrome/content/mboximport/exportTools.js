@@ -201,33 +201,22 @@ async function exportSelectedMsgs(type, params) {
 	try {
 
 		var file = getPredefinedFolder(2);
-		if (!file || type === 3 || type === 4) {
-			var nsIFilePicker = Ci.nsIFilePicker;
-			let winCtx = window;
-			const tbVersion = ietngUtils.getThunderbirdVersion();
-			if (tbVersion.major >= 120) {
-				winCtx = window.browsingContext;
-			}
-			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-			if (type === 3) {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeSave);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else if (type === 4) {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
-				fp.appendFilters(nsIFilePicker.filterAll);
-			} else {
-				fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-			}
+		let fpRes;
 
-			var res;
-			if (fp.show)
-				res = fp.show();
-			else
-				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK)
-				file = fp.file;
-			else
+		if (!file || type === 3 || type === 4) {
+			if (type === 3) {
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeSave, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.file;
+			} else if (type === 4) {
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeOpen, ietngUtils.localizeMsg("filePickerAppend"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.file;
+			} else {
+				fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+				file = fpRes.folderFile;
+			}
+			if (fpRes.result == -1) {
 				return { status: "cancel" };
+			}
 		}
 
 		try {
@@ -239,6 +228,9 @@ async function exportSelectedMsgs(type, params) {
 			return ex;
 		}
 
+		if (type == 4 && file.exists() && fpRes.result == Ci.nsIFilePicker.returnReplace) {
+			file.remove(false);
+		}
 
 		var curDBView;
 		// Lets see where we are
@@ -360,6 +352,8 @@ async function exportSelectedMsgs(type, params) {
 async function exportAllMsgs(type, params) {
 	//console.log("exportAllMsgs", type, params);
 
+	let st = new Date();
+
 	var exportFolderPath;
 	var question;
 
@@ -382,25 +376,12 @@ async function exportAllMsgs(type, params) {
 	}
 
 	try {
-
 		var file = getPredefinedFolder(1);
-		if (!file && params.fileDialog) {
-			let winCtx = window;
-			const tbVersion = ietngUtils.getThunderbirdVersion();
-			if (tbVersion.major >= 120) {
-				winCtx = window.browsingContext;
-			}
 
-			var nsIFilePicker = Ci.nsIFilePicker;
-			var res;
-			var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-			fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-			if (fp.show)
-				res = fp.show();
-			else
-				res = IETopenFPsync(fp);
-			if (res === nsIFilePicker.returnOK) {
-				file = fp.file;
+		if (!file && params.fileDialog) {
+			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+			if (fpRes.result == Ci.nsIFilePicker.returnOK) {
+				file = fpRes.folderFile;
 			} else {
 				return { status: "cancel" };
 			}
@@ -408,7 +389,6 @@ async function exportAllMsgs(type, params) {
 			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 			file.initWithPath(params.exportFolderPath);
 		}
-
 		exportFolderPath = file.path;
 
 		try {
@@ -462,6 +442,8 @@ async function exportAllMsgs(type, params) {
 		Services.prompt.alert(window, errTitle, errMsg);
 		return { status: "error", errMsg: ex };
 	}
+
+	console.log(new Date() - st);
 
 	return { status: "ok", exportFolderPath: exportFolderPath };
 }
@@ -809,7 +791,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
-			tempFile.append(sog + ext);
+			tempFile.append(sog + ext);			
 			tempExists = tempFile.exists();
 		}
 
@@ -1448,8 +1430,8 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 								data = this.emailtext.replace(/^(From (?:.*?)\r?\n)([\x21-\x7E]+: )/, "$2");
 								data = IETescapeBeginningFrom(data);
 
-								// Strip CR option - @ashikase
-								if (IETprefs.getBoolPref("extensions.importexporttoolsng.export.strip_CR_for_EML_exports")) {
+								// Strip CR option - @ashikase - always remove CR
+								if (true) {
 									data = data.replace(/\r\n/g, "\n");
 								}
 
@@ -1656,8 +1638,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let cutLen = attName.length / 4;
 											attName = attName.slice(0, attName.length - cutLen);
 											attName = attName.trimEnd();
-											attName = attName.replace(/[\/\\:<>*\?\"\|]/g, "_");
-
 											attDirContainer.initWithPath(PathUtils.join(PathUtils.parent(attDirContainer.path), attName));
 										}
 										attDirContainer.createUnique(1, 0o755);
@@ -1708,7 +1688,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 												}
 											}
 											adjustedAttName = adjustedAttName.replace(/[\/\\:<>*\?\"\|]/g, "_");
-
 											attDirContainerClone.append(adjustedAttName);
 											attachments[i].file = attDirContainerClone;
 
@@ -1898,6 +1877,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 											let afname = constructAttachmentsFilename(2, hdr);
 											embImgContainer.append(afname);
 										}
+
 										embImgContainer.createUnique(1, 0o755);
 									}
 

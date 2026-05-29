@@ -319,6 +319,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     log("msgs msgs2", "Start Export selected messages\nFolder:")
 
+    log("test", ctxEvent, "ctxEvent")
+    log("test", tab, "tab")
+
+    
+
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder

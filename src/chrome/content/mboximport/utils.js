@@ -186,13 +186,15 @@ function getSubjectForHdr(hdr, dirPath) {
 		var pattern = IETprefs.getCharPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
 		var authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
-		authName = authName.replaceAll('"',"");
-		
+		authName = authName.replaceAll('"', "");
+
 		if (authMaxLen > 0) {
 			authName = authName.substring(0, authMaxLen);
 		}
 
 		var recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		recName = recName.replaceAll('"', "");
+
 		if (recMaxLen > 0) {
 			recName = recName.substring(0, recMaxLen);
 		}
@@ -239,12 +241,14 @@ function getSubjectForHdr(hdr, dirPath) {
 
 		// Name
 		let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
-		authName = authName.replaceAll('"',"");
+		authName = authName.replaceAll('"', "");
 		if (authMaxLen > 0) {
 			authName = authName.substring(0, authMaxLen);
 		}
 
 		let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+		recName = recName.replaceAll('"', "");
+
 		if (recMaxLen > 0) {
 			recName = recName.substring(0, recMaxLen);
 		}
@@ -292,10 +296,12 @@ function getSubjectForHdr(hdr, dirPath) {
 
 
 		fname = extendedFilenameFormat;
+
 	} else {
 		fname = msgDate8601string + "-" + subj + "-" + hdr.messageKey;
 	}
 	fname = fname.replace(/[\x00-\x1F]/g, "_");
+
 	if (mustcorrectname)
 		fname = nametoascii(fname);
 	else {
@@ -339,7 +345,7 @@ function formatNameForSubject(str, recipients) {
 	if (str.indexOf("<") > -1)
 		str = str.replace(/\s*<.+>/, "");
 	else
-		str = str.replace(/[@\.]/g, "_");
+		str = str.replace(/["]]/g, "");
 	return str;
 }
 
@@ -689,7 +695,7 @@ async function asyncIETgetPickerModeFolder() {
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-	
+
 	const task = Promise.withResolvers();
 	fp.open(res => {
 		let dir = null;
@@ -844,9 +850,8 @@ function constructAttachmentsFilename(type, hdr) {
 
 	var emlNameType = IETprefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
 	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
-	var cutSubject = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_subject");
+	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
 	var cutFileName = IETprefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
-	var subMaxLen = cutSubject ? 50 : -1;
 
 	// Subject
 	var subj;
@@ -884,6 +889,9 @@ function constructAttachmentsFilename(type, hdr) {
 	// Name
 	let authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
 	let recName = formatNameForSubject(hdr.mime2DecodedRecipients, true);
+
+	authName = authName.replaceAll('"', "");
+	recName = recName.replaceAll('"', "");
 
 	var authEmail = "";
 	var recEmail = "";

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Dossier des pièces jointes externes "
   },
+  "Attachments.label": {
+    "message": "Pièces jointes"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Enregistrer la pièce jointe EML dans ce dossier"
   },
@@ -269,6 +272,21 @@
     "message": "Exporter le dossier",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportation de dossiers"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Texte brut"
+  },
   "exportingMsg": {
     "message": "Exportation de",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Exportation effectuée avec succès",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportation des messages sélectionnés"
   },
   "exportstart": {
     "message": "Exportation en cours, veuillez patienter…",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Sélectionner les messages à importer",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Dossier"
   },
   "folderCount.label": {
     "message": "Nombre de dossiers"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latiniser la transformation"
   },
+  "LoggingOptions.label": {
+    "message": "Options de journalisation"
+  },
   "MACwarning": {
     "message": "Veuillez fermer toutes les autres fenêtres avant de continuer."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Format PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Messages et index HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Messages uniquement"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Messages et pièces jointes"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Messages avec pièces jointes et index"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Format texte brut"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exporter les messages sélectionnés"
+  },
+  "msgErrs.label": {
+    "message": "Des erreurs se sont produites. Consultez la console d’erreurs (Ctrl+Maj+J) depuis la fenêtre principale de Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "sans_sujet",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Utiliser les notifications plutôt que la fenêtre d’état pour l’exportation de dossiers"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utiliser les notifications plutôt que la fenêtre d’état pour l’exportation des messages sélectionnés"
+  },
   "noWarning": {
     "message": "Ne plus afficher cet avertissement",
     "src": "mboximport"
@@ -828,7 +876,7 @@
     "src": "mboximport"
   },
   "OK.button": {
-  "message": "OK"
+    "message": "OK"
   },
   "openHelpInWindow.label": {
     "message": "Ouvrir l’aide dans une fenêtre au lieu d’un onglet"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Mode de sauvegarde "
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Enregistrer les pièces jointes dans le même dossier que les messages"
+  },
   "savedirs": {
     "message": "Dossiers d’exportation"
   },
@@ -922,6 +973,9 @@
     "message": "Sélectionner le dossier contenant les fichiers",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Voir les notes de version"
+  },
   "selectFolderForMboxes_title": {
     "message": "Sélectionner le dossier contenant les fichiers mbox à importer",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${expéditeur}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Utiliser la date d’envoi comme date des fichiers exportés"
   },
   "Size": {
     "message": "Taille"

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Složky příloh"
   },
+  "Attachments.label": {
+    "message": "Přílohy"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Uložte přílohu EML do této složky"
   },
@@ -269,6 +272,21 @@
     "message": "Exportovat složku",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportovat složky"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Prostý text"
+  },
   "exportingMsg": {
     "message": "Export",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Export byl úspěšně proveden",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportovat vybrané zprávy"
   },
   "exportstart": {
     "message": "Export, čekejte prosím…",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Vyberte zprávy, které chcete importovat",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Složka"
   },
   "folderCount.label": {
     "message": "Počet složek"
@@ -563,6 +587,9 @@
   "latinizeTransform": {
     "message": "Latinizovat transformovat"
   },
+  "LoggingOptions.label": {
+    "message": "Možnosti protokolování"
+  },
   "MACwarning": {
     "message": "Poznámka: Před pokračováním zavřete všechna ostatní okna."
   },
@@ -679,6 +706,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Formát PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Zprávy a HTML index"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Pouze zprávy"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Zprávy a přílohy"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Zprávy s přílohami a indexem"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Formát prostého textu"
   },
@@ -696,6 +735,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exportovat zprávy jako…"
+  },
+  "msgErrs.label": {
+    "message": "Vyskytly se chyby. V hlavním okně Thunderbirdu se podívejte do konzole chyb (Ctrl+Shift+J)."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -805,6 +847,12 @@
     "message": "žádný předmět",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Pro export složek používejte oznámení místo stavového okna"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Pro export vybraných zpráv použít oznámení místo stavového okna"
+  },
   "noWarning": {
     "message": "Toto varování již nezobrazovat",
     "src": "mboximport"
@@ -879,6 +927,9 @@
   "save": {
     "message": "Uložit"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Ukládat přílohy do stejného adresáře jako zprávy"
+  },
   "savedirs": {
     "message": "Export adresářů"
   },
@@ -919,6 +970,9 @@
     "message": "Vyberte adresář pro vyhledávání souborů",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Viz poznámky k vydání"
+  },
   "selectFolderForMboxes_title": {
     "message": "Vyberte složku pro import souborů mbox",
     "src": "mboximport"
@@ -938,6 +992,9 @@
   },
   "senderFmtToken": {
     "message": "${sender}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Nastavit datum exportovaných souborů zpráv na datum odeslání"
   },
   "Size": {
     "message": "Velikost"

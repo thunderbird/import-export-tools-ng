@@ -1,0 +1,108 @@
+/* UI expStatus windows css */
+
+:root {
+	--dialog-bgcolor: #f4f4f4;
+	--dialog-text-color: FieldText;
+	--in-content-box-background: Field !important;
+	--in-content-accent-color: rgb(69, 161, 255);
+	--list-item-hover: rgb(116, 183, 249);
+	--list-highlight-text-color: black;
+	--in-content-button-background: rgba(207, 207, 216, 0.33);
+	--list-disabled-font-color: #cccccc;
+	--table-border-color: #d2d2d2;
+	--table-stripe-even: #e8e8e8;
+	--link-color: darkblue;
+	--multiple-folders-display: none;
+	--multiple-folders-display-row: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dialog-bgcolor: rgb(35, 34, 43);
+		--dialog-text-color: #f7f7f7;
+		--table-border-color: #404040;
+		--table-stripe-even: #303030;
+		--link-color: lightblue;
+	}
+}
+
+html, body {
+  overflow-x: clip; /* Modern way to prevent horizontal scroll */
+  max-width: 100%;
+}
+
+body {
+	background-color: var(--dialog-bgcolor);
+	font-family: 'Roboto', sans-serif;
+	color: var(--dialog-text-color);
+  min-width: 320px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+
+
+
+}
+
+#outer-container {
+	display: flex;
+	flex-direction: column;
+}
+
+#main-content {
+	flex: 0;
+}
+
+table { 
+	border-collapse: collapse;
+}
+
+td:nth-child(1) {
+	padding-right: 20px;
+}
+
+.multiple-folders-display {
+	display: var(--multiple-folders-display);
+}
+
+tr.multiple-folders-display {
+	display: var(--multiple-folders-display-row);
+}
+
+.numright {
+	text-align: right;
+	width: 40px;
+}
+
+.progress-div1 {
+	padding-top: 15px;
+}
+
+.progress-div2 {
+	padding-top: 12px;
+}
+.progress::after {
+	padding-left: 5px;
+  content: attr(max);
+}
+
+#statusMsg {
+	flex: 0;
+	padding-top: 4px;
+	padding-bottom: 6px;
+	min-height: 2.2em;
+}
+
+#buttons {
+	flex: 0;
+	text-align: right;
+}
+
+button {
+	padding: 2px;
+	min-width: 60px;
+}
+
+#okButton {
+	margin-right: 15px;
+}

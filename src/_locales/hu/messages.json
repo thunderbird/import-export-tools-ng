@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mellékletek mappák"
   },
+  "Attachments.label": {
+    "message": "Mellékletek"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML melléklet mentése ebbe a mappába"
   },
@@ -269,6 +272,21 @@
     "message": "Mappa exportálása",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Mappák exportálása"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Sima szöveg"
+  },
   "exportingMsg": {
     "message": "Exportálás",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Az exportálás sikeresen befejeződött",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Kijelölt üzenetek exportálása"
   },
   "exportstart": {
     "message": "Exportálás, kis türelmet…",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Az importálni kívánt üzenetek kijelölése",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Mappa"
   },
   "folderCount.label": {
     "message": "Mappák száma"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Transzformáció latinosítása"
   },
+  "LoggingOptions.label": {
+    "message": "Naplózási beállítások"
+  },
   "MACwarning": {
     "message": "Megj.: folytatás előtt a többi ablak bezárása"
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF formátum"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Üzenetek és HTML-index"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Csak üzenetek"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Üzenetek és mellékletek"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mellékletekkel és indexszel rendelkező üzenetek"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Egyszerű szöveges formátum"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Üzenetek exportálása mint…"
+  },
+  "msgErrs.label": {
+    "message": "Hibák történtek. Lásd a Hibakonzolt (Ctrl+Shift+J) a Thunderbird főablakában."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "nincs_tárgy",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Értesítések használata állapotablak helyett mappa exportálásakor"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Értesítések használata állapotablak helyett a kiválasztott üzenetek exportálásakor"
+  },
   "noWarning": {
     "message": "Ne jelenjen meg újra a figyelmeztetés",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Mentés"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Mellékletek mentése az üzenetekkel azonos könyvtárba"
+  },
   "savedirs": {
     "message": "Mappák exportálása"
   },
@@ -922,6 +973,9 @@
     "message": "Válasszon mappát a fájlok kereséséhez",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Lásd a kiadási megjegyzéseket"
+  },
   "selectFolderForMboxes_title": {
     "message": "Válassza ki a mappát az mbox fájlok importálásához",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${feladó}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Exportált üzenetfájlok dátumának beállítása küldési dátumra"
   },
   "Size": {
     "message": "Méret"

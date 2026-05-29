@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Φάκελοι συνημμένων"
   },
+  "Attachments.label": {
+    "message": "Συνημμένα"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Αποθηκεύστε το συνημμένο EML σε αυτόν τον φάκελο"
   },
@@ -269,6 +272,21 @@
     "message": "Εξαγωγή φακέλου",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Εξαγωγή φακέλων"
+  },
+  "exportFormatEML": {
+    "message": "Ηλεκτρονική Μίμηση"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Απλό κείμενο"
+  },
   "exportingMsg": {
     "message": "Εξαγωγή",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Η εξαγωγή πραγματοποιήθηκε με επιτυχία",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Εξαγωγή επιλεγμένων μηνυμάτων"
   },
   "exportstart": {
     "message": "Εξαγωγή, περιμένετε…",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Επιλέξτε τα μηνύματα για εισαγωγή",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Ντοσιέ"
   },
   "folderCount.label": {
     "message": "Αριθμός φακέλων"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Λατινοποίηση μετασχηματισμού"
   },
+  "LoggingOptions.label": {
+    "message": "Επιλογές καταγραφής"
+  },
   "MACwarning": {
     "message": "Σημείωση: Κλείστε κάθε άλλο παράθυρο πριν συνεχίσετε."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Μορφή PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Μηνύματα και ευρετήριο HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Μόνο μηνύματα"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Μηνύματα και Συνημμένα"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Μηνύματα με συνημμένα και ευρετήριο"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Μορφή απλού κειμένου"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Εξαγωγή μηνυμάτων ως…"
+  },
+  "msgErrs.label": {
+    "message": "Υπήρχαν σφάλματα. Δείτε την Κονσόλα σφαλμάτων (Control+Shift+J) από το κύριο παράθυρο του Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "χωρίς θέμα",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Χρήση ειδοποιήσεων αντί για παράθυρο κατάστασης για εξαγωγή φακέλων"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Χρήση ειδοποιήσεων αντί για παράθυρο κατάστασης για την εξαγωγή επιλεγμένων μηνυμάτων"
+  },
   "noWarning": {
     "message": "Μην εμφανίσετε ξανά αυτήν την προειδοποίηση",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Αποθηκεύσετε"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Αποθήκευση συνημμένων στον ίδιο κατάλογο με μηνύματα"
+  },
   "savedirs": {
     "message": "Εξαγωγή καταλόγων"
   },
@@ -922,6 +973,9 @@
     "message": "Επιλέξτε έναν κατάλογο για αναζήτηση των αρχείων",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Δείτε τις σημειώσεις έκδοσης"
+  },
   "selectFolderForMboxes_title": {
     "message": "Επιλέξτε φάκελο για εισαγωγή αρχείων mbox",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${αποστολέας}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Ορισμός ημερομηνίας εξαγωγής αρχείων μηνυμάτων σε ημερομηνία αποστολής"
   },
   "Size": {
     "message": "Μέγεθος"

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "附件文件夹"
   },
+  "Attachments.label": {
+    "message": "附件"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "将 EML 附件保存到此文件夹"
   },
@@ -269,6 +272,21 @@
     "message": "导出信件夹",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "导出文件夹"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "纯文本"
+  },
   "exportingMsg": {
     "message": "出口",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "导出成功",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "导出选定消息"
   },
   "exportstart": {
     "message": "正在导出……请稍候",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "选择要导入的邮件",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "文件夹"
   },
   "folderCount.label": {
     "message": "文件夹数量"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "拉丁化变换"
   },
+  "LoggingOptions.label": {
+    "message": "日志记录选项"
+  },
   "MACwarning": {
     "message": "警示：继续前，关闭所有其他窗口。"
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF 格式"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "消息和 HTML 索引"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "仅限消息"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "消息和附件"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "带附件和索引的消息"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "纯文本格式"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "将消息导出为..."
+  },
+  "msgErrs.label": {
+    "message": "出现错误。请在 Thunderbird 主窗口中查看错误控制台（Ctrl+Shift+J）。"
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "无主题",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "文件夹导出时，请使用通知而不是状态窗口。"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "对于选定的消息导出，请使用通知而不是状态窗口。"
+  },
   "noWarning": {
     "message": "不要再次显示这个警告",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "保存"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "将附件保存在与邮件相同的目录中。"
+  },
   "savedirs": {
     "message": "导出目录"
   },
@@ -922,6 +973,9 @@
     "message": "选择要查找文件的目录",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "请参阅发行说明"
+  },
   "selectFolderForMboxes_title": {
     "message": "选择要导入 mbox 文件的文件夹",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${发件人}"
+  },
+  "setMsgExpDate.label": {
+    "message": "将导出邮件文件的日期设置为发送日期"
   },
   "Size": {
     "message": "尺寸"

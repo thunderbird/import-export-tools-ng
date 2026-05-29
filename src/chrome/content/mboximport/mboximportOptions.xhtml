@@ -10,7 +10,8 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
 		title="ImportExportTools NG "
-		windowtype="ietng:options">
+		windowtype="ietng:options"
+		>
 	<tabbox>
 		<tabs>
 			<tab label="__MSG_misc__" selected="true" />
@@ -19,19 +20,16 @@
 			<tab label=" __MSG_backupTab__ " />
 		</tabs>
 		<tabpanels>
-			<tabpanel style="margin-left: 10px; margin-top: 0px;" orient="vertical">
-				<label class="top-header" >__MSG_MBcaptionlabel1__</label>
-				<html:div style="min-width: 550px">
-					<html:div style="padding-left: 10px; float: left">
-						<html:div style="width: 10px; height: 10px; background-color2: yellow" ></html:div>
+			<tabpanel style="margin-left: 10px; margin-top: 0px; margin-bottom: 10px; margin-right: 15px;" orient="vertical">
+				<html:div id="flexContainer">
+					<html:div id="mainDiv">
+						<label class="top-header" >__MSG_MBcaptionlabel1__</label>
+						<html:div style="width: 10px; height: 10px;"></html:div>
 						<hbox align="center">
 							<checkbox id="useMboxExt" label="__MSG_useMboxExt.label__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="__MSG_MBlabel1__" />
-						</hbox>
-						<hbox align="center">
-							<checkbox id="MBconfrimimport" label="__MSG_MBlabel3__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBhtmlasdisplayed" label="__MSG_MBlabel4__" />
@@ -40,16 +38,19 @@
 							<checkbox id="MBcliptextplain" label="__MSG_MBlabel5__" />
 						</hbox>
 						<hbox align="center">
-							<checkbox id="setTimestamp" label="__MSG_addTimestamp__" />
+							<checkbox id="setTimestamp" label="__MSG_setMsgExpDate.label__" />
 						</hbox>
 						<hbox align="center" style="display: none">
 							<checkbox id="buildMSF" label="__MSG_buildMSF.label__" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="display: none">
 							<checkbox id="addNumber" label="__MSG_addNumber.label__" />
 						</hbox>
-						<hbox align="center">
-							<checkbox id="stripEML_CR" label="__MSG_strip_eml_CR.label__" />
+						<hbox align="center" flex="1">
+							<checkbox id="notificationsForExpFolders" label="__MSG_notificationsForExpFolders.label__" />
+						</hbox>
+						<hbox align="center" flex="1">
+							<checkbox id="notificationsForExpSelMsgs" label="__MSG_notificationsForExpSelMsgs.label__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="openHelpInWin" label="__MSG_openHelpInWindow.label__" />
@@ -64,7 +65,7 @@
 								<menupopup id="charset-list-popup" />
 							</menulist>
 						</hbox>
-						<html:div style="height: 10px"></html:div>
+						<html:div id="flexSpacer" style="height: 10px; width: 520px; background-color2: yellow;"></html:div>
 						<html:table>
 							<html:tr>
 								<html:td align="left" style="margin-bottom: 4px;">
@@ -105,12 +106,21 @@
             					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="__MSG_dateFormatRefTooltipText__" />
 							</hbox>
 						</hbox>
-					</html:div>
-					<html:div style="float: left; ">
-						<hbox flex="1" pack="end" style="height: 48px; padding-left: 25px">
-							<image src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
-					  maxwidth="48px" maxheight="54px" style="padding-top: 6px;"/>
+						<html:div style="height: 6px"></html:div>
+						<hbox style="height: ;" >
+							<label id="logOptionslab" style="padding-top: 3px; padding-left: 3px;" >__MSG_LoggingOptions.label__: </label>
+							<hbox align="center"  style="padding-left: 0px; height: ;">
+								<html:input id="loggingOptions" class="adjusted-image-height2"  style=" background-color: ;" size="35"/>
+							</hbox>
+							<hbox class="adjusted-image-height2" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="padding-left: 3px; padding-top: 0px;  margin-bottom: 0px; background-color: ;"
+            					  maxwidth="16px"  onclick="openHelpBM('#release_notes')" tooltiptext="__MSG_LoggingOptions.label__ - __MSG_SeeReleaseNotes.label__" />
+							</hbox>
 						</hbox>
+					</html:div>
+					<html:div id="logoDiv" style="background-color2: blue">
+							<html:img src="chrome://mboximport/content/mboximport/icons/import-export-tools-ng-icon-64px.png" width="48px" height="48px"
+					   style="padding-top: 0px;"/>
 					</html:div>
 				</html:div>
 			</tabpanel>
@@ -169,14 +179,7 @@
 							<checkbox id="addtimeCheckbox" label="__MSG_addtime.label__" checked="false" />
 						</hbox>
 						<hbox align="center" width="100%" >
-							<hbox>
-								<checkbox id="addPrefix" label="__MSG_addPrefix__" checked="false" />
-								<html:input id="prefixText" />
-							</hbox>
-							<hbox flex="1" style="padding-right: 2px;" pack="end" >
-								<checkbox id="addSuffix" label="__MSG_addSuffix__" checked="false"  style="padding-left: 12px" />
-								<html:input id="suffixText" size="22"/>
-							</hbox>
+
 						</hbox>
 						<html:div style="height: 10px"></html:div>
 						<hbox style="height: ;" >
@@ -211,7 +214,11 @@
 					<html:div style="height: 15px"></html:div>
 					<label class="section-header">__MSG_attachmentFolderNames__</label>
 					<vbox style="padding-left: 10px;">
+					<hbox  flex="0">
+								<checkbox id="saveAttsInMsgDir" label="__MSG_saveAttsInMsgDir.label__" />
+							</hbox>
 						<hbox pack="start"  style="padding-left: 4px;" align="center">
+						
 							<hbox flex="0">
 								<label style="padding-left: -4px;">__MSG_attachmentFolders__:</label>
 							</hbox>
@@ -235,7 +242,7 @@
 					</vbox>
 					<label class="section-header">__MSG_misc__</label>
 					<vbox style="padding-left: 10px;">
-						<hbox align="center" >
+						<hbox align="center" flex="1">
 							<checkbox id="MBasciiname" label="__MSG_nonAlphanumericFilter__" />
 							<html:div style="width: 15px; height: 10px;" ></html:div>
 							<checkbox id="utf16-filter" label="__MSG_utf16Filter__" />

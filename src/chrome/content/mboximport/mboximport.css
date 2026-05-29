@@ -71,64 +71,83 @@
 
 }
 
+/* Add space at the bottom of the entire dialog */
+dialog {
+	padding-bottom: 10px !important;
+}
 
 #optionsdialog {
-  background-color: var(--dialog-bgcolor);
-  margin-bottom: 10px;
-  padding-right: 8px !important;
+	background-color: var(--dialog-bgcolor);
+	margin-bottom: 10px;
+	padding-right: 8px !important;
 	width: 100%;
 }
 
 tab {
-  min-height: 30px;
-  font-weight: 400;
-  font-size: 12.66px;
+	min-height: 30px;
+	font-weight: 400;
+	font-size: 12.66px;
 
 }
 
 tab[selected] {
-  color: rgb(27, 107, 186);
-  background-color: var(--tab-selected-background)
+	color: rgb(27, 107, 186);
+	background-color: var(--tab-selected-background)
+}
+
+#flexContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+#mainDiv {
+	flex: 1;
+	padding-left: 10px;
+	padding-right: 0px;
+}
+
+#logoDiv {
+	width: 50px;
 }
 
 .top-header {
-  font-size: 12px;
-  font-weight: 700;
+	font-size: 12px;
+	font-weight: 700;
 }
 
 .section-header {
-  font-size: 12px;
-  font-weight: 700;
-  padding-bottom: 5px;
+	font-size: 12px;
+	font-weight: 700;
+	padding-bottom: 5px;
 }
 
 
 .groupbox-multi-os {
-  position: relative;
-  border-radius: 3px;
-  border-bottom: 2px groove ThreeDFace;
-  border-top: 2px groove ThreeDFace;
-  border-left: 2px groove ThreeDFace;
-  border-right: 2px groove ThreeDFace;
-  padding-right: 6px;
-  padding-left: 6px;
-  padding-top: 10px;
-  padding-bottom: 6px;
+	position: relative;
+	border-radius: 3px;
+	border-bottom: 2px groove ThreeDFace;
+	border-top: 2px groove ThreeDFace;
+	border-left: 2px groove ThreeDFace;
+	border-right: 2px groove ThreeDFace;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 10px;
+	padding-bottom: 6px;
 	border-color: var(--dialog-text-color);
 }
 
 .groupbox-os-title {
-  margin-top: -22px;
+	margin-top: -22px;
 }
 
 .groupbox-os-label {
-  background-color: var(--groupbox-header-bg);
-  font-weight: 700;
-  margin-inline-start: 3px;
-  padding-right: 3px;
-  padding-left: 3px;
+	background-color: var(--groupbox-header-bg);
+	font-weight: 700;
+	margin-inline-start: 3px;
+	padding-right: 3px;
+	padding-left: 3px;
 }
 
 .adjusted-image-height {
-  height: 20px;
+	height: 20px;
 }

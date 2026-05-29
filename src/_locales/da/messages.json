@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mapper med vedhæftede filer"
   },
+  "Attachments.label": {
+    "message": "Vedhæftede filer"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Gem EML-vedhæftet fil i denne mappe"
   },
@@ -105,7 +108,7 @@
     "message": "Indstillinger"
   },
   "Cancel.button": {
-    "message": "Ophæve"
+    "message": "Annuller"
   },
   "cancel.msg": {
     "message": "Annuller"
@@ -269,6 +272,21 @@
     "message": "Eksporter mappe",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Eksporter mapper"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Almindelig tekst"
+  },
   "exportingMsg": {
     "message": "Eksporterer",
     "src": "mboximport"
@@ -277,8 +295,11 @@
     "message": "Eksporten er blevet korrekt udført",
     "src": "mboximport"
   },
+  "ExportSelectedMessages.title": {
+    "message": "Eksporter valgte meddelelser"
+  },
   "exportstart": {
-    "message": "Eksporterer...vent venligst",
+    "message": "Eksporterer...vent",
     "src": "mboximport"
   },
   "extensionDescription": {
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Vælg meddelelserne til import",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Mappe"
   },
   "folderCount.label": {
     "message": "Antal mapper"
@@ -399,10 +423,10 @@
     "message": "Meddelelser og indeks med undermapper"
   },
   "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
-    "message": "Beskeder med vedhæftede filer og indeks"
+    "message": "Meddelelser med vedhæftede filer og indeks"
   },
   "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title": {
-    "message": "Beskeder, indeks og vedhæftede filer med undermapper"
+    "message": "Meddelelser, indeks og vedhæftede filer med undermapper"
   },
   "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Almindeligt tekstformat"
@@ -485,7 +509,7 @@
     "src": "mboximport"
   },
   "importEMLstart": {
-    "message": "Importere...vent venligst",
+    "message": "Importere...vent",
     "src": "mboximport"
   },
   "importEnd": {
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latiniser transformation"
   },
+  "LoggingOptions.label": {
+    "message": "Logningsindstillinger"
+  },
   "MACwarning": {
     "message": "N.B.: Luk alle andre vinduer før du fortsætter."
   },
@@ -603,13 +630,13 @@
     "message": "Eksporter mapper som MBOX-fil:"
   },
   "messageCount.label": {
-    "message": "Antal beskeder"
+    "message": "Antal meddelelser"
   },
   "messageImportProblems.msg": {
     "message": "Der opstod problemer med at importere nogle meddelelser:"
   },
   "messagesExported.label": {
-    "message": "Eksporterede beskeder"
+    "message": "Eksporterede meddelelser"
   },
   "messagesMsg": {
     "message": "Meddelelser",
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF-format"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Meddelelser og HTML-indeks"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Kun meddelelser"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Meddelelser og vedhæftede filer"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Meddelelser med vedhæftede filer og indeks"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Almindeligt tekstformat"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Eksporter meddelelser som…"
+  },
+  "msgErrs.label": {
+    "message": "Der var fejl. Se fejlkonsollen (Ctrl+Shift+J) fra Thunderbirds hovedvindue."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -719,7 +761,7 @@
     "message": "Fra"
   },
   "msgHdr.MessageID": {
-    "message": "Message-ID"
+    "message": "Meddelelses-ID"
   },
   "msgHdr.ReplyTo": {
     "message": "Svar til"
@@ -808,6 +850,12 @@
     "message": "intet_emne",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Vis en meddelelse i stedet for statusvindue til eksport af mapper"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Vis en meddelelse i stedet for statusvindue til eksport af valgte meddelelser"
+  },
   "noWarning": {
     "message": "Vis ikke denne advarsel igen",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Gem"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Gem vedhæftede filer i samme mappe som meddelelser"
+  },
   "savedirs": {
     "message": "Eksporter mapper"
   },
@@ -922,6 +973,9 @@
     "message": "Vælg en mappe at søge i",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Se udgivelsesnoter"
+  },
   "selectFolderForMboxes_title": {
     "message": "Vælg mappe for at importere mbox-filer",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${afsender}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Sæt datoen for eksporterede meddelelsesfiler til afsendelsesdatoen"
   },
   "Size": {
     "message": "Størrelse"
@@ -1001,13 +1058,13 @@
     "message": "Importer profil"
   },
   "totalErrors.label": {
-    "message": "Samlede fejl"
+    "message": "Antal fejl i alt"
   },
   "totalMessages.label": {
-    "message": "Samlet antal beskeder"
+    "message": "Meddelelser i alt"
   },
   "totalMessagesExported.label": {
-    "message": "Samlet antal eksporterede beskeder"
+    "message": "Antal eksporterede meddelelser i alt"
   },
   "useExtFilenameFormat": {
     "message": "Brug udvidet format"

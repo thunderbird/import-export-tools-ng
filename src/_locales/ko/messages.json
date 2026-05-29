@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "첨부파일"
   },
+  "Attachments.label": {
+    "message": "첨부파일"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "EML 첨부 파일을 이 폴더에 저장"
   },
@@ -269,6 +272,21 @@
     "message": "내보내기 폴더",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "내보내기 폴더"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "평문"
+  },
   "exportingMsg": {
     "message": "내보내기",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "내보내기를 정상적으로 끝마쳤습니다",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "선택한 메시지 내보내기"
   },
   "exportstart": {
     "message": "내보내는 중...잠시만 기다려주세요",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "들여올 메세지를 선택하세요",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "접는 사람"
   },
   "folderCount.label": {
     "message": "폴더 수"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "라틴화 변환"
   },
+  "LoggingOptions.label": {
+    "message": "로깅 옵션"
+  },
   "MACwarning": {
     "message": "주의:계속하기 전에, 모든 다른 창을 닫으세요."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF 형식"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "메시지 및 HTML 색인"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "메시지 전용"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "메시지 및 첨부 파일"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "첨부파일 및 색인이 포함된 메시지"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "일반 텍스트 형식"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "다음으로 메시지 내보내기…"
+  },
+  "msgErrs.label": {
+    "message": "오류가 발생했습니다. Thunderbird 메인 창에서 오류 콘솔(Control+Shift+J)을 확인하세요."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "제목 없음",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "폴더 내보내기 시 상태 창 대신 알림을 사용하세요."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "선택한 메시지 내보내기에 대해 상태 창 대신 알림을 사용하세요"
+  },
   "noWarning": {
     "message": "이 경고를 다시 표시하지 않음",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "저장"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "첨부 파일은 메시지와 같은 디렉토리에 저장하세요."
+  },
   "savedirs": {
     "message": "내보낼 디렉토리"
   },
@@ -922,6 +973,9 @@
     "message": "파일을 검색할 디렉토리를 선택",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "릴리스 노트를 참조하세요."
+  },
   "selectFolderForMboxes_title": {
     "message": "mbox 파일을 가져올 폴더를 선택하세요.",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${발신자}"
+  },
+  "setMsgExpDate.label": {
+    "message": "내보낸 메시지 파일의 날짜를 전송 날짜로 설정합니다."
   },
   "Size": {
     "message": "크기"

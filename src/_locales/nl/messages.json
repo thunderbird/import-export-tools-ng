@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Bijlagemappen"
   },
+  "Attachments.label": {
+    "message": "Bijlagen"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Sla de EML-bijlage op in deze map"
   },
@@ -269,6 +272,21 @@
     "message": "Map exporteren",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Mappen exporteren"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Platte tekst"
+  },
   "exportingMsg": {
     "message": "Exporteren",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Exporteren uitgevoerd",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Geselecteerde berichten exporteren"
   },
   "exportstart": {
     "message": "Exporteren… Een ogenblik geduld",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Selecteer de te importeren berichten",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Map"
   },
   "folderCount.label": {
     "message": "Aantal mappen"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latiniseer transformatie"
   },
+  "LoggingOptions.label": {
+    "message": "Logboekopties"
+  },
   "MACwarning": {
     "message": "NB Sluit alle andere vensters voordat u doorgaat."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF-formaat"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Berichten en HTML-index"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Alleen berichten"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Berichten en bijlagen"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Berichten met bijlagen en index"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Platte tekstformaat"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Berichten exporteren als..."
+  },
+  "msgErrs.label": {
+    "message": "Er zijn fouten opgetreden. Raadpleeg de foutconsole (Control+Shift+J) in het hoofdvenster van Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "geen_onderwerp",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Gebruik meldingen in plaats van het statusvenster voor het exporteren van mappen."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Gebruik meldingen in plaats van het statusvenster voor het exporteren van geselecteerde berichten."
+  },
   "noWarning": {
     "message": "Deze waarschuwing niet meer tonen",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Opslaan"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Bewaar bijlagen in dezelfde map als berichten."
+  },
   "savedirs": {
     "message": "Mappen exporteren"
   },
@@ -922,6 +973,9 @@
     "message": "Selecteer een map om de bestanden te zoeken",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Zie de release-opmerkingen."
+  },
   "selectFolderForMboxes_title": {
     "message": "Selecteer een map om mbox-bestanden te importeren",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${afzender}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Stel de datum van de geëxporteerde berichtenbestanden in op de verzenddatum."
   },
   "Size": {
     "message": "Maat"

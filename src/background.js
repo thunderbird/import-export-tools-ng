@@ -2,7 +2,7 @@
 	ImportExportTools NG is a extension for Thunderbird mail client
 	providing import and export tools for messages and folders.
 	The extension authors:
-		Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+		Copyright (C) 2026 : Christopher Leidigh
 
 	ImportExportTools NG is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -16,8 +16,12 @@
 
 // background.js - this kicks off the WindowListener framework
 
-// need this for wextMenus
-window.wextOpenHelp = wextOpenHelp;
+import { openHelp } from "/Modules/miscCmds.mjs";
+import * as prefs from "/Modules/prefCmds.mjs";
+import * as prefMigration from "/Modules/prefMigration.mjs";
+
+import "/Modules/menus.mjs";
+import "/Modules/wextAPI.mjs";
 
 // now start
 main();
@@ -32,26 +36,20 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	if (await window.getBoolPref("extensions.importexporttoolsng.help.showOnInstallAndUpdate")) {
-		await window.wextOpenHelp({ opentype: "tab" });
+	if (await prefs.getPref("help.showOnInstallAndUpdate")) {
+		await openHelp({ opentype: "tab" });
 	}
 });
 
-
-async function getThunderbirdVersion() {
-	let browserInfo = await messenger.runtime.getBrowserInfo();
-	let parts = browserInfo.version.split(".");
-	return {
-		major: parseInt(parts[0]),
-		minor: parseInt(parts[1]),
-		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
-	};
-}
-
-window.getThunderbirdVersion = getThunderbirdVersion;
-
-function main() {
+async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
+
+	// legacy pref migration for v15
+	prefMigration.legacyPrefMigration();
+
+	await browser.LegacyHelper.registerGlobalUrls([
+		["resource", "ietng", "."],
+	]);
 
 	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
@@ -60,31 +58,6 @@ function main() {
 	messenger.WindowListener.registerChromeUrl([
 		["content", "mboximport", "chrome/content/mboximport"],
 		["resource", "mboximport", "chrome/", "contentaccessible=yes"],
-		["locale", "mboximport", "en-US", "chrome/locale/en-US/mboximport/"],
-
-		["locale", "mboximport", "ca", "chrome/locale/ca/mboximport/"],
-		["locale", "mboximport", "cs", "chrome/locale/cs/mboximport/"],
-		["locale", "mboximport", "da", "chrome/locale/da/mboximport/"],
-		["locale", "mboximport", "de", "chrome/locale/de/mboximport/"],
-		["locale", "mboximport", "es-ES", "chrome/locale/es-ES/mboximport/"],
-		["locale", "mboximport", "fr", "chrome/locale/fr/mboximport/"],
-		["locale", "mboximport", "gl-ES", "chrome/locale/gl-ES/mboximport/"],
-		["locale", "mboximport", "hu-HU", "chrome/locale/hu-HU/mboximport/"],
-		["locale", "mboximport", "hu-HG", "chrome/locale/hu-HG/mboximport/"],
-		["locale", "mboximport", "hy-AM", "chrome/locale/hy-AM/mboximport/"],
-		["locale", "mboximport", "it", "chrome/locale/it/mboximport/"],
-		["locale", "mboximport", "ja", "chrome/locale/ja/mboximport/"],
-		["locale", "mboximport", "ko-KR", "chrome/locale/ko-KR/mboximport/"],
-		["locale", "mboximport", "nl", "chrome/locale/nl/mboximport/"],
-		["locale", "mboximport", "pl", "chrome/locale/pl/mboximport/"],
-		["locale", "mboximport", "pt-PT", "chrome/locale/pt-PT/mboximport/"],
-		["locale", "mboximport", "ru", "chrome/locale/ru/mboximport/"],
-		["locale", "mboximport", "sk-SK", "chrome/locale/sk-SK/mboximport/"],
-		["locale", "mboximport", "sl-SI", "chrome/locale/sl-SI/mboximport/"],
-		["locale", "mboximport", "sv-SE", "chrome/locale/sv-SE/mboximport/"],
-		["locale", "mboximport", "zh-CN", "chrome/locale/zh-CN/mboximport/"],
-		["locale", "mboximport", "el", "chrome/locale/el/mboximport/"],
-
 	]);
 
 	messenger.WindowListener.registerOptionsPage("chrome://mboximport/content/mboximport/mboximportOptions.xhtml");
@@ -103,51 +76,9 @@ function main() {
 		"chrome://messenger/content/messengercompose/messengercompose.xhtml",
 		"chrome://mboximport/content/mboximport/messengercomposeOL.js");
 
-
 	messenger.WindowListener.registerWindow(
 		"chrome://messenger/content/messageWindow.xhtml",
 		"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
 	messenger.WindowListener.startListening();
-
-
 }
-
-var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES', 'hu-HU', 'hy-AM', 'it', 'ja', 'ko-KR',
-	'nl', 'pl', 'pt-PT', 'ru', 'sk-SK', 'sl-SI', 'sv-SE', 'zh-CN'];
-
-async function wextOpenHelp(info) {
-	if (!info.opentype) {
-		let openInWindow = await window.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
-		info.opentype = openInWindow ? "window" : "tab";
-	}
-
-	var locale = messenger.i18n.getUILanguage();
-
-	if (!helpLocales.includes(locale)) {
-		var baseLocale = locale.split("-")[0];
-
-		locale = helpLocales.find(l => l.split("-")[0] == baseLocale);
-		if (!locale) {
-			locale = "en-US";
-		}
-	}
-	var bm = "";
-	if (info.bmark) {
-		bm = info.bmark;
-	}
-	try {
-		if (info.opentype == "tab") {
-			await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, index: 1 });
-		} else {
-			await browser.windows.create({ url: `chrome/content/mboximport/help/locale/${locale}/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-		}
-	} catch (ex) {
-			if (info.opentype == "tab") {
-				await browser.tabs.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, index: 1 });
-			} else {
-				await browser.windows.create({ url: `chrome/content/mboximport/help/locale/en-US/importexport-help.html${bm}`, type: "panel", width: 1000, height: 520 });
-			}
-		}
-}
-

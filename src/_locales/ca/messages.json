@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Carpetes adjuntes"
   },
+  "Attachments.label": {
+    "message": "Adjunts"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Desa el fitxer adjunt EML en aquesta carpeta"
   },
@@ -270,6 +273,21 @@
     "message": "Carpeta d\\'exportació",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportar carpetes"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Text sense format"
+  },
   "exportingMsg": {
     "message": "Exportant",
     "src": "mboximport"
@@ -277,6 +295,9 @@
   "exportOK": {
     "message": "L\\'exportació s\\'ha realitzat correctament",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exporta els missatges seleccionats"
   },
   "exportstart": {
     "message": "S\\'està exportant... espereu",
@@ -326,6 +347,9 @@
   "filePickerImportMSG": {
     "message": "Seleccioneu els missatges que voleu importar",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Carpeta"
   },
   "folderCount.label": {
     "message": "Recompte de carpetes"
@@ -567,6 +591,9 @@
   "latinizeTransform": {
     "message": "llatinitzar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opcions de registre"
+  },
   "MACwarning": {
     "message": "N.B: close every other window, before continue."
   },
@@ -683,6 +710,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Format PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Només missatges"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Missatges i fitxers adjunts"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Format de text pla"
   },
@@ -700,6 +739,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exporta missatges com a..."
+  },
+  "msgErrs.label": {
+    "message": "Hi ha hagut errors. Vegeu la consola d&#39;errors (Control+Maj+J) des de la finestra principal del Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -809,6 +851,12 @@
     "message": "sense_assumpte",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de carpetes"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de missatges seleccionats"
+  },
   "noWarning": {
     "message": "No mostris més aquest avís",
     "src": "mboximport"
@@ -883,6 +931,9 @@
   "save": {
     "message": "Desa"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Desa els fitxers adjunts al mateix directori amb els missatges"
+  },
   "savedirs": {
     "message": "Directoris d\\'exportació"
   },
@@ -923,6 +974,9 @@
     "message": "Seleccioneu un directori per cercar-hi els fitxers",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Vegeu les notes de la versió"
+  },
   "selectFolderForMboxes_title": {
     "message": "Seleccioneu la carpeta per importar fitxers mbox",
     "src": "mboximport"
@@ -942,6 +996,9 @@
   },
   "senderFmtToken": {
     "message": "${remitent}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Estableix la data dels fitxers de missatges exportats a la data d&#39;enviament"
   },
   "Size": {
     "message": "Mida"

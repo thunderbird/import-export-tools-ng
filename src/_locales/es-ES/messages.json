@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Carpetas de archivos adjuntos"
   },
+  "Attachments.label": {
+    "message": "Archivos adjuntos"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Guarde el archivo adjunto EML en esta carpeta"
   },
@@ -269,6 +272,21 @@
     "message": "Exportar carpeta",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportar carpetas"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Texto plano"
+  },
   "exportingMsg": {
     "message": "Exportador",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Archivos exportados correctamente",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportar mensajes seleccionados"
   },
   "exportstart": {
     "message": "Exportando ... espere por favor",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Seleccionar los mensajes a importar",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Carpeta"
   },
   "folderCount.label": {
     "message": "Recuento de carpetas"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latinizar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opciones de registro"
+  },
   "MACwarning": {
     "message": "N.B: cerrar el resto de ventanas antes de continuar."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Formato PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Índice de mensajes y HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Solo mensajes"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Mensajes y archivos adjuntos"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensajes con archivos adjuntos e índice"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Formato de texto sin formato"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exportar mensajes como…"
+  },
+  "msgErrs.label": {
+    "message": "Se produjeron errores. Consulta la consola de errores (Control+Mayús+J) desde la ventana principal de Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "sin asunto",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Utilice notificaciones en lugar de la ventana de estado para la exportación de carpetas."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilice notificaciones en lugar de la ventana de estado para la exportación de mensajes seleccionados."
+  },
   "noWarning": {
     "message": "No volver a mostrar este aviso",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Save"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Guarda los archivos adjuntos en el mismo directorio que los mensajes."
+  },
   "savedirs": {
     "message": "Exportar carpetas"
   },
@@ -922,6 +973,9 @@
     "message": "Seleccione la carpeta donde buscar los archivos mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Consulte las notas de la versión."
+  },
   "selectFolderForMboxes_title": {
     "message": "Seleccione la carpeta para importar archivos mbox",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${remitente}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Establecer la fecha de los archivos de mensajes exportados a la fecha de envío."
   },
   "Size": {
     "message": "Tamaño"

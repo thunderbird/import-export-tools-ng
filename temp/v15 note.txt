@@ -1,0 +1,48 @@
+To my loyal user base.
+
+I am looking for beta testers for the new, major release 
+v15.0.0. As described below besides the 100% rewrite 
+of the message export functions, there are multiple 
+new features including the overdue PDF export with 
+attachments. 
+
+I have included your on this list if I have worked
+with you on message issues in the past. If you are 
+interested please comment with your OS and the formats
+you are interested in. If you are not interested, you 
+can unsubscribe.
+
+I will create a separate issue to track beta progress.
+HOWEVER, PLEASE MAKE SEPARATE ISSUES FOR PROBLEMS, NOT HERE!
+Prefix issues with "v15-beta:"
+
+I and a few others have tested 11 alpha versions mainly on
+Windows, but I have done basic testing on Linux also.
+
+There are things like some translations and options TBD.
+I have not done CSV export, this Wil be done later.
+
+Complete rewrite of the message export functions, both Folders
+and selected messages. Beta 1 has the following :
+- EML
+- HTML and attachments 
+- PDF and attachments 
+- Plaintext and attachments 
+
+Besides the new PDF with attachments export. There is 
+also a new export status window as well as a new 
+index file where you can sort columns by clicking 
+on the headers.
+
+The new functions are currently added on top of the 
+old functions and have a (v15) prefix.
+
+The old code will be depreciated once the new functions 
+are stable.
+New logging and soon a log file will be available.
+Performance has also improved for everything but PDF export.
+
+Thanks to everyone in advance.
+
+Christopher 
+

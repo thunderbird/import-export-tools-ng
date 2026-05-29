@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Папки вложений"
   },
+  "Attachments.label": {
+    "message": "Вложения"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Сохраните вложение EML в эту папку."
   },
@@ -269,6 +272,21 @@
     "message": "Экспортировать папку",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Экспорт папок"
+  },
+  "exportFormatEML": {
+    "message": "ЭМЛ"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Простой текст"
+  },
   "exportingMsg": {
     "message": "Экспорт",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Экспорт был завершён правильно",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Экспорт выбранных сообщений"
   },
   "exportstart": {
     "message": "Подождите, идёт экспорт…",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Выберите сообщение для импорта",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Папка"
   },
   "folderCount.label": {
     "message": "Количество папок"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Латинизировать преобразование"
   },
+  "LoggingOptions.label": {
+    "message": "Параметры ведения журнала"
+  },
   "MACwarning": {
     "message": "Внимание: перед продолжением закройте все остальные окна."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Формат PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Индекс сообщений и HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Только сообщения"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Сообщения и вложения"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Сообщения с вложениями и индексом"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Простой текстовый формат"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Экспортировать сообщения как…"
+  },
+  "msgErrs.label": {
+    "message": "Произошли ошибки. См. консоль ошибок (Ctrl+Shift+J) в главном окне Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "нет_объекта",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Используйте уведомления вместо окна состояния для экспорта папок."
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Используйте уведомления вместо окна состояния для экспорта выбранных сообщений."
+  },
   "noWarning": {
     "message": "Больше не показывать это предупреждение",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Сохранить"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Сохраняйте вложения в той же папке, что и сообщения."
+  },
   "savedirs": {
     "message": "Укажите каталоги для экспорта"
   },
@@ -922,6 +973,9 @@
     "message": "Выберите каталог для поиска файлов mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "См. примечания к выпуску."
+  },
   "selectFolderForMboxes_title": {
     "message": "Выберите папку для импорта файлов mbox",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${отправитель}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Установите дату экспортированных файлов сообщений равной дате отправки."
   },
   "Size": {
     "message": "Размер"

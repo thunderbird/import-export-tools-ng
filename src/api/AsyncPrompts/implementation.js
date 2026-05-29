@@ -1,4 +1,17 @@
+/*
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2026 : Christopher Leidigh
 
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 
 function getThunderbirdVersion() {
@@ -55,7 +68,9 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
 
   _addStyleSheet() {
     let head = top.document.head || top.document.getElementsByTagName('head')[0];
-    let style = this._addElementChild("link", "ietng-styles", head, [], { rel: "stylesheet", type: "text/css", href: "chrome://mboximport/content/mboximport/mboxmsg.css" });
+    let style = this._addElementChild("link", "ietng-styles", head, [], { rel: "stylesheet", type: "text/css", href: "resource://ietng/api/AsyncPrompts/asyncprompts.css" });
+
+
     head.appendChild(style);
   }
 
@@ -95,8 +110,8 @@ var AsyncPrompts = class extends ExtensionCommon.ExtensionAPI {
     AsyncPrompts.cancelButton = cancelButton;
     buttonsDiv.appendChild(cancelButton);
 
-    div.style.top = ((top.outerHeight / 2) - 90) + "px";
-    div.style.left = ((top.outerWidth / 2) - 100) + "px";
+    div.style.top = ((top.outerHeight / 2) - 140) + "px";
+    div.style.left = ((top.outerWidth / 2) - (div.offsetWidth / 2)) + "px";
     this._dragElement(div);
   }
 

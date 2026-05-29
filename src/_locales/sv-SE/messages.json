@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Bifogade mappar"
   },
+  "Attachments.label": {
+    "message": "Bilagor"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Spara EML-bilaga till den här mappen"
   },
@@ -269,6 +272,21 @@
     "message": "Exportera mapp",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportera mappar"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Klartext"
+  },
   "exportingMsg": {
     "message": "Exporterar",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Exporten slutfördes",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportera valda meddelanden"
   },
   "exportstart": {
     "message": "Exporterar… Var vänlig vänta",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Välj meddelanden att importera",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Mapp"
   },
   "folderCount.label": {
     "message": "Antal mappar"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latinisera transformera"
   },
+  "LoggingOptions.label": {
+    "message": "Loggningsalternativ"
+  },
   "MACwarning": {
     "message": "Obs.: Stäng alla andra fönster innan du går vidare."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF-format"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Meddelanden och HTML-index"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Endast meddelanden"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Meddelanden och bilagor"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Meddelanden med bilagor och index"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Oformaterad text"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exportera meddelanden som..."
+  },
+  "msgErrs.label": {
+    "message": "Det uppstod fel. Se felkonsolen (Ctrl+Shift+J) från Thunderbirds huvudfönster."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "(inget_ämne)",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Använd aviseringar istället för statusfönster för mappexport"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Använd aviseringar istället för statusfönster för export av valda meddelanden"
+  },
   "noWarning": {
     "message": "Visa inte den här varningen igen",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Spara"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Spara bilagor i samma katalog som meddelanden"
+  },
   "savedirs": {
     "message": "Exportera mappar"
   },
@@ -922,6 +973,9 @@
     "message": "Välj mapp för sökning efter MBOX-filer",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Se versionsinformation"
+  },
   "selectFolderForMboxes_title": {
     "message": "Välj mapp för att importera mbox-filer",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${avsändare}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Ställ in datumet för exporterade meddelandefiler till sändningsdatum"
   },
   "Size": {
     "message": "Storlek"

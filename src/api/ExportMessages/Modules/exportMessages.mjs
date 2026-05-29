@@ -1,0 +1,827 @@
+/*
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2026 : Christopher Leidigh
+
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// exportMessages.mjs
+
+// This gets run as an ES6 module from implementation.js
+// which has an improvement in performance
+
+// we batch export the messages and attachments by
+// an iterated expTask object. We also parallel the
+// the asynchronous output to further gain performance
+
+// The current setup works for all the individual 
+// message formats eml, html, pdf,plaintext and csv tbd
+
+// We do the minimum processing here and return the
+// final fileStatus info for the index and error handling
+
+
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+  "resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+  "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
+var { strftime } = ChromeUtils.importESModule("resource://ietng/api/commonModules/strftime.mjs");
+
+var { names } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/namesModule.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
+var { MutexAsync } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/mutex-async.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
+var { logging, log } = ChromeUtils.importESModule(
+  "resource://ietng/api/commonModules/loggingExp.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
+
+var os = Services.appinfo.OS.toLowerCase();
+var osPathSeparator = os.includes("win")
+  ? "\\"
+  : "/";
+
+var w3p = Services.wm.getMostRecentWindow("mail:3pane");
+
+// we need a mutex for pdf export
+// the concurrency with using allSettled gains us about 10% performance 
+// however, this also allows asynchronous reentrancy
+// since pdf output requires two steps, loadPrintBrowser and print printBrowser
+// we must make this an atomic locked critical section
+// we also need the mutex as a global across exportMessagesES6 calls
+// so we define here
+
+const pdfWriteMutex = new MutexAsync({ warnOnOverlap: true });
+
+export var exportMessages = {
+  self: this,
+  context: null,
+  emitter: null,
+  folder: null,
+
+  exportMessagesES6: async function (expTask, context, emitter) {
+
+    this.context = context;
+    this.emitter = emitter;
+    var self = this;
+    var fileStatusList = [];
+    var errors = [];
+    let currentFolderName = expTask.folders[expTask.currentFolderIndex].name;
+
+    try {
+      logging.init(expTask.debug)
+      var msgsDir = this._getMsgsDirectory(expTask);
+      log("msgs", `Exporting Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  msgDir: ${msgsDir}`);
+
+      log("msgs2", `Start expTaskId: ${expTask.id}, Folder: ${currentFolderName}, MsgCnt: ${expTask.msgList.length}\n  MsgDir: ${msgsDir}`);
+
+    } catch (ex) {
+      log("err", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}\n  _getMsgsDirectory Err:`);
+      log("err", `expTaskId[idx]: ${expTask.id}[${index}]:\n${ex}\n${ex.stack}`);
+      return { error: `${ex}\n\n${ex.stack.replaceAll("%20", " ")}` }
+    }
+
+    var writePromises = [];
+    const msgListLen = expTask.msgList.length;
+    var attachmentFilenames = [];
+
+    for (let index = 0; index < msgListLen; index++) {
+
+      try {
+
+        // if there are no body parts we have two scenarios
+        // it can be a message with blocked remote content
+        // where getFull gives us nothing. In this case
+        // we fall back to _getRawMessage using the SimpleHtml
+        // flag so the export is similar to the view in the UI.
+        //
+        // The second case is for pdf export where we purposely
+        // do not pass any bodys as we do not use for export
+        // in the pdf case, the message is exported using  the
+        // msgUri and print of the printBrowser
+
+        //console.log(expTask)
+        if (expTask.msgList[index].msgData.msgBodyType == "none" &&
+          expTask.expType != "pdf"
+        ) {
+
+          expTask.msgList[index].msgData.inlineParts = [];
+          expTask.msgList[index].msgData.attachmentParts = [];
+          let rawMsgBody = await this._getRawMessage(expTask.msgList[index].id, true, context);
+          expTask.msgList[index].msgData.msgBody = this._convertToUnicode(rawMsgBody);
+          expTask.msgList[index].msgData.msgBodyType = "text/html";
+        }
+
+        var generatedMsgName = await names.generateFromPattern(expTask.names.namePatternType, expTask, index, context);
+
+        log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}`);
+        log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, compMsgName: ${generatedMsgName}`);
+
+        var attDirs = await this._getAttachmentsDirectorys(expTask, index, context);
+        var maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
+        var currentFileType = "";
+        var currentFileName = "";
+
+        // expermental combined export structure 
+        if (expTask.debug.logTypes.includes("withatts")) {
+          msgsDir = attDirs.attachmentsDir;
+        }
+
+        if (expTask.attachments.save != "none") {
+          attachmentFilenames = [];
+
+          let attNamesStr = expTask.msgList[index].msgData.attachmentParts.length ? "" : "  [None]";
+          expTask.msgList[index].msgData.attachmentParts.forEach(attPart => attNamesStr += (attPart.name + "\n  "));
+          log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Attachments: \n  ${attNamesStr}`);
+
+          let embAttNamesStr = expTask.msgList[index].msgData.inlineParts.length ? "" : "  [None]";
+          expTask.msgList[index].msgData.inlineParts.forEach(attPart => embAttNamesStr += (attPart.name + "\n  "));
+          log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, EmbAttachments: \n  ${embAttNamesStr}`);
+
+          // we do not export inline attachments for pdf export
+          // these are part of the streamed message
+
+          if (expTask.expType != "pdf") {
+            for (const inlinePart of expTask.msgList[index].msgData.inlineParts) {
+              let writePromise;
+              currentFileType = "inline";
+              currentFileName = inlinePart.name;
+              let inlineBody = await this._fileToUint8Array(inlinePart.partBody);
+              let sanitizedPartName = names.sanitizeFilename(inlinePart.name);
+
+              let unqFilename = await IOUtils.createUniqueFile(attDirs.inlineDir, sanitizedPartName.slice(0, maxFilePathLen));
+
+              let partIdName = inlinePart.contentId.replaceAll(/<(.*)>/g, "$1");
+              partIdName = partIdName.replaceAll(/\./g, "\\.");
+              let partRegex = new RegExp(`src="cid:${partIdName}"`, "g");
+
+              let filename = encodeURIComponent(PathUtils.filename(unqFilename));
+              // we must replace inlinepart references
+              let relUnqPartPath = "./";
+              if (expTask.attachments.containerStructure == "perMsgDir") {
+                relUnqPartPath = relUnqPartPath
+                  + encodeURIComponent(PathUtils.split(unqFilename)[PathUtils.split(unqFilename).length - 2])
+                  + "/" + filename;
+              } else {
+                relUnqPartPath = relUnqPartPath + filename;
+              }
+
+              // pdf output from Thunderbird includes inline attachments so no
+              // need to fixup links
+              // we may not need to save either
+
+              expTask.msgList[index].msgData.msgBody =
+                expTask.msgList[index].msgData.msgBody.replaceAll(partRegex, `src="${relUnqPartPath}"`);
+
+              writePromise = __writeFile("inline", unqFilename, expTask, index, inlineBody);
+              writePromises.push(writePromise);
+            }
+          }
+
+          for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            let writePromise;
+            currentFileType = "attachment";
+            currentFileName = attachmentPart?.name;
+            // some attachments seen without a name
+            if (!currentFileName) {
+              currentFileName = "message.txt";
+              attachmentPart.name = "message.txt";
+            }
+            let attachmentBody = await this._fileToUint8Array(attachmentPart.partBody)
+
+            let sanitizedPartName = names.sanitizeFilename(attachmentPart.name);
+
+            let unqFilename = await IOUtils.createUniqueFile(attDirs.attachmentsDir, sanitizedPartName.slice(0, maxFilePathLen - 5));
+            writePromise = __writeFile("attachment", unqFilename, expTask, index, attachmentBody);
+            writePromises.push(writePromise);
+            attachmentFilenames.push(PathUtils.filename(unqFilename));
+          }
+        }
+
+        expTask.msgList[index].msgData.msgBody = await this._preprocessBody(expTask, index, attDirs.attachmentsDir, attachmentFilenames);
+
+      } catch (ex) {
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${expTask.msgList[index].subject}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        log("err", `${errMsg}\n\n`);
+        expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        // send up the error count to the wext ui
+        emitter.emit("export-update", "inbox", 0, 1);
+      }
+
+      let unqFilename;
+
+      if (expTask.expType == "pdf") {
+        unqFilename = await __writePdfFile(generatedMsgName, expTask, index, attDirs, attachmentFilenames);
+
+        writePromises.push(__pdfPromise(expTask, index, unqFilename));
+      } else {
+        let writePromise = __writeFile("message", generatedMsgName, expTask, index);
+
+        writePromises.push(writePromise);
+      }
+
+      // send msg count update for ui
+      if (index + 1 <= 10) {
+        emitter.emit("export-update", "", 1, 0);
+      } else if (index + 1 > 10 && ((index + 1) % 2 == 0)) {
+        emitter.emit("export-update", "", 2, 0);
+      } else if (index == msgListLen - 1) {
+        emitter.emit("export-update", "", 1, 0);
+      }
+    }
+
+    // wait for attachments and message writes to complete
+    let settledWritePromises = await Promise.allSettled(writePromises);
+
+    for (let index = 0; index < errors.length; index++) {
+      let err = errors[index];
+      settledWritePromises[index].error = err;
+    }
+
+    // we add the fileStatus info to be used by the index
+    for (let index = 0; index < fileStatusList.length; index++) {
+      let fileStatus = fileStatusList[index];
+      settledWritePromises[index].fileStatus = fileStatus;
+    }
+
+    log("msgs2", `Finish exptask id: ${expTask.id}`)
+
+    return settledWritePromises;
+
+    // inline functions
+
+    async function __writeFile(fileType, filename, expTask, index, data = null) {
+      let writePromise;
+
+      try {
+
+        if (fileType == "message") {
+          let unqName = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
+
+          fileStatusList.push(__createFileStatus(expTask, index, fileType, unqName, attachmentFilenames));
+
+          if (expTask.msgList[index].msgData.error) {
+            errors.push(expTask.msgList[index].msgData.error);
+          } else {
+            errors.push({ error: "none" });
+          }
+
+          writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody);
+          writePromise.index = index;
+          writePromise.filename = filename;
+          writePromise.then(async (size) => {
+            if (expTask.fileSave.sentDate) {
+              let dateInMs = new Date(expTask.msgList[index].date).getTime();
+              await IOUtils.setModificationTime(unqName, dateInMs);
+              // for the experimental structure we set the
+              // parent (combined msg and attachments) Directory modification 
+              // date to the msg date allowing sort by msg date
+              if (expTask.debug.logTypes.includes("withatts")) {
+                await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
+              }
+            }
+            log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("msgs", `Msg Saved: ${expTask.msgList[writePromise.index].subject}`);
+          })
+            .catch(reason => {
+              emitter.emit("export-update", "inbox", 0, 1);
+              log("err", `Msg Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
+            })
+
+        } else {
+          let unqName = filename;
+          fileStatusList.push(__createFileStatus(expTask, index, fileType, filename, attachmentFilenames));
+
+          errors.push({ error: "none" });
+          writePromise = IOUtils.write(unqName, data);
+          writePromise.index = index;
+          writePromise.filename = filename;
+          writePromise.then(async (size) => {
+            if (expTask.fileSave.sentDate) {
+              let dateInMs = new Date(expTask.msgList[index].date).getTime();
+              await IOUtils.setModificationTime(unqName, dateInMs);
+              await IOUtils.setModificationTime(PathUtils.parent(unqName), dateInMs);
+            }
+            log("msgs2", `expTaskId[idx]: ${expTask.id}[${writePromise.index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[writePromise.index].subject}, Saved message: \n  ${unqName}`);
+            log("msgs", `Att/Inline Saved: ${expTask.msgList[writePromise.index].subject} (${unqName})`);
+          })
+            .catch(reason => {
+              emitter.emit("export-update", "inbox", 0, 1);
+              log("err", `Att/Inline Error: ${writePromise.index} ${writePromise.filename} \n  Err: ${reason}`)
+            })
+
+          log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Saved ${fileType}: \n  ${unqName}`);
+        }
+      } catch (ex) {
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        log("err", `${errMsg}\n\n`);
+        expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        emitter.emit("export-update", "", 0, 1);
+
+        expTask.msgList[index].msgData.msgBody = await _createErrMessage(index, ex, currentFileType, currentFileName);
+        expTask.msgList[index].msgData.error = { error: "error", index: index, ex: ex, msg: ex.message, stack: ex.stack };
+        if (hdrs.subject == undefined || hdrs.subject == null) {
+          hdrs.subject = expTask.msgList[index].subject;
+        }
+        fileStatusList.push({
+          index: index, fileType: fileType, id: expTask.msgList[index].id,
+          filePath: unqName, headers: hdrs, hasAttachments: expTask.msgList[index].msgData.attachmentParts.length,
+          attachmentFilenames: attachmentFilenames
+        });
+        errors.push({ index: index, ex: ex, msg: ex.message, stack: ex.stack });
+        writePromise = IOUtils.writeUTF8(unqName, expTask.msgList[index].msgData.msgBody)
+
+        return writePromise;
+      }
+
+      return writePromise;
+    }
+
+    async function __writePdfFile(filename, expTask, index, attsDir, attachmentFilenames) {
+      // we use a mutex lock to keep the loadPrintBrowser and print atomic
+      let unlock = await pdfWriteMutex.lock();
+      try {
+        let msgHdr = self.context.extension.messageManager.get(expTask.msgList[index].id);
+        let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+        let messageService = MailServices.messageServiceFromURI(msgUri);
+
+        var unqFilename = await IOUtils.createUniqueFile(msgsDir, `${filename}.${expTask.names.extension}`)
+
+        await w3p.PrintUtils.loadPrintBrowser(messageService.getUrlForUri(msgUri).spec);
+        self._insertDOMHdrTable(w3p.PrintUtils.printBrowser.contentDocument)
+
+        let pdfPrintSettings = self._getPdfPrintSettings(unqFilename, expTask);
+        await w3p.PrintUtils.printBrowser.browsingContext.print(pdfPrintSettings);
+        if (expTask.fileSave.sentDate) {
+          let dateInMs = new Date(expTask.msgList[index].date).getTime();
+          await IOUtils.setModificationTime(unqFilename, dateInMs);
+        }
+        log("msgs", `Msg Saved: ${expTask.msgList[index].subject}`);
+
+      } catch (ex) {
+        unlock();
+        let exMsg = ex.msg ? ex.msg + "\n" : "";
+        let exStack = ex.stack ? ex.stack.replaceAll("%20", " ") : "";
+        let errMsg = ` There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\nMsgName:${name}\n\n${ex}\n\n${exMsg}${exStack}\n`;
+        log("err", `${errMsg}\n\n`);
+        emitter.emit("export-update", "", 0, 1);
+      }
+      unlock();
+      return unqFilename;
+    }
+
+    async function __pdfPromise(expTask, index, unqFilename) {
+
+      fileStatusList.push(__createFileStatus(expTask, index, "message", unqFilename, attachmentFilenames));
+
+      if (expTask.msgList[index].msgData.error) {
+        errors.push(expTask.msgList[index].msgData.error);
+      } else {
+        errors.push({ error: "none" });
+      }
+      return 0;
+    }
+
+    function __getMsgHeaders(expTask, index) {
+      let msgHdrs = {};
+      msgHdrs.recipients = expTask.msgList[index].recipients;
+      msgHdrs.author = expTask.msgList[index].author;
+      msgHdrs.date = expTask.msgList[index].date;
+      msgHdrs.size = expTask.msgList[index].size;
+      msgHdrs.subject = expTask.msgList[index].msgData.extraHeaders.fullSubject;
+      return msgHdrs;
+    }
+
+    function __createFileStatus(expTask, index, fileType, filename, attachmentFilenames) {
+      let fileStatus = {};
+      fileStatus.index = index;
+      fileStatus.fileType = fileType;
+      fileStatus.id = expTask.msgList[index].id;
+      fileStatus.filePath = filename;
+      fileStatus.headers = __getMsgHeaders(expTask, index);
+      fileStatus.hasAttachments = expTask.msgList[index].msgData.attachmentParts.length;
+      fileStatus.attachmentFilenames = attachmentFilenames;
+      log("filestatus", fileStatus, "fileStatus")
+      return fileStatus;
+    }
+
+    async function _createErrMessage(index, ex, currentFileType) {
+      let exMsg = ex.msg ? ex.msg : "";
+      let msgBody = `There was an error creating a file Type: ${currentFileType}:\n${currentFileName}\n\n${ex}\n\n${exMsg}\n\n${ex.stack}`;
+      let msgName = "[Err] " + names.sanitizeFilename(expTask.msgList[index].subject);
+      expTask.msgList[index].subject = msgName;
+
+      // we have text/plain
+
+      expTask.msgList[index].msgData.msgBodyType = "text/plain";
+      msgBody = self._convertTextToHTML(msgBody);
+      return self._insertHdrTable(expTask, index, msgBody);
+    }
+
+  }, // exportMessagesES6 end
+
+  _getMsgsDirectory: function (expTask) {
+
+    let msgsDir;
+    // we have to sanitize the path for file system export
+    // Thunderbird wont allow a forward slash in a folder name 
+    // so we can count on that as our path separator
+
+    let cleanFolderName = expTask.folders[expTask.currentFolderIndex].
+      exportPath;
+
+    // use PathUtils.join which will give us an OS proper path
+    let base = expTask.exportContainer.directory;
+
+    if (expTask.expMethod == "selectedMsgs") {
+      msgsDir = expTask.generalConfig.exportDirectory;
+    } else {
+      msgsDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
+      if (expTask.messages.messageContainer) {
+        msgsDir = PathUtils.join(msgsDir, expTask.messages.messageContainerName);
+      }
+    }
+    expTask.messages.messageContainerDirectory = msgsDir;
+
+    return msgsDir;
+  },
+
+  _getAttachmentsDirectorys: async function (expTask, index, context) {
+    let attsDir;
+    let inlineDir;
+    let msgsDir = expTask.messages.messageContainerDirectory;
+
+    // switch on structure type
+    switch (expTask.attachments.containerStructure) {
+      case "inMsgDir":
+        attsDir = msgsDir;
+        inlineDir = msgsDir;
+        break;
+      case "perMsgDir":
+        let maxFilePathLen = msgsDir.length + (252 - msgsDir.length) / 2;
+        let generatedAttsName = await names.generateFromPattern("customAttachments", expTask, index, context);
+        attsDir = PathUtils.join(msgsDir, generatedAttsName);
+        attsDir = attsDir.slice(0, maxFilePathLen);
+        attsDir = attsDir.trimEnd();
+        if (attsDir.endsWith(".")) {
+          attsDir += ";";
+        }
+        generatedAttsName = await names.generateFromPattern("customInline", expTask, index, context);
+        inlineDir = PathUtils.join(msgsDir, generatedAttsName);
+        inlineDir = inlineDir.slice(0, maxFilePathLen);
+        inlineDir = inlineDir.trimEnd();
+        if (inlineDir.endsWith(".")) {
+          inlineDir += ";";
+        }
+        break;
+      default:
+        throw new Error(`Invalid attachments directory structure type: ${expTask.attachments.containerStructure}`);
+    }
+
+    return { attachmentsDir: attsDir, inlineDir: inlineDir };
+  },
+
+  _fileToUint8Array: async function (file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const arrayBuffer = event.target.result;
+        const uint8Array = new Uint8Array(arrayBuffer);
+        resolve(uint8Array);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
+  },
+
+  _preprocessBody: async function (expTask, index, attsDir, attachmentFilenames) {
+    // so we need to do different processing 
+    // depending upon both expType and our body type
+    // critical to break things up and not have 
+    // spaghetti conditionals
+
+    let processedMsgBody;
+
+    switch (expTask.expType) {
+      case "eml":
+        processedMsgBody = await this._processBodyForEML(expTask, index);
+        break;
+      case "html":
+        processedMsgBody = await this._processBodyForHTML(expTask, index, attsDir, attachmentFilenames);
+        break;
+      case "pdf":
+        processedMsgBody = await this._processBodyForPDF(expTask, index);
+        break;
+      case "plaintext":
+        processedMsgBody = await this._processBodyForPlaintext(expTask, index, attsDir, attachmentFilenames);
+        break;
+      default:
+        let msgData = expTask.msgList[index].msgData;
+        return msgData.msgBody;
+    }
+    return processedMsgBody;
+  },
+
+  _processBodyForEML: async function (expTask, index) {
+    return expTask.msgList[index].msgData.rawMsg;
+  },
+
+  _processBodyForHTML: async function (expTask, index, attsDir, attachmentFilenames) {
+    // we process depending upon body content type
+
+    let msgData = expTask.msgList[index].msgData;
+
+    if (msgData.msgBodyType == "text/html") {
+      // first check if this is headless html where 
+      // there is no html or body tags
+      if (!/<HTML[^>]*>/i.test(msgData.msgBody)) {
+        // wrap body with <html><body>
+        msgData.msgBody = `<html>\n<body>\n${msgData.msgBody}\n</body>\n</html>`;
+      }
+      if (attachmentFilenames.length) {
+        msgData.msgBody = this._insertAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+      }
+
+    }
+    return msgData.msgBody;
+  },
+
+  _processBodyForPDF: async function (expTask, index) {
+    return null;
+  },
+
+  _processBodyForPlaintext: async function (expTask, index, attsDir, attachmentFilenames) {
+    let msgData = expTask.msgList[index].msgData;
+
+    if (attachmentFilenames.length) {
+      msgData.msgBody = this._insertPlaintextAttachmentTable(expTask, msgData.msgBody, attsDir, attachmentFilenames);
+    }
+    return msgData.msgBody;
+  },
+
+  _insertHdrTable: function (expTask, index, msgBody) {
+    let msgData = expTask.msgList[index].msgData;
+    let msgItem = expTask.msgList[index];
+
+    let hdrRows = "";
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Subject:</b></td><td>${msgItem.subject}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>From:</b></td><td>${msgItem.author}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>To:</b></td><td>${msgItem.recipients}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>Date:</b></td><td>${msgItem.date}</td></tr>`;
+
+    let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
+
+    //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
+
+    if (msgData.msgBodyType == "text/plain") {
+      let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      return tp;
+    }
+    let rp = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
+
+    return rp;
+  },
+
+  _insertDOMHdrTable: async function (document) {
+    // tbd align headers
+    let table = document.querySelector(".moz-header-part1");
+    let table2 = document.querySelector(".moz-header-part2");
+    let table3 = document.querySelector(".moz-header-part3");
+    table.style.background = "#ffffff";
+    if (table2) {
+      table2.style.background = "#ffffff";
+    }
+    if (table3) {
+      table2.style.background = "#ffffff";
+    }
+  },
+
+  _insertAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
+    let attachmentsLabel = ietngExtension.localeData.localizeMessage("Attachments.label");
+
+    let attList = `<br><div style="width: 60%">\n<fieldset style="border-style: solid none none none; border-top: 1px solid black;"><legend>${attachmentsLabel}</legend></fieldset>\n`;
+    let relAttsDir = "./";
+
+    if (expTask.attachments.containerStructure == "perMsgDir" && !expTask.debug.logTypes.includes("withatts")) {
+      relAttsDir += PathUtils.filename(attsDir);
+    }
+
+    attachmentFilenames.forEach(filename => {
+      let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
+      attList += `<li style="padding-left: 20px">${attHref}</li>\n`;
+    });
+
+    attList += "</div>\n";
+    msgBody = msgBody.replace(/<\/BODY>/i, `${attList}</body>`);
+
+    return msgBody;
+  },
+
+  _insertPlaintextAttachmentTable: function (expTask, msgBody, attsDir, attachmentFilenames) {
+    let attachmentsLabel = ietngExtension.localeData.localizeMessage("Attachments.label");
+    let txtAttTableHdr = `\n----- ${attachmentsLabel} --------------------------------\n`;
+    let attList = "";
+
+    attachmentFilenames.forEach(filename => {
+      let att = `${filename}`;
+      attList += `- ${att}\n`;
+    });
+
+    msgBody = msgBody + txtAttTableHdr + attList;
+    return msgBody;
+  },
+
+
+  // we currently do not modify or add to the pdf
+  // attachments table because I have yet to find
+  // an href format for relative links that don't
+  // get converted to absolute paths
+  _insertDOMAttachmentTable: function (expTask, document, attsDir, attachmentFilenames) {
+    let relAttsDir = "file://";
+    if (expTask.attachments.containerStructure == "perMsgDir") {
+      relAttsDir += PathUtils.filename(attsDir.attachmentsDir);
+      //relAttsDir += attsDir.attachmentsDir
+    }
+
+    console.log(attachmentFilenames)
+    let attsDiv = document.createElement('div');
+
+    attsDiv.style.width = "60%";
+
+    let attsFieldset = document.createElement('fieldset');
+    attsFieldset.style.borderStyle = "solid none none none";
+    attsFieldset.style.borderTop = "1px solid black";
+
+    let attsLegend = document.createElement('legend');
+    attsLegend.innerText = "Attachments";
+    attsFieldset.appendChild(attsLegend);
+    attsDiv.appendChild(attsFieldset);
+
+    let base = document.createElement('base');
+    base.setAttribute("href", `./Attachments`);
+    attsDiv.appendChild(base);
+
+
+    let attHref = document.createElement('a');
+
+    attHref.setAttribute("href", `${relAttsDir}/${attachmentFilenames[0]}`);
+    attHref.innerText = `${attachmentFilenames[0]}`
+    attsDiv.appendChild(attHref);
+
+    //div.setAttribute("id", "ietng-overlay");
+    document.body.appendChild(attsDiv);
+    console.log(document.documentElement.outerHTML);
+
+  },
+
+  _encodeSpecialTextToHTML: function (str) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    };
+    return str.replace(/[&<>"]/g, function (m) { return map[m]; });
+  },
+
+  _convertTextToHTML: function (plaintext) {
+    // we can do a lot here, but will start with the basics
+    // note we only convert the text, header, styling and html 
+    // wrapper is done later
+
+    let htmlConvertedText;
+    // first encode special characters
+    htmlConvertedText = this._encodeSpecialTextToHTML(plaintext);
+    htmlConvertedText = htmlConvertedText.replace(/\r?\n/g, "<br>\n");
+
+    return htmlConvertedText;
+  },
+
+
+  _getRawMessage: async function (msgId, aConvertData) {
+
+    let msgHdr = this.context.extension.messageManager.get(msgId);
+    let msgUri = msgHdr.folder.getUriForMsg(msgHdr);
+    let service = MailServices.messageServiceFromURI(msgUri);
+    return new Promise((resolve, reject) => {
+      let streamlistener = {
+        _data: [],
+        _data2: "",
+        _stream: null,
+        onDataAvailable(aRequest, aInputStream, aOffset, aCount) {
+          if (!this._stream) {
+            this._stream = Cc[
+              "@mozilla.org/scriptableinputstream;1"
+            ].createInstance(Ci.nsIScriptableInputStream);
+            this._stream.init(aInputStream);
+          }
+          this._data2 += this._stream.read(aCount);
+
+        },
+        onStartRequest() { },
+        onStopRequest(request, status) {
+          if (Components.isSuccessCode(status)) {
+            resolve(this._data2);
+          } else {
+            reject(
+              new ExtensionError(
+                `Error while streaming message <${msgUri}>: ${status}`
+              )
+            );
+          }
+        },
+        QueryInterface: ChromeUtils.generateQI([
+          "nsIStreamListener",
+          "nsIRequestObserver",
+        ]),
+      };
+
+      // This is not using aConvertData and therefore works for news:// messages.
+      service.streamMessage(
+        msgUri,
+        streamlistener,
+        null, // aMsgWindow
+        null, // aUrlListener
+        aConvertData, // aConvertData
+        "" //aAdditionalHeader
+      );
+    });
+  },
+
+  _convertToUnicode: function (text, charset) {
+    const conv = Cc[
+      "@mozilla.org/intl/scriptableunicodeconverter"
+    ].createInstance(Ci.nsIScriptableUnicodeConverter);
+    try {
+      conv.charset = charset || "UTF-8";
+      return conv.ConvertToUnicode(text);
+    } catch (ex) {
+      return text;
+    }
+  },
+
+  _getPdfPrintSettings: function (pdfFilename, expTask) {
+    let psService = Cc[
+      "@mozilla.org/gfx/printsettings-service;1"
+    ].getService(Ci.nsIPrintSettingsService);
+
+    let printSettings;
+    printSettings = psService.createNewPrintSettings();
+    printSettings.printerName = expTask.outputSpecific.pdf.pdfPrinterName;
+
+    psService.initPrintSettingsFromPrefs(printSettings, true, printSettings.kInitSaveAll);
+    printSettings.isInitializedFromPrinter = true;
+    printSettings.isInitializedFromPrefs = true;
+    printSettings.printSilent = true;
+    printSettings.outputFormat = Ci.nsIPrintSettings.kOutputFormatPDF;
+    printSettings.outputDestination = Ci.nsIPrintSettings.kOutputDestinationFile;
+    printSettings.toFileName = pdfFilename;
+    return printSettings;
+  },
+
+  _convertCharsetToUTF8: function (charset, string) {
+    try {
+      const encoder = new TextEncoder();
+      const decoder = new TextDecoder(charset);
+      const encoded = encoder.encode(string);
+      const decoded = decoder.decode(encoded);
+      //console.log("Converted to utf-8 from:", charset);
+
+      return decoded;
+    } catch (e) {
+      //console.error("Error converting to utf-8", e);
+      return string;
+    }
+  },
+
+};
+

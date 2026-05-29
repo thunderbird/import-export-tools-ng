@@ -15,19 +15,15 @@ const translate = new Translate({ projectId, key });
 
 //console.debug( translate );
 
-var translationArray = [
-	{ key: "currentFolder.label", text: "Current Folder"},
-	{ key: "messageCount.label", text: "Message Count"},
-	{ key: "folderCount.label", text: "Folder Count"},
-	{ key: "totalMessages.label", text: "Total Messages"},
-	{ key: "totalErrors.label", text: "Total Errors"},
-	{ key: "messagesExported.label", text: "Messages Exported"},
-	{ key: "totalMessagesExported.label", text: "Total Messages Exported"},
+/*
+	{ key: "", text: ""},
+*/
 
+var translationArray = [
+	{ key: "SeeReleaseNotes.label", text: "See release notes"},
 
 
 ];
-
 
 // const localeDir = "../src/chrome/locale";
 const localeDir = "./src/chrome/locale";

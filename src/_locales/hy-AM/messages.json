@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Հավելվածի թղթապանակներ"
   },
+  "Attachments.label": {
+    "message": "Կից ֆայլեր"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Պահպանեք EML հավելվածն այս թղթապանակում"
   },
@@ -269,6 +272,21 @@
     "message": "Արտածել թղթապանակը",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Արտահանել թղթապանակներ"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Պարզ տեքստ"
+  },
   "exportingMsg": {
     "message": "Արտահանում",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Հաջողությամբ արտածվեց",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Արտահանել ընտրված հաղորդագրությունները"
   },
   "exportstart": {
     "message": "Արտածվում է…մի փոքր սպասեք",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Ընտրեք ներմուծվող նամակները",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Պանակ"
   },
   "folderCount.label": {
     "message": "Թղթապանակների քանակը"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Լատինականացնել փոխակերպումը"
   },
+  "LoggingOptions.label": {
+    "message": "Գրանցման տարբերակներ"
+  },
   "MACwarning": {
     "message": "Ուշադրություն. փակեք բոլոր պատուհանները:"
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF ձևաչափ"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Հաղորդագրություններ և HTML ինդեքս"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Միայն հաղորդագրություններ"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Հաղորդագրություններ և կից ֆայլեր"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Հաղորդագրություններ՝ կից ֆայլերով և ինդեքսով"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Պարզ տեքստի ձևաչափ"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Արտահանել հաղորդագրությունները որպես…"
+  },
+  "msgErrs.label": {
+    "message": "Սխալներ կային։ Տեսեք Thunderbird-ի գլխավոր պատուհանի սխալների վահանակը (Control+Shift+J):"
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "առանց_վերնագրի",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Թղթապանակների արտահանման համար օգտագործեք ծանուցումներ կարգավիճակի պատուհանի փոխարեն"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Ընտրված հաղորդագրությունների արտահանման համար կարգավիճակի պատուհանի փոխարեն օգտագործել ծանուցումներ"
+  },
   "noWarning": {
     "message": "Այլևս չցուցադրել",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Պահպանել"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Պահպանեք կցորդները նույն գրացուցակում հաղորդագրությունների հետ"
+  },
   "savedirs": {
     "message": "Արտածել թղթապանակները"
   },
@@ -922,6 +973,9 @@
     "message": "Ընտրեք թղթապանակը՝ փնտրելու համար ֆայլերը",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Տեսեք թողարկման նշումները"
+  },
   "selectFolderForMboxes_title": {
     "message": "Ընտրեք թղթապանակ mbox ֆայլեր ներմուծելու համար",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${ուղարկող}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Արտահանված հաղորդագրությունների ֆայլերի ամսաթիվը սահմանել ուղարկման ամսաթվին"
   },
   "Size": {
     "message": "Չափը"

@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Mape s priponkami"
   },
+  "Attachments.label": {
+    "message": "Priloge"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Shranite prilogo EML v to mapo"
   },
@@ -269,6 +272,21 @@
     "message": "Izvozi mapo",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Izvozi mape"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Golo besedilo"
+  },
   "exportingMsg": {
     "message": "Izvažanje",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Izvoz uspešno izveden",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Izvozi izbrana sporočila"
   },
   "exportstart": {
     "message": "Izvažanje ... počakajte",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Izberite sporočila za uvoz",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Mapa"
   },
   "folderCount.label": {
     "message": "Število map"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Latiniziraj transformacijo"
   },
+  "LoggingOptions.label": {
+    "message": "Možnosti beleženja"
+  },
   "MACwarning": {
     "message": "N.B: zapri vsako drugo okno pred nadaljevanjem"
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "PDF format"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Sporočila in kazalo HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Samo sporočila"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Sporočila in priloge"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Sporočila s prilogami in kazalom"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Oblika navadnega besedila"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Izvozi sporočila kot ..."
+  },
+  "msgErrs.label": {
+    "message": "Prišlo je do napak. Oglejte si konzolo za napake (Control+Shift+J) v glavnem oknu Thunderbirda."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "brez_zadeve",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Za izvoz map uporabite obvestila namesto okna stanja"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Za izvoz izbranih sporočil uporabite obvestila namesto okna s stanjem"
+  },
   "noWarning": {
     "message": "Ne prikaži tega opozorila",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Shrani"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Shranjevanje prilog v isti imenik kot sporočila"
+  },
   "savedirs": {
     "message": "Izvoz map"
   },
@@ -922,6 +973,9 @@
     "message": "Izberite mapo za iskanje datotek",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Glejte opombe k izdaji"
+  },
   "selectFolderForMboxes_title": {
     "message": "Izberite mapo za uvoz datotek mbox",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${pošiljatelj}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Nastavi datum izvoženih datotek sporočil na datum pošiljanja"
   },
   "Size": {
     "message": "Velikost"

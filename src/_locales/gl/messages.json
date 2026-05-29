@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Cartafoles adxuntos"
   },
+  "Attachments.label": {
+    "message": "Adxuntos"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Garda o anexo EML neste cartafol"
   },
@@ -270,6 +273,21 @@
     "message": "Exportar cartafol",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Exportar cartafoles"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Texto sen formato"
+  },
   "exportingMsg": {
     "message": "Exportando",
     "src": "mboximport"
@@ -277,6 +295,9 @@
   "exportOK": {
     "message": "Exportouse correctamente",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exportar mensaxes seleccionadas"
   },
   "exportstart": {
     "message": "Exportando... agarde por favor",
@@ -326,6 +347,9 @@
   "filePickerImportMSG": {
     "message": "Seleccionar as mensaxes a importar",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Cartafol"
   },
   "folderCount.label": {
     "message": "Número de cartafoles"
@@ -567,6 +591,9 @@
   "latinizeTransform": {
     "message": "Latinizar transformar"
   },
+  "LoggingOptions.label": {
+    "message": "Opcións de rexistro"
+  },
   "MACwarning": {
     "message": "N.B.: pechar todas as outras xanelas antes de continuar."
   },
@@ -683,6 +710,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Formato PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Mensaxes e índice HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Só mensaxes"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Mensaxes e anexos"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Mensaxes con anexos e índice"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Formato de texto plano"
   },
@@ -700,6 +739,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Exportar mensaxes como..."
+  },
+  "msgErrs.label": {
+    "message": "Houbo erros. Consulta a Consola de erros (Control+Maiús+J) na xanela principal de Thunderbird."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -809,6 +851,12 @@
     "message": "no_subject",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Usar notificacións en lugar da xanela de estado para a exportación de cartafoles"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Usar notificacións en lugar da xanela de estado para a exportación de mensaxes seleccionadas"
+  },
   "noWarning": {
     "message": "Non amosar de novo este aviso",
     "src": "mboximport"
@@ -883,6 +931,9 @@
   "save": {
     "message": "Gardar"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Gardar os anexos no mesmo directorio coas mensaxes"
+  },
   "savedirs": {
     "message": "Exportar directorios"
   },
@@ -923,6 +974,9 @@
     "message": "Seleccione un directorio para procurar os ficheiros",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Ver as notas da versión"
+  },
   "selectFolderForMboxes_title": {
     "message": "Seleccione o cartafol para importar ficheiros mbox",
     "src": "mboximport"
@@ -942,6 +996,9 @@
   },
   "senderFmtToken": {
     "message": "${remitente}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Definir a data dos ficheiros de mensaxes exportadas como a data de envío"
   },
   "Size": {
     "message": "Tamaño"

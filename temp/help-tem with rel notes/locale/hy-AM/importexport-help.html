@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
+    <title>ImportExportTools NG օգնություն</title>
+  </head>
+  <body>
+    <table style="width: 100%" id="main-help">
+      <tr>
+        <td style="vertical-align: top">
+          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG օգնություն</div>
+          <div id="extVersion" style="padding-left: 4px">վեր</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
+    <h3 id="release_notes" style="padding-left: 4px">Թողարկման նշումներ. Նոր v15 թողարկում</h3>
+    <p>
+      <b>v15 Նշումներ, առանձնահատկություններ և փոփոխություններ։ Խնդրում ենք ուշադիր կարդալ։</b><br /><br />
+      v15-ը հաղորդագրությունների արտահանման գործառույթների ամբողջական վերաշարադրում է, թե՛ թղթապանակների, թե՛
+      ընտրված հաղորդագրությունների: Սա ժամանակակից, հիմնականում WebExtension տեխնոլոգիայի առաջին փուլն է: Նոր
+      դիզայնը ճարտարապետության մեծ բարելավում է, որը թույլ է տալիս նոր հնարավորություններ և ավելի լավ
+      կատարողականություն:<br /><br />
+      Առաջին v15 թողարկման համար իրականացվել են հետևյալ ձևաչափերը՝<br /><br />
+      - Էլեկտրոնային էլեկտրոնային մամուլ<br />
+      - HTML և կից ֆայլեր<br />
+      - PDF և կից ֆայլեր<br />
+      - Պարզ տեքստ և կից ֆայլեր<br /><br />
+      Բացի նոր PDF-ից՝ կից ֆայլերով, արտահանման հնարավորությունից, կա նաև արտահանման կարգավիճակի նոր պատուհան,
+      ինչպես նաև օպերացիոն համակարգի նոր ծանուցման այլընտրանք: Հատկանիշների ցանկը հետևյալն է՝<br /><br />
+      <b>PDF արտահանում՝ կից ֆայլերով</b><br /><br />
+      Սա վաղուց պահանջված տարբերակ է: HTML արտահանման հետ կապված կա մեկ կարևոր սահմանափակում: Կից ֆայլերի
+      աղյուսակը չունի սեղմելի հղումներ: Մինչ օրս հնարավոր չի եղել արդյունք ստանալ հարաբերական հղումներով: Կամ
+      PDF փոխարկիչը, կամ դիտողները բոլոր file:// հղումները վերածում են բացարձակ հղումների, որոնք օգտակար չեն:
+      Հուսով եմ՝ ապագայում կգտնվի դա իրականացնելու որևէ միջոց:<br /><br />
+      <b>Ինդեքս</b><br /><br />
+      Նոր ինդեքսի ֆայլը թույլ է տալիս տեսակավորել սյուները՝ սեղմելով վերնագրերից որևէ մեկի վրա։<br /><br />
+      <b>Արտահանման կառուցվածքներ՝</b><br /><br />
+      - Բոլոր կցորդները մեկ գրացուցակում<br />
+      Եթե օգտագործեք ստատիկ բառ, օրինակ՝ «Կից ֆայլեր», բոլոր կից ֆայլերը կտեղափոխվեն այդ գրացուցակ։ Անցյալում
+      դա կստեղծեր «Կից ֆայլեր», «Կից ֆայլեր-1», «Կից ֆայլեր-2» և այլն։<br /><br />
+      - Կից ֆայլերը պահվում են նույն գրացուցակում հաղորդագրությունների հետ։<br />
+      «Ֆայլերի անուններ» ներդիրում գտնվող այս նոր տարբերակում կցորդների գրացուցակներ չեն ստեղծվում, քանի որ
+      դրանք բոլորը գտնվում են հաղորդագրությունների գրացուցակում։<br /><br />
+      - Կից ֆայլերի գրացուցակներում այժմ հաղորդագրության ամսաթիվը սահմանված է<br />
+      Կից ֆայլերի տեսակավորման համար գրացուցակների փոփոխման ամսաթիվը այժմ կսահմանվի համապատասխան
+      հաղորդագրության ուղարկման ամսաթվով։<br /><br />
+      - Փորձարարական «withatts» կառուցվածք<br />
+      Այս կառուցվածքը յուրաքանչյուր հաղորդագրություն բոլոր կցորդների հետ համատեղում է ձևաչափված կցորդների
+      գրացուցակում: Տիպիկ կարգավորումը կլինի ֆայլի անվան ձևաչափը սահմանել ձեր նախընտրած կարգավորումը, օրինակ՝
+      ${subject}, և ձեր գրացուցակի ձևաչափերը նույնպես՝ ${subject}: Սա կստեղծի գրացուցակներ յուրաքանչյուր
+      հաղորդագրության համար՝ ինչպես հաղորդագրությամբ, այնպես էլ կցորդներով: Հնարավոր է գրացուցակները
+      տեսակավորել ըստ ամսաթվի կամ անվան:<br /><br />
+      Այս փորձարարական կառուցվածքը փորձարկելու համար տեղադրեք բառը՝<br />
+      հետատներ<br />
+      «Զանազան» ներդիրի գրանցման տարբերակներում։ (Առաջարկ՝ @Rayerd)<br /><br />
+      <b>Գրանցման տարբերակներ՝</b><br /><br />
+      Նոր Գրանցման ընտրանքները գտնվում են «Զանազան» ներդիրում: Դրանք սահմանվում են որպես գրանցամատյանի տիպի
+      բառերի բացատներով բաժանված ցանկ: Դրանք ստեղծում են տարբեր գրանցամատյանի և վրիպազերծման արդյունքներ
+      վրիպազերծման կոնսոլում, որին մուտքագրվում են Control-Shift-J համադրություններով: Գրանցամատյանի տեսակները
+      կարող են համակցվել՝ գումարային արդյունք ստանալու համար: Գրանցամատյանի տեսակները հետևյալն են՝<br />
+      - msgs: Հիմնական հաղորդագրության պահպանման կարգավիճակ<br />
+      - msgs2: Հաղորդագրությունների ավելի մանրամասն վրիպազերծման արդյունք<br />
+      - ամփոփում. արտահանման ամփոփում<br />
+      - msgparts՝ MIME հաղորդագրության մասերի վրիպազերծման տեղեկատվություն<br />
+      - withatts՝ հաղորդագրության և կից ֆայլերի համակցված կառուցվածքն օգտագործելու ժամանակավոր տարբերակ<br /><br />
+      <b>Ցանկեր</b><br /><br />
+      Նոր ֆունկցիաները ներկայումս ավելացվում են հին ֆունկցիաների վրա և ունեն (v15) նախածանց։<br /><br />
+      Հին կոդը կկորցնի իր արժեքը, երբ նոր ֆունկցիաները կայունանան։ Սա արվել է որպես հիմնական թողարկման
+      նկատմամբ զգուշավոր մոտեցում։ Խնդրում ենք օգտագործել նոր v15 ֆունկցիաները և Github պահոցում առկա ցանկացած
+      խնդրի մասին հաղորդել այստեղ՝<br /><br />
+      <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
+        >ImportExportTools NG Github-ի հետ կապված խնդիրներ</a
+      ><br /><br />
+      <b>Կրեդիտներ</b><br /><br />
+      Այս թողարկումը չէր կարող տեղի ունենալ առանց մի քանի հավատարիմ և նվիրված օգտատերերի թեստավորման,
+      թարգմանությունների և առաջարկությունների: Շնորհակալություն՝<br /><br />
+      <b
+        >@DenB10<br />
+        @kiki-ja<br />
+        @tidebre67<br />
+        @Yarny0<br />
+        @Ռեյերդ<br />
+        @Ջորգեն<br />
+        @JF1313<br />
+        @joeldebruijn<br />
+        @pivi2402<br />
+        @EXDEV-oss<br /></b
+      ><br /><br />
+      Քրիստոֆեր<br />
+    </p>
+    <h2 id="main_help">ImportExportTools NG-ի ակնարկ և ընտրացանկեր</h2>
+    <p>
+      ImportExportTools NG-ն Պաոլո «Kaosmos»-ի բնօրինակ աշխատանքի հիման վրա ստեղծված ընդլայնումն է: Այն
+      առաջարկում է ներմուծման և արտահանման բազմաթիվ գործառույթներ, որոնք աջակցում են մի քանի տարբեր ֆայլերի
+      ձևաչափերի, ներառյալ՝ Նշում. Որոշ ձևաչափեր չեն աջակցվում բոլոր գործառույթներում:<br />
+      - mbox<br />
+      - Էլեկտրոնային էլեկտրոնային մամուլ<br />
+      - փոստային դիրեկտորիա<br />
+      - HTML<br />
+      - պարզ տեքստ<br />
+      - CSV (ստորակետով բաժանված արժեքներ)<br />
+      - PDF<br /><br />
+      Թեև ֆունկցիոնալության մեծ մասը կենտրոնացած է հաղորդագրությունների վրա, կա նաև Thunderbird պրոֆիլների
+      ներմուծման և արտահանման աջակցություն: Բացի այդ, արտահանումները կարող են ներառել նաև HTML կամ CSV ինդեքսի
+      ֆայլ: Thunderbird պրոֆիլի պահուստային պատճենահանումը մեկ այլ գործառույթ է:<br />
+      <p>
+        IETng ֆունկցիոնալությանը մուտք գործելը կատարվում է ընդլայնման կողմից տեղադրված մի քանի տարբեր
+        ընտրացանկերի միջոցով: Գործառույթները համատեքստային են: Ընտրացանկերը ավելացվել են հետևյալի համար.<br />
+        - Թղթապանակի վահանակի համատեքստը (թղթապանակի գործողություն)<br />
+        - Հաղորդագրությունների ցանկի համատեքստը (ընտրված հաղորդագրություններ)<br />
+        - Գործիքների ցանկ (պրոֆիլի և պահուստավորման գործողություններ)<br /><br />
+        «Գործիքներ» ցանկում հասանելի տարբերակները «Համբուրգեր» ցանկում չեն, դրանք կլինեն ապագա տարբերակում:
+        Այս գործառույթները հասանելի են նաև գործիքագոտու նոր կոճակում: Ցանկերից և կոճակներից յուրաքանչյուրն
+        ունի նաև «Օգնություն» և «Ընտրանքներ» ցանկի տարրեր՝ ընտրանքների երկխոսության պատուհանին մուտք գործելու
+        համար:<br />
+      </p>
+    </p>
+    <h3>Աջակցություն՝</h3>
+    <p>
+      Խնդրում ենք խնդիրները կամ գործառույթների հարցումները տեղադրել GitHub ընդլայնումների պահոցում՝
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG խնդիրներ</a
+      ><br /><br />
+      Սխալների հետ կապված խնդիրների դեպքում ներառեք հետևյալ տեղեկատվությունը խնդիրները լուծելու համար.<br />
+      - ImportExportTools NG տարբերակը<br />
+      - Thunderbird-ի տարբերակը<br />
+      - Օպերացիոն համակարգ և տարբերակ<br />
+      - Debug ելք (պատճեն Debug Console-ից - մուտք Control-Shift-J-ի միջոցով)<br />
+      - Խնդրի լուծմանը հանգեցնող քայլերի նկարագրությունը<br />
+    </p>
+    <h2 id="main_menu_help">Թղթապանակի համատեքստային ցանկի գործառույթներ</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Ընտրացանկի տարր</th>
+          <th>Ֆունկցիայի նկարագրությունը</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Արտահանեք ամբողջ հաշիվը՝ կառուցվածքով և ենթապանակներով mbox ձևաչափով: Արտահանումը կատարվում է
+            հաշվի անունով կոնտեյների միջոցով:<br />
+            Նշում. Այս ընտրացանկի տարրը հայտնվում է միայն հաշվի գրառման վրա աջ սեղմելիս։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>Արտահանեք մեկ թղթապանակ mbox ձևաչափի ֆայլի</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>Արտահանեք մեկ թղթապանակ zip-ով պահված mbox ձևաչափի ֆայլի</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
+          <td>Արտահանել բոլոր ենթապանակները ներառող թղթապանակը mbox ձևաչափի հաղորդագրությունների ծառի մեջ</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+          </td>
+          <td>
+            Արտահանեք բոլոր ենթապանակներ պարունակող պանակը mbox ձևաչափի ֆայլերի հավաքածուի մեջ, մեկը՝
+            յուրաքանչյուր ենթապանակի համար, որոնք արտահանվում են մեկ պանակ։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես EML ձևաչափի ֆայլեր (առանց
+            կառուցվածքի/ենթաթղթապանակների):<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես HTML ձևաչափի ֆայլեր (առանց
+            կառուցվածքի/ենթաթղթապանակների):<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես HTML ձևաչափի ֆայլեր (առանց
+            կառուցվածքի/ենթաթղթապանակների):<br />
+            Կից ֆայլերը պահվում են որպես առանձին ֆայլեր։ Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է
+            յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Արտահանեք թղթապանակի հաղորդագրությունները որպես PDF ձևաչափի ֆայլերի հավաքածու</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես պարզ տեքստային ձևաչափի ֆայլեր, կցորդները չեն
+            ներառվում։<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես պարզ տեքստային ձևաչափի ֆայլեր, ներառյալ
+            կցորդները:<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես մեկ պարզ տեքստային ձևաչափի ֆայլ, կցորդները չեն
+            ներառվում։<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես մեկ պարզ տեքստային ձևաչափի ֆայլ, ներառյալ
+            կցորդները:<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>
+            Արտահանեք թղթապանակի հաղորդագրությունները որպես մեկ CSV (ստորակետով բաժանված արժեքներ) տեքստային
+            ձևաչափի ֆայլ, կցված ֆայլերը չեն ներառվում։<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Ստեղծում է messages թղթապանակի HTML ինդեքսի ֆայլ (հաղորդագրությունների արտահանում չկա)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Ստեղծում է messages թղթապանակի CSV ինդեքսի ֆայլ (հաղորդագրությունների արտահանում չկա)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+          <td>Բացեք որոնման պատուհանը և արտահանեք ցանկալի արդյունքները</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td>(Ներմուծել միայն տեղական թղթապանակներ, ոչ թե IMAP)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Ներմուծեք մեկ կամ մի քանի mbox ֆայլեր գրացուցակից։</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Ընտրեք և ներմուծեք maildir թղթապանակ</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+          <td>Ընտրեք և ներմուծեք EML հաղորդագրությունների ֆայլեր (առանց կառուցվածքի/ենթապանակների)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
+          <td>Ներմուծեք բոլոր EML հաղորդագրությունները մեկ թղթապանակից</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+          <td>
+            Ներմուծեք բոլոր EML հաղորդագրությունները մեկ թղթապանակից, ներառյալ կառուցվածքը/ենթաթղթապանակները
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
+          <td>Պատճենեք ընտրված թղթապանակի OS ուղին</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
+          <td>Բացեք ընտրված թղթապանակի օպերացիոն համակարգի ուղին</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Բացեք ImportExportTools NG ընտրանքների երկխոսության պատուհանը</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Բացեք գլխավոր օգնության էջը</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="message_functions_help">Հաղորդագրության համատեքստի ցանկ</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Ընտրացանկի տարր</th>
+          <th>Ֆունկցիայի նկարագրությունը</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները EML ձևաչափի ֆայլեր (ներկառուցված կցորդներով)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք ընտրված հաղորդագրությունները EML ձևաչափի ֆայլերի<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները HTML ձևաչափի ֆայլերի</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները HTML ձևաչափի ֆայլերի, ներառյալ կցորդները</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք հաղորդագրությունները որպես HTML ձևաչափի ֆայլեր։<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Արտահանեք հաղորդագրությունները որպես HTML ձևաչափի ֆայլեր՝ ներառյալ կցորդները։<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները PDF ձևաչափի ֆայլերի</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները պարզ տեքստային ձևաչափի ֆայլերի</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները պարզ տեքստային ձևաչափի ֆայլերի, ներառյալ կցորդները</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Արտահանեք հաղորդագրությունները որպես պարզ տեքստային ձևաչափի ֆայլեր՝ ներառյալ կցորդները<br />
+            Սա նաև ստեղծում է HTML ինդեքսի ֆայլ, որը թվարկում է յուրաքանչյուր հաղորդագրությունը։
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Արտահանեք ընտրված հաղորդագրությունները մեկ CSV տեքստային ֆայլի մեջ</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Արտահանել ընտրված հաղորդագրությունները մեկ mbox ֆայլի մեջ</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>Կցել ընտրված հաղորդագրությունները առկա mbox ֆայլին</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Ստեղծեք HTML ինդեքսի ֆայլ ընտրված հաղորդագրությունների համար</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Ստեղծեք CSV ինդեքսի ֆայլ ընտրված հաղորդագրությունների համար</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Պատճենել ընտրված մեկ հաղորդագրություն սեղմատախտակին</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Պատճենել մեկ ընտրված հաղորդագրության վերնագրերը սեղմատախտակին</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Բացեք ImportExportTools NG ընտրանքների երկխոսության պատուհանը</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Բացեք գլխավոր օգնության էջը</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="tools_functions_help">Գործիքների ցանկ</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Ընտրացանկի տարր</th>
+          <th>Ֆունկցիայի նկարագրությունը</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+          <td>Պահպանել ամբողջական պրոֆիլը (փոստ, ընդլայնումներ, ընտրանքներ)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Պահպանել բոլոր նամակները ընթացիկ պրոֆիլում</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+          <td>Ներմուծեք ամբողջական պրոֆիլ (փոստ, ընդլայնումներ, ընտրանքներ)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Բացեք ImportExportTools NG ընտրանքների երկխոսության պատուհանը</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Բացեք գլխավոր օգնության էջը</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="customdate_format_help">Պատվերով ամսաթվի ձևաչափ</h2>
+    <p>
+      «Սեփական ամսաթվի» տարբերակը թույլ է տալիս լիակատար վերահսկողություն ունենալ ինդեքսի երկու ֆայլերի համար
+      օգտագործվող ամսաթվի ձևաչափի վրա: Ֆայլի անվանումների ցանկում հասանելի են ինչպես «Ամսաթիվ» լռելյայն
+      ձևաչափը, այնպես էլ նոր «Ամսաթիվ (սեփական)» հատուկ ձևաչափը: Հատուկ ամսաթիվը կարող է օգտագործվել նաև
+      ${date_custom} տոկենի հետ, որն օգտագործվում է ընդլայնված հատուկ ֆայլերի անուններում: Սկզբնական
+      (լռելյայն) ամսաթվի ձևաչափը հետևյալն է՝<br />
+      ՏՏՏՏԱՄԱՕՕԱ ...<br /><br />
+      Պատվերով ամսաթվի ձևաչափը օգտագործում է % հաջորդականություններ, որոնք համապատասխանում են
+      <code>strftime()</code> Unix-անման ֆունկցիոնալությանը: Այն հիմնված է
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+      ֆունկցիայի JavaScript պորտի վրա, որը ամսաթիվը և ժամը ձևաչափելու ֆունկցիա է:<br />
+      Strftime()-ի պորտը՝ TH Doan-ի կողմից (https://thdoan.github.io/strftime/)<br />
+    </p>
+    <h3>Փոխակերպման հաջորդականության նկարագրություններ</h3>
+    <table class="dateformat-table">
+      <thead>
+        <tr>
+          <th>Հաջորդականություն</th>
+          <th>Նկարագրություն</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="code1">%a</code></td>
+          <td>Շաբաթվա օրվա կրճատ անվանումը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%A</code></td>
+          <td>Շաբաթվա օրվա լրիվ անվանումը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%b</code></td>
+          <td>Ամսվա կրճատ անվանումը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%B</code></td>
+          <td>Ամսվա լրիվ անվանումը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%c</code></td>
+          <td>Ընթացիկ տեղանքի համար նախընտրելի ամսաթվի և ժամի (UTC) ներկայացումը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%C</code></td>
+          <td>Դարի թիվը (տարի/100)՝ որպես երկնիշ ամբողջ թիվ։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%d</code></td>
+          <td>Ամսվա օրը տասնորդական թվի տեսքով (01-ից 31 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%e</code></td>
+          <td>Ամսվա օրը տասնորդական թվի տեսքով (1-ից 31 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%F</code></td>
+          <td>ISO 8601 ամսաթվի ձևաչափ (համարժեք է <code class="code1">%Y-%m-%d</code> ին):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%G</code></td>
+          <td>
+            ISO 8601 շաբաթական տարի՝ դարը որպես տասնորդական թիվ։ 4 նիշանոց տարին համապատասխանում է ISO շաբաթվա
+            համարին (տե՛ս <code class="code1">%V</code> ): Սա ունի նույն ձևաչափը և արժեքը, ինչ
+            <code class="code1">%Y</code> , բացառությամբ այն բանի, որ եթե ISO շաբաթվա համարը պատկանում է
+            նախորդ կամ հաջորդ տարվան, ապա օգտագործվում է այդ տարին։
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%g</code></td>
+          <td>Ինչպես <code class="code1">%G</code> , բայց առանց դարի, այսինքն՝ երկնիշ տարեթվով (00-99):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%H</code></td>
+          <td>
+            Ժամը որպես տասնորդական թիվ՝ օգտագործելով 24-ժամյա ժամացույց (00-ից 23 միջակայք): Տես նաև
+            <code class="code1">%k</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%I</code></td>
+          <td>
+            Ժամը որպես տասնորդական թիվ՝ օգտագործելով 12-ժամյա ժամացույց (01-ից 12 միջակայք): Տես նաև
+            <code class="code1">%l</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%j</code></td>
+          <td>Տարվա օրը տասնորդական թվի տեսքով (001-ից մինչև 366 միջակայք):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%k</code></td>
+          <td>
+            Ժամը որպես տասնորդական թիվ՝ օգտագործելով 24-ժամյա ժամացույց (0-ից 23 միջակայք): Տես նաև
+            <code class="code1">%H</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%l</code></td>
+          <td>
+            Ժամը որպես տասնորդական թիվ՝ օգտագործելով 12-ժամյա ժամացույց (1-ից 12 միջակայք): Տես նաև
+            <code class="code1">%I</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%m</code></td>
+          <td>Ամիսը որպես տասնորդական թիվ (01-ից 12 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%n</code></td>
+          <td>Ամիսը որպես տասնորդական թիվ (1-ից 12 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%M</code></td>
+          <td>Րոպեն որպես տասնորդական թիվ (00-ից 59 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%p</code></td>
+          <td>
+            Կա՛մ «AM», կա՛մ «PM»՝ կախված տրված ժամանակային արժեքից։ Կեսօրը համարվում է «PM», իսկ կեսգիշերը՝
+            «AM»։
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%P</code></td>
+          <td>Ինչպես <code class="code1">%p</code> , բայց փոքրատառով («am» կամ «pm»):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%s</code></td>
+          <td>Դարաշրջանից ի վեր վայրկյանների քանակը, 1970-01-01 00:00:00 +0000 (UTC):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%S</code></td>
+          <td>Երկրորդը՝ որպես տասնորդական թիվ (00-ից մինչև 59 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%u</code></td>
+          <td>
+            Շաբաթվա օրը տասնորդական նիշով (1-ից 7 միջակայքում), երկուշաբթի օրը՝ 1: Տես նաև
+            <code class="code1">%w</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%V</code></td>
+          <td>
+            Ընթացիկ տարվա ISO 8601 շաբաթվա համարը տասնորդական թվի տեսքով (01-ից 53 միջակայքում), որտեղ 1-ին
+            շաբաթը առաջին շաբաթն է, որն ունի առնվազն 4 օր նոր տարում (այսինքն՝ առաջին հինգշաբթին):
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%w</code></td>
+          <td>
+            Շաբաթվա օրը տասնորդական նիշով (0-ից 6 միջակայքում), կիրակի օրը՝ 0: Տես նաև
+            <code class="code1">%u</code> :
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%x</code></td>
+          <td>Ընթացիկ տեղանքի համար նախընտրելի ամսաթվի ներկայացումը՝ առանց ժամանակի։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%X</code></td>
+          <td>Ընթացիկ տեղանքի համար նախընտրելի ժամանակի ներկայացումը՝ առանց ամսաթվի։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%y</code></td>
+          <td>Տարին որպես տասնորդական թիվ՝ առանց դարի (00-ից մինչև 99 միջակայքում):</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Y</code></td>
+          <td>Տարին որպես տասնորդական թիվ՝ ներառյալ դարը։</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%z</code></td>
+          <td>
+            <code class="code1">+hhmm</code> կամ <code class="code1">-hhmm</code> թվային ժամային գոտին
+            (այսինքն՝ ժամի և րոպեի շեղումը UTC-ից):
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Z</code></td>
+          <td>Ժամային գոտու անվանումը կամ կրճատումը։</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Համատեղելիության նշումներ.</h3>
+    <ul>
+      <li><code class="code1">%c</code> - ձևաչափված տողը մի փոքր այլ է</li>
+      <li>
+        <code class="code1">%D</code> - չի իրականացվել (օգտագործեք <code class="code1">%m/%d/%y</code> կամ
+        <code class="code1">%d/%m/%y</code> )
+      </li>
+      <li><code class="code1">%e</code> - բացատը չի ավելացվում</li>
+      <li><code class="code1">%E</code> - չի իրականացվել</li>
+      <li><code class="code1">%h</code> - չի իրականացվել (օգտագործել <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - բացատը չի ավելացվում</li>
+      <li>
+        <code class="code1">%n</code> - նման է <code class="code1">%m</code> , բայց չունի սկզբնական զրո
+        (օգտագործեք <code class="code1">\n</code> նոր տողի համար)
+      </li>
+      <li><code class="code1">%O</code> - չի իրականացվել</li>
+      <li>
+        <code class="code1">%r</code> - չի իրականացվել (օգտագործել <code class="code1">%I:%M:%S %p</code> )
+      </li>
+      <tr>
+        <td><code class="code1">${subject}</code></td>
+        <td>Հաղորդագրության թեման</td>
+      </tr>
+      <li><code class="code1">%R</code> - չի իրականացվել (օգտագործեք <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - չի իրականացվել (օգտագործել <code class="code1">\t</code> )</li>
+      <li>
+        <code class="code1">%T</code> - չի իրականացվել (օգտագործել <code class="code1">%H:%M:%S</code> )
+      </li>
+      <li><code class="code1">%U</code> - չի իրականացվել</li>
+      <li><code class="code1">%W</code> - չի իրականացվել</li>
+      <li><code class="code1">%+</code> - չի իրականացվել</li>
+      <li><code class="code1">%%</code> - չի իրականացվել (օգտագործել <code class="code1">%</code> )</li>
+    </ul>
+    <br /><br />
+    <h2 id="ext_filename_format_help">Ֆայլի անվան ընդլայնված ձևաչափ՝</h2>
+    <br />
+    <p>
+      Ֆայլի անվան ընդլայնված ձևաչափումն օգտագործում է տոկեններ: Ֆայլի ճշգրիտ անունը կարող է կազմվել՝
+      օգտագործելով տոկենները, ինչպես նաև ցանկացած տեքստ կամ վավեր ֆայլի անվան նիշեր: Անվավեր նիշերն են՝
+      <code>| * : &lt; &gt; ? \ / &quot;</code> Անգլերեն (en-US) տոկենները հասանելի են ցանկացած տեղույթում:
+      Տեղույթին հատուկ տոկենները նույնպես հասանելի են և ներկայացված են անգլերեն աղյուսակի տակ:<br /><br />
+      Օրինակներ՝<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Լռելյայն ձևաչափը<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Օգտագործեք ամսաթվի
+      հատուկ ձևաչափը՝ լռելյայնի փոխարեն<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Որոշակի հատուկ
+      տեքստով<br /><br /><br />
+    </p>
+    <table class="token-table">
+      <tr>
+        <td>Թոքեն</td>
+        <td>Նկարագրություն</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td>Հաղորդագրության թեման։ Երկարությունը կարող է սահմանափակվել թեմայի երկարության ընտրանքով։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td>Հաղորդագրություն ուղարկողի անունը։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td>Հաղորդագրության ստացողի անունը։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>Հաղորդագրությունն ուղարկողի էլեկտրոնային փոստի հասցեն։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>Հաղորդագրությունը ստացողի էլեկտրոնային փոստի հասցեն։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td>
+          Ստացողները, եթե հաղորդագրությունը գտնվում է «Ուղարկված» պանակում, հակառակ դեպքում՝ ուղարկողի անունը
+        </td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td>Հաղորդագրության ինդեքսի համարը։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td>Նախածանցի տեքստի տարբերակի արժեքը։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td>Վերջածանցի տեքստի տարբերակի արժեքը։</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td>Ստանդարտ ամսաթվի ձևաչափը։ Լռելյայն ձևաչափն է՝ YYYYMMDDHHmm</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td>Հատուկ ամսաթվի ձևաչափ։ Տեսեք հատուկ ամսաթվի ձևաչափման բաժինը։</td>
+      </tr>
+    </table>
+    <br />
+    <table id="localized-token-table" class="token-table">
+      <tr>
+        <td>Թոքեն (անգլ. ԱՄՆ)</td>
+        <td>Տեղայնացված (<span id="locale1"></span> ) Թոքեն</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
+      </tr>
+    </table>
+    <br />
+    <h2>Նոր և փորձարարական նախընտրություններ (ընտրանքներ)</h2>
+    <p>
+      Կան մի քանի նոր գործառույթներ և տարբերակներ, որոնք դեռևս կարգավորելի չեն տարբերակների երկխոսության
+      պատուհանում: Երբ այս գործառույթները կայունանան, դրանք կավելացվեն UI-ին:<br />
+      Դրանք օգտագործելու համար դրանք պետք է կարգավորվեն Կարգավորումների խմբագրիչում: Խմբագրին մուտք գործելու
+      համար օգտագործեք Գործիքներ/Ընտրանքներ ցանկը, այնուհետև ընտրեք «Ընդլայնված» բաժինը, և ներքևում կլինի
+      «Կարգավորումների խմբագրիչ» կոճակը: Եթե որոնման դաշտում մուտքագրեք «importexporttoolsng», կստանաք բոլոր
+      ընդլայնման նախընտրությունները: Այնուհետև կարող եք խմբագրել ստորև բերված տարբեր նախընտրությունները՝ ըստ
+      անհրաժեշտության:
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Այս նախընտրությունը հետևում է ինդեքսային ֆայլերի համար օգտագործվող նույն լրիվ ձևաչափմանը: Այն
+      լռելյայնորեն դատարկ տող է, եթե ձևաչափված է ամսաթվի/ժամի տողով, ապա սա կփոխի ինդեքսի ամսաթվի ձևաչափը:
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
+    </p>
+    <p>
+      Այս երկու նախընտրություններն էլ օգտագործում են նույն տեսակի ընդլայնված ֆայլերի անվանման ձևաչափերը, որոնք
+      օգտագործում է արտահանված հաղորդագրությունների ֆայլի անունը։ Առաջինը արտաքին կցորդների համար է, երկրորդը՝
+      ներկառուցված (տողային) կցորդների համար։
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Սովորաբար Thunderbird-ում հաղորդագրության «ամսաթիվը» ուղարկողի փոստային հաճախորդի կողմից սահմանված
+      ամսաթիվն է: Այս տարբերակը «ճշմարիտ» դնելով՝ օգտագործվում է ստացողի փոստային հաճախորդի կողմից ստացված
+      ամսաթիվը: Այս ամսաթիվը կօգտագործվի ինչպես ֆայլերի անունների, այնպես էլ ինդեքսային ֆայլերում եղած ամսաթվի
+      համար:
+    </p>
+    <h2>Հիմնական, գլոբալ կարճ ստեղների (կարճ կոճակների) գործառույթ</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Այս նոր նախընտրությունը թույլ է տալիս օգտատիրոջը սահմանել մինչև 10 ստեղնաշարի կարճ ստեղներ։ Կարճ
+      ստեղները կարող են կատարել ImportExportTools NG ֆունկցիաների մեծ մասը, ինչպես նաև Thunderbird-ի այլ
+      ֆունկցիաներ։ Նախընտրության տողը ձևաչափված է որպես JSON ձևաչափով օբյեկտ։ Ձևաչափը և ստեղները հետևյալն են՝
+    </p>
+    <p>
+      Օրինակ՝ տաք ստեղների գրառումներ (JSON օբյեկտների զանգված)<br /><br />
+      <code class="notranslate">id</code> - բանալիի ինդեքսը (1-10)<br />
+      <code class="notranslate">key</code> - բանալին (մեկ նիշ)<br />
+      <code class="notranslate">keycode</code> - &#39;VK_*&#39; սահմանող բանալի կոդը<br />
+      Կարող է ներառվել կամ բանալին, կամ կոդը, բայց ոչ երկուսը միասին<br />
+      <code class="notranslate">modifiers</code> - ստեղների մոդիֆիկատորներ, բացատներով բաժանված ցանկ
+      («control», «shift», «alt», «accel»)<br />
+      <code class="notranslate">oncommand</code> - ուղղակի հրամանի տող<br />
+      <code class="notranslate">contexts</code> - պատուհանի համատեքստը, որտեղ բանալին ակտիվ է<br />
+      <code class="notranslate">&#39;all&#39;</code> ՝ Messenger, Compose, Search բաժինների բոլոր
+      պատուհանները<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - գլխավոր մեսենջերի պատուհանը և դրա
+      ենթադրյալները<br />
+      <code class="notranslate">&#39;compose&#39;</code> - հաղորդագրության կազմման պատուհան<br />
+      <code class="notranslate">&#39;search&#39;</code> - որոնման երկխոսության պատուհան<br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      ><br />
+    </p>
+    <p>
+      Քանի որ կարճ ստեղները նոր են և փորձարարական, ես նաև ավելի շատ փաստաթղթեր կավելացնեմ պահոցում։ Ստուգեք
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      >
+      ընդլայնումը։<br />
+    </p>
+    <br />
+    <h3>Տարբերակ 14.0.0: Thunderbird 115 աջակցություն - 2023 թվականի հուլիսի 10</h3>
+    <p>
+      Լուծված առանձնահատկություններ և խնդիրներ՝<br />
+      <p>
+        - Thunderbird 115 Supernova-ի աջակցություն<br />
+        - Վերամշակել և արդիականացնել ընտրանքների ինտերֆեյսը<br />
+        - Մութ ռեժիմի ամբողջական աջակցություն<br />
+        - Նոր, հետևողական մենյուի համակարգ<br />
+        - Գործիքագոտու նոր կոճակ - Նոր կոճակ<br />
+        - Բարելավված օգնություն, բացվում է տեղադրման ժամանակ<br />
+        - Թարմացնել արտահանման հաշիվը<br /><br />
+        Շնորհակալություն հետևյալ օգտատերերին բարելավման առաջարկների և փորձարկման օգնության համար՝<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
+  </body>
+</html>

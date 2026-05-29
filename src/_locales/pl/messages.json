@@ -35,6 +35,9 @@
   "attachmentFolders": {
     "message": "Foldery załączników"
   },
+  "Attachments.label": {
+    "message": "Załączniki"
+  },
   "attCtxMenu_Top_Id.title": {
     "message": "Zapisz załącznik EML w tym folderze"
   },
@@ -269,6 +272,21 @@
     "message": "Eksportuj folder",
     "src": "mboximport"
   },
+  "ExportFolders.title": {
+    "message": "Eksportuj foldery"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Tekst jawny"
+  },
   "exportingMsg": {
     "message": "Eksportowanie",
     "src": "mboximport"
@@ -276,6 +294,9 @@
   "exportOK": {
     "message": "Eksport zakończony poprawnie",
     "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Eksportuj wybrane wiadomości"
   },
   "exportstart": {
     "message": "Eksportowanie… Proszę czekać.",
@@ -325,6 +346,9 @@
   "filePickerImportMSG": {
     "message": "Wybierz wiadomości do zaimportowania",
     "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Falcówka"
   },
   "folderCount.label": {
     "message": "Liczba folderów"
@@ -566,6 +590,9 @@
   "latinizeTransform": {
     "message": "Transformacja latynoska"
   },
+  "LoggingOptions.label": {
+    "message": "Opcje rejestrowania"
+  },
   "MACwarning": {
     "message": "Przed kontynuacją zamknij inne okna."
   },
@@ -682,6 +709,18 @@
   "msgCtxMenu_Exp_PDFFormat_Id.title": {
     "message": "Format PDF"
   },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Wiadomości i indeks HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Tylko wiadomości"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Wiadomości i załączniki"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Wiadomości z załącznikami i indeksem"
+  },
   "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
     "message": "Zwykły format tekstowy"
   },
@@ -699,6 +738,9 @@
   },
   "msgCtxMenu_TopId.title": {
     "message": "Eksportuj wiadomości jako…"
+  },
+  "msgErrs.label": {
+    "message": "Wystąpiły błędy. Zobacz Konsolę błędów (Control+Shift+J) w głównym oknie Thunderbirda."
   },
   "msgHdr.Bcc": {
     "message": "Bcc"
@@ -808,6 +850,12 @@
     "message": "bez_tematu",
     "src": "mboximport"
   },
+  "notificationsForExpFolders.label": {
+    "message": "Użyj powiadomień zamiast okna stanu podczas eksportowania folderów"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Użyj powiadomień zamiast okna statusu dla wybranych wiadomości eksportowych"
+  },
   "noWarning": {
     "message": "Nie pokazuj więcej tego ostrzeżenia",
     "src": "mboximport"
@@ -882,6 +930,9 @@
   "save": {
     "message": "Zapisuj"
   },
+  "saveAttsInMsgDir.label": {
+    "message": "Zapisz załączniki w tym samym katalogu, co wiadomości"
+  },
   "savedirs": {
     "message": "Foldery eksportu"
   },
@@ -922,6 +973,9 @@
     "message": "Wybierz katalog, w którym szukać plików mbox",
     "src": "mboximport"
   },
+  "SeeReleaseNotes.label": {
+    "message": "Zobacz informacje o wydaniu"
+  },
   "selectFolderForMboxes_title": {
     "message": "Wybierz folder do importowania plików mbox",
     "src": "mboximport"
@@ -941,6 +995,9 @@
   },
   "senderFmtToken": {
     "message": "${nadawca}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Ustaw datę wyeksportowanych plików wiadomości na datę wysłania"
   },
   "Size": {
     "message": "Rozmiar"

@@ -321,13 +321,32 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     log("test", ctxEvent, "ctxEvent")
     log("test", tab, "tab")
+    log("test", ctxEvent?.displayedFolder, "displayedFolder")
+    let currentFolder = ctxEvent?.displayedFolder;
 
-    
+    if (currentFolder == undefined) {
+      console.error("displayedFolder is undefined, trying mailTabs");
+      let currentMailtab = await messenger.mailTabs.getCurrent();
+      if (currentMailtab && currentMailtab.displayedFolder) {
+        console.log("using mailTabs.displayedFolder")
+        currentFolder = currentMailtab.displayedFolder;
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `ctxEvent.displayedFolder undefined using mailTabs.displayedFolder `);;
+
+      } else if (!currentMailtab) {
+        console.log("currentMailtab is undefined, giving up")
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `Both ctxEvent.displayedFolder and\nmailTabs.displayedFolder undefined \nGiving up`);;
+        try {
+          browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+        } catch (ex) { }
+        return;
+
+      }
+    }
 
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
-    let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
+    let folderSet = await _getFolderSet([currentFolder], functionParams);
     let totalFolderCount = folderSet.length;
 
     log("msgs msgs2", ` Folder: ${folderSet[0].exportPath}`)
@@ -340,7 +359,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // is an error and use ctxEvent.selectedMessages from the menu operation.
     // Because there will be no iteration over the list, we we can
     // reuse it in _msgIterateBatch
-    
+
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     if (!selMsgCnt) {
       //console.log("use sel")

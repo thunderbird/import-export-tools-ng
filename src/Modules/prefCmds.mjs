@@ -37,6 +37,11 @@ export async function setPref(prefName, value, root = addonRootPref) {
   return browser.LegacyPrefs.setPref(prefName, value);
 }
 
+export async function createPref(prefName, value, root = addonRootPref) {
+  prefName = root + prefName;
+  return browser.LegacyPrefs.createPref(prefName, value);
+}
+
 export async function getBoolPref(boolPref) {
   let params = {};
   params.targetWinId = (await messenger.windows.getCurrent()).id;

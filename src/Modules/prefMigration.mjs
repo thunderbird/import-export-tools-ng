@@ -21,20 +21,19 @@
 import * as prefs from "./prefCmds.mjs";
 
 export async function legacyPrefMigration() {
-  // mode 0 not supported, move to 2 == dropdown mode
+  // mode 0 not supported, move to 2 == dropdown mode and set default pattern
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat != 1 && nameFormat != 3) {
     await prefs.setPref("exportEML.filename_format", 2);
     try {
       let pattern = await prefs.getPref("export.filename_pattern");
       if (pattern == undefined) {
-        await prefs.setPref("export.filename_pattern", "%d%s%K");
-        console.log("set undefined pattern ")
+        console.log("IETNG: Migrate filename_format to Dropdown format");
+        await prefs.createPref("export.filename_pattern", "%d-%s-%k");
+        console.log("IETNG: Set undefined filename_pattern to: %d-%s-%k");
       }
     } catch (ex) {
-      console.log(ex);
-      
+      console.error(ex);
     }
-    console.log("converted to dropdown")
   }
 }

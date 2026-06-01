@@ -325,10 +325,10 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let currentFolder = ctxEvent?.displayedFolder;
 
     if (currentFolder == undefined) {
-      console.error("displayedFolder is undefined, trying mailTabs");
+      console.error("IETNG: displayedFolder is undefined, trying mailTabs");
       let currentMailtab = await messenger.mailTabs.getCurrent();
       if (currentMailtab && currentMailtab.displayedFolder) {
-        console.log("using mailTabs.displayedFolder")
+      console.warn("IETNG: Using mailTabs.displayedFolder - Please Report!");
         currentFolder = currentMailtab.displayedFolder;
         let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `ctxEvent.displayedFolder undefined using mailTabs.displayedFolder `);;
 
@@ -339,7 +339,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
         } catch (ex) { }
         return;
-
       }
     }
 
@@ -362,13 +361,14 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
+    let selectedMsgs2 = await messenger.mailTabs.getSelectedMessages()
 
-    console.log("selected msgs", selectedMsgs)
+    console.log("selected msgs", selectedMsgs, selectedMsgs2)
     if (!selMsgCnt) {
-      //console.log("use sel")
-      folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
+      console.log("use sel")
+      folderSet[0].totalMsgCount = selectedMessages.messages.length;
     } else {
-      //console.log("use msgList")
+      console.log("use msgList")
       folderSet[0].totalMsgCount = 0;
 
       let msgListPage;
@@ -540,7 +540,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         });
       }
 
-      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs);
+      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs2);
       if (gAbort) {
         break;
       }

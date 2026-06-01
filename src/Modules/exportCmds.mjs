@@ -361,6 +361,9 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // reuse it in _msgIterateBatch
 
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
+    let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
+
+    console.log("selected msgs", selectedMsgs)
     if (!selMsgCnt) {
       //console.log("use sel")
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
@@ -537,7 +540,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         });
       }
 
-      var exportStatus = await _msgIterateBatch(expTask, ctxEvent.selectedMessages);
+      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs);
       if (gAbort) {
         break;
       }

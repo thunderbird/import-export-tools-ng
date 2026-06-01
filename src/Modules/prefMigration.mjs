@@ -25,5 +25,16 @@ export async function legacyPrefMigration() {
   let nameFormat = await prefs.getPref("exportEML.filename_format");
   if (nameFormat != 1 && nameFormat != 3) {
     await prefs.setPref("exportEML.filename_format", 2);
+    try {
+      let pattern = await prefs.getPref("export.filename_pattern");
+      if (pattern == undefined) {
+        await prefs.setPref("export.filename_pattern", "%d%s%K");
+        console.log("set undefined pattern ")
+      }
+    } catch (ex) {
+      console.log(ex);
+      
+    }
+    console.log("converted to dropdown")
   }
 }

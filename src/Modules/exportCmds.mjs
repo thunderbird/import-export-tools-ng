@@ -365,10 +365,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     console.log("selected msgs", selectedMsgs, selectedMsgs2)
     if (!selMsgCnt) {
-      console.log("use sel")
-      folderSet[0].totalMsgCount = selectedMessages.messages.length;
+      console.log("use ctxEvent.selectedMessages");
+      folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
+      selectedMsgs2 = ctxEvent.selectedMessages;
     } else {
-      console.log("use msgList")
+      console.log("use getSelectedMessages");
       folderSet[0].totalMsgCount = 0;
 
       let msgListPage;

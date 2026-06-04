@@ -42,10 +42,3 @@ export async function createPref(prefName, value, root = addonRootPref) {
   return browser.LegacyPrefs.createPref(prefName, value);
 }
 
-export async function getBoolPref(boolPref) {
-  let params = {};
-  params.targetWinId = (await messenger.windows.getCurrent()).id;
-  params.boolPref = boolPref;
-  let bp = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_getBoolPref", params: params });
-  return bp;
-}

@@ -90,7 +90,10 @@ export var prefCmds = {
 
   // Set pref value by updating local pref obj and updating storage.
   setPref: async function (aName, aValue, createNewProperty = false) {
+    console.log("setPref enter:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
     this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
+    console.log("setPref after dotSet:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
+
     await messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
     console.log(this._userPrefs?.export?.names?.defaults?.components)
     console.log("setPref:", aName, "userPref:", this.dotGet(aName, this._userPrefs))
@@ -175,6 +178,7 @@ export var prefCmds = {
         }
         if ((result[path] != undefined) || createNewProperty) {
           result[path] = val;
+          console.log("dotSet", result[path])
           return result[path];
         }
         return undefined;

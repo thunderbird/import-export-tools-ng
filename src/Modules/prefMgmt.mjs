@@ -257,6 +257,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     case "getPref":
       return prefCmds.getPref(storageKey);
     case "setPref":
+      console.log("rcvd setPref", info.prefName, storageKey,info.prefValue);
       return await prefCmds.setPref(storageKey, info.prefValue);
   }
   return null;

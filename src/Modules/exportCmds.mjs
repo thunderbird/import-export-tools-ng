@@ -319,10 +319,33 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     log("msgs msgs2", "Start Export selected messages\nFolder:")
 
+    log("test", ctxEvent, "ctxEvent")
+    log("test", tab, "tab")
+    log("test", ctxEvent?.displayedFolder, "displayedFolder")
+    let currentFolder = ctxEvent?.displayedFolder;
+
+    if (currentFolder == undefined) {
+      console.error("IETNG: displayedFolder is undefined, trying mailTabs");
+      let currentMailtab = await messenger.mailTabs.getCurrent();
+      if (currentMailtab && currentMailtab.displayedFolder) {
+      console.warn("IETNG: Using mailTabs.displayedFolder - Please Report!");
+        currentFolder = currentMailtab.displayedFolder;
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `ctxEvent.displayedFolder undefined using mailTabs.displayedFolder `);;
+
+      } else if (!currentMailtab) {
+        console.log("currentMailtab is undefined, giving up")
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `Both ctxEvent.displayedFolder and\nmailTabs.displayedFolder undefined \nGiving up`);;
+        try {
+          browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+        } catch (ex) { }
+        return;
+      }
+    }
+
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
-    let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
+    let folderSet = await _getFolderSet([currentFolder], functionParams);
     let totalFolderCount = folderSet.length;
 
     log("msgs msgs2", ` Folder: ${folderSet[0].exportPath}`)
@@ -335,13 +358,18 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // is an error and use ctxEvent.selectedMessages from the menu operation.
     // Because there will be no iteration over the list, we we can
     // reuse it in _msgIterateBatch
-    
+
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
+    let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
+    let selectedMsgs2 = await messenger.mailTabs.getSelectedMessages()
+
+    console.log("selected msgs", selectedMsgs, selectedMsgs2)
     if (!selMsgCnt) {
-      //console.log("use sel")
+      console.log("use ctxEvent.selectedMessages");
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
+      selectedMsgs2 = ctxEvent.selectedMessages;
     } else {
-      //console.log("use msgList")
+      console.log("use getSelectedMessages");
       folderSet[0].totalMsgCount = 0;
 
       let msgListPage;
@@ -513,7 +541,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         });
       }
 
-      var exportStatus = await _msgIterateBatch(expTask, ctxEvent.selectedMessages);
+      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs2);
       if (gAbort) {
         break;
       }

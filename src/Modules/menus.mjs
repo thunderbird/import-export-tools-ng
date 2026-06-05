@@ -1231,11 +1231,24 @@ async function wextctx_ExportAs(ctxEvent, tab) {
   try {
 
     if (!ctxEvent.pageUrl) {
-
-      params.selectedFolder = ctxEvent.displayedFolder;
-      params.selectedAccount = ctxEvent.selectedAccount;
-      params.selectedMessages = ctxEvent.selectedMessages;
-
+      if (ctxEvent?.displayedFolder) {
+        params.selectedFolder = ctxEvent.displayedFolder;
+      } else {
+        params.selectedFolder = (await messenger.mailTabs.getCurrent()).displayedFolder;
+        console.warn("IETNG: ctxEvent.displayedFolder undefined, using mailTabs.getCurrent().displayedFolder", params.selectedFolder);
+      }
+      if (ctxEvent?.selectedAccount) {
+        params.selectedAccount = ctxEvent.selectedAccount;
+      } else {
+        params.selectedAccount = params.selectedFolder.accountId;
+        console.warn("IETNG: ctxEvent.accountId undefined, using mailTabs.getCurrent().displayedFolder.accountId", params.selectedAccount);
+      }
+      if (ctxEvent?.selectedMessages) {
+        params.selectedMessages = ctxEvent.selectedMessages;
+      } else {
+        params.selectedMessages = await messenger.mailTabs.getSelectedMessages();
+        console.warn("IETNG: ctxEvent.selectedMessages undefined, using mailTabs.getSelectedMessages", params.selectedMessages);
+      }
     } else {
       let msg = (await messenger.messageDisplay.getDisplayedMessage(tab.id));
       params.selectedMessages = { id: 0, messages: [msg] };
@@ -1645,7 +1658,7 @@ async function menusUpdate(info, tab) {
   // check if we have folders from more than one account - invalid
   if (selectedFoldersLen > 1 &&
     selectedFolders.find(folder => folder.accountId != accountId)) {
-      console.log("two accounts ")
+    console.log("two accounts ")
     await setNoMenusUpdate(info);
     return;
   }

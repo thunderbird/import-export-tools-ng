@@ -839,7 +839,7 @@
     "src": "mboximport"
   },
   "noProfile": {
-    "message": "Den här mappen innehåller ingen giltig profil"
+    "message": "Den här mappen innehåller ingen giltig profil",
     "src": "profilewizard"
   },
   "noRemoteExport": {

@@ -328,7 +328,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       console.error("IETNG: displayedFolder is undefined, trying mailTabs");
       let currentMailtab = await messenger.mailTabs.getCurrent();
       if (currentMailtab && currentMailtab.displayedFolder) {
-      console.warn("IETNG: Using mailTabs.displayedFolder - Please Report!");
+        console.warn("IETNG: Using mailTabs.displayedFolder - Please Report!");
         currentFolder = currentMailtab.displayedFolder;
         let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `ctxEvent.displayedFolder undefined using mailTabs.displayedFolder `);;
 
@@ -848,6 +848,11 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       log("msgparts", fullMsg, `Msg: ${extraHeaders.fullSubject}\nFullMsg parts:`)
 
+      // add reply-to to extraHeaders if exists
+      if (fullMsg?.headers["reply-to"]) {
+        extraHeaders["reply-to"] = fullMsg?.headers["reply-to"]
+      }
+
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
@@ -1043,11 +1048,14 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     bccList = msg.bccList.join(", ").replaceAll('"', '');
   }
 
+  let replyTo = extraHeaders["reply-to"];
+
   // header localization 
   let hdrSubject = browser.i18n.getMessage("msgHdr.Subject");
   let hdrFrom = browser.i18n.getMessage("msgHdr.From");
   let hdrTo = browser.i18n.getMessage("msgHdr.To");
   let hdrDate = browser.i18n.getMessage("msgHdr.Date");
+  let hdrReplyTo = browser.i18n.getMessage("msgHdr.ReplyTo");
 
   // for most locales Cc and Bcc are used as is
   // we will have an option to use localized versions later
@@ -1067,6 +1075,10 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     ccList = _encodeSpecialTextToHTML(ccList);
     bccList = _encodeSpecialTextToHTML(bccList);
 
+    if (replyTo) {
+      replyTo = _encodeSpecialTextToHTML(replyTo[0]);
+    }
+
     let hdrRows = "";
     hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrSubject}:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrFrom}:</b></td><td>${msg.author}</td></tr>`;
@@ -1079,6 +1091,10 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
     if (bccList != "") {
       hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrBcc}:</b></td><td>${bccList}</td></tr>`;
+    }
+
+    if (replyTo) {
+      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrReplyTo}:</b></td><td>${replyTo}</td></tr>`;
     }
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;

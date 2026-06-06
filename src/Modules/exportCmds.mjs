@@ -1113,7 +1113,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
   let hdr = "";
   hdr += `${hdrSubject}:  ${extraHeaders.fullSubject}\r\n`;
-  hdr += `${hdrFrom} :  ${msg.author}\r\n`;
+  hdr += `${hdrFrom}:  ${msg.author}\r\n`;
   hdr += `${hdrTo}:  ${recipients}\r\n`;
   hdr += `${hdrDate}:  ${msg.date}\r\n`;
 
@@ -1122,6 +1122,9 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   }
   if (bccList != "") {
     hdr += `${hdrBcc}:  ${bccList}\r\n`;
+  }
+  if (replyTo) {
+    hdr += `${hdrReplyTo}:  ${replyTo[0]}\r\n`;
   }
 
   return `${hdr}\r\n${msgBody}`;

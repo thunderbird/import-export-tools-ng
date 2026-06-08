@@ -568,7 +568,7 @@ export var exportMessages = {
   },
 
   _processBodyForEML: async function (expTask, index) {
-    return expTask.msgList[index].msgData.rawMsg;
+    return expTask.msgList[index].msgData.utf8RawMsg;
   },
 
   _processBodyForHTML: async function (expTask, index, attsDir, attachmentFilenames) {

@@ -831,7 +831,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;
         }
-        resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
+        let utf8Msg = _decodeBinaryString(rawMsg);
+        resolve({ utf8RawMsg: utf8Msg, msgBodyType: "text/utf-8", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
       }
 
@@ -987,7 +988,7 @@ async function _preprocessBody(expTask, msg, body, msgBodyType, extraHeaders) {
 }
 
 async function _processBodyForEML(expTask, index) {
-  return expTask.msgList[index].msgData.rawMsg;
+  return expTask.msgList[index].msgData.utf8RawMsg;
 }
 
 async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHeaders) {
@@ -1129,6 +1130,16 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
   return `${hdr}\r\n${msgBody}`;
 }
+
+function _decodeBinaryString(binaryString, inputEncoding = "utf-8") {
+  const buffer = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    buffer[i] = binaryString.charCodeAt(i) & 0xff;
+  }
+  const decoder = new TextDecoder(inputEncoding);
+  return decoder.decode(buffer);
+}
+
 
 function convertCharsetToUTF8(charset, string) {
   try {

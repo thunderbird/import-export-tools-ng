@@ -1102,7 +1102,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
     if (msgBodyType == "text/plain") {
-      let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      let tp = `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
       return tp;
     }
     msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);

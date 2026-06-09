@@ -361,13 +361,12 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
-    let selectedMsgs2 = await messenger.mailTabs.getSelectedMessages()
 
-    console.log("selected msgs", selectedMsgs, selectedMsgs2)
+    console.log("selected msgs", selectedMsgs)
     if (!selMsgCnt) {
       console.log("use ctxEvent.selectedMessages");
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
-      selectedMsgs2 = ctxEvent.selectedMessages;
+      selectedMsgs = ctxEvent.selectedMessages;
     } else {
       console.log("use getSelectedMessages");
       folderSet[0].totalMsgCount = 0;
@@ -387,6 +386,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       } while (msgListPage.id);
     }
 
+    if (ctxEvent.selectedMessages) {
+      selectedMsgs = ctxEvent.selectedMessages;
+    }
+
+    selectedMsgs
     let totalMsgCount = 0;
 
     folderSet.forEach(folder => {
@@ -541,7 +545,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         });
       }
 
-      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs2);
+      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs);
       if (gAbort) {
         break;
       }

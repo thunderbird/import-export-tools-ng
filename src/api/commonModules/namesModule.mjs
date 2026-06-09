@@ -114,11 +114,16 @@ export var names = {
     let isSentFolder = msgHdr.folder.flags & 0x0200 || msgHdr.folder.flags & 0x0400;
     let isSentSubFolder = msgHdr.folder.URI.indexOf("/Sent/");
     let smartName;
+    let smartEmail;
 
-    if (isSentFolder || isSentSubFolder > -1)
+    // add smartEmail
+    if (isSentFolder || isSentSubFolder > -1) {
       smartName = recipientName;
-    else
+      smartEmail = recipientEmail;
+    } else {
       smartName = authorName;
+      smartEmail = authorEmail;
+    }
 
     // Key
     var key = msgHdr.messageKey;
@@ -166,6 +171,7 @@ export var names = {
         "${recipient}": recipientName,
         "${recipient_email}": recipientEmail,
         "${smart_name}": smartName,
+        "${smart_email}": smartEmail,
         "${index}": index,
         "${date_custom}": customDate,
         "${date}": date,

@@ -999,7 +999,7 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
     // there is no html or body tags
     if (!/<HTML[^>]*>/i.test(msgBody)) {
       // wrap body with <html><body>
-      msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
+      msgBody = `<html>\n<head><title>${fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
@@ -1103,7 +1103,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
     if (msgBodyType == "text/plain") {
-      let tp = `<html>\n<head>\n</head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      let tp = `<html>\n<head>\n<title>${extraHeaders.fullSubject}</title></head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
       return tp;
     }
     msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);

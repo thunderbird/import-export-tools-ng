@@ -1029,6 +1029,7 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
 
+  let date = strftime.strftime(expTask.hdrDateFormat, new Date(msg.date));
   let recipients;
   if (msg.recipients == []) {
     recipients = "(none)";
@@ -1075,6 +1076,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     recipients = _encodeSpecialTextToHTML(recipients);
     ccList = _encodeSpecialTextToHTML(ccList);
     bccList = _encodeSpecialTextToHTML(bccList);
+    
 
     if (replyTo) {
       replyTo = _encodeSpecialTextToHTML(replyTo[0]);
@@ -1084,7 +1086,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrSubject}:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrFrom}:</b></td><td>${msg.author}</td></tr>`;
     hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrTo}:</b></td><td>${recipients}</td></tr>`;
-    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrDate}:</b></td><td>${msg.date}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrDate}:</b></td><td>${date}</td></tr>`;
 
     if (ccList != "") {
       hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrCc}:</b></td><td>${ccList}</td></tr>`;
@@ -1116,7 +1118,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   hdr += `${hdrSubject}:  ${extraHeaders.fullSubject}\r\n`;
   hdr += `${hdrFrom}:  ${msg.author}\r\n`;
   hdr += `${hdrTo}:  ${recipients}\r\n`;
-  hdr += `${hdrDate}:  ${msg.date}\r\n`;
+  hdr += `${hdrDate}:  ${date}\r\n`;
 
   if (ccList != "") {
     hdr += `${hdrCc}:  ${ccList}\r\n`;

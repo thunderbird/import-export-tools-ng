@@ -37,6 +37,7 @@ const baseExpTask = {
     namePattern: "${folder}-$(date}",
     directory: "",
   },
+  hdrDateFormat: "%m/%d/%Y %H:%M:%S",
   dateFormat: {
     type: 0,
     custom: "%Y%m%d%H%M",

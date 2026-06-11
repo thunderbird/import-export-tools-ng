@@ -200,16 +200,14 @@ async function _migrateLegacyPrefs() {
   // transforms
   // we need to convert some legacy pref vals to updated vals
 
-  let msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
-  console.log(msgFilenameFormatType)
+  let msgFilenameFormatType = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
+  console.log("msgFilenameFormatType", msgFilenameFormatType)
 
   if (msgFilenameFormatType == 3) {
     await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom", true);
   } else {
     await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple", true);
   }
-  msgFilenameFormatType = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.exportEML.filename_format`);
-  console.log(msgFilenameFormatType)
 
   // next set all userPrefs from legacy map
   // were also cleaning up names and structure
@@ -225,10 +223,17 @@ async function _migrateLegacyPrefs() {
       let legacyValU = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.${legacyKey}`);
       let storagePref = prefCmds.getUserPref(storageKey)
       if (storagePref == null) {
-        console.log("init from", legacyKey, legacyVal, legacyValU)
-        // set the storage pref with createNewProperty = true
-        // since the storage keys don't exist
-        await prefCmds.setPref(storageKey, legacyVal, true);
+        if (legacyVal != null) {
+          console.log("init from", legacyKey, legacyVal, legacyValU)
+          // set the storage pref with createNewProperty = true
+          // since the storage keys don't exist
+          await prefCmds.setPref(storageKey, legacyVal, true);
+        } else {
+          // legacy value was null (not initialized
+          let defaultStoragePref = prefCmds.getPref(storageKey)
+
+          console.log("unitialized legacy pref:", legacyKey, "use default storage vale:", defaultPrefs);
+        }
       } else {
         console.log("userPref set", storageKey, storagePref)
       }
@@ -257,7 +262,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     case "getPref":
       return prefCmds.getPref(storageKey);
     case "setPref":
-      console.log("rcvd setPref", info.prefName, storageKey,info.prefValue);
+      console.log("rcvd setPref", info.prefName, storageKey, info.prefValue);
       return await prefCmds.setPref(storageKey, info.prefValue);
   }
   return null;

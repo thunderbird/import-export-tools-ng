@@ -227,12 +227,12 @@ async function _migrateLegacyPrefs() {
           console.log("init from", legacyKey, legacyVal, legacyValU)
           // set the storage pref with createNewProperty = true
           // since the storage keys don't exist
-          await prefCmds.setPref(storageKey, legacyVal, true);
+          await prefCmds.setPref(storageKey, legacyVal);
         } else {
           // legacy value was null (not initialized
           let defaultStoragePref = prefCmds.getPref(storageKey)
 
-          console.log("unitialized legacy pref:", legacyKey, "use default storage vale:", defaultPrefs);
+          console.warn("Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
         }
       } else {
         console.log("userPref set", storageKey, storagePref)
@@ -263,7 +263,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
       return prefCmds.getPref(storageKey);
     case "setPref":
       console.log("rcvd setPref", info.prefName, storageKey, info.prefValue);
-      return await prefCmds.setPref(storageKey, info.prefValue);
+      return prefCmds.setPref(storageKey, info.prefValue);
   }
   return null;
 });

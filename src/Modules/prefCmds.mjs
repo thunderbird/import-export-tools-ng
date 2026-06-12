@@ -89,16 +89,20 @@ export var prefCmds = {
   },
 
   // Set pref value by updating local pref obj and updating storage.
-  setPref: async function (aName, aValue, createNewProperty = false) {
+  setPref: async function (aName, aValue, forceUserPref = false, createNewProperty = false, targetObj = null) {
+    if (!createNewProperty && !this.dotHasOwnProperty(aName, this._defaultPrefs)) {
+      return null;
+    }
+    if (!forceUserPref && aValue == this.dotGet(aName, this._defaultPrefs)) {
+      console.log("setPref enter:", aName, "using defaut _defaultPrefs:", this.dotGet(aName, this._defaultPrefs));
+      return;
+    }
     console.log("setPref enter:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
-    this.dotSet(aName, aValue, this._userPrefs, createNewProperty);
-    console.log("setPref after dotSet:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
+    this.dotSet(aName, aValue, this._userPrefs, true);
+    //console.log("setPref after dotSet:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
 
     await messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
-    console.log(this._userPrefs?.export?.names?.defaults?.components)
     console.log("setPref:", aName, "userPref:", this.dotGet(aName, this._userPrefs))
-    let sup = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-    console.log("sup set", sup)
     return aValue;
   },
 
@@ -131,7 +135,7 @@ export var prefCmds = {
 
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-    console.log("sup", this._userPrefs)
+    console.log("_userPrefs", this._userPrefs)
     // If defaults are given, push them into storage.local
     if (defaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });
@@ -143,8 +147,6 @@ export var prefCmds = {
     if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {
       //await messenger.storage.onChanged.addListener(this.storageChanged);
     }
-    let sup = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-    console.log("sup", this._userPrefs)
   },
 
   dotGet: function (str, obj) {
@@ -178,7 +180,6 @@ export var prefCmds = {
         }
         if ((result[path] != undefined) || createNewProperty) {
           result[path] = val;
-          console.log("dotSet", result[path])
           return result[path];
         }
         return undefined;

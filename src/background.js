@@ -50,7 +50,7 @@ async function main() {
 		["resource", "ietng", "."],
 	]);
 
-	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
+	//messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	await prefMgmt.initializePrefs();
 

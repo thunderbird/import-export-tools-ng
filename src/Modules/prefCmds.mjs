@@ -33,6 +33,10 @@
 // Even though Thunderbird does not actually have a sync backend, storage.sync
 // is not cleared on add-on removal to mimic syncing stored values.
 // Hint: Reloading/Updating an add-on does not clear storage.local.
+
+import { logging, log } from "./loggingWext.mjs";
+
+
 const userPrefStorageArea = "local";
 
 export var prefCmds = {
@@ -54,15 +58,14 @@ export var prefCmds = {
     if (this.dotHasOwnProperty(aName, this._userPrefs)) {
       let userPref = this.dotGet(aName, this._userPrefs);
       if (typeof defaultPref == typeof userPref) {
-        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._userPrefs))
-
+        log("prefs1", `getPref: ${aName} userPref: ${userPref}`);
         return userPref;
       }
       console.log("Type of defaultPref <" + defaultPref + ":" + typeof defaultPref + "> does not match type of userPref <" + userPref + ":" + typeof userPref + ">. Fallback to defaultPref.")
     }
 
     // Fallback to default value.
-    console.log("getPref:", aName, "defaultPref:", this.dotGet(aName, this._defaultPrefs))
+    log("prefs1", `getPref: ${aName} defaultPref: ${defaultPref}`);
     return defaultPref;
   },
 
@@ -76,33 +79,38 @@ export var prefCmds = {
     if (this.dotHasOwnProperty(aName, this._userPrefs)) {
       let userPref = this.dotGet(aName, this._userPrefs);
       if (typeof defaultPref == typeof userPref) {
-        console.log("getPref", aName, "userPref:", this.dotGet(aName, this._userPrefs))
-
+        log("prefs1", `getUserPref: ${aName} userPref: ${userPref}`);
         return userPref;
       } else if (userPref != undefined) {
         console.log("Type of defaultPref <" + defaultPref + ":" + typeof defaultPref + "> does not match type of userPref <" + userPref + ":" + typeof userPref + ">. Fallback to defaultPref.")
       }
     }
 
-    console.log("getPref:", aName, "userPref", this.dotGet(aName, this._userPrefs))
     return null;
   },
 
   // Set pref value by updating local pref obj and updating storage.
-  setPref: async function (aName, aValue, forceUserPref = false, createNewProperty = false, targetObj = null) {
-    if (!createNewProperty && !this.dotHasOwnProperty(aName, this._defaultPrefs)) {
+  setPref: async function (aName, aValue, forceUserPref = false) {
+    if (!this.dotHasOwnProperty(aName, this._defaultPrefs)) {
+      console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs");
       return null;
     }
-    if (!forceUserPref && aValue == this.dotGet(aName, this._defaultPrefs)) {
-      console.log("setPref enter:", aName, "using defaut _defaultPrefs:", this.dotGet(aName, this._defaultPrefs));
+    let defaultValue = this.dotGet(aName, this._defaultPrefs);
+
+    if (typeof defaultValue != typeof aValue) {
+      console.error("IETNG: Error setting userPref, userPref does not match defaultPref type");
+      return null;
+    }
+
+    if (!forceUserPref && aValue == defaultValue) {
+      log("prefs1", `setPref: ${aName} Using existing _defaultPrefs: ${aName} : ${defaultValue}`);
       return;
     }
-    console.log("setPref enter:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
+    // ok, we can set userPref
     this.dotSet(aName, aValue, this._userPrefs, true);
-    //console.log("setPref after dotSet:", aName, "current _userPref:", this.dotGet(aName, this._userPrefs))
-
+    // store updated userPrefs in storage
     await messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
-    console.log("setPref:", aName, "userPref:", this.dotGet(aName, this._userPrefs))
+    log("prefs1", `setPref: ${aName} userPref: ${aValue}`);
     return aValue;
   },
 
@@ -196,3 +204,7 @@ export var prefCmds = {
   }
 
 }
+
+logging.init({ logTypes: prefCmds.getPref("debug.logTypes") || "prefs1" });
+
+

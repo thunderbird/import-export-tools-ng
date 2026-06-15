@@ -246,7 +246,7 @@ async function _migrateLegacyPrefs() {
       let storagePref = prefCmds.getUserPref(storageKey)
       if (storagePref == null) {
         if (legacyVal != null) {
-          console.log("init from", legacyKey, legacyVal, legacyValU)
+          console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
           // set the storage pref with createNewProperty = true
           // since the storage keys don't exist
           await prefCmds.setPref(storageKey, legacyVal);
@@ -254,7 +254,7 @@ async function _migrateLegacyPrefs() {
           // legacy value was null (not initialized
           let defaultStoragePref = prefCmds.getPref(storageKey)
 
-          console.warn("Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
+          console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
         }
       } else {
         console.log("userPref set", storageKey, storagePref)

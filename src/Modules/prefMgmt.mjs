@@ -257,7 +257,7 @@ async function _migrateLegacyPrefs() {
           console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
         }
       } else {
-        console.log("userPref set", storageKey, storagePref)
+        console.log("IETNG: UserPref set", storageKey, storagePref)
       }
     } else {
       console.warn("IETNG: Removing deadpref:", legacyKey);

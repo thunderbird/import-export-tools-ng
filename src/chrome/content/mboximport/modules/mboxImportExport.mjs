@@ -48,7 +48,6 @@ console.log("IETNG: mboximportExport.mjs -v16");
 
 export var mboxImportExport = {
 
-  IETprefs: Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch),
   totalImported: 0,
   totalSkipped: 0,
   toCompactFolderList: [],

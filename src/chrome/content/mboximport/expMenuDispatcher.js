@@ -174,7 +174,7 @@ async function expMenuDispatcher(data) {
 				rv = openProfileImportWizard();
 				break;
 			case "WXMCMD_Backup":
-				rv = window.ietng.OpenBackupDialog('manual');
+				rv = await window.ietng.OpenBackupDialog('manual');
 				break;
 			case "WXMCMD_ImpMbox":
 				rv = await mboxImportExport.importMboxSetup(data.params);

@@ -72,7 +72,7 @@ async function onLoad() {
 	window.ietng = {};
 	window.ietng.extension = WL.extension;
 
-	window.ietng.OpenBackupDialog = function (mode = "auto") {
+	window.ietng.OpenBackupDialog = async function (mode = "auto") {
 		Services.console.logStringMessage("IETNG: Start backup check");
 		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
@@ -232,9 +232,9 @@ async function onLoad() {
 	window.addHotKeysObserver();
 }
 
-function onUnload() {
+async function onUnload() {
 	window.removeHotKeysObserver();
-	window.ietng.OpenBackupDialog();
+	await window.ietng.OpenBackupDialog();
 	window.ietngAddon.notifyTools.removeAllListeners();
 	delete window.ietngAddon;
 }

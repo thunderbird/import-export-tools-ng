@@ -182,6 +182,28 @@ const legacyPrefToStorageMap = {
   "export.skip_existing_msg": "temp.export_skip_existing_msg",
   "clipboard.always_just_text": "temp.clipboard_always_just_text",
 
+  "import.name_add_number": null,
+  "confirm.before_mbox_import": null,
+  "delay.clean_statusbar": null,
+  "extensions.ImportExportToolsNG@cleidigh.description": null,
+  "export.filenames_addtime": null,
+  "export.filename_add_prefix": null,
+  "export.filename_prefix": null,
+  "export.filename_add_suffix": null,
+  "export.filename_suffix": null,
+  "export.strip_CR_for_EML_exports": null,
+  "sms.add_subject": null,
+  "migrate_prefs": null,
+  "experimental.printPDF.use_global_preferences": null,
+  "printPDF.fileFormat": null,
+  "printPDF.start": null,
+  "export.mail_separator": null,
+  "log.enable": null,
+  "reset_mozilla_status": null,
+  "experimental.index_short1": null,
+  "import.build_mbox_index": null,
+  "experimental.csv.account_folder_col": null,
+  "export.filename_charset": null,
 };
 
 
@@ -237,6 +259,8 @@ async function _migrateLegacyPrefs() {
       } else {
         console.log("userPref set", storageKey, storagePref)
       }
+    } else {
+      console.warn("IETNG: Removing deadpref:", legacyKey);
     }
     // clear the legacy pref regardless
     //messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);

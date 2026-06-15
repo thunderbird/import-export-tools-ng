@@ -35,7 +35,7 @@ window.ietngAddon.extension = WL.extension;
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
 
-function onLoad() {
+async function onLoad() {
 	//console.debug('messenger OL');
 
 	WL.injectElements(`
@@ -74,7 +74,7 @@ function onLoad() {
 
 	window.ietng.OpenBackupDialog = function (mode = "auto") {
 		Services.console.logStringMessage("IETNG: Start backup check");
-		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
+		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 
 		// Abort in automode, if not yet due.

@@ -1003,7 +1003,7 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
     // there is no html or body tags
     if (!/<HTML[^>]*>/i.test(msgBody)) {
       // wrap body with <html><body>
-      msgBody = `<html>\n<head><title>${fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
+      msgBody = `<html>\n<head><title>${extraHeaders.fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }

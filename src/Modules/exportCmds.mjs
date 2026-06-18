@@ -1005,6 +1005,19 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
       // wrap body with <html><body>
       msgBody = `<html>\n<head><title>${extraHeaders.fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
+    
+    // add title if missing 
+    if (!/<TITLE[^>]*>/i.test(msgBody)) {
+      // check if we have a head block
+      if (!/<HEAD[^>]*>/i.test(msgBody)) {
+        // add head and title
+        msgBody = msgBody.replace(/(<HTML[^>]*?>)/i,`$1<head><title>${extraHeaders.fullSubject}</title></head>\n`);        
+      } else {
+        // head, but no title
+        msgBody = msgBody.replace(/(<HEAD[^>]*?>)/i,`$1\n<title>${extraHeaders.fullSubject}</title>\n`);
+      }
+    }
+    
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
@@ -1080,7 +1093,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     recipients = _encodeSpecialTextToHTML(recipients);
     ccList = _encodeSpecialTextToHTML(ccList);
     bccList = _encodeSpecialTextToHTML(bccList);
-    
+
 
     if (replyTo) {
       replyTo = _encodeSpecialTextToHTML(replyTo[0]);

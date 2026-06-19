@@ -1046,7 +1046,7 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
 
-  let author = msg.author;
+  let author = msg.author.replaceAll('"',"");
   let date = strftime.strftime(expTask.hdrDateFormat, new Date(msg.date));
   let recipients;
   if (msg.recipients == []) {
@@ -1068,7 +1068,10 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     bccList = msg.bccList.join(", ").replaceAll('"', '');
   }
 
-  let replyTo = extraHeaders["reply-to"];
+  let replyTo;
+  if (extraHeaders["reply-to"] && extraHeaders["reply-to"][0]) {
+   replyTo = extraHeaders["reply-to"][0].replaceAll('"', '');
+  }
 
   // header localization 
   let hdrSubject = browser.i18n.getMessage("msgHdr.Subject");
@@ -1100,7 +1103,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
     let replyToHTML;
     if (replyTo) {
-      replyToHTML = _encodeSpecialTextToHTML(replyTo[0]);
+      replyToHTML = _encodeSpecialTextToHTML(replyTo);
     }
 
     let hdrRows = "";

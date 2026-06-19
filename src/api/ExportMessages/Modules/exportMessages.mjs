@@ -654,7 +654,7 @@ export var exportMessages = {
     attachmentFilenames.forEach(filename => {
       let attHrefOrName = filename;
       if (expTask.attachments.save != "none") {
-        attHrefOrNamef = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
+        attHrefOrName = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
       }
       attList += `<li style="padding-left: 20px">${attHrefOrName}</li>\n`;
     });

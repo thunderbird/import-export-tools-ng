@@ -1308,7 +1308,7 @@ async function _createIndex(expTask, msgListLog) {
         attachments = msgItem.hasAttachments;
       }
       indexData += `\n<tr ${errClass}><td width="18%" sorttable_customkey="${fullSubject}">${aHref}</td>`;
-      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"', '')) + "</td>";
+      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replaceAll('"', '')) + "</td>";
       indexData += "\n<td>" + recipients + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
       indexData += "\n<td>" + attachments + "</td>";

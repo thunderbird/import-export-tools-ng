@@ -24,7 +24,33 @@
 		</tr>
 	</table>
 
-	<h3 id="release_notes" style="padding-left: 4px;">Release Notes: Major new v15 release</h3>
+	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
+	
+	<p>
+		<b>Deprecation Notice :</b><br><br>
+		I will be deprecating the legacy export message functions
+		as of v15.0.3. Please use and report any issues with the new 
+		(v15) functions so that the deprecation does not affect you.<br><br>
+
+- Fix : Option migration from default (non dropdown or extended) filename format producing undefined.xyz files<br>
+- Fix : EML exports not encoding to UTF-8 producing garbled non-ASCII characters<br>
+- Fix : Added attachments table for HTML and Plaintext message only exports<br>
+- Restore header date format to 11/30/2026 11:20:30
+  Will make configurable later<br>
+- Add reply-to field to headers if present <br>
+- Change logic of Sender and Recipient in filenames :<br>
+&nbsp;&nbsp;Use email address if name not present <br>
+- Add ${smart_email} filename token<br>
+- Fixed fr locale for To and From headers<br>
+- Fixed title for HTML exports<br>
+- fr locale update @DenB10<br>
+- sv-SE locale update @NickWick13<br>
+- label update in en-US @wesinator<br>
+- Fixed wrong contributor from @Reyard to @Rayerd<br>
+
+
+	</p>
+	
 	<p>
 		<b>v15 Notes, Features and Changes. Please read carefully. </b><br><br>
 		v15 is a complete rewrite of the message export functions, both Folders

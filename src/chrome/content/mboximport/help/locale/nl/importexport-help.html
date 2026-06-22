@@ -18,7 +18,28 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen: Belangrijke nieuwe versie 15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen:</h3>
+    <p>
+      <b>Afschaffingsmelding:</b><br /><br />
+      Ik zal de oude exportberichtenfuncties vanaf versie 15.0.3 uitfaseren. Gebruik de nieuwe functies
+      (versie 15) en meld eventuele problemen, zodat u niet door deze uitfasering wordt getroffen.<br /><br />
+      - Opgelost: Optiemigratie van standaard (niet-dropdown of uitgebreide) bestandsnaamindeling resulteerde
+      in ongedefinieerde .xyz-bestanden.<br />
+      - Opgelost: EML-exports coderen niet naar UTF-8, waardoor onleesbare niet-ASCII-tekens ontstaan.<br />
+      - Opgelost: Tabel met bijlagen toegevoegd voor export van HTML- en platte tekstberichten.<br />
+      - Herstel de datumindeling in de header naar 30-11-2026 11:20:30. Deze instelling wordt later
+      aanpasbaar.<br />
+      - Voeg een antwoordadresveld toe aan de headers, indien aanwezig.<br />
+      - Wijzig de logica van afzender en ontvanger in bestandsnamen:<br />
+      Gebruik het e-mailadres als de naam niet aanwezig is.<br />
+      - Bestandsnaamtoken <span class="notranslate">${smart_email}</span> toegevoegd<br />
+      - De Franse landinstelling voor de kopteksten &#39;Aan&#39; en &#39;Van&#39; is gecorrigeerd.<br />
+      - Vaste titel voor HTML-exports<br />
+      - Franse taalupdate @DenB10<br />
+      - sv-SE locale update @NickWick13<br />
+      - label update in en-US @wesinator<br />
+      - De foutieve bijdrager is gecorrigeerd van @Reyard naar @Rayerd<br />
+    </p>
     <p>
       <b>Versie 15: Notities, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
       Versie 15 is een volledig herschreven versie van de berichtexportfuncties, zowel voor mappen als voor
@@ -272,7 +293,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Maakt een HTML-indexbestand aan van de berichten in de map (geen export van berichten).</td>
+          <td>Maakt een HTML-indexbestand aan van de map &#39;messages&#39; (geen export van berichten).</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
@@ -320,7 +341,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
-          <td>Importeer alle EML-berichten uit één enkele map.</td>
+          <td>Importeer alle EML-berichten uit één map.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
@@ -666,7 +687,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             Het ISO 8601-weeknummer van het huidige jaar als decimaal getal (bereik 01 tot 53), waarbij week 1
-            de eerste week is die ten minste 4 dagen in het nieuwe jaar heeft (dat wil zeggen, de eerste
+            de eerste week is die ten minste 4 dagen in het nieuwe jaar heeft (dat wil zeggen de eerste
             donderdag).
           </td>
         </tr>
@@ -687,7 +708,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Het jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
+          <td>Jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
@@ -918,7 +939,8 @@
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - een directe opdrachtreeks<br />
       <code class="notranslate">contexts</code> - de venstercontext waarin de toets actief is<br />
-      <code class="notranslate">&#39;all&#39;</code> - alle vensters onder Messenger, Opstellen en Zoeken<br />
+      <code class="notranslate">&#39;all&#39;</code> - alle vensters onder Messenger, Berichten opstellen,
+      Zoeken<br />
       <code class="notranslate">&#39;messenger&#39;</code> - het hoofdvenster van Messenger en de daarvan
       afgeleide vensters<br />
       <code class="notranslate">&#39;compose&#39;</code> - het venster voor het opstellen van berichten<br />

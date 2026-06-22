@@ -18,7 +18,30 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas de lançamento: Nova versão principal v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas de lançamento:</h3>
+    <p>
+      <b>Aviso de descontinuação:</b><br /><br />
+      A partir da versão 15.0.3, as funções legadas de exportação de mensagens serão descontinuadas. Por
+      favor, utilize e reporte quaisquer problemas com as novas funções (v15) para que a descontinuação não o
+      afete.<br /><br />
+      - Correção: Migração de opções do formato de nome de arquivo padrão (não suspenso ou estendido) que
+      gerava arquivos undefined.xyz<br />
+      - Correção: Exportações EML não codificam para UTF-8, produzindo caracteres não ASCII ilegíveis.<br />
+      - Correção: Adicionada tabela de anexos para exportações de mensagens somente em HTML e texto
+      simples.<br />
+      - Restaurar o formato de data do cabeçalho para 30/11/2026 11:20:30. Será configurável
+      posteriormente.<br />
+      - Adicionar o campo &quot;Responder para&quot; aos cabeçalhos, se presente.<br />
+      - Alterar a lógica do remetente e do destinatário nos nomes dos arquivos:<br />
+      Use o endereço de e-mail caso o nome não esteja presente.<br />
+      - Adicionado o token de nome de arquivo <span class="notranslate">${smart_email}</span><br />
+      - Correção da localização &quot;fr&quot; para os cabeçalhos &quot;De&quot; e &quot;Para&quot;<br />
+      - Título fixo para exportações em HTML<br />
+      - Atualização de localização fr @DenB10<br />
+      - Atualização de localização sv-SE @NickWick13<br />
+      - Atualização de rótulo em inglês (EUA) @wesinator<br />
+      - Corrigido o nome do colaborador incorreto de @Reyard para @Rayerd<br />
+    </p>
     <p>
       <b>Notas, recursos e alterações da versão 15. Leia atentamente.</b><br /><br />
       A versão 15 é uma reescrita completa das funções de exportação de mensagens, tanto de pastas quanto de
@@ -55,7 +78,7 @@
       configuração típica seria definir o formato do nome do arquivo para o formato desejado, por exemplo,
       ${subject}, e também o formato do diretório para ${subject}. Isso criaria diretórios para cada mensagem,
       contendo tanto a mensagem quanto os anexos. É possível classificar os diretórios por data ou nome.<br /><br />
-      Para testar esta estrutura experimental, insira a palavra:<br />
+      Para testar essa estrutura experimental, insira a palavra:<br />
       <span class="notranslate">withatts</span><br />
       nas opções de registro na aba Diversos. (Proposta de @Rayerd)<br /><br />
       <b>Opções de registro</b><br /><br />
@@ -963,7 +986,7 @@
         - Suporte completo ao Modo Escuro<br />
         - Novo sistema de menu consistente<br />
         - Novo botão na barra de ferramentas<br />
-        - Ajuda aprimorada, abre durante a instalação<br />
+        - Ajuda aprimorada, abra durante a instalação<br />
         - Atualizar conta de exportação<br /><br />
         Agradecemos aos seguintes usuários pelas sugestões de melhoria e pela ajuda nos testes:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />

@@ -18,7 +18,31 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas de la versión: Nueva versión importante v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas de la versión:</h3>
+    <p>
+      <b>Aviso de desuso:</b><br /><br />
+      Dejaré de utilizar las funciones antiguas de exportación de mensajes a partir de la versión 15.0.3. Por
+      favor, utilicen las nuevas funciones (v15) e informen de cualquier problema que surja para que esta
+      eliminación no les afecte.<br /><br />
+      - Corrección: La migración de opciones desde el formato de nombre de archivo predeterminado (no
+      desplegable ni extendido) producía archivos undefined.xyz.<br />
+      - Corrección: Las exportaciones EML no se codifican a UTF-8, lo que produce caracteres no ASCII
+      ilegibles.<br />
+      - Corrección: Se agregó una tabla de archivos adjuntos para las exportaciones de mensajes HTML y de
+      texto plano únicamente.<br />
+      - Restaurar el formato de fecha del encabezado a 30/11/2026 11:20:30. Se hará configurable más
+      adelante.<br />
+      - Agregar el campo reply-to a los encabezados si está presente.<br />
+      - Cambiar la lógica del remitente y el destinatario en los nombres de archivo:<br />
+      Utilice la dirección de correo electrónico si no hay nombre.<br />
+      - Se agregó el token de nombre de archivo <span class="notranslate">${smart_email}</span><br />
+      - Se corrigió la configuración regional de fr para los encabezados To y From.<br />
+      - Se corrigió el título para las exportaciones HTML.<br />
+      - Actualización de configuración regional en francés @DenB10<br />
+      - Actualización de configuración regional sv-SE @NickWick13<br />
+      - Actualización de etiquetas en inglés estadounidense @wesinator<br />
+      - Se corrigió el colaborador erróneo, de @Reyard a @Rayerd<br />
+    </p>
     <p>
       <b>Notas, características y cambios de la versión 15. Lea atentamente.</b><br /><br />
       La versión 15 supone una reescritura completa de las funciones de exportación de mensajes, tanto de
@@ -44,7 +68,7 @@
       encabezados.<br /><br />
       <b>Estructuras de exportación</b><br /><br />
       - Todos los archivos adjuntos en un único directorio<br />
-      Si utiliza una palabra clave estática como &quot;Archivos adjuntos&quot;, todos los archivos adjuntos se
+      Si utiliza una palabra clave estática como &quot;Adjuntos&quot;, todos los archivos adjuntos se
       guardarán en ese directorio. Anteriormente, esto habría generado carpetas como Archivos adjuntos,
       Archivos adjuntos-1, Archivos adjuntos-2, etc.<br /><br />
       - Los archivos adjuntos se guardan en el mismo directorio que los mensajes.<br />
@@ -256,8 +280,8 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exporta los mensajes de la carpeta como un único archivo de texto plano; los archivos adjuntos no
-            se incluyen.<br />
+            Exporta los mensajes de la carpeta como un único archivo de texto sin formato; los archivos
+            adjuntos no se incluyen.<br />
             Esto también crea un archivo de índice HTML que enumera cada mensaje.
           </td>
         </tr>
@@ -516,7 +540,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-          <td>Guardar todos los correos electrónicos del perfil actual.</td>
+          <td>Guardar todos los correos del perfil actual</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
@@ -543,7 +567,7 @@
       personalizado &quot;Fecha (personalizado)&quot; están disponibles en los menús desplegables de nombres
       de archivo. La fecha personalizada también se puede usar con el token ${date_custom} utilizado en los
       nombres de archivo personalizados extendidos. El formato de fecha original (predeterminado) es:<br />
-      AAAAMMDDHHmm: 202011060808<br /><br />
+      AAAA MM DD HH mm: 202011060808<br /><br />
       El formato de fecha personalizado utiliza secuencias de % que coinciden con la funcionalidad de
       <code>strftime()</code> de Unix. Se basa en una versión de JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
@@ -923,7 +947,7 @@
       Se puede incluir tanto la llave como el código de acceso, pero no ambos.<br />
       <code class="notranslate">modifiers</code> : lista de modificadores de teclas separados por espacios
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;aceleración&#39;)<br />
-      <code class="notranslate">oncommand</code> : una cadena de comandos directa<br />
+      <code class="notranslate">oncommand</code> - una cadena de comandos directa<br />
       <code class="notranslate">contexts</code> : el contexto de la ventana donde la tecla está activa<br />
       <code class="notranslate">&#39;all&#39;</code> - todas las ventanas de mensajería, redacción y
       búsqueda<br />

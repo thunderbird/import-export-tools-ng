@@ -18,7 +18,28 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu: Hlavné nové vydanie v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu:</h3>
+    <p>
+      <b>Oznámenie o zastaraní:</b><br /><br />
+      Od verzie 15.0.3 ukončím podporu starších funkcií exportu správ. Prosím, používajte a nahláste akékoľvek
+      problémy s novými funkciami (v15), aby vás toto ukončenie neovplyvnilo.<br /><br />
+      - Oprava: Migrácia možností z predvoleného formátu názvu súboru (nie rozbaľovacieho alebo rozšíreného),
+      čo viedlo k nedefinovaným súborom .xyz<br />
+      - Oprava: Exporty EML sa nekódovali do UTF-8 a produkovali skreslené znaky, ktoré nie sú v kódovaní
+      ASCII.<br />
+      - Oprava: Pridaná tabuľka príloh pre exporty iba správ HTML a Obyčajného textu<br />
+      - Obnoviť formát dátumu hlavičky na 30.11.2026 11:20:30, bude konfigurovateľné neskôr.<br />
+      - Pridať do hlavičiek pole pre odpoveď, ak je k dispozícii<br />
+      - Zmena logiky odosielateľa a príjemcu v názvoch súborov:<br />
+      Ak meno nie je k dispozícii, použite e-mailovú adresu<br />
+      - Pridaný token názvu súboru <span class="notranslate">${smart_email}</span><br />
+      - Opravené miestne nastavenie fr pre hlavičky Komu a Odosielateľovi<br />
+      - Opravený názov pre exporty HTML<br />
+      - aktualizácia lokálu fr @DenB10<br />
+      - aktualizácia lokalizácie sv-SE @NickWick13<br />
+      - aktualizácia označenia v en-US @wesinator<br />
+      - Opravený nesprávny prispievateľ z @Reyard na @Rayerd<br />
+    </p>
     <p>
       <b>Poznámky, funkcie a zmeny k verzii 15. Pozorne si prečítajte.</b><br /><br />
       v15 je kompletne prepracované funkcie exportu správ, a to ako priečinkov, tak aj vybraných správ. Je to
@@ -581,7 +602,7 @@
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Hodina ako desatinné číslo s 24-hodinovým formátom (rozsah 00 až 23). Pozrite si tiež
+            Hodina ako desatinné číslo s použitím 24-hodinového formátu (rozsah 00 až 23). Pozrite si tiež
             <code class="code1">%k</code> .
           </td>
         </tr>

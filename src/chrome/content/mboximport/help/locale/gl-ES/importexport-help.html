@@ -18,7 +18,29 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notas da versión: Nova versión importante da v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notas da versión:</h3>
+    <p>
+      <b>Aviso de desaprobación:</b><br /><br />
+      Deixarei de usar as funcións de mensaxes de exportación herdadas a partir da versión 15.0.3. Por favor,
+      úsaas e informa de calquera problema coas novas funcións (v15) para que a desaprobación non che
+      afecte.<br /><br />
+      - Corrección: Migración de opcións desde o formato de nome de ficheiro predeterminado (non despregable
+      nin estendido) que produce ficheiros indefinidos.xyz<br />
+      - Corrección: as exportacións EML non codificaban en UTF-8 e producían caracteres non ASCII
+      ilexibles.<br />
+      - Corrección: Engadida unha táboa de anexos para exportacións só de mensaxes HTML e texto sen formato<br />
+      - Restaurar o formato de data da cabeceira ás 11:20:30 do 30/11/2026. Farao configurable máis tarde.<br />
+      - Engadir un campo de resposta ás cabeceiras se o hai<br />
+      - Cambiar a lóxica do remitente e do destinatario nos nomes de ficheiro:<br />
+      Usar o enderezo de correo electrónico se o nome non aparece<br />
+      - Engadiuse o token do nome de ficheiro <span class="notranslate">${smart_email}</span><br />
+      - Corrixiuse a configuración rexional fr para as cabeceiras Para e De<br />
+      - Título fixo para as exportacións HTML<br />
+      - actualización da configuración rexional de fr @DenB10<br />
+      - Actualización da configuración rexional de sv-SE @NickWick13<br />
+      - actualización da etiqueta en gl-US @wesinator<br />
+      - Corrixiuse o erro de colaborador de @Reyard a @Rayerd.<br />
+    </p>
     <p>
       <b>Notas, características e cambios da v15. Lea atentamente.</b><br /><br />
       A v15 é unha reescritura completa das funcións de exportación de mensaxes, tanto de cartafoles como de
@@ -80,8 +102,8 @@
         >Problemas de ImportExportTools NG en Github</a
       ><br /><br />
       <b>Créditos</b><br /><br />
-      Este lanzamento non podería ter existido sen as probas, as traducións e as suxestións de varios usuarios
-      fieis e dedicados. Moitas grazas a:<br /><br />
+      Este lanzamento non podería ter sido posible sen as probas, as traducións e as suxestións de varios
+      usuarios fieis e dedicados. Moitas grazas a:<br /><br />
       <b
         >@DenB10<br />
         @kiki-ja<br />
@@ -196,7 +218,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros en formato EML (sen estrutura/subcartafoles).<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -207,7 +229,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros en formato HTML (sen estrutura/subcartafoles).<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -241,7 +263,7 @@
           </td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros de texto sen formato, incluíndo anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -374,7 +396,7 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportar as mensaxes seleccionadas a ficheiros en formato EML<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -393,7 +415,7 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes como ficheiros en formato HTML.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -425,7 +447,7 @@
           </td>
           <td>
             Exportar as mensaxes como ficheiros de texto sen formato, incluíndo anexos<br />
-            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
           </td>
         </tr>
         <tr>

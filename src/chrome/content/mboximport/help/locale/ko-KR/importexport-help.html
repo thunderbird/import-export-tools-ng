@@ -18,7 +18,27 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">릴리스 노트: 주요 업데이트 v15 버전 출시</h3>
+    <h3 id="release_notes" style="padding-left: 4px">릴리스 노트:</h3>
+    <p>
+      <b>사용 중단 공지:</b><br /><br />
+      버전 15.0.3부터 기존의 내보내기 메시지 기능을 더 이상 사용하지 않도록 할 예정입니다. 새로운 기능(버전
+      15)을 사용하시고 문제가 발생하면 보고해 주시면 기존 기능 중단으로 인한 영향을 줄일 수 있습니다.<br /><br />
+      - 수정 사항: 기본(드롭다운 또는 확장되지 않은) 파일 이름 형식에서 옵션 마이그레이션 시 undefined.xyz
+      파일이 생성되는 문제 해결.<br />
+      - 수정: EML 내보내기가 UTF-8로 인코딩되지 않아 비ASCII 문자가 깨져서 표시되는 문제 해결<br />
+      - 수정: HTML 및 일반 텍스트 메시지만 내보내기에 첨부 파일 테이블을 추가했습니다.<br />
+      - 헤더 날짜 형식을 2026년 11월 30일 11시 20분 30초로 복원합니다. 추후 설정 가능하도록 하겠습니다.<br />
+      - 헤더에 답장 주소 필드가 있는 경우 추가합니다.<br />
+      - 파일 이름에서 발신자와 수신자 지정 로직 변경:<br />
+      이름이 없는 경우 이메일 주소를 사용하십시오.<br />
+      - <span class="notranslate">${smart_email}</span> 파일 이름 토큰을 추가했습니다.<br />
+      - To 및 From 헤더에 대한 fr 로케일을 수정했습니다.<br />
+      - HTML 내보내기 제목을 수정했습니다.<br />
+      - fr 로케일 업데이트 @DenB10<br />
+      - sv-SE 로케일 업데이트 @NickWick13<br />
+      - en-US 레이블 업데이트 @wesinator<br />
+      - @Reyard에서 @Rayerd로 잘못 표기된 기여자 정보를 수정했습니다.<br />
+    </p>
     <p>
       <b>버전 15의 주요 특징, 기능 및 변경 사항입니다. 자세히 읽어주시기 바랍니다.</b><br /><br />
       v15는 폴더 내보내기 및 선택한 메시지 내보내기 기능을 완전히 새롭게 재작성한 버전입니다. 이는 최신 웹
@@ -169,8 +189,7 @@
             __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
           </td>
           <td>
-            모든 하위 폴더를 포함한 전체 폴더를 각 하위 폴더별로 하나의 mbox 형식 파일로 내보내고, 최종적으로
-            하나의 폴더에 저장합니다.
+            하나의 폴더와 그 안에 있는 모든 하위 폴더를 각각 mbox 형식 파일로 나누어 하나의 폴더에 내보냅니다.
           </td>
         </tr>
         <tr>
@@ -251,7 +270,7 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            폴더의 메시지를 첨부 파일을 제외한 단일 CSV(쉼표로 구분된 값) 텍스트 형식 파일로 내보냅니다.<br />
+            폴더의 메시지를 첨부 파일을 제외하고 단일 CSV(쉼표로 구분된 값) 텍스트 형식 파일로 내보냅니다.<br />
             이렇게 하면 각 메시지 목록이 포함된 HTML 색인 파일도 생성됩니다.
           </td>
         </tr>
@@ -329,7 +348,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>도움말 메인 페이지를 엽니다.</td>
+          <td>메인 도움말 페이지를 엽니다.</td>
         </tr>
       </tbody>
     </table>
@@ -738,7 +757,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
-        <td>메시지의 제목입니다. 길이는 제목 길이 설정에 따라 제한될 수 있습니다.</td>
+        <td>메시지의 제목입니다. 길이는 제목 길이 옵션에 따라 제한될 수 있습니다.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender}</code></td>

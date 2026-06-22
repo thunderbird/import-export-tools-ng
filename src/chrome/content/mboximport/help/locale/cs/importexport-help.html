@@ -18,7 +18,27 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydání: Nová velká verze v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydání:</h3>
+    <p>
+      <b>Oznámení o ukončení podpory:</b><br /><br />
+      Od verze 15.0.3 ukončím podporu starších funkcí exportu zpráv. Používejte prosím nové funkce (v15) a
+      nahlaste jakékoli problémy s nimi, aby vás toto ukončení neovlivnilo.<br /><br />
+      - Oprava: Migrace možností z výchozího formátu názvu souboru (bez rozbalovacího nebo rozšířeného), která
+      produkovala soubory undefined.xyz<br />
+      - Oprava: Exporty EML nebyly kódovány do UTF-8 a produkovaly zkomolené znaky jiné než ASCII.<br />
+      - Oprava: Přidána tabulka příloh pro export zpráv pouze v HTML a prostém textu<br />
+      - Obnovit formát data v záhlaví na 30. 11. 2026 11:20:30, bude konfigurovatelné později.<br />
+      - Přidat do záhlaví pole pro odpověď, pokud je k dispozici<br />
+      - Změna logiky odesílatele a příjemce v názvech souborů:<br />
+      Pokud jméno není uvedeno, použijte e-mailovou adresu<br />
+      - Přidán token názvu souboru <span class="notranslate">${smart_email}</span><br />
+      - Opraveno locale fr pro záhlaví To a From<br />
+      - Opraven název pro exporty HTML<br />
+      - aktualizace locale fr @DenB10<br />
+      - aktualizace lokalizace sv-SE @NickWick13<br />
+      - aktualizace štítku v en-US @wesinator<br />
+      - Opraven nesprávný přispěvatel z @Reyard na @Rayerd<br />
+    </p>
     <p>
       <b>Poznámky, funkce a změny k verzi 15. Pečlivě si přečtěte.</b><br /><br />
       Verze v15 je kompletně přepracovaná pro export zpráv, a to jak složek, tak vybraných zpráv. Jedná se o
@@ -33,8 +53,8 @@
       oznámení operačního systému. Následuje seznam funkcí:<br /><br />
       <b>Export PDF s přílohami</b><br /><br />
       Toto je dlouho požadovaná možnost. Oproti exportu do HTML existuje jedno důležité omezení. Tabulka
-      příloh neobsahuje klikatelné odkazy. Zatím nebylo možné vytvořit výstup s relativními odkazy. Buď
-      převodník PDF, nebo prohlížeče převádějí všechny odkazy file:// na absolutní odkazy, což není užitečné.
+      příloh nemá klikatelné odkazy. Zatím nebylo možné vytvořit výstup s relativními odkazy. Buď PDF
+      převodník, nebo prohlížeče převádějí všechny odkazy file:// na absolutní odkazy, což není užitečné.
       Doufám, že se v budoucnu najde nějaký způsob, jak toho dosáhnout.<br /><br />
       <b>Index</b><br /><br />
       Nový indexový soubor umožňuje řadit sloupce kliknutím na libovolné záhlaví.<br /><br />
@@ -118,7 +138,7 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření GitHub:
+      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření na GitHubu:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >Problémy s ImportExportTools NG</a
       ><br /><br />
@@ -890,7 +910,7 @@
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - přímý příkazový řetězec<br />
       <code class="notranslate">contexts</code> - kontext okna, ve kterém je klávesa aktivní<br />
-      <code class="notranslate">&#39;all&#39;</code> – všechna okna v aplikaci Messenger, psaní zpráv,
+      <code class="notranslate">&#39;all&#39;</code> – všechna okna v aplikaci Messenger, psaní zpráv a
       vyhledávání<br />
       <code class="notranslate">&#39;messenger&#39;</code> - hlavní okno messengeru a jeho potomci<br />
       <code class="notranslate">&#39;compose&#39;</code> - okno pro psaní zprávy<br />

@@ -18,7 +18,30 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notes de la versió: Nova versió important de la v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notes de la versió:</h3>
+    <p>
+      <b>Avís de desactivació:</b><br /><br />
+      A partir de la versió 15.0.3, deixaré de banda les funcions de missatges d&#39;exportació heretades. Si
+      us plau, utilitzeu-les i informeu de qualsevol problema amb les noves funcions (v15) perquè
+      l&#39;obsolescència no us afecti.<br /><br />
+      - Correcció: Migració d&#39;opcions des del format de nom de fitxer per defecte (no desplegable ni
+      ampliat) que produeix fitxers indefinits.xyz<br />
+      - Correcció: Les exportacions EML no codifiquen a UTF-8 i produeixen caràcters no ASCII il·legibles.<br />
+      - Correcció: S&#39;ha afegit una taula de fitxers adjunts per a exportacions només de missatges HTML i
+      text sense format.<br />
+      - Restaura el format de data de la capçalera a 30/11/2026 11:20:30. Es podrà configurar més tard.<br />
+      - Afegeix un camp de resposta a les capçaleres si n&#39;hi ha<br />
+      - Canvia la lògica de l&#39;emissor i el destinatari en els noms de fitxer:<br />
+      Utilitzeu l&#39;adreça electrònica si el nom no hi és<br />
+      - S&#39;ha afegit el testimoni del nom de fitxer <span class="notranslate">${smart_email}</span><br />
+      - S&#39;ha corregit la configuració regional fr per a les capçaleres de &quot;A&quot; i
+      &quot;From&quot;.<br />
+      - Títol corregit per a les exportacions HTML<br />
+      - actualització de la configuració regional de fr @DenB10<br />
+      - Actualització de la configuració regional de sv-SE @NickWick13<br />
+      - actualització de l&#39;etiqueta en en-US @wesinator<br />
+      - S&#39;ha corregit un error de col·laborador de @Reyard a @Rayerd.<br />
+    </p>
     <p>
       <b>Notes, característiques i canvis de la v15. Llegiu atentament.</b><br /><br />
       La versió 15 és una reescriptura completa de les funcions d&#39;exportació de missatges, tant de
@@ -88,7 +111,7 @@
         @kiki-ja<br />
         @tidebre67<br />
         @Yarny0<br />
-        @Reyerd<br />
+        @Rayerd<br />
         @Joergen<br />
         @JF1313<br />
         @joeldebruijn<br />
@@ -351,7 +374,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Obre la pàgina principal d&#39;ajuda</td>
+          <td>Obre la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
     </table>
@@ -485,7 +508,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Obre la pàgina principal d&#39;ajuda</td>
+          <td>Obre la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
     </table>
@@ -525,7 +548,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Obre la pàgina principal d&#39;ajuda</td>
+          <td>Obre la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
     </table>
@@ -645,7 +668,7 @@
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minut com a nombre decimal (rang de 00 a 59).</td>
+          <td>Minut com a nombre decimal (interval de 00 a 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>

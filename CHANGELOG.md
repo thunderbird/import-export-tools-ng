@@ -2,6 +2,25 @@
 
 ## Versions
 
+Version 15.0.1 : Maintenance Release - June 24, 2026
+
+ Fix : Option migration from default (non dropdown or extended) filename format producing undefined.xyz files
+- Fix : EML exports not encoding to UTF-8 producing garbled non-ASCII characters
+- Fix : Added attachments table for HTML and Plaintext message only exports
+- Restore header date format to 11/30/2026 11:20:30
+  Will make configurable later
+- Add reply-to field to headers if present 
+- Change logic of Sender and Recipient in filenames :
+  Use email address if name not present 
+- Add ${smart_email} filename token
+- Fixed fr locale for To and From headers
+- Fixed title for HTML exports
+- fr locale update @DenB10
+- sv-SE locale update @NickWick13
+- label update in en-US @wesinator
+- Fixed wrong contributor from @Reyard to @Rayerd
+
+
 Version 14.1.17 : Maintenance Release - February 14, 2026
 
 Note : Thunderbird v148 has fixed the issue  preventing PDF Export

@@ -73,7 +73,12 @@ export var names = {
     // Author name
     let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
     if (!authorName || authorName == "") {
-      authorName = "[No Author]";
+      // if no author name, check and substitute author email
+      if (authorEmail != "[No Author Email]") {
+        authorName = authorEmail;
+      } else {
+        authorName = "[No Author]";
+      }
     }
     authorName = authorName.slice(0, authorNameMaxLen);
     authorName = authorName.trimEnd();
@@ -95,7 +100,12 @@ export var names = {
     try {
       recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
       if (!recipientName || recipientName == "") {
-        recipientName = "[No Recipient]";
+        // if no recipient name, check and substitute recipient email
+        if (recipientEmail != "[No Recipient Email]") {
+          recipientName = recipientEmail;
+        } else {
+          recipientName = "[No Recipient]";
+        }
       }
     } catch (ex) {
       recipientName = "[No Recipient]";
@@ -114,11 +124,16 @@ export var names = {
     let isSentFolder = msgHdr.folder.flags & 0x0200 || msgHdr.folder.flags & 0x0400;
     let isSentSubFolder = msgHdr.folder.URI.indexOf("/Sent/");
     let smartName;
+    let smartEmail;
 
-    if (isSentFolder || isSentSubFolder > -1)
+    // add smartEmail
+    if (isSentFolder || isSentSubFolder > -1) {
       smartName = recipientName;
-    else
+      smartEmail = recipientEmail;
+    } else {
       smartName = authorName;
+      smartEmail = authorEmail;
+    }
 
     // Key
     var key = msgHdr.messageKey;
@@ -166,6 +181,7 @@ export var names = {
         "${recipient}": recipientName,
         "${recipient_email}": recipientEmail,
         "${smart_name}": smartName,
+        "${smart_email}": smartEmail,
         "${index}": index,
         "${date_custom}": customDate,
         "${date}": date,

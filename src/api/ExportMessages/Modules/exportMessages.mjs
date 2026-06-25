@@ -146,6 +146,23 @@ export var exportMessages = {
           msgsDir = attDirs.attachmentsDir;
         }
 
+        // if we are not saving attachments, we still
+        // want the list for adding the attachments tables
+        if (expTask.attachments.save == "none") {
+          attachmentFilenames = [];
+
+          for (const attachmentPart of expTask.msgList[index].msgData.attachmentParts) {
+            if (attachmentPart?.name) {
+              attachmentFilenames.push(attachmentPart.name);
+            } else {
+              attachmentFilenames.push("unknown");
+            }
+          }
+          let attNamesStr = expTask.msgList[index].msgData.attachmentParts.length ? "" : "  [None]";
+          expTask.msgList[index].msgData.attachmentParts.forEach(attPart => attNamesStr += (attPart.name + "\n  "));
+          log("msgs2", `expTaskId[idx]: ${expTask.id}[${index}], Folder: ${currentFolderName}, Msg: ${expTask.msgList[index].subject}, Attachments (Not saved): \n  ${attNamesStr}`);
+        }
+
         if (expTask.attachments.save != "none") {
           attachmentFilenames = [];
 
@@ -551,7 +568,7 @@ export var exportMessages = {
   },
 
   _processBodyForEML: async function (expTask, index) {
-    return expTask.msgList[index].msgData.rawMsg;
+    return expTask.msgList[index].msgData.utf8RawMsg;
   },
 
   _processBodyForHTML: async function (expTask, index, attsDir, attachmentFilenames) {
@@ -635,8 +652,11 @@ export var exportMessages = {
     }
 
     attachmentFilenames.forEach(filename => {
-      let attHref = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
-      attList += `<li style="padding-left: 20px">${attHref}</li>\n`;
+      let attHrefOrName = filename;
+      if (expTask.attachments.save != "none") {
+        attHrefOrName = `<a href="${relAttsDir}/${filename}">${filename}</a>`;
+      }
+      attList += `<li style="padding-left: 20px">${attHrefOrName}</li>\n`;
     });
 
     attList += "</div>\n";

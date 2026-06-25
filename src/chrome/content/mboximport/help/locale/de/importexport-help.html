@@ -20,8 +20,31 @@
       </td>
     </tr>
   </table>
-  <h3 id="release_notes" style="padding-left: 4px">Versionshinweise: Wichtige neue Version 15</h3>
-    <p>
+  <h3 id="release_notes" style="padding-left: 4px">Versionshinweise:</h3>
+  <p>
+<b>Hinweis zur Einstellung :</b><br><br>
+		Die bisherigen Funktionen für den Nachrichtenexport werden
+		ab Version v15.0.3 als veraltet markiert (deprecated). Bitte verwenden Sie die neuen 
+		Funktionen (v15) und melden Sie eventuelle Probleme, damit Sie von dieser Änderung nicht beeinträchtigt werden.<br><br>
+
+- Korrektur: Migration der Option für das Dateinamenformat (von Standard/kein Dropdown/kein erweitert) behoben; zuvor wurden Dateien mit der Endung „undefined.xyz“ erzeugt<br>
+- Korrektur: EML-Exporte wurden nicht in UTF-8 kodiert, was zu fehlerhaften Nicht-ASCII-Zeichen führte<br>
+- Korrektur: Tabelle für Anhänge bei Exporten im HTML- oder Nur-Text-Format hinzugefügt<br>
+- Wiederherstellung des Datumsformats im Header auf 11/30/2026 11:20:30
+  (wird später konfigurierbar gemacht)<br>
+- „Reply-To“-Feld zu den Headern hinzugefügt (sofern vorhanden)<br>
+- Logik für Absender und Empfänger in Dateinamen geändert:<br>
+&nbsp;&nbsp;E-Mail-Adresse verwenden, wenn kein Name vorhanden ist<br>
+- Dateinamen-Platzhalter <span class="notranslate">${smart_email}</span> hinzugefügt<br>
+- Korrektur der französischen Lokalisierung (fr) für „An“- und „Von“-Header<br>
+- Korrektur des Titels für HTML-Exporte<br>
+- Aktualisierung der französischen Lokalisierung (fr) durch @DenB10<br>
+- Aktualisierung der schwedischen Lokalisierung (sv-SE) durch @NickWick13<br>
+- Aktualisierung der Beschriftung für en-US durch @wesinator<br>
+- Korrektur des Mitwirkendennamens von @Reyard zu @Rayerd<br>
+
+  </p>
+  <p>
       <b>Version 15 – Hinweise, Funktionen und Änderungen. Bitte sorgfältig lesen.</b><br><br>
       Version 15 beinhaltet eine vollständige Neuentwicklung der Exportfunktionen für Ordner und einzelne
       Nachrichten. Sie markiert den Beginn einer modernen, größtenteils webbasierten Technologie. Das neue
@@ -88,7 +111,7 @@
         @kiki-ja<br>
         @tidebre67<br>
         @Yarny0<br>
-        @Reyerd<br>
+        @Rayerd<br>
         @Joergen<br>
         @JF1313<br>
         @joeldebruijn<br>

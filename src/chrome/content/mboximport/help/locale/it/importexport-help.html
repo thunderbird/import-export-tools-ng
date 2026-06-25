@@ -18,13 +18,37 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Note di rilascio: Nuova importante versione v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Note di rilascio:</h3>
+    <p>
+      <b>Avviso di deprecazione:</b><br /><br />
+      A partire dalla versione 15.0.3, le vecchie funzioni di esportazione dei messaggi verranno deprecate. Vi
+      prego di utilizzare le nuove funzioni (versione 15) e di segnalare eventuali problemi, in modo che la
+      deprecazione non vi riguardi.<br /><br />
+      - Correzione: Migrazione delle opzioni dal formato predefinito (non a discesa o esteso) del nome file
+      che produce file undefined.xyz<br />
+      - Correzione: le esportazioni EML non vengono codificate in UTF-8, producendo caratteri non ASCII
+      illeggibili.<br />
+      - Correzione: aggiunta la tabella degli allegati per le esportazioni di messaggi solo in formato HTML e
+      testo semplice<br />
+      - Ripristina il formato della data dell&#39;intestazione a 11/30/2026 11:20:30. Sarà configurabile in
+      seguito.<br />
+      - Aggiungere il campo &quot;Rispondi a&quot; alle intestazioni, se presente<br />
+      - Modificare la logica di mittente e destinatario nei nomi dei file:<br />
+      Utilizzare l&#39;indirizzo email se il nome non è presente.<br />
+      - Aggiunto il token del nome file <span class="notranslate">${smart_email}</span><br />
+      - Impostazioni locali fr corrette per le intestazioni A e Da<br />
+      - Titolo fisso per le esportazioni HTML<br />
+      - Aggiornamento locale fr @DenB10<br />
+      - Aggiornamento locale sv-SE @NickWick13<br />
+      - aggiornamento dell&#39;etichetta in en-US @wesinator<br />
+      - Corretto il collaboratore errato da @Reyard a @Rayerd<br />
+    </p>
     <p>
       <b>Note, funzionalità e modifiche della versione 15. Si prega di leggere attentamente.</b><br /><br />
       La versione 15 rappresenta una completa riscrittura delle funzioni di esportazione dei messaggi, sia per
       le cartelle che per i messaggi selezionati. È la prima fase di un&#39;implementazione basata
-      principalmente su una tecnologia WebExtension moderna. Il nuovo design offre un notevole miglioramento
-      architetturale, consentendo l&#39;introduzione di nuove funzionalità e prestazioni superiori.<br /><br />
+      principalmente su una tecnologia WebExtension moderna. Il nuovo design apporta un notevole miglioramento
+      all&#39;architettura, consentendo l&#39;introduzione di nuove funzionalità e prestazioni superiori.<br /><br />
       Per la prima versione 15, sono stati implementati i seguenti formati:<br /><br />
       - EML<br />
       - HTML e allegati<br />
@@ -56,9 +80,9 @@
       - Struttura sperimentale &quot;withatts&quot;<br />
       Questa struttura combina ogni messaggio con tutti gli allegati in una directory di allegati formattata.
       La configurazione tipica prevede di impostare il formato del nome file secondo le proprie preferenze, ad
-      esempio ${subject}, e di impostare anche il formato della directory su ${subject}. In questo modo, ogni
-      messaggio verrà creato in una directory contenente sia il messaggio stesso che gli allegati. È possibile
-      ordinare le directory per data o per nome.<br /><br />
+      esempio ${subject}, e il formato della directory su ${subject}. In questo modo, ogni messaggio verrà
+      creato in una directory contenente sia il messaggio stesso che gli allegati. È possibile ordinare le
+      directory per data o per nome.<br /><br />
       Per provare questa struttura sperimentale, inserisci la parola:<br />
       <span class="notranslate">withatts</span><br />
       nelle opzioni di registrazione nella scheda Varie. (Proposta di @Rayerd)<br /><br />
@@ -90,7 +114,7 @@
         @kiki-ja<br />
         @tidebre67<br />
         @Yarny0<br />
-        @Reyerd<br />
+        @Rayerd<br />
         @Joergen<br />
         @JF1313<br />
         @joeldebruijn<br />

@@ -44,6 +44,8 @@ browser.runtime.onInstalled.addListener(async (info) => {
 async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
 
+	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
+
 	// legacy pref migration for v15
 	prefMigration.legacyPrefMigration();
 
@@ -51,7 +53,6 @@ async function main() {
 		["resource", "ietng", "."],
 	]);
 
-	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
 	// Register all necessary content, Resources, and locales
 

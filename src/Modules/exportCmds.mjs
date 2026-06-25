@@ -319,10 +319,33 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
 
     log("msgs msgs2", "Start Export selected messages\nFolder:")
 
+    log("test", ctxEvent, "ctxEvent")
+    log("test", tab, "tab")
+    log("test", ctxEvent?.displayedFolder, "displayedFolder")
+    let currentFolder = ctxEvent?.displayedFolder;
+
+    if (currentFolder == undefined) {
+      console.error("IETNG: displayedFolder is undefined, trying mailTabs");
+      let currentMailtab = await messenger.mailTabs.getCurrent();
+      if (currentMailtab && currentMailtab.displayedFolder) {
+        console.warn("IETNG: Using mailTabs.displayedFolder - Please Report!");
+        currentFolder = currentMailtab.displayedFolder;
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `ctxEvent.displayedFolder undefined using mailTabs.displayedFolder `);;
+
+      } else if (!currentMailtab) {
+        console.log("currentMailtab is undefined, giving up")
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), `Both ctxEvent.displayedFolder and\nmailTabs.displayedFolder undefined \nGiving up`);;
+        try {
+          browser.ExportMessages.onExpUpdate.removeListener(_updateListener);
+        } catch (ex) { }
+        return;
+      }
+    }
+
     const notificationsForExpSelMsgs = await prefs.getPref("ui.notificationsForExpSelMsgs");
 
     // only displayedFolder
-    let folderSet = await _getFolderSet([ctxEvent.displayedFolder], functionParams);
+    let folderSet = await _getFolderSet([currentFolder], functionParams);
     let totalFolderCount = folderSet.length;
 
     log("msgs msgs2", ` Folder: ${folderSet[0].exportPath}`)
@@ -335,13 +358,17 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     // is an error and use ctxEvent.selectedMessages from the menu operation.
     // Because there will be no iteration over the list, we we can
     // reuse it in _msgIterateBatch
-    
+
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
+    let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
+
+    console.log("selected msgs", selectedMsgs)
     if (!selMsgCnt) {
-      //console.log("use sel")
+      console.log("use ctxEvent.selectedMessages");
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
+      selectedMsgs = ctxEvent.selectedMessages;
     } else {
-      //console.log("use msgList")
+      console.log("use getSelectedMessages");
       folderSet[0].totalMsgCount = 0;
 
       let msgListPage;
@@ -359,6 +386,11 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
       } while (msgListPage.id);
     }
 
+    if (ctxEvent.selectedMessages) {
+      selectedMsgs = ctxEvent.selectedMessages;
+    }
+
+    selectedMsgs
     let totalMsgCount = 0;
 
     folderSet.forEach(folder => {
@@ -513,7 +545,7 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         });
       }
 
-      var exportStatus = await _msgIterateBatch(expTask, ctxEvent.selectedMessages);
+      var exportStatus = await _msgIterateBatch(expTask, selectedMsgs);
       if (gAbort) {
         break;
       }
@@ -803,7 +835,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
           return;
         }
-        resolve({ rawMsg: rawMsg, msgBodyType: "text/raw", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
+        let utf8Msg = _decodeBinaryString(rawMsg);
+        resolve({ utf8RawMsg: utf8Msg, msgBodyType: "text/utf-8", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
         return;
       }
 
@@ -819,6 +852,11 @@ async function _getprocessedMsg(expTask, msgId, msg) {
       // we can fixup
       let fullMsg = await browser.messages.getFull(msgId, { decrypt: true });
       log("msgparts", fullMsg, `Msg: ${extraHeaders.fullSubject}\nFullMsg parts:`)
+
+      // add reply-to to extraHeaders if exists
+      if (fullMsg?.headers["reply-to"]) {
+        extraHeaders["reply-to"] = fullMsg?.headers["reply-to"]
+      }
 
       if (fullMsg.decryptionStatus == "fail") {
         resolve({ msgBody: "decryption failed", msgBodyType: "text/plain", inlineParts: [], attachmentParts: [], extraHeaders: extraHeaders });
@@ -954,7 +992,7 @@ async function _preprocessBody(expTask, msg, body, msgBodyType, extraHeaders) {
 }
 
 async function _processBodyForEML(expTask, index) {
-  return expTask.msgList[index].msgData.rawMsg;
+  return expTask.msgList[index].msgData.utf8RawMsg;
 }
 
 async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHeaders) {
@@ -965,8 +1003,21 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
     // there is no html or body tags
     if (!/<HTML[^>]*>/i.test(msgBody)) {
       // wrap body with <html><body>
-      msgBody = `<html>\n<body>\n${msgBody}\n</body>\n</html>`;
+      msgBody = `<html>\n<head><title>${extraHeaders.fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
+    
+    // add title if missing 
+    if (!/<TITLE[^>]*>/i.test(msgBody)) {
+      // check if we have a head block
+      if (!/<HEAD[^>]*>/i.test(msgBody)) {
+        // add head and title
+        msgBody = msgBody.replace(/(<HTML[^>]*?>)/i,`$1<head><title>${extraHeaders.fullSubject}</title></head>\n`);        
+      } else {
+        // head, but no title
+        msgBody = msgBody.replace(/(<HEAD[^>]*?>)/i,`$1\n<title>${extraHeaders.fullSubject}</title>\n`);
+      }
+    }
+    
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
@@ -995,6 +1046,8 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
 
+  let author = msg.author.replaceAll('"',"");
+  let date = strftime.strftime(expTask.hdrDateFormat, new Date(msg.date));
   let recipients;
   if (msg.recipients == []) {
     recipients = "(none)";
@@ -1015,11 +1068,17 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     bccList = msg.bccList.join(", ").replaceAll('"', '');
   }
 
+  let replyTo;
+  if (extraHeaders["reply-to"] && extraHeaders["reply-to"][0]) {
+   replyTo = extraHeaders["reply-to"][0].replaceAll('"', '');
+  }
+
   // header localization 
   let hdrSubject = browser.i18n.getMessage("msgHdr.Subject");
   let hdrFrom = browser.i18n.getMessage("msgHdr.From");
   let hdrTo = browser.i18n.getMessage("msgHdr.To");
   let hdrDate = browser.i18n.getMessage("msgHdr.Date");
+  let hdrReplyTo = browser.i18n.getMessage("msgHdr.ReplyTo");
 
   // for most locales Cc and Bcc are used as is
   // we will have an option to use localized versions later
@@ -1035,22 +1094,34 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
 
   if (expTask.expType == "html") {
-    recipients = _encodeSpecialTextToHTML(recipients);
-    ccList = _encodeSpecialTextToHTML(ccList);
-    bccList = _encodeSpecialTextToHTML(bccList);
+    let subjectHTML = _encodeSpecialTextToHTML(extraHeaders.fullSubject);
+    let dateHTML = _encodeSpecialTextToHTML(date);
+    let authorHTML = _encodeSpecialTextToHTML(author);
+    let recipientsHTML = _encodeSpecialTextToHTML(recipients);
+    let ccListHTML = _encodeSpecialTextToHTML(ccList);
+    let bccListHTML = _encodeSpecialTextToHTML(bccList);
+
+    let replyToHTML;
+    if (replyTo) {
+      replyToHTML = _encodeSpecialTextToHTML(replyTo);
+    }
 
     let hdrRows = "";
-    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrSubject}:</b></td><td>${extraHeaders.fullSubject}</td></tr>`;
-    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrFrom}:</b></td><td>${msg.author}</td></tr>`;
-    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrTo}:</b></td><td>${recipients}</td></tr>`;
-    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrDate}:</b></td><td>${msg.date}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrSubject}:</b></td><td>${subjectHTML}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrFrom}:</b></td><td>${authorHTML}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrTo}:</b></td><td>${recipientsHTML}</td></tr>`;
+    hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrDate}:</b></td><td>${dateHTML}</td></tr>`;
 
     if (ccList != "") {
-      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrCc}:</b></td><td>${ccList}</td></tr>`;
+      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrCc}:</b></td><td>${ccListHTML}</td></tr>`;
     }
 
     if (bccList != "") {
-      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrBcc}:</b></td><td>${bccList}</td></tr>`;
+      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrBcc}:</b></td><td>${bccListHTML}</td></tr>`;
+    }
+
+    if (replyTo) {
+      hdrRows += `<tr><td style='padding-right: 10px'><b>${hdrReplyTo}:</b></td><td>${replyToHTML}</td></tr>`;
     }
 
     let hdrTable = `\n<table border-collapse="true" border=0>${hdrRows}</table><br>\n`;
@@ -1058,7 +1129,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
     //let rpl = "$1 " + tbl1.replace(/\$/, "$$$$");
 
     if (msgBodyType == "text/plain") {
-      let tp = `<html>\n<head>\n</head>\n<body tp>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
+      let tp = `<html>\n<head>\n<title>${subjectHTML}</title></head>\n<body>\n${hdrTable}\n${msgBody}</body>\n</html>\n`;
       return tp;
     }
     msgBody = msgBody.replace(/(<BODY[^>]*>)/i, "$1" + hdrTable);
@@ -1069,9 +1140,9 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
   let hdr = "";
   hdr += `${hdrSubject}:  ${extraHeaders.fullSubject}\r\n`;
-  hdr += `${hdrFrom} :  ${msg.author}\r\n`;
+  hdr += `${hdrFrom}:  ${author}\r\n`;
   hdr += `${hdrTo}:  ${recipients}\r\n`;
-  hdr += `${hdrDate}:  ${msg.date}\r\n`;
+  hdr += `${hdrDate}:  ${date}\r\n`;
 
   if (ccList != "") {
     hdr += `${hdrCc}:  ${ccList}\r\n`;
@@ -1079,9 +1150,22 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   if (bccList != "") {
     hdr += `${hdrBcc}:  ${bccList}\r\n`;
   }
+  if (replyTo) {
+    hdr += `${hdrReplyTo}:  ${replyTo}\r\n`;
+  }
 
   return `${hdr}\r\n${msgBody}`;
 }
+
+function _decodeBinaryString(binaryString, inputEncoding = "utf-8") {
+  const buffer = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    buffer[i] = binaryString.charCodeAt(i) & 0xff;
+  }
+  const decoder = new TextDecoder(inputEncoding);
+  return decoder.decode(buffer);
+}
+
 
 function convertCharsetToUTF8(charset, string) {
   try {
@@ -1224,7 +1308,7 @@ async function _createIndex(expTask, msgListLog) {
         attachments = msgItem.hasAttachments;
       }
       indexData += `\n<tr ${errClass}><td width="18%" sorttable_customkey="${fullSubject}">${aHref}</td>`;
-      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replace('"', '')) + "</td>";
+      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replaceAll('"', '')) + "</td>";
       indexData += "\n<td>" + recipients + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
       indexData += "\n<td>" + attachments + "</td>";

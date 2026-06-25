@@ -23,7 +23,31 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Notes de version (nouvelle version majeure v15)</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Notes de version :</h3>
+    <p>
+<b>Avis d'obsolescence :</b><br><br>
+		Les anciennes fonctions d'exportation de messages seront déclarées obsolètes
+		à partir de la version v15.0.3. Veuillez utiliser les nouvelles fonctions (v15)
+		et signaler tout problème éventuel afin que cette transition ne vous affecte pas.<br><br>
+
+- Correction : Migration des options depuis le format de nom de fichier par défaut (ni liste déroulante ni étendu) générant des fichiers undefined.xyz<br>
+- Correction : Exportations EML non encodées en UTF-8, entraînant l'affichage erroné de caractères non-ASCII<br>
+- Correction : Ajout d'un tableau des pièces jointes pour les exportations de messages au format HTML ou texte brut uniquement<br>
+- Rétablissement du format de date d'en-tête à 11/30/2026 11:20:30
+  (sera rendu configurable ultérieurement)<br>
+- Ajout du champ « Reply-To » (répondre à) dans les en-têtes s'il est présent <br>
+- Modification de la logique pour l'expéditeur et le destinataire dans les noms de fichier :<br>
+&nbsp;&nbsp;Utilisation de l'adresse e-mail si le nom est absent <br>
+- Ajout de la variable de nom de fichier <span class="notranslate">${smart_email}</span><br>
+- Correction de la locale française pour les en-têtes « To » et « From »<br>
+- Correction du titre pour les exportations HTML<br>
+- Mise à jour de la locale française (fr) par @DenB10<br>
+- Mise à jour de la locale suédoise (sv-SE) par @NickWick13<br>
+- Mise à jour d'une étiquette en anglais (en-US) par @wesinator<br>
+- Correction du nom du contributeur (passage de @Reyard à @Rayerd)<br>
+
+    </p>
+    
     <p>
       <b>Notes, fonctionnalités et changements (à lire attentivement)</b><br/><br/>
       La version 15 constitue une refonte complète des fonctions d’exportation des messages, aussi bien pour les dossiers que pour les messages sélectionnés. C’est la première étape de transition vers la technologie moderne WebExtension. Cette nouvelle conception apporte une amélioration considérable de l’architecture, permettant l’ajout de nouvelles fonctionnalités et de meilleures performances.<br /><br />
@@ -64,7 +88,7 @@
         @kiki-ja<br/>
         @tidebre67<br/>
         @Yarny0<br/>
-        @Reyerd<br/>
+        @Rayerd<br/>
         @Joergen<br/>
         @JF1313<br/>
         @joeldebruijn<br/>

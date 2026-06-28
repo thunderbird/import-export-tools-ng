@@ -1,0 +1,1094 @@
+{
+  "abortExport": {
+    "message": "Atura l\\'exportació"
+  },
+  "addNumber.label": {
+    "message": "Add always to the name a random number when importing mbox files"
+  },
+  "addPrefix": {
+    "message": "Afegeix el prefix"
+  },
+  "addSuffix": {
+    "message": "Afegir el sufix"
+  },
+  "addtime.label": {
+    "message": "Afegeix l\\'hora a la data"
+  },
+  "addTimestamp": {
+    "message": "Afegeix la data a les propietats del fitxer"
+  },
+  "allFiles": {
+    "message": "Tots els fitxers del perfil"
+  },
+  "allFilesMode": {
+    "message": "Tots els fitxer, sempre"
+  },
+  "allMsg": {
+    "message": "Exporta tots els missatges"
+  },
+  "asCSV": {
+    "message": "Full de càlcul (CSV)"
+  },
+  "attachmentFolderNames": {
+    "message": "Noms de carpetes adjunts"
+  },
+  "attachmentFolders": {
+    "message": "Carpetes adjuntes"
+  },
+  "Attachments.label": {
+    "message": "Adjunts"
+  },
+  "attCtxMenu_Top_Id.title": {
+    "message": "Desa el fitxer adjunt EML en aquesta carpeta"
+  },
+  "autoName": {
+    "message": "Automàtic (nom de carpeta + data)"
+  },
+  "backupDestination": {
+    "message": "Destí"
+  },
+  "backupFolderName": {
+    "message": "Nom de la carpeta per a la còpia de seguretat"
+  },
+  "backupFreq": {
+    "message": "Freqüència"
+  },
+  "backupOn": {
+    "message": "Habilita"
+  },
+  "backupOnExit": {
+    "message": "Còpia de seguretat a la sortida"
+  },
+  "backupSettings": {
+    "message": "Paràmetres de la còpia de seguretat"
+  },
+  "backupTab": {
+    "message": "Còpia de seguretat programada"
+  },
+  "backupType": {
+    "message": "Fes còpia de seguretat de contingut"
+  },
+  "backupWarning": {
+    "message": "Durant aquest operació, el programa podria deixar de respondre per alguns minuts.\\\nVoleu continuar?\\\n",
+    "src": "mboximport"
+  },
+  "badfolder": {
+    "message": "No és possible importar a aquesta carpeta (és del tipus imap o grup de notícies)",
+    "src": "mboximport"
+  },
+  "badfolder2": {
+    "message": "No és possible importar a aquesta carpeta (és del tipus imap, grup de notícies o virtual)",
+    "src": "mboximport"
+  },
+  "browse": {
+    "message": "Browser"
+  },
+  "buildMSF.label": {
+    "message": "Construeix l\\'índex pels fitxers mbox importats"
+  },
+  "buttonMenu_Backup_Id.title": {
+    "message": "Còpia de seguretat"
+  },
+  "buttonMenu_Exp_Profile_Id.title": {
+    "message": "Exporta el perfil"
+  },
+  "buttonMenu_Exp_ProfileFull_Id.title": {
+    "message": "Perfil complet"
+  },
+  "buttonMenu_Exp_ProfileMailOnly_Id.title": {
+    "message": "Només correu"
+  },
+  "buttonMenu_Help.title": {
+    "message": "Ajuda"
+  },
+  "buttonMenu_Imp_Profile_Id.title": {
+    "message": "Importa el perfil"
+  },
+  "buttonMenu_Options.title": {
+    "message": "Opcions"
+  },
+  "Cancel.button": {
+    "message": "Cancel·la"
+  },
+  "cancel.msg": {
+    "message": "Cancel · lar"
+  },
+  "captionCustomize": {
+    "message": "Format personalitzat per als noms de fixers"
+  },
+  "changeProfileNameLabel": {
+    "message": "You can anyway change the profile name in the profile manager"
+  },
+  "characterFilter": {
+    "message": "Filtre de caràcters (UTF-8 o UTF-16)"
+  },
+  "confirmimport": {
+    "message": "Voleu importar el fitxer",
+    "src": "mboximport"
+  },
+  "copyFolderPath": {
+    "message": "Copia la ruta a la carpeta al disc"
+  },
+  "copyHdrsToClip_firstOnly": {
+    "message": "S&#39;han seleccionat diversos missatges, només s&#39;han copiat les capçaleres dels primers missatges al porta-retalls.",
+    "src": "mboximport"
+  },
+  "copyHdrsToClip_promptTitle": {
+    "message": "Copieu les capçaleres al porta-retalls",
+    "src": "mboximport"
+  },
+  "copyMsgsToClip_firstOnly": {
+    "message": "S&#39;han seleccionat diversos missatges, només el primer missatge s&#39;ha copiat al porta-retalls.",
+    "src": "mboximport"
+  },
+  "copyMsgsToClip_promptTitle": {
+    "message": "Copia els missatges al porta-retalls",
+    "src": "mboximport"
+  },
+  "CRconversion.statusMsg": {
+    "message": "Convertint CR =&gt; CRLF terminacions de línia"
+  },
+  "createSubfolderErr.msg": {
+    "message": "Error en crear la subcarpeta:"
+  },
+  "csvSep": {
+    "message": "Separator for export in CSV format:"
+  },
+  "CSVseparator": {
+    "message": "Separador CSV",
+    "src": "mboximport"
+  },
+  "ctxMenu_ExtensionName.title": {
+    "message": "ImportExportTools NG"
+  },
+  "ctxMenu_Help.title": {
+    "message": "Ajuda"
+  },
+  "ctxMenu_Options.title": {
+    "message": "Opcions"
+  },
+  "currentFolder.label": {
+    "message": "Carpeta actual"
+  },
+  "customDate": {
+    "message": "Data personalitzada:"
+  },
+  "customizeFilename": {
+    "message": "Usa el format següent:"
+  },
+  "customName": {
+    "message": "Personalitzat"
+  },
+  "cutFN": {
+    "message": "Retalla la longitud del camí complet al fitxer a 256 caràcters"
+  },
+  "cutPathLen": {
+    "message": "Retalla la longitud del camí del fitxer a 256 caràcters"
+  },
+  "cutSub": {
+    "message": "Retalla l\\'assumpte a 50 caràcters"
+  },
+  "date": {
+    "message": "Data"
+  },
+  "dateCustomFmtToken": {
+    "message": "${data_personalitzada}"
+  },
+  "dateCustomOpt": {
+    "message": "Data (personalitzada)"
+  },
+  "dateFormatRefTooltipText": {
+    "message": "Data de referència de format"
+  },
+  "day1": {
+    "message": "1 dia"
+  },
+  "day15": {
+    "message": "15 dies"
+  },
+  "day3": {
+    "message": "3 dies"
+  },
+  "day30": {
+    "message": "30 dies"
+  },
+  "day7": {
+    "message": "7 dies"
+  },
+  "description1": {
+    "message": "Data de la última còpia realitzada: $t"
+  },
+  "description2": {
+    "message": "Segons la configuració, ara cal realitzar una còpia de seguretat."
+  },
+  "description3": {
+    "message": "Durant el procés, el programa no serà operatiu durant uns minuts."
+  },
+  "description4": {
+    "message": "Voleu continuar?"
+  },
+  "description5": {
+    "message": "S\\'està realitzant la còpia de seguretat... espereu."
+  },
+  "description6": {
+    "message": "Còpia de seguretat finalitzada."
+  },
+  "destinatariFmtToken": {
+    "message": "${destinatari}",
+    "src": "mboximport"
+  },
+  "dialog.title": {
+    "message": "ImportExportTools NG - Còpia de seguretat"
+  },
+  "emailFiles": {
+    "message": "Fitxers de correu",
+    "src": "mboximport"
+  },
+  "emlExport": {
+    "message": "Exporta les carpetes a fitxers individuals:"
+  },
+  "endscan": {
+    "message": "Ha finalitzat l\\'escaneig al directori",
+    "src": "mboximport"
+  },
+  "error": {
+    "message": "S'ha produït un error en importar el perfil. Els detalls del error són:"
+  },
+  "Error.msg": {
+    "message": "Error"
+  },
+  "exportAborted": {
+    "message": "S\\'ha aturat l\\'exportació",
+    "src": "mboximport"
+  },
+  "exportAccount": {
+    "message": "Exporta totes les carpetes",
+    "src": "mboximport"
+  },
+  "exported": {
+    "message": "Exportat",
+    "src": "mboximport"
+  },
+  "exportFolder": {
+    "message": "Carpeta d\\'exportació",
+    "src": "mboximport"
+  },
+  "ExportFolders.title": {
+    "message": "Exportar carpetes"
+  },
+  "exportFormatEML": {
+    "message": "EML"
+  },
+  "exportFormatHTML": {
+    "message": "HTML"
+  },
+  "exportFormatPDF": {
+    "message": "PDF"
+  },
+  "exportFormatPlaintext": {
+    "message": "Text sense format"
+  },
+  "exportingMsg": {
+    "message": "Exportant",
+    "src": "mboximport"
+  },
+  "exportOK": {
+    "message": "L\\'exportació s\\'ha realitzat correctament",
+    "src": "mboximport"
+  },
+  "ExportSelectedMessages.title": {
+    "message": "Exporta els missatges seleccionats"
+  },
+  "exportstart": {
+    "message": "S\\'està exportant... espereu",
+    "src": "mboximport"
+  },
+  "extensionDescription": {
+    "message": "Afegeix eines per importar/exportar missatges i carpetes (NextGen)"
+  },
+  "extensionName": {
+    "message": "ImportExportTools NG"
+  },
+  "extensions.ImportExportToolsNG@cleidigh.description": {
+    "message": "Afegeix algunes eines per importar i exportar missatges i carpetes (NextGen)",
+    "src": "mboximport"
+  },
+  "extFilenameFormatRefTooltipText": {
+    "message": "Referència ampliada del format de fitxer"
+  },
+  "extFormat": {
+    "message": "Format:"
+  },
+  "fileexists": {
+    "message": "No s\\'ha pogut exportar: hi ha un fitxer amb el mateix nom",
+    "src": "mboximport"
+  },
+  "fileLenCaption": {
+    "message": "Longitud de noms de fitxer"
+  },
+  "filenameCharset": {
+    "message": "Joc de caràcters per als noms de fitxer:"
+  },
+  "filenameFormat": {
+    "message": "Noms de fitxer"
+  },
+  "filePickerAppend": {
+    "message": "Seleccioneu el fitxer mbox",
+    "src": "mboximport"
+  },
+  "filePickerExport": {
+    "message": "Seleccioneu el directori de destí",
+    "src": "mboximport"
+  },
+  "filePickerImport": {
+    "message": "Seleccioneu el fitxer mbox que voleu importar",
+    "src": "mboximport"
+  },
+  "filePickerImportMSG": {
+    "message": "Seleccioneu els missatges que voleu importar",
+    "src": "mboximport"
+  },
+  "Folder.label": {
+    "message": "Carpeta"
+  },
+  "folderCount.label": {
+    "message": "Recompte de carpetes"
+  },
+  "folderCtxMenu_CopyFolderPath_Id.title": {
+    "message": "Copia el camí de la carpeta"
+  },
+  "folderCtxMenu_Exp_Account_Id.title": {
+    "message": "Compte d&#39;exportació"
+  },
+  "folderCtxMenu_Exp_AllMessages_Id.title": {
+    "message": "Exporta tots els missatges a la carpeta"
+  },
+  "folderCtxMenu_Exp_CSVFormat_Id.title": {
+    "message": "Format CSV (full de càlcul)"
+  },
+  "folderCtxMenu_Exp_EMLFormat_Id.title": {
+    "message": "Format de missatge EML"
+  },
+  "folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "folderCtxMenu_Exp_EMLFormatCreateIndexRecursive_Id.title": {
+    "message": "Missatges i índex amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_FolderMbox_Id.title": {
+    "message": "Exportació de carpetes (box)"
+  },
+  "folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title": {
+    "message": "Amb subcarpetes aplanades"
+  },
+  "folderCtxMenu_Exp_FolderMboxOnly_Id.title": {
+    "message": "Com a fitxer mbox"
+  },
+  "folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title": {
+    "message": "Estructurat amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_FolderMboxZipped_Id.title": {
+    "message": "Fitxer mbox comprimit únic"
+  },
+  "folderCtxMenu_Exp_HTMLFormat_Id.title": {
+    "message": "Format HTML"
+  },
+  "folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "folderCtxMenu_Exp_HTMLFormatCreateIndexRecursive_Id.title": {
+    "message": "Missatges i índex amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Missatges, índex i fitxers adjunts amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_Index_Id.title": {
+    "message": "Índex de missatges"
+  },
+  "folderCtxMenu_Exp_IndexCSV_Id.title": {
+    "message": "Format CSV"
+  },
+  "folderCtxMenu_Exp_IndexHTML_Id.title": {
+    "message": "Format HTML"
+  },
+  "folderCtxMenu_Exp_PDFFormat_Id.title": {
+    "message": "Format PDF"
+  },
+  "folderCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "folderCtxMenu_Exp_PDFFormatCreateIndexRecursive_Id.title": {
+    "message": "Missatges i índex amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "folderCtxMenu_Exp_PDFFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Missatges, índex i fitxers adjunts amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_PlainTextFormat_Id.title": {
+    "message": "Format de text pla"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatCreateIndexRecursive_Id.title": {
+    "message": "Missatges i índex amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndexRecursive_Id.title": {
+    "message": "Missatges, índex i fitxers adjunts amb subcarpetes"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title": {
+    "message": "Missatges com a fitxer únic"
+  },
+  "folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title": {
+    "message": "Missatges com a fitxer únic amb fitxers adjunts"
+  },
+  "folderCtxMenu_Exp_RemoteFolderMbox_Id.title": {
+    "message": "Exporta la carpeta remota"
+  },
+  "folderCtxMenu_Exp_SearchExport_Id.title": {
+    "message": "Cerca i exporta missatges"
+  },
+  "folderCtxMenu_Imp_EMLFormat_Id.title": {
+    "message": "Importa missatges EML"
+  },
+  "folderCtxMenu_Imp_EMLFormatDir_Id.title": {
+    "message": "Tots els missatges EML d&#39;un directori"
+  },
+  "folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title": {
+    "message": "Tots els missatges EML d&#39;un directori i subdirectoris"
+  },
+  "folderCtxMenu_Imp_EMLFormatMsgs_Id.title": {
+    "message": "Missatges EML individuals"
+  },
+  "folderCtxMenu_Imp_MaildirFiles_Id.title": {
+    "message": "Importa la carpeta Maildir"
+  },
+  "folderCtxMenu_Imp_MboxFiles_Id.title": {
+    "message": "Importa fitxers mbox"
+  },
+  "folderCtxMenu_Imp_MboxFilesDir_Id.title": {
+    "message": "Tots els fitxers mbox del directori"
+  },
+  "folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title": {
+    "message": "Tots els fitxers mbox del directori (amb estructura sbd)"
+  },
+  "folderCtxMenu_Imp_MboxFilesIndv_Id.title": {
+    "message": "Fitxers mbox individuals"
+  },
+  "folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title": {
+    "message": "Fitxers mbox individuals (amb estructura sbd)"
+  },
+  "folderCtxMenu_OpenFolderDir_Id.title": {
+    "message": "Obriu el directori de carpetes"
+  },
+  "folderexists": {
+    "message": "No s\\'ha pogut importar: hi ha una carpeta amb el mateix nom",
+    "src": "mboximport"
+  },
+  "formatWarning": {
+    "message": "En l\\'exportació en format HTML o text pla, no es desen els fitxer adjunts.\\\nSi voleu desar els fitxer adjunts, useu el format EML.\\\nVoleu continuar?\\\n",
+    "src": "mboximport"
+  },
+  "formatWarningImport": {
+    "message": "If you use this format, it will not be possible to import the exported messages.\nDo you want to continue?\n",
+    "src": "mboximport"
+  },
+  "importDone": {
+    "message": "Importació feta",
+    "src": "mboximport"
+  },
+  "importedMsg": {
+    "message": "Importat",
+    "src": "mboximport"
+  },
+  "importEMLstart": {
+    "message": "S\\'està important... espereu",
+    "src": "mboximport"
+  },
+  "importEnd": {
+    "message": "The import was successful!"
+  },
+  "importing": {
+    "message": "Importació",
+    "src": "mboximport"
+  },
+  "importRunning": {
+    "message": "Import running..."
+  },
+  "indexCSVdateFormat": {
+    "message": "Índex, format de data CSV:"
+  },
+  "indexFmtToken": {
+    "message": "${índex}"
+  },
+  "indexOff": {
+    "message": "usa el directori seleccionat sense l\\'índex"
+  },
+  "indexOn": {
+    "message": "crea un directori nou i l\\'índex de missatges"
+  },
+  "indexSettingLabel": {
+    "message": "En exportar tots els missatges d\\'una carpeta de correu:"
+  },
+  "inlineAttachmentsFolders": {
+    "message": "Carpetes de fitxers adjunts en línia"
+  },
+  "internalerror": {
+    "message": "No s\\'ha pogut importar degut a un error desconegut",
+    "src": "mboximport"
+  },
+  "intro1": {
+    "message": "This is an experimental procedure to import a profile. There is no dataloss risk, but it's not guaranteed that everything will work as expected, especially if you're importing a profile from another computer. It's anyway safer than copying the files manually."
+  },
+  "intro2": {
+    "message": "The folder contains a valid profile that can be imported. During the procedure, that could take several minutes or even more, you can't use the program."
+  },
+  "intro3": {
+    "message": "To access the imported profile, run the profile manager clicking on the button below. The current profile will be automatically closed"
+  },
+  "invalidFolderSelection": {
+    "message": "Selecció de carpeta no vàlida"
+  },
+  "isEudora": {
+    "message": "Aquest fitxer \"mbox\" sembla que prové del programa Eudora.\nEl Thunderbird no pot gestionar-lo i heu de convertir-lo a un format \"mbox\" estàndard.",
+    "src": "mboximport"
+  },
+  "isNewsgroup": {
+    "message": "Aquesta funcionalitat no és disponbile: és possible exportar des d\\'un compte IMAP o NEWS només si la carpeta permet el seu ús fora de línia",
+    "src": "mboximport"
+  },
+  "isNotMaildir": {
+    "message": "La carpeta que voleu importar no és una carpeta \"Maildir\" estàndard",
+    "src": "mboximport"
+  },
+  "isNotStandard": {
+    "message": "This \"mbox\" file uses a different format from the Thunderbird folder format\nand it's possible that Thunderbird can't handle it properly.\nDo you want to continue?",
+    "src": "mboximport"
+  },
+  "justMailFiles": {
+    "message": "Només fitxers de correu"
+  },
+  "key": {
+    "message": "Índex"
+  },
+  "labelmenuMI": {
+    "message": "Importació/exportació"
+  },
+  "largeFolderImport.msg": {
+    "message": "S&#39;han importat més de 200 carpetes mbox.\nThunderbird s&#39;ha de reiniciar per restablir la base de dades."
+  },
+  "lastBackup": {
+    "message": "Última còpia de seguretat"
+  },
+  "latinizeTransform": {
+    "message": "llatinitzar transformar"
+  },
+  "LoggingOptions.label": {
+    "message": "Opcions de registre"
+  },
+  "MACwarning": {
+    "message": "N.B: close every other window, before continue."
+  },
+  "MBcaptionlabel1": {
+    "message": "Paràmetres generals"
+  },
+  "MBlabel1": {
+    "message": "Sobreescriu els fitxers mbox amb el mateix nom al directori de destinació"
+  },
+  "MBlabel2": {
+    "message": "Usa només caràcters alfanumèrics a l\\'exportació"
+  },
+  "MBlabel3": {
+    "message": "Demana confirmació abans d\\'importar els fitxers mbox d\\'un directori"
+  },
+  "MBlabel4": {
+    "message": "Format HTML com es mostra al quadre de missatges"
+  },
+  "MBlabel5": {
+    "message": "Copia al porta-retalls només en format de text pla (pot donar problemes de compatibilitat)"
+  },
+  "MBlabel7a": {
+    "message": "Màx. longitud de l\\'assumpte:"
+  },
+  "MBlabel7b": {
+    "message": "caràcters"
+  },
+  "MBlabel7c": {
+    "message": "Màx. longitud del nom del remitent:"
+  },
+  "MBlabel7d": {
+    "message": "Màx. longitud dels noms dels destinataris:"
+  },
+  "mboxExport": {
+    "message": "Exporta les carpetes a un fitxer MBOX:"
+  },
+  "messageCount.label": {
+    "message": "Nombre de missatges"
+  },
+  "messageImportProblems.msg": {
+    "message": "Hi ha hagut problemes en importar alguns missatges:"
+  },
+  "messagesExported.label": {
+    "message": "Missatges exportats"
+  },
+  "messagesMsg": {
+    "message": "Missatges",
+    "src": "mboximport"
+  },
+  "messsubdir": {
+    "message": "missatges",
+    "src": "mboximport"
+  },
+  "misc": {
+    "message": "Miscel·lània"
+  },
+  "modal": {
+    "message": "Usa una finestra modal"
+  },
+  "msgCtxMenu_CopyToClipboard_Id.title": {
+    "message": "Copiar al portapapers"
+  },
+  "msgCtxMenu_CopyToClipboardHeaders_Id.title": {
+    "message": "Capçaleres"
+  },
+  "msgCtxMenu_CopyToClipboardMessage_Id.title": {
+    "message": "Missatge"
+  },
+  "msgCtxMenu_Exp_CSVFormat_Id.title": {
+    "message": "Format CSV (full de càlcul)"
+  },
+  "msgCtxMenu_Exp_EMLFormat_Id.title": {
+    "message": "Format de missatge EML"
+  },
+  "msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title": {
+    "message": "Missatges (arxius adjunts incrustats)"
+  },
+  "msgCtxMenu_Exp_HTMLFormat_Id.title": {
+    "message": "Format HTML"
+  },
+  "msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title": {
+    "message": "Només missatges"
+  },
+  "msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title": {
+    "message": "Missatges i fitxers adjunts"
+  },
+  "msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "msgCtxMenu_Exp_Index_Id.title": {
+    "message": "Índex de missatges"
+  },
+  "msgCtxMenu_Exp_IndexCSV_Id.title": {
+    "message": "Format CSV"
+  },
+  "msgCtxMenu_Exp_IndexHTML_Id.title": {
+    "message": "Format HTML"
+  },
+  "msgCtxMenu_Exp_MboxFormat_Id.title": {
+    "message": "Format mbox"
+  },
+  "msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title": {
+    "message": "Afegeix al fitxer mbox existent"
+  },
+  "msgCtxMenu_Exp_MboxFormatNewMbox_Id.title": {
+    "message": "Nou fitxer mbox"
+  },
+  "msgCtxMenu_Exp_PDFFormat_Id.title": {
+    "message": "Format PDF"
+  },
+  "msgCtxMenu_Exp_PDFFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "msgCtxMenu_Exp_PDFFormatMsgsOnly_Id.title": {
+    "message": "Només missatges"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAtts_Id.title": {
+    "message": "Missatges i fitxers adjunts"
+  },
+  "msgCtxMenu_Exp_PDFFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "msgCtxMenu_Exp_PlainTextFormat_Id.title": {
+    "message": "Format de text pla"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title": {
+    "message": "Missatges i índex HTML"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title": {
+    "message": "Només missatges"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title": {
+    "message": "Missatges i fitxers adjunts"
+  },
+  "msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title": {
+    "message": "Missatges amb fitxers adjunts i índex"
+  },
+  "msgCtxMenu_TopId.title": {
+    "message": "Exporta missatges com a..."
+  },
+  "msgErrs.label": {
+    "message": "Hi ha hagut errors. Vegeu la consola d&#39;errors (Control+Maj+J) des de la finestra principal del Thunderbird."
+  },
+  "msgHdr.Bcc": {
+    "message": "Bcc"
+  },
+  "msgHdr.BccLocal": {
+    "message": "BCC"
+  },
+  "msgHdr.Cc": {
+    "message": "Cc"
+  },
+  "msgHdr.CcLocal": {
+    "message": "CC"
+  },
+  "msgHdr.Date": {
+    "message": "Data"
+  },
+  "msgHdr.From": {
+    "message": "De"
+  },
+  "msgHdr.MessageID": {
+    "message": "Message-ID"
+  },
+  "msgHdr.ReplyTo": {
+    "message": "Respon a"
+  },
+  "msgHdr.Sender": {
+    "message": "Remitent"
+  },
+  "msgHdr.Subject": {
+    "message": "Assumpte"
+  },
+  "msgHdr.To": {
+    "message": "Per a"
+  },
+  "msgs": {
+    "message": "missatges de",
+    "src": "mboximport"
+  },
+  "multipleFolders.alertMsg": {
+    "message": "No s&#39;admeten diverses carpetes:\nFeu clic a D&#39;acord per exportar només la primera carpeta."
+  },
+  "multipleFolders.title": {
+    "message": "Múltiples carpetes"
+  },
+  "name": {
+    "message": "Nom"
+  },
+  "newFilesMode": {
+    "message": "Només els fitxers modificats des de la darrera còpia de seguretat"
+  },
+  "noBackup": {
+    "message": "No s\\'ha pogut fer la còpia de seguretat: comproveu el camí i els permisos de la carpeta de destinació",
+    "src": "autobackup"
+  },
+  "noEML": {
+    "message": "No s\\'ha trobat cap fitxer eml en aquest directori",
+    "src": "mboximport"
+  },
+  "nofolder": {
+    "message": "No heu seleccionat cap carpeta de destinació",
+    "src": "mboximport"
+  },
+  "noFolderExport": {
+    "message": "No s\\'ha pogut exportar.\\\nLes carpetes seleccionades són de diferents tipus o una d\\'elles és una carpeta virtual.",
+    "src": "mboximport"
+  },
+  "noFolderSelected": {
+    "message": "No s&#39;ha seleccionat cap carpeta de missatges:\n\n Creeu o seleccioneu un compte vàlid o una subcarpeta de carpeta local.",
+    "src": "mboximport"
+  },
+  "noMaildirStorage": {
+    "message": "No es pot importar una carpeta \"Maildir\" en un compte fent servir un altre format",
+    "src": "mboximport"
+  },
+  "nomboxfile": {
+    "message": "sembla que no és un fitxer mbox o és un fitxer mbox malmès",
+    "src": "mboximport"
+  },
+  "noMboxStorage": {
+    "message": "No es pot importar una carpeta \"Mbox\" en un compte fent servir un altre format",
+    "src": "mboximport"
+  },
+  "nonAlphanumericFilter": {
+    "message": "Filtreu caràcters no alfanumèrics"
+  },
+  "noPDFmac": {
+    "message": "A causa d'un error al Thunderbird, aquesta característica no és disponible en aquesta plataforma",
+    "src": "mboximport"
+  },
+  "noPDFmultipleFolders": {
+    "message": "To export in PDF format, select just one folder",
+    "src": "mboximport"
+  },
+  "noPDFnoPrinter": {
+    "message": "No sembla que tingueu cap impressora en aquest equip. Aquesta característica requereix com a mínim tenir una impressora instal·lada (també serveix una de virtual)",
+    "src": "mboximport"
+  },
+  "noProfile": {
+    "message": "This folder doesn't contain a valid profile",
+    "src": "profilewizard"
+  },
+  "noRemoteExport": {
+    "message": "No s\\'ha pogut exportar aquesta carpeta remota, perquè no es troba en línia.",
+    "src": "mboximport"
+  },
+  "nosubjectmsg": {
+    "message": "sense_assumpte",
+    "src": "mboximport"
+  },
+  "notificationsForExpFolders.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de carpetes"
+  },
+  "notificationsForExpSelMsgs.label": {
+    "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de missatges seleccionats"
+  },
+  "noWarning": {
+    "message": "No mostris més aquest avís",
+    "src": "mboximport"
+  },
+  "nowritable": {
+    "message": "No s\\'ha pogut exportar: no teniu permisos d\\'escriptura al directori",
+    "src": "mboximport"
+  },
+  "numEML": {
+    "message": "Nbre. de fitxers eml importats:",
+    "src": "mboximport"
+  },
+  "numRetainBackups.msg": {
+    "message": "Nombre de còpies de seguretat a conservar:"
+  },
+  "offlineWarning": {
+    "message": "Aquesta carpeta es troba fora de línia.\\\nNomés s\\'exportaran els missatges desats al vostre equip. Voleu continuar?",
+    "src": "mboximport"
+  },
+  "OK.button": {
+    "message": "OK"
+  },
+  "openHelpInWindow.label": {
+    "message": "Obriu l&#39;ajuda en una finestra en lloc d&#39;una pestanya"
+  },
+  "over50GBskipMsg": {
+    "message": "més gran que 50GB, saltant",
+    "src": "mboximport"
+  },
+  "pickProfile": {
+    "message": "Path of the profile to import:",
+    "src": "profilewizard"
+  },
+  "prefixFmtToken": {
+    "message": "${prefix}"
+  },
+  "processingMsg": {
+    "message": "Tramitació",
+    "src": "mboximport"
+  },
+  "profileImportWizHdr": {
+    "message": "ImportExportTools NG - Importació de perfils",
+    "src": "profilewizard"
+  },
+  "profileName": {
+    "message": "Name of the profile to import"
+  },
+  "profilePath": {
+    "message": "The path of the imported profile is:",
+    "src": "profilewizard"
+  },
+  "Received": {
+    "message": "Rebut",
+    "src": "mboximport"
+  },
+  "recipient": {
+    "message": "Remitent"
+  },
+  "recipientEmailFmtToken": {
+    "message": "${destinatari_email}"
+  },
+  "recipientFmtToken": {
+    "message": "${destinatari}"
+  },
+  "remoteWarning": {
+    "message": "Esteu exportant la còpia local d'una carpeta IMAP o NEWS.\nLa carpeta local podria no tenir tots els missatges de la carpeta remota.\nVoleu continuar?",
+    "src": "mboximport"
+  },
+  "runProfileManager": {
+    "message": "Run the profile manager"
+  },
+  "save": {
+    "message": "Desa"
+  },
+  "saveAttsInMsgDir.label": {
+    "message": "Desa els fitxers adjunts al mateix directori amb els missatges"
+  },
+  "savedirs": {
+    "message": "Directoris d\\'exportació"
+  },
+  "sdAll": {
+    "message": "Tot"
+  },
+  "sdEML": {
+    "message": "EML"
+  },
+  "sdExportButton": {
+    "message": "Exporta"
+  },
+  "sdFormat": {
+    "message": "Format"
+  },
+  "sdHTML": {
+    "message": "HTML"
+  },
+  "sdMBOX": {
+    "message": "Mbox (nou)"
+  },
+  "sdMBOX2": {
+    "message": "Mbox (afegeix)"
+  },
+  "sdMessages": {
+    "message": "Missatges"
+  },
+  "sdSelected": {
+    "message": "Seleccionats"
+  },
+  "sdSingleFile": {
+    "message": "(un fitxer)"
+  },
+  "sdText": {
+    "message": "Text pla"
+  },
+  "searchdir": {
+    "message": "Seleccioneu un directori per cercar-hi els fitxers",
+    "src": "mboximport"
+  },
+  "SeeReleaseNotes.label": {
+    "message": "Vegeu les notes de la versió"
+  },
+  "selectFolderForMboxes_title": {
+    "message": "Seleccioneu la carpeta per importar fitxers mbox",
+    "src": "mboximport"
+  },
+  "selectMboxFiles_title": {
+    "message": "Seleccioneu els fitxers mbox per importar",
+    "src": "mboximport"
+  },
+  "selExport": {
+    "message": "Exporta els missatges seleccionats:"
+  },
+  "sender": {
+    "message": "Remitent"
+  },
+  "senderEmailFmtToken": {
+    "message": "${remitent_email}"
+  },
+  "senderFmtToken": {
+    "message": "${remitent}"
+  },
+  "setMsgExpDate.label": {
+    "message": "Estableix la data dels fitxers de missatges exportats a la data d&#39;enviament"
+  },
+  "Size": {
+    "message": "Mida"
+  },
+  "skipMsgLabel": {
+    "message": "no desis els missatges quan existeix el fitxer corresponent"
+  },
+  "skipNonMbox": {
+    "message": "Omet el fitxer que no és mbox",
+    "src": "mboximport"
+  },
+  "smartNameFmtToken": {
+    "message": "${nom_intel_ligent}"
+  },
+  "start": {
+    "message": "Start import"
+  },
+  "strip_eml_CR.label": {
+    "message": "Elimina CR dels finals de línia per a les exportacions de missatges eml"
+  },
+  "subject": {
+    "message": "Assumpte"
+  },
+  "subjectFmtToken": {
+    "message": "${assumpte}",
+    "src": "mboximport"
+  },
+  "sufixFmtToken": {
+    "message": "${sufix}",
+    "src": "mboximport"
+  },
+  "temp_error": {
+    "message": "No és possible importar: s\\'ha produït un error en la creació d\\'un fitxer temporal",
+    "src": "mboximport"
+  },
+  "textCharset": {
+    "message": "Charset for export in text and CSV format: "
+  },
+  "timeMsg": {
+    "message": "Temps",
+    "src": "mboximport"
+  },
+  "title": {
+    "message": "ImportExportTools NG - Profile import"
+  },
+  "toolsCtxMenu_Backup_Id.title": {
+    "message": "Còpia de seguretat"
+  },
+  "toolsCtxMenu_Exp_Profile_Id.title": {
+    "message": "Exporta el perfil"
+  },
+  "toolsCtxMenu_Exp_ProfileFull_Id.title": {
+    "message": "Perfil complet"
+  },
+  "toolsCtxMenu_Exp_ProfileMailOnly_Id.title": {
+    "message": "Només correu"
+  },
+  "toolsCtxMenu_Imp_Profile_Id.title": {
+    "message": "Importa el perfil"
+  },
+  "totalErrors.label": {
+    "message": "Total d&#39;errors"
+  },
+  "totalMessages.label": {
+    "message": "Total de missatges"
+  },
+  "totalMessagesExported.label": {
+    "message": "Total de missatges exportats"
+  },
+  "useExtFilenameFormat": {
+    "message": "Utilitza un format estès"
+  },
+  "useMboxExt.label": {
+    "message": "Utilitzeu l&#39;extensió .mbox per a fitxers mbox (no estructurats)"
+  },
+  "utf16Filter": {
+    "message": "Filtra caràcters UTF-16 (símbols i emojis)"
+  },
+  "viewDbgConsole.msg": {
+    "message": "  Errors. Veure la consola de depuració (Control-Maj-J)"
+  },
+  "virtFolAlert": {
+    "message": "Les carpetes virtuals només poden exportar-se en aquest format de forma separada",
+    "src": "mboximport"
+  },
+  "virtualfolder": {
+    "message": "Aquesta és una carpeta virtual, per exportar els missatgs heu de copiar-los a una carpeta normal i exportar aquesta carpeta normal",
+    "src": "mboximport"
+  },
+  "Warning.msg": {
+    "message": "Avís"
+  }
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "namespace": "ExportMessages",
+    "functions": [
+      {
+        "name": "exportMessagesStream",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "exportMessagesBase",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "exportMessagesES6",
+        "type": "function",
+        "description": "Export messages for folders or selections",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "createExportContainer",
+        "type": "function",
+        "description": "Create the export container directory",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "Export messages task descriptor"
+          }
+        ]
+      },
+      {
+        "name": "openFileDialog",
+        "type": "function",
+        "description": "Open the nsIFilePicker",
+        "async": true,
+        "parameters": [
+          {
+            "name": "mode",
+            "type": "integer",
+            "description": "FilePicker mode"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "description": "Dialog title"
+          },
+          {
+            "name": "initialDir",
+            "type": "string",
+            "description": "Initial directory"
+          },
+          {
+            "name": "filter",
+            "type": "integer",
+            "description": "Filter mask"
+          }
+        ]
+      },
+       {
+        "name": "writeIndex",
+        "type": "function",
+        "description": "Write the index.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "expTask",
+            "type": "any",
+            "description": "The primary task descriptor."
+          },
+          {
+            "name": "indexData",
+            "type": "string",
+            "description": "Index data."
+          }
+        ]
+      },
+      {
+        "name": "getMsgHdrs",
+        "type": "function",
+        "description": "Get msgHdr items.",
+        "async": true,
+        "parameters": [
+          {
+            "name": "msgId",
+            "type": "integer",
+            "description": "The id of the message."
+          },
+          {
+            "name": "msgHdrItems",
+            "type": "any",
+            "description": "The string array of items."
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "onExpUpdate",
+        "type": "function",
+        "description": "Fires when ExportMessages has a status update.",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "folderName",
+            "description": "The folder name."
+          },
+          {
+            "type": "integer",
+            "name": "msgCount",
+            "minimum": 0,
+            "description": "The number of messages exported in the current batch."
+          },
+          {
+            "type": "integer",
+            "name": "errCount",
+            "minimum": 0,
+            "description": "The number of errors in the current batch."
+          }
+        ]
+      }
+    ]
+  }
+]

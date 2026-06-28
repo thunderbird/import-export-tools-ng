@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog id="autobackup-window" title="__MSG_dialog.title__" windowtype="autobackup-dialog"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml" >
+
+
+<description id="last">__MSG_description1__</description>
+<description id="autoModeDesc">__MSG_description2__</description>
+<description>__MSG_description3__</description>
+<description id="macWarn" collapsed="true">__MSG_MACwarning__</description>
+<description id="go">__MSG_description4__</description>
+<description id="start" collapsed="true">__MSG_description5__</description>
+<description id="done" collapsed="true">__MSG_description6__</description>
+<hbox>
+<label value="0% "/>
+<html:progress id="pm" mode="determined"  value="0" max="100"/>
+<label value=" 100% "/>
+</hbox>
+
+<script type="application/javascript" src="./modules/i18n.js"/>
+<script type="application/javascript" src="./utils.js" />
+<script type="application/javascript" src="./autobackup.js" />
+
+</dialog>

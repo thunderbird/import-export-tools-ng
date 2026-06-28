@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="./expStatus.css" type="text/css" />
+
+  <title></title>
+</head>
+
+<body id="body-id" style2="background-color: aqua;">
+  <div id="outer-container" style2="background-color: bisque;">
+    <div id="main-content">
+      <table id="table1" style2="border: 1px solid black">
+        <tr>
+          <td>__MSG_currentFolder.label__:</td>
+          <td id="current-folder"></td>
+        </tr>
+        <tr>
+          <td>__MSG_messageCount.label__:</td>
+          <td id="total-folder-msg-count"></td>
+        </tr>
+        <tr class="multiple-folders-display">
+          <td>__MSG_folderCount.label__:</td>
+          <td id="total-folder-count"></td>
+        </tr>
+        <tr class="multiple-folders-display">
+          <td>__MSG_totalMessages.label__:</td>
+          <td id="total-msg-count"></td>
+        </tr>
+        <tr>
+          <td>__MSG_totalErrors.label__:</td>
+          <td id="total-errors"></td>
+
+        </tr>
+      </table>
+      <div class="progress-div1">__MSG_messagesExported.label__:</div>
+      <div class="progress"><span>0% </span>
+        <progress id="msg-progress" max="0" value="0"></progress>
+        <span> 100%</span>
+      </div>
+      <div class="progress-div2 multiple-folders-display">__MSG_totalMessagesExported.label__:</div>
+      <div class="progress multiple-folders-display"><span>0% </span>
+        <progress id="total-msg-progress" max="0" value="0"></progress>
+        <span> 100%</span>
+      </div>
+    </div>
+    <div id="statusMsg" style2="background-color: aqua;">
+    </div>
+    <div id="buttons">
+      <div><button id="okButton" disabled>__MSG_OK.button__</button><button
+          id="cancelButton">__MSG_Cancel.button__</button></div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="./i18n.js"></script>
+  <script type="application/javascript" src="./expStatus.js"></script>
+
+</body>
+
+</html>

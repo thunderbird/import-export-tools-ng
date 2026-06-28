@@ -1,0 +1,485 @@
+/*
+    ImportExportTools NG is a extension for Thunderbird mail client
+    providing import and export tools for messages and folders.
+    The extension authors:
+        Copyright (C) 2023 : Christopher Leidigh, The Thunderbird Team
+
+    ImportExportTools NG is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* global  browser */
+
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
+var { ExtensionParent } = ChromeUtils.importESModule(
+    "resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+    "ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+    + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+    + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
+async function IETsetCharsetPopup(charsetPref) {
+    var charsetPopup = document.getElementById("charset-list-popup");
+    var charsetList = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.charset_list");
+
+    //var charsetList = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.charset_list");
+    var charsetItems = charsetList.split(",");
+    var menuitem;
+
+    for (var i = 0; i < charsetItems.length; i++) {
+        menuitem = document.createXULElement("menuitem");
+        menuitem.setAttribute("label", charsetItems[i]);
+        menuitem.setAttribute("value", charsetItems[i]);
+        charsetPopup.appendChild(menuitem);
+        if (charsetItems[i] === charsetPref)
+            document.getElementById("charset-list").selectedItem = menuitem;
+    }
+}
+
+async function initMboxImportPanel() {
+
+    console.log(await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportEML.dir"))
+
+    var IETngVersion = window.opener.ietng.extension.addonData.version;
+    document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
+
+    var os = navigator.platform.toLowerCase();
+    if (!os.includes("win")) {
+        document.documentElement.style.setProperty("--groupbox-header-bg", "#f0f0f0");
+        document.documentElement.style.setProperty("--question-height", "28px");
+    }
+
+    document.getElementById("useMboxExt").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext");
+    document.getElementById("MBoverwrite").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
+    document.getElementById("MBasciiname").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+    document.getElementById("MBhtmlasdisplayed").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+    document.getElementById("MBcliptextplain").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
+    document.getElementById("MBsubmaxlen").value = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
+    document.getElementById("MBauthmaxlen").value = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.author.max_length");
+    document.getElementById("MBrecmaxlen").value = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
+    document.getElementById("setTimestamp").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
+    document.getElementById("openHelpInWin").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
+
+    // new v15 options
+    document.getElementById("loggingOptions").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.debug.logTypes");
+
+    // ui
+    document.getElementById("notificationsForExpFolders").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
+    document.getElementById("notificationsForExpSelMsgs").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
+
+    console.log(await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format"));
+
+    if (await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
+        document.getElementById("customizeFilenames").checked = true;
+    else
+        document.getElementById("customizeFilenames").checked = false;
+
+
+    if (await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 3)
+        document.getElementById("useExtendedFormat").setAttribute("checked", "true");
+    else
+        document.getElementById("useExtendedFormat").removeAttribute("checked");
+
+    document.getElementById("export_mbox_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
+        document.getElementById("use_export_mbox_dir").checked = true;
+        document.getElementById("export_mbox_dir").removeAttribute("disabled");
+        document.getElementById("export_mbox_dir").nextElementSibling.removeAttribute("disabled");
+    } else {
+        document.getElementById("use_export_mbox_dir").checked = false;
+        document.getElementById("export_mbox_dir").setAttribute("disabled", "true");
+        document.getElementById("export_mbox_dir").nextElementSibling.setAttribute("disabled", "true");
+    }
+
+    document.getElementById("export_eml_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportEML.dir");
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportEML.use_dir")) {
+        document.getElementById("use_export_eml_dir").checked = true;
+        document.getElementById("export_eml_dir").removeAttribute("disabled");
+        document.getElementById("export_eml_dir").nextElementSibling.removeAttribute("disabled");
+    } else {
+        document.getElementById("use_export_eml_dir").checked = false;
+        document.getElementById("export_eml_dir").setAttribute("disabled", "true");
+        document.getElementById("export_eml_dir").nextElementSibling.setAttribute("disabled", "true");
+    }
+
+    document.getElementById("export_msgs_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMSG.dir");
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportMSG.use_dir")) {
+        document.getElementById("use_export_msgs_dir").checked = true;
+        document.getElementById("export_msgs_dir").removeAttribute("disabled");
+        document.getElementById("export_msgs_dir").nextElementSibling.removeAttribute("disabled");
+    } else {
+        document.getElementById("use_export_msgs_dir").checked = false;
+        document.getElementById("export_msgs_dir").setAttribute("disabled", "true");
+        document.getElementById("export_msgs_dir").nextElementSibling.setAttribute("disabled", "true");
+    }
+
+    var pattern = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_pattern");
+    var patternParts = pattern.split("-");
+
+    for (var i = 0; i < 3; i++) {
+        var list = document.getElementById(`part${i + 1}`);
+        var popup = document.getElementById(`part${i + 1}-popup-list`);
+
+        switch (patternParts[i]) {
+            case "%d":
+                list.selectedItem = popup.childNodes[1];
+                break;
+            case "%D":
+                list.selectedItem = popup.childNodes[2];
+                break;
+            case "%k":
+                list.selectedItem = popup.childNodes[3];
+                break;
+            case "%n":
+                list.selectedItem = popup.childNodes[4];
+                break;
+            case "%a":
+                list.selectedItem = popup.childNodes[5];
+                break;
+            case "%r":
+
+                list.selectedItem = popup.childNodes[6];
+                break;
+            case "%e":
+                list.selectedItem = popup.childNodes[7];
+                break;
+            default:
+                list.selectedItem = popup.childNodes[0];
+        }
+    }
+
+
+    document.getElementById("customDateFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format");
+    document.getElementById("extendedFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
+
+    // v15 attachments containerStructure
+    if (await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure") == "inMsgDir") {
+        document.getElementById("saveAttsInMsgDir").checked = true;
+    } else {
+        document.getElementById("saveAttsInMsgDir").checked = false;
+
+    }
+
+    document.getElementById("attFolderFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+    document.getElementById("inlineAttFolderFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+
+    document.getElementById("utf16-filter").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16");
+    document.getElementById("latinize-transform").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_latinize");
+    document.getElementById("character-filter").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_filter_characters");
+
+
+    document.getElementById("cutFN").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
+    customNamesCheck(document.getElementById("customizeFilenames"));
+    extendedFormatCheck(document.getElementById("useExtendedFormat"));
+
+    document.getElementById("indexDateFormat").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+
+    var charset = "";
+    var textCharset = "";
+    var csvSep = "";
+
+    try {
+        textCharset = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.text_plain_charset");
+        csvSep = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.csv_separator");
+    } catch (e) {
+        //charset = "";
+        textCharset = "";
+        csvSep = "";
+    }
+
+
+    await IETsetCharsetPopup(textCharset);
+
+    document.getElementById("csvSep").value = csvSep;
+
+    document.getElementById("skipMsg").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
+    if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder")) {
+        document.getElementById("indexSetting").selectedIndex = 0;
+        document.getElementById("skipMsg").disabled = true;
+    } else {
+        document.getElementById("indexSetting").selectedIndex = 1;
+    }
+
+    // Backup section
+    var freq = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
+
+    switch (freq) {
+        case 99:
+            document.getElementById("frequencyList").selectedIndex = 5;
+            document.getElementById("backupEnable").checked = true;
+            break;
+
+        case 1:
+            document.getElementById("frequencyList").selectedIndex = 0;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        case 3:
+            document.getElementById("frequencyList").selectedIndex = 1;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        case 7:
+            document.getElementById("frequencyList").selectedIndex = 2;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        case 15:
+            document.getElementById("frequencyList").selectedIndex = 3;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        case 30:
+            document.getElementById("frequencyList").selectedIndex = 4;
+            document.getElementById("backupEnable").checked = true;
+            break;
+        default:
+            document.getElementById("backupEnable").checked = false;
+            document.getElementById("frequencyList").disabled = true;
+    }
+
+
+    try {
+        document.getElementById("backupDir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir");
+    } catch (e) { }
+
+    document.getElementById("backupCustomName").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
+
+    document.getElementById("backupType").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
+    var dir = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
+    document.getElementById("backupDirName").selectedIndex = dir;
+    document.getElementById("backupType").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
+    document.getElementById("saveMode").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+
+    var retainNumBackups = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+    document.getElementById("numBackupsList").selectedIndex = retainNumBackups;
+
+    var last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last") * 1000;
+    if (last > 0) {
+        var time = new Date(last);
+        var localTime = time.toLocaleString();
+        document.getElementById("backupLast").value = localTime;
+    }
+
+}
+
+async function saveMboxImportPrefs() {
+    try {
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext", document.getElementById("useMboxExt").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.overwrite", document.getElementById("MBoverwrite").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filenames_toascii", document.getElementById("MBasciiname").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed", document.getElementById("MBhtmlasdisplayed").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.clipboard.always_just_text", document.getElementById("MBcliptextplain").checked);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.subject.max_length", document.getElementById("MBsubmaxlen").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.author.max_length", document.getElementById("MBauthmaxlen").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.recipients.max_length", document.getElementById("MBrecmaxlen").value);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.set_filetime", document.getElementById("setTimestamp").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.help.openInWindow", document.getElementById("openHelpInWin").checked);
+
+        // new v15 options
+
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
+        // ui
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders", document.getElementById("notificationsForExpFolders").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs", document.getElementById("notificationsForExpSelMsgs").checked);
+
+        // v15 attachments containerStructure
+        if (document.getElementById("saveAttsInMsgDir").checked == true) {
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "inMsgDir");
+        } else {
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
+        }
+
+        if (document.getElementById("customizeFilenames").checked)
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
+        else if (document.getElementById("useExtendedFormat").checked) {
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
+        } else
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
+
+
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMBOX.dir", document.getElementById("export_mbox_dir").value);
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportEML.use_dir", document.getElementById("use_export_eml_dir").checked);
+        //if (document.getElementById("export_eml_dir").value !== "")
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportEML.dir", document.getElementById("export_eml_dir").value);
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMSG.use_dir", document.getElementById("use_export_msgs_dir").checked);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.exportMSG.dir", document.getElementById("export_msgs_dir").value);
+
+        var pattern = "";
+        for (let u = 1; u < 4; u++) {
+            var val = document.getElementById("part" + u.toString()).selectedItem.value;
+            if (u > 1 && val)
+                val = "-" + val;
+            pattern += val;
+        }
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_pattern", pattern);
+
+
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_date_custom_format", document.getElementById("customDateFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.index_date_custom_format", document.getElementById("indexDateFormat").value);
+
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_extended_format", document.getElementById("extendedFormat").value);
+
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format", document.getElementById("attFolderFormat").value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format", document.getElementById("inlineAttFolderFormat").value);
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filename_filterUTF16", document.getElementById("utf16-filter").checked);
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.filename_latinize", document.getElementById("latinize-transform").checked);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.filename_filter_characters", document.getElementById("character-filter").value);
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.cut_filename", document.getElementById("cutFN").checked);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.text_plain_charset", document.getElementById("charset-list").selectedItem.value);
+        await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.csv_separator", document.getElementById("csvSep").value);
+
+        if (document.getElementById("indexSetting").selectedIndex === 0)
+            await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", true);
+        else
+            await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
+
+        // Backup section
+        if (!document.getElementById("backupEnable").checked)
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
+        else
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
+        if (document.getElementById("backupDir").value)
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
+        else
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", "");
+
+            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
+        if (document.getElementById("backupCustomName").value != "") {
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
+        } else {
+            await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", "customName");
+        }
+
+
+        await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.save_mode", document.getElementById("saveMode").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups", document.getElementById("numBackupsList").selectedIndex);
+        window.close();
+
+    } catch (ex) {
+        console.log(ex)
+        Services.prompt.alert(window, "Error", ex.message + "\n\n" + ex.stack);
+    }
+}
+
+function customNamesCheck(el) {
+    if (!el.checked) {
+        document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
+        document.getElementById("part1").setAttribute("disabled", "true");
+        document.getElementById("part2").setAttribute("disabled", "true");
+        document.getElementById("part3").setAttribute("disabled", "true");
+
+        // enable extended options
+        document.getElementById("useExtendedFormat").setAttribute("checked", "true");
+        document.getElementById("extendedFormat").removeAttribute("disabled");
+        document.getElementById("extendedFormatLabel").removeAttribute("disabled");
+
+
+    } else {
+        document.getElementById("addtimeCheckbox").removeAttribute("disabled");
+        document.getElementById("part1").removeAttribute("disabled");
+        document.getElementById("part2").removeAttribute("disabled");
+        document.getElementById("part3").removeAttribute("disabled");
+
+        document.getElementById("customDateFormat").removeAttribute("disabled");
+        document.getElementById("customDateLabel").removeAttribute("disabled");
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("useExtendedFormat").removeAttribute("checked");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
+    }
+
+}
+
+
+function extendedFormatCheck(el) {
+    if (el.checked) {
+        document.getElementById("customizeFilenames").removeAttribute("checked");
+        document.getElementById("addtimeCheckbox").setAttribute("disabled", "true");
+        document.getElementById("part1").setAttribute("disabled", "true");
+        document.getElementById("part2").setAttribute("disabled", "true");
+        document.getElementById("part3").setAttribute("disabled", "true");
+        document.getElementById("extendedFormat").removeAttribute("disabled");
+        document.getElementById("extendedFormatLabel").removeAttribute("disabled");
+
+    } else {
+        document.getElementById("extendedFormat").setAttribute("disabled", "true");
+        document.getElementById("extendedFormatLabel").setAttribute("disabled", "true");
+
+        document.getElementById("customizeFilenames").setAttribute("checked", "true");
+        document.getElementById("addtimeCheckbox").removeAttribute("disabled");
+        document.getElementById("part1").removeAttribute("disabled");
+        document.getElementById("part2").removeAttribute("disabled");
+        document.getElementById("part3").removeAttribute("disabled");
+
+
+    }
+}
+
+
+function toggleDirCheck(el) {
+    if (!el.checked) {
+        el.nextElementSibling.setAttribute("disabled", "true");
+        el.nextElementSibling.nextElementSibling.setAttribute("disabled", "true");
+    } else {
+        el.nextElementSibling.removeAttribute("disabled");
+        el.nextElementSibling.nextElementSibling.removeAttribute("disabled");
+    }
+}
+
+function toggleBackup(el) {
+    document.getElementById("frequencyList").disabled = !el.checked;
+}
+
+function toggleSkipMsg(el) {
+    document.getElementById("skipMsg").disabled = (el.selectedIndex === 0);
+}
+
+async function pickFile(target, inputFieldId) {
+    var box = target.ownerDocument.getElementById(inputFieldId);
+    let winCtx = window;
+    const tbVersion = ietngUtils.getThunderbirdVersion();
+    if (tbVersion.major >= 120) {
+        winCtx = window.browsingContext;
+    }
+    let fp = Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
+    fp.init(winCtx, "", Ci.nsIFilePicker.modeGetFolder);
+    let res = await new Promise(resolve => {
+        fp.open(resolve);
+    });
+    if (res !== Ci.nsIFilePicker.returnOK) {
+        return;
+    }
+    box.value = fp.file.path;
+}
+
+async function openHelpBM(bookmark) {
+    let win = getMail3Pane();
+    await win.ietngAddon.notifyTools.notifyBackground({ command: "openHelp", bmark: bookmark });
+}
+
+window.addEventListener("load", async function (event) {
+    await initMboxImportPanel();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    i18n.updateDocument({ extension: this.window.opener.ietngAddon.extension });
+}, { once: true });

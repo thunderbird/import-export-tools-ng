@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
+    <title>ImportExportTools Axuda de NG</title>
+  </head>
+  <body>
+    <table style="width: 100%;" id="main-help">
+      <tr>
+        <td style="vertical-align: top;">
+          <div style="font-size: 1.8em; font-weight: bold;">ImportExportTools Axuda de NG</div>
+          <div id="extVersion" style="padding-left: 4px;">ver</div>
+        </td>
+        <td style="text-align: right; padding-right: 30px;">
+          <img src="../../../icons/import-export-tools-ng-icon-64px.png" />
+        </td>
+      </tr>
+    </table>
+    <h3 id="release_notes" style="padding-left: 4px;">Notas de lanzamento:</h3>
+    <p>
+      <b>Nota importante:</b> a partir do lanzamento de Thunderbird v136, Mozilla realizará versións mensuais.
+      É posible que non poida lanzar ImportExportTools NG todos os meses. Comprobe antes de actualizar
+      Thunderbird para ver se hai unha actualización compatible de ImportExportTools NG dispoñible.<br /><br />
+      Cristóbal<br /><br />
+      - Solución de fallos de exportación intermitentes e inconsistentes de todos os tipos de mensaxes<br />
+      - Novo: exportacións de selección de cartafoles múltiples<br />
+      - Máis tratamento de erros para as importacións de EML e as exportacións de mbox<br />
+      - Actualizar a configuración danés (da) - @Joergen<br />
+      - Actualizar o idioma húngaro (hu-HU) - @ef99<br />
+    </p>
+    <h2 id="main_help">ImportExportTools NG Visión xeral e menús</h2>
+    <p>
+      ImportExportTools NG é unha extensión de seguimento baseada no traballo orixinal de Paolo
+      &quot;Kaosmos&quot;. A extensión ofrece varias funcións de importación e exportación que admiten varios
+      formatos de ficheiro diferentes, incluíndo: Nota: Algúns formatos non son compatibles con todas as
+      funcións.<br />
+      - mbox<br />
+      - EML<br />
+      - maildir<br />
+      - HTML<br />
+      - texto plano<br />
+      - CSV (valores separados por comas)<br />
+      - PDF<br /><br />
+      Aínda que a maior parte da funcionalidade de xira en torno ás mensaxes, tamén hai soporte para a
+      importación e exportación de perfís Thunderbird. Ademais, as exportacións tamén poden incluír un
+      ficheiro de índice HTML ou CSV. A copia de seguranza do perfil de Thunderbird é outra característica.<br />
+      <p>
+        O acceso á funcionalidade IETng faise a través de varios menús diferentes instalados pola extensión.
+        As funcións son sensibles ao contexto. Engádense menús para:<br />
+        - O contexto do panel de cartafoles (operación do cartafol)<br />
+        - O contexto da lista de mensaxes (mensaxes seleccionadas)<br />
+        - O menú Ferramentas (perfil e operacións de copia de seguridade)<br /><br />
+        As opcións accesibles no &quot;Menú Ferramentas&quot; non están no menú &quot;Hamburguesa&quot;, senón
+        que estarán nunha versión futura. Estas funcións tamén están dispoñibles no novo botón da barra de
+        ferramentas. Cada un dos menús e cada botón tamén ten un elemento de menú Axuda e Opcións para acceder
+        ao diálogo de opcións.<br />
+      </p>
+    </p>
+    <h3>Soporte:</h3>
+    <p>
+      Publica problemas ou solicitudes de funcións no repositorio de extensións de GitHub:
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
+        >ImportExportTools NG Issues</a
+      ><br /><br />
+      En problemas de erro, inclúa a seguinte información para axudar a resolver os problemas:<br />
+      - Versión ImportExportTools NG<br />
+      - Versión Thunderbird<br />
+      - Sistema operativo e versión<br />
+      - Saída de depuración (copia desde a Consola de depuración - acceso con Control-Shift-J)<br />
+      - Descrición dos pasos que conducen ao problema<br />
+    </p>
+    <h2 id="main_menu_help">Funcións do menú contextual do cartafol</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Elemento de menú</th>
+          <th>Descrición da función</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
+          <td>
+            Exporta toda a conta coa estrutura e os subcartafoles en formato mbox. A exportación realízase
+            mediante un contedor co nome da conta.<br />
+            Nota: Este elemento do menú só aparece ao facer clic co botón dereito nunha entrada da conta.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_FolderMbox_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxOnly_Id.title__</td>
+          <td>Exportar un único cartafol a un ficheiro de formato mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
+          <td>Exportar un único cartafol a un ficheiro de formato mbox comprimido</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
+          </td>
+          <td>
+            Exportar un cartafol incluíndo todos os seus subcartafoles a unha árbore de mensaxes en formato
+            mbox
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">
+            __MSG_folderCtxMenu_Exp_FolderMboxFlattenedSubFolders_Id.title__
+          </td>
+          <td>
+            Exporta un cartafol que inclúe todos os seus subcartafoles a un conxunto de ficheiros de formato
+            mbox, un para cada subcartafol, exportados a un único cartafol.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_AllMessages_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporta as mensaxes do cartafol como ficheiros en formato EML (sen estrutura/subcartafoles).<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exportar as mensaxes do cartafol como ficheiros en formato HTML (sen estrutura/subcartafoles).<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exportar as mensaxes do cartafol como ficheiros en formato HTML (sen estrutura/subcartafoles).<br />
+            Os anexos gárdanse como ficheiros separados. Isto tamén crea un ficheiro de índice HTML que
+            enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporta as mensaxes do cartafol como un conxunto de ficheiros en formato PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporta as mensaxes do cartafol como ficheiros de formato de texto plano, os anexos non están
+            incluídos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exporta as mensaxes do cartafol como ficheiros de formato de texto plano, incluídos os anexos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
+          <td>
+            Exporta as mensaxes do cartafol como un único ficheiro de formato de texto plano, os anexos non
+            están incluídos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
+          </td>
+          <td>
+            Exporta as mensaxes do cartafol como un único ficheiro de formato de texto plano, incluídos os
+            anexos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>
+            Exporta as mensaxes do cartafol como un único ficheiro de formato de texto CSV (valores separados
+            por comas), os anexos non están incluídos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_Index_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Crea un ficheiro de índice HTML das mensaxes do cartafol (sen exportación de mensaxes)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Crea un ficheiro de índice CSV das mensaxes do cartafol (sen exportación de mensaxes)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
+          <td>Abre o diálogo de busca e exporta os resultados desexados</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
+          <td>(Importar só a cartafoles locais, non IMAP)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
+          <td>Importa un ou máis ficheiros mbox desde un directorio.</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import one or more mbox files from a directory including their subfolders and structure.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
+          <td class="notranslate">Import all mbox files in a selected folder</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
+          <td class="notranslate">
+            Import all mbox files in a selected folder including their subfolders and structure
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_MaildirFiles_Id.title__</td>
+          <td>Seleccione e importe un cartafol maildir</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_Imp_EMLFormat_Id.title__</td>
+          <td class="notranslate"></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatMsgs_Id.title__</td>
+          <td>Selecciona e importa ficheiros de mensaxes EML (sen estrutura/subcartafoles)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDir_Id.title__</td>
+          <td>Importa todas as mensaxes EML dun único cartafol</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_EMLFormatDirAndSubdir_Id.title__</td>
+          <td>Importa todas as mensaxes EML dun só cartafol, incluíndo estrutura/subcartafoles</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
+          <td>Copie a ruta do sistema operativo do cartafol seleccionado</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
+          <td>Abre a ruta do sistema operativo do cartafol seleccionado</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Abra o diálogo de opcións ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Abre a páxina principal de axuda</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="message_functions_help">Menú contextual da mensaxe</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Elemento de menú</th>
+          <th>Descrición da función</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_TopId.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_EMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
+          <td>Exportar as mensaxes seleccionadas a ficheiros de formato EML (anexos incorporados)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporta as mensaxes seleccionadas a ficheiros de formato EML<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_HTMLFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a ficheiros de formato HTML</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a ficheiros de formato HTML, incluíndo anexos</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
+          <td>
+            Exporta as mensaxes como ficheiros en formato HTML.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
+          <td>
+            Exporta as mensaxes como ficheiros de formato HTML, incluíndo anexos.<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a ficheiros en formato PDF</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a ficheiros de formato de texto plano</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
+          <td>
+            Exporta as mensaxes seleccionadas a ficheiros de formato de texto sen formato, incluíndo anexos
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">
+            __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
+          </td>
+          <td>
+            Exporta as mensaxes como ficheiros de formato de texto plano, incluíndo anexos<br />
+            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+          </td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a un único ficheiro de texto CSV</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
+          <td>Exporta as mensaxes seleccionadas a un único ficheiro mbox</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
+          <td>Engade as mensaxes seleccionadas a un ficheiro mbox existente</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexHTML_Id.title__</td>
+          <td>Crea un ficheiro de índice HTML para as mensaxes seleccionadas</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
+          <td>Crea un ficheiro de índice CSV para as mensaxes seleccionadas</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardMessage_Id.title__</td>
+          <td>Copia unha única mensaxe seleccionada no portapapeis</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
+          <td>Copia as cabeceiras dunha única mensaxe seleccionada no portapapeis</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Abra o diálogo de opcións ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Abre a páxina principal de axuda</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <h2 id="tools_functions_help">Menú Ferramentas</h2>
+    <table class="menu-table">
+      <thead>
+        <tr>
+          <th>Elemento de menú</th>
+          <th>Descrición da función</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Exp_Profile_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
+          <td>Garda o perfil completo (correo, extensións, opcións)</td>
+        </tr>
+        <tr>
+          <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
+          <td>Garda todo o correo no perfil actual</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
+          <td>Importar un perfil completo (correo, extensións, opcións)</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
+          <td>Abra o diálogo de opcións ImportExportTools NG</td>
+        </tr>
+        <tr>
+          <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
+          <td>Abre a páxina principal de axuda</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2 id="customdate_format_help">Formato de data personalizado</h2>
+    <p>
+      A opción de data personalizada permite o control completo sobre o formato de data usado para ambos os
+      ficheiros do índice. Tanto o formato predeterminado &quot;Data&quot; como o novo formato personalizado
+      &quot;Data (personalizado)&quot; están dispoñibles nos menús despregables de nomes de ficheiro. A data
+      personalizada tamén se pode usar co token ${date_custom} usado nos nomes de ficheiro personalizados
+      estendidos. O formato de data orixinal (predeterminado) é:<br />
+      AAAAMMDDHHmm: 202011060808<br /><br />
+      O formato de data personalizado utiliza secuencias % que coinciden coa funcionalidade
+      <code>strftime()</code> similar a Unix. Está baseado nun porto JavaScript de
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
+      , unha función para formatar a data e a hora.<br />
+      Porto de strftime() por TH Doan (https://thdoan.github.io/strftime/)<br />
+    </p>
+    <h3>Descricións de secuencias de conversión</h3>
+    <table class="dateformat-table">
+      <thead>
+        <tr>
+          <th>Secuencia</th>
+          <th>Descrición</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="code1">%a</code></td>
+          <td>Nome abreviado do día da semana.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%A</code></td>
+          <td>Nome completo do día da semana.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%b</code></td>
+          <td>Nome abreviado do mes.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%B</code></td>
+          <td>Nome do mes completo.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%c</code></td>
+          <td>Representación de data e hora (UTC) preferida para a configuración rexional actual.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%C</code></td>
+          <td>Número de século (ano/100) como un número enteiro de 2 díxitos.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%d</code></td>
+          <td>Día do mes como número decimal (intervalo de 01 a 31).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%e</code></td>
+          <td>Día do mes como número decimal (intervalo do 1 ao 31).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%F</code></td>
+          <td>Formato de data ISO 8601 (equivalente a <code class="code1">%Y-%m-%d</code> ).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%G</code></td>
+          <td>
+            ISO 8601 ano baseado nunha semana co século como número decimal. O ano de 4 díxitos corresponde ao
+            número da semana ISO (ver <code class="code1">%V</code> ). Este ten o mesmo formato e valor que
+            <code class="code1">%Y</code> , excepto que se o número da semana ISO pertence ao ano anterior ou
+            ao seguinte, úsase ese ano no seu lugar.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%g</code></td>
+          <td>
+            Como <code class="code1">%G</code> , pero sen século, é dicir, cun ano de 2 díxitos (00-99).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%H</code></td>
+          <td>
+            Hora como número decimal usando un reloxo de 24 horas (intervalo de 00 a 23). Vexa tamén
+            <code class="code1">%k</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%I</code></td>
+          <td>
+            Hora como número decimal usando un reloxo de 12 horas (intervalo de 01 a 12). Vexa tamén
+            <code class="code1">%l</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%j</code></td>
+          <td>Día do ano como número decimal (intervalo de 001 a 366).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%k</code></td>
+          <td>
+            Hora como número decimal usando un reloxo de 24 horas (intervalo de 0 a 23). Vexa tamén
+            <code class="code1">%H</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%l</code></td>
+          <td>
+            Hora como número decimal usando un reloxo de 12 horas (intervalo de 1 a 12). Vexa tamén
+            <code class="code1">%I</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%m</code></td>
+          <td>Mes como número decimal (intervalo de 01 a 12).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%n</code></td>
+          <td>Mes como número decimal (intervalo de 1 a 12).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%M</code></td>
+          <td>Minuto como número decimal (intervalo de 00 a 59).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%p</code></td>
+          <td>
+            &quot;AM&quot; ou &quot;PM&quot; segundo o valor de hora indicado. O mediodía trátase como
+            &quot;PM&quot; e a medianoite como &quot;AM&quot;.
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%P</code></td>
+          <td>Como <code class="code1">%p</code> pero en minúsculas (&quot;am&quot; ou &quot;pm&quot;).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%s</code></td>
+          <td>Número de segundos desde a Época, 1970-01-01 00:00:00 +0000 (UTC).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%S</code></td>
+          <td>Segundo como número decimal (intervalo de 00 a 59).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%u</code></td>
+          <td>
+            Día da semana como decimal (intervalo de 1 a 7), sendo o luns 1. Consulte tamén
+            <code class="code1">%w</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%V</code></td>
+          <td>
+            Número de semana ISO 8601 do ano actual como número decimal (intervalo de 01 a 53), onde a semana
+            1 é a primeira semana que ten polo menos 4 días no ano novo (é dicir, o primeiro xoves).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%w</code></td>
+          <td>
+            Día da semana como decimal (intervalo de 0 a 6), sendo o domingo 0. Consulte tamén
+            <code class="code1">%u</code> .
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%x</code></td>
+          <td>Representación de data preferida para a rexión actual sen a hora.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%X</code></td>
+          <td>Representación horaria preferida para a rexión actual sen a data.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%y</code></td>
+          <td>Ano como número decimal sen século (intervalo de 00 a 99).</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Y</code></td>
+          <td>Ano como número decimal incluíndo o século.</td>
+        </tr>
+        <tr>
+          <td><code class="code1">%z</code></td>
+          <td>
+            O fuso horario numérico <code class="code1">+hhmm</code> ou <code class="code1">-hhmm</code> (é
+            dicir, a desfase de hora e minuto respecto da UTC).
+          </td>
+        </tr>
+        <tr>
+          <td><code class="code1">%Z</code></td>
+          <td>Nome ou abreviatura da zona horaria.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Notas de compatibilidade:</h3>
+    <ul>
+      <li><code class="code1">%c</code> - a cadea formatada é lixeiramente diferente</li>
+      <li>
+        <code class="code1">%D</code> - non implementado (use <code class="code1">%m/%d/%y</code> ou
+        <code class="code1">%d/%m/%y</code> )
+      </li>
+      <li><code class="code1">%e</code> - non se engade o espazo</li>
+      <li><code class="code1">%E</code> - non implementado</li>
+      <li><code class="code1">%h</code> - non implementado (use <code class="code1">%b</code> )</li>
+      <li><code class="code1">%k</code> - non se engade espazo</li>
+      <li>
+        <code class="code1">%n</code> - como <code class="code1">%m</code> , pero sen cero inicial (use
+        <code class="code1">\n</code> para a nova liña)
+      </li>
+      <li><code class="code1">%O</code> - non implementado</li>
+      <li><code class="code1">%r</code> - non implementado (use <code class="code1">%I:%M:%S %p</code> )</li>
+      <tr>
+        <td><code class="code1">${subject}</code></td>
+        <td>O asunto da mensaxe</td>
+      </tr>
+      <li><code class="code1">%R</code> - non implementado (use <code class="code1">%H:%M</code> )</li>
+      <li><code class="code1">%t</code> - non implementado (use <code class="code1">\t</code> )</li>
+      <li><code class="code1">%T</code> - non implementado (use <code class="code1">%H:%M:%S</code> )</li>
+      <li><code class="code1">%U</code> - non implementado</li>
+      <li><code class="code1">%W</code> - non implementado</li>
+      <li><code class="code1">%+</code> - non implementado</li>
+      <li><code class="code1">%%</code> - non implementado (use <code class="code1">%</code> )</li>
+    </ul>
+    <br /><br />
+    <h2 id="ext_filename_format_help">Formato de nome de ficheiro estendido:</h2>
+    <br />
+    <p>
+      O formato de nome de ficheiro estendido utiliza tokens. O nome de ficheiro exacto pódese construír
+      utilizando as fichas, así como calquera texto ou caracteres de nome de ficheiro válidos. Os caracteres
+      non válidos son: <code>| * : &lt; &gt; ? \ / &quot;</code> Os tokens en inglés (en-US) están dispoñibles
+      en calquera lugar. Tamén están dispoñibles os tokens específicos da rexión e aparecen debaixo da táboa
+      en inglés.<br /><br />
+      Exemplos:<br /><br />
+      <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - O formato predeterminado<br />
+      <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> : use o formato de data
+      personalizado en lugar do predeterminado<br />
+      <span class="notranslate"><code>${subject}-GmailMsg-${date}-${index}</code></span> - Con algún texto
+      personalizado<br /><br /><br />
+    </p>
+    <table class="token-table">
+      <tr>
+        <td>Token</td>
+        <td>Descrición</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td>O asunto da mensaxe. A lonxitude pode estar limitada pola opción de lonxitude do asunto.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td>O nome do remitente da mensaxe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td>O nome do destinatario da mensaxe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td>O enderezo de correo electrónico do remitente da mensaxe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td>O enderezo de correo electrónico do destinatario da mensaxe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td>Os destinatarios se a mensaxe está nun cartafol Enviados, se non, o nome do remitente</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td>O número de índice da mensaxe.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td>O valor da opción de texto do prefixo.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td>O valor da opción de texto do sufixo.</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td>O formato de data estándar. O formato predeterminado é: YYYYMMDDHHmm</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td>O formato de data personalizado. Consulte a sección de formato de data personalizado.</td>
+      </tr>
+    </table>
+    <br />
+    <table id="localized-token-table" class="token-table">
+      <tr>
+        <td>Token (en-US)</td>
+        <td>Localizado (<span id="locale1"></span> ) Ficha</td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${subject}</code></td>
+        <td class="notranslate"><code>__MSG_subjectFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender}</code></td>
+        <td class="notranslate"><code>__MSG_senderFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient}</code></td>
+        <td class="notranslate"><code>__MSG_recipientFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${sender_email}</code></td>
+        <td class="notranslate"><code>__MSG_senderEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${recipient_email}</code></td>
+        <td class="notranslate"><code>__MSG_recipientEmailFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${smart_name}</code></td>
+        <td class="notranslate"><code>__MSG_smartNameFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${index}</code></td>
+        <td class="notranslate"><code>__MSG_indexFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${prefix}</code></td>
+        <td class="notranslate"><code>__MSG_prefixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${suffix}</code></td>
+        <td class="notranslate"><code>__MSG_suffixFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date}</code></td>
+        <td class="notranslate"><code>__MSG_dateFmtToken__</code></td>
+      </tr>
+      <tr>
+        <td class="notranslate"><code>${date_custom}</code></td>
+        <td class="notranslate"><code>__MSG_dateCustomFmtToken__</code></td>
+      </tr>
+    </table>
+    <br />
+    <h2>Preferencias novas e experimentais (opcións)</h2>
+    <p>
+      Hai varias funcións e opcións novas que aínda non se poden configurar no diálogo de opcións. Unha vez
+      que estas funcións estean estabilizadas, engadiranse á IU.<br />
+      Para usalos deben estar configurados no Editor de configuración. Para acceder ao editor use o menú
+      Ferramentas/Opcións, seleccione a sección Avanzado e haberá un botón &quot;Editor de configuración&quot;
+      na parte inferior. Se escribe &#39;importexporttoolsng&#39; na barra de busca, obterá todas as
+      preferencias de extensión. A continuación, pode editar as distintas preferencias a continuación segundo
+      sexa necesario.
+    </p>
+    <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
+    <p>
+      Esta preferencia segue o mesmo formato completo que se utilizará para os ficheiros índice. É unha cadea
+      baleira por defecto, se ten unha cadea de data/hora formateada, isto cambiará o formato de data do
+      índice.
+    </p>
+    <p>
+      <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
+      <p>
+        <code class="notranslate"
+          >importexporttoolsng.export.embedded_attachments.filename_extended_format</code
+        >
+      </p>
+    </p>
+    <p>
+      Ambas estas preferencias usan o mesmo tipo de formatos de nomeamento de ficheiros estendidos que usa o
+      nome de ficheiro das mensaxes exportadas. O primeiro é para anexos externos, o segundo é para anexos
+      incrustados (en liña).
+    </p>
+    <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
+    <p>
+      Normalmente a &quot;Data&quot; dunha mensaxe en Thunderbird é a data establecida polo cliente de correo
+      do remitente. Establecer esta opción como &quot;verdadeiro&quot; utiliza a data de recepción no cliente
+      de correo do destinatario. Esta data empregarase tanto para os nomes de ficheiros como para a data dos
+      ficheiros de índice.
+    </p>
+    <h2>Función básica e global de teclas de acceso directo (atallos).</h2>
+    <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
+    <p>
+      Esta nova preferencia permite ao usuario configurar ata 10 atallos de teclado. Os atallos poden realizar
+      a maioría das funcións de ImportExportTools NG, así como outras funcións de Thunderbird. A cadea de
+      preferencias está formatada como un obxecto con formato JSON. O formato e as claves son os seguintes:
+    </p>
+    <p>
+      Exemplos de entradas de teclas rápidas (matriz de obxectos JSON)<br /><br />
+      <code class="notranslate">id</code> - o índice clave (1-10)<br />
+      <code class="notranslate">key</code> - a tecla (un só carácter)<br />
+      <code class="notranslate">keycode</code> : o &quot;VK_*&quot; define o código clave<br />
+      Pódense incluír calquera chave ou código, pero non ambos<br />
+      <code class="notranslate">modifiers</code> : os modificadores de teclas, lista separada por espazos
+      (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
+      <code class="notranslate">oncommand</code> - unha cadea de comando directa<br />
+      <code class="notranslate">contexts</code> - o contexto da xanela onde a chave está activa<br />
+      <code class="notranslate">&#39;all&#39;</code> : todas as fiestras en messenger, redactar, buscar<br />
+      <code class="notranslate">&#39;messenger&#39;</code> : a xanela principal do mensaxeiro e os seus
+      descendentes<br />
+      <code class="notranslate">&#39;compose&#39;</code> - a xanela de redacción da mensaxe<br />
+      <code class="notranslate">&#39;search&#39;</code> - o diálogo de busca<br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
+        &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;},
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;}]</code
+      ><br /><br />
+      <code class="notranslate"
+        >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printpreview&#39;)&quot;,
+        &quot;contexts&quot;: &quot;messenger&quot;},<br />
+        {&quot;id&quot;: &quot;2&quot;, &quot;key&quot;: &quot;D&quot;, &quot;modifiers&quot;: &quot;control
+        shift&quot;, &quot;oncommand&quot;: &quot;exportSelectedMsgs(5)&quot;, &quot;contexts&quot;:
+        &quot;messenger&quot;}, {&quot;id&quot;: &quot;3&quot;, &quot;key&quot;: &quot;Y&quot;,
+        &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;hk3
+        all&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}, {&quot;id&quot;: &quot;4&quot;,
+        &quot;key&quot;: &quot;P&quot;, &quot;modifiers&quot;: &quot;control shift&quot;,
+        &quot;oncommand&quot;: &quot;goDoCommand(&#39;cmd_printPreview&#39;)&quot;, &quot;contexts&quot;:
+        &quot;compose&quot; }]</code
+      ><br />
+    </p>
+
+    <p>
+      Como os atallos son novos e experimentais, tamén engadirei máis documentación no repositorio. Comprobe a
+      extensión
+      <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
+        >ImportExportTools NG README</a
+      ><br />
+    </p>
+    <br />
+    <h3>Versión 14.0.0: compatibilidade con Thunderbird 115 - 10 de xullo de 2023</h3>
+    <p>
+      Características e problemas abordados:<br />
+      <p>
+        - Soporte para Thunderbird 115 Supernova<br />
+        - Reelaborar e modernizar a interface de usuario de opcións<br />
+        - Soporte completo do modo escuro<br />
+        - Sistema de menú novo e consistente<br />
+        - Novo botón da barra de ferramentas<br />
+        - Axuda mellorada, aberta na instalación<br />
+        - Actualizar a conta de exportación<br /><br />
+        Grazas aos seguintes usuarios polas suxestións de mellora e a axuda de proba:<br /><br />
+        - <code class="notranslate">@kiki-ja</code><br />
+        - <code class="notranslate">@tidebre67</code><br />
+        - <code class="notranslate">@DenB10</code><br />
+        - <code class="notranslate">@Yarny0</code><br />
+        - <code class="notranslate">@librelegal</code><br />
+        - <code class="notranslate">@Mr-Update</code><br />
+        - <code class="notranslate">@Joergen</code><br />
+        - <code class="notranslate">@ovari</code><br />
+        - <code class="notranslate">@dipgithub</code><br />
+        - <code class="notranslate">@artofit</code><br />
+        - <code class="notranslate">@JF1313</code><br />
+        - <code class="notranslate">@jessejmorrow</code><br />
+        - <code class="notranslate">@spd2000</code><br />
+        - <code class="notranslate">@kanlukasz</code><br />
+        - <code class="notranslate">@razzmatazzz</code><br />
+        - <code class="notranslate">@triplee</code><br />
+        - <code class="notranslate">@Sergio3N</code><br />
+        - <code class="notranslate">@NickWick13</code> <br />
+      </p>
+      <script type="application/javascript" src="../../../modules/i18n.js"></script>
+      <script type="application/javascript" src="../../help.js"></script>
+    </p>
+  </body>
+</html>

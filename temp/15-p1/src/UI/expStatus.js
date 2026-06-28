@@ -1,0 +1,137 @@
+/*
+  ImportExportTools NG is a extension for Thunderbird mail client
+  providing import and export tools for messages and folders.
+  The extension authors:
+    Copyright (C) 2026 : Christopher Leidigh
+
+  ImportExportTools NG is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// expStatus.js
+
+const currentFolderProgress = document.getElementById("msg-progress");
+const currentFolder = document.getElementById("current-folder");
+const totalFolderMsgCount = document.getElementById("total-folder-msg-count");
+const totalFolderCount = document.getElementById("total-folder-count");
+const totalMsgCount = document.getElementById("total-msg-count");
+const totalErrCount = document.getElementById("total-errors");
+const totalMsgProgress = document.getElementById("total-msg-progress");
+const statusMsg = document.getElementById("statusMsg");
+
+const okButton = document.getElementById("okButton");
+const cancelButton = document.getElementById("cancelButton");
+var cancelHandled = false;
+
+// button listeners
+async function okButtonListener(event) {
+  let window = await messenger.windows.getCurrent();
+  messenger.windows.remove(window.id);
+}
+
+async function cancelButtonListener(event) {
+  await cancel();
+}
+
+async function cancel() {
+  messenger.runtime
+    .sendMessage({
+      command: "UI_EVENT",
+      source: "expStatusWin",
+      srcEvent: "cancelClick",
+    })
+    .then(async () => {
+      let window = await messenger.windows.getCurrent();
+      messenger.windows.remove(window.id);
+      cancelHandled = true;
+    });
+}
+
+browser.runtime.onMessage.addListener(msg => {
+  if (msg.target != "expStatusWin") {
+    return;
+  }
+  switch (msg.command) {
+    case "UI_UPDATE":
+      //console.log(msg);
+      currentFolder.innerText = msg.currentFolderName;
+      totalFolderMsgCount.innerText = msg.totalFolderMsgCount;
+      currentFolderProgress.max = msg.totalFolderMsgCount;
+      currentFolderProgress.value = msg.folderExportedMsgCount;
+      totalFolderCount.innerText = (msg.currentFolderIndex + 1) + " \\ " + msg.totalFolderCount;
+      totalMsgCount.innerText = msg.totalMsgCount;
+      totalMsgProgress.value = msg.totalMsgsExported;
+      totalMsgProgress.max = msg.totalMsgCount;
+      totalErrCount.innerText = msg.totalErrCount;
+      statusMsg.innerText = msg.statusMsg;
+
+      if (msg?.winType == "multipleFolders") {
+        //document.documentElement.style.setProperty('--multiple-folders-display', 'block');
+        //document.documentElement.style.setProperty('--multiple-folders-display-row', 'table-row');
+
+      }
+      break;
+    case "UI_CMD":
+      switch (msg.subCommand) {
+        case "closeWin":
+          cancel();
+          break;
+        case "finished":
+          okButton.removeAttribute("disabled");
+          cancelButton.setAttribute("disabled", "");
+          break;
+      }
+  }
+});
+
+//console.log("IETNG: UI started, listener running");
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // we resize the window to be pseudo reactive
+  // still have consistency issues
+  i18n.updateDocument();
+  let statusWin = await browser.windows.getCurrent();
+  
+  await document.fonts.ready;
+  await new Promise(r => requestAnimationFrame(r));
+  await new Promise(r => requestAnimationFrame(r));
+
+  // now we can resize win from content -still not consistent
+  const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+  const marginHeight = 10;
+
+  const os = navigator.platform.toLowerCase();
+  const extraWinSizePadding = os.includes("win")
+    ? 4
+    : 14;
+
+  let chromeHeight = window.outerHeight - window.innerHeight;
+  let calcWinHeight = contentHeight + chromeHeight + marginHeight + extraWinSizePadding;
+
+  await browser.windows.update(statusWin.id, { height: calcWinHeight });
+
+  messenger.runtime
+    .sendMessage({
+      command: "UI_EVENT",
+      source: "expStatusWin",
+      srcEvent: "expStatusWinOpen",
+    });
+
+  //console.log("IETNG: UI Sent expStatusWinOpen event");
+
+  okButton.addEventListener("click", okButtonListener);
+  cancelButton.addEventListener("click", cancelButtonListener);
+}, { once: true });
+
+window.addEventListener("beforeunload", (event) => {
+  if (!cancelHandled) {
+    cancel();
+  }
+  console.log("close");
+});
+

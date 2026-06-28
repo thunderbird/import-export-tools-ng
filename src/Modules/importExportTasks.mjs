@@ -17,7 +17,7 @@
 
 // We build the export task objects based on format and options
 
-import * as prefs from "./prefCmds.mjs";
+import { prefCmds } from "./prefCmds.mjs";
 
 
 const baseExpTask = {
@@ -48,7 +48,7 @@ const baseExpTask = {
     messageContainerDirectory: "",
   },
   names: {
-    namePatternType: "dropdown",
+    namePatternType: "simple",
     namePatternDropdown: "",
     namePatternDefault: "${subject}-${date}-${index}",
     namePatternCustom: "${subject}-${date}-${index}",
@@ -155,37 +155,37 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.messages.messageContainer = false;
 
   // names
-  let nameFormat = await prefs.getPref("exportEML.filename_format");
+  let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
-    expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
+    expTask.names.namePatternType = "simple";
+    expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
     expTask.names.namePatternType = "custom";
-    expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
+    expTask.names.namePatternCustom = await prefCmds.getPref("export.names.defaults.msgNameCustomFormat");
   }
 
-  expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+  expTask.fileSave.sentDate = await prefCmds.getPref("export.general.setMsgDateOnFilesAndDirs");
 
   // name components and constraints
 
-  expTask.dateFormat.custom = await prefs.getPref("export.filename_date_custom_format");
+  expTask.dateFormat.custom = await prefCmds.getPref("export.names.defaults.components.dateFormat.custom");
 
-  expTask.names.components.subjectMaxLen = await prefs.getPref("subject.max_length");
-  expTask.names.components.recipientNameMaxLen = await prefs.getPref("recipients.max_length");
-  expTask.names.components.authorNameMaxLen = await prefs.getPref("author.max_length");
+  expTask.names.components.subjectMaxLen = await prefCmds.getPref("export.names.defaults.components.subjectMaxLen");
+  expTask.names.components.recipientNameMaxLen = await prefCmds.getPref("export.names.defaults.components.recipientMaxLen");
+  expTask.names.components.authorNameMaxLen = await prefCmds.getPref("export.names.defaults.components.authorMaxLen");
 
   // filters and transforms
-  expTask.names.filters.alphaNumericOnly = await prefs.getPref("export.filenames_toascii");
-  expTask.names.filters.asciiOnly = await prefs.getPref("export.filename_filterUTF16");
-  expTask.names.filters.characterFilter = await prefs.getPref("export.filename_filter_characters");
-  expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
+  expTask.names.filters.alphaNumericOnly = await prefCmds.getPref("export.names.defaults.filters.alphaNumericOnly");
+  expTask.names.filters.asciiOnly = await prefCmds.getPref("export.names.defaults.filters.asciiOnly");
+  expTask.names.filters.characterFilter = await prefCmds.getPref("export.names.defaults.filters.characterFilter");
+  expTask.names.transforms.latinize = await prefCmds.getPref("export.names.defaults.transforms.latinize");
 
   // index
   expTask.index.create = params.index;
-  expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+  expTask.index.dateFormat = await prefCmds.getPref("index.dateFormat");
 
   // debug and logging
-  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  expTask.debug.logTypes = await prefCmds.getPref("debug.logTypes");
 
   return expTask;
 }
@@ -210,42 +210,42 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "html";
   expTask.attachments.save = params.saveAttachments;
-  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
-  expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
-  expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
+  expTask.attachments.containerStructure = await prefCmds.getPref("export.general.msgAndAttachmentsStructure");
+  expTask.attachments.namePattern = await prefCmds.getPref("export.names.defaults.attachmentDirsFormat");
+  expTask.attachments.inlineNamePattern = await prefCmds.getPref("export.names.defaults.inlineAttachmentDirsFormat");
 
-  expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+  expTask.fileSave.sentDate = await prefCmds.getPref("export.general.setMsgDateOnFilesAndDirs");
 
   // names
-  let nameFormat = await prefs.getPref("exportEML.filename_format");
+  let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
-    expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
+    expTask.names.namePatternType = "simple";
+    expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
     expTask.names.namePatternType = "custom";
-    expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
+    expTask.names.namePatternCustom = await prefCmds.getPref("export.names.defaults.msgNameCustomFormat");
   }
 
   // name components and constraints
 
-  expTask.dateFormat.custom = await prefs.getPref("export.filename_date_custom_format");
+  expTask.dateFormat.custom = await prefCmds.getPref("export.names.defaults.components.dateFormat.custom");
 
-  expTask.names.components.subjectMaxLen = await prefs.getPref("subject.max_length");
-  expTask.names.components.recipientNameMaxLen = await prefs.getPref("recipients.max_length");
-  expTask.names.components.authorNameMaxLen = await prefs.getPref("author.max_length");
+  expTask.names.components.subjectMaxLen = await prefCmds.getPref("export.names.defaults.components.subjectMaxLen");
+  expTask.names.components.recipientNameMaxLen = await prefCmds.getPref("export.names.defaults.components.recipientMaxLen");
+  expTask.names.components.authorNameMaxLen = await prefCmds.getPref("export.names.defaults.components.authorMaxLen");
 
   // filters and transforms
-  expTask.names.filters.alphaNumericOnly = await prefs.getPref("export.filenames_toascii");
-  expTask.names.filters.asciiOnly = await prefs.getPref("export.filename_filterUTF16");
-  expTask.names.filters.characterFilter = await prefs.getPref("export.filename_filter_characters");
-  expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
+  expTask.names.filters.alphaNumericOnly = await prefCmds.getPref("export.names.defaults.filters.alphaNumericOnly");
+  expTask.names.filters.asciiOnly = await prefCmds.getPref("export.names.defaults.filters.asciiOnly");
+  expTask.names.filters.characterFilter = await prefCmds.getPref("export.names.defaults.filters.characterFilter");
+  expTask.names.transforms.latinize = await prefCmds.getPref("export.names.defaults.transforms.latinize");
 
   // index
   expTask.index.create = params.index;
-  expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+  expTask.index.dateFormat = await prefCmds.getPref("index.dateFormat");
 
   // debug and logging
-  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  expTask.debug.logTypes = await prefCmds.getPref("debug.logTypes");
   return expTask;
 }
 
@@ -268,43 +268,43 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "pdf";
   expTask.attachments.save = params.saveAttachments;
-  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
+  expTask.attachments.containerStructure = await prefCmds.getPref("export.general.msgAndAttachmentsStructure");
 
-  expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
-  expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
+  expTask.attachments.namePattern = await prefCmds.getPref("export.names.defaults.attachmentDirsFormat");
+  expTask.attachments.inlineNamePattern = await prefCmds.getPref("export.names.defaults.inlineAttachmentDirsFormat");
 
-  expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+  expTask.fileSave.sentDate = await prefCmds.getPref("export.general.setMsgDateOnFilesAndDirs");
 
   // names
-  let nameFormat = await prefs.getPref("exportEML.filename_format");
+  let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
-    expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
+    expTask.names.namePatternType = "simple";
+    expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
     expTask.names.namePatternType = "custom";
-    expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
+    expTask.names.namePatternCustom = await prefCmds.getPref("export.names.defaults.msgNameCustomFormat");
   }
 
   // name components and constraints
 
-  expTask.dateFormat.custom = await prefs.getPref("export.filename_date_custom_format");
+  expTask.dateFormat.custom = await prefCmds.getPref("export.names.defaults.components.dateFormat.custom");
 
-  expTask.names.components.subjectMaxLen = await prefs.getPref("subject.max_length");
-  expTask.names.components.recipientNameMaxLen = await prefs.getPref("recipients.max_length");
-  expTask.names.components.authorNameMaxLen = await prefs.getPref("author.max_length");
+  expTask.names.components.subjectMaxLen = await prefCmds.getPref("export.names.defaults.components.subjectMaxLen");
+  expTask.names.components.recipientNameMaxLen = await prefCmds.getPref("export.names.defaults.components.recipientMaxLen");
+  expTask.names.components.authorNameMaxLen = await prefCmds.getPref("export.names.defaults.components.authorMaxLen");
 
   // filters and transforms
-  expTask.names.filters.alphaNumericOnly = await prefs.getPref("export.filenames_toascii");
-  expTask.names.filters.asciiOnly = await prefs.getPref("export.filename_filterUTF16");
-  expTask.names.filters.characterFilter = await prefs.getPref("export.filename_filter_characters");
-  expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
+  expTask.names.filters.alphaNumericOnly = await prefCmds.getPref("export.names.defaults.filters.alphaNumericOnly");
+  expTask.names.filters.asciiOnly = await prefCmds.getPref("export.names.defaults.filters.asciiOnly");
+  expTask.names.filters.characterFilter = await prefCmds.getPref("export.names.defaults.filters.characterFilter");
+  expTask.names.transforms.latinize = await prefCmds.getPref("export.names.defaults.transforms.latinize");
 
   // index
   expTask.index.create = params.index;
-  expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+  expTask.index.dateFormat = await prefCmds.getPref("index.dateFormat");
 
   // debug and logging
-  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  expTask.debug.logTypes = await prefCmds.getPref("debug.logTypes");
   return expTask;
 }
 
@@ -327,42 +327,42 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "txt";
   expTask.attachments.save = params.saveAttachments;
-  expTask.attachments.containerStructure = await prefs.getPref("export.attachments.containerStructure");
+  expTask.attachments.containerStructure = await prefCmds.getPref("export.general.msgAndAttachmentsStructure");
 
-  expTask.attachments.namePattern = await prefs.getPref("export.attachments.filename_extended_format");
-  expTask.attachments.inlineNamePattern = await prefs.getPref("export.embedded_attachments.filename_extended_format");
+  expTask.attachments.namePattern = await prefCmds.getPref("export.names.defaults.attachmentDirsFormat");
+  expTask.attachments.inlineNamePattern = await prefCmds.getPref("export.names.defaults.inlineAttachmentDirsFormat");
 
-  expTask.fileSave.sentDate = await prefs.getPref("export.set_filetime");
+  expTask.fileSave.sentDate = await prefCmds.getPref("export.general.setMsgDateOnFilesAndDirs");
 
   // names
-  let nameFormat = await prefs.getPref("exportEML.filename_format");
+  let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
   if (nameFormat == 2) {
-    expTask.names.namePatternType = "dropdown";
-    expTask.names.namePatternDropdown = await prefs.getPref("export.filename_pattern");
+    expTask.names.namePatternType = "simple";
+    expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
     expTask.names.namePatternType = "custom";
-    expTask.names.namePatternCustom = await prefs.getPref("export.filename_extended_format");
+    expTask.names.namePatternCustom = await prefCmds.getPref("export.names.defaults.msgNameCustomFormat");
   }
 
   // name components and constraints
 
-  expTask.dateFormat.custom = await prefs.getPref("export.filename_date_custom_format");
+  expTask.dateFormat.custom = await prefCmds.getPref("export.names.defaults.components.dateFormat.custom");
 
-  expTask.names.components.subjectMaxLen = await prefs.getPref("subject.max_length");
-  expTask.names.components.recipientNameMaxLen = await prefs.getPref("recipients.max_length");
-  expTask.names.components.authorNameMaxLen = await prefs.getPref("author.max_length");
+  expTask.names.components.subjectMaxLen = await prefCmds.getPref("export.names.defaults.components.subjectMaxLen");
+  expTask.names.components.recipientNameMaxLen = await prefCmds.getPref("export.names.defaults.components.recipientMaxLen");
+  expTask.names.components.authorNameMaxLen = await prefCmds.getPref("export.names.defaults.components.authorMaxLen");
 
   // filters and transforms
-  expTask.names.filters.alphaNumericOnly = await prefs.getPref("export.filenames_toascii");
-  expTask.names.filters.asciiOnly = await prefs.getPref("export.filename_filterUTF16");
-  expTask.names.filters.characterFilter = await prefs.getPref("export.filename_filter_characters");
-  expTask.names.transforms.latinize = await prefs.getPref("export.filename_latinize");
+  expTask.names.filters.alphaNumericOnly = await prefCmds.getPref("export.names.defaults.filters.alphaNumericOnly");
+  expTask.names.filters.asciiOnly = await prefCmds.getPref("export.names.defaults.filters.asciiOnly");
+  expTask.names.filters.characterFilter = await prefCmds.getPref("export.names.defaults.filters.characterFilter");
+  expTask.names.transforms.latinize = await prefCmds.getPref("export.names.defaults.transforms.latinize");
 
   // index
   expTask.index.create = params.index;
-  expTask.index.dateFormat = await prefs.getPref("export.index_date_custom_format");
+  expTask.index.dateFormat = await prefCmds.getPref("index.dateFormat");
 
   // debug and logging
-  expTask.debug.logTypes = await prefs.getPref("debug.logTypes");
+  expTask.debug.logTypes = await prefCmds.getPref("debug.logTypes");
   return expTask;
 }

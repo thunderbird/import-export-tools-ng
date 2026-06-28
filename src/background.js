@@ -17,8 +17,8 @@
 // background.js - this kicks off the WindowListener framework
 
 import { openHelp } from "/Modules/miscCmds.mjs";
-import * as prefs from "/Modules/prefCmds.mjs";
-import * as prefMigration from "/Modules/prefMigration.mjs";
+import * as prefMgmt from "/Modules/prefMgmt.mjs";
+import { prefCmds } from "./Modules/prefCmds.mjs";
 
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
@@ -36,7 +36,8 @@ browser.runtime.onInstalled.addListener(async (info) => {
 	await new Promise(resolve => window.setTimeout(resolve, 100));
 
 	// add option to not show help - #458
-	if (await prefs.getPref("help.showOnInstallAndUpdate")) {
+	let showOnInstallAndUpdate = await prefCmds.getPref("help.showOnInstallAndUpdate")
+	if (showOnInstallAndUpdate || showOnInstallAndUpdate == null) {
 		await openHelp({ opentype: "tab" });
 	}
 });
@@ -44,15 +45,14 @@ browser.runtime.onInstalled.addListener(async (info) => {
 async function main() {
 	console.log(`ImportExportTools NG v${browser.runtime.getManifest().version}`);
 
-	messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
-
-	// legacy pref migration for v15
-	prefMigration.legacyPrefMigration();
 
 	await browser.LegacyHelper.registerGlobalUrls([
 		["resource", "ietng", "."],
 	]);
 
+	//messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
+
+	await prefMgmt.initializePrefs();
 
 	// Register all necessary content, Resources, and locales
 

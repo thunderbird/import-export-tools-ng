@@ -18,7 +18,29 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Informacje o wydaniu: główne nowe wydanie v15</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Informacje o wydaniu:</h3>
+    <p>
+      <b>Informacja o wycofaniu:</b><br /><br />
+      Od wersji 15.0.3 wycofam starsze funkcje eksportu wiadomości. Prosimy o korzystanie z nowych funkcji
+      (wersja 15) i zgłaszanie wszelkich problemów z nimi, aby wycofanie nie miało na Państwa wpływu.<br /><br />
+      - Naprawiono: Opcja migracji z domyślnego formatu nazw plików (nie rozwijanego ani rozszerzonego)
+      powodująca generowanie niezdefiniowanych plików .xyz<br />
+      - Naprawiono: eksporty EML nie są kodowane do UTF-8, co powoduje powstawanie zniekształconych znaków
+      spoza zestawu ASCII<br />
+      - Naprawiono: Dodano tabelę załączników tylko dla eksportów wiadomości w formacie HTML i zwykłego
+      tekstu<br />
+      - Przywróć format daty nagłówka na 30.11.2026 11:20:30. Później będzie można to skonfigurować.<br />
+      - Dodaj pole „Odpowiedz do” do nagłówków, jeśli jest obecne<br />
+      - Zmiana logiki Nadawcy i Odbiorcy w nazwach plików:<br />
+      Użyj adresu e-mail, jeśli nie podano imienia i nazwiska<br />
+      - Dodano token nazwy pliku <span class="notranslate">${smart_email}</span><br />
+      - Naprawiono ustawienia regionalne dla nagłówków Do i Od<br />
+      - Naprawiono tytuł dla eksportów HTML<br />
+      - aktualizacja ustawień regionalnych fr @DenB10<br />
+      - aktualizacja ustawień regionalnych sv-SE @NickWick13<br />
+      - aktualizacja etykiety w en-US @wesinator<br />
+      - Naprawiono błędnego współautora z @Reyard na @Rayerd<br />
+    </p>
     <p>
       <b>Uwagi, funkcje i zmiany w wersji 15. Prosimy o uważne przeczytanie.</b><br /><br />
       Wersja 15 to całkowicie przeprojektowane funkcje eksportu wiadomości, zarówno do folderów, jak i do
@@ -33,9 +55,9 @@
       nowa opcja powiadomień systemu operacyjnego. Poniżej znajduje się lista funkcji:<br /><br />
       <b>Eksport PDF z załącznikami</b><br /><br />
       To długo oczekiwana opcja. Istnieje jedno istotne ograniczenie w stosunku do eksportu HTML. Tabela
-      załączników nie zawiera klikalnych linków. Do tej pory nie było możliwe wygenerowanie wyników z linkami
-      względnymi. Zarówno konwerter PDF, jak i przeglądarki konwertują wszystkie linki file:// na linki
-      absolutne, co jest bezużyteczne. Mam nadzieję, że w przyszłości uda się to jakoś osiągnąć.<br /><br />
+      załączników nie zawiera klikalnych linków. Do tej pory nie było możliwe wygenerowanie danych wyjściowych
+      z linkami względnymi. Zarówno konwerter PDF, jak i przeglądarki konwertują wszystkie linki file:// na
+      linki absolutne, które są bezużyteczne. Mam nadzieję, że w przyszłości uda się to jakoś osiągnąć.<br /><br />
       <b>Indeks</b><br /><br />
       Nowy plik indeksu umożliwia sortowanie kolumn poprzez kliknięcie dowolnego nagłówka.<br /><br />
       <b>Struktury eksportowe</b><br /><br />
@@ -84,7 +106,7 @@
         @kiki-ja<br />
         @tidebre67<br />
         @Yarny0<br />
-        @Reyerd<br />
+        @Rayerd<br />
         @Joergen<br />
         @JF1313<br />
         @joeldebruijn<br />
@@ -165,7 +187,7 @@
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>Eksportuj folder wraz ze wszystkimi podfolderami do drzewa wiadomości w formacie mbox</td>
+          <td>Eksportuj folder wraz ze wszystkimi jego podfolderami do drzewa wiadomości w formacie mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
@@ -902,7 +924,7 @@
       <code class="notranslate">key</code> - klucz (pojedynczy znak)<br />
       <code class="notranslate">keycode</code> - kod klucza definiujący &#39;VK_*&#39;<br />
       Można dołączyć klucz lub kod klucza, ale nie oba naraz<br />
-      <code class="notranslate">modifiers</code> – lista modyfikatorów klawiszowych rozdzielonych spacją
+      <code class="notranslate">modifiers</code> - lista modyfikatorów klawiszowych rozdzielonych spacją
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> – bezpośredni ciąg poleceń<br />
       <code class="notranslate">contexts</code> - kontekst okna, w którym klucz jest aktywny<br />

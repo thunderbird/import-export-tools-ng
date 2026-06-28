@@ -18,7 +18,28 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések: Új, fontos v15 kiadás</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Kiadási megjegyzések:</h3>
+    <p>
+      <b>Elavulási közlemény:</b><br /><br />
+      A 15.0.3-as verziótól kezdődően megszüntetem a korábbi exportüzenet-funkciókat. Kérjük, használd az új
+      (15-ös verzió) funkciókat, és jelentsd be a velük kapcsolatos problémákat, hogy a megszüntetés ne
+      érintsen téged.<br /><br />
+      - Javítás: Az alapértelmezett (nem legördülő vagy kiterjesztett) fájlnévformátumról történő migráció
+      során a fájlok nem definiáltak.xyz-ként jelennek meg.<br />
+      - Javítás: Az EML export nem UTF-8 kódolású, így a nem ASCII karakterek hibásak lettek.<br />
+      - Javítás: Mellékletek táblázat hozzáadva a csak HTML és sima szöveges üzenetek exportálásához<br />
+      - Fejléc dátumformátumának visszaállítása 2026.11.30. 11:20:30-ra Később konfigurálhatóvá válik<br />
+      - Válasz mező hozzáadása a fejlécekhez, ha van ilyen<br />
+      - A feladó és a címzett logikájának módosítása a fájlnevekben:<br />
+      Használja az e-mail címet, ha a név nem szerepel<br />
+      - Hozzáadott <span class="notranslate">${smart_email}</span> fájlnév token<br />
+      - Javítva a Címzett és Feladó fejlécek fr területi beállítása<br />
+      - Javított cím a HTML exportokhoz<br />
+      - fr területi frissítés @DenB10<br />
+      - sv-SE területi beállítás frissítés @NickWick13<br />
+      - címkefrissítés en-US nyelven @wesinator<br />
+      - Javítva a hibás közreműködő @Reyard-tól @Rayerd-ig<br />
+    </p>
     <p>
       <b>v15 Megjegyzések, funkciók és változások. Kérjük, figyelmesen olvassa el.</b><br /><br />
       A v15 az üzenetexportálási funkciók teljes átdolgozása, mind a mappák, mind a kiválasztott üzenetek
@@ -86,7 +107,7 @@
         @kiki-ja<br />
         @tidebre67<br />
         @Yarny0<br />
-        @Reyerd<br />
+        @Rayerd<br />
         @Joergen<br />
         @JF1313<br />
         @joeldebruijn<br />
@@ -213,8 +234,8 @@
           </td>
           <td>
             Exportálja a mappaüzeneteket HTML formátumú fájlokként (struktúra/almappák nélkül).<br />
-            A mellékletek külön fájlokként lesznek mentve. Ez egy HTML indexfájlt is létrehoz, amely
-            felsorolja az egyes üzeneteket.
+            A mellékletek külön fájlokban lesznek mentve. Ez egy HTML indexfájlt is létrehoz, amely felsorolja
+            az egyes üzeneteket.
           </td>
         </tr>
         <tr>
@@ -278,7 +299,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Létrehoz egy CSV indexfájlt az üzenetek mappájáról (nincs üzenetexportálás)</td>
+          <td>CSV indexfájlt hoz létre az üzenetek mappájából (üzenetek exportálása nélkül)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -630,7 +651,7 @@
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>A hónap decimális számként (1-től 12-ig terjedő tartomány).</td>
+          <td>A hónap decimális törtként (1-től 12-ig terjedő tartomány).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
@@ -719,7 +740,7 @@
       <li><code class="code1">%k</code> - szóköz nem kerül hozzáadásra</li>
       <li>
         <code class="code1">%n</code> - mint <code class="code1">%m</code> , de nincs kezdő nulla (sortöréshez
-        <code class="code1">\n</code> karaktert használ)
+        használj <code class="code1">\n</code> karaktert)
       </li>
       <li><code class="code1">%O</code> - nincs megvalósítva</li>
       <li>
@@ -861,8 +882,8 @@
     <br />
     <h2>Új és kísérleti beállítások (opciók)</h2>
     <p>
-      Számos új funkció és beállítási lehetőség van, amelyek még nem konfigurálhatók a beállítások
-      párbeszédpanelen. Amint ezek a funkciók stabilizálódnak, hozzáadódnak a felhasználói felülethez.<br />
+      Számos új funkció és beállítási lehetőség érhető el, amelyek még nem konfigurálhatók a beállítások
+      párbeszédpanelen. Amint ezek a funkciók stabilizálódnak, bekerülnek a felhasználói felületre.<br />
       Használatukhoz a Konfigurációszerkesztőben kell beállítani őket. A szerkesztő eléréséhez használd az
       Eszközök/Beállítások menüt, majd válaszd a Speciális részt, és alul találod a „Konfigurációszerkesztő”
       gombot. Ha a keresősávba beírod az „importexporttoolsng” kifejezést, megtalálod az összes
@@ -904,7 +925,7 @@
       Példa gyorsbillentyű-bejegyzésekre (JSON objektumok tömbje)<br /><br />
       <code class="notranslate">id</code> - a kulcs indexe (1-10)<br />
       <code class="notranslate">key</code> - a kulcs (egyetlen karakter)<br />
-      <code class="notranslate">keycode</code> - a &#39;VK_*&#39; definíciós kulcskódja<br />
+      <code class="notranslate">keycode</code> - a &#39;VK_*&#39; definíciós kulcskód<br />
       Vagy a kulcs, vagy a kulcskód megadható, de nem mindkettő.<br />
       <code class="notranslate">modifiers</code> - a legfontosabb módosítók, szóközzel elválasztott lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />

@@ -20,8 +20,30 @@
       </td>
     </tr>
   </table>
-  <h3 id="release_notes" style="padding-left: 4px">Udgivelsesnoter: Stor ny v15-udgivelse</h3>
-    <p>
+  <h3 id="release_notes" style="padding-left: 4px">Udgivelsesnoter:</h3>
+  <p>
+<b>Udfasningsmeddelelse:</b><br><br>
+Jeg udfaser de ældre eksportmeddelelsesfunktioner fra og med v15.0.3. Brug og rapporter eventuelle problemer med de nye (v15) funktioner, så udfasningen ikke påvirker dig.<br><br>
+
+- Rettelse: Migrering af indstillinger fra standard (ikke rullemenu eller udvidet) filnavnformat producerer undefined.xyz-filer<br>
+- Rettelse: EML-eksport koder ikke til UTF-8, hvilket producerer forvrængede ikke-ASCII-tegn<br>
+- Rettelse: Tilføjet tabel med vedhæftede filer til eksport af HTML og almindelig tekst-beskeder<br>
+- Gendan header-datoformat til 30/11/2026 11:20:30
+Gøres konfigurerbar senere<br>
+- Tilføj svar-til-felt til headere, hvis de findes<br>
+- Ændrer logikken for afsender og modtager i filnavne:<br>
+&nbsp;&nbsp;Brug e-mailadresse, hvis navnet ikke findes<br>
+- Tilføjet <span class="notranslate">${smart_email}</span> filnavnstoken<br>
+- Rettet fr-lokalitet for Til- og Fra-headere<br>
+- Rettet Titel til HTML-eksport<br>
+- Opdatering af lokalitet i fr @DenB10<br>
+- Opdatering af lokalitet i sv-SE @NickWick13<br>
+- Opdatering af etiket i en-US @wesinator<br>
+- Rettelse af forkert bidragyder fra @Reyard til @Rayerd<br>
+
+  </p> 
+  
+  <p>
       <b>v15 Noter, funktioner og ændringer. Læs grundigt.</b><br /><br />
       v15 er en komplet omskrivning af funktionerne til eksport af meddelelser, både mapper og udvalgte meddelelser.
       Det er den første fase i en moderne, primært WebExtension-teknologi. Det nye design er en enorm
@@ -87,7 +109,7 @@
         @kiki-ja<br />
         @tidebre67<br />
         @Yarny0<br />
-        @Reyerd<br />
+        @Rayerd<br />
         @Jørgen<br />
         @JF1313<br />
         @joeldebruijn<br />

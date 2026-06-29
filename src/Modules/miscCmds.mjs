@@ -15,8 +15,7 @@
 
 // miscCmds.js
 
-import * as prefs from "./prefCmds.mjs";
-
+import { prefCmds } from "./prefCmds.mjs";
 
 export async function getThunderbirdVersion() {
   let browserInfo = await messenger.runtime.getBrowserInfo();
@@ -33,7 +32,7 @@ var helpLocales = ['en-US', 'de', 'ca', 'cs', 'da', 'el', 'es-ES', 'fr', 'gl-ES'
 
 export async function openHelp(info) {
   if (!info.opentype) {
-    let openInWindow = await prefs.getPref("help.openInWindow");
+    let openInWindow = await prefCmds.getPref("help.openInWindow");
     info.opentype = openInWindow ? "window" : "tab";
   }
 

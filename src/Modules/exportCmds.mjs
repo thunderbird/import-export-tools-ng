@@ -34,7 +34,7 @@
 
 import { logging, log } from "./loggingWext.mjs";
 import { createExportTask } from "./importExportTasks.mjs";
-import * as prefs from "./prefCmds.mjs";
+import { prefCmds } from "./prefCmds.mjs";
 import { strftime } from "./strftime.mjs";
 import * as ui from "./ui.mjs";
 import { Ci } from "/Modules/CiConstants.js";

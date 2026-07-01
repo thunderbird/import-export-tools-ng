@@ -5,7 +5,7 @@
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/messenger.css"?>
 <?xml-stylesheet type="text/css" href="chrome://messenger/skin/themeableDialog.css"?>
 <?xml-stylesheet href="chrome://mboximport/content/mboximport/mboximport.css" type="text/css"?>
-<dialog
+<window
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsdialog"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 		type="child"
@@ -72,7 +72,7 @@
 									<label value="__MSG_MBlabel7a__" />
 								</html:td>
 								<html:td align="left" style="margin-bottom: 4px;">
-									<html:input id="MBsubmaxlen" maxlength="3" size="3" />
+									<html:input id="MBsubmaxlen"  maxlength="3" size="3" />
 									<label value="__MSG_MBlabel7b__" />
 								</html:td>
 							</html:tr>
@@ -390,8 +390,14 @@
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
+	<vbox height="8px"></vbox>
+	<hbox align="right" pack="end" style="padding-right: 8px">
+		<button id="okbutton" label="OK" oncommand="saveMboxImportPrefs();"/>
+		<button id="cancelbutton" label="__MSG_Cancel.button__" oncommand="window.close();"/>
+		<vbox height="8px"></vbox>
+	</hbox>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/modules/i18n.js"></script>
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/utils.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/wextAPIcmds.js" />
 	<script type="application/javascript" src="chrome://mboximport/content/mboximport/mboximportOptions.js" />
-</dialog>
+</window>

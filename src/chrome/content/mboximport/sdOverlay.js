@@ -68,7 +68,7 @@ var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mbo
 
 var searchFolder = null;
 
-function SDexportMsg() {
+async function SDexportMsg() {
 	var view;
 	var all;
 
@@ -106,7 +106,7 @@ function SDexportMsg() {
 	var file;
 
 	if (type === 4 || type === 6)
-		file = getPredefinedFolder(0);
+		file = await getPredefinedFolder(0);
 	else if (type === 5) {
 		fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
 		fp.appendFilters(nsIFilePicker.filterAll);
@@ -124,7 +124,7 @@ function SDexportMsg() {
 		} else
 			return;
 	} else
-		file = getPredefinedFolder(2);
+		file = await getPredefinedFolder(2);
 
 
 	if (!file) {

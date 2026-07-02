@@ -200,7 +200,7 @@ async function exportSelectedMsgs(type, params) {
 
 	try {
 
-		var file = getPredefinedFolder(2);
+		var file = await getPredefinedFolder(2);
 		let fpRes;
 
 		if (!file || type === 3 || type === 4) {
@@ -376,7 +376,7 @@ async function exportAllMsgs(type, params) {
 	}
 
 	try {
-		var file = getPredefinedFolder(1);
+		var file = await getPredefinedFolder(1);
 
 		if (!file && params.fileDialog) {
 			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);

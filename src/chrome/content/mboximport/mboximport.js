@@ -198,7 +198,7 @@ var IETprintPDFmain = {
 
 
 			IETprintPDFmain.total = IETprintPDFmain.uris.length;
-			let dir = getPredefinedFolder(2);
+			let dir = await getPredefinedFolder(2);
 			if (!dir) {
 				let winCtx = window;
 				const tbVersion = ietngUtils.getThunderbirdVersion();
@@ -662,7 +662,7 @@ async function exportfolder(params) {
 		}
 	}
 
-	var destdirNSIFILE = getPredefinedFolder(0);
+	var destdirNSIFILE = await getPredefinedFolder(0);
 
 	if (!destdirNSIFILE && params.fileDialog) {
 		destdirNSIFILE = IETgetPickerModeFolder();

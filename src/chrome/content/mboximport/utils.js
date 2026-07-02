@@ -357,7 +357,7 @@ async function dateInSecondsTo8601(secs) {
 	return msgDate8601string;
 }
 
-function IETexport_all(params) {
+async function IETexport_all(params) {
 	var just_mail = false;
 	if (params.profileExportType == "mailOnly") {
 		just_mail = true;

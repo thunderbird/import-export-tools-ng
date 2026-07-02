@@ -170,7 +170,7 @@ async function expMenuDispatcher(data) {
 				}
 				break;
 			case "WXMCMD_Exp_Profile":
-				rv = IETexport_all(data.params);
+				rv = await IETexport_all(data.params);
 				break;
 			case "WXMCMD_Imp_Profile":
 				rv = openProfileImportWizard();

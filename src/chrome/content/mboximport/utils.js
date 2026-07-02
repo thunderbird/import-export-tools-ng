@@ -137,7 +137,7 @@ async function getSubjectForHdr(hdr, dirPath) {
 
 	// Date - Key
 	var dateInSec = hdr.dateInSeconds;
-	var msgDate8601string = dateInSecondsTo8601(dateInSec);
+	var msgDate8601string = await dateInSecondsTo8601(dateInSec);
 	var key = hdr.messageKey;
 
 	var fname;
@@ -324,8 +324,7 @@ function formatNameForSubject(str, recipients) {
 	return str;
 }
 
-function dateInSecondsTo8601(secs) {
-	// var addTime = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_addtime");
+async function dateInSecondsTo8601(secs) {
 	var addTime = false;
 	var msgDate = new Date(secs * 1000);
 	var msgDate8601 = msgDate.getFullYear();

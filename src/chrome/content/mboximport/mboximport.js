@@ -149,11 +149,11 @@ var IETprintPDFmain = {
 				alert(ietngUtils.localizeMsg("noPDFmultipleFolders"));
 				return { status: "error" };
 			}
-			let question = IETformatWarning(1);
+			let question = await IETformatWarning(1);
 			if (!question)
 				return { status: "cancel" };
 
-			question = IETformatWarning(0);
+			question = await IETformatWarning(0);
 			if (!question)
 				return { status: "cancel" };
 

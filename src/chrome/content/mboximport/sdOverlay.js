@@ -87,7 +87,7 @@ async function SDexportMsg() {
 	var ml = document.getElementsByTagName("menulist");
 	var type = ml[ml.length - 1].selectedIndex;
 	if (type === 1 || type === 2) {
-		var question = IETformatWarning(1);
+		var question = await IETformatWarning(1);
 		if (!question)
 			return;
 	}

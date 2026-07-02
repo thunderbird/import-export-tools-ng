@@ -183,17 +183,17 @@ async function exportSelectedMsgs(type, params) {
 
 	var question;
 	if (type === 1 || type === 2 || type === 7) {
-		question = IETformatWarning(1);
+		question = await IETformatWarning(1);
 		if (!question)
 			return { status: "cancel" };
 
-		question = IETformatWarning(0);
+		question = await IETformatWarning(0);
 		if (!question)
 			return { status: "cancel" };
 	}
 
 	if (type === 8 || type === 9) {
-		question = IETformatWarning(1);
+		question = await IETformatWarning(1);
 		if (!question)
 			return { status: "cancel" };
 	}
@@ -360,16 +360,16 @@ async function exportAllMsgs(type, params) {
 	// only warn on first folder
 	if (params.warnings) {
 		if (type === 1 || type === 2 || type === 4) {
-			question = IETformatWarning(1);
+			question = await IETformatWarning(1);
 			if (!question)
 				return;
-			question = IETformatWarning(0);
+			question = await IETformatWarning(0);
 			if (!question)
 				return;
 		}
 
 		if (type === 8 || type === 9 || type === 7) {
-			question = IETformatWarning(1);
+			question = await IETformatWarning(1);
 			if (!question)
 				return;
 		}

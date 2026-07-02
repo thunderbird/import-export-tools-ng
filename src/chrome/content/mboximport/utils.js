@@ -409,7 +409,7 @@ function IETexport_all_delayed(just_mail, file) {
 	var date = buildContainerDirName();
 	file.append(profDir.leafName + "-" + date);
 
-	file.createUnique(1, 0755);
+	file.createUnique(1, 0o0755);
 	if (just_mail) {
 		profDir.append("Mail");
 		profDir.copyTo(file, "");
@@ -445,7 +445,7 @@ function saveExternalMailFolders(file) {
 		.getService(Ci.nsIProperties)
 		.get("ProfD", Ci.nsIFile);
 	file.append("ExternalMailFolders");
-	file.create(1, 0775);
+	file.create(1, 0o0775);
 
 	// Scan servers storage path on disk
 	for (let server of MailServices.accounts.allServers) {
@@ -465,7 +465,7 @@ function saveExternalMailFolders(file) {
 	}
 }
 
-function IETformatWarning(warning_type) {
+async function IETformatWarning(warning_type) {
 	if (warning_type === 0 && !await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.format_warning"))
 		return true;
 	if (warning_type === 1 && !await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.import_warning"))

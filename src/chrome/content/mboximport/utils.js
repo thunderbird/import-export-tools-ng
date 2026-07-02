@@ -784,7 +784,7 @@ async function IETgetSelectedMessages() {
 
 var IETlogger = {
 	write: async function (string) {
-		if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.log.enable"))
+		if (1)
 			return;
 		if (!IETlogger.file) {
 			IETlogger.file = Cc["@mozilla.org/file/directory_service;1"]

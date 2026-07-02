@@ -133,7 +133,7 @@ async function getSubjectForHdr(hdr, dirPath) {
 	if (subMaxLen > 0) {
 		subj = subj.substring(0, subMaxLen);
 	}
-	subj = nametoascii(subj);
+	subj = await nametoascii(subj);
 
 	// Date - Key
 	var dateInSec = hdr.dateInSeconds;
@@ -278,7 +278,7 @@ async function getSubjectForHdr(hdr, dirPath) {
 	fname = fname.replace(/[\x00-\x1F]/g, "_");
 
 	if (mustcorrectname)
-		fname = nametoascii(fname);
+		fname = await nametoascii(fname);
 	else {
 		// Allow ',' and single quote character which is valid
 		fname = fname.replace(/[\/\\:<>*\?\|]/g, "_");
@@ -532,7 +532,7 @@ function emailIsValid(email) {
 	return /\S+@\S+\.\S+/.test(email)
 }
 
-function IETstr_converter(str) {
+async function IETstr_converter(str) {
 	// null out function as this really isn't necessary 
 	//return str;
 
@@ -554,8 +554,9 @@ function IETstr_converter(str) {
 
 }
 
-function nametoascii(str) {
-	if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
+async function nametoascii(str) {
+	let toascii = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	if (!toascii) {
 		str = str.replace(/[\x00-\x19]/g, "_");
 		// Allow ',' and single quote character which is valid
 		return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
@@ -782,7 +783,7 @@ async function IETgetSelectedMessages() {
 }
 
 var IETlogger = {
-	write: function (string) {
+	write: async function (string) {
 		if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.log.enable"))
 			return;
 		if (!IETlogger.file) {
@@ -820,7 +821,7 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 }
 
 
-function constructAttachmentsFilename(type, hdr) {
+async function constructAttachmentsFilename(type, hdr) {
 
 	var emlNameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
 	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
@@ -839,7 +840,7 @@ function constructAttachmentsFilename(type, hdr) {
 
 	if (subMaxLen > 0)
 		subj = subj.substring(0, subMaxLen);
-	subj = nametoascii(subj);
+	subj = await nametoascii(subj);
 
 	// Date - Key
 	var dateInSec = hdr.dateInSeconds;

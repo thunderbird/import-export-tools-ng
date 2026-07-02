@@ -501,7 +501,7 @@ async function exportSubFolders(type, file, msgFolder, newTopDir, params) {
 			subFolderName = subFolder.localizedName;
 		}
 
-		let folderDirName = nametoascii(subFolderName);
+		let folderDirName = await nametoascii(subFolderName);
 		let folderDirNamePath = newTopDir.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		if (await IOUtils.exists(fullFolderPath)) {
@@ -601,7 +601,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		}
 
 		if (mustcorrectname)
-			direname = nametoascii(folderName) + "_" + datedir;
+			direname = await nametoascii(folderName) + "_" + datedir;
 		else {
 			direname = folderName + "_" + datedir;
 			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
@@ -612,7 +612,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 			index1++;
 			filetemp = file.clone();
 			if (mustcorrectname)
-				direname = nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
+				direname = await nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
 			else
 				direname = folderName + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
@@ -714,7 +714,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		}
 
 		if (mustcorrectname)
-			direname = nametoascii(folderName) + "_" + datedir;
+			direname = await nametoascii(folderName) + "_" + datedir;
 		else {
 			direname = folderName + "_" + datedir;
 			direname = direname.replace(/[\\:?"\*\/<>|]/g, "_");
@@ -725,7 +725,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 			index1++;
 			filetemp = file.clone();
 			if (mustcorrectname)
-				direname = nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
+				direname = await nametoascii(folderName) + "_" + datedir + "-" + index1.toString();
 			else
 				direname = folderName.replace(/[\\:?"\*\/<>|]/g, "_") + "_" + datedir + "-" + index1.toString();
 			filetemp.append(direname);
@@ -736,7 +736,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		// deal with top then recursive 
 
-		let folderDirName = nametoascii(folderName);
+		let folderDirName = await nametoascii(folderName);
 		let folderDirNamePath = file.path;
 		let fullFolderPath = PathUtils.join(folderDirNamePath, folderDirName);
 		await IOUtils.makeDirectory(fullFolderPath);
@@ -1013,7 +1013,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 		if (objMin < 10)
 			objMin = "0" + objMin;
 		if (!justIndex) {
-			var urlname = IETstr_converter(hdrs[4]);
+			var urlname = await IETstr_converter(hdrs[4]);
 			urlname.replace(/[\/\\:<>*\?\"\|]/g, "_");
 			try {
 				var url = subdirname + encodeURIComponent(urlname) + ext;
@@ -1065,7 +1065,7 @@ async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		clone2.createUnique(0, 0o644);
 	}
 
-	var subdirname = nametoascii(IETmesssubdir);
+	var subdirname = await nametoascii(IETmesssubdir);
 	var sep = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
@@ -1477,7 +1477,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										if (attachmentsExtendedFilenameFormat === "") {
 											attDirContainer.append("Attachments");
 										} else {
-											let afname = constructAttachmentsFilename(1, hdr);
+											let afname = await constructAttachmentsFilename(1, hdr);
 											attDirContainer.append(afname);
 										}
 
@@ -1662,7 +1662,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							sub = sub.replace(/[\x00-\x1F]/g, "_");
 						}
 
-						sub = IETstr_converter(sub);
+						sub = await IETstr_converter(sub);
 
 						// The name is taken from the subject "corrected"
 						if (convertToText)
@@ -1723,7 +1723,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										if (attachmentsExtendedFilenameFormat === "") {
 											embImgContainer.append("EmbeddedImages");
 										} else {
-											let afname = constructAttachmentsFilename(2, hdr);
+											let afname = await constructAttachmentsFilename(2, hdr);
 											embImgContainer.append(afname);
 										}
 

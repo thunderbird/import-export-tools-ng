@@ -939,7 +939,7 @@ async function findGoodFolderName(foldername, destdirNSIFILE, structure) {
 	// Change unsafe chars for filenames with underscore
 	foldername = IETcleanName(foldername);
 	NSclone.append(foldername);
-	foldername = nametoascii(foldername);
+	foldername = await nametoascii(foldername);
 	// if the user wants to overwrite the files with the same name in the folder destination
 	// the function must delete the existing files and then return the original filename.
 	// If it's a structured export, it's deleted also the filename.sbd subdirectory

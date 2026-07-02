@@ -35,7 +35,6 @@ IETopenFPsync,
 IETgetSelectedMessages,
 isMbox,
 IETemlArray2hdrArray,
-IETprefs,
 msgFolder2LocalFile,
 buildContainerDirName,
 nametoascii,
@@ -47,7 +46,7 @@ IETlogger,
 IETcopyStrToClip,
 MsgHdrToMimeMessage,
 findGoodFolderName,
-IETgetComplexPref,
+await IETStoragePrefs.getComplexPref,
 constructAttachmentsFilename,
 gTabmail,
 */
@@ -71,7 +70,8 @@ var { MailServices } = Ietng_ESM
 
 var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/email-addresses.mjs");
 
-// console.debug('exportTools start');
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var IETexported;
 var IETskipped;
@@ -296,15 +296,15 @@ async function exportSelectedMsgs(type, params) {
 				break;
 			case 5:
 				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-				createIndex(type, file, hdrArray, msgFolder, true, true);
+				await createIndex(type, file, hdrArray, msgFolder, true, true);
 				break;
 			case 6:
 				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-				createIndexCSV(type, file, hdrArray, msgFolder, false);
+				await createIndexCSV(type, file, hdrArray, msgFolder, false);
 				break;
 			case 7:
 				hdrArray = IETemlArray2hdrArray(msgUris, true, file);
-				createIndexCSV(type, file, hdrArray, msgFolder, true);
+				await createIndexCSV(type, file, hdrArray, msgFolder, true);
 				break;
 			case 8:
 				await exportAsHtml(msguri, msgUris, file, false, false, false, false, null, null, msgFolder, true);
@@ -318,7 +318,7 @@ async function exportSelectedMsgs(type, params) {
 
 		if (needIndex) {
 			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
-			createIndex(type, file, hdrArray, msgFolder, false, false);
+			await createIndex(type, file, hdrArray, msgFolder, false, false);
 		}
 		if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
 			document.getElementById("IETabortIcon").collapsed = false;
@@ -581,10 +581,10 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 	IETskipped = 0;
 
 	var hdrArray = [];
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var useContainer = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
 
 	if (useContainer && !containerOverride) {
 
@@ -656,7 +656,7 @@ async function exportAllMsgsDelayedVF(type, file, msgFolder, containerOverride, 
 		// cleidigh
 		// var addBody = (type === 6) ? true : false;
 		var addBody = type === 6;
-		var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
+		var hdrStr = await IETstoreHeaders(msg, msguri, subfile, addBody);
 		hdrArray.push(hdrStr);
 	}
 
@@ -693,11 +693,11 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 	}
 	var hdrArray = [];
 
-	var mustcorrectname = IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
+	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var filex = msgFolder2LocalFile(msgFolder);
 	var datedir = buildContainerDirName();
-	var useContainer = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
-	var skipExistingMsg = IETprefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
+	var useContainer = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder");
+	var skipExistingMsg = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.skip_existing_msg");
 	var ext = IETgetExt(type);
 
 	if (useContainer && !overrideContainer) {
@@ -791,7 +791,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 		if (!useContainer && skipExistingMsg) {
 			var sog = getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
-			tempFile.append(sog + ext);			
+			tempFile.append(sog + ext);
 			tempExists = tempFile.exists();
 		}
 
@@ -803,7 +803,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 				IETabort = false;
 				break;
 			}
-			var hdrStr = IETstoreHeaders(msg, msguri, subfile, addBody);
+			var hdrStr = await IETstoreHeaders(msg, msguri, subfile, addBody);
 			hdrArray.push(hdrStr);
 		}
 
@@ -848,16 +848,16 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 			result = await exportAsHtml(firstUri, null, subfile, true, true, false, false, hdrArray, file2, msgFolder);
 			break;
 		case 3: // Just HTML index
-			result = createIndex(type, file2, hdrArray, msgFolder, true, true);
+			result = await createIndex(type, file2, hdrArray, msgFolder, true, true);
 			break;
 		case 4: // Plain text, single file, no index
 			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder);
 			break;
 		case 5: // Just CSV index
-			result = createIndexCSV(type, file2, hdrArray, msgFolder, false);
+			result = await createIndexCSV(type, file2, hdrArray, msgFolder, false);
 			break;
 		case 6: // CSV format, with body too
-			result = createIndexCSV(type, file2, hdrArray, msgFolder, true);
+			result = await createIndexCSV(type, file2, hdrArray, msgFolder, true);
 			break;
 		case 7: // Plain text, single file, no index and with attachments
 			result = await exportAsHtml(firstUri, null, subfile, true, true, false, true, hdrArray, null, msgFolder, true);
@@ -884,21 +884,15 @@ async function IETrunExport(type, subfile, hdrArray, file2, msgFolder) {
 
 var attIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2aTagOURjHH+KGuMXCZ0m3aycLKcqGEsICG2VhYXG7xYIsRSzIRjZ0EYnkY+EjG4qV8rWyQG5ZKPmIheQj3x/Pv5k3c+d9zpw5M2dm3nM9v/p33/vOOU/Pf94z55x5ZogURVEURVEURVEUpZPoYi1irWf1sdax5rNGNplUHcxlnWd9YP0R9JY1wJrZVIJVMYZ1jPWLZONpfWXtZI1oIlnfTGHdo3zG07pM0ckLlsmsh1TMfEuna8/aE/jlH1O2uR+sd6zflnabas69NDbz91krKFoNwHjWBtZTQ/sXrLH1pV8Om/mTrNGGvt2sW4Z+QYwCm/njZF/rMW+8F/peqiZlf/gw3+Kg0P+N53y94tM8WCvEwB7CdOk0im/zYJkhVreflP3hYh67ukOs5TnibhFiffaZuA9czQ/E3z8j+1C+K8R74Df9criaP5I6viQjdp8h5l7fJoqCZaqMeajfEBuT33ehPSbAOf6tuIOd220qZx7aKMQ2mYfOVOKmANLk5Goe+/6eVNws869Y06sy5MojkpM8QfnMQxdSMbPMf2EtrMyNIxNJTvIs5Tf/hDUpEdNmPs+SWSmY7WfEn3tJTnRBfNxmfpA1LRE7CPMY8kvj/00j4CJFw/SU4XiQ5jFMW9f7tsT3pjkgSxj2SfNrqMPNj2LdoH9JXU8cy1oFhoV5sIOGJoZNSG98DPuAOzSMzWPoS8WIq4k22AlmbYYgnKSpiT5BmAdbSU7yHA2t0eNmZjO1V3wxR+Ay6Uq0DcY8uEntSaIgOS6jD1aHnvhvmqDMA2n47y4YKzjzKDtLya4qECs482ACyQm7Jtvxm5wsPlF70tsd+gdtHkgPMTHT5ylqBm8e7CLZwB5LP7zgELx5MIv1jWQjh6l9qcPEiZP209AnKPMtULo27fAwR1xjHWVdoejJrqltkOYBVoMid31J4Q2P1XUn7pPZrNdUzPxHCvSXT4NCJJ7ju5h/zprXRLJVgZsePKh4SfZffT914LM7X6BIspi1j6IaPQomqO4eYK2kgN7eUBRFURRF+S/4CwPqfEibwrHFAAAAAElFTkSuQmCC"
 
-function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
+async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.index_short1")) {
-		createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir);
-		return { status: kStatusOK };
-	}
-
-
-	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
+	if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
 		return { status: kStatusOK };
 
 
 	// Custom date format
 	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
-	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+	var customDateFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
 	var myDate = new Date();
 	var titleDate;
 
@@ -921,7 +915,7 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 	clone2.createUnique(0, 0o644);
 
 	var date_received_hdr = "";
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+	if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
 		date_received_hdr = " (" + ietngUtils.localizeMsg("Received") + ")";
 	}
 
@@ -1056,162 +1050,11 @@ function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) {
 
 	}
 	data = data + "</table></body></html>";
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
+	await IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
 	return { status: kStatusOK };
 }
 
-function createIndexShort1(type, file2, hdrArray, msgFolder, justIndex, subdir) {
-	if (!IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_container_folder") && !justIndex && subdir)
-		return;
-
-	// Custom date format
-	// pref("extensions.importexporttoolsng.export.index_date_custom_format", "");
-	var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
-	var myDate = new Date();
-	var titleDate;
-
-	if (customDateFormat === "") {
-		titleDate = myDate.toLocaleString();
-	} else {
-		titleDate = strftime.strftime(customDateFormat, myDate);
-	}
-
-	var clone2 = file2.clone();
-	var ext = IETgetExt(type);
-	var subdirname;
-
-	if (subdir)
-		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
-	else
-		subdirname = "";
-	// Build the index html page
-	clone2.append("index.html");
-
-	var date_received_hdr = "";
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
-		date_received_hdr = " (" + ietngUtils.localizeMsg("Received") + ")";
-	}
-
-	// Improve index table formatting
-	let styles = '<style>\r\n';
-	styles += 'table { border-collapse: collapse; }\r\n';
-	styles += 'th { background-color: #e6ffff; }\r\n';
-	styles += 'th, td { padding: 2px; text-align: left; vertical-align: center; }\r\n';
-	styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
-	styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
-	styles += 'tr>:nth-child(3) { text-align: center; }\r\n';
-	styles += '</style>\r\n';
-
-	var data = '<html>\r\n<head>\r\n';
-
-	data = data + styles;
-	data = data + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n<title>' + msgFolder.name + '</title>\r\n</head>\r\n<body>\r\n<h2>' + msgFolder.name + " (" + titleDate + ")</h2>";
-
-	let subjectHdr = ietngUtils.localizeMsg("msgHdr.Subject");
-	let fromHdr = ietngUtils.localizeMsg("msgHdr.From");
-	let toHdr = ietngUtils.localizeMsg("msgHdr.To");
-	let dateHdr = ietngUtils.localizeMsg("msgHdr.Date");
-
-	data = data + '<table width="99%" border="1" >';
-	data = data + "<tr>";
-	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 1
-	data = data + "<th><b>" + "&nbsp;&nbsp;" + "</b></th>"; // Check 2
-	data = data + "<th><b>" + "Attachment" + "</b></th>"; // Attachment
-	data = data + "<th><b>" + ietngUtils.localizeMsg("msgHdr.Subject") + "</b></th>"; // Subject
-	data = data + "<th><b>" + ietngUtils.localizeMsg("msgHdr.From") + "</b></th>"; // From
-	data = data + "<th><b>" + ietngUtils.localizeMsg("msgHdr.Date") + date_received_hdr + "</b></th>"; // Date
-	data = data + "</tr>";
-
-
-	// Fill the table with the data of the arrays
-	for (let i = 0; i < hdrArray.length; i++) {
-		var currentMsgHdr = hdrArray[i];
-		// If the last char is "1", so the first letter must be modified in lower case
-		if (currentMsgHdr.substring(currentMsgHdr.length - 1) === "1")
-			currentMsgHdr = currentMsgHdr.substring(0, 1).toLowerCase() + currentMsgHdr.substring(1, currentMsgHdr.length - 1);
-		// Splits the array element to find the needed headers
-		var hdrs = currentMsgHdr.split("§][§^^§");
-		var time;
-		var subj;
-		var recc;
-		var auth;
-
-		switch (IETsortType) {
-			case 1:
-				time = hdrs[3];
-				subj = hdrs[0];
-				recc = hdrs[1];
-				auth = hdrs[2];
-				break;
-
-			case 2:
-				time = hdrs[3];
-				subj = hdrs[1];
-				recc = hdrs[2];
-				auth = hdrs[0];
-				break;
-
-			case 3:
-				time = hdrs[3];
-				subj = hdrs[1];
-				recc = hdrs[0];
-				auth = hdrs[2];
-				break;
-
-			default:
-				time = hdrs[0];
-				subj = hdrs[1];
-				recc = hdrs[2];
-				auth = hdrs[3];
-		}
-
-		// Attachment flag may have changed from integer to string
-		// https://github.com/thundernest/import-export-tools-ng/issues/68
-
-		var hasAtt;
-		if (hdrs[6] === 1 || hdrs[6] === '1') {
-			hasAtt = "* ";
-		} else
-			hasAtt = "&nbsp;";
-
-		// Find hour and minutes of the message
-		var time2 = time / 1000;
-		var obj = new Date(time2);
-		var objHour = obj.getHours();
-		var objMin = obj.getMinutes();
-		if (objMin < 10)
-			objMin = "0" + objMin;
-		if (!justIndex) {
-			var urlname = IETstr_converter(hdrs[4]);
-			var url = subdirname + encodeURIComponent(urlname) + ext;
-			data = data + '\r\n<tr><td><a href="' + url + '">' + subj + "</a></td>";
-		} else {
-			data = data + "\r\n<tr><td>" + "   " + "</td>";
-		}
-
-		data = data + "\r\n<td>" + "   " + "</td>";
-
-		data = data + '\r\n<td align="center">' + hasAtt + "</td>";
-		data = data + "\r\n<td>" + subj + "</td>";
-		data = data + "\r\n<td>" + auth + "</td>";
-		// The nowrap attribute is used not to break the time row
-
-		// Custom date format
-
-		if (customDateFormat === "") {
-			data = data + "\r\n<td nowrap>" + strftime.strftime("%n/%d/%Y", new Date(time / 1000)) + " " + objHour + "." + objMin + "</td>";
-		} else {
-			data = data + "\r\n<td nowrap>" + strftime.strftime(customDateFormat, new Date(time / 1000)) + "</td>";
-		}
-		data = data + "</tr>";
-	}
-	data = data + "</table></body></html>";
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, "UTF-8");
-}
-
-
-
-function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
+async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	var clone2;
 	if (type !== 7 && type !== 6) {
 		clone2 = file2.clone();
@@ -1223,7 +1066,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	}
 
 	var subdirname = nametoascii(IETmesssubdir);
-	var sep = IETprefs.getCharPref("extensions.importexporttoolsng.csv_separator");
+	var sep = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.csv_separator");
 	var data = "";
 
 	// Build the index CSV page
@@ -1308,7 +1151,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 		// Utilize index format for CSV 
 		// https://github.com/thundernest/import-export-tools-ng/issues/161
 
-		var customDateFormat = IETgetComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
+		var customDateFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.index_date_custom_format");
 		var msgDate = new Date(time / 1000);
 		var csvDate;
 
@@ -1324,7 +1167,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 		// Add experimental account /folder column #349
 		let accountFolderCol = "";
-		if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.csv.account_folder_col")) {
+		if (0) {
 			accountFolderCol = '"' + hdrs[5] + '"' + sep;
 		}
 
@@ -1337,7 +1180,7 @@ function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 
 	if (document.getElementById("IETabortIcon") && addBody)
 		document.getElementById("IETabortIcon").collapsed = true;
-	IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
+	await IETwriteDataOnDiskWithCharset(clone2, data, false, null, null, null);
 	return { status: kStatusOK };
 }
 
@@ -1366,7 +1209,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 
 				onStartRequest: function (aRequest) { },
 
-				onStopRequest: function (aRequest, aStatusCode) {
+				onStopRequest: async function (aRequest, aStatusCode) {
 					var sub;
 					var data;
 
@@ -1407,7 +1250,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							var fileClone = file.clone();
 							data = data.replace(/\r\n/g, "\n");
 
-							IETwriteDataOnDisk(fileClone, data, true, null, null);
+							await IETwriteDataOnDisk(fileClone, data, true, null, null);
 							sub = true;
 						} else {
 							if (!hdrArray) {
@@ -1440,7 +1283,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 								clone.append(sub + ".eml");
 								clone.createUnique(0, 0o644);
 								var time = (hdr.dateInSeconds) * 1000;
-								IETwriteDataOnDisk(clone, data, false, null, time);
+								await IETwriteDataOnDisk(clone, data, false, null, time);
 								// myEMLlistener.file2 exists just if we need the index
 								if (myEMLlistner.file2) {
 									var nameNoExt = clone.leafName.replace(/\.eml$/, "");
@@ -1480,7 +1323,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							return;
 						} else {
 							if (myEMLlistner.file2)
-								createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
+								await createIndex(0, myEMLlistner.file2, hdrArray, myEMLlistner.msgFolder, false, true);
 							IETexported = 0;
 							IETtotal = 0;
 							IETskipped = 0;
@@ -1551,6 +1394,12 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToClip, append, hdrArray, file2, msgFolder, saveAttachments) {
 
 	//console.log("exportashtml", msgFolder)
+	// get these prefs asynchronously here for the code that 
+	// later is synchronous 
+	// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
+	var HTMLasView = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+	var useConverter = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
+
 
 	if (!msgFolder) {
 		var messageService = MailServices.messageServiceFromURI(uri);
@@ -1623,7 +1472,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 									var att = attachments[i];
 									if (noDir) {
 										var attDirContainer = file.clone();
-										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
+										var attachmentsExtendedFilenameFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.attachments.filename_extended_format");
 
 										if (attachmentsExtendedFilenameFormat === "") {
 											attDirContainer.append("Attachments");
@@ -1869,7 +1718,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 								for (var i = 0; i < imgs.length; i++) {
 									if (!embImgContainer) {
 										embImgContainer = file.clone();
-										var attachmentsExtendedFilenameFormat = IETgetComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
+										var attachmentsExtendedFilenameFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.embedded_attachments.filename_extended_format");
 
 										if (attachmentsExtendedFilenameFormat === "") {
 											embImgContainer.append("EmbeddedImages");
@@ -1901,11 +1750,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 										// A setTimeout delayed action is required. 
 										// Setting the attachment date to match the message date #549
 
+										let setFileTimeOption = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime");
+
 										// @implements {nsIUrlListener}
 										const embImgsUrlListener = {
 											OnStartRunningUrl(url) { },
 											OnStopRunningUrl(url, status) {
-												if (time && !IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+												if (time && !setFileTimeOption) {
 													return;
 												}
 												let curAtt = imgAtts.find((att) => {
@@ -2012,15 +1863,15 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 							data = IEThtmlToText(data, msgFolder);
 						}
 						if (convertToText && append) {
-							data = data + "\r\n\r\n" + IETprefs.getCharPref("extensions.importexporttoolsng.export.mail_separator") + "\r\n\r\n";
+							data = data + "\r\n\r\n" + "-------------------------";
 
 							var nfile = appendClone.leafName + ".txt";
-							IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
+							await IETwriteDataOnDiskWithCharset(appendClone, data, true, nfile, time, null);
 						} else if (convertToText) {
-							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
+							await IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, null);
 						} else {
 							data = IETconvertToUTF8(data);
-							IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
+							await IETwriteDataOnDiskWithCharset(clone, data, true, nfile, time, "UTF-8");
 						}
 
 						IETexported = IETexported + 1;
@@ -2046,7 +1897,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 						} else {
 							var type = convertToText ? 2 : 1;
 							if (myTxtListener.file2) {
-								createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
+								await createIndex(type, myTxtListener.file2, hdrArray, myTxtListener.msgFolder, false, true);
 							}
 							if (saveAttachments)
 								type += 7;
@@ -2079,8 +1930,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			};
 
 
-			// This pref fixes also bug https://bugzilla.mozilla.org/show_bug.cgi?id=384127
-			var HTMLasView = IETprefs.getBoolPref("extensions.importexporttoolsng.export.HTML_as_displayed");
+
 			// For additional headers see http://lxr.mozilla.org/mozilla1.8/source/mailnews/mime/src/nsStreamConverter.cpp#452
 			if (!HTMLasView && !convertToText && !copyToClip)
 				uri = uri + "?header=saveas";
@@ -2109,7 +1959,6 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			insert a preference to use it anyway.
 			*/
 
-			var useConverter = IETprefs.getBoolPref("extensions.importexporttoolsng.export.use_converter");
 			if (hdr.folder.server.type === "nntp" || useConverter) {
 				var nsURI = Cc["@mozilla.org/network/io-service;1"]
 					.getService(Ci.nsIIOService).newURI(uri, null, null);
@@ -2173,7 +2022,7 @@ async function exportAsPDF(uri, uriArray, file, convertToText, allMsgs, copyToCl
 	});
 
 	await IETprintPDFmain.setupPDF(msgUris, file.path);
-	createIndex(10, file2, hdrArray, msgFolder, false, true);
+	await createIndex(10, file2, hdrArray, msgFolder, false, true);
 	return { status: kStatusOK }
 }
 
@@ -2197,7 +2046,8 @@ function getLoadContext() {
 function IETcopyToClip(data) {
 	var str = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
 	var str2 = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
-	var justText = IETprefs.getBoolPref("extensions.importexporttoolsng.clipboard.always_just_text");
+	var justText = true;
+
 	str.data = data;
 	// Hack to clean the headers layout!!!
 	data = data.replace(/<div class=\"headerdisplayname\" style=\"display:inline;\">/g, "<span>");
@@ -2269,6 +2119,7 @@ function exportVirtualFolderDelayed(msgFolder, destDir) {
 
 
 function exportIMAPfolder(msgFolder, destdirNSIFILE) {
+	console.log("exp	imap f")
 	if (!msgFolder.verifiedAsOnlineFolder) {
 		alert(ietngUtils.localizeMsg("noRemoteExport"));
 		IETglobalMsgFoldersExported = IETglobalMsgFoldersExported + 1;
@@ -2316,8 +2167,7 @@ function IETwritestatus(text) {
 	if (document.getElementById("statusText")) {
 		document.getElementById("statusText").setAttribute("label", text);
 		document.getElementById("statusText").setAttribute("value", text);
-		var delay = IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
-		delay += 3000;
+		let delay = 6000;
 		if (delay > 0)
 			window.setTimeout(function () { IETdeletestatus(text); }, delay);
 	}
@@ -2340,7 +2190,7 @@ function IETdeletestatus(text) {
 	}
 }
 
-function IETwriteDataOnDisk(file, data, append, fname, time) {
+async function IETwriteDataOnDisk(file, data, append, fname, time) {
 	try {
 		IETlogger.write("call to IETwriteDataOnDisk - file path = " + file.path);
 	} catch (e) {
@@ -2357,13 +2207,13 @@ function IETwriteDataOnDisk(file, data, append, fname, time) {
 	if (data)
 		foStream.write(data, data.length);
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
+	if (time && await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime"))
 		file.lastModifiedTime = time;
 }
 
-function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
+async function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetOverride) {
 	var os;
-	var charset = IETprefs.getCharPref("extensions.importexporttoolsng.export.text_plain_charset");
+	var charset = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.text_plain_charset");
 	if (charsetOverride) {
 		charset = charsetOverride;
 	}
@@ -2377,7 +2227,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		os = Cc["@mozilla.org/intl/converter-output-stream;1"]
 			.createInstance(Ci.nsIConverterOutputStream);
 	} catch (e) {
-		IETwriteDataOnDisk(file, data, append, fname, time);
+		await IETwriteDataOnDisk(file, data, append, fname, time);
 		return;
 	}
 	var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
@@ -2395,7 +2245,7 @@ function IETwriteDataOnDiskWithCharset(file, data, append, fname, time, charsetO
 		os.writeString(data);
 	os.close();
 	foStream.close();
-	if (time && IETprefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
+	if (time && await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.set_filetime")) {
 		file.lastModifiedTime = time;
 	}
 }
@@ -2643,10 +2493,10 @@ function IETescapeBeginningFrom(data) {
 	return datacorrected;
 }
 
-function IETstoreHeaders(msg, msguri, subfile, addBody) {
-	var subMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
-	var authMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.author.max_length");
-	var recMaxLen = IETprefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
+async function IETstoreHeaders(msg, msguri, subfile, addBody) {
+	var subMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
+	var authMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.author.max_length");
+	var recMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.recipients.max_length");
 	var realsubject;
 	var author;
 	var recipients;
@@ -2692,7 +2542,7 @@ function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
 
-	if (IETprefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
+	if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.experimental.use_delivery_date")) {
 		var time2 = msg.getUint32Property('dateReceived');
 		time = time2 * 1000 * 1000;
 	}

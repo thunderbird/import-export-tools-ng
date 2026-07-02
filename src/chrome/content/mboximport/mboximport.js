@@ -656,7 +656,7 @@ async function exportfolder(params) {
 
 	if (params.warnings) {
 		if (localfolder && (lastType === "imap" || lastType === "nntp")) {
-			var go = IETremoteWarning();
+			var go = await IETremoteWarning();
 			if (!go)
 				return { status: "cancel" };
 		}

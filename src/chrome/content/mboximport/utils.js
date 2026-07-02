@@ -489,7 +489,7 @@ async function IETformatWarning(warning_type) {
 	return result;
 }
 
-function IETremoteWarning() {
+async function IETremoteWarning() {
 	if (!await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.remote_warning"))
 		return true;
 

@@ -112,7 +112,7 @@ function stripDisplayName(addresses) {
 	return strippedAddresses;
 }
 
-function getSubjectForHdr(hdr, dirPath) {
+async function getSubjectForHdr(hdr, dirPath) {
 	var emlNameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
 	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var cutFileName = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");

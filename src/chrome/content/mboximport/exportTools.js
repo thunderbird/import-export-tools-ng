@@ -789,7 +789,7 @@ async function exportAllMsgsDelayed(type, file, msgFolder, overrideContainer, pa
 
 		cnt++;
 		if (!useContainer && skipExistingMsg) {
-			var sog = getSubjectForHdr(msg, subfile.path);
+			var sog = await getSubjectForHdr(msg, subfile.path);
 			tempFile = subfile.clone();
 			tempFile.append(sog + ext);
 			tempExists = tempFile.exists();
@@ -1254,7 +1254,7 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 							sub = true;
 						} else {
 							if (!hdrArray) {
-								sub = getSubjectForHdr(hdr, file.path);
+								sub = await getSubjectForHdr(hdr, file.path);
 							} else {
 								var parts = hdrArray[IETexported].split("§][§^^§");
 								sub = parts[4];
@@ -1655,7 +1655,7 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 
 						var sub;
 						if (!hdrArray)
-							sub = getSubjectForHdr(hdr, file.path);
+							sub = await getSubjectForHdr(hdr, file.path);
 						else {
 							var parts = hdrArray[IETexported].split("§][§^^§");
 							sub = parts[4];
@@ -2538,7 +2538,7 @@ async function IETstoreHeaders(msg, msguri, subfile, addBody) {
 	recipients = recipients.replace(/\"/, "");
 	recipients = recipients.replace(/^ +/, "");
 	// Correct the name of the subject, because it will be also the name of the file html
-	var subject = getSubjectForHdr(msg, subfile.path);
+	var subject = await getSubjectForHdr(msg, subfile.path);
 	// Has attachments?
 	var hasAtt = (msg.flags & 0x10000000) ? 1 : 0;
 

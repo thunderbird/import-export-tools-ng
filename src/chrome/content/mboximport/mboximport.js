@@ -346,8 +346,8 @@ var IETprintPDFmain = {
 				let aMsgHdr = messageService.messageURIToMsgHdr(uri);
 
 				let fileName = fileFormat === 2
-					? getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
-					: getSubjectForHdr(aMsgHdr, filePath) + ".ps";
+					? await getSubjectForHdr(aMsgHdr, filePath) + ".pdf"
+					: await getSubjectForHdr(aMsgHdr, filePath) + ".ps";
 				uniqueFileName = await IOUtils.createUniqueFile(filePath, fileName);
 				printSettings.toFileName = uniqueFileName;
 

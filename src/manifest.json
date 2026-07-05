@@ -17,14 +17,14 @@
     "default_popup": "chrome/content/dummy.html"
   },
   "commands": {
-    "toggle-feature": {
+    "test1": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Y",
+        "default": "Ctrl+Alt+1",
         "linux": "Ctrl+Shift+U"
       },
       "description": "Send a 'toggle-feature' event"
     },
-    "_execute_compose_action": {
+    "test2": {
       "suggested_key": {
         "default": "Alt+F5"
       },

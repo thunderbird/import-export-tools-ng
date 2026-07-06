@@ -26,7 +26,7 @@
     },
     "test2": {
       "suggested_key": {
-        "default": "Alt+F5"
+        "default": "Alt+F4"
       },
       "description": "Open the compose action popup"
     }

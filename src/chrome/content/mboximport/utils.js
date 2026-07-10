@@ -46,7 +46,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modu
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
-	
+
 var supportedLocales = ['ca', 'cs', 'da', 'de', 'en-US', 'es-ES', 'fr', 'gl', 'hu', 'hy-AM',
 	'it', 'ja', 'ko', 'nl', 'pl', 'pt-PT', 'ru', 'sk', 'sl', 'sv-SE', 'zh-CN', 'el'];
 
@@ -517,22 +517,7 @@ function emailIsValid(email) {
 async function IETstr_converter(str) {
 	// null out function as this really isn't necessary 
 	//return str;
-
-
-	var convStr;
-	try {
-		var charset = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_charset");
-		if (charset === "")
-			return str;
-
-		let decoder = new TextDecoder(charset);
-		convStr = decoder.decode(new TextEncoder().encode(str));
-
-	} catch (e) {
-		console.debug(e);
-		return str;
-	}
-	return convStr;
+	return str;
 
 }
 

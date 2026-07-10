@@ -195,17 +195,6 @@ async function getSubjectForHdr(hdr, dirPath) {
 		pattern = pattern.replace("%r", recName);
 		pattern = pattern.replace(/-%e/g, "");
 
-		if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_prefix")) {
-			var prefix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-			pattern = prefix + pattern;
-		}
-
-		if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filename_add_suffix")) {
-			var suffix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_suffix");
-			pattern = pattern + suffix;
-		}
-
-
 		fname = pattern;
 
 	} else if (emlNameType === 3) {
@@ -233,9 +222,6 @@ async function getSubjectForHdr(hdr, dirPath) {
 		let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
 		let smartName;
 
-		let prefix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-		let suffix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_suffix");
-
 		if (isSentFolder || isSentSubFolder > -1)
 			smartName = recName;
 		else
@@ -251,8 +237,6 @@ async function getSubjectForHdr(hdr, dirPath) {
 		extendedFilenameFormat = extendedFilenameFormat.replace("${recipient_email}", recEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${smart_name}", smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${index}", index);
-		extendedFilenameFormat = extendedFilenameFormat.replace("${prefix}", prefix);
-		extendedFilenameFormat = extendedFilenameFormat.replace("${suffix}", suffix);
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		extendedFilenameFormat = extendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
@@ -264,8 +248,6 @@ async function getSubjectForHdr(hdr, dirPath) {
 		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
 		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
 		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
-		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
-		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
 		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 		extendedFilenameFormat = extendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
@@ -888,9 +870,6 @@ async function constructAttachmentsFilename(type, hdr) {
 	let isSentSubFolder = hdr.folder.URI.indexOf("/Sent/");
 	let smartName;
 
-	let prefix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_prefix");
-	let suffix = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_suffix");
-
 	if (isSentFolder || isSentSubFolder > -1)
 		smartName = recName;
 	else
@@ -906,8 +885,6 @@ async function constructAttachmentsFilename(type, hdr) {
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${recipient_email}", recEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${smart_name}", smartName);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${index}", index);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${prefix}", prefix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${suffix}", suffix);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date_custom}", strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace("${date}", strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 
@@ -918,8 +895,6 @@ async function constructAttachmentsFilename(type, hdr) {
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("recipientEmailFmtToken"), recEmail);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("smartNameFmtToken"), smartName);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("indexFmtToken"), index);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("prefixFmtToken"), prefix);
-	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("suffixFmtToken"), suffix);
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateCustomFmtToken"), strftime.strftime(customDateFormat, new Date(dateInSec * 1000)));
 	attachmentsExtendedFilenameFormat = attachmentsExtendedFilenameFormat.replace(ietngUtils.localizeMsg("dateFmtToken"), strftime.strftime("%Y%m%d", new Date(dateInSec * 1000)));
 

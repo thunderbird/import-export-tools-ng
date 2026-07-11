@@ -92,6 +92,7 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
+console.log("load mboximport")
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var nosub = ietngUtils.localizeMsg("nosubjectmsg");
@@ -616,6 +617,7 @@ async function exportfolder(params) {
 	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)", params);
+				return { status: "cancel" };
 
 	var folders = [];
 	var account;
@@ -728,6 +730,7 @@ async function exportfolder(params) {
 		rootFolderName = rootFolder.localizedName;
 	}
 	try {
+		console.log("call exp")
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
 		if (folders[0].isServer) {

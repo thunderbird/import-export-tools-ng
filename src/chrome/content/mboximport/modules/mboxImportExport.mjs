@@ -402,12 +402,15 @@ export var mboxImportExport = {
   },
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
-
+    console.log("expmbx")
     let useMboxExt = false;
     if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
       useMboxExt = true;
     }
 
+    console.log("expmbx2")
+    return
+    
     let rootFolderName;
     if (!rootMsgFolder.localizedName) {
       rootFolderName = rootMsgFolder.prettyName;
@@ -422,6 +425,8 @@ export var mboxImportExport = {
     let msgFolderSize = rootMsgFolder.sizeOnDisk;
 
     rootMsgFolder = rootMsgFolder.QueryInterface(Ci.nsIMsgFolder);
+
+    console.log("build")
 
     await this.buildAndExportMbox(rootMsgFolder, fullFolderPath);
 

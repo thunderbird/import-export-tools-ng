@@ -43,13 +43,15 @@ var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mbo
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/modules/latinize.js");
 
-var { ExtensionParent } = ChromeUtils.importESModule(
+/*
+var { ExtensionParent2 } = ChromeUtils.importESModule(
 	"resource://gre/modules/ExtensionParent.sys.mjs"
 );
 
-var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+var ietngExtension2 = ExtensionParent2.GlobalManager.getExtension(
 	"ImportExportToolsNG@cleidigh.kokkini.net"
 );
+*/
 
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);

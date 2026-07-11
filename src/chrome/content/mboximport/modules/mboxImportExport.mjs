@@ -17,6 +17,8 @@
 // mboxImportExport.mjs
 // convert for esm modules
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
 var window = Cc["@mozilla.org/appshell/window-mediator;1"]
   .getService(Ci.nsIWindowMediator)
   .getMostRecentWindow("mail:3pane");
@@ -44,6 +46,10 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { strftime } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/strftime.mjs");
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/importMboxModule-5.js", window.ietngAddon, "UTF-8");
+
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
 console.log("IETNG: mboximportExport.mjs -v16");
 
 export var mboxImportExport = {
@@ -403,8 +409,9 @@ export var mboxImportExport = {
 
   exportFoldersToMbox: async function (rootMsgFolder, destPath, inclSubfolders, flattenSubfolders) {
     console.log("expmbx")
+    
     let useMboxExt = false;
-    if ((!inclSubfolders || flattenSubfolders) && this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext")) {
+    if ((!inclSubfolders || flattenSubfolders) && (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.mbox.use_mboxext"))) {
       useMboxExt = true;
     }
 

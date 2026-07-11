@@ -617,7 +617,6 @@ async function exportfolder(params) {
 	var keepstructure = !params.flattenSubfolders;
 
 	console.log("Start: ExportFolders (mbox)", params);
-				return { status: "cancel" };
 
 	var folders = [];
 	var account;
@@ -731,6 +730,7 @@ async function exportfolder(params) {
 	}
 	try {
 		console.log("call exp")
+		
 		await mboxImportExport.exportFoldersToMbox(rootFolder, destPath, subfolders, flatten);
 
 		if (folders[0].isServer) {

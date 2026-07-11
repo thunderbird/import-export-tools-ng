@@ -416,7 +416,6 @@ export var mboxImportExport = {
     }
 
     console.log("expmbx2")
-    return
     
     let rootFolderName;
     if (!rootMsgFolder.localizedName) {

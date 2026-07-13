@@ -41,9 +41,6 @@ export var ietngUtils = {
 
   _self: this,
 
-  IETprefs: Cc["@mozilla.org/preferences-service;1"]
-    .getService(Ci.nsIPrefBranch),
-
   top: Cc["@mozilla.org/appshell/window-mediator;1"]
     .getService(Ci.nsIWindowMediator)
     .getMostRecentWindow("mail:3pane"),
@@ -225,8 +222,8 @@ export var ietngUtils = {
     return str;
   },
 
-  nameToAcii: function (str) {
-    if (!this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii")) {
+  nameToAcii: async function (str) {
+    if (!(await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii"))) {
       str = str.replace(/[\x00-\x19]/g, "_");
       // Allow ',' and single quote character which is valid
       return str.replace(/[\/\\:<>*\?\"\|]/g, "_");
@@ -238,7 +235,7 @@ export var ietngUtils = {
     return str;
   },
 
-  createUniqueFolderName: function (foldername, destDirPath, structure, useMboxExt) {
+  createUniqueFolderName: async function (foldername, destDirPath, structure, useMboxExt) {
 
     // for mbox extension we have to gyrate bit
 
@@ -246,14 +243,14 @@ export var ietngUtils = {
       .createInstance(Ci.nsIFile);
     destdirNSIFILE.initWithPath(destDirPath);
 
-    var overwrite = this.IETprefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
+    var overwrite = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.overwrite");
     var index = 0;
     var nameIndex = "";
     var NSclone = destdirNSIFILE.clone();
 
     // Change unsafe chars for filenames with underscore
     foldername = this.sanitizeFileOrFolderName(foldername);
-    foldername = this.nameToAcii(foldername);
+    foldername = await this.nameToAcii(foldername);
 
     if (useMboxExt) {
       foldername += ".mbox";

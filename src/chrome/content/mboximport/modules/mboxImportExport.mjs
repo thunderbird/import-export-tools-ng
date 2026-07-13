@@ -420,7 +420,7 @@ export var mboxImportExport = {
     } else {
       rootFolderName = rootMsgFolder.localizedName;
     }
-    let uniqueName = ietngUtils.createUniqueFolderName(rootFolderName, destPath, false, useMboxExt);
+    let uniqueName = await ietngUtils.createUniqueFolderName(rootFolderName, destPath, false, useMboxExt);
     let fullFolderPath = PathUtils.join(destPath, uniqueName);
 
     ietngUtils.createStatusLine(window);
@@ -443,7 +443,9 @@ export var mboxImportExport = {
 
     // wait before removing status text, should be delayed removal
     await new Promise(r => window.setTimeout(r, 2000));
+    try {
     window.document.getElementById("ietngStatusText").remove();
+    } catch (ex) {}
   },
 
   exportSubFolders: async function (msgFolder, fullSbdDirPath) {
@@ -455,7 +457,7 @@ export var mboxImportExport = {
       } else {
         subMsgFolderName = subMsgFolder.localizedName;
       }
-      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolderName, fullSbdDirPath, false, false);
+      let uniqueName = await ietngUtils.createUniqueFolderName(subMsgFolderName, fullSbdDirPath, false, false);
 
       let fullSubMsgFolderPath = PathUtils.join(fullSbdDirPath, uniqueName);
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);
@@ -476,7 +478,7 @@ export var mboxImportExport = {
       } else {
         subMsgFolderName = subMsgFolder.localizedName;
       }
-      let uniqueName = ietngUtils.createUniqueFolderName(subMsgFolderName, fullFolderPath, false, useMboxExt);
+      let uniqueName = await ietngUtils.createUniqueFolderName(subMsgFolderName, fullFolderPath, false, useMboxExt);
       let fullSubMsgFolderPath = PathUtils.join(fullFolderPath, uniqueName);
 
       await this.buildAndExportMbox(subMsgFolder, fullSubMsgFolderPath);

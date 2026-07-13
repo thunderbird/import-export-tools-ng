@@ -767,7 +767,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			} else {
 				folderName = folders[i].localizedName;
 			}
-			let newname = ietngUtils.createUniqueFolderName(folderName, destPath, false, useMboxExt);
+			let newname = await ietngUtils.createUniqueFolderName(folderName, destPath, false, useMboxExt);
 
 			path = newname;
 
@@ -777,7 +777,7 @@ async function IETexportZip(destdirNSIFILE, folders) {
 			file.initWithPath(newDestPath);
 
 			var zipName = path + ".zip";
-			zipName = ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
+			zipName = await ietngUtils.createUniqueFolderName(zipName, zipDestPath, false, false);
 			zipFile.append(zipName);
 			var zipWriter = Components.Constructor("@mozilla.org/zipwriter;1", "nsIZipWriter");
 			var zipW = new zipWriter();

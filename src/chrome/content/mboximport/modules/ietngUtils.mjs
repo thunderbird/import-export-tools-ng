@@ -16,6 +16,8 @@
 
 // ietngUtils.mjs - esm conversion
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
+
 var { AppConstants } = ChromeUtils.importESModule("resource://gre/modules/AppConstants.sys.mjs");
 var Ietng_ESM = parseInt(AppConstants.MOZ_APP_VERSION, 10) >= 128;
 
@@ -30,6 +32,9 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { MailServices } = Ietng_ESM
   ? ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs")
   : ChromeUtils.import("resource:///modules/MailServices.jsm");
+
+  var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 
 export var ietngUtils = {
@@ -168,7 +173,7 @@ export var ietngUtils = {
       this.top.document.getElementById("ietngStatusText").setAttribute("value", text);
       this.top.document.getElementById("ietngStatusText").innerText = text;
 
-      var delay = this.IETprefs.getIntPref("extensions.importexporttoolsng.delay.clean_statusbar");
+      var delay = 5000;
       if (statusDelay) {
         delay = statusDelay;
       }

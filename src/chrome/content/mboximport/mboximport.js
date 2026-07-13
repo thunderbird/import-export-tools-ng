@@ -92,7 +92,6 @@ var { Subprocess } = ChromeUtils.importESModule("resource://gre/modules/Subproce
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
-console.log("load mboximport")
 XPCOMUtils.defineLazyGlobalGetters(this, ["IOUtils", "PathUtils"]);
 
 var nosub = ietngUtils.localizeMsg("nosubjectmsg");

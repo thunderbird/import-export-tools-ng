@@ -35,7 +35,11 @@ window.ietngAddon.extension = WL.extension;
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
 
-function onLoad() {
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+
+
+async function onLoad() {
 	//console.debug('messenger OL');
 
 	WL.injectElements(`
@@ -72,14 +76,14 @@ function onLoad() {
 	window.ietng = {};
 	window.ietng.extension = WL.extension;
 
-	window.ietng.OpenBackupDialog = function (mode = "auto") {
+	window.ietng.OpenBackupDialog = async function (mode = "auto") {
 		Services.console.logStringMessage("IETNG: Start backup check");
-		let last = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
+		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 
 		// Abort in automode, if not yet due.
 		if (mode == "auto") {
-			let frequency = Services.prefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
+			let frequency = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 			if (frequency === 0)
 				return;
 

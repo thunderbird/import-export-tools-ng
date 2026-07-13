@@ -694,6 +694,7 @@ async function exportfolder(params) {
 		let destPath = destdirNSIFILE.path;
 		let msgFolder = folders[0];
 		try {
+
 			await exportAccount(msgFolder, msgFolder.filePath.path, destPath);
 			IETwritestatus(ietngUtils.localizeMsg("exportOK"));
 			return { status: "ok", exportFolderPath: exportFolderPath };
@@ -836,7 +837,7 @@ async function exportAccount(rootFolder, accountFolderPath, destPath) {
 		rootFolderName = rootFolder.localizedName;
 	}
 	let accountName = rootFolderName;
-	let tmpAccountFolderName = nametoascii(accountName);
+	let tmpAccountFolderName = await nametoascii(accountName);
 	let finalExportFolderPath;
 	if (IOUtils.createUniqueDirectory) {
 		finalExportFolderPath = await IOUtils.createUniqueDirectory(destPath, tmpAccountFolderName);

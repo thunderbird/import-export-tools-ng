@@ -907,7 +907,7 @@ async function createIndex(type, file2, hdrArray, msgFolder, justIndex, subdir) 
 	var subdirname;
 
 	if (subdir && type != 0)
-		subdirname = encodeURIComponent(nametoascii(IETmesssubdir)) + "/";
+		subdirname = encodeURIComponent(await nametoascii(IETmesssubdir)) + "/";
 	else
 		subdirname = "";
 	// Build the index html page

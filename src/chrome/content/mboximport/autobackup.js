@@ -26,13 +26,23 @@
 
 /* global IETgetPickerModeFolder, IETrunTimeDisable, buildContainerDirName,IETrunTimeEnable */
 
+var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
-	.getService(Ci.nsIPrefBranch);
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
+
+var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
 
 var autoBackup = {
 
-	onOK: function () {
+	onOK: async function () {
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -40,8 +50,8 @@ var autoBackup = {
 		// saveMode values:
 		// 0 = save all; 1 = save just if new;
 		// 2 = save just if new with custom name, save all with unique name
-		autoBackup.saveMode = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
-		autoBackup.type = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.type");
+		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
 		// return false;
 	},
 
@@ -74,7 +84,7 @@ var autoBackup = {
 
 		// handle empty pref
 		try {
-			dir = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir");
+			dir = await IETStoragePrefs.getCharPref("extensions.importexporttoolsng.autobackup.dir");
 		} catch (ex) {
 			dir = null;
 		}
@@ -128,12 +138,12 @@ var autoBackup = {
 			window.close();
 			return;
 		}
-		var nameType = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
+		var nameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
 
 		var dirName = null;
 		if (nameType === 1) {
 			try {
-				dirName = gBackupPrefBranch.getCharPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
+				dirName = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
 			} catch (e) {
 				dirName = null;
 			}
@@ -142,8 +152,8 @@ var autoBackup = {
 		// else
 		// var dirName = null;
 
-		autoBackup.IETmaxRunTime = gBackupPrefBranch.getIntPref("dom.max_chrome_script_run_time");
-		IETrunTimeDisable();
+		autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
+		//IETrunTimeDisable();
 		try {
 			var offlineManager = Cc["@mozilla.org/messenger/offline-manager;1"]
 				.getService(Ci.nsIMsgOfflineManager);
@@ -282,8 +292,8 @@ var autoBackup = {
 			window.setTimeout(autoBackup.write, 50, index);
 		} else {
 			document.getElementById("pm").value = 100;
-			gBackupPrefBranch.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
-			IETrunTimeEnable(autoBackup.IETmaxRunTime);
+			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
+			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
 			// new remove old backups #663
@@ -294,7 +304,7 @@ var autoBackup = {
 	},
 
 	removeOldBackups: async function () {
-		let retainNumBackups = gBackupPrefBranch.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
+		let retainNumBackups = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
 		if (retainNumBackups == 0) {
 			return;
 		}

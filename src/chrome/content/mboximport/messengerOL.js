@@ -36,7 +36,7 @@ Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expM
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/wextAPICmds.js", window, "UTF-8");
 
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
-	+ ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+	+ window.ietngAddon.extension.manifest.version + window.ietngAddon.dateForDebugging);
 
 
 async function onLoad() {

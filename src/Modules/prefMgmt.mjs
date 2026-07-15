@@ -132,7 +132,7 @@ const legacyPrefToStorageMap = {
   "debug.logTypes": "debug.logTypes",
   "export.filenames_toascii": "export.names.defaults.filters.alphaNumericOnly",
   "export.overwrite": "export.mbox.overwrite",
-  "exportEML.filename_format": "export.names.defaults.msgNameFormatType",
+  "exportEML.filename_format": null,
   "subject.max_length": "export.names.defaults.components.subjectMaxLen",
   "author.max_length": "export.names.defaults.components.authorMaxLen",
   "recipients.max_length": "export.names.defaults.components.recipientMaxLen",
@@ -210,8 +210,11 @@ const legacyPrefToStorageMap = {
 
 
 export async function initializePrefs() {
-  await prefCmds.init(defaultPrefs);
-  await _migrateLegacyPrefs();
+  // only migrate prefs on initial local storage setup
+  if (!await prefCmds.init(defaultPrefs)) {
+    console.log("migrate")
+    await _migrateLegacyPrefs();
+  }
 }
 
 
@@ -223,19 +226,20 @@ async function _migrateLegacyPrefs() {
 
   // transforms
   // we need to convert some legacy pref vals to updated vals
-/*
-  let msgFilenameFormatType = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
-  console.log("msgFilenameFormatType", msgFilenameFormatType)
+  /*
+    let msgFilenameFormatType = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
+    console.log("msgFilenameFormatType", msgFilenameFormatType)
+  
+    if (msgFilenameFormatType == 3) {
+      await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom", true);
+    } else {
+      await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple", true);
+    }
+  */
 
-  if (msgFilenameFormatType == 3) {
-    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom", true);
-  } else {
-    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple", true);
-  }
-*/
-
- // mode 0 not supported, move to 2 == dropdown mode and set default pattern
+  // mode 0 not supported, move to 2 == dropdown mode and set default pattern
   let nameFormat = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
+
   if (nameFormat != 1 && nameFormat != 3) {
     await messenger.LegacyPrefs.setPref(`${addonRootPref}.exportEML.filename_format`, 2);
     try {
@@ -249,6 +253,15 @@ async function _migrateLegacyPrefs() {
       console.error(ex);
     }
   }
+
+  // convert filename type to new format for migration
+  nameFormat = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
+  if (nameFormat == 2) {
+    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple");
+  } else {
+    await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "extended");
+  }
+
 
   // next set all userPrefs from legacy map
   // were also cleaning up names and structure
@@ -294,8 +307,13 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
   }
 
   //console.log("getStoragePref", info.prefName)
-
-  let storageKey = legacyPrefToStorageMap[info.prefName];
+  let storageKey;
+  if (info.prefName.startsWith(`${addonRootPref}`)) {
+    let shortPrefName = info.prefName.split(`${addonRootPref}.`)[1];
+    storageKey = legacyPrefToStorageMap[shortPrefName];
+  } else {
+    storageKey = info.prefName;
+  }
 
   if (storageKey == undefined) {
     console.error("unkown pref map:", info.prefName);

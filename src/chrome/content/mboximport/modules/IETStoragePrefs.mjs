@@ -6,44 +6,39 @@ var win = Services.wm.getMostRecentWindow("mail:3pane").top;
 export var IETStoragePrefs = {
 
   getBoolPref: async function (prefName) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "getPref",
-      prefName: shortPrefName
+      prefName: prefName
     });
   },
 
   getIntPref: async function (prefName) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "getPref",
-      prefName: shortPrefName
+      prefName: prefName
     });
   },
 
   getComplexPref: async function (prefName) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "getPref",
-      prefName: shortPrefName
+      prefName: prefName
     });
   },
 
   setBoolPref: async function (prefName, prefValue) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "setPref",
-      prefName: shortPrefName,
+      prefName: prefName,
       prefValue: prefValue
     });
   },
 
   setIntPref: async function (prefName, prefValue) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
     let prefValueNum = Number(prefValue);
     if (isNaN(prefValueNum)) {
       prefValueNum = 0;
@@ -51,17 +46,16 @@ export var IETStoragePrefs = {
     return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "setPref",
-      prefName: shortPrefName,
+      prefName: prefName,
       prefValue: prefValueNum
     });
   },
 
   setComplexPref: async function (prefName, prefValue) {
-    let shortPrefName = prefName.split(addonRootPref)[1];
-    return await win.ietngAddon.notifyTools.notifyBackground({
+    return win.ietngAddon.notifyTools.notifyBackground({
       command: "Pref_CMD",
       subcommand: "setPref",
-      prefName: shortPrefName,
+      prefName: prefName,
       prefValue: prefValue
     });
   },

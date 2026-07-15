@@ -92,13 +92,13 @@ export var prefCmds = {
   // Set pref value by updating local pref obj and updating storage.
   setPref: async function (aName, aValue, forceUserPref = false) {
     if (!this.dotHasOwnProperty(aName, this._defaultPrefs)) {
-      console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs");
+      console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs", aName);
       return null;
     }
     let defaultValue = this.dotGet(aName, this._defaultPrefs);
 
     if (typeof defaultValue != typeof aValue) {
-      console.error("IETNG: Error setting userPref, userPref does not match defaultPref type");
+      console.error("IETNG: Error setting userPref, userPref does not match defaultPref type", aName);
       return null;
     }
 
@@ -138,6 +138,10 @@ export var prefCmds = {
   // WebExtension storage. If a defaults obj is given, the defaults in storage
   // are updated/set.
   init: async function (defaults = null) {
+    // check if we are setting up local storage for first time
+
+    let initialStorageDefaults = (await messenger.storage[userPrefStorageArea].get("defaultPrefs")).defaultPrefs || undefined;
+
     this._userPrefs = {};
     this._defaultPrefs = {};
 
@@ -155,6 +159,7 @@ export var prefCmds = {
     if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {
       //await messenger.storage.onChanged.addListener(this.storageChanged);
     }
+    return initialStorageDefaults;
   },
 
   dotGet: function (str, obj) {

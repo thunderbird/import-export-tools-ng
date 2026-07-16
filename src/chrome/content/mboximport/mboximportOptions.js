@@ -80,18 +80,19 @@ async function initMboxImportPanel() {
     document.getElementById("notificationsForExpFolders").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
     document.getElementById("notificationsForExpSelMsgs").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
 
-    console.log(await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format"));
+    console.log(await IETStoragePrefs.getComplexPref("export.names.defaults.msgNameFormatType"));
 
-    if (await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2)
+    if (await IETStoragePrefs.getComplexPref("export.names.defaults.msgNameFormatType") == "simple") {
         document.getElementById("customizeFilenames").checked = true;
-    else
+    } else {
         document.getElementById("customizeFilenames").checked = false;
+    }
 
-
-    if (await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 3)
+    if (await IETStoragePrefs.getComplexPref("export.names.defaults.msgNameFormatType") == "extended") {
         document.getElementById("useExtendedFormat").setAttribute("checked", "true");
-    else
+    } else {
         document.getElementById("useExtendedFormat").removeAttribute("checked");
+    }
 
     document.getElementById("export_mbox_dir").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportMBOX.dir");
     if (await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir")) {
@@ -300,13 +301,11 @@ async function saveMboxImportPrefs() {
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.export.attachments.containerStructure", "perMsgDir");
         }
 
-        if (document.getElementById("customizeFilenames").checked)
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 2);
-        else if (document.getElementById("useExtendedFormat").checked) {
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 3);
-        } else
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.exportEML.filename_format", 0);
-
+        if (document.getElementById("customizeFilenames").checked) {
+            await IETStoragePrefs.setComplexPref("export.names.defaults.msgNameFormatType", "simple");
+        } else {
+            await IETStoragePrefs.setComplexPref("export.names.defaults.msgNameFormatType", "extended");
+        }
 
 
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.exportMBOX.use_dir", document.getElementById("use_export_mbox_dir").checked);
@@ -360,7 +359,7 @@ async function saveMboxImportPrefs() {
         else
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", "");
 
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.dir_name_type", document.getElementById("backupDirName").selectedIndex);
         if (document.getElementById("backupCustomName").value != "") {
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", document.getElementById("backupCustomName").value);
         } else {

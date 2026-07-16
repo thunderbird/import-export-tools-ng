@@ -108,6 +108,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
         return null;
       }
 
+      console.log("IETNG: main expStatusWin listener ", msg)
       if (msg.source == "expStatusWin") {
         switch (msg.srcEvent) {
           case "cancelClick":
@@ -195,23 +196,34 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           if (!notificationsForExpFolders) {
 
             // wait for the window to load and send expStatusWinOpen
+            console.log("IETNG: setup expStatusWin listener ")
 
             let w = await new Promise(async (resolve, reject) => {
               let resolved = false;
 
               async function expStatusWinOpen(msg) {
+                console.log("IETNG: expStatusWin listener msg:", msg)
+
                 if (msg.command == "UI_EVENT" &&
                   msg.source == "expStatusWin" &&
                   msg.srcEvent == "expStatusWinOpen") {
                   browser.runtime.onMessage.removeListener(expStatusWinOpen);
                   log("msgs2", `Received expStatusWinOpen event`)
                   resolved = true;
+                  console.log("IETNG: rcvd expStatusWin open resolved ", resolved)
+
                   resolve();
                 }
               }
+              console.log("IETNG: add expStatusWin listener resolved ", resolved)
+
               browser.runtime.onMessage.addListener(expStatusWinOpen);
               // create timeout for reject and abort
+              console.log("IETNG: set timeout ")
+
               setTimeout(() => {
+                console.log("IETNG: timeout reached resolved ", resolved)
+
                 if (resolved) {
                   return;
                 }
@@ -223,7 +235,15 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
               await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
               log("msgs2", `Created expStatusWin winType: ${winType}`)
             });
+            console.log("IETNG: after expStatusWin wait ", w, gAbort)
+
           }
+        }
+
+
+        if (gAbort) {
+          let rv = await browser.AsyncPrompts.asyncAlert("error", "expStatuswin timeout, aborting");
+          return
         }
 
         if (!notificationsForExpFolders) {
@@ -497,21 +517,34 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
         if (!notificationsForExpSelMsgs) {
 
           // wait for the window to load and send expStatusWinOpen
+          console.log("IETNG: setup expStatusWin listener ")
 
-          await new Promise(async (resolve, reject) => {
+          let w = await new Promise(async (resolve, reject) => {
             let resolved = false;
+
             async function expStatusWinOpen(msg) {
+              console.log("IETNG: expStatusWin listener msg:", msg)
+
               if (msg.command == "UI_EVENT" &&
                 msg.source == "expStatusWin" &&
                 msg.srcEvent == "expStatusWinOpen") {
                 browser.runtime.onMessage.removeListener(expStatusWinOpen);
+                log("msgs2", `Received expStatusWinOpen event`)
                 resolved = true;
+                console.log("IETNG: rcvd expStatusWin open resolved ", resolved)
+
                 resolve();
               }
             }
+            console.log("IETNG: add expStatusWin listener resolved ", resolved)
+
             browser.runtime.onMessage.addListener(expStatusWinOpen);
             // create timeout for reject and abort
+            console.log("IETNG: set timeout ")
+
             setTimeout(() => {
+              console.log("IETNG: timeout reached resolved ", resolved)
+
               if (resolved) {
                 return;
               }
@@ -520,10 +553,18 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
               reject("IETNG: Timeout waiting for expStatusWinOpen event");
               return;
             }, 4200);
-            await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportSelectedMessages.title")} : ${expTask.exportFormatText} - `, winType);
-
+            await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
+            log("msgs2", `Created expStatusWin winType: ${winType}`)
           });
+          console.log("IETNG: after expStatusWin wait ", w, gAbort)
         }
+
+        // d
+      }
+
+      if (gAbort) {
+        let rv = await browser.AsyncPrompts.asyncAlert("error", "expStatuswin timeout, aborting");
+        return
       }
 
       if (!notificationsForExpSelMsgs) {
@@ -1005,19 +1046,19 @@ async function _processBodyForHTML(expTask, msg, msgBody, msgBodyType, extraHead
       // wrap body with <html><body>
       msgBody = `<html>\n<head><title>${extraHeaders.fullSubject}</title></head>\n<body>\n${msgBody}\n</body>\n</html>`;
     }
-    
+
     // add title if missing 
     if (!/<TITLE[^>]*>/i.test(msgBody)) {
       // check if we have a head block
       if (!/<HEAD[^>]*>/i.test(msgBody)) {
         // add head and title
-        msgBody = msgBody.replace(/(<HTML[^>]*?>)/i,`$1<head><title>${extraHeaders.fullSubject}</title></head>\n`);        
+        msgBody = msgBody.replace(/(<HTML[^>]*?>)/i, `$1<head><title>${extraHeaders.fullSubject}</title></head>\n`);
       } else {
         // head, but no title
-        msgBody = msgBody.replace(/(<HEAD[^>]*?>)/i,`$1\n<title>${extraHeaders.fullSubject}</title>\n`);
+        msgBody = msgBody.replace(/(<HEAD[^>]*?>)/i, `$1\n<title>${extraHeaders.fullSubject}</title>\n`);
       }
     }
-    
+
     return _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders);
   }
   // we have text/plain
@@ -1046,7 +1087,7 @@ async function _processBodyForPlaintext(expTask, msg, msgBody, msgBodyType, extr
 
 async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders) {
 
-  let author = msg.author.replaceAll('"',"");
+  let author = msg.author.replaceAll('"', "");
   let date = strftime.strftime(expTask.hdrDateFormat, new Date(msg.date));
   let recipients;
   if (msg.recipients == []) {
@@ -1070,7 +1111,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
   let replyTo;
   if (extraHeaders["reply-to"] && extraHeaders["reply-to"][0]) {
-   replyTo = extraHeaders["reply-to"][0].replaceAll('"', '');
+    replyTo = extraHeaders["reply-to"][0].replaceAll('"', '');
   }
 
   // header localization 

@@ -94,12 +94,15 @@ browser.runtime.onMessage.addListener(msg => {
 document.addEventListener('DOMContentLoaded', async () => {
   // we resize the window to be pseudo reactive
   // still have consistency issues
+  console.log("expStatusWin: DOMContentLoaded")
   i18n.updateDocument();
   let statusWin = await browser.windows.getCurrent();
   
   await document.fonts.ready;
   await new Promise(r => requestAnimationFrame(r));
   await new Promise(r => requestAnimationFrame(r));
+
+  console.log("expStatusWin: after requestAnimationFrame")
 
   // now we can resize win from content -still not consistent
   const contentHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -115,12 +118,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await browser.windows.update(statusWin.id, { height: calcWinHeight });
 
+  console.log("expStatusWin: after window update")
+
   messenger.runtime
     .sendMessage({
       command: "UI_EVENT",
       source: "expStatusWin",
       srcEvent: "expStatusWinOpen",
     });
+
+  console.log("expStatusWin: after send expStatusWinOpen")
 
   //console.log("IETNG: UI Sent expStatusWinOpen event");
 

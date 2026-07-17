@@ -24,17 +24,17 @@
 				<html:div id="flexContainer">
 					<html:div id="mainDiv">
 						<label class="top-header" >__MSG_MBcaptionlabel1__</label>
-						<html:div style="width: 10px; height: 10px;"></html:div>
+						<html:div style="width: 10px; height: 5px;"></html:div>
 						<hbox align="center">
 							<checkbox id="useMboxExt" label="__MSG_useMboxExt.label__" />
 						</hbox>
 						<hbox align="center">
 							<checkbox id="MBoverwrite" label="__MSG_MBlabel1__" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="display: none">
 							<checkbox id="MBhtmlasdisplayed" label="__MSG_MBlabel4__" />
 						</hbox>
-						<hbox align="center">
+						<hbox align="center" style="display: none">
 							<checkbox id="MBcliptextplain" label="__MSG_MBlabel5__" />
 						</hbox>
 						<hbox align="center">
@@ -96,7 +96,18 @@
 							</html:tr>
 						</html:table>
 						<html:div style="height: 6px"></html:div>
-						<hbox style="height: ;" >
+<hbox>
+							<label id="headerDateLabel" style="padding-top: 3px; padding-left: 3px;" >__MSG_headerDateFormat__</label>
+							<hbox align="center"  style="padding-left: 0px; height: ;">
+								<html:input id="headerDateFormat" class="adjusted-image-height2"  style=" background-color: ;" />
+							</hbox>
+							<hbox class="adjusted-image-height2" align="center"  style=" background-color: ;">
+								<image src="chrome://mboximport/content/mboximport/icons/question-mark-20px.png" width="16px" height="16px"  style="padding-left: 3px; padding-top: 0px;  margin-bottom: 0px; background-color: ;"
+            					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="__MSG_dateFormatRefTooltipText__" />
+							</hbox>
+						</hbox>
+
+						<hbox>
 							<label id="indexDateLabel" style="padding-top: 3px; padding-left: 3px;" >__MSG_indexCSVdateFormat__</label>
 							<hbox align="center"  style="padding-left: 0px; height: ;">
 								<html:input id="indexDateFormat" class="adjusted-image-height2"  style=" background-color: ;" />
@@ -106,6 +117,7 @@
             					  maxwidth="16px"  onclick="openHelpBM('#customdate_format_help')" tooltiptext="__MSG_dateFormatRefTooltipText__" />
 							</hbox>
 						</hbox>
+
 						<html:div style="height: 6px"></html:div>
 						<hbox style="height: ;" >
 							<label id="logOptionslab" style="padding-top: 3px; padding-left: 3px;" >__MSG_LoggingOptions.label__: </label>

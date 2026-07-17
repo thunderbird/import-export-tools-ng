@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "HeaderDateFormat.label", text: "Header date format"},
+	{ key: "backupTime.label", text: "Backup time"},
 
 
 ];

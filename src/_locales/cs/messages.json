@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Plánování zálohování"
   },
+  "backupTime.label": {
+    "message": "Doba zálohování"
+  },
   "backupType": {
     "message": "Zálohujte obsah"
   },

@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "バックアップ"
   },
+  "backupTime.label": {
+    "message": "バックアップ時間"
+  },
   "backupType": {
     "message": "バックアップ種別"
   },

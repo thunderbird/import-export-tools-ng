@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Planlægning af sikkerhedskopiering"
   },
+  "backupTime.label": {
+    "message": "Backuptid"
+  },
   "backupType": {
     "message": "Indhold af sikkerhedskopi"
   },

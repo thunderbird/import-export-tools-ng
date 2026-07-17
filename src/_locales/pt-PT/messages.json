@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Agendamento da cópia de segurança"
   },
+  "backupTime.label": {
+    "message": "Tempo de backup"
+  },
   "backupType": {
     "message": "Cópia de segurança do conteúdo"
   },

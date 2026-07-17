@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Harmonogram"
   },
+  "backupTime.label": {
+    "message": "Czas tworzenia kopii zapasowej"
+  },
   "backupType": {
     "message": "Zawartość kopii zapasowej"
   },

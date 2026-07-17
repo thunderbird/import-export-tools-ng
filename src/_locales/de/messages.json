@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Backup-Planung"
   },
+  "backupTime.label": {
+    "message": "Sicherungszeit"
+  },
   "backupType": {
     "message": "Backup-Inhalt"
   },

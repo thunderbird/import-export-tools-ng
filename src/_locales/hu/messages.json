@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Biztonségi mentés ütemezése"
   },
+  "backupTime.label": {
+    "message": "Biztonsági mentési idő"
+  },
   "backupType": {
     "message": "Biztonsági mentés tartalma"
   },

@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Back-upschema"
   },
+  "backupTime.label": {
+    "message": "Back-uptijd"
+  },
   "backupType": {
     "message": "Back-upinhoud"
   },

@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Պահուստի պլանավորում"
   },
+  "backupTime.label": {
+    "message": "Պահուստավորման ժամանակը"
+  },
   "backupType": {
     "message": "Պահուստի բով-ը"
   },

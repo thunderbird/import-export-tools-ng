@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Sauvegarde"
   },
+  "backupTime.label": {
+    "message": "Temps de sauvegarde"
+  },
   "backupType": {
     "message": "Contenu de la sauvegarde "
   },

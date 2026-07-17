@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Varnostno kopiranje"
   },
+  "backupTime.label": {
+    "message": "Čas varnostnega kopiranja"
+  },
   "backupType": {
     "message": "Vsebina varnostne kopije"
   },

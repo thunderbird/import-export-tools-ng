@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Programación da copia de seguranza"
   },
+  "backupTime.label": {
+    "message": "Tempo de copia de seguridade"
+  },
   "backupType": {
     "message": "Contido da copia de seguranza"
   },

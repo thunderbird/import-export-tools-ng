@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Interval zálohovania"
   },
+  "backupTime.label": {
+    "message": "Čas zálohovania"
+  },
   "backupType": {
     "message": "Obsah zálohy"
   },

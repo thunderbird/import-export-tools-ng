@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "备份已纳入日程"
   },
+  "backupTime.label": {
+    "message": "备用时间"
+  },
   "backupType": {
     "message": "备份内容"
   },

@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "백업 예약"
   },
+  "backupTime.label": {
+    "message": "백업 시간"
+  },
   "backupType": {
     "message": "백업 내용"
   },

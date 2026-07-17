@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Schemalagd säkerhetskopiering"
   },
+  "backupTime.label": {
+    "message": "Tid för säkerhetskopiering"
+  },
   "backupType": {
     "message": "Säkerhetskopians innehåll"
   },

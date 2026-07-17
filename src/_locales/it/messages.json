@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Backup periodico"
   },
+  "backupTime.label": {
+    "message": "Tempo di backup"
+  },
   "backupType": {
     "message": "Contenuto del backup"
   },

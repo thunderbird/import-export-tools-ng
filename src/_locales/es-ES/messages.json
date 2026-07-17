@@ -65,6 +65,9 @@
   "backupTab": {
     "message": "Programación de la copia"
   },
+  "backupTime.label": {
+    "message": "Tiempo de respaldo"
+  },
   "backupType": {
     "message": "Contenido de la copia"
   },

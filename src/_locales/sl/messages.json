@@ -500,6 +500,9 @@
     "message": "Če uporabite to obliko, izvoženih sporočil ne bo mogoče uvoziti.\nAli želite nadaljevati?",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Oblika datuma v glavi"
+  },
   "importDone": {
     "message": "Uvoz končan",
     "src": "mboximport"

@@ -500,6 +500,9 @@
     "message": "Om du använder det här formatet går det inte att importera de exporterade meddelandena.\nÄr du säker på att du vill fortsätta?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Datumformat för rubrik"
+  },
   "importDone": {
     "message": "Importen är klar",
     "src": "mboximport"

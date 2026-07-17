@@ -500,6 +500,9 @@
     "message": "Այս ձևաչափը օգտագործելիս հնարավոր չէ ներմուծել արտածած հաղորդագրությունները։\nՇարունակե՞լ։\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Վերնագրի ամսաթվի ձևաչափը"
+  },
   "importDone": {
     "message": "Ներմուծումն ավարտված է",
     "src": "mboximport"

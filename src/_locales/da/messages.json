@@ -500,6 +500,9 @@
     "message": "Hvis du bruger dette format, vil det ikke være muligt at importere de eksporterede meddelelser.\nVil du fortsætte?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Datoformat for overskrift"
+  },
   "importDone": {
     "message": "Import færdig",
     "src": "mboximport"

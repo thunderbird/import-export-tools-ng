@@ -500,6 +500,9 @@
     "message": "この形式を使用した場合は、エクスポートしたメッセージのインポートは可能にはなりません。\nこのまま続行しますか？",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "ヘッダー日付形式"
+  },
   "importDone": {
     "message": "インポートを完了しました",
     "src": "mboximport"

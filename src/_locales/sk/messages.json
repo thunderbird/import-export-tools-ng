@@ -500,6 +500,9 @@
     "message": "Ak použijete tento formát, nebude možné exportované správy importovať. \\ NNaozaj chcete pokračovať? \\ N",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Formát dátumu v hlavičke"
+  },
   "importDone": {
     "message": "Import Hotovo",
     "src": "mboximport"

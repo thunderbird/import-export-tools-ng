@@ -500,6 +500,9 @@
     "message": "If you use this format, it will not be possible to import the exported messages.\nDo you want to continue?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "헤더 날짜 형식"
+  },
   "importDone": {
     "message": "가져오기 완료",
     "src": "mboximport"

@@ -500,6 +500,9 @@
     "message": "Ha ezt a formátumot használja, nem lesz lehetséges az exportált üzenetek importálása.\nBiztosan folytatja?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Fejléc dátumformátuma"
+  },
   "importDone": {
     "message": "Az importálás kész",
     "src": "mboximport"

@@ -500,6 +500,9 @@
     "message": "Als u deze indeling gebruikt, zult u de geëxporteerde berichten niet kunnen importeren.\nWilt u doorgaan?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Datumindeling in de koptekst"
+  },
   "importDone": {
     "message": "Importeren klaar",
     "src": "mboximport"

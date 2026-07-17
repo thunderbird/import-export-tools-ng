@@ -500,6 +500,9 @@
     "message": "如果使用这个格式，将无法导入已导出的消息。\n是否继续？",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "标题日期格式"
+  },
   "importDone": {
     "message": "导入完成",
     "src": "mboximport"

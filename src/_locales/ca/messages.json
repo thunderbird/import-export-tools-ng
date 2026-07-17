@@ -501,6 +501,9 @@
     "message": "If you use this format, it will not be possible to import the exported messages.\nDo you want to continue?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Format de data de capçalera"
+  },
   "importDone": {
     "message": "Importació feta",
     "src": "mboximport"

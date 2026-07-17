@@ -497,6 +497,9 @@
     "message": "Pokud použijete tento formát, nebude možné importovat exportované zprávy.\nOpravdu chcete pokračovat?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Formát data v záhlaví"
+  },
   "importDone": {
     "message": "Import Hotovo",
     "src": "mboximport"

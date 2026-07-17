@@ -500,6 +500,9 @@
     "message": "Si vous utilisez ce format, il ne sera pas possible d’importer les messages exportés.\nSouhaitez-vous continuer ?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Format de date d&#39;en-tête"
+  },
   "importDone": {
     "message": "Importation effectuée",
     "src": "mboximport"

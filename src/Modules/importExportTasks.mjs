@@ -207,6 +207,9 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
   } else {
     expTask.exportContainer.create = true;
   }
+
+  expTask.hdrDateFormat = await prefCmds.getPref("export.general.hdrDateFormat");
+
   expTask.dateFormat.type = 1;
   expTask.names.extension = "html";
   expTask.attachments.save = params.saveAttachments;
@@ -265,6 +268,9 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
   } else {
     expTask.exportContainer.create = true;
   }
+
+  expTask.hdrDateFormat = await prefCmds.getPref("export.general.hdrDateFormat");
+
   expTask.dateFormat.type = 1;
   expTask.names.extension = "pdf";
   expTask.attachments.save = params.saveAttachments;
@@ -324,6 +330,9 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
   } else {
     expTask.exportContainer.create = true;
   }
+
+  expTask.hdrDateFormat = await prefCmds.getPref("export.general.hdrDateFormat");
+
   expTask.dateFormat.type = 1;
   expTask.names.extension = "txt";
   expTask.attachments.save = params.saveAttachments;

@@ -35,6 +35,7 @@ let defaultPrefs = {
       defaultSelectedMsgsExportDir: "",
       defaultMboxExportDir: "",
       msgAndAttachmentsStructure: "perMsgDir",
+      hdrDateFormat: "%m/%d/%Y %H:%M:%S",
     },
     eml: {
       messageContainer: false,

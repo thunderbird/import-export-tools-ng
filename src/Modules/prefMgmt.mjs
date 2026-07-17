@@ -100,6 +100,7 @@ let defaultPrefs = {
       last: 0,
       type: 0,
       frequency: 0,
+      backupTime: "00:00",
       dir: "",
       dir_name_type: 0,
       save_mode: 2,

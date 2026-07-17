@@ -74,6 +74,8 @@ async function initMboxImportPanel() {
     document.getElementById("openHelpInWin").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
     // new v15 options
+    console.log(await IETStoragePrefs.getComplexPref("autobackup.temp.backupTime"))
+    document.getElementById("backupTime").value = await IETStoragePrefs.getComplexPref("autobackup.temp.backupTime");
     document.getElementById("headerDateFormat").value = await IETStoragePrefs.getComplexPref("export.general.hdrDateFormat");
 
     document.getElementById("loggingOptions").value = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.debug.logTypes");
@@ -290,6 +292,7 @@ async function saveMboxImportPrefs() {
 
         // new v15 options
 
+        await IETStoragePrefs.setComplexPref("autobackup.temp.backupTime", document.getElementById("backupTime").value);
         await IETStoragePrefs.setComplexPref("export.general.hdrDateFormat", document.getElementById("headerDateFormat").value);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
         // ui

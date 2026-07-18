@@ -97,9 +97,12 @@ let defaultPrefs = {
   },
   autobackup: {
     temp: {
+      enabled: false,
       last: 0,
       type: 0,
       frequency: 0,
+      phase: 0,
+      phases: [],
       backupTime: "00:00",
       dir: "",
       dir_name_type: 0,

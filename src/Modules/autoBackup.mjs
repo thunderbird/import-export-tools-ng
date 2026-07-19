@@ -3,11 +3,14 @@
 import { logging, log } from "./loggingWext.mjs";
 import { prefCmds } from "./prefCmds.mjs";
 
+logging.init({ logTypes: prefCmds.getPref("debug.logTypes") || "backup" });
+
 export async function initBackup() {
   // if backup not enabled, nothing to do
   if (!await prefCmds.getPref("temp.autobackup.temp.enabled")) {
-    return;
+    return;    
   }
+    log("backup","Initialize Backup (Enabled)");
 
   // setup backup scheduler
   await initBackupScheduler();
@@ -15,6 +18,9 @@ export async function initBackup() {
 }
 
 async function initBackupScheduler() {
+  try {
+    log("backup","Initialize Backup scheduler");
+    
   // get backup parameters
   let backupTime = await prefCmds.getPref("temp.autobackup.temp.backupTime");
   let dayFrequency = await prefCmds.getPref("temp.autobackup.temp.frequency");
@@ -33,14 +39,25 @@ async function initBackupScheduler() {
   // check where we are
   const dayInMs = 0;
   
-  let lastBackupDate = new Date(lastBackupTime);
-  let now = new Date();
-  let daysSinceLastBackup = (now - lastBackupDate);
+  let lastBackupDate = Temporal.Instant.fromEpochMilliseconds(lastBackupTime);
+  console.log(lastBackupDate)
+  let now = Temporal.Now.plainDateTimeISO();
+  console.log(now)
 
-  let scheduleTime = 
+  let daysSinceLastBackup = (lastBackupDate.since(now));
+  console.log(daysSinceLastBackup)
+
+
+  let scheduleTime = now;
   let timeComponents = backupTime.split(":");
-  let hours = Number(timeComponents[0]);
-  let minutes = Number(timeComponents[1]);
-    runDateTime.setHours(hours, minutes, 0);
-  
+  let hour = Number(timeComponents[0]);
+  let minute = Number(timeComponents[1]);
+  scheduleTime.with({hour: hour, minute: minute});
+  console.log(scheduleTime)
+
+
+} catch (ex) {
+  console.log(ex)
+
+}
 }

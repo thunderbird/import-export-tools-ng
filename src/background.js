@@ -19,7 +19,7 @@
 import { openHelp } from "/Modules/miscCmds.mjs";
 import * as prefMgmt from "/Modules/prefMgmt.mjs";
 import { prefCmds } from "./Modules/prefCmds.mjs";
-import { autoBackup } from "./Modules/autoBackup.mjs";
+import * as autoBackup  from "./Modules/autoBackup.mjs";
 
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";

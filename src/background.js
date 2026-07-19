@@ -85,5 +85,5 @@ async function main() {
 	messenger.WindowListener.startListening();
 	
 	// autoBackup
-	autoBackup.initBackup();
+	await autoBackup.initBackup();
 }

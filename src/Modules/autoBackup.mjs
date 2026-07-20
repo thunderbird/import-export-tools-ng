@@ -60,6 +60,7 @@ async function initBackupScheduler() {
     console.log(scheduleTime)
     console.log(Temporal.Instant.compare(scheduleTime, zdtNow))
 
+    
     // alarm test
     console.log("alarm test")
     browser.alarms.onAlarm.addListener(_backupAlarm)

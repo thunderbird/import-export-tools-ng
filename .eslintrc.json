@@ -47,7 +47,7 @@
 		"PathUtils": "readonly",
  		"globalThis": "readonly",
  		"Services": "readonly",
-
+ 		"Temporal": "readonly",
 		"BatchMessageMover": "readonly"
 		
 	},

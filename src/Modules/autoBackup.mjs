@@ -46,12 +46,12 @@ async function initBackupScheduler() {
     let lastBackupDate = Temporal.Instant.fromEpochMilliseconds(lastBackupTime);
     const zonedDateTime = lastBackupDate.toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
-// 3. Remove the time zone to get the PlainDateTime
-const plainDateTime = zonedDateTime.toPlainDateTime();
+    // 3. Remove the time zone to get the PlainDateTime
+    const plainDateTime = zonedDateTime.toPlainDateTime();
 
     console.log(plainDateTime)
     let now = Temporal.Now.zonedDateTimeISO();
-    console.log(now)
+    console.log("nown", now)
 
     let daysSinceLastBackup = (plainDateTime.since(now));
     console.log(daysSinceLastBackup.days)
@@ -66,10 +66,22 @@ const plainDateTime = zonedDateTime.toPlainDateTime();
     console.log(scheduleTime)
     console.log(Temporal.Instant.compare(scheduleTime, now))
 
-    
+    // alarm test
+    console.log("alarm test")
+    browser.alarms.onAlarm.addListener(_backupAlarm)
+
+    let at = now.add({ minutes: 5 })
+    console.log("alarm time", at)
+    browser.alarms.create("test", { when: at.epochMilliseconds })
+
+
 
   } catch (ex) {
     console.log(ex)
 
   }
+}
+async function _backupAlarm(alarmInfo) {
+  console.log(alarmInfo)
+  console.log(Temporal.Now.zonedDateTimeISO())
 }

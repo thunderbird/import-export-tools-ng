@@ -27,18 +27,13 @@ async function initBackupScheduler() {
     let epochMSLastBackupTime = (await prefCmds.getPref("autobackup.temp.last")) * 1000;
 
     console.log(epochMSLastBackupTime)
-    
 
-    // check where we are
-    const dayInMs = 0;
+    //epochMSLastBackupTime = 0
 
     let d = new Date(epochMSLastBackupTime)
     console.log("last bu date", d)
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
-                              .toZonedDateTimeISO(Temporal.Now.timeZoneId());
-
-    // 3. Remove the time zone to get the PlainDateTime
-    //const plainDateTime = zonedDateTime.toPlainDateTime();
+      .toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
     console.log("last bu", zdtLastBackupDate)
     console.log("last bu ems", zdtLastBackupDate.epochMilliseconds)
@@ -51,16 +46,50 @@ async function initBackupScheduler() {
     //console.log(daysSinceLastBackup.days)
     //console.log(daysSinceLastBackup.hours)
 
+    dayFrequency = 11
+    // determine next backup date
 
-    let scheduleTime = zdtNow;
-    let timeComponents = backupTime.split(":");
-    let hour = Number(timeComponents[0]);
-    let minute = Number(timeComponents[1]);
-    scheduleTime = scheduleTime.with({ hour: hour, minute: minute });
-    console.log(scheduleTime)
-    console.log(Temporal.Instant.compare(scheduleTime, zdtNow))
+    // get backup hour, minute
+    let backupHrMin = backupTime.split(":");
+    let hour = Number(backupHrMin[0]);
+    let minute = Number(backupHrMin[1]);
+    let zdtBackupDate;
 
-    
+    // if zdtLastBackupDate (ems) is zero we are starting
+    // a new backup from now
+    if (zdtLastBackupDate.epochMilliseconds == 0) {
+      zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
+
+      // if we are past backup time schedule tomorrow
+
+      if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
+        console.log("past bu time")
+        zdtBackupDate = zdtBackupDate.add({ days: 1 });
+      }
+
+      console.log(" bu time", zdtBackupDate)
+
+    } else {
+      zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
+      if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
+        console.log("overdue bu time")
+        zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
+
+      } else {
+        zdtBackupDate = zdtBackupDate.with({ hour: hour, minute: minute, second: 0 });
+
+      }
+    }
+
+    if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
+      console.log("past bu time today")
+      zdtBackupDate = zdtBackupDate.add({ days: 1 });
+    }
+
+    console.log(" bu time", zdtBackupDate)
+
+
+
     // alarm test
     console.log("alarm test")
     browser.alarms.onAlarm.addListener(_backupAlarm)

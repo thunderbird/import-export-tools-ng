@@ -110,7 +110,8 @@
     "messagesImport",
     "notifications",
     "messagesMove",
-    "storage"
+    "storage",
+    "alarms"
   ],
   "background": {
     "scripts": [

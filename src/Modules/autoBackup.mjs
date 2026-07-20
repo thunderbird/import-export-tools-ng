@@ -24,55 +24,49 @@ async function initBackupScheduler() {
     // get backup parameters
     let backupTime = await prefCmds.getPref("autobackup.temp.backupTime");
     let dayFrequency = await prefCmds.getPref("autobackup.temp.frequency");
-    let lastBackupTime = (await prefCmds.getPref("autobackup.temp.last"));
+    let epochMSLastBackupTime = (await prefCmds.getPref("autobackup.temp.last")) * 1000;
 
-    lastBackupTime = lastBackupTime * 1000;
-    console.log(lastBackupTime)
-    let backupPhases = [];
-    // no differential backups yet so only primary on phase zero
-    for (let phase = 0; phase < dayFrequency; phase++) {
-      if (phase == 0) {
-        backupPhases[phase] = "primary";
-        continue;
-      }
-      backupPhases[phase] = "none";
-    }
+    console.log(epochMSLastBackupTime)
+    
 
     // check where we are
     const dayInMs = 0;
 
-    let d = new Date(lastBackupTime)
-    console.log(d)
-    let lastBackupDate = Temporal.Instant.fromEpochMilliseconds(lastBackupTime);
-    const zonedDateTime = lastBackupDate.toZonedDateTimeISO(Temporal.Now.timeZoneId());
+    let d = new Date(epochMSLastBackupTime)
+    console.log("last bu date", d)
+    let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
+                              .toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
     // 3. Remove the time zone to get the PlainDateTime
-    const plainDateTime = zonedDateTime.toPlainDateTime();
+    //const plainDateTime = zonedDateTime.toPlainDateTime();
 
-    console.log(plainDateTime)
-    let now = Temporal.Now.zonedDateTimeISO();
-    console.log("nown", now)
-
-    let daysSinceLastBackup = (plainDateTime.since(now));
-    console.log(daysSinceLastBackup.days)
-    console.log(daysSinceLastBackup.hours)
+    console.log("last bu", zdtLastBackupDate)
+    console.log("last bu ems", zdtLastBackupDate.epochMilliseconds)
 
 
-    let scheduleTime = now;
+    let zdtNow = Temporal.Now.zonedDateTimeISO();
+    console.log("now", zdtNow)
+
+    //let daysSinceLastBackup = (plainDateTime.since(zdtNow));
+    //console.log(daysSinceLastBackup.days)
+    //console.log(daysSinceLastBackup.hours)
+
+
+    let scheduleTime = zdtNow;
     let timeComponents = backupTime.split(":");
     let hour = Number(timeComponents[0]);
     let minute = Number(timeComponents[1]);
     scheduleTime = scheduleTime.with({ hour: hour, minute: minute });
     console.log(scheduleTime)
-    console.log(Temporal.Instant.compare(scheduleTime, now))
+    console.log(Temporal.Instant.compare(scheduleTime, zdtNow))
 
     // alarm test
     console.log("alarm test")
     browser.alarms.onAlarm.addListener(_backupAlarm)
 
-    let at = now.add({ minutes: 5 })
+    let at = zdtNow.add({ minutes: 5 })
     console.log("alarm time", at)
-    browser.alarms.create("test", { when: at.epochMilliseconds })
+    //browser.alarms.create("test", { when: at.epochMilliseconds })
 
 
 

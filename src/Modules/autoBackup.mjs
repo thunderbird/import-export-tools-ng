@@ -5,9 +5,11 @@ import { prefCmds } from "./prefCmds.mjs";
 
 logging.init({ logTypes: prefCmds.getPref("debug.logTypes") || "backup" });
 
+
 export async function initBackup() {
+
   // if backup not enabled, nothing to do
-  if (!await prefCmds.getPref("temp.autobackup.temp.enabled")) {
+  if (!await prefCmds.getPref("autobackup.temp.enabled")) {
     //return;
   }
   log("backup", "Initialize Backup (Enabled)");
@@ -19,6 +21,12 @@ export async function initBackup() {
 
 async function initBackupScheduler() {
   try {
+    console.log("gBt get", window.gBt)
+ 
+ // Add storage change listener.
+    if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
+      await messenger.storage.onChanged.addListener(_backupOptionsObserver);
+    }
     log("backup", "Initialize Backup scheduler");
 
     // get backup parameters
@@ -108,4 +116,26 @@ async function initBackupScheduler() {
 async function _backupAlarm(alarmInfo) {
   console.log(alarmInfo)
   console.log(Temporal.Now.zonedDateTimeISO())
+}
+
+async function _backupOptionsObserver(changes, area) {
+  //console.log("obsv gBT", window.gBt)
+  //console.log("changes", changes)
+
+  let changedItems = Object.keys(changes);
+    for (let item of changedItems) {
+      if (area == "local" && item == "userPrefs") {
+        try {
+        if (changes.userPrefs.newValue.autobackup.temp.backupTime != changes.userPrefs.oldValue.autobackup.temp.backupTime ) {
+          window.gBt = changes.userPrefs.newValue.autobackup.temp.backupTime;
+          console.log("gBt changed", window.gBt)
+
+          initBackupScheduler();
+        }
+      } catch {}
+
+        //this._userPrefs = changes.userPrefs.newValue;
+      }
+
+    }
 }

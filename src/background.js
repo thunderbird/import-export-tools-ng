@@ -19,10 +19,12 @@
 import { openHelp } from "/Modules/miscCmds.mjs";
 import * as prefMgmt from "/Modules/prefMgmt.mjs";
 import { prefCmds } from "./Modules/prefCmds.mjs";
-import * as autoBackup  from "./Modules/autoBackup.mjs";
+import * as autoBackup from "./Modules/autoBackup.mjs";
 
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
+
+window.gBt = "none bk";
 
 // now start
 main();
@@ -83,7 +85,10 @@ async function main() {
 		"chrome://mboximport/content/mboximport/messageWindowOL.js");
 
 	messenger.WindowListener.startListening();
-	
+
 	// autoBackup
+	gBt = await prefCmds.getPref("autobackup.temp.backupTime")
+	console.log("gBt get", gBt)
+
 	await autoBackup.initBackup();
 }

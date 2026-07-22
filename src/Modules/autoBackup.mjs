@@ -21,9 +21,9 @@ export async function initBackup() {
 
 async function initBackupScheduler() {
   try {
-    console.log("gBt get", window.gBt)
- 
- // Add storage change listener.
+    console.log("gBt get", window.gBt);
+
+    // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
       await messenger.storage.onChanged.addListener(_backupOptionsObserver);
     }
@@ -31,30 +31,24 @@ async function initBackupScheduler() {
 
     // get backup parameters
     let backupTime = await prefCmds.getPref("autobackup.temp.backupTime");
-    let dayFrequency = await prefCmds.getPref("autobackup.temp.frequency");
+    let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
     let epochMSLastBackupTime = (await prefCmds.getPref("autobackup.temp.last")) * 1000;
 
-    console.log(epochMSLastBackupTime)
+  //console.log(epochMSLastBackupTime);
 
     //epochMSLastBackupTime = 0
 
-    let d = new Date(epochMSLastBackupTime)
-    console.log("last bu date", d)
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
       .toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
-    console.log("last bu", zdtLastBackupDate)
-    console.log("last bu ems", zdtLastBackupDate.epochMilliseconds)
+    console.log("last bu", zdtLastBackupDate);
+    console.log("last bu ems", zdtLastBackupDate.epochMilliseconds);
 
 
     let zdtNow = Temporal.Now.zonedDateTimeISO();
-    console.log("now", zdtNow)
+    console.log("now", zdtNow);
 
-    //let daysSinceLastBackup = (plainDateTime.since(zdtNow));
-    //console.log(daysSinceLastBackup.days)
-    //console.log(daysSinceLastBackup.hours)
-
-    dayFrequency = 11
+    dayFrequency = 11;
     // determine next backup date
 
     // get backup hour, minute
@@ -68,19 +62,10 @@ async function initBackupScheduler() {
     if (zdtLastBackupDate.epochMilliseconds == 0) {
       zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
 
-      // if we are past backup time schedule tomorrow
-
-      if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-        console.log("past bu time")
-        zdtBackupDate = zdtBackupDate.add({ days: 1 });
-      }
-
-      console.log(" bu time", zdtBackupDate)
-
     } else {
       zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
       if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-        console.log("overdue bu time")
+        console.log("overdue bu time");
         zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
 
       } else {
@@ -89,33 +74,34 @@ async function initBackupScheduler() {
       }
     }
 
+    // if we are past backup time schedule for next day
     if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-      console.log("past bu time today")
+      console.log("past bu time today");
       zdtBackupDate = zdtBackupDate.add({ days: 1 });
     }
 
-    console.log(" bu time", zdtBackupDate)
+    console.log(" bu time", zdtBackupDate);
 
 
 
     // alarm test
-    console.log("alarm test")
-    browser.alarms.onAlarm.addListener(_backupAlarm)
+    console.log("alarm test");
+    browser.alarms.onAlarm.addListener(_backupAlarm);
 
-    let at = zdtNow.add({ minutes: 5 })
-    console.log("alarm time", at)
+    let at = zdtNow.add({ minutes: 5 });
+    console.log("alarm time", at);
     //browser.alarms.create("test", { when: at.epochMilliseconds })
 
 
 
   } catch (ex) {
-    console.log(ex)
+    console.log(ex);
 
   }
 }
 async function _backupAlarm(alarmInfo) {
-  console.log(alarmInfo)
-  console.log(Temporal.Now.zonedDateTimeISO())
+  console.log(alarmInfo);
+  console.log(Temporal.Now.zonedDateTimeISO());
 }
 
 async function _backupOptionsObserver(changes, area) {
@@ -123,19 +109,23 @@ async function _backupOptionsObserver(changes, area) {
   //console.log("changes", changes)
 
   let changedItems = Object.keys(changes);
-    for (let item of changedItems) {
-      if (area == "local" && item == "userPrefs") {
-        try {
-        if (changes.userPrefs.newValue.autobackup.temp.backupTime != changes.userPrefs.oldValue.autobackup.temp.backupTime ) {
-          window.gBt = changes.userPrefs.newValue.autobackup.temp.backupTime;
-          console.log("gBt changed", window.gBt)
+  for (let item of changedItems) {
+    if (area == "local" && item == "userPrefs") {
+      let oldUserPrefs = changes.userPrefs.oldValue;
+      let newUserPrefs = changes.userPrefs.newValue;
+
+      try {
+        if (newUserPrefs.autobackup.temp.enabled != oldUserPrefs.autobackup.temp.enabled ||
+          newUserPrefs.autobackup.temp.backupTime != oldUserPrefs.autobackup.temp.backupTime ||
+          newUserPrefs.autobackup.temp.dayFrequency != oldUserPrefs.autobackup.temp.dayFrequency) {
+          //window.gBt = changes.userPrefs.newValue.autobackup.temp.backupTime;
+          console.log("bu options changed - init Schedule ");
 
           initBackupScheduler();
+
         }
-      } catch {}
-
-        //this._userPrefs = changes.userPrefs.newValue;
-      }
-
+      } catch (ex) { }
     }
+
+  }
 }

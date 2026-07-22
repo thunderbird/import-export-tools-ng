@@ -100,7 +100,7 @@ let defaultPrefs = {
       enabled: false,
       last: 0,
       type: 0,
-      frequency: 0,
+      dayFrequency: 0,
       phase: 0,
       phases: [],
       backupTime: "00:00",
@@ -166,7 +166,7 @@ const legacyPrefToStorageMap = {
   "export.use_container_folder": "temp.export_use_container_folder",
   "autobackup.last": "autobackup.temp.last",
   "autobackup.type": "autobackup.temp.type",
-  "autobackup.frequency": "autobackup.temp.frequency",
+  "autobackup.frequency": "autobackup.temp.dayFrequency",
   "autobackup.dir_name_type": "autobackup.temp.dir_name_type",
   "autobackup.dir": "autobackup.temp.dir",
   "autobackup.save_mode": "autobackup.temp.save_mode",
@@ -328,7 +328,7 @@ messenger.NotifyTools.onNotifyBackground.addListener(async (info) => {
     case "getPref":
       return prefCmds.getPref(storageKey);
     case "setPref":
-      console.log("rcvd setPref", info.prefName, storageKey, info.prefValue);
+      //console.log("rcvd setPref", info.prefName, storageKey, info.prefValue);
       return prefCmds.setPref(storageKey, info.prefValue);
   }
   return null;

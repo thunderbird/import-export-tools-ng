@@ -24,7 +24,7 @@ import * as autoBackup from "./Modules/autoBackup.mjs";
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
 
-window.gBt = "none bk";
+//window.gBt = "none bk";
 
 // now start
 main();
@@ -87,8 +87,8 @@ async function main() {
 	messenger.WindowListener.startListening();
 
 	// autoBackup
-	gBt = await prefCmds.getPref("autobackup.temp.backupTime")
-	console.log("gBt get", gBt)
+	//gBt = await prefCmds.getPref("autobackup.temp.backupTime")
+	//console.log("gBt get", gBt)
 
 	await autoBackup.initBackup();
 }

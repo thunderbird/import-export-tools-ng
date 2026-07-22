@@ -21,7 +21,6 @@ export async function initBackup() {
 
 async function initBackupScheduler() {
   try {
-    console.log("gBt get", window.gBt);
 
     // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
@@ -41,8 +40,8 @@ async function initBackupScheduler() {
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
       .toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
-    console.log("last bu", zdtLastBackupDate);
-    console.log("last bu ems", zdtLastBackupDate.epochMilliseconds);
+    console.log("last bu", zdtLastBackupDate.toLocaleString());
+    //console.log("last bu ems", zdtLastBackupDate.epochMilliseconds);
 
 
     let zdtNow = Temporal.Now.zonedDateTimeISO();
@@ -88,9 +87,9 @@ async function initBackupScheduler() {
     console.log("alarm test");
     browser.alarms.onAlarm.addListener(_backupAlarm);
 
-    let at = zdtNow.add({ minutes: 5 });
-    console.log("alarm time", at);
-    //browser.alarms.create("test", { when: at.epochMilliseconds })
+    //let at = zdtNow.add({ minutes: 5 });
+    //console.log("alarm time", at);
+    browser.alarms.create("test", { when: zdtBackupDate.epochMilliseconds })
 
 
 
@@ -101,7 +100,7 @@ async function initBackupScheduler() {
 }
 async function _backupAlarm(alarmInfo) {
   console.log(alarmInfo);
-  console.log(Temporal.Now.zonedDateTimeISO());
+  console.log(Temporal.Now.zonedDateTimeISO().toLocaleString());
 }
 
 async function _backupOptionsObserver(changes, area) {

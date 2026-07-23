@@ -35,17 +35,17 @@ exportSelectedMsgs,
 
 var messengerWindow = Services.wm.getMostRecentWindow("mail:3pane");
 
-	var { ExtensionParent } = ChromeUtils.importESModule(
-		"resource://gre/modules/ExtensionParent.sys.mjs"
-	);
-	
-	var ietngExtension = ExtensionParent.GlobalManager.getExtension(
-		"ImportExportToolsNG@cleidigh.kokkini.net"
-	);
+var { ExtensionParent } = ChromeUtils.importESModule(
+	"resource://gre/modules/ExtensionParent.sys.mjs"
+);
+
+var ietngExtension = ExtensionParent.GlobalManager.getExtension(
+	"ImportExportToolsNG@cleidigh.kokkini.net"
+);
 
 var { mboxImportExport } = ChromeUtils.importESModule(
 	"resource://mboximport/content/mboximport/modules/mboxImportExport.mjs?"
-  + ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + window.ietngAddon.dateForDebugging);
 
 var gVars = {
 	window: window,
@@ -59,6 +59,10 @@ async function expMenuDispatcher(data) {
 	console.log("expMenuDispacher: winId", dispatcherWinId, data);
 	// console.log("expMenuDispacher focused: ", window.document.hasFocus());
 	// console.log(window)
+
+	if (data.command == "WXMCMD_Backup") {
+		window.ietng.OpenBackupDialog('manual');
+	}
 	if (data.params.tabType != "messageDisplay" && data.params.targetWinId != dispatcherWinId) {
 		console.log("Not for us: ", data.params.targetWinId);
 		return;
@@ -219,7 +223,7 @@ async function expMenuDispatcher(data) {
 		return rv;
 	} catch (ex) {
 		Services.prompt.alert(window, "Exception", `${ex}\n\n${ex.stack}`);
-		return {status: "error"};
+		return { status: "error" };
 	}
 }
 

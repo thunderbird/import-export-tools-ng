@@ -33,9 +33,9 @@ async function initBackupScheduler() {
     let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
     let epochMSLastBackupTime = (await prefCmds.getPref("autobackup.temp.last")) * 1000;
 
-  //console.log(epochMSLastBackupTime);
+    //console.log(epochMSLastBackupTime);
 
-    //epochMSLastBackupTime = 0
+    epochMSLastBackupTime = 0
 
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
       .toZonedDateTimeISO(Temporal.Now.timeZoneId());
@@ -101,6 +101,8 @@ async function initBackupScheduler() {
 async function _backupAlarm(alarmInfo) {
   console.log(alarmInfo);
   console.log(Temporal.Now.zonedDateTimeISO().toLocaleString());
+  await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
+
 }
 
 async function _backupOptionsObserver(changes, area) {

@@ -76,6 +76,10 @@ var autoBackup = {
 		if (autoBackup.mode != "auto") {
 			document.getElementById("autoModeDesc").hidden = true;
 		}
+
+		let startTimeoutId = setTimeout(() => {
+			this.onOK();
+		}, 8 * 1000);
 	},
 
 	getDir: async function () {
@@ -84,7 +88,8 @@ var autoBackup = {
 
 		// handle empty pref
 		try {
-			dir = await IETStoragePrefs.getCharPref("extensions.importexporttoolsng.autobackup.dir");
+			dir = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir");
+
 		} catch (ex) {
 			dir = null;
 		}
@@ -277,6 +282,8 @@ var autoBackup = {
 			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
 			autoBackup.writeLog(logline, true);
+			await new Promise(resolve => setTimeout(resolve, 50));
+
 		} catch (e) {
 			var error;
 			if (autoBackup.array1[index])

@@ -356,10 +356,14 @@ async function saveMboxImportPrefs() {
             await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
 
         // Backup section
-        if (!document.getElementById("backupEnable").checked)
+        if (!document.getElementById("backupEnable").checked) {
+            await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", false);
             await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
-        else
+        } else {
+            await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", true);
             await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
+        }
+
         if (document.getElementById("backupDir").value)
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
         else

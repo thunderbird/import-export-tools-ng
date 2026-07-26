@@ -3,30 +3,29 @@
 import { logging, log } from "./loggingWext.mjs";
 import { prefCmds } from "./prefCmds.mjs";
 
-logging.init({ logTypes: prefCmds.getPref("debug.logTypes") || "backup" });
+console.log("loading autoBackup")
 
 
-export async function initBackup() {
-
-  // if backup not enabled, nothing to do
-  if (!await prefCmds.getPref("autobackup.temp.enabled")) {
-    //return;
-  }
-  log("backup", "Initialize Backup (Enabled)");
-
-  // setup backup scheduler
-  await initBackupScheduler();
-
-}
-
-async function initBackupScheduler() {
+export async function initBackupScheduler() {
   try {
+
+    logging.init({ logTypes: prefCmds.getPref("debug.logTypes") });
+
+    // we always clear the alarm on init or change 
+    browser.alarms.clear("backupPeriodicAlarm");
+
+    if (!await prefCmds.getPref("autobackup.temp.enabled")) {
+      log("backup", "Initialize Backup (Disabled)");
+
+      return;
+    }
+
+    log("backup", "Initialize Backup Scheduler (Enabled)");
 
     // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
       await messenger.storage.onChanged.addListener(_backupOptionsObserver);
     }
-    log("backup", "Initialize Backup scheduler");
 
     // get backup parameters
     let backupTime = await prefCmds.getPref("autobackup.temp.backupTime");
@@ -47,7 +46,7 @@ async function initBackupScheduler() {
     let zdtNow = Temporal.Now.zonedDateTimeISO();
     console.log("now", zdtNow);
 
-    dayFrequency = 11;
+    //dayFrequency = 11;
     // determine next backup date
 
     // get backup hour, minute
@@ -79,17 +78,20 @@ async function initBackupScheduler() {
       zdtBackupDate = zdtBackupDate.add({ days: 1 });
     }
 
-    console.log(" bu time", zdtBackupDate);
+    // create alarm
+    console.log("setup backup alarm for:", zdtBackupDate.toLocaleString());
 
+    if (!(await messenger.alarms.onAlarm.hasListener(_backupAlarm))) {
+      browser.alarms.onAlarm.addListener(_backupAlarm);
+    }
+    //let periodInMinutes = 60 * 24 * dayFrequency;
+    let periodInMinutes = 4 * dayFrequency;
 
-
-    // alarm test
-    console.log("alarm test");
-    browser.alarms.onAlarm.addListener(_backupAlarm);
-
-    //let at = zdtNow.add({ minutes: 5 });
-    //console.log("alarm time", at);
-    browser.alarms.create("test", { when: zdtBackupDate.epochMilliseconds })
+    browser.alarms.create("backupAlarm",
+      {
+        when: zdtBackupDate.epochMilliseconds,
+        periodInMinutes: periodInMinutes
+      });
 
 
 

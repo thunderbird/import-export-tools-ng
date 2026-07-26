@@ -90,5 +90,5 @@ async function main() {
 	//gBt = await prefCmds.getPref("autobackup.temp.backupTime")
 	//console.log("gBt get", gBt)
 
-	await autoBackup.initBackup();
+	await autoBackup.initBackupScheduler();
 }

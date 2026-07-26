@@ -38,6 +38,7 @@ import { logging, log } from "./loggingWext.mjs";
 
 
 const userPrefStorageArea = "local";
+console.log("loading prefCmds")
 
 export var prefCmds = {
 
@@ -48,12 +49,13 @@ export var prefCmds = {
   getPref: function (aName, aFallback = null) {
     // Get defaultPref.
 
-    //let defaultPref = (this.dotWalk(aName, this._defaultPrefs) || this.dotWalk(aName, this._defaultPrefs) === "")
+    console.log(this.dotHasOwnProperty(aName, this._defaultPrefs))
+
     let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
       ? this.dotGet(aName, this._defaultPrefs)
       : aFallback;
 
-    //console.log("def", defaultPref)
+    console.log("def", defaultPref)
     // Check if userPref type is defaultPref type and return default if no match.
     if (this.dotHasOwnProperty(aName, this._userPrefs)) {
       let userPref = this.dotGet(aName, this._userPrefs);
@@ -138,6 +140,7 @@ export var prefCmds = {
   // WebExtension storage. If a defaults obj is given, the defaults in storage
   // are updated/set.
   init: async function (defaults = null) {
+
     // check if we are setting up local storage for first time
 
     let initialStorageDefaults = (await messenger.storage[userPrefStorageArea].get("defaultPrefs")).defaultPrefs || undefined;
@@ -152,6 +155,14 @@ export var prefCmds = {
     if (defaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });
     }
+
+    console.log("_userPrefs", this._userPrefs)
+    console.log("_defaultPrefs", this._defaultPrefs)
+
+    console.log(prefCmds.getPref("debug.logTypes"))
+
+    logging.init({ logTypes: this.getPref("debug.logTypes") });
+    console.log(prefCmds.getPref("debug.logTypes"))
 
     this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
@@ -209,7 +220,5 @@ export var prefCmds = {
   }
 
 }
-
-logging.init({ logTypes: prefCmds.getPref("debug.logTypes") || "prefs1" });
 
 

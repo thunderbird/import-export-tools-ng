@@ -49,13 +49,10 @@ export var prefCmds = {
   getPref: function (aName, aFallback = null) {
     // Get defaultPref.
 
-    console.log(this.dotHasOwnProperty(aName, this._defaultPrefs))
-
     let defaultPref = this.dotHasOwnProperty(aName, this._defaultPrefs)
       ? this.dotGet(aName, this._defaultPrefs)
       : aFallback;
 
-    console.log("def", defaultPref)
     // Check if userPref type is defaultPref type and return default if no match.
     if (this.dotHasOwnProperty(aName, this._userPrefs)) {
       let userPref = this.dotGet(aName, this._userPrefs);
@@ -151,6 +148,7 @@ export var prefCmds = {
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
     console.log("_userPrefs", this._userPrefs)
+    
     // If defaults are given, push them into storage.local
     if (defaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });
@@ -159,12 +157,10 @@ export var prefCmds = {
     console.log("_userPrefs", this._userPrefs)
     console.log("_defaultPrefs", this._defaultPrefs)
 
-    console.log(prefCmds.getPref("debug.logTypes"))
+    this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });
     console.log(prefCmds.getPref("debug.logTypes"))
-
-    this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
     // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {

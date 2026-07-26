@@ -51,8 +51,6 @@ async function IETsetCharsetPopup(charsetPref) {
 
 async function initMboxImportPanel() {
 
-    console.log(await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.exportEML.dir"))
-
     var IETngVersion = window.opener.ietng.extension.addonData.version;
     document.getElementById("optionsdialog").setAttribute("title", "ImportExportTools NG - v" + IETngVersion);
 
@@ -219,37 +217,40 @@ async function initMboxImportPanel() {
     }
 
     // Backup section
+
+    if (await IETStoragePrefs.getBoolPref("autobackup.temp.enabled")) {
+        document.getElementById("backupEnable").checked = true;
+        document.getElementById("frequencyList").disabled = false;
+        document.getElementById("backupTime").removeAttribute("disabled");
+    } else {
+        document.getElementById("backupEnable").checked = false;
+        document.getElementById("frequencyList").disabled = true;
+        document.getElementById("backupTime").setAttribute("disabled", true);
+
+    }
+
+
     var freq = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 
     switch (freq) {
         case 99:
             document.getElementById("frequencyList").selectedIndex = 5;
-            document.getElementById("backupEnable").checked = true;
             break;
-
         case 1:
             document.getElementById("frequencyList").selectedIndex = 0;
-            document.getElementById("backupEnable").checked = true;
             break;
         case 3:
             document.getElementById("frequencyList").selectedIndex = 1;
-            document.getElementById("backupEnable").checked = true;
             break;
         case 7:
             document.getElementById("frequencyList").selectedIndex = 2;
-            document.getElementById("backupEnable").checked = true;
             break;
         case 15:
             document.getElementById("frequencyList").selectedIndex = 3;
-            document.getElementById("backupEnable").checked = true;
             break;
         case 30:
             document.getElementById("frequencyList").selectedIndex = 4;
-            document.getElementById("backupEnable").checked = true;
             break;
-        default:
-            document.getElementById("backupEnable").checked = false;
-            document.getElementById("frequencyList").disabled = true;
     }
 
 
@@ -456,6 +457,12 @@ function toggleDirCheck(el) {
 
 function toggleBackup(el) {
     document.getElementById("frequencyList").disabled = !el.checked;
+    if (el.checked) {
+        document.getElementById("backupTime").removeAttribute("disabled");
+    } else {
+        document.getElementById("backupTime").setAttribute("disabled");
+    }
+
 }
 
 function toggleSkipMsg(el) {

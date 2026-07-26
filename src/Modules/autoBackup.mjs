@@ -3,8 +3,6 @@
 import { logging, log } from "./loggingWext.mjs";
 import { prefCmds } from "./prefCmds.mjs";
 
-console.log("loading autoBackup")
-
 
 export async function initBackupScheduler() {
   try {
@@ -31,20 +29,25 @@ export async function initBackupScheduler() {
     let backupTime = await prefCmds.getPref("autobackup.temp.backupTime");
     let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
     let epochMSLastBackupTime = (await prefCmds.getPref("autobackup.temp.last")) * 1000;
+    let retainNumBackups = await prefCmds.getPref("autobackup.temp.retainNumBackups");
+    let backupDir = await prefCmds.getPref("autobackup.temp.dir");
+
+    log("backup", "Backup Parameters:");
+    log("backup", `  Backup Time: ${backupTime}`);
+    log("backup", `  Day Frequency: ${dayFrequency}`);
+    log("backup", `  Last Backup Time: ${new Date(epochMSLastBackupTime).toLocaleString()}`);
+    log("backup", `  Backups To Retain: ${retainNumBackups}`);
+    log("backup", `  Backup Directory: ${backupDir}`);
+
 
     //console.log(epochMSLastBackupTime);
 
-    epochMSLastBackupTime = 0
+    //epochMSLastBackupTime = 0
 
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
       .toZonedDateTimeISO(Temporal.Now.timeZoneId());
 
-    console.log("last bu", zdtLastBackupDate.toLocaleString());
-    //console.log("last bu ems", zdtLastBackupDate.epochMilliseconds);
-
-
     let zdtNow = Temporal.Now.zonedDateTimeISO();
-    console.log("now", zdtNow);
 
     //dayFrequency = 11;
     // determine next backup date
@@ -63,31 +66,29 @@ export async function initBackupScheduler() {
     } else {
       zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
       if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-        console.log("overdue bu time");
+        log("backup", `Backup overdue, schedule for today`);
         zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
-
       } else {
         zdtBackupDate = zdtBackupDate.with({ hour: hour, minute: minute, second: 0 });
-
       }
     }
 
     // if we are past backup time schedule for next day
     if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-      console.log("past bu time today");
+      //console.log("past bu time today");
       zdtBackupDate = zdtBackupDate.add({ days: 1 });
     }
 
     // create alarm
-    console.log("setup backup alarm for:", zdtBackupDate.toLocaleString());
+    log("backup", `Schedule backup for: ${zdtBackupDate.toLocaleString()}`);
 
     if (!(await messenger.alarms.onAlarm.hasListener(_backupAlarm))) {
       browser.alarms.onAlarm.addListener(_backupAlarm);
     }
     //let periodInMinutes = 60 * 24 * dayFrequency;
-    let periodInMinutes = 4 * dayFrequency;
+    let periodInMinutes = 2 * dayFrequency;
 
-    browser.alarms.create("backupAlarm",
+    browser.alarms.create("backupPeriodicAlarm",
       {
         when: zdtBackupDate.epochMilliseconds,
         periodInMinutes: periodInMinutes
@@ -101,16 +102,12 @@ export async function initBackupScheduler() {
   }
 }
 async function _backupAlarm(alarmInfo) {
-  console.log(alarmInfo);
-  console.log(Temporal.Now.zonedDateTimeISO().toLocaleString());
+  let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
+  log("backup", `Scheduled backup starting - Time: : ${Temporal.Now.zonedDateTimeISO().toLocaleString()} Day Periodicity: ${dayFrequency}`);
   await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
-
 }
 
 async function _backupOptionsObserver(changes, area) {
-  //console.log("obsv gBT", window.gBt)
-  //console.log("changes", changes)
-
   let changedItems = Object.keys(changes);
   for (let item of changedItems) {
     if (area == "local" && item == "userPrefs") {
@@ -121,8 +118,7 @@ async function _backupOptionsObserver(changes, area) {
         if (newUserPrefs.autobackup.temp.enabled != oldUserPrefs.autobackup.temp.enabled ||
           newUserPrefs.autobackup.temp.backupTime != oldUserPrefs.autobackup.temp.backupTime ||
           newUserPrefs.autobackup.temp.dayFrequency != oldUserPrefs.autobackup.temp.dayFrequency) {
-          //window.gBt = changes.userPrefs.newValue.autobackup.temp.backupTime;
-          console.log("bu options changed - init Schedule ");
+          log("backup", "Backup options changed - Reinitialize Scheduler");
 
           initBackupScheduler();
 

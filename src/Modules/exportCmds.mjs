@@ -233,6 +233,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
                 return;
               }, 4200);
               await ui.createExportStatusWindow(`${browser.i18n.getMessage("ExportFolders.title")} : ${expTask.exportFormatText} - `, winType);
+              console.log("created stat win")
               log("msgs2", `Created expStatusWin winType: ${winType}`)
             });
             console.log("IETNG: after expStatusWin wait ", w, gAbort)
@@ -240,6 +241,7 @@ export async function exportFolders(ctxEvent, tab, functionParams) {
           }
         }
 
+        console.log(await browser.windows.getAll())
 
         if (gAbort) {
           let rv = await browser.AsyncPrompts.asyncAlert("error", "expStatuswin timeout, aborting");

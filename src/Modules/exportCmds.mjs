@@ -884,8 +884,8 @@ async function _getprocessedMsg(expTask, msgId, msg) {
             }
             htmlParts.push({ contentType: part.contentType, body: part?.body });
           }
-          if (expTask.expType != "pdf" && part.contentType == "text/plain" && part?.body) {
-            textParts.push({ contentType: part.contentType, body: part?.body });
+          if (expTask.expType != "pdf" && part.contentType == "text/plain") {
+            textParts.push({ contentType: part.contentType, body: part?.body || ""});
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("inline")) {
@@ -904,7 +904,9 @@ async function _getprocessedMsg(expTask, msgId, msg) {
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
 
+            console.log(part)
             let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
+            console.log(attachmentBody)
             attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
           }
 

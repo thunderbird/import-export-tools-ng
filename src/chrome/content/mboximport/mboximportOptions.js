@@ -357,6 +357,7 @@ async function saveMboxImportPrefs() {
             await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
 
         // Backup section
+        console.log(document.getElementById("backupEnable").checked)
         if (!document.getElementById("backupEnable").checked) {
             await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", false);
             await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
@@ -364,6 +365,8 @@ async function saveMboxImportPrefs() {
             await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", true);
             await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
         }
+
+        console.log(await IETStoragePrefs.getBoolPref("autobackup.temp.enabled"))
 
         if (document.getElementById("backupDir").value)
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);
@@ -460,7 +463,7 @@ function toggleBackup(el) {
     if (el.checked) {
         document.getElementById("backupTime").removeAttribute("disabled");
     } else {
-        document.getElementById("backupTime").setAttribute("disabled");
+        document.getElementById("backupTime").setAttribute("disabled", true);
     }
 
 }

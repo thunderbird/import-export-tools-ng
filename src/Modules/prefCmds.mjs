@@ -90,6 +90,8 @@ export var prefCmds = {
 
   // Set pref value by updating local pref obj and updating storage.
   setPref: async function (aName, aValue, forceUserPref = false) {
+    console.log(aName, aValue)
+    
     if (!this.dotHasOwnProperty(aName, this._defaultPrefs)) {
       console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs", aName);
       return null;

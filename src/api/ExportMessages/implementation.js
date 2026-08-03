@@ -36,6 +36,9 @@ var osPathSeparator = os.includes("win")
   ? "\\"
   : "/";
 
+console.log("index os:", os);
+console.log("index osPathSep:", osPathSeparator);
+
 // we run this as an ES6 module for performance
 var { exportMessages } = ChromeUtils.importESModule(
   "resource://ietng/api/ExportMessages/Modules/exportMessages.mjs?" + ietngExtension.manifest.version + new Date()
@@ -86,7 +89,12 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
         writeIndex: async function (expTask, indexData) {
           var { sorttableSource } = ChromeUtils.importESModule("resource://ietng/api/commonModules/sorttableSource.mjs?" + ietngExtension.manifest.version + new Date());
 
+          console.log("index write");
+
           let indexDir = this._getIndexDirectory(expTask);
+          console.log("index dir:", indexDir);
+          console.log("index fullpath:", `${indexDir}${osPathSeparator}index.html`);
+
           indexData = indexData.replace("sorttable.js", sorttableSource);
           return IOUtils.writeUTF8(`${indexDir}${osPathSeparator}index.html`, indexData);
         },
@@ -102,9 +110,14 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             // so we can count on that as our path separator
 
             let cleanFolderName = expTask.folders[expTask.currentFolderIndex].exportPath;
+          console.log("_getIndexdir cleanFolderName:", cleanFolderName);
+
             //replace(/[\\:<>*\?\"\|]/g, "_");
             // use PathUtils.join which will give us an OS proper path
             let base = expTask.exportContainer.directory;
+          console.log("_getIndexdir base:", base);
+          console.log("_getIndexdir path parts:", ...cleanFolderName.split(osPathSeparator));
+            
             indexDir = PathUtils.join(base, ...cleanFolderName.split(osPathSeparator));
           }
           expTask.index.directory = indexDir;

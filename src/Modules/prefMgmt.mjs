@@ -281,7 +281,7 @@ async function _migrateLegacyPrefs() {
       let legacyVal = await messenger.LegacyPrefs.getPref(`${addonRootPref}.${legacyKey}`);
       let legacyValU = await messenger.LegacyPrefs.getUserPref(`${addonRootPref}.${legacyKey}`);
       let storagePref = prefCmds.getUserPref(storageKey)
-      if (prefCmds.isDefaultPref(storagePref)) {
+      if (prefCmds.isDefaultPref(storageKey)) {
         if (legacyVal != null) {
           console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
           // set the storage pref with createNewProperty = true

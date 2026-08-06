@@ -9,9 +9,14 @@ export async function initBackupScheduler() {
 
     logging.init({ logTypes: prefCmds.getPref("debug.logTypes") });
 
-    // we always clear the alarm on init or change 
+    // we always clear the alarm on init or change
     browser.alarms.clear("backupPeriodicAlarm");
 
+    // Add storage change listener.
+    if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
+      await messenger.storage.onChanged.addListener(_backupOptionsObserver);
+    }
+    
     if (!await prefCmds.getPref("autobackup.temp.enabled")) {
       log("backup", "Initialize Backup (Disabled)");
 

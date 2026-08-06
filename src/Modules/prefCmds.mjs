@@ -103,16 +103,17 @@ export var prefCmds = {
       return null;
     }
 
-    if (!forceUserPref && aValue == defaultValue) {
-      log("prefs1", `setPref: ${aName} Using existing _defaultPrefs: ${aName} : ${defaultValue}`);
-      return;
-    }
     // ok, we can set userPref
     this.dotSet(aName, aValue, this._userPrefs, true);
     // store updated userPrefs in storage
     await messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
     log("prefs1", `setPref: ${aName} userPref: ${aValue}`);
     return aValue;
+  },
+
+  isDefaultPref: function(aName) {
+    let defaultPref = this.dotGet(aName, this._defaultPrefs);
+    return defaultPref == this.dotGet(aName, this._userPrefs)
   },
 
   // Remove a preference (calls to getPref will return default value)
@@ -144,6 +145,12 @@ export var prefCmds = {
 
     let initialStorageDefaults = (await messenger.storage[userPrefStorageArea].get("defaultPrefs")).defaultPrefs || undefined;
 
+     // If defaults are given, push them into storage.local
+    if (defaults && !initialStorageDefaults) {
+      await messenger.storage.local.set({ defaultPrefs: defaults });
+      await messenger.storage.local.set({ userPrefs: defaults });
+    }
+
     this._userPrefs = {};
     this._defaultPrefs = {};
 
@@ -151,15 +158,13 @@ export var prefCmds = {
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
     console.log("_userPrefs", this._userPrefs)
     
-    // If defaults are given, push them into storage.local
-    if (defaults) {
-      await messenger.storage.local.set({ defaultPrefs: defaults });
-    }
+    this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
+
+   
 
     console.log("_userPrefs", this._userPrefs)
     console.log("_defaultPrefs", this._defaultPrefs)
 
-    this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });
     console.log(prefCmds.getPref("debug.logTypes"))

@@ -42,7 +42,10 @@ var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/conten
 
 var autoBackup = {
 
+	backupStart: 0,
+
 	onOK: async function () {
+		this.backupStart = new Date();
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -220,9 +223,12 @@ var autoBackup = {
 	},
 
 	end: function (sec) {
+		console.log("backup time", (new Date() - this.backupStart) / 1000)
+
 		if (sec === 0) {
 			window.close();
 		} else {
+
 			window.setTimeout(autoBackup.end, 1000, sec - 1);
 		}
 	},
@@ -279,10 +285,14 @@ var autoBackup = {
 
 	write: async function (index) {
 		try {
-			autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
+			//console.log("a1", autoBackup.array1[index].path)
+			//console.log("a2", autoBackup.array2[index].path)
+			await IOUtils.copy(autoBackup.array1[index].path, autoBackup.array2[index].path);
+
+			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
 			autoBackup.writeLog(logline, true);
-			await new Promise(resolve => setTimeout(resolve, 50));
+			//await new Promise(resolve => setTimeout(resolve, 50));
 
 		} catch (e) {
 			var error;
@@ -296,7 +306,7 @@ var autoBackup = {
 		if (autoBackup.array1.length > index) {
 			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
-			window.setTimeout(autoBackup.write, 50, index);
+			window.setTimeout(autoBackup.write, 5, index);
 		} else {
 			document.getElementById("pm").value = 100;
 			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);

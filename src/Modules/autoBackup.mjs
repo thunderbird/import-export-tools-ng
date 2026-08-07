@@ -16,7 +16,7 @@ export async function initBackupScheduler() {
     if (!(await messenger.storage.onChanged.hasListener(_backupOptionsObserver))) {
       await messenger.storage.onChanged.addListener(_backupOptionsObserver);
     }
-    
+
     if (!await prefCmds.getPref("autobackup.temp.enabled")) {
       log("backup", "Initialize Backup (Disabled)");
 
@@ -37,9 +37,30 @@ export async function initBackupScheduler() {
     let retainNumBackups = await prefCmds.getPref("autobackup.temp.retainNumBackups");
     let backupDir = await prefCmds.getPref("autobackup.temp.dir");
 
+    let periodInMinutes;
+    let freqMsg;
+    if (dayFrequency > 1000) {
+    epochMSLastBackupTime = 0
+
+      periodInMinutes = dayFrequency - 1000;
+      if (periodInMinutes < 60) {
+        freqMsg = `  Test Frequency: ${periodInMinutes} Minutes`
+      } else {
+        freqMsg = `  Test Frequency: ${periodInMinutes / 60} Hour`
+
+      }
+    } else {
+      periodInMinutes = 60 * 24 * dayFrequency;
+      freqMsg = `  Day Frequency: ${dayFrequency}`
+
+    }
+
+
     log("backup", "Backup Parameters:");
     log("backup", `  Backup Time: ${backupTime}`);
-    log("backup", `  Day Frequency: ${dayFrequency}`);
+    //log("backup", `  Day Frequency: ${dayFrequency}`);
+    log("backup", freqMsg);
+
     log("backup", `  Last Backup Time: ${new Date(epochMSLastBackupTime).toLocaleString()}`);
     log("backup", `  Backups To Retain: ${retainNumBackups}`);
     log("backup", `  Backup Directory: ${backupDir}`);
@@ -47,7 +68,6 @@ export async function initBackupScheduler() {
 
     //console.log(epochMSLastBackupTime);
 
-    //epochMSLastBackupTime = 0
 
     let zdtLastBackupDate = Temporal.Instant.fromEpochMilliseconds(epochMSLastBackupTime)
       .toZonedDateTimeISO(Temporal.Now.timeZoneId());
@@ -90,8 +110,8 @@ export async function initBackupScheduler() {
     if (!(await messenger.alarms.onAlarm.hasListener(_backupAlarm))) {
       browser.alarms.onAlarm.addListener(_backupAlarm);
     }
-    //let periodInMinutes = 60 * 24 * dayFrequency;
-    let periodInMinutes = 2 * dayFrequency;
+
+
 
     browser.alarms.create("backupPeriodicAlarm",
       {
@@ -109,6 +129,8 @@ export async function initBackupScheduler() {
 async function _backupAlarm(alarmInfo) {
   let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
   log("backup", `Scheduled backup starting - Time: : ${Temporal.Now.zonedDateTimeISO().toLocaleString()} Day Periodicity: ${dayFrequency}`);
+  let alarmInfo2 = await browser.alarms.get("backupPeriodicAlarm");
+  log("backup", `Next backup  - Time:  ${new Date(alarmInfo.scheduledTime).toLocaleString()}`);
   await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
 }
 

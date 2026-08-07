@@ -32,7 +32,11 @@ var gBackupPrefBranch = Cc["@mozilla.org/preferences-service;1"]
 
 var autoBackup = {
 
+	backupStart: 0,
+
 	onOK: function () {
+		this.backupStart = new Date();
+		console.log(this.backupStart)
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -205,6 +209,7 @@ var autoBackup = {
 	},
 
 	end: function (sec) {
+		console.log("backup time", (new Date() - this.backupStart) / 1000)
 		if (sec === 0) {
 			window.close();
 		} else {

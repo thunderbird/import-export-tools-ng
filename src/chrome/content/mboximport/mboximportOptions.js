@@ -233,9 +233,6 @@ async function initMboxImportPanel() {
     var freq = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
 
     switch (freq) {
-        case 99:
-            document.getElementById("frequencyList").selectedIndex = 5;
-            break;
         case 1:
             document.getElementById("frequencyList").selectedIndex = 0;
             break;
@@ -250,6 +247,24 @@ async function initMboxImportPanel() {
             break;
         case 30:
             document.getElementById("frequencyList").selectedIndex = 4;
+            break;
+        case 1010:
+            document.getElementById("frequencyList").selectedIndex = 5;
+            break;
+        case 1030:
+            document.getElementById("frequencyList").selectedIndex = 6;
+            break;
+        case 1060:
+            document.getElementById("frequencyList").selectedIndex = 7;
+            break;
+        case 1120:
+            document.getElementById("frequencyList").selectedIndex = 8;
+            break;
+        case 1240:
+            document.getElementById("frequencyList").selectedIndex = 9;
+            break;
+        case 1360:
+            document.getElementById("frequencyList").selectedIndex = 10;
             break;
     }
 
@@ -293,7 +308,6 @@ async function saveMboxImportPrefs() {
 
         // new v15 options
 
-        await IETStoragePrefs.setComplexPref("autobackup.temp.backupTime", document.getElementById("backupTime").value);
         await IETStoragePrefs.setComplexPref("export.general.hdrDateFormat", document.getElementById("headerDateFormat").value);
         await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.debug.logTypes", document.getElementById("loggingOptions").value);
         // ui
@@ -357,16 +371,15 @@ async function saveMboxImportPrefs() {
             await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.use_container_folder", false);
 
         // Backup section
-        console.log(document.getElementById("backupEnable").checked)
+
+        await IETStoragePrefs.setComplexPref("autobackup.temp.backupTime", document.getElementById("backupTime").value);
+        await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
+
         if (!document.getElementById("backupEnable").checked) {
             await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", false);
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", 0);
         } else {
             await IETStoragePrefs.setBoolPref("autobackup.temp.enabled", true);
-            await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.frequency", document.getElementById("frequencyList").selectedItem.value);
         }
-
-        console.log(await IETStoragePrefs.getBoolPref("autobackup.temp.enabled"))
 
         if (document.getElementById("backupDir").value)
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir", document.getElementById("backupDir").value);

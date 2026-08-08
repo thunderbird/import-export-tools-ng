@@ -56,13 +56,15 @@ mboxImportExport.setGlobals(gVars);
 async function expMenuDispatcher(data) {
 	let dispatcherWinId = window.ietngAddon.extension.windowManager.getWrapper(window).id;
 
-	console.log("expMenuDispacher: winId", dispatcherWinId, data);
+	//console.log("expMenuDispacher: winId", dispatcherWinId, data);
 	// console.log("expMenuDispacher focused: ", window.document.hasFocus());
 	// console.log(window)
 
 	if (data.command == "WXMCMD_Backup") {
 		window.ietng.OpenBackupDialog('manual');
+		return;
 	}
+
 	if (data.params.tabType != "messageDisplay" && data.params.targetWinId != dispatcherWinId) {
 		console.log("Not for us: ", data.params.targetWinId);
 		return;

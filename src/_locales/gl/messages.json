@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Configuración da copia de seguranza"
   },
+  "backupStartingIn.label": {
+    "message": "A copia de seguridade comezará en 15 segundos…"
+  },
   "backupTab": {
     "message": "Programación da copia de seguranza"
   },

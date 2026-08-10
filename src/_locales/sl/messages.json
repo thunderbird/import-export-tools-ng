@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Nastavitve varnostnega kopiranja"
   },
+  "backupStartingIn.label": {
+    "message": "Varnostno kopiranje se bo začelo čez 15 sekund ..."
+  },
   "backupTab": {
     "message": "Varnostno kopiranje"
   },

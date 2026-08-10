@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Impostazioni per il backup"
   },
+  "backupStartingIn.label": {
+    "message": "Il backup inizierà tra 15 secondi…"
+  },
   "backupTab": {
     "message": "Backup periodico"
   },

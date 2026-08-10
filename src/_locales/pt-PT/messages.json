@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Definições da cópia de segurança"
   },
+  "backupStartingIn.label": {
+    "message": "O backup começará em 15 segundos…"
+  },
   "backupTab": {
     "message": "Agendamento da cópia de segurança"
   },

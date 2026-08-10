@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Biztonsági mentés beállításai"
   },
+  "backupStartingIn.label": {
+    "message": "A biztonsági mentés 15 másodperc múlva elindul…"
+  },
   "backupTab": {
     "message": "Biztonségi mentés ütemezése"
   },

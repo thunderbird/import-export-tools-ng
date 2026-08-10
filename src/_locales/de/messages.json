@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Backup-Einstellungen"
   },
+  "backupStartingIn.label": {
+    "message": "Die Datensicherung startet in 15 Sekunden…"
+  },
   "backupTab": {
     "message": "Backup-Planung"
   },

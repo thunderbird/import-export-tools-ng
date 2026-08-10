@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "백업 설정"
   },
+  "backupStartingIn.label": {
+    "message": "백업이 15초 후에 시작됩니다…"
+  },
   "backupTab": {
     "message": "백업 예약"
   },

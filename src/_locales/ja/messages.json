@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "バックアップ設定"
   },
+  "backupStartingIn.label": {
+    "message": "バックアップは15秒後に開始されます…"
+  },
   "backupTab": {
     "message": "バックアップ"
   },

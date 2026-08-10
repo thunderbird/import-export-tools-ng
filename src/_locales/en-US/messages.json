@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Backup settings"
   },
+  "backupStartingIn.label": {
+    "message": "Backup will start in 15 seconds…"
+  },
   "backupTab": {
     "message": "Backup scheduling"
   },

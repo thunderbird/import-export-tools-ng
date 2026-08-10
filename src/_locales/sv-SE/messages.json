@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Säkerhetskopieringsinställningar"
   },
+  "backupStartingIn.label": {
+    "message": "Säkerhetskopieringen startar om 15 sekunder…"
+  },
   "backupTab": {
     "message": "Schemalagd säkerhetskopiering"
   },

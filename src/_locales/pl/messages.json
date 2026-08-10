@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Ustawienia tworzenia kopii zapasowej"
   },
+  "backupStartingIn.label": {
+    "message": "Tworzenie kopii zapasowej rozpocznie się za 15 sekund…"
+  },
   "backupTab": {
     "message": "Harmonogram"
   },

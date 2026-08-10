@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Paramètres de sauvegarde"
   },
+  "backupStartingIn.label": {
+    "message": "La sauvegarde commencera dans 15 secondes…"
+  },
   "backupTab": {
     "message": "Sauvegarde"
   },

@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Paràmetres de la còpia de seguretat"
   },
+  "backupStartingIn.label": {
+    "message": "La còpia de seguretat començarà en 15 segons…"
+  },
   "backupTab": {
     "message": "Còpia de seguretat programada"
   },

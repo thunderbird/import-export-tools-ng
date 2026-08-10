@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Nastavení zálohování"
   },
+  "backupStartingIn.label": {
+    "message": "Zálohování začne za 15 sekund…"
+  },
   "backupTab": {
     "message": "Plánování zálohování"
   },

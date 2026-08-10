@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Պահուստացման կարգավորումներ"
   },
+  "backupStartingIn.label": {
+    "message": "Պահուստավորումը կսկսվի 15 վայրկյանից…"
+  },
   "backupTab": {
     "message": "Պահուստի պլանավորում"
   },

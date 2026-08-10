@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Back-upinstellingen"
   },
+  "backupStartingIn.label": {
+    "message": "De back-up start over 15 seconden…"
+  },
   "backupTab": {
     "message": "Back-upschema"
   },

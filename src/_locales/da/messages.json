@@ -62,6 +62,9 @@
   "backupSettings": {
     "message": "Indstillinger for sikkerhedskopiering"
   },
+  "backupStartingIn.label": {
+    "message": "Sikkerhedskopieringen starter om 15 sekunder…"
+  },
   "backupTab": {
     "message": "Planlægning af sikkerhedskopiering"
   },

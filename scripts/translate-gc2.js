@@ -20,7 +20,7 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "backupTime.label", text: "Backup time"},
+	{ key: "backupStartingIn.label", text: "Backup will start in 15 seconds…"},
 
 
 ];

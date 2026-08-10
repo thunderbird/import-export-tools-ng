@@ -58,7 +58,7 @@ var autoBackup = {
 		// return false;
 	},
 
-	load: function () {
+	load: async function () {
 		var os = navigator.platform.toLowerCase();
 		if (os.indexOf("mac") > -1)
 			document.getElementById("macWarn").removeAttribute("collapsed");
@@ -79,10 +79,14 @@ var autoBackup = {
 		if (autoBackup.mode != "auto") {
 			document.getElementById("autoModeDesc").hidden = true;
 		}
-
-		let startTimeoutId = setTimeout(() => {
-			this.onOK();
-		}, 8 * 1000);
+		let backupStartMsg;
+		for (let time = 15; time > 0; time--) {
+			await new Promise(resolve => setTimeout(resolve, 1000));
+			backupStartMsg = document.getElementById("go").textContent;
+			//console.log(backupStartMsg, time)
+			document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
+		}
+		this.onOK();
 	},
 
 	getDir: async function () {
@@ -373,7 +377,7 @@ document.addEventListener("dialogaccept", function (event) {
 	event.stopPropagation();
 });
 
-window.addEventListener("load", function (event) {
+window.addEventListener("load", async function (event) {
 	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });
-	autoBackup.load();
+	await autoBackup.load();
 });

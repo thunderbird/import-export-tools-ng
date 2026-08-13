@@ -289,9 +289,11 @@ var autoBackup = {
 
 	write: async function (index) {
 		try {
-			//console.log("a1", autoBackup.array1[index].path)
-			//console.log("a2", autoBackup.array2[index].path)
-			await IOUtils.copy(autoBackup.array1[index].path, autoBackup.array2[index].path);
+			let src = autoBackup.array1[index].path;
+			let dest = PathUtils.join(autoBackup.array2[index].path, PathUtils.filename(src));
+			console.log("a1", src)
+			console.log("a2", dest)
+			await IOUtils.copy(src, dest);
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";

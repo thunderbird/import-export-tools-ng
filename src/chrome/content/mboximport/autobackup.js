@@ -291,14 +291,19 @@ var autoBackup = {
 		try {
 			let src = autoBackup.array1[index].path;
 			let dest = PathUtils.join(autoBackup.array2[index].path, PathUtils.filename(src));
-			console.log("a1", src)
-			console.log("a2", dest)
+			//console.log("a1", src)
+			//console.log("a2", dest)
+			let fileInfo = await IOUtils.stat(src);
+			if (fileInfo.size > 1024 * 1024 * 100) {
+				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
+			await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));	
+			}
 			await IOUtils.copy(src, dest);
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
 			autoBackup.writeLog(logline, true);
-			//await new Promise(resolve => setTimeout(resolve, 50));
+			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
 			var error;

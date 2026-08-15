@@ -125,7 +125,8 @@ function stripDisplayName(addresses) {
 }
 
 async function getSubjectForHdr(hdr, dirPath) {
-	var emlNameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
+	// convert to storage string export.names.defaults.msgNameFormatType
+	var emlNameType = await IETStoragePrefs.getIntPref("export.names.defaults.msgNameFormatType");
 	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var cutFileName = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");
 	var subMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
@@ -168,8 +169,8 @@ async function getSubjectForHdr(hdr, dirPath) {
 	if (recEmail === "" || !recEmail) {
 		recEmail = "(none)";
 	}
-	// custom filename pattern
-	if (emlNameType === 2) {
+	// simple, dropdown filename pattern
+	if (emlNameType == "simple") {
 		var pattern = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_pattern");
 		// Name
 		var authName = formatNameForSubject(hdr.mime2DecodedAuthor, false);
@@ -209,7 +210,7 @@ async function getSubjectForHdr(hdr, dirPath) {
 
 		fname = pattern;
 
-	} else if (emlNameType === 3) {
+	} else if (emlNameType == "extended") {
 		// extended filename format
 		var extendedFilenameFormat = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.export.filename_extended_format");
 
@@ -336,7 +337,7 @@ async function dateInSecondsTo8601(secs) {
 	else
 		day = msgDate.getDate();
 	var msgDate8601string = msgDate8601.toString() + month.toString() + day.toString();
-	if (addTime && await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format") === 2) {
+	if (addTime && await IETStoragePrefs.getIntPref("export.names.defaults.msgNameFormatType") == "simple") {
 		if (msgDate.getHours() < 10)
 			hours = "0" + msgDate.getHours();
 		else
@@ -787,13 +788,13 @@ var IETlogger = {
 	},
 };
 
-function IETemlArray2hdrArray(emlsArray, needBody, file) {
+async function IETemlArray2hdrArray(emlsArray, needBody, file) {
 	var hdrArray = [];
 	for (var k = 0; k < emlsArray.length; k++) {
 		var msguri = emlsArray[k];
 		var msserv = MailServices.messageServiceFromURI(msguri);
 		var msg = msserv.messageURIToMsgHdr(msguri);
-		var hdrStr = IETstoreHeaders(msg, msguri, file, needBody);
+		var hdrStr = await IETstoreHeaders(msg, msguri, file, needBody);
 		hdrArray.push(hdrStr);
 	}
 	return hdrArray;
@@ -802,7 +803,7 @@ function IETemlArray2hdrArray(emlsArray, needBody, file) {
 
 async function constructAttachmentsFilename(type, hdr) {
 
-	var emlNameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.exportEML.filename_format");
+	var emlNameType = await IETStoragePrefs.getIntPref("export.names.defaults.msgNameFormatType");
 	var mustcorrectname = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.filenames_toascii");
 	var subMaxLen = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.subject.max_length");
 	var cutFileName = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.export.cut_filename");

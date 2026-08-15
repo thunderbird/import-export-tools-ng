@@ -295,15 +295,15 @@ async function exportSelectedMsgs(type, params) {
 				await saveMsgAsEML(msguri, file, true, msgUris, null, null, false, false, null, null);
 				break;
 			case 5:
-				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				hdrArray = await IETemlArray2hdrArray(msgUris, false, file);
 				await createIndex(type, file, hdrArray, msgFolder, true, true);
 				break;
 			case 6:
-				hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+				hdrArray = await IETemlArray2hdrArray(msgUris, false, file);
 				await createIndexCSV(type, file, hdrArray, msgFolder, false);
 				break;
 			case 7:
-				hdrArray = IETemlArray2hdrArray(msgUris, true, file);
+				hdrArray = await IETemlArray2hdrArray(msgUris, true, file);
 				await createIndexCSV(type, file, hdrArray, msgFolder, true);
 				break;
 			case 8:
@@ -317,7 +317,7 @@ async function exportSelectedMsgs(type, params) {
 		}
 
 		if (needIndex) {
-			hdrArray = IETemlArray2hdrArray(msgUris, false, file);
+			hdrArray = await IETemlArray2hdrArray(msgUris, false, file);
 			await createIndex(type, file, hdrArray, msgFolder, false, false);
 		}
 		if (type !== 5 && type !== 6 && type !== 7 && document.getElementById("IETabortIcon"))
@@ -1080,6 +1080,7 @@ async function createIndexCSV(type, file2, hdrArray, msgFolder, addBody) {
 	for (let i = 0; i < hdrArray.length; i++) {
 		var currentMsgHdr = hdrArray[i];
 		// If the last char is "1", so the first letter must be modified in lower case
+		console.log(currentMsgHdr)
 		if (currentMsgHdr.substring(currentMsgHdr.length - 1) === "1")
 			currentMsgHdr = currentMsgHdr.substring(0, 1).toLowerCase() + currentMsgHdr.substring(1, currentMsgHdr.length - 1);
 

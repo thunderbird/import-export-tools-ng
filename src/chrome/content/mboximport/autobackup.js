@@ -49,7 +49,7 @@ var autoBackup = {
 		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
-		document.documentElement.getButton("accept").disabled = true;
+		//document.documentElement.getButton("accept").disabled = true;
 		// saveMode values:
 		// 0 = save all; 1 = save just if new;
 		// 2 = save just if new with custom name, save all with unique name

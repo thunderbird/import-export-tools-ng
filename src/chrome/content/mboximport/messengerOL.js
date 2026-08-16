@@ -98,7 +98,7 @@ async function onLoad() {
 			}
 		}
 
-		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
+		window.openDialog("chrome://mboximport/content/mboximport/autobackup2.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		return { status: "ok" };
 	}
 

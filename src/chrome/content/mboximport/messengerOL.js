@@ -29,7 +29,9 @@ window.ietngAddon.ietngExtension = ExtensionParent.GlobalManager.getExtension(AD
 
 // Load notifyTools into a custom namespace, to prevent clashes with other add-ons.
 
-Services.scriptloader.loadSubScript(window.ietngAddon.ietngExtension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ietngAddon, "UTF-8");
+//Services.scriptloader.loadSubScript(window.ietngAddon.ietngExtension.rootURI.resolve("chrome/content/mboximport/modules/notifyTools.js"), window.ietngAddon, "UTF-8");
+Services.scriptloader.loadSubScript("resource://ietng/chrome/content/mboximport/modules/notifyTools.js", window.ietngAddon, "UTF-8");
+
 window.ietngAddon.extension = WL.extension;
 
 Services.scriptloader.loadSubScript("chrome://mboximport/content/mboximport/expMenuDispatcher.js", window, "UTF-8");

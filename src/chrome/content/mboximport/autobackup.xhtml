@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mboximport/content/mboximport/autobackup.css" type="text/css"?>
+
 <window id="autobackup-window" title="__MSG_dialog.title__" style="padding: 10px" windowtype="autobackup-dialog"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml" >
@@ -15,9 +17,11 @@
 		<html:progress id="pm" mode="determined"  value="0" max="100"/>
 		<label value=" 100% "/>
 	</hbox>
-	<hbox id="buttons" align="right"  style="padding-top: 6px; padding-bottom: 6px;">
+	<hbox id="buttons" align="right"  style="padding-top: 6px; padding-bottom: 6px; padding-right: 20px; ">
 		<spacer flex="1"/>
-		<html:button id="cancelButton" >__MSG_Cancel.button__</html:button>
+		<html:button id="cancelButton" style2="padding-left: 16px;" >__MSG_Cancel.button__</html:button>
+		<spacer width="20px"/>
+
 	</hbox>
 	<script type="application/javascript" src="./modules/i18n.js"/>
 	<script type="application/javascript" src="./utils.js" />

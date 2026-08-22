@@ -270,6 +270,10 @@ var autoBackup = {
 		if (!dirToScan.exists())
 			return;
 		var entries = dirToScan.directoryEntries;
+		if (!entries.hasMoreElements()) {
+			autoBackup.save(dirToScan, destDir, root);
+			return;
+		}
 		while (entries.hasMoreElements()) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
@@ -296,9 +300,13 @@ var autoBackup = {
 			let fileInfo = await IOUtils.stat(src);
 			if (fileInfo.size > 1024 * 1024 * 100) {
 				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
-			await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));	
+				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
 			}
-			await IOUtils.copy(src, dest);
+			if (fileInfo.type == "directory") {
+				IOUtils.makeDirectory(dest);
+			} else {
+				await IOUtils.copy(src, dest);
+			}
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -379,7 +387,7 @@ var autoBackup = {
 };
 
 async function cancelButtonListener(event) {
-  console.log("cancel backup");
+	console.log("cancel backup");
 	window.close();
 }
 

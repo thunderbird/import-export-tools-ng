@@ -378,6 +378,15 @@ var autoBackup = {
 	},
 };
 
+async function cancelButtonListener(event) {
+  console.log("cancel backup");
+	window.close();
+}
+
+const cancelButton = document.getElementById("cancelButton");
+
+cancelButton.addEventListener("click", cancelButtonListener);
+
 document.addEventListener("dialogaccept", function (event) {
 	autoBackup.onOK();
 	event.preventDefault();

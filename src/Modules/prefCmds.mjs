@@ -144,7 +144,7 @@ export var prefCmds = {
     // check if we are setting up local storage for first time
 
     let initialStorageDefaults = (await messenger.storage[userPrefStorageArea].get("defaultPrefs")).defaultPrefs || undefined;
-
+    console.log("initialStorageDefaults", initialStorageDefaults)
      // If defaults are given, push them into storage.local
     if (defaults && !initialStorageDefaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });

@@ -40,7 +40,7 @@ export async function initBackupScheduler() {
     let periodInMinutes;
     let freqMsg;
     if (dayFrequency > 1000) {
-    epochMSLastBackupTime = 0
+      epochMSLastBackupTime = 0
 
       periodInMinutes = dayFrequency - 1000;
       if (periodInMinutes < 60) {
@@ -77,6 +77,7 @@ export async function initBackupScheduler() {
     let hour = Number(backupHrMin[0]);
     let minute = Number(backupHrMin[1]);
     let zdtBackupDate;
+    let backupOverdue = false;
 
     // if zdtLastBackupDate (ems) is zero we are starting
     // a new backup from now
@@ -86,6 +87,8 @@ export async function initBackupScheduler() {
     } else {
       zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
       if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
+        // we will inform users and prompt them
+        backupOverdue = true;
         log("backup", `Backup overdue, schedule for today`);
         zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
       } else {
@@ -95,7 +98,6 @@ export async function initBackupScheduler() {
 
     // if we are past backup time schedule for next day
     if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
-      //console.log("past bu time today");
       zdtBackupDate = zdtBackupDate.add({ days: 1 });
     }
 
@@ -114,6 +116,18 @@ export async function initBackupScheduler() {
         periodInMinutes: periodInMinutes
       });
 
+    // if initializing from startup and backup overdue,
+    if (backupOverdue) {
+      setTimeout(async () => {
+
+        // promtt user if they want to backup
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"),
+          `A backup is overdue.\n\nWould you like to perform a backup now or\nwait until the scheduled time?\n\nNext backup: ${zdtBackupDate.toLocaleString()}`);
+        if (rv) {
+          await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
+        }
+      }, 6000);
+    }
   } catch (ex) {
     console.log(ex);
 

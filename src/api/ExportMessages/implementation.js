@@ -32,7 +32,7 @@ var { NetUtil } = ChromeUtils.importESModule(
 );
 
 var os = Services.appinfo.OS.toLowerCase();
-var osPathSeparator = os.includes("win")
+var osPathSeparator = os.includes("winnt")
   ? "\\"
   : "/";
 

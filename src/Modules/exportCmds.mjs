@@ -40,8 +40,8 @@ import * as ui from "./ui.mjs";
 import { Ci } from "/Modules/CiConstants.js";
 
 
-const os = navigator.platform.toLowerCase();
-const osPathSeparator = os.includes("win")
+const os = navigator.userAgent;
+const osPathSeparator = os.includes("Windows")
   ? "\\"
   : "/";
 

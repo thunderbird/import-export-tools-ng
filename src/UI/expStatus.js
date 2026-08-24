@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let chromeHeight = window.outerHeight - window.innerHeight;
   let calcWinHeight = contentHeight + chromeHeight + marginHeight + extraWinSizePadding;
 
-  await browser.windows.update(statusWin.id, { height: calcWinHeight });
+  //await browser.windows.update(statusWin.id, { height: calcWinHeight });
 
   messenger.runtime
     .sendMessage({

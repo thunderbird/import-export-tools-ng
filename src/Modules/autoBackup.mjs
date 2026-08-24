@@ -85,7 +85,12 @@ export async function initBackupScheduler() {
       zdtBackupDate = zdtNow.with({ hour: hour, minute: minute, second: 0 });
 
     } else {
-      zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
+      if (dayFrequency > 1000) {
+        let minFrequency = dayFrequency - 1000;
+        zdtBackupDate = zdtLastBackupDate.add({ minutes: minFrequency });
+      } else {
+        zdtBackupDate = zdtLastBackupDate.add({ days: dayFrequency });
+      }
       if (Temporal.Instant.compare(zdtBackupDate, zdtNow) == -1) {
         // we will inform users and prompt them
         backupOverdue = true;
@@ -110,6 +115,7 @@ export async function initBackupScheduler() {
 
     // set backupPeriodicAlarm with periodicity
 
+    console.log("set", periodInMinutes)
     browser.alarms.create("backupPeriodicAlarm",
       {
         when: zdtBackupDate.epochMilliseconds,
@@ -138,7 +144,11 @@ export async function initBackupScheduler() {
 async function _backupAlarm(alarmInfo) {
   let dayFrequency = await prefCmds.getPref("autobackup.temp.dayFrequency");
   log("backup", `Scheduled backup starting - Time: ${Temporal.Now.zonedDateTimeISO().toLocaleString()} Day Periodicity: ${dayFrequency}`);
+  await new Promise(resolve => setTimeout(resolve, 50));
+
   let alarmInfo2 = await browser.alarms.get("backupPeriodicAlarm");
+  console.log("alarminfo2", alarmInfo2)
+
   log("backup", `Next backup  - Time:  ${new Date(alarmInfo2.scheduledTime).toLocaleString()}`);
   await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
 }

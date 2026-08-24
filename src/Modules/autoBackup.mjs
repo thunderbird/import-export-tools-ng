@@ -40,7 +40,7 @@ export async function initBackupScheduler() {
     let periodInMinutes;
     let freqMsg;
     if (dayFrequency > 1000) {
-      epochMSLastBackupTime = 0
+      //epochMSLastBackupTime = 0
 
       periodInMinutes = dayFrequency - 1000;
       if (periodInMinutes < 60) {

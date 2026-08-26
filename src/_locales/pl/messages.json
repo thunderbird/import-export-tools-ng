@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Kopia zapasowa przy wyjściu"
   },
+  "backupOverdue.label": {
+    "message": "Kopia zapasowa jest spóźniona.\n\nCzy chcesz wykonać kopię zapasową teraz,\nczy poczekać do zaplanowanego czasu?\n\nNastępna kopia zapasowa: "
+  },
   "backupSettings": {
     "message": "Ustawienia tworzenia kopii zapasowej"
   },

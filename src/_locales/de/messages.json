@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Backup beim Beenden"
   },
+  "backupOverdue.label": {
+    "message": "Eine Datensicherung ist überfällig.\n\nMöchten Sie jetzt eine Datensicherung durchführen oder\nbis zum geplanten Zeitpunkt warten?\n\nNächste Datensicherung: "
+  },
   "backupSettings": {
     "message": "Backup-Einstellungen"
   },

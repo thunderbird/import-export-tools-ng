@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Back-up bij afsluiten"
   },
+  "backupOverdue.label": {
+    "message": "Een back-up is te laat.\n\nWilt u nu een back-up maken of\nwachten tot het geplande tijdstip?\n\nVolgende back-up: "
+  },
   "backupSettings": {
     "message": "Back-upinstellingen"
   },

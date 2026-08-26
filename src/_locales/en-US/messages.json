@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Backup On Exit"
   },
+  "backupOverdue.label": {
+    "message": "A backup is overdue.\n\nWould you like to perform a backup now or\nwait until the scheduled time?\n\nNext backup: "
+  },
   "backupSettings": {
     "message": "Backup settings"
   },

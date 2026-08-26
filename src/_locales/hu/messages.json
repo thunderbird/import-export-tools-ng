@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Biztonsági mentés a kilépéskor"
   },
+  "backupOverdue.label": {
+    "message": "A biztonsági mentés esedékes.\n\nSzeretne most biztonsági mentést készíteni, vagy\nmegvárni az ütemezett időpontot?\n\nKövetkező biztonsági mentés: "
+  },
   "backupSettings": {
     "message": "Biztonsági mentés beállításai"
   },

@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Copia de seguridad al salir"
   },
+  "backupOverdue.label": {
+    "message": "Hay una copia de seguridad vencida.\n\n¿Desea realizar una copia de seguridad ahora o\nesperar hasta la hora programada?\n\nPróxima copia de seguridad: "
+  },
   "backupSettings": {
     "message": "Opciones de copia"
   },

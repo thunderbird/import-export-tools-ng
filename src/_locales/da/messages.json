@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Sikkerhedskopier ved afslutning"
   },
+  "backupOverdue.label": {
+    "message": "En sikkerhedskopiering er for sent.\n\nVil du udføre en sikkerhedskopiering nu eller\nvente til det planlagte tidspunkt?\n\nNæste sikkerhedskopiering: "
+  },
   "backupSettings": {
     "message": "Indstillinger for sikkerhedskopiering"
   },

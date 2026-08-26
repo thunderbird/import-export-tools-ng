@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Zálohovanie pri výstupe"
   },
+  "backupOverdue.label": {
+    "message": "Záloha je oneskorená.\n\nChcete vykonať zálohu teraz alebo\npočkať do naplánovaného času?\n\nĎalšia záloha: "
+  },
   "backupSettings": {
     "message": "Nastavenie zálohovania"
   },

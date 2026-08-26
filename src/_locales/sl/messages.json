@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Varnostno kopiranje ob izhodu"
   },
+  "backupOverdue.label": {
+    "message": "Varnostno kopiranje je zamujalo.\n\nAli želite izvesti varnostno kopiranje zdaj ali\npočakati do načrtovanega časa?\n\nNaslednje varnostno kopiranje: "
+  },
   "backupSettings": {
     "message": "Nastavitve varnostnega kopiranja"
   },

@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "종료시 백업"
   },
+  "backupOverdue.label": {
+    "message": "백업 시간이 지났습니다.\n\n지금 백업을 수행하시겠습니까, 아니면\n예정된 시간까지 기다리시겠습니까?\n\n다음 백업: "
+  },
   "backupSettings": {
     "message": "백업 설정"
   },

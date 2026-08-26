@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "終了時のバックアップ"
   },
+  "backupOverdue.label": {
+    "message": "バックアップの期限が過ぎています。\n\n今すぐバックアップを実行しますか、それとも予定時刻まで待ちますか？\n\n次回のバックアップ： "
+  },
   "backupSettings": {
     "message": "バックアップ設定"
   },

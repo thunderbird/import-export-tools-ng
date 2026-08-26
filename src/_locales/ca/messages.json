@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Còpia de seguretat a la sortida"
   },
+  "backupOverdue.label": {
+    "message": "S&#39;ha endarrerit una còpia de seguretat.\n\nVoleu fer una còpia de seguretat ara o\nesperar fins a l&#39;hora programada?\n\nPròxima còpia de seguretat: "
+  },
   "backupSettings": {
     "message": "Paràmetres de la còpia de seguretat"
   },

@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "退出时备份"
   },
+  "backupOverdue.label": {
+    "message": "备份已过期。\n\n您想立即执行备份，还是等到预定时间再执行？\n\n下次备份： "
+  },
   "backupSettings": {
     "message": "备份设置"
   },

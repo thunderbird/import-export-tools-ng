@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Záloha při ukončení"
   },
+  "backupOverdue.label": {
+    "message": "Záloha je zpožděná.\n\nChcete provést zálohu nyní, nebo\npočkat do naplánovaného času?\n\nDalší záloha: "
+  },
   "backupSettings": {
     "message": "Nastavení zálohování"
   },

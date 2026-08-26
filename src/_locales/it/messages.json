@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Backup all&#39;uscita"
   },
+  "backupOverdue.label": {
+    "message": "È scaduto il termine per eseguire un backup.\n\nDesideri eseguire un backup ora o\nattendere l&#39;orario programmato?\n\nProssimo backup: "
+  },
   "backupSettings": {
     "message": "Impostazioni per il backup"
   },

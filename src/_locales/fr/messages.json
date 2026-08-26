@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "À la fermeture"
   },
+  "backupOverdue.label": {
+    "message": "Une sauvegarde est en retard.\n\nSouhaitez-vous effectuer une sauvegarde maintenant ou\nattendre l&#39;heure prévue ?\n\nProchaine sauvegarde : "
+  },
   "backupSettings": {
     "message": "Paramètres de sauvegarde"
   },

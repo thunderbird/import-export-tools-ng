@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Copia de seguridade á saída"
   },
+  "backupOverdue.label": {
+    "message": "Hai unha copia de seguridade pendente.\n\nQueres facer unha copia de seguridade agora ou\nagardar ata a hora programada?\n\nPróxima copia de seguridade: "
+  },
   "backupSettings": {
     "message": "Configuración da copia de seguranza"
   },

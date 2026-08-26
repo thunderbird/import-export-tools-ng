@@ -59,6 +59,9 @@
   "backupOnExit": {
     "message": "Backup na saída"
   },
+  "backupOverdue.label": {
+    "message": "Há um backup atrasado.\n\nDeseja realizar um backup agora ou\naguardar até o horário agendado?\n\nPróximo backup: "
+  },
   "backupSettings": {
     "message": "Definições da cópia de segurança"
   },

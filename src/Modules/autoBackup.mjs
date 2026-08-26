@@ -7,6 +7,8 @@ import { prefCmds } from "./prefCmds.mjs";
 export async function initBackupScheduler() {
   try {
 
+        //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), browser.i18n.getMessage("backupOverdue.label"))
+
     logging.init({ logTypes: prefCmds.getPref("debug.logTypes") });
 
     // we always clear the alarm on init or change
@@ -127,8 +129,8 @@ export async function initBackupScheduler() {
       setTimeout(async () => {
 
         // promtt user if they want to backup
-        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"),
-          `A backup is overdue.\n\nWould you like to perform a backup now or\nwait until the scheduled time?\n\nNext backup: ${zdtBackupDate.toLocaleString()}`);
+        let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), browser.i18n.getMessage("backupOverdue.label") + zdtBackupDate.toLocaleString());
+        
         if (rv) {
           await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
         }

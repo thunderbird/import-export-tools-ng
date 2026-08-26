@@ -7,8 +7,6 @@ import { prefCmds } from "./prefCmds.mjs";
 export async function initBackupScheduler() {
   try {
 
-        //let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), browser.i18n.getMessage("backupOverdue.label"))
-
     logging.init({ logTypes: prefCmds.getPref("debug.logTypes") });
 
     // we always clear the alarm on init or change

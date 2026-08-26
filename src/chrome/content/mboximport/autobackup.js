@@ -223,18 +223,13 @@ var autoBackup = {
 			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
-		autoBackup.write(0);
+		await autoBackup.write(0);
 	},
 
-	end: function (sec) {
-		console.log("backup time", (new Date() - this.backupStart) / 1000)
-
-		if (sec === 0) {
-			window.close();
-		} else {
-
-			window.setTimeout(autoBackup.end, 1000, sec - 1);
-		}
+	end: async function () {
+		console.log("Backup time:", (new Date() - this.backupStart) / 1000);
+		await new Promise(resolve => setTimeout(resolve, 4000));
+		window.close();
 	},
 
 	save: function (entry, destDir, root) {
@@ -295,11 +290,9 @@ var autoBackup = {
 		try {
 			let src = autoBackup.array1[index].path;
 			let dest = PathUtils.join(autoBackup.array2[index].path, PathUtils.filename(src));
-			//console.log("a1", src)
-			//console.log("a2", dest)
 			let fileInfo = await IOUtils.stat(src);
 			if (fileInfo.size > 1024 * 1024 * 100) {
-				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
+				//console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
 				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
 			}
 			if (fileInfo.type == "directory") {
@@ -308,7 +301,6 @@ var autoBackup = {
 				await IOUtils.copy(src, dest);
 			}
 
-			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
 			autoBackup.writeLog(logline, true);
 			await new Promise(resolve => setTimeout(resolve, 20));
@@ -329,13 +321,12 @@ var autoBackup = {
 		} else {
 			document.getElementById("pm").value = 100;
 			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
-			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			document.getElementById("start").collapsed = true;
 			document.getElementById("done").removeAttribute("collapsed");
 			// new remove old backups #663
 
 			await autoBackup.removeOldBackups();
-			autoBackup.end(3);
+			await autoBackup.end();
 		}
 	},
 
@@ -387,7 +378,6 @@ var autoBackup = {
 };
 
 async function cancelButtonListener(event) {
-	console.log("cancel backup");
 	window.close();
 }
 

@@ -145,10 +145,6 @@ export var prefCmds = {
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });
 
-    // Add storage change listener.
-    if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {
-      //await messenger.storage.onChanged.addListener(this.storageChanged);
-    }
     return initialStorageDefaults;
   },
 

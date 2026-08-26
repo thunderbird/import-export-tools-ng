@@ -116,26 +116,6 @@ export var prefCmds = {
     return defaultPref == this.dotGet(aName, this._userPrefs)
   },
 
-  // Remove a preference (calls to getPref will return default value)
-  clearPref: function (aName, aValue) {
-    delete this._userPrefs[aName];
-    messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
-  },
-
-  // Listener for storage changes.
-  storageChanged: function (changes, area) {
-    let changedItems = Object.keys(changes);
-    for (let item of changedItems) {
-      if (area == userPrefStorageArea && item == "userPrefs") {
-        this._userPrefs = changes.userPrefs.newValue;
-      }
-
-      if (area == "local" && item == "defaultPrefs") {
-        this._defaultPrefs = changes.defaultPrefs.newValue;
-      }
-    }
-  },
-
   // Initialize the local pref obj by loading userPrefs and defaultPrefs from
   // WebExtension storage. If a defaults obj is given, the defaults in storage
   // are updated/set.
@@ -156,18 +136,14 @@ export var prefCmds = {
 
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-    console.log("_userPrefs", this._userPrefs)
     
     this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
-
-   
 
     console.log("_userPrefs", this._userPrefs)
     console.log("_defaultPrefs", this._defaultPrefs)
 
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });
-    console.log(prefCmds.getPref("debug.logTypes"))
 
     // Add storage change listener.
     if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {

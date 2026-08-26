@@ -231,16 +231,6 @@ async function _migrateLegacyPrefs() {
 
   // transforms
   // we need to convert some legacy pref vals to updated vals
-  /*
-    let msgFilenameFormatType = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
-    console.log("msgFilenameFormatType", msgFilenameFormatType)
-  
-    if (msgFilenameFormatType == 3) {
-      await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "custom", true);
-    } else {
-      await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "simple", true);
-    }
-  */
 
   // mode 0 not supported, move to 2 == dropdown mode and set default pattern
   let nameFormat = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
@@ -283,21 +273,20 @@ async function _migrateLegacyPrefs() {
       let storagePref = prefCmds.getUserPref(storageKey)
       if (prefCmds.isDefaultPref(storageKey)) {
         if (legacyVal != null) {
-          console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
+          //console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
           // set the storage pref with createNewProperty = true
           // since the storage keys don't exist
           await prefCmds.setPref(storageKey, legacyVal);
         } else {
           // legacy value was null (not initialized
           let defaultStoragePref = prefCmds.getPref(storageKey)
-
-          console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
+          //console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
         }
       } else {
-        console.log("IETNG: UserPref set", storageKey, storagePref)
+        //console.log("IETNG: UserPref set", storageKey, storagePref)
       }
     } else {
-      console.warn("IETNG: Removing deadpref:", legacyKey);
+      //console.warn("IETNG: Removing deadpref:", legacyKey);
     }
     // clear the legacy pref regardless
     //messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);

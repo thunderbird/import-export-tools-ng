@@ -60,13 +60,13 @@
     "message": "À la fermeture"
   },
   "backupOverdue.label": {
-    "message": "Une sauvegarde est en retard.\n\nSouhaitez-vous effectuer une sauvegarde maintenant ou\nattendre l&#39;heure prévue ?\n\nProchaine sauvegarde : "
+    "message": "Une sauvegarde est en suspens.\n\nCliquez sur [OK] pour effectuer une sauvegarde maintenant.\nCliquez sur [Annuler] pour attendre le moment prévu.\n\nProchaine sauvegarde : "
   },
   "backupSettings": {
     "message": "Paramètres de sauvegarde"
   },
   "backupStartingIn.label": {
-    "message": "La sauvegarde commencera dans 15 secondes…"
+    "message": "La sauvegarde débutera dans 15 secondes…"
   },
   "backupTab": {
     "message": "Sauvegarde"
@@ -510,7 +510,7 @@
     "src": "mboximport"
   },
   "HeaderDateFormat.label": {
-    "message": "Format de date d&#39;en-tête"
+    "message": "Format de date de l’en-tête "
   },
   "importDone": {
     "message": "Importation effectuée",

@@ -510,7 +510,7 @@
     "src": "mboximport"
   },
   "HeaderDateFormat.label": {
-    "message": "Format de date d&#39;en-tête"
+    "message": "Format de date de l’en-tête "
   },
   "importDone": {
     "message": "Importation effectuée",

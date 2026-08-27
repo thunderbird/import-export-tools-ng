@@ -278,23 +278,25 @@ async function _migrateLegacyPrefs() {
       let storagePref = prefCmds.getUserPref(storageKey)
       if (prefCmds.isDefaultPref(storageKey)) {
         if (legacyVal != null) {
-          //console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
+          console.log("IETNG: Initialize from", legacyKey, legacyVal, legacyValU)
           // set the storage pref with createNewProperty = true
           // since the storage keys don't exist
           await prefCmds.setPref(storageKey, legacyVal);
         } else {
           // legacy value was null (not initialized
           let defaultStoragePref = prefCmds.getPref(storageKey)
-          //console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
+          console.warn("IETNG: Unitialized legacy pref:", legacyKey, "use default storage vale:", defaultStoragePref);
         }
       } else {
-        //console.log("IETNG: UserPref set", storageKey, storagePref)
+        console.log("IETNG: UserPref set", storageKey, storagePref)
       }
     } else {
-      //console.warn("IETNG: Removing deadpref:", legacyKey);
+      console.warn("IETNG: Removing deadpref:", legacyKey);
     }
     // clear the legacy pref regardless
     messenger.LegacyPrefs.clearUserPref(`${addonRootPref}.${legacyKey}`);
+      console.warn("IETNG: Clear legacy pref:", legacyKey);
+
   }
 }
 

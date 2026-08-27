@@ -93,7 +93,7 @@ let defaultPrefs = {
 
   },
   index: {
-    dateFormat: "%n/%d/%Y %M:%S",
+    dateFormat: "%n/%d/%Y %H:%M:%S",
   },
   autobackup: {
     temp: {

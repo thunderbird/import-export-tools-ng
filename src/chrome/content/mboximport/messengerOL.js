@@ -78,10 +78,14 @@ async function onLoad() {
 	window.ietng = {};
 	window.ietng.extension = WL.extension;
 
+	
 	window.ietng.OpenBackupDialog = async function (mode = "auto") {
-		Services.console.logStringMessage("IETNG: Start backup check");
+		Services.console.logStringMessage("IETNG: Start backup");
+		
 		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
+
+		/*
 
 		// Abort in automode, if not yet due.
 		if (mode == "auto") {
@@ -99,7 +103,7 @@ async function onLoad() {
 				return;
 			}
 		}
-
+*/
 		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		return { status: "ok" };
 	}
@@ -240,7 +244,6 @@ async function onLoad() {
 
 function onUnload() {
 	window.removeHotKeysObserver();
-	window.ietng.OpenBackupDialog();
 	window.ietngAddon.notifyTools.removeAllListeners();
 	delete window.ietngAddon;
 }

@@ -72,7 +72,6 @@ async function initMboxImportPanel() {
     document.getElementById("openHelpInWin").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.help.openInWindow");
 
     // new v15 options
-    console.log(await IETStoragePrefs.getComplexPref("autobackup.temp.backupTime"))
     document.getElementById("backupTime").value = await IETStoragePrefs.getComplexPref("autobackup.temp.backupTime");
     document.getElementById("headerDateFormat").value = await IETStoragePrefs.getComplexPref("export.general.hdrDateFormat");
 
@@ -81,8 +80,6 @@ async function initMboxImportPanel() {
     // ui
     document.getElementById("notificationsForExpFolders").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpFolders");
     document.getElementById("notificationsForExpSelMsgs").checked = await IETStoragePrefs.getBoolPref("extensions.importexporttoolsng.ui.notificationsForExpSelMsgs");
-
-    console.log(await IETStoragePrefs.getComplexPref("export.names.defaults.msgNameFormatType"));
 
     if (await IETStoragePrefs.getComplexPref("export.names.defaults.msgNameFormatType") == "simple") {
         document.getElementById("customizeFilenames").checked = true;

@@ -27,26 +27,33 @@
 	<h3 id="release_notes" style="padding-left: 4px;">Release Notes:</h3>
 	
 	<p>
-		<b>Deprecation Notice :</b><br><br>
+		<b>Deprecation Notice :</b><br>
 		I will be deprecating the legacy export message functions
 		as of v15.0.3. Please use and report any issues with the new 
-		(v15) functions so that the deprecation does not affect you.<br><br>
+		(v15) functions so that the deprecation does not affect you.<br>
+<br>
+<b>New: Automatic, scheduled backups:</b><br>
+&nbsp;&nbsp;&nbsp;Run backups with no user interaction<br>
+&nbsp;&nbsp;&nbsp;Reminder at startup if backup overdue<br>
+&nbsp;&nbsp;&nbsp;Use 'backup' in logging options for trace<br>
+&nbsp;&nbsp;&nbsp;Note: Backup on exit removed. Not possible in the new Thunderbird architecture<br>
+<br>
+- New: Added message header date format option<br>
+- Migrate legacy prefs to Local Storage<br>
+- Fixed: Remove expStatusWin update causing error on <br>
+&nbsp;&nbsp;&nbsp;Linux tiling compositors<br>
+- Fixed: Save attachments when message has zero body length<br>
+- Fixed: Index used wrong path separator on Darwin macOS<br>
+- Fixed: Index date format missing hour<br>
+- Updated: ScriptLoad with resource url<br>
+<br>
 
-- Fix : Option migration from default (non dropdown or extended) filename format producing undefined.xyz files<br>
-- Fix : EML exports not encoding to UTF-8 producing garbled non-ASCII characters<br>
-- Fix : Added attachments table for HTML and Plaintext message only exports<br>
-- Restore header date format to 11/30/2026 11:20:30
-  Will make configurable later<br>
-- Add reply-to field to headers if present <br>
-- Change logic of Sender and Recipient in filenames :<br>
-&nbsp;&nbsp;Use email address if name not present <br>
-- Added <span class="notranslate">${smart_email}</span> filename token<br>
-- Fixed fr locale for To and From headers<br>
-- Fixed title for HTML exports<br>
+
 - fr locale update @DenB10<br>
-- sv-SE locale update @NickWick13<br>
-- label update in en-US @wesinator<br>
-- Fixed wrong contributor from @Reyard to @Rayerd<br>
+- full it locale update @topoldo<br>
+- ja locale update @<br>
+- de locale update @<br>
+- da locale update @<br>
 
 
 	</p>

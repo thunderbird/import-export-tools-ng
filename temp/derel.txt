@@ -1,0 +1,17 @@
+<b>Neu: Automatische, geplante Backups</b><br>
+&nbsp;&nbsp;&nbsp;Backups werden ohne Benutzerinteraktion ausgeführt.<br>
+&nbsp;&nbsp;&nbsp;Erinnerung beim Start, falls ein Backup überfällig ist.<br>
+&nbsp;&nbsp;&nbsp;„Backup“ in den Protokollierungsoptionen für Trace verwenden.<br>
+&nbsp;&nbsp;&nbsp;Hinweis: Backup beim Beenden entfernt. In der neuen Architektur nicht möglich.<br>
+<br>
+- Neu: Option für das Datumsformat im Nachrichtenkopf hinzugefügt.<br>
+- Migration der Legacy-Einstellungen in den lokalen Speicher.<br>
+- Behoben: Entfernen des expStatusWin-Updates, das einen Fehler bei<br>
+&nbsp;&nbsp;&nbsp;Linux-Tiling-Composern verursachte.<br>
+- Behoben: Anhänge werden gespeichert, wenn der Nachrichtentext leer ist.<br>
+- Behoben: Falsches Pfadtrennzeichen im Index unter macOS Darwin.<br>
+- Behoben: Fehlende Stunde im Datumsformat des Index.<br>
+- Aktualisiert: ScriptLoad mit Ressourcen-URL.
+
+
+&nbsp;&nbsp;&nbsp;

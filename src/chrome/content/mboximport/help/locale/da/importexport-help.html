@@ -25,22 +25,23 @@
 <b>Udfasningsmeddelelse:</b><br><br>
 Jeg udfaser de ældre eksportmeddelelsesfunktioner fra og med v15.0.3. Brug og rapporter eventuelle problemer med de nye (v15) funktioner, så udfasningen ikke påvirker dig.<br><br>
 
-- Rettelse: Migrering af indstillinger fra standard (ikke rullemenu eller udvidet) filnavnformat producerer undefined.xyz-filer<br>
-- Rettelse: EML-eksport koder ikke til UTF-8, hvilket producerer forvrængede ikke-ASCII-tegn<br>
-- Rettelse: Tilføjet tabel med vedhæftede filer til eksport af HTML og almindelig tekst-beskeder<br>
-- Gendan header-datoformat til 30/11/2026 11:20:30
-Gøres konfigurerbar senere<br>
-- Tilføj svar-til-felt til headere, hvis de findes<br>
-- Ændrer logikken for afsender og modtager i filnavne:<br>
-&nbsp;&nbsp;Brug e-mailadresse, hvis navnet ikke findes<br>
-- Tilføjet <span class="notranslate">${smart_email}</span> filnavnstoken<br>
-- Rettet fr-lokalitet for Til- og Fra-headere<br>
-- Rettet Titel til HTML-eksport<br>
-- Opdatering af lokalitet i fr @DenB10<br>
-- Opdatering af lokalitet i sv-SE @NickWick13<br>
-- Opdatering af etiket i en-US @wesinator<br>
-- Rettelse af forkert bidragyder fra @Reyard til @Rayerd<br>
-
+<br>
+- Nyt: Automatiske, planlagte sikkerhedskopier:<br>
+&nbsp;&nbsp;&nbsp;Kør sikkerhedskopier uden brugerinteraktion<br>
+&nbsp;&nbsp;&nbsp;Påmindelse ved opstart, hvis sikkerhedskopiering er forsinket<br>
+&nbsp;&nbsp;&nbsp;Brug 'backup' i logføringsindstillinger for spor<br>
+&nbsp;&nbsp;&nbsp;Bemærk: Sikkerhedskopiering ved afslutning er fjernet. Ikke muligt i<br>
+ny arkitektur<br>
+<br>
+- Nyt: Tilføjet mulighed for datoformat i beskedhoved<br>
+- Migrer ældre præferencer til lokal lagring<br>
+- Rettet: Fjern expStatusWin-opdatering, der forårsager fejl på <br>
+&nbsp;&nbsp;&nbsp;Linux-tileing-compositors<br>
+- Rettet: Gem vedhæftede filer, når beskeden har en brødtekstlængde på nul<br>
+- Rettet: Indeks brugte forkert stiseparator på Darwin macOS<br>
+- Rettet: Indeksdatoformat mangler time<br>
+- Opdateret: ScriptLoad med ressource-URL<br>
+<br>
   </p> 
   
   <p>

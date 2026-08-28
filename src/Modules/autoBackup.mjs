@@ -115,7 +115,6 @@ export async function initBackupScheduler() {
 
     // set backupPeriodicAlarm with periodicity
 
-    console.log("set", periodInMinutes)
     browser.alarms.create("backupPeriodicAlarm",
       {
         when: zdtBackupDate.epochMilliseconds,
@@ -128,7 +127,7 @@ export async function initBackupScheduler() {
 
         // promtt user if they want to backup
         let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), browser.i18n.getMessage("backupOverdue.label") + zdtBackupDate.toLocaleString());
-        
+
         if (rv) {
           await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
         }

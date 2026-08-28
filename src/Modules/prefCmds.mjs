@@ -38,7 +38,6 @@ import { logging, log } from "./loggingWext.mjs";
 
 
 const userPrefStorageArea = "local";
-console.log("loading prefCmds")
 
 export var prefCmds = {
 
@@ -91,7 +90,7 @@ export var prefCmds = {
   // Set pref value by updating local pref obj and updating storage.
   setPref: async function (aName, aValue, forceUserPref = false) {
     //console.log(aName, aValue)
-    
+
     if (!this.dotHasOwnProperty(aName, this._defaultPrefs)) {
       console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs", aName);
       return null;
@@ -111,7 +110,7 @@ export var prefCmds = {
     return aValue;
   },
 
-  isDefaultPref: function(aName) {
+  isDefaultPref: function (aName) {
     let defaultPref = this.dotGet(aName, this._defaultPrefs);
     return defaultPref == this.dotGet(aName, this._userPrefs)
   },
@@ -124,8 +123,7 @@ export var prefCmds = {
     // check if we are setting up local storage for first time
 
     let initialStorageDefaults = (await messenger.storage[userPrefStorageArea].get("defaultPrefs")).defaultPrefs || undefined;
-    console.log("initialStorageDefaults", initialStorageDefaults)
-     // If defaults are given, push them into storage.local
+    // If defaults are given, push them into storage.local
     if (defaults && !initialStorageDefaults) {
       await messenger.storage.local.set({ defaultPrefs: defaults });
       await messenger.storage.local.set({ userPrefs: defaults });
@@ -136,11 +134,11 @@ export var prefCmds = {
 
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
-    
+
     this._defaultPrefs = (await messenger.storage.local.get("defaultPrefs")).defaultPrefs || {};
 
-    console.log("_userPrefs", this._userPrefs)
-    console.log("_defaultPrefs", this._defaultPrefs)
+    //console.log("_userPrefs", this._userPrefs)
+    //console.log("_defaultPrefs", this._defaultPrefs)
 
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });

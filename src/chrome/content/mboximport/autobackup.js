@@ -227,7 +227,7 @@ var autoBackup = {
 	},
 
 	end: async function () {
-		console.log("Backup time:", (new Date() - this.backupStart) / 1000);
+		console.log("IETNG: Backup time:", (new Date() - this.backupStart) / 1000);
 		await new Promise(resolve => setTimeout(resolve, 4000));
 		window.close();
 	},

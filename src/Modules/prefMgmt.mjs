@@ -234,8 +234,6 @@ async function _migrateLegacyPrefs() {
 
   // mode 0 not supported, move to 2 == dropdown mode and set default pattern
   
-  let nameFormatLS = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
-  console.log("nf ls", nameFormatLS)
   let nameFormat = await messenger.LegacyPrefs.getPref(`${addonRootPref}.exportEML.filename_format`);
 
   if (nameFormat != 1 && nameFormat != 3) {
@@ -243,9 +241,9 @@ async function _migrateLegacyPrefs() {
     try {
       let pattern = await messenger.LegacyPrefs.getPref(`${addonRootPref}.export.filename_pattern`);
       if (pattern == undefined) {
-        console.log("IETNG: Migrate filename_format to Dropdown format");
+        //console.log("IETNG: Migrate filename_format to Dropdown format");
         await messenger.LegacyPrefs.createPref(`${addonRootPref}.export.filename_pattern`, "%d-%s-%k");
-        console.log("IETNG: Set undefined filename_pattern to: %d-%s-%k");
+        //console.log("IETNG: Set undefined filename_pattern to: %d-%s-%k");
       }
     } catch (ex) {
       console.error(ex);
@@ -259,9 +257,6 @@ async function _migrateLegacyPrefs() {
   } else {
     await prefCmds.setPref(`export.names.defaults.msgNameFormatType`, "extended");
   }
-
-  nameFormatLS = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
-  console.log("final nf ls", nameFormatLS)
 
   // next set all userPrefs from legacy map
   // were also cleaning up names and structure

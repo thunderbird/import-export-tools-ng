@@ -85,25 +85,6 @@ async function onLoad() {
 		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();
 
-		/*
-
-		// Abort in automode, if not yet due.
-		if (mode == "auto") {
-			let frequency = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.frequency");
-			if (frequency === 0)
-				return;
-
-			if (frequency === 99)
-				frequency = 0.001;
-
-			let time = now.getTime() / 1000;
-			let days = 24 * 60 * 60 * frequency;
-
-			if ((time - last) < (days - (60 * 5))) {
-				return;
-			}
-		}
-*/
 		window.openDialog("chrome://mboximport/content/mboximport/autobackup.xhtml", "", "chrome,centerscreen,modal", last, now, mode);
 		return { status: "ok" };
 	}

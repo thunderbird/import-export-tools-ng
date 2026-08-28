@@ -20,28 +20,28 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Release-opmerkingen:</h3>
     <p>
-      <b>Afschaffingsmelding:</b><br /><br />
+      <b>Afschaffingsmelding:</b><br />
       Ik zal de oude exportberichtenfuncties vanaf versie 15.0.3 uitfaseren. Gebruik de nieuwe functies
       (versie 15) en meld eventuele problemen, zodat u niet door deze uitfasering wordt getroffen.<br /><br />
-      - Opgelost: Optiemigratie van standaard (niet-dropdown of uitgebreide) bestandsnaamindeling resulteerde
-      in ongedefinieerde .xyz-bestanden.<br />
-      - Opgelost: EML-exports coderen niet naar UTF-8, waardoor onleesbare niet-ASCII-tekens ontstaan.<br />
-      - Opgelost: Tabel met bijlagen toegevoegd voor export van HTML- en platte tekstberichten.<br />
-      - Herstel de datumindeling in de header naar 30-11-2026 11:20:30. Deze instelling wordt later
-      aanpasbaar.<br />
-      - Voeg een antwoordadresveld toe aan de headers, indien aanwezig.<br />
-      - Wijzig de logica van afzender en ontvanger in bestandsnamen:<br />
-      Gebruik het e-mailadres als de naam niet aanwezig is.<br />
-      - Bestandsnaamtoken <span class="notranslate">${smart_email}</span> toegevoegd<br />
-      - De Franse landinstelling voor de kopteksten &#39;Aan&#39; en &#39;Van&#39; is gecorrigeerd.<br />
-      - Vaste titel voor HTML-exports<br />
+      <b>Nieuw: Automatische, geplande back-ups:</b><br />
+      Voer back-ups uit zonder tussenkomst van de gebruiker.<br />
+      Herinnering bij het opstarten als de back-up te laat is<br />
+      Gebruik &#39;backup&#39; in de logboekopties voor tracering.<br />
+      Opmerking: Back-up bij afsluiten verwijderd. Niet mogelijk in de nieuwe Thunderbird-architectuur.<br /><br />
+      - Nieuw: Optie voor datumindeling in berichtkop toegevoegd<br />
+      - Migreer oude voorkeuren naar lokale opslag.<br />
+      - Opgelost: De update van expStatusWin die een fout veroorzaakte, is verwijderd.<br />
+      Linux tiling compositors<br />
+      - Opgelost: Bijlagen opslaan wanneer een bericht geen inhoud heeft<br />
+      - Opgelost: Index gebruikte een onjuist padscheidingsteken op Darwin macOS<br />
+      - Opgelost: Datumformaat index mist uur<br />
+      - Bijgewerkt: ScriptLoad met resource-URL<br /><br />
       - Franse taalupdate @DenB10<br />
-      - sv-SE locale update @NickWick13<br />
-      - label update in en-US @wesinator<br />
-      - De foutieve bijdrager is gecorrigeerd van @Reyard naar @Rayerd<br />
+      - volledige lokale update @topoldo<br />
+      - ja locale update @kiki-ja<br />
     </p>
     <p>
-      <b>Versie 15: Notities, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
+      <b>Versie 15: Opmerkingen, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
       Versie 15 is een volledig herschreven versie van de berichtexportfuncties, zowel voor mappen als voor
       geselecteerde berichten. Het is de eerste fase in een moderne, grotendeels op WebExtension gebaseerde
       technologie. Het nieuwe ontwerp is een enorme verbetering in de architectuur, waardoor nieuwe functies
@@ -147,7 +147,7 @@
     </p>
     <h3>Steun:</h3>
     <p>
-      Meld problemen of dien functieverzoeken in bij de GitHub-repository van de extensie:
+      Meld problemen of doe functieverzoeken in de GitHub-repository van de extensie:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >ImportExportTools NG Issues</a
       ><br /><br />
@@ -293,7 +293,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Maakt een HTML-indexbestand aan van de map &#39;messages&#39; (geen export van berichten).</td>
+          <td>Maakt een HTML-indexbestand aan van de berichten in de map (geen export van berichten).</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
@@ -687,7 +687,7 @@
           <td><code class="code1">%V</code></td>
           <td>
             Het ISO 8601-weeknummer van het huidige jaar als decimaal getal (bereik 01 tot 53), waarbij week 1
-            de eerste week is die ten minste 4 dagen in het nieuwe jaar heeft (dat wil zeggen de eerste
+            de eerste week is die ten minste 4 dagen in het nieuwe jaar heeft (dat wil zeggen, de eerste
             donderdag).
           </td>
         </tr>
@@ -708,7 +708,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
+          <td>Het jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>

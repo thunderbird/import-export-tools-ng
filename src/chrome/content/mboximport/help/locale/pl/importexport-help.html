@@ -20,26 +20,26 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Informacje o wydaniu:</h3>
     <p>
-      <b>Informacja o wycofaniu:</b><br /><br />
+      <b>Informacja o wycofaniu:</b><br />
       Od wersji 15.0.3 wycofam starsze funkcje eksportu wiadomości. Prosimy o korzystanie z nowych funkcji
       (wersja 15) i zgłaszanie wszelkich problemów z nimi, aby wycofanie nie miało na Państwa wpływu.<br /><br />
-      - Naprawiono: Opcja migracji z domyślnego formatu nazw plików (nie rozwijanego ani rozszerzonego)
-      powodująca generowanie niezdefiniowanych plików .xyz<br />
-      - Naprawiono: eksporty EML nie są kodowane do UTF-8, co powoduje powstawanie zniekształconych znaków
-      spoza zestawu ASCII<br />
-      - Naprawiono: Dodano tabelę załączników tylko dla eksportów wiadomości w formacie HTML i zwykłego
-      tekstu<br />
-      - Przywróć format daty nagłówka na 30.11.2026 11:20:30. Później będzie można to skonfigurować.<br />
-      - Dodaj pole „Odpowiedz do” do nagłówków, jeśli jest obecne<br />
-      - Zmiana logiki Nadawcy i Odbiorcy w nazwach plików:<br />
-      Użyj adresu e-mail, jeśli nie podano imienia i nazwiska<br />
-      - Dodano token nazwy pliku <span class="notranslate">${smart_email}</span><br />
-      - Naprawiono ustawienia regionalne dla nagłówków Do i Od<br />
-      - Naprawiono tytuł dla eksportów HTML<br />
+      <b>Nowość: Automatyczne, zaplanowane kopie zapasowe:</b><br />
+      Uruchamiaj kopie zapasowe bez interakcji użytkownika<br />
+      Przypomnienie przy uruchomieniu, jeśli kopia zapasowa jest spóźniona<br />
+      Użyj „kopii zapasowej” w opcjach rejestrowania śledzenia<br />
+      Uwaga: usunięto funkcję tworzenia kopii zapasowej przy wyjściu. Niedostępne w nowej architekturze
+      Thunderbird.<br /><br />
+      - Nowość: Dodano opcję formatu daty w nagłówku wiadomości<br />
+      - Migracja starszych preferencji do pamięci lokalnej<br />
+      - Naprawiono: Usunięcie aktualizacji expStatusWin powodującej błąd<br />
+      Kompozytory kafelkowe Linuksa<br />
+      - Naprawiono: zapisywanie załączników, gdy wiadomość ma długość zerową<br />
+      - Naprawiono: Indeks używał nieprawidłowego separatora ścieżki w systemie Darwin macOS<br />
+      - Naprawiono: Brak godziny w formacie daty indeksu<br />
+      - Zaktualizowano: ScriptLoad z adresem URL zasobu<br /><br />
       - aktualizacja ustawień regionalnych fr @DenB10<br />
-      - aktualizacja ustawień regionalnych sv-SE @NickWick13<br />
-      - aktualizacja etykiety w en-US @wesinator<br />
-      - Naprawiono błędnego współautora z @Reyard na @Rayerd<br />
+      - pełna aktualizacja ustawień regionalnych @topoldo<br />
+      - ja locale update @kiki-ja<br />
     </p>
     <p>
       <b>Uwagi, funkcje i zmiany w wersji 15. Prosimy o uważne przeczytanie.</b><br /><br />
@@ -187,7 +187,7 @@
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>Eksportuj folder wraz ze wszystkimi jego podfolderami do drzewa wiadomości w formacie mbox</td>
+          <td>Eksportuj folder wraz ze wszystkimi podfolderami do drzewa wiadomości w formacie mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">

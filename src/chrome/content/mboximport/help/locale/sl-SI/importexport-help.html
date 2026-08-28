@@ -20,24 +20,25 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Opombe k izdaji:</h3>
     <p>
-      <b>Obvestilo o zastaranju:</b><br /><br />
+      <b>Obvestilo o zastaranju:</b><br />
       Od različice 15.0.3 dalje bom opustil starejše funkcije izvoznih sporočil. Prosim, uporabljajte in
       sporočite morebitne težave z novimi funkcijami (v15), da vas opustitev ne bo prizadela.<br /><br />
-      - Popravek: Selitev možnosti iz privzete (ne spustne ali razširjene) oblike imena datoteke, ki je
-      ustvarila datoteke undefined.xyz<br />
-      - Popravek: Izvozi EML niso kodirani v UTF-8, kar je povzročilo popačene znake, ki niso ASCII<br />
-      - Popravek: Dodana tabela prilog za izvoz samo sporočil HTML in Googlu<br />
-      - Obnovi obliko datuma glave na 30. 11. 2026 11:20:30. Nastavljivo bo kasneje.<br />
-      - Dodajte polje za odgovor v glave, če je prisotno<br />
-      - Sprememba logike pošiljatelja in prejemnika v imenih datotek:<br />
-      Uporabite e-poštni naslov, če imena ni<br />
-      - Dodan žeton za ime datoteke <span class="notranslate">${smart_email}</span><br />
-      - Popravljena lokalna nastavitev fr za glave »To« in »From«<br />
-      - Popravljen naslov za izvoz HTML<br />
+      <b>Novo: Samodejne, načrtovane varnostne kopije:</b><br />
+      Izvajanje varnostnih kopij brez interakcije z uporabnikom<br />
+      Opomnik ob zagonu, če je varnostno kopiranje zamujeno<br />
+      V možnostih beleženja za sledenje uporabite »varnostno kopijo«<br />
+      Opomba: Varnostno kopiranje ob izhodu je odstranjeno. V novi arhitekturi Thunderbirda to ni mogoče.<br /><br />
+      - Novo: Dodana možnost oblikovanja datuma v glavi sporočila<br />
+      - Prenesite starejše nastavitve v lokalno shrambo<br />
+      - Popravljeno: Odstranitev posodobitve expStatusWin je povzročila napako pri<br />
+      Kompozitorji ploščic v Linuxu<br />
+      - Popravljeno: Shranjevanje prilog, ko ima sporočilo ničelno dolžino telesa<br />
+      - Popravljeno: Indeks je v sistemu Darwin macOS uporabljal napačno ločilo poti.<br />
+      - Popravljeno: V formatu indeksnega datuma je manjkala ura<br />
+      - Posodobljeno: ScriptLoad z URL-jem vira<br /><br />
       - posodobitev jezika fr @DenB10<br />
-      - posodobitev jezika sv-SE @NickWick13<br />
-      - posodobitev oznake v en-US @wesinator<br />
-      - Popravljen napačen sodelavec iz @Reyard v @Rayerd<br />
+      - popolna posodobitev jezika @topoldo<br />
+      - posodobitev jezika ja @kiki-ja<br />
     </p>
     <p>
       <b>Opombe, funkcije in spremembe različice 15. Prosimo, da natančno preberete.</b><br /><br />
@@ -416,7 +417,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Izvozi izbrana sporočila v datoteke formata PDF</td>
+          <td>Izvoz izbranih sporočil v datoteke PDF</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -801,7 +802,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Vrednost možnosti besedila predpone.</td>
+        <td>Vrednost možnosti predpone besedila.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>

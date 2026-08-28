@@ -20,27 +20,26 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Notas de lançamento:</h3>
     <p>
-      <b>Aviso de descontinuação:</b><br /><br />
+      <b>Aviso de descontinuação:</b><br />
       A partir da versão 15.0.3, as funções legadas de exportação de mensagens serão descontinuadas. Por
       favor, utilize e reporte quaisquer problemas com as novas funções (v15) para que a descontinuação não o
       afete.<br /><br />
-      - Correção: Migração de opções do formato de nome de arquivo padrão (não suspenso ou estendido) que
-      gerava arquivos undefined.xyz<br />
-      - Correção: Exportações EML não codificam para UTF-8, produzindo caracteres não ASCII ilegíveis.<br />
-      - Correção: Adicionada tabela de anexos para exportações de mensagens somente em HTML e texto
-      simples.<br />
-      - Restaurar o formato de data do cabeçalho para 30/11/2026 11:20:30. Será configurável
-      posteriormente.<br />
-      - Adicionar o campo &quot;Responder para&quot; aos cabeçalhos, se presente.<br />
-      - Alterar a lógica do remetente e do destinatário nos nomes dos arquivos:<br />
-      Use o endereço de e-mail caso o nome não esteja presente.<br />
-      - Adicionado o token de nome de arquivo <span class="notranslate">${smart_email}</span><br />
-      - Correção da localização &quot;fr&quot; para os cabeçalhos &quot;De&quot; e &quot;Para&quot;<br />
-      - Título fixo para exportações em HTML<br />
+      <b>Novidade: backups automáticos e agendados:</b><br />
+      Execute backups sem interação do usuário.<br />
+      Lembrete na inicialização caso o backup esteja atrasado.<br />
+      Use &#39;backup&#39; nas opções de registro para rastreamento.<br />
+      Nota: O backup ao sair foi removido. Não é possível na nova arquitetura do Thunderbird.<br /><br />
+      - Novo: Adicionada opção de formato de data no cabeçalho da mensagem<br />
+      - Migrar preferências legadas para o armazenamento local<br />
+      - Corrigido: Remoção da atualização expStatusWin que causava erro em<br />
+      Compositores de mosaico do Linux<br />
+      - Corrigido: Salvar anexos quando a mensagem tiver comprimento zero.<br />
+      - Corrigido: O índice usava um separador de caminho incorreto no macOS Darwin.<br />
+      - Corrigido: Formato de data do índice sem hora<br />
+      - Atualizado: ScriptLoad com URL do recurso<br /><br />
       - Atualização de localização fr @DenB10<br />
-      - Atualização de localização sv-SE @NickWick13<br />
-      - Atualização de rótulo em inglês (EUA) @wesinator<br />
-      - Corrigido o nome do colaborador incorreto de @Reyard para @Rayerd<br />
+      - Atualização completa de localização @topoldo<br />
+      - ja atualização de localização @kiki-ja<br />
     </p>
     <p>
       <b>Notas, recursos e alterações da versão 15. Leia atentamente.</b><br /><br />
@@ -986,7 +985,7 @@
         - Suporte completo ao Modo Escuro<br />
         - Novo sistema de menu consistente<br />
         - Novo botão na barra de ferramentas<br />
-        - Ajuda aprimorada, abra durante a instalação<br />
+        - Ajuda aprimorada, abre durante a instalação<br />
         - Atualizar conta de exportação<br /><br />
         Agradecemos aos seguintes usuários pelas sugestões de melhoria e pela ajuda nos testes:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />

@@ -20,25 +20,26 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydaniu:</h3>
     <p>
-      <b>Oznámenie o zastaraní:</b><br /><br />
+      <b>Oznámenie o zastaraní:</b><br />
       Od verzie 15.0.3 ukončím podporu starších funkcií exportu správ. Prosím, používajte a nahláste akékoľvek
       problémy s novými funkciami (v15), aby vás toto ukončenie neovplyvnilo.<br /><br />
-      - Oprava: Migrácia možností z predvoleného formátu názvu súboru (nie rozbaľovacieho alebo rozšíreného),
-      čo viedlo k nedefinovaným súborom .xyz<br />
-      - Oprava: Exporty EML sa nekódovali do UTF-8 a produkovali skreslené znaky, ktoré nie sú v kódovaní
-      ASCII.<br />
-      - Oprava: Pridaná tabuľka príloh pre exporty iba správ HTML a Obyčajného textu<br />
-      - Obnoviť formát dátumu hlavičky na 30.11.2026 11:20:30, bude konfigurovateľné neskôr.<br />
-      - Pridať do hlavičiek pole pre odpoveď, ak je k dispozícii<br />
-      - Zmena logiky odosielateľa a príjemcu v názvoch súborov:<br />
-      Ak meno nie je k dispozícii, použite e-mailovú adresu<br />
-      - Pridaný token názvu súboru <span class="notranslate">${smart_email}</span><br />
-      - Opravené miestne nastavenie fr pre hlavičky Komu a Odosielateľovi<br />
-      - Opravený názov pre exporty HTML<br />
+      <b>Nové: Automatické, plánované zálohy:</b><br />
+      Spúšťajte zálohy bez zásahu používateľa<br />
+      Pripomienka pri spustení, ak je záloha oneskorená<br />
+      Použite „zálohu“ v možnostiach protokolovania pre sledovanie<br />
+      Poznámka: Zálohovanie pri ukončení bolo odstránené. V novej architektúre Thunderbirdu to nie je
+      možné.<br /><br />
+      - Nové: Pridaná možnosť formátovania dátumu v hlavičke správy<br />
+      - Migrácia starších nastavení do lokálneho úložiska<br />
+      - Opravené: Odstránenie aktualizácie expStatusWin spôsobujúcej chybu pri<br />
+      Linuxové dlaždicové kompozície<br />
+      - Opravené: Ukladanie príloh, aj keď má správa nulovú dĺžku tela<br />
+      - Opravené: Index používal nesprávny oddeľovač ciest v systéme Darwin macOS<br />
+      - Opravené: Chýbajúca hodina vo formáte dátumu indexu<br />
+      - Aktualizované: ScriptLoad s URL adresou zdroja<br /><br />
       - aktualizácia lokálu fr @DenB10<br />
-      - aktualizácia lokalizácie sv-SE @NickWick13<br />
-      - aktualizácia označenia v en-US @wesinator<br />
-      - Opravený nesprávny prispievateľ z @Reyard na @Rayerd<br />
+      - kompletná aktualizácia lokality @topoldo<br />
+      - aktualizácia lokality áno @kiki-ja<br />
     </p>
     <p>
       <b>Poznámky, funkcie a zmeny k verzii 15. Pozorne si prečítajte.</b><br /><br />
@@ -452,7 +453,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
-          <td>Pripojiť vybraté správy do existujúceho súboru mbox</td>
+          <td>Pripojiť vybrané správy do existujúceho súboru mbox</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>

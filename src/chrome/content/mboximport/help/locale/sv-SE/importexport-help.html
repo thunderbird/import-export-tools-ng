@@ -20,25 +20,26 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Versionsinformation:</h3>
     <p>
-      <b>Avskrivningsmeddelande:</b><br /><br />
+      <b>Avskrivningsmeddelande:</b><br />
       Jag kommer att avveckla de äldre exportmeddelandefunktionerna från och med v15.0.3. Vänligen använd och
       rapportera eventuella problem med de nya (v15) funktionerna så att avvecklingen inte påverkar dig.<br /><br />
-      - Åtgärd: Alternativmigrering från standardfilnamnsformatet (ej rullgardinsmeny eller utökat) producerar
-      undefined.xyz-filer<br />
-      - Åtgärd: EML-export kodas inte till UTF-8 vilket ger förvrängda icke-ASCII-tecken<br />
-      - Åtgärd: Lade till tabell med bilagor för export av endast HTML- och klartextmeddelanden<br />
-      - Återställ datumformatet för rubriken till 2026-11-30 11:20:30. Kommer att göras konfigurerbart
-      senare.<br />
-      - Lägg till svarsfält i rubriker om det finns<br />
-      - Ändra logiken för avsändare och mottagare i filnamn:<br />
-      Använd e-postadress om namn saknas<br />
-      - Lade till filnamnstoken <span class="notranslate">${smart_email}</span><br />
-      - Åtgärdade fr-språkinställningar för Till- och Från-rubriker<br />
-      - Åtgärdade titeln för HTML-exporter<br />
+      <b>Nytt: Automatiska, schemalagda säkerhetskopior:</b><br />
+      Kör säkerhetskopior utan användarinteraktion<br />
+      Påminnelse vid uppstart om säkerhetskopiering försenad<br />
+      Använd &quot;backup&quot; i loggningsalternativ för spårning<br />
+      Obs: Säkerhetskopiering vid avslutning har tagits bort. Inte möjligt i den nya
+      Thunderbird-arkitekturen.<br /><br />
+      - Nytt: Lade till alternativ för datumformat i meddelanderubriken<br />
+      - Migrera äldre inställningar till lokal lagring<br />
+      - Åtgärdat: Borttagning av expStatusWin-uppdatering orsakar fel på<br />
+      Linux-kakelkompositioner<br />
+      - Åtgärdat: Spara bilagor när meddelandet har noll brödtextlängd<br />
+      - Åtgärdat: Index använde fel sökvägsavgränsare på Darwin macOS<br />
+      - Åtgärdat: Timme saknas i indexformat<br />
+      - Uppdaterad: ScriptLoad med resurs-URL<br /><br />
       - fr språkuppdatering @DenB10<br />
-      - Uppdatering av språkinställningar för sv-SE @NickWick13<br />
-      - etikettuppdatering på sv-US @wesinator<br />
-      - Åtgärdade felaktig bidragsgivare från @Reyard till @Rayerd<br />
+      - fullständig uppdatering av språkinställningar @topoldo<br />
+      - ja språkuppdatering @kiki-ja<br />
     </p>
     <p>
       <b>v15 Anmärkningar, funktioner och ändringar. Läs noggrant.</b><br /><br />
@@ -221,7 +222,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som HTML-formatfiler (ingen struktur/undermappar).<br />
+            Exportera mappmeddelandena som HTML-filer (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -230,7 +231,7 @@
             __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportera mappmeddelandena som HTML-filer (ingen struktur/undermappar).<br />
+            Exportera mappmeddelandena som HTML-formatfiler (ingen struktur/undermappar).<br />
             Bilagor sparas som separata filer. Detta skapar också en HTML-indexfil som listar varje
             meddelande.
           </td>
@@ -451,7 +452,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>Exportera de valda meddelandena till en enda mbox-fil</td>
+          <td>Exportera de markerade meddelandena till en enda mbox-fil</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
@@ -746,7 +747,7 @@
         <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> - inte implementerad</li>
-      <li><code class="code1">%W</code> - inte implementerat</li>
+      <li><code class="code1">%W</code> - inte implementerad</li>
       <li><code class="code1">%+</code> - inte implementerad</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>

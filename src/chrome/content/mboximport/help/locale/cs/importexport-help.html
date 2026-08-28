@@ -20,24 +20,25 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Poznámky k vydání:</h3>
     <p>
-      <b>Oznámení o ukončení podpory:</b><br /><br />
+      <b>Oznámení o ukončení podpory:</b><br />
       Od verze 15.0.3 ukončím podporu starších funkcí exportu zpráv. Používejte prosím nové funkce (v15) a
       nahlaste jakékoli problémy s nimi, aby vás toto ukončení neovlivnilo.<br /><br />
-      - Oprava: Migrace možností z výchozího formátu názvu souboru (bez rozbalovacího nebo rozšířeného), která
-      produkovala soubory undefined.xyz<br />
-      - Oprava: Exporty EML nebyly kódovány do UTF-8 a produkovaly zkomolené znaky jiné než ASCII.<br />
-      - Oprava: Přidána tabulka příloh pro export zpráv pouze v HTML a prostém textu<br />
-      - Obnovit formát data v záhlaví na 30. 11. 2026 11:20:30, bude konfigurovatelné později.<br />
-      - Přidat do záhlaví pole pro odpověď, pokud je k dispozici<br />
-      - Změna logiky odesílatele a příjemce v názvech souborů:<br />
-      Pokud jméno není uvedeno, použijte e-mailovou adresu<br />
-      - Přidán token názvu souboru <span class="notranslate">${smart_email}</span><br />
-      - Opraveno locale fr pro záhlaví To a From<br />
-      - Opraven název pro exporty HTML<br />
+      <b>Nové: Automatické, plánované zálohy:</b><br />
+      Spouštění záloh bez zásahu uživatele<br />
+      Připomenutí při spuštění, pokud je záloha po termínu<br />
+      Použijte v možnostech protokolování pro trasování „zálohu“.<br />
+      Poznámka: Zálohování při ukončení bylo odstraněno. V nové architektuře Thunderbirdu to není možné.<br /><br />
+      - Nové: Přidána možnost formátování data v záhlaví zprávy<br />
+      - Migrace starších preferencí do lokálního úložiště<br />
+      - Opraveno: Odebrání aktualizace expStatusWin způsobující chybu při<br />
+      Linuxové dlaždicové kompozice<br />
+      - Opraveno: Ukládání příloh, i když má zpráva nulovou délku těla<br />
+      - Opraveno: Index používal nesprávný oddělovač cest v systému Darwin macOS.<br />
+      - Opraveno: Chybějící hodina ve formátu indexového data<br />
+      - Aktualizováno: ScriptLoad s URL zdroje<br /><br />
       - aktualizace locale fr @DenB10<br />
-      - aktualizace lokalizace sv-SE @NickWick13<br />
-      - aktualizace štítku v en-US @wesinator<br />
-      - Opraven nesprávný přispěvatel z @Reyard na @Rayerd<br />
+      - kompletní aktualizace locale @topoldo<br />
+      - aktualizace locale @kiki-ja<br />
     </p>
     <p>
       <b>Poznámky, funkce a změny k verzi 15. Pečlivě si přečtěte.</b><br /><br />
@@ -138,13 +139,13 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření na GitHubu:
+      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >Problémy s ImportExportTools NG</a
       ><br /><br />
       V případě problémů s chybami uveďte následující informace, které pomohou s jejich řešením:<br />
       - Verze ImportExportTools NG<br />
-      - Verze Thunderbirdu<br />
+      - Verze pro Thunderbird<br />
       - Operační systém a jeho verze<br />
       - Výstup ladění (kopírování z ladicí konzole - přístup pomocí Ctrl-Shift-J)<br />
       - Popis kroků vedoucích k problému<br />
@@ -537,7 +538,7 @@
       založen na JavaScriptovém portu funkce
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , která formátuje datum a čas.<br />
-      Port funkce strftime() od TH Doana (https://thdoan.github.io/strftime/)<br />
+      Port strftime() od TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Popisy konverzních sekvencí</h3>
     <table class="dateformat-table">
@@ -910,7 +911,7 @@
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - přímý příkazový řetězec<br />
       <code class="notranslate">contexts</code> - kontext okna, ve kterém je klávesa aktivní<br />
-      <code class="notranslate">&#39;all&#39;</code> – všechna okna v aplikaci Messenger, psaní zpráv a
+      <code class="notranslate">&#39;all&#39;</code> – všechna okna v aplikaci Messenger, psaní zpráv,
       vyhledávání<br />
       <code class="notranslate">&#39;messenger&#39;</code> - hlavní okno messengeru a jeho potomci<br />
       <code class="notranslate">&#39;compose&#39;</code> - okno pro psaní zprávy<br />

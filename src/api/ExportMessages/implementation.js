@@ -75,6 +75,11 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
             }
             if (hdrItem == "fullSubject") {
               returnItems.fullSubject = msgHdr.mime2DecodedSubject;
+
+              if (!returnItems.fullSubject || !returnItems.fullSubject.trim()) {
+                returnItems.fullSubject = "No Subject";
+              }
+              
               if (msgHdr.flags & 0x0010) {
                 returnItems.fullSubject = "Re: " + returnItems.fullSubject;
               }

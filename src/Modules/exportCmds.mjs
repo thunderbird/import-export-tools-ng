@@ -362,13 +362,12 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
     let selMsgCnt = (await messenger.mailTabs.getSelectedMessages())?.messages.length;
     let selectedMsgs = await messenger.mailTabs.getSelectedMessages()
 
-    console.log("selected msgs", selectedMsgs)
     if (!selMsgCnt) {
-      console.log("use ctxEvent.selectedMessages");
+      //console.log("use ctxEvent.selectedMessages");
       folderSet[0].totalMsgCount = ctxEvent.selectedMessages.messages.length;
       selectedMsgs = ctxEvent.selectedMessages;
     } else {
-      console.log("use getSelectedMessages");
+      //console.log("use getSelectedMessages");
       folderSet[0].totalMsgCount = 0;
 
       let msgListPage;
@@ -377,7 +376,6 @@ export async function exportSelectedMsgs(ctxEvent, tab, functionParams) {
           msgListPage = await messenger.mailTabs.getSelectedMessages()
           //msgListPage = ctxEvent.selectedMessages;
           folderSet[0].totalMsgCount = msgListPage.messages.length;
-          console.log(msgListPage)
         } else {
           msgListPage = await messenger.messages.continueList(msgListPage.id);
           folderSet[0].totalMsgCount += msgListPage.messages.length;
@@ -903,10 +901,7 @@ async function _getprocessedMsg(expTask, msgId, msg) {
           }
 
           if (part.headers["content-disposition"] && part.headers["content-disposition"][0].includes("attachment")) {
-
-            console.log(part)
             let attachmentBody = await browser.messages.getAttachmentFile(msgId, part.partName);
-            console.log(attachmentBody)
             attachmentParts.push({ partType: "attachment", contentType: part.contentType, partBody: attachmentBody, name: part.name });
           }
 

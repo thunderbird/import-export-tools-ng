@@ -1256,13 +1256,14 @@ async function saveMsgAsEML(msguri, file, append, uriArray, hdrArray, fileArray,
 						} else {
 							if (!hdrArray) {
 								sub = await getSubjectForHdr(hdr, file.path);
+								console.log(sub)
 							} else {
 								var parts = hdrArray[IETexported].split("§][§^^§");
 								sub = parts[4];
 								sub = sub.replace(/[\x00-\x1F]/g, "_");
 							}
 
-							sub = IETstr_converter(sub);
+							sub = await IETstr_converter(sub);
 
 							if (sub) {
 								// Addresses #350

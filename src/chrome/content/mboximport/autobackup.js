@@ -268,7 +268,7 @@ end: async function () {
 			return;
 		var entries = dirToScan.directoryEntries;
 		if (!entries.hasMoreElements()) {
-			autoBackup.save(dirToScan, destDir, root);
+			await autoBackup.save(dirToScan, destDir, root);
 			return;
 		}
 		while (entries.hasMoreElements()) {

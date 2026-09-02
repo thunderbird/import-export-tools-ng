@@ -48,7 +48,6 @@ var autoBackup = {
 
 	onOK: async function () {
 		this.backupStart = new Date();
-		setTimeout(autoBackup.start, 500);
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
 		//document.documentElement.getButton("accept").disabled = true;
@@ -57,7 +56,8 @@ var autoBackup = {
 		// 2 = save just if new with custom name, save all with unique name
 		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
 		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
-		// return false;
+		await autoBackup.start();
+		
 	},
 
 	load: async function () {
@@ -88,7 +88,7 @@ var autoBackup = {
 			//console.log(backupStartMsg, time)
 			document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
 		}
-		this.onOK();
+		await this.onOK();
 	},
 
 	getDir: async function () {
@@ -166,7 +166,7 @@ var autoBackup = {
 		// else
 		// var dirName = null;
 
-		autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
+		//autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
 		//IETrunTimeDisable();
 		try {
 			var offlineManager = Cc["@mozilla.org/messenger/offline-manager;1"]
@@ -225,21 +225,16 @@ var autoBackup = {
 			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
-		autoBackup.write(0);
+		await autoBackup.write(0);
 	},
 
-	end: function (sec) {
-		console.log("backup time", (new Date() - this.backupStart) / 1000)
-
-		if (sec === 0) {
-			window.close();
-		} else {
-
-			window.setTimeout(autoBackup.end, 1000, sec - 1);
-		}
+end: async function () {
+		console.log("IETNG: Backup time:", (new Date() - this.backupStart) / 1000);
+		await new Promise(resolve => setTimeout(resolve, 4000));
+		window.close();
 	},
 
-	save: function (entry, destDir, root) {
+	save: async function (entry, destDir, root) {
 		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
 			force = true;
@@ -268,19 +263,23 @@ var autoBackup = {
 	// dirToScan is the directory to scan
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
-	scanDir: function (dirToScan, destDir, root) {
+	scanDir: async function (dirToScan, destDir, root) {
 		if (!dirToScan.exists())
 			return;
 		var entries = dirToScan.directoryEntries;
+		if (!entries.hasMoreElements()) {
+			autoBackup.save(dirToScan, destDir, root);
+			return;
+		}
 		while (entries.hasMoreElements()) {
 			var entry = entries.getNext();
 			entry.QueryInterface(Ci.nsIFile);
 			if (entry.exists()) {
 				if (entry.leafName !== "lock" && entry.leafName !== "parent.lock" && entry.leafName !== ".parentlock") {
 					if (entry.isDirectory())
-						autoBackup.scanDir(entry, destDir, root);
+						await autoBackup.scanDir(entry, destDir, root);
 					else
-						autoBackup.save(entry, destDir, root);
+						await autoBackup.save(entry, destDir, root);
 				}
 			} else {
 				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
@@ -300,7 +299,11 @@ var autoBackup = {
 				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
 			await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));	
 			}
-			await IOUtils.copy(src, dest);
+			if (fileInfo.type == "directory") {
+				await IOUtils.makeDirectory(dest);
+			} else {
+				await IOUtils.copy(src, dest);
+			}
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
@@ -319,7 +322,7 @@ var autoBackup = {
 		if (autoBackup.array1.length > index) {
 			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
-			window.setTimeout(autoBackup.write, 5, index);
+			await autoBackup.write(index);
 		} else {
 			document.getElementById("pm").value = 100;
 			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
@@ -329,7 +332,7 @@ var autoBackup = {
 			// new remove old backups #663
 
 			await autoBackup.removeOldBackups();
-			autoBackup.end(3);
+			await autoBackup.end();
 		}
 	},
 

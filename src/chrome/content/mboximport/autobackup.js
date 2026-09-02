@@ -380,11 +380,13 @@ var autoBackup = {
 	},
 };
 
-document.addEventListener("dialogaccept", function (event) {
-	autoBackup.onOK();
-	event.preventDefault();
-	event.stopPropagation();
-});
+async function cancelButtonListener(event) {
+	window.close();
+}
+
+const cancelButton = document.getElementById("cancelButton");
+
+cancelButton.addEventListener("click", cancelButtonListener);
 
 window.addEventListener("load", async function (event) {
 	i18n.updateDocument({ extension: window.opener.ietngAddon.extension });

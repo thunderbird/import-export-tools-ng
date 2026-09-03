@@ -1510,7 +1510,9 @@ var WindowListener_115 = class extends ExtensionCommon.ExtensionAPI {
                 );
             }
           };
-          Services.scriptloader.loadSubScript(url, prefsObj, "UTF-8");
+          //Services.scriptloader.loadSubScript(url, prefsObj, "UTF-8");
+          Services.scriptloader.loadSubScriptWithOptions(url, { target: prefsObj, allowUnsafeURL: true});
+
         },
 
         registerChromeUrl(data) {

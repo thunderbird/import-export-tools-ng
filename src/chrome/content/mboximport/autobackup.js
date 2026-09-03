@@ -47,6 +47,7 @@ var autoBackup = {
 	backupStart: 0,
 
 	onOK: async function () {
+		console.log("onOK")
 		this.backupStart = new Date();
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
@@ -57,7 +58,7 @@ var autoBackup = {
 		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
 		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
 		await autoBackup.start();
-		
+
 	},
 
 	load: async function () {
@@ -140,6 +141,8 @@ var autoBackup = {
 	},
 
 	start: async function () {
+		console.log("start")
+
 		// "dir" is the target directory for the backup
 		var dir = await autoBackup.getDir();
 		if (!dir)
@@ -211,30 +214,32 @@ var autoBackup = {
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 
-		autoBackup.scanExternal(clone);
+		await autoBackup.scanExternal(clone);
 
 		if (autoBackup.type === 1) { // just mail
 			var profDirMail = autoBackup.profDir.clone();
 			profDirMail.append("Mail");
-			autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+			await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
 			profDirMail = autoBackup.profDir.clone();
 			profDirMail.append("ImapMail");
 			if (profDirMail.exists())
-				autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+				await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
 		} else {
-			autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
+			await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
 		await autoBackup.write(0);
 	},
 
-end: async function () {
-		console.log("IETNG: Backup time:", (new Date() - this.backupStart) / 1000);
+	end: async function () {
+		console.log("end")
 		await new Promise(resolve => setTimeout(resolve, 4000));
 		window.close();
 	},
 
 	save: async function (entry, destDir, root) {
+		console.log("save")
+
 		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
 			force = true;
@@ -264,6 +269,8 @@ end: async function () {
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
 	scanDir: async function (dirToScan, destDir, root) {
+		console.log("scanDir")
+
 		if (!dirToScan.exists())
 			return;
 		var entries = dirToScan.directoryEntries;
@@ -289,6 +296,10 @@ end: async function () {
 	},
 
 	write: async function (index) {
+		if (index == 0) {
+			console.log("write", index)
+		}
+
 		try {
 			let src = autoBackup.array1[index].path;
 			let dest = PathUtils.join(autoBackup.array2[index].path, PathUtils.filename(src));
@@ -297,7 +308,7 @@ end: async function () {
 			let fileInfo = await IOUtils.stat(src);
 			if (fileInfo.size > 1024 * 1024 * 100) {
 				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
-			await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));	
+				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
 			}
 			if (fileInfo.type == "directory") {
 				await IOUtils.makeDirectory(dest);
@@ -327,16 +338,28 @@ end: async function () {
 			document.getElementById("pm").value = 100;
 			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
 			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
-			document.getElementById("start").collapsed = true;
-			document.getElementById("done").removeAttribute("collapsed");
 			// new remove old backups #663
+			console.log("write", index)
 
 			await autoBackup.removeOldBackups();
+			let backupDuration = (new Date() - this.backupStart) / 1000;
+			if (backupDuration < 60) {
+				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${backupDuration.toFixed(0)} S)`;
+			} else {
+				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${(backupDuration / 60).toFixed(1)} M)`;
+			}
+			document.getElementById("start").collapsed = true;
+
+			document.getElementById("done").removeAttribute("collapsed");
+			console.log("IETNG: Backup time: " + backupDuration + " S");
+
 			await autoBackup.end();
 		}
 	},
 
 	removeOldBackups: async function () {
+		console.log("removeOldBackups")
+
 		let retainNumBackups = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
 		if (retainNumBackups == 0) {
 			return;
@@ -361,7 +384,9 @@ end: async function () {
 		}
 	},
 
-	scanExternal: function (destDir) {
+	scanExternal: async function (destDir) {
+		console.log("scanExternal")
+
 		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 
 		var file = destDir.clone();
@@ -378,7 +403,7 @@ end: async function () {
 			clone.append(serverFile.leafName);
 			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
 			if (!parentDir || !autoBackup.profDir.equals(parentDir))
-				autoBackup.scanDir(serverFile, clone, serverFile);
+				await autoBackup.scanDir(serverFile, clone, serverFile);
 		}
 	},
 };

@@ -41,6 +41,8 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
+var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 // conversion to pure IOUtils implementation
 
 var autoBackup = {
@@ -93,38 +95,35 @@ var autoBackup = {
 		await this.onOK();
 	},
 
-	getDir: async function () {
+getDirNEW: async function () {
 		var file = null;
-		var dir = null;
+		let dirPath = null;
 
 		// handle empty pref
 		try {
-			dir = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir");
+			dirPath = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir");
 
 		} catch (ex) {
-			dir = null;
+			dirPath = null;
 		}
 
-		if (dir) {
+		if (dirPath) {
 			try {
-
-				file = Cc["@mozilla.org/file/local;1"]
-					.createInstance(Ci.nsIFile);
-				file.initWithPath(dir);
-				if (!file.exists() || !file.isDirectory()) {
+				if (!await IOUtils.exists(dirPath) || (await IOUtils.stat(dirPath)).type != "directory") {
 					alert("IETNG: dir doesn't exist or not dir")
-
-					file = null;
+					dirPath = null;
 				}
 
 			} catch (e) {
 				alert("IETNG: ex\n" + e);
-				file = null;
+				dirPath = null;
 			}
 		}
 
-		if (!file) {
-			file = await asyncIETgetPickerModeFolder();
+		let fpRes;
+		if (!dirPath) {
+			fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+			dirPath = fpRes.folderPath;
 			autoBackup.filePicker = true;
 		}
 		return file;

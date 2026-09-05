@@ -41,6 +41,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
+// conversion to pure IOUtils implementation
 
 var autoBackup = {
 
@@ -129,7 +130,7 @@ var autoBackup = {
 		return file;
 	},
 
-	writeLog: function (data, append) {
+	writeLogOLD: function (data, append) {
 		var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
 			.createInstance(Ci.nsIFileOutputStream);
 		if (append)
@@ -138,6 +139,14 @@ var autoBackup = {
 			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o666, 0);
 		foStream.write(data, data.length);
 		foStream.close();
+	},
+
+	writeLog: async function (data, append) {
+		if (!append) {
+			await IOUtils.writeUTF8(autoBackup.logFilePath, data);
+		} else {
+			await IOUtils.writeUTF8(autoBackup.logFilePath, data, { mode: "append" });
+		}
 	},
 
 	start: async function () {
@@ -201,9 +210,104 @@ var autoBackup = {
 
 		// Here "clone" is the container directory for the backup
 
+		// temp to check log
 		var str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
-		autoBackup.logFile = clone.clone();
-		autoBackup.logFile.append("Backup.log");
+		//autoBackup.logFile = clone.clone();
+		//autoBackup.logFile.append("Backup.log");
+		// temp
+		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
+
+		autoBackup.writeLog(str, false);
+
+		var oldLogFile = clone.clone();
+		oldLogFile.append("BackupTime.txt");
+		if (oldLogFile.exists())
+			oldLogFile.remove(false);
+
+		autoBackup.array1 = [];
+		autoBackup.array2 = [];
+
+		await autoBackup.scanExternal(clone);
+
+		if (autoBackup.type === 1) { // just mail
+			var profDirMail = autoBackup.profDir.clone();
+			profDirMail.append("Mail");
+			await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+			profDirMail = autoBackup.profDir.clone();
+			profDirMail.append("ImapMail");
+			if (profDirMail.exists())
+				await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+		} else {
+			await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
+		}
+
+		await autoBackup.write(0);
+	},
+
+	startNEW: async function () {
+		console.log("start")
+
+		// "dir" is the target directory for the backup
+		var dir = await autoBackup.getDir();
+		if (!dir)
+			return;
+
+		let w = Services.wm.getMostRecentWindow("mail:3pane");
+
+		if (!dir.exists() || !dir.isWritable) {
+			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
+			window.close();
+			return;
+		}
+		var nameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
+
+		var dirName = null;
+		if (nameType === 1) {
+			try {
+				dirName = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
+			} catch (e) {
+				dirName = null;
+			}
+		}
+		// cleidigh
+		// else
+		// var dirName = null;
+
+		//autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
+		//IETrunTimeDisable();
+		try {
+			var offlineManager = Cc["@mozilla.org/messenger/offline-manager;1"]
+				.getService(Ci.nsIMsgOfflineManager);
+			offlineManager.synchronizeForOffline(false, false, false, true, msgWindow);
+		} catch (e) { }
+
+		var clone = dir.clone();
+		autoBackup.profDir = Cc["@mozilla.org/file/directory_service;1"]
+			.getService(Ci.nsIProperties)
+			.get("ProfD", Ci.nsIFile);
+
+		if (dirName && !autoBackup.filePicker) {
+			autoBackup.backupDirPath = clone.path;
+			clone.append(dirName);
+			if (!clone.exists())
+				clone.create(1, 0o755);
+		} else {
+			autoBackup.backupDirPath = clone.path;
+			var date = buildContainerDirName();
+			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
+			clone.append(baseDirName + "-" + date);
+			clone.createUnique(1, 0o755);
+			autoBackup.backupContainerPath = clone.path;
+			autoBackup.backupContainerBaseName = baseDirName;
+			autoBackup.unique = true;
+		}
+
+
+		// Here "clone" is the container directory for the backup
+
+		var str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
+		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
+
 		autoBackup.writeLog(str, false);
 
 		var oldLogFile = clone.clone();

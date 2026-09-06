@@ -92,7 +92,8 @@ var autoBackup = {
 			//console.log(backupStartMsg, time)
 			document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
 		}
-		await this.onOK();
+		await autoBackup.startNEW();
+		//await this.onOK();
 	},
 
 getDirNEW: async function () {
@@ -256,10 +257,27 @@ getDirNEW: async function () {
 	startNEW: async function () {
 		console.log("start")
 
+		this.backupStart = new Date();
+		document.getElementById("start").removeAttribute("collapsed");
+		document.getElementById("go").collapsed = true;
+		//document.documentElement.getButton("accept").disabled = true;
+		// saveMode values:
+		// 0 = save all; 1 = save just if new;
+		// 2 = save just if new with custom name, save all with unique name
+		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
+
+
 		// "dir" is the target directory for the backup
-		var dir = await autoBackup.getDir();
-		if (!dir)
-			return;
+		//temp
+		let dir = await autoBackup.getDirNEW();
+		console.log(dir)
+		if (!dir) {
+			autoBackup.end();
+		}
+		//temp
+		dir = await IOUtils.getDirectory(dir)
+		console.log(dir)
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 

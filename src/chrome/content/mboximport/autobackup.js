@@ -60,7 +60,7 @@ var autoBackup = {
 		// 2 = save just if new with custom name, save all with unique name
 		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
 		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
-		await autoBackup.start();
+		return autoBackup.start();
 
 	},
 
@@ -120,13 +120,17 @@ getDirNEW: async function () {
 			}
 		}
 
-		let fpRes;
 		if (!dirPath) {
-			fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
-			dirPath = fpRes.folderPath;
+			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+		console.log(fpRes)
+			if (fpRes.result != Ci.nsIFilePicker.returnOK) {
+				dirPath = null;
+			} else {
+			dirPath = fpRes.folder;
 			autoBackup.filePicker = true;
+			}
 		}
-		return file;
+		return dirPath;
 	},
 
 	writeLogOLD: function (data, append) {
@@ -152,9 +156,15 @@ getDirNEW: async function () {
 		console.log("start")
 
 		// "dir" is the target directory for the backup
-		var dir = await autoBackup.getDir();
-		if (!dir)
+		//temp
+		let dir = await autoBackup.getDirNEW();
+		console.log(dir)
+		if (!dir) {
 			return;
+		}
+		//temp
+		dir = await IOUtils.getDirectory(dir)
+		console.log(dir)
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 

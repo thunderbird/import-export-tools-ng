@@ -426,20 +426,20 @@ var autoBackup = {
 			var newpath = entryPath.replace(rootPath, filepath);
 			let LFPath = newpath;
 
-			var LF = Cc["@mozilla.org/file/local;1"]
-				.createInstance(Ci.nsIFile);
-			LF.initWithPath(newpath);
+			//var LF = Cc["@mozilla.org/file/local;1"]
+				//.createInstance(Ci.nsIFile);
+			//LF.initWithPath(newpath);
 
-			LFclone
-			var LFclone = LF.clone();
-			LFclone.append(entry.leafName);
+			LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
+			//var LFclone = LF.clone();
+			//LFclone.append(entry.leafName);
 
-			if (LFclone.exists()) {
-				LFclone.remove(false);
+			if (await IOUtils.exists(LFclonePath)) {
+				await IOUtils.remove(LFclonePath);
 			}
 			try {
-				autoBackup.array1.push(entry);
-				autoBackup.array2.push(LF);
+				autoBackup.array1.push(entrypath);
+				autoBackup.array2.push(LFPath);
 			} catch (e) { }
 		}
 	},

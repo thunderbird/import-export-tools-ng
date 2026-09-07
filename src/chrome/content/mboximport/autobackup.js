@@ -276,16 +276,18 @@ getDirNEW: async function () {
 			autoBackup.end();
 		}
 		//temp
-		dir = await IOUtils.getDirectory(dir)
+		//dir = await IOUtils.getDirectory(dir)
 		console.log(dir)
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
-		if (!dir.exists() || !dir.isWritable) {
+		//if (!dir.exists() || !dir.isWritable) {
+		if(!(await IOUtils.exists(dir))) {
 			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
 			return;
 		}
+
 		var nameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
 
 		var dirName = null;
@@ -308,20 +310,23 @@ getDirNEW: async function () {
 			offlineManager.synchronizeForOffline(false, false, false, true, msgWindow);
 		} catch (e) { }
 
-		var clone = dir.clone();
-		autoBackup.profDir = Cc["@mozilla.org/file/directory_service;1"]
-			.getService(Ci.nsIProperties)
-			.get("ProfD", Ci.nsIFile);
+
+		autoBackup.profDirPath = PathUtils.profileDir;
+
 
 		if (dirName && !autoBackup.filePicker) {
-			autoBackup.backupDirPath = clone.path;
-			clone.append(dirName);
-			if (!clone.exists())
-				clone.create(1, 0o755);
+			autoBackup.backupDirPath = dir;
+			// custom name
+			let customNamePath = PathUtils.join(dir, dirName);
+			if (!(await IOUtils.exists(customNamePath))) {
+				await IOUtils.makeDirectory(customNamePath);
+			}
 		} else {
-			autoBackup.backupDirPath = clone.path;
+			autoBackup.backupDirPath = dir;
 			var date = buildContainerDirName();
-			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
+			let baseDirName = PathUtils.filename(autoBackup.profDir).replaceAll(".", "_");
+			let uniqueBackupContainerPath = PathUtils.join(baseDirName, `-${date}`);
+			uniqueBackupContainerPath = await IOUtils.create
 			clone.append(baseDirName + "-" + date);
 			clone.createUnique(1, 0o755);
 			autoBackup.backupContainerPath = clone.path;

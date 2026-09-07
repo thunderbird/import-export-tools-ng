@@ -375,7 +375,7 @@ var autoBackup = {
 			//await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
-		await autoBackup.write(0);
+		await autoBackup.writeNEW(0);
 	},
 
 	end: async function () {
@@ -507,6 +507,7 @@ var autoBackup = {
 			}
 		}
 	},
+	
 	write: async function (index) {
 		if (index == 0) {
 			console.log("write", index)
@@ -569,6 +570,67 @@ var autoBackup = {
 		}
 	},
 
+	
+	writeNEW: async function (index) {
+		if (index == 0) {
+			console.log("writeNEW", index)
+		}
+
+		try {
+			let src = autoBackup.array1[index];
+			let dest = PathUtils.join(autoBackup.array2[index], PathUtils.filename(src));
+			//console.log("a1", src)
+			//console.log("a2", dest)
+			let fileInfo = await IOUtils.stat(src);
+			if (fileInfo.size > 1024 * 1024 * 100) {
+				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
+				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
+			}
+			if (fileInfo.type == "directory") {
+				await IOUtils.makeDirectory(dest);
+			} else {
+				await IOUtils.copy(src, dest);
+			}
+
+			let logline = autoBackup.array1[index] + "\r\n";
+			autoBackup.writeLog(logline, true);
+			await new Promise(resolve => setTimeout(resolve, 20));
+
+		} catch (e) {
+			var error;
+			if (autoBackup.array1[index])
+				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
+			else
+				error = "\r\n***Error Type: " + e + "\r\n\r\n";
+			autoBackup.writeLog(error, true);
+		}
+		index++;
+		if (autoBackup.array1.length > index) {
+			var c = (index / autoBackup.array1.length) * 100;
+			document.getElementById("pm").value = parseInt(c);
+			await autoBackup.writeNEW(index);
+		} else {
+			document.getElementById("pm").value = 100;
+			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
+			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
+			// new remove old backups #663
+			console.log("write", index)
+
+			await autoBackup.removeOldBackups();
+			let backupDuration = (new Date() - this.backupStart) / 1000;
+			if (backupDuration < 60) {
+				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${backupDuration.toFixed(0)} S)`;
+			} else {
+				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${(backupDuration / 60).toFixed(1)} M)`;
+			}
+			document.getElementById("start").collapsed = true;
+
+			document.getElementById("done").removeAttribute("collapsed");
+			console.log("IETNG: Backup time: " + backupDuration + " S");
+
+			await autoBackup.end();
+		}
+	},
 	removeOldBackups: async function () {
 		console.log("removeOldBackups")
 

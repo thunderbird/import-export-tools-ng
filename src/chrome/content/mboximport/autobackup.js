@@ -412,6 +412,39 @@ var autoBackup = {
 		}
 	},
 
+	saveNEW: async function (entryPath, destDirPath, rootPath) {
+		console.log("saveNEW")
+
+		var force = false;
+		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
+			force = true;
+
+		let lmt = (await IOUtils.stat(entryPath)).lastModifiedTime;
+		// Check if exists a older file to replace in the backup directory
+		if (force || lmt > autoBackup.last) {
+			var filepath = destDirPath;
+			var newpath = entryPath.replace(rootPath, filepath);
+			let LFPath = newpath;
+
+			var LF = Cc["@mozilla.org/file/local;1"]
+				.createInstance(Ci.nsIFile);
+			LF.initWithPath(newpath);
+
+			LFclone
+			var LFclone = LF.clone();
+			LFclone.append(entry.leafName);
+
+			if (LFclone.exists()) {
+				LFclone.remove(false);
+			}
+			try {
+				autoBackup.array1.push(entry);
+				autoBackup.array2.push(LF);
+			} catch (e) { }
+		}
+	},
+
+
 	// dirToScan is the directory to scan
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
@@ -452,8 +485,6 @@ var autoBackup = {
 			return;
 		}
 
-		var entries = dirToScan.directoryEntries;
-
 		if (!await IOUtils.hasChildren()) {
 			await autoBackup.saveNEW(dirToScanPath, destDirPath, rootPath);
 			return;
@@ -471,7 +502,7 @@ var autoBackup = {
 
 				}
 			} else {
-				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
+				let error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
 				autoBackup.writeLog(error, true);
 			}
 		}

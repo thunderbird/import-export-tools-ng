@@ -367,7 +367,7 @@ var autoBackup = {
 			//profDirMail = autoBackup.profDir.clone();
 			//profDirMail.append("ImapMail");
 			if (await IOUtils.exists(profDirImapMailPath)) {
-			await autoBackup.scanDirNEW(profDirImapMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
+				await autoBackup.scanDirNEW(profDirImapMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
 				//await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
 			}
 		} else {
@@ -442,6 +442,40 @@ var autoBackup = {
 		}
 	},
 
+	// dirToScan is the directory to scan
+	// destDir is the target directory for the backup
+	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
+	scanDirNEW: async function (dirToScanPath, destDirPath, rootPath) {
+		console.log("scanDirNEW")
+
+		if (!await IOUtils.exists(dirToScanPath)) {
+			return;
+		}
+
+		var entries = dirToScan.directoryEntries;
+
+		if (!await IOUtils.hasChildren()) {
+			await autoBackup.saveNEW(dirToScanPath, destDirPath, rootPath);
+			return;
+		}
+
+		for (const entry of await IOUtils.getChildren(dirToScanPath)) {
+			if (await IOUtils.exists(entry)) {
+				if (PathUtils.filename(entry) !== "lock" && PathUtils.filename(entry) !== "parent.lock" && PathUtils.filename(entry) !== ".parentlock") {
+
+					if ((await IOUtils.stat(entry)).type == "directory") {
+						await autoBackup.scanDirNEW(entry, destDirPath, rootPath);
+					} else {
+						await autoBackup.saveNEW(entry, destDirPath, rootPath);
+					}
+
+				}
+			} else {
+				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
+				autoBackup.writeLog(error, true);
+			}
+		}
+	},
 	write: async function (index) {
 		if (index == 0) {
 			console.log("write", index)

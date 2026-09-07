@@ -255,7 +255,7 @@ getDirNEW: async function () {
 	},
 
 	startNEW: async function () {
-		console.log("start")
+		console.log("startNEW")
 
 		this.backupStart = new Date();
 		document.getElementById("start").removeAttribute("collapsed");
@@ -310,6 +310,8 @@ getDirNEW: async function () {
 			offlineManager.synchronizeForOffline(false, false, false, true, msgWindow);
 		} catch (e) { }
 
+		let clone = await IOUtils.getDirectory(dir)
+		autoBackup.profDir = await IOUtils.getDirectory(PathUtils.profileDir);
 
 		autoBackup.profDirPath = PathUtils.profileDir;
 
@@ -324,12 +326,16 @@ getDirNEW: async function () {
 		} else {
 			autoBackup.backupDirPath = dir;
 			var date = buildContainerDirName();
-			let baseDirName = PathUtils.filename(autoBackup.profDir).replaceAll(".", "_");
-			let uniqueBackupContainerPath = PathUtils.join(baseDirName, `-${date}`);
-			uniqueBackupContainerPath = await IOUtils.create
-			clone.append(baseDirName + "-" + date);
-			clone.createUnique(1, 0o755);
-			autoBackup.backupContainerPath = clone.path;
+			let baseDirName = PathUtils.filename(autoBackup.profDirPath).replaceAll(".", "_");
+			baseDirName += `-${date}`;
+			console.log(baseDirName)
+			//let uniqueBackupContainerPath = PathUtils.join(autoBackup.backupDirPath, baseDirName);
+			let uniqueBackupContainerPath = await IOUtils.createUniqueDirectory(autoBackup.backupDirPath, baseDirName);
+			autoBackup.backupContainerPath = uniqueBackupContainerPath;
+			console.log(uniqueBackupContainerPath)
+			//temp
+			clone = await IOUtils.getDirectory(uniqueBackupContainerPath)
+
 			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
@@ -337,16 +343,15 @@ getDirNEW: async function () {
 
 		// Here "clone" is the container directory for the backup
 
-		var str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
-		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
+		let str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
+		autoBackup.logFilePath = PathUtils.join(autoBackup.backupContainerPath, "IETNG_Backup.log");
 
 		autoBackup.writeLog(str, false);
 
-		var oldLogFile = clone.clone();
-		oldLogFile.append("BackupTime.txt");
-		if (oldLogFile.exists())
-			oldLogFile.remove(false);
-
+		let oldLogFilePath = PathUtils.join(autoBackup.backupContainerPath, "BackupTime.txt");
+		if (await IOUtils.exists(oldLogFilePath)) {
+			await IOUtils.remove(oldLogFilePath);
+		}
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 

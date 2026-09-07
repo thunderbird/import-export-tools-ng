@@ -96,7 +96,7 @@ var autoBackup = {
 		//await this.onOK();
 	},
 
-getDirNEW: async function () {
+	getDirNEW: async function () {
 		var file = null;
 		let dirPath = null;
 
@@ -123,12 +123,12 @@ getDirNEW: async function () {
 
 		if (!dirPath) {
 			let fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
-		console.log(fpRes)
+			console.log(fpRes)
 			if (fpRes.result != Ci.nsIFilePicker.returnOK) {
 				dirPath = null;
 			} else {
-			dirPath = fpRes.folder;
-			autoBackup.filePicker = true;
+				dirPath = fpRes.folder;
+				autoBackup.filePicker = true;
 			}
 		}
 		return dirPath;
@@ -282,7 +282,7 @@ getDirNEW: async function () {
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
 		//if (!dir.exists() || !dir.isWritable) {
-		if(!(await IOUtils.exists(dir))) {
+		if (!(await IOUtils.exists(dir))) {
 			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
 			return;
@@ -358,15 +358,21 @@ getDirNEW: async function () {
 		await autoBackup.scanExternal(clone);
 
 		if (autoBackup.type === 1) { // just mail
-			var profDirMail = autoBackup.profDir.clone();
-			profDirMail.append("Mail");
-			await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
-			profDirMail = autoBackup.profDir.clone();
-			profDirMail.append("ImapMail");
-			if (profDirMail.exists())
-				await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+			let profDirMailPath = PathUtils.join(autoBackup.profDirPath, "Mail");
+			//var profDirMail = autoBackup.profDir.clone();
+			//profDirMail.append("Mail");
+			await autoBackup.scanDirNEW(profDirMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
+			let profDirImapMailPath = PathUtils.join(autoBackup.profDirPath, "ImapMail");
+
+			//profDirMail = autoBackup.profDir.clone();
+			//profDirMail.append("ImapMail");
+			if (await IOUtils.exists(profDirImapMailPath)) {
+			await autoBackup.scanDirNEW(profDirImapMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
+				//await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+			}
 		} else {
-			await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
+			await autoBackup.scanDirNEW(autoBackup.profDirPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
+			//await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
 		}
 
 		await autoBackup.write(0);

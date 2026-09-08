@@ -487,6 +487,7 @@ var autoBackup = {
 		console.log("scanDirNEW", dirToScanPath)
 
 		if (!await IOUtils.exists(dirToScanPath)) {
+			console.log("dir doesn't exist ")
 			return;
 		}
 
@@ -495,7 +496,9 @@ var autoBackup = {
 			return;
 		}
 
-		for (const entry of await IOUtils.getChildren(dirToScanPath)) {
+		let children = await IOUtils.getChildren(dirToScanPath);
+		console.log("children:", children)
+		for (const entry of children) {
 			console.log(entry)
 			if (await IOUtils.exists(entry)) {
 				if (PathUtils.filename(entry) !== "lock" && PathUtils.filename(entry) !== "parent.lock" && PathUtils.filename(entry) !== ".parentlock") {

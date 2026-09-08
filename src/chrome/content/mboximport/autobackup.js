@@ -65,35 +65,40 @@ var autoBackup = {
 	},
 
 	load: async function () {
-		var os = navigator.platform.toLowerCase();
-		if (os.indexOf("mac") > -1)
-			document.getElementById("macWarn").removeAttribute("collapsed");
-		var label = document.getElementById("last").textContent;
-		autoBackup.last = window.arguments[0];
-		autoBackup.now = window.arguments[1];
-		autoBackup.mode = window.arguments[2];
+		try {
+			var os = navigator.platform.toLowerCase();
+			if (os.indexOf("mac") > -1)
+				document.getElementById("macWarn").removeAttribute("collapsed");
+			var label = document.getElementById("last").textContent;
+			autoBackup.last = window.arguments[0];
+			autoBackup.now = window.arguments[1];
+			autoBackup.mode = window.arguments[2];
 
-		if (autoBackup.last > 0) {
-			var last = autoBackup.last * 1000;
-			var time = new Date(last);
-			var localTime = time.toLocaleString();
-			document.getElementById("last").textContent = label.replace("$t", localTime);
-		} else {
-			document.getElementById("last").textContent = label.replace("$t", "(none)");
-		}
+			if (autoBackup.last > 0) {
+				var last = autoBackup.last * 1000;
+				var time = new Date(last);
+				var localTime = time.toLocaleString();
+				document.getElementById("last").textContent = label.replace("$t", localTime);
+			} else {
+				document.getElementById("last").textContent = label.replace("$t", "(none)");
+			}
 
-		if (autoBackup.mode != "auto") {
-			document.getElementById("autoModeDesc").hidden = true;
+			if (autoBackup.mode != "auto") {
+				document.getElementById("autoModeDesc").hidden = true;
+			}
+			let backupStartMsg;
+			for (let time = 15; time > 0; time--) {
+				await new Promise(resolve => setTimeout(resolve, 1000));
+				backupStartMsg = document.getElementById("go").textContent;
+				//console.log(backupStartMsg, time)
+				document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
+			}
+			await autoBackup.startNEW();
+			//await this.onOK();
+		} catch (ex) {
+			console.error(ex);
+			alert(ex)
 		}
-		let backupStartMsg;
-		for (let time = 15; time > 0; time--) {
-			await new Promise(resolve => setTimeout(resolve, 1000));
-			backupStartMsg = document.getElementById("go").textContent;
-			//console.log(backupStartMsg, time)
-			document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
-		}
-		await autoBackup.startNEW();
-		//await this.onOK();
 	},
 
 	getDirNEW: async function () {
@@ -355,7 +360,7 @@ var autoBackup = {
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 
-		await autoBackup.scanExternal(clone);
+		//await autoBackup.scanExternal(clone);
 
 		if (autoBackup.type === 1) { // just mail
 			let profDirMailPath = PathUtils.join(autoBackup.profDirPath, "Mail");
@@ -427,7 +432,7 @@ var autoBackup = {
 			let LFPath = newpath;
 
 			//var LF = Cc["@mozilla.org/file/local;1"]
-				//.createInstance(Ci.nsIFile);
+			//.createInstance(Ci.nsIFile);
 			//LF.initWithPath(newpath);
 
 			LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
@@ -485,7 +490,7 @@ var autoBackup = {
 			return;
 		}
 
-		if (!await IOUtils.hasChildren()) {
+		if (!await IOUtils.hasChildren(dirToScanPath)) {
 			await autoBackup.saveNEW(dirToScanPath, destDirPath, rootPath);
 			return;
 		}
@@ -507,7 +512,7 @@ var autoBackup = {
 			}
 		}
 	},
-	
+
 	write: async function (index) {
 		if (index == 0) {
 			console.log("write", index)
@@ -570,7 +575,7 @@ var autoBackup = {
 		}
 	},
 
-	
+
 	writeNEW: async function (index) {
 		if (index == 0) {
 			console.log("writeNEW", index)
@@ -597,6 +602,7 @@ var autoBackup = {
 			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
+			console.log(e)
 			var error;
 			if (autoBackup.array1[index])
 				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";

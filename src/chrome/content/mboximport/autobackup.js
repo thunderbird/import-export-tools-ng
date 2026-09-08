@@ -484,7 +484,7 @@ var autoBackup = {
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
 	scanDirNEW: async function (dirToScanPath, destDirPath, rootPath) {
-		console.log("scanDirNEW")
+		console.log("scanDirNEW", dirToScanPath)
 
 		if (!await IOUtils.exists(dirToScanPath)) {
 			return;
@@ -496,6 +496,7 @@ var autoBackup = {
 		}
 
 		for (const entry of await IOUtils.getChildren(dirToScanPath)) {
+			console.log(entry)
 			if (await IOUtils.exists(entry)) {
 				if (PathUtils.filename(entry) !== "lock" && PathUtils.filename(entry) !== "parent.lock" && PathUtils.filename(entry) !== ".parentlock") {
 
@@ -511,6 +512,7 @@ var autoBackup = {
 				autoBackup.writeLog(error, true);
 			}
 		}
+		console.log(autoBackup.array1)
 	},
 
 	write: async function (index) {

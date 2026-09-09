@@ -214,8 +214,13 @@ var autoBackup = {
 
 	save: function (entry, destDir, root) {
 		var force = false;
+		console.log("save mode", autoBackup.saveMode)
+		console.log("unique ", autoBackup.unique)
+
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
 			force = true;
+
+		console.log("force ", force)
 
 		var lmt = entry.lastModifiedTime / 1000;
 		// Check if exists a older file to replace in the backup directory

@@ -424,7 +424,12 @@ var autoBackup = {
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
 			force = true;
 
-		let lmt = (await IOUtils.stat(entryPath)).lastModifiedTime;
+		console.log("save mode", autoBackup.saveMode)
+		console.log("unique ", autoBackup.unique)
+
+
+		console.log("force ", force)
+		let lmt = (await IOUtils.stat(entryPath)).lastModified / 1000;
 		// Check if exists a older file to replace in the backup directory
 		if (force || lmt > autoBackup.last) {
 			var filepath = destDirPath;

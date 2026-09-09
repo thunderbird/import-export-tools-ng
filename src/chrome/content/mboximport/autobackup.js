@@ -441,12 +441,12 @@ var autoBackup = {
 			//LF.initWithPath(newpath);
 
 			console.log("saving", entryPath, "as:", LFPath)
-			LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
+			//LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
 			//var LFclone = LF.clone();
 			//LFclone.append(entry.leafName);
 
-			if (await IOUtils.exists(LFclonePath)) {
-				await IOUtils.remove(LFclonePath);
+			if (await IOUtils.exists(LFPath)) {
+				await IOUtils.remove(LFPath);
 			}
 			try {
 				console.log("push")

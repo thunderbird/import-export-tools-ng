@@ -418,7 +418,7 @@ var autoBackup = {
 	},
 
 	saveNEW: async function (entryPath, destDirPath, rootPath) {
-		console.log("saveNEW")
+		console.log("saveNEW:", entryPath)
 
 		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
@@ -431,10 +431,16 @@ var autoBackup = {
 			var newpath = entryPath.replace(rootPath, filepath);
 			let LFPath = newpath;
 
+			console.log("entrypath:", entryPath)
+			console.log("rootpath:", rootPath)
+			console.log("filepath:", filepath)
+			console.log("newpath:", newpath)
+
 			//var LF = Cc["@mozilla.org/file/local;1"]
 			//.createInstance(Ci.nsIFile);
 			//LF.initWithPath(newpath);
 
+			console.log("saving", entryPath, "as:", LFPath)
 			LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
 			//var LFclone = LF.clone();
 			//LFclone.append(entry.leafName);
@@ -443,9 +449,14 @@ var autoBackup = {
 				await IOUtils.remove(LFclonePath);
 			}
 			try {
-				autoBackup.array1.push(entrypath);
+				console.log("push")
+
+				autoBackup.array1.push(entryPath);
 				autoBackup.array2.push(LFPath);
-			} catch (e) { }
+				//console.log(autoBackup.array1)
+			} catch (e) { 
+				console.log(e)
+			}
 		}
 	},
 
@@ -497,9 +508,9 @@ var autoBackup = {
 		}
 
 		let children = await IOUtils.getChildren(dirToScanPath);
-		console.log("children:", children)
+		//console.log("children:", children)
 		for (const entry of children) {
-			console.log(entry)
+			//console.log(entry)
 			if (await IOUtils.exists(entry)) {
 				if (PathUtils.filename(entry) !== "lock" && PathUtils.filename(entry) !== "parent.lock" && PathUtils.filename(entry) !== ".parentlock") {
 
@@ -515,7 +526,7 @@ var autoBackup = {
 				autoBackup.writeLog(error, true);
 			}
 		}
-		console.log(autoBackup.array1)
+		//console.log(autoBackup.array1)
 	},
 
 	write: async function (index) {
@@ -586,9 +597,12 @@ var autoBackup = {
 			console.log("writeNEW", index)
 		}
 
+		for (let index = 0; index < autoBackup.array1.length; index++) {
+
 		try {
 			let src = autoBackup.array1[index];
-			let dest = PathUtils.join(autoBackup.array2[index], PathUtils.filename(src));
+			let dest = autoBackup.array2[index];
+			
 			//console.log("a1", src)
 			//console.log("a2", dest)
 			let fileInfo = await IOUtils.stat(src);
@@ -596,10 +610,17 @@ var autoBackup = {
 				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
 				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
 			}
+			if (index == -1) {
+				src = src + "88"
+			}
 			if (fileInfo.type == "directory") {
 				await IOUtils.makeDirectory(dest);
 			} else {
+				//try {
 				await IOUtils.copy(src, dest);
+				//} catch (ex) {
+					//console.log(ex)
+				//}
 			}
 
 			let logline = autoBackup.array1[index] + "\r\n";
@@ -615,17 +636,15 @@ var autoBackup = {
 				error = "\r\n***Error Type: " + e + "\r\n\r\n";
 			autoBackup.writeLog(error, true);
 		}
-		index++;
-		if (autoBackup.array1.length > index) {
+
 			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
-			await autoBackup.writeNEW(index);
-		} else {
+
+	}
 			document.getElementById("pm").value = 100;
 			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
 			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
 			// new remove old backups #663
-			console.log("write", index)
 
 			await autoBackup.removeOldBackups();
 			let backupDuration = (new Date() - this.backupStart) / 1000;
@@ -640,8 +659,8 @@ var autoBackup = {
 			console.log("IETNG: Backup time: " + backupDuration + " S");
 
 			await autoBackup.end();
-		}
 	},
+
 	removeOldBackups: async function () {
 		console.log("removeOldBackups")
 

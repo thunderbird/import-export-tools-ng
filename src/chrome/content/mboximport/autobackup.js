@@ -97,7 +97,8 @@ var autoBackup = {
 			//await this.onOK();
 		} catch (ex) {
 			console.error(ex);
-			alert(ex)
+			let exStr = ex + "\n\n" + ex.stack;
+			alert(exStr)
 		}
 	},
 

@@ -277,7 +277,6 @@ var autoBackup = {
 		// "dir" is the target directory for the backup
 		//temp
 		let dir = await autoBackup.getDirNEW();
-		console.log(dir)
 		if (!dir) {
 			autoBackup.end();
 		}
@@ -287,7 +286,6 @@ var autoBackup = {
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
-		//if (!dir.exists() || !dir.isWritable) {
 		if (!(await IOUtils.exists(dir))) {
 			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
@@ -329,6 +327,8 @@ var autoBackup = {
 			if (!(await IOUtils.exists(customNamePath))) {
 				await IOUtils.makeDirectory(customNamePath);
 			}
+			autoBackup.backupContainerPath = customNamePath;
+
 		} else {
 			autoBackup.backupDirPath = dir;
 			var date = buildContainerDirName();

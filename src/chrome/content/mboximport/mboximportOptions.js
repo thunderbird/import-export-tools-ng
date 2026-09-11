@@ -277,7 +277,7 @@ async function initMboxImportPanel() {
     document.getElementById("backupDirName").selectedIndex = dir;
     document.getElementById("backupType").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
     let bkSaveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
-    if (bkSaveMode != 0 || bkSaveMode != 1!) {
+    if (bkSaveMode != 0 || bkSaveMode != 1) {
         bkSaveMode = 0;
     }
     document.getElementById("saveMode").selectedIndex = bkSaveMode;

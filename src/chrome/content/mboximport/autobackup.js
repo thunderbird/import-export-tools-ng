@@ -333,6 +333,8 @@ var autoBackup = {
 			autoBackup.backupDirPath = dir;
 			var date = buildContainerDirName();
 			let baseDirName = PathUtils.filename(autoBackup.profDirPath).replaceAll(".", "_");
+			autoBackup.backupContainerBaseName = baseDirName;
+
 			baseDirName += `-${date}`;
 			console.log(baseDirName)
 			//let uniqueBackupContainerPath = PathUtils.join(autoBackup.backupDirPath, baseDirName);
@@ -342,7 +344,6 @@ var autoBackup = {
 			//temp
 			clone = await IOUtils.getDirectory(uniqueBackupContainerPath)
 
-			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
 

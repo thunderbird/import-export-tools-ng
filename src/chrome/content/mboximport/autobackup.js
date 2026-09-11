@@ -676,6 +676,9 @@ var autoBackup = {
 			return;
 		}
 
+		console.log(autoBackup.backupDirPath)
+		console.log(autoBackup.backupContainerBaseName)
+
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
 				&& fn != autoBackup.backupContainerPath);

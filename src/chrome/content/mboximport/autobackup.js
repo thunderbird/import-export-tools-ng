@@ -362,7 +362,7 @@ var autoBackup = {
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 
-		//await autoBackup.scanExternal(clone);
+		await autoBackup.scanExternalNEW(clone);
 
 		if (autoBackup.type === 1) { // just mail
 			let profDirMailPath = PathUtils.join(autoBackup.profDirPath, "Mail");
@@ -719,6 +719,29 @@ var autoBackup = {
 			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
 			if (!parentDir || !autoBackup.profDir.equals(parentDir))
 				await autoBackup.scanDir(serverFile, clone, serverFile);
+		}
+	},
+	
+	scanExternalNEW: async function (destDir) {
+		console.log("scanExternalNEW")
+
+		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
+		var file = destDir.clone();
+		file.append("ExternalMailFolders");
+		if (!file.exists())
+			file.create(1, 0o775);
+		for (let server of MailServices.accounts.allServers) {
+			var parentDir = null;
+			let serverFile = server.localPath;
+
+			if (serverFile.parent && serverFile.parent.parent)
+				parentDir = serverFile.parent.parent;
+			var clone = file.clone();
+			clone.append(serverFile.leafName);
+			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
+			if (!parentDir || !autoBackup.profDir.equals(parentDir))
+				await autoBackup.scanDirNEW(serverFile.path, clone.path, serverFile.path);
 		}
 	},
 };

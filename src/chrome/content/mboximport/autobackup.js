@@ -233,7 +233,7 @@ var autoBackup = {
 		// temp
 		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
 
-		autoBackup.writeLog(str, false);
+		await autoBackup.writeLog(str, false);
 
 		var oldLogFile = clone.clone();
 		oldLogFile.append("BackupTime.txt");
@@ -353,7 +353,7 @@ var autoBackup = {
 		let str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
 		autoBackup.logFilePath = PathUtils.join(autoBackup.backupContainerPath, "IETNG_Backup.log");
 
-		autoBackup.writeLog(str, false);
+		await autoBackup.writeLog(str, false);
 
 		let oldLogFilePath = PathUtils.join(autoBackup.backupContainerPath, "BackupTime.txt");
 		if (await IOUtils.exists(oldLogFilePath)) {
@@ -494,7 +494,7 @@ var autoBackup = {
 				}
 			} else {
 				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
-				autoBackup.writeLog(error, true);
+				await autoBackup.writeLog(error, true);
 			}
 		}
 	},
@@ -531,7 +531,7 @@ var autoBackup = {
 				}
 			} else {
 				let error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
-				autoBackup.writeLog(error, true);
+				await autoBackup.writeLog(error, true);
 			}
 		}
 		//console.log(autoBackup.array1)
@@ -560,7 +560,7 @@ var autoBackup = {
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
-			autoBackup.writeLog(logline, true);
+			await autoBackup.writeLog(logline, true);
 			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
@@ -569,7 +569,7 @@ var autoBackup = {
 				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
 			else
 				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			autoBackup.writeLog(error, true);
+			await autoBackup.writeLog(error, true);
 		}
 		index++;
 		if (autoBackup.array1.length > index) {
@@ -632,7 +632,7 @@ var autoBackup = {
 			}
 
 			let logline = autoBackup.array1[index] + "\r\n";
-			autoBackup.writeLog(logline, true);
+			await autoBackup.writeLog(logline, true);
 			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
@@ -642,7 +642,7 @@ var autoBackup = {
 				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
 			else
 				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			autoBackup.writeLog(error, true);
+			await autoBackup.writeLog(error, true);
 		}
 
 			var c = (index / autoBackup.array1.length) * 100;

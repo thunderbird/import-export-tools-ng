@@ -97,7 +97,8 @@ var autoBackup = {
 			//await this.onOK();
 		} catch (ex) {
 			console.error(ex);
-			alert(ex)
+			let exStr = ex + "\n\n" + ex.stack;
+			alert(exStr)
 		}
 	},
 
@@ -232,7 +233,7 @@ var autoBackup = {
 		// temp
 		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
 
-		autoBackup.writeLog(str, false);
+		await autoBackup.writeLog(str, false);
 
 		var oldLogFile = clone.clone();
 		oldLogFile.append("BackupTime.txt");
@@ -276,7 +277,6 @@ var autoBackup = {
 		// "dir" is the target directory for the backup
 		//temp
 		let dir = await autoBackup.getDirNEW();
-		console.log(dir)
 		if (!dir) {
 			autoBackup.end();
 		}
@@ -286,7 +286,6 @@ var autoBackup = {
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
-		//if (!dir.exists() || !dir.isWritable) {
 		if (!(await IOUtils.exists(dir))) {
 			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
 			window.close();
@@ -328,12 +327,15 @@ var autoBackup = {
 			if (!(await IOUtils.exists(customNamePath))) {
 				await IOUtils.makeDirectory(customNamePath);
 			}
+			autoBackup.backupContainerPath = customNamePath;
+
 		} else {
 			autoBackup.backupDirPath = dir;
 			var date = buildContainerDirName();
 			let baseDirName = PathUtils.filename(autoBackup.profDirPath).replaceAll(".", "_");
+			autoBackup.backupContainerBaseName = baseDirName;
+
 			baseDirName += `-${date}`;
-			console.log(baseDirName)
 			//let uniqueBackupContainerPath = PathUtils.join(autoBackup.backupDirPath, baseDirName);
 			let uniqueBackupContainerPath = await IOUtils.createUniqueDirectory(autoBackup.backupDirPath, baseDirName);
 			autoBackup.backupContainerPath = uniqueBackupContainerPath;
@@ -341,7 +343,6 @@ var autoBackup = {
 			//temp
 			clone = await IOUtils.getDirectory(uniqueBackupContainerPath)
 
-			autoBackup.backupContainerBaseName = baseDirName;
 			autoBackup.unique = true;
 		}
 
@@ -351,7 +352,7 @@ var autoBackup = {
 		let str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
 		autoBackup.logFilePath = PathUtils.join(autoBackup.backupContainerPath, "IETNG_Backup.log");
 
-		autoBackup.writeLog(str, false);
+		await autoBackup.writeLog(str, false);
 
 		let oldLogFilePath = PathUtils.join(autoBackup.backupContainerPath, "BackupTime.txt");
 		if (await IOUtils.exists(oldLogFilePath)) {
@@ -360,7 +361,7 @@ var autoBackup = {
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 
-		//await autoBackup.scanExternal(clone);
+		await autoBackup.scanExternalNEW(clone);
 
 		if (autoBackup.type === 1) { // just mail
 			let profDirMailPath = PathUtils.join(autoBackup.profDirPath, "Mail");
@@ -445,16 +446,16 @@ var autoBackup = {
 			//.createInstance(Ci.nsIFile);
 			//LF.initWithPath(newpath);
 
-			console.log("saving", entryPath, "as:", LFPath)
+			console.log("saving", entryPath, "\nas:", LFPath)
 			//LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
 			//var LFclone = LF.clone();
 			//LFclone.append(entry.leafName);
-
+/*
 			if (await IOUtils.exists(LFPath)) {
 				await IOUtils.remove(LFPath);
 			}
+			*/
 			try {
-				console.log("push")
 
 				autoBackup.array1.push(entryPath);
 				autoBackup.array2.push(LFPath);
@@ -491,7 +492,7 @@ var autoBackup = {
 				}
 			} else {
 				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
-				autoBackup.writeLog(error, true);
+				await autoBackup.writeLog(error, true);
 			}
 		}
 	},
@@ -528,7 +529,7 @@ var autoBackup = {
 				}
 			} else {
 				let error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
-				autoBackup.writeLog(error, true);
+				await autoBackup.writeLog(error, true);
 			}
 		}
 		//console.log(autoBackup.array1)
@@ -557,7 +558,7 @@ var autoBackup = {
 
 			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
 			var logline = autoBackup.array1[index].path + "\r\n";
-			autoBackup.writeLog(logline, true);
+			await autoBackup.writeLog(logline, true);
 			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
@@ -566,7 +567,7 @@ var autoBackup = {
 				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
 			else
 				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			autoBackup.writeLog(error, true);
+			await autoBackup.writeLog(error, true);
 		}
 		index++;
 		if (autoBackup.array1.length > index) {
@@ -629,7 +630,7 @@ var autoBackup = {
 			}
 
 			let logline = autoBackup.array1[index] + "\r\n";
-			autoBackup.writeLog(logline, true);
+			await autoBackup.writeLog(logline, true);
 			await new Promise(resolve => setTimeout(resolve, 20));
 
 		} catch (e) {
@@ -639,7 +640,7 @@ var autoBackup = {
 				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
 			else
 				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			autoBackup.writeLog(error, true);
+			await autoBackup.writeLog(error, true);
 		}
 
 			var c = (index / autoBackup.array1.length) * 100;
@@ -673,6 +674,9 @@ var autoBackup = {
 		if (retainNumBackups == 0) {
 			return;
 		}
+
+		console.log(autoBackup.backupDirPath)
+		console.log(autoBackup.backupContainerBaseName)
 
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
@@ -713,6 +717,29 @@ var autoBackup = {
 			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
 			if (!parentDir || !autoBackup.profDir.equals(parentDir))
 				await autoBackup.scanDir(serverFile, clone, serverFile);
+		}
+	},
+	
+	scanExternalNEW: async function (destDir) {
+		console.log("scanExternalNEW")
+
+		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
+
+		var file = destDir.clone();
+		file.append("ExternalMailFolders");
+		if (!file.exists())
+			file.create(1, 0o775);
+		for (let server of MailServices.accounts.allServers) {
+			var parentDir = null;
+			let serverFile = server.localPath;
+
+			if (serverFile.parent && serverFile.parent.parent)
+				parentDir = serverFile.parent.parent;
+			var clone = file.clone();
+			clone.append(serverFile.leafName);
+			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
+			if (!parentDir || !autoBackup.profDir.equals(parentDir))
+				await autoBackup.scanDirNEW(serverFile.path, clone.path, serverFile.path);
 		}
 	},
 };

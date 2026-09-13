@@ -106,7 +106,7 @@ let defaultPrefs = {
       backupTime: "00:00",
       dir: "",
       dir_name_type: 0,
-      save_mode: 2,
+      save_mode: 0,
       dir_custom_name: "customName",
       retainNumBackups: 0,
       use_modal_dialog: true,

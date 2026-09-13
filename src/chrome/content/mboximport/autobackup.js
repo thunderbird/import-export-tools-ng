@@ -336,7 +336,6 @@ var autoBackup = {
 			autoBackup.backupContainerBaseName = baseDirName;
 
 			baseDirName += `-${date}`;
-			console.log(baseDirName)
 			//let uniqueBackupContainerPath = PathUtils.join(autoBackup.backupDirPath, baseDirName);
 			let uniqueBackupContainerPath = await IOUtils.createUniqueDirectory(autoBackup.backupDirPath, baseDirName);
 			autoBackup.backupContainerPath = uniqueBackupContainerPath;
@@ -457,7 +456,6 @@ var autoBackup = {
 			}
 			*/
 			try {
-				console.log("push")
 
 				autoBackup.array1.push(entryPath);
 				autoBackup.array2.push(LFPath);

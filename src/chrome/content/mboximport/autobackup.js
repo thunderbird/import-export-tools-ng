@@ -49,21 +49,6 @@ var autoBackup = {
 
 	backupStart: 0,
 
-	onOK: async function () {
-		console.log("onOK")
-		this.backupStart = new Date();
-		document.getElementById("start").removeAttribute("collapsed");
-		document.getElementById("go").collapsed = true;
-		//document.documentElement.getButton("accept").disabled = true;
-		// saveMode values:
-		// 0 = save all; 1 = save just if new;
-		// 2 = save just if new with custom name, save all with unique name
-		autoBackup.saveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
-		autoBackup.type = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
-		return autoBackup.start();
-
-	},
-
 	load: async function () {
 		try {
 			var os = navigator.platform.toLowerCase();
@@ -93,7 +78,7 @@ var autoBackup = {
 				//console.log(backupStartMsg, time)
 				document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
 			}
-			await autoBackup.startNEW();
+			await autoBackup.start();
 			//await this.onOK();
 		} catch (ex) {
 			console.error(ex);
@@ -102,7 +87,7 @@ var autoBackup = {
 		}
 	},
 
-	getDirNEW: async function () {
+	getDir: async function () {
 		var file = null;
 		let dirPath = null;
 
@@ -140,17 +125,6 @@ var autoBackup = {
 		return dirPath;
 	},
 
-	writeLogOLD: function (data, append) {
-		var foStream = Cc["@mozilla.org/network/file-output-stream;1"]
-			.createInstance(Ci.nsIFileOutputStream);
-		if (append)
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x10, 0o664, 0);
-		else
-			foStream.init(autoBackup.logFile, 0x02 | 0x08 | 0x20, 0o666, 0);
-		foStream.write(data, data.length);
-		foStream.close();
-	},
-
 	writeLog: async function (data, append) {
 		if (!append) {
 			await IOUtils.writeUTF8(autoBackup.logFilePath, data);
@@ -161,107 +135,6 @@ var autoBackup = {
 
 	start: async function () {
 		console.log("start")
-
-		// "dir" is the target directory for the backup
-		//temp
-		let dir = await autoBackup.getDirNEW();
-		console.log(dir)
-		if (!dir) {
-			return;
-		}
-		//temp
-		dir = await IOUtils.getDirectory(dir)
-		console.log(dir)
-
-		let w = Services.wm.getMostRecentWindow("mail:3pane");
-
-		if (!dir.exists() || !dir.isWritable) {
-			Services.prompt.alert(w, "Error", w.ietngAddon.extension.localeData.localizeMessage("noBackup"));
-			window.close();
-			return;
-		}
-		var nameType = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
-
-		var dirName = null;
-		if (nameType === 1) {
-			try {
-				dirName = await IETStoragePrefs.getComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name");
-			} catch (e) {
-				dirName = null;
-			}
-		}
-		// cleidigh
-		// else
-		// var dirName = null;
-
-		//autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
-		//IETrunTimeDisable();
-		try {
-			var offlineManager = Cc["@mozilla.org/messenger/offline-manager;1"]
-				.getService(Ci.nsIMsgOfflineManager);
-			offlineManager.synchronizeForOffline(false, false, false, true, msgWindow);
-		} catch (e) { }
-
-		var clone = dir.clone();
-		autoBackup.profDir = Cc["@mozilla.org/file/directory_service;1"]
-			.getService(Ci.nsIProperties)
-			.get("ProfD", Ci.nsIFile);
-
-		if (dirName && !autoBackup.filePicker) {
-			autoBackup.backupDirPath = clone.path;
-			clone.append(dirName);
-			if (!clone.exists())
-				clone.create(1, 0o755);
-		} else {
-			autoBackup.backupDirPath = clone.path;
-			var date = buildContainerDirName();
-			let baseDirName = autoBackup.profDir.leafName.replaceAll(".", "_");
-			clone.append(baseDirName + "-" + date);
-			clone.createUnique(1, 0o755);
-			autoBackup.backupContainerPath = clone.path;
-			autoBackup.backupContainerBaseName = baseDirName;
-			autoBackup.unique = true;
-		}
-
-
-		// Here "clone" is the container directory for the backup
-
-		// temp to check log
-		var str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
-		//autoBackup.logFile = clone.clone();
-		//autoBackup.logFile.append("Backup.log");
-		// temp
-		autoBackup.logFilePath = PathUtils.join(clone.path, "IETNG_Backup.log");
-
-		await autoBackup.writeLog(str, false);
-
-		var oldLogFile = clone.clone();
-		oldLogFile.append("BackupTime.txt");
-		if (oldLogFile.exists())
-			oldLogFile.remove(false);
-
-		autoBackup.array1 = [];
-		autoBackup.array2 = [];
-
-		await autoBackup.scanExternal(clone);
-
-		if (autoBackup.type === 1) { // just mail
-			var profDirMail = autoBackup.profDir.clone();
-			profDirMail.append("Mail");
-			await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
-			profDirMail = autoBackup.profDir.clone();
-			profDirMail.append("ImapMail");
-			if (profDirMail.exists())
-				await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
-		} else {
-			await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
-		}
-
-		await autoBackup.write(0);
-	},
-
-	startNEW: async function () {
-		console.log("startNEW")
 
 		this.backupStart = new Date();
 		document.getElementById("start").removeAttribute("collapsed");
@@ -276,7 +149,7 @@ var autoBackup = {
 
 		// "dir" is the target directory for the backup
 		//temp
-		let dir = await autoBackup.getDirNEW();
+		let dir = await autoBackup.getDir();
 		if (!dir) {
 			autoBackup.end();
 		}
@@ -302,12 +175,7 @@ var autoBackup = {
 				dirName = null;
 			}
 		}
-		// cleidigh
-		// else
-		// var dirName = null;
 
-		//autoBackup.IETmaxRunTime = await IETStoragePrefs.getIntPref("dom.max_chrome_script_run_time");
-		//IETrunTimeDisable();
 		try {
 			var offlineManager = Cc["@mozilla.org/messenger/offline-manager;1"]
 				.getService(Ci.nsIMsgOfflineManager);
@@ -318,7 +186,6 @@ var autoBackup = {
 		autoBackup.profDir = await IOUtils.getDirectory(PathUtils.profileDir);
 
 		autoBackup.profDirPath = PathUtils.profileDir;
-
 
 		if (dirName && !autoBackup.filePicker) {
 			autoBackup.backupDirPath = dir;
@@ -336,18 +203,10 @@ var autoBackup = {
 			autoBackup.backupContainerBaseName = baseDirName;
 
 			baseDirName += `-${date}`;
-			//let uniqueBackupContainerPath = PathUtils.join(autoBackup.backupDirPath, baseDirName);
 			let uniqueBackupContainerPath = await IOUtils.createUniqueDirectory(autoBackup.backupDirPath, baseDirName);
 			autoBackup.backupContainerPath = uniqueBackupContainerPath;
-			console.log(uniqueBackupContainerPath)
-			//temp
-			clone = await IOUtils.getDirectory(uniqueBackupContainerPath)
-
 			autoBackup.unique = true;
 		}
-
-
-		// Here "clone" is the container directory for the backup
 
 		let str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
 		autoBackup.logFilePath = PathUtils.join(autoBackup.backupContainerPath, "IETNG_Backup.log");
@@ -361,27 +220,21 @@ var autoBackup = {
 		autoBackup.array1 = [];
 		autoBackup.array2 = [];
 
-		await autoBackup.scanExternalNEW(clone);
+		await autoBackup.scanExternal(autoBackup.backupContainerPath);
 
 		if (autoBackup.type === 1) { // just mail
 			let profDirMailPath = PathUtils.join(autoBackup.profDirPath, "Mail");
-			//var profDirMail = autoBackup.profDir.clone();
-			//profDirMail.append("Mail");
-			await autoBackup.scanDirNEW(profDirMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
+			await autoBackup.scanDir(profDirMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
 			let profDirImapMailPath = PathUtils.join(autoBackup.profDirPath, "ImapMail");
 
-			//profDirMail = autoBackup.profDir.clone();
-			//profDirMail.append("ImapMail");
 			if (await IOUtils.exists(profDirImapMailPath)) {
-				await autoBackup.scanDirNEW(profDirImapMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
-				//await autoBackup.scanDir(profDirMail, clone, autoBackup.profDir);
+				await autoBackup.scanDir(profDirImapMailPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
 			}
 		} else {
-			await autoBackup.scanDirNEW(autoBackup.profDirPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
-			//await autoBackup.scanDir(autoBackup.profDir, clone, autoBackup.profDir);
+			await autoBackup.scanDir(autoBackup.profDirPath, autoBackup.backupContainerPath, autoBackup.profDirPath);
 		}
 
-		await autoBackup.writeNEW(0);
+		await autoBackup.write(0);
 	},
 
 	end: async function () {
@@ -390,36 +243,8 @@ var autoBackup = {
 		window.close();
 	},
 
-	save: async function (entry, destDir, root) {
-		console.log("save")
-
-		var force = false;
-		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
-			force = true;
-
-		var lmt = entry.lastModifiedTime / 1000;
-		// Check if exists a older file to replace in the backup directory
-		if (force || lmt > autoBackup.last) {
-			var entrypath = entry.parent.path;
-			var filepath = destDir.path;
-			var newpath = entrypath.replace(root.path, filepath);
-			var LF = Cc["@mozilla.org/file/local;1"]
-				.createInstance(Ci.nsIFile);
-			LF.initWithPath(newpath);
-			var LFclone = LF.clone();
-			LFclone.append(entry.leafName);
-			if (LFclone.exists()) {
-				LFclone.remove(false);
-			}
-			try {
-				autoBackup.array1.push(entry);
-				autoBackup.array2.push(LF);
-			} catch (e) { }
-		}
-	},
-
-	saveNEW: async function (entryPath, destDirPath, rootPath) {
-		console.log("saveNEW:", entryPath)
+	save: async function (entryPath, destDirPath, rootPath) {
+		console.log("save:", entryPath)
 
 		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
@@ -428,8 +253,6 @@ var autoBackup = {
 		console.log("save mode", autoBackup.saveMode)
 		console.log("unique ", autoBackup.unique)
 
-
-		console.log("force ", force)
 		let lmt = (await IOUtils.stat(entryPath)).lastModified / 1000;
 		// Check if exists a older file to replace in the backup directory
 		if (force || lmt > autoBackup.last) {
@@ -442,66 +265,20 @@ var autoBackup = {
 			console.log("filepath:", filepath)
 			console.log("newpath:", newpath)
 
-			//var LF = Cc["@mozilla.org/file/local;1"]
-			//.createInstance(Ci.nsIFile);
-			//LF.initWithPath(newpath);
+			
 
 			console.log("saving", entryPath, "\nas:", LFPath)
-			//LFclonePath = PathUtils.join(newpath, PathUtils.filename(entryPath));
-			//var LFclone = LF.clone();
-			//LFclone.append(entry.leafName);
-/*
-			if (await IOUtils.exists(LFPath)) {
-				await IOUtils.remove(LFPath);
-			}
-			*/
-			try {
-
-				autoBackup.array1.push(entryPath);
-				autoBackup.array2.push(LFPath);
-				//console.log(autoBackup.array1)
-			} catch (e) { 
-				console.log(e)
-			}
-		}
-	},
-
-
-	// dirToScan is the directory to scan
-	// destDir is the target directory for the backup
-	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
-	scanDir: async function (dirToScan, destDir, root) {
-		console.log("scanDir")
-
-		if (!dirToScan.exists())
-			return;
-		var entries = dirToScan.directoryEntries;
-		if (!entries.hasMoreElements()) {
-			await autoBackup.save(dirToScan, destDir, root);
-			return;
-		}
-		while (entries.hasMoreElements()) {
-			var entry = entries.getNext();
-			entry.QueryInterface(Ci.nsIFile);
-			if (entry.exists()) {
-				if (entry.leafName !== "lock" && entry.leafName !== "parent.lock" && entry.leafName !== ".parentlock") {
-					if (entry.isDirectory())
-						await autoBackup.scanDir(entry, destDir, root);
-					else
-						await autoBackup.save(entry, destDir, root);
-				}
-			} else {
-				var error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
-				await autoBackup.writeLog(error, true);
-			}
+		
+			autoBackup.array1.push(entryPath);
+			autoBackup.array2.push(LFPath);
 		}
 	},
 
 	// dirToScan is the directory to scan
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
-	scanDirNEW: async function (dirToScanPath, destDirPath, rootPath) {
-		console.log("scanDirNEW", dirToScanPath)
+	scanDir: async function (dirToScanPath, destDirPath, rootPath) {
+		console.log("scanDir", dirToScanPath)
 
 		if (!await IOUtils.exists(dirToScanPath)) {
 			console.log("dir doesn't exist ")
@@ -509,30 +286,26 @@ var autoBackup = {
 		}
 
 		if (!await IOUtils.hasChildren(dirToScanPath)) {
-			await autoBackup.saveNEW(dirToScanPath, destDirPath, rootPath);
+			await autoBackup.save(dirToScanPath, destDirPath, rootPath);
 			return;
 		}
 
 		let children = await IOUtils.getChildren(dirToScanPath);
-		//console.log("children:", children)
 		for (const entry of children) {
-			//console.log(entry)
 			if (await IOUtils.exists(entry)) {
 				if (PathUtils.filename(entry) !== "lock" && PathUtils.filename(entry) !== "parent.lock" && PathUtils.filename(entry) !== ".parentlock") {
 
 					if ((await IOUtils.stat(entry)).type == "directory") {
-						await autoBackup.scanDirNEW(entry, destDirPath, rootPath);
+						await autoBackup.scanDir(entry, destDirPath, rootPath);
 					} else {
-						await autoBackup.saveNEW(entry, destDirPath, rootPath);
+						await autoBackup.save(entry, destDirPath, rootPath);
 					}
-
 				}
 			} else {
 				let error = "\r\n***Error - non-existent file: " + entry.path + "\r\n";
 				await autoBackup.writeLog(error, true);
 			}
 		}
-		//console.log(autoBackup.array1)
 	},
 
 	write: async function (index) {
@@ -540,131 +313,59 @@ var autoBackup = {
 			console.log("write", index)
 		}
 
-		try {
-			let src = autoBackup.array1[index].path;
-			let dest = PathUtils.join(autoBackup.array2[index].path, PathUtils.filename(src));
-			//console.log("a1", src)
-			//console.log("a2", dest)
-			let fileInfo = await IOUtils.stat(src);
-			if (fileInfo.size > 1024 * 1024 * 100) {
-				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
-				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
-			}
-			if (fileInfo.type == "directory") {
-				await IOUtils.makeDirectory(dest);
-			} else {
-				await IOUtils.copy(src, dest);
-			}
-
-			//autoBackup.array1[index].copyTo(autoBackup.array2[index], "");
-			var logline = autoBackup.array1[index].path + "\r\n";
-			await autoBackup.writeLog(logline, true);
-			await new Promise(resolve => setTimeout(resolve, 20));
-
-		} catch (e) {
-			var error;
-			if (autoBackup.array1[index])
-				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
-			else
-				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			await autoBackup.writeLog(error, true);
-		}
-		index++;
-		if (autoBackup.array1.length > index) {
-			var c = (index / autoBackup.array1.length) * 100;
-			document.getElementById("pm").value = parseInt(c);
-			await autoBackup.write(index);
-		} else {
-			document.getElementById("pm").value = 100;
-			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
-			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
-			// new remove old backups #663
-			console.log("write", index)
-
-			await autoBackup.removeOldBackups();
-			let backupDuration = (new Date() - this.backupStart) / 1000;
-			if (backupDuration < 60) {
-				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${backupDuration.toFixed(0)} S)`;
-			} else {
-				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${(backupDuration / 60).toFixed(1)} M)`;
-			}
-			document.getElementById("start").collapsed = true;
-
-			document.getElementById("done").removeAttribute("collapsed");
-			console.log("IETNG: Backup time: " + backupDuration + " S");
-
-			await autoBackup.end();
-		}
-	},
-
-
-	writeNEW: async function (index) {
-		if (index == 0) {
-			console.log("writeNEW", index)
-		}
-
 		for (let index = 0; index < autoBackup.array1.length; index++) {
 
-		try {
-			let src = autoBackup.array1[index];
-			let dest = autoBackup.array2[index];
-			
-			//console.log("a1", src)
-			//console.log("a2", dest)
-			let fileInfo = await IOUtils.stat(src);
-			if (fileInfo.size > 1024 * 1024 * 100) {
-				console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
-				await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
-			}
-			if (index == -1) {
-				src = src + "88"
-			}
-			if (fileInfo.type == "directory") {
-				await IOUtils.makeDirectory(dest);
-			} else {
-				//try {
-				await IOUtils.copy(src, dest);
-				//} catch (ex) {
-					//console.log(ex)
-				//}
-			}
+			try {
+				let src = autoBackup.array1[index];
+				let dest = autoBackup.array2[index];
 
-			let logline = autoBackup.array1[index] + "\r\n";
-			await autoBackup.writeLog(logline, true);
-			await new Promise(resolve => setTimeout(resolve, 20));
+				let fileInfo = await IOUtils.stat(src);
+				if (fileInfo.size > 1024 * 1024 * 100) {
+					console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
+					await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
+				}
 
-		} catch (e) {
-			console.log(e)
-			var error;
-			if (autoBackup.array1[index])
-				error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
-			else
-				error = "\r\n***Error Type: " + e + "\r\n\r\n";
-			await autoBackup.writeLog(error, true);
-		}
+				if (fileInfo.type == "directory") {
+					await IOUtils.makeDirectory(dest);
+				} else {
+					await IOUtils.copy(src, dest);
+				}
+
+				let logline = autoBackup.array1[index] + "\r\n";
+				await autoBackup.writeLog(logline, true);
+				await new Promise(resolve => setTimeout(resolve, 20));
+
+			} catch (e) {
+				console.log(e)
+				var error;
+				if (autoBackup.array1[index])
+					error = "\r\n***Error with file " + autoBackup.array1[index].path + "\r\nError Type: " + e + "\r\n\r\n";
+				else
+					error = "\r\n***Error Type: " + e + "\r\n\r\n";
+				await autoBackup.writeLog(error, true);
+			}
 
 			var c = (index / autoBackup.array1.length) * 100;
 			document.getElementById("pm").value = parseInt(c);
 
-	}
-			document.getElementById("pm").value = 100;
-			await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
-			//IETrunTimeEnable(autoBackup.IETmaxRunTime);
-			// new remove old backups #663
+		}
+		document.getElementById("pm").value = 100;
+		await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.last", autoBackup.now / 1000);
+		// new remove old backups #663
 
-			await autoBackup.removeOldBackups();
-			let backupDuration = (new Date() - this.backupStart) / 1000;
-			if (backupDuration < 60) {
-				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${backupDuration.toFixed(0)} S)`;
-			} else {
-				document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${(backupDuration / 60).toFixed(1)} M)`;
-			}
-			document.getElementById("start").collapsed = true;
+		await autoBackup.removeOldBackups();
+		let backupDuration = (new Date() - this.backupStart) / 1000;
+		if (backupDuration < 60) {
+			document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${backupDuration.toFixed(0)} S)`;
+		} else {
+			document.getElementById("done").textContent = `${document.getElementById("done").textContent} (${(backupDuration / 60).toFixed(1)} M)`;
+		}
+		document.getElementById("start").collapsed = true;
 
-			document.getElementById("done").removeAttribute("collapsed");
-			console.log("IETNG: Backup time: " + backupDuration + " S");
+		document.getElementById("done").removeAttribute("collapsed");
+		console.log("IETNG: Backup time: " + backupDuration + " S");
 
-			await autoBackup.end();
+		await autoBackup.end();
 	},
 
 	removeOldBackups: async function () {
@@ -697,49 +398,28 @@ var autoBackup = {
 		}
 	},
 
-	scanExternal: async function (destDir) {
+	scanExternal: async function (destDirPath) {
 		console.log("scanExternal")
 
 		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 
-		var file = destDir.clone();
-		file.append("ExternalMailFolders");
-		if (!file.exists())
-			file.create(1, 0o775);
-		for (let server of MailServices.accounts.allServers) {
-			var parentDir = null;
-			let serverFile = server.localPath;
+		let extMailFoldersPath = PathUtils.join(destDirPath, "ExternalMailFolders");
 
-			if (serverFile.parent && serverFile.parent.parent)
-				parentDir = serverFile.parent.parent;
-			var clone = file.clone();
-			clone.append(serverFile.leafName);
-			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
-			if (!parentDir || !autoBackup.profDir.equals(parentDir))
-				await autoBackup.scanDir(serverFile, clone, serverFile);
+		if (!await IOUtils.exists(extMailFoldersPath)) {
+			await IOUtils.makeDirectory(extMailFoldersPath);
 		}
-	},
-	
-	scanExternalNEW: async function (destDir) {
-		console.log("scanExternalNEW")
 
-		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
-
-		var file = destDir.clone();
-		file.append("ExternalMailFolders");
-		if (!file.exists())
-			file.create(1, 0o775);
 		for (let server of MailServices.accounts.allServers) {
 			var parentDir = null;
 			let serverFile = server.localPath;
 
-			if (serverFile.parent && serverFile.parent.parent)
+			if (serverFile.parent && serverFile.parent.parent) {
 				parentDir = serverFile.parent.parent;
-			var clone = file.clone();
-			clone.append(serverFile.leafName);
-			// Now "clone" path is  --> <directory backup>/ExternalMailFolder/<account root directory leafname>
+			}
+			let accountDestDirPath = PathUtils.join(extMailFoldersPath, PathUtils.filename(serverFile.path));
+
 			if (!parentDir || !autoBackup.profDir.equals(parentDir))
-				await autoBackup.scanDirNEW(serverFile.path, clone.path, serverFile.path);
+				await autoBackup.scanDir(serverFile.path, accountDestDirPath, serverFile.path);
 		}
 	},
 };

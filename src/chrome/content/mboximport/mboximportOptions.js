@@ -276,7 +276,11 @@ async function initMboxImportPanel() {
     var dir = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.dir_name_type");
     document.getElementById("backupDirName").selectedIndex = dir;
     document.getElementById("backupType").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.type");
-    document.getElementById("saveMode").selectedIndex = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+    let bkSaveMode = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.save_mode");
+    if (bkSaveMode != 0 && bkSaveMode != 1) {
+        bkSaveMode = 0;
+    }
+    document.getElementById("saveMode").selectedIndex = bkSaveMode;
 
     var retainNumBackups = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
     document.getElementById("numBackupsList").selectedIndex = retainNumBackups;
@@ -389,7 +393,6 @@ async function saveMboxImportPrefs() {
         } else {
             await IETStoragePrefs.setComplexPref("extensions.importexporttoolsng.autobackup.dir_custom_name", "customName");
         }
-
 
         await IETStoragePrefs.setBoolPref("extensions.importexporttoolsng.export.skip_existing_msg", document.getElementById("skipMsg").checked);
         await IETStoragePrefs.setIntPref("extensions.importexporttoolsng.autobackup.type", document.getElementById("backupType").selectedIndex);

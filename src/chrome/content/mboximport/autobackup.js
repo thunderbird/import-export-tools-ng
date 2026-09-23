@@ -1,5 +1,3 @@
-// b2 version 
-
 /*
 	ImportExportTools NG is a derivative extension for Thunderbird 60+
 	providing import and export tools for messages and folders.
@@ -182,7 +180,6 @@ var autoBackup = {
 			offlineManager.synchronizeForOffline(false, false, false, true, msgWindow);
 		} catch (e) { }
 
-		let clone = await IOUtils.getDirectory(dir)
 		autoBackup.profDir = await IOUtils.getDirectory(PathUtils.profileDir);
 
 		autoBackup.profDirPath = PathUtils.profileDir;
@@ -250,9 +247,6 @@ var autoBackup = {
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
 			force = true;
 
-		console.log("save mode", autoBackup.saveMode)
-		console.log("unique ", autoBackup.unique)
-
 		let lmt = (await IOUtils.stat(entryPath)).lastModified / 1000;
 		// Check if exists a older file to replace in the backup directory
 		if (force || lmt > autoBackup.last) {
@@ -260,15 +254,8 @@ var autoBackup = {
 			var newpath = entryPath.replace(rootPath, filepath);
 			let LFPath = newpath;
 
-			console.log("entrypath:", entryPath)
-			console.log("rootpath:", rootPath)
-			console.log("filepath:", filepath)
-			console.log("newpath:", newpath)
-
-			
-
 			console.log("saving", entryPath, "\nas:", LFPath)
-		
+
 			autoBackup.array1.push(entryPath);
 			autoBackup.array2.push(LFPath);
 		}
@@ -309,9 +296,7 @@ var autoBackup = {
 	},
 
 	write: async function (index) {
-		if (index == 0) {
-			console.log("write", index)
-		}
+		console.log("write", index)
 
 		for (let index = 0; index < autoBackup.array1.length; index++) {
 

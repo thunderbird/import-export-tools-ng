@@ -53,7 +53,7 @@ var autoBackup = {
 	backupStart: 0,
 
 	load: async function () {
-		logging.init({logTypes: await IETStoragePrefs.getComplexPref("debug.logTypes")});
+		logging.init({ logTypes: await IETStoragePrefs.getComplexPref("debug.logTypes") });
 		log("backup", "Starting backup");
 
 		try {
@@ -140,9 +140,11 @@ var autoBackup = {
 	},
 
 	start: async function () {
-		console.log("start")
+		log("backup", "Init backup:");
 
 		this.backupStart = new Date();
+		log("backup", `  Backup date: ${autoBackup.now.toLocaleString()}`);
+
 		document.getElementById("start").removeAttribute("collapsed");
 		document.getElementById("go").collapsed = true;
 		//document.documentElement.getButton("accept").disabled = true;
@@ -159,9 +161,10 @@ var autoBackup = {
 		if (!dir) {
 			autoBackup.end();
 		}
-		//temp
-		//dir = await IOUtils.getDirectory(dir)
-		console.log(dir)
+
+		log("backup", `  Backup directory: ${dir}`);
+		log("backup", `  Save mode: ${autoBackup.saveMode}`);
+		log("backup", `  Save type: ${autoBackup.type}`);
 
 		let w = Services.wm.getMostRecentWindow("mail:3pane");
 
@@ -191,6 +194,7 @@ var autoBackup = {
 		autoBackup.profDir = await IOUtils.getDirectory(PathUtils.profileDir);
 
 		autoBackup.profDirPath = PathUtils.profileDir;
+		log("backup", `  Profile directory: ${autoBackup.profDirPath}`);
 
 		if (dirName && !autoBackup.filePicker) {
 			autoBackup.backupDirPath = dir;
@@ -212,6 +216,8 @@ var autoBackup = {
 			autoBackup.backupContainerPath = uniqueBackupContainerPath;
 			autoBackup.unique = true;
 		}
+
+		log("backup", `  Backup target: ${autoBackup.backupContainerPath}`);
 
 		let str = "Backup date: " + autoBackup.now.toLocaleString() + "\r\n\r\n" + "Saved files:\r\n";
 		autoBackup.logFilePath = PathUtils.join(autoBackup.backupContainerPath, "IETNG_Backup.log");
@@ -243,13 +249,12 @@ var autoBackup = {
 	},
 
 	end: async function () {
-		console.log("end")
+		log("backup", "Backup end");
 		await new Promise(resolve => setTimeout(resolve, 4000));
 		window.close();
 	},
 
 	save: async function (entryPath, destDirPath, rootPath) {
-		console.log("save:", entryPath)
 
 		var force = false;
 		if ((autoBackup.unique && autoBackup.saveMode !== 1) || autoBackup.saveMode === 0)
@@ -262,7 +267,7 @@ var autoBackup = {
 			var newpath = entryPath.replace(rootPath, filepath);
 			let LFPath = newpath;
 
-			console.log("saving", entryPath, "\nas:", LFPath)
+			log("backup1", `Queue file:\n   ${newpath}`);
 
 			autoBackup.array1.push(entryPath);
 			autoBackup.array2.push(LFPath);
@@ -273,7 +278,7 @@ var autoBackup = {
 	// destDir is the target directory for the backup
 	// root is the root directory of the files to save --> it's the profile directory or the external directory of the account
 	scanDir: async function (dirToScanPath, destDirPath, rootPath) {
-		console.log("scanDir", dirToScanPath)
+		log("backup1", `Scan directory: ${dirToScanPath}`);
 
 		if (!await IOUtils.exists(dirToScanPath)) {
 			console.log("dir doesn't exist ")
@@ -304,7 +309,7 @@ var autoBackup = {
 	},
 
 	write: async function (index) {
-		console.log("write", index)
+		log("backup", `Write backup files: (${autoBackup.array1.length})`);
 
 		for (let index = 0; index < autoBackup.array1.length; index++) {
 
@@ -314,14 +319,17 @@ var autoBackup = {
 
 				let fileInfo = await IOUtils.stat(src);
 				if (fileInfo.size > 1024 * 1024 * 100) {
-					console.log(src, `${fileInfo.size / (1024 * 1024)}MB Add delay: ${100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000} S`);
+					log("backup", `Large file:\n  ${src}\n  Size: ${(fileInfo.size / (1024 * 1024)).toFixed(0)}MB\n  Add delay: ${(100 * (fileInfo.size / (1024 * 1024 * 100)) / 1000).toFixed(1)} S`);
 					await new Promise(resolve => setTimeout(resolve, 100 * (fileInfo.size / (1024 * 1024 * 100))));
 				}
 
 				if (fileInfo.type == "directory") {
 					await IOUtils.makeDirectory(dest);
+					log("backup1", `Make directory: ${dest}`);
+
 				} else {
 					await IOUtils.copy(src, dest);
+					log("backup1", `Copied file: ${dest}`);
 				}
 
 				let logline = autoBackup.array1[index] + "\r\n";
@@ -356,21 +364,18 @@ var autoBackup = {
 		document.getElementById("start").collapsed = true;
 
 		document.getElementById("done").removeAttribute("collapsed");
-		console.log("IETNG: Backup time: " + backupDuration + " S");
+		log("backup", `Backup time: ${(backupDuration / 60).toFixed(1)} Min`);
 
 		await autoBackup.end();
 	},
 
 	removeOldBackups: async function () {
-		console.log("removeOldBackups")
+		log("backup", "Remove old Backups");
 
 		let retainNumBackups = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.retainNumBackups");
 		if (retainNumBackups == 0) {
 			return;
 		}
-
-		console.log(autoBackup.backupDirPath)
-		console.log(autoBackup.backupContainerBaseName)
 
 		let removeBackupsList = (await IOUtils.getChildren(autoBackup.backupDirPath))
 			.filter(fn => PathUtils.filename(fn).startsWith(autoBackup.backupContainerBaseName)
@@ -392,7 +397,7 @@ var autoBackup = {
 	},
 
 	scanExternal: async function (destDirPath) {
-		console.log("scanExternal")
+		log("backup","Scan external mail");
 
 		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 

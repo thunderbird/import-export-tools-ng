@@ -80,7 +80,6 @@ async function onLoad() {
 
 	
 	window.ietng.OpenBackupDialog = async function (mode = "auto") {
-		Services.console.logStringMessage("IETNG: Start backup");
 		
 		let last = await IETStoragePrefs.getIntPref("extensions.importexporttoolsng.autobackup.last");
 		let now = new Date();

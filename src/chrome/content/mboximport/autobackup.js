@@ -41,6 +41,11 @@ var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/conten
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+
+var { logging, log } = ChromeUtils.importESModule(
+	"resource://ietng/api/commonModules/loggingExp.mjs?" + ietngExtension.manifest.version + new Date()
+);
+
 // conversion to pure IOUtils implementation
 
 var autoBackup = {
@@ -48,6 +53,9 @@ var autoBackup = {
 	backupStart: 0,
 
 	load: async function () {
+		logging.init({logTypes: await IETStoragePrefs.getComplexPref("debug.logTypes")});
+		log("backup", "Starting backup");
+
 		try {
 			var os = navigator.platform.toLowerCase();
 			if (os.indexOf("mac") > -1)

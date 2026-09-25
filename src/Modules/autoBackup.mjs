@@ -146,7 +146,6 @@ async function _backupAlarm(alarmInfo) {
   await new Promise(resolve => setTimeout(resolve, 50));
 
   let alarmInfo2 = await browser.alarms.get("backupPeriodicAlarm");
-  console.log("alarminfo2", alarmInfo2)
 
   log("backup", `Next backup  - Time:  ${new Date(alarmInfo2.scheduledTime).toLocaleString()}`);
   await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });

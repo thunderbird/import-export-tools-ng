@@ -65,6 +65,14 @@ export var names = {
       subject = subject.substring(0, subjectMaxLen);
     }
 
+    let domainlessAuthor = from.match(/\(<.*?\)>/gi)[1];
+    console.log(domainlessAuthor)
+
+    if (!domainlessAuthor.includes('@')) {
+      authorEmail = domainlessAuthor;
+      authorName = domainlessAuthor;
+    }
+    
     // Author email
     let authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
     if (!authorEmail || authorEmail == "") {

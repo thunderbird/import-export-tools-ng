@@ -74,15 +74,17 @@ var autoBackup = {
 				document.getElementById("last").textContent = label.replace("$t", "(none)");
 			}
 
-			if (autoBackup.mode != "auto") {
-				document.getElementById("autoModeDesc").hidden = true;
-			}
-			let backupStartMsg;
-			for (let time = 15; time > 0; time--) {
-				await new Promise(resolve => setTimeout(resolve, 1000));
-				backupStartMsg = document.getElementById("go").textContent;
-				//console.log(backupStartMsg, time)
-				document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
+			document.getElementById("autoModeDesc").hidden = true;
+
+			if (autoBackup.mode == "auto") {
+
+				let backupStartMsg;
+				for (let time = 15; time > 0; time--) {
+					await new Promise(resolve => setTimeout(resolve, 1000));
+					backupStartMsg = document.getElementById("go").textContent;
+					//console.log(backupStartMsg, time)
+					document.getElementById("go").textContent = backupStartMsg.replace(time.toString(), (time - 1).toString());
+				}
 			}
 			await autoBackup.start();
 			//await this.onOK();
@@ -159,7 +161,7 @@ var autoBackup = {
 		//temp
 		let dir = await autoBackup.getDir();
 		if (!dir) {
-			autoBackup.end();
+			await autoBackup.end(0);
 		}
 
 		log("backup", `  Backup directory: ${dir}`);
@@ -248,9 +250,9 @@ var autoBackup = {
 		await autoBackup.write(0);
 	},
 
-	end: async function () {
+	end: async function (delay) {
 		log("backup", "Backup end");
-		await new Promise(resolve => setTimeout(resolve, 4000));
+		await new Promise(resolve => setTimeout(resolve, delay * 1000));
 		window.close();
 	},
 
@@ -366,7 +368,7 @@ var autoBackup = {
 		document.getElementById("done").removeAttribute("collapsed");
 		log("backup", `Backup time: ${(backupDuration / 60).toFixed(1)} Min`);
 
-		await autoBackup.end();
+		await autoBackup.end(3);
 	},
 
 	removeOldBackups: async function () {
@@ -397,7 +399,7 @@ var autoBackup = {
 	},
 
 	scanExternal: async function (destDirPath) {
-		log("backup","Scan external mail");
+		log("backup", "Scan external mail");
 
 		let { MailServices } = ChromeUtils.importESModule("resource:///modules/MailServices.sys.mjs");
 

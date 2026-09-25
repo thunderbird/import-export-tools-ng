@@ -61,7 +61,7 @@ async function expMenuDispatcher(data) {
 	// console.log(window)
 
 	if (data.command == "WXMCMD_Backup") {
-		window.ietng.OpenBackupDialog('manual');
+		window.ietng.OpenBackupDialog('auto');
 		return;
 	}
 
@@ -182,7 +182,7 @@ async function expMenuDispatcher(data) {
 				rv = openProfileImportWizard();
 				break;
 			case "WXMCMD_Backup":
-				rv = window.ietng.OpenBackupDialog('manual');
+				rv = window.ietng.OpenBackupDialog('auto');
 				break;
 			case "WXMCMD_ImpMbox":
 				rv = await mboxImportExport.importMboxSetup(data.params);

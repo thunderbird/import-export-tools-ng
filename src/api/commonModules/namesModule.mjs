@@ -65,29 +65,31 @@ export var names = {
       subject = subject.substring(0, subjectMaxLen);
     }
 
-    let domainlessAuthor = expTask.msgList[index].author.match(/\(<.*?\)>/gi)[1];
-    console.log(domainlessAuthor)
+    let authorEmail;
+    let authorName;
 
-    if (!domainlessAuthor.includes('@')) {
-      let authorEmail = domainlessAuthor;
-      let authorName = domainlessAuthor;
-    }
-    
-    // Author email
-    let authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
-    if (!authorEmail || authorEmail == "") {
-      authorEmail = "[No Author Email]";
-    }
-    // Author name
-    let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
-    if (!authorName || authorName == "") {
-      // if no author name, check and substitute author email
-      if (authorEmail != "[No Author Email]") {
-        authorName = authorEmail;
-      } else {
-        authorName = "[No Author]";
+    // handle domainlessAuthor 
+    if (!expTask.msgList[index].author.includes('@')) {
+      authorEmail = expTask.msgList[index].author;
+      authorName = expTask.msgList[index].author;
+    } else {
+      // Author email
+      authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
+      if (!authorEmail || authorEmail == "") {
+        authorEmail = "[No Author Email]";
+      }
+      // Author name
+      authorName = parse5322.parseSender(expTask.msgList[index].author).name;
+      if (!authorName || authorName == "") {
+        // if no author name, check and substitute author email
+        if (authorEmail != "[No Author Email]") {
+          authorName = authorEmail;
+        } else {
+          authorName = "[No Author]";
+        }
       }
     }
+
     authorName = authorName.slice(0, authorNameMaxLen);
     authorName = authorName.trimEnd();
 

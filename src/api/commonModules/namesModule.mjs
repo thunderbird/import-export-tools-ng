@@ -65,12 +65,12 @@ export var names = {
       subject = subject.substring(0, subjectMaxLen);
     }
 
-    let domainlessAuthor = from.match(/\(<.*?\)>/gi)[1];
+    let domainlessAuthor = expTask.msgList[index].author.match(/\(<.*?\)>/gi)[1];
     console.log(domainlessAuthor)
 
     if (!domainlessAuthor.includes('@')) {
-      authorEmail = domainlessAuthor;
-      authorName = domainlessAuthor;
+      let authorEmail = domainlessAuthor;
+      let authorName = domainlessAuthor;
     }
     
     // Author email

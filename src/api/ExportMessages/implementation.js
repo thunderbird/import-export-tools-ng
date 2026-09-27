@@ -118,6 +118,29 @@ var ExportMessages = class extends ExtensionCommon.ExtensionAPI {
           return uName;
         },
 
+        convertHtmlToTextWithOptions: function (htmlToConvert) {
+          const ParserUtils = Cc["@mozilla.org/parserutils;1"].getService(
+            Ci.nsIParserUtils
+          );
+
+          let options = {};
+          options.flowed = true;
+          let wrapWidth = 0;
+          let flags =
+            Ci.nsIDocumentEncoder.OutputLFLineBreak |
+            Ci.nsIDocumentEncoder.OutputDisallowLineBreaking;
+
+          if (options?.flowed) {
+            wrapWidth = 72;
+            flags |=
+              Ci.nsIDocumentEncoder.OutputFormatted |
+              Ci.nsIDocumentEncoder.OutputFormatFlowed;
+          }
+
+          let res = ParserUtils.convertToPlainText(htmlToConvert, flags, wrapWidth).trim();
+          return res
+        },
+
         openFileDialog: async function (mode, title, initialDir, filter) {
 
           let winCtx = msgWindow.browsingContext;

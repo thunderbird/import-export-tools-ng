@@ -100,6 +100,19 @@
           }
         ]
       },
+       {
+        "name": "convertHtmlToTextWithOptions",
+        "type": "function",
+        "description": "Convert html to text. full options",
+        "async": true,
+        "parameters": [
+          {
+            "name": "htmlToConvert",
+            "type": "string",
+            "description": "HTML to convert"
+          }
+        ]
+      },
       {
         "name": "getMsgHdrs",
         "type": "function",

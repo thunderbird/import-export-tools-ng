@@ -69,7 +69,7 @@ export var names = {
     let authorName;
 
     // handle domainlessAuthor 
-    if (!expTask.msgList[index].author.includes('@')) {
+    if (!expTask.msgList[index].author.includes('@') && (!author || author == "")) {
       authorEmail = expTask.msgList[index].author;
       authorName = expTask.msgList[index].author;
     } else {

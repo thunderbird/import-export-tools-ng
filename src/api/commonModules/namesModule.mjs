@@ -65,13 +65,14 @@ export var names = {
       subject = subject.substring(0, subjectMaxLen);
     }
 
+    let author = expTask.msgList[index].author;
     let authorEmail;
     let authorName;
 
     // handle domainlessAuthor 
-    if (!expTask.msgList[index].author.includes('@') && (!author || author == "")) {
+    if (author && author != "" && !author.includes('@') ) {
       authorEmail = expTask.msgList[index].author;
-      authorName = expTask.msgList[index].author;
+      authorName = authorEmail;
     } else {
       // Author email
       authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;

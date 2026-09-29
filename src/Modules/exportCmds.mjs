@@ -1113,7 +1113,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
 
 
   if (expTask.expType == "html") {
-    let subjectHTML = _encodeSpecialTextToHTML(extraHeaders.fullSubject);
+    let subjectHTML = _encodeSpecialTextToHTML(extraHeaders.fullSubject || "[No Subject]");
     let dateHTML = _encodeSpecialTextToHTML(date);
     let authorHTML = _encodeSpecialTextToHTML(author);
     let recipientsHTML = _encodeSpecialTextToHTML(recipients);
@@ -1158,7 +1158,7 @@ async function _insertHdrTable(expTask, msg, msgBody, msgBodyType, extraHeaders)
   // plaintext export
 
   let hdr = "";
-  hdr += `${hdrSubject}:  ${extraHeaders.fullSubject}\r\n`;
+  hdr += `${hdrSubject}:  ${extraHeaders.fullSubject || "[No Subject]"}\r\n`;
   hdr += `${hdrFrom}:  ${author}\r\n`;
   hdr += `${hdrTo}:  ${recipients}\r\n`;
   hdr += `${hdrDate}:  ${date}\r\n`;
@@ -1320,6 +1320,11 @@ async function _createIndex(expTask, msgListLog) {
       if (fullSubject.startsWith(".")) {
         fullSubject = "[No Decryption]" + fullSubject;
       }
+      
+      if (!fullSubject || fullSubject == "") {
+        fullSubject = "[No Subject]";
+      }
+
       let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(fullSubject).slice(0, 50)}</a>`;
 
       let attachments = "";

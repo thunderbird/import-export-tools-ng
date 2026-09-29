@@ -39,14 +39,13 @@ body {
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
-
-
-
 }
 
 #outer-container {
 	display: flex;
 	flex-direction: column;
+	background-color: blueviolet;
+	height: 100vh;
 }
 
 #main-content {
@@ -93,7 +92,13 @@ tr.multiple-folders-display {
 	min-height: 2.2em;
 }
 
+#spacer {
+	flex: 1;
+	background-color: chocolate;
+}
+
 #buttons {
+	background-color:bisque;
 	flex: 0;
 	text-align: right;
 }

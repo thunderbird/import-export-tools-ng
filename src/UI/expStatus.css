@@ -39,13 +39,14 @@ body {
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 #outer-container {
 	display: flex;
 	flex-direction: column;
 	background-color: blueviolet;
-	height: 100vh;
+	height: calc(100vh - 20px);
 }
 
 #main-content {

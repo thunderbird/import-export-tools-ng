@@ -17,12 +17,13 @@
 // tbd - move notifications here
 
 export async function createExportStatusWindow(title, winType) {
+  // same size for now, may tweak later
   let expStatusWinHeight = 280;
   let expStatusMultipleWinHeight = 380;
 
   if (!navigator.userAgent.includes("Windows")) {
-    expStatusWinHeight = 275;
-    expStatusMultipleWinHeight = 375; 
+    expStatusWinHeight = 280;
+    expStatusMultipleWinHeight = 380;
   }
 
   if (winType == "singleFolder") {

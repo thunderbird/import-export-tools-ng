@@ -39,14 +39,13 @@ body {
 	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 #outer-container {
 	display: flex;
 	flex-direction: column;
-	background-color: blueviolet;
-	height: calc(100vh - 20px);
+	height: calc(100vh - 30px);
 }
 
 #main-content {
@@ -95,13 +94,12 @@ tr.multiple-folders-display {
 
 #spacer {
 	flex: 1;
-	background-color: chocolate;
 }
 
 #buttons {
-	background-color:bisque;
 	flex: 0;
 	text-align: right;
+	padding-right: 10px;
 }
 
 button {

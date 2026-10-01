@@ -1246,7 +1246,7 @@ async function _createIndex(expTask, msgListLog) {
     styles += 'th, td { padding: 4px; text-align: left; vertical-align: center; }\r\n';
     styles += 'tr:nth-child(even) { background-color: #f0f0f0; }\r\n';
     styles += 'tr:nth-child(odd) { background-color: #fff; }\r\n';
-    styles += 'tr>:nth-child(5) { text-align: center; padding-left: 0px !important; padding-right: 0px !important;}\r\n';
+    styles += 'tr>:nth-child(5) { text-align: center;  padding-right: 0px !important;}\r\n';
     styles += 'tr>:nth-child(6) { text-align: right; }\r\n';
     styles += 'th:first-child, td:first-child  { width: 310px; min-width: 310px; max-width: 310px; word-break: break-all;}\r\n';
 
@@ -1270,7 +1270,7 @@ async function _createIndex(expTask, msgListLog) {
     indexData += "<th><b>" + toHdr + "</b></th>"; // To
     indexData += "<th id='dateHdr'><b>" + dateHdr + "</b></th>"; // Date
 
-    indexData += "<th style='padding-left: 0px; ' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height=' 18px' width='18px'></b></th>"; // Attachment
+    indexData += "<th style='padding-left: 10px; ' class='sorttable_nosort' ><b>" + "<img src='" + attIcon + "' height=' 18px' width='18px'></b></th>"; // Attachment
 
     indexData += "<th><b>" + sizeStr + "</b></th>"; // Attachment
 

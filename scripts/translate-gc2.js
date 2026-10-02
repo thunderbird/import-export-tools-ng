@@ -20,7 +20,14 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "backupOverdue.label", text: "A backup is overdue.\\n\\nWould you like to perform a backup now or\\nwait until the scheduled time?\\n\\nNext backup: "},
+	{ key: "NoSubject.msg", text: "No Subject"},
+	{ key: "NoAuthor.msg", text: "No Author"},
+	{ key: "NoAuthorEmail.msg", text: "No Author Email"},
+	{ key: "NoRecipientEmail.msg", text: "No Recipient Email"},
+	{ key: "NoRecipient.msg", text: "No Recipient"},
+	{ key: "NoDecryption.msg", text: "No Decryption"},
+
+
 
 
 ];

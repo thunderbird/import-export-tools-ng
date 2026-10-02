@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "仅上次备份后有改动的文件"
   },
+  "NoAuthor.msg": {
+    "message": "无作者"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "无作者邮箱"
+  },
   "noBackup": {
     "message": "无法进行备份：检查目标文件夹的路径和权限",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "无需解密"
   },
   "noEML": {
     "message": "该目录下没有 eml 文件",
@@ -854,9 +863,18 @@
     "message": "这个文件夹里没有有效的配置文件",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "无收件人"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "没有收件人邮件"
+  },
   "noRemoteExport": {
     "message": "无法导出这个远程文件夹。他不处于在线状态。",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "无主题"
   },
   "nosubjectmsg": {
     "message": "无主题",

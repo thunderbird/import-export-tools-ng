@@ -800,9 +800,18 @@
   "newFilesMode": {
     "message": "Pouze soubory upravené po poslední záloze"
   },
+  "NoAuthor.msg": {
+    "message": "Žádný autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Bez e-mailu autora"
+  },
   "noBackup": {
     "message": "Nelze provést zálohu: zkontrolujte cestu a oprávnění cílové složky",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Žádné dešifrování"
   },
   "noEML": {
     "message": "V tomto adresáři nebyl nalezen žádný soubor eml",
@@ -851,9 +860,18 @@
     "message": "Tato složka neobsahuje platný adresář",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Žádný příjemce"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Bez e-mailu příjemce"
+  },
   "noRemoteExport": {
     "message": "Tuto vzdálenou složku nelze exportovat, protože není online.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Bez předmětu"
   },
   "nosubjectmsg": {
     "message": "žádný předmět",

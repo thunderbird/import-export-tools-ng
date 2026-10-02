@@ -804,9 +804,18 @@
   "newFilesMode": {
     "message": "Só os fichiros modificados despois da copia de seguranza"
   },
+  "NoAuthor.msg": {
+    "message": "Sen autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Sen correo electrónico do autor"
+  },
   "noBackup": {
     "message": "Non foi posíbel realizar a copia de seguranza: comprobe a ruta e os permisos do cartafol de destino",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Sen descifrado"
   },
   "noEML": {
     "message": "Non foi posíbel atopar un ficheiro EML neste directorio",
@@ -855,9 +864,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Sen destinatario"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Sen correo electrónico do destinatario"
+  },
   "noRemoteExport": {
     "message": "Non foi posíbel exportar este cartafol remoto, porque non está en liña.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Sen asunto"
   },
   "nosubjectmsg": {
     "message": "no_subject",

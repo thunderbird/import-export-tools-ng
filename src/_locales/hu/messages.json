@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Csak a módosított fájlok az utolsó módosítás után"
   },
+  "NoAuthor.msg": {
+    "message": "Nincs szerző"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Nincs szerző e-mail címe"
+  },
   "noBackup": {
     "message": "A mentés nem végezhető el: ellenőrizze az útvonalat és a célmappa hozzáféréseit",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Nincs dekódolás"
   },
   "noEML": {
     "message": "Nem található EML fájl a mappában",
@@ -854,9 +863,18 @@
     "message": "Ez a mappa nem tartalmaz érvényes profilt",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Nincs címzett"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Nincs címzett e-mail címe"
+  },
   "noRemoteExport": {
     "message": "Nem sikerült exportálni a távoli mappát, mert az nem elérhető.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Nincs tárgy"
   },
   "nosubjectmsg": {
     "message": "nincs_tárgy",

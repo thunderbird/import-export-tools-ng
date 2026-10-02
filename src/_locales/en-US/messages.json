@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Just files modified after last backup"
   },
+  "NoAuthor.msg": {
+    "message": "No Author"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "No Author Email"
+  },
   "noBackup": {
     "message": "Unable to perform backup: check path and permissions of destination folder",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "No Decryption"
   },
   "noEML": {
     "message": "No eml file found in this directory",
@@ -854,9 +863,18 @@
     "message": "This folder doesn’t contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "No Recipient"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "No Recipient Email"
+  },
   "noRemoteExport": {
     "message": "Unable to export this remote folder, because it is not online.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "No Subject"
   },
   "nosubjectmsg": {
     "message": "no_subject",

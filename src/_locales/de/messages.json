@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Nur Dateien, die seit dem letzten Backup geändert wurden"
   },
+  "NoAuthor.msg": {
+    "message": "Kein Autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Keine Autoren-E-Mail-Adresse"
+  },
   "noBackup": {
     "message": "Backup nicht durchführbar: Überprüfen Sie Pfad und Berechtigungen des Zielordners.",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Keine Entschlüsselung"
   },
   "noEML": {
     "message": "Keine EML-Datei in diesem Ordner vorhanden",
@@ -854,9 +863,18 @@
     "message": "Dieser Ordner enthält kein gültiges Profil.",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Kein Empfänger"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Keine Empfänger-E-Mail"
+  },
   "noRemoteExport": {
     "message": "Dieser nicht lokale Ordner kann nicht exportiert werden, da er momentan nicht online ist.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Kein Betreff"
   },
   "nosubjectmsg": {
     "message": "kein_betreff",

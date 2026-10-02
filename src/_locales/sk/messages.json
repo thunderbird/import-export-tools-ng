@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Len súbory zmenené od poslednéhozálohovania"
   },
+  "NoAuthor.msg": {
+    "message": "Žiadny autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Žiadny e-mail autora"
+  },
   "noBackup": {
     "message": "Zálohu nemožno vykonať: skontrolujte cestu a atribúty cieľového priečinka",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Žiadne dešifrovanie"
   },
   "noEML": {
     "message": "V tomto priečinku nie je žiadny súbor .eml",
@@ -854,9 +863,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Žiadny príjemca"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Bez e-mailu príjemcu"
+  },
   "noRemoteExport": {
     "message": "Tento vzdialený priečinok nemožno exportovať, pretože nie je online.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Bez predmetu"
   },
   "nosubjectmsg": {
     "message": "bez_predmetu",

@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "最後のバックアップ以降に変更されたファイルのみ"
   },
+  "NoAuthor.msg": {
+    "message": "著者なし"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "著者のメールアドレスはありません"
+  },
   "noBackup": {
     "message": "バックアップを実行できません：コピー先のフォルダーの場所とアクセス権限を確認してください。",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "復号化なし"
   },
   "noEML": {
     "message": "このフォルダーには EML ファイルがありませんでした",
@@ -854,9 +863,18 @@
     "message": "このフォルダーには、正常なプロファイルがありません。",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "受取人なし"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "受信者のメールアドレスがありません"
+  },
   "noRemoteExport": {
     "message": "オンライン状態ではないので、このリモートフォルダーをエクスポートすることができません。",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "件名なし"
   },
   "nosubjectmsg": {
     "message": "件名なし",

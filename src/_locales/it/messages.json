@@ -59,11 +59,20 @@
   "backupOnExit": {
     "message": "Backup all’uscita"
   },
+  "backupOverdue.label": {
+    "message": "Un backup è in ritardo.\n\nSi preferisce effettuare un backup ora o\naspettare fino al prossimo orario programmato?\n\nBackup successivo: "
+  },
   "backupSettings": {
     "message": "Impostazioni del backup"
   },
+  "backupStartingIn.label": {
+    "message": "Il backup inizierà tra 15 secondi…"
+  },
   "backupTab": {
     "message": "Backup periodico"
+  },
+  "backupTime.label": {
+    "message": "Orario di backup"
   },
   "backupType": {
     "message": "Contenuto del backup"
@@ -500,6 +509,9 @@
     "message": "Usando questo formato, non sarà possibile re-importare i messaggi esportati.\nSi desidera continuare?\n",
     "src": "mboximport"
   },
+  "HeaderDateFormat.label": {
+    "message": "Formato data dell’intestazione"
+  },
   "importDone": {
     "message": "Importazione completata",
     "src": "mboximport"
@@ -791,9 +803,18 @@
   "newFilesMode": {
     "message": "Solo i file modificati dopo l’ultimo backup"
   },
+  "NoAuthor.msg": {
+    "message": "Nessun autore"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Nessun indirizzo email dell&#39;autore"
+  },
   "noBackup": {
     "message": "Impossibile procedere al backup: controllare il percorso e i permessi della cartella-destinazione.",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Nessuna decrittazione"
   },
   "noEML": {
     "message": "Non è stato trovato alcun file eml in questa cartella",
@@ -842,9 +863,18 @@
     "message": "Questa cartella non contiene un profilo valido",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Nessun destinatario"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Nessun indirizzo email del destinatario"
+  },
   "noRemoteExport": {
     "message": "Impossibile esportare questa cartella remota perché non è in linea.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Nessun soggetto"
   },
   "nosubjectmsg": {
     "message": "nessun_oggetto",
@@ -1088,17 +1118,5 @@
   },
   "Warning.msg": {
     "message": "Avviso"
-  },
-  "HeaderDateFormat.label": {
-    "message": "Formato data dell’intestazione"
-  },
-"backupTime.label": {
-    "message": "Orario di backup"
-  },
-  "backupStartingIn.label": {
-    "message": "Il backup inizierà tra 15 secondi…"
-  },
-  "backupOverdue.label": {
-    "message": "Un backup è in ritardo.\n\nSi preferisce effettuare un backup ora o\naspettare fino al prossimo orario programmato?\n\nBackup successivo: "
   }
 }

@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Απλά τροποποιήθηκαν αρχεία μετά την τελευταία δημιουργία αντιγράφων ασφαλείας"
   },
+  "NoAuthor.msg": {
+    "message": "Χωρίς Συγγραφέα"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Δεν υπάρχει email συγγραφέα"
+  },
   "noBackup": {
     "message": "Δεν είναι δυνατή η εκτέλεση αντιγράφων ασφαλείας: ελέγξτε τη διαδρομή και τα δικαιώματα του φακέλου προορισμού",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Χωρίς αποκρυπτογράφηση"
   },
   "noEML": {
     "message": "Δεν βρέθηκε αρχείο eml σε αυτόν τον κατάλογο",
@@ -854,9 +863,18 @@
     "message": "Αυτός ο φάκελος δεν περιέχει έγκυρο προφίλ",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Δεν υπάρχει παραλήπτης"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Δεν υπάρχει email παραλήπτη"
+  },
   "noRemoteExport": {
     "message": "Δεν είναι δυνατή η εξαγωγή αυτού του απομακρυσμένου φακέλου, επειδή δεν είναι συνδεδεμένος στο διαδίκτυο.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Χωρίς θέμα"
   },
   "nosubjectmsg": {
     "message": "χωρίς θέμα",

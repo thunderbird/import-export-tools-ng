@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Միայն ֆայլերը, որոնք փոփոխվել են վերջին պահուստացումից հետո"
   },
+  "NoAuthor.msg": {
+    "message": "Հեղինակ չկա"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Հեղինակի էլ․ հասցե չկա"
+  },
   "noBackup": {
     "message": "Հնարավոր չէ պահուստացնել. ստուգեք ճ-ը և թղթապանակի լիազորությունները",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Վերծանում չկա"
   },
   "noEML": {
     "message": "Չի գտնվել eml ֆայլ այս թղթապանակում",
@@ -854,9 +863,18 @@
     "message": "Թղթապանակում չկա պրոֆիլ",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Ստացող չկա"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Ստացողի էլ․ հասցե չկա"
+  },
   "noRemoteExport": {
     "message": "Հնարավոր չէ արտածել հեռադիր թղթապանակը, քանզի այն առցանց չէ:",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Թեմա չկա"
   },
   "nosubjectmsg": {
     "message": "առանց_վերնագրի",

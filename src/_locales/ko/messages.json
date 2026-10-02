@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "마지막 백업 이후 수정된 파일만"
   },
+  "NoAuthor.msg": {
+    "message": "저자 없음"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "작성자 이메일 없음"
+  },
   "noBackup": {
     "message": "백업을 실행할 수 없음:경로와 대상 폴더의 권한을 확인하세요",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "복호화 불가"
   },
   "noEML": {
     "message": "이 디렉토리에서 eml 파일을 찾을 수 없습니다.",
@@ -854,9 +863,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "수신자 없음"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "수신자 이메일 없음"
+  },
   "noRemoteExport": {
     "message": "온라인 상태가 아니기 때문에,이 원격 폴더를 내보낼 수 없습니다.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "주제 없음"
   },
   "nosubjectmsg": {
     "message": "제목 없음",

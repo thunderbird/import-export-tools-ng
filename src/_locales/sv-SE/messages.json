@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Endast filer som ändrats sedan den senaste säkerhetskopieringen"
   },
+  "NoAuthor.msg": {
+    "message": "Ingen författare"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Ingen författarens e-postadress"
+  },
   "noBackup": {
     "message": "Det gick inte att utföra säkerhetskopieringen. Kontrollera målmappens sökväg och behörigheter.",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Ingen dekryptering"
   },
   "noEML": {
     "message": "Ingen EML-fil hittades i den här mappen.",
@@ -854,9 +863,18 @@
     "message": "Den här mappen innehåller ingen giltig profil.",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Ingen mottagare"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Ingen mottagarens e-postadress"
+  },
   "noRemoteExport": {
     "message": "Det gick inte att exportera den här fjärrmappen eftersom den inte är online.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Inget ämne"
   },
   "nosubjectmsg": {
     "message": "(inget_ämne)",

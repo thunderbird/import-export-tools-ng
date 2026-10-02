@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Just files modified after last backup"
   },
+  "NoAuthor.msg": {
+    "message": "Sin autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Sin correo electrónico del autor"
+  },
   "noBackup": {
     "message": "No se ha podido realizar la copia: compruebe la ruta y los permisos de la carpeta destino",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Sin descifrado"
   },
   "noEML": {
     "message": "No se ha encontrado ningún archivo eml en esta carpeta",
@@ -854,9 +863,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Sin destinatario"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Sin correo electrónico del destinatario"
+  },
   "noRemoteExport": {
     "message": "No se ha podido exportar la carpeta remota, ya que no está conectada.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Sin tema"
   },
   "nosubjectmsg": {
     "message": "sin asunto",

@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "samo datoteke, ki so bile spremenjene po zadnjem kopiranju"
   },
+  "NoAuthor.msg": {
+    "message": "Brez avtorja"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Brez avtorjevega e-poštnega naslova"
+  },
   "noBackup": {
     "message": "Izvedba varnostnega kopiranja ni mogoča: preverite pot in dovoljenja ciljne mape",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Brez dešifriranja"
   },
   "noEML": {
     "message": "V tej mapi ni bilo najdene datoteke eml",
@@ -854,9 +863,18 @@
     "message": "Ta mapa ne vsebuje veljavnega profila",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Brez prejemnika"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Brez e-poštnega naslova prejemnika"
+  },
   "noRemoteExport": {
     "message": "Te oddaljene mape ni mogoče izvoziti, ker ni povezana.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Brez zadeve"
   },
   "nosubjectmsg": {
     "message": "brez_zadeve",

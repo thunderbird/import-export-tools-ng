@@ -804,9 +804,18 @@
   "newFilesMode": {
     "message": "Només els fitxers modificats des de la darrera còpia de seguretat"
   },
+  "NoAuthor.msg": {
+    "message": "Sense autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Sense correu electrònic de l&#39;autor"
+  },
   "noBackup": {
     "message": "No s\\'ha pogut fer la còpia de seguretat: comproveu el camí i els permisos de la carpeta de destinació",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Sense desxifrat"
   },
   "noEML": {
     "message": "No s\\'ha trobat cap fitxer eml en aquest directori",
@@ -855,9 +864,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Cap destinatari"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Sense correu electrònic del destinatari"
+  },
   "noRemoteExport": {
     "message": "No s\\'ha pogut exportar aquesta carpeta remota, perquè no es troba en línia.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Sense assumpte"
   },
   "nosubjectmsg": {
     "message": "sense_assumpte",

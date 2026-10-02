@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Apenas ficheiros modificados desde a última cópia de segurança"
   },
+  "NoAuthor.msg": {
+    "message": "Sem autor"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Sem e-mail do autor"
+  },
   "noBackup": {
     "message": "Não foi possível realizar a cópia de segurança: Verifique o caminho e permissões de pasta de destino",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Sem descriptografia"
   },
   "noEML": {
     "message": "Nenhum ficheiro eml encontrado na directoria",
@@ -854,9 +863,18 @@
     "message": "This folder doesn't contain a valid profile",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Nenhum destinatário"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Nenhum e-mail de destinatário"
+  },
   "noRemoteExport": {
     "message": "Não é possível exportar esta pasta remota, porque não está online.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Sem assunto"
   },
   "nosubjectmsg": {
     "message": "sem_assunto",

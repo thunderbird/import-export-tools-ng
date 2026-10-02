@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Только изменённые после прошлого резервного копирования файлы"
   },
+  "NoAuthor.msg": {
+    "message": "Автор отсутствует"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Адрес электронной почты автора отсутствует."
+  },
   "noBackup": {
     "message": "Невозможно выполнить резервное копирование: проверьте путь и права доступа целевой папки",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Без расшифровки"
   },
   "noEML": {
     "message": "В этом каталоге не найдено ни одного файла eml.",
@@ -854,9 +863,18 @@
     "message": "В этой папке нет корректного профиля",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Получателя нет."
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Нет адреса электронной почты получателя"
+  },
   "noRemoteExport": {
     "message": "Невозможно экспортировать эту удалённую папку, потому что она не подключена.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Нет темы"
   },
   "nosubjectmsg": {
     "message": "нет_объекта",

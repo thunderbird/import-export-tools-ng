@@ -803,9 +803,18 @@
   "newFilesMode": {
     "message": "Alleen bestanden die na de laatste back-up zijn gewijzigd"
   },
+  "NoAuthor.msg": {
+    "message": "Geen auteur"
+  },
+  "NoAuthorEmail.msg": {
+    "message": "Geen e-mailadres van de auteur"
+  },
   "noBackup": {
     "message": "Kan back-up niet uitvoeren: controleer pad en machtigingen van doelmap",
     "src": "autobackup"
+  },
+  "NoDecryption.msg": {
+    "message": "Geen decryptie"
   },
   "noEML": {
     "message": "Geen eml-bestand gevonden in deze map",
@@ -854,9 +863,18 @@
     "message": "Deze map bevat geen geldig profiel",
     "src": "profilewizard"
   },
+  "NoRecipient.msg": {
+    "message": "Geen ontvanger"
+  },
+  "NoRecipientEmail.msg": {
+    "message": "Geen e-mailadres van de ontvanger"
+  },
   "noRemoteExport": {
     "message": "Kan deze externe map niet exporteren, omdat deze niet online is.",
     "src": "mboximport"
+  },
+  "NoSubject.msg": {
+    "message": "Geen onderwerp"
   },
   "nosubjectmsg": {
     "message": "geen_onderwerp",

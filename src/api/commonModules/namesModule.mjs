@@ -44,15 +44,23 @@ export var names = {
     let authorNameMaxLen = expTask.names.components.authorNameMaxLen;
     let recipientNameMaxLen = expTask.names.components.recipientNameMaxLen;
 
+    // name component messages
+    const NoSubject = ietngExtension.localeData.localizeMessage("NoSubject.msg");
+    const NoAuthor = ietngExtension.localeData.localizeMessage("NoAuthor.msg");
+    const NoAuthorEmail = ietngExtension.localeData.localizeMessage("NoAuthor.msg");
+    const NoRecipient = ietngExtension.localeData.localizeMessage("NoRecipient.msg");
+    const NoRecipientEmail = ietngExtension.localeData.localizeMessage("NoRecipientEmail.msg");
+    const NoDecryption = ietngExtension.localeData.localizeMessage("NoDecryption.msg");
+
     // we need the msgHdr for items not in the wext MessageHeader
     let msgHdr = context.extension.messageManager.get(expTask.msgList[index].id);
 
     // Subject formatting
     let subject = expTask.msgList[index].subject;
     if (!subject || subject == "") {
-      subject = "[No Subject]";
+      subject = `[${NoSubject}]`;
     } else if (subject == "...") {
-      subject = "[No Decryption]...";
+      subject = `[${NoDecryption}]...`;
     }
 
     // add Re_ for responses 
@@ -70,23 +78,25 @@ export var names = {
     let authorName;
 
     // handle domainlessAuthor 
-    if (author && author != "" && !author.includes('@') ) {
+    if (author && author != "" && !author.includes('@')) {
       authorEmail = expTask.msgList[index].author;
       authorName = authorEmail;
     } else {
       // Author email
-      authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
       if (!authorEmail || authorEmail == "") {
-        authorEmail = "[No Author Email]";
+        authorEmail = `[${NoAuthorEmail}]`;
+      } else {
+        authorEmail = parse5322.parseSender(expTask.msgList[index].author)?.address;
       }
+
       // Author name
-      authorName = parse5322.parseSender(expTask.msgList[index].author).name;
+      authorName = parse5322.parseSender(expTask.msgList[index].author)?.name;
       if (!authorName || authorName == "") {
         // if no author name, check and substitute author email
-        if (authorEmail != "[No Author Email]") {
+        if (authorEmail != `[${NoAuthorEmail}]`) {
           authorName = authorEmail;
         } else {
-          authorName = "[No Author]";
+          authorName = `[${NoAuthor}]`;
         }
       }
     }
@@ -99,10 +109,10 @@ export var names = {
     try {
       recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
       if (!recipientEmail || recipientEmail == "") {
-        recipientEmail = "[No Recipient Email]";
+        recipientEmail = `[${NoRecipientEmail}]`;
       }
     } catch (ex) {
-      recipientEmail = "[No Recipient Email]";
+      recipientEmail = `[${NoRecipientEmail}]`;
     }
 
     // Recipient name
@@ -112,14 +122,14 @@ export var names = {
       recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
       if (!recipientName || recipientName == "") {
         // if no recipient name, check and substitute recipient email
-        if (recipientEmail != "[No Recipient Email]") {
+        if (recipientEmail != `[${NoRecipientEmail}]`) {
           recipientName = recipientEmail;
         } else {
-          recipientName = "[No Recipient]";
+          recipientName = `[${NoRecipient}]`;
         }
       }
     } catch (ex) {
-      recipientName = "[No Recipient]";
+      recipientName = `[${NoRecipient}]`;
     }
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
@@ -151,8 +161,11 @@ export var names = {
 
     let generatedName = "";
 
+    console.log(namePatternType)
+    console.log(expTask.names.namePatternDropdown)
+
     // basic dropdown filename pattern
-    if (namePatternType == "dropdown") {
+    if (namePatternType == "simple") {
       let pattern = expTask.names.namePatternDropdown;
 
       pattern = pattern.replace("%s", subject);

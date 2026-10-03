@@ -804,17 +804,17 @@
     "message": "Kun filer der er ændret siden seneste sikkerhedskopi"
   },
   "NoAuthor.msg": {
-    "message": "Ingen forfatter"
+    "message": "Ingen afsender"
   },
   "NoAuthorEmail.msg": {
-    "message": "Ingen forfatter-e-mail"
+    "message": "Ingen mailadresse for afsender]"
   },
   "noBackup": {
     "message": "Kunne ikke tage sikkerhedskopier: Undersøg destinationsmappes sti og og tilladelser",
     "src": "autobackup"
   },
   "NoDecryption.msg": {
-    "message": "Ingen dekryptering"
+    "message": "Ingen kryptering"
   },
   "noEML": {
     "message": "Der blev ikke fundet nogen eml-fil i denne mappe",
@@ -867,7 +867,7 @@
     "message": "Ingen modtager"
   },
   "NoRecipientEmail.msg": {
-    "message": "Ingen modtager-e-mail"
+    "message": "Ingen mailadresse for modtager]"
   },
   "noRemoteExport": {
     "message": "Kunne ikke eksportere denne fjernmappe da den ikke er online.",

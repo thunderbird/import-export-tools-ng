@@ -221,7 +221,7 @@ async function _build_HTML_expTask(expTask, params, ctxEvent, folderSet) {
 
   // names
   let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
-  if (nameFormat == 2) {
+  if (nameFormat == "simple") {
     expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
@@ -283,7 +283,7 @@ async function _build_PDF_expTask(expTask, params, ctxEvent, folderSet) {
 
   // names
   let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
-  if (nameFormat == 2) {
+  if (nameFormat == "simple") {
     expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {
@@ -345,7 +345,7 @@ async function _build_Plaintext_expTask(expTask, params, ctxEvent, folderSet) {
 
   // names
   let nameFormat = await prefCmds.getPref("export.names.defaults.msgNameFormatType");
-  if (nameFormat == 2) {
+  if (nameFormat == "simple") {
     expTask.names.namePatternType = "simple";
     expTask.names.namePatternDropdown = await prefCmds.getPref("export.names.defaults.msgNameSimpleFormat");
   } else {

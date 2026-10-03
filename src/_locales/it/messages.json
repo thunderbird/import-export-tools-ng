@@ -804,10 +804,10 @@
     "message": "Solo i file modificati dopo l’ultimo backup"
   },
   "NoAuthor.msg": {
-    "message": "Nessun autore"
+    "message": "Nessun mittente"
   },
   "NoAuthorEmail.msg": {
-    "message": "Nessun indirizzo email dell&#39;autore"
+    "message": "Nessuna indirizzo email del mittente"
   },
   "noBackup": {
     "message": "Impossibile procedere al backup: controllare il percorso e i permessi della cartella-destinazione.",
@@ -867,7 +867,7 @@
     "message": "Nessun destinatario"
   },
   "NoRecipientEmail.msg": {
-    "message": "Nessun indirizzo email del destinatario"
+    "message": "Nessuna indirizzo email del destinatario"
   },
   "noRemoteExport": {
     "message": "Impossibile esportare questa cartella remota perché non è in linea.",

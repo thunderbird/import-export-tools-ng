@@ -77,13 +77,14 @@ export var names = {
     let authorEmail;
     let authorName;
 
+    console.log("author", author)
     // handle domainlessAuthor 
     if (author && author != "" && !author.includes('@')) {
       authorEmail = expTask.msgList[index].author;
       authorName = authorEmail;
     } else {
       // Author email
-      if (!authorEmail || authorEmail == "") {
+      if (!author || author == "") {
         authorEmail = `[${NoAuthorEmail}]`;
       } else {
         authorEmail = parse5322.parseSender(expTask.msgList[index].author)?.address;
@@ -101,13 +102,16 @@ export var names = {
       }
     }
 
+    console.log("authorName", authorName)
+    console.log("authorEmail", authorEmail)
+
     authorName = authorName.slice(0, authorNameMaxLen);
     authorName = authorName.trimEnd();
 
     // Recipient email
     let recipientEmail;
     try {
-      recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).address;
+      recipientEmail = parse5322.parseOneAddress(expTask.msgList[index].recipients[0])?.address;
       if (!recipientEmail || recipientEmail == "") {
         recipientEmail = `[${NoRecipientEmail}]`;
       }
@@ -119,7 +123,7 @@ export var names = {
 
     let recipientName;
     try {
-      recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0]).name;
+      recipientName = parse5322.parseOneAddress(expTask.msgList[index].recipients[0])?.name;
       if (!recipientName || recipientName == "") {
         // if no recipient name, check and substitute recipient email
         if (recipientEmail != `[${NoRecipientEmail}]`) {
@@ -131,6 +135,12 @@ export var names = {
     } catch (ex) {
       recipientName = `[${NoRecipient}]`;
     }
+
+    console.log(expTask.msgList[index].recipients[0])
+    console.log("recipientName", recipientName)
+    console.log("recipientEmail", authorEmail)
+
+
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
 

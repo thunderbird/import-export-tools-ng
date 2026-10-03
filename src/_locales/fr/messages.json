@@ -804,17 +804,17 @@
     "message": "Uniquement les fichiers modifiés depuis la dernière sauvegarde"
   },
   "NoAuthor.msg": {
-    "message": "Auteur inconnu"
+    "message": "pas d’auteur"
   },
   "NoAuthorEmail.msg": {
-    "message": "Aucun e-mail d&#39;auteur"
+    "message": "pas d’adresse e-mail de l’auteur]"
   },
   "noBackup": {
     "message": "Impossible d’effectuer la sauvegarde, vérifiez le chemin et les autorisations du dossier de destination.",
     "src": "autobackup"
   },
   "NoDecryption.msg": {
-    "message": "Aucun décryptage"
+    "message": "pas de décryptage"
   },
   "noEML": {
     "message": "Aucun fichier eml trouvé dans ce dossier",
@@ -864,17 +864,17 @@
     "src": "profilewizard"
   },
   "NoRecipient.msg": {
-    "message": "Aucun destinataire"
+    "message": "pas de destinataire"
   },
   "NoRecipientEmail.msg": {
-    "message": "Aucun courriel de destinataire"
+    "message": "pas d’adresse e-mail du destinataire]"
   },
   "noRemoteExport": {
     "message": "Impossible d’exporter ce dossier distant, car il n’est pas en ligne.",
     "src": "mboximport"
   },
   "NoSubject.msg": {
-    "message": "Aucun sujet"
+    "message": "pas de sujet"
   },
   "nosubjectmsg": {
     "message": "sans_sujet",

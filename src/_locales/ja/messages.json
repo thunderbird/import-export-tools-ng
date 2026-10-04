@@ -804,17 +804,17 @@
     "message": "最後のバックアップ以降に変更されたファイルのみ"
   },
   "NoAuthor.msg": {
-    "message": "著者なし"
+    "message": "差出人なし"
   },
   "NoAuthorEmail.msg": {
-    "message": "著者のメールアドレスはありません"
+    "message": "差出人メールアドレスなし"
   },
   "noBackup": {
     "message": "バックアップを実行できません：コピー先のフォルダーの場所とアクセス権限を確認してください。",
     "src": "autobackup"
   },
   "NoDecryption.msg": {
-    "message": "復号化なし"
+    "message": "復号なし"
   },
   "noEML": {
     "message": "このフォルダーには EML ファイルがありませんでした",
@@ -864,10 +864,10 @@
     "src": "profilewizard"
   },
   "NoRecipient.msg": {
-    "message": "受取人なし"
+    "message": "受信者なし"
   },
   "NoRecipientEmail.msg": {
-    "message": "受信者のメールアドレスがありません"
+    "message": "受信者メールアドレスなし"
   },
   "noRemoteExport": {
     "message": "オンライン状態ではないので、このリモートフォルダーをエクスポートすることができません。",

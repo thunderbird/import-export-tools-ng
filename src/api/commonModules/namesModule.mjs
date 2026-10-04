@@ -47,7 +47,7 @@ export var names = {
     // name component messages
     const NoSubject = ietngExtension.localeData.localizeMessage("NoSubject.msg");
     const NoAuthor = ietngExtension.localeData.localizeMessage("NoAuthor.msg");
-    const NoAuthorEmail = ietngExtension.localeData.localizeMessage("NoAuthor.msg");
+    const NoAuthorEmail = ietngExtension.localeData.localizeMessage("NoAuthorEmail.msg");
     const NoRecipient = ietngExtension.localeData.localizeMessage("NoRecipient.msg");
     const NoRecipientEmail = ietngExtension.localeData.localizeMessage("NoRecipientEmail.msg");
     const NoDecryption = ietngExtension.localeData.localizeMessage("NoDecryption.msg");

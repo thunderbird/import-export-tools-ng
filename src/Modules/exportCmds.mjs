@@ -1231,6 +1231,11 @@ async function _createIndex(expTask, msgListLog) {
     const dateHdr = browser.i18n.getMessage("msgHdr.Date");
     const sizeStr = browser.i18n.getMessage("Size");
     const folderStr = browser.i18n.getMessage("Folder.label");
+    const NoSubjectStr = browser.i18n.getMessage("NoSubject.msg");
+    const NoDecryptionStr = browser.i18n.getMessage("NoDecryption.msg");
+    const NoAuthorStr = browser.i18n.getMessage("NoAuthor.msg");
+    const NoRecipientStr = browser.i18n.getMessage("NoRecipient.msg");
+
 
     let indexData = "";
     let titleDate = strftime.strftime(expTask.index.dateFormat, new Date());
@@ -1287,9 +1292,16 @@ async function _createIndex(expTask, msgListLog) {
         errClass = " class='msgError' ";
       }
 
+      let author;
+      if (msgItem.headers.author == "" || !msgItem.headers.author) {
+        author = `[${NoAuthorStr}]`;
+      } else {
+        author = msgItem.headers.author;
+      }
+
       let recipients;
-      if (msgItem.headers.recipients == []) {
-        recipients = "(none)";
+      if (msgItem.headers.recipients == [] || msgItem.headers.recipients == "") {
+        recipients = `[${NoRecipientStr}]`;
       } else {
         recipients = msgItem.headers.recipients.map(recipient => {
           recipient = recipient.slice(0, 50)
@@ -1319,12 +1331,13 @@ async function _createIndex(expTask, msgListLog) {
       }
 
       let fullSubject = msgItem.headers.subject;
-      if (fullSubject.startsWith(".")) {
-        fullSubject = "[No Decryption]" + fullSubject;
+      // tbd, should be done with flag
+      if (fullSubject == "...") {
+        fullSubject = `[${NoDecryptionStr}]` + fullSubject;
       }
       
       if (!fullSubject || fullSubject == "") {
-        fullSubject = "[No Subject]";
+        fullSubject = `[${NoSubjectStr}]`;
       }
 
       let aHref = `<a href="${relUrl}">${_encodeSpecialTextToHTML(fullSubject)}</a>`;
@@ -1334,7 +1347,7 @@ async function _createIndex(expTask, msgListLog) {
         attachments = msgItem.hasAttachments;
       }
       indexData += `\n<tr ${errClass}><td sorttable_customkey="${fullSubject}">${aHref}</td>`;
-      indexData += "\n<td>" + _encodeSpecialTextToHTML(msgItem.headers.author.slice(0, 50).replaceAll('"', '')) + "</td>";
+      indexData += "\n<td>" + _encodeSpecialTextToHTML(author.slice(0, 50).replaceAll('"', '')) + "</td>";
       indexData += "\n<td>" + recipients + "</td>";
       indexData += `\n<td style='text-align: right;' sorttable_customkey="${strftime.strftime("%s", msgItem.headers.date)}" nowrap>${strftime.strftime(expTask.index.dateFormat, msgItem.headers.date)}</td>`;
       indexData += "\n<td>" + attachments + "</td>";

@@ -804,10 +804,10 @@
     "message": "Nur Dateien, die seit dem letzten Backup geändert wurden"
   },
   "NoAuthor.msg": {
-    "message": "Kein Autor"
+    "message": "Kein Absender"
   },
   "NoAuthorEmail.msg": {
-    "message": "Keine Autoren-E-Mail-Adresse"
+    "message": "Keine E-Mail des Absenders"
   },
   "noBackup": {
     "message": "Backup nicht durchführbar: Überprüfen Sie Pfad und Berechtigungen des Zielordners.",
@@ -867,7 +867,7 @@
     "message": "Kein Empfänger"
   },
   "NoRecipientEmail.msg": {
-    "message": "Keine Empfänger-E-Mail"
+    "message": "Kein Email Empfänger"
   },
   "noRemoteExport": {
     "message": "Dieser nicht lokale Ordner kann nicht exportiert werden, da er momentan nicht online ist.",

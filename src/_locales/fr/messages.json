@@ -807,7 +807,7 @@
     "message": "pas d’auteur"
   },
   "NoAuthorEmail.msg": {
-    "message": "pas d’adresse e-mail de l’auteur]"
+    "message": "pas d’adresse e-mail de l’auteur"
   },
   "noBackup": {
     "message": "Impossible d’effectuer la sauvegarde, vérifiez le chemin et les autorisations du dossier de destination.",

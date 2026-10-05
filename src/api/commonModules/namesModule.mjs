@@ -231,7 +231,7 @@ export var names = {
         [_localize("recipientEmailFmtToken")]: recipientEmail,
         [_localize("smartNameFmtToken")]: smartName,
         [_localize("indexFmtToken")]: index,
-        [_localize("dateCustomFmtToken")]: expTask.dateFormat.custom,
+        [_localize("dateCustomFmtToken")]: customDate,
         [_localize("dateFmtToken")]: date,
       };
 

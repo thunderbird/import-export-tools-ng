@@ -77,7 +77,6 @@ export var names = {
     let authorEmail;
     let authorName;
 
-    console.log("author", author)
     // handle domainlessAuthor 
     if (author && author != "" && !author.includes('@')) {
       authorEmail = expTask.msgList[index].author;
@@ -101,9 +100,6 @@ export var names = {
         }
       }
     }
-
-    console.log("authorName", authorName)
-    console.log("authorEmail", authorEmail)
 
     authorName = authorName.slice(0, authorNameMaxLen);
     authorName = authorName.trimEnd();
@@ -136,11 +132,6 @@ export var names = {
       recipientName = `[${NoRecipient}]`;
     }
 
-    console.log(expTask.msgList[index].recipients[0])
-    console.log("recipientName", recipientName)
-    console.log("recipientEmail", authorEmail)
-
-
     recipientName = recipientName.slice(0, recipientNameMaxLen);
     recipientName = recipientName.trimEnd();
 
@@ -170,9 +161,6 @@ export var names = {
     var key = msgHdr.messageKey;
 
     let generatedName = "";
-
-    console.log(namePatternType)
-    console.log(expTask.names.namePatternDropdown)
 
     // basic dropdown filename pattern
     if (namePatternType == "simple") {

@@ -12,6 +12,7 @@
     }
   },
   "browser_action": {
+		"type":"menu",
     "default_icon": "chrome/content/mboximport/icons/import-export-tools-ng-icon-64px.png",
     "default_title": "ImportExport"
   },
@@ -101,7 +102,6 @@
   "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
     "menus",
-    "activeTab",
     "messagesRead",
     "tabs",
     "accountsFolders",

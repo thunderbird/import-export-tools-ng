@@ -106,7 +106,7 @@ async function onLoad() {
 
 	let dtdFiles = [];
 
-	addTBbuttonMainFuncOrCtxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, [dtdFiles]);
+	//addTBbuttonMainFuncOrCftxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, [dtdFiles]);
 
 
 	function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttCtxMenu, ctxMenuDTDs) {

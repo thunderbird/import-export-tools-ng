@@ -95,6 +95,7 @@ async function main() {
 
 	await autoBackup.initBackupScheduler();
 
+	/*
 	await new Promise(resolve => window.setTimeout(resolve, 5000));
 
 
@@ -104,5 +105,5 @@ webExtensionStorageEditor.open({
     baseFilter: 'userPrefs.',
     type: 'popup',
 });
-
+*/
 }

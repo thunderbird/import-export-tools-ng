@@ -1157,10 +1157,89 @@ var msgDisplayCtxMenuSet = [
   },
 ];
 
+
+// Toolbar button menu set
+
+const buttonCtxMenu_TopId = "buttonCtxMenu_TopId";
+const buttonCtxMenu_Exp_Profile_Id = "buttonCtxMenu_Exp_Profile_Id";
+const buttonCtxMenu_Imp_Profile_Id = "buttonCtxMenu_Imp_Profile_Id";
+const buttonCtxMenu_Backup_Id = "buttonCtxMenu_Backup_Id";
+const buttonCtxMenu_Options_Id = "buttonCtxMenu_Options_Id";
+const buttonCtxMenu_Help_Id = "buttonCtxMenu_Help_Id";
+
+const buttonCtxMenu_Exp_ProfileFull_Id = "buttonCtxMenu_Exp_ProfileFull_Id";
+const buttonCtxMenu_Exp_ProfileMailOnly_Id = "buttonCtxMenu_Exp_ProfileMailOnly_Id";
+
+var buttonCtxMenuSet = [
+ 
+  {
+    menuDef: {
+      id: buttonCtxMenu_Exp_Profile_Id,
+      title: localizeMenuTitle("toolsCtxMenu_Exp_Profile_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: "",
+      id: buttonCtxMenu_Imp_Profile_Id,
+      title: localizeMenuTitle("toolsCtxMenu_Imp_Profile_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: "",
+      id: buttonCtxMenu_Backup_Id,
+      title: localizeMenuTitle("toolsCtxMenu_Backup_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: "",
+      id: "buttonCtxMenu_Exp_Sep1",
+      type: "separator",
+    },
+
+  },
+  {
+    menuDef: {
+      parentId: "",
+      id: buttonCtxMenu_Options_Id,
+      title: localizeMenuTitle("ctxMenu_Options.title"),
+      onclick: miscCmds.openOptions,
+    },
+
+  },
+  {
+    menuDef: {
+      parentId: "",
+      id: buttonCtxMenu_Help_Id,
+      title: localizeMenuTitle("ctxMenu_Help.title"),
+      onclick: miscCmds.openHelp,
+    },
+
+  },
+  {
+    menuDef: {
+      parentId: buttonCtxMenu_Exp_Profile_Id,
+      id: buttonCtxMenu_Exp_ProfileFull_Id,
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileFull_Id.title"),
+    },
+  },
+  {
+    menuDef: {
+      parentId: buttonCtxMenu_Exp_Profile_Id,
+      id: buttonCtxMenu_Exp_ProfileMailOnly_Id,
+      title: localizeMenuTitle("toolsCtxMenu_Exp_ProfileMailOnly_Id.title"),
+    },
+  },
+];
+
 // Create all menus
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
+await createMenus("", buttonCtxMenuSet, { defaultContexts: ["browser_action_menu"], defaultOnclick: null });
+
 await messenger.menus.create({
   id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"),
   contexts: ["message_attachments"], onclick: miscCmds.importEmlAttToFolder, visible: false
@@ -1172,7 +1251,10 @@ async function createMenus(menuType, menuArray, options) {
   var defaultParentId = menuArray[0].menuDef.id;
   for (let index = 0; index < menuArray.length; index++) {
     let menuObj = menuArray[index];
-    if (index > 0 && !menuObj.menuDef.parentId) {
+
+    if (menuObj.menuDef.parentId == "") {
+      menuObj.menuDef.parentId = null;
+    } else if (index > 0 && !menuObj.menuDef.parentId) {
       menuObj.menuDef.parentId = defaultParentId;
     }
     if (!menuObj.menuDef.contexts) {

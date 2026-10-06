@@ -1160,11 +1160,11 @@ var msgDisplayCtxMenuSet = [
 
 // Toolbar button menu set
 
-const buttonCtxMenu_TopId = "buttonCtxMenu_TopId";
 const buttonCtxMenu_Exp_Profile_Id = "buttonCtxMenu_Exp_Profile_Id";
 const buttonCtxMenu_Imp_Profile_Id = "buttonCtxMenu_Imp_Profile_Id";
 const buttonCtxMenu_Backup_Id = "buttonCtxMenu_Backup_Id";
 const buttonCtxMenu_Options_Id = "buttonCtxMenu_Options_Id";
+const buttonCtxMenu_Options_Editor_Id = "buttonCtxMenu_Options_Editor_Id";
 const buttonCtxMenu_Help_Id = "buttonCtxMenu_Help_Id";
 
 const buttonCtxMenu_Exp_ProfileFull_Id = "buttonCtxMenu_Exp_ProfileFull_Id";
@@ -1206,6 +1206,15 @@ var buttonCtxMenuSet = [
       id: buttonCtxMenu_Options_Id,
       title: localizeMenuTitle("ctxMenu_Options.title"),
       onclick: miscCmds.openOptions,
+    },
+
+  },
+   {
+    menuDef: {
+      parentId: "",
+      id: buttonCtxMenu_Options_Editor_Id,
+      title: localizeMenuTitle("ctxMenu_Options_Editor.title"),
+      onclick: miscCmds.openOptionsEditor,
     },
 
   },

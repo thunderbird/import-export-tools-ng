@@ -24,11 +24,6 @@ import * as autoBackup from "./Modules/autoBackup.mjs";
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
 
-import * as webExtensionStorageEditor from './Modules/webExtensionStorageEditor.mjs'
-
-
-//window.gBt = "none bk";
-
 // now start
 main();
 
@@ -90,20 +85,6 @@ async function main() {
 	messenger.WindowListener.startListening();
 
 	// autoBackup
-	//gBt = await prefCmds.getPref("autobackup.temp.backupTime")
-	//console.log("gBt get", gBt)
-
 	await autoBackup.initBackupScheduler();
 
-	/*
-	await new Promise(resolve => window.setTimeout(resolve, 5000));
-
-
-// Open a popup showing local storage, with an optional filter
-webExtensionStorageEditor.open({
-    storageArea: 'local',
-    baseFilter: 'userPrefs.',
-    type: 'popup',
-});
-*/
 }

@@ -16,6 +16,7 @@
 // miscCmds.js
 
 import { prefCmds } from "./prefCmds.mjs";
+import * as webExtensionStorageEditor from './webExtensionStorageEditor.mjs'
 
 export async function getThunderbirdVersion() {
   let browserInfo = await messenger.runtime.getBrowserInfo();
@@ -71,6 +72,18 @@ export async function openOptions(event, tab) {
   params.tabType = tab.type;
 
   let rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_OpenOptions", params: params });
+}
+
+export async function openOptionsEditor(event, tab) {
+
+// Open a tab showing local storage, with an optional filter
+webExtensionStorageEditor.open({
+    storageArea: 'local',
+    baseFilter: 'userPrefs.',
+    type: 'tab',
+});
+
+
 }
 
 // import eml/rfv822 msg attachment as new msg in current folder

@@ -173,6 +173,9 @@
   "ctxMenu_Help.title": {
     "message": "ヘルプ"
   },
+  "ctxMenu_Options_Editor.title": {
+    "message": "オプションエディター"
+  },
   "ctxMenu_Options.title": {
     "message": "設定"
   },

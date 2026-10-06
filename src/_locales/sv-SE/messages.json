@@ -173,6 +173,9 @@
   "ctxMenu_Help.title": {
     "message": "Hjälp"
   },
+  "ctxMenu_Options_Editor.title": {
+    "message": "Alternativredigeraren"
+  },
   "ctxMenu_Options.title": {
     "message": "Inställningar"
   },

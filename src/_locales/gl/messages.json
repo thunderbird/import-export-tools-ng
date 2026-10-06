@@ -173,6 +173,9 @@
   "ctxMenu_Help.title": {
     "message": "Axuda"
   },
+  "ctxMenu_Options_Editor.title": {
+    "message": "Editor de opcións"
+  },
   "ctxMenu_Options.title": {
     "message": "Opcións"
   },

@@ -173,6 +173,9 @@
   "ctxMenu_Help.title": {
     "message": "帮助"
   },
+  "ctxMenu_Options_Editor.title": {
+    "message": "选项编辑器"
+  },
   "ctxMenu_Options.title": {
     "message": "选项"
   },

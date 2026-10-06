@@ -173,6 +173,9 @@
   "ctxMenu_Help.title": {
     "message": "Օգնություն"
   },
+  "ctxMenu_Options_Editor.title": {
+    "message": "Ընտրանքների խմբագրիչ"
+  },
   "ctxMenu_Options.title": {
     "message": "Ընտրանքներ"
   },

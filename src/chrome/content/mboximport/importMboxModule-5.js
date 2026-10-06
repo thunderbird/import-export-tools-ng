@@ -77,7 +77,7 @@ async function mboxCopyImport(options) {
   // const kReadChunk = (50 * 1000) + 15; //  211 ex 19492 msg write bndry exc
 
   const kReadChunk = (150 * 1000) + 0; //  211 ex 19492 msg write bndry exc
-  const kExceptWin = 600;
+  const kExceptWin = 1000;
 
   // we take the easy AND safe approach for the rare and
   // onerous CR line breaks from OSX 9-

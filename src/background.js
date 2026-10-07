@@ -88,5 +88,6 @@ async function main() {
 	await autoBackup.initBackupScheduler();
 
 	// create a global preference mutex to be used by prefCmds
-	
+	window.gPrefsMutex = new MutexAsync.MutexAsync({ warnOnOverlap: true });
+	console.log(window.gPrefsMutex)
 }

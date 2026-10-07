@@ -91,6 +91,12 @@ export var prefCmds = {
   setPref: async function (aName, aValue, forceUserPref = false) {
     //console.log(aName, aValue)
 
+	console.log(window.gPrefsMutex)
+
+    // use global pref mutex to make _userPrefs and local storage userPrefs writes atomic
+    let unlock = await window.gPrefsMutex.lock();
+	console.log(unlock)
+
     if (!this.dotHasOwnProperty(aName, this._defaultPrefs)) {
       console.error("IETNG: Error setting userPref, userPref does not exist in defaultPrefs", aName);
       return null;
@@ -106,6 +112,10 @@ export var prefCmds = {
     this.dotSet(aName, aValue, this._userPrefs, true);
     // store updated userPrefs in storage
     await messenger.storage[userPrefStorageArea].set({ userPrefs: this._userPrefs });
+
+    // unlock mutex
+    await unlock();
+
     log("prefs1", `setPref: ${aName} userPref: ${aValue}`);
     return aValue;
   },

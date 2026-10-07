@@ -20,7 +20,7 @@ import { openHelp } from "/Modules/miscCmds.mjs";
 import * as prefMgmt from "/Modules/prefMgmt.mjs";
 import { prefCmds } from "./Modules/prefCmds.mjs";
 import * as autoBackup from "./Modules/autoBackup.mjs";
-
+import * as MutexAsync from "./Modules/mutex-async.mjs";
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
 
@@ -87,4 +87,6 @@ async function main() {
 	// autoBackup
 	await autoBackup.initBackupScheduler();
 
+	// create a global preference mutex to be used by prefCmds
+	
 }

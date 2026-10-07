@@ -88,27 +88,6 @@ async function onLoad() {
 		return { status: "ok" };
 	}
 
-
-	let ctxMenu =
-		`<menupopup>
-			<menu  label="__MSG_buttonMenu_Exp_Profile_Id.title__" >
-			<menupopup>
-			<menuitem  label="__MSG_buttonMenu_Exp_ProfileFull_Id.title__" oncommand="IETexport_all({profileExportType: 'full'})" />
-			<menuitem  label="__MSG_buttonMenu_Exp_ProfileMailOnly_Id.title__" oncommand="IETexport_all({profileExportType: 'mailOnly'})" />
-			</menupopup>
-			</menu>
-			<menuitem  label="__MSG_buttonMenu_Imp_Profile_Id.title__" oncommand="openProfileImportWizard()" />
-			<menuitem  label="__MSG_buttonMenu_Backup_Id.title__" oncommand="window.ietng.OpenBackupDialog('manual')" />
-			<menuseparator />
-			<menuitem  label="__MSG_buttonMenu_Options.title__" oncommand="openIEToptions()"/>
-			<menuitem  label="__MSG_buttonMenu_Help.title__" oncommand="openHelp(null)"/>
-		</menupopup>`;
-
-	let dtdFiles = [];
-
-	//addTBbuttonMainFuncOrCftxMenu(ADDON_ID, "unified-toolbar-button", null, ctxMenu, [dtdFiles]);
-
-
 	function addTBbuttonMainFuncOrCtxMenu(addOnId, toolbarClass, mainButtFunc, buttCtxMenu, ctxMenuDTDs) {
 		// width of ucarret dropdown area in px
 		const dropdownTargetWidth = 21;

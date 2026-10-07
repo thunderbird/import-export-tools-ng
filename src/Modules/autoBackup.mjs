@@ -129,7 +129,7 @@ export async function initBackupScheduler() {
         let rv = await browser.AsyncPrompts.asyncAlert(browser.i18n.getMessage("warning.msg"), browser.i18n.getMessage("backupOverdue.label") + zdtBackupDate.toLocaleString());
 
         if (rv) {
-          await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
+          await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: { backupType: "auto" } });
         }
       }, 6000);
     }
@@ -148,7 +148,7 @@ async function _backupAlarm(alarmInfo) {
   let alarmInfo2 = await browser.alarms.get("backupPeriodicAlarm");
 
   log("backup", `Next backup  - Time:  ${new Date(alarmInfo2.scheduledTime).toLocaleString()}`);
-  await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: "" });
+  await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: { backupType: "auto" }  });
 }
 
 async function _backupOptionsObserver(changes, area) {

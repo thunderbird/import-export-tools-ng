@@ -1247,7 +1247,7 @@ var buttonCtxMenuSet = [
 await createMenus("", msgCtxMenuSet, { defaultContexts: ["message_list", "page"], defaultOnclick: wextctx_ExportAs });
 await createMenus("", toolsCtxMenuSet, { defaultContexts: ["tools_menu"], defaultOnclick: wextctx_toolsMenu });
 await createMenus("", folderCtxMenuSet, { defaultContexts: ["folder_pane"], defaultOnclick: wextctx_folderMenu });
-await createMenus("", buttonCtxMenuSet, { defaultContexts: ["browser_action_menu"], defaultOnclick: null });
+await createMenus("", buttonCtxMenuSet, { defaultContexts: ["browser_action_menu"], defaultOnclick: wextctx_toolsMenu });
 
 await messenger.menus.create({
   id: "attCtxMenu_Top_Id", title: localizeMenuTitle("attCtxMenu_Top_Id.title"),
@@ -1407,22 +1407,28 @@ async function wextctx_ExportAs(ctxEvent, tab) {
 
 
 async function wextctx_toolsMenu(ctxEvent, tab) {
+  //console.log(ctxEvent)
   var params = {};
   params.targetWinId = tab.windowId;
 
   switch (ctxEvent.menuItemId) {
     case toolsCtxMenu_Exp_ProfileFull_Id:
+    case buttonCtxMenu_Exp_ProfileFull_Id:
       params.profileExportType = "full";
       rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params });
       break;
     case toolsCtxMenu_Exp_ProfileMailOnly_Id:
+    case buttonCtxMenu_Exp_ProfileMailOnly_Id:
       params.profileExportType = "mailOnly";
       rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Exp_Profile", params: params });
       break;
     case toolsCtxMenu_Imp_Profile_Id:
+    case buttonCtxMenu_Imp_Profile_Id:
       rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Imp_Profile", params: params });
       break;
     case toolsCtxMenu_Backup_Id:
+    case buttonCtxMenu_Backup_Id:
+      params.backupType = "manual";
       rv = await messenger.NotifyTools.notifyExperiment({ command: "WXMCMD_Backup", params: params });
       break;
     default:

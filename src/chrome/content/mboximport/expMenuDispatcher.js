@@ -61,7 +61,7 @@ async function expMenuDispatcher(data) {
 	// console.log(window)
 
 	if (data.command == "WXMCMD_Backup") {
-		window.ietng.OpenBackupDialog('auto');
+		window.ietng.OpenBackupDialog(data.params.backupType);
 		return;
 	}
 

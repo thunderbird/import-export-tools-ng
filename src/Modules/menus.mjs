@@ -1704,18 +1704,21 @@ async function menusUpdate(info, tab) {
 
   var folderPath;
   var accountId;
-  var accountType;
+  var accountType = "none";
+  var mailStoreType = 0;
 
   if (info.selectedAccount) {
     accountId = info.selectedAccount.id;
   } else if (info.selectedFolder) {
     accountId = info.selectedFolder.accountId;
   } else {
-    accountId = info.displayedFolder.accountId;
+    accountId = info?.displayedFolder?.accountId;
   }
 
+  if (accountId) {
   accountType = (await messenger.accounts.get(accountId)).type;
-  let mailStoreType = await miscCmds.getMailStoreFromFolderPath(accountId, folderPath);
+  mailStoreType = await miscCmds.getMailStoreFromFolderPath(accountId, folderPath);
+  }
 
   var selectedFolders;
   if (info?.selectedFolders) {

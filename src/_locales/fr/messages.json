@@ -174,7 +174,7 @@
     "message": "Aide"
   },
   "ctxMenu_Options_Editor.title": {
-    "message": "Éditeur d&#39;options"
+    "message": "Éditeur des options"
   },
   "ctxMenu_Options.title": {
     "message": "Options"
@@ -513,7 +513,7 @@
     "src": "mboximport"
   },
   "HeaderDateFormat.label": {
-    "message": "Format de date de l’en-tête "
+    "message": "Format de la date dans l’en-tête "
   },
   "importDone": {
     "message": "Importation effectuée",
@@ -538,7 +538,7 @@
     "message": "Importation en cours…"
   },
   "indexCSVdateFormat": {
-    "message": "Format de la date pour CSV et index :"
+    "message": "Format de la date dans les fichiers CSV et index HTML :"
   },
   "indexFmtToken": {
     "message": "${index}"

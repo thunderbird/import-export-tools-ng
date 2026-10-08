@@ -152,9 +152,14 @@ export var prefCmds = {
     return initialStorageDefaults;
   },
 
-  update_userPrefsFromLocalStorage: async function () {
+  update_userPrefsFromLocalStorage: async function (topKey, newValue) {
+    // use global pref mutex to make _userPrefs and local storage userPrefs writes atomic
+    let unlock = await window.gPrefsMutex.lock();
+    await messenger.storage[userPrefStorageArea].set({ [topKey]: newValue });
+
     // Store user prefs into the local userPrefs obj.
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
+    await unlock();
   },
 
   dotGet: function (str, obj) {

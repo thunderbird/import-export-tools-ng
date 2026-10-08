@@ -333,11 +333,7 @@ function init() {
    */
   async function writeLeaf(topKey, subPath, newValue) {
     if (subPath.length === 0) {
-      let unlock = (await browser.runtime.getBackgroundPage()).gPrefsMutex.lock();
-      await storage.set({ [topKey]: newValue });
-      await prefCmds.update_userPrefsFromLocalStorage();
-      await unlock();
-
+      await prefCmds.update_userPrefsFromLocalStorage(topKey, newValue);
       return;
     }
     const data = await storage.get(topKey);
@@ -349,10 +345,7 @@ function init() {
       node = node[k];
     }
     node[subPath[subPath.length - 1]] = newValue;
-    let unlock = (await browser.runtime.getBackgroundPage()).gPrefsMutex.lock();
-    await storage.set({ [topKey]: root });
     await prefCmds.update_userPrefsFromLocalStorage();
-    await unlock();
   }
 
   /**

@@ -153,9 +153,10 @@ export var prefCmds = {
   },
 
   update_userPrefsFromLocalStorage: async function (topKey, newValue) {
-    console.log(window)
+    
+
     // use global pref mutex to make _userPrefs and local storage userPrefs writes atomic
-    let unlock = await window.gPrefsMutex.lock();
+    let unlock = await (await browser.runtime.getBackgroundPage()).gPrefsMutex.lock();
     await messenger.storage[userPrefStorageArea].set({ [topKey]: newValue });
 
     // Store user prefs into the local userPrefs obj.

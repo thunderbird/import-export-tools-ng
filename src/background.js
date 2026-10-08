@@ -89,4 +89,6 @@ async function main() {
 
 	// create a global preference mutex to be used by prefCmds
 	window.gPrefsMutex = new MutexAsync({ warnOnOverlap: true });
+	var varTest = 99099;
+	window.setTest = 59;
 }

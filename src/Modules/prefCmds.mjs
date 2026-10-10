@@ -232,7 +232,7 @@ export var prefCmds = {
       }
 
       if (area == "local" && item == "defaultPrefs") {
-        this._defaultPrefs = changes.defaultPrefs.newValue;
+        prefCmds._defaultPrefs = changes.defaultPrefs.newValue;
       }
     }
   },

@@ -166,6 +166,12 @@ export var prefCmds = {
     await messenger.storage[userPrefStorageArea].set({ [topKey]: newValue });
 
     // Store user prefs into the local userPrefs obj.
+    let t1 = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
+    console.log(t1)
+     t1 = (await messenger.storage[userPrefStorageArea].get("userPrefs"));
+    console.log(t1)
+    console.log(this._userPrefs)
+
     this._userPrefs = (await messenger.storage[userPrefStorageArea].get("userPrefs")).userPrefs || {};
     await unlock();
   },

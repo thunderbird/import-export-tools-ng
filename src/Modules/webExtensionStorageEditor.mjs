@@ -345,7 +345,7 @@ function init() {
       node = node[k];
     }
     node[subPath[subPath.length - 1]] = newValue;
-    await prefCmds.update_userPrefsFromLocalStorage();
+    await prefCmds.update_userPrefsFromLocalStorage(topKey, root);
   }
 
   /**

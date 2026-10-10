@@ -15,9 +15,6 @@
  * See the README and the open() JSDoc below for usage.
  */
 
-// add for updating _userPrefs
-import { prefCmds } from "./prefCmds.mjs";
-
 /**
  * Open a storage editor showing entries in a browser.storage area.
  *
@@ -333,7 +330,7 @@ function init() {
    */
   async function writeLeaf(topKey, subPath, newValue) {
     if (subPath.length === 0) {
-      await prefCmds.update_userPrefsFromLocalStorage(topKey, newValue);
+      await storage.set({ [topKey]: newValue });
       return;
     }
     const data = await storage.get(topKey);
@@ -345,7 +342,7 @@ function init() {
       node = node[k];
     }
     node[subPath[subPath.length - 1]] = newValue;
-    await prefCmds.update_userPrefsFromLocalStorage(topKey, root);
+    await storage.set({ [topKey]: root });
   }
 
   /**

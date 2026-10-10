@@ -58,18 +58,43 @@ export async function open(options = {}) {
 <meta charset="utf-8">
 <title>Storage Viewer</title>
 <style>
+    :root {
+      --editor-background-color: #f9f9fb;
+      --editor-font-color: #222;
+      --header-background-color: #eee;
+      --table-header-background-color: #f0f0f0;
+      --table-row-hover-background: #f5f5ff;
+      --table-row-editing-background: #e8f0fe;
+  
+      
+    }
+
+    
+    @media (prefers-color-scheme: dark) {
+	    :root {
+        --editor-background-color: #242430;
+        --editor-font-color: #f7f7f7;
+        --header-background-color: #343434;
+        --table-header-background-color: #2e2e2e;
+        --table-row-hover-background: #3b3b50;
+        --table-row-editing-background: #2a2a36;
+
+    }
+
     body {
         font-family: system-ui, sans-serif;
         font-size: 13px;
         margin: 0;
         padding: 0;
-        background: #f9f9fb;
-        color: #222;
+        background: var(--editor-background-color);
+        color: var(editor-font-color);
     }
     header,
         footer {
         padding: 6px 10px;
-        background: #eee;
+        background: var(--header-background-color);
+        color: var(--editor-font-color);
+
     }
     header {
         display: flex;
@@ -80,6 +105,8 @@ export async function open(options = {}) {
         flex: 1;
         padding: 2px 4px;
         font-family: monospace;
+        background: var(--header-background-color);
+        color: var(--editor-font-color);
     }
     button {
         cursor: pointer;
@@ -90,6 +117,8 @@ export async function open(options = {}) {
         width: 100%;
         border-collapse: collapse;
         margin-top: 6px;
+        color: var(--editor-font-color);
+
     }
     th,
     td {
@@ -98,13 +127,15 @@ export async function open(options = {}) {
         vertical-align: top;
     }
     th {
-        background: #f0f0f0;
+        background: var(--table-header-background-color);
         position: sticky;
         top: 0;
         text-align: left;
     }
+
+
     tr:hover {
-        background: #f5f5ff;
+        background: var(--table-row-hover-background);
     }
     .key {
         font-family: monospace;
@@ -120,6 +151,7 @@ export async function open(options = {}) {
     }
     .editBtn {
         background: none;
+        color: var(--editor-font-color);
         border: none;
         cursor: pointer;
         font-size: 14px;
@@ -127,6 +159,7 @@ export async function open(options = {}) {
     }
     .row-editing {
         background: #e8f0fe !important;
+
     }
     .error {
         color: red;

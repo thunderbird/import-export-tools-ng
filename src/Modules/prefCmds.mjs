@@ -149,6 +149,12 @@ export var prefCmds = {
 
     logging.init({ logTypes: this.getPref("debug.logTypes") });
 
+    // Add storage change listener.
+    if (!(await messenger.storage.onChanged.hasListener(this.storageChanged))) {
+      await messenger.storage.onChanged.addListener(this.storageChanged);
+    }
+
+
     return initialStorageDefaults;
   },
 
@@ -208,7 +214,23 @@ export var prefCmds = {
       return true;
     }
     return false;
-  }
+  },
+
+  // Listener for storage changes.
+  storageChanged: function (changes, area) {
+    let changedItems = Object.keys(changes);
+    for (let item of changedItems) {
+      if (area == userPrefStorageArea && item == "userPrefs") {
+        this._userPrefs = changes.userPrefs.newValue;
+      }
+
+      if (area == "local" && item == "defaultPrefs") {
+        this._defaultPrefs = changes.defaultPrefs.newValue;
+      }
+    }
+  },
+
+
 
 }
 

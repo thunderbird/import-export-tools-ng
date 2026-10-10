@@ -227,7 +227,8 @@ export var prefCmds = {
     let changedItems = Object.keys(changes);
     for (let item of changedItems) {
       if (area == userPrefStorageArea && item == "userPrefs") {
-        this._userPrefs = changes.userPrefs.newValue;
+        prefCmds._userPrefs = changes.userPrefs.newValue;
+        console.log("storage change", prefCmds._userPrefs)
       }
 
       if (area == "local" && item == "defaultPrefs") {

@@ -114,6 +114,7 @@ export async function open(options = {}) {
         border-collapse: collapse;
         margin-top: 6px;
         color: var(--editor-font-color);
+        table-layout: fixed;
     }
     th,
     td {
@@ -126,6 +127,17 @@ export async function open(options = {}) {
         position: sticky;
         top: 0;
         text-align: left;
+    }
+      tr>:nth-child(1) {
+      width: 36%;
+      overflow-wrap: break-word;
+    }
+    tr>:nth-child(3) {
+      overflow-wrap: break-word;
+    }
+    
+    tr>:nth-child(4) {
+      width: 30px;
     }
     tr:hover {
         background: var(--table-row-hover-background);

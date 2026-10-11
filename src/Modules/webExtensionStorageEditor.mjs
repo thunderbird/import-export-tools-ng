@@ -65,11 +65,8 @@ export async function open(options = {}) {
       --table-header-background-color: #f0f0f0;
       --table-row-hover-background: #f5f5ff;
       --table-row-editing-background: #e8f0fe;
-  
-      
     }
 
-    
     @media (prefers-color-scheme: dark) {
 	    :root {
         --editor-background-color: #242430;
@@ -78,7 +75,7 @@ export async function open(options = {}) {
         --table-header-background-color: #2e2e2e;
         --table-row-hover-background: #3b3b50;
         --table-row-editing-background: #2a2a36;
-
+      }
     }
 
     body {
@@ -94,7 +91,6 @@ export async function open(options = {}) {
         padding: 6px 10px;
         background: var(--header-background-color);
         color: var(--editor-font-color);
-
     }
     header {
         display: flex;
@@ -118,7 +114,6 @@ export async function open(options = {}) {
         border-collapse: collapse;
         margin-top: 6px;
         color: var(--editor-font-color);
-
     }
     th,
     td {
@@ -132,8 +127,6 @@ export async function open(options = {}) {
         top: 0;
         text-align: left;
     }
-
-
     tr:hover {
         background: var(--table-row-hover-background);
     }
@@ -158,8 +151,7 @@ export async function open(options = {}) {
         line-height: 1;
     }
     .row-editing {
-        background: #e8f0fe !important;
-
+        background: var(--table-row-editing-background) !important;
     }
     .error {
         color: red;

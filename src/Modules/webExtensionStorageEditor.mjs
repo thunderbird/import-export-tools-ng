@@ -114,7 +114,6 @@ export async function open(options = {}) {
         border-collapse: collapse;
         margin-top: 6px;
         color: var(--editor-font-color);
-        table-layout: auto};
     }
     th,
     td {
@@ -128,24 +127,6 @@ export async function open(options = {}) {
         top: 0;
         text-align: left;
     }
-      tr>:nth-child(1) {
-      width: 1%;
-      white-space: nowrap;
-    }
-      tr>:nth-child(2) {
-      width: 1%;
-      white-space: nowrap;
-    }
-    tr>:nth-child(3) {
-      width: auto;
-      white-space: normal;
-      overflow-wrap: break-word;
-    }
-    
-    tr>:nth-child(4) {
-      width: 1%;
-      white-space: nowrap;
-    }
     tr:hover {
         background: var(--table-row-hover-background);
     }
@@ -154,10 +135,8 @@ export async function open(options = {}) {
     }
     .type {
         font-family: monospace;
-        width2: 1%;
+        width: 8em;
         text-align: left;
-      white-space: nowrap;
-
     }
     .controls {
         text-align: right;

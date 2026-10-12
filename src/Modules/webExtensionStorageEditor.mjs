@@ -63,34 +63,31 @@ export async function open(options = {}) {
       --editor-font-color: #222;
       --header-background-color: #eee;
       --table-header-background-color: #f0f0f0;
-      --table-row-hover-background: #f5f5ff;
-      --table-row-editing-background: #e8f0fe;
+      --table-row-hover: #f5f5ff;
+      --table-border-color: #ddd;
     }
-
     @media (prefers-color-scheme: dark) {
-	    :root {
-        --editor-background-color: #242430;
+      :root {
+        --editor-background-color: #23222b;
         --editor-font-color: #f7f7f7;
         --header-background-color: #343434;
         --table-header-background-color: #2e2e2e;
-        --table-row-hover-background: #3b3b50;
-        --table-row-editing-background: #2a2a36;
+        --table-row-hover: #3b3b50;
+        --table-border-color: #404040;
+        color-scheme: dark;
       }
     }
-
     body {
-        font-family: system-ui, sans-serif;
-        font-size: 13px;
+        font: 13px system-ui, sans-serif;
         margin: 0;
         padding: 0;
         background: var(--editor-background-color);
-        color: var(editor-font-color);
+        color: var(--editor-font-color);
     }
     header,
-        footer {
+    footer {
         padding: 6px 10px;
         background: var(--header-background-color);
-        color: var(--editor-font-color);
     }
     header {
         display: flex;
@@ -102,23 +99,22 @@ export async function open(options = {}) {
         padding: 2px 4px;
         font-family: monospace;
         background: var(--header-background-color);
-        color: var(--editor-font-color);
     }
     button {
         cursor: pointer;
         padding: 2px 6px;
         font-size: 13px;
+        color: var(--editor-font-color);
     }
     table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 6px;
-        color: var(--editor-font-color);
     }
     th,
     td {
         padding: 6px 8px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--table-border-color);
         vertical-align: top;
     }
     th {
@@ -126,9 +122,10 @@ export async function open(options = {}) {
         position: sticky;
         top: 0;
         text-align: left;
+        font-weight: 700;
     }
     tr:hover {
-        background: var(--table-row-hover-background);
+        background: var(--table-row-hover);
     }
     .key {
         font-family: monospace;
@@ -138,20 +135,19 @@ export async function open(options = {}) {
         width: 8em;
         text-align: left;
     }
+    .value {
+        max-width: 50em;
+    }
     .controls {
         text-align: right;
         white-space: nowrap;
     }
     .editBtn {
         background: none;
-        color: var(--editor-font-color);
         border: none;
         cursor: pointer;
         font-size: 14px;
         line-height: 1;
-    }
-    .row-editing {
-        background: var(--table-row-editing-background) !important;
     }
     .error {
         color: red;
@@ -391,6 +387,7 @@ function init() {
 
     tdKey.className = "key";
     tdType.className = "type";
+    tdVal.className = "value";
     tdCtrl.className = "controls";
     tdKey.textContent = key;
     tdType.textContent = rowType;
@@ -577,6 +574,7 @@ function init() {
       editArea.style.display = "";
       errorBox.style.display = "none";
       editBtn.textContent = "✓";
+      editBtn.title = "Save";
       editorEl.focus();
       //try { editorEl.select(); } catch (e) { }
     }
@@ -587,6 +585,7 @@ function init() {
       editArea.style.display = "none";
       errorBox.style.display = "none";
       editBtn.textContent = "✎";
+      editBtn.title = "Edit";
     }
 
     async function saveEdit() {

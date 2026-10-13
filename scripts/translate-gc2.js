@@ -20,10 +20,17 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "ctxMenu_Options_Editor.title", text: "Options Editor"},
+	{ key: "Key.header", text: "Key"},
+	{ key: "Type.header", text: "Type"},
+	{ key: "Value.header", text: "Value"},
+	{ key: "Edit.tooltip", text: "Edit"},
+	{ key: "Toggle.tooltip", text: "Toggle"},
+	{ key: "FilterKeys.placeholder", text: "Filter keys"},
+	{ key: "editInfo", text: "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled."},
+
+
+
 	
-
-
 
 ];
 

@@ -820,7 +820,7 @@
     "message": "Nessuna decrittazione"
   },
   "noEML": {
-    "message": "Non è stato trovato alcun file eml in questa cartella",
+    "message": "In questa cartella non è stato trovato alcun file eml",
     "src": "mboximport"
   },
   "nofolder": {

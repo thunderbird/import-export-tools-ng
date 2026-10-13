@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Záloha"
   },
+  "Edit.tooltip": {
+    "message": "Upraviť"
+  },
+  "editInfo": {
+    "message": "Kliknite na ✎ pre úpravu hodnôt. Stlačením ✓ uložíte úpravu alebo klávesom ESC zrušíte. Boolovské hodnoty je možné prepínať."
+  },
   "emailFiles": {
     "message": "Súbory e-mailov",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Výber správ na importovanie",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filtrovacie kľúče"
   },
   "Folder.label": {
     "message": "Priečinok"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Značka"
+  },
+  "Key.header": {
+    "message": "Kľúč"
   },
   "labelmenuMI": {
     "message": "Import/Export"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "Prepnúť"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Zálohovanie"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Celkový počet exportovaných správ"
   },
+  "Type.header": {
+    "message": "Typ"
+  },
   "useExtFilenameFormat": {
     "message": "Použite rozšírený formát"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filtrovanie znakov UTF-16 (symboly a emotikony)"
+  },
+  "Value.header": {
+    "message": "Hodnota"
   },
   "viewDbgConsole.msg": {
     "message": "  Chyby. Zobraziť konzolu ladenia (Ctrl-Shift-J)"

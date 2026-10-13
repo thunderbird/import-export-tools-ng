@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Backup"
   },
+  "Edit.tooltip": {
+    "message": "Bearbeiten"
+  },
+  "editInfo": {
+    "message": "Klicken Sie auf ✎, um Werte zu bearbeiten. Drücken Sie ✓ zum Speichern oder ESC zum Abbrechen. Boolesche Werte können umgeschaltet werden."
+  },
   "emailFiles": {
     "message": "E-Mail-Dateien (*.eml, *.nws)",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Zu importierende Nachrichten auswählen",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filterschlüssel"
   },
   "Folder.label": {
     "message": "Ordner"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Index"
+  },
+  "Key.header": {
+    "message": "Schlüssel"
   },
   "labelmenuMI": {
     "message": "Importieren/Exportieren"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profilimport"
   },
+  "Toggle.tooltip": {
+    "message": "Umschalten"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Backup"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Gesamtzahl der exportierten Nachrichten"
   },
+  "Type.header": {
+    "message": "Typ"
+  },
   "useExtFilenameFormat": {
     "message": "Erweitertes Format verwenden"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "UTF-16-Zeichen filtern (Symbole und Emojis)"
+  },
+  "Value.header": {
+    "message": "Wert"
   },
   "viewDbgConsole.msg": {
     "message": "  Fehler. Debug-Konsole anzeigen (Strg-Umschalt-J)"

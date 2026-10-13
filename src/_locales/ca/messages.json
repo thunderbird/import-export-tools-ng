@@ -252,6 +252,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Còpia de seguretat"
   },
+  "Edit.tooltip": {
+    "message": "Edita"
+  },
+  "editInfo": {
+    "message": "Feu clic a ✎ per editar els valors. Premeu ✓ per desar o ESC per cancel·lar. Els valors booleans es poden alternar."
+  },
   "emailFiles": {
     "message": "Fitxers de correu",
     "src": "mboximport"
@@ -359,6 +365,9 @@
   "filePickerImportMSG": {
     "message": "Seleccioneu els missatges que voleu importar",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Claus de filtre"
   },
   "Folder.label": {
     "message": "Carpeta"
@@ -593,6 +602,9 @@
   },
   "key": {
     "message": "Índex"
+  },
+  "Key.header": {
+    "message": "Clau"
   },
   "labelmenuMI": {
     "message": "Importació/exportació"
@@ -1077,6 +1089,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "Activa/desactiva"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Còpia de seguretat"
   },
@@ -1101,6 +1116,9 @@
   "totalMessagesExported.label": {
     "message": "Total de missatges exportats"
   },
+  "Type.header": {
+    "message": "Tipus"
+  },
   "useExtFilenameFormat": {
     "message": "Utilitza un format estès"
   },
@@ -1109,6 +1127,9 @@
   },
   "utf16Filter": {
     "message": "Filtra caràcters UTF-16 (símbols i emojis)"
+  },
+  "Value.header": {
+    "message": "Valor"
   },
   "viewDbgConsole.msg": {
     "message": "  Errors. Veure la consola de depuració (Control-Maj-J)"

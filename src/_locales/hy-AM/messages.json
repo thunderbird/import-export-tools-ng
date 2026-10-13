@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG` Պահուստացնել"
   },
+  "Edit.tooltip": {
+    "message": "Խմբագրել"
+  },
+  "editInfo": {
+    "message": "Սեղմեք ✎՝ արժեքները խմբագրելու համար: Սեղմեք ✓՝ պահպանելու կամ ESC՝ չեղարկելու համար: Բուլյան արժեքները կարող են փոխարկվել:"
+  },
   "emailFiles": {
     "message": "Էլ. նամակների ֆայլեր",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Ընտրեք ներմուծվող նամակները",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Ֆիլտրի ստեղներ"
   },
   "Folder.label": {
     "message": "Պանակ"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Ինդեքս"
+  },
+  "Key.header": {
+    "message": "Բանալի"
   },
   "labelmenuMI": {
     "message": "Ներմուծել/Արտածել"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG՝ պրոֆիլի ներմուծում"
   },
+  "Toggle.tooltip": {
+    "message": "Անջատել/անջատել"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Կրկնօրինակում"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Արտահանված հաղորդագրությունների ընդհանուր թիվը"
   },
+  "Type.header": {
+    "message": "Տեսակ"
+  },
   "useExtFilenameFormat": {
     "message": "Օգտագործեք երկարացված ձևաչափը"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Զտել UTF-16 նիշերը (նշաններ և էմոջիներ)"
+  },
+  "Value.header": {
+    "message": "Արժեք"
   },
   "viewDbgConsole.msg": {
     "message": "  Սխալներ. Դիտեք վրիպազերծման վահանակը (Control-Shift-J)"

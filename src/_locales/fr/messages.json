@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG · Sauvegarde"
   },
+  "Edit.tooltip": {
+    "message": "Modifier"
+  },
+  "editInfo": {
+    "message": "Cliquez sur ✎ pour modifier les valeurs. Appuyez sur ✓ pour enregistrer ou sur ÉCHAP pour annuler. Les valeurs booléennes peuvent être activées ou désactivées."
+  },
   "emailFiles": {
     "message": "Fichiers de courriel",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Sélectionner les messages à importer",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Clés de filtre"
   },
   "Folder.label": {
     "message": "Dossier"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Index"
+  },
+  "Key.header": {
+    "message": "Clé"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG · Importation de profil"
   },
+  "Toggle.tooltip": {
+    "message": "Basculer"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Total des messages exportés"
   },
+  "Type.header": {
+    "message": "Taper"
+  },
   "useExtFilenameFormat": {
     "message": "Utiliser un format avancé"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filtrer les caractères UTF-16 (symboles et émojis)"
+  },
+  "Value.header": {
+    "message": "Valeur"
   },
   "viewDbgConsole.msg": {
     "message": "  erreurs, consultez la console d’erreurs (Ctrl+Maj+J)."

@@ -252,6 +252,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Copia de seguranza"
   },
+  "Edit.tooltip": {
+    "message": "Editar"
+  },
+  "editInfo": {
+    "message": "Fai clic en ✎ para editar os valores. Preme ✓ para gardar ou ESC para cancelar. Os valores booleanos pódense alternar."
+  },
   "emailFiles": {
     "message": "Enviar ficheiros por correo electrónico",
     "src": "mboximport"
@@ -359,6 +365,9 @@
   "filePickerImportMSG": {
     "message": "Seleccionar as mensaxes a importar",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Claves de filtro"
   },
   "Folder.label": {
     "message": "Cartafol"
@@ -593,6 +602,9 @@
   },
   "key": {
     "message": "Índice"
+  },
+  "Key.header": {
+    "message": "Clave"
   },
   "labelmenuMI": {
     "message": "Importar/exportar"
@@ -1076,6 +1088,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "Alternar"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Copia de seguranza"
   },
@@ -1100,6 +1115,9 @@
   "totalMessagesExported.label": {
     "message": "Total de mensaxes exportadas"
   },
+  "Type.header": {
+    "message": "Tipo"
+  },
   "useExtFilenameFormat": {
     "message": "Usa Formato Estendido"
   },
@@ -1108,6 +1126,9 @@
   },
   "utf16Filter": {
     "message": "Filtrar caracteres UTF-16 (símbolos e emojis)"
+  },
+  "Value.header": {
+    "message": "Valor"
   },
   "viewDbgConsole.msg": {
     "message": "  Erros. Ver a consola de depuración (Control-Shift-J)"

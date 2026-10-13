@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - biztonsági mentés"
   },
+  "Edit.tooltip": {
+    "message": "Szerkesztés"
+  },
+  "editInfo": {
+    "message": "Kattintson a ✎ ikonra az értékek szerkesztéséhez. Nyomja meg a ✓ gombot a mentéshez, vagy az ESC gombot a visszavonáshoz. A logikai értékek között lehet váltani."
+  },
   "emailFiles": {
     "message": "Fájl küldése emailben",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Az importálni kívánt üzenetek kijelölése",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Szűrőkulcsok"
   },
   "Folder.label": {
     "message": "Mappa"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Azonosító"
+  },
+  "Key.header": {
+    "message": "Kulcsfontosságú"
   },
   "labelmenuMI": {
     "message": "Importálás/Exportálás"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profil importálása"
   },
+  "Toggle.tooltip": {
+    "message": "Váltás"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Biztonsági mentés"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Összes exportált üzenet"
   },
+  "Type.header": {
+    "message": "Típus"
+  },
   "useExtFilenameFormat": {
     "message": "A kiterjesztett formátum használata"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "UTF-16 karakterek szűrése (szimbólumok és hangulatjelek)"
+  },
+  "Value.header": {
+    "message": "Érték"
   },
   "viewDbgConsole.msg": {
     "message": "  Hibák. Lásd a Hibakereső konzolt (Control-Shift-J)"

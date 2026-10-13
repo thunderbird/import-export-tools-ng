@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "Tworzenie kopii zapasowej"
   },
+  "Edit.tooltip": {
+    "message": "Redagować"
+  },
+  "editInfo": {
+    "message": "Kliknij ✎, aby edytować wartości. Naciśnij ✓, aby zapisać, lub ESC, aby anulować. Wartości logiczne można przełączać."
+  },
   "emailFiles": {
     "message": "Pliki wiadomości",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Wybierz wiadomości do zaimportowania",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Klawisze filtrów"
   },
   "Folder.label": {
     "message": "Falcówka"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Indeks"
+  },
+  "Key.header": {
+    "message": "Klawisz"
   },
   "labelmenuMI": {
     "message": "Import/Eksport"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "Dźwignia kolankowa"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Kopia zapasowa"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Łączna liczba wyeksportowanych wiadomości"
   },
+  "Type.header": {
+    "message": "Typ"
+  },
   "useExtFilenameFormat": {
     "message": "Użyj rozszerzonego formatu"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filtruj znaki UTF-16 (symbole i emotikony)"
+  },
+  "Value.header": {
+    "message": "Wartość"
   },
   "viewDbgConsole.msg": {
     "message": "  Błędy. Wyświetl konsolę debugowania (Control-Shift-J)"

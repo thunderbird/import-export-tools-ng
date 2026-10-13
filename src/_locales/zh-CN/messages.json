@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - 备份"
   },
+  "Edit.tooltip": {
+    "message": "编辑"
+  },
+  "editInfo": {
+    "message": "点击✎编辑数值。按✓保存或按ESC取消。布尔值可以切换。"
+  },
   "emailFiles": {
     "message": "邮件文件",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "选择要导入的邮件",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "筛选键"
   },
   "Folder.label": {
     "message": "文件夹"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "索引"
+  },
+  "Key.header": {
+    "message": "钥匙"
   },
   "labelmenuMI": {
     "message": "导入/导出"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - 配置文件导入"
   },
+  "Toggle.tooltip": {
+    "message": "切换"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "备份"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "导出消息总数"
   },
+  "Type.header": {
+    "message": "类型"
+  },
   "useExtFilenameFormat": {
     "message": "使用扩展格式"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "过滤 UTF-16 字符（符号和表情符号）"
+  },
+  "Value.header": {
+    "message": "价值"
   },
   "viewDbgConsole.msg": {
     "message": "  错误。查看调试控制台 (Control-Shift-J)"

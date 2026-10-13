@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG- Backup"
   },
+  "Edit.tooltip": {
+    "message": "Edit"
+  },
+  "editInfo": {
+    "message": "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled."
+  },
   "emailFiles": {
     "message": "Email files",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Select the messages to import",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filter keys"
   },
   "Folder.label": {
     "message": "Folder"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Index"
+  },
+  "Key.header": {
+    "message": "Key"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1074,6 +1086,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "Toggle"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Backup"
   },
@@ -1098,6 +1113,9 @@
   "totalMessagesExported.label": {
     "message": "Total Messages Exported"
   },
+  "Type.header": {
+    "message": "Type"
+  },
   "useExtFilenameFormat": {
     "message": "Use Extended Format"
   },
@@ -1106,6 +1124,9 @@
   },
   "utf16Filter": {
     "message": "Filter UTF-16 characters (Symbols and Emojis)"
+  },
+  "Value.header": {
+    "message": "Value"
   },
   "viewDbgConsole.msg": {
     "message": "  Errors. View the Debug Console  (Control-Shift-J)"

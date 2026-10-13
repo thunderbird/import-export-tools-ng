@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Back-up"
   },
+  "Edit.tooltip": {
+    "message": "Bewerking"
+  },
+  "editInfo": {
+    "message": "Klik op ✎ om waarden te bewerken. Druk op ✓ om op te slaan of op ESC om te annuleren. Booleaanse waarden kunnen worden omgeschakeld."
+  },
   "emailFiles": {
     "message": "E-mailbestanden",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Selecteer de te importeren berichten",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filtersleutels"
   },
   "Folder.label": {
     "message": "Map"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Index"
+  },
+  "Key.header": {
+    "message": "Sleutel"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profiel importeren"
   },
+  "Toggle.tooltip": {
+    "message": "Schakelaar"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Back-up"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Totaal aantal geëxporteerde berichten"
   },
+  "Type.header": {
+    "message": "Type"
+  },
   "useExtFilenameFormat": {
     "message": "Gebruik uitgebreid formaat"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filter UTF-16-tekens (symbolen en emoji&#39;s)"
+  },
+  "Value.header": {
+    "message": "Waarde"
   },
   "viewDbgConsole.msg": {
     "message": "  Fouten. Bekijk de Debug Console (Control-Shift-J)"

@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG- Δημιουργία αντιγράφων ασφαλείας"
   },
+  "Edit.tooltip": {
+    "message": "Εκδίδω"
+  },
+  "editInfo": {
+    "message": "Κάντε κλικ στο ✎ για να επεξεργαστείτε τιμές. Πατήστε ✓ για αποθήκευση ή ESC για ακύρωση. Μπορείτε να αλλάξετε τις λογικές τιμές."
+  },
   "emailFiles": {
     "message": "Αρχεία email",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Επιλέξτε τα μηνύματα για εισαγωγή",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Πλήκτρα φίλτρου"
   },
   "Folder.label": {
     "message": "Ντοσιέ"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Δείκτης"
+  },
+  "Key.header": {
+    "message": "Κλειδί"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Εισαγωγή προφίλ"
   },
+  "Toggle.tooltip": {
+    "message": "Μπαρέτα"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Αντιγράφων ασφαλείας"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Σύνολο μηνυμάτων που εξήχθησαν"
   },
+  "Type.header": {
+    "message": "Τύπος"
+  },
   "useExtFilenameFormat": {
     "message": "Χρησιμοποιήστε εκτεταμένη μορφή"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Φιλτράρισμα χαρακτήρων UTF-16 (Σύμβολα και Emoji)"
+  },
+  "Value.header": {
+    "message": "Αξία"
   },
   "viewDbgConsole.msg": {
     "message": "  Σφάλματα. Προβολή της Κονσόλας εντοπισμού σφαλμάτων (Control-Shift-J)"

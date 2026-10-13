@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Sikkerhedskopier"
   },
+  "Edit.tooltip": {
+    "message": "Redigere"
+  },
+  "editInfo": {
+    "message": "Klik på ✎ for at redigere værdier. Tryk på ✓ for at gemme eller ESC for at annullere. Boolske værdier kan slås til/fra."
+  },
   "emailFiles": {
     "message": "Mailfiler",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Vælg meddelelserne til import",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filternøgler"
   },
   "Folder.label": {
     "message": "Mappe"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Indeks"
+  },
+  "Key.header": {
+    "message": "Nøgle"
   },
   "labelmenuMI": {
     "message": "ImportEksportTools"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profilimport"
   },
+  "Toggle.tooltip": {
+    "message": "Skift"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Sikkerhedskopier"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Antal eksporterede meddelelser i alt"
   },
+  "Type.header": {
+    "message": "Type"
+  },
   "useExtFilenameFormat": {
     "message": "Brug udvidet format"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filtrer UTF-16-tegn (symboler og emojis)"
+  },
+  "Value.header": {
+    "message": "Værdi"
   },
   "viewDbgConsole.msg": {
     "message": "  Fejl. Se fejlkonsolkonsollen (Control+Skift+J)"

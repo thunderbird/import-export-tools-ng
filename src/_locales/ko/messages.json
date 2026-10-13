@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Backup"
   },
+  "Edit.tooltip": {
+    "message": "편집하다"
+  },
+  "editInfo": {
+    "message": "✎를 클릭하여 값을 편집하세요. ✓를 눌러 저장하고 ESC를 눌러 취소하세요. 부울 값은 토글할 수 있습니다."
+  },
   "emailFiles": {
     "message": "Email 파일",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "들여올 메세지를 선택하세요",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "필터 키"
   },
   "Folder.label": {
     "message": "접는 사람"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "색인"
+  },
+  "Key.header": {
+    "message": "열쇠"
   },
   "labelmenuMI": {
     "message": "불러오기/내보내기"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Profile import"
   },
+  "Toggle.tooltip": {
+    "message": "비녀장"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "지원"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "내보낸 총 메시지 수"
   },
+  "Type.header": {
+    "message": "유형"
+  },
   "useExtFilenameFormat": {
     "message": "확장 형식 사용"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "UTF-16 문자 필터링(기호 및 이모티콘)"
+  },
+  "Value.header": {
+    "message": "값"
   },
   "viewDbgConsole.msg": {
     "message": "  오류. 디버그 콘솔 보기(Control-Shift-J)"

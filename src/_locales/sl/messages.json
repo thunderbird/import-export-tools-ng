@@ -251,6 +251,12 @@
   "dialog.title": {
     "message": "ImportExportTools NG - Varnostna kopija"
   },
+  "Edit.tooltip": {
+    "message": "Uredi"
+  },
+  "editInfo": {
+    "message": "Kliknite ✎ za urejanje vrednosti. Pritisnite ✓ za shranjevanje ali ESC za preklic. Logične vrednosti je mogoče preklopiti."
+  },
   "emailFiles": {
     "message": "Datoteke e-pošte",
     "src": "mboximport"
@@ -358,6 +364,9 @@
   "filePickerImportMSG": {
     "message": "Izberite sporočila za uvoz",
     "src": "mboximport"
+  },
+  "FilterKeys.placeholder": {
+    "message": "Filtrirni ključi"
   },
   "Folder.label": {
     "message": "Mapa"
@@ -592,6 +601,9 @@
   },
   "key": {
     "message": "Kazalo"
+  },
+  "Key.header": {
+    "message": "Ključ"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1075,6 +1087,9 @@
   "title": {
     "message": "ImportExportTools NG - Uvoz profila"
   },
+  "Toggle.tooltip": {
+    "message": "Preklopi"
+  },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Rezerva"
   },
@@ -1099,6 +1114,9 @@
   "totalMessagesExported.label": {
     "message": "Skupno število izvoženih sporočil"
   },
+  "Type.header": {
+    "message": "Vrsta"
+  },
   "useExtFilenameFormat": {
     "message": "Uporabi razširjeno obliko"
   },
@@ -1107,6 +1125,9 @@
   },
   "utf16Filter": {
     "message": "Filtrirajte znake UTF-16 (simboli in emojiji)"
+  },
+  "Value.header": {
+    "message": "Vrednost"
   },
   "viewDbgConsole.msg": {
     "message": "  Napake. Oglejte si konzolo za odpravljanje napak (Control-Shift-J)"

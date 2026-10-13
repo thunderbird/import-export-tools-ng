@@ -66,12 +66,13 @@ export var names = {
     }
 
     // Author email
-    let authorEmail = parse5322.parseSender(expTask.msgList[index].author).address;
+    let sender = parse5322.parseSender(expTask.msgList[index].author);
+    let authorEmail = sender?.address;
     if (!authorEmail || authorEmail == "") {
       authorEmail = "[No Author Email]";
     }
     // Author name
-    let authorName = parse5322.parseSender(expTask.msgList[index].author).name;
+    let authorName = sender?.name;
     if (!authorName || authorName == "") {
       // if no author name, check and substitute author email
       if (authorEmail != "[No Author Email]") {

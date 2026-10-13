@@ -81,6 +81,14 @@ webExtensionStorageEditor.open({
     storageArea: 'local',
     baseFilter: 'userPrefs.',
     type: 'tab',
+    localization: {
+      keyHdrStr: browser.i18n.getMessage("Key.header"),
+      typeHdrStr: browser.i18n.getMessage("Type.header"),
+      valueHdrStr: browser.i18n.getMessage("Value.header"),
+      filterKeysPlaceholder: browser.i18n.getMessage("FilterKeys.placeholder"),
+      editInfo: browser.i18n.getMessage("editInfo"),
+    
+    }
 });
 
 

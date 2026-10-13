@@ -46,6 +46,18 @@ export async function open(options = {}) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+
+  // localisation
+  const keyHdrStr = escapeHtml(options?.localization?.keyHdrStr || "Key");
+  const typeHdrStr = escapeHtml(options?.localization?.typeHdrStr || "Type");
+  const valueHdrStr = escapeHtml(options?.localization?.valueHdrStr || "Value");
+  const  editTooltip = escapeHtml(options?.localization?.editTooltip || "Edit");
+  const  toggleTooltip = escapeHtml(options?.localization?.toggleTooltip || "Toggle");
+
+  const filterKeysPlaceholder = escapeHtml(options?.localization?.filterKeysPlaceholder || "Filter keys");
+  const editInfo = escapeHtml(options?.localization?.editInfo || "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled.");
+
+
   const safeFooter = escapeHtml(footerText);
 
   // use the same module file as the page script (?viewer=1)
@@ -178,16 +190,16 @@ export async function open(options = {}) {
 </head>
 <body>
 <header>
-  <input class="filter" placeholder="Filter keys..." value="">
+  <input class="filter" placeholder='${filterKeysPlaceholder}…' value="">
 </header>
 
 <table>
-  <thead><tr><th>Key</th><th>Type</th><th>Value</th><th></th></tr></thead>
+  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th></th></tr></thead>
   <tbody id="entries"></tbody>
 </table>
 
 <footer>
-<p>${safeFooter}</p>
+<p>${editInfo}</p>
 </footer>
 
 <!-- load this same module as the page script; it will detect viewer=1 and run the UI code -->

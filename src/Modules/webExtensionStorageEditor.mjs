@@ -65,24 +65,32 @@ export async function open(options = {}) {
       --table-header-background-color: #f0f0f0;
       --table-row-hover: #f5f5ff;
       --table-border-color: #ddd;
+      --button-background: rgba(12,12,13,.1);
+      --button-background-hover: rgba(12,12,13,.2);
+      --button-background-active: rgba(12,12,13,.3);
     }
+
     @media (prefers-color-scheme: dark) {
-      :root {
+	    :root {
         --editor-background-color: #23222b;
         --editor-font-color: #f7f7f7;
         --header-background-color: #343434;
         --table-header-background-color: #2e2e2e;
         --table-row-hover: #3b3b50;
         --table-border-color: #404040;
+        --button-background: rgba(249,249,250,.1);
+        --button-background-hover: rgba(249,249,250,.15);
+        --button-background-active: rgba(249,249,250,.2);
         color-scheme: dark;
       }
     }
+
     body {
         font: 13px system-ui, sans-serif;
         margin: 0;
         padding: 0;
         background: var(--editor-background-color);
-        color: var(--editor-font-color);
+        color: var(editor-font-color);
     }
     header,
     footer {
@@ -93,6 +101,8 @@ export async function open(options = {}) {
         display: flex;
         align-items: center;
         gap: 10px;
+        position: sticky;
+        top: 0;
     }
     input.filter {
         flex: 1;
@@ -100,16 +110,27 @@ export async function open(options = {}) {
         font-family: monospace;
         background: var(--header-background-color);
     }
-    button {
+    button,
+    .editBtn {
         cursor: pointer;
-        padding: 2px 6px;
-        font-size: 13px;
-        color: var(--editor-font-color);
+        font-size: 14px;
+        border: 1px solid grey;
+        border-radius: 3px;
+        width: 24px;
+        height: 24px;
+        background: var(--button-background);
+    }
+    button:hover,
+    .editBtn:hover {
+        background: var(--button-background-hover);
+    }
+    button:hover:active,
+    .editBtn:hover:active {
+        background: var(--button-background-active);
     }
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 6px;
     }
     th,
     td {
@@ -118,9 +139,10 @@ export async function open(options = {}) {
         vertical-align: top;
     }
     th {
+        padding-bottom: 12px;
         background: var(--table-header-background-color);
         position: sticky;
-        top: 0;
+        top: 37px;
         text-align: left;
         font-weight: 700;
     }
@@ -141,13 +163,6 @@ export async function open(options = {}) {
     .controls {
         text-align: right;
         white-space: nowrap;
-    }
-    .editBtn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 14px;
-        line-height: 1;
     }
     .error {
         color: red;
@@ -512,7 +527,7 @@ function init() {
     const editorEl = editArea.querySelector("textarea, input");
 
     if (type === "boolean") {
-      editBtn.textContent = "⇄";
+      editBtn.textContent = "⮂";
       editBtn.title = "Toggle";
       editBtn.addEventListener('click', async () => {
         errorBox.style.display = "none";

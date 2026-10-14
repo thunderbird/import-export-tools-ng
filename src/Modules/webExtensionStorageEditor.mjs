@@ -48,14 +48,24 @@ export async function open(options = {}) {
     .replace(/'/g, '&#39;');
 
   // localisation
+  const titleStr = escapeHtml(options?.localization?.titleStr || "Storage editor");
+
   const keyHdrStr = escapeHtml(options?.localization?.keyHdrStr || "Key");
   const typeHdrStr = escapeHtml(options?.localization?.typeHdrStr || "Type");
   const valueHdrStr = escapeHtml(options?.localization?.valueHdrStr || "Value");
   const  editTooltip = escapeHtml(options?.localization?.editTooltip || "Edit");
   const  toggleTooltip = escapeHtml(options?.localization?.toggleTooltip || "Toggle");
+  const  saveTooltip = escapeHtml(options?.localization?.saveTooltip || "Save");
 
   const filterKeysPlaceholder = escapeHtml(options?.localization?.filterKeysPlaceholder || "Filter keys");
   const editInfo = escapeHtml(options?.localization?.editInfo || "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled.");
+  const objectType = escapeHtml(options?.localization?.objectType || "object");
+  const booleanType = escapeHtml(options?.localization?.booleanType || "boolean");
+  const numberType = escapeHtml(options?.localization?.numberType || "number");
+  const stringType = escapeHtml(options?.localization?.stringType || "string");
+
+  const SaveFailedErr = escapeHtml(options?.localization?.SaveFailedErr || "Save failed: ");
+  const ToggleFailedErr = escapeHtml(options?.localization?.ToggleFailedErr || "Toggle failed: ");
 
 
   const safeFooter = escapeHtml(footerText);
@@ -68,7 +78,7 @@ export async function open(options = {}) {
 <html>
 <head>
 <meta charset="utf-8">
-<title>Storage Viewer</title>
+<title>${titleStr}</title>
 <style>
     :root {
       --editor-background-color: #f9f9fb;
@@ -189,7 +199,15 @@ export async function open(options = {}) {
 </style>
 <meta id="localization"
   data-toggleTooltip="${toggleTooltip}"
-  data-ditTooltip="${editTooltip}"
+  data-editTooltip="${editTooltip}"
+  data-saveTooltip="${saveTooltip}"
+  data-objectType="${objectType}"
+  data-booleanType="${booleanType}"
+  data-numberType="${numberType}"
+  data-numberType="${numberType}"
+  data-stringType="${stringType}"
+  data-SaveFailedErr="${SaveFailedErr}"
+  data-ToggleFailedErr="${ToggleFailedErr}"
   
 />
 

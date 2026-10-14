@@ -194,7 +194,7 @@ export async function open(options = {}) {
 </header>
 
 <table>
-  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th id="button-hdr" toggle-tooltip="${toggleTooltip}"  ></th></tr></thead>
+  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th id="button-hdr" toggle-tooltip="${toggleTooltip}" edit-tooltip="${editTooltip}" ></th></tr></thead>
   <tbody id="entries"></tbody>
 </table>
 
@@ -556,7 +556,7 @@ function init() {
     }
 
     editBtn.textContent = "✎";
-    editBtn.title = "Edit";
+    editBtn.title = document.getElementById("button-hdr").getAttribute("edit-tooltip");
 
     tr.addEventListener('keydown', (ev) => {
       if (ev.key === "Escape" && tr.classList.contains("row-editing")) {

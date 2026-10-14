@@ -89,6 +89,9 @@
     "message": "このフォルダーにはインポートできません (IMAP、ニュースグループまたは仮想フォルダー形式のため)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "ブール値"
+  },
   "browse": {
     "message": "参照"
   },
@@ -909,12 +912,18 @@
     "message": "エクスポート不可: フォルダーへの書き込み権限がありません",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "番号"
+  },
   "numEML": {
     "message": "インポート EML ファイル:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "バックアップの保存数:"
+  },
+  "object.type": {
+    "message": "物体"
   },
   "offlineWarning": {
     "message": "このフォルダーはオフラインです。\nローカルに保存されているメッセージのみエクスポートします。このまま続行しますか？",
@@ -975,11 +984,17 @@
   "save": {
     "message": "保存"
   },
+  "Save.tooltip": {
+    "message": "保存"
+  },
   "saveAttsInMsgDir.label": {
     "message": "添付ファイルをメッセージと同じディレクトリに保存する"
   },
   "savedirs": {
     "message": "エクスポートフォルダー"
+  },
+  "SaveFailed.error": {
+    "message": "保存に失敗しました: "
   },
   "sdAll": {
     "message": "すべて"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "インポート開始"
   },
+  "string.type": {
+    "message": "弦"
+  },
   "strip_eml_CR.label": {
     "message": "EML メッセージのエクスポートの行末から CR を削除する"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "切り替え"
+  },
+  "ToggleFailed.error": {
+    "message": "切り替えに失敗しました: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "バックアップ"

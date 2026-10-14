@@ -89,6 +89,9 @@
     "message": "Det går inte att importera till den här mappen (IMAP-, diskussionsgrupps- eller virtuell mapp)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "boolesk"
+  },
   "browse": {
     "message": "Bläddra…"
   },
@@ -909,12 +912,18 @@
     "message": "Det går inte att exportera: du saknar skrivbehörighet i mappen",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "antal"
+  },
   "numEML": {
     "message": "Antal importerade EML-filer:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Antal säkerhetskopior att behålla:"
+  },
+  "object.type": {
+    "message": "objekt"
   },
   "offlineWarning": {
     "message": "Den här mappen är offline.\nEndast lokalt sparade meddelanden exporteras. Vill du fortsätta?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Spara"
   },
+  "Save.tooltip": {
+    "message": "Spara"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Spara bilagor i samma katalog som meddelandena"
   },
   "savedirs": {
     "message": "Exportera mappar"
+  },
+  "SaveFailed.error": {
+    "message": "Spara misslyckades: "
   },
   "sdAll": {
     "message": "Alla"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Starta import"
   },
+  "string.type": {
+    "message": "sträng"
+  },
   "strip_eml_CR.label": {
     "message": "Ta bort CR-tecken från radslut vid export av EML-meddelanden"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Växla"
+  },
+  "ToggleFailed.error": {
+    "message": "Växla misslyckades: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Säkerhetskopiering"

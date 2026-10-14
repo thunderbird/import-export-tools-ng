@@ -89,6 +89,9 @@
     "message": "이 폴더 안으로 불러오기가 불가능합니다(imap 또는 뉴스그룹 또는 가상 형식)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "부울"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -909,12 +912,18 @@
     "message": "내보내기 불가: 디렉토리 안의 쓰기 권한이 없습니다",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "숫자"
+  },
   "numEML": {
     "message": "Eml 파일 불러오기:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "보관할 백업 수:"
+  },
+  "object.type": {
+    "message": "물체"
   },
   "offlineWarning": {
     "message": "이 폴더는 오프라인입니다.\\\n이 메세지는 지역적으로만 저장되어 내보내집니다. 계속하길 원하십니까?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "저장"
   },
+  "Save.tooltip": {
+    "message": "구하다"
+  },
   "saveAttsInMsgDir.label": {
     "message": "첨부 파일은 메시지와 같은 디렉토리에 저장하세요."
   },
   "savedirs": {
     "message": "내보낼 디렉토리"
+  },
+  "SaveFailed.error": {
+    "message": "저장 실패: "
   },
   "sdAll": {
     "message": "모두"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "끈"
+  },
   "strip_eml_CR.label": {
     "message": "EML 메시지 내보내기를 위해 줄 끝에서 CR 제거"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "비녀장"
+  },
+  "ToggleFailed.error": {
+    "message": "토글 실패: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "지원"

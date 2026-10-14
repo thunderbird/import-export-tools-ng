@@ -89,6 +89,9 @@
     "message": "Հնարավոր չէ ներմուծել այս թղթապանակ (imap կամ newsgroup կամ վիրտուալ տեսակի է)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "բուլյան"
+  },
   "browse": {
     "message": "Դիտարկիչ"
   },
@@ -909,12 +912,18 @@
     "message": "Հնարավոր չէ արտածել. չկա գրելու իրավունք այդ թղթապանակում",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "համարը"
+  },
   "numEML": {
     "message": "Eml ֆայլերը ներմուծվել են.",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Պահպանման պահուստների քանակը."
+  },
+  "object.type": {
+    "message": "առարկա"
   },
   "offlineWarning": {
     "message": "Այս թղթապանակը անցանց է:\nԿարտածվեն միայն պահպանված տեղային նամակները: Շարունակե՞լ:",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Պահպանել"
   },
+  "Save.tooltip": {
+    "message": "Պահպանել"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Պահպանեք կցորդները նույն գրացուցակում հաղորդագրությունների հետ"
   },
   "savedirs": {
     "message": "Արտածել թղթապանակները"
+  },
+  "SaveFailed.error": {
+    "message": "Պահպանումը ձախողվեց՝ "
   },
   "sdAll": {
     "message": "Բոլորը"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Ներմուծել"
   },
+  "string.type": {
+    "message": "լար"
+  },
   "strip_eml_CR.label": {
     "message": "Հեռացրեք CR-ը տողերի վերջավորություններից eml հաղորդագրությունների արտահանման համար"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Անջատել/անջատել"
+  },
+  "ToggleFailed.error": {
+    "message": "Անջատիչը ձախողվեց՝ "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Կրկնօրինակում"

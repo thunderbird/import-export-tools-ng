@@ -89,6 +89,9 @@
     "message": "A mappa nem importálható (IMAP, hírcsoport vagy virtuális típus)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "logikai érték"
+  },
   "browse": {
     "message": "Tallózás…"
   },
@@ -909,12 +912,18 @@
     "message": "Nem importálható: nincs a mappához írás jogosultsága",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "szám"
+  },
   "numEML": {
     "message": "Az EML fájlok importálva:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "A megőrzendő biztonsági másolatok száma:"
+  },
+  "object.type": {
+    "message": "objektum"
   },
   "offlineWarning": {
     "message": "Ez a mappa nem elérhető.\nCsak a helyileg mentett üzenetek kerülnek exportálásra. Szeretné folytatni?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Mentés"
   },
+  "Save.tooltip": {
+    "message": "Megtakarítás"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Mellékletek mentése az üzenetekkel azonos könyvtárba"
   },
   "savedirs": {
     "message": "Mappák exportálása"
+  },
+  "SaveFailed.error": {
+    "message": "Mentés sikertelen: "
   },
   "sdAll": {
     "message": "Mindegyik"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Importálás indítása"
   },
+  "string.type": {
+    "message": "húr"
+  },
   "strip_eml_CR.label": {
     "message": "Távolítsa el a CR-t a sorvégekről az eml-üzenetek exportálásához"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Váltás"
+  },
+  "ToggleFailed.error": {
+    "message": "Sikertelen váltás: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Biztonsági mentés"

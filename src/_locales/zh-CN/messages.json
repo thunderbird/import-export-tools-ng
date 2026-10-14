@@ -89,6 +89,9 @@
     "message": "无法导入此信件夹（IMAP或新闻组或虚拟类型）",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "布尔值"
+  },
   "browse": {
     "message": "浏览器"
   },
@@ -909,12 +912,18 @@
     "message": "无法导出：该目录禁止写入",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "数字"
+  },
   "numEML": {
     "message": "已导入 Eml 文件：",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "要保留的备份数量："
+  },
+  "object.type": {
+    "message": "目的"
   },
   "offlineWarning": {
     "message": "该文件夹离线。\n只有本地存储的信息会被导出。是否继续？",
@@ -975,11 +984,17 @@
   "save": {
     "message": "保存"
   },
+  "Save.tooltip": {
+    "message": "节省"
+  },
   "saveAttsInMsgDir.label": {
     "message": "将附件保存在与邮件相同的目录中。"
   },
   "savedirs": {
     "message": "导出目录"
+  },
+  "SaveFailed.error": {
+    "message": "保存失败： "
   },
   "sdAll": {
     "message": "全部"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "开始导入"
   },
+  "string.type": {
+    "message": "细绳"
+  },
   "strip_eml_CR.label": {
     "message": "从 eml 消息导出的行结尾中去除 CR"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "切换"
+  },
+  "ToggleFailed.error": {
+    "message": "切换失败： "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "备份"

@@ -89,6 +89,9 @@
     "message": "Não é possível para importar esta pasta (imap ou grupos de discussão ou tipo virtual)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleano"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -909,12 +912,18 @@
     "message": "Não é possível exportar: não tem permissão de escrita na directoria",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "número"
+  },
   "numEML": {
     "message": "Ficheiros eml importados:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Número de backups a serem mantidos:"
+  },
+  "object.type": {
+    "message": "objeto"
   },
   "offlineWarning": {
     "message": "Esta pasta está offline.\\\\\\\nApenas as mensagens guardadas localmente serão exportadas. Deseja continuar?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Guardar"
   },
+  "Save.tooltip": {
+    "message": "Salvar"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Salve os anexos no mesmo diretório das mensagens."
   },
   "savedirs": {
     "message": "Exportar directorias"
+  },
+  "SaveFailed.error": {
+    "message": "Falha ao salvar: "
   },
   "sdAll": {
     "message": "Tudo"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "corda"
+  },
   "strip_eml_CR.label": {
     "message": "Tira CR dos finais de linha para exportações de mensagens eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Alternar"
+  },
+  "ToggleFailed.error": {
+    "message": "A alternância falhou: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Cópia de segurança"

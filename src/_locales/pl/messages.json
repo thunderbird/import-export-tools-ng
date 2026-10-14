@@ -89,6 +89,9 @@
     "message": "Nie udało się zaimportować do tego folderu (IMAP, NEWS lub wirtualny)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "wartość logiczna"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -909,12 +912,18 @@
     "message": "Nie można wyeksportować – brak uprawnień do zapisu w katalogu",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "numer"
+  },
   "numEML": {
     "message": "Zaimportowano plików eml:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Liczba kopii zapasowych do zachowania:"
+  },
+  "object.type": {
+    "message": "obiekt"
   },
   "offlineWarning": {
     "message": "Ten folder jest niedostępny.\nTylko wiadomości dostępne lokalnie zostaną wyeksportowane.\nCzy chcesz kontynuować?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Zapisuj"
   },
+  "Save.tooltip": {
+    "message": "Ratować"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Zapisz załączniki w tym samym katalogu, co wiadomości"
   },
   "savedirs": {
     "message": "Foldery eksportu"
+  },
+  "SaveFailed.error": {
+    "message": "Zapisywanie nie powiodło się: "
   },
   "sdAll": {
     "message": "Wszystko"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "smyczkowy"
+  },
   "strip_eml_CR.label": {
     "message": "Usuń CR z zakończeń linii dla eksportu wiadomości eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Dźwignia kolankowa"
+  },
+  "ToggleFailed.error": {
+    "message": "Przełączanie nieudane: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Kopia zapasowa"

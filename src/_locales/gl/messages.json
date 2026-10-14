@@ -89,6 +89,9 @@
     "message": "Non foi posíbel importar neste cartafol (tipo IMAP ou grupo de noticias ou tipo virtual)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleano"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -910,12 +913,18 @@
     "message": "Non foi posíbel exportar: o directorio non ten permiso de escritura",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "número"
+  },
   "numEML": {
     "message": "Importáronse os ficheiros eml:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Número de copias de seguridade a conservar:"
+  },
+  "object.type": {
+    "message": "obxecto"
   },
   "offlineWarning": {
     "message": "Este cartafol está fora de liña.\\\nSó se exportarán as mensaxes locais. Quere continuar?",
@@ -976,11 +985,17 @@
   "save": {
     "message": "Gardar"
   },
+  "Save.tooltip": {
+    "message": "Gardar"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Gardar os anexos no mesmo directorio coas mensaxes"
   },
   "savedirs": {
     "message": "Exportar directorios"
+  },
+  "SaveFailed.error": {
+    "message": "Fallou o gardado: "
   },
   "sdAll": {
     "message": "Todos"
@@ -1061,6 +1076,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "cadea"
+  },
   "strip_eml_CR.label": {
     "message": "Elimina CR dos finais de liña para as exportacións de mensaxes eml"
   },
@@ -1090,6 +1108,9 @@
   },
   "Toggle.tooltip": {
     "message": "Alternar"
+  },
+  "ToggleFailed.error": {
+    "message": "Fallou a alternancia: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Copia de seguranza"

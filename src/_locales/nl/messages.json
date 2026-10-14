@@ -89,6 +89,9 @@
     "message": "Importeren in deze map is niet mogelijk (virtueel, IMAP- of nieuwsgroeptype)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleaans"
+  },
   "browse": {
     "message": "Bladeren…"
   },
@@ -909,12 +912,18 @@
     "message": "Kan niet exporteren: u hebt geen schrijfrechten in de map",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "nummer"
+  },
   "numEML": {
     "message": "Geïmporteerde eml-bestanden:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Aantal te bewaren back-ups:"
+  },
+  "object.type": {
+    "message": "voorwerp"
   },
   "offlineWarning": {
     "message": "Deze map is offline.\nAlleen de lokaal opgeslagen berichten worden geëxporteerd. Wilt u doorgaan?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Opslaan"
   },
+  "Save.tooltip": {
+    "message": "Redden"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Bewaar bijlagen in dezelfde map als berichten."
   },
   "savedirs": {
     "message": "Mappen exporteren"
+  },
+  "SaveFailed.error": {
+    "message": "Opslaan mislukt: "
   },
   "sdAll": {
     "message": "Alle"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Importeren starten"
   },
+  "string.type": {
+    "message": "snaar"
+  },
   "strip_eml_CR.label": {
     "message": "Verwijder CR van regeleinden voor export van eml-berichten"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Schakelaar"
+  },
+  "ToggleFailed.error": {
+    "message": "Schakelaar niet ingeschakeld: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Back-up"

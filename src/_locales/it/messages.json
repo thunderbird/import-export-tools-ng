@@ -89,6 +89,9 @@
     "message": "Impossibile importare in questo tipo di cartella (IMAP, Newsgroup, Virtuale)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleano"
+  },
   "browse": {
     "message": "Sfoglia…"
   },
@@ -909,12 +912,18 @@
     "message": "Esportarazione impossibile: non si hanno i permessi di scrittura sulla cartella",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "numero"
+  },
   "numEML": {
     "message": "File eml importati:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Numero di backup da conservare:"
+  },
+  "object.type": {
+    "message": "oggetto"
   },
   "offlineWarning": {
     "message": "Questa cartella non è in linea.\nSaranno esportati solo i messaggi salvati localmente. Si desidera continuare?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Salva"
   },
+  "Save.tooltip": {
+    "message": "Salva"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Salva assieme allegati e messaggi nella stessa cartella"
   },
   "savedirs": {
     "message": "Cartelle di esportazione"
+  },
+  "SaveFailed.error": {
+    "message": "Salvataggio non riuscito: "
   },
   "sdAll": {
     "message": "Tutti"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Inizio dell’importazione"
   },
+  "string.type": {
+    "message": "corda"
+  },
   "strip_eml_CR.label": {
     "message": "Rimuovi CR dalle terminazioni di riga per esportare i messaggi in formato eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Attiva/disattiva"
+  },
+  "ToggleFailed.error": {
+    "message": "Interruttore non riuscito: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Backup"

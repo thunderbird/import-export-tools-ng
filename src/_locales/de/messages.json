@@ -89,6 +89,9 @@
     "message": "Importieren in diesen Ordner ist nicht möglich:\n\nVermutlich handelt es sich um ein IMAP-Konto, eine Newsgruppe oder einen virtuellen Ordner.",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "boolescher Wert"
+  },
   "browse": {
     "message": "Durchsuchen…"
   },
@@ -909,12 +912,18 @@
     "message": "Exportieren nicht möglich\\:\n\nKeine Schreibrechte im Zielverzeichnis",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "Nummer"
+  },
   "numEML": {
     "message": "Importierte EML-Dateien:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Anzahl der aufzubewahrenden Sicherungen:"
+  },
+  "object.type": {
+    "message": "Objekt"
   },
   "offlineWarning": {
     "message": "Dieser Ordner ist offline.\nEs werden nur die lokal gespeicherten Nachrichten exportiert. Möchten Sie fortfahren?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Speichern"
   },
+  "Save.tooltip": {
+    "message": "Speichern"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Anhänge sollten im selben Verzeichnis wie die Nachrichten gespeichert werden."
   },
   "savedirs": {
     "message": "Verzeichnisse exportieren"
+  },
+  "SaveFailed.error": {
+    "message": "Speichern fehlgeschlagen: "
   },
   "sdAll": {
     "message": "Alle"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Import starten"
   },
+  "string.type": {
+    "message": "Zeichenkette"
+  },
   "strip_eml_CR.label": {
     "message": "CR am Zeilenende für EML-Nachrichtenexporte entfernen"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Umschalten"
+  },
+  "ToggleFailed.error": {
+    "message": "Umschalten fehlgeschlagen: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Backup"

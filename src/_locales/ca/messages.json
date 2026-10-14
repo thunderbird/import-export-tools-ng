@@ -89,6 +89,9 @@
     "message": "No és possible importar a aquesta carpeta (és del tipus imap, grup de notícies o virtual)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleà"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -910,12 +913,18 @@
     "message": "No s\\'ha pogut exportar: no teniu permisos d\\'escriptura al directori",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "número"
+  },
   "numEML": {
     "message": "Nbre. de fitxers eml importats:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Nombre de còpies de seguretat a conservar:"
+  },
+  "object.type": {
+    "message": "objecte"
   },
   "offlineWarning": {
     "message": "Aquesta carpeta es troba fora de línia.\\\nNomés s\\'exportaran els missatges desats al vostre equip. Voleu continuar?",
@@ -976,11 +985,17 @@
   "save": {
     "message": "Desa"
   },
+  "Save.tooltip": {
+    "message": "Desa"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Desa els fitxers adjunts al mateix directori amb els missatges"
   },
   "savedirs": {
     "message": "Directoris d\\'exportació"
+  },
+  "SaveFailed.error": {
+    "message": "No s&#39;ha pogut desar: "
   },
   "sdAll": {
     "message": "Tot"
@@ -1061,6 +1076,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "corda"
+  },
   "strip_eml_CR.label": {
     "message": "Elimina CR dels finals de línia per a les exportacions de missatges eml"
   },
@@ -1091,6 +1109,9 @@
   },
   "Toggle.tooltip": {
     "message": "Activa/desactiva"
+  },
+  "ToggleFailed.error": {
+    "message": "Ha fallat l&#39;activació/desactivació: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Còpia de seguretat"

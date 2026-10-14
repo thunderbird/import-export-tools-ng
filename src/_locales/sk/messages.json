@@ -89,6 +89,9 @@
     "message": "Do tohto priečinka sa nedá importovať (imap, diskusná skupina alebo virtuálny)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "boolovská hodnota"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -909,12 +912,18 @@
     "message": "Nemožno importovať: nemáte právo zápisu do priečinka",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "číslo"
+  },
   "numEML": {
     "message": "Importované .eml súbory:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Počet záloh, ktoré sa majú zachovať:"
+  },
+  "object.type": {
+    "message": "objekt"
   },
   "offlineWarning": {
     "message": "Tento priečinok je offline. \\\nExportované budú len lokálne uložené správy. Naozaj chcete pokračovať?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Uložiť"
   },
+  "Save.tooltip": {
+    "message": "Uložiť"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Ukladajte prílohy do rovnakého adresára ako správy"
   },
   "savedirs": {
     "message": "Export priečinkov"
+  },
+  "SaveFailed.error": {
+    "message": "Uloženie zlyhalo: "
   },
   "sdAll": {
     "message": "Všetky"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "reťazec"
+  },
   "strip_eml_CR.label": {
     "message": "Odstráňte CR z koncov riadkov pre exporty správ EML"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Prepnúť"
+  },
+  "ToggleFailed.error": {
+    "message": "Prepínanie zlyhalo: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Zálohovanie"

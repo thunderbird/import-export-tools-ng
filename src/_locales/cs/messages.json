@@ -89,6 +89,9 @@
     "message": "Do této složky nelze importovat (imap nebo diskusní skupina nebo virtuální typ)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleovská"
+  },
   "browse": {
     "message": "Procházet…"
   },
@@ -906,12 +909,18 @@
     "message": "Nelze exportovat: žádné oprávnění k zápisu do adresáře",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "číslo"
+  },
   "numEML": {
     "message": "Importované soubory EML:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Počet záloh k uchování:"
+  },
+  "object.type": {
+    "message": "objekt"
   },
   "offlineWarning": {
     "message": "Tato složka je offline.\nBudou exportovány pouze lokálně uložené zprávy. Jste si jistý, že chcete pokračovat?",
@@ -972,11 +981,17 @@
   "save": {
     "message": "Uložit"
   },
+  "Save.tooltip": {
+    "message": "Uložit"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Ukládat přílohy do stejného adresáře jako zprávy"
   },
   "savedirs": {
     "message": "Export adresářů"
+  },
+  "SaveFailed.error": {
+    "message": "Uložení se nezdařilo: "
   },
   "sdAll": {
     "message": "Všechno"
@@ -1057,6 +1072,9 @@
   "start": {
     "message": "Spusťte import"
   },
+  "string.type": {
+    "message": "řetězec"
+  },
   "strip_eml_CR.label": {
     "message": "Odstraňte CR z konců řádků pro exporty zpráv EML"
   },
@@ -1086,6 +1104,9 @@
   },
   "Toggle.tooltip": {
     "message": "Přepnout"
+  },
+  "ToggleFailed.error": {
+    "message": "Přepnutí se nezdařilo: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Záloha"

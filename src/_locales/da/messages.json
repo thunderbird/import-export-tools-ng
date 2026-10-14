@@ -89,6 +89,9 @@
     "message": "Import til denne mappe er ikke mulig (imap, nyhedsgruppe eller virtuel type)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "boolsk"
+  },
   "browse": {
     "message": "Gennemse…"
   },
@@ -909,12 +912,18 @@
     "message": "Ude at stand til at eksportere: ingen skrivetilladelse i denne mappe",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "antal"
+  },
   "numEML": {
     "message": "Eml-filer importeret:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Antal sikkerhedskopier, der skal beholdes:"
+  },
+  "object.type": {
+    "message": "objekt"
   },
   "offlineWarning": {
     "message": "Denne mappe er offline.\\Kun de meddelelser der er gemt lokalt vil blive eksporteret. Vil du fortsætte?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Gem"
   },
+  "Save.tooltip": {
+    "message": "Spare"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Gem vedhæftede filer i samme mappe som meddelelser"
   },
   "savedirs": {
     "message": "Eksporter mapper"
+  },
+  "SaveFailed.error": {
+    "message": "Gemning mislykkedes: "
   },
   "sdAll": {
     "message": "Alle"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "snor"
+  },
   "strip_eml_CR.label": {
     "message": "Fjern CR fra linjeafslutninger for eml-meddelelseseksport"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Skift"
+  },
+  "ToggleFailed.error": {
+    "message": "Skift mislykkedes: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Sikkerhedskopier"

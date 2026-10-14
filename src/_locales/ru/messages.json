@@ -89,6 +89,9 @@
     "message": "Невозможно импортировать в эту папку (тип IMAP, группы обсуждения или виртуальный)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "логический"
+  },
   "browse": {
     "message": "Обзор"
   },
@@ -909,12 +912,18 @@
     "message": "Невозможно экспортировать: нет прав для записи в указанный каталог",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "число"
+  },
   "numEML": {
     "message": "Импортированные файлы eml:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Количество сохраняемых резервных копий:"
+  },
+  "object.type": {
+    "message": "объект"
   },
   "offlineWarning": {
     "message": "Это автономная папка.\nБудут экспортированы только локально сохранённые сообщения. Вы хотите продолжить?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Сохранить"
   },
+  "Save.tooltip": {
+    "message": "Сохранять"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Сохраняйте вложения в той же папке, что и сообщения."
   },
   "savedirs": {
     "message": "Укажите каталоги для экспорта"
+  },
+  "SaveFailed.error": {
+    "message": "Сохранение не удалось: "
   },
   "sdAll": {
     "message": "Все"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Начать импорт"
   },
+  "string.type": {
+    "message": "нить"
+  },
   "strip_eml_CR.label": {
     "message": "Удалите CR из концов строк для экспорта сообщений eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Переключать"
+  },
+  "ToggleFailed.error": {
+    "message": "Переключение не удалось: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Резервное копирование"

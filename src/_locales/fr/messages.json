@@ -89,6 +89,9 @@
     "message": "Impossible d’importer dans ce dossier (type imap, virtuel ou groupe de discussion)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booléen"
+  },
   "browse": {
     "message": "Parcourir…"
   },
@@ -909,12 +912,18 @@
     "message": "Exportation impossible : pas de droit d’écriture dans le dossier",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "nombre"
+  },
   "numEML": {
     "message": "Fichiers eml importés :",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Nombre de sauvegardes à conserver :"
+  },
+  "object.type": {
+    "message": "objet"
   },
   "offlineWarning": {
     "message": "Ce dossier est hors ligne.\nSeuls les messages enregistrés localement seront exportés.\nÊtes-vous sûr de vouloir continuer ?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Mode de sauvegarde "
   },
+  "Save.tooltip": {
+    "message": "Sauvegarder"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Enregistrer les pièces jointes dans le même dossier que les messages"
   },
   "savedirs": {
     "message": "Dossiers d’exportation"
+  },
+  "SaveFailed.error": {
+    "message": "Échec de l&#39;enregistrement : "
   },
   "sdAll": {
     "message": "Tout"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Lancer l’importation"
   },
+  "string.type": {
+    "message": "chaîne"
+  },
   "strip_eml_CR.label": {
     "message": "Supprimer les retours à la ligne pour les exportations de messages eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Inverser"
+  },
+  "ToggleFailed.error": {
+    "message": "Échec de la bascule : "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"

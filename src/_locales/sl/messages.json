@@ -89,6 +89,9 @@
     "message": "Uvoz v to mapo ni mogoč (vrste imap, novičarske skupine ali navidezne vrste)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "logična vrednost"
+  },
   "browse": {
     "message": "Brskalnik"
   },
@@ -909,12 +912,18 @@
     "message": "Izvoz ni mogoč: za mapo ni dovoljenj za pisanje",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "številka"
+  },
   "numEML": {
     "message": "Uvožene datoteke eml:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Število varnostnih kopij, ki jih je treba obdržati:"
+  },
+  "object.type": {
+    "message": "predmet"
   },
   "offlineWarning": {
     "message": "Ta mapa je nepovezana.\nIzvožena bodo samo krajevno shranjena sporočila. Ali želite nadaljevati?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Shrani"
   },
+  "Save.tooltip": {
+    "message": "Shrani"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Shranjevanje prilog v isti imenik kot sporočila"
   },
   "savedirs": {
     "message": "Izvoz map"
+  },
+  "SaveFailed.error": {
+    "message": "Shranjevanje ni uspelo: "
   },
   "sdAll": {
     "message": "Vse"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Začni uvoz"
   },
+  "string.type": {
+    "message": "niz"
+  },
   "strip_eml_CR.label": {
     "message": "Odstrani CR iz koncev vrstic za izvoz sporočil eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Preklopi"
+  },
+  "ToggleFailed.error": {
+    "message": "Preklop ni uspel: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Rezerva"

@@ -89,6 +89,9 @@
     "message": "Αδύνατο για εισαγωγή σε αυτόν το φάκελο (imap ή ομάδα συζήτησης ή εικονικός τύπος)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "λογικό"
+  },
   "browse": {
     "message": "Ξεφυλλίζω…"
   },
@@ -909,12 +912,18 @@
     "message": "Δεν είναι δυνατή η εξαγωγή: δεν υπάρχει άδεια γραφής στον κατάλογο",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "αριθμός"
+  },
   "numEML": {
     "message": "Εισαγόμενα αρχεία eml:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Αριθμός αντιγράφων ασφαλείας προς διατήρηση:"
+  },
+  "object.type": {
+    "message": "αντικείμενο"
   },
   "offlineWarning": {
     "message": "Αυτός ο φάκελος είναι εκτός σύνδεσης. \\ NΑκριβώς τα μηνύματα που αποθηκεύονται τοπικά θα εξαχθούν. Εισαι σιγουρος οτι θελεις να συνεχισεις?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Αποθηκεύσετε"
   },
+  "Save.tooltip": {
+    "message": "Εκτός"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Αποθήκευση συνημμένων στον ίδιο κατάλογο με μηνύματα"
   },
   "savedirs": {
     "message": "Εξαγωγή καταλόγων"
+  },
+  "SaveFailed.error": {
+    "message": "Η αποθήκευση απέτυχε: "
   },
   "sdAll": {
     "message": "Ολα"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Ξεκινήστε την εισαγωγή"
   },
+  "string.type": {
+    "message": "σειρά"
+  },
   "strip_eml_CR.label": {
     "message": "Αφαιρέστε το CR από τις καταλήξεις των γραμμών για εξαγωγές μηνυμάτων eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Μπαρέτα"
+  },
+  "ToggleFailed.error": {
+    "message": "Η εναλλαγή απέτυχε: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Αντιγράφων ασφαλείας"

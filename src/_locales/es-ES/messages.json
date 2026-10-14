@@ -89,6 +89,9 @@
     "message": "Ha sido imposible importar en esta carpeta (imap, grupos de noticias o tipo virtual)",
     "src": "mboximport"
   },
+  "boolean.type": {
+    "message": "booleano"
+  },
   "browse": {
     "message": "Browser"
   },
@@ -909,12 +912,18 @@
     "message": "No se ha podido exportar: no hay permiso de escritura en la carpeta",
     "src": "mboximport"
   },
+  "number.type": {
+    "message": "número"
+  },
   "numEML": {
     "message": "Archivos eml importados:",
     "src": "mboximport"
   },
   "numRetainBackups.msg": {
     "message": "Número de copias de seguridad a conservar:"
+  },
+  "object.type": {
+    "message": "objeto"
   },
   "offlineWarning": {
     "message": "Esta carpeta está desconectada.\\\nSólo los mensajes guardados localmente se exportarán.¿Quiere continuar?",
@@ -975,11 +984,17 @@
   "save": {
     "message": "Save"
   },
+  "Save.tooltip": {
+    "message": "Ahorrar"
+  },
   "saveAttsInMsgDir.label": {
     "message": "Guarda los archivos adjuntos en el mismo directorio que los mensajes."
   },
   "savedirs": {
     "message": "Exportar carpetas"
+  },
+  "SaveFailed.error": {
+    "message": "Error al guardar: "
   },
   "sdAll": {
     "message": "Todos"
@@ -1060,6 +1075,9 @@
   "start": {
     "message": "Start import"
   },
+  "string.type": {
+    "message": "cadena"
+  },
   "strip_eml_CR.label": {
     "message": "Retire CR de los finales de línea para las exportaciones de mensajes eml"
   },
@@ -1089,6 +1107,9 @@
   },
   "Toggle.tooltip": {
     "message": "Palanca"
+  },
+  "ToggleFailed.error": {
+    "message": "Error al alternar: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Respaldo"

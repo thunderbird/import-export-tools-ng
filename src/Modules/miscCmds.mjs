@@ -87,6 +87,8 @@ webExtensionStorageEditor.open({
       valueHdrStr: browser.i18n.getMessage("Value.header"),
       filterKeysPlaceholder: browser.i18n.getMessage("FilterKeys.placeholder"),
       editInfo: browser.i18n.getMessage("editInfo"),
+      toggleTooltip: browser.i18n.getMessage("Toggle.tooltip"),
+      editTooltip: browser.i18n.getMessage("Edit.tooltip"),
     
     }
 });

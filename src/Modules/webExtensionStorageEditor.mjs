@@ -194,7 +194,7 @@ export async function open(options = {}) {
 </header>
 
 <table>
-  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th></th></tr></thead>
+  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th id="button-hdr" toggle-tooltip="${toggleTooltip}"  ></th></tr></thead>
   <tbody id="entries"></tbody>
 </table>
 
@@ -540,7 +540,7 @@ function init() {
 
     if (type === "boolean") {
       editBtn.textContent = "⮂";
-      editBtn.title = "Toggle";
+      editBtn.title = document.getElementById("button-hdr").getAttribute("toggle-tooltip");
       editBtn.addEventListener('click', async () => {
         errorBox.style.display = "none";
         try {

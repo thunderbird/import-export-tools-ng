@@ -187,6 +187,12 @@ export async function open(options = {}) {
         box-sizing: border-box;
     }
 </style>
+<meta id="localization"
+  data-toggleTooltip="${toggleTooltip}"
+  data-ditTooltip="${editTooltip}"
+  
+/>
+
 </head>
 <body>
 <header>
@@ -194,7 +200,7 @@ export async function open(options = {}) {
 </header>
 
 <table>
-  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th id="button-hdr" toggle-tooltip="${toggleTooltip}" edit-tooltip="${editTooltip}" ></th></tr></thead>
+  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th></th></tr></thead>
   <tbody id="entries"></tbody>
 </table>
 
@@ -540,7 +546,7 @@ function init() {
 
     if (type === "boolean") {
       editBtn.textContent = "⮂";
-      editBtn.title = document.getElementById("button-hdr").getAttribute("toggle-tooltip");
+      editBtn.title = document.getElementById("localization").dataset.toggleTooltip;
       editBtn.addEventListener('click', async () => {
         errorBox.style.display = "none";
         try {
@@ -556,7 +562,7 @@ function init() {
     }
 
     editBtn.textContent = "✎";
-    editBtn.title = document.getElementById("button-hdr").getAttribute("edit-tooltip");
+    editBtn.title = document.getElementById("localization").dataset.editTooltip;
 
     tr.addEventListener('keydown', (ev) => {
       if (ev.key === "Escape" && tr.classList.contains("row-editing")) {

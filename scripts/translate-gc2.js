@@ -20,13 +20,14 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "Key.header", text: "Key"},
-	{ key: "Type.header", text: "Type"},
-	{ key: "Value.header", text: "Value"},
-	{ key: "Edit.tooltip", text: "Edit"},
-	{ key: "Toggle.tooltip", text: "Toggle"},
-	{ key: "FilterKeys.placeholder", text: "Filter keys"},
-	{ key: "editInfo", text: "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled."},
+	{ key: "Save.tooltip", text: "Save"},
+	{ key: "object.type", text: "object"},
+	{ key: "boolean.type", text: "boolean"},
+	{ key: "number.type", text: "number"},
+	{ key: "string.type", text: "string"},
+
+	{ key: "SaveFailed.error", text: "Save failed: "},
+	{ key: "ToggleFailed.error", text: "Toggle failed: "},
 
 
 

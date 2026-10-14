@@ -200,7 +200,7 @@ export async function open(options = {}) {
 </header>
 
 <table>
-  <thead><tr><th>${keyHdrStr}y</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th></th></tr></thead>
+  <thead><tr><th>${keyHdrStr}</th><th>${typeHdrStr}</th><th>${valueHdrStr}</th><th></th></tr></thead>
   <tbody id="entries"></tbody>
 </table>
 

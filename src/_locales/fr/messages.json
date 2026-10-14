@@ -174,7 +174,7 @@
     "message": "Aide"
   },
   "ctxMenu_Options_Editor.title": {
-    "message": "Éditeur d&#39;options"
+    "message": "Éditeur des préférences"
   },
   "ctxMenu_Options.title": {
     "message": "Options"
@@ -255,7 +255,7 @@
     "message": "Modifier"
   },
   "editInfo": {
-    "message": "Cliquez sur ✎ pour modifier les valeurs. Appuyez sur ✓ pour enregistrer ou sur ÉCHAP pour annuler. Les valeurs booléennes peuvent être activées ou désactivées."
+    "message": "Cliquer sur ✎ pour modifier les valeurs. Cliquer sur ✓ pour enregistrer ou appuyer sur Échap pour annuler. Les valeurs booléennes peuvent être inversées."
   },
   "emailFiles": {
     "message": "Fichiers de courriel",
@@ -366,7 +366,7 @@
     "src": "mboximport"
   },
   "FilterKeys.placeholder": {
-    "message": "Clés de filtre"
+    "message": "Filtrer les préférences"
   },
   "Folder.label": {
     "message": "Dossier"
@@ -522,7 +522,7 @@
     "src": "mboximport"
   },
   "HeaderDateFormat.label": {
-    "message": "Format de date de l’en-tête "
+    "message": "Format de la date dans l’en-tête "
   },
   "importDone": {
     "message": "Importation effectuée",
@@ -547,7 +547,7 @@
     "message": "Importation en cours…"
   },
   "indexCSVdateFormat": {
-    "message": "Format de la date pour CSV et index :"
+    "message": "Format de la date dans les fichiers CSV et index HTML :"
   },
   "indexFmtToken": {
     "message": "${index}"
@@ -603,7 +603,7 @@
     "message": "Index"
   },
   "Key.header": {
-    "message": "Clé"
+    "message": "Préférence"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1088,7 +1088,7 @@
     "message": "ImportExportTools NG · Importation de profil"
   },
   "Toggle.tooltip": {
-    "message": "Basculer"
+    "message": "Inverser"
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"
@@ -1115,7 +1115,7 @@
     "message": "Total des messages exportés"
   },
   "Type.header": {
-    "message": "Taper"
+    "message": "Type"
   },
   "useExtFilenameFormat": {
     "message": "Utiliser un format avancé"

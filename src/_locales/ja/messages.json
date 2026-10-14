@@ -255,7 +255,7 @@
     "message": "編集"
   },
   "editInfo": {
-    "message": "✎をクリックして値を編集します。✓を押して保存するか、ESCキーを押してキャンセルします。ブール値は切り替え可能です。"
+    "message": ""
   },
   "emailFiles": {
     "message": "メッセージファイル",
@@ -366,7 +366,7 @@
     "src": "mboximport"
   },
   "FilterKeys.placeholder": {
-    "message": "フィルターキー"
+    "message": "設定名フィルター."
   },
   "Folder.label": {
     "message": "フォルダー"
@@ -603,7 +603,7 @@
     "message": "インデックス"
   },
   "Key.header": {
-    "message": "鍵"
+    "message": ""
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -1088,7 +1088,7 @@
     "message": "ImportExportTools NG - プロファイルのインポート"
   },
   "Toggle.tooltip": {
-    "message": "トグル"
+    "message": "切り替え"
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "バックアップ"
@@ -1115,7 +1115,7 @@
     "message": "エクスポートされたメッセージの合計数"
   },
   "Type.header": {
-    "message": "タイプ"
+    "message": "種別"
   },
   "useExtFilenameFormat": {
     "message": "カスタム形式を使用する"
@@ -1127,7 +1127,7 @@
     "message": "UTF-16 文字(記号と絵文字)をフィルタリングする"
   },
   "Value.header": {
-    "message": "価値"
+    "message": "値"
   },
   "viewDbgConsole.msg": {
     "message": "  エラー デバッグコンソールを表示する  (Control+Shift+J)"

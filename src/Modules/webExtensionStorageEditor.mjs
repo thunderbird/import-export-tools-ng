@@ -198,18 +198,16 @@ export async function open(options = {}) {
     }
 </style>
 <meta id="localization"
-  data-toggleTooltip="${toggleTooltip}"
-  data-editTooltip="${editTooltip}"
-  data-saveTooltip="${saveTooltip}"
-  data-objectType="${objectType}"
-  data-booleanType="${booleanType}"
-  data-numberType="${numberType}"
-  data-numberType="${numberType}"
-  data-stringType="${stringType}"
-  data-SaveFailedErr="${SaveFailedErr}"
-  data-ToggleFailedErr="${ToggleFailedErr}"
-  
-/>
+  data-toggle-tooltip="${toggleTooltip}"
+  data-edit-tooltip="${editTooltip}"
+  data-save-tooltip="${saveTooltip}"
+  data-object-type="${objectType}"
+  data-boolean-type="${booleanType}"
+  data-number-type="${numberType}"
+  data-string-type="${stringType}"
+  data-save-failed-err="${SaveFailedErr}"
+  data-toggle-failed-err="${ToggleFailedErr}"
+  />
 
 </head>
 <body>
@@ -545,6 +543,7 @@ function init() {
     const editArea = tr.querySelector(".editArea");
     const errorBox = tr.querySelector(".error");
 
+    document.getElementById("localization").dataset.
     /**
      * Persist a new value for this leaf and refresh the row's display.
      *
@@ -564,7 +563,7 @@ function init() {
 
     if (type === "boolean") {
       editBtn.textContent = "⮂";
-      editBtn.title = document.getElementById("localization").dataset.toggleTooltip;
+      editBtn.title = toggleTooltip;
       editBtn.addEventListener('click', async () => {
         errorBox.style.display = "none";
         try {

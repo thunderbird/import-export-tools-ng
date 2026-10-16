@@ -20,16 +20,8 @@ const translate = new Translate({ projectId, key });
 */
 
 var translationArray = [
-	{ key: "Save.tooltip", text: "Save"},
-	{ key: "object.type", text: "object"},
-	{ key: "boolean.type", text: "boolean"},
-	{ key: "number.type", text: "number"},
-	{ key: "string.type", text: "string"},
-
-	{ key: "SaveFailed.error", text: "Save failed: "},
-	{ key: "ToggleFailed.error", text: "Toggle failed: "},
-
-
+	{ key: "notNumber.error", text: "Value is not a number"},
+	
 
 	
 

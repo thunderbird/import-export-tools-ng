@@ -905,6 +905,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Usar notificacións en lugar da xanela de estado para a exportación de mensaxes seleccionadas"
   },
+  "notNumber.error": {
+    "message": "O valor non é un número"
+  },
   "noWarning": {
     "message": "Non amosar de novo este aviso",
     "src": "mboximport"

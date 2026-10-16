@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Za izvoz izbranih sporočil uporabite obvestila namesto okna s stanjem"
   },
+  "notNumber.error": {
+    "message": "Vrednost ni število"
+  },
   "noWarning": {
     "message": "Ne prikaži tega opozorila",
     "src": "mboximport"

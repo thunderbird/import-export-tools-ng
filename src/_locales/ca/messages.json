@@ -905,6 +905,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Utilitza notificacions en lloc de la finestra d&#39;estat per a l&#39;exportació de missatges seleccionats"
   },
+  "notNumber.error": {
+    "message": "El valor no és un número"
+  },
   "noWarning": {
     "message": "No mostris més aquest avís",
     "src": "mboximport"

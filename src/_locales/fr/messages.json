@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Utiliser les notifications plutôt que la fenêtre d’état pour l’exportation des messages sélectionnés"
   },
+  "notNumber.error": {
+    "message": "La valeur n&#39;est pas un nombre"
+  },
   "noWarning": {
     "message": "Ne plus afficher cet avertissement",
     "src": "mboximport"

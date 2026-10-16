@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Pre export vybraných správ použiť upozornenia namiesto stavového okna"
   },
+  "notNumber.error": {
+    "message": "Hodnota nie je číslo"
+  },
   "noWarning": {
     "message": "Toto varovanie už viac nezobrazovať",
     "src": "mboximport"

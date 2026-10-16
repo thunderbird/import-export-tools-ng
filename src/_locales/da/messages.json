@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Vis en meddelelse i stedet for statusvindue til eksport af valgte meddelelser"
   },
+  "notNumber.error": {
+    "message": "Værdi er ikke et tal"
+  },
   "noWarning": {
     "message": "Vis ikke denne advarsel igen",
     "src": "mboximport"

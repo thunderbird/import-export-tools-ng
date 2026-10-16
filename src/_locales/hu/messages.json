@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Értesítések használata állapotablak helyett a kiválasztott üzenetek exportálásakor"
   },
+  "notNumber.error": {
+    "message": "Az érték nem egy szám"
+  },
   "noWarning": {
     "message": "Ne jelenjen meg újra a figyelmeztetés",
     "src": "mboximport"

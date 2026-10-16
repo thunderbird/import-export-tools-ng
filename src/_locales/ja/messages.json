@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "選択したメッセージのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
   },
+  "notNumber.error": {
+    "message": "価値は数値ではない"
+  },
   "noWarning": {
     "message": "次回からこの警告を表示しない",
     "src": "mboximport"

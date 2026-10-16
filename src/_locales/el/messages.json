@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Χρήση ειδοποιήσεων αντί για παράθυρο κατάστασης για την εξαγωγή επιλεγμένων μηνυμάτων"
   },
+  "notNumber.error": {
+    "message": "Η τιμή δεν είναι αριθμός"
+  },
   "noWarning": {
     "message": "Μην εμφανίσετε ξανά αυτήν την προειδοποίηση",
     "src": "mboximport"

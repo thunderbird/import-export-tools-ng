@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Använd aviseringar i stället för statusfönster vid export av markerade meddelanden"
   },
+  "notNumber.error": {
+    "message": "Värde är inte ett tal"
+  },
   "noWarning": {
     "message": "Visa inte den här varningen igen",
     "src": "mboximport"

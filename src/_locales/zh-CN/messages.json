@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "对于选定的消息导出，请使用通知而不是状态窗口。"
   },
+  "notNumber.error": {
+    "message": "值不是数字"
+  },
   "noWarning": {
     "message": "不要再次显示这个警告",
     "src": "mboximport"

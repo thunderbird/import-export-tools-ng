@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Ընտրված հաղորդագրությունների արտահանման համար կարգավիճակի պատուհանի փոխարեն օգտագործել ծանուցումներ"
   },
+  "notNumber.error": {
+    "message": "Արժեքը թիվ չէ"
+  },
   "noWarning": {
     "message": "Այլևս չցուցադրել",
     "src": "mboximport"

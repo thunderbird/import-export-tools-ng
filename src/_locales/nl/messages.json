@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Gebruik meldingen in plaats van het statusvenster voor het exporteren van geselecteerde berichten."
   },
+  "notNumber.error": {
+    "message": "Waarde is geen getal."
+  },
   "noWarning": {
     "message": "Deze waarschuwing niet meer tonen",
     "src": "mboximport"

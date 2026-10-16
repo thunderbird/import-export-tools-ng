@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "Используйте уведомления вместо окна состояния для экспорта выбранных сообщений."
   },
+  "notNumber.error": {
+    "message": "Ценность — это не число."
+  },
   "noWarning": {
     "message": "Больше не показывать это предупреждение",
     "src": "mboximport"

@@ -904,6 +904,9 @@
   "notificationsForExpSelMsgs.label": {
     "message": "선택한 메시지 내보내기에 대해 상태 창 대신 알림을 사용하세요"
   },
+  "notNumber.error": {
+    "message": "값은 숫자가 아닙니다."
+  },
   "noWarning": {
     "message": "이 경고를 다시 표시하지 않음",
     "src": "mboximport"

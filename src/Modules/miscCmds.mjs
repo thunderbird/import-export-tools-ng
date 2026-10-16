@@ -82,6 +82,7 @@ webExtensionStorageEditor.open({
     baseFilter: 'userPrefs.',
     type: 'tab',
     localization: {
+      titleStr: browser.i18n.getMessage("ctxMenu_Options_Editor.title"),
       keyHdrStr: browser.i18n.getMessage("Key.header"),
       typeHdrStr: browser.i18n.getMessage("Type.header"),
       valueHdrStr: browser.i18n.getMessage("Value.header"),
@@ -89,6 +90,17 @@ webExtensionStorageEditor.open({
       editInfo: browser.i18n.getMessage("editInfo"),
       toggleTooltip: browser.i18n.getMessage("Toggle.tooltip"),
       editTooltip: browser.i18n.getMessage("Edit.tooltip"),
+      saveTooltip: browser.i18n.getMessage("Save.tooltip"),
+      objectType: browser.i18n.getMessage("object.type"),
+      booleanType: browser.i18n.getMessage("number.type"),
+      stringType: browser.i18n.getMessage("string.type"),
+      SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
+      ToggleFailedErr: browser.i18n.getMessage("ToggleFailed.error"),
+      SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
+      SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
+
+
+
     
     }
 });

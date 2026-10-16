@@ -66,6 +66,7 @@ export async function open(options = {}) {
 
   const SaveFailedErr = escapeHtml(options?.localization?.SaveFailedErr || "Save failed: ");
   const ToggleFailedErr = escapeHtml(options?.localization?.ToggleFailedErr || "Toggle failed: ");
+  const notNumberErr = escapeHtml(options?.localization?.notNumberErr || "Value is not a number");
 
 
   const safeFooter = escapeHtml(footerText);
@@ -207,6 +208,8 @@ export async function open(options = {}) {
   data-string-type="${stringType}"
   data-save-failed-err="${SaveFailedErr}"
   data-toggle-failed-err="${ToggleFailedErr}"
+  data-not-number-err="${notNumberErr}"
+
   />
 
 </head>
@@ -288,16 +291,18 @@ function init() {
    * @returns {"object"|"boolean"|"number"|"string"} The row type.
    */
   function getType(v) {
+    const localization = document.getElementById("localization").dataset;
+
     if (v !== null && typeof v === "object") {
-      return "object";
+      return localization.objectType;
     }
     if (v === true || v === false) {
-      return "boolean";
+      return localization.booleanType;
     }
     if (typeof v === "number") {
-      return "number";
+      return localization.numberType;
     }
-    return "string";
+    return localization.stringType;
   }
 
   /**
@@ -543,7 +548,8 @@ function init() {
     const editArea = tr.querySelector(".editArea");
     const errorBox = tr.querySelector(".error");
 
-    document.getElementById("localization").dataset.
+    const localization = document.getElementById("localization").dataset;
+
     /**
      * Persist a new value for this leaf and refresh the row's display.
      *
@@ -563,7 +569,7 @@ function init() {
 
     if (type === "boolean") {
       editBtn.textContent = "⮂";
-      editBtn.title = toggleTooltip;
+      editBtn.title = localization.toggleTooltip;
       editBtn.addEventListener('click', async () => {
         errorBox.style.display = "none";
         try {
@@ -571,7 +577,7 @@ function init() {
           tr.classList.add('row-editing');
           setTimeout(() => tr.classList.remove('row-editing'), 300);
         } catch (err) {
-          errorBox.textContent = "Toggle failed: " + err;
+          errorBox.textContent = localization.toggleFailedErr + err;
           errorBox.style.display = "";
         }
       });
@@ -579,7 +585,7 @@ function init() {
     }
 
     editBtn.textContent = "✎";
-    editBtn.title = document.getElementById("localization").dataset.editTooltip;
+    editBtn.title = localization.editTooltip;
 
     tr.addEventListener('keydown', (ev) => {
       if (ev.key === "Escape" && tr.classList.contains("row-editing")) {
@@ -624,7 +630,7 @@ function init() {
       editArea.style.display = "";
       errorBox.style.display = "none";
       editBtn.textContent = "✓";
-      editBtn.title = "Save";
+      editBtn.title = localization.saveTooltip;
       editorEl.focus();
       //try { editorEl.select(); } catch (e) { }
     }
@@ -635,7 +641,7 @@ function init() {
       editArea.style.display = "none";
       errorBox.style.display = "none";
       editBtn.textContent = "✎";
-      editBtn.title = "Edit";
+      editBtn.title = localization.editTooltip;
     }
 
     async function saveEdit() {
@@ -645,14 +651,14 @@ function init() {
           newVal = JSON.parse(editorEl.value);
         } else if (type === "number") {
           newVal = Number(editorEl.value);
-          if (!Number.isFinite(newVal)) throw new Error("Value is not a number");
+          if (!Number.isFinite(newVal)) throw new Error(localization.notNumberErr);
         } else {
           newVal = editorEl.value;
         }
         await setValue(newVal);
         cancelEdit();
       } catch (err) {
-        errorBox.textContent = "Save failed: " + err;
+        errorBox.textContent = localization.saveFailedErr + err;
         errorBox.style.display = "";
       }
     }

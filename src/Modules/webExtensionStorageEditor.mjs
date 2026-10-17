@@ -294,7 +294,7 @@ function init() {
     const localization = document.getElementById("localization").dataset;
 
     if (v !== null && typeof v === "object") {
-      return localization.objectType;
+      return "object";
     }
     if (v === true || v === false) {
       return localization.booleanType;

@@ -97,8 +97,7 @@ webExtensionStorageEditor.open({
       SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
       ToggleFailedErr: browser.i18n.getMessage("ToggleFailed.error"),
       SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
-      SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
-
+      notNumberErr: browser.i18n.getMessage("notNumber.error"),
 
 
     

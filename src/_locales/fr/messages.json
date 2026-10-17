@@ -177,7 +177,7 @@
     "message": "Aide"
   },
   "ctxMenu_Options_Editor.title": {
-    "message": "Éditeur des préférences"
+    "message": "Éditeur de préférences"
   },
   "ctxMenu_Options.title": {
     "message": "Options"
@@ -988,7 +988,7 @@
     "message": "Mode de sauvegarde "
   },
   "Save.tooltip": {
-    "message": "Sauvegarder"
+    "message": "Enregistrer"
   },
   "saveAttsInMsgDir.label": {
     "message": "Enregistrer les pièces jointes dans le même dossier que les messages"
@@ -997,7 +997,7 @@
     "message": "Dossiers d’exportation"
   },
   "SaveFailed.error": {
-    "message": "Échec de l&#39;enregistrement : "
+    "message": "Échec de l’enregistrement – "
   },
   "sdAll": {
     "message": "Tout"
@@ -1112,7 +1112,7 @@
     "message": "Inverser"
   },
   "ToggleFailed.error": {
-    "message": "Échec de la bascule : "
+    "message": "Échec de l’inversion – "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Effectuer une sauvegarde"

@@ -53,23 +53,14 @@ export async function open(options = {}) {
   const keyHdrStr = escapeHtml(options?.localization?.keyHdrStr || "Key");
   const typeHdrStr = escapeHtml(options?.localization?.typeHdrStr || "Type");
   const valueHdrStr = escapeHtml(options?.localization?.valueHdrStr || "Value");
-  const  editTooltip = escapeHtml(options?.localization?.editTooltip || "Edit");
-  const  toggleTooltip = escapeHtml(options?.localization?.toggleTooltip || "Toggle");
-  const  saveTooltip = escapeHtml(options?.localization?.saveTooltip || "Save");
-
+  const editTooltip = escapeHtml(options?.localization?.editTooltip || "Edit");
+  const toggleTooltip = escapeHtml(options?.localization?.toggleTooltip || "Toggle");
+  const saveTooltip = escapeHtml(options?.localization?.saveTooltip || "Save");
   const filterKeysPlaceholder = escapeHtml(options?.localization?.filterKeysPlaceholder || "Filter keys");
   const editInfo = escapeHtml(options?.localization?.editInfo || "Click ✎ to edit values. Press ✓ to save or ESC to cancel. Boolean values can be toggled.");
-  const objectType = escapeHtml(options?.localization?.objectType || "object");
-  const booleanType = escapeHtml(options?.localization?.booleanType || "boolean");
-  const numberType = escapeHtml(options?.localization?.numberType || "number");
-  const stringType = escapeHtml(options?.localization?.stringType || "string");
-
   const SaveFailedErr = escapeHtml(options?.localization?.SaveFailedErr || "Save failed: ");
   const ToggleFailedErr = escapeHtml(options?.localization?.ToggleFailedErr || "Toggle failed: ");
   const notNumberErr = escapeHtml(options?.localization?.notNumberErr || "Value is not a number");
-
-
-  const safeFooter = escapeHtml(footerText);
 
   // use the same module file as the page script (?viewer=1)
   const moduleUrlWithParams = `${import.meta.url}?viewer=1&storageArea=${encodeURIComponent(storageArea)}&baseFilter=${encodeURIComponent(baseFilter)}`;
@@ -202,14 +193,9 @@ export async function open(options = {}) {
   data-toggle-tooltip="${toggleTooltip}"
   data-edit-tooltip="${editTooltip}"
   data-save-tooltip="${saveTooltip}"
-  data-object-type="${objectType}"
-  data-boolean-type="${booleanType}"
-  data-number-type="${numberType}"
-  data-string-type="${stringType}"
   data-save-failed-err="${SaveFailedErr}"
   data-toggle-failed-err="${ToggleFailedErr}"
   data-not-number-err="${notNumberErr}"
-
   />
 
 </head>
@@ -291,18 +277,16 @@ function init() {
    * @returns {"object"|"boolean"|"number"|"string"} The row type.
    */
   function getType(v) {
-    const localization = document.getElementById("localization").dataset;
-
     if (v !== null && typeof v === "object") {
       return "object";
     }
     if (v === true || v === false) {
-      return localization.booleanType;
+      return "boolean";
     }
     if (typeof v === "number") {
-      return localization.numberType;
+      return "number";
     }
-    return localization.stringType;
+    return "string";
   }
 
   /**

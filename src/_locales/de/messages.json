@@ -255,10 +255,10 @@
     "message": "ImportExportTools NG - Backup"
   },
   "Edit.tooltip": {
-    "message": "Bearbeiten"
+    "message": "bearbeiten"
   },
   "editInfo": {
-    "message": "Klicken Sie auf ✎, um Werte zu bearbeiten. Drücken Sie ✓ zum Speichern oder ESC zum Abbrechen. Boolesche Werte können umgeschaltet werden."
+    "message": "Klick ✎ um Werte zu editieren. Drücke ✓ um zu sichern oder ESC um abzubrechen. Booleans können getoggelt werden (Wahrheitswerte true/false können umgeschaltet werden."
   },
   "emailFiles": {
     "message": "E-Mail-Dateien (*.eml, *.nws)",
@@ -369,7 +369,7 @@
     "src": "mboximport"
   },
   "FilterKeys.placeholder": {
-    "message": "Filterschlüssel"
+    "message": "Einstellungen filtern"
   },
   "Folder.label": {
     "message": "Ordner"
@@ -606,7 +606,7 @@
     "message": "Index"
   },
   "Key.header": {
-    "message": "Schlüssel"
+    "message": "Präferenz"
   },
   "labelmenuMI": {
     "message": "Importieren/Exportieren"
@@ -905,7 +905,7 @@
     "message": "Benachrichtigungen anstelle des Statusfensters für ausgewählte Nachrichten exportieren"
   },
   "notNumber.error": {
-    "message": "Der Wert ist keine Zahl."
+    "message": "Wert ist keine Nummer"
   },
   "noWarning": {
     "message": "Diese Warnung nicht mehr anzeigen",
@@ -988,7 +988,7 @@
     "message": "Speichern"
   },
   "Save.tooltip": {
-    "message": "Speichern"
+    "message": "sichern"
   },
   "saveAttsInMsgDir.label": {
     "message": "Anhänge sollten im selben Verzeichnis wie die Nachrichten gespeichert werden."
@@ -997,7 +997,7 @@
     "message": "Verzeichnisse exportieren"
   },
   "SaveFailed.error": {
-    "message": "Speichern fehlgeschlagen: "
+    "message": "sichern fehlgeschlagn: "
   },
   "sdAll": {
     "message": "Alle"
@@ -1109,7 +1109,7 @@
     "message": "ImportExportTools NG - Profilimport"
   },
   "Toggle.tooltip": {
-    "message": "Umschalten"
+    "message": "umschalten"
   },
   "ToggleFailed.error": {
     "message": "Umschalten fehlgeschlagen: "

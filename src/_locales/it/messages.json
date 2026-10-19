@@ -108,7 +108,7 @@
     "message": "Profilo completo"
   },
   "buttonMenu_Exp_ProfileMailOnly_Id.title": {
-    "message": "Solo posta"
+    "message": "Solo messaggi di posta"
   },
   "buttonMenu_Help.title": {
     "message": "Guida"
@@ -150,7 +150,7 @@
     "src": "mboximport"
   },
   "copyMsgsToClip_firstOnly": {
-    "message": "Molti messaggi selezionati, solo il primo messaggio verrà copiato negli appunti.",
+    "message": "Molti messaggi selezionati, solo il primo messaggio verrà copiato negli appunti",
     "src": "mboximport"
   },
   "copyMsgsToClip_promptTitle": {
@@ -216,7 +216,7 @@
     "message": "${data}"
   },
   "dateFormatRefTooltipText": {
-    "message": "Formato data di riferimento"
+    "message": "Aiuto per il formato della data"
   },
   "day1": {
     "message": "1 giorno"
@@ -255,10 +255,10 @@
     "message": "ImportExportTools NG - Backup"
   },
   "Edit.tooltip": {
-    "message": "Modificare"
+    "message": "Modifica"
   },
   "editInfo": {
-    "message": "Fai clic su ✎ per modificare i valori. Premi ✓ per salvare o ESC per annullare. I valori booleani possono essere attivati o disattivati."
+    "message": "Fare clic su ✎ per modificare i valori. Fare clic su ✓ per salvare. Tasto ESC per annullare. I valori booleani possono essere attivati o disattivati."
   },
   "emailFiles": {
     "message": "File di posta",
@@ -272,7 +272,7 @@
     "src": "mboximport"
   },
   "error": {
-    "message": "Si è verificato un errore nell’importazione del profilo. I dettagli dell’errore sono:"
+    "message": "Si è verificato un errore nell’importazione del profilo. I dettagli dell’errore sono i seguenti:"
   },
   "Error.msg": {
     "message": "Errore"
@@ -286,7 +286,7 @@
     "src": "mboximport"
   },
   "exported": {
-    "message": "Esportati",
+    "message": "Esportato/i",
     "src": "mboximport"
   },
   "exportFolder": {
@@ -317,7 +317,7 @@
     "src": "mboximport"
   },
   "ExportSelectedMessages.title": {
-    "message": "Esportazione messaggi selezionati"
+    "message": "Esportazione dei messaggi selezionati"
   },
   "exportstart": {
     "message": "Esportazione in corso, attendere prego…",
@@ -334,7 +334,7 @@
     "src": "mboximport"
   },
   "extFilenameFormatRefTooltipText": {
-    "message": "Riferimento al formato esteso del file"
+    "message": "Aiuto per il formato avanzato del nome dei file"
   },
   "extFormat": {
     "message": "Formato:"
@@ -344,7 +344,7 @@
     "src": "mboximport"
   },
   "fileLenCaption": {
-    "message": "Lunghezza nome dei file"
+    "message": "Lunghezza del nome dei file"
   },
   "filenameCharset": {
     "message": "Codifica caratteri dei nomi dei file: "
@@ -369,7 +369,7 @@
     "src": "mboximport"
   },
   "FilterKeys.placeholder": {
-    "message": "Chiavi filtro"
+    "message": "Filtra le preferenze"
   },
   "Folder.label": {
     "message": "Cartella"
@@ -513,7 +513,7 @@
     "message": "Apre il percorso della cartella"
   },
   "folderexists": {
-    "message": "Importazione impossibile: cartella già esistente",
+    "message": "Importazione impossibile: cartella già esistente!",
     "src": "mboximport"
   },
   "formatWarning": {
@@ -525,7 +525,7 @@
     "src": "mboximport"
   },
   "HeaderDateFormat.label": {
-    "message": "Formato data dell’intestazione"
+    "message": "Formato della data dell’intestazione"
   },
   "importDone": {
     "message": "Importazione completata",
@@ -550,7 +550,7 @@
     "message": "Importazione in corso…"
   },
   "indexCSVdateFormat": {
-    "message": "Formato data del file CSV:"
+    "message": "Formato della data del file CSV e dell’indice HTML:"
   },
   "indexFmtToken": {
     "message": "${indice}"
@@ -568,14 +568,14 @@
     "message": "Cartelle con allegati in linea"
   },
   "internalerror": {
-    "message": "Impossibile importare, a causa di un errore sconosciuto",
+    "message": "Impossibile importare a causa di un errore sconosciuto",
     "src": "mboximport"
   },
   "intro1": {
-    "message": "Questa è una procedura sperimentale per importare un profilo. Non ci sono rischi di perdita di dati, ma non si garantisce che tutto funzioni regolarmente, specialmente se l’importazione del profilo avviene a partire da un altro computer. In ogni caso si tratta di una procedura più sicura rispetto al trasferimento manuale dei file."
+    "message": "Questa è una procedura sperimentale per importare un profilo. Non c’è rischio di perdita di dati, ma non si garantisce che tutto funzioni regolarmente, specialmente se l’importazione del profilo avviene a partire da un altro computer. In ogni caso si tratta di una procedura più sicura rispetto al trasferimento manuale dei file."
   },
   "intro2": {
-    "message": "La cartella contiene un profilo valido importabile. Durante la procedura (che può durare anche parecchi minuti), il programma resterà inaccessibile e inutilizzabile."
+    "message": "La cartella contiene un profilo valido e importabile. Durante la procedura (che può durare anche parecchi minuti) il programma resterà inaccessibile e inutilizzabile."
   },
   "intro3": {
     "message": "Per accedere al profilo importato, eseguire il “Gestore dei profili” facendo clic sul pulsante sottostante. Il profilo corrente verrà automaticamente chiuso."
@@ -603,10 +603,10 @@
     "message": "Solo i file di posta"
   },
   "key": {
-    "message": "Indice"
+    "message": "Preferenza"
   },
   "Key.header": {
-    "message": "Chiave"
+    "message": "Preferenza"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -624,7 +624,7 @@
     "message": "Opzioni di registrazione"
   },
   "MACwarning": {
-    "message": "N.B: Prima di proseguire, chiudere eventuali finestre aperte"
+    "message": "ATTENZIONE: Prima di proseguire, chiudere eventuali finestre aperte"
   },
   "MBcaptionlabel1": {
     "message": "Impostazioni generali"
@@ -905,7 +905,7 @@
     "message": "Per esportare i messaggi selezionati usa le notifiche al posto della finestra di stato"
   },
   "notNumber.error": {
-    "message": "Il valore non è un numero"
+    "message": "Il valore non è di tipo numerico"
   },
   "noWarning": {
     "message": "Non mostrare più questo avviso",
@@ -939,7 +939,7 @@
     "message": "Apertura della Guida in una finestra anziché in una scheda"
   },
   "over50GBskipMsg": {
-    "message": "più grande di 50GB, saltando",
+    "message": "più grande di 50GB, saltalo",
     "src": "mboximport"
   },
   "pickProfile": {
@@ -1079,17 +1079,16 @@
     "message": "Inizio dell’importazione"
   },
   "string.type": {
-    "message": "corda"
+    "message": "stringa"
   },
   "strip_eml_CR.label": {
-    "message": "Rimuovi CR dalle terminazioni di riga per esportare i messaggi in formato eml"
+    "message": "Per esportare i messaggi in formato eml rimuovere i CR dalle terminazioni di riga"
   },
   "subject": {
     "message": "Oggetto"
   },
   "subjectFmtToken": {
-    "message": "${oggetto}",
-    "src": "mboximport"
+    "message": "${oggetto}"
   },
   "suffixFmtToken": {
     "message": "${suffisso}"
@@ -1112,7 +1111,7 @@
     "message": "Attiva/disattiva"
   },
   "ToggleFailed.error": {
-    "message": "Interruttore non riuscito: "
+    "message": "Attivazione/disattivazione non riuscita: "
   },
   "toolsCtxMenu_Backup_Id.title": {
     "message": "Backup"

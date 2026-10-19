@@ -1088,7 +1088,7 @@
     "message": "タイトル"
   },
   "subjectFmtToken": {
-    "message": "${件名}",
+    "message": "${件名}"
   },
   "suffixFmtToken": {
     "message": "${接尾文字}"

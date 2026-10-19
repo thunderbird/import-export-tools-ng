@@ -91,7 +91,6 @@ webExtensionStorageEditor.open({
       toggleTooltip: browser.i18n.getMessage("Toggle.tooltip"),
       editTooltip: browser.i18n.getMessage("Edit.tooltip"),
       saveTooltip: browser.i18n.getMessage("Save.tooltip"),
-      SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
       ToggleFailedErr: browser.i18n.getMessage("ToggleFailed.error"),
       SaveFailedErr: browser.i18n.getMessage("SaveFailed.error"),
       notNumberErr: browser.i18n.getMessage("notNumber.error"),

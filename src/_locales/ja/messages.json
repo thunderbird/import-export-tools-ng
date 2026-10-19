@@ -90,7 +90,7 @@
     "src": "mboximport"
   },
   "boolean.type": {
-    "message": "ブール値"
+    "message": "真偽値"
   },
   "browse": {
     "message": "参照"
@@ -177,7 +177,7 @@
     "message": "ヘルプ"
   },
   "ctxMenu_Options_Editor.title": {
-    "message": "オプションエディター"
+    "message": "設定エディター"
   },
   "ctxMenu_Options.title": {
     "message": "設定"
@@ -258,7 +258,7 @@
     "message": "編集"
   },
   "editInfo": {
-    "message": ""
+    "message": "✎ をクリックして値を編集します。 ✓ を押して保存、または ESC キーを押してキャンセルできます。真偽値は切り替え可能です。"
   },
   "emailFiles": {
     "message": "メッセージファイル",
@@ -606,7 +606,7 @@
     "message": "インデックス"
   },
   "Key.header": {
-    "message": ""
+    "message": "設定名"
   },
   "labelmenuMI": {
     "message": "ImportExportTools NG"
@@ -905,7 +905,7 @@
     "message": "選択したメッセージのエクスポートには、ステータスウィンドウの代わりに通知を使用する"
   },
   "notNumber.error": {
-    "message": "価値は数値ではない"
+    "message": "値が整数ではありません"
   },
   "noWarning": {
     "message": "次回からこの警告を表示しない",
@@ -916,7 +916,7 @@
     "src": "mboximport"
   },
   "number.type": {
-    "message": "番号"
+    "message": "整数値"
   },
   "numEML": {
     "message": "インポート EML ファイル:",
@@ -926,7 +926,7 @@
     "message": "バックアップの保存数:"
   },
   "object.type": {
-    "message": "物体"
+    "message": "対象"
   },
   "offlineWarning": {
     "message": "このフォルダーはオフラインです。\nローカルに保存されているメッセージのみエクスポートします。このまま続行しますか？",
@@ -1079,7 +1079,7 @@
     "message": "インポート開始"
   },
   "string.type": {
-    "message": "弦"
+    "message": "文字列"
   },
   "strip_eml_CR.label": {
     "message": "EML メッセージのエクスポートの行末から CR を削除する"
@@ -1089,7 +1089,6 @@
   },
   "subjectFmtToken": {
     "message": "${件名}",
-    "src": "mboximport"
   },
   "suffixFmtToken": {
     "message": "${接尾文字}"

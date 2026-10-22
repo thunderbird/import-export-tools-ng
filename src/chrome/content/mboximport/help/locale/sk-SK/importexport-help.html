@@ -29,6 +29,11 @@
       Použite „zálohu“ v možnostiach protokolovania pre sledovanie<br />
       Poznámka: Zálohovanie pri ukončení bolo odstránené. V novej architektúre Thunderbirdu to nie je
       možné.<br /><br />
+      - Opravené: Export z panela správ, správ na karte alebo v okne<br />
+      - Opravené: Zobrazovanie odkazov [Bez predmetu] v indexe<br />
+      - Vylepšené: V stĺpci Predmet v indexe sa používa celé meno predmetu<br />
+      - Opravené: Spracovanie odosielateľov bez domény, napríklad &lt;MailDaemon&gt;<br />
+      - Pridaný editor možností (úložisko) od @jobisoft s pridanou tmavou témou a lokalizáciou<br />
       - Nové: Pridaná možnosť formátovania dátumu v hlavičke správy<br />
       - Migrácia starších nastavení do lokálneho úložiska<br />
       - Opravené: Odstránenie aktualizácie expStatusWin spôsobujúcej chybu pri<br />
@@ -37,6 +42,7 @@
       - Opravené: Index používal nesprávny oddeľovač ciest v systéme Darwin macOS<br />
       - Opravené: Chýbajúca hodina vo formáte dátumu indexu<br />
       - Aktualizované: ScriptLoad s URL adresou zdroja<br /><br />
+      - aktualizácia lokality @Joergen<br />
       - aktualizácia lokálu fr @DenB10<br />
       - kompletná aktualizácia lokality @topoldo<br />
       - aktualizácia lokality áno @kiki-ja<br />
@@ -141,7 +147,7 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Problémy alebo požiadavky na funkcie uverejňujte v repozitári rozšírení GitHub:
+      Problémy alebo požiadavky na funkcie zverejňujte v repozitári rozšírení GitHub:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >Problémy s ImportExportTools NG</a
       ><br /><br />
@@ -228,7 +234,7 @@
           </td>
           <td>
             Exportujte správy z priečinka ako súbory vo formáte HTML (bez štruktúry/podpriečinkov).<br />
-            Prílohy sa ukladajú ako samostatné súbory. Týmto sa tiež vytvorí indexový súbor HTML so zoznamom
+            Prílohy sa ukladajú ako samostatné súbory. Vytvorí sa tým aj indexový súbor HTML so zoznamom
             každej správy.
           </td>
         </tr>
@@ -453,7 +459,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
-          <td>Pripojiť vybrané správy do existujúceho súboru mbox</td>
+          <td>Pripojiť vybraté správy do existujúceho súboru mbox</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_Exp_Index_Id.title__</td>
@@ -536,7 +542,7 @@
       vlastný formát „Dátum (vlastný)“. Vlastný dátum je možné použiť aj s tokenom ${date_custom} použitým v
       rozšírených vlastných názvoch súborov. Pôvodný (predvolený) formát dátumu je:<br />
       RRRRMMMDDHHmm : 202011060808<br /><br />
-      Vlastný formát dátumu využíva sekvencie % zodpovedajúce funkcii <code>strftime()</code> v systéme Unix.
+      Vlastný formát dátumu využíva sekvencie % zodpovedajúce funkcii <code>strftime()</code> podobnej Unixu.
       Je založený na JavaScriptovom porte funkcie
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , ktorá slúži na formátovanie dátumu a času.<br />

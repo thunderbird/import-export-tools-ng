@@ -30,6 +30,11 @@
       Utilitzeu &quot;còpia de seguretat&quot; a les opcions de registre per a la traça<br />
       Nota: S&#39;ha eliminat la còpia de seguretat en sortir. No és possible amb la nova arquitectura del
       Thunderbird.<br /><br />
+      - Corregit: Exportar des del panell de missatges, missatges a la pestanya o finestra<br />
+      - Corregit: Mostrant enllaços [Sense assumpte] a l&#39;índex<br />
+      - Millorat: Columna d&#39;assumpte a l&#39;índex per utilitzar el nom complet de l&#39;assumpte<br />
+      - Corregit: Gestiona els remitents sense domini, per exemple &lt;MailDaemon&gt;<br />
+      - Editor d&#39;opcions (emmagatzematge) afegit per @jobisoft amb un tema fosc i localització afegits<br />
       - Nou: S&#39;ha afegit l&#39;opció de format de data de la capçalera del missatge<br />
       - Migrar les preferències heretades a l&#39;emmagatzematge local<br />
       - Corregit: Elimina l&#39;actualització expStatusWin que causava un error a<br />
@@ -38,6 +43,7 @@
       - Corregit: L&#39;índex utilitzava un separador de camins incorrecte a Darwin macOS.<br />
       - Corregit: Format de data d&#39;índex que faltava l&#39;hora<br />
       - Actualitzat: ScriptLoad amb l&#39;URL del recurs<br /><br />
+      - actualització de la configuració regional @Joergen<br />
       - actualització de la configuració regional de fr @DenB10<br />
       - actualització completa de la configuració regional @topoldo<br />
       - actualització de la configuració regional ja @kiki-ja<br />
@@ -219,7 +225,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exporta els missatges de la carpeta com a fitxers en format EML (sense estructura/subcarpetes).<br />
+            Exporta els missatges de carpeta com a fitxers en format EML (sense estructura/subcarpetes).<br />
             Això també crea un fitxer d&#39;índex HTML que llista cada missatge.
           </td>
         </tr>
@@ -450,7 +456,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
           <td>
-            Exporta els missatges seleccionats a fitxers de text sense format, incloent-hi els fitxers adjunts
+            Exporta els missatges seleccionats a fitxers de text sense format, inclosos els fitxers adjunts
           </td>
         </tr>
         <tr>
@@ -548,7 +554,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
-          <td>Obre la pàgina principal d&#39;ajuda</td>
+          <td>Obre la pàgina d&#39;ajuda principal</td>
         </tr>
       </tbody>
     </table>

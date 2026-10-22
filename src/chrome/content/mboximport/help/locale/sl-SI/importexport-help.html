@@ -18,9 +18,9 @@
         </td>
       </tr>
     </table>
-    <h3 id="release_notes" style="padding-left: 4px">Opombe k izdaji:</h3>
+    <h3 id="release_notes" style="padding-left: 4px">Opombe ob izdaji:</h3>
     <p>
-      <b>Obvestilo o zastaranju:</b><br />
+      <b>Obvestilo o opustitvi:</b><br />
       Od različice 15.0.3 dalje bom opustil starejše funkcije izvoznih sporočil. Prosim, uporabljajte in
       sporočite morebitne težave z novimi funkcijami (v15), da vas opustitev ne bo prizadela.<br /><br />
       <b>Novo: Samodejne, načrtovane varnostne kopije:</b><br />
@@ -28,14 +28,20 @@
       Opomnik ob zagonu, če je varnostno kopiranje zamujeno<br />
       V možnostih beleženja za sledenje uporabite »varnostno kopijo«<br />
       Opomba: Varnostno kopiranje ob izhodu je odstranjeno. V novi arhitekturi Thunderbirda to ni mogoče.<br /><br />
+      - Popravljeno: Izvoz iz podokna za sporočila, sporočila v zavihku ali oknu<br />
+      - Popravljeno: Prikaz povezav [Brez zadeve] v indeksu<br />
+      - Izboljšano: V stolpcu Zadeva v kazalu je zdaj mogoče uporabiti polno ime osebe<br />
+      - Popravljeno: Obravnava pošiljateljev brez domen, na primer &lt;MailDaemon&gt;<br />
+      - Dodan urejevalnik možnosti (shranjevanje) avtorja @jobisoft z dodano temno temo in lokalizacijo<br />
       - Novo: Dodana možnost oblikovanja datuma v glavi sporočila<br />
       - Prenesite starejše nastavitve v lokalno shrambo<br />
       - Popravljeno: Odstranitev posodobitve expStatusWin je povzročila napako pri<br />
       Kompozitorji ploščic v Linuxu<br />
-      - Popravljeno: Shranjevanje prilog, ko ima sporočilo ničelno dolžino telesa<br />
+      - Popravljeno: Shranjevanje prilog, ko je dolžina telesa sporočila ničelna<br />
       - Popravljeno: Indeks je v sistemu Darwin macOS uporabljal napačno ločilo poti.<br />
       - Popravljeno: V formatu indeksnega datuma je manjkala ura<br />
       - Posodobljeno: ScriptLoad z URL-jem vira<br /><br />
+      - posodobitev lokacije @Joergen<br />
       - posodobitev jezika fr @DenB10<br />
       - popolna posodobitev jezika @topoldo<br />
       - posodobitev jezika ja @kiki-ja<br />
@@ -97,7 +103,7 @@
         >Težave z orodjem ImportExportTools NG na Githubu</a
       ><br /><br />
       <b>Zasluge</b><br /><br />
-      Ta izdaja ne bi mogla biti mogoča brez testiranja, prevodov in predlogov več zvestih in predanih
+      Ta izdaja ne bi mogla nastati brez testiranja, prevodov in predlogov več zvestih in predanih
       uporabnikov. Najlepša hvala:<br /><br />
       <b
         >@DenB10<br />
@@ -149,7 +155,7 @@
       - Različica ImportExportTools NG<br />
       - Različica Thunderbirda<br />
       - Operacijski sistem in različica<br />
-      - Izpis za odpravljanje napak (kopiranje iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
+      - Izpis za odpravljanje napak (kopirano iz konzole za odpravljanje napak - dostop s Control-Shift-J)<br />
       - Opis korakov, ki vodijo do težave<br />
     </p>
     <h2 id="main_menu_help">Funkcije kontekstnega menija mape</h2>
@@ -277,7 +283,7 @@
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Izvozite sporočila iz mape kot eno samo besedilno datoteko CSV (vrednosti, ločene z vejicami),
+            Izvozite sporočila mape kot eno samo besedilno datoteko CSV (vrednosti, ločene z vejicami),
             priloge niso vključene.<br />
             S tem se ustvari tudi indeksna datoteka HTML, ki navaja vsa sporočila.
           </td>
@@ -417,7 +423,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Izvoz izbranih sporočil v datoteke PDF</td>
+          <td>Izvozi izbrana sporočila v datoteke formata PDF</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -541,7 +547,7 @@
       Unixu. Temelji na JavaScript različici funkcije
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
       , ki omogoča oblikovanje datuma in časa.<br />
-      Prilagajanje funkcije strftime() avtorja TH Doana (https://thdoan.github.io/strftime/)<br />
+      Priloga funkcije strftime() avtorja TH Doana (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Opisi zaporedja pretvorb</h3>
     <table class="dateformat-table">
@@ -678,8 +684,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Številka tedna po standardu ISO 8601 tekočega leta kot decimalno število (območje od 01 do 53),
-            kjer je 1. teden prvi teden, ki ima vsaj 4 dni v novem letu (torej prvi četrtek).
+            Številka tedna tekočega leta po standardu ISO 8601 kot decimalno število (območje od 01 do 53),
+            kjer je 1. teden prvi teden, ki ima v novem letu vsaj 4 dni (torej prvi četrtek).
           </td>
         </tr>
         <tr>

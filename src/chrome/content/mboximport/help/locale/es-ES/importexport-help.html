@@ -20,7 +20,7 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Notas de la versión:</h3>
     <p>
-      <b>Aviso de desuso:</b><br />
+      <b>Aviso de descontinuación:</b><br />
       Dejaré de utilizar las funciones antiguas de exportación de mensajes a partir de la versión 15.0.3. Por
       favor, utilicen las nuevas funciones (v15) e informen de cualquier problema que surja para que esta
       eliminación no les afecte.<br /><br />
@@ -30,6 +30,11 @@
       Utilice &#39;backup&#39; en las opciones de registro para el rastreo.<br />
       Nota: Se eliminó la copia de seguridad al salir. No es posible en la nueva arquitectura de
       Thunderbird.<br /><br />
+      - Solucionado: Exportación desde el panel de mensajes, mensajes en pestaña o ventana<br />
+      - Solucionado: Mostrar enlaces [Sin asunto] en el índice<br />
+      - Mejorado: La columna de asunto en el índice ahora utiliza el nombre completo del asunto.<br />
+      - Corregido: Gestionar remitentes sin dominio, por ejemplo &lt;MailDaemon&gt;<br />
+      - Se agregó el editor de opciones (almacenamiento) de @jobisoft con tema oscuro y localización.<br />
       - Nuevo: Se agregó la opción de formato de fecha para el encabezado del mensaje.<br />
       - Migrar las preferencias heredadas al almacenamiento local.<br />
       - Solucionado: Eliminar la actualización de expStatusWin que causaba un error en<br />
@@ -38,7 +43,8 @@
       - Solucionado: El índice utilizaba un separador de ruta incorrecto en Darwin macOS.<br />
       - Corregido: Faltaba la hora en el formato de fecha del índice<br />
       - Actualizado: ScriptLoad con URL de recurso<br /><br />
-      - Actualización de configuración regional fr @DenB10<br />
+      - Actualización de localización de @Joergen<br />
+      - Actualización de configuración regional en francés @DenB10<br />
       - Actualización completa de la configuración regional @topoldo<br />
       - Actualización de configuración regional de ja @kiki-ja<br />
     </p>
@@ -53,9 +59,9 @@
       - HTML y archivos adjuntos<br />
       - PDF y archivos adjuntos<br />
       - Texto plano y archivos adjuntos<br /><br />
-      Además de la nueva exportación a PDF con archivos adjuntos, también se incluye una nueva ventana de
-      estado de exportación y una nueva alternativa de notificación del sistema operativo. A continuación, se
-      presenta una lista de las funciones:<br /><br />
+      Además de la nueva función de exportación a PDF con archivos adjuntos, también se incluye una nueva
+      ventana de estado de exportación y una nueva alternativa de notificación del sistema operativo. A
+      continuación, se presenta una lista de las funciones:<br /><br />
       <b>Exportación a PDF con archivos adjuntos</b><br /><br />
       Esta es una opción muy solicitada. Existe una limitación importante en comparación con la exportación a
       HTML: la tabla de archivos adjuntos no tiene enlaces clicables. Hasta ahora, no ha sido posible generar
@@ -67,7 +73,7 @@
       encabezados.<br /><br />
       <b>Estructuras de exportación</b><br /><br />
       - Todos los archivos adjuntos en un único directorio<br />
-      Si utiliza una palabra clave estática como &quot;Adjuntos&quot;, todos los archivos adjuntos se
+      Si utiliza una palabra clave estática como &quot;Archivos adjuntos&quot;, todos los archivos adjuntos se
       guardarán en ese directorio. Anteriormente, esto habría generado carpetas como Archivos adjuntos,
       Archivos adjuntos-1, Archivos adjuntos-2, etc.<br /><br />
       - Los archivos adjuntos se guardan en el mismo directorio que los mensajes.<br />
@@ -279,8 +285,8 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exporta los mensajes de la carpeta como un único archivo de texto plano; los archivos adjuntos no
-            se incluyen.<br />
+            Exporta los mensajes de la carpeta como un único archivo de texto sin formato; los archivos
+            adjuntos no se incluyen.<br />
             Esto también crea un archivo de índice HTML que enumera cada mensaje.
           </td>
         </tr>
@@ -539,7 +545,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
-          <td>Guardar todos los correos del perfil actual</td>
+          <td>Guardar todos los correos electrónicos del perfil actual.</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
@@ -566,7 +572,7 @@
       personalizado &quot;Fecha (personalizado)&quot; están disponibles en los menús desplegables de nombres
       de archivo. La fecha personalizada también se puede usar con el token ${date_custom} utilizado en los
       nombres de archivo personalizados extendidos. El formato de fecha original (predeterminado) es:<br />
-      AAAA MM DD HH mm: 202011060808<br /><br />
+      AAAAMMDDHHmm: 202011060808<br /><br />
       El formato de fecha personalizado utiliza secuencias de % que coinciden con la funcionalidad de
       <code>strftime()</code> de Unix. Se basa en una versión de JavaScript de
       <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
@@ -643,7 +649,7 @@
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Hora como número decimal usando un reloj de 12 horas (rango de 01 a 12). Véase también
+            Hora como número decimal usando un reloj de 12 horas (rango de 01 a 12). Ver también
             <code class="code1">%l</code> .
           </td>
         </tr>
@@ -706,8 +712,9 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Número de semana ISO 8601 del año actual como un número decimal (rango 01 a 53), donde la semana 1
-            es la primera semana que tiene al menos 4 días en el nuevo año (es decir, el primer jueves).
+            Número de semana del año actual según la norma ISO 8601 como número decimal (rango de 01 a 53),
+            donde la semana 1 es la primera semana que tiene al menos 4 días en el nuevo año (es decir, el
+            primer jueves).
           </td>
         </tr>
         <tr>

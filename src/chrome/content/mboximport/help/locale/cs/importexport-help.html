@@ -28,6 +28,11 @@
       Připomenutí při spuštění, pokud je záloha po termínu<br />
       Použijte v možnostech protokolování pro trasování „zálohu“.<br />
       Poznámka: Zálohování při ukončení bylo odstraněno. V nové architektuře Thunderbirdu to není možné.<br /><br />
+      - Opraveno: Export z panelu zpráv, zprávy na kartě nebo v okně<br />
+      - Opraveno: Zobrazování odkazů [Bez předmětu] v indexu<br />
+      - Vylepšeno: Sloupec Předmět v indexu pro použití celého jména subjektu<br />
+      - Opraveno: Zpracování odesílatelů bez domény, například &lt;MailDaemon&gt;<br />
+      - Přidán editor možností (úložiště) od @jobisoft s tmavým motivem a lokalizací<br />
       - Nové: Přidána možnost formátování data v záhlaví zprávy<br />
       - Migrace starších preferencí do lokálního úložiště<br />
       - Opraveno: Odebrání aktualizace expStatusWin způsobující chybu při<br />
@@ -36,6 +41,7 @@
       - Opraveno: Index používal nesprávný oddělovač cest v systému Darwin macOS.<br />
       - Opraveno: Chybějící hodina ve formátu indexového data<br />
       - Aktualizováno: ScriptLoad s URL zdroje<br /><br />
+      - aktualizace lokality @Joergen<br />
       - aktualizace locale fr @DenB10<br />
       - kompletní aktualizace locale @topoldo<br />
       - aktualizace locale @kiki-ja<br />
@@ -50,12 +56,12 @@
       - HTML a přílohy<br />
       - PDF a přílohy<br />
       - Prostý text a přílohy<br /><br />
-      Kromě nového exportu PDF s přílohami je zde také nové okno se stavem exportu a nová alternativa pro
-      oznámení operačního systému. Následuje seznam funkcí:<br /><br />
+      Kromě nového exportu PDF s přílohami je zde také nové okno stavu exportu a nová alternativa oznámení
+      operačního systému. Následuje seznam funkcí:<br /><br />
       <b>Export PDF s přílohami</b><br /><br />
       Toto je dlouho požadovaná možnost. Oproti exportu do HTML existuje jedno důležité omezení. Tabulka
-      příloh nemá klikatelné odkazy. Zatím nebylo možné vytvořit výstup s relativními odkazy. Buď PDF
-      převodník, nebo prohlížeče převádějí všechny odkazy file:// na absolutní odkazy, což není užitečné.
+      příloh neobsahuje klikatelné odkazy. Zatím nebylo možné vytvořit výstup s relativními odkazy. Buď
+      převodník PDF, nebo prohlížeče převádějí všechny odkazy file:// na absolutní odkazy, což není užitečné.
       Doufám, že se v budoucnu najde nějaký způsob, jak toho dosáhnout.<br /><br />
       <b>Index</b><br /><br />
       Nový indexový soubor umožňuje řadit sloupce kliknutím na libovolné záhlaví.<br /><br />
@@ -67,7 +73,7 @@
       V této nové možnosti, která se nachází na kartě Názvy souborů, se nevytvářejí žádné adresáře příloh,
       protože všechny se nacházejí v adresáři zpráv.<br /><br />
       - Adresáře příloh mají nyní nastavené datum zprávy<br />
-      Pro řazení bude nyní datum úpravy adresářů příloh nastaveno na datum odeslání odpovídající zprávy.<br /><br />
+      Pro třídění příloh bude nyní datum úpravy adresářů nastaveno na datum odeslání odpovídající zprávy.<br /><br />
       - Experimentální struktura „withatts“<br />
       Tato struktura sloučí každou zprávu se všemi přílohami do formátovaného adresáře příloh. Typické
       nastavení by bylo nastavit formát názvu souboru na vámi preferovaný formát, například ${subject}, a
@@ -139,13 +145,13 @@
     </p>
     <h3>Podpora:</h3>
     <p>
-      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření GitHub:
+      Problémy nebo požadavky na funkce prosím zasílejte do repozitáře rozšíření na GitHubu:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
         >Problémy s ImportExportTools NG</a
       ><br /><br />
       V případě problémů s chybami uveďte následující informace, které pomohou s jejich řešením:<br />
       - Verze ImportExportTools NG<br />
-      - Verze pro Thunderbird<br />
+      - Verze Thunderbirdu<br />
       - Operační systém a jeho verze<br />
       - Výstup ladění (kopírování z ladicí konzole - přístup pomocí Ctrl-Shift-J)<br />
       - Popis kroků vedoucích k problému<br />
@@ -463,7 +469,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Vytvořte indexový soubor CSV pro vybrané zprávy</td>
+          <td>Vytvořit indexový soubor CSV pro vybrané zprávy</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -738,7 +744,7 @@
       <li>
         <code class="code1">%T</code> - neimplementováno (použijte <code class="code1">%H:%M:%S</code> )
       </li>
-      <li><code class="code1">%U</code> - neimplementováno</li>
+      <li><code class="code1">%U</code> - není implementováno</li>
       <li><code class="code1">%W</code> - neimplementováno</li>
       <li><code class="code1">%+</code> - neimplementováno</li>
       <li><code class="code1">%%</code> - neimplementováno (použijte <code class="code1">%</code> )</li>

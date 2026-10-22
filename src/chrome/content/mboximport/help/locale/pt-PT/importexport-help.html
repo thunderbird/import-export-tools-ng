@@ -29,6 +29,12 @@
       Lembrete na inicialização caso o backup esteja atrasado.<br />
       Use &#39;backup&#39; nas opções de registro para rastreamento.<br />
       Nota: O backup ao sair foi removido. Não é possível na nova arquitetura do Thunderbird.<br /><br />
+      - Corrigido: Exportação a partir do painel de mensagens, mensagens em aba ou janela.<br />
+      - Corrigido: Exibição de links [Sem Assunto] no índice<br />
+      - Melhoria: A coluna de assunto no índice agora utiliza o nome completo do assunto.<br />
+      - Corrigido: Lidar com remetentes sem domínio, por exemplo &lt;MailDaemon&gt;<br />
+      - Adicionado Editor de Opções (Armazenamento) por @jobisoft com tema escuro e localização
+      adicionados.<br />
       - Novo: Adicionada opção de formato de data no cabeçalho da mensagem<br />
       - Migrar preferências legadas para o armazenamento local<br />
       - Corrigido: Remoção da atualização expStatusWin que causava erro em<br />
@@ -37,6 +43,7 @@
       - Corrigido: O índice usava um separador de caminho incorreto no macOS Darwin.<br />
       - Corrigido: Formato de data do índice sem hora<br />
       - Atualizado: ScriptLoad com URL do recurso<br /><br />
+      - da atualização de localização @Joergen<br />
       - Atualização de localização fr @DenB10<br />
       - Atualização completa de localização @topoldo<br />
       - ja atualização de localização @kiki-ja<br />
@@ -77,7 +84,7 @@
       configuração típica seria definir o formato do nome do arquivo para o formato desejado, por exemplo,
       ${subject}, e também o formato do diretório para ${subject}. Isso criaria diretórios para cada mensagem,
       contendo tanto a mensagem quanto os anexos. É possível classificar os diretórios por data ou nome.<br /><br />
-      Para testar essa estrutura experimental, insira a palavra:<br />
+      Para testar esta estrutura experimental, insira a palavra:<br />
       <span class="notranslate">withatts</span><br />
       nas opções de registro na aba Diversos. (Proposta de @Rayerd)<br /><br />
       <b>Opções de registro</b><br /><br />
@@ -820,7 +827,7 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>O valor da opção de texto do sufixo.</td>
+        <td>O valor da opção de texto de sufixo.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
@@ -985,7 +992,7 @@
         - Suporte completo ao Modo Escuro<br />
         - Novo sistema de menu consistente<br />
         - Novo botão na barra de ferramentas<br />
-        - Ajuda aprimorada, abre durante a instalação<br />
+        - Ajuda aprimorada, abra durante a instalação<br />
         - Atualizar conta de exportação<br /><br />
         Agradecemos aos seguintes usuários pelas sugestões de melhoria e pela ajuda nos testes:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />

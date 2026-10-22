@@ -28,6 +28,12 @@
       Herinnering bij het opstarten als de back-up te laat is<br />
       Gebruik &#39;backup&#39; in de logboekopties voor tracering.<br />
       Opmerking: Back-up bij afsluiten verwijderd. Niet mogelijk in de nieuwe Thunderbird-architectuur.<br /><br />
+      - Opgelost: Exporteren vanuit het berichtenvenster, berichten in een tabblad of venster<br />
+      - Opgelost: Links met [Geen onderwerp] werden niet meer correct weergegeven in de index.<br />
+      - Verbeterd: De kolom &#39;Onderwerp&#39; in de index gebruikt nu de volledige naam van het
+      onderwerp.<br />
+      - Opgelost: Verwerkt nu afzenders zonder domein, bijvoorbeeld &lt;MailDaemon&gt;<br />
+      - De optie-editor (Opslag) van @jobisoft is toegevoegd, inclusief een donker thema en lokalisatie.<br />
       - Nieuw: Optie voor datumindeling in berichtkop toegevoegd<br />
       - Migreer oude voorkeuren naar lokale opslag.<br />
       - Opgelost: De update van expStatusWin die een fout veroorzaakte, is verwijderd.<br />
@@ -36,12 +42,13 @@
       - Opgelost: Index gebruikte een onjuist padscheidingsteken op Darwin macOS<br />
       - Opgelost: Datumformaat index mist uur<br />
       - Bijgewerkt: ScriptLoad met resource-URL<br /><br />
+      - da locale update @Joergen<br />
       - Franse taalupdate @DenB10<br />
       - volledige lokale update @topoldo<br />
       - ja locale update @kiki-ja<br />
     </p>
     <p>
-      <b>Versie 15: Opmerkingen, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
+      <b>Versie 15: Notities, functies en wijzigingen. Lees dit aandachtig door.</b><br /><br />
       Versie 15 is een volledig herschreven versie van de berichtexportfuncties, zowel voor mappen als voor
       geselecteerde berichten. Het is de eerste fase in een moderne, grotendeels op WebExtension gebaseerde
       technologie. Het nieuwe ontwerp is een enorme verbetering in de architectuur, waardoor nieuwe functies
@@ -708,7 +715,7 @@
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>Het jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
+          <td>Jaar als decimaal getal zonder eeuw (bereik 00 tot 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>

@@ -29,6 +29,11 @@
       Använd &quot;backup&quot; i loggningsalternativ för spårning<br />
       Obs: Säkerhetskopiering vid avslutning har tagits bort. Inte möjligt i den nya
       Thunderbird-arkitekturen.<br /><br />
+      - Åtgärdat: Exportera från meddelanderutan, meddelanden i fliken eller fönstret<br />
+      - Åtgärdat: Visar [Inget ämne]-länkar i index<br />
+      - Förbättrat: Ämneskolonnen i indexet använder hela ämnesnamnet<br />
+      - Åtgärdat: Hantera domänlösa avsändare, till exempel &lt;MailDaemon&gt;<br />
+      - Lade till Options (Lagring) Editor av @jobisoft med tillagt mörkt tema och lokalisering<br />
       - Nytt: Lade till alternativ för datumformat i meddelanderubriken<br />
       - Migrera äldre inställningar till lokal lagring<br />
       - Åtgärdat: Borttagning av expStatusWin-uppdatering orsakar fel på<br />
@@ -37,6 +42,7 @@
       - Åtgärdat: Index använde fel sökvägsavgränsare på Darwin macOS<br />
       - Åtgärdat: Timme saknas i indexformat<br />
       - Uppdaterad: ScriptLoad med resurs-URL<br /><br />
+      - uppdateringen av den lokala platsen @Joergen<br />
       - fr språkuppdatering @DenB10<br />
       - fullständig uppdatering av språkinställningar @topoldo<br />
       - ja språkuppdatering @kiki-ja<br />
@@ -222,7 +228,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som HTML-filer (ingen struktur/undermappar).<br />
+            Exportera mappmeddelandena som HTML-formatfiler (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -747,7 +753,7 @@
         <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
       </li>
       <li><code class="code1">%U</code> - inte implementerad</li>
-      <li><code class="code1">%W</code> - inte implementerad</li>
+      <li><code class="code1">%W</code> - inte implementerat</li>
       <li><code class="code1">%+</code> - inte implementerad</li>
       <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
     </ul>

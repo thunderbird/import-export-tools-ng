@@ -29,6 +29,11 @@
       Recordatorio ao inicio se a copia de seguridade está atrasada<br />
       Usar &quot;copia de seguridade&quot; nas opcións de rexistro para o rastrexo<br />
       Nota: Eliminouse a copia de seguridade ao saír. Non é posible na nova arquitectura de Thunderbird.<br /><br />
+      - Corrixido: Exportar desde o panel de mensaxes, mensaxes nunha lapela ou xanela<br />
+      - Corrixido: Mostrando ligazóns [Sen asunto] no índice<br />
+      - Mellorado: Columna de asunto no índice para usar o nome completo do asunto<br />
+      - Corrixido: Xestionar remitentes sen dominio, por exemplo &lt;MailDaemon&gt;<br />
+      - Engadiuse o editor de opcións (almacenamento) de @jobisoft con tema escuro e localización engadidos<br />
       - Novo: Engadiuse a opción de formato de data da cabeceira da mensaxe<br />
       - Migrar as preferencias herdadas ao almacenamento local<br />
       - Corrixido: Eliminar a actualización de expStatusWin que causaba un erro en<br />
@@ -37,6 +42,7 @@
       - Corrixido: O índice usaba un separador de rutas incorrecto en Darwin macOS<br />
       - Corrixido: Falta unha hora no formato de data do índice<br />
       - Actualizado: ScriptLoad coa URL do recurso<br /><br />
+      - actualización da configuración rexional @Joergen<br />
       - actualización da configuración rexional de fr @DenB10<br />
       - actualización completa da configuración rexional @topoldo<br />
       - actualización da configuración rexional @kiki-ja<br />
@@ -53,7 +59,7 @@
       - PDF e anexos<br />
       - Texto sen formato e anexos<br /><br />
       Ademais da nova exportación de PDF con anexos, tamén hai unha nova xanela de estado da exportación, así
-      como unha nova alternativa de notificación do sistema operativo. A continuación, móstrase unha lista de
+      como unha nova alternativa de notificación do sistema operativo. A continuación, móstranse as seguintes
       características:<br /><br />
       <b>Exportación a PDF con anexos</b><br /><br />
       Esta é unha opción solicitada desde hai tempo. Existe unha limitación importante con respecto á
@@ -218,7 +224,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros en formato EML (sen estrutura/subcartafoles).<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -229,7 +235,7 @@
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros en formato HTML (sen estrutura/subcartafoles).<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -263,7 +269,7 @@
           </td>
           <td>
             Exporta as mensaxes do cartafol como ficheiros de texto sen formato, incluíndo anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -271,7 +277,7 @@
           <td>
             Exporta as mensaxes do cartafol como un único ficheiro en formato de texto sen formato; non se
             inclúen os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -281,7 +287,7 @@
           <td>
             Exporta as mensaxes do cartafol como un único ficheiro en formato de texto sen formato, incluíndo
             os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -289,7 +295,7 @@
           <td>
             Exporta as mensaxes do cartafol como un único ficheiro de texto en formato CSV (valores separados
             por comas); non se inclúen os anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -396,7 +402,7 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
             Exportar as mensaxes seleccionadas a ficheiros en formato EML<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -415,14 +421,14 @@
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes como ficheiros en formato HTML.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
             Exporta as mensaxes como ficheiros en formato HTML, incluíndo anexos.<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>
@@ -447,7 +453,7 @@
           </td>
           <td>
             Exportar as mensaxes como ficheiros de texto sen formato, incluíndo anexos<br />
-            Isto tamén crea un ficheiro de índice HTML que enumera cada mensaxe.
+            Isto tamén crea un ficheiro de índice HTML que lista cada mensaxe.
           </td>
         </tr>
         <tr>

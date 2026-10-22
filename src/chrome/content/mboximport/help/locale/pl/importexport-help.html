@@ -29,6 +29,11 @@
       Użyj „kopii zapasowej” w opcjach rejestrowania śledzenia<br />
       Uwaga: usunięto funkcję tworzenia kopii zapasowej przy wyjściu. Niedostępne w nowej architekturze
       Thunderbird.<br /><br />
+      - Naprawiono: Eksport z panelu wiadomości, wiadomości w karcie lub oknie<br />
+      - Naprawiono: Wyświetlanie linków [Brak tematu] w indeksie<br />
+      - Ulepszono: kolumna Temat w indeksie pozwala na użycie pełnej nazwy tematu<br />
+      - Naprawiono: Obsługa nadawców bez domeny, na przykład &lt;MailDaemon&gt;<br />
+      - Dodano edytor opcji (pamięć masowa) od @jobisoft z dodanym ciemnym motywem i lokalizacją<br />
       - Nowość: Dodano opcję formatu daty w nagłówku wiadomości<br />
       - Migracja starszych preferencji do pamięci lokalnej<br />
       - Naprawiono: Usunięcie aktualizacji expStatusWin powodującej błąd<br />
@@ -37,15 +42,16 @@
       - Naprawiono: Indeks używał nieprawidłowego separatora ścieżki w systemie Darwin macOS<br />
       - Naprawiono: Brak godziny w formacie daty indeksu<br />
       - Zaktualizowano: ScriptLoad z adresem URL zasobu<br /><br />
+      - aktualizacja ustawień regionalnych @Joergen<br />
       - aktualizacja ustawień regionalnych fr @DenB10<br />
       - pełna aktualizacja ustawień regionalnych @topoldo<br />
       - ja locale update @kiki-ja<br />
     </p>
     <p>
       <b>Uwagi, funkcje i zmiany w wersji 15. Prosimy o uważne przeczytanie.</b><br /><br />
-      Wersja 15 to całkowicie przeprojektowane funkcje eksportu wiadomości, zarówno do folderów, jak i do
-      wybranych wiadomości. To pierwszy etap nowoczesnej technologii, opartej głównie na WebExtension. Nowy
-      design to ogromna poprawa architektury, umożliwiająca wprowadzenie nowych funkcji i lepszą wydajność.<br /><br />
+      Wersja 15 to kompletne przepisanie funkcji eksportu wiadomości, zarówno do folderów, jak i do wybranych
+      wiadomości. To pierwszy etap nowoczesnej technologii, opartej głównie na WebExtension. Nowy design to
+      ogromna poprawa architektury, umożliwiająca wprowadzenie nowych funkcji i lepszą wydajność.<br /><br />
       W pierwszej wersji v15 zaimplementowano następujące formaty:<br /><br />
       - EML<br />
       - HTML i załączniki<br />
@@ -55,9 +61,9 @@
       nowa opcja powiadomień systemu operacyjnego. Poniżej znajduje się lista funkcji:<br /><br />
       <b>Eksport PDF z załącznikami</b><br /><br />
       To długo oczekiwana opcja. Istnieje jedno istotne ograniczenie w stosunku do eksportu HTML. Tabela
-      załączników nie zawiera klikalnych linków. Do tej pory nie było możliwe wygenerowanie danych wyjściowych
-      z linkami względnymi. Zarówno konwerter PDF, jak i przeglądarki konwertują wszystkie linki file:// na
-      linki absolutne, które są bezużyteczne. Mam nadzieję, że w przyszłości uda się to jakoś osiągnąć.<br /><br />
+      załączników nie zawiera klikalnych linków. Do tej pory nie było możliwe wygenerowanie wyników z linkami
+      względnymi. Zarówno konwerter PDF, jak i przeglądarki konwertują wszystkie linki file:// na linki
+      absolutne, co jest bezużyteczne. Mam nadzieję, że w przyszłości uda się to jakoś osiągnąć.<br /><br />
       <b>Indeks</b><br /><br />
       Nowy plik indeksu umożliwia sortowanie kolumn poprzez kliknięcie dowolnego nagłówka.<br /><br />
       <b>Struktury eksportowe</b><br /><br />
@@ -187,7 +193,7 @@
           <td class="notranslate submenu1">
             __MSG_folderCtxMenu_Exp_FolderMboxStructuredSubFolders_Id.title__
           </td>
-          <td>Eksportuj folder wraz ze wszystkimi podfolderami do drzewa wiadomości w formacie mbox</td>
+          <td>Eksportuj folder wraz ze wszystkimi jego podfolderami do drzewa wiadomości w formacie mbox</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
@@ -676,8 +682,8 @@
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Dzień tygodnia w formacie dziesiętnym (zakres od 1 do 7), gdzie poniedziałek ma wartość 1. Zobacz
-            także <code class="code1">%w</code> .
+            Dzień tygodnia w formacie dziesiętnym (zakres od 1 do 7), przy czym poniedziałek ma wartość 1.
+            Zobacz także <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
@@ -908,8 +914,7 @@
     <p>
       Zazwyczaj „Data” wiadomości w Thunderbirdzie to data ustawiona przez klienta pocztowego nadawcy.
       Ustawienie tej opcji na „prawda” powoduje wykorzystanie daty otrzymania wiadomości przez klienta
-      pocztowego odbiorcy. Data ta będzie używana zarówno w nazwach plików, jak i w datach w plikach
-      indeksowych.
+      pocztowego odbiorcy. Data ta będzie używana zarówno w nazwach plików, jak i w plikach indeksowych.
     </p>
     <h2>Podstawowa, globalna funkcja skrótów klawiszowych</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>

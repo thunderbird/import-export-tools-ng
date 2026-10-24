@@ -150,6 +150,9 @@ async function _build_EML_expTask(expTask, params, ctxEvent, folderSet) {
   expTask.dateFormat.type = 1;
   expTask.names.extension = "eml";
   expTask.attachments.save = params.saveAttachments;
+  expTask.attachments.containerStructure = await prefCmds.getPref("export.general.msgAndAttachmentsStructure");
+  expTask.attachments.namePattern = await prefCmds.getPref("export.names.defaults.attachmentDirsFormat");
+  expTask.attachments.inlineNamePattern = await prefCmds.getPref("export.names.defaults.inlineAttachmentDirsFormat");
 
   // containers
   expTask.messages.messageContainer = false;

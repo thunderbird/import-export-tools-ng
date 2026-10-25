@@ -444,6 +444,7 @@ const toolsCtxMenu_Exp_Profile_Id = "toolsCtxMenu_Exp_Profile_Id";
 const toolsCtxMenu_Imp_Profile_Id = "toolsCtxMenu_Imp_Profile_Id";
 const toolsCtxMenu_Backup_Id = "toolsCtxMenu_Backup_Id";
 const toolsCtxMenu_Options_Id = "toolsCtxMenu_Options_Id";
+const toolsCtxMenu_Options_Editor_Id = "toolsCtxMenu_Options_Editor_Id";
 const toolsCtxMenu_Help_Id = "toolsCtxMenu_Help_Id";
 
 const toolsCtxMenu_Exp_ProfileFull_Id = "toolsCtxMenu_Exp_ProfileFull_Id";
@@ -489,6 +490,13 @@ var toolsCtxMenuSet = [
       onclick: miscCmds.openOptions,
     },
 
+  },
+   {
+    menuDef: {
+      id: toolsCtxMenu_Options_Editor_Id,
+      title: localizeMenuTitle("ctxMenu_Options_Editor.title"),
+      onclick: miscCmds.openOptionsEditor,
+    },
   },
   {
     menuDef: {
@@ -1216,7 +1224,6 @@ var buttonCtxMenuSet = [
       title: localizeMenuTitle("ctxMenu_Options_Editor.title"),
       onclick: miscCmds.openOptionsEditor,
     },
-
   },
   {
     menuDef: {

@@ -255,10 +255,10 @@
     "message": "ImportExportTools NG - Sikkerhedskopier"
   },
   "Edit.tooltip": {
-    "message": "Redigere"
+    "message": "Rediger"
   },
   "editInfo": {
-    "message": "Klik på ✎ for at redigere værdier. Tryk på ✓ for at gemme eller ESC for at annullere. Boolske værdier kan slås til/fra."
+    "message": "Klik på ✎ for at redigere værdier. Klik på ✓ for at gemme, eller tryk på ESC for at annullere. Boolske værdier kan slås til/fra."
   },
   "emailFiles": {
     "message": "Mailfiler",
@@ -369,7 +369,7 @@
     "src": "mboximport"
   },
   "FilterKeys.placeholder": {
-    "message": "Filternøgler"
+    "message": "Filtrer nøgler"
   },
   "Folder.label": {
     "message": "Mappe"
@@ -832,7 +832,7 @@
     "src": "autobackup"
   },
   "NoDecryption.msg": {
-    "message": "Ingen kryptering"
+    "message": "Ingen dekryptering"
   },
   "noEML": {
     "message": "Der blev ikke fundet nogen eml-fil i denne mappe",
@@ -988,7 +988,7 @@
     "message": "Gem"
   },
   "Save.tooltip": {
-    "message": "Spare"
+    "message": "Gem"
   },
   "saveAttsInMsgDir.label": {
     "message": "Gem vedhæftede filer i samme mappe som meddelelser"

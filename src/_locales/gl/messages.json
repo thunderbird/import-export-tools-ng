@@ -78,7 +78,7 @@
     "message": "Contido da copia de seguranza"
   },
   "backupWarning": {
-    "message": "Durante esta operación, o programa pode \\\nnon responder durante algúns minutos.\\\nQuere continuar?\\\n",
+    "message": "Durante esta operación, o programa pode \nnon responder durante algúns minutos.\nQuere continuar?\n",
     "src": "mboximport"
   },
   "badfolder": {
@@ -518,7 +518,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "Exportando en formato HTML ou texto plano, os anexos non son gardados.\\\nSe desexa gardalos, use o formato EML.\\\nDesexa continuar?\\\n",
+    "message": "Exportando en formato HTML ou texto plano, os anexos non son gardados.\nSe desexa gardalos, use o formato EML.\nDesexa continuar?\n",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -589,7 +589,7 @@
     "src": "mboximport"
   },
   "isNewsgroup": {
-    "message": "Característica non dispoñíbel: é posíbel exportar dunha conta  IMAP\\\nou noticias só se está establecido o uso fora de liña",
+    "message": "Característica non dispoñíbel: é posíbel exportar dunha conta  IMAP\nou noticias só se está establecido o uso fora de liña",
     "src": "mboximport"
   },
   "isNotMaildir": {
@@ -844,7 +844,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "Non foi posíbel exportar.\\\nOs cartafoles seleccionados son de diferentes tipos ou un deles é un cartafol virtual.",
+    "message": "Non foi posíbel exportar.\nOs cartafoles seleccionados son de diferentes tipos ou un deles é un cartafol virtual.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -856,7 +856,7 @@
     "src": "mboximport"
   },
   "nomboxfile": {
-    "message": "non parece ser un ficheiro MBOX\\\nou é un ficheiro MBOX danado",
+    "message": "non parece ser un ficheiro MBOX\nou é un ficheiro MBOX danado",
     "src": "mboximport"
   },
   "noMboxStorage": {
@@ -930,7 +930,7 @@
     "message": "obxecto"
   },
   "offlineWarning": {
-    "message": "Este cartafol está fora de liña.\\\nSó se exportarán as mensaxes locais. Quere continuar?",
+    "message": "Este cartafol está fora de liña.\nSó se exportarán as mensaxes locais. Quere continuar?",
     "src": "mboximport"
   },
   "OK.button": {
@@ -979,7 +979,7 @@
     "message": "${destinatario}"
   },
   "remoteWarning": {
-    "message": "Está a exportar a copia local dun cartafol IMAP ou de Novas.\\\nPoidas que o cartafol non teña dodas as mensaxes do cartafol remoto.\\\nQuere continuar?",
+    "message": "Está a exportar a copia local dun cartafol IMAP ou de Novas.\nPoidas que o cartafol non teña dodas as mensaxes do cartafol remoto.\nQuere continuar?",
     "src": "mboximport"
   },
   "runProfileManager": {

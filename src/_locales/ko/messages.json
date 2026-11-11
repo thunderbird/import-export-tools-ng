@@ -78,7 +78,7 @@
     "message": "백업 내용"
   },
   "backupWarning": {
-    "message": "이 작업을 하는 동안, 프로그램이\\\n몇 분간 반응하지 않을수 있습니다.\\\n시작하길 원하십니까?",
+    "message": "이 작업을 하는 동안, 프로그램이\n몇 분간 반응하지 않을수 있습니다.\n시작하길 원하십니까?",
     "src": "mboximport"
   },
   "badfolder": {
@@ -517,7 +517,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "HTML 또는 단순 글로 내보내는 경우 첨부파일은 저장하지 않습니다.\\\n만약 첨부파일을 저장하기 원한다면, EML 형식을 사용하세요.\\\n계속하길 원하십니까?",
+    "message": "HTML 또는 단순 글로 내보내는 경우 첨부파일은 저장하지 않습니다.\n만약 첨부파일을 저장하기 원한다면, EML 형식을 사용하세요.\n계속하길 원하십니까?",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -588,7 +588,7 @@
     "src": "mboximport"
   },
   "isNewsgroup": {
-    "message": "기능 사용불가: IMAP 또는 NEWS 계정은\\\n오프라인 이용이 설정되어 있는 폴더만 쓰기가 가능합니다",
+    "message": "기능 사용불가: IMAP 또는 NEWS 계정은\n오프라인 이용이 설정되어 있는 폴더만 쓰기가 가능합니다",
     "src": "mboximport"
   },
   "isNotMaildir": {
@@ -843,7 +843,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "내보낼 수 없습니다.\\\n선택된 폴더들이 서로 다른 형식이거나 그것들 중 하나가 가상 폴더입니다.",
+    "message": "내보낼 수 없습니다.\n선택된 폴더들이 서로 다른 형식이거나 그것들 중 하나가 가상 폴더입니다.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -855,7 +855,7 @@
     "src": "mboximport"
   },
   "nomboxfile": {
-    "message": "mbox 파일이 아니거나\\\n 파손된 mbox 파일로 보입니다",
+    "message": "mbox 파일이 아니거나\n 파손된 mbox 파일로 보입니다",
     "src": "mboximport"
   },
   "noMboxStorage": {
@@ -929,7 +929,7 @@
     "message": "물체"
   },
   "offlineWarning": {
-    "message": "이 폴더는 오프라인입니다.\\\n이 메세지는 지역적으로만 저장되어 내보내집니다. 계속하길 원하십니까?",
+    "message": "이 폴더는 오프라인입니다.\n이 메세지는 지역적으로만 저장되어 내보내집니다. 계속하길 원하십니까?",
     "src": "mboximport"
   },
   "OK.button": {
@@ -978,7 +978,7 @@
     "message": "${수신자}"
   },
   "remoteWarning": {
-    "message": "귀하는 IMAP 또는 NEWS 폴더의 지역복사본을 내보내고 있습니다.\\\n지역 폴더는 원격 폴더 내 현재 모든 메세지를 있지 않습니다\\\n계속 하길 원하십니까?",
+    "message": "귀하는 IMAP 또는 NEWS 폴더의 지역복사본을 내보내고 있습니다.\n지역 폴더는 원격 폴더 내 현재 모든 메세지를 있지 않습니다\n계속 하길 원하십니까?",
     "src": "mboximport"
   },
   "runProfileManager": {
@@ -1161,7 +1161,7 @@
     "src": "mboximport"
   },
   "virtualfolder": {
-    "message": "이것은 가상 폴더이므로, 메세지가 내보내기 위해서는\\\n일반 폴더에 복사해 내보낼 필요가 있습니다",
+    "message": "이것은 가상 폴더이므로, 메세지가 내보내기 위해서는\n일반 폴더에 복사해 내보낼 필요가 있습니다",
     "src": "mboximport"
   },
   "Warning.msg": {

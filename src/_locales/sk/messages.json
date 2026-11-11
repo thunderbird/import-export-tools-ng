@@ -78,7 +78,7 @@
     "message": "Obsah zálohy"
   },
   "backupWarning": {
-    "message": "Počas tejto operácie môže aplikácia \\\nna niekoľko minút prestať reagovať. \\\nChcete pokračovať?",
+    "message": "Počas tejto operácie môže aplikácia \nna niekoľko minút prestať reagovať. \nChcete pokračovať?",
     "src": "mboximport"
   },
   "badfolder": {
@@ -588,7 +588,7 @@
     "src": "mboximport"
   },
   "isNewsgroup": {
-    "message": "Táto funkcia je nedostupná: export priečinka s účtov IMAP alebo  diskusných \\\nskupín, je možný len ak sú nastavené na čítanie v režime Offline",
+    "message": "Táto funkcia je nedostupná: export priečinka s účtov IMAP alebo  diskusných \nskupín, je možný len ak sú nastavené na čítanie v režime Offline",
     "src": "mboximport"
   },
   "isNotMaildir": {
@@ -843,7 +843,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "Nemožno exportovať. \\\nVo vybrané priečinky sú rôznych typov, alebo jeden z nich je virtuálny priečinok.",
+    "message": "Nemožno exportovať. \nVo vybrané priečinky sú rôznych typov, alebo jeden z nich je virtuálny priečinok.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -929,7 +929,7 @@
     "message": "objekt"
   },
   "offlineWarning": {
-    "message": "Tento priečinok je offline. \\\nExportované budú len lokálne uložené správy. Naozaj chcete pokračovať?",
+    "message": "Tento priečinok je offline. \nExportované budú len lokálne uložené správy. Naozaj chcete pokračovať?",
     "src": "mboximport"
   },
   "OK.button": {
@@ -978,7 +978,7 @@
     "message": "${príjemca}"
   },
   "remoteWarning": {
-    "message": "Exportujete lokálnu kópiu priečinka IMAP alebo NEWS. \\\nMiestny priečinok však neobsahuje všetky správy, ktoré sú vo vzdialenom priečinku. \\\nNaozaj chcete pokračovať?",
+    "message": "Exportujete lokálnu kópiu priečinka IMAP alebo NEWS. \nMiestny priečinok však neobsahuje všetky správy, ktoré sú vo vzdialenom priečinku. \nNaozaj chcete pokračovať?",
     "src": "mboximport"
   },
   "runProfileManager": {
@@ -1161,7 +1161,7 @@
     "src": "mboximport"
   },
   "virtualfolder": {
-    "message": "Toto je virtuálny priečinok. Pre export jeho\\\nspráv ich musíte najskôr skopírovať do\\\nnormálneho priečinka.",
+    "message": "Toto je virtuálny priečinok. Pre export jeho\nspráv ich musíte najskôr skopírovať do\nnormálneho priečinka.",
     "src": "mboximport"
   },
   "Warning.msg": {

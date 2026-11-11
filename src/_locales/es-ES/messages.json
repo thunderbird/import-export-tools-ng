@@ -78,7 +78,7 @@
     "message": "Contenido de la copia"
   },
   "backupWarning": {
-    "message": "Durante esta operación, el programa puede\\\nno responder durante algunos minutos.\\\n¿Quiere continuar?\\\n",
+    "message": "Durante esta operación, el programa puede\nno responder durante algunos minutos.\n¿Quiere continuar?\n",
     "src": "mboximport"
   },
   "badfolder": {
@@ -517,7 +517,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "Al exportar en HTML o texto plano, no se guardan los adjuntos\\\nSi quiere guardarlos, use el formato EML.\\\n¿Quiere hacerlo?\\\n",
+    "message": "Al exportar en HTML o texto plano, no se guardan los adjuntos\nSi quiere guardarlos, use el formato EML.\n¿Quiere hacerlo?\n",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -588,7 +588,7 @@
     "src": "mboximport"
   },
   "isNewsgroup": {
-    "message": "Opción no disponible: sólo es posible exportar de una cuenta IMAP\\\no de noticias si está configurada para usarse en modo sin conexión.",
+    "message": "Opción no disponible: sólo es posible exportar de una cuenta IMAP\no de noticias si está configurada para usarse en modo sin conexión.",
     "src": "mboximport"
   },
   "isNotMaildir": {
@@ -843,7 +843,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "No se ha podido exportar.\\\nLas carpetas seleccionadas son de tipo diferente o alguna es una carpeta virtual.",
+    "message": "No se ha podido exportar.\nLas carpetas seleccionadas son de tipo diferente o alguna es una carpeta virtual.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -855,7 +855,7 @@
     "src": "mboximport"
   },
   "nomboxfile": {
-    "message": "no es un archivo mbox correcto\\\no está corrupto",
+    "message": "no es un archivo mbox correcto\no está corrupto",
     "src": "mboximport"
   },
   "noMboxStorage": {
@@ -929,7 +929,7 @@
     "message": "objeto"
   },
   "offlineWarning": {
-    "message": "Esta carpeta está desconectada.\\\nSólo los mensajes guardados localmente se exportarán.¿Quiere continuar?",
+    "message": "Esta carpeta está desconectada.\nSólo los mensajes guardados localmente se exportarán.¿Quiere continuar?",
     "src": "mboximport"
   },
   "OK.button": {
@@ -978,7 +978,7 @@
     "message": "${destinatario}"
   },
   "remoteWarning": {
-    "message": "Está exportando la copia local de una carpeta IMAP o grupos de NOTICIAS.\\\nLas carpetas locales pueden no tener todos los mensajes de la carpeta remota.\\\n¿Quiere continuar?",
+    "message": "Está exportando la copia local de una carpeta IMAP o grupos de NOTICIAS.\nLas carpetas locales pueden no tener todos los mensajes de la carpeta remota.\n¿Quiere continuar?",
     "src": "mboximport"
   },
   "runProfileManager": {
@@ -1161,7 +1161,7 @@
     "src": "mboximport"
   },
   "virtualfolder": {
-    "message": "Esta es una carpeta virtual, para exportar sus mensajes tiene que\\\ncopiarlos en una carpeta normal y exportar dicha carpeta",
+    "message": "Esta es una carpeta virtual, para exportar sus mensajes tiene que\ncopiarlos en una carpeta normal y exportar dicha carpeta",
     "src": "mboximport"
   },
   "Warning.msg": {

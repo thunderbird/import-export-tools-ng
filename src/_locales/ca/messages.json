@@ -78,7 +78,7 @@
     "message": "Fes còpia de seguretat de contingut"
   },
   "backupWarning": {
-    "message": "Durant aquest operació, el programa podria deixar de respondre per alguns minuts.\\\nVoleu continuar?\\\n",
+    "message": "Durant aquest operació, el programa podria deixar de respondre per alguns minuts.\nVoleu continuar?\n",
     "src": "mboximport"
   },
   "badfolder": {
@@ -518,7 +518,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "En l\\'exportació en format HTML o text pla, no es desen els fitxer adjunts.\\\nSi voleu desar els fitxer adjunts, useu el format EML.\\\nVoleu continuar?\\\n",
+    "message": "En l\\'exportació en format HTML o text pla, no es desen els fitxer adjunts.\nSi voleu desar els fitxer adjunts, useu el format EML.\nVoleu continuar?\n",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -844,7 +844,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "No s\\'ha pogut exportar.\\\nLes carpetes seleccionades són de diferents tipus o una d\\'elles és una carpeta virtual.",
+    "message": "No s\\'ha pogut exportar.\nLes carpetes seleccionades són de diferents tipus o una d\\'elles és una carpeta virtual.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -930,7 +930,7 @@
     "message": "objecte"
   },
   "offlineWarning": {
-    "message": "Aquesta carpeta es troba fora de línia.\\\nNomés s\\'exportaran els missatges desats al vostre equip. Voleu continuar?",
+    "message": "Aquesta carpeta es troba fora de línia.\nNomés s\\'exportaran els missatges desats al vostre equip. Voleu continuar?",
     "src": "mboximport"
   },
   "OK.button": {

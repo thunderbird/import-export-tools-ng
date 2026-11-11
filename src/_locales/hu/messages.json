@@ -517,7 +517,7 @@
     "src": "mboximport"
   },
   "formatWarning": {
-    "message": "A mellékletek nincsenek elmentve, ha HTML vagy nem formázott szövegként exportál.\nHa menteni kívánja a mellékleteket is, használja az EML formátumot.\\\nÁtvált erre a formátumra most?",
+    "message": "A mellékletek nincsenek elmentve, ha HTML vagy nem formázott szövegként exportál.\nHa menteni kívánja a mellékleteket is, használja az EML formátumot.\nÁtvált erre a formátumra most?",
     "src": "mboximport"
   },
   "formatWarningImport": {
@@ -843,7 +843,7 @@
     "src": "mboximport"
   },
   "noFolderExport": {
-    "message": "Nem lehet exportálni.\\\nA kiválasztott mappák különböző típusúak, vagy az egyik egy virtuális mappa.",
+    "message": "Nem lehet exportálni.\nA kiválasztott mappák különböző típusúak, vagy az egyik egy virtuális mappa.",
     "src": "mboximport"
   },
   "noFolderSelected": {
@@ -978,7 +978,7 @@
     "message": "${címzett}"
   },
   "remoteWarning": {
-    "message": "IMAP vagy HÍREK mappa helyi másolatábak ezportálása.\\\nA helyi mappa nem tartalmazza a távoli mappa minden üzenetét.\\\nSzeretné folytatni?",
+    "message": "IMAP vagy HÍREK mappa helyi másolatábak ezportálása.\nA helyi mappa nem tartalmazza a távoli mappa minden üzenetét.\nSzeretné folytatni?",
     "src": "mboximport"
   },
   "runProfileManager": {

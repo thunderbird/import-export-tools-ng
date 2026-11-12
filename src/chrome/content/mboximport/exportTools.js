@@ -109,7 +109,7 @@ function searchANDsave(params) {
 	try {
 		let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 		var args = { folder: preselectedFolder, ietngSearch: true };
-		window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		window.openDialog("chrome://messenger/content/searchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
 		return { status: "ok" };
 	} catch (ex) {
 		console.log(ex)

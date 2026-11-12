@@ -71,7 +71,7 @@ async function main() {
 		"chrome://mboximport/content/mboximport/messengerOL.js");
 
 	messenger.WindowListener.registerWindow(
-		"chrome://messenger/content/SearchDialog.xhtml",
+		"chrome://messenger/content/searchDialog.xhtml",
 		"chrome://mboximport/content/mboximport/SearchDialogOL.js");
 
 	messenger.WindowListener.registerWindow(

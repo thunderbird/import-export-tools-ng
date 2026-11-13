@@ -53,6 +53,11 @@ async function main() {
 
 	//messenger.WindowListener.registerDefaultPrefs("defaults/preferences/prefs.js");
 
+	// create a global preference mutex to be used by prefCmds
+	window.gPrefsMutex = new MutexAsync({ warnOnOverlap: true });
+	var varTest = 99099;
+	window.setTest = 59;
+
 	await prefMgmt.initializePrefs();
 
 	// Register all necessary content, Resources, and locales
@@ -87,8 +92,4 @@ async function main() {
 	// autoBackup
 	await autoBackup.initBackupScheduler();
 
-	// create a global preference mutex to be used by prefCmds
-	window.gPrefsMutex = new MutexAsync({ warnOnOverlap: true });
-	var varTest = 99099;
-	window.setTest = 59;
-}
+	}

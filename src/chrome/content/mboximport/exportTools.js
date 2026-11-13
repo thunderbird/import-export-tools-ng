@@ -73,6 +73,10 @@ var { parse5322 } = ChromeUtils.importESModule("chrome://mboximport/content/mbox
 var { IETStoragePrefs } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/IETStoragePrefs.mjs?"
 	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
+if (!msgWindow) {
+	var msgWindow = null;
+}
+
 var IETexported;
 var IETskipped;
 var IETtotal;

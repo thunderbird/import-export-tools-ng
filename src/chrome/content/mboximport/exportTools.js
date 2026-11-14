@@ -105,7 +105,6 @@ var { MsgHdrToMimeMessage } = Ietng_ESM
 	? ChromeUtils.importESModule("resource:///modules/gloda/MimeMessage.sys.mjs")
 	: ChromeUtils.import("resource:///modules/gloda/MimeMessage.jsm");
 
-//var { XPCOMUtils } = ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 function searchANDsave(params) {
@@ -113,7 +112,11 @@ function searchANDsave(params) {
 	try {
 		let preselectedFolder = getMsgFolderFromAccountAndPath(params.selectedFolder.accountId, params.selectedFolder.path);
 		var args = { folder: preselectedFolder, ietngSearch: true };
-		window.openDialog("chrome://messenger/content/searchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		if (ietngUtils.getThunderbirdVersion().major > 159) {
+			window.openDialog("chrome://messenger/content/searchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		} else {
+			window.openDialog("chrome://messenger/content/SearchDialog.xhtml", "", "chrome,resizable,status,centerscreen,dialog=no", args, true);
+		}
 		return { status: "ok" };
 	} catch (ex) {
 		console.log(ex)

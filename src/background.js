@@ -24,6 +24,19 @@ import { MutexAsync } from "./Modules/mutex-async.mjs";
 import "/Modules/menus.mjs";
 import "/Modules/wextAPI.mjs";
 
+
+async function getThunderbirdVersion() {
+	let browserInfo = await messenger.runtime.getBrowserInfo();
+	let parts = browserInfo.version.split(".");
+	return {
+		major: parseInt(parts[0]),
+		minor: parseInt(parts[1]),
+		revision: parts.length > 2 ? parseInt(parts[2]) : 0,
+	};
+}
+
+window.getThunderbirdVersion = getThunderbirdVersion;
+
 // now start
 main();
 
@@ -55,8 +68,6 @@ async function main() {
 
 	// create a global preference mutex to be used by prefCmds
 	window.gPrefsMutex = new MutexAsync({ warnOnOverlap: true });
-	var varTest = 99099;
-	window.setTest = 59;
 
 	await prefMgmt.initializePrefs();
 
@@ -75,9 +86,15 @@ async function main() {
 		"chrome://messenger/content/messenger.xhtml",
 		"chrome://mboximport/content/mboximport/messengerOL.js");
 
-	messenger.WindowListener.registerWindow(
-		"chrome://messenger/content/searchDialog.xhtml",
-		"chrome://mboximport/content/mboximport/SearchDialogOL.js");
+	if ((await getThunderbirdVersion()).major > 159) {
+		messenger.WindowListener.registerWindow(
+			"chrome://messenger/content/searchDialog.xhtml",
+			"chrome://mboximport/content/mboximport/SearchDialogOL.js");
+	} else {
+		messenger.WindowListener.registerWindow(
+			"chrome://messenger/content/SearchDialog.xhtml",
+			"chrome://mboximport/content/mboximport/SearchDialogOL.js");
+	}
 
 	messenger.WindowListener.registerWindow(
 		"chrome://messenger/content/messengercompose/messengercompose.xhtml",
@@ -92,4 +109,4 @@ async function main() {
 	// autoBackup
 	await autoBackup.initBackupScheduler();
 
-	}
+}

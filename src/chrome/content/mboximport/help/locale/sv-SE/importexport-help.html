@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../importexport-help.css" type="text/css" />
-    <title>ImportExportTools NG Hjälp</title>
+    <title>Hjälp för ImportExportTools NG</title>
   </head>
   <body>
     <table style="width: 100%" id="main-help">
       <tr>
         <td style="vertical-align: top">
-          <div style="font-size: 1.8em; font-weight: bold">ImportExportTools NG Hjälp</div>
+          <div style="font-size: 1.8em; font-weight: bold">Hjälp för ImportExportTools NG</div>
           <div id="extVersion" style="padding-left: 4px">ver</div>
         </td>
         <td style="text-align: right; padding-right: 30px">
@@ -20,85 +20,84 @@
     </table>
     <h3 id="release_notes" style="padding-left: 4px">Versionsinformation:</h3>
     <p>
-      <b>Avskrivningsmeddelande:</b><br /><br />
-      Jag kommer att avveckla de äldre exportmeddelandefunktionerna från och med v15.0.3. Vänligen använd och
-      rapportera eventuella problem med de nya (v15) funktionerna så att avvecklingen inte påverkar dig.<br /><br />
-      - Åtgärd: Alternativmigrering från standardfilnamnsformatet (ej rullgardinsmeny eller utökat) producerar
-      undefined.xyz-filer<br />
-      - Åtgärd: EML-export kodas inte till UTF-8 vilket ger förvrängda icke-ASCII-tecken<br />
-      - Åtgärd: Lade till tabell med bilagor för export av endast HTML- och klartextmeddelanden<br />
-      - Återställ datumformatet för rubriken till 2026-11-30 11:20:30. Kommer att göras konfigurerbart
+      <b>Information om utfasning:</b><br /><br />
+      Jag kommer att fasa ut de äldre funktionerna för meddelandeexport från och med v15.0.3. Använd de nya
+      funktionerna (v15) och rapportera eventuella problem så att utfasningen inte påverkar dig.<br /><br />
+      - Rättat: Överföringen av inställningar från standardformatet för filnamn (varken rullgardinsval eller
+      utökat format) skapade filer med namn som undefined.xyz<br />
+      - Rättat: EML-exporter kodades inte som UTF-8, vilket gav felaktiga tecken utanför ASCII<br />
+      - Rättat: En bilagetabell har lagts till vid export av endast meddelanden som HTML eller oformaterad text<br />
+      - Datumformatet i meddelandehuvudet har återställts till 11/30/2026 11:20:30. Det kommer att kunna anpassas
       senare.<br />
-      - Lägg till svarsfält i rubriker om det finns<br />
-      - Ändra logiken för avsändare och mottagare i filnamn:<br />
+      - Fältet Svar till har lagts till i meddelandehuvudet om det finns<br />
+      - Ändrad hantering av avsändare och mottagare i filnamn:<br />
       Använd e-postadress om namn saknas<br />
-      - Lade till filnamnstoken <span class="notranslate">${smart_email}</span><br />
-      - Åtgärdade fr-språkinställningar för Till- och Från-rubriker<br />
-      - Åtgärdade titeln för HTML-exporter<br />
-      - fr språkuppdatering @DenB10<br />
-      - Uppdatering av språkinställningar för sv-SE @NickWick13<br />
-      - etikettuppdatering på sv-US @wesinator<br />
-      - Åtgärdade felaktig bidragsgivare från @Reyard till @Rayerd<br />
+      - Lade till filnamnsvariabeln <span class="notranslate">${smart_email}</span><br />
+      - Rättade Till- och Från-fälten i den franska översättningen<br />
+      - Rättade titeln för HTML-exporter<br />
+      - Uppdaterad fransk översättning (fr) av @DenB10<br />
+      - Uppdaterad svensk översättning (sv-SE) av @NickWick13<br />
+      - Uppdaterad etikett på engelska (en-US) av @wesinator<br />
+      - Rättade bidragsgivarens namn från @Reyard till @Rayerd<br />
     </p>
     <p>
-      <b>v15 Anmärkningar, funktioner och ändringar. Läs noggrant.</b><br /><br />
-      v15 är en fullständig omskrivning av meddelandeexportfunktionerna, både mappar och valda meddelanden.
-      Det är den första fasen i en modern, mestadels WebExtension-teknik. Den nya designen är en stor
-      förbättring av arkitekturen som möjliggör nya funktioner och bättre prestanda.<br /><br />
+      <b>v15: information, funktioner och ändringar. Läs noggrant.</b><br /><br />
+      I v15 har funktionerna för meddelandeexport skrivits om helt, både för mappar och för markerade
+      meddelanden. Det är första steget mot en modern lösning som huvudsakligen bygger på WebExtension-teknik.
+      Den nya arkitekturen möjliggör nya funktioner och bättre prestanda.<br /><br />
       För den första v15-utgåvan har följande format implementerats:<br /><br />
       - EML<br />
       - HTML och bilagor<br />
       - PDF och bilagor<br />
-      - Klartext och bilagor<br /><br />
+      - Oformaterad text och bilagor<br /><br />
       Förutom den nya exportfunktionen för PDF med bilagor finns det också ett nytt exportstatusfönster samt
-      ett nytt alternativ för OS-aviseringar. En lista över funktioner följer:<br /><br />
+      möjlighet att använda operativsystemets aviseringar. En lista över funktioner följer:<br /><br />
       <b>PDF-export med bilagor</b><br /><br />
       Detta är ett länge efterfrågat alternativ. Det finns en viktig begränsning jämfört med HTML-export.
-      Tabellen med bilagor har inga klickbara länkar. Hittills har det inte varit möjligt att producera utdata
-      med relativa länkar. Antingen PDF-konverteraren och/eller visningsprogrammet konverterar alla
-      file://-länkar till absoluta länkar som inte är användbara. Jag hoppas att det finns något sätt att
+      Tabellen med bilagor har inga klickbara länkar. Hittills har det inte varit möjligt att skapa filer
+      med relativa länkar. PDF-konverteraren eller visningsprogrammet, eller båda, omvandlar alla
+      file://-länkar till absoluta länkar som inte går att använda. Jag hoppas att det finns något sätt att
       åstadkomma detta i framtiden.<br /><br />
       <b>Index</b><br /><br />
-      Den nya indexfilen låter dig sortera kolumner genom att klicka på valfri rubrik.<br /><br />
+      I den nya indexfilen kan du sortera efter valfri kolumn genom att klicka på dess rubrik.<br /><br />
       <b>Exportstrukturer</b><br /><br />
-      - Alla bilagor i en enda katalog<br />
-      Om du använder ett statiskt ord som &quot;Bilagor&quot; kommer alla bilagor att hamna i den katalogen.
-      Tidigare skulle det ha gett bilagor, bilagor-1, bilagor-2, etc.<br /><br />
-      - Bilagor sparade i samma katalog som meddelanden.<br />
-      I det här nya alternativet som finns på fliken Filnamn skapas inga bilagekataloger eftersom de alla
-      finns i meddelandekatalogen.<br /><br />
-      - Meddelandedatumet är nu inställt i bilagekatalogerna<br />
-      För sortering kommer bilagekatalogerna nu att ha sitt ändringsdatum inställt på motsvarande meddelandes
+      - Alla bilagor i en enda mapp<br />
+      Om du anger ett fast namn, till exempel &quot;Bilagor&quot;, sparas alla bilagor i den mappen.
+      Tidigare skapades mapparna Bilagor, Bilagor-1, Bilagor-2 och så vidare.<br /><br />
+      - Bilagor sparas i samma mapp som meddelandena.<br />
+      Med det här nya alternativet på fliken Filnamn skapas inga separata bilagemappar. Alla bilagor
+      sparas i meddelandemappen.<br /><br />
+      - Bilagemapparna får nu meddelandets datum<br />
+      För att underlätta sortering får bilagemapparna nu samma ändringsdatum som motsvarande meddelandes
       sändningsdatum.<br /><br />
       - Experimentell &quot;withatts&quot;-struktur<br />
-      Denna struktur kombinerar varje meddelande med alla bilagor i den formaterade bilagekatalogen. Den
-      typiska konfigurationen skulle vara att ställa in filnamnsformatet till din föredragna inställning, till
-      exempel ${subject}, och även dina katalogformat till ${subject}. Detta skulle skapa kataloger för varje
-      meddelande med både meddelandet och bilagorna. Det är möjligt att sortera katalogerna efter datum eller
-      namn.<br /><br />
-      För att testa denna experimentella struktur, placera ordet:<br />
+      Med den här strukturen sparas varje meddelande tillsammans med sina bilagor i bilagemappen vars namn
+      följer det valda formatet. Du kan till exempel ställa in både filnamnsformatet och formatet för mappnamn
+      på ${subject}. Då skapas en mapp för varje meddelande, med både meddelandet och bilagorna. Mapparna kan
+      sorteras efter datum eller namn.<br /><br />
+      För att testa denna experimentella struktur anger du ordet:<br />
       <span class="notranslate">withatts</span><br />
-      i loggningsalternativen på fliken Diverse. (Förslag av @Rayerd)<br /><br />
+      i loggningsalternativen på fliken Övrigt. (Förslag av @Rayerd)<br /><br />
       <b>Loggningsalternativ</b><br /><br />
-      De nya loggningsalternativen finns på fliken Diverse. Dessa ställs in som en mellanslagsavgränsad lista
-      med loggtypord. De producerar olika logg- och felsökningsutdata till felsökningskonsolen som nås via
-      Ctrl-Shift-J. Loggtyperna kan kombineras för att producera den additiva utdatan. Loggtyperna är
+      De nya loggningsalternativen finns på fliken Övrigt. Ange loggtyperna som en lista med mellanslag
+      mellan orden. De skriver olika typer av logg- och felsökningsinformation till felkonsolen, som öppnas med
+      Ctrl+Skift+J. Du kan kombinera flera loggtyper för att visa information från samtliga. Loggtyperna är
       följande:<br />
-      - <span class="notranslate">msgs</span> : Grundläggande meddelandestatus för sparning<br />
+      - <span class="notranslate">msgs</span> : Grundläggande status för sparande av meddelanden<br />
       - <span class="notranslate">msgs2</span> : Mer detaljerad felsökningsutdata för meddelanden<br />
       - <span class="notranslate">summary</span> : En sammanfattning av exporten<br />
       - <span class="notranslate">msgparts</span> : Felsökningsinformation för MIME-meddelandedelar<br />
       - <span class="notranslate">withatts</span> : Ett tillfälligt alternativ för att använda den kombinerade
       strukturen för meddelanden och bilagor<br /><br />
       <b>Menyer</b><br /><br />
-      De nya funktionerna läggs för närvarande till ovanpå de gamla funktionerna och har prefixet (v15).<br /><br />
-      Den gamla koden kommer att avskrivas när de nya funktionerna är stabila. Detta har gjorts som en
-      försiktig strategi för den stora utgåvan. Använd de nya v15-funktionerna och rapportera eventuella
-      problem i Github-arkivet här:<br /><br />
+      De nya funktionerna finns för närvarande parallellt med de gamla och har prefixet (v15).<br /><br />
+      Den gamla koden kommer att fasas ut när de nya funktionerna är stabila. Detta upplägg gör övergången
+      till den nya huvudversionen försiktigare. Använd de nya v15-funktionerna och rapportera eventuella
+      problem i projektets GitHub-arkiv här:<br /><br />
       <a href="https://github.com/thunderbird/import-export-tools-ng/issues"
-        >Problem med ImportExportTools NG Github</a
+        >Ärenden för ImportExportTools NG på GitHub</a
       ><br /><br />
-      <b>Krediter</b><br /><br />
+      <b>Tack till</b><br /><br />
       Den här utgåvan hade inte kunnat genomföras utan tester, översättningar och förslag från flera lojala
       och hängivna användare. Stort tack till:<br /><br />
       <b
@@ -113,49 +112,49 @@
         @pivi2402<br />
         @EXDEV-oss<br /></b
       ><br /><br />
-      Kristoffer<br />
+      Christopher<br />
     </p>
     <h2 id="main_help">Översikt och menyer för ImportExportTools NG</h2>
     <p>
-      ImportExportTools NG är en uppföljning av tillägget baserat på Paolo &quot;Kaosmos&quot; originalverk.
-      Tillägget erbjuder flera import- och exportfunktioner som stöder flera olika filformat, inklusive: Obs:
-      Vissa format stöds inte i alla funktioner.<br />
+      ImportExportTools NG är en vidareutveckling av tillägget som ursprungligen skapades av Paolo
+      &quot;Kaosmos&quot;. Tillägget erbjuder import och export i flera filformat, bland annat följande.
+      Obs: Vissa format stöds inte i alla funktioner.<br />
       - mbox<br />
       - EML<br />
-      - e-postkatalog<br />
+      - maildir<br />
       - HTML<br />
-      - klartext<br />
+      - oformaterad text<br />
       - CSV (kommaseparerade värden)<br />
       - PDF<br /><br />
       Medan det mesta av funktionaliteten kretsar kring meddelanden, finns det även stöd för import och export
       av Thunderbird-profiler. Dessutom kan exporter även inkludera en HTML- eller CSV-indexfil.
       Säkerhetskopiering av Thunderbird-profilen är en annan funktion.<br />
       <p>
-        Åtkomst till IETng-funktionaliteten sker via flera olika menyer som installeras av tillägget.
-        Funktionerna är kontextkänsliga. Menyer läggs till för:<br />
-        - Mapprutans sammanhang (mappåtgärd)<br />
-        - Meddelandelistan i kontexten (valda meddelanden)<br />
+        Du når funktionerna i IETng via flera menyer som tillägget lägger till.
+        Vilka funktioner som visas beror på sammanhanget. Menyer läggs till i:<br />
+        - Mappanelens snabbmeny (mappåtgärder)<br />
+        - Meddelandelistans snabbmeny (markerade meddelanden)<br />
         - Verktygsmenyn (profil- och säkerhetskopieringsåtgärder)<br /><br />
-        De alternativ som är tillgängliga under &quot;Verktygsmenyn&quot; finns inte i
-        &quot;Hamburger&quot;-menyn, de kommer att finnas i en framtida version. Dessa funktioner finns också
-        tillgängliga i den nya verktygsfältsknappen. Varje meny och knapp har också menyalternativen Hjälp och
-        Alternativ för att komma åt alternativdialogrutan.<br />
+        Alternativen i menyn Verktyg finns ännu inte i hamburgermenyn, men kommer att läggas till där i en
+        framtida version. Dessa funktioner finns också
+        tillgängliga i den nya verktygsfältsknappen. Varje meny och knapp har också alternativen Hjälp och
+        Inställningar för att öppna hjälpen respektive inställningsdialogrutan.<br />
       </p>
     </p>
-    <h3>Stöd:</h3>
+    <h3>Support:</h3>
     <p>
-      Vänligen posta problem eller funktionsförfrågningar i tilläggens GitHub-arkiv:
+      Rapportera problem eller föreslå nya funktioner i tilläggets GitHub-arkiv:
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng/issues"
-        >ImportExportTools NG-problem</a
+        >Ärenden för ImportExportTools NG</a
       ><br /><br />
-      Vid buggproblem, inkludera följande information för att hjälpa till att lösa problemen:<br />
-      - ImportExportTools NG version<br />
+      Ta med följande information i felrapporter för att underlätta felsökningen:<br />
+      - Version av ImportExportTools NG<br />
       - Thunderbird-versionen<br />
       - Operativsystem och version<br />
-      - Felsökningsutdata (kopiera från felsökningskonsolen - åtkomst med Ctrl-Shift-J)<br />
+      - Felsökningsinformation (kopiera från felkonsolen, som öppnas med Ctrl+Skift+J)<br />
       - En beskrivning av stegen som ledde till problemet<br />
     </p>
-    <h2 id="main_menu_help">Funktioner i mappens kontextmeny</h2>
+    <h2 id="main_menu_help">Funktioner i mappens snabbmeny</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -168,7 +167,7 @@
           <td class="notranslate">__MSG_folderCtxMenu_Exp_Account_Id.title__</td>
           <td>
             Exportera hela kontot med struktur och undermappar i mbox-format. Exporten görs med hjälp av en
-            container med kontonamnet.<br />
+            mapp med kontots namn.<br />
             Obs: Det här menyalternativet visas bara när du högerklickar på en kontopost.
           </td>
         </tr>
@@ -182,7 +181,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_FolderMboxZipped_Id.title__</td>
-          <td>Exportera en enskild mapp till en zippad mbox-fil</td>
+          <td>Exportera en enskild mapp till en zip-komprimerad mbox-fil</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">
@@ -210,7 +209,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som EML-formatfiler (ingen struktur/undermappar).<br />
+            Exportera meddelandena i mappen som EML-filer (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -221,7 +220,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som HTML-formatfiler (ingen struktur/undermappar).<br />
+            Exportera meddelandena i mappen som HTML-filer (ingen struktur/undermappar).<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -230,14 +229,14 @@
             __MSG_folderCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportera mappmeddelandena som HTML-filer (ingen struktur/undermappar).<br />
+            Exportera meddelandena i mappen som HTML-filer (ingen struktur/undermappar).<br />
             Bilagor sparas som separata filer. Detta skapar också en HTML-indexfil som listar varje
             meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Exportera mappmeddelandena som en uppsättning PDF-filer</td>
+          <td>Exportera meddelandena i mappen som en uppsättning PDF-filer</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -246,7 +245,7 @@
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som klartextfiler, bilagor ingår inte.<br />
+            Exportera meddelandena i mappen som filer med oformaterad text, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -255,14 +254,14 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportera mappmeddelandena som klartextfiler, inklusive bilagor.<br />
+            Exportera meddelandena i mappen som filer med oformaterad text, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_folderCtxMenu_Exp_PlainTextFormatSingleFile_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som en enda fil i klartextformat, bilagor ingår inte.<br />
+            Exportera meddelandena i mappen som en enda fil i oformaterad text, bilagor ingår inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -271,14 +270,14 @@
             __MSG_folderCtxMenu_Exp_PlainTextFormatSingleFileSaveAtts_Id.title__
           </td>
           <td>
-            Exportera mappmeddelandena som en enda fil i klartextformat, inklusive bilagor.<br />
+            Exportera meddelandena i mappen som en enda fil i oformaterad text, inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_CSVFormat_Id.title__</td>
           <td>
-            Exportera mappmeddelandena som en enda CSV-textfil (kommaseparerade värden). Bilagor ingår
+            Exportera meddelandena i mappen som en enda CSV-textfil (kommaseparerade värden). Bilagor ingår
             inte.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
@@ -289,11 +288,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexHTML_Id.title__</td>
-          <td>Skapar en HTML-indexfil för mappmeddelandena (ingen meddelandeexport)</td>
+          <td>Skapa en HTML-indexfil för meddelandena i mappen (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Skapar en CSV-indexfil av mappmeddelandena (ingen meddelandeexport)</td>
+          <td>Skapa en CSV-indexfil för meddelandena i mappen (ingen meddelandeexport)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Exp_SearchExport_Id.title__</td>
@@ -301,26 +300,26 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_Imp_MboxFiles_Id.title__</td>
-          <td>(Importera endast till lokala mappar, inte IMAP)</td>
+          <td>(Import kan endast göras till lokala mappar, inte till IMAP-mappar)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndv_Id.title__</td>
-          <td>Importera en eller flera mbox-filer från en katalog.</td>
+          <td>Importera en eller flera mbox-filer från en mapp.</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesIndvRecursive_Id.title__</td>
-          <td class="notranslate">
-            Import one or more mbox files from a directory including their subfolders and structure.
+          <td>
+            Importera en eller flera mbox-filer från en mapp med deras undermappar och struktur.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDir_Id.title__</td>
-          <td class="notranslate">Import all mbox files in a selected folder</td>
+          <td>Importera alla mbox-filer i en vald mapp</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_folderCtxMenu_Imp_MboxFilesDirRecursive_Id.title__</td>
-          <td class="notranslate">
-            Import all mbox files in a selected folder including their subfolders and structure
+          <td>
+            Importera alla mbox-filer i en vald mapp med deras undermappar och struktur
           </td>
         </tr>
         <tr>
@@ -345,15 +344,15 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_CopyFolderPath_Id.title__</td>
-          <td>Kopiera sökvägen till operativsystemet för den valda mappen</td>
+          <td>Kopiera den markerade mappens sökväg på disken</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_folderCtxMenu_OpenFolderDir_Id.title__</td>
-          <td>Öppna sökvägen till operativsystemet för den valda mappen</td>
+          <td>Öppna den markerade mappens plats på disken</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
+          <td>Öppna inställningsdialogrutan för ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -362,7 +361,7 @@
       </tbody>
     </table>
     <br />
-    <h2 id="message_functions_help">Meddelandekontextmeny</h2>
+    <h2 id="message_functions_help">Meddelandets snabbmeny</h2>
     <table class="menu-table">
       <thead>
         <tr>
@@ -381,12 +380,12 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportera de valda meddelandena till EML-formatfiler (inbäddade bilagor)</td>
+          <td>Exportera de markerade meddelandena till EML-filer (inbäddade bilagor)</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_EMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera de valda meddelandena till EML-formatfiler<br />
+            Exportera de markerade meddelandena till EML-filer<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
@@ -396,29 +395,29 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatMsgsOnly_Id.title__</td>
-          <td>Exportera de valda meddelandena till HTML-formatfiler</td>
+          <td>Exportera de markerade meddelandena till HTML-filer</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAtts_Id.title__</td>
-          <td>Exportera de valda meddelandena till HTML-formatfiler inklusive bilagor</td>
+          <td>Exportera de markerade meddelandena till HTML-filer inklusive bilagor</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatCreateIndex_Id.title__</td>
           <td>
-            Exportera meddelandena som HTML-formatfiler.<br />
+            Exportera meddelandena som HTML-filer.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_HTMLFormatSaveAttsCreateIndex_Id.title__</td>
           <td>
-            Exportera meddelandena som HTML-formatfiler inklusive bilagor.<br />
+            Exportera meddelandena som HTML-filer inklusive bilagor.<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PDFFormat_Id.title__</td>
-          <td>Exportera de valda meddelandena till PDF-formatfiler</td>
+          <td>Exportera de markerade meddelandena till PDF-formatfiler</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_PlainTextFormat_Id.title__</td>
@@ -426,24 +425,24 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatMsgsOnly_Id.title__</td>
-          <td>Exportera de valda meddelandena till filer i klartextformat</td>
+          <td>Exportera de markerade meddelandena till filer i oformaterad text</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_PlainTextFormatSaveAtts_Id.title__</td>
-          <td>Exportera de valda meddelandena till klartextfiler inklusive bilagor</td>
+          <td>Exportera de markerade meddelandena till filer med oformaterad text inklusive bilagor</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">
             __MSG_msgCtxMenu_Exp_PlainTextFormatSaveAttsCreateIndex_Id.title__
           </td>
           <td>
-            Exportera meddelandena som klartextfiler inklusive bilagor<br />
+            Exportera meddelandena som filer med oformaterad text inklusive bilagor<br />
             Detta skapar också en HTML-indexfil som listar varje meddelande.
           </td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_CSVFormat_Id.title__</td>
-          <td>Exportera de valda meddelandena till en enda CSV-textfil</td>
+          <td>Exportera de markerade meddelandena till en enda CSV-textfil</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_MboxFormat_Id.title__</td>
@@ -451,7 +450,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatNewMbox_Id.title__</td>
-          <td>Exportera de valda meddelandena till en enda mbox-fil</td>
+          <td>Exportera de markerade meddelandena till en enda mbox-fil</td>
         </tr>
         <tr>
           <td class="notranslate submenu2">__MSG_msgCtxMenu_Exp_MboxFormatAppendMbox_Id.title__</td>
@@ -467,7 +466,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_Exp_IndexCSV_Id.title__</td>
-          <td>Skapa en CSV-indexfil för de valda meddelandena</td>
+          <td>Skapa en CSV-indexfil för de markerade meddelandena</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_msgCtxMenu_CopyToClipboard_Id.title__</td>
@@ -479,11 +478,11 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_msgCtxMenu_CopyToClipboardHeaders_Id.title__</td>
-          <td>Kopiera rubrikerna för ett enskilt markerat meddelande till urklipp</td>
+          <td>Kopiera meddelandehuvudena för ett enskilt markerat meddelande till urklipp</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
+          <td>Öppna inställningsdialogrutan för ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -507,7 +506,7 @@
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileFull_Id.title__</td>
-          <td>Spara hela profilen (e-post, tillägg, alternativ)</td>
+          <td>Spara hela profilen (e-post, tillägg, inställningar)</td>
         </tr>
         <tr>
           <td class="notranslate submenu1">__MSG_toolsCtxMenu_Exp_ProfileMailOnly_Id.title__</td>
@@ -515,7 +514,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Imp_Profile_Id.title__</td>
-          <td>Importera en komplett profil (e-post, tillägg, alternativ)</td>
+          <td>Importera en komplett profil (e-post, tillägg, inställningar)</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_toolsCtxMenu_Backup_Id.title__</td>
@@ -523,7 +522,7 @@
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Options.title__</td>
-          <td>Öppna dialogrutan ImportExportTools NG-alternativ</td>
+          <td>Öppna inställningsdialogrutan för ImportExportTools NG</td>
         </tr>
         <tr>
           <td class="notranslate">__MSG_ctxMenu_Help.title__</td>
@@ -533,17 +532,17 @@
     </table>
     <h2 id="customdate_format_help">Anpassat datumformat</h2>
     <p>
-      Alternativet för anpassat datum ger fullständig kontroll över datumformateringen som används för båda
-      filerna i indexet. Både standardformatet &quot;Datum&quot; och det nya anpassade formatet &quot;Datum
+      Alternativet för anpassat datum ger fullständig kontroll över datumformatet i både filnamn och
+      index. Både standardformatet &quot;Datum&quot; och det nya anpassade formatet &quot;Datum
       (anpassat)&quot; finns tillgängliga i rullgardinsmenyerna för filnamn. Det anpassade datumet kan också
-      användas med token ${date_custom} som används i de utökade anpassade filnamnen. Det ursprungliga
-      (standard) datumformatet är:<br />
-      ÅÅÅÅMMDDHHmm : 202011060808<br /><br />
-      Det anpassade datumformatet använder %-sekvenser som matchar den Unix-liknande funktionen
-      <code>strftime()</code> . Det är baserat på en JavaScript-port av
-      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>
-      , en funktion för att formatera datum och tid.<br />
-      Portering av strftime() av TH Doan (https://thdoan.github.io/strftime/)<br />
+      användas med formatvariabeln ${date_custom} i det utökade filnamnsformatet. Det ursprungliga
+      standardformatet för datum är:<br />
+      YYYYMMDDHHmm : 202011060808<br /><br />
+      Det anpassade datumformatet använder %-sekvenser som motsvarar dem i Unix-funktionen
+      <code>strftime()</code>. Det bygger på en JavaScript-version av
+      <a class="link1" href="http://man7.org/linux/man-pages/man3/strftime.3.html"><code>strftime()</code></a>,
+      en funktion för att formatera datum och tid.<br />
+      strftime() har porterats av T. H. Doan (https://thdoan.github.io/strftime/)<br />
     </p>
     <h3>Beskrivningar av konverteringssekvenser</h3>
     <table class="dateformat-table">
@@ -572,7 +571,7 @@
         </tr>
         <tr>
           <td><code class="code1">%c</code></td>
-          <td>Föredragen datum- och tidsrepresentation (UTC) för den aktuella platsen.</td>
+          <td>Datum- och tidsformat (UTC) enligt den aktuella språkinställningen.</td>
         </tr>
         <tr>
           <td><code class="code1">%C</code></td>
@@ -580,80 +579,80 @@
         </tr>
         <tr>
           <td><code class="code1">%d</code></td>
-          <td>Månadens dag som ett decimaltal (intervall 01 till 31).</td>
+          <td>Dag i månaden som ett tal (intervall 01 till 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%e</code></td>
-          <td>Månadens dag som ett decimaltal (intervall 1 till 31).</td>
+          <td>Dag i månaden som ett tal (intervall 1 till 31).</td>
         </tr>
         <tr>
           <td><code class="code1">%F</code></td>
-          <td>ISO 8601 datumformat (motsvarande <code class="code1">%Y-%m-%d</code> ).</td>
+          <td>Datumformat enligt ISO 8601 (motsvarande <code class="code1">%Y-%m-%d</code>).</td>
         </tr>
         <tr>
           <td><code class="code1">%G</code></td>
           <td>
-            ISO 8601 veckobaserat år med århundrade som decimaltal. Det fyrsiffriga året motsvarar
-            ISO-veckonumret (se <code class="code1">%V</code> ). Detta har samma format och värde som
-            <code class="code1">%Y</code> , förutom att om ISO-veckonumret tillhör föregående eller nästa år
+            Veckobaserat år enligt ISO 8601, inklusive århundrade, som ett tal. Det fyrsiffriga året motsvarar
+            ISO-veckonumret (se <code class="code1">%V</code>). Detta har samma format och värde som
+            <code class="code1">%Y</code>, förutom att om ISO-veckonumret tillhör föregående eller nästa år
             används det året istället.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%g</code></td>
           <td>
-            Som <code class="code1">%G</code> , men utan århundrade, det vill säga med ett tvåsiffrigt årtal
+            Som <code class="code1">%G</code>, men utan århundrade, det vill säga med ett tvåsiffrigt årtal
             (00-99).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%H</code></td>
           <td>
-            Timme som ett decimaltal med en 24-timmarsklocka (intervall 00 till 23). Se även
-            <code class="code1">%k</code> .
+            Timme som ett tal med en 24-timmarsklocka (intervall 00 till 23). Se även
+            <code class="code1">%k</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%I</code></td>
           <td>
-            Timme som ett decimaltal med en 12-timmarsklocka (intervall 01 till 12). Se även
-            <code class="code1">%l</code> .
+            Timme som ett tal med en 12-timmarsklocka (intervall 01 till 12). Se även
+            <code class="code1">%l</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%j</code></td>
-          <td>Årets dag som ett decimaltal (intervall 001 till 366).</td>
+          <td>Dag på året som ett tal (intervall 001 till 366).</td>
         </tr>
         <tr>
           <td><code class="code1">%k</code></td>
           <td>
-            Timme som ett decimaltal med en 24-timmarsklocka (intervall 0 till 23). Se även
-            <code class="code1">%H</code> .
+            Timme som ett tal med en 24-timmarsklocka (intervall 0 till 23). Se även
+            <code class="code1">%H</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%l</code></td>
           <td>
-            Timme som ett decimaltal med en 12-timmarsklocka (intervall 1 till 12). Se även
-            <code class="code1">%I</code> .
+            Timme som ett tal med en 12-timmarsklocka (intervall 1 till 12). Se även
+            <code class="code1">%I</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%m</code></td>
-          <td>Månad som ett decimaltal (intervall 01 till 12).</td>
+          <td>Månad som ett tal (intervall 01 till 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%n</code></td>
-          <td>Månad som ett decimaltal (intervall 1 till 12).</td>
+          <td>Månad som ett tal (intervall 1 till 12).</td>
         </tr>
         <tr>
           <td><code class="code1">%M</code></td>
-          <td>Minut som ett decimaltal (intervall 00 till 59).</td>
+          <td>Minut som ett tal (intervall 00 till 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%p</code></td>
           <td>
-            Antingen &quot;AM&quot; eller &quot;PM&quot; beroende på det angivna tidsvärdet. Middag behandlas
+            Antingen &quot;AM&quot; eller &quot;PM&quot; beroende på det angivna tidsvärdet. Klockan 12 på dagen behandlas
             som &quot;PM&quot; och midnatt som &quot;AM&quot;.
           </td>
         </tr>
@@ -667,48 +666,48 @@
         </tr>
         <tr>
           <td><code class="code1">%S</code></td>
-          <td>Sekunden som ett decimaltal (intervall 00 till 59).</td>
+          <td>Sekund som ett tal (intervall 00 till 59).</td>
         </tr>
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            Veckodag som decimaltal (intervall 1 till 7), måndag är 1. Se även <code class="code1">%w</code> .
+            Veckodag som ett tal (intervall 1 till 7), måndag är 1. Se även <code class="code1">%w</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            ISO 8601-veckonummer för innevarande år som ett decimaltal (intervall 01 till 53), där vecka 1 är
-            den första veckan som har minst 4 dagar på det nya året (det vill säga den första torsdagen).
+            Veckonummer enligt ISO 8601 för det aktuella året som ett tal (intervall 01 till 53), där vecka 1 är
+            den första veckan som har minst 4 dagar på det nya året (det vill säga veckan med årets första torsdag).
           </td>
         </tr>
         <tr>
           <td><code class="code1">%w</code></td>
           <td>
-            Veckodag som decimal (intervall 0 till 6), söndag är 0. Se även <code class="code1">%u</code> .
+            Veckodag som ett tal (intervall 0 till 6), söndag är 0. Se även <code class="code1">%u</code>.
           </td>
         </tr>
         <tr>
           <td><code class="code1">%x</code></td>
-          <td>Föredragen datumrepresentation för den aktuella platsen utan tid.</td>
+          <td>Datumformat enligt den aktuella språkinställningen, utan tid.</td>
         </tr>
         <tr>
           <td><code class="code1">%X</code></td>
-          <td>Föredragen tidsrepresentation för den aktuella platsen utan datum.</td>
+          <td>Tidsformat enligt den aktuella språkinställningen, utan datum.</td>
         </tr>
         <tr>
           <td><code class="code1">%y</code></td>
-          <td>År som ett decimaltal utan sekel (intervall 00 till 99).</td>
+          <td>Årtal utan århundrade (intervall 00 till 99).</td>
         </tr>
         <tr>
           <td><code class="code1">%Y</code></td>
-          <td>År som ett decimaltal inklusive århundradet.</td>
+          <td>Årtal inklusive århundrade.</td>
         </tr>
         <tr>
           <td><code class="code1">%z</code></td>
           <td>
             Den numeriska tidszonen <code class="code1">+hhmm</code> eller
-            <code class="code1">-hhmm</code> (det vill säga timme- och minutförskjutningen från UTC).
+            <code class="code1">-hhmm</code> (det vill säga förskjutningen i timmar och minuter från UTC).
           </td>
         </tr>
         <tr>
@@ -722,43 +721,43 @@
       <li><code class="code1">%c</code> - den formaterade strängen är något annorlunda</li>
       <li>
         <code class="code1">%D</code> - inte implementerad (använd <code class="code1">%m/%d/%y</code> eller
-        <code class="code1">%d/%m/%y</code> )
+        <code class="code1">%d/%m/%y</code>)
       </li>
       <li><code class="code1">%e</code> - mellanslag läggs inte till</li>
       <li><code class="code1">%E</code> - inte implementerad</li>
-      <li><code class="code1">%h</code> - inte implementerad (använd <code class="code1">%b</code> )</li>
+      <li><code class="code1">%h</code> - inte implementerad (använd <code class="code1">%b</code>)</li>
       <li><code class="code1">%k</code> - mellanslag läggs inte till</li>
       <li>
-        <code class="code1">%n</code> - som <code class="code1">%m</code> , men ingen inledande nolla (använd
-        <code class="code1">\n</code> för nyrad)
+        <code class="code1">%n</code> - som <code class="code1">%m</code>, men ingen inledande nolla (använd
+        <code class="code1">\n</code> för radbrytning)
       </li>
       <li><code class="code1">%O</code> - inte implementerad</li>
       <li>
-        <code class="code1">%r</code> - inte implementerad (använd <code class="code1">%I:%M:%S %p</code> )
+        <code class="code1">%r</code> - inte implementerad (använd <code class="code1">%I:%M:%S %p</code>)
       </li>
       <tr>
         <td><code class="code1">${subject}</code></td>
         <td>Meddelandets ämne</td>
       </tr>
-      <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code> )</li>
-      <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code> )</li>
+      <li><code class="code1">%R</code> - inte implementerad (använd <code class="code1">%H:%M</code>)</li>
+      <li><code class="code1">%t</code> - inte implementerad (använd <code class="code1">\t</code>)</li>
       <li>
-        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code> )
+        <code class="code1">%T</code> - inte implementerad (använd <code class="code1">%H:%M:%S</code>)
       </li>
       <li><code class="code1">%U</code> - inte implementerad</li>
-      <li><code class="code1">%W</code> - inte implementerat</li>
+      <li><code class="code1">%W</code> - inte implementerad</li>
       <li><code class="code1">%+</code> - inte implementerad</li>
-      <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code> )</li>
+      <li><code class="code1">%%</code> - inte implementerad (använd <code class="code1">%</code>)</li>
     </ul>
     <br /><br />
     <h2 id="ext_filename_format_help">Utökat filnamnsformat:</h2>
     <br />
     <p>
-      Den utökade filnamnsformateringen använder tokens. Det exakta filnamnet kan konstrueras med hjälp av
-      tokens såväl som valfri text eller giltiga filnamnstecken. Ogiltiga tecken är:
-      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelska (en-US) tokens är tillgängliga i alla
-      språkinställningar. Språkspecifika tokens är också tillgängliga och listas under den engelska
-      tabellen.<br /><br />
+      Det utökade filnamnsformatet använder formatvariabler. Du kan skapa filnamnet med hjälp av
+      formatvariabler, valfri text och giltiga filnamnstecken. Ogiltiga tecken är:
+      <code>| * : &lt; &gt; ? \ / &quot;</code> De engelska formatvariablerna (en-US) är tillgängliga för alla
+      språkinställningar. Språkspecifika formatvariabler finns också och visas i tabellen under de engelska
+      formatvariablerna.<br /><br />
       Exempel:<br /><br />
       <span class="notranslate"><code>${subject}-${date}-${index}</code></span> - Standardformatet<br />
       <span class="notranslate"><code>${prefix}_${date_custom}_${sender}</code></span> - Använd det anpassade
@@ -768,7 +767,7 @@
     </p>
     <table class="token-table">
       <tr>
-        <td>Tecken</td>
+        <td>Formatvariabel</td>
         <td>Beskrivning</td>
       </tr>
       <tr>
@@ -781,19 +780,19 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient}</code></td>
-        <td>Namnet på meddelandemottagaren.</td>
+        <td>Namnet på meddelandets mottagare.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${sender_email}</code></td>
-        <td>Meddelandets avsändares e-postadress.</td>
+        <td>E-postadressen till meddelandets avsändare.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${recipient_email}</code></td>
-        <td>Meddelandemottagarens e-postadress.</td>
+        <td>E-postadressen till meddelandets mottagare.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${smart_name}</code></td>
-        <td>Mottagarna om meddelandet finns i en Skickat-mapp, annars avsändarens namn</td>
+        <td>Mottagarnas namn om meddelandet finns i en mapp för skickade meddelanden, annars avsändarens namn.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${index}</code></td>
@@ -801,15 +800,15 @@
       </tr>
       <tr>
         <td class="notranslate"><code>${prefix}</code></td>
-        <td>Värdet för prefixets textalternativ.</td>
+        <td>Texten som angetts som prefix.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${suffix}</code></td>
-        <td>Värdet för suffixtextalternativet.</td>
+        <td>Texten som angetts som suffix.</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date}</code></td>
-        <td>Standarddatumformatet. Standardformatet är: ÅÅÅÅMMDDHHmm</td>
+        <td>Standarddatumformatet. Standardformatet är: YYYYMMDDHHmm</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${date_custom}</code></td>
@@ -819,8 +818,8 @@
     <br />
     <table id="localized-token-table" class="token-table">
       <tr>
-        <td>Token (sv-US)</td>
-        <td>Lokaliserad (<span id="locale1"></span> ) Pollett</td>
+        <td>Formatvariabel (en-US)</td>
+        <td>Lokaliserad formatvariabel (<span id="locale1"></span>)</td>
       </tr>
       <tr>
         <td class="notranslate"><code>${subject}</code></td>
@@ -868,20 +867,20 @@
       </tr>
     </table>
     <br />
-    <h2>Nya och experimentella inställningar (alternativ)</h2>
+    <h2>Nya och experimentella inställningar</h2>
     <p>
-      Det finns flera nya funktioner och alternativ som ännu inte kan konfigureras i alternativdialogrutan.
+      Det finns flera nya funktioner och inställningar som ännu inte kan konfigureras i inställningsdialogrutan.
       När dessa funktioner har stabiliserats kommer de att läggas till i användargränssnittet.<br />
       För att kunna använda dem måste de ställas in i konfigurationsredigeraren. För att komma åt redigeraren,
-      använd menyn Verktyg/Alternativ och välj sedan avsnittet Avancerat. Det finns en knapp för
+      använd menyn Verktyg/Inställningar och välj sedan avsnittet Avancerat. Det finns en knapp för
       &quot;Konfigurationsredigerare&quot; längst ner. Om du skriver &quot;importexporttoolsng&quot; i
       sökfältet får du upp alla tilläggsinställningar. Du kan sedan redigera de olika inställningarna nedan
       efter behov.
     </p>
     <p><code class="notranslate">importexporttoolsng.export.index_date_custom_format</code></p>
     <p>
-      Denna inställning följer samma fullständiga formatering som används för indexfilerna. Det är en tom
-      sträng som standard, om den har en formaterad datum-/tidssträng ändras indexets datumformat.
+      Den här inställningen använder samma datumformatering som beskrivs ovan för indexfilerna. Som standard
+      är värdet en tom sträng. Om du anger en formatsträng för datum och tid ändras datumformatet i indexet.
     </p>
     <p>
       <code class="notranslate">importexporttoolsng.export.attachments.filename_extended_format</code><br />
@@ -892,41 +891,40 @@
       </p>
     </p>
     <p>
-      Båda dessa inställningar använder samma typ av utökade filnamnsformat som de exporterade meddelandenas
-      filnamn använder. Den första är för externa bilagor, den andra är för inbäddade (infogade) bilagor.
+      Båda inställningarna använder samma utökade filnamnsformat som de exporterade meddelandenas filnamn.
+      Den första är för externa bilagor, den andra är för inbäddade (infogade) bilagor.
     </p>
     <p><code class="notranslate">importexporttoolsng.experimental.use_delivery_date</code></p>
     <p>
       Normalt sett är &quot;Datum&quot; för ett meddelande i Thunderbird det datum som anges av avsändarens
-      e-postklient. Om det här alternativet är satt till &quot;sant&quot; används mottagningsdatumet i
+      e-postklient. Om det här alternativet är satt till &quot;true&quot; används mottagningsdatumet i
       mottagarens e-postklient. Detta datum kommer att användas för både filnamn och datumet i indexfilerna.
     </p>
-    <h2>Grundläggande, globala snabbtangentfunktioner (genvägar)</h2>
+    <h2>Grundläggande stöd för globala kortkommandon</h2>
     <p><code class="notranslate">importexporttoolsng.experimental.hot_keys</code></p>
     <p>
-      Den här nya inställningen låter användaren ställa in upp till 10 kortkommandon. Kortkommandona kan
+      Den här nya inställningen låter dig ange upp till 10 kortkommandon. Kortkommandona kan
       utföra de flesta ImportExportTools NG-funktionerna såväl som andra Thunderbird-funktioner.
-      Inställningssträngen är formaterad som ett JSON-formaterat objekt. Formatet och nycklarna är följande:
+      Inställningssträngen är i JSON-format. Formatet och nycklarna beskrivs nedan:
     </p>
     <p>
-      Exempel på snabbtangentposter (matris med JSON-objekt)<br /><br />
-      <code class="notranslate">id</code> - nyckelindexet (1-10)<br />
-      <code class="notranslate">key</code> - nyckeln (enkelt tecken)<br />
-      <code class="notranslate">keycode</code> - &#39;VK_*&#39; definierar nyckelkoden<br />
-      Antingen nyckel eller nyckelkod kan inkluderas, men inte båda<br />
-      <code class="notranslate">modifiers</code> - tangentmodifierare, mellanslagsseparerad lista
+      Exempel på kortkommandon (lista med JSON-objekt)<br /><br />
+      <code class="notranslate">id</code> - kortkommandots index (1–10)<br />
+      <code class="notranslate">key</code> - tangenten (ett enda tecken)<br />
+      <code class="notranslate">keycode</code> - tangentkoden i formatet &#39;VK_*&#39;<br />
+      Ange antingen key eller keycode, men inte båda<br />
+      <code class="notranslate">modifiers</code> - modifierartangenter i en mellanslagsavgränsad lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - en direkt kommandosträng<br />
-      <code class="notranslate">contexts</code> - fönsterkontexten där tangenten är aktiv<br />
-      <code class="notranslate">&#39;all&#39;</code> - alla fönster under messenger, skriv, sök<br />
-      <code class="notranslate">&#39;messenger&#39;</code> - huvudfönstret för messenger och dess
-      underordnade<br />
-      <code class="notranslate">&#39;compose&#39;</code> - fönstret för att skriva meddelandet<br />
+      <code class="notranslate">contexts</code> - de fönstertyper där kortkommandot är aktivt<br />
+      <code class="notranslate">&#39;all&#39;</code> - alla huvudfönster, skrivfönster och sökfönster<br />
+      <code class="notranslate">&#39;messenger&#39;</code> - huvudfönstret och dess underordnade fönster<br />
+      <code class="notranslate">&#39;compose&#39;</code> - fönstret för att skriva meddelanden<br />
       <code class="notranslate">&#39;search&#39;</code> - sökdialogrutan<br /><br />
       <code class="notranslate"
         >[{&quot;id&quot;: &quot;1&quot;, &quot;key&quot;: &quot;K&quot;, &quot;modifiers&quot;: &quot;control
         shift&quot;, &quot;oncommand&quot;: &quot;alert(&#39;Compose alert&#39;)&quot;, &quot;contexts&quot;:
-        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode: &quot;VK_F1&quot;,
+        &quot;compose&quot;}, {&quot;id&quot;: &quot;2&quot;, &quot;keycode&quot;: &quot;VK_F1&quot;,
         &quot;modifiers&quot;: &quot;control shift&quot;, &quot;oncommand&quot;:
         &quot;alert(&#39;testD&#39;)&quot;, &quot;contexts&quot;: &quot;all&quot;}]</code
       ><br /><br />
@@ -951,24 +949,24 @@
       ><br />
     </p>
     <p>
-      Eftersom genvägarna är nya och experimentella kommer jag också att lägga till mer dokumentation i
-      arkivet. Kontrollera tillägget
+      Eftersom kortkommandona är nya och experimentella kommer jag också att lägga till mer dokumentation i
+      kodarkivet. Se tilläggets
       <a class="link1" href="https://github.com/thundernest/import-export-tools-ng"
         >ImportExportTools NG README</a
       ><br />
     </p>
     <br />
-    <h3>Version 14.0.0: Thunderbird 115-support - 10 juli 2023</h3>
+    <h3>Version 14.0.0: Stöd för Thunderbird 115 – 10 juli 2023</h3>
     <p>
-      Funktioner och problem som åtgärdats:<br />
+      Funktioner och åtgärdade problem:<br />
       <p>
         - Stöd för Thunderbird 115 Supernova<br />
-        - Omarbeta och modernisera alternativgränssnittet<br />
+        - Omarbetat och moderniserat gränssnitt för inställningar<br />
         - Fullständigt stöd för mörkt läge<br />
         - Nytt, enhetligt menysystem<br />
         - Ny knapp i verktygsfältet<br />
         - Förbättrad hjälp, öppnas vid installation<br />
-        - Uppdatera exportkonto<br /><br />
+        - Uppdaterad kontoexport<br /><br />
         Tack till följande användare för förslag på förbättringar och hjälp med testning:<br /><br />
         - <code class="notranslate">@kiki-ja</code><br />
         - <code class="notranslate">@tidebre67</code><br />

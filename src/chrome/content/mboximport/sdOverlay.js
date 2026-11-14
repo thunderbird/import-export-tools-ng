@@ -161,12 +161,13 @@ async function SDexportMsg() {
 	IETtotal = emlsArray.length;
 	IETexported = 0;
 	IETskipped = 0;
+	console.log("type", type)
 	if (type === 1)
-		exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, false);
+		await	exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, false);
 	else if (type === 2)
-		exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, null, false);
+		await exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, null, false);
 	else if (type === 3)
-		exportAsHtml(msguri, emlsArray, file, true, false, false, true, null, null, null, null, false);
+		await exportAsHtml(msguri, emlsArray, file, true, false, false, true, null, null, null, null, false);
 	else if (type === 4) {
 		var now = new Date;
 		var filename = now.getFullYear().toString() + (now.getMonth() + 1).toString() + now.getDate().toString() + "_mbox";

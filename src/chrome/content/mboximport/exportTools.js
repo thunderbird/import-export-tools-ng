@@ -1980,8 +1980,9 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 				myTxtListener.chrset = hdr.Charset;
 				messageService.streamMessage(uri, streamListner, msgWindow, null, false, null);
 			} else if (hdr.folder.server.type === "imap") {
+				console.log("strea")
 				myTxtListener.chrset = "UTF-8";
-				messageService.streamMessage(uri, myTxtListener, null, null, true, null);
+				messageService.streamMessage(uri, myTxtListener, null, true, true, null);
 			} else {
 				myTxtListener.chrset = hdr.Charset;
 				messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");

@@ -1982,7 +1982,13 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 			} else if (hdr.folder.server.type === "imap") {
 				console.log("strea")
 				myTxtListener.chrset = "UTF-8";
-				messageService.streamMessage(uri, myTxtListener, null, false, true, null);
+				if (ietngUtils.getThunderbirdVersion().major > 161) {
+					// this works for daily 162
+					messageService.streamMessage(uri, myTxtListener, null, true, true, null);
+				} else {
+					// this is in v15.0.3 also works in v160 and 161-b2
+					messageService.streamMessage(uri, myTxtListener, null, null, true, null);
+				}
 			} else {
 				myTxtListener.chrset = hdr.Charset;
 				messageService.streamMessage(uri, myTxtListener, null, true, true, "header=filter");

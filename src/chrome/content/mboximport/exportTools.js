@@ -1978,14 +1978,14 @@ async function exportAsHtml(uri, uriArray, file, convertToText, allMsgs, copyToC
 					.getService(Ci.nsIStreamConverterService);
 				var streamListner = streamConverterService.asyncConvertData("message/rfc822", "text/html", myTxtListener, nschannel);
 				myTxtListener.chrset = hdr.Charset;
-				messageService.streamMessage(uri, streamListner, msgWindow, null, false, null);
+				messageService.streamMessage(uri, streamListner, msgWindow, true, false, null);
 			} else if (hdr.folder.server.type === "imap") {
 				console.log("strea")
 				myTxtListener.chrset = "UTF-8";
-				messageService.streamMessage(uri, myTxtListener, null, true, true, null);
+				messageService.streamMessage(uri, myTxtListener, null, false, true, null);
 			} else {
 				myTxtListener.chrset = hdr.Charset;
-				messageService.streamMessage(uri, myTxtListener, null, null, true, "header=filter");
+				messageService.streamMessage(uri, myTxtListener, null, true, true, "header=filter");
 			}
 
 		});

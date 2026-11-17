@@ -64,7 +64,7 @@ var ietngExtension = ExtensionParent.GlobalManager.getExtension(
 );
 
 var { ietngUtils } = ChromeUtils.importESModule("chrome://mboximport/content/mboximport/modules/ietngUtils.mjs?"
-  + ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
+	+ ietngExtension.manifest.version + messengerWindow.ietngAddon.dateForDebugging);
 
 var searchFolder = null;
 
@@ -100,44 +100,40 @@ async function SDexportMsg() {
 	if (tbVersion.major >= 120) {
 		winCtx = window.browsingContext;
 	}
+
+
 	var nsIFilePicker = Ci.nsIFilePicker;
 	var fp = Cc["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
 	var res;
+
+	var fpRes;
 	var file;
 
 	if (type === 4 || type === 6)
 		file = await getPredefinedFolder(0);
 	else if (type === 5) {
-		fp.init(winCtx, ietngUtils.localizeMsg("filePickerAppend"), nsIFilePicker.modeOpen);
-		fp.appendFilters(nsIFilePicker.filterAll);
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK) {
-			file = fp.file;
-			if (isMbox(file) !== 1) {
-				var string = ("\"" + file.leafName + "\" " + ietngUtils.localizeMsg("nomboxfile"));
-				alert(string);
-				return;
-			}
-		} else
-			return;
-	} else
-		file = await getPredefinedFolder(2);
 
-
-	if (!file) {
-		fp.init(winCtx, ietngUtils.localizeMsg("filePickerExport"), nsIFilePicker.modeGetFolder);
-		if (fp.show)
-			res = fp.show();
-		else
-			res = IETopenFPsync(fp);
-		if (res === nsIFilePicker.returnOK)
-			file = fp.file;
-		else {
+		fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeOpen, ietngUtils.localizeMsg("filePickerAppend"), null, Ci.nsIFilePicker.filterAll);
+		if (fpRes.result == -1) {
 			return;
 		}
+		file = fpRes.file;
+		if (isMbox(file) !== 1) {
+			var string = ("\"" + file.leafName + "\" " + ietngUtils.localizeMsg("nomboxfile"));
+			alert(string);
+			return;
+		}
+
+	} else {
+		file = await getPredefinedFolder(2);
+	}
+
+	if (!file) {
+		fpRes = await ietngUtils.openFileDialog(Ci.nsIFilePicker.modeGetFolder, ietngUtils.localizeMsg("filePickerExport"), null, Ci.nsIFilePicker.filterAll);
+		if (fpRes.result == -1) {
+			return;
+		}
+		file = fpRes.file;
 	}
 
 	let emlsArray = [];
@@ -163,7 +159,7 @@ async function SDexportMsg() {
 	IETskipped = 0;
 	console.log("type", type)
 	if (type === 1)
-		await	exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, false);
+		await exportAsHtml(msguri, emlsArray, file, false, false, false, false, null, null, null, false);
 	else if (type === 2)
 		await exportAsHtml(msguri, emlsArray, file, true, false, false, false, null, null, null, null, false);
 	else if (type === 3)
@@ -192,5 +188,5 @@ async function SDexportMsg() {
 
 function SDinit() {
 
-		searchFolder = window.arguments[0];
+	searchFolder = window.arguments[0];
 }

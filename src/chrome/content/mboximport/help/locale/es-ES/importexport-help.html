@@ -24,6 +24,7 @@
       Dejaré de utilizar las funciones antiguas de exportación de mensajes a partir de la versión 15.0.3. Por
       favor, utilicen las nuevas funciones (v15) e informen de cualquier problema que surja para que esta
       eliminación no les afecte.<br /><br />
+      Nota: Esta versión requiere reiniciar Thunderbird.<br /><br />
       <b>Novedad: Copias de seguridad automáticas y programadas:</b><br />
       Realizar copias de seguridad sin interacción del usuario.<br />
       Recordatorio al iniciar si la copia de seguridad está vencida.<br />
@@ -712,9 +713,8 @@
         <tr>
           <td><code class="code1">%V</code></td>
           <td>
-            Número de semana del año actual según la norma ISO 8601 como número decimal (rango de 01 a 53),
-            donde la semana 1 es la primera semana que tiene al menos 4 días en el nuevo año (es decir, el
-            primer jueves).
+            Número de semana ISO 8601 del año actual como un número decimal (rango 01 a 53), donde la semana 1
+            es la primera semana que tiene al menos 4 días en el nuevo año (es decir, el primer jueves).
           </td>
         </tr>
         <tr>
@@ -949,7 +949,7 @@
       Ejemplos de entradas de teclas de acceso rápido (matriz de objetos JSON)<br /><br />
       <code class="notranslate">id</code> - el índice de la clave (1-10)<br />
       <code class="notranslate">key</code> - la clave (un solo carácter)<br />
-      <code class="notranslate">keycode</code> : el código de tecla de definición &#39;VK_*&#39;<br />
+      <code class="notranslate">keycode</code> : el código de tecla definido &#39;VK_*&#39;<br />
       Se puede incluir tanto la llave como el código de acceso, pero no ambos.<br />
       <code class="notranslate">modifiers</code> : lista de modificadores de teclas separados por espacios
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;aceleración&#39;)<br />

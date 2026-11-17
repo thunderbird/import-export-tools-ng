@@ -24,11 +24,12 @@
       A 15.0.3-as verziótól kezdődően megszüntetem a korábbi exportüzenet-funkciókat. Kérjük, használd az új
       (15-ös verzió) funkciókat, és jelentsd be a velük kapcsolatos problémákat, hogy a megszüntetés ne
       érintsen téged.<br /><br />
+      Megjegyzés: Ehhez a verzióhoz a Thunderbird újraindítása szükséges.<br /><br />
       <b>Új: Automatikus, ütemezett biztonsági mentések:</b><br />
       Biztonsági mentések futtatása felhasználói beavatkozás nélkül<br />
       Emlékeztető indításkor, ha a biztonsági mentés határideje lejárt<br />
       Használja a „biztonsági mentés” opciót a naplózási beállításokban a nyomkövetéshez<br />
-      Megjegyzés: A kilépéskor végrehajtott biztonsági mentés eltávolítva. Az új Thunderbird architektúrában
+      Megjegyzés: A kilépéskor végrehajtandó biztonsági mentés eltávolítva. Az új Thunderbird architektúrában
       nem lehetséges.<br /><br />
       - Javítva: Exportálás az üzenetpanelről, üzenetek lapon vagy ablakban<br />
       - Javítva: [Nincs tárgy] linkek megjelenítése az indexben<br />
@@ -687,8 +688,7 @@
         <tr>
           <td><code class="code1">%u</code></td>
           <td>
-            A hét napja decimális törtben (1-től 7-ig terjedő tartomány), a hétfő az 1. Lásd még
-            <code class="code1">%w</code> .
+            A hét napja decimális törtben (1-től 7-ig), a hétfő az 1. Lásd még <code class="code1">%w</code> .
           </td>
         </tr>
         <tr>
@@ -938,7 +938,7 @@
       <code class="notranslate">modifiers</code> - a legfontosabb módosítók, szóközzel elválasztott lista
       (&#39;control&#39;, &#39;shift&#39;, &#39;alt&#39;, &#39;accel&#39;)<br />
       <code class="notranslate">oncommand</code> - egy közvetlen parancs karakterlánc<br />
-      <code class="notranslate">contexts</code> – az ablakkontextus, ahol a kulcs aktív<br />
+      <code class="notranslate">contexts</code> – az ablak kontextusa, ahol a kulcs aktív<br />
       <code class="notranslate">&#39;all&#39;</code> – az összes ablak a Messenger, levélírás és keresés
       alatt<br />
       <code class="notranslate">&#39;messenger&#39;</code> – a fő üzenetküldő ablak és annak leszármazottai<br />
